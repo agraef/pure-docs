@@ -1,0 +1,413 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-faust &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-liblo" href="pure-liblo.html" />
+    <link rel="prev" title="pure-audio" href="pure-audio.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-liblo.html" title="pure-liblo"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-audio.html" title="pure-audio"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-faust">
+<span id="pure-faust"></span><h1>pure-faust<a class="headerlink" href="#module-faust" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.9, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This module lets you load and run Faust-generated signal processing modules in
+<a class="reference external" href="http://purelang.bitbucket.org/">Pure</a>. <a class="reference external" href="http://faust.grame.fr/">Faust</a> (an acronym for Functional AUdio STreams) is a functional
+programming language for real-time sound processing and synthesis developed at
+<a class="reference external" href="http://www.grame.fr/">Grame</a> and distributed as GPL&#8217;ed software.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As of Pure 0.45, there&#8217;s also built-in support for Faust interoperability
+in the Pure core, including the ability to inline Faust code in Pure
+programs; see <a class="reference internal" href="pure.html#interfacing-to-faust"><em>Interfacing to Faust</em></a> in the Pure manual.  The built-in
+Faust interface requires <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a> which is still under development and
+available as a separate package in the Faust git repository.  Both
+interfaces provide pretty much the same basic capabilities and should work
+equally well for most applications. In fact, as of version 0.5 pure-faust
+comes with a compatibility module which provides the pure-faust API on top
+of the built-in Faust interface, see the description of the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a>
+module below for details.</p>
+</div>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Unless explicitly stated otherwise, this software is Copyright (c) 2009-2012
+by Albert Graef. Please also see the source for the copyright and license
+notes pertaining to individual source files.</p>
+<p>pure-faust is free software: you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.</p>
+<p>pure-faust is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along
+with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.9.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.9.tar.gz</a>.</p>
+<p>Binary packages can be found at <a class="reference external" href="http://purelang.bitbucket.org/">http://purelang.bitbucket.org/</a>. To install
+from source, run the usual <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt>. This requires Pure,
+of course (the present version will work with Pure 0.52 and later). The
+Makefile tries to guess the installation prefix under which Pure is
+installed. If it guesses wrong, you can tell it the right prefix with <tt class="docutils literal"><span class="pre">make</span>
+<span class="pre">prefix=/some/path</span></tt>. Or you can specify the exact path of the <tt class="docutils literal"><span class="pre">lib/pure</span></tt>
+directory with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">libdir=/some/path</span></tt>; by default the Makefile assumes
+<tt class="docutils literal"><span class="pre">$(prefix)/lib/pure</span></tt>. The Makefile also tries to guess the host system type
+and set up some platform-specific things accordingly. If this doesn&#8217;t work for
+your system then you&#8217;ll have to edit the Makefile accordingly.</p>
+<p>The Faust compiler is not required to compile this module, but of course
+you&#8217;ll need it to build the examples in the <tt class="docutils literal"><span class="pre">examples</span></tt> subdirectory and to
+compile your own Faust sources. You&#8217;ll need Faust 0.9.46 or later.</p>
+<p>To compile Faust programs for use with this module, you&#8217;ll also need the
+<tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture file. This should be included in recent Faust
+releases. If your Faust version doesn&#8217;t have it yet, you can find a suitable
+version of this file in the <tt class="docutils literal"><span class="pre">examples</span></tt> folder. Simply copy the file to your
+Faust library directory (usually <tt class="docutils literal"><span class="pre">/usr/local/lib/faust</span></tt> or similar) or the
+directory holding the Faust sources to be compiled, and you should be set.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Once Faust and this module have been installed as described above, you should
+be able to compile a Faust dsp to a shared module loadable by pure-faust as
+follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>$ faust -a pure.cpp -o mydsp.cpp mydsp.dsp
+$ g++ -shared -o mydsp.so mydsp.cpp
+</pre></div>
+</div>
+<p>Note that, by default, Faust generates code which does all internal
+computations with single precision. You can add the <tt class="docutils literal"><span class="pre">-double</span></tt> flag to the
+Faust command in order to use double precision instead. (In either case, all
+data will be represented as doubles on the Pure side.)</p>
+<p>Also note that the above compile command is for a Linux or BSD system using
+<tt class="docutils literal"><span class="pre">gcc</span></tt>. Add <tt class="docutils literal"><span class="pre">-fPIC</span></tt> for 64 bit compilation. For Windows compilation, the
+output filename should be <tt class="docutils literal"><span class="pre">mydsp.dll</span></tt> instead of <tt class="docutils literal"><span class="pre">mydsp.so</span></tt>; on Mac OSX,
+it should be <tt class="docutils literal"><span class="pre">mydsp.dylib</span></tt>. There&#8217;s a Makefile in the <tt class="docutils literal"><span class="pre">examples</span></tt> folder
+which automates this process.</p>
+<p>Once the module has been compiled, you can fire up the Pure interpreter and
+load the dsp as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> faust<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> dsp = faust_init <span class="s">&quot;mydsp&quot;</span> <span class="mi">48000</span><span class="p">;</span>
+<span class="gp">&gt; </span>dsp<span class="p">;</span>
+<span class="kt">#&lt;pointer 0xf09220&gt;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">faust_init</span></tt> function loads the <tt class="docutils literal"><span class="pre">&quot;mydsp.so&quot;</span></tt> module (the <tt class="docutils literal"><span class="pre">.so</span></tt>
+suffix is supplied automatically) and returns a pointer to the Faust dsp
+object which can then be used in subsequent operations.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"><tt class="docutils literal"><span class="pre">faust_init</span></tt> only loads the dsp module if it hasn&#8217;t been loaded
+before. However, as of pure-faust 0.8, <tt class="docutils literal"><span class="pre">faust_init</span></tt> also checks the
+modification time of the module and reloads it if the module was recompiled
+since it was last loaded. (This is for compatibility with Pure&#8217;s built-in
+Faust interface which behaves in the same way.) If this happens, <em>all</em>
+existing dsp instances created with the old version of the module become
+invalid immediately (i.e., all subsequent operations on them will fail,
+except <tt class="docutils literal"><span class="pre">faust_exit</span></tt>) and must be recreated.</p>
+</div>
+<p>The second parameter of <tt class="docutils literal"><span class="pre">faust_init</span></tt>, 48000 in this example, denotes the
+sample rate in Hz. This can be an arbitrary integer value which is available
+to the hosted dsp (it&#8217;s up to the dsp whether it actually uses this value in
+some way). The sample rate can also be changed on the fly with the
+<tt class="docutils literal"><span class="pre">faust_reinit</span></tt> function:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>faust_reinit dsp <span class="mi">44100</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>It is also possible to create copies of an existing dsp with the
+<tt class="docutils literal"><span class="pre">faust_clone</span></tt> function, which is quite handy if multiple copies of the same
+dsp are needed (a case which commonly arises when implementing polyphonic
+synthesizers):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> dsp2 = faust_clone dsp<span class="p">;</span>
+</pre></div>
+</div>
+<p>When you&#8217;re done with a dsp, you can invoke the <tt class="docutils literal"><span class="pre">faust_exit</span></tt> function to
+unload it (this also happens automatically when a dsp object is
+garbage-collected):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>faust_exit dsp2<span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that after invoking this operation the dsp pointer becomes invalid and
+must not be used any more.</p>
+<p>In the following, we use the following little Faust program as a running
+example:</p>
+<div class="highlight-pure"><div class="highlight"><pre>declare descr <span class="s">&quot;amplifier&quot;</span><span class="p">;</span>
+declare author <span class="s">&quot;Albert Graef&quot;</span><span class="p">;</span>
+declare version <span class="s">&quot;1.0&quot;</span><span class="p">;</span>
+
+gain = nentry(<span class="s">&quot;gain&quot;</span>, <span class="mf">1.0</span>, <span class="mi">0</span>, <span class="mi">10</span>, <span class="mf">0.01</span>)<span class="p">;</span>
+process = *(gain)<span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">faust_info</span></tt> function can be used to determine the number of
+input/output channels as well as the &#8220;UI&#8221; (a data structure describing the
+available control variables) of the loaded dsp:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> n,m,ui = faust_info dsp<span class="p">;</span>
+</pre></div>
+</div>
+<p>Global metadata of the dsp is available as a list of <tt class="docutils literal"><span class="pre">key=&gt;val</span></tt> string pairs
+with the <tt class="docutils literal"><span class="pre">faust_meta</span></tt> function. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>faust_meta dsp<span class="p">;</span>
+[<span class="s">&quot;descr&quot;</span>=&gt;<span class="s">&quot;amplifier&quot;</span>,<span class="s">&quot;author&quot;</span>=&gt;<span class="s">&quot;Albert Graef&quot;</span>,<span class="s">&quot;version&quot;</span>=&gt;<span class="s">&quot;1.0&quot;</span>]
+</pre></div>
+</div>
+<p>To actually run the dsp, you&#8217;ll need two buffers capable of holding the
+required number of audio samples for input and output. For convenience, the
+<tt class="docutils literal"><span class="pre">faust_compute</span></tt> routine lets you specify these as Pure double matrices.
+<tt class="docutils literal"><span class="pre">faust_compute</span></tt> is invoked as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>faust_compute dsp in out<span class="p">;</span>
+</pre></div>
+</div>
+<p>Here, <tt class="docutils literal"><span class="pre">in</span></tt> and <tt class="docutils literal"><span class="pre">out</span></tt> must be double matrices which have at least <tt class="docutils literal"><span class="pre">n</span></tt> or
+<tt class="docutils literal"><span class="pre">m</span></tt> rows, respectively (corresponding to the number of input and output
+channels of the Faust dsp). The row size of these matrices determines the
+number of samples which will be processed (if one of the matrices has a larger
+row size than the other, the extra elements are ignored). The <tt class="docutils literal"><span class="pre">out</span></tt> matrix
+will be modified in-place and also returned as the result of the call.</p>
+<p>Some DSPs (e.g., synthesizers) only take control input without processing any
+audio input; others (e.g., pitch detectors) might produce just control output
+without any audio output. In such cases you can just specify an empty <tt class="docutils literal"><span class="pre">in</span></tt>
+or <tt class="docutils literal"><span class="pre">out</span></tt> matrix, respectively. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>faust_compute dsp {} out<span class="p">;</span>
+</pre></div>
+</div>
+<p>Most DSPs take additional control input. The control variables are listed in
+the &#8220;UI&#8221; component of the <tt class="docutils literal"><span class="pre">faust_info</span></tt> return value. For instance, suppose
+that there&#8217;s a <tt class="docutils literal"><span class="pre">gain</span></tt> parameter listed there, it might look as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>controls ui!<span class="mi">0</span><span class="p">;</span>
+hslider <span class="kt">#&lt;pointer 0x12780a4&gt;</span> [] (<span class="s">&quot;gain&quot;</span>,<span class="mf">1.0</span>,<span class="mf">0.0</span>,<span class="mf">10.0</span>,<span class="mf">0.1</span>)
+</pre></div>
+</div>
+<p>The constructor itself denotes the type of control, which matches the name of
+the Faust builtin used to create the control (see the Faust documentation for
+more details on this). The <em>third</em> parameter is a tuple which indicates the
+arguments the control was created with in the Faust program. The <em>first</em>
+parameter is a C <tt class="docutils literal"><span class="pre">double*</span></tt> which points to the current value of the control
+variable. You can inspect and change this value with the <tt class="docutils literal"><span class="pre">get_double</span></tt> and
+<tt class="docutils literal"><span class="pre">put_double</span></tt> routines available in the Pure prelude. (Note that, for
+compatibility with the internal Faust interface which supports both single and
+double precision controls, you can also use the <tt class="docutils literal"><span class="pre">get_control</span></tt> and
+<tt class="docutils literal"><span class="pre">put_control</span></tt> functions instead.) Changes of control variables only take
+effect between different invocations of <tt class="docutils literal"><span class="pre">faust_compute</span></tt>. Example:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> gain = control_ref (controls ui!<span class="mi">0</span>)<span class="p">;</span>
+<span class="gp">&gt; </span>get_double gain<span class="p">;</span>
+<span class="mf">1.0</span>
+<span class="gp">&gt; </span>put_double gain <span class="mf">2.0</span><span class="p">;</span>
+()
+<span class="gp">&gt; </span>faust_compute dsp in out<span class="p">;</span>
+</pre></div>
+</div>
+<p>Output controls such as <tt class="docutils literal"><span class="pre">hbargraph</span></tt> and <tt class="docutils literal"><span class="pre">vbargraph</span></tt> are handled in a
+similar fashion, only that the Faust dsp updates these values for each call to
+<tt class="docutils literal"><span class="pre">faust_compute</span></tt> and Pure scripts can then read the values with
+<tt class="docutils literal"><span class="pre">get_double</span></tt> or <tt class="docutils literal"><span class="pre">get_control</span></tt>.</p>
+<p>The <em>second</em> parameter of a control description is a list holding the Faust
+metadata of the control. This list will be empty if the control does not have
+any metadata.  Otherwise you will find some of <tt class="docutils literal"><span class="pre">key=&gt;val</span></tt> string pairs in
+this list. It is completely up to the application how to interpret the
+metadata, which may consist, e.g., of GUI layout hints or various kinds of
+controller definitions. For instance, a MIDI controller assignment might look
+as follows in the Faust source:</p>
+<div class="highlight-pure"><div class="highlight"><pre>gain = nentry(<span class="s">&quot;gain[midi:ctrl 7]&quot;</span>, <span class="mf">1.0</span>, <span class="mi">0</span>, <span class="mi">10</span>, <span class="mf">0.01</span>)<span class="p">;</span>
+</pre></div>
+</div>
+<p>In Pure this information will then be available as:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>control_meta (controls ui!<span class="mi">0</span>)<span class="p">;</span>
+[<span class="s">&quot;midi&quot;</span>=&gt;<span class="s">&quot;ctrl 7&quot;</span>]
+</pre></div>
+</div>
+<p>Let&#8217;s finally have a closer look at the contents of the UI data structure. You
+will find that it is actually a tree, similar to the directory tree of a
+hierarchical file system, which reflects the layout of the controls in the
+Faust program. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>ui<span class="p">;</span>
+vgroup [] (<span class="s">&quot;mydsp&quot;</span>,[nentry <span class="kt">#&lt;pointer 0x12780a4&gt;</span> [] (<span class="s">&quot;gain&quot;</span>,<span class="mf">1.0</span>,<span class="mf">0.0</span>,<span class="mf">10.0</span>,<span class="mf">0.01</span>)])
+</pre></div>
+</div>
+<p>The leaves of the tree are the actual controls, while its interior nodes are
+so-called &#8220;control groups&#8221;, starting from a root node which represents the
+entire dsp. There are different kinds of control groups such as <tt class="docutils literal"><span class="pre">vgroup</span></tt> and
+<tt class="docutils literal"><span class="pre">hgroup</span></tt>; please check the Faust documentation for details. Control groups
+have a name and metadata just like individual controls, but there is no
+<tt class="docutils literal"><span class="pre">control_ref</span></tt> component and the data stored at the node is the list of
+controls and subgroups contained in the control group. The <tt class="docutils literal"><span class="pre">controls</span></tt>
+function returns a flat representation of the controls in the UI tree as a
+list, omitting the group nodes of the tree:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>controls ui<span class="p">;</span>
+[hslider <span class="kt">#&lt;pointer 0x12780a4&gt;</span> [] (<span class="s">&quot;gain&quot;</span>,<span class="mf">1.0</span>,<span class="mf">0.0</span>,<span class="mf">10.0</span>,<span class="mf">0.1</span>)]
+</pre></div>
+</div>
+<p>We&#8217;ve already employed this function above to extract the <tt class="docutils literal"><span class="pre">gain</span></tt> control of
+our example dsp. There&#8217;s a variation of this function which yields the full
+&#8220;pathnames&#8221; of controls in the UI tree:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>pcontrols ui<span class="p">;</span>
+[hslider <span class="kt">#&lt;pointer 0x12780a4&gt;</span> [] (<span class="s">&quot;mydsp/gain&quot;</span>,<span class="mf">1.0</span>,<span class="mf">0.0</span>,<span class="mf">10.0</span>,<span class="mf">0.1</span>)]
+</pre></div>
+</div>
+<p>This is sometimes necessary to distinguish controls with identical names in
+different control groups. There are two additional convenience functions which
+work with this flat representation of the UI data structure:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> ctrls = ans<span class="p">;</span>
+<span class="gp">&gt; </span>control_map ctrls<span class="p">;</span>
+{<span class="s">&quot;mydsp/gain&quot;</span>=&gt;<span class="kt">#&lt;pointer 0x12780a4&gt;</span>}
+<span class="gp">&gt; </span>control_metamap ctrls<span class="p">;</span>
+{<span class="s">&quot;mydsp/gain&quot;</span>=&gt;[]}
+</pre></div>
+</div>
+<p>The results are Pure records which provide convenient access to the pointers
+and metadata of the controls by their name.</p>
+<p>Please note that, as of Pure 0.45, the UI access functions described above are
+actually provided by the <tt class="xref pure pure-mod docutils literal"><span class="pre">faustui</span></tt> standard library module which gets
+included by the <a class="reference internal" href="#module-faust"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust</span></tt></a> module.</p>
+<p>Further examples can be found in the examples subdirectory.</p>
+</div>
+<div class="section" id="module-faust2">
+<span id="faust2-compatibility"></span><h2>Faust2 Compatibility<a class="headerlink" href="#module-faust2" title="Permalink to this headline">¶</a></h2>
+<p>As of version 0.5, pure-faust includes a Faust2 compatibility module which
+lets you use the pure-faust API on top of Pure&#8217;s new Faust bitcode interface,
+using the same operations as described under <a class="reference internal" href="#usage">Usage</a> above. This module is
+invoked with the following import clause:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> faust2<span class="p">;</span>
+</pre></div>
+</div>
+<p>To instantiate a Faust dsp using the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> interface, you&#8217;ll have to
+compile the Faust program to LLVM bitcode format. The examples directory
+includes a <tt class="docutils literal"><span class="pre">pure.c</span></tt> Faust architecture file to help with this. Please see
+the <a class="reference internal" href="pure.html#interfacing-to-faust"><em>Interfacing to Faust</em></a> section in the Pure manual for details.</p>
+<p>Note that only one of the <a class="reference internal" href="#module-faust"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust</span></tt></a> and <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> modules may be
+imported into a program; trying to use both modules in the same program will
+<em>not</em> work. Also note that the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> module requires <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a> and a
+fairly recent Pure version to work, whereas the <a class="reference internal" href="#module-faust"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust</span></tt></a> module works with
+both Faust2 and the mainline Faust version and doesn&#8217;t rely on the Faust
+bitcode loader (only the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture is needed).</p>
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>Many thanks to Yann Orlarey at Grame, the principal author of Faust!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-faust</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#module-faust2">Faust2 Compatibility</a></li>
+<li><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-audio.html"
+                        title="previous chapter">pure-audio</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-liblo.html"
+                        title="next chapter">pure-liblo</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-faust.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-liblo.html" title="pure-liblo"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-audio.html" title="pure-audio"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

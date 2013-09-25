@@ -1,0 +1,251 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-fastcgi: FastCGI module for Pure &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="Pure-ODBC - ODBC interface for the Pure programming language" href="pure-odbc.html" />
+    <link rel="prev" title="Pure-CSV - Comma Separated Value Interface for the Pure Programming Language" href="pure-csv.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-odbc.html" title="Pure-ODBC - ODBC interface for the Pure programming language"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-csv.html" title="Pure-CSV - Comma Separated Value Interface for the Pure Programming Language"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-fastcgi">
+<span id="pure-fastcgi-fastcgi-module-for-pure"></span><h1>pure-fastcgi: FastCGI module for Pure<a class="headerlink" href="#module-fastcgi" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.5, September 08, 2013</p>
+<p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This module lets you write <a class="reference external" href="http://www.fastcgi.com">FastCGI</a> scripts with Pure, to be run by web
+servers like <a class="reference external" href="http://www.apache.org/">Apache</a>. Compared to normal CGI scripts, this has the advantage
+that the script keeps running and may process as many requests from the web
+server as you like, in order to reduce startup times and enable caching
+techniques. Most ordinary CGI scripts can be converted to use FastCGI with
+minimal changes.</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2009 by Albert Graef. pure-fastcgi is distributed under a
+3-clause BSD-style license, please see the included COPYING file for details.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Besides Pure, you&#8217;ll need to have the <a class="reference external" href="http://www.fastcgi.com">FastCGI</a> library installed to compile
+this module. Also, to run FastCGI scripts, your web server must be configured
+accordingly; see the documentation of FastCGI and your web server for details.</p>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-fastcgi-0.5.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-fastcgi-0.5.tar.gz</a>.</p>
+<p>Running <tt class="docutils literal"><span class="pre">make</span></tt> compiles the module, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> installs it in your
+Pure library directory. You might have to adjust the path to the fcgi_stdio.h
+header file in fastcgi.c and/or the option to link in the FastCGI library in
+the Makefile.</p>
+<p>The Makefile tries to guess the host system type and Pure version, and
+set up some platform-specific things accordingly. If this doesn&#8217;t work for
+your system then you&#8217;ll have to edit the Makefile accordingly.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>pure-fastcgi provides the <tt class="docutils literal"><span class="pre">accept</span></tt> function with which you tell the FastCGI
+server that your script is ready to accept another request.</p>
+<dl class="function">
+<dt id="fastcgi::accept">
+<tt class="descclassname">fastcgi::</tt><tt class="descname">accept</tt><a class="headerlink" href="#fastcgi::accept" title="Permalink to this definition">¶</a></dt>
+<dd><p>Accept a FastCGI request.</p>
+</dd></dl>
+
+<p>The module also overrides a number of standard I/O functions so that they talk
+to the server instead. These routines are all in the <tt class="docutils literal"><span class="pre">fastcgi</span></tt> namespace. In
+your Pure script, you can set up a simple loop to process requests as
+follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="cp">#!/usr/local/bin/pure -x</span>
+
+<span class="kr">using</span> fastcgi<span class="p">;</span>
+<span class="kr">using</span> <span class="kr">namespace</span> fastcgi<span class="p">;</span>
+
+<span class="kr">extern</span> <span class="kt">char</span> *getenv(<span class="kt">char</span>*)<span class="p">;</span>
+
+main count = main count <span class="kr">when</span>
+  count = count+<span class="mi">1</span><span class="p">;</span>
+  printf <span class="s">&quot;Content-type: text/html</span><span class="se">\n\n</span><span class="s">\</span>
+<span class="s">&lt;title&gt;FastCGI Hello! (Pure, fcgi_stdio library)&lt;/title&gt;\</span>
+<span class="s">&lt;h1&gt;FastCGI Hello! (Pure, fcgi_stdio library)&lt;/h1&gt;\</span>
+<span class="s">Request number %d running on host &lt;i&gt;%s&lt;/i&gt;</span><span class="se">\n</span><span class="s">&quot;</span>
+  (count,getenv <span class="s">&quot;SERVER_NAME&quot;</span>)<span class="p">;</span>
+<span class="kr">end</span> <span class="kr">if</span> accept &gt;= <span class="mi">0</span><span class="p">;</span>
+
+main <span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>(You might have to adjust the &#8220;shebang&#8221; in the first line above, so that the
+shell finds the Pure interpreter. Also, remember to make the script executable.
+If you&#8217;re worried about startup times, or if your operating system doesn&#8217;t
+support shebangs, then you can also use the Pure interpreter to compile the
+script to a native executable instead.)</p>
+<p>This script keeps running until <a class="reference internal" href="#fastcgi::accept" title="fastcgi::accept"><tt class="xref pure pure-func docutils literal"><span class="pre">accept</span></tt></a> returns <tt class="docutils literal"><span class="pre">-1</span></tt> to indicate that
+the script should exit. Each call to <a class="reference internal" href="#fastcgi::accept" title="fastcgi::accept"><tt class="xref pure pure-func docutils literal"><span class="pre">accept</span></tt></a> blocks until either a
+request is available or the FastCGI server detects an error or other kind of
+termination condition. As with ordinary CGI, additional information about the
+request is available through various environment variables. A list of commonly
+supported environment variables and their meaning can be found in <a class="reference external" href="http://hoohoo.ncsa.uiuc.edu/cgi/">The Common
+Gateway Interface</a> specification.</p>
+<p>A number of other routines are provided to deal with data filters, finish a
+request and set an exit status for a request. These correspond to operations
+provided by the FastCGI library, see the FastCGI documentation and the
+FCGI_Accept(3), FCGI_StartFilterData(3), FCGI_Finish(3) and
+FCGI_SetExitStatus(3) manpages for details. An interface to the FCGI_ToFILE
+macro is also available. Note that in Pure these functions are called
+<tt class="docutils literal"><span class="pre">accept</span></tt>, <tt class="docutils literal"><span class="pre">start_filter_data</span></tt>, <tt class="docutils literal"><span class="pre">finish</span></tt>, <tt class="docutils literal"><span class="pre">set_exit_status</span></tt> and
+<tt class="docutils literal"><span class="pre">to_file</span></tt>, respectively, and are all declared in the <tt class="docutils literal"><span class="pre">fastcgi</span></tt> namespace.
+A detailed listing of all routines can be found in the fastcgi.pure module.</p>
+<p>Please see the examples subdirectory in the pure-fastcgi sources for some more
+elaborate examples.</p>
+<p>Note that to run your FastCGI scripts in a browser, your web server must have
+the FastCGI module loaded and must also be set up to execute the
+scripts. E.g., when using Apache, the following configuration file entry will
+set up a directory for FastCGI scripts:</p>
+<div class="highlight-pure"><div class="highlight"><pre>ScriptAlias /fastcgi-bin/ <span class="s">&quot;/srv/www/fastcgi-bin/&quot;</span>
+&lt;Location /fastcgi-bin/&gt;
+    Options ExecCGI
+    SetHandler fastcgi-script
+    Order allow,deny
+    Allow from all
+&lt;/Location&gt;
+</pre></div>
+</div>
+<p>(Replace <tt class="docutils literal"><span class="pre">fastcgi-script</span></tt> with <tt class="docutils literal"><span class="pre">fcgid-script</span></tt> if you&#8217;re running
+<tt class="docutils literal"><span class="pre">mod_fcgid</span></tt> rather than <tt class="docutils literal"><span class="pre">mod_fastcgi</span></tt>.)</p>
+<p>Put this entry into http.conf or a similar file provided by your Apache
+installation (usually under /etc/apache2), and restart Apache. After that you
+can just throw your scripts into the <tt class="docutils literal"><span class="pre">fastcgi-bin</span></tt> directory to have them
+executed via an URL like <tt class="docutils literal"><span class="pre">http://localhost/fastcgi-bin/myscript</span></tt>.</p>
+<p>You can also set up a handler for the <tt class="docutils literal"><span class="pre">.pure</span></tt> filename extension as
+follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>&lt;IfModule mod_fastcgi.c&gt;
+&lt;FilesMatch <span class="s">&quot;\.pure$&quot;</span>&gt;
+    AddHandler fastcgi-script .pure
+    Options +ExecCGI
+&lt;/FilesMatch&gt;
+&lt;/IfModule&gt;
+</pre></div>
+</div>
+<p>(Again, you&#8217;ll have to adjust the <tt class="docutils literal"><span class="pre">IfModule</span></tt> statement and replace
+<tt class="docutils literal"><span class="pre">fastcgi-script</span></tt> with <tt class="docutils literal"><span class="pre">fcgid-script</span></tt> if you&#8217;re running <tt class="docutils literal"><span class="pre">mod_fcgid</span></tt>.)
+After that you should be able to execute scripts with the proper extension
+anywhere under your server&#8217;s document root.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-fastcgi: FastCGI module for Pure</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-csv.html"
+                        title="previous chapter">Pure-CSV - Comma Separated Value Interface for the Pure Programming Language</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-odbc.html"
+                        title="next chapter">Pure-ODBC - ODBC interface for the Pure programming language</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-fastcgi.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-odbc.html" title="Pure-ODBC - ODBC interface for the Pure programming language"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-csv.html" title="Pure-CSV - Comma Separated Value Interface for the Pure Programming Language"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

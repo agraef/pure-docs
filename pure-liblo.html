@@ -1,0 +1,185 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-liblo &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-midi" href="pure-midi.html" />
+    <link rel="prev" title="pure-faust" href="pure-faust.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-midi.html" title="pure-midi"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-faust.html" title="pure-faust"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-lo">
+<span id="pure-liblo"></span><h1>pure-liblo<a class="headerlink" href="#module-lo" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-osc"></span><p>Version 0.8, September 08, 2013</p>
+<p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2009 by Albert Graef.</p>
+<p>pure-liblo is free software: you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.</p>
+<p>pure-liblo is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along
+with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>This is a quick and dirty Pure wrapper for the <a class="reference external" href="http://liblo.sourceforge.net/">liblo</a> library by Steve Harris
+and others, which implements Berkeley&#8217;s <a class="reference external" href="http://opensoundcontrol.org/">Open Sound Control</a> (OSC) protocol.</p>
+<p>OSC is a protocol for exchanging data between multimedia devices and software
+across the network (TCP, UDP and UNIX domain sockets are supported as the
+transport layer). It is also useful as a general communication mechanism for
+both hard- and software. In difference to the plain socket interface (on which
+it builds), OSC provides you with an efficient means to send around binary
+data packets along with the corresponding type and timing information, which
+makes it well-suited for both realtime and non-realtime applications.</p>
+<p>The OSC protocol is <a class="reference external" href="http://opensoundcontrol.org/spec-1_0">standardized</a> and is supported by an abundance of
+different <a class="reference external" href="http://opensoundcontrol.org/implementations">implementations</a>, which includes controller hardware of all sorts
+and computer music software like CSound, Pd and SuperCollider. Lots of
+implementations exist for different programming languages. liblo aims to
+provide a lightweight and ubiquitous OSC implementation for the C programming
+language.</p>
+<p>The <tt class="docutils literal"><span class="pre">lo.pure</span></tt> module provides a fairly straight wrapper of the C library. A
+more high-level and Purified interface is available in <tt class="docutils literal"><span class="pre">osc.pure</span></tt>. Most of
+the time, you&#8217;ll want to use the latter for convenience, but if you need
+utmost flexibility then it is worth having a look at <tt class="docutils literal"><span class="pre">lo.pure</span></tt>, too.</p>
+<ul class="simple">
+<li>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-liblo-0.8.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-liblo-0.8.tar.gz</a>.</li>
+<li>To install, run <tt class="docutils literal"><span class="pre">make</span></tt> and <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt>. This will try to guess
+your Pure installation directory; if it guesses wrong, you can set the
+<tt class="docutils literal"><span class="pre">prefix</span></tt> variable accordingly, see the Makefile for details.</li>
+<li>You can also regenerate the wrapper by running <tt class="docutils literal"><span class="pre">make</span> <span class="pre">generate</span></tt>; this
+requires the <tt class="docutils literal"><span class="pre">pure-gen</span></tt> utility and the liblo headers. The present version
+was generated from liblo 0.26. If your liblo version differs from that then
+it&#8217;s always a good idea to run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">generate</span></tt>.</li>
+<li>Have a look at <tt class="docutils literal"><span class="pre">lo.pure</span></tt> and <tt class="docutils literal"><span class="pre">osc.pure</span></tt> for a description of the API
+provided to Pure programmers.</li>
+<li>The <tt class="docutils literal"><span class="pre">examples</span></tt> folder contains some Pure code which illustrates how to use
+these modules.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-liblo</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-faust.html"
+                        title="previous chapter">pure-faust</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-midi.html"
+                        title="next chapter">pure-midi</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-liblo.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-midi.html" title="pure-midi"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-faust.html" title="pure-faust"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

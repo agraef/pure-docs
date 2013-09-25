@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-stllib &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-stlmap" href="pure-stlmap.html" />
+    <link rel="prev" title="pure-stldict" href="pure-stldict.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stlmap.html" title="pure-stlmap"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-stldict.html" title="pure-stldict"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pure-stllib">
+<h1>pure-stllib<a class="headerlink" href="#pure-stllib" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.5, September 08, 2013</p>
+<div class="line-block">
+<div class="line">Peter Summerland &lt;<a class="reference external" href="mailto:p&#46;summerland&#37;&#52;&#48;gmail&#46;com">p<span>&#46;</span>summerland<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
+</div>
+<p><a class="reference internal" href=""><em>pure-stllib</em></a> is an &#8220;umbrella&#8221; package that contains a pair of Pure
+addons, <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> and <a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a>. These addons provide
+<a class="reference external" href="http://purelang.bitbucket.org">Pure</a> interfaces to a selection of containers provided by the <a class="reference external" href="http://en.cppreference.com/w/cpp">C++ Standard
+Library</a>, specialized to hold pointers to arbitrary Pure
+expressions. <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> is a Pure interface to C++&#8217;s vector and the
+STL algorithms that act on them. <a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a> is an interface to six (of
+the eight) of C++&#8217;s associative containers: map, set, multimap, multiset,
+unordered_map and unordered_set.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#copying" id="id1">Copying</a></li>
+<li><a class="reference internal" href="#installation" id="id2">Installation</a></li>
+<li><a class="reference internal" href="#usage" id="id3">Usage</a></li>
+<li><a class="reference internal" href="#documentation" id="id4">Documentation</a></li>
+<li><a class="reference internal" href="#changes" id="id5">Changes</a></li>
+</ul>
+</div>
+<div class="section" id="copying">
+<h2><a class="toc-backref" href="#id1">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Copyright (c) 2011-2012 by Peter Summerland &lt;<a class="reference external" href="mailto:p&#46;summerland&#37;&#52;&#48;gmail&#46;com">p<span>&#46;</span>summerland<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;.</div>
+</div>
+<p>All rights reserved.</p>
+<p><a class="reference internal" href=""><em>pure-stllib</em></a> is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p><a class="reference internal" href=""><em>pure-stllib</em></a> is distributed under a BSD-style license, see the COPYING
+file for details.</p>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id2">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>pure-stllib-0.5 requires at least Pure 0.50. The latest version of
+Pure is available at <a class="reference external" href="http://code.google.com/p/pure-lang/downloads/list">http://code.google.com/p/pure-lang/downloads/list</a>.</p>
+<p>The latest version of the source code for <a class="reference internal" href=""><em>pure-stllib</em></a> can be downloaded
+from <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz</a>.</p>
+<p>To install pure-stllib-0.5 (on Linux), extract the source code (e.g.,
+tar -xzf pure-stllib-0.5.tar.gz), cd to the pure-stllib-0.5
+directory, and run <tt class="docutils literal"><span class="pre">make</span></tt>. After this you can (and should) also run <tt class="docutils literal"><span class="pre">make</span>
+<span class="pre">check</span></tt> to run a few unit tests to make sure that <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> and
+<a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a> work properly on your system. If <tt class="docutils literal"><span class="pre">make</span> <span class="pre">check</span></tt> works, run
+<tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt> to install <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> and
+<a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a>. Run <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">uninstall</span></tt> to remove them.</p>
+<p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
+setup. If it gets this wrong, you can set some variables manually. In
+particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets the installation prefix. Please
+see the Makefile for details.</p>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> provides functions that act on a single mutable container,
+stlvec, which is a wrapper around C++&#8217;s vector, specialized to hold Pure
+expressions. It also provides functions that correspond to C++&#8217;s STL
+algorithms specialized to act on stlvecs.</p>
+<p><a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a> provides functions that act on six mutable containers,
+&#8220;stlmap&#8221;, &#8220;stlset&#8221;, &#8220;stlmmap&#8221;, &#8220;stlmset&#8221;, &#8220;stlhmap&#8221; and &#8220;stlhset&#8221;, that are
+thin wrappers around the corresponding associative containers provided by C++,
+map, set, multimap, multiset, unordered_map and unordered_set, specialized to
+hold Pure expressions.</p>
+<p>The functions provided by <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> and <a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a> are made
+available by importing one or more of the following modules.</p>
+<blockquote>
+<div><p><a class="reference internal" href="pure-stlvec.html#module-stlvec"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlvec</span></tt></a> - support for stlvecs</p>
+<p><a class="reference internal" href="pure-stlvec.html#module-stlvec::algorithms"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlvec::algorithms</span></tt></a> - STL algorithms specialized to act on stlvecs</p>
+<p><a class="reference internal" href="pure-stlmap.html#module-stlmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmap</span></tt></a> - support for stlmap and stlset</p>
+<p><a class="reference internal" href="pure-stlmap.html#module-stlmmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmmap</span></tt></a> - support for stlmmap and stlmset</p>
+<p><a class="reference internal" href="pure-stlmap.html#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a> - support for stlhmap and stlhset</p>
+</div></blockquote>
+</div>
+<div class="section" id="documentation">
+<h2><a class="toc-backref" href="#id4">Documentation</a><a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<p>Please see the documentation for <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a> and <a class="reference internal" href="pure-stlmap.html"><em>pure-stlmap</em></a>.</p>
+<p>For the impatient, the functions that act on containers provided by the
+<a class="reference internal" href="pure-stlmap.html#module-stlmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmap</span></tt></a>, <a class="reference internal" href="pure-stlmap.html#module-stlmmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmmap</span></tt></a>, <a class="reference internal" href="pure-stlmap.html#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a> and <a class="reference internal" href="pure-stlvec.html#module-stlvec"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlvec</span></tt></a> modules are
+summarized in a rudimentary cheatsheet, pure-stllib-cheatsheet.pdf, which can
+be found in the pure-stllib/doc directory.</p>
+</div>
+<div class="section" id="changes">
+<h2><a class="toc-backref" href="#id5">Changes</a><a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<p>Version 0.1 - Bundle pure-stlvec-0.3 and pure-stlmap-0.1.</p>
+<p>Version 0.2 - Bundle pure-stlvec-0.3 and pure-stlmap-0.2.</p>
+<p>Version 0.3 - Bundle pure-stlvec-0.4 and pure-stlmap-0.3.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-stllib</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#changes">Changes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-stldict.html"
+                        title="previous chapter">pure-stldict</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-stlmap.html"
+                        title="next chapter">pure-stlmap</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-stllib.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stlmap.html" title="pure-stlmap"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-stldict.html" title="pure-stldict"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

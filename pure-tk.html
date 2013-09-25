@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-tk &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="faust2pd: Pd Patch Generator for Faust" href="faust2pd.html" />
+    <link rel="prev" title="Pure GTK+ Bindings" href="pure-gtk.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="faust2pd.html" title="faust2pd: Pd Patch Generator for Faust"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-gtk.html" title="Pure GTK+ Bindings"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-tk">
+<span id="pure-tk"></span><h1>pure-tk<a class="headerlink" href="#module-tk" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.4, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>Pure&#8217;s <a class="reference external" href="http://www.tcl.tk">Tcl/Tk</a> interface.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
+<li><a class="reference internal" href="#copying" id="id2">Copying</a></li>
+<li><a class="reference internal" href="#installation" id="id3">Installation</a></li>
+<li><a class="reference internal" href="#basic-usage" id="id4">Basic Usage</a></li>
+<li><a class="reference internal" href="#callbacks" id="id5">Callbacks</a></li>
+<li><a class="reference internal" href="#the-main-loop" id="id6">The Main Loop</a></li>
+<li><a class="reference internal" href="#accessing-tcl-variables" id="id7">Accessing Tcl Variables</a></li>
+<li><a class="reference internal" href="#conversions-between-pure-and-tcl-values" id="id8">Conversions Between Pure and Tcl Values</a></li>
+<li><a class="reference internal" href="#tips-and-tricks" id="id9">Tips and Tricks</a></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This module provides a basic interface between Pure and Tcl/Tk. The operations
+of this module allow you to execute arbitrary commands in the Tcl interpreter,
+set and retrieve variable values in the interpreter, and invoke Pure callbacks
+from Tcl/Tk.</p>
+<p>A recent version of Tcl/Tk is required (8.0 or later should do). You can get
+this from <a class="reference external" href="http://www.tcl.tk">http://www.tcl.tk</a>. Both releases in source form and binary releases
+for Windows and various Unix systems are provided there.</p>
+<p>Some information on how to use this module can be found below. But you&#8217;ll find
+that pure-tk is very easy to use, so you might just want to look at the
+programs in the examples folder to pick it up at a glance. A very basic
+example can be found in tk_hello.pure; a slightly more advanced example of a
+tiny but complete Tk application is in tk_examp.pure.</p>
+<p>pure-tk also offers special support for Peter G. Baum&#8217;s <a class="reference external" href="http://www.gnocl.org/">Gnocl</a> extension which
+turns Tcl into a frontend for <a class="reference external" href="http://www.gtk.org/">GTK+</a> and <a class="reference external" href="http://www.gnome.org/">Gnome</a>. If you have Gnocl installed
+then you can easily create GTK+/Gnome applications, either from Tcl sources or
+from <a class="reference external" href="http://glade.gnome.org/">Glade</a> UI files, using the provided gnocl.pure module. See the included
+uiexample.pure and the accompanying Glade UI file for a simple example. Also,
+some basic information on using Gnocl with pure-tk can be found in the <a class="reference internal" href="#tips-and-tricks">Tips
+and Tricks</a> section below.</p>
+<p>One nice thing about Tcl/Tk is that it provides a bridge to a lot of other
+useful libraries. A prominent example is <a class="reference external" href="http://www.vtk.org/">VTK</a>, a powerful open-source 3D
+visualization toolkit which comes with full Tcl/Tk bindings. The examples
+directory contains a simple example (earth.pure and earth.tcl) which shows how
+you can employ these bindings to write cool animated 3D applications using
+either Tk or Gnocl as the GUI toolkit.</p>
+</div>
+<div class="section" id="copying">
+<h2><a class="toc-backref" href="#id2">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2010 by Albert Gräf, all rights reserved. pure-tk is distributed
+under a BSD-style license, see the COPYING file for details.</p>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-tk-0.4.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-tk-0.4.tar.gz</a>.</p>
+<p>As with the other addon modules for Pure, running <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span>
+<span class="pre">install</span></tt> should usually do the trick. This requires that you have Pure and
+Tcl/Tk installed. <tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and
+platform-specific setup. If it gets this wrong, you can set some variables
+manually. In particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets the installation
+prefix. Please see the Makefile for details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">When starting a new interpreter, the Tcl/Tk initialization code
+looks for some initialization files which it executes before anything else
+happens. Usually these files will be found without any further ado, but if
+that does not happen automatically, you must set the TCL_LIBRARY and
+TK_LIBRARY environment variables to point to the Tcl and Tk library
+directories on your system.</p>
+</div>
+<p>All programs in the examples subdirectory have been set up so that they can be
+compiled to native executables, and a Makefile is provided in that directory
+to handle this. So after installing pure-tk you just need to type <tt class="docutils literal"><span class="pre">make</span></tt>
+there to compile the examples. (This step isn&#8217;t necessary, though, you can
+also just run the examples with the Pure interpreter as usual.)</p>
+</div>
+<div class="section" id="basic-usage">
+<h2><a class="toc-backref" href="#id4">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tk">
+<tt class="descname">tk</tt> cmd<a class="headerlink" href="#tk" title="Permalink to this definition">¶</a></dt>
+<dd><p>execute a Tcl command</p>
+</dd></dl>
+
+<p>You can submit a command to the Tcl interpreter with <tt class="docutils literal"><span class="pre">tk</span> <span class="pre">cmd</span></tt> where <tt class="docutils literal"><span class="pre">cmd</span></tt>
+is a string containing the command to be executed. If the Tcl command returns
+a value (i.e., a nonempty string) then <a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a> returns that string,
+otherwise it returns <tt class="docutils literal"><span class="pre">()</span></tt>.</p>
+<p><a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a> also starts a new instance of the Tcl interpreter if it is not
+already running. To stop the Tcl interpreter, you can use the <a class="reference internal" href="#tk_quit" title="tk_quit"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_quit</span></tt></a>
+function.</p>
+<dl class="function">
+<dt id="tk_quit">
+<tt class="descname">tk_quit</tt><a class="headerlink" href="#tk_quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>stop the Tcl interpreter</p>
+</dd></dl>
+
+<p>Note that, as far as pure-tk is concerned, there&#8217;s only one Tcl interpreter
+per process, but of course you can create secondary interpreter instances in
+the Tcl interpreter using the appropriate Tcl commands.</p>
+<p>Simple dialogs can be created directly using Tk&#8217;s <tt class="docutils literal"><span class="pre">tk_messageBox</span></tt> and
+<tt class="docutils literal"><span class="pre">tk_dialog</span></tt> functions. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;tk_dialog .warning </span><span class="se">\&quot;</span><span class="s">Warning</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\&quot;</span><span class="s">Are you sure?</span><span class="se">\&quot;</span><span class="s"> warning 0 Yes No Cancel&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Other kinds of common dialogs are available; see the Tcl/Tk manual for
+information.</p>
+<p>For more elaborate applications you probably have to explicitly create some
+widgets, add the appropriate callbacks and provide a main loop which takes
+care of processing events in the Tcl/Tk GUI. We discuss this in the following.</p>
+</div>
+<div class="section" id="callbacks">
+<h2><a class="toc-backref" href="#id5">Callbacks</a><a class="headerlink" href="#callbacks" title="Permalink to this headline">¶</a></h2>
+<p>pure-tk installs a special Tcl command named <tt class="docutils literal"><span class="pre">pure</span></tt> in the interpreter which
+can be used to implement callbacks in Pure. This command is invoked from Tcl
+as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>pure function args ...
+</pre></div>
+</div>
+<p>It calls the Pure function named by the first argument, passing any remaining
+(string) arguments to the callback. If the Pure callback returns a (nonempty)
+string, that value becomes the return value of the <tt class="docutils literal"><span class="pre">pure</span></tt> command, otherwise
+the result returned to the Tcl interpreter is empty.</p>
+<p>Pure callbacks are installed on Tk widgets just like any other, just using the
+<tt class="docutils literal"><span class="pre">pure</span></tt> command as the actual callback command. For instance, you can define
+a callback which gets invoked when a button is pushed as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> tk, system<span class="p">;</span>
+tk <span class="s">&quot;button .b -text {Hello, world!} -command {pure hello}; pack .b&quot;</span><span class="p">;</span>
+hello = puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-main-loop">
+<h2><a class="toc-backref" href="#id6">The Main Loop</a><a class="headerlink" href="#the-main-loop" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tk_main">
+<tt class="descname">tk_main</tt><a class="headerlink" href="#tk_main" title="Permalink to this definition">¶</a></dt>
+<dd><p>call the Tk main loop</p>
+</dd></dl>
+
+<p>The easiest way to provide a main loop for your application is to just call
+<a class="reference internal" href="#tk_main" title="tk_main"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_main</span></tt></a> which keeps processing events in the Tcl interpreter until the
+interpreter is exited. You can terminate the interpreter in a Pure callback by
+calling <a class="reference internal" href="#tk_quit" title="tk_quit"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_quit</span></tt></a>. Thus a minimalistic Tcl/Tk application coded in Pure
+may look as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> tk<span class="p">;</span>
+tk <span class="s">&quot;button .b -text {Hello, world!} -command {pure tk_quit}; pack .b&quot;</span><span class="p">;</span>
+tk_main<span class="p">;</span>
+</pre></div>
+</div>
+<p>The main loop terminates as soon as the Tcl interpreter is exited, which can
+happen, e.g., in response to a callback which invokes the <a class="reference internal" href="#tk_quit" title="tk_quit"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_quit</span></tt></a>
+function (as shown above) or Tcl code which destroys the main window
+(<tt class="docutils literal"><span class="pre">destroy</span> <span class="pre">.</span></tt>).  The user can also close the main window from the window
+manager in order to exit the main loop.</p>
+</div>
+<div class="section" id="accessing-tcl-variables">
+<h2><a class="toc-backref" href="#id7">Accessing Tcl Variables</a><a class="headerlink" href="#accessing-tcl-variables" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="tk_set">
+<tt class="descname">tk_set</tt> var val<a class="headerlink" href="#tk_set" title="Permalink to this definition">¶</a></dt>
+<dt id="tk_unset">
+<tt class="descname">tk_unset</tt> var<a class="headerlink" href="#tk_unset" title="Permalink to this definition">¶</a></dt>
+<dt id="tk_get">
+<tt class="descname">tk_get</tt> var<a class="headerlink" href="#tk_get" title="Permalink to this definition">¶</a></dt>
+<dd><p>set and get Tcl variables</p>
+</dd></dl>
+
+<p>pure-tk allows your script to set and retrieve variable values in the Tcl
+interpreter with the <a class="reference internal" href="#tk_set" title="tk_set"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_set</span></tt></a>, <a class="reference internal" href="#tk_unset" title="tk_unset"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_unset</span></tt></a> and <a class="reference internal" href="#tk_get" title="tk_get"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_get</span></tt></a>
+functions. This is useful, e.g., to change the variables associated with entry
+and button widgets, and to retrieve the current values from the
+application. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_set <span class="s">&quot;entry_val&quot;</span> <span class="s">&quot;some string&quot;</span><span class="p">;</span>
+<span class="s">&quot;some string&quot;</span>
+<span class="gp">&gt; </span>tk_get <span class="s">&quot;entry_val&quot;</span><span class="p">;</span>
+<span class="s">&quot;some string&quot;</span>
+<span class="gp">&gt; </span>tk_unset <span class="s">&quot;entry_val&quot;</span><span class="p">;</span>
+()
+<span class="gp">&gt; </span>tk_get <span class="s">&quot;entry_val&quot;</span><span class="p">;</span>
+tk_get <span class="s">&quot;entry_val&quot;</span>
+</pre></div>
+</div>
+<p>Note that <a class="reference internal" href="#tk_set" title="tk_set"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_set</span></tt></a> returns the assigned value, so it is possible to chain
+such calls if several variables have to be set to the same value:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_set <span class="s">&quot;foo&quot;</span> $ tk_set <span class="s">&quot;bar&quot;</span> <span class="s">&quot;yes&quot;</span><span class="p">;</span>
+<span class="s">&quot;yes&quot;</span>
+<span class="gp">&gt; </span>map tk_get [<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>]<span class="p">;</span>
+[<span class="s">&quot;yes&quot;</span>,<span class="s">&quot;yes&quot;</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="conversions-between-pure-and-tcl-values">
+<h2><a class="toc-backref" href="#id8">Conversions Between Pure and Tcl Values</a><a class="headerlink" href="#conversions-between-pure-and-tcl-values" title="Permalink to this headline">¶</a></h2>
+<p>As far as pure-tk is concerned, all Tcl values are strings (in fact, that&#8217;s
+just what they are at the Tcl language level, although the Tcl interpreter
+uses more elaborate representations of objects such as lists internally).
+There are no automatic conversions of any kind. Thus, the arguments passed to
+a Pure callback and the result returned by <a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a> are simply strings in
+Pure land. The same holds for the <a class="reference internal" href="#tk_set" title="tk_set"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_set</span></tt></a> and <a class="reference internal" href="#tk_get" title="tk_get"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_get</span></tt></a> functions.</p>
+<p>However, there are a few helper functions which can be used to convert between
+Tcl and Pure data. First, the following operations convert Pure lists to
+corresponding Tcl lists and vice versa:</p>
+<dl class="function">
+<dt id="tk_join">
+<tt class="descname">tk_join</tt> xs<a class="headerlink" href="#tk_join" title="Permalink to this definition">¶</a></dt>
+<dt id="tk_split">
+<tt class="descname">tk_split</tt> s<a class="headerlink" href="#tk_split" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert between Pure and Tcl lists</p>
+</dd></dl>
+
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_join [<span class="s">&quot;0&quot;</span>,<span class="s">&quot;1.0&quot;</span>,<span class="s">&quot;Hello, world!&quot;</span>]<span class="p">;</span>
+<span class="s">&quot;0 1.0 {Hello, world!}&quot;</span>
+<span class="gp">&gt; </span>tk_split ans<span class="p">;</span>
+[<span class="s">&quot;0&quot;</span>,<span class="s">&quot;1.0&quot;</span>,<span class="s">&quot;Hello, world!&quot;</span>]
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="#tk_str" title="tk_str"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_str</span></tt></a> and <a class="reference internal" href="#tk_val" title="tk_val"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_val</span></tt></a> operations work in a similar fashion,
+but they also do automatic conversions for numeric values (ints, bigints and
+doubles):</p>
+<dl class="function">
+<dt id="tk_str">
+<tt class="descname">tk_str</tt> xs<a class="headerlink" href="#tk_str" title="Permalink to this definition">¶</a></dt>
+<dt id="tk_val">
+<tt class="descname">tk_val</tt> s<a class="headerlink" href="#tk_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>convert between Pure and Tcl values with numeric conversions</p>
+</dd></dl>
+
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_str [<span class="mi">0</span>,<span class="mf">1.0</span>,<span class="s">&quot;Hello, world!&quot;</span>]<span class="p">;</span>
+<span class="s">&quot;0 1.0 {Hello, world!}&quot;</span>
+<span class="gp">&gt; </span>tk_val ans<span class="p">;</span>
+[<span class="mi">0</span>,<span class="mf">1.0</span>,<span class="s">&quot;Hello, world!&quot;</span>]
+</pre></div>
+</div>
+<p>In addition, these operations also convert single atomic values:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_str <span class="mf">1.0</span><span class="p">;</span>
+<span class="s">&quot;1.0&quot;</span>
+<span class="gp">&gt; </span>tk_val ans<span class="p">;</span>
+<span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="tips-and-tricks">
+<h2><a class="toc-backref" href="#id9">Tips and Tricks</a><a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h2>
+<p>Here are a few other things that are worth keeping in mind when working with
+pure-tk.</p>
+<ul>
+<li><p class="first">Errors in Tcl/Tk commands can be handled by giving an appropriate definition
+of the <tt class="xref pure pure-func docutils literal"><span class="pre">tk_error</span></tt> function, which is invoked with an error message as
+its single argument. For instance, the following implementation of
+<tt class="xref pure pure-func docutils literal"><span class="pre">tk_error</span></tt> throws an exception:</p>
+<div class="highlight-pure"><div class="highlight"><pre>tk_error msg = <span class="nb">throw</span> msg<span class="p">;</span>
+</pre></div>
+</div>
+<p>If no definition for this function is provided, then errors cause a literal
+<tt class="docutils literal"><span class="pre">tk_error</span> <span class="pre">msg</span></tt> expression to be returned as the result of the <a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a>
+function. You can then check for such results and take an appropriate
+action.</p>
+</li>
+<li><p class="first">The Tcl interpreter, when started, displays a default main window, which is
+required by most Tk applications. If this is not desired (e.g., if only the
+basic Tcl commands are needed), you can hide this window using a <tt class="docutils literal"><span class="pre">tk</span> <span class="pre">&quot;wm</span>
+<span class="pre">withdraw</span> <span class="pre">.&quot;</span></tt> command. To redisplay the window when it is needed, use the
+<tt class="docutils literal"><span class="pre">tk</span> <span class="pre">&quot;wm</span> <span class="pre">deiconify</span> <span class="pre">.&quot;</span></tt> command. It is also common practice to use <tt class="docutils literal"><span class="pre">wm</span>
+<span class="pre">withdraw</span></tt> and <tt class="docutils literal"><span class="pre">wm</span> <span class="pre">deiconify</span></tt> while creating the widgets of an
+application, in order to reduce &#8220;flickering&#8221;.</p>
+</li>
+<li><p class="first">Instead of calling <a class="reference internal" href="#tk_main" title="tk_main"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_main</span></tt></a>, you can also code your own main loop in
+Pure as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>main = do_something $$ main <span class="kr">if</span> tk_ready<span class="p">;</span>
+     = () <span class="kr">otherwise</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that the <tt class="xref pure pure-func docutils literal"><span class="pre">tk_ready</span></tt> function checks whether the Tcl interpreter
+is still up and running, after processing any pending events in the
+interpreter. This setup allows you to do your own custom idle processing in
+Pure while the application is running. However, you have to be careful that
+your <tt class="docutils literal"><span class="pre">do_something</span></tt> routine runs neither too short nor too long (a few
+milliseconds should usually be ok). Otherwise your main loop may turn into a
+busy loop and/or the GUI may become very sluggish and unresponsive. Thus
+it&#8217;s usually better to just call <a class="reference internal" href="#tk_main" title="tk_main"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_main</span></tt></a> and do any necessary
+background processing using the Tcl interpreter&#8217;s own facilities (e.g., by
+setting up a Pure callback with the Tcl <tt class="docutils literal"><span class="pre">after</span></tt> command).</p>
+</li>
+<li><p class="first">The <a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a> function can become rather tedious when coding larger Tk
+applications. Usually, you will prefer to put the commands making up your
+application into a separate Tcl script. One way to incorporate the Tcl
+script into your your Pure program is to use the Tcl <tt class="docutils literal"><span class="pre">source</span></tt> command,
+e.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;source myapp.tcl&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>However, this always requires the script to be available at runtime. Another
+method is to read the script into a string which is assigned to a Pure
+constant, and then invoke the <a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a> command on this string value:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+<span class="kr">const</span> ui = fget $ fopen <span class="s">&quot;myapp.tcl&quot;</span> <span class="s">&quot;r&quot;</span><span class="p">;</span>
+tk ui<span class="p">;</span>
+</pre></div>
+</div>
+<p>This still reads the script at runtime if the Pure program is executed using
+the Pure interpreter. However, you can now compile the Pure program to a
+native executable (see the Pure manual for details on this), in which case
+the text of the Tcl script is included verbatim in the executable. The
+compiled program can then be run without having the original Tcl script file
+available:</p>
+<div class="highlight-pure"><div class="highlight"><pre>$ pure -c myapp.pure -o myapp
+$ ./myapp
+</pre></div>
+</div>
+<p>This is also the method to use for running existing Tk applications, e.g.,
+if you create the interface using some interface builder like <a class="reference external" href="http://vtcl.sourceforge.net">vtcl</a>.</p>
+</li>
+</ul>
+<ul>
+<li><p class="first">The Tcl <tt class="docutils literal"><span class="pre">package</span></tt> command allows you to load additional extensions into
+the Tcl interpreter at runtime. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;package require Gnocl&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>This loads Peter G. Baum&#8217;s <a class="reference external" href="http://www.gnocl.org/">Gnocl</a> extension which turns Tcl into a frontend
+for <a class="reference external" href="http://www.gtk.org/">GTK+</a> and <a class="reference external" href="http://www.gnome.org/">Gnome</a>. In fact, pure-tk includes a special module to handle
+the nitty-gritty details of creating a GTK+/Gnome application from a <a class="reference external" href="http://glade.gnome.org/">Glade</a>
+UI file and set up Pure callbacks as specified in the UI file. To use this,
+just import the gnocl.pure module into your Pure scripts:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> gnocl<span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that the Glade interface requires that you have a fairly recent version
+of Gnocl installed (Gnocl 0.9.94g has been tested). The other facilities
+provided by the gnocl.pure module should also work with older Gnocl versions
+such as Gnocl 0.9.91. Please see the gnocl.pure module and the corresponding
+examples included in the sources for more information.</p>
+</li>
+<li><p class="first">The Tcl <tt class="docutils literal"><span class="pre">exit</span></tt> procedure, just as in tclsh or wish, causes exit from the
+current process. Since the Tcl interpreter hosted by the pure-tk module runs
+as part of a Pure program and not as a separate child process, this might
+not be what you want. If you&#8217;d like <tt class="docutils literal"><span class="pre">exit</span></tt> to only exit the Tcl
+interpreter, without exiting the Pure program, you can redefine the <tt class="docutils literal"><span class="pre">exit</span></tt>
+procedure, e.g., as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;proc exit { {returnCode 0} } { pure tk_quit }&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you want to do something with the exit code provided by <tt class="docutils literal"><span class="pre">exit</span></tt>, you
+will have to provide an appropriate callback function, e.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;proc exit { {returnCode 0} } { pure quit_cb $returnCode }&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A suitable implementation of <tt class="docutils literal"><span class="pre">quit_cb</span></tt> might look as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>quit_cb <span class="mi">0</span> = puts <span class="s">&quot;Application exited normally.&quot;</span> $$ tk_quit<span class="p">;</span>
+quit_cb n = printf <span class="s">&quot;Application exited with exit code %d.</span><span class="se">\n</span><span class="s">&quot;</span> n $$
+            tk_quit <span class="kr">otherwise</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">If you need dialogs beyond the standard kinds of message boxes and common
+dialogs, you will have to do these yourself using a secondary toplevel. The
+dialog toplevel is just like the main window but will only be shown when the
+application needs it. You can construct both non-modal and modal dialogs
+this way, the latter can be implemented using Tk&#8217;s <tt class="docutils literal"><span class="pre">grab</span></tt> command.</p>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-tk</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
+<li><a class="reference internal" href="#callbacks">Callbacks</a></li>
+<li><a class="reference internal" href="#the-main-loop">The Main Loop</a></li>
+<li><a class="reference internal" href="#accessing-tcl-variables">Accessing Tcl Variables</a></li>
+<li><a class="reference internal" href="#conversions-between-pure-and-tcl-values">Conversions Between Pure and Tcl Values</a></li>
+<li><a class="reference internal" href="#tips-and-tricks">Tips and Tricks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-gtk.html"
+                        title="previous chapter">Pure GTK+ Bindings</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="faust2pd.html"
+                        title="next chapter">faust2pd: Pd Patch Generator for Faust</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-tk.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="faust2pd.html" title="faust2pd: Pd Patch Generator for Faust"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-gtk.html" title="Pure GTK+ Bindings"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

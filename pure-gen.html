@@ -1,0 +1,795 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-gen: Pure interface generator &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-readline" href="pure-readline.html" />
+    <link rel="prev" title="pure-ffi" href="pure-ffi.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-readline.html" title="pure-readline"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-ffi.html" title="pure-ffi"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pure-gen-pure-interface-generator">
+<h1>pure-gen: Pure interface generator<a class="headerlink" href="#pure-gen-pure-interface-generator" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.16, September 08, 2013</p>
+<p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>pure-gen is a C interface generator for the Pure language. It takes a C header
+file as input and generates a corresponding Pure module with the constant
+definitions and extern declarations needed to use the C module from
+Pure. pure-gen can also generate FFI interfaces rather than externs (using the
+<a class="reference internal" href="pure-ffi.html"><em>pure-ffi</em></a> module), and it can optionally create a C wrapper module which
+allows you to create interfaces to pretty much any code which can be called
+via C.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></li>
+<li><a class="reference internal" href="#options" id="id2">Options</a><ul>
+<li><a class="reference internal" href="#general-options" id="id3">General Options</a></li>
+<li><a class="reference internal" href="#preprocessor-options" id="id4">Preprocessor Options</a></li>
+<li><a class="reference internal" href="#generator-options" id="id5">Generator Options</a></li>
+<li><a class="reference internal" href="#output-options" id="id6">Output Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#description" id="id7">Description</a></li>
+<li><a class="reference internal" href="#filtering" id="id8">Filtering</a></li>
+<li><a class="reference internal" href="#name-mangling" id="id9">Name Mangling</a></li>
+<li><a class="reference internal" href="#generating-c-code" id="id10">Generating C Code</a></li>
+<li><a class="reference internal" href="#dealing-with-c-structs" id="id11">Dealing with C Structs</a></li>
+<li><a class="reference internal" href="#notes" id="id12">Notes</a></li>
+<li><a class="reference internal" href="#example" id="id13">Example</a></li>
+<li><a class="reference internal" href="#license" id="id14">License</a></li>
+<li><a class="reference internal" href="#authors" id="id15">Authors</a></li>
+<li><a class="reference internal" href="#see-also" id="id16">See Also</a></li>
+</ul>
+</div>
+<div class="section" id="synopsis">
+<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-pure"><div class="highlight"><pre>pure-gen [options ...] input-file
+</pre></div>
+</div>
+</div>
+<div class="section" id="options">
+<h2><a class="toc-backref" href="#id2">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-options">
+<h3><a class="toc-backref" href="#id3">General Options</a><a class="headerlink" href="#general-options" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-pure-gen-h">
+<tt class="descname">-h</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-h" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--help">
+<tt class="descname">--help</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--help" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print a brief help message and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-V">
+<tt class="descname">-V</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-V" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--version">
+<tt class="descname">--version</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print version number and exit.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-e">
+<tt class="descname">-e</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-e" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--echo">
+<tt class="descname">--echo</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--echo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Echo preprocessor lines. Prints all processed <tt class="docutils literal"><span class="pre">#define</span></tt>s, useful for
+debugging purposes.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-v">
+<tt class="descname">-v</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-v" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--verbose">
+<tt class="descname">--verbose</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--verbose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Show parameters and progress information. Gives useful information about
+the conversion process.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-w">
+<tt class="descname">-w</tt><tt class="descclassname">[level]</tt><a class="headerlink" href="#cmdoption-pure-gen-w" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--warnings">
+<tt class="descname">--warnings</tt><tt class="descclassname">[=level]</tt><a class="headerlink" href="#cmdoption-pure-gen--warnings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display warnings, <tt class="docutils literal"><span class="pre">level</span></tt> = 0 (disable most warnings), 1 (default, shows
+important warnings only) or 2 (lots of additional warnings useful for
+debugging purposes).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="preprocessor-options">
+<h3><a class="toc-backref" href="#id4">Preprocessor Options</a><a class="headerlink" href="#preprocessor-options" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-pure-gen-I">
+<tt class="descname">-I</tt><tt class="descclassname"> path</tt><a class="headerlink" href="#cmdoption-pure-gen-I" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--include">
+<tt class="descname">--include</tt><tt class="descclassname"> path</tt><a class="headerlink" href="#cmdoption-pure-gen--include" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add include path. Passed to the C preprocessor.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-D">
+<tt class="descname">-D</tt><tt class="descclassname"> name[=value]</tt><a class="headerlink" href="#cmdoption-pure-gen-D" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--define">
+<tt class="descname">--define</tt><tt class="descclassname"> name[=value]</tt><a class="headerlink" href="#cmdoption-pure-gen--define" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define symbol. Passed to the C preprocessor.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-U">
+<tt class="descname">-U</tt><tt class="descclassname"> name</tt><a class="headerlink" href="#cmdoption-pure-gen-U" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--undefine">
+<tt class="descname">--undefine</tt><tt class="descclassname"> name</tt><a class="headerlink" href="#cmdoption-pure-gen--undefine" title="Permalink to this definition">¶</a></dt>
+<dd><p>Undefine symbol. Passed to the C preprocessor.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-C">
+<tt class="descname">-C</tt><tt class="descclassname"> option</tt><a class="headerlink" href="#cmdoption-pure-gen-C" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--cpp">
+<tt class="descname">--cpp</tt><tt class="descclassname"> option</tt><a class="headerlink" href="#cmdoption-pure-gen--cpp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pass through other preprocessor options and arguments.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="generator-options">
+<h3><a class="toc-backref" href="#id5">Generator Options</a><a class="headerlink" href="#generator-options" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-pure-gen-f">
+<tt class="descname">-f</tt><tt class="descclassname"> iface</tt><a class="headerlink" href="#cmdoption-pure-gen-f" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--interface">
+<tt class="descname">--interface</tt><tt class="descclassname"> iface</tt><a class="headerlink" href="#cmdoption-pure-gen--interface" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interface type (<tt class="docutils literal"><span class="pre">extern</span></tt>, <tt class="docutils literal"><span class="pre">c</span></tt>, <tt class="docutils literal"><span class="pre">ffi</span></tt> or <tt class="docutils literal"><span class="pre">c-ffi</span></tt>).  Default is
+<tt class="docutils literal"><span class="pre">extern</span></tt>. The <tt class="docutils literal"><span class="pre">extern</span></tt> and <tt class="docutils literal"><span class="pre">c</span></tt> types generate Pure <tt class="docutils literal"><span class="pre">extern</span></tt>
+declarations, which is what you want in most cases.  <tt class="docutils literal"><span class="pre">ffi</span></tt> and <tt class="docutils literal"><span class="pre">c-ffi</span></tt>
+employ Pure&#8217;s libffi interface instead. The <tt class="docutils literal"><span class="pre">c</span></tt> and <tt class="docutils literal"><span class="pre">c-ffi</span></tt> types
+cause an additional C wrapper module to be created (see <a class="reference internal" href="#generating-c-code">Generating C
+Code</a>). These can also be combined with the <tt class="docutils literal"><span class="pre">-auto</span></tt> suffix which
+creates C wrappers only when needed to get C struct arguments and returns
+working, see <a class="reference internal" href="#dealing-with-c-structs">Dealing with C Structs</a> for details.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-l">
+<tt class="descname">-l</tt><tt class="descclassname"> lib</tt><a class="headerlink" href="#cmdoption-pure-gen-l" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--lib-name">
+<tt class="descname">--lib-name</tt><tt class="descclassname"> lib</tt><a class="headerlink" href="#cmdoption-pure-gen--lib-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add dynamic library module to be imported in the Pure output file. Default
+is <tt class="docutils literal"><span class="pre">-l</span> <span class="pre">c-file</span></tt> (the filename specified with <a class="reference internal" href="#cmdoption-pure-gen-c"><em class="xref std std-option">-c</em></a>, see below,
+without filename extension) if one of the <tt class="docutils literal"><span class="pre">-fc</span></tt> options was specified,
+none otherwise.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-m">
+<tt class="descname">-m</tt><tt class="descclassname"> name</tt><a class="headerlink" href="#cmdoption-pure-gen-m" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--namespace">
+<tt class="descname">--namespace</tt><tt class="descclassname"> name</tt><a class="headerlink" href="#cmdoption-pure-gen--namespace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Module namespace in which symbols should be declared.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-p">
+<tt class="descname">-p</tt><tt class="descclassname"> prefix</tt><a class="headerlink" href="#cmdoption-pure-gen-p" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--prefix">
+<tt class="descname">--prefix</tt><tt class="descclassname"> prefix</tt><a class="headerlink" href="#cmdoption-pure-gen--prefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>Module name prefix to be removed from C symbols.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-P">
+<tt class="descname">-P</tt><tt class="descclassname"> prefix</tt><a class="headerlink" href="#cmdoption-pure-gen-P" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--wrap">
+<tt class="descname">--wrap</tt><tt class="descclassname"> prefix</tt><a class="headerlink" href="#cmdoption-pure-gen--wrap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prefix to be prepended to C wrapper symbols (<tt class="docutils literal"><span class="pre">-fc</span></tt> and friends). Default
+is <tt class="docutils literal"><span class="pre">Pure_</span></tt>.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-a">
+<tt class="descname">-a</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-a" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--all">
+<tt class="descname">--all</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include &#8220;hidden&#8221; symbols in the output. Built-in preprocessor symbols
+and symbols starting with an underscore are excluded unless this option is
+specified.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-s">
+<tt class="descname">-s</tt><tt class="descclassname"> pattern</tt><a class="headerlink" href="#cmdoption-pure-gen-s" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--select">
+<tt class="descname">--select</tt><tt class="descclassname"> pattern</tt><a class="headerlink" href="#cmdoption-pure-gen--select" title="Permalink to this definition">¶</a></dt>
+<dd><p>Selection of C symbols to be included in the output. <tt class="docutils literal"><span class="pre">pattern</span></tt> takes
+the form <tt class="docutils literal"><span class="pre">[glob-patterns::][regex-pattern]</span></tt>, designating a comma
+separated list of glob patterns matching the source filenames, and an
+extended regular expression matching the symbols to be processed. See
+glob(7) and regex(7). The default <tt class="docutils literal"><span class="pre">pattern</span></tt> is empty which
+matches all symbols in all source modules.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-x">
+<tt class="descname">-x</tt><tt class="descclassname"> pattern</tt><a class="headerlink" href="#cmdoption-pure-gen-x" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--exclude">
+<tt class="descname">--exclude</tt><tt class="descclassname"> pattern</tt><a class="headerlink" href="#cmdoption-pure-gen--exclude" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#cmdoption-pure-gen-s"><em class="xref std std-option">-s</em></a>, but <em>excludes</em> all matching C symbols from the
+selection.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-t">
+<tt class="descname">-t</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen-t" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--template">
+<tt class="descname">--template</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen--template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify a C template file to be used with C wrapper generation
+(<tt class="docutils literal"><span class="pre">-fc</span></tt>). See <a class="reference internal" href="#generating-c-code">Generating C Code</a> for details.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-T">
+<tt class="descname">-T</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen-T" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--alt-template">
+<tt class="descname">--alt-template</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen--alt-template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify an alternate C template file to be used with C wrapper generation
+(<tt class="docutils literal"><span class="pre">-fc</span></tt>). See <a class="reference internal" href="#generating-c-code">Generating C Code</a> for details.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="output-options">
+<h3><a class="toc-backref" href="#id6">Output Options</a><a class="headerlink" href="#output-options" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-pure-gen-n">
+<tt class="descname">-n</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-n" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--dry-run">
+<tt class="descname">--dry-run</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--dry-run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only parse without generating any output.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-N">
+<tt class="descname">-N</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-N" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--noclobber">
+<tt class="descname">--noclobber</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen--noclobber" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append output to existing files.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-o">
+<tt class="descname">-o</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen-o" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--output">
+<tt class="descname">--output</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen--output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Pure output (.pure) filename. Default is <tt class="docutils literal"><span class="pre">input-file</span></tt> with new
+extension .pure.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-pure-gen-c">
+<tt class="descname">-c</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen-c" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-pure-gen--c-output">
+<tt class="descname">--c-output</tt><tt class="descclassname"> file</tt><a class="headerlink" href="#cmdoption-pure-gen--c-output" title="Permalink to this definition">¶</a></dt>
+<dd><p>C wrapper (.c) filename (<tt class="docutils literal"><span class="pre">-fc</span></tt>). Default is <tt class="docutils literal"><span class="pre">input-file</span></tt> with new
+extension .c.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="description">
+<h2><a class="toc-backref" href="#id7">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>pure-gen generates Pure bindings for C functions from a C header file. For
+instance, the command</p>
+<div class="highlight-pure"><div class="highlight"><pre>pure-gen foo.h
+</pre></div>
+</div>
+<p>creates a Pure module foo.pure with <tt class="docutils literal"><span class="pre">extern</span></tt> declarations for the constants
+(<tt class="docutils literal"><span class="pre">#define</span></tt>s and enums) and C routines declared in the given C header file
+and (recursively) its includes.</p>
+<p>pure-gen only accepts a single header file on the command line. If you need to
+parse more than one header in a single run, you can just create a dummy header
+with all the necessary <tt class="docutils literal"><span class="pre">#include</span></tt>s in it and pass that to pure-gen
+instead.</p>
+<p>When invoked with the <a class="reference internal" href="#cmdoption-pure-gen-n"><em class="xref std std-option">-n</em></a> option, pure-gen performs a dry run in
+which it only parses the input without actually generating any output
+files. This is useful for checking the input (possibly in combination with the
+<a class="reference internal" href="#cmdoption-pure-gen-e"><em class="xref std std-option">-e</em></a>, <a class="reference internal" href="#cmdoption-pure-gen-v"><em class="xref std std-option">-v</em></a> and/or <a class="reference internal" href="#cmdoption-pure-gen-w"><em class="xref std std-option">-w</em></a> options) before generating
+output. A particularly useful example is</p>
+<div class="highlight-sh"><div class="highlight"><pre>pure-gen -ne foo.h <span class="se">\</span>
+  | awk <span class="s1">&#39;$1==&quot;#&quot; &amp;&amp; $2~/^[0-9]+$/ &amp;&amp; $3!~/^&quot;&lt;.*&gt;&quot;$/  { print $3 }&#39;</span> <span class="se">\</span>
+  | sort | uniq
+</pre></div>
+</div>
+<p>which prints on standard output all headers which are included in the source.
+This helps to decide which headers you want to be included in the output, so
+that you can set up a corresponding filter patterns (<a class="reference internal" href="#cmdoption-pure-gen-s"><em class="xref std std-option">-s</em></a> and
+<a class="reference internal" href="#cmdoption-pure-gen-x"><em class="xref std std-option">-x</em></a> options, see below).</p>
+<p>The <a class="reference internal" href="#cmdoption-pure-gen-I"><em class="xref std std-option">-I</em></a>, <a class="reference internal" href="#cmdoption-pure-gen-D"><em class="xref std std-option">-D</em></a> and <a class="reference internal" href="#cmdoption-pure-gen-U"><em class="xref std std-option">-U</em></a> options are simply passed to
+the C preprocessor, as well as any other option or argument escaped with the
+<a class="reference internal" href="#cmdoption-pure-gen-C"><em class="xref std std-option">-C</em></a> flag. This is handy if you need to define additional preprocessor
+symbols, add directories to the include search path, etc., see cpp(1) for
+details.</p>
+<p>There are some other options which affect the generated output. In particular,
+<tt class="docutils literal"><span class="pre">-f</span> <span class="pre">c</span></tt> generates a C wrapper module along with the Pure module (see
+<a class="reference internal" href="#generating-c-code">Generating C Code</a> below), and <tt class="docutils literal"><span class="pre">-f</span> <span class="pre">ffi</span></tt> generates a wrapper using Pure&#8217;s
+ffi module. Moreover, <tt class="docutils literal"><span class="pre">-l</span> <span class="pre">libfoo</span></tt> generates a <tt class="docutils literal"><span class="pre">using</span> <span class="pre">&quot;lib:libfoo&quot;</span></tt>
+declaration in the Pure source, for modules which require a shared library to
+be loaded. Any number of <a class="reference internal" href="#cmdoption-pure-gen-l"><em class="xref std std-option">-l</em></a> options can be specified.</p>
+<p>Other options for more advanced uses are explained in the following sections.</p>
+</div>
+<div class="section" id="filtering">
+<h2><a class="toc-backref" href="#id8">Filtering</a><a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h2>
+<p>Note that pure-gen always parses the given header file as well as <em>all</em> its
+includes. If the header file includes system headers, by default you will get
+those declarations as well. This is often undesirable. As a remedy, pure-gen
+normally excludes built-in <tt class="docutils literal"><span class="pre">#define</span></tt>s of the C preprocessor, as well as
+identifiers with a leading underscore (which are often found in system
+headers) from processing. You can use the <a class="reference internal" href="#cmdoption-pure-gen-a"><em class="xref std std-option">-a</em></a> option to disable this,
+so that all these symbols are included as well.</p>
+<p>In addition, the <a class="reference internal" href="#cmdoption-pure-gen-s"><em class="xref std std-option">-s</em></a> and <a class="reference internal" href="#cmdoption-pure-gen-x"><em class="xref std std-option">-x</em></a> options enable you to filter C
+symbols using the source filename and the symbol as search criteria. For
+instance, to just generate code for a single header foo.h and none of the
+other headers included in foo.h, you can invoke pure-gen as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>pure-gen -s foo.h<span class="p">::</span> foo.h
+</pre></div>
+</div>
+<p>Note that even in this case all included headers will be parsed so that
+<tt class="docutils literal"><span class="pre">#define</span></tt>d constants and enum values can be resolved, but the generated
+output will only contain definitions and declarations from the given header
+file.</p>
+<p>In general, the <a class="reference internal" href="#cmdoption-pure-gen-s"><em class="xref std std-option">-s</em></a> option takes an argument of the form
+<tt class="docutils literal"><span class="pre">glob-patterns::regex-pattern</span></tt> denoting a comma-separated list of glob
+patterns to be matched against the source filename in which the symbol
+resides, and an extended regex to be matched against the symbol itself. The
+<tt class="docutils literal"><span class="pre">glob-patterns::</span></tt> part can also be omitted in which case it defaults to
+<tt class="docutils literal"><span class="pre">::</span></tt> which matches any source file. The regex can also be empty, in which
+case it matches any symbol. The generated output will contain only the
+constant and function symbols matching the given regex, from source files
+matching any of the the glob patterns. Thus, for instance, the option <tt class="docutils literal"><span class="pre">-s</span>
+<span class="pre">foo.h,bar.h::^(foo|bar)_</span></tt> pulls all symbols prefixed with either <tt class="docutils literal"><span class="pre">foo_</span></tt> or
+<tt class="docutils literal"><span class="pre">bar_</span></tt> from the files foo.h and bar.h in the current directory.</p>
+<p>Instead of <tt class="docutils literal"><span class="pre">::</span></tt> you can also use a single semicolon <tt class="docutils literal"><span class="pre">;</span></tt> to separate glob
+and regex pattern. This is mainly for Windows compatibility, where the msys
+shell sometimes eats the colons or changes them to <tt class="docutils literal"><span class="pre">;</span></tt>.</p>
+<p>The <a class="reference internal" href="#cmdoption-pure-gen-x"><em class="xref std std-option">-x</em></a> option works exactly the same, but <em>excludes</em> all matching
+symbols from the selection. Thus, e.g., the option <tt class="docutils literal"><span class="pre">-x</span> <span class="pre">^bar_</span></tt> causes all
+symbols with the prefix <tt class="docutils literal"><span class="pre">bar_</span></tt> to <em>not</em> be included in the output module.</p>
+<p>Processing of glob patterns is performed using the customary rules for
+filename matching, see glob(7) for details. Note that some include files may
+be specified using a full pathname. This is the case, in particular, for
+system includes such as <tt class="docutils literal"><span class="pre">#include</span> <span class="pre">&lt;stdio.h&gt;</span></tt>, which are resolved by the C
+preprocessor employing a search of the system include directories (as well as
+any directories named with the <a class="reference internal" href="#cmdoption-pure-gen-I"><em class="xref std std-option">-I</em></a> option).</p>
+<p>Since the <tt class="docutils literal"><span class="pre">*</span></tt> and <tt class="docutils literal"><span class="pre">?</span></tt> wildcards never match the pathname separator <tt class="docutils literal"><span class="pre">/</span></tt>,
+you have to specify the path in the glob patterns in such cases. Thus, e.g.,
+if the foo.h file actually lives in either /usr/include or /usr/local/include,
+then it must be matched using a pattern like
+<tt class="docutils literal"><span class="pre">/usr/include/*.h,/usr/local/include/*.h::</span></tt>. Just <tt class="docutils literal"><span class="pre">foo.h::</span></tt> will not work
+in this case. On the other hand, if you have set up your C sources in some
+local directory then specifying a relative pathname is ok.</p>
+</div>
+<div class="section" id="name-mangling">
+<h2><a class="toc-backref" href="#id9">Name Mangling</a><a class="headerlink" href="#name-mangling" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="#cmdoption-pure-gen-s"><em class="xref std std-option">-s</em></a> option is often used in conjuction with the <a class="reference internal" href="#cmdoption-pure-gen-p"><em class="xref std std-option">-p</em></a>
+option, which lets you specify a &#8220;module name prefix&#8221; which should be stripped
+off from C symbols. Case is insignificant and a trailing underscore will be
+removed as well, so <tt class="docutils literal"><span class="pre">-p</span> <span class="pre">foo</span></tt> turns <tt class="docutils literal"><span class="pre">fooBar</span></tt> into <tt class="docutils literal"><span class="pre">Bar</span></tt> and <tt class="docutils literal"><span class="pre">FOO_BAR</span></tt>
+into <tt class="docutils literal"><span class="pre">BAR</span></tt>. Moreover, the <a class="reference internal" href="#cmdoption-pure-gen-m"><em class="xref std std-option">-m</em></a> option allows you to specify the name
+of a Pure namespace in which the resulting constants and functions are to be
+declared. So, for instance, <tt class="docutils literal"><span class="pre">-s</span> <span class="pre">&quot;^(foo|FOO)&quot;</span> <span class="pre">-p</span> <span class="pre">foo</span> <span class="pre">-m</span> <span class="pre">foo</span></tt> will select all
+symbols starting with the <tt class="docutils literal"><span class="pre">foo</span></tt> or <tt class="docutils literal"><span class="pre">FOO</span></tt> prefix, stripping the prefix from
+the selected symbols and finally adding a <tt class="docutils literal"><span class="pre">foo::</span></tt> namespace qualifier to
+them instead.</p>
+</div>
+<div class="section" id="generating-c-code">
+<h2><a class="toc-backref" href="#id10">Generating C Code</a><a class="headerlink" href="#generating-c-code" title="Permalink to this headline">¶</a></h2>
+<p>As already mentioned, pure-gen can be invoked with the <tt class="docutils literal"><span class="pre">-fc</span></tt> or
+<tt class="docutils literal"><span class="pre">-fc-ffi</span></tt> option to create a C wrapper module along with the Pure module
+it generates. There are various situations in which this is preferable, e.g.:</p>
+<ul class="simple">
+<li>You are about to create a new module for which you want to generate some
+boilerplate code.</li>
+<li>The C routines to be wrapped aren&#8217;t available in a shared library, but in
+some other form (e.g., object file or static library).</li>
+<li>You need to inject some custom code into the wrapper functions (e.g., to
+implement custom argument preprocessing or lazy dynamic loading of functions
+from a shared library).</li>
+<li>The C routines can&#8217;t be called directly through Pure externs.</li>
+</ul>
+<p>The latter case might arise, e.g., if the module uses non-C linkage or calling
+conventions, or if some of the operations to be wrapped are actually
+implemented as C macros. (Note that in order to wrap macros as functions
+you&#8217;ll have to create a staged header which declares the macros as C
+functions, so that they are wrapped in the C module. pure-gen doesn&#8217;t do this
+automatically.)</p>
+<p>Another important case is that some of the C routines pass C structs by value
+or return them as results. This is discussed in more detail in the following
+section.</p>
+<p>For instance, let&#8217;s say that we want to generate a wrapper foo.c from the
+foo.h header file whose operations are implemented in some library libfoo.a or
+libfoo.so. A command like the following generates both the C wrapper and the
+corresponding Pure module:</p>
+<div class="highlight-pure"><div class="highlight"><pre>pure-gen -fc foo.h
+</pre></div>
+</div>
+<p>This creates foo.pure and foo.c, with an import clause for <tt class="docutils literal"><span class="pre">&quot;lib:foo&quot;</span></tt> at
+the beginning of the Pure module. (You can also change the name of the Pure
+and C output files using the <a class="reference internal" href="#cmdoption-pure-gen-o"><em class="xref std std-option">-o</em></a> and <a class="reference internal" href="#cmdoption-pure-gen-c"><em class="xref std std-option">-c</em></a> options,
+respectively.)</p>
+<p>The generated wrapper is just an ordinary C file which should be compiled to a
+shared object (dll on Windows) as usual. E.g., using gcc on Linux:</p>
+<div class="highlight-pure"><div class="highlight"><pre>gcc -shared -o foo.so foo.c -lfoo
+</pre></div>
+</div>
+<p>That&#8217;s all. You should now be able to use the foo module by just putting the
+declaration <tt class="docutils literal"><span class="pre">using</span> <span class="pre">foo;</span></tt> into your programs. The same approach also works
+with the ffi interface if you replace the <tt class="docutils literal"><span class="pre">-fc</span></tt> option with <tt class="docutils literal"><span class="pre">-fc-ffi</span></tt>.</p>
+<p>You can also adjust the C wrapper code to some extent by providing your own
+template file, which has the following format:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* frontmatter here */</span>
+<span class="cp">#include %h</span>
+<span class="o">%%</span>
+
+<span class="cm">/* wrapper here */</span>
+<span class="o">%</span><span class="n">r</span> <span class="o">%</span><span class="n">w</span><span class="p">(</span><span class="o">%</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="o">%</span><span class="n">n</span><span class="p">(</span><span class="o">%</span><span class="n">a</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that the code up to the symbol <tt class="docutils literal"><span class="pre">%%</span></tt> on a line by itself denotes
+&#8220;frontmatter&#8221; which gets inserted at the beginning of the C file. (The
+frontmatter section can also be empty or missing altogether if you don&#8217;t need
+it, but usually it will contain at least an <tt class="docutils literal"><span class="pre">#include</span></tt> for the input header
+file.)</p>
+<p>The rest of the template is the code for each wrapper function. Substitutions
+of various syntactical fragments of the function definition is performed using
+the following placeholders:</p>
+<p><tt class="docutils literal"><span class="pre">%h</span></tt>  input header file</p>
+<p><tt class="docutils literal"><span class="pre">%r</span></tt>  return type of the function</p>
+<p><tt class="docutils literal"><span class="pre">%w</span></tt>  the name of the wrapper function</p>
+<p><tt class="docutils literal"><span class="pre">%p</span></tt>  declaration of the formal parameters of the wrapper function</p>
+<p><tt class="docutils literal"><span class="pre">%n</span></tt>  the real function name (i.e., the name of the target C function to be called)</p>
+<p><tt class="docutils literal"><span class="pre">%a</span></tt>  the arguments of the function call (formal parameters with types stripped off)</p>
+<p><tt class="docutils literal"><span class="pre">%%</span></tt>  escapes a literal %</p>
+<p>A default template is provided if you don&#8217;t specify one (which looks pretty
+much like the template above, minus the comments). A custom template is
+specified with the <a class="reference internal" href="#cmdoption-pure-gen-t"><em class="xref std std-option">-t</em></a> option. (There&#8217;s also a <a class="reference internal" href="#cmdoption-pure-gen-T"><em class="xref std std-option">-T</em></a> option to
+specify an &#8220;alternate&#8221; template for dealing with routines returning struct
+values, see <a class="reference internal" href="#dealing-with-c-structs">Dealing with C Structs</a>.)</p>
+<p>For instance, suppose that we place the sample template above into a file
+foo.templ and invoke pure-gen on the foo.h header file as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>pure-gen -fc -t foo.templ foo.h
+</pre></div>
+</div>
+<p>Then in foo.c you&#8217;d get C output code like the following:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* frontmatter here */</span>
+<span class="cp">#include &quot;foo.h&quot;</span>
+
+<span class="cm">/* wrapper here */</span>
+<span class="kt">void</span> <span class="nf">Pure_foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">arg1</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">foo</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">arg1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cm">/* wrapper here */</span>
+<span class="kt">int</span> <span class="nf">Pure_bar</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg0</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">bar</span><span class="p">(</span><span class="n">arg0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As indicated, the wrapper function names are usually stropped with the
+<tt class="docutils literal"><span class="pre">Pure_</span></tt> prefix. You can change this with the <a class="reference internal" href="#cmdoption-pure-gen-P"><em class="xref std std-option">-P</em></a> option.</p>
+<p>This also works great to create boilerplate code for new modules. For this
+purpose the following template will do the trick:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* Add #includes etc. here. */</span>
+<span class="o">%%</span>
+
+<span class="o">%</span><span class="n">r</span> <span class="o">%</span><span class="n">n</span><span class="p">(</span><span class="o">%</span><span class="n">p</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="cm">/* Enter code of %n here. */</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="dealing-with-c-structs">
+<h2><a class="toc-backref" href="#id11">Dealing with C Structs</a><a class="headerlink" href="#dealing-with-c-structs" title="Permalink to this headline">¶</a></h2>
+<p>Modern C compilers allow you to pass C structs by value or return them as
+results from a C function. This represents a problem, because Pure doesn&#8217;t
+provide any support for that in its extern declarations. Even Pure&#8217;s libffi
+interface only has limited support for C structs (no unions, no bit fields),
+and at present pure-gen itself does not keep track of the internal structure
+of C structs either.</p>
+<p>Hence pure-gen
+will bark if you try to wrap an operation which passes or returns a C struct,
+printing a warning message like the following which indicates that the given
+function could not be wrapped:</p>
+<div class="highlight-pure"><div class="highlight"><pre>Warning: foo: struct argument or return <span class="kr">type</span>, try -fc-auto
+</pre></div>
+</div>
+<p>What Pure <em>does</em> know is how to pass and return <em>pointers</em> to C structs in its
+C interface. This makes it possible to deal with struct arguments and return
+values in the C wrapper. To make this work, you need to create a C wrapper
+module as explained in the previous section. However, as C wrappers are only
+needed for functions which actually have struct arguments or return values,
+you can also use the <tt class="docutils literal"><span class="pre">-fc-auto</span></tt> option (or <tt class="docutils literal"><span class="pre">-fc-ffi-auto</span></tt> if you prefer
+the ffi interface) to only generate the C wrapper when required. This saves
+the overhead of an extra function call if it&#8217;s not actually needed.</p>
+<p>Struct arguments in the original C function then become struct pointers in the
+wrapper function. E.g., if the function is declared in the header as follows:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="n">point</span><span class="p">;</span>
+<span class="k">extern</span> <span class="kt">double</span> <span class="n">foo</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then the generated wrapper code becomes:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">double</span> <span class="nf">Pure_foo</span><span class="p">(</span><span class="n">point</span><span class="o">*</span> <span class="n">arg0</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">foo</span><span class="p">(</span><span class="o">*</span><span class="n">arg0</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Which is declared in the Pure interface as:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> Pure_foo(point*) = foo<span class="p">;</span>
+</pre></div>
+</div>
+<p>Struct return values are handled by returning a pointer to a static variable
+holding the return value. E.g.,</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="k">extern</span> <span class="n">point</span> <span class="n">bar</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>becomes:</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">point</span><span class="o">*</span> <span class="nf">Pure_bar</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">arg1</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">static</span> <span class="n">point</span> <span class="n">ret</span><span class="p">;</span>
+  <span class="n">ret</span> <span class="o">=</span> <span class="n">bar</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">arg1</span><span class="p">);</span> <span class="k">return</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Which is declared in the Pure interface as:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> point* Pure_bar(<span class="kt">double</span>, <span class="kt">double</span>) = bar<span class="p">;</span>
+</pre></div>
+</div>
+<p>(Note that the generated code in this case comes from an alternate template.
+It&#8217;s possible to configure the alternate template just like the normal one,
+using the <a class="reference internal" href="#cmdoption-pure-gen-T"><em class="xref std std-option">-T</em></a> option instead of <a class="reference internal" href="#cmdoption-pure-gen-t"><em class="xref std std-option">-t</em></a>. See the <a class="reference internal" href="#generating-c-code">Generating C
+Code</a> section above for details about code templates.)</p>
+<p>In a Pure script you can now call <tt class="docutils literal"><span class="pre">foo</span></tt> and <tt class="docutils literal"><span class="pre">bar</span></tt> as:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>foo (bar <span class="mf">0.0</span> <span class="mf">1.0</span>)<span class="p">;</span>
+</pre></div>
+</div>
+<p>Note, however, that the pointer returned by <tt class="docutils literal"><span class="pre">bar</span></tt> points to static storage
+which will be overwritten each time you invoke the <tt class="docutils literal"><span class="pre">bar</span></tt> function. Thus in
+the following example <em>both</em> <tt class="docutils literal"><span class="pre">u</span></tt> and <tt class="docutils literal"><span class="pre">v</span></tt> will point to the same <tt class="docutils literal"><span class="pre">point</span></tt>
+struct, namely that defined by the latter call to <tt class="docutils literal"><span class="pre">bar</span></tt>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> u = bar <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">;</span> <span class="kr">let</span> v = bar <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Which most likely is <em>not</em> what you want. To avoid this, you&#8217;ll have to take
+dynamic copies of returned structs. It&#8217;s possible to do this manually by
+fiddling around with <tt class="docutils literal"><span class="pre">malloc</span></tt> and <tt class="docutils literal"><span class="pre">memcpy</span></tt>, but the most convenient way is
+to employ the struct functions provided by Pure&#8217;s ffi module:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> ffi<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> point_t = struct_t (double_t, double_t)<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> u = copy_struct point_t (bar <span class="mf">1.0</span> <span class="mf">0.0</span>)<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> v = copy_struct point_t (bar <span class="mf">0.0</span> <span class="mf">1.0</span>)<span class="p">;</span>
+</pre></div>
+</div>
+<p>Now <tt class="docutils literal"><span class="pre">u</span></tt> and <tt class="docutils literal"><span class="pre">v</span></tt> point to different, malloc&#8217;d structs which even take care
+of freeing themselves when they are no longer needed. Moreover, the ffi module
+also allows you to access the members of the structs in a direct fashion.
+Please refer to the <a class="reference internal" href="pure-ffi.html"><em>pure-ffi</em></a> documentation for further details.</p>
+</div>
+<div class="section" id="notes">
+<h2><a class="toc-backref" href="#id12">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<p>pure-gen currently requires gcc (<tt class="docutils literal"><span class="pre">-E</span></tt>) as the C preprocessor. It also needs
+a version of gcc which understands the <tt class="docutils literal"><span class="pre">-fdirectives-only</span></tt> option, which
+means gcc 4.3 or later. It will run with older versions of gcc, but then
+you&#8217;ll get an error message from gcc indicating that it doesn&#8217;t understand the
+<tt class="docutils literal"><span class="pre">-fdirectives-only</span></tt> option. pure-gen then won&#8217;t be able to extract any
+<tt class="docutils literal"><span class="pre">#define</span></tt>d constants from the header files.</p>
+<p>pure-gen itself is written in Pure, but uses a C parser implemented in
+Haskell, based on the Language.C library written by Manuel Chakravarty and
+others.</p>
+<p>pure-gen can only generate C bindings at this time. Other languages may have
+their own calling conventions which make it hard or even impossible to call
+them directly through Pure&#8217;s extern interface. However, if your C compiler
+knows how to call the other language, then it may be possible to interface to
+modules written in that language by faking a C header for the module and
+generating a C wrapper with a custom code template, as described in
+<a class="reference internal" href="#generating-c-code">Generating C Code</a>. In principle, this approach should even work with
+behemoths like C++, although it might be easier to use third-party tools like
+SWIG for that purpose.</p>
+<p>In difference to SWIG and similar tools, pure-gen doesn&#8217;t require you to write
+any special &#8220;interface files&#8221;, is controlled entirely by command line options,
+and the amount of marshalling overhead in C wrappers is negligible. This is
+possible since pure-gen targets only the Pure-C interface and Pure has good
+support for interfacing to C built into the language already.</p>
+<p>pure-gen usually works pretty well if the processed header files are written
+in a fairly clean fashion. Nevertheless, some libraries defy fully automatic
+wrapper generation and may thus require staged headers and/or manual editing
+of the generated output to get a nice wrapper module.</p>
+<p>In complex cases it may also be necessary to assemble the output of several
+runs of pure-gen for different combinations of header files, symbol selections
+and/or namespace/prefix settings. In such a situation it is usually possible
+to just concatenate the various output files produced by pure-gen to
+consolidate them into a single wrapper module. To make this easier, pure-gen
+provides the <a class="reference internal" href="#cmdoption-pure-gen-N"><em class="xref std std-option">-N</em></a> a.k.a. <a class="reference internal" href="#cmdoption-pure-gen--noclobber"><em class="xref std std-option">--noclobber</em></a> option which appends
+the output to existing files instead of overwriting them. See the example
+below.</p>
+</div>
+<div class="section" id="example">
+<h2><a class="toc-backref" href="#id13">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>For the sake of a substantial, real-world example, here is how you can wrap
+the entire GNU Scientific Library in a single Pure module mygsl.pure, with the
+accompanying C module in mygsl.c:</p>
+<div class="highlight-sh"><div class="highlight"><pre>rm -f mygsl.pure mygsl.c
+<span class="nv">DEFS</span><span class="o">=</span>-DGSL_DISABLE_DEPRECATED
+<span class="k">for </span>x in /usr/include/gsl/gsl_*.h; <span class="k">do</span>
+<span class="k">  </span>pure-gen <span class="nv">$DEFS</span> -N -fc-auto -s <span class="s2">&quot;$x::&quot;</span> <span class="nv">$x</span> -o mygsl.pure -c mygsl.c
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>The C module can then be compiled with:</p>
+<div class="highlight-sh"><div class="highlight"><pre>gcc <span class="nv">$DEFS</span> -shared -o mygsl.so mygsl.c
+</pre></div>
+</div>
+<p>Note that the <tt class="docutils literal"><span class="pre">GSL_DISABLE_DEPRECATED</span></tt> symbol must be defined here to avoid
+some botches with constants being defined in incompatible ways in different
+GSL headers. Also, some GSL versions have broken headers lacking some system
+includes which causes hiccups in pure-gen&#8217;s C parser. Fixing those errors or
+working around them through some appropriate cpp options should be a piece of
+cake, though.</p>
+</div>
+<div class="section" id="license">
+<h2><a class="toc-backref" href="#id14">License</a><a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>BSD-like. See the accompanying COPYING file for details.</p>
+</div>
+<div class="section" id="authors">
+<h2><a class="toc-backref" href="#id15">Authors</a><a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<p>Scott E. Dillard (University of California at Davis), Albert Graef (Johannes
+Gutenberg University at Mainz, Germany).</p>
+</div>
+<div class="section" id="see-also">
+<h2><a class="toc-backref" href="#id16">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Language.C</dt>
+<dd>A C parser written in Haskell by Manuel Chakravarty et al,
+<a class="reference external" href="http://www.sivity.net/projects/language.c">http://www.sivity.net/projects/language.c</a>.</dd>
+<dt>SWIG</dt>
+<dd>The Simplified Wrapper and Interface Generator, <a class="reference external" href="http://www.swig.org">http://www.swig.org</a>.</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-gen: Pure interface generator</a><ul>
+<li><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li><a class="reference internal" href="#options">Options</a><ul>
+<li><a class="reference internal" href="#general-options">General Options</a></li>
+<li><a class="reference internal" href="#preprocessor-options">Preprocessor Options</a></li>
+<li><a class="reference internal" href="#generator-options">Generator Options</a></li>
+<li><a class="reference internal" href="#output-options">Output Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#filtering">Filtering</a></li>
+<li><a class="reference internal" href="#name-mangling">Name Mangling</a></li>
+<li><a class="reference internal" href="#generating-c-code">Generating C Code</a></li>
+<li><a class="reference internal" href="#dealing-with-c-structs">Dealing with C Structs</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+<li><a class="reference internal" href="#authors">Authors</a></li>
+<li><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-ffi.html"
+                        title="previous chapter">pure-ffi</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-readline.html"
+                        title="next chapter">pure-readline</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-gen.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-readline.html" title="pure-readline"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-ffi.html" title="pure-ffi"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

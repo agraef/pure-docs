@@ -1,0 +1,1285 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pd-pure: Pd loader for Pure scripts &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-audio" href="pure-audio.html" />
+    <link rel="prev" title="pd-faust" href="pd-faust.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-audio.html" title="pure-audio"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pd-faust.html" title="pd-faust"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pd-pure-pd-loader-for-pure-scripts">
+<h1>pd-pure: Pd loader for Pure scripts<a class="headerlink" href="#pd-pure-pd-loader-for-pure-scripts" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.16, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This is a <a class="reference external" href="http://puredata.info/">Pd</a> loader plugin for the Pure programming language which lets you
+write external Pd objects in Pure.</p>
+<p>Please note that the present version of the module is still somewhat
+experimental, but it seems to work fairly well at least with Pure versions
+0.34 and later. In particular, note that Pure is a <em>compiled</em> language and
+thus there are some inevitable latencies at startup, when the embedded Pure
+interpreter loads your Pure scripts and compiles them on the fly. However,
+once the scripts have been compiled, they are executed very efficiently. As of
+pd-pure 0.15, it is also possible to <em>precompile</em> a collection of Pure objects
+to a library in binary format which can be loaded much faster with Pd&#8217;s
+<tt class="docutils literal"><span class="pre">-lib</span></tt> option. (This requires Pure 0.50 or later.)</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#copying" id="id2">Copying</a></li>
+<li><a class="reference internal" href="#installation" id="id3">Installation</a><ul>
+<li><a class="reference internal" href="#pd-pure-on-windows" id="id4">pd-pure on Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage" id="id5">Usage</a></li>
+<li><a class="reference internal" href="#control-objects" id="id6">Control Objects</a><ul>
+<li><a class="reference internal" href="#simple-objects" id="id7">Simple Objects</a></li>
+<li><a class="reference internal" href="#creation-arguments" id="id8">Creation Arguments</a></li>
+<li><a class="reference internal" href="#the-pure-object" id="id9">The [pure] Object</a></li>
+<li><a class="reference internal" href="#configuring-inlets-and-outlets" id="id10">Configuring Inlets and Outlets</a></li>
+<li><a class="reference internal" href="#local-state" id="id11">Local State</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#audio-objects" id="id12">Audio Objects</a></li>
+<li><a class="reference internal" href="#advanced-features" id="id13">Advanced Features</a><ul>
+<li><a class="reference internal" href="#asynchronous-messages" id="id14">Asynchronous Messages</a></li>
+<li><a class="reference internal" href="#wireless-messaging" id="id15">Wireless Messaging</a></li>
+<li><a class="reference internal" href="#reading-and-writing-audio-data" id="id16">Reading and Writing Audio Data</a></li>
+<li><a class="reference internal" href="#controlling-the-runtime" id="id17">Controlling the Runtime</a></li>
+<li><a class="reference internal" href="#livecoding" id="id18">Livecoding</a></li>
+<li><a class="reference internal" href="#remote-control" id="id19">Remote Control</a></li>
+<li><a class="reference internal" href="#compiling-objects" id="id20">Compiling Objects</a></li>
+<li><a class="reference internal" href="#programming-interface" id="id21">Programming Interface</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="copying">
+<h2><a class="toc-backref" href="#id2">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2009-2011 by Albert Graef. pd-pure is distributed under a
+3-clause BSD-style license, please see the included COPYING file for details.</p>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>MS Windows users please see <a class="reference internal" href="#pd-pure-on-windows">pd-pure on Windows</a> below.</p>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz</a>.</p>
+<p>Usually, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt> should do the trick. This will compile
+the external (you need to have GNU make, Pd and Pure installed to do that) and
+install it in the lib/pd/extra/pure directory.</p>
+<p>The Makefile tries to guess the installation prefix under which Pd is
+installed. If it guesses wrong, you can tell it the right prefix with <tt class="docutils literal"><span class="pre">make</span>
+<span class="pre">prefix=/some/path</span></tt>. Or you can specify the exact path of the lib/pd directory
+with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">pdlibdir=/some/path</span></tt>; by default the Makefile assumes
+<tt class="docutils literal"><span class="pre">$(prefix)/lib/pd</span></tt>.</p>
+<p>It is also possible to specify an alternative flavour of Pd when building and
+installing the module, by adding a definition like <tt class="docutils literal"><span class="pre">PD=pd-extended</span></tt> to the
+<tt class="docutils literal"><span class="pre">make</span></tt> command line. This is known to work with <a class="reference external" href="http://puredata.info/downloads/pd-extended">pd-extended</a> and <a class="reference external" href="http://l2ork.music.vt.edu/main/?page_id=56">pd-l2ork</a>,
+two popular alternative Pd distributions available on the web.</p>
+<p>The Makefile also tries to guess the host system type and Pure version, and
+set up some platform-specific things accordingly. If this doesn&#8217;t work for
+your system then you&#8217;ll have to edit the Makefile accordingly.</p>
+<div class="section" id="pd-pure-on-windows">
+<h3><a class="toc-backref" href="#id4">pd-pure on Windows</a><a class="headerlink" href="#pd-pure-on-windows" title="Permalink to this headline">¶</a></h3>
+<p>There&#8217;s a binary package in MSI format available at the Pure website:
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi</a>. Use that if you
+can. You&#8217;ll also need the latest Pure version (0.50 at the time of this
+writing), and Pd 0.43 or later, which is available from Miller Puckette&#8217;s
+website: <a class="reference external" href="http://crca.ucsd.edu/~msp/software.html">http://crca.ucsd.edu/~msp/software.html</a>.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id5">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>After installation, you still have to tell Pd to load the Pure external at
+startup, either with the <tt class="docutils literal"><span class="pre">-lib</span></tt> option (<tt class="docutils literal"><span class="pre">pd</span> <span class="pre">-lib</span> <span class="pre">pure</span></tt>), or by specifying
+<tt class="docutils literal"><span class="pre">pure</span></tt> in the File/Startup options (Media/Preferences/Startup in Pd 0.43 and
+later). This setting can be saved so that the Pure loader is always available
+when you run Pd. Once the Pure loader has been installed, you should see a
+message in the Pd main window indicating that the external has been loaded.</p>
+<p>Since version 0.12 pd-pure supports the definition of both <cite>control</cite> and
+<cite>audio objects</cite> in Pure. The latter are also known as &#8220;tilde objects&#8221; in Pd
+parlance; pd-pure follows the Pd convention in that audio objects have a
+trailing tilde in their name. Audio objects are used primarily for processing
+audio signals, whereas control objects are employed for asynchronous message
+processing.</p>
+<p>Simple &#8220;one-off&#8221; control objects can be created with the <tt class="docutils literal"><span class="pre">[pure]</span></tt> class
+which takes the function to be evaluated as its argument. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre>[pure (+<span class="mi">5</span>)]
+</pre></div>
+</div>
+<p>This object takes numbers as inputs on its single inlet, adds 5 to them and
+outputs the result on its single outlet.</p>
+<p>Similarly, audio objects can be created with <tt class="docutils literal"><span class="pre">[pure~]</span></tt>. For instance, the
+following object processes incoming vectors of samples, multiplying each
+sample with 2:</p>
+<div class="highlight-pure"><div class="highlight"><pre>[pure~ map (*<span class="mi">2</span>)]
+</pre></div>
+</div>
+<p>Note that in this case the object has actually two inlet/outlet pairs. The
+leftmost inlet/outlet pair is reserved for the processing of control messages
+(not used in this example), while the actual signal input and output can be
+found on the right.</p>
+<p>(Pure objects can also be configured to adjust the number of inlets and
+outlets. This will be described later.)</p>
+<p>The argument of <tt class="docutils literal"><span class="pre">[pure]</span></tt> and <tt class="docutils literal"><span class="pre">[pure~]</span></tt> can be any Pure expression
+(including local functions and variables, conditionals, etc.). We also refer
+to these as <cite>anonymous</cite> Pure objects. If an object is quite complicated or
+used several times in a patch, it is more convenient to implement it as a
+<cite>named</cite> object instead. To these ends, the object function is stored in a
+corresponding Pure script named after the object. For instance, we might put
+the following <tt class="docutils literal"><span class="pre">add</span></tt> function into a script named add.pure:</p>
+<div class="highlight-pure"><div class="highlight"><pre>add x y = x+y<span class="p">;</span>
+</pre></div>
+</div>
+<p>Now we can use the following object in a Pd patch:</p>
+<div class="highlight-pure"><div class="highlight"><pre>[add <span class="mi">5</span>]
+</pre></div>
+</div>
+<p>The Pure loader then recognizes <tt class="docutils literal"><span class="pre">add</span></tt> as an instance of the object
+implemented by the add.pure file and loads the script into the Pure
+interpreter. The creation parameter <tt class="docutils literal"><span class="pre">5</span></tt> is passed as the first argument
+<tt class="docutils literal"><span class="pre">x</span></tt> of the <tt class="docutils literal"><span class="pre">add</span></tt> function in this example, while the <tt class="docutils literal"><span class="pre">y</span></tt> argument comes
+from the object&#8217;s inlet. The function performed by this object is thus the
+same as with <tt class="docutils literal"><span class="pre">[pure</span> <span class="pre">(+5)]</span></tt> above.</p>
+<p>More examples can be found in the pure-help.pd and pure~-help.pd patches.
+These can also be accessed in Pd by right-clicking on any Pure object and
+selecting the <tt class="docutils literal"><span class="pre">Help</span></tt> option. (Recent pd-pure versions also allow you to
+right-click and select <tt class="docutils literal"><span class="pre">Open</span></tt> to open the script of a named Pure object in a
+text editor, provided that your Pd version supports the <tt class="docutils literal"><span class="pre">menu-open</span></tt>
+command.)</p>
+<p>In the following section, we first discuss in detail how <a class="reference internal" href="#control-objects">control objects</a>
+are defined and used. After that, the necessary adjustments for implementing
+<a class="reference internal" href="#audio-objects">audio objects</a> are explained. Some advanced uses of pd-pure are described
+under <a class="reference internal" href="#advanced-features">Advanced Features</a>.</p>
+</div>
+<div class="section" id="control-objects">
+<h2><a class="toc-backref" href="#id6">Control Objects</a><a class="headerlink" href="#control-objects" title="Permalink to this headline">¶</a></h2>
+<p>Basically, to implement a Pd control object named <tt class="docutils literal"><span class="pre">foo</span></tt>, all you have to do
+is supply a Pure script named foo.pure which defines a function <tt class="docutils literal"><span class="pre">foo</span></tt> (and
+anything else that you might need to define the function). This function is
+also called the <cite>object function</cite>. You can put the script containing the
+object function in the same directory as the Pd patch in which you want to use
+the <tt class="docutils literal"><span class="pre">foo</span></tt> object, or anywhere on Pd&#8217;s search path. (The latter is useful if
+the object is to be used in several patches located in different
+subdirectories.) The script will be executed once, at the time the first
+object with the given name is created, and will be executed in the directory
+where it is located. Thus, if the script needs to import other Pure scripts or
+load some data files, you can put these into the same directory so that the
+object script can find them.</p>
+<p>The <tt class="docutils literal"><span class="pre">foo</span></tt> function gets evaluated at object creation time, receiving any
+additional parameters the object is created with. The resulting Pure
+expression should be another function which is executed at runtime, passing Pd
+messages from the inlets as parameters, and routing the function results to
+the outlets of the object. This two-stage definition process is useful because
+it allows special processing (such as initialization of required data
+structures) to be done at object creation time. However, the result of
+evaluating <tt class="docutils literal"><span class="pre">foo</span></tt> can also just be <tt class="docutils literal"><span class="pre">foo</span></tt> itself if no such special
+processing is needed. If we need to distinguish these two stages, we also call
+the two functions the <cite>creation</cite> and the <cite>runtime</cite> function of the object,
+respectively.</p>
+<p>Pd messages are translated to corresponding Pure expressions and vice versa in
+a straightforward fashion. Special support is provided for converting between
+the natural Pd and Pure representations of floating point numbers, symbols and
+lists. The following table summarizes the available conversions.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="33%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Message Type</th>
+<th class="head">Pd</th>
+<th class="head">Pure</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>symbol</td>
+<td><tt class="docutils literal"><span class="pre">foo</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">foo</span></tt></td>
+</tr>
+<tr class="row-odd"><td>string</td>
+<td><tt class="docutils literal"><span class="pre">a&amp;b</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">&quot;a&amp;b&quot;</span></tt></td>
+</tr>
+<tr class="row-even"><td>float</td>
+<td><tt class="docutils literal"><span class="pre">float</span> <span class="pre">1.23</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">1.23</span></tt></td>
+</tr>
+<tr class="row-odd"><td>list</td>
+<td><tt class="docutils literal"><span class="pre">list</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">3</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">[1.0,2.0,3.0]</span></tt></td>
+</tr>
+<tr class="row-even"><td>other</td>
+<td><tt class="docutils literal"><span class="pre">foo</span> <span class="pre">a</span> <span class="pre">2</span> <span class="pre">3</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">foo</span> <span class="pre">a</span> <span class="pre">2.0</span> <span class="pre">3.0</span></tt></td>
+</tr>
+</tbody>
+</table>
+<p>Note that Pd symbols which are no valid Pure symbols become strings in
+Pure. Conversely, both symbols and strings in Pure are mapped to corresponding
+Pd symbols. Pure (machine) integers and floating point values both become
+<tt class="docutils literal"><span class="pre">float</span></tt> messages in Pd. Pd list messages are translated to Pure list values,
+while other aggregate messages are mapped to Pure applications (and vice
+versa).</p>
+<div class="section" id="simple-objects">
+<h3><a class="toc-backref" href="#id7">Simple Objects</a><a class="headerlink" href="#simple-objects" title="Permalink to this headline">¶</a></h3>
+<p>By default, a Pure object has just one inlet and one outlet and thus acts like
+a simple function with no internal state. For instance, the following object
+accepts Pd <tt class="docutils literal"><span class="pre">float</span></tt> messages and adds 5 to each received value:</p>
+<div class="highlight-pure"><div class="highlight"><pre>add5 x = x+<span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>In the Pd patch each <tt class="docutils literal"><span class="pre">[add5]</span></tt> object then has a single inlet supplying
+parameters and a single outlet for results of the add5 function.</p>
+</div>
+<div class="section" id="creation-arguments">
+<h3><a class="toc-backref" href="#id8">Creation Arguments</a><a class="headerlink" href="#creation-arguments" title="Permalink to this headline">¶</a></h3>
+<p>You can parameterize an object with creation arguments, which are passed to
+the Pure function at object creation time. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre>add x y = x+y<span class="p">;</span>
+</pre></div>
+</div>
+<p>This object can then be invoked, e.g., as <tt class="docutils literal"><span class="pre">[add</span> <span class="pre">5]</span></tt> in the Pd patch to
+supply the needed creation argument <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+</div>
+<div class="section" id="the-pure-object">
+<h3><a class="toc-backref" href="#id9">The [pure] Object</a><a class="headerlink" href="#the-pure-object" title="Permalink to this headline">¶</a></h3>
+<p>For simple kinds of objects like the above, the Pure loader provides the
+generic <tt class="docutils literal"><span class="pre">[pure]</span></tt> object as a quick means to create Pure control objects
+without actually preparing a script file. The creation parameter of <tt class="docutils literal"><span class="pre">[pure]</span></tt>
+is the object function. This can be a predefined Pure function, or you can
+define it on the fly in a <tt class="docutils literal"><span class="pre">with</span></tt> clause. (It is also possible to explicitly
+load additional script files needed to implement objects defined using
+<tt class="docutils literal"><span class="pre">[pure]</span></tt>; see <a class="reference internal" href="#controlling-the-runtime">Controlling the Runtime</a> for details.)</p>
+<p>For instance, <tt class="docutils literal"><span class="pre">[pure</span> <span class="pre">succ]</span></tt> uses the predefined Pure function <tt class="docutils literal"><span class="pre">succ</span></tt> which
+adds 1 to its input, while the object <tt class="docutils literal"><span class="pre">[pure</span> <span class="pre">add</span> <span class="pre">5</span> <span class="pre">with</span> <span class="pre">add</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">x+y</span> <span class="pre">end]</span></tt>
+produces the same results as the <tt class="docutils literal"><span class="pre">[add</span> <span class="pre">5]</span></tt> object defined using a separate
+add.pure script in the previous section. You can also generate constant values
+that way. E.g., the object <tt class="docutils literal"><span class="pre">[pure</span> <span class="pre">cst</span> <span class="pre">1.618]</span></tt> responds to any message (such
+as <tt class="docutils literal"><span class="pre">bang</span></tt>) by producing the constant value 1.618, while the object <tt class="docutils literal"><span class="pre">[pure</span>
+<span class="pre">cst</span> <span class="pre">[1..10]]</span></tt> yields the constant list containing the numbers 1..10.</p>
+</div>
+<div class="section" id="configuring-inlets-and-outlets">
+<h3><a class="toc-backref" href="#id10">Configuring Inlets and Outlets</a><a class="headerlink" href="#configuring-inlets-and-outlets" title="Permalink to this headline">¶</a></h3>
+<p>To create an object with multiple inlets and outlets for control messages, the
+object creation function must return the desired numbers of inlets and
+outlets, along with a second function to be applied at runtime, as a tuple
+<tt class="docutils literal"><span class="pre">n,m,foo</span></tt>. The input arguments to the runtime function as well as the
+corresponding function results are then encoded as pairs <tt class="docutils literal"><span class="pre">k,val</span></tt> where <tt class="docutils literal"><span class="pre">k</span></tt>
+denotes the inlet or outlet index. (Note that the <tt class="docutils literal"><span class="pre">k</span></tt> index is provided only
+if there actually is more than one inlet. Also, the outlet index is assumed to
+be zero if none is specified, so that it can be omitted if there&#8217;s only one
+outlet.)</p>
+<p>For instance, the following object, invoked as <tt class="docutils literal"><span class="pre">[cross]</span></tt> in the Pd patch,
+has two inlets and two outlets and routes messages from the left inlet to the
+right outlet and vice versa:</p>
+<div class="highlight-pure"><div class="highlight"><pre>cross = <span class="mi">2</span>,<span class="mi">2</span>,cross <span class="kr">with</span> cross (k,x) = (<span class="mi">1</span>-k,x) <span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You can also emit multiple messages, possibly to different outlets, in one
+go. These must be encoded as Pure vectors (or matrices) of values or
+<tt class="docutils literal"><span class="pre">index,value</span></tt> pairs, which are emitted in the order in which they are
+written. E.g., the following <tt class="docutils literal"><span class="pre">[fan]</span></tt> object implements an &#8220;n-fan&#8221; which
+routes its input to <tt class="docutils literal"><span class="pre">n</span></tt> outlets simultaneously:</p>
+<div class="highlight-pure"><div class="highlight"><pre>fan n = <span class="mi">1</span>,n,fan <span class="kr">with</span> fan x = reverse {k,x | k = <span class="mi">0</span>..n-<span class="mi">1</span>} <span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>(Note that, because of the use of <tt class="docutils literal"><span class="pre">reverse</span></tt>, the <tt class="docutils literal"><span class="pre">n</span></tt> outlets are served in
+right-to-left order here. This is not strictly necessary, but matches the Pd
+convention.)</p>
+<p>Another example is the following <tt class="docutils literal"><span class="pre">[dup]</span></tt> object with a single inlet and
+outlet, which just sends out each received message twice:</p>
+<div class="highlight-pure"><div class="highlight"><pre>dup x = {x,x}<span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that this is different from the following, which outputs a list value to
+the outlet instead:</p>
+<div class="highlight-pure"><div class="highlight"><pre>dup2 x = [x,x]<span class="p">;</span>
+</pre></div>
+</div>
+<p>(Also, please note that this behaviour is new in pd-pure 0.14. Previously, a
+list return value by itself would output multiple values instead. However,
+this made it very awkward to deal with Pd list values in pd-pure, and so as
+of pd-pure 0.14 Pure matrices must now be used to output multiple values.)</p>
+<p>An object can also just &#8220;swallow&#8221; messages and generate no output at all. To
+these ends, make the object return either an empty vector <tt class="docutils literal"><span class="pre">{}</span></tt> or the empty
+tuple <tt class="docutils literal"><span class="pre">()</span></tt>. (Note that, in contrast, returning the empty list <tt class="docutils literal"><span class="pre">[]</span></tt> does
+send a value back to Pd, namely an empty list value.) For instance, the
+following object <tt class="docutils literal"><span class="pre">[echo]</span></tt> implements a sink which just prints received
+messages on standard output, which is useful for debugging purposes:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+echo x = () <span class="kr">when</span> puts (str x) <span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>You could also implement this object as follows, by just removing the
+superflous outlet (in this case all return values from the function will be
+ignored anyway):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+echo = <span class="mi">1</span>,<span class="mi">0</span>,puts.str<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="local-state">
+<h3><a class="toc-backref" href="#id11">Local State</a><a class="headerlink" href="#local-state" title="Permalink to this headline">¶</a></h3>
+<p>Local state can be kept in Pure reference values. For instance, the following
+<tt class="docutils literal"><span class="pre">[counter]</span></tt> object produces the next counter value when receiving a <tt class="docutils literal"><span class="pre">bang</span></tt>
+message:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang<span class="p">;</span>
+counter = next (ref <span class="mi">0</span>) <span class="kr">with</span>
+  next r bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
+  next _ _    = () <span class="kr">otherwise</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that the state is kept as an additional first parameter to the local
+function <tt class="docutils literal"><span class="pre">next</span></tt> here. Alternatively, you can also make the state a local
+variable of <tt class="docutils literal"><span class="pre">counter</span></tt>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang<span class="p">;</span>
+counter = next <span class="kr">with</span>
+  next bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
+  next _    = () <span class="kr">otherwise</span><span class="p">;</span>
+<span class="kr">end</span> <span class="kr">when</span> r = ref <span class="mi">0</span> <span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="audio-objects">
+<h2><a class="toc-backref" href="#id12">Audio Objects</a><a class="headerlink" href="#audio-objects" title="Permalink to this headline">¶</a></h2>
+<p>If the name of a Pure object (i.e., the basename of the corresponding Pure
+script) ends with the <tt class="docutils literal"><span class="pre">~</span></tt> character, pd-pure assumes that it denotes an
+audio object whose primary purpose is to process sample data. The basic setup
+is similar to the case of control objects, with the following differences:</p>
+<ul class="simple">
+<li>The object function for an audio object <tt class="docutils literal"><span class="pre">xyz~</span></tt> is named <tt class="docutils literal"><span class="pre">xyz_dsp</span></tt>
+(rather than <tt class="docutils literal"><span class="pre">xyz</span></tt>). The function is defined in the <tt class="docutils literal"><span class="pre">xyz~.pure</span></tt> script
+file, which must be located in the same directory as the Pd patch or
+anywhere on Pd&#8217;s search path.</li>
+<li>To keep things simple, a Pure audio object is always equipped with exactly
+one control inlet and one control outlet, which are the leftmost inlet and
+outlet of the object. These can be used to process control messages in the
+usual fashion, in addition to the audio processing performed by the object.</li>
+<li>Any additional inlets and outlets of the object are signal inlets and
+outlets. By default, one signal inlet/outlet pair will be provided.
+Configuring a custom number of signal inlets and outlets works as with
+control objects. In this case the object creation function must return a
+triple <tt class="docutils literal"><span class="pre">n,m,foo</span></tt> where <tt class="docutils literal"><span class="pre">n</span></tt> and <tt class="docutils literal"><span class="pre">m</span></tt> are the desired number of signal
+inlets and outlets, respectively, and <tt class="docutils literal"><span class="pre">foo</span></tt> is the actual processing
+function to be invoked at runtime.</li>
+</ul>
+<p>Whenever Pd has audio processing enabled, the object function is invoked with
+one block of sample data for each iteration of Pd&#8217;s audio loop. The sample
+data is encoded as a double matrix which has one row for each signal inlet of
+the object; row 0 holds the sample data for the first signal inlet, row 1 the
+sample data for the second signal inlet, etc. The row size corresponds to Pd&#8217;s
+<cite>block size</cite> which indicates how many samples per signal connection is
+processed in one go for each iteration of the audio loop. (Usually the default
+block size is 64, but this can be changed with Pd&#8217;s <tt class="docutils literal"><span class="pre">-blocksize</span></tt> option and
+also on a per-window basis using the <tt class="docutils literal"><span class="pre">block~</span></tt> object, see the Pd
+documentation for details.) Note that the input matrix will have zero rows if
+the object has zero signal inlets, in which case the row size of the matrix
+(as reported by the <a class="reference internal" href="purelib.html#dim" title="dim"><tt class="xref pure pure-func docutils literal"><span class="pre">dim</span></tt></a> function) still indicates the block size.</p>
+<p>When invoked with a signal matrix as argument, the object function should
+return another double matrix with the resulting sample data for the signal
+outlets of the object, which normally has one row per outlet and the same row
+size as the input matrix. (A lack or surplus of samples in the output matrix
+is handled gracefully, however. Missing samples are filled with zeros, while
+extra samples are silently ignored.)</p>
+<p>For instance, here&#8217;s a simple object with the default single signal
+inlet/outlet pair (in addition to the leftmost control inlet/outlet pair,
+which isn&#8217;t used in this example). This object just multiplies its input signal
+by 2:</p>
+<div class="highlight-pure"><div class="highlight"><pre>mul2_dsp x<span class="p">::</span><span class="kt">matrix</span> = map (*<span class="mi">2</span>) x<span class="p">;</span>
+</pre></div>
+</div>
+<p>This code would then be placed into a script file named <tt class="docutils literal"><span class="pre">mul2~.dsp</span></tt> and
+invoked in Pd as an object of the form <tt class="docutils literal"><span class="pre">[mul2~]</span></tt>.</p>
+<p>As with control objects, there&#8217;s a shortcut to create simple objects like
+these without preparing a script file, using the built-in <tt class="docutils literal"><span class="pre">[pure~]</span></tt> object.
+Thus the dsp function in the previous example could also be implemented using
+an object of the form <tt class="docutils literal"><span class="pre">[pure~</span> <span class="pre">map</span> <span class="pre">(*2)]</span></tt> (which uses the same function,
+albeit in curried form).</p>
+<p>Creation parameters can also be used in the same way as with control objects.
+The following object is to be invoked in Pd as <tt class="docutils literal"><span class="pre">[mul~</span> <span class="pre">f]</span></tt> where <tt class="docutils literal"><span class="pre">f</span></tt> is the
+desired gain factor.</p>
+<div class="highlight-pure"><div class="highlight"><pre>mul_dsp f<span class="p">::</span><span class="kt">double</span> x<span class="p">::</span><span class="kt">matrix</span> = map (*f) x<span class="p">;</span>
+</pre></div>
+</div>
+<p>Next, let&#8217;s try a custom number of signal inlets and outlets. The following
+object has two signal inlets and one signal outlet. Like Pd&#8217;s built-in
+<tt class="docutils literal"><span class="pre">[*~]</span></tt> object, it multiplies the two input signals, producing an amplitude
+(or ring) modulation effect:</p>
+<div class="highlight-pure"><div class="highlight"><pre>sigmul_dsp = <span class="mi">2</span>,<span class="mi">1</span>,sigmul <span class="kr">with</span>
+  sigmul x<span class="p">::</span><span class="kt">matrix</span> = zipwith (*) (row x <span class="mi">0</span>) (row x <span class="mi">1</span>)<span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Here&#8217;s another example which takes no inputs and produces one output signal, a
+random wave (i.e., white noise). Note the use of the <a class="reference internal" href="purelib.html#dim" title="dim"><tt class="xref pure pure-func docutils literal"><span class="pre">dim</span></tt></a> function
+to determine the number of samples to be generated for each block.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> genrand_real1() = random1<span class="p">;</span>
+randomwave1_dsp = <span class="mi">0</span>,<span class="mi">1</span>,randomwave <span class="kr">with</span>
+  randomwave in<span class="p">::</span><span class="kt">matrix</span> = {random | i=<span class="mi">1</span>..n} <span class="kr">when</span> _,n = dim in <span class="kr">end</span><span class="p">;</span>
+  random = random1*<span class="mi">2</span>-<span class="mi">1</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Control messages for the control outlet of the object may be added by
+returning a pair <tt class="docutils literal"><span class="pre">sig,msg</span></tt> where <tt class="docutils literal"><span class="pre">sig</span></tt> is the output signal matrix and
+<tt class="docutils literal"><span class="pre">msg</span></tt> is a single control message or vector of such messages (using the same
+format as with control objects). The signal matrix can also be omitted if no
+signal output is needed (unless the control data takes the form of a double
+matrix, which would be interpreted as signal data; in such a case you&#8217;d have
+to specify an empty signal matrix instead). The object function may also
+return <tt class="docutils literal"><span class="pre">()</span></tt> if neither signal nor control output is required. (This may be
+the case, e.g., for dsps which just analyze the incoming signal data and store
+the results somewhere for later retrieval.)</p>
+<p>Audio objects can also process control messages and generate responses on the
+leftmost inlet/outlet pair as usual. This is commonly used to set and retrieve
+various control parameters used or generated by the audio processing part of
+the object.</p>
+<p>For instance, here is an audio object which plays back a soundfile using the
+<tt class="xref py py-mod docutils literal"><span class="pre">sndfile</span></tt> module (cf. <a class="reference internal" href="pure-audio.html"><em>pure-audio</em></a>). The object function reads the
+entire file (whose name is passed as a creation argument) at creation time and
+turns over processing to the <tt class="docutils literal"><span class="pre">playsf</span></tt> function which returns one block of
+samples from the file (along with the current position of the playback
+pointer) for each invocation with an (empty) input matrix. In addition, a
+<tt class="docutils literal"><span class="pre">bang</span></tt> message is output when the end of the file is reached. The object
+also responds to floating point values in the range from 0 to 1 on the control
+inlet by adjusting the playback pointer accordingly.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> sndfile<span class="p">;</span>
+
+<span class="kr">nonfix</span> bang<span class="p">;</span>
+
+playsf_dsp name = <span class="mi">0</span>,nchannels,playsf <span class="kr">with</span>
+  <span class="c1">// Play one block of samples. Also output a number in the range 0..1 on the</span>
+  <span class="c1">// control outlet to indicate the current position.</span>
+  playsf x<span class="p">::</span><span class="kt">matrix</span> = block,get pos/nsamples <span class="kr">when</span>
+    _,n = dim x<span class="p">;</span> block = submat buf (<span class="mi">0</span>,get pos) (nchannels,n)<span class="p">;</span>
+    put pos (get pos+n)<span class="p">;</span>
+  <span class="kr">end</span> <span class="kr">if</span> get pos&gt;=<span class="mi">0</span> &amp;&amp; get pos&lt;=nsamples<span class="p">;</span>
+  <span class="c1">// Output a bang once to indicate that we&#39;re done.</span>
+  playsf x<span class="p">::</span><span class="kt">matrix</span> = bang <span class="kr">when</span>
+    _,n = dim x<span class="p">;</span> put pos (-<span class="mi">1</span>)<span class="p">;</span>
+  <span class="kr">end</span> <span class="kr">if</span> get pos&gt;=<span class="mi">0</span><span class="p">;</span>
+  playsf _<span class="p">::</span><span class="kt">matrix</span> = ()<span class="p">;</span>
+  <span class="c1">// A number in the range 0..1 places the playback pointer accordingly.</span>
+  playsf x<span class="p">::</span><span class="kt">double</span> = put pos $ <span class="kt">int</span> $ round $ x*nsamples $$ ()<span class="p">;</span>
+<span class="kr">end</span> <span class="kr">when</span>
+  <span class="c1">// Open the audio file for reading.</span>
+  info = sf_info ()<span class="p">;</span> sf = sf_open name SFM_READ info<span class="p">;</span>
+  <span class="c1">// Get some information about the file.</span>
+  nsamples,rate,nchannels,_ = sf_get_info info<span class="p">;</span>
+  nsamples = <span class="kt">int</span> nsamples<span class="p">;</span>
+  <span class="c1">// Read the file into memory.</span>
+  buf = <span class="kt">dmatrix</span> (nsamples,nchannels)<span class="p">;</span>
+  nsamples = <span class="kt">int</span> $ sf_readf_double sf buf nsamples<span class="p">;</span>
+  <span class="c1">// Convert interleaved samples (nsamples x nchannels) to one channel per row</span>
+  <span class="c1">// (nchannels x nsamples).</span>
+  buf = transpose buf<span class="p">;</span>
+  <span class="c1">// Initialize the playback pointer:</span>
+  pos = ref <span class="mi">0</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As another example, here&#8217;s a complete stereo amplifier stage with bass,
+treble, gain and balance controls and a dB meter. The dsp part is implemented
+in <a class="reference external" href="http://faudiostream.sf.net/">Faust</a>, Grame&#8217;s functional dsp programming language. The Pure program just
+does the necessary interfacing to Pd, which includes processing of incoming
+control messages for setting the control parameters of the Faust dsp, and the
+generation of output control messages to send the dB meter values (also
+computed in the Faust dsp) to Pd. (To run this example, you need the &#8220;faust2&#8221;
+branch of the Faust compiler so that the dsp can be inlined into the Pure
+program. Note that the entire section inside the <tt class="docutils literal"><span class="pre">%&lt;</span> <span class="pre">%&gt;</span></tt> braces is Faust
+code.)</p>
+<div class="highlight-pure"><div class="highlight"><pre>%&lt; -*- dsp:amp -*-
+
+import(&quot;math.lib&quot;);
+import(&quot;music.lib&quot;);
+
+/* Fixed bass and treble frequencies. You might want to tune these for your
+   setup. */
+
+bass_freq       = 300;
+treble_freq     = 1200;
+
+/* Bass and treble gain controls in dB. The range of +/-20 corresponds to a
+   boost/cut factor of 10. */
+
+bass_gain       = nentry(&quot;bass&quot;, 0, -20, 20, 0.1);
+treble_gain     = nentry(&quot;treble&quot;, 0, -20, 20, 0.1);
+
+/* Gain and balance controls. */
+
+gain            = db2linear(nentry(&quot;gain&quot;, 0, -96, 96, 0.1));
+bal             = hslider(&quot;balance&quot;, 0, -1, 1, 0.001);
+
+/* Balance a stereo signal by attenuating the left channel if balance is on
+   the right and vice versa. I found that a linear control works best here. */
+
+balance         = *(1-max(0,bal)), *(1-max(0,0-bal));
+
+/* Generic biquad filter. */
+
+filter(b0,b1,b2,a0,a1,a2)       = f : (+ ~ g)
+with {
+        f(x)    = (b0/a0)*x+(b1/a0)*x&#39;+(b2/a0)*x&#39;&#39;;
+        g(y)    = 0-(a1/a0)*y-(a2/a0)*y&#39;;
+};
+
+/* Low and high shelf filters, straight from Robert Bristow-Johnson&#39;s &quot;Audio
+   EQ Cookbook&quot;, see http://www.musicdsp.org/files/Audio-EQ-Cookbook.txt. f0
+   is the shelf midpoint frequency, g the desired gain in dB. S is the shelf
+   slope parameter, we always set that to 1 here. */
+
+low_shelf(f0,g)         = filter(b0,b1,b2,a0,a1,a2)
+with {
+        S  = 1;
+        A  = pow(10,g/40);
+        w0 = 2*PI*f0/SR;
+        alpha = sin(w0)/2 * sqrt( (A + 1/A)*(1/S - 1) + 2 );
+
+        b0 =    A*( (A+1) - (A-1)*cos(w0) + 2*sqrt(A)*alpha );
+        b1 =  2*A*( (A-1) - (A+1)*cos(w0)                   );
+        b2 =    A*( (A+1) - (A-1)*cos(w0) - 2*sqrt(A)*alpha );
+        a0 =        (A+1) + (A-1)*cos(w0) + 2*sqrt(A)*alpha;
+        a1 =   -2*( (A-1) + (A+1)*cos(w0)                   );
+        a2 =        (A+1) + (A-1)*cos(w0) - 2*sqrt(A)*alpha;
+};
+
+high_shelf(f0,g)        = filter(b0,b1,b2,a0,a1,a2)
+with {
+        S  = 1;
+        A  = pow(10,g/40);
+        w0 = 2*PI*f0/SR;
+        alpha = sin(w0)/2 * sqrt( (A + 1/A)*(1/S - 1) + 2 );
+
+        b0 =    A*( (A+1) + (A-1)*cos(w0) + 2*sqrt(A)*alpha );
+        b1 = -2*A*( (A-1) + (A+1)*cos(w0)                   );
+        b2 =    A*( (A+1) + (A-1)*cos(w0) - 2*sqrt(A)*alpha );
+        a0 =        (A+1) - (A-1)*cos(w0) + 2*sqrt(A)*alpha;
+        a1 =    2*( (A-1) - (A+1)*cos(w0)                   );
+        a2 =        (A+1) - (A-1)*cos(w0) - 2*sqrt(A)*alpha;
+};
+
+/* The tone control. We simply run a low and a high shelf in series here. */
+
+tone            = low_shelf(bass_freq,bass_gain)
+                : high_shelf(treble_freq,treble_gain);
+
+/* Envelop follower. This is basically a 1 pole LP with configurable attack/
+   release time. The result is converted to dB. You have to set the desired
+   attack/release time in seconds using the t parameter below. */
+
+t               = 0.1;                  // attack/release time in seconds
+g               = exp(-1/(SR*t));       // corresponding gain factor
+
+env             = abs : *(1-g) : + ~ *(g) : linear2db;
+
+/* Use this if you want the RMS instead. Note that this doesn&#39;t really
+   calculate an RMS value (you&#39;d need an FIR for that), but in practice our
+   simple 1 pole IIR filter works just as well. */
+
+rms             = sqr : *(1-g) : + ~ *(g) : sqrt : linear2db;
+sqr(x)          = x*x;
+
+/* The dB meters for left and right channel. These are passive controls. */
+
+left_meter(x)   = attach(x, env(x) : hbargraph(&quot;left&quot;, -96, 10));
+right_meter(x)  = attach(x, env(x) : hbargraph(&quot;right&quot;, -96, 10));
+
+/* The main program of the Faust dsp. */
+
+process         = (tone, tone) : (_*gain, _*gain) : balance
+                : (left_meter, right_meter);
+%&gt;
+
+<span class="c1">// These are provided by the Pd runtime.</span>
+<span class="kr">extern</span> <span class="kt">float</span> sys_getsr(), <span class="kt">int</span> sys_getblksize()<span class="p">;</span>
+<span class="c1">// Provide some reasonable default values in case the above are missing.</span>
+sys_getsr = <span class="mi">48000</span><span class="p">;</span> sys_getblksize = <span class="mi">64</span><span class="p">;</span>
+
+<span class="c1">// Get Pd&#39;s default sample rate and block size.</span>
+<span class="kr">const</span> SR = <span class="kt">int</span> sys_getsr<span class="p">;</span>
+<span class="kr">const</span> n = sys_getblksize<span class="p">;</span>
+
+<span class="kr">using</span> faustui<span class="p">;</span>
+
+amp_dsp = k,l,amp <span class="kr">with</span>
+  <span class="c1">// The dsp part. This also outputs the left and right dbmeter values for</span>
+  <span class="c1">// each processed block of samples on the control outlet, using messages of</span>
+  <span class="c1">// the form left &lt;value&gt; and right &lt;value&gt;, respectively.</span>
+  amp in<span class="p">::</span><span class="kt">matrix</span> = amp<span class="p">::</span>compute dsp n in out $$
+    out,{left (get_control left_meter),right (get_control right_meter)}<span class="p">;</span>
+  <span class="c1">// Respond to control messages of the form &lt;control&gt; &lt;value&gt;. &lt;control&gt; may</span>
+  <span class="c1">// be any of the input controls supported by the Faust program (bass,</span>
+  <span class="c1">// treble, gain, etc.).</span>
+  amp (c<span class="p">@</span>_ x<span class="p">::</span><span class="kt">double</span>) = put_control (ui!str c) x $$ x<span class="p">;</span>
+<span class="kr">end</span> <span class="kr">when</span>
+  <span class="c1">// Initialize the dsp.</span>
+  dsp = amp<span class="p">::</span>newinit SR<span class="p">;</span>
+  <span class="c1">// Get the number of inputs and outputs and the control variables.</span>
+  k,l,ui = amp<span class="p">::</span>info dsp<span class="p">;</span>
+  ui = control_map $ controls ui<span class="p">;</span>
+  {left_meter,right_meter} = ui!![<span class="s">&quot;left&quot;</span>,<span class="s">&quot;right&quot;</span>]<span class="p">;</span>
+  <span class="c1">// Create a buffer large enough to hold the output from the dsp.</span>
+  out = <span class="kt">dmatrix</span> (l,n)<span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that it is possible to load the above Faust program directly in Pd, using
+the facilities described in <a class="reference internal" href="faust2pd.html"><em>faust2pd: Pd Patch Generator for Faust</em></a>. This is also more efficient since
+it avoids the overhead of the extra Pure layer. However, invoking Faust dsps
+via Pure also offers some benefits. In particular, it enables you to add more
+sophisticated control processing, interface to other 3rd party software for
+additional pre- and postprocessing of the signal data, or do live editing of
+Faust programs using the facilities described in <a class="reference internal" href="#livecoding">Livecoding</a> below.</p>
+</div>
+<div class="section" id="advanced-features">
+<h2><a class="toc-backref" href="#id13">Advanced Features</a><a class="headerlink" href="#advanced-features" title="Permalink to this headline">¶</a></h2>
+<p>This section discusses some advanced features of the Pd Pure loader. It
+explains the use of timer callbacks, wireless connections and wave arrays, and
+the livecoding and interactive control facilities. We also give an overview of
+the API provided for pd-pure programmers.</p>
+<div class="section" id="asynchronous-messages">
+<h3><a class="toc-backref" href="#id14">Asynchronous Messages</a><a class="headerlink" href="#asynchronous-messages" title="Permalink to this headline">¶</a></h3>
+<p>pd-pure provides a simple asynchronous messaging facility which allows a Pure
+object to schedule a message to be delivered to itself later. This is useful
+for implementing all kinds of delays and, more generally, any kind of object
+which, once triggered, does its own sequencing of control messages.</p>
+<p>To these ends, the object function may return a special message of the form
+<tt class="docutils literal"><span class="pre">pd_delay</span> <span class="pre">t</span> <span class="pre">msg</span></tt> (either by itself or as an element of a result list) to
+indicate that the message <tt class="docutils literal"><span class="pre">msg</span></tt> should be delivered to the object function
+after <tt class="docutils literal"><span class="pre">t</span></tt> milliseconds (where <tt class="docutils literal"><span class="pre">t</span></tt> is either a machine int or a double
+value). After the prescribed delay the object function will then be invoked on
+the given message, and the results of this call are processed as usual
+(routing messages to outlets and/or scheduling new timer events in response to
+further <tt class="docutils literal"><span class="pre">pd_delay</span></tt> messages). Note that if the delay is zero or negative,
+the message is scheduled to be delivered immediately.</p>
+<p>For instance, a simple kind of delay object can be implemented in Pure as
+follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>mydelay _ (alarm msg) = msg<span class="p">;</span>
+mydelay t msg = pd_delay t (alarm msg) <span class="kr">otherwise</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The desired delay time is specified as a creation argument. The first equation
+handles messages of the form <tt class="docutils literal"><span class="pre">alarm</span> <span class="pre">msg</span></tt>; the action is to just output the
+delayed message given by the <tt class="docutils literal"><span class="pre">msg</span></tt> argument. All other input messages are
+scheduled by the second equation, which wraps the message in an <tt class="docutils literal"><span class="pre">alarm</span></tt> term
+so that it gets processed by the first equation when it is delivered.</p>
+<p>Note that pd-pure only allows you to schedule a single asynchronous event per
+call of the object function. Thus, if the <tt class="docutils literal"><span class="pre">mydelay</span></tt> object above receives
+another message while it is still waiting for the previous one to be
+delivered, the old timer is cancelled and the new one is scheduled instead;
+this works like Pd&#8217;s builtin <tt class="docutils literal"><span class="pre">delay</span></tt> object.</p>
+<p>Moreover, scheduling a new event at an infinite (or <tt class="docutils literal"><span class="pre">nan</span></tt>) time value
+cancels any existing timer. (Note that you still have to specify the <tt class="docutils literal"><span class="pre">msg</span></tt>
+parameter, but it will be ignored in this case.) We can use this to equip our
+<tt class="docutils literal"><span class="pre">mydelay</span></tt> object with a <tt class="docutils literal"><span class="pre">stop</span></tt> message as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> stop<span class="p">;</span>
+mydelay _ (alarm msg) = msg<span class="p">;</span>
+mydelay _ stop = pd_delay inf ()<span class="p">;</span>
+mydelay t msg = pd_delay t (alarm msg) <span class="kr">otherwise</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>More elaborate functionality can be built on top of the basic timer facility.
+The following example shows how to maintain a timed message queue in a Pure
+list, in order to implement a simple delay line similar to Pd&#8217;s builtin
+<tt class="docutils literal"><span class="pre">pipe</span></tt> object. Here we also employ the <a class="reference internal" href="#pd_time" title="pd_time"><tt class="xref c c-func docutils literal"><span class="pre">pd_time()</span></tt></a> function, which is
+provided by the Pure loader so that Pure scripts can access the current
+logical Pd time in milliseconds (see <a class="reference internal" href="#programming-interface">Programming Interface</a> below). This is
+convenient if we need to deal with absolute time values, which we use in this
+example to keep track of the times at which messages in the queue are to be
+delivered:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> pd_time()<span class="p">;</span>
+mypipe t = process (ref []) <span class="kr">with</span>
+  process q () = <span class="kr">case</span> dequeue q <span class="kr">of</span>
+                   x,(t,_):_ = {x,pd_delay (t-pd_time) ()}<span class="p">;</span>
+                   x,_ = x<span class="p">;</span>
+                 <span class="kr">end</span><span class="p">;</span>
+  process q x  = enqueue q x $$ pd_delay t () <span class="kr">if</span> null (get q)<span class="p">;</span>
+               = enqueue q x $$ () <span class="kr">otherwise</span><span class="p">;</span>
+  enqueue q x  = put q $ get q+[(pd_time+t,x)]<span class="p">;</span>
+  dequeue q    = x,put q xs <span class="kr">when</span> (_,x):xs = get q <span class="kr">end</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="wireless-messaging">
+<h3><a class="toc-backref" href="#id15">Wireless Messaging</a><a class="headerlink" href="#wireless-messaging" title="Permalink to this headline">¶</a></h3>
+<p>As of version 0.14, pd-pure offers some facilities for sending and receiving
+messages directly, without any wired connections to the inlets and outlets of
+an object (similar to what the Pd <tt class="docutils literal"><span class="pre">[send]</span></tt> and <tt class="docutils literal"><span class="pre">[receive]</span></tt> objects
+provide). See the description for the <a class="reference internal" href="#pd_send" title="pd_send"><tt class="xref c c-func docutils literal"><span class="pre">pd_send()</span></tt></a> and
+<a class="reference internal" href="#pd_receive" title="pd_receive"><tt class="xref c c-func docutils literal"><span class="pre">pd_receive()</span></tt></a> routines in the <a class="reference internal" href="#programming-interface">Programming Interface</a> section.</p>
+<p>For instance, here&#8217;s how you can use the <tt class="docutils literal"><span class="pre">pd_send</span></tt> function to send messages
+to the Pd runtime:</p>
+<div class="highlight-pure"><div class="highlight"><pre>pd_send <span class="s">&quot;pd&quot;</span> (dsp <span class="mi">1</span>)<span class="p">;</span> <span class="c1">// turn on audio processing</span>
+</pre></div>
+</div>
+<p>This function also enables you to perform dynamic patching, by sending the
+appropriate messages to patches (i.e., <tt class="docutils literal"><span class="pre">&quot;pd-patch&quot;</span></tt> receivers, where
+<tt class="docutils literal"><span class="pre">patch</span></tt> is the name of the target patch). Useful messages to patches are
+listed in the <a class="reference external" href="http://puredata.info/docs/tutorials/TipsAndTricks#patch-messages">Tips and Tricks</a> section on the Pd community website, and some
+examples can be found <a class="reference external" href="http://pure-data.svn.sourceforge.net/svnroot/pure-data/trunk/doc/additional/pd-msg/">here</a>. For instance, the following Pure object, when
+banged, inserts a few objects into a subpatch named <tt class="docutils literal"><span class="pre">test</span></tt> and connects them
+to each other:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">void</span> pd_send(<span class="kt">char</span>*, <span class="kt">expr</span>*)<span class="p">;</span>
+
+pd_send_test _ = () <span class="kr">when</span>
+  pd_send <span class="s">&quot;pd-test&quot;</span> (obj <span class="mi">10</span> <span class="mi">0</span> <span class="s">&quot;osc~&quot;</span> <span class="mi">220</span>)<span class="p">;</span>
+  pd_send <span class="s">&quot;pd-test&quot;</span> (obj <span class="mi">10</span> <span class="mi">30</span> <span class="s">&quot;*~&quot;</span> <span class="mf">0.1</span>)<span class="p">;</span>
+  pd_send <span class="s">&quot;pd-test&quot;</span> (obj <span class="mi">10</span> <span class="mi">60</span> <span class="s">&quot;dac~&quot;</span>)<span class="p">;</span>
+  pd_send <span class="s">&quot;pd-test&quot;</span> (connect <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span>)<span class="p">;</span>
+  pd_send <span class="s">&quot;pd-test&quot;</span> (connect <span class="mi">1</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">0</span>)<span class="p">;</span>
+  pd_send <span class="s">&quot;pd-test&quot;</span> (connect <span class="mi">1</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">1</span>)<span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>An object can also receive messages from any named source by means of the
+<tt class="docutils literal"><span class="pre">pd_receive</span></tt> function. This function must be called either at object
+creation time or when one of the dsp or control processing methods of the
+object is invoked. For instance, the following object calls <tt class="docutils literal"><span class="pre">pd_receive</span></tt> at
+creation time in order to receive messages sent to the <tt class="docutils literal"><span class="pre">left</span></tt> and <tt class="docutils literal"><span class="pre">right</span></tt>
+receivers, and outputs them on its left or right outlet, respectively:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">void</span> pd_receive(<span class="kt">char</span>*)<span class="p">;</span>
+
+pd_receive_test = <span class="mi">1</span>,<span class="mi">2</span>,process <span class="kr">with</span>
+  process (left x) = <span class="mi">0</span>,x<span class="p">;</span>
+  process (right x) = <span class="mi">1</span>,x<span class="p">;</span>
+<span class="kr">end</span> <span class="kr">when</span>
+  do pd_receive [<span class="s">&quot;left&quot;</span>,<span class="s">&quot;right&quot;</span>]<span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Please note that <tt class="docutils literal"><span class="pre">pd_receive</span></tt> itself doesn&#8217;t return any message, it merely
+registers a receiver symbol so that messages sent to that symbol may be
+received later. The received messages are always delivered to the leftmost
+inlet when Pd does its control processing. Moreover, the symbol identifying
+the source of the message is applied to the message itself, so that the
+receiver can figure out where the message came from and adjust accordingly.
+This operation is useful, in particular, to provide communication channels
+between Pd GUI elements and Pure objects. Wireless connections are often
+preferred in such cases, to reduce display clutter.</p>
+</div>
+<div class="section" id="reading-and-writing-audio-data">
+<h3><a class="toc-backref" href="#id16">Reading and Writing Audio Data</a><a class="headerlink" href="#reading-and-writing-audio-data" title="Permalink to this headline">¶</a></h3>
+<p>Besides the realtime processing of audio data, Pd also provides a means to
+store sample data in <cite>arrays</cite> which can be displayed in a patch and modified
+interactively, see the section on numeric arrays in the Pd documentation for
+details. Arrays can be used, e.g., as running waveform displays, as wavetables
+which are played back in the audio loop, or as waveshaping functions used to
+implement distortion effects.</p>
+<p>Each array has a name (Pd symbol) under which it can be accessed from Pure
+code. pd-pure makes it possible to transfer audio data directly between Pd
+arrays and Pure double vectors by means of the <a class="reference internal" href="#pd_getbuffer" title="pd_getbuffer"><tt class="xref c c-func docutils literal"><span class="pre">pd_getbuffer()</span></tt></a> and
+<a class="reference internal" href="#pd_setbuffer" title="pd_setbuffer"><tt class="xref c c-func docutils literal"><span class="pre">pd_setbuffer()</span></tt></a> routines. Please see <a class="reference internal" href="#programming-interface">Programming Interface</a> below for
+a closer description of the provided routines.</p>
+<p>For instance, here is a <tt class="docutils literal"><span class="pre">randomwave</span></tt> object which fills a Pd array (whose
+name is given as the creation argument) with random values in response to a
+<tt class="docutils literal"><span class="pre">bang</span></tt> message:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> genrand_real1() = random1<span class="p">;</span>
+
+<span class="kr">extern</span> <span class="kt">int</span> pd_getbuffersize(<span class="kt">char</span> *name)<span class="p">;</span>
+<span class="kr">extern</span> <span class="kt">void</span> pd_setbuffer(<span class="kt">char</span> *name, <span class="kt">expr</span> *x)<span class="p">;</span>
+
+<span class="kr">nonfix</span> bang<span class="p">;</span>
+
+randomwave name = <span class="mi">1</span>,<span class="mi">0</span>,process <span class="kr">with</span>
+  process bang  = pd_setbuffer name {random | i = <span class="mi">1</span>..nsamples}<span class="p">;</span>
+  nsamples      = pd_getbuffersize name<span class="p">;</span>
+  random        = random1*<span class="mi">2</span>-<span class="mi">1</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="controlling-the-runtime">
+<h3><a class="toc-backref" href="#id17">Controlling the Runtime</a><a class="headerlink" href="#controlling-the-runtime" title="Permalink to this headline">¶</a></h3>
+<p>pd-pure provides a predefined <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object which makes it
+possible to control the embedded Pure interpreter in some ways. There can be
+any number of <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> objects in a patch, which all refer to the
+same instance of the Pure interpreter.</p>
+<p>The first use of <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> is to load additional Pure scripts. To
+these ends, <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> can be invoked with the names of scripts to be
+loaded at object creation time as arguments. The script names should be
+specified without the <tt class="docutils literal"><span class="pre">.pure</span></tt> suffix; it will be added automatically. The
+scripts will be searched for in the directory of the patch containing the
+<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object and on the Pd path. For instance, to load the
+scripts <tt class="docutils literal"><span class="pre">foo.pure</span></tt> and <tt class="docutils literal"><span class="pre">bar.pure</span></tt>, you can add the following object to
+your patch:</p>
+<div class="highlight-pure"><div class="highlight"><pre>[pure-runtime foo bar]
+</pre></div>
+</div>
+<p>This facility can be used, e.g., to load any additional scripts needed for
+anonymous objects defined with <tt class="docutils literal"><span class="pre">[pure]</span></tt> and <tt class="docutils literal"><span class="pre">[pure~]</span></tt>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You&#8217;ll have to make sure that the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object is
+inserted into the patch before any anonymous objects which depend on the
+loaded scripts. Also note that you shouldn&#8217;t explicitly load the scripts
+which implement named Pure objects; this will be handled automatically by
+the Pure loader.</p>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object also accepts control messages which can be used
+to dynamically reload all loaded scripts, and to implement &#8220;remote control&#8221; of
+a patch using the <strong class="program">pdsend</strong> program. This is described in the
+following subsection.</p>
+</div>
+<div class="section" id="livecoding">
+<h3><a class="toc-backref" href="#id18">Livecoding</a><a class="headerlink" href="#livecoding" title="Permalink to this headline">¶</a></h3>
+<p>Livecoding means changing Pure objects on the fly while a patch is running. A
+simple, but limited way to do this is to just edit the boxes containing Pure
+objects interactively, as you can do with any kind of Pd object. In this case,
+the changes take effect immediately after you finish editing a box. However,
+for more elaborate changes, you may have to edit the underlying Pure scripts
+and notify the Pure interpreter so that it reloads the scripts. The Pure
+loader provides the special <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object to do this.</p>
+<p>Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> to the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object tells the plugin to reload
+all object scripts and update the Pure objects in your patch accordingly. The
+object also provides two outlets to deal with the inevitable latencies caused
+by the compilation process. The right outlet is banged when the compilation
+starts and the left outlet gets a bang when the compilation is finished, so
+that a patch using this facility can respond to these events in the
+appropriate way (e.g., disabling output during compilation).</p>
+<p>The <tt class="docutils literal"><span class="pre">reload</span></tt> message works similarly, but while the <tt class="docutils literal"><span class="pre">bang</span></tt> message only
+reloads the object scripts, <tt class="docutils literal"><span class="pre">reload</span></tt> restarts the Pure interpreter from
+scratch and reloads everything, including the prelude and imported modules.
+This will usually take much longer, but is only necessary if you edited
+imported library modules which won&#8217;t be reloaded with the <tt class="docutils literal"><span class="pre">bang</span></tt> message.</p>
+<p>While this facility is very useful for interactive development, it does have
+some limitations:</p>
+<ul class="simple">
+<li>At present, the number of inlets and outlets of Pure objects never changes
+after reloading scripts. Pd does not support this through its API right now.
+Thus by editing and reloading the Pure scripts you can change the
+functionality of existing Pure objects in a running patch, but not their
+interfaces. (It is possible to make changes to inlets and outlets take
+effect by manually editing the affected objects afterwards. But this will be
+cumbersome when you have to edit a lot of objects, so it might be easier to
+just restart Pd and reload the patches in such cases.)</li>
+<li>Reloading scripts may need some time depending on how much Pure code has to
+be recompiled and how fast your cpu is. With the <tt class="docutils literal"><span class="pre">bang</span></tt> message the delays
+will usually be small, but still noticable. In order to keep the compilation
+times to a minimum, it is a good idea to put all code which you don&#8217;t plan
+to edit &#8220;live&#8221; into library modules which are imported in the object
+scripts. By these means, the number of definitions in the object scripts
+themselves can be kept small, resulting in faster compilation.</li>
+</ul>
+<p>Also note that the reloading of object scripts amounts to a &#8220;cold restart&#8221; of
+the Pure objects in your patches. If a Pure object keeps some <a class="reference internal" href="#local-state">local state</a>,
+it will be lost. As a remedy, the loader implements a simple protocol which
+allows Pure objects to record their internal state before a script gets
+reloaded, and restore it afterwards. To these ends, a Pure object may respond
+to the following two messages:</p>
+<ul class="simple">
+<li>Before reloading, the Pure object will receive the <tt class="docutils literal"><span class="pre">pd_save</span></tt> message. In
+response, the object should return a Pure expression encoding its internal
+state in a way which can be serialized (see the description of the
+<a class="reference internal" href="purelib.html#blob" title="blob"><tt class="xref pure pure-func docutils literal"><span class="pre">blob</span></tt></a> function in the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a> for details). Usually, it
+is sufficient to just pack up all state data in a tuple, list or some other
+aggregate and return that as the response to the <tt class="docutils literal"><span class="pre">pd_save</span></tt> message.</li>
+<li>After reloading, the Pure object will receive a <tt class="docutils literal"><span class="pre">pd_restore</span> <span class="pre">state</span></tt>
+message, where <tt class="docutils literal"><span class="pre">state</span></tt> is the previously recorded state, as returned by
+the object in response to the <tt class="docutils literal"><span class="pre">pd_save</span></tt> message. It should then restore
+its internal state from the saved data. (The return value of this message
+invocation is ignored.)</li>
+</ul>
+<p>In order to participate in the <tt class="docutils literal"><span class="pre">pd_save</span></tt>/<tt class="docutils literal"><span class="pre">pd_restore</span></tt> protocol, an object
+must subscribe to it. This is done by setting <tt class="docutils literal"><span class="pre">pd_save</span></tt> as a sentry on the
+object function (see the description of the <a class="reference internal" href="purelib.html#sentry" title="sentry"><tt class="xref pure pure-func docutils literal"><span class="pre">sentry</span></tt></a> function in
+the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a> for details). For instance, here&#8217;s the counter example from
+<a class="reference internal" href="#local-state">Local State</a> again, with the necessary additions to support the
+<tt class="docutils literal"><span class="pre">pd_save</span></tt>/<tt class="docutils literal"><span class="pre">pd_restore</span></tt> protocol:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang pd_save<span class="p">;</span>
+counter = sentry pd_save $ next (ref <span class="mi">0</span>) <span class="kr">with</span>
+  next r bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
+  next r pd_save = get r<span class="p">;</span>
+  next r (pd_restore n) = put r n<span class="p">;</span>
+  next _ _ = () <span class="kr">otherwise</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="remote-control">
+<h3><a class="toc-backref" href="#id19">Remote Control</a><a class="headerlink" href="#remote-control" title="Permalink to this headline">¶</a></h3>
+<p>The distribution also includes an abstraction pure-remote.pd which you can
+include in your patch to enable live coding, as well as remote control of the
+patch through the <strong class="program">pdsend</strong> program. Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> (or
+<tt class="docutils literal"><span class="pre">reload</span></tt>) causes a reload of the object scripts, as described above. This
+can also be triggered directly by clicking the bang control of the
+abstraction. The bang control also provides visual feedback indicating whether
+the compilation is still in progress. Messages are routed through the embedded
+<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object using the single inlet and the two outlets of the
+abstraction, so that <tt class="docutils literal"><span class="pre">pure-remote</span></tt> can also be controlled from within the
+patch itself.</p>
+<p>For added convenience, the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> and <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> objects
+also accept any other message of the form <tt class="docutils literal"><span class="pre">receiver</span> <span class="pre">message</span></tt> and will route
+the given message to the given receiver. This is intended to provide remote
+control of various parameters in patches. For instance, by having
+<strong class="program">pdsend</strong> send a <tt class="docutils literal"><span class="pre">play</span> <span class="pre">0</span></tt> or <tt class="docutils literal"><span class="pre">play</span> <span class="pre">1</span></tt> message, one might implement
+a simple playback control, provided that your patch includes an appropriate
+receiver (often a GUI object). See the pure-help.pd patch for an example.</p>
+<p>To make these features available in <strong class="program">emacs</strong>, there&#8217;s an accompanying
+elisp program (pure-remote.el) which contains some convenient keybindings for
+the necessary <strong class="program">pdsend</strong> invocations, so that you can operate the
+pure-remote patch with simple keystrokes directly from the text editor. The
+same bindings are also available in Emacs Pure mode, but need to be enabled
+before you can use them; please see the pure-remote.el file for details. As
+shipped, pure-remote.el and Pure mode implement the following commands:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="16%" />
+<col width="68%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-X</span></tt></td>
+<td>Quick Reload</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">bang</span></tt> message to reload object scripts.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">M-X</span></tt></td>
+<td>Full Reload</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">reload</span></tt> message to reload everything.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-M</span></tt></td>
+<td>Message</td>
+<td>Prompts for a message and sends it to pure-remote.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-S</span></tt></td>
+<td>Play</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">play</span> <span class="pre">1</span></tt> message.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-T</span></tt></td>
+<td>Stop</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">play</span> <span class="pre">0</span></tt> message.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-G</span></tt></td>
+<td>Restart</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">play</span> <span class="pre">0</span></tt> message followed by <tt class="docutils literal"><span class="pre">play</span> <span class="pre">1</span></tt>.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">C-/</span></tt></td>
+<td>Dsp On</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">pd</span> <span class="pre">dsp</span> <span class="pre">1</span></tt> (enable audio processing).</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">C-.</span></tt></td>
+<td>Dsp Off</td>
+<td>Sends a <tt class="docutils literal"><span class="pre">pd</span> <span class="pre">dsp</span> <span class="pre">0</span></tt> (disable audio processing).</td>
+</tr>
+</tbody>
+</table>
+<p>Of course you can easily add more like these, just have a look at how the
+keybindings are implemented in pure-remote.el or pure-mode.el and create your
+own in an analogous fashion. Together with Pure mode, this gives you a nice
+interactive environment for developing pd-pure applications.</p>
+</div>
+<div class="section" id="compiling-objects">
+<h3><a class="toc-backref" href="#id20">Compiling Objects</a><a class="headerlink" href="#compiling-objects" title="Permalink to this headline">¶</a></h3>
+<p>pd-pure&#8217;s livecoding abilities require that objects are run from source code.
+As already mentioned, this needs some (in some cases, substantial) time at
+startup when the Pure interpreter is loaded and your Pure scripts are compiled
+to native code on the fly. This is wasted effort if you are finished
+developing your Pure objects and just want to run them as they are.</p>
+<p>Therefore pd-pure also supports compiling a collection of Pure objects to a
+binary which can be loaded with Pd&#8217;s <tt class="docutils literal"><span class="pre">-lib</span></tt> option just like any other
+external library of Pd objects. This basically involves using the Pure
+interpreter as a batch compiler to translate the Pure scripts implementing the
+objects to a shared library. You also have to link in a small amount of C code
+so that the shared module can be loaded by Pd and registers its Pd object
+classes with pd-pure. The examples/lib folder contains a complete example
+showing how this is done.</p>
+<p>Note that even if you load all your pd-pure objects from such libraries, you
+still need to load the pd-pure module first, since it provides the basic
+infrastructure required to run any kind of pd-pure object (no matter whether
+it&#8217;s implemented in compiled or source form).</p>
+</div>
+<div class="section" id="programming-interface">
+<h3><a class="toc-backref" href="#id21">Programming Interface</a><a class="headerlink" href="#programming-interface" title="Permalink to this headline">¶</a></h3>
+<p>The Pure loader provides a number of interface routines which can be called by
+Pure scripts running in the Pd environment. Note that in order to access these
+functions, you&#8217;ll have to add the corresponding <tt class="docutils literal"><span class="pre">extern</span></tt> declarations to
+your scripts.</p>
+<dl class="function">
+<dt id="pd_version_s">
+extern char *<tt class="descname">pd_version_s</tt><big>(</big><big>)</big><a class="headerlink" href="#pd_version_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Pd version number as a string. Note that this routine will only
+be available when a script is running inside Pd, so you can quickly check
+if that&#8217;s the case as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">let</span> ok = stringp $ eval <span class="s">&quot;extern char *pd_version_s(); pd_version_s;&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">ok</span></tt> variable will then be true iff the script is running inside Pd.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_path">
+extern expr *<tt class="descname">pd_path</tt><big>(</big><big>)</big><a class="headerlink" href="#pd_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Pd path (set in Pd&#8217;s <tt class="docutils literal"><span class="pre">Path</span></tt> dialog or via the <tt class="docutils literal"><span class="pre">-path</span></tt>
+command line option) as a list of directory names. This is useful if your
+Pure scripts need to locate files on the Pd search path.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_libdir">
+extern char *<tt class="descname">pd_libdir</tt><big>(</big><big>)</big><a class="headerlink" href="#pd_libdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the Pd library dir (as determined at compile time). This is useful
+if your Pure scripts need to access files in that directory.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_getdir">
+extern expr *<tt class="descname">pd_getdir</tt><big>(</big><big>)</big><a class="headerlink" href="#pd_getdir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the directory of the patch the current object is in. This is useful
+if a Pure object needs to access files in the patch directory. Please note
+that this function must be called during object creation or in the method
+calls of an object, so that it is clear what the current object is;
+otherwise the function will fail. Also note that the results may differ for
+different instances of the same object class, depending on which patches
+the objects are located in.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_getfile">
+extern expr *<tt class="descname">pd_getfile</tt><big>(</big><big>)</big><a class="headerlink" href="#pd_getfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the name of the file that will be opened with the <tt class="docutils literal"><span class="pre">menu-open</span></tt>
+action (accessible by right-clicking on a Pure object and selecting
+<tt class="docutils literal"><span class="pre">Open</span></tt>). This is usually the Pure script of the object, if available, but
+this can be changed with <a class="reference internal" href="#pd_setfile" title="pd_setfile"><tt class="xref c c-func docutils literal"><span class="pre">pd_setfile()</span></tt></a> below. The function must be
+called during object creation or in the method calls of an object, so that
+it is clear what the current object is; otherwise the function will fail.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_setfile">
+extern void <tt class="descname">pd_setfile</tt><big>(</big>char<em>&nbsp;*s</em><big>)</big><a class="headerlink" href="#pd_setfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the name of the file to be opened with the <tt class="docutils literal"><span class="pre">menu-open</span></tt> action. By
+default, this is the Pure script of the object, if available; this function
+can be used to change the name of the file on a per-object basis. The
+function must be called during object creation or in the method calls of an
+object, so that it is clear what the current object is; otherwise the
+function will have no effect.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_post">
+extern void <tt class="descname">pd_post</tt><big>(</big>char<em>&nbsp;*s</em><big>)</big><a class="headerlink" href="#pd_post" title="Permalink to this definition">¶</a></dt>
+<dd><p>Posts a message in the Pd main window. A trailing newline is added
+automatically. This is a convenience function which is equivalent to
+calling Pd&#8217;s <tt class="docutils literal"><span class="pre">post()</span></tt> (which is a varargs function) as <tt class="docutils literal"><span class="pre">post</span> <span class="pre">&quot;%s&quot;</span> <span class="pre">s</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_error_s">
+extern void <tt class="descname">pd_error_s</tt><big>(</big>char<em>&nbsp;*s</em><big>)</big><a class="headerlink" href="#pd_error_s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#pd_post" title="pd_post"><tt class="xref c c-func docutils literal"><span class="pre">pd_post()</span></tt></a>, but prints an error message instead. If this
+routine is invoked from an object (i.e., during object creation or a method
+call) then Pd&#8217;s <tt class="docutils literal"><span class="pre">pd_error()</span></tt> function is called, which allows the object
+to be tracked down with Pd&#8217;s <tt class="docutils literal"><span class="pre">Find</span> <span class="pre">Last</span> <span class="pre">Error</span></tt> menu command. Otherwise
+(i.e., if the function is called at load time) Pd&#8217;s <tt class="docutils literal"><span class="pre">error()</span></tt> function is
+called which just outputs the message.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_time">
+extern double <tt class="descname">pd_time</tt><big>(</big><big>)</big><a class="headerlink" href="#pd_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the current Pd time as a double value in milliseconds, which is
+useful, in particular, when used in conjunction with the asynchronous
+message facility described under <a class="reference internal" href="#asynchronous-messages">Asynchronous Messages</a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_send">
+extern void <tt class="descname">pd_send</tt><big>(</big>char<em>&nbsp;*sym</em>, expr<em>&nbsp;*x</em><big>)</big><a class="headerlink" href="#pd_send" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a message, specified as a Pure term <tt class="docutils literal"><span class="pre">x</span></tt>, to the receiver given by
+the symbol <tt class="docutils literal"><span class="pre">sym</span></tt> (specified as a string). This is a no-op if the receiver
+doesn&#8217;t exist.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_receive">
+extern void <tt class="descname">pd_receive</tt><big>(</big>char<em>&nbsp;*sym</em><big>)</big><a class="headerlink" href="#pd_receive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepares an object so that it can receive messages sent to the given symbol
+<tt class="docutils literal"><span class="pre">sym</span></tt>. This function must be called during object creation or method
+calls. It can be called for different symbols, as many times as needed. The
+messages are always delivered to the leftmost inlet, and the given symbol
+is applied to the original message, so that the receiver can figure out
+where the message came from.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_unreceive">
+extern void <tt class="descname">pd_unreceive</tt><big>(</big>char<em>&nbsp;*sym</em><big>)</big><a class="headerlink" href="#pd_unreceive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Switches off receiving messages for the given symbol <tt class="docutils literal"><span class="pre">sym</span></tt>. Use this
+to undo the effects of a previous <tt class="docutils literal"><span class="pre">pd_receive</span></tt> call.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pd_getbuffer">
+extern expr *<tt class="descname">pd_getbuffer</tt><big>(</big>char<em>&nbsp;*name</em><big>)</big><a class="headerlink" href="#pd_getbuffer" title="Permalink to this definition">¶</a></dt>
+<dt id="pd_setbuffer">
+extern void <tt class="descname">pd_setbuffer</tt><big>(</big>char<em>&nbsp;*name</em>, expr<em>&nbsp;*x</em><big>)</big><a class="headerlink" href="#pd_setbuffer" title="Permalink to this definition">¶</a></dt>
+<dt id="pd_getbuffersize">
+extern int <tt class="descname">pd_getbuffersize</tt><big>(</big>char<em>&nbsp;*name</em><big>)</big><a class="headerlink" href="#pd_getbuffersize" title="Permalink to this definition">¶</a></dt>
+<dt id="pd_setbuffersize">
+extern void <tt class="descname">pd_setbuffersize</tt><big>(</big>char<em>&nbsp;*name</em>, uint32_t<em>&nbsp;sz</em><big>)</big><a class="headerlink" href="#pd_setbuffersize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Routines to access the Pd array (sample buffer) with the given name. These
+functions can be used to transfer audio data between Pd and Pure scripts;
+see <a class="reference internal" href="#reading-and-writing-audio-data">Reading and Writing Audio Data</a> above for an example.</p>
+<p><a class="reference internal" href="#pd_getbuffersize" title="pd_getbuffersize"><tt class="xref c c-func docutils literal"><span class="pre">pd_getbuffersize()</span></tt></a> and <a class="reference internal" href="#pd_setbuffersize" title="pd_setbuffersize"><tt class="xref c c-func docutils literal"><span class="pre">pd_setbuffersize()</span></tt></a> gets or sets the
+size of the given buffer, respectively.</p>
+<p><a class="reference internal" href="#pd_getbuffer" title="pd_getbuffer"><tt class="xref c c-func docutils literal"><span class="pre">pd_getbuffer()</span></tt></a> reads the contents of the buffer and returns it as a
+Pure vector (or fails if the array with the given name doesn&#8217;t exist).</p>
+<p><a class="reference internal" href="#pd_setbuffer" title="pd_setbuffer"><tt class="xref c c-func docutils literal"><span class="pre">pd_setbuffer()</span></tt></a> sets the contents of the buffer from the given Pure
+vector <tt class="docutils literal"><span class="pre">x</span></tt>. If the size of the vector exceeds the size of the buffer, the
+former is truncated. Conversely, if the size of the buffer exceeds the size
+of the Pure vector, the trailing samples are unaffected. <em>Note:</em> The
+second argument of <a class="reference internal" href="#pd_setbuffer" title="pd_setbuffer"><tt class="xref c c-func docutils literal"><span class="pre">pd_setbuffer()</span></tt></a> can also be a pair <tt class="docutils literal"><span class="pre">(i,x)</span></tt>
+denoting an offset <tt class="docutils literal"><span class="pre">i</span></tt> into the array at which the sample data is to be
+written, so that this routine allows you to overwrite any part of the
+array.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pd-pure: Pd loader for Pure scripts</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#pd-pure-on-windows">pd-pure on Windows</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#control-objects">Control Objects</a><ul>
+<li><a class="reference internal" href="#simple-objects">Simple Objects</a></li>
+<li><a class="reference internal" href="#creation-arguments">Creation Arguments</a></li>
+<li><a class="reference internal" href="#the-pure-object">The [pure] Object</a></li>
+<li><a class="reference internal" href="#configuring-inlets-and-outlets">Configuring Inlets and Outlets</a></li>
+<li><a class="reference internal" href="#local-state">Local State</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#audio-objects">Audio Objects</a></li>
+<li><a class="reference internal" href="#advanced-features">Advanced Features</a><ul>
+<li><a class="reference internal" href="#asynchronous-messages">Asynchronous Messages</a></li>
+<li><a class="reference internal" href="#wireless-messaging">Wireless Messaging</a></li>
+<li><a class="reference internal" href="#reading-and-writing-audio-data">Reading and Writing Audio Data</a></li>
+<li><a class="reference internal" href="#controlling-the-runtime">Controlling the Runtime</a></li>
+<li><a class="reference internal" href="#livecoding">Livecoding</a></li>
+<li><a class="reference internal" href="#remote-control">Remote Control</a></li>
+<li><a class="reference internal" href="#compiling-objects">Compiling Objects</a></li>
+<li><a class="reference internal" href="#programming-interface">Programming Interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pd-faust.html"
+                        title="previous chapter">pd-faust</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-audio.html"
+                        title="next chapter">pure-audio</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pd-pure.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-audio.html" title="pure-audio"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pd-faust.html" title="pd-faust"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

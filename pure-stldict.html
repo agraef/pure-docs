@@ -1,0 +1,873 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-stldict &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-stllib" href="pure-stllib.html" />
+    <link rel="prev" title="pure-sockets: Pure Sockets Interface" href="pure-sockets.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stllib.html" title="pure-stllib"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-sockets.html" title="pure-sockets: Pure Sockets Interface"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-stldict">
+<span id="pure-stldict"></span><h1>pure-stldict<a class="headerlink" href="#module-stldict" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-hashdict"></span><span class="target" id="module-orddict"></span><p>Version 0.6, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This package provides a light-weight, no frills interface to the C++
+dictionary containers <tt class="docutils literal"><span class="pre">map</span></tt> and <tt class="docutils literal"><span class="pre">unordered_map</span></tt>. The <a class="reference internal" href="#module-stldict"><tt class="xref pure pure-mod docutils literal"><span class="pre">stldict</span></tt></a> module
+makes these data structures available in Pure land and equips them with a
+(more or less) idiomatic Pure container interface.</p>
+<p>The C++ containers are part of the standard C++ library, see the <a class="reference external" href="http://en.cppreference.com/w/cpp">C++ standard
+library documentation</a> for details. They were originally based on the
+<a class="reference external" href="http://www.sgi.com/tech/stl/">Standard Template Library</a>, so they are also sometimes referred to as &#8220;STL
+containers&#8221;; hence the name of this package.</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2011 by Albert Graef.</p>
+<p>pure-stldict is free software: you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.</p>
+<p>pure-stldict is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along
+with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.6.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.6.tar.gz</a>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the modules and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> (as root) to install
+them in the Pure library directory. This requires GNU make, and of course you
+need to have Pure (and a C++ library which includes the STL) installed.</p>
+<p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
+setup. If it gets this wrong, you can set some variables manually, please
+check the Makefile for details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This module requires Pure 0.50 or later and a recent version of the
+C++ library (GNU libstdc++ v3 has been tested). All proper C++11 libraries
+should work out of the box, while (recent) C++0x implementations may
+require some fiddling with the sources and/or the compilation options. Pre
+C++0x library versions surely require considerably more work, especially in
+the hashdict module.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>After installation, you can use the operations of this package by placing the
+following import declaration in your Pure programs:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stldict<span class="p">;</span>
+</pre></div>
+</div>
+<p>This imports the whole shebang. If you only need either the hashed or the
+ordered dictionaries, you can also import the corresponding modules
+separately, i.e.:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> hashdict<span class="p">;</span>
+</pre></div>
+</div>
+<p>or:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> orddict<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="types">
+<h2>Types<a class="headerlink" href="#types" title="Permalink to this headline">¶</a></h2>
+<p>In Pure land, the C++ <tt class="docutils literal"><span class="pre">map</span></tt> and <tt class="docutils literal"><span class="pre">unordered_map</span></tt> containers and their
+<tt class="docutils literal"><span class="pre">multimap</span></tt> variants are made available as a collection of four data
+structures:</p>
+<dl class="type">
+<dt id="hashdict/type">
+<em class="property">type </em><tt class="descname">hashdict</tt><a class="headerlink" href="#hashdict/type" title="Permalink to this definition">¶</a></dt>
+<dt id="hashmdict/type">
+<em class="property">type </em><tt class="descname">hashmdict</tt><a class="headerlink" href="#hashmdict/type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hashed (unordered) dictionary data structures. These work with arbitrary key
+(and value) types, like the hashed dictionary and set data structures in the
+standard library, and can be found in the <tt class="docutils literal"><span class="pre">hashdict.pure</span></tt> module.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="orddict/type">
+<em class="property">type </em><tt class="descname">orddict</tt><a class="headerlink" href="#orddict/type" title="Permalink to this definition">¶</a></dt>
+<dt id="ordmdict/type">
+<em class="property">type </em><tt class="descname">ordmdict</tt><a class="headerlink" href="#ordmdict/type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ordered dictionary data structures. These require the keys to be ordered by
+the standard <tt class="docutils literal"><span class="pre">&lt;</span></tt> predicate, like the ordered dictionary and set data
+structures in the standard library, and can be found in the <tt class="docutils literal"><span class="pre">orddict.pure</span></tt>
+module.</p>
+</dd></dl>
+
+<p>Note that <a class="reference internal" href="#hashdict/type" title="hashdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashdict</span></tt></a> and <a class="reference internal" href="#hashmdict/type" title="hashmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashmdict</span></tt></a> differ in that the
+former has exactly one key-value association for each key in the dictionary,
+while the latter is a &#8220;multidict&#8221; which allows multiple values to be
+associated with a key. The same applies to the <a class="reference internal" href="#orddict/type" title="orddict"><tt class="xref pure pure-type docutils literal"><span class="pre">orddict</span></tt></a> and
+<a class="reference internal" href="#ordmdict/type" title="ordmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">ordmdict</span></tt></a> types.</p>
+<p>In addition, there are various supertypes which correspond to different unions
+of the hashed and ordered dictionary types. These are:</p>
+<dl class="type">
+<dt id="hashxdict/type">
+<em class="property">type </em><tt class="descname">hashxdict</tt><a class="headerlink" href="#hashxdict/type" title="Permalink to this definition">¶</a></dt>
+<dt id="ordxdict/type">
+<em class="property">type </em><tt class="descname">ordxdict</tt><a class="headerlink" href="#ordxdict/type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Denotes any kind of hashed or ordered dictionary, respectively.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="stldict/type">
+<em class="property">type </em><tt class="descname">stldict</tt><a class="headerlink" href="#stldict/type" title="Permalink to this definition">¶</a></dt>
+<dt id="stlmdict/type">
+<em class="property">type </em><tt class="descname">stlmdict</tt><a class="headerlink" href="#stlmdict/type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Denotes any kind of singled-valued or multi-valued dictionary,
+respectively.</p>
+</dd></dl>
+
+<dl class="type">
+<dt id="stlxdict/type">
+<em class="property">type </em><tt class="descname">stlxdict</tt><a class="headerlink" href="#stlxdict/type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Denotes any kind of dictionary.</p>
+</dd></dl>
+
+<p>For instance, you can use <a class="reference internal" href="#hashxdict/type" title="hashxdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashxdict</span></tt></a> to match both
+<a class="reference internal" href="#hashdict/type" title="hashdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashdict</span></tt></a> and <a class="reference internal" href="#hashmdict/type" title="hashmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashmdict</span></tt></a> values. Likewise,
+<a class="reference internal" href="#stlmdict/type" title="stlmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">stlmdict</span></tt></a> matches both <a class="reference internal" href="#hashmdict/type" title="hashmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashmdict</span></tt></a> and
+<a class="reference internal" href="#ordmdict/type" title="ordmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">ordmdict</span></tt></a> values. To match any kind of dictionary, use the
+<a class="reference internal" href="#stlxdict/type" title="stlxdict"><tt class="xref pure pure-type docutils literal"><span class="pre">stlxdict</span></tt></a> type.</p>
+<p>These data structures are very thin wrappers around the C++ container types;
+in fact, they are just pointers to the C++ containers. Memory management of
+these objects is automatic, and customizable <a class="reference internal" href="#pretty-printing">pretty-printing</a> is provided as
+well.</p>
+<p>All data structures offer most of the usual Pure container interface (as well
+as some extensions). In contrast to the standard library dictionaries, they
+can be used both as dictionaries (holding key =&gt; value pairs) and sets
+(holding only keys, without associated values), even at the same time.</p>
+<p>The other important difference to the standard library containers is that the
+stldict containers are <em>mutable</em> data structures; inserting and deleting
+members really modifies the underlying C++ containers. (However, it is
+possible to take copies of the containers in situations where it&#8217;s necessary
+to preserve value semantics.)</p>
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<p>All types of dictionaries are simply pointers to the corresponding C++
+containers which hold key-value associations where both keys and values may be
+arbitrary Pure expressions. The <a class="reference internal" href="#basic-operations">basic operations</a> described below can be
+used to create, query and modify these objects. <a class="reference internal" href="#comparisons">Comparisons</a> of dictionaries
+are implemented as well, and the <a class="reference internal" href="#set-like-operations">set-like operations</a> let you combine
+dictionaries in different ways. These operations provide an interface similar
+to the usual Pure container API.</p>
+<p>In addition, the <a class="reference internal" href="#module-stldict"><tt class="xref pure pure-mod docutils literal"><span class="pre">stldict</span></tt></a> module provides some <a class="reference internal" href="#list-like-operations">list-like operations</a>
+on dictionaries, so that the member data can be processed and aggregated in a
+convenient fashion (including the ability to use dictionaries as generators in
+list and matrix comprehensions), and there&#8217;s also an interface to C++
+<a class="reference internal" href="#iterators">iterators</a> which enables you to traverse, inspect and modify the containers in
+a more C++-like way. Some <a class="reference internal" href="#low-level-operations">low-level operations</a> are available to access
+information about the underlying hash table of a hashed dictionary. Last but
+not least, the module also offers some operations to customize the
+<a class="reference internal" href="#pretty-printing">pretty-printing</a> of dictionary values.</p>
+<p>When working with these data structures, please note the following special
+properties of this implementation:</p>
+<ul class="simple">
+<li>All dictionary types are <em>mutable</em>. Inserting and deleting members really
+modifies the underlying C++ data structure as a side effect of the
+operation. If you need value semantics, you should probably use one of the
+dictionary or set data structures from the standard Pure library
+instead. Another possibility is to take a copy of a hashdict using the
+<a class="reference internal" href="#copy/stldict" title="copy"><tt class="xref pure pure-func docutils literal"><span class="pre">copy</span></tt></a> function if you need to preserve the original value.</li>
+<li>Keys in a hashed dictionary may be stored in an apparently random order (not
+necessarily in the order in which they were inserted), while they are
+guaranteed to be in ascending order (by key) for ordered dictionaries.
+However, note that even in the latter case, the order of different members
+for the same key in a multi-valued dictionary is not specified. This must be
+taken into account when comparing dictionaries, see below. The order of
+members in a dictionary also matters when listing data from a container
+using, e.g., the <a class="reference internal" href="#members/stldict" title="members"><tt class="xref pure pure-func docutils literal"><span class="pre">members</span></tt></a>, <a class="reference internal" href="#keys/stldict" title="keys"><tt class="xref pure pure-func docutils literal"><span class="pre">keys</span></tt></a> and
+<a class="reference internal" href="#vals/stldict" title="vals"><tt class="xref pure pure-func docutils literal"><span class="pre">vals</span></tt></a> operations.</li>
+<li>Two dictionaries are considered syntactically equal iff they contain the
+same elements in exactly the same order, using syntactic equality on both
+the keys and the associated values. This test can always be done in linear
+time, but is of limited usefulness for most kinds of dictionaries, since the
+exact order of members in the dictionary may vary depending on how the
+dictionary was constructed. Semantic equality operations are provided which
+check (albeit at the cost of increased running time) whether two containers
+contain the same members irrespective of element order, using semantic
+equality on the members. Various subset comparisons are provided as well,
+please check the <a class="reference internal" href="#comparisons">Comparisons</a> section for details.</li>
+<li>Values in a dictionary can be omitted, so that a dictionary can also be used
+as a set data structure. This obviates the need for a separate set data
+structure at the cost of some (small) increase in memory usage. Also note
+that you can&#8217;t really have a hash pair <tt class="docutils literal"><span class="pre">x=&gt;y</span></tt> as a member of a set, since
+it always denotes a key-value association. As a remedy, you may use ordinary
+pairs <tt class="docutils literal"><span class="pre">(x,y)</span></tt> instead.</li>
+</ul>
+<div class="section" id="basic-operations">
+<h3>Basic Operations<a class="headerlink" href="#basic-operations" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="hashdict">
+<tt class="descname">hashdict</tt> xs<a class="headerlink" href="#hashdict" title="Permalink to this definition">¶</a></dt>
+<dt id="hashmdict">
+<tt class="descname">hashmdict</tt> xs<a class="headerlink" href="#hashmdict" title="Permalink to this definition">¶</a></dt>
+<dt id="orddict">
+<tt class="descname">orddict</tt> xs<a class="headerlink" href="#orddict" title="Permalink to this definition">¶</a></dt>
+<dt id="ordmdict">
+<tt class="descname">ordmdict</tt> xs<a class="headerlink" href="#ordmdict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dictionary of the corresponding type from a list, tuple or vector
+of its members. Members can be specified as hash pairs <tt class="docutils literal"><span class="pre">x=&gt;y</span></tt> to denote a
+key-value association. Any other kind of value denotes a singleton key
+without associated value. Note that the ordered dictionaries require that
+the keys be ordered, i.e., the <a class="reference internal" href="purelib.html#&lt;" title="&lt;"><tt class="xref pure pure-func docutils literal"><span class="pre">&lt;</span></tt></a> predicate must be defined on them.</p>
+<p>The same operations can also be used to construct a dictionary from another
+dictionary of any type. If the given dictionary is already of the
+corresponding type, this is a no-op (if you want to copy the dictionary
+instead, use the <a class="reference internal" href="#copy/stldict" title="copy"><tt class="xref pure pure-func docutils literal"><span class="pre">copy</span></tt></a> function below). Otherwise the given
+dictionary is converted to a new dictionary of the desired target type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mkhashdict">
+<tt class="descname">mkhashdict</tt> y xs<a class="headerlink" href="#mkhashdict" title="Permalink to this definition">¶</a></dt>
+<dt id="mkhashmdict">
+<tt class="descname">mkhashmdict</tt> y xs<a class="headerlink" href="#mkhashmdict" title="Permalink to this definition">¶</a></dt>
+<dt id="mkorddict">
+<tt class="descname">mkorddict</tt> y xs<a class="headerlink" href="#mkorddict" title="Permalink to this definition">¶</a></dt>
+<dt id="mkordmdict">
+<tt class="descname">mkordmdict</tt> y xs<a class="headerlink" href="#mkordmdict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a dictionary from a list of keys and a constant value. The resulting
+dictionary has the given keys and <tt class="docutils literal"><span class="pre">y</span></tt> as the value for each key.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="copy/stldict">
+<tt class="descname">copy</tt> m<a class="headerlink" href="#copy/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new dictionary with the same type and content as <tt class="docutils literal"><span class="pre">m</span></tt>. This is
+useful if you want to preserve value semantics when using destructive
+update operations such as <a class="reference internal" href="#insert/stldict" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a> and <a class="reference internal" href="#delete/stldict" title="delete"><tt class="xref pure pure-func docutils literal"><span class="pre">delete</span></tt></a>.
+In such a case, <a class="reference internal" href="#copy/stldict" title="copy"><tt class="xref pure pure-func docutils literal"><span class="pre">copy</span></tt></a> can be used to take a copy of the
+dictionary beforehand, so that the original dictionary remains unmodified.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This operation needs linear time with respect to the size of the
+dictionary (i.e., its number of members). If logarithmic update times
+are needed while still preserving value semantics, you should use the
+dictionary and set data structures from the standard library instead.</p>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="hashdictp">
+<tt class="descname">hashdictp</tt> m<a class="headerlink" href="#hashdictp" title="Permalink to this definition">¶</a></dt>
+<dt id="hashmdictp">
+<tt class="descname">hashmdictp</tt> m<a class="headerlink" href="#hashmdictp" title="Permalink to this definition">¶</a></dt>
+<dt id="orddictp">
+<tt class="descname">orddictp</tt> m<a class="headerlink" href="#orddictp" title="Permalink to this definition">¶</a></dt>
+<dt id="ordmdictp">
+<tt class="descname">ordmdictp</tt> m<a class="headerlink" href="#ordmdictp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the argument is a dictionary of the corresponding type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="hashxdictp">
+<tt class="descname">hashxdictp</tt> m<a class="headerlink" href="#hashxdictp" title="Permalink to this definition">¶</a></dt>
+<dt id="ordxdictp">
+<tt class="descname">ordxdictp</tt> m<a class="headerlink" href="#ordxdictp" title="Permalink to this definition">¶</a></dt>
+<dt id="stldictp">
+<tt class="descname">stldictp</tt> m<a class="headerlink" href="#stldictp" title="Permalink to this definition">¶</a></dt>
+<dt id="stlmdictp">
+<tt class="descname">stlmdictp</tt> m<a class="headerlink" href="#stlmdictp" title="Permalink to this definition">¶</a></dt>
+<dt id="stlxdictp">
+<tt class="descname">stlxdictp</tt> m<a class="headerlink" href="#stlxdictp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the argument is a dictionary of the corresponding supertype.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="#/stldict">
+<tt class="descname">#</tt> m<a class="headerlink" href="##/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>The size of a dictionary (the number of members it contains).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="!/stldict">
+m <tt class="descname">!</tt> x<a class="headerlink" href="#!/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the value stored under key <tt class="docutils literal"><span class="pre">x</span></tt> in the dictionary <tt class="docutils literal"><span class="pre">m</span></tt>. This may be
+<tt class="docutils literal"><span class="pre">x</span></tt> itself if <tt class="docutils literal"><span class="pre">x</span></tt> is a member of <tt class="docutils literal"><span class="pre">m</span></tt> but has no associated value. In
+the case of a multidict this actually returns a list of values (which may
+be empty if <tt class="docutils literal"><span class="pre">m</span></tt> doesn&#8217;t contain <tt class="docutils literal"><span class="pre">x</span></tt>). Otherwise an
+<a class="reference internal" href="purelib.html#out_of_bounds" title="out_of_bounds"><tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt></a> exception is thrown if <tt class="docutils literal"><span class="pre">m</span></tt> doesn&#8217;t contain <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="null/stldict">
+<tt class="descname">null</tt> m<a class="headerlink" href="#null/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether <tt class="docutils literal"><span class="pre">m</span></tt> is empty, i.e., has zero members.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="member/stldict">
+<tt class="descname">member</tt> m x<a class="headerlink" href="#member/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test whether <tt class="docutils literal"><span class="pre">m</span></tt> contains a member with key <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="members/stldict">
+<tt class="descname">members</tt> m<a class="headerlink" href="#members/stldict" title="Permalink to this definition">¶</a></dt>
+<dt id="list/stldict">
+<tt class="descname">list</tt> m<a class="headerlink" href="#list/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of members of <tt class="docutils literal"><span class="pre">m</span></tt>. The member list will be in an
+apparently random order in the hashed dictionary case, while it is
+guaranteed to be in ascending order (by key) for ordered dictionaries. The
+same order is also used for the other inspection operations below.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stream/stldict">
+<tt class="descname">stream</tt> m<a class="headerlink" href="#stream/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Like <a class="reference internal" href="#list/stldict" title="list"><tt class="xref pure pure-func docutils literal"><span class="pre">list</span></tt></a>, but the member list is returned as a lazy list
+(cf. <a class="reference internal" href="pure.html#lazy-evaluation-and-streams"><em>Lazy Evaluation and Streams</em></a>) whose members will be computed on
+the fly as the list is being traversed; cf. <a class="reference internal" href="#iterators">Iterators</a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="tuple/stldict">
+<tt class="descname">tuple</tt> m<a class="headerlink" href="#tuple/stldict" title="Permalink to this definition">¶</a></dt>
+<dt id="vector/stldict">
+<tt class="descname">vector</tt> m<a class="headerlink" href="#vector/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the members as a tuple or vector.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="keys/stldict">
+<tt class="descname">keys</tt> m<a class="headerlink" href="#keys/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of keys in the dictionary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="vals/stldict">
+<tt class="descname">vals</tt> m<a class="headerlink" href="#vals/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the list of corresponding values. In the case of a singleton key
+<tt class="docutils literal"><span class="pre">x</span></tt> without associated value, <tt class="docutils literal"><span class="pre">x</span></tt> itself is returned instead.</p>
+</dd></dl>
+
+<p>As already mentioned, the following modification operations are destructive,
+i.e., they actually modify the underlying dictionary data structure. If this
+is not desired, you&#8217;ll first have to take a copy of the target dictionary, see
+<a class="reference internal" href="#copy/stldict" title="copy"><tt class="xref pure pure-func docutils literal"><span class="pre">copy</span></tt></a>.</p>
+<dl class="function">
+<dt id="insert/stldict">
+<tt class="descname">insert</tt> m x<a class="headerlink" href="#insert/stldict" title="Permalink to this definition">¶</a></dt>
+<dt id="insert/stldict2">
+<tt class="descname">insert</tt> m (x=&gt;y)<a class="headerlink" href="#insert/stldict2" title="Permalink to this definition">¶</a></dt>
+<dt id="update/stldict">
+<tt class="descname">update</tt> m x y<a class="headerlink" href="#update/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a singleton key <tt class="docutils literal"><span class="pre">x</span></tt> or a key-value pair <tt class="docutils literal"><span class="pre">x=&gt;y</span></tt> into <tt class="docutils literal"><span class="pre">m</span></tt> and
+return the modified dictionary. This always adds a new member in a
+multidict, otherwise it replaces an existing value if there is
+one. <a class="reference internal" href="#update/stldict" title="update"><tt class="xref pure pure-func docutils literal"><span class="pre">update</span></tt></a> is provided as a fully curried version of
+<a class="reference internal" href="#insert/stldict2" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a>, so <tt class="docutils literal"><span class="pre">update</span> <span class="pre">m</span> <span class="pre">x</span> <span class="pre">y</span></tt> behaves exactly like <tt class="docutils literal"><span class="pre">insert</span>
+<span class="pre">m</span> <span class="pre">(x=&gt;y)</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="delete/stldict">
+<tt class="descname">delete</tt> m x<a class="headerlink" href="#delete/stldict" title="Permalink to this definition">¶</a></dt>
+<dt id="delete/stldict2">
+<tt class="descname">delete</tt> m (x=&gt;y)<a class="headerlink" href="#delete/stldict2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the key <tt class="docutils literal"><span class="pre">x</span></tt> or the specific key-value pair <tt class="docutils literal"><span class="pre">x=&gt;y</span></tt> from <tt class="docutils literal"><span class="pre">m</span></tt> (if
+present) and return the modified dictionary. In the multidict case, only
+the first member with the given key <tt class="docutils literal"><span class="pre">x</span></tt> or key-value pair <tt class="docutils literal"><span class="pre">x=&gt;y</span></tt> is
+removed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="clear/stldict">
+<tt class="descname">clear</tt> m<a class="headerlink" href="#clear/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all members from <tt class="docutils literal"><span class="pre">m</span></tt>, making <tt class="docutils literal"><span class="pre">m</span></tt> an empty dictionary.
+Returns <tt class="docutils literal"><span class="pre">()</span></tt>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="comparisons">
+<h3>Comparisons<a class="headerlink" href="#comparisons" title="Permalink to this headline">¶</a></h3>
+<p>The usual comparison predicates (<a class="reference internal" href="purelib.html#==" title="=="><tt class="xref pure pure-func docutils literal"><span class="pre">==</span></tt></a>, <a class="reference internal" href="purelib.html#~=" title="~="><tt class="xref pure pure-func docutils literal"><span class="pre">~=</span></tt></a>, <a class="reference internal" href="purelib.html#&lt;=" title="&lt;="><tt class="xref pure pure-func docutils literal"><span class="pre">&lt;=</span></tt></a>, <a class="reference internal" href="purelib.html#&lt;" title="&lt;"><tt class="xref pure pure-func docutils literal"><span class="pre">&lt;</span></tt></a>
+etc.) are defined on all dictionary types, where two dictionaries are
+considered &#8220;equal&#8221; (<tt class="docutils literal"><span class="pre">m1==m2</span></tt>) if they both contain the same <tt class="docutils literal"><span class="pre">key=&gt;value</span></tt>
+pairs, and <tt class="docutils literal"><span class="pre">m1&lt;=m2</span></tt> means that <tt class="docutils literal"><span class="pre">m1</span></tt> is a sub-dictionary of <tt class="docutils literal"><span class="pre">m2</span></tt>, i.e.,
+all <tt class="docutils literal"><span class="pre">key=&gt;value</span></tt> pairs of <tt class="docutils literal"><span class="pre">m1</span></tt> are also contained in <tt class="docutils literal"><span class="pre">m2</span></tt> (taking into
+account multiplicities in the multidict case). Ordered dictionaries compare
+keys using equality (assuming two keys <tt class="docutils literal"><span class="pre">a</span></tt> and <tt class="docutils literal"><span class="pre">b</span></tt> to be equal if neither
+<tt class="docutils literal"><span class="pre">a&lt;b</span></tt> nor <tt class="docutils literal"><span class="pre">b&lt;a</span></tt> holds), while hashed dictionaries check for syntactical
+equality (using <a class="reference internal" href="purelib.html#===" title="==="><tt class="xref pure pure-func docutils literal"><span class="pre">===</span></tt></a>). The associated values are compared using the
+<a class="reference internal" href="purelib.html#==" title="=="><tt class="xref pure pure-func docutils literal"><span class="pre">==</span></tt></a> predicate if it is defined, falling back to syntactic equality
+otherwise.</p>
+<p>The module also defines syntactic equality on all dictionary types, so that
+two dictionaries of the same type are considered syntactically equal iff they
+contain the same (syntactically equal) members in the same order. This is
+always guaranteed if two dictionaries are &#8220;identical&#8221; (the same C++ pointer),
+but generally the member order will depend on how the dictionary was
+constructed. Thus if you need to check that two dictionaries contain the same
+members irrespective of the order in which the members are listed, the
+semantic equality operation <a class="reference internal" href="purelib.html#==" title="=="><tt class="xref pure pure-func docutils literal"><span class="pre">==</span></tt></a> should be used instead; this will also
+handle the case of mixed operand types.</p>
+<p>Note that if you really need to check whether two dictionaries are the same
+object rather than just syntactically equal, you&#8217;ll have to cast them to
+generic C pointers before comparing them with <a class="reference internal" href="purelib.html#===" title="==="><tt class="xref pure pure-func docutils literal"><span class="pre">===</span></tt></a>. This can be done
+with the following little helper function:</p>
+<div class="highlight-pure"><div class="highlight"><pre>same_dict x y = pointer_cast <span class="s">&quot;void*&quot;</span> x === pointer_cast <span class="s">&quot;void*&quot;</span> y<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="set-like-operations">
+<h3>Set-Like Operations<a class="headerlink" href="#set-like-operations" title="Permalink to this headline">¶</a></h3>
+<p>These operations work with mixed operand types, promoting less general types
+to more general ones (i.e., ordered to hashed, and single-valued to
+multi-valued dictionaries). The result is always a new dictionary, leaving the
+operands unmodified.</p>
+<dl class="function">
+<dt id="+/stldict">
+m1 <tt class="descname">+</tt> m2<a class="headerlink" href="#+/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sum: <tt class="docutils literal"><span class="pre">m1+m2</span></tt> adds the members of <tt class="docutils literal"><span class="pre">m2</span></tt> to <tt class="docutils literal"><span class="pre">m1</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="-/stldict">
+m1 <tt class="descname">-</tt> m2<a class="headerlink" href="#-/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Difference: <tt class="docutils literal"><span class="pre">m1-m2</span></tt> removes the members of <tt class="docutils literal"><span class="pre">m2</span></tt> from <tt class="docutils literal"><span class="pre">m1</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="*/stldict">
+m1 <tt class="descname">*</tt> m2<a class="headerlink" href="#*/stldict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Intersection: <tt class="docutils literal"><span class="pre">m1*m2</span></tt> removes the members <em>not</em> in <tt class="docutils literal"><span class="pre">m2</span></tt> from <tt class="docutils literal"><span class="pre">m1</span></tt>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="list-like-operations">
+<h3>List-Like Operations<a class="headerlink" href="#list-like-operations" title="Permalink to this headline">¶</a></h3>
+<p>The following operations are all overloaded so that they work like their list
+counterparts, treating their dictionary argument as if it was the member list
+of the dictionary:</p>
+<ul class="simple">
+<li><a class="reference internal" href="purelib.html#do" title="do"><tt class="xref pure pure-func docutils literal"><span class="pre">do</span></tt></a>, <a class="reference internal" href="purelib.html#map" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a>, <a class="reference internal" href="purelib.html#catmap" title="catmap"><tt class="xref pure pure-func docutils literal"><span class="pre">catmap</span></tt></a>, <a class="reference internal" href="purelib.html#listmap" title="listmap"><tt class="xref pure pure-func docutils literal"><span class="pre">listmap</span></tt></a>, <a class="reference internal" href="purelib.html#rowmap" title="rowmap"><tt class="xref pure pure-func docutils literal"><span class="pre">rowmap</span></tt></a>,
+<a class="reference internal" href="purelib.html#rowcatmap" title="rowcatmap"><tt class="xref pure pure-func docutils literal"><span class="pre">rowcatmap</span></tt></a>, <a class="reference internal" href="purelib.html#colmap" title="colmap"><tt class="xref pure pure-func docutils literal"><span class="pre">colmap</span></tt></a>, <a class="reference internal" href="purelib.html#colcatmap" title="colcatmap"><tt class="xref pure pure-func docutils literal"><span class="pre">colcatmap</span></tt></a></li>
+<li><a class="reference internal" href="purelib.html#all" title="all"><tt class="xref pure pure-func docutils literal"><span class="pre">all</span></tt></a>, <a class="reference internal" href="purelib.html#any" title="any"><tt class="xref pure pure-func docutils literal"><span class="pre">any</span></tt></a>, <a class="reference internal" href="purelib.html#filter" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a>, <a class="reference internal" href="purelib.html#foldl" title="foldl"><tt class="xref pure pure-func docutils literal"><span class="pre">foldl</span></tt></a>, <a class="reference internal" href="purelib.html#foldl1" title="foldl1"><tt class="xref pure pure-func docutils literal"><span class="pre">foldl1</span></tt></a>,
+<a class="reference internal" href="purelib.html#foldr" title="foldr"><tt class="xref pure pure-func docutils literal"><span class="pre">foldr</span></tt></a>, <a class="reference internal" href="purelib.html#foldr1" title="foldr1"><tt class="xref pure pure-func docutils literal"><span class="pre">foldr1</span></tt></a>, <a class="reference internal" href="purelib.html#scanl" title="scanl"><tt class="xref pure pure-func docutils literal"><span class="pre">scanl</span></tt></a>, <a class="reference internal" href="purelib.html#scanl1" title="scanl1"><tt class="xref pure pure-func docutils literal"><span class="pre">scanl1</span></tt></a>, <a class="reference internal" href="purelib.html#scanr" title="scanr"><tt class="xref pure pure-func docutils literal"><span class="pre">scanr</span></tt></a>,
+<a class="reference internal" href="purelib.html#scanr1" title="scanr1"><tt class="xref pure pure-func docutils literal"><span class="pre">scanr1</span></tt></a>, <a class="reference internal" href="purelib.html#sort" title="sort"><tt class="xref pure pure-func docutils literal"><span class="pre">sort</span></tt></a></li>
+</ul>
+<p>Note that this includes the generic comprehension helpers <a class="reference internal" href="purelib.html#listmap" title="listmap"><tt class="xref pure pure-func docutils literal"><span class="pre">listmap</span></tt></a>,
+<a class="reference internal" href="purelib.html#catmap" title="catmap"><tt class="xref pure pure-func docutils literal"><span class="pre">catmap</span></tt></a> et al, so that dictionaries can be used as generators in list
+and matrix comprehensions as usual (see below for some <a class="reference internal" href="#examples">examples</a>).</p>
+</div>
+<div class="section" id="iterators">
+<h3>Iterators<a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h3>
+<p>These operations give direct access to C++ iterators on dictionaries which let
+you query the elements and do basic manipulations of the container. The
+operations are available in the <tt class="docutils literal"><span class="pre">stldict</span></tt> namespace.</p>
+<p>The iterator concept is somewhat alien to Pure and there are some pitfalls
+(most notably, destructive updates may render iterators invalid), but the
+operations described here are still useful in some situations, especially if
+you need to speed up sequential accesses to large containers or modify values
+stored in a container in a direct way. They are also used internally to
+compute lazy member lists of containers (<a class="reference internal" href="#stream/stldict" title="stream"><tt class="xref pure pure-func docutils literal"><span class="pre">stream</span></tt></a> function).</p>
+<p>You should only use these directly if you know what you are doing. In
+particular, make sure to consult the <a class="reference external" href="http://en.cppreference.com/w/cpp">C++ standard library documentation</a> for
+further details on C++ iterator usage.</p>
+<p>The following operations are provided to create an iterator for a given
+dictionary.</p>
+<dl class="function">
+<dt id="stldict::begin">
+<tt class="descclassname">stldict::</tt><tt class="descname">begin</tt> m<a class="headerlink" href="#stldict::begin" title="Permalink to this definition">¶</a></dt>
+<dt id="stldict::end">
+<tt class="descclassname">stldict::</tt><tt class="descname">end</tt> m<a class="headerlink" href="#stldict::end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return iterators pointing to the beginning and the end of the container.
+(Note that <a class="reference internal" href="#stldict::end" title="stldict::end"><tt class="xref pure pure-func docutils literal"><span class="pre">stldict::end</span></tt></a> <em>must</em> always be specified in qualified
+form since <tt class="docutils literal"><span class="pre">end</span></tt> is a keyword in the Pure language.)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stldict::find">
+<tt class="descclassname">stldict::</tt><tt class="descname">find</tt> m x<a class="headerlink" href="#stldict::find" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locates a key or specific key=&gt;value pair <tt class="docutils literal"><span class="pre">x</span></tt> in the container and
+returns an iterator pointing to the corresponding member (or <tt class="docutils literal"><span class="pre">stldict::end</span>
+<span class="pre">m</span></tt> if <tt class="docutils literal"><span class="pre">m</span></tt> doesn&#8217;t contain <tt class="docutils literal"><span class="pre">x</span></tt>).</p>
+</dd></dl>
+
+<p>Note that these operations return a new iterator object for each invocation.
+Also, the created iterator object keeps track of the container it belongs to,
+so that the container isn&#8217;t garbage-collected while the iterator is still
+being used. However, removing a member from the container (using either
+<a class="reference internal" href="#delete/stldict" title="delete"><tt class="xref pure pure-func docutils literal"><span class="pre">delete</span></tt></a> or <a class="reference internal" href="#stldict::erase" title="stldict::erase"><tt class="xref pure pure-func docutils literal"><span class="pre">stldict::erase</span></tt></a>) invalidates all iterators
+pointing to that member; the result of trying to access such an invalidated
+iterator is undefined (most likely your program will crash).</p>
+<p>Similar caveats also apply to the <a class="reference internal" href="#stream/stldict" title="stream"><tt class="xref pure pure-func docutils literal"><span class="pre">stream</span></tt></a> function which, as
+already mentioned, uses iterators internally to implement lazy list traversal
+of the members of a dictionary. Thus, if you delete a member of a dictionary
+while traversing it using <a class="reference internal" href="#stream/stldict" title="stream"><tt class="xref pure pure-func docutils literal"><span class="pre">stream</span></tt></a>, you better make sure that
+this member is not the next stream element remaining to be visited; otherwise
+bad things will happen.</p>
+<p>The following operations on iterators let you query and modify the contents
+of the underlying container:</p>
+<dl class="function">
+<dt id="stldict::dict">
+<tt class="descclassname">stldict::</tt><tt class="descname">dict</tt> i<a class="headerlink" href="#stldict::dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dictionary to which <tt class="docutils literal"><span class="pre">i</span></tt> belongs.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stldict::endp">
+<tt class="descclassname">stldict::</tt><tt class="descname">endp</tt> i<a class="headerlink" href="#stldict::endp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check whether the iterator <tt class="docutils literal"><span class="pre">i</span></tt> points to the end of the container (i.e.,
+past the last element).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stldict::next">
+<tt class="descclassname">stldict::</tt><tt class="descname">next</tt> i<a class="headerlink" href="#stldict::next" title="Permalink to this definition">¶</a></dt>
+<dd><p>Advance the iterator to the next element. Note that for convenience, in
+contrast to the corresponding C++ operation this operation is
+non-destructive. Thus it actually creates a <em>new</em> iterator object, leaving
+the original iterator <tt class="docutils literal"><span class="pre">i</span></tt> unmodified. The operation fails if <tt class="docutils literal"><span class="pre">i</span></tt> is
+already at the end of the container.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stldict::get">
+<tt class="descclassname">stldict::</tt><tt class="descname">get</tt> i<a class="headerlink" href="#stldict::get" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the key=&gt;val pair stored in the member pointed to by <tt class="docutils literal"><span class="pre">i</span></tt> (or
+just the key if there is no associated value). The operation fails if <tt class="docutils literal"><span class="pre">i</span></tt>
+is at the end of the container.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stldict::put">
+<tt class="descclassname">stldict::</tt><tt class="descname">put</tt> i y<a class="headerlink" href="#stldict::put" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the value associated with the member pointed to by <tt class="docutils literal"><span class="pre">i</span></tt> to <tt class="docutils literal"><span class="pre">y</span></tt>,
+and return the new value <tt class="docutils literal"><span class="pre">y</span></tt>. The operation fails if <tt class="docutils literal"><span class="pre">i</span></tt> is at the end
+of the container. Note that <a class="reference internal" href="#stldict::put" title="stldict::put"><tt class="xref pure pure-func docutils literal"><span class="pre">stldict::put</span></tt></a> only allows you to set the
+associated value, <em>not</em> the key of the member.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stldict::erase">
+<tt class="descclassname">stldict::</tt><tt class="descname">erase</tt> i<a class="headerlink" href="#stldict::erase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the member pointed to by <tt class="docutils literal"><span class="pre">i</span></tt> (this invalidates <tt class="docutils literal"><span class="pre">i</span></tt> and all other
+iterators pointing to this member). The operation fails if <tt class="docutils literal"><span class="pre">i</span></tt> is at the
+end of the container.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="==/stldict_iterator">
+i <tt class="descname">==</tt> j<a class="headerlink" href="#==/stldict_iterator" title="Permalink to this definition">¶</a></dt>
+<dt id="~=/stldict_iterator">
+i <tt class="descname">~=</tt> j<a class="headerlink" href="#~=/stldict_iterator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Semantic equality of iterators. Two iterators are considered equal (<tt class="docutils literal"><span class="pre">i</span> <span class="pre">==</span>
+<span class="pre">j</span></tt>) if <tt class="docutils literal"><span class="pre">i</span></tt> and <tt class="docutils literal"><span class="pre">j</span></tt> point to the same element in the same container,
+and unequal (<tt class="docutils literal"><span class="pre">i</span> <span class="pre">~=</span> <span class="pre">j</span></tt>) if they don&#8217;t. (In contrast, note that iterators
+are in fact just pointers to a corresponding C++ data structure, and thus
+<em>syntactical</em> equality (<tt class="docutils literal"><span class="pre">i</span> <span class="pre">===</span> <span class="pre">j</span></tt>) holds only if two iterators are the
+same object.)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="low-level-operations">
+<h3>Low-Level Operations<a class="headerlink" href="#low-level-operations" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="#module-hashdict"><tt class="xref pure pure-mod docutils literal"><span class="pre">hashdict</span></tt></a> module also provides a few specialized low-level
+operations dealing with the layouts of buckets and the hash policy of the
+<a class="reference internal" href="#hashdict/type" title="hashdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashdict</span></tt></a> and <a class="reference internal" href="#hashmdict/type" title="hashmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashmdict</span></tt></a> containers, such as
+<tt class="docutils literal"><span class="pre">bucket_count</span></tt>, <tt class="docutils literal"><span class="pre">load_factor</span></tt>, <tt class="docutils literal"><span class="pre">rehash</span></tt> etc. These operations, which are
+all kept in their own separate <tt class="docutils literal"><span class="pre">hashdict</span></tt> namespace, are useful to obtain
+performance-related information and modify the setup of the underlying hash
+table. Please check the <tt class="docutils literal"><span class="pre">hashdict.pure</span></tt> module and the <a class="reference external" href="http://en.cppreference.com/w/cpp">C++ standard library
+documentation</a> for further details.</p>
+</div>
+<div class="section" id="pretty-printing">
+<h3>Pretty-Printing<a class="headerlink" href="#pretty-printing" title="Permalink to this headline">¶</a></h3>
+<p>By default, dictionaries are pretty-printed in the format <tt class="docutils literal"><span class="pre">somedict</span> <span class="pre">xs</span></tt>,
+where <tt class="docutils literal"><span class="pre">somedict</span></tt> is the actual construction function such as <tt class="docutils literal"><span class="pre">hashdict</span></tt>,
+<tt class="docutils literal"><span class="pre">orddict</span></tt>, etc., and <tt class="docutils literal"><span class="pre">xs</span></tt> is the member list of the dictionary. This is
+usually convenient, as the printed expression will evaluate to an equal
+container when reentered as Pure code. However, it is also possible to define
+your own custom pretty-printing with the following function.</p>
+<dl class="function">
+<dt id="hashdict_symbol">
+<tt class="descname">hashdict_symbol</tt> f<a class="headerlink" href="#hashdict_symbol" title="Permalink to this definition">¶</a></dt>
+<dt id="hashmdict_symbol">
+<tt class="descname">hashmdict_symbol</tt> f<a class="headerlink" href="#hashmdict_symbol" title="Permalink to this definition">¶</a></dt>
+<dt id="orddict_symbol">
+<tt class="descname">orddict_symbol</tt> f<a class="headerlink" href="#orddict_symbol" title="Permalink to this definition">¶</a></dt>
+<dt id="ordmdict_symbol">
+<tt class="descname">ordmdict_symbol</tt> f<a class="headerlink" href="#ordmdict_symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes the pretty-printer use the format <tt class="docutils literal"><span class="pre">f</span> <span class="pre">xs</span></tt> (where <tt class="docutils literal"><span class="pre">xs</span></tt> is the
+member list) for printing the corresponding type of dictionary.</p>
+</dd></dl>
+
+<p>Note that <tt class="docutils literal"><span class="pre">f</span></tt> may also be an operator symbol (nonfix and unary symbols work
+best). In the case of an outfix symbol the list brackets around the members
+are removed; this makes it possible to render the container in a format
+similar to Pure&#8217;s list syntax. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stldict<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">outfix</span> {$ $}<span class="p">;</span>
+<span class="gp">&gt; </span>orddict_symbol ({$ $})<span class="p">;</span>
+()
+<span class="gp">&gt; </span>orddict (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
+{$<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>$}
+</pre></div>
+</div>
+<p>See <tt class="docutils literal"><span class="pre">orddict_examp.pure</span></tt> included in the distribution for a complete example
+which also discusses how to make such a custom print representation reparsable.</p>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Some basic examples showing <a class="reference internal" href="#hashdict/type" title="hashdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashdict</span></tt></a> in action:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stldict<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> m = hashdict [foo=&gt;<span class="mi">99</span>, bar=&gt;bar <span class="mi">4711L</span>, baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>]<span class="p">;</span> m<span class="p">;</span>
+hashdict [foo=&gt;<span class="mi">99</span>,bar=&gt;bar <span class="mi">4711L</span>,baz=&gt;[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]]
+<span class="gp">&gt; </span>m!bar<span class="p">;</span>
+bar <span class="mi">4711L</span>
+<span class="gp">&gt; </span>keys m<span class="p">;</span>
+[foo,bar,baz]
+<span class="gp">&gt; </span>vals m<span class="p">;</span>
+[<span class="mi">99</span>,bar <span class="mi">4711L</span>,[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]]
+<span class="gp">&gt; </span>list m<span class="p">;</span>
+[foo=&gt;<span class="mi">99</span>,bar=&gt;bar <span class="mi">4711L</span>,baz=&gt;[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]]
+<span class="gp">&gt; </span>member m foo, member m bar<span class="p">;</span>
+<span class="mi">1</span>,<span class="mi">1</span>
+</pre></div>
+</div>
+<p>Hashed multidicts (<a class="reference internal" href="#hashmdict/type" title="hashmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashmdict</span></tt></a>):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m = hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>,baz=&gt;bar <span class="mi">4711L</span>]<span class="p">;</span> m<span class="p">;</span>
+hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],baz=&gt;bar <span class="mi">4711L</span>]
+<span class="gp">&gt; </span>m!baz<span class="p">;</span>
+[[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],bar <span class="mi">4711L</span>]
+<span class="gp">&gt; </span>m!foo<span class="p">;</span>
+[<span class="mi">99</span>]
+</pre></div>
+</div>
+<p>The following example illustrates how to employ ordered dictionaries
+(<a class="reference internal" href="#orddict/type" title="orddict"><tt class="xref pure pure-type docutils literal"><span class="pre">orddict</span></tt></a>) as a set data structure:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1 = orddict [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> m2 = orddict (<span class="mi">3</span>..<span class="mi">6</span>)<span class="p">;</span>
+<span class="gp">&gt; </span>m1<span class="p">;</span>m2<span class="p">;</span>
+orddict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
+orddict [<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>]
+<span class="gp">&gt; </span>m1+m2<span class="p">;</span>
+orddict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">11</span>]
+<span class="gp">&gt; </span>m1-m2<span class="p">;</span>
+orddict [<span class="mi">1</span>,<span class="mi">11</span>]
+<span class="gp">&gt; </span>m1*m2<span class="p">;</span>
+orddict [<span class="mi">3</span>,<span class="mi">5</span>]
+<span class="gp">&gt; </span>m1*m2 &lt;= m1, m1*m2 &lt;= m2<span class="p">;</span>
+<span class="mi">1</span>,<span class="mi">1</span>
+<span class="gp">&gt; </span>m1 &lt; m1+m2, m2 &lt; m1+m2<span class="p">;</span>
+<span class="mi">1</span>,<span class="mi">1</span>
+</pre></div>
+</div>
+<p>Of course, the same works with ordered multidicts (<a class="reference internal" href="#ordmdict/type" title="ordmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">ordmdict</span></tt></a>):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1 = ordmdict [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> m2 = ordmdict (<span class="mi">3</span>..<span class="mi">6</span>)<span class="p">;</span>
+<span class="gp">&gt; </span>m1<span class="p">;</span>m2<span class="p">;</span>
+ordmdict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
+ordmdict [<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>]
+<span class="gp">&gt; </span>m1+m2<span class="p">;</span>
+ordmdict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">11</span>]
+<span class="gp">&gt; </span>m1-m2<span class="p">;</span>
+ordmdict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>]
+<span class="gp">&gt; </span>m1*m2<span class="p">;</span>
+ordmdict [<span class="mi">3</span>,<span class="mi">5</span>]
+<span class="gp">&gt; </span>m1*m2 &lt;= m1, m1*m2 &lt;= m2<span class="p">;</span>
+<span class="mi">1</span>,<span class="mi">1</span>
+<span class="gp">&gt; </span>m1 &lt; m1+m2, m2 &lt; m1+m2<span class="p">;</span>
+<span class="mi">1</span>,<span class="mi">1</span>
+</pre></div>
+</div>
+<p>In fact, the binary operations (comparisons as well as the set operations
+<tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt> and <tt class="docutils literal"><span class="pre">*</span></tt>) work with any combination of dictionary operands:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1 = hashdict (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> m2 = ordmdict (<span class="mi">3</span>..<span class="mi">7</span>)<span class="p">;</span>
+<span class="gp">&gt; </span>m1+m2<span class="p">;</span>
+hashmdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>]
+</pre></div>
+</div>
+<p>Note that the operands are always promoted to the more general operand type,
+where hashed beats ordered and multi-valued beats single-valued dictionaries.
+If this is not what you want, you can also specify the desired conversions
+explicitly:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>m1+orddict m2<span class="p">;</span>
+hashdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>]
+<span class="gp">&gt; </span>orddict m1+m2<span class="p">;</span>
+ordmdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>]
+</pre></div>
+</div>
+<p>Also note that the &#8220;set&#8221; operations not only work with proper sets, but also
+with general dictionaries:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>hashdict [i=&gt;i+<span class="mi">1</span>|i=<span class="mi">1</span>..<span class="mi">4</span>]+hashdict [i=&gt;i-<span class="mi">1</span>|i=<span class="mi">3</span>..<span class="mi">5</span>]<span class="p">;</span>
+hashdict [<span class="mi">1</span>=&gt;<span class="mi">2</span>,<span class="mi">2</span>=&gt;<span class="mi">3</span>,<span class="mi">3</span>=&gt;<span class="mi">2</span>,<span class="mi">4</span>=&gt;<span class="mi">3</span>,<span class="mi">5</span>=&gt;<span class="mi">4</span>]
+</pre></div>
+</div>
+<p>All dictionary containers can be used as generators in list and matrix
+comprehensions:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m = hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>,baz=&gt;bar <span class="mi">4711L</span>]<span class="p">;</span>
+<span class="gp">&gt; </span>[x y | x=&gt;y = m]<span class="p">;</span>
+[foo <span class="mi">99</span>,baz [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],baz (bar <span class="mi">4711L</span>)]
+<span class="gp">&gt; </span>{{x<span class="p">;</span>y} | x=&gt;y = m}<span class="p">;</span>
+{foo,baz,baz<span class="p">;</span><span class="mi">99</span>,[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],bar <span class="mi">4711L</span>}
+</pre></div>
+</div>
+<p>Note that in the current implementation this always computes the full member
+list of the dictionary as an intermediate value, which will need considerable
+extra memory in the case of large dictionaries. As a remedy, you can also use
+the <a class="reference internal" href="#stream/stldict" title="stream"><tt class="xref pure pure-func docutils literal"><span class="pre">stream</span></tt></a> function to convert the dictionary to a lazy list
+instead. This will often be slower, but in the case of big dictionaries the
+tradeoff between memory usage and execution speed might be worth
+considering. For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m = hashdict [foo i =&gt; i | i = <span class="mi">1</span>..<span class="mi">10000</span>]<span class="p">;</span>
+<span class="gp">&gt; </span>stream m<span class="p">;</span>
+(foo <span class="mi">1512</span>=&gt;<span class="mi">1512</span>):<span class="kt">#&lt;thunk 0x7fa1718350a8&gt;</span>
+<span class="gp">&gt; </span>stats -m
+<span class="gp">&gt; </span>#list m<span class="p">;</span>
+<span class="mi">10000</span>
+<span class="mi">0</span>.01s, <span class="mi">40001</span> cells
+<span class="gp">&gt; </span>#stream m<span class="p">;</span>
+<span class="mi">10000</span>
+<span class="mi">0</span>.1s, <span class="mi">16</span> cells
+<span class="gp">&gt; </span>#[y | x=&gt;y = m<span class="p">;</span> gcd y <span class="mi">767</span>~=<span class="mi">1</span>]<span class="p">;</span>
+<span class="mi">925</span>
+<span class="mi">0</span>.05s, <span class="mi">61853</span> cells
+<span class="gp">&gt; </span>#[y | x=&gt;y = stream m<span class="p">;</span> gcd y <span class="mi">767</span>~=<span class="mi">1</span>]<span class="p">;</span>
+<span class="mi">925</span>
+<span class="mi">0</span>.15s, <span class="mi">10979</span> cells
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-stldict</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#types">Types</a></li>
+<li><a class="reference internal" href="#operations">Operations</a><ul>
+<li><a class="reference internal" href="#basic-operations">Basic Operations</a></li>
+<li><a class="reference internal" href="#comparisons">Comparisons</a></li>
+<li><a class="reference internal" href="#set-like-operations">Set-Like Operations</a></li>
+<li><a class="reference internal" href="#list-like-operations">List-Like Operations</a></li>
+<li><a class="reference internal" href="#iterators">Iterators</a></li>
+<li><a class="reference internal" href="#low-level-operations">Low-Level Operations</a></li>
+<li><a class="reference internal" href="#pretty-printing">Pretty-Printing</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-sockets.html"
+                        title="previous chapter">pure-sockets: Pure Sockets Interface</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-stllib.html"
+                        title="next chapter">pure-stllib</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-stldict.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stllib.html" title="pure-stllib"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-sockets.html" title="pure-sockets: Pure Sockets Interface"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

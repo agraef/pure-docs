@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-ffi &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-gen: Pure interface generator" href="pure-gen.html" />
+    <link rel="prev" title="pure-doc" href="pure-doc.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-gen.html" title="pure-gen: Pure interface generator"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-doc.html" title="pure-doc"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-ffi">
+<span id="pure-ffi"></span><h1>pure-ffi<a class="headerlink" href="#module-ffi" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.13, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>The libffi library provides a portable, high level programming interface to
+various calling conventions. This allows a programmer to call any function
+specified by a call interface description at run time. libffi should be
+present on most gcc-based systems, but it is also available as a standalone
+package at <a class="reference external" href="http://sourceware.org/libffi/">http://sourceware.org/libffi/</a>.</p>
+<p>This module provides an interface to libffi which enables you to call C
+functions from Pure and vice versa. It goes beyond Pure&#8217;s built-in C interface
+in that it also handles C structs and makes Pure functions callable from C.
+Moreover, depending on the libffi implementation, it may also be possible to
+call foreign languages other than C.</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2008, 2009 by Albert Graef.</p>
+<p>pure-ffi is free software: you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.</p>
+<p>pure-ffi is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along
+with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-ffi-0.13.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-ffi-0.13.tar.gz</a>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> (as root) to install
+it in the Pure library directory. This requires GNU make, and of course you
+need to have Pure and libffi installed.</p>
+<p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
+setup. If it gets this wrong, you can set some variables manually. In
+particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets the installation prefix, and
+<tt class="docutils literal"><span class="pre">make</span> <span class="pre">PIC=-fPIC</span></tt> or some similar flag might be needed for compilation on 64
+bit systems. Please see the Makefile for details.</p>
+<p>NOTE: This module requires libffi 3.x (3.0.8 has been tested). Old libffi
+versions (2.x) do not appear to work (closures are broken). Patches are
+welcome.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>The module exposes a simplified interface to libffi tailored to the Pure
+language. Call interfaces are described using the desired ABI, return type and
+tuple of argument types. The ABI is specified using one of the <tt class="docutils literal"><span class="pre">FFI_*</span></tt>
+constants defined by the module; for most purposes, <tt class="docutils literal"><span class="pre">FFI_DEFAULT_ABI</span></tt> is all
+that&#8217;s needed. C types are specified using special descriptors <tt class="docutils literal"><span class="pre">void_t</span></tt>,
+<tt class="docutils literal"><span class="pre">uint_t</span></tt> etc., see ffi.pure for details. You can also get a list of these
+values using <tt class="docutils literal"><span class="pre">show</span> <span class="pre">-g</span> <span class="pre">FFI_*</span> <span class="pre">*_t</span></tt> after importing the ffi module.</p>
+<p>The primary interface for calling C from Pure and vice versa is as follows:</p>
+<dl class="function">
+<dt id="fcall">
+<tt class="descname">fcall</tt> name abi rtype atypes<a class="headerlink" href="#fcall" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Pure function from a C function with the given name, specified as
+a string. This makes the C function callable in Pure, no matter whether it
+is already declared as an <tt class="docutils literal"><span class="pre">extern</span></tt> or not. But note that if the function
+resides in a shared library, you still have to import that library using a
+Pure <tt class="docutils literal"><span class="pre">using</span></tt> declaration, see the Pure manual for details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="fclos">
+<tt class="descname">fclos</tt> fn abi rtype atypes<a class="headerlink" href="#fclos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a pointer to a C function from the given Pure function <tt class="docutils literal"><span class="pre">fn</span></tt>. The
+resulting pointer can then be passed to other C functions expecting
+functions as arguments. This allows you to create C callbacks from Pure
+functions without writing a single line of C code. (This functionality
+might not be available on some platforms.)</p>
+</dd></dl>
+
+<p>Note that in difference to <a class="reference internal" href="pure.html#extern"><tt class="xref std std-keyword docutils literal"><span class="pre">extern</span></tt></a> functions, arguments to functions
+created with libffi are always passed in uncurried form, as a Pure tuple.
+E.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> ffi<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> fmod = fcall <span class="s">&quot;fmod&quot;</span> FFI_DEFAULT_ABI double_t (double_t,double_t)<span class="p">;</span>
+<span class="gp">&gt; </span>fmod (<span class="mf">5.3</span>,<span class="mf">0.7</span>)<span class="p">;</span>
+<span class="mf">0.4</span>
+</pre></div>
+</div>
+<p>C structs are fully supported and are passed in a type-safe manner, see
+ffi.pure for details. Note that these are to be used for passing structs by
+value. (When passing a pointer to a struct, you must use <tt class="docutils literal"><span class="pre">pointer_t</span></tt>
+instead.) For instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> complex_t = struct_t (double_t,double_t)<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> cexp = fcall <span class="s">&quot;cexp&quot;</span> FFI_DEFAULT_ABI complex_t (complex_t)<span class="p">;</span>
+<span class="gp">&gt; </span>members (cexp (struct complex_t (<span class="mf">0.0</span>,<span class="mf">1.0</span>)))<span class="p">;</span>
+<span class="mf">0.54030230586814</span>,<span class="mf">0.841470984807897</span>
+</pre></div>
+</div>
+<p>See the examples folder in the sources for more examples.</p>
+</div>
+<div class="section" id="todo">
+<h2>TODO<a class="headerlink" href="#todo" title="Permalink to this headline">¶</a></h2>
+<p>The API isn&#8217;t perfect yet. In particular, one might consider to implement type
+descriptors as structs instead of raw pointers, and support for typed pointers
+would be useful. Contributions and suggestions are welcome.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-ffi</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
+<li><a class="reference internal" href="#todo">TODO</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-doc.html"
+                        title="previous chapter">pure-doc</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-gen.html"
+                        title="next chapter">pure-gen: Pure interface generator</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-ffi.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-gen.html" title="pure-gen: Pure interface generator"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-doc.html" title="pure-doc"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

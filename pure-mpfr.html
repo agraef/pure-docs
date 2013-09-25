@@ -1,0 +1,534 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-mpfr &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-octave" href="pure-octave.html" />
+    <link rel="prev" title="pure-gsl - GNU Scientific Library Interface for Pure" href="pure-gsl.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-octave.html" title="pure-octave"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-gsl.html" title="pure-gsl - GNU Scientific Library Interface for Pure"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-mpfr">
+<span id="pure-mpfr"></span><h1>pure-mpfr<a class="headerlink" href="#module-mpfr" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.4, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>The <a class="reference external" href="http://www.mpfr.org/">GNU MPFR</a> library is a C library for multiple-precision floating-point
+computations with correct rounding. It is based on <a class="reference external" href="http://gmplib.org">GMP</a> which Pure also uses
+for its bigint support.</p>
+<p>This module makes the MPFR multiprecision floats (henceforth referred to as
+<tt class="docutils literal"><span class="pre">mpfr</span></tt> numbers or values) available in Pure, so that they work with the
+other types of Pure numbers in an almost seamless fashion. Pure <tt class="docutils literal"><span class="pre">mpfr</span></tt>
+values are represented as pointers which can readily be passed as arguments to
+the MPFR functions, so the representation only involves minimal overhead on
+the Pure side.</p>
+<p>The module defines the type of <tt class="docutils literal"><span class="pre">mpfr</span></tt> values as an instance of Pure&#8217;s
+<tt class="docutils literal"><span class="pre">real</span></tt> type, so that it becomes a well-behaved citizen of Pure&#8217;s numeric
+tower. Memory management of these values is automatic. You can create an
+<tt class="docutils literal"><span class="pre">mpfr</span></tt> value from any other kind of Pure real value (<tt class="docutils literal"><span class="pre">int</span></tt>, <tt class="docutils literal"><span class="pre">bigint</span></tt> or
+<tt class="docutils literal"><span class="pre">double</span></tt>), or from a string in decimal notation, using the <tt class="docutils literal"><span class="pre">mpfr</span></tt>
+function. Back conversions are provided from <tt class="docutils literal"><span class="pre">mpfr</span></tt> to <tt class="docutils literal"><span class="pre">int</span></tt>, <tt class="docutils literal"><span class="pre">bigint</span></tt>,
+<tt class="docutils literal"><span class="pre">double</span></tt> and <tt class="docutils literal"><span class="pre">string</span></tt> (the latter by means of a custom pretty-printer
+installed by this module, so that mpfr values are printed in a format similar
+to the <tt class="docutils literal"><span class="pre">printf</span> <span class="pre">%g</span></tt> format). Integration with Pure&#8217;s <tt class="docutils literal"><span class="pre">complex</span></tt> type is
+provided as well.</p>
+<p>Please note that this module needs more testing and the API hasn&#8217;t been
+finalized yet, but it should be perfectly usable already. As usual, please
+report any bugs on the Pure issue tracker, on the Pure mailing list, or
+directly to the author, see <a class="reference external" href="http://purelang.bitbucket.org/">http://purelang.bitbucket.org/</a>.</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2011 by Albert Graef.</p>
+<p>pure-mpfr is free software: you can redistribute it and/or modify it under the
+terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.</p>
+<p>pure-mpfr is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
+details.</p>
+<p>You should have received a copy of the GNU Lesser General Public License along
+with this program.  If not, see &lt;<a class="reference external" href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-mpfr-0.4.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-mpfr-0.4.tar.gz</a>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> (as root) to install
+it in the Pure library directory. This requires GNU make, and of course you
+need to have Pure and libmpfr installed.</p>
+<p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
+setup. If it gets this wrong, you can set some variables manually, please
+check the Makefile for details.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This module requires Pure 0.50 or later and libmpfr 3.x (3.0.0 has
+been tested). Older libmpfr versions (2.x) probably require some work.</p>
+</div>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>After installation, you can use the operations of this module by placing the
+following import declaration in your Pure programs:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> mpfr<span class="p">;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>This also pulls in the <a class="reference internal" href="purelib.html#module-math"><tt class="xref pure pure-mod docutils literal"><span class="pre">math</span></tt></a> standard library module, whose
+operations are overloaded by the <tt class="docutils literal"><span class="pre">mpfr</span></tt> module in order to provide
+support for <tt class="docutils literal"><span class="pre">mpfr</span></tt> values. Thus you don&#8217;t need to explicitly import the
+<tt class="docutils literal"><span class="pre">math</span></tt> module when using the <tt class="docutils literal"><span class="pre">mpfr</span></tt> module.</p>
+<p class="last">If you use both the <a class="reference internal" href="#module-mpfr"><tt class="xref pure pure-mod docutils literal"><span class="pre">mpfr</span></tt></a> module and the <a class="reference internal" href="purelib.html#module-pointers"><tt class="xref pure pure-mod docutils literal"><span class="pre">pointers</span></tt></a> standard
+library module in your script, make sure that you import the <tt class="docutils literal"><span class="pre">pointers</span></tt>
+module <em>after</em> <tt class="docutils literal"><span class="pre">mpfr</span></tt>, so that the definitions of pointer arithmetic in
+the <tt class="docutils literal"><span class="pre">pointers</span></tt> module do not interfere with the overloading of arithmetic
+operations in the <tt class="docutils literal"><span class="pre">mpfr</span></tt> module.</p>
+</div>
+<div class="section" id="precision-and-rounding">
+<h3>Precision and Rounding<a class="headerlink" href="#precision-and-rounding" title="Permalink to this headline">¶</a></h3>
+<p>The following operations of the MPFR library are provided to inspect and
+change the default precision and rounding modes used by MPFR.</p>
+<dl class="function">
+<dt id="mpfr_get_default_prec">
+<tt class="descname">mpfr_get_default_prec</tt><a class="headerlink" href="#mpfr_get_default_prec" title="Permalink to this definition">¶</a></dt>
+<dt id="mpfr_set_default_prec">
+<tt class="descname">mpfr_set_default_prec</tt> prec<a class="headerlink" href="#mpfr_set_default_prec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get and set the default precision in terms of number of bits in the
+mantissa, including the sign. MPFR initially sets this to 53 (matching the
+mantissa size of <tt class="docutils literal"><span class="pre">double</span></tt> values). It can be changed to any desired value
+not less than 2.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mpfr_get_prec">
+<tt class="descname">mpfr_get_prec</tt> x<a class="headerlink" href="#mpfr_get_prec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the precision of an <tt class="docutils literal"><span class="pre">mpfr</span></tt> number <tt class="docutils literal"><span class="pre">x</span></tt>. Note that <tt class="docutils literal"><span class="pre">mpfr</span></tt> numbers
+always keep the precision they were created with, but it is possible to
+create a new <tt class="docutils literal"><span class="pre">mpfr</span></tt> number with any given precision from an existing
+<tt class="docutils literal"><span class="pre">mpfr</span></tt> number using the <a class="reference internal" href="#mpfr" title="mpfr"><tt class="xref pure pure-func docutils literal"><span class="pre">mpfr</span></tt></a> function, see below.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mpfr_get_default_rounding_mode">
+<tt class="descname">mpfr_get_default_rounding_mode</tt><a class="headerlink" href="#mpfr_get_default_rounding_mode" title="Permalink to this definition">¶</a></dt>
+<dt id="mpfr_set_default_rounding_mode">
+<tt class="descname">mpfr_set_default_rounding_mode</tt> rnd<a class="headerlink" href="#mpfr_set_default_rounding_mode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get and set the default rounding mode, which is used for all arithmetic
+operations and mathematical functions provided by this module. The given
+rounding mode <tt class="docutils literal"><span class="pre">rnd</span></tt> must be one of the supported rounding modes listed
+below.</p>
+</dd></dl>
+
+<dl class="constant">
+<dt id="MPFR_RNDN">
+<em class="property">constant </em><tt class="descname">MPFR_RNDN</tt> // round to nearest, with ties to even<a class="headerlink" href="#MPFR_RNDN" title="Permalink to this definition">¶</a></dt>
+<dt id="MPFR_RNDZ">
+<em class="property">constant </em><tt class="descname">MPFR_RNDZ</tt> // round toward zero<a class="headerlink" href="#MPFR_RNDZ" title="Permalink to this definition">¶</a></dt>
+<dt id="MPFR_RNDU">
+<em class="property">constant </em><tt class="descname">MPFR_RNDU</tt> // round toward +Inf<a class="headerlink" href="#MPFR_RNDU" title="Permalink to this definition">¶</a></dt>
+<dt id="MPFR_RNDD">
+<em class="property">constant </em><tt class="descname">MPFR_RNDD</tt> // round toward -Inf<a class="headerlink" href="#MPFR_RNDD" title="Permalink to this definition">¶</a></dt>
+<dt id="MPFR_RNDA">
+<em class="property">constant </em><tt class="descname">MPFR_RNDA</tt> // round away from zero<a class="headerlink" href="#MPFR_RNDA" title="Permalink to this definition">¶</a></dt>
+<dd><p>Supported rounding modes. Please check the MPFR documentation for details.</p>
+</dd></dl>
+
+<p>In addition, the following operations enable you to control the precision in
+textual representations of <tt class="docutils literal"><span class="pre">mpfr</span></tt> values. This information is used by the
+custom pretty-printer for <tt class="docutils literal"><span class="pre">mpfr</span></tt> values installed by the module.</p>
+<dl class="function">
+<dt id="mpfr_get_print_prec">
+<tt class="descname">mpfr_get_print_prec</tt><a class="headerlink" href="#mpfr_get_print_prec" title="Permalink to this definition">¶</a></dt>
+<dt id="mpfr_set_print_prec">
+<tt class="descname">mpfr_set_print_prec</tt> prec<a class="headerlink" href="#mpfr_set_print_prec" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get and set the precision (number of decimal digits in the mantissa) used
+by the pretty-printer.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="mpfr-numbers">
+<h3>MPFR Numbers<a class="headerlink" href="#mpfr-numbers" title="Permalink to this headline">¶</a></h3>
+<p>The module defines the following data type for representing <tt class="docutils literal"><span class="pre">mpfr</span></tt> values,
+which is a subtype of the Pure <a class="reference internal" href="purelib.html#real/type" title="real"><tt class="xref pure pure-type docutils literal"><span class="pre">real</span></tt></a> type:</p>
+<dl class="type">
+<dt id="mpfr/type">
+<em class="property">type </em><tt class="descname">mpfr</tt><a class="headerlink" href="#mpfr/type" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a tagged pointer type (denoted <tt class="docutils literal"><span class="pre">mpfr*</span></tt> in Pure extern
+declarations) which is compatible with the <tt class="docutils literal"><span class="pre">mpfr_t</span></tt> and <tt class="docutils literal"><span class="pre">mpfr_ptr</span></tt> data
+types of the MPFR C library. Members of this type are &#8220;cooked&#8221; pointers,
+which are allocated dynamically and freed automatically when they are
+garbage-collected (by means of a corresponding Pure sentry).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mpfrp">
+<tt class="descname">mpfrp</tt> x<a class="headerlink" href="#mpfrp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type predicate checking for <tt class="docutils literal"><span class="pre">mpfr</span></tt> values.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="conversions">
+<h3>Conversions<a class="headerlink" href="#conversions" title="Permalink to this headline">¶</a></h3>
+<p>The following operations are provided to convert between <tt class="docutils literal"><span class="pre">mpfr</span></tt> numbers and
+other kinds of Pure <tt class="docutils literal"><span class="pre">real</span></tt> values.</p>
+<dl class="function">
+<dt id="mpfr">
+<tt class="descname">mpfr</tt> x<a class="headerlink" href="#mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="mpfr/2">
+<tt class="descname">mpfr</tt> (x,prec)<a class="headerlink" href="#mpfr/2" title="Permalink to this definition">¶</a></dt>
+<dt id="mpfr/3">
+<tt class="descname">mpfr</tt> (x,prec,rnd)<a class="headerlink" href="#mpfr/3" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function converts any real number (<a class="reference internal" href="pure.html#int/type" title="int"><tt class="xref pure pure-type docutils literal"><span class="pre">int</span></tt></a>,
+<a class="reference internal" href="pure.html#bigint/type" title="bigint"><tt class="xref pure pure-type docutils literal"><span class="pre">bigint</span></tt></a>, <a class="reference internal" href="pure.html#double/type" title="double"><tt class="xref pure pure-type docutils literal"><span class="pre">double</span></tt></a>, <a class="reference internal" href="purelib.html#rational/type" title="rational"><tt class="xref pure pure-type docutils literal"><span class="pre">rational</span></tt></a>,
+<a class="reference internal" href="#mpfr/type" title="mpfr"><tt class="xref pure pure-type docutils literal"><span class="pre">mpfr</span></tt></a>) to an <tt class="docutils literal"><span class="pre">mpfr</span></tt> value.</p>
+<p>Optionally, it is possible to specify a precision (number of bits in the
+mantissa) <tt class="docutils literal"><span class="pre">prec</span></tt> and a rounding mode <tt class="docutils literal"><span class="pre">rnd</span></tt> (one of the <tt class="docutils literal"><span class="pre">MPFR_RND</span></tt>
+constants), otherwise MPFR&#8217;s default precision and rounding mode are used
+(see <a class="reference internal" href="#precision-and-rounding">Precision and Rounding</a> above). Note that this function may also be
+used to convert an <tt class="docutils literal"><span class="pre">mpfr</span></tt> to a new <tt class="docutils literal"><span class="pre">mpfr</span></tt> number, possibly with a
+different precision and rounding.</p>
+<p>The argument <tt class="docutils literal"><span class="pre">x</span></tt> can also be a string denoting a floating point number in
+decimal notation with optional sign, decimal point and/or scaling factor,
+which is parsed and converted to an <tt class="docutils literal"><span class="pre">mpfr</span></tt> number using the corresponding
+MPFR function.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="int/mpfr">
+<tt class="descname">int</tt> x<a class="headerlink" href="#int/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="bigint/mpfr">
+<tt class="descname">bigint</tt> x<a class="headerlink" href="#bigint/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="double/mpfr">
+<tt class="descname">double</tt> x<a class="headerlink" href="#double/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an <tt class="docutils literal"><span class="pre">mpfr</span></tt> number x to the corresponding type of real number.
+Please note that there is no <tt class="docutils literal"><span class="pre">rational</span></tt> conversion, as MPFR does not
+provide such an operation, but if you need this then you can first convert
+<tt class="docutils literal"><span class="pre">x</span></tt> to a <tt class="docutils literal"><span class="pre">double</span></tt> and then apply the standard library <a class="reference internal" href="purelib.html#rational" title="rational"><tt class="xref pure pure-func docutils literal"><span class="pre">rational</span></tt></a>
+function to it (this may loose precision, of course).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="str/mpfr">
+<tt class="descname">str</tt> x<a class="headerlink" href="#str/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>By virtue of the custom pretty-printer provided by this module, the
+standard library <a class="reference internal" href="purelib.html#str" title="str"><tt class="xref pure pure-func docutils literal"><span class="pre">str</span></tt></a> function can be used to obtain a printable
+representation of an <tt class="docutils literal"><span class="pre">mpfr</span></tt> number <tt class="docutils literal"><span class="pre">x</span></tt> in decimal notation. The result
+is a string.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="floor/mpfr">
+<tt class="descname">floor</tt> x<a class="headerlink" href="#floor/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="ceil/mpfr">
+<tt class="descname">ceil</tt> x<a class="headerlink" href="#ceil/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="round/mpfr">
+<tt class="descname">round</tt> x<a class="headerlink" href="#round/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="trunc/mpfr">
+<tt class="descname">trunc</tt> x<a class="headerlink" href="#trunc/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="frac/mpfr">
+<tt class="descname">frac</tt> x<a class="headerlink" href="#frac/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rounding and truncation functions. These all take and yield <tt class="docutils literal"><span class="pre">mpfr</span></tt>
+numbers. <a class="reference internal" href="#frac/mpfr" title="frac"><tt class="xref pure pure-func docutils literal"><span class="pre">frac</span></tt></a> returns the fractional part of an <tt class="docutils literal"><span class="pre">mpfr</span></tt>
+number, i.e., <tt class="docutils literal"><span class="pre">x-trunc</span> <span class="pre">x</span></tt>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="arithmetic">
+<h3>Arithmetic<a class="headerlink" href="#arithmetic" title="Permalink to this headline">¶</a></h3>
+<p>The following standard operators (see the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a>) are overloaded to
+provide <tt class="docutils literal"><span class="pre">mpfr</span></tt> arithmetic and comparisons. These all handle mixed
+<tt class="docutils literal"><span class="pre">mpfr</span></tt>/<tt class="docutils literal"><span class="pre">real</span></tt> operands.</p>
+<dl class="function">
+<dt id="-/mpfr">
+<tt class="descname">-</tt> x<a class="headerlink" href="#-/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="+/mpfr">
+x <tt class="descname">+</tt> y<a class="headerlink" href="#+/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt>
+x <tt class="descname">-</tt> y</dt>
+<dt id="*/mpfr">
+x <tt class="descname">*</tt> y<a class="headerlink" href="#*/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="//mpfr">
+x <tt class="descname">/</tt> y<a class="headerlink" href="#//mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="^/mpfr">
+x <tt class="descname">^</tt> y<a class="headerlink" href="#^/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Arithmetic operations.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="==/mpfr">
+x <tt class="descname">==</tt> y<a class="headerlink" href="#==/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="~=/mpfr">
+x <tt class="descname">~=</tt> y<a class="headerlink" href="#~=/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="&lt;=/mpfr">
+x <tt class="descname">&lt;=</tt> y<a class="headerlink" href="#<=/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="&gt;=/mpfr">
+x <tt class="descname">&gt;=</tt> y<a class="headerlink" href="#>=/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="&lt;/mpfr">
+x <tt class="descname">&lt;</tt> y<a class="headerlink" href="#</mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="&gt;/mpfr">
+x <tt class="descname">&gt;</tt> y<a class="headerlink" href="#>/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Comparisons.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="math-functions">
+<h3>Math Functions<a class="headerlink" href="#math-functions" title="Permalink to this headline">¶</a></h3>
+<p>The following functions from the <a class="reference internal" href="purelib.html#module-math"><tt class="xref pure pure-mod docutils literal"><span class="pre">math</span></tt></a> module are overloaded to provide
+support for <tt class="docutils literal"><span class="pre">mpfr</span></tt> values. Note that it is also possible to invoke the
+corresponding functions from the MPFR library in a direct fashion, using the
+same function names with an additional <tt class="docutils literal"><span class="pre">_mpfr</span></tt> suffix. These functions also
+accept other kinds of <tt class="docutils literal"><span class="pre">real</span></tt> arguments which are converted to <tt class="docutils literal"><span class="pre">mpfr</span></tt>
+before applying the MPFR function.</p>
+<dl class="function">
+<dt id="abs/mpfr">
+<tt class="descname">abs</tt> x<a class="headerlink" href="#abs/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Absolute value (this is implemented directly, so there&#8217;s no corresponding
+<tt class="docutils literal"><span class="pre">_mpfr</span></tt> function for this).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sqrt/mpfr">
+<tt class="descname">sqrt</tt> x<a class="headerlink" href="#sqrt/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="exp/mpfr">
+<tt class="descname">exp</tt> x<a class="headerlink" href="#exp/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="ln/mpfr">
+<tt class="descname">ln</tt> x<a class="headerlink" href="#ln/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="log/mpfr">
+<tt class="descname">log</tt> x<a class="headerlink" href="#log/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Square root, exponential and logarithms.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sin/mpfr">
+<tt class="descname">sin</tt> x<a class="headerlink" href="#sin/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="cos/mpfr">
+<tt class="descname">cos</tt> x<a class="headerlink" href="#cos/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="tan/mpfr">
+<tt class="descname">tan</tt> x<a class="headerlink" href="#tan/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="asin/mpfr">
+<tt class="descname">asin</tt> x<a class="headerlink" href="#asin/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="acos/mpfr">
+<tt class="descname">acos</tt> x<a class="headerlink" href="#acos/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="atan/mpfr">
+<tt class="descname">atan</tt> x<a class="headerlink" href="#atan/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="atan2/mpfr">
+<tt class="descname">atan2</tt> y x<a class="headerlink" href="#atan2/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Trigonometric functions.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sinh/mpfr">
+<tt class="descname">sinh</tt> x<a class="headerlink" href="#sinh/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="cosh/mpfr">
+<tt class="descname">cosh</tt> x<a class="headerlink" href="#cosh/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="tanh/mpfr">
+<tt class="descname">tanh</tt> x<a class="headerlink" href="#tanh/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="asinh/mpfr">
+<tt class="descname">asinh</tt> x<a class="headerlink" href="#asinh/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="acosh/mpfr">
+<tt class="descname">acosh</tt> x<a class="headerlink" href="#acosh/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="atanh/mpfr">
+<tt class="descname">atanh</tt> x<a class="headerlink" href="#atanh/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hyperbolic trigonometric functions.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="complex-number-support">
+<h3>Complex Number Support<a class="headerlink" href="#complex-number-support" title="Permalink to this headline">¶</a></h3>
+<p>The following functions from the <a class="reference internal" href="purelib.html#module-math"><tt class="xref pure pure-mod docutils literal"><span class="pre">math</span></tt></a> module are overloaded to provide
+support for complex values involving <tt class="docutils literal"><span class="pre">mpfr</span></tt> numbers:</p>
+<dl class="function">
+<dt id="complex/mpfr">
+<tt class="descname">complex</tt> x<a class="headerlink" href="#complex/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="polar/mpfr">
+<tt class="descname">polar</tt> x<a class="headerlink" href="#polar/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="rect/mpfr">
+<tt class="descname">rect</tt> x<a class="headerlink" href="#rect/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="cis/mpfr">
+<tt class="descname">cis</tt> x<a class="headerlink" href="#cis/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="arg/mpfr">
+<tt class="descname">arg</tt> x<a class="headerlink" href="#arg/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="re/mpfr">
+<tt class="descname">re</tt> x<a class="headerlink" href="#re/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="im/mpfr">
+<tt class="descname">im</tt> x<a class="headerlink" href="#im/mpfr" title="Permalink to this definition">¶</a></dt>
+<dt id="conj/mpfr">
+<tt class="descname">conj</tt> x<a class="headerlink" href="#conj/mpfr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Import the module and set the default precision:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> mpfr<span class="p">;</span>
+<span class="gp">&gt; </span>mpfr_set_default_prec <span class="mi">64</span><span class="p">;</span> <span class="c1">// extended precision (long double on x86)</span>
+()
+</pre></div>
+</div>
+<p>Calculate pi with the current precision. Note that mixed arithmetic works with
+any combination of real and mpfr numbers.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> Pi = <span class="mi">4</span>*atan (mpfr <span class="mi">1</span>)<span class="p">;</span>
+<span class="gp">&gt; </span>pi<span class="p">;</span> Pi<span class="p">;</span> abs (Pi-pi)<span class="p">;</span>
+<span class="mf">3.14159265358979</span>
+<span class="mf">3.14159265358979323851</span>
+<span class="mf">1.22514845490862001043e-16</span>
+
+<span class="gp">&gt; </span><span class="kr">let</span> Pi2 = Pi^<span class="mi">2</span><span class="p">;</span>
+<span class="gp">&gt; </span>Pi2<span class="p">;</span> sqrt Pi2<span class="p">;</span> sqrt Pi2 == Pi<span class="p">;</span>
+<span class="mf">9.86960440108935861941</span>
+<span class="mf">3.14159265358979323851</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>You can also query the precision of a number and change it on the fly:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>Pi<span class="p">;</span> mpfr_get_prec Pi<span class="p">;</span>
+<span class="mf">3.14159265358979323851</span>
+<span class="mi">64</span>
+<span class="gp">&gt; </span><span class="kr">let</span> Pi1 = mpfr (Pi,<span class="mi">53</span>)<span class="p">;</span> Pi1<span class="p">;</span> mpfr_get_prec Pi1<span class="p">;</span>
+<span class="mf">3.1415926535897931</span>
+<span class="mi">53</span>
+</pre></div>
+</div>
+<p>Complex <tt class="docutils literal"><span class="pre">mpfr</span></tt> numbers work, too:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> z = mpfr <span class="mi">2</span>^(<span class="mi">1</span>/i)<span class="p">;</span> z<span class="p">;</span>
+<span class="mf">0.769238901363972126565</span>+:-<span class="mf">0.638961276313634801184</span>
+<span class="gp">&gt; </span><span class="kr">let</span> z = ln z/ln (mpfr <span class="mi">2</span>)<span class="p">;</span> z<span class="p">;</span>
+<span class="mf">0.0</span>+:-<span class="mf">1.0</span>
+<span class="gp">&gt; </span>abs z, arg z<span class="p">;</span>
+<span class="mf">1.0</span>,-<span class="mf">1.57079632679489661926</span>
+<span class="gp">&gt; </span>polar z<span class="p">;</span>
+<span class="mf">1.0</span>&lt;:-<span class="mf">1.57079632679489661926</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-mpfr</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#precision-and-rounding">Precision and Rounding</a></li>
+<li><a class="reference internal" href="#mpfr-numbers">MPFR Numbers</a></li>
+<li><a class="reference internal" href="#conversions">Conversions</a></li>
+<li><a class="reference internal" href="#arithmetic">Arithmetic</a></li>
+<li><a class="reference internal" href="#math-functions">Math Functions</a></li>
+<li><a class="reference internal" href="#complex-number-support">Complex Number Support</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-gsl.html"
+                        title="previous chapter">pure-gsl - GNU Scientific Library Interface for Pure</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-octave.html"
+                        title="next chapter">pure-octave</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-mpfr.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-octave.html" title="pure-octave"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-gsl.html" title="pure-gsl - GNU Scientific Library Interface for Pure"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

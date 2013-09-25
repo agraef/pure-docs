@@ -1,0 +1,158 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-g2 &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="Pure OpenGL Bindings" href="pure-gl.html" />
+    <link rel="prev" title="Pure-XML - XML/XSLT interface" href="pure-xml.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-gl.html" title="Pure OpenGL Bindings"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-xml.html" title="Pure-XML - XML/XSLT interface"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <span class="target" id="module-g2"></span><div class="section" id="pure-g2">
+<h1>pure-g2<a class="headerlink" href="#pure-g2" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.3, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This is a straight wrapper of the g2 graphics library, see <a class="reference external" href="http://g2.sf.net/">http://g2.sf.net/</a>.</p>
+<p>License: BSD-style, see the COPYING file for details.</p>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-g2-0.3.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-g2-0.3.tar.gz</a>.</p>
+<p>g2 is a simple, no-frills 2D graphics library, distributed under the LGPL.
+It&#8217;s easy to use, portable and supports PostScript, X11, PNG and Win32. Just
+the kind of thing that you need if you want to quickly knock out some basic
+graphics, and whipping out the almighty OpenGL or GTK/Cairo seems overkill.</p>
+<p>To use this module, you need to have libg2 installed as a shared library
+(libg2.so, .dll etc.) in a place where the Pure interpreter can find it. The
+g2 source does not include rules to properly build and install a shared
+library on modern Linux systems, so we&#8217;ve included a little patch named
+g2-0.72-sharedlib.patch in the pure-g2 package which helps with this. (You
+still have to run ldconfig on Linux after installing g2. Also note that this
+patch has only been tested on Linux, for other systems you&#8217;ll probably have to
+edit the g2 Makefile yourself.)</p>
+<p>Documentation still needs to be written, so for the time being please see
+g2.pure and have a look at the examples provided in the distribution.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> to copy g2.pure to the Pure library directory. This tries
+to guess the prefix under which Pure is installed; if this doesn&#8217;t work,
+you&#8217;ll have to set the prefix variable in the Makefile accordingly.</p>
+<p>The Makefile also provides the following targets:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">examples</span></tt> compiles the examples to native executables.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">clean</span></tt> deletes the native executables for the examples, as well as
+some graphics files which are produced by running g2_test.pure.</li>
+<li><tt class="docutils literal"><span class="pre">make</span> <span class="pre">generate</span></tt> regenerates the g2.pure module. This requires that you
+have pure-gen installed, as well as the g2 header files (you can point
+pure-gen to the prefix under which g2 is installed with the g2prefix
+variable in the Makefile). This step shouldn&#8217;t normally be necessary, unless
+you find that the provided wrapper doesn&#8217;t work with your g2 version. The
+g2.pure in this release has been generated from g2 0.72.</li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-xml.html"
+                        title="previous chapter">Pure-XML - XML/XSLT interface</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-gl.html"
+                        title="next chapter">Pure OpenGL Bindings</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-g2.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-gl.html" title="Pure OpenGL Bindings"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-xml.html" title="Pure-XML - XML/XSLT interface"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

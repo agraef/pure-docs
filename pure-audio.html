@@ -1,0 +1,186 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-audio &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-faust" href="pure-faust.html" />
+    <link rel="prev" title="pd-pure: Pd loader for Pure scripts" href="pd-pure.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-faust.html" title="pure-faust"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pd-pure.html" title="pd-pure: Pd loader for Pure scripts"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-audio">
+<span id="pure-audio"></span><h1>pure-audio<a class="headerlink" href="#module-audio" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-fftw"></span><span class="target" id="module-sndfile"></span><span class="target" id="module-samplerate"></span><span class="target" id="module-realtime"></span><p>Version 0.5, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This is a digital audio interface for the Pure programming language. It
+currently includes the following modules:</p>
+<ul class="simple">
+<li>audio.pure: A PortAudio wrapper which gives you portable access to realtime
+audio input and output on a variety of different host APIs. This uses the
+well-known PortAudio library by Ross Bencina, Phil Burk et al, see
+<a class="reference external" href="http://www.portaudio.com/">http://www.portaudio.com/</a>.</li>
+<li>fftw.pure: Compute real-valued FFTs of audio signals using Matteo Frigo&#8217;s
+and Steven G. Johnson&#8217;s portable and fast FFTW library (&#8220;Fastest Fourier
+Transform in the West&#8221;).</li>
+<li>sndfile.pure: Reading and writing audio files in various formats. This is a
+fairly straightforward wrapper for Erik de Castro Lopo&#8217;s libsndfile library,
+see <a class="reference external" href="http://www.mega-nerd.com/libsndfile/">http://www.mega-nerd.com/libsndfile/</a>.</li>
+<li>samplerate.pure: Perform sample rate conversion on audio data. This uses
+another of Erik&#8217;s excellent libraries, libsamplerate (a.k.a. SRC), see
+<a class="reference external" href="http://www.mega-nerd.com/SRC/">http://www.mega-nerd.com/SRC/</a>.</li>
+<li>realtime.pure: A little utility module which provides access to realtime
+scheduling to Pure programs. You may need this for low-latency realtime
+audio applications.</li>
+</ul>
+<p>Documentation still needs to be written, so for the time being please read the
+source modules listed above and have a look at the examples provided in the
+distribution.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.5.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.5.tar.gz</a>.</p>
+<p>You need to have libportaudio (v19), libsndfile (1.x), libsamplerate (0.1.x)
+and libfftw3 (3.x) installed on your system. Any fairly recent version of
+these libraries should do. For the realtime module you also need a POSIX
+threads library (libpthread) with the POSIX realtime thread extension; Linux,
+OSX and other Un*x systems should offer this.</p>
+<p>The Pure wrappers contained in the distribution are for 64 bit POSIX
+systems. If you&#8217;re running a 32 bit system, or Windows, then you should
+regenerate them using &#8216;make generate&#8217;. This requires the header files
+portaudio.h, samplerate.h and sndfile.h (and pure-gen, of course). If you do
+this, check the includedir variables defined in the Makefiles, these need to
+point to the directories where the corresponding header files are to be found
+(the default is /usr/include).</p>
+<p>Then just run &#8216;make&#8217; to compile the package. If you&#8217;re lucky and everything
+compiles smoothly, you can install with &#8216;sudo make install&#8217;.</p>
+<p>If you&#8217;re not so lucky, you can get help on the Pure mailing list, see
+<a class="reference external" href="http://groups.google.com/group/pure-lang">http://groups.google.com/group/pure-lang</a>.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>pure-audio is Copyright (c) 2010 by Albert Graef, licensed under the 3-clause
+BSD license, see the COPYING file for details.</p>
+<p>Please note that if you&#8217;re using these modules, you&#8217;re also bound by the
+license terms of the PortAudio, libsamplerate and libsndfile libraries they
+are based on, see the corresponding sources and websites for details.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-audio</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pd-pure.html"
+                        title="previous chapter">pd-pure: Pd loader for Pure scripts</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-faust.html"
+                        title="next chapter">pure-faust</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-audio.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-faust.html" title="pure-faust"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pd-pure.html" title="pd-pure: Pd loader for Pure scripts"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

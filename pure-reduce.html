@@ -1,0 +1,1892 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Computer Algebra with Pure: A Reduce Interface &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="Pure-CSV - Comma Separated Value Interface for the Pure Programming Language" href="pure-csv.html" />
+    <link rel="prev" title="Pure-Rational - Rational number library for the Pure programming language" href="pure-rational.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-csv.html" title="Pure-CSV - Comma Separated Value Interface for the Pure Programming Language"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-rational.html" title="Pure-Rational - Rational number library for the Pure programming language"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-reduce">
+<span id="computer-algebra-with-pure-a-reduce-interface"></span><h1>Computer Algebra with Pure: A Reduce Interface<a class="headerlink" href="#module-reduce" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.3, September 11, 2013</p>
+<div class="line-block">
+<div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
+<div class="line">Kurt Pagani &lt;<a class="reference external" href="mailto:kp&#37;&#52;&#48;scios&#46;ch">kp<span>&#64;</span>scios<span>&#46;</span>ch</a>&gt;</div>
+</div>
+<p>One of Pure&#8217;s distinguishing features as a term rewriting programming language
+is that it makes the symbolic manipulation of expressions very easy and
+convenient. It is thus a natural environment for hosting a full-featured
+computer algebra system (CAS). Computer algebra systems are complex pieces of
+software featuring advanced algorithms for simplification of algebraic
+expressions, symbolic integration, equation solving and much more.
+Reimplementing all these algorithms in Pure would be a major undertaking, to
+say the least. A much better option is to interface to an existing CAS which
+has already proven its worth to the scientific computing community, has been
+tested extensively and is known to be both reliable and efficient.</p>
+<p>This is also the approach taken by Pure&#8217;s <a class="reference internal" href="#module-reduce"><tt class="xref pure pure-mod docutils literal"><span class="pre">reduce</span></tt></a> module which
+interfaces to the well-known <a class="reference external" href="http://reduce-algebra.sourceforge.net/">Reduce</a> system. Along with Macsyma/<a class="reference external" href="http://maxima.sourceforge.net/">Maxima</a>,
+Reduce is one of the oldest computer algebra systems which has been around
+since the 1960s and is widely recognized as a state-of-the-art, powerful and
+efficient CAS. It is free/open source software distributed under a BSD-style
+<a class="reference external" href="http://www.reduce-algebra.com/license.htm">license</a>, actively maintained on its <a class="reference external" href="http://sourceforge.net/projects/reduce-algebra/">SourceForge</a> website, and implementations
+exist for all major computing platforms. The <a class="reference internal" href="#module-reduce"><tt class="xref pure pure-mod docutils literal"><span class="pre">reduce</span></tt></a> module makes the
+functionality of Reduce available in Pure in a seamless way. It uses an
+&#8220;embedded&#8221; version of Reduce in the form of a shared library which is easy to
+build from the Reduce sources; the <a class="reference internal" href="#installation">Installation</a> section below describes how
+to do this. More background information and a discussion of the interface can
+be found in the <a class="reference external" href="http://groups.google.com/group/pure-lang/browse_thread/thread/c11e82ca2e9e8cbb">Embedding REDUCE</a> thread on the Pure mailing list.</p>
+<p>The interface can be found in the reduce.pure module. It has two parts, a
+<a class="reference internal" href="#low-level-interface">low-level interface</a> which consists of a handful of C entry points supplied
+by the Reduce library, and a <a class="reference internal" href="#high-level-interface">high-level interface</a> which provides everything
+that the Pure programmer needs to use Reduce from Pure. Please note that at
+present this module is still experimental. But the basic functionality works,
+and you&#8217;re welcome to discuss the new interface on the mailing list and/or
+submit bug reports and patches.</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>pure-reduce is available under the same 2-clause BSD <a class="reference external" href="http://www.reduce-algebra.com/license.htm">license</a> as Reduce
+itself, please see the accompanying COPYING file and the reduce.pure file for
+details.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-reduce-0.3.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-reduce-0.3.tar.gz</a>.</p>
+<p>You&#8217;ll need both the Reduce library (named reduce.so, reduce.dylib or
+reduce.dll, depending on the system you have) and a Reduce image file
+(reduce.img) to make this module work. A Makefile is included with this
+package so that you can build these yourself from the Reduce sources. (In
+principle, this only needs to be done once for the initial installation of
+this module, but you may want to repeat this procedure every once in a while
+to get the latest Reduce version.)</p>
+<p>The full Reduce system is a big package, so we have packaged a stripped-down
+version of the Reduce source which contains all the bits and pieces needed to
+compile the Reduce library and image, and has also been patched up so that it
+compiles cleanly on recent Linux systems. At the time of this writing, you can
+find this package here:</p>
+<blockquote>
+<div><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/reduce-algebra-csl-r2204.tar.bz2">https://bitbucket.org/purelang/pure-lang/downloads/reduce-algebra-csl-r2204.tar.bz2</a></div></blockquote>
+<p>(You may want to check the download section on the Pure website for newer
+revisions of this package, since we may update the package from time to time
+to the latest source from the Reduce svn repository.)</p>
+<p>Unpack the reduce-algebra-csl tarball and move the resulting reduce-algebra
+directory into the pure-reduce source directory. Run <tt class="docutils literal"><span class="pre">make</span></tt> and then (if
+needed) <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> in the pure-reduce directory (<em>not</em> in the
+reduce-algebra directory!). You should also run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">check</span></tt> which performs
+a few tests in order to verify that the interface works ok (this can be done
+without installing the package, but needs the Reduce image and library).</p>
+<p>For convenience, the Makefile also has a <tt class="docutils literal"><span class="pre">make</span> <span class="pre">reduce</span></tt> target which builds a
+minimal Reduce executable. If you use that option, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> installs
+this executable along with the library and image files, so that you can then
+run Reduce directly from the command line by just typing <tt class="docutils literal"><span class="pre">reduce</span></tt>. Please
+note that this is a really minimalistic Reduce frontend which is most useful
+for testing purposes. (If you want the full Reduce version then you can find
+binary Reduce packages for various systems at <a class="reference external" href="http://sourceforge.net/projects/reduce-algebra/">SourceForge</a>. But note that
+neither the minimalistic nor the full Reduce frontend is required for the
+pure-reduce module in any way.)</p>
+<p>It is also possible to build the Reduce library and image directly from the
+latest source in the Reduce svn repository. You can check out the repository
+with the following command:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">svn co svn://svn.code.sf.net/p/reduce-algebra/code/trunk reduce-algebra</span>
+</pre></div>
+</div>
+<p>This pulls down many hundreds of megabytes, so this may take a while. Once the
+checkout is finished, you&#8217;ll end up with a reduce-algebra directory which you
+can drop into the pure-reduce source directory and proceed with the
+compilation as described above. Note that if you go that route then you should
+be prepared to deal with compilation problems in the Reduce sources. Reduce is
+a big and complicated software, so the svn sources are not always in a state
+which guarantees smooth compilation on all supported systems. If you run into
+problems then please consider using our streamlined reduce-algebra-csl package
+instead.</p>
+</div>
+<div class="section" id="low-level-interface">
+<h2>Low-Level Interface<a class="headerlink" href="#low-level-interface" title="Permalink to this headline">¶</a></h2>
+<p>The low-level interface is a straight wrapper of the C entry points
+provided by the Reduce library, also known as the &#8220;procedural&#8221; or <a class="reference external" href="http://reduce-algebra.svn.sourceforge.net/viewvc/reduce-algebra/trunk/csl/cslbase/proc.h?view=markup">PROC</a>
+interface, for short. It uses an embedded version of Reduce which runs on a
+free and open-source Lisp flavour known as <a class="reference external" href="http://lisp.codemist.co.uk/">CSL</a> (Codemist Standard
+Lisp). The external C routines are all declared in the <tt class="docutils literal"><span class="pre">reduce</span></tt>
+namespace. Normally you shouldn&#8217;t have to call these functions directly,
+since we provide a high-level, idiomatic Pure interface which makes calling
+Reduce from Pure much easier, see below.</p>
+</div>
+<div class="section" id="high-level-interface">
+<h2>High-Level Interface<a class="headerlink" href="#high-level-interface" title="Permalink to this headline">¶</a></h2>
+<p>The high-level interface provides a wrapper of the low-level PROC interface
+which makes calling Reduce from Pure easy and convenient. After installing
+the module, it can be imported in your Pure scripts as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> reduce<span class="p">;</span>
+</pre></div>
+</div>
+<p>This starts up Reduce and makes the following variables and functions
+available in Pure.</p>
+<div class="section" id="starting-and-stopping-reduce">
+<h3>Starting and Stopping Reduce<a class="headerlink" href="#starting-and-stopping-reduce" title="Permalink to this headline">¶</a></h3>
+<dl class="variable">
+<dt id="REDUCE_PATH">
+<em class="property">variable </em><tt class="descname">REDUCE_PATH</tt><a class="headerlink" href="#REDUCE_PATH" title="Permalink to this definition">¶</a></dt>
+<dd><p>This variable holds a colon-delimited search path used to locate the
+Reduce image file (see <a class="reference internal" href="#reduce::start" title="reduce::start"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::start</span></tt></a> below). By default this
+includes the current directory and the Pure library directory.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::start">
+<tt class="descclassname">reduce::</tt><tt class="descname">start</tt> image::string args::smatrix<a class="headerlink" href="#reduce::start" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initializes the Reduce system. This is done automatically when loading
+this module, so normally you shouldn&#8217;t have to call this manually,
+unless the default image file wasn&#8217;t found or you want to restart the
+Reduce system with your own image file or your own set of options. When
+calling this operation manually, you need to specify the name of the
+Reduce image file and any desired extra arguments as a string vector.
+Unless the filename contains a slash, <a class="reference internal" href="#reduce::start" title="reduce::start"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::start</span></tt></a> searches the
+directories in <a class="reference internal" href="#REDUCE_PATH" title="REDUCE_PATH"><tt class="xref pure pure-var docutils literal"><span class="pre">REDUCE_PATH</span></tt></a> for the image file. An exception is
+raised if the image file isn&#8217;t found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::finish">
+<tt class="descclassname">reduce::</tt><tt class="descname">finish</tt><a class="headerlink" href="#reduce::finish" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finalizes the Reduce system. You can call this to release the resources
+of the Reduce system. (<a class="reference internal" href="#reduce::start" title="reduce::start"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::start</span></tt></a> also invokes this
+automatically if a Reduce instance is already running, so it isn&#8217;t
+necessary to call <a class="reference internal" href="#reduce::finish" title="reduce::finish"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::finish</span></tt></a> in this case.)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="maintenance-operations">
+<h3>Maintenance Operations<a class="headerlink" href="#maintenance-operations" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="reduce::verbosity">
+<tt class="descclassname">reduce::</tt><tt class="descname">verbosity</tt> n<a class="headerlink" href="#reduce::verbosity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the verbosity level; 0 means no messages at all (which is the
+default when using this module), and the following values may be or&#8217;ed
+together to pick what you need:</p>
+<blockquote>
+<div><p>1: messages whenever garbage collection happens</p>
+<p>2: messages whenever a module of code is loaded</p>
+<p>4: extra details in the garbage collector messages</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::switch">
+<tt class="descclassname">reduce::</tt><tt class="descname">switch</tt> name:string val::int<a class="headerlink" href="#reduce::switch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lets you change global Reduce options. This works like Reduce&#8217;s <tt class="docutils literal"><span class="pre">on</span></tt>
+and <tt class="docutils literal"><span class="pre">off</span></tt> declarations; please check the Reduce documentation for
+details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::capture">
+<tt class="descclassname">reduce::</tt><tt class="descname">capture</tt> flag::int<a class="headerlink" href="#reduce::capture" title="Permalink to this definition">¶</a></dt>
+<dt id="reduce::output">
+<tt class="descclassname">reduce::</tt><tt class="descname">output</tt><a class="headerlink" href="#reduce::output" title="Permalink to this definition">¶</a></dt>
+<dd><p>Captures output from Reduce. If <tt class="docutils literal"><span class="pre">flag</span></tt> is nonzero,
+<a class="reference internal" href="#reduce::capture" title="reduce::capture"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::capture</span></tt></a> arranges for all output from Reduce to be
+buffered. The contents of the buffer can then be read using the
+<a class="reference internal" href="#reduce::output" title="reduce::output"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::output</span></tt></a> function which returns a string value. If
+<tt class="docutils literal"><span class="pre">flag</span></tt> is zero, capturing is disabled so that output goes to stdout
+again.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::feed">
+<tt class="descclassname">reduce::</tt><tt class="descname">feed</tt> s::string<a class="headerlink" href="#reduce::feed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Feeds input to Reduce. Reduce will read input from the given string
+<tt class="docutils literal"><span class="pre">s</span></tt>, switching back to stdin after <tt class="docutils literal"><span class="pre">s</span></tt> has been processed.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::load">
+<tt class="descclassname">reduce::</tt><tt class="descname">load</tt> name::string<a class="headerlink" href="#reduce::load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads Reduce packages. This works like Reduce&#8217;s <tt class="docutils literal"><span class="pre">load_package</span></tt>
+command; please check the Reduce documentation for details.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="reduce::in">
+<tt class="descclassname">reduce::</tt><tt class="descname">in</tt> name::string<a class="headerlink" href="#reduce::in" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sources the given Reduce (.red) file. This works like the Lisp <tt class="docutils literal"><span class="pre">in</span></tt>
+function. Output is captured using <a class="reference internal" href="#reduce::capture" title="reduce::capture"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::capture</span></tt></a>, see above.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="evaluation">
+<h3>Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this headline">¶</a></h3>
+<p>For convenience, the following operations are in the default namespace:</p>
+<dl class="function">
+<dt id="simplify">
+<tt class="descname">simplify</tt> x<a class="headerlink" href="#simplify" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the main entry point. It takes an algebraic expression in Pure
+format and tries to simplify it using Reduce. The result is then
+converted back to Pure format. Note that you need to quote <tt class="docutils literal"><span class="pre">x</span></tt> if you
+want to prevent it from being evaluated on the Pure side.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="simplifyd">
+<tt class="descname">simplifyd</tt> x<a class="headerlink" href="#simplifyd" title="Permalink to this definition">¶</a></dt>
+<dd><p>A variation of <a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a> which takes care of customary
+mathematical notation for limits, integrals and differentials, so that
+you can write stuff like <tt class="docutils literal"><span class="pre">d</span> <span class="pre">f/d</span> <span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">lim</span> <span class="pre">n</span> <span class="pre">inf</span> <span class="pre">(1/n)</span></tt> and have
+that expanded to the corresponding Reduce calls automatically. This also
+tries to support most of the idioms and variations of notation which can
+be seen in output of the Reduce <tt class="docutils literal"><span class="pre">tmprint</span></tt> module and which are
+commonly used in <a class="reference external" href="http://www.texmacs.org">TeXmacs</a> documents.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lisp">
+<tt class="descname">lisp</tt> x<a class="headerlink" href="#lisp" title="Permalink to this definition">¶</a></dt>
+<dd><p>This can be used to execute arbitrary Lisp code, which is sometimes
+necessary to perform special functions in the Reduce system. Note that
+you need to quote <tt class="docutils literal"><span class="pre">x</span></tt> if you want to prevent it from being evaluated
+on the Pure side. This is true, in particular, for the quote itself,
+which needs an extra level so that one quote goes through to the Lisp
+system (e.g.: <tt class="docutils literal"><span class="pre">lisp</span> <span class="pre">(''(a</span> <span class="pre">b</span> <span class="pre">c))</span></tt>). For convenience, free symbols are
+quoted automatically, and Pure lists are mapped to corresponding Lisp
+lists and vice versa (so <tt class="docutils literal"><span class="pre">lisp</span> <span class="pre">[a,b,c]</span></tt> actually yields the same
+result as <tt class="docutils literal"><span class="pre">lisp</span> <span class="pre">(''(a</span> <span class="pre">b</span> <span class="pre">c))</span></tt>). The result is always a Pure list or an
+atomic value.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lispval">
+<tt class="descname">lispval</tt> x<a class="headerlink" href="#lispval" title="Permalink to this definition">¶</a></dt>
+<dd><p>This converts a Pure expression to its Reduce equivalent, like
+<a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a> does, but without actually simplifying it. As with the
+other functions, you need to quote <tt class="docutils literal"><span class="pre">x</span></tt> if you want to prevent it from
+being evaluated on the Pure side. The result is the Pure representation
+of a Lisp form which can be passed as a value to other Lisp routines by
+employing the <a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> function. (Normally this requires that you
+double-quote the expression so that it doesn&#8217;t get evaluated by the Lisp
+interpreter.) This function isn&#8217;t for casual usage, but may be useful
+if you need to pass a Reduce expression to some Lisp function which
+cannot be called through <a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="lispsym">
+<tt class="descname">lispsym</tt> s::string<a class="headerlink" href="#lispsym" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function creates a special Pure identifier for any symbol given as
+a string, even symbols which don&#8217;t conform to Pure syntax. This is
+sometimes needed to specify special Lisp symbols in calls to
+<a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a>, such as <tt class="docutils literal"><span class="pre">lisp</span> <span class="pre">(lispsym</span> <span class="pre">&quot;oem-supervisor&quot;)</span></tt>. (Note that if
+such a special symbol occurs as a literal in a result returned by
+<a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> or <a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a> then it will get mangled into a form
+which conforms to Pure syntax.)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="declare">
+<tt class="descname">declare</tt> declsym [foo,bar,...]<a class="headerlink" href="#declare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declare symbols and their properties; please see the Declarations
+section in the Reduce manual for details. The second argument can also
+be a singleton symbol. In the present implementation, <tt class="docutils literal"><span class="pre">declsym</span></tt> must
+be one of:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">operator</span></tt>: declares an operator symbol;</li>
+<li><tt class="docutils literal"><span class="pre">precedence</span></tt>: declares an infix operator and optionally
+specifies its precedence (giving the symbol priority over a second
+given symbol);</li>
+<li><tt class="docutils literal"><span class="pre">antisymmetric</span></tt>, <tt class="docutils literal"><span class="pre">symmetric</span></tt>, <tt class="docutils literal"><span class="pre">even</span></tt>, <tt class="docutils literal"><span class="pre">odd</span></tt>, <tt class="docutils literal"><span class="pre">linear</span></tt>,
+<tt class="docutils literal"><span class="pre">noncom</span></tt> and <tt class="docutils literal"><span class="pre">nonzero</span></tt>: declares properties of already declared
+operator symbols;</li>
+<li><tt class="docutils literal"><span class="pre">depend</span></tt>, <tt class="docutils literal"><span class="pre">nodepend</span></tt>, <tt class="docutils literal"><span class="pre">factor</span></tt>, <tt class="docutils literal"><span class="pre">remfac</span></tt>, <tt class="docutils literal"><span class="pre">order</span></tt>,
+<tt class="docutils literal"><span class="pre">korder</span></tt>: declares kernel dependencies and orders. These take both
+symbols and &#8220;kernels&#8221; as arguments (the latter are simple prefix
+expressions which denote irreducible subterms such as <tt class="docutils literal"><span class="pre">cos</span> <span class="pre">x</span></tt>;
+Reduce treats these more or less like variables in algebraic
+simplifications).</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="precision">
+<tt class="descname">precision</tt> prec::int<a class="headerlink" href="#precision" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the internal Reduce precision in decimal digits for floating point
+calculations, and returns the previously set precision. This takes
+effect when rounded mode is enabled (<tt class="docutils literal"><span class="pre">reduce::switch</span> <span class="pre">&quot;rounded&quot;</span> <span class="pre">1</span></tt>).
+Note that at present this only affects Reduce&#8217;s internal precision,
+floating point values are still returned as double precision numbers in
+Pure land.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="plotreset">
+<tt class="descname">plotreset</tt><a class="headerlink" href="#plotreset" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is identical to the <tt class="docutils literal"><span class="pre">plotreset</span></tt> command provided by Reduce&#8217;s
+<a class="reference external" href="http://www.gnuplot.info/">gnuplot</a> interface, and is sometimes needed to reset the plot subsystem.</p>
+</dd></dl>
+
+<p>In Pure land, Reduce expressions are represented using Pure&#8217;s standard
+curried notation. Marshalling of numeric data works in a straightforward
+fashion and includes all natively supported Pure data types (machine ints,
+bigints, doubles, rationals and complex numbers). Some special conversions
+are applied to algebraic expressions to make arithmetic operations such as
+<tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">*</span></tt> etc. work as expected. In addition, the <tt class="docutils literal"><span class="pre">==</span></tt>, <tt class="docutils literal"><span class="pre">=&gt;</span></tt>, <tt class="docutils literal"><span class="pre">..</span></tt>
+and <tt class="docutils literal"><span class="pre">:=</span></tt> infix operators can be used to denote equations, replacement
+rules, ranges and assignments in Reduce, respectively. (Note that you may
+have to quote these in some cases so that they don&#8217;t get evaluated on the
+Pure side.) Also, Reduce&#8217;s <tt class="docutils literal"><span class="pre">arbconst</span> <span class="pre">n</span></tt>, <tt class="docutils literal"><span class="pre">arbint</span> <span class="pre">n</span></tt> and <tt class="docutils literal"><span class="pre">arbcomplex</span>
+<span class="pre">n</span></tt> terms can be mapped to Greek symbols <tt class="docutils literal"><span class="pre">αn</span></tt>, <tt class="docutils literal"><span class="pre">βn</span></tt> and <tt class="docutils literal"><span class="pre">ζn</span></tt> on the
+Pure side. (This may cause issues in environments without proper Unicode
+support, so it&#8217;s disabled by default.) For debugging purposes, all these
+automatic conversions can also be turned off on the output side with the
+&#8216;<tt class="docutils literal"><span class="pre">#!</span>&nbsp; <span class="pre">--disable</span> <span class="pre">mapped</span></tt>&#8216; compilation pragma; this needs to be placed
+<em>before</em> the &#8216;<tt class="docutils literal"><span class="pre">using</span> <span class="pre">reduce;</span></tt>&#8216; import clause to take effect. There are a
+number of other conditional compilation options which may be used to
+selectively turn off some of the conversions; please check the module
+source for details.</p>
+<p>Lisp expressions are handled in a similar fashion, but here only a few
+basic Pure data types (integers, doubles, strings and lists) are converted
+to and from corresponding Lisp data. Function applications in Pure&#8217;s
+curried notation are mapped to corresponding Lisp forms. The result of
+invoking <a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> is always one of the supported atomic types or a Pure
+list.</p>
+<p>The <a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> function is to be used with care. An orderly Pure
+exception is raised if you try to execute a non-existing Lisp function. But
+there are some internal functions in Reduce which aren&#8217;t very forgiving if
+you try to execute them with invalid arguments, and will most likely crash
+the Reduce system in such cases. You have been warned!</p>
+</div>
+</div>
+<div class="section" id="basic-examples">
+<h2>Basic Examples<a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h2>
+<p>Here is a simple example showing how to start up Reduce and do some
+calculations:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> reduce<span class="p">;</span>
+Reduce (Free CSL version), <span class="mi">27</span>-Sep-<span class="mi">12</span> ...
+<span class="gp">&gt; </span>simplify $ df ((x+<span class="mi">5</span>)^<span class="mi">3</span>) x<span class="p">;</span>
+<span class="mi">3</span>*x^<span class="mi">2</span>+<span class="mi">30</span>*x+<span class="mi">75</span>
+<span class="gp">&gt; </span>simplify $ intg (exp (<span class="mi">2</span>*x)) x<span class="p">;</span>
+e^(<span class="mi">2</span>*x)/<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ solve (x^<span class="mi">2</span>+<span class="mi">7</span>) x<span class="p">;</span>
+[x==sqrt <span class="mi">7</span>*i,x==-sqrt <span class="mi">7</span>*i]
+</pre></div>
+</div>
+<p>Note that the result returned by <a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a> is always a quoted
+expression. If the expression can be further reduced on the Pure side,
+you&#8217;ll have to use Pure&#8217;s <a class="reference internal" href="purelib.html#eval" title="eval"><tt class="xref pure pure-func docutils literal"><span class="pre">eval</span></tt></a> function to force its evaluation:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> math<span class="p">;</span>
+<span class="gp">&gt; </span>eval ans<span class="p">;</span>
+[x==<span class="mf">0.0</span>+:<span class="mf">2.64575131106459</span>,x==<span class="mf">0.0</span>+:-<span class="mf">2.64575131106459</span>]
+</pre></div>
+</div>
+<p>The following example shows how you can do a simple plot using Reduce&#8217;s
+<a class="reference external" href="http://www.gnuplot.info/">gnuplot</a> module:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ plot [sin x/x, x==&#39;(-<span class="mi">20</span>..<span class="mi">20</span>), terminal==<span class="s">&quot;wxt&quot;</span>]<span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>This pops up a wxWidgets window (<tt class="docutils literal"><span class="pre">terminal==&quot;wxt&quot;</span></tt>) with a plot of the given
+function in it, see the <a class="reference internal" href="#screenshot">screenshot</a> below. The <tt class="docutils literal"><span class="pre">x=='(-20..20)</span></tt> argument
+specifies the desired range of the <tt class="docutils literal"><span class="pre">x</span></tt> variable (note that the range needs
+to be quoted so that it gets through to Reduce rather than being evaluated on
+the Pure side).</p>
+<div class="figure align-center" id="screenshot">
+<a class="reference internal image-reference" href="_images/gnuplot.png"><img alt="_images/gnuplot.png" src="_images/gnuplot.png" style="width: 449.4px; height: 326.9px;" /></a>
+<p class="caption">Reduce gnuplot example.</p>
+</div>
+<p>The same plot can be written to a PostScript file sinc.ps as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ plot [sin x/x, x==&#39;(-<span class="mi">20</span>..<span class="mi">20</span>), terminal==<span class="s">&quot;postscript&quot;</span>, output==<span class="s">&quot;sinc.ps&quot;</span>]<span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> function can be used to execute Lisp code in the CSL
+interpreter hosting the Reduce system. Here are some basic examples. Note
+that, to be on the safe side, we just always quote the argument to
+<a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> here to prevent its evaluation on the Pure side.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lisp (&#39;plus <span class="mi">2</span> <span class="mi">3</span>)<span class="p">;</span>
+<span class="mi">5</span>
+<span class="gp">&gt; </span>lisp (&#39;car (list a b c d e))<span class="p">;</span>
+a
+<span class="gp">&gt; </span>lisp (&#39;cdr [a,b,[c,d],e])<span class="p">;</span>
+[b,[c,d],e]
+</pre></div>
+</div>
+<p>Lisp&#8217;s truth values are <tt class="docutils literal"><span class="pre">t</span></tt> and <tt class="docutils literal"><span class="pre">nil</span></tt>; the latter is just the empty list,
+so that&#8217;s what you get if a Lisp predicate evaluates to &#8220;false&#8221;:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lisp (&#39;lessp <span class="mi">5</span> <span class="mi">3</span>)<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (&#39;greaterp <span class="mi">5</span> <span class="mi">3</span>)<span class="p">;</span>
+t
+</pre></div>
+</div>
+<p>Most simple kinds of Lisp calls should be doable that way, but don&#8217;t expect
+any miracles; the <a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> function is provided to access special
+functionality in the &#8220;symbolic mode&#8221; of the Reduce system, not to turn Pure
+into a full-featured Lisp frontend. The following example illustrates how you
+can use the <a class="reference internal" href="#lisp" title="lisp"><tt class="xref pure pure-func docutils literal"><span class="pre">lisp</span></tt></a> function to declare an operator symbol and change or
+query its properties:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lisp (&#39;operator [myop])<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (&#39;flag [myop] odd)<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (&#39;prop myop)<span class="p">;</span>
+[odd:t,simpfn:simpiden]
+<span class="gp">&gt; </span>simplify (myop (-x))<span class="p">;</span>
+-myop x
+</pre></div>
+</div>
+<p>If you find it awkward to evaluate Lisp forms in Pure, you can also achieve
+the same with the <a class="reference internal" href="#declare" title="declare"><tt class="xref pure pure-func docutils literal"><span class="pre">declare</span></tt></a> function which covers most of the common
+Reduce declarations that might be needed:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator myop<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare odd myop<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>simplify (myop (-x))<span class="p">;</span>
+-myop x
+</pre></div>
+</div>
+<p>For basic Pure-based usage of Reduce, it&#8217;s convenient to have a simple
+read-eval-print loop which lets you type some declarations and expressions to
+be simplified (in Pure syntax), and takes care of all the quoting and invoking
+<a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a> for you. Here&#8217;s a little Pure script which does that:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> math, reduce, system<span class="p">;</span>
+
+<span class="cm">/* You might want to replace this with the real readline if you have the</span>
+<span class="cm">   corresponding Pure module installed. See the red.pure script in the</span>
+<span class="cm">   distribution for details. */</span>
+myreadline prompt<span class="p">::</span><span class="kt">string</span> = fputs prompt stdout $$ fflush stdout $$ gets<span class="p">;</span>
+
+red = loop <span class="kr">with</span>
+  <span class="c1">// A simplistic REPL.</span>
+  loop = <span class="kr">case</span> myreadline <span class="s">&quot;&gt; &quot;</span> <span class="kr">of</span>
+    s<span class="p">::</span><span class="kt">string</span> = process s $$ loop <span class="kr">if</span> ~null s<span class="p">;</span>
+    _ = () <span class="kr">otherwise</span><span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+  <span class="c1">// Get rid of trailing blanks and semicolons.</span>
+  process s = process (init s) <span class="kr">if</span> any (==last s) [<span class="s">&quot; &quot;</span>,<span class="s">&quot;;&quot;</span>]<span class="p">;</span>
+  <span class="c1">// Process a declaration or REDUCE expression.</span>
+  process s = <span class="kr">case</span> val s <span class="kr">of</span>
+    val _ = fputs <span class="s">&quot;** syntax error</span><span class="se">\n</span><span class="s">&quot;</span> stderr <span class="kr">if</span> ~null lasterr<span class="p">;</span>
+    on flag = reduce<span class="p">::</span>switch (str flag) <span class="mi">1</span><span class="p">;</span>
+    off flag = reduce<span class="p">::</span>switch (str flag) <span class="mi">0</span><span class="p">;</span>
+    x<span class="p">@</span>(declare _ _) = eval x<span class="p">;</span>
+    x = puts (str (simplify x)) <span class="kr">otherwise</span><span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Now you can run <tt class="docutils literal"><span class="pre">red</span></tt> at the Pure prompt and start typing the stuff you want
+to evaluate, one expression or declaration per line. Enter an empty line or
+<tt class="kbd docutils literal"><span class="pre">Ctrl-D</span></tt> when you&#8217;re done to return to the Pure command prompt.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>red<span class="p">;</span>
+<span class="gp">&gt; </span>df ((x+<span class="mi">5</span>)^<span class="mi">3</span>) x
+<span class="mi">3</span>*x^<span class="mi">2</span>+<span class="mi">30</span>*x+<span class="mi">75</span>
+<span class="gp">&gt; </span>intg (exp (<span class="mi">2</span>*x)) x
+e^(<span class="mi">2</span>*x)/<span class="mi">2</span>
+<span class="gp">&gt; </span>on rounded
+<span class="gp">&gt; </span>solve (x^<span class="mi">2</span>+<span class="mi">7</span>==<span class="mi">17</span>) x
+[x==<span class="mf">3.16227766016838</span>,x==-<span class="mf">3.16227766016838</span>]
+<span class="gp">&gt; </span>off rounded
+<span class="gp">&gt; </span>solve (x^<span class="mi">2</span>+<span class="mi">7</span>==<span class="mi">17</span>) x
+[x==sqrt <span class="mi">10</span>,x==-sqrt <span class="mi">10</span>]
+<span class="gp">&gt; </span>declare operator myop
+<span class="gp">&gt; </span>declare odd myop
+<span class="gp">&gt; </span>myop (-x)
+-myop x
+<span class="gp">&gt; </span>plot [sin x/x, x==(-<span class="mi">20</span>..<span class="mi">20</span>), terminal==<span class="s">&quot;wxt&quot;</span>]
+<span class="mi">0</span>
+<span class="gp">&gt; </span>^D
+()
+</pre></div>
+</div>
+<p>Note that we barely scratched the surface here; Reduce is a very complex
+system with lots of capabilities. The following section explores some of these
+areas in more detail.</p>
+</div>
+<div class="section" id="examples-by-topic">
+<h2>Examples by Topic<a class="headerlink" href="#examples-by-topic" title="Permalink to this headline">¶</a></h2>
+<p>This is a small excerpt from the <strong>REDUCE User&#8217;s Manual</strong> <a class="reference internal" href="#redum">[REDUM]</a>,
+translated to Pure syntax. For any details we refer to that document. With
+this guide it should be straightforward to translate back and forth between
+Pure and REDUCE syntax for the invocation of REDUCE functions. The one thing
+you have to keep in mind is that Pure uses <em>curried</em> notation for function
+applications, so where a function is invoked as <tt class="docutils literal"><span class="pre">f(x,y,z)</span></tt> in REDUCE, you&#8217;ll
+have to call it as <tt class="docutils literal"><span class="pre">f</span> <span class="pre">x</span> <span class="pre">y</span> <span class="pre">z</span></tt> in Pure (with parentheses around each argument
+which is a compound expression).</p>
+<p>The REDUCE User&#8217;s Manual as well as the documentation of each package and
+other valuable information may be found at:
+<a class="reference external" href="http://www.reduce-algebra.com/documentation.htm">http://www.reduce-algebra.com/documentation.htm</a></p>
+<div class="section" id="differentiation">
+<h3>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
+<p>The operator <tt class="docutils literal"><span class="pre">df</span></tt> is used to represent partial differentiation with respect
+to one or more variables.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">df exprn [var &lt;num&gt;]+</tt></dt>
+<dd></dd></dl>
+
+<p>Differentiation of the function <img class="math" src="_images/math/37d36052091ff4e8877a3b55f2014b62e81069e1.png" alt="x^2 y^3 z^4"/> with respect to
+<img class="math" src="_images/math/accc80fdf164cef264f56a82b6f9f6add320fe05.png" alt="x,y,z"/>, two, three and four times respectively, i.e
+<img class="math" src="_images/math/38a45ae1b8d8833859b5404bafb5bdbb9d2fdb9e.png" alt="\frac{\partial^9 x^2 y^3 z^4}{\partial x^2 \partial y^3 \partial z^4}"/>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ df (x^<span class="mi">2</span>*y^<span class="mi">3</span>*z^<span class="mi">4</span>) x <span class="mi">2</span> y <span class="mi">3</span> z <span class="mi">4</span> <span class="p">;</span>
+<span class="mi">288</span>
+</pre></div>
+</div>
+<p>The derivative of <img class="math" src="_images/math/4b03686d9ad5334a024240873fb9eeccfc4c1b95.png" alt="\log \sin (x)^2"/>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ df (log(sin x)^<span class="mi">2</span>) x<span class="p">;</span>
+<span class="mi">2</span>*cos x*log (sin x)/sin x
+</pre></div>
+</div>
+<p>Note the parentheses.</p>
+<p>Suppose <img class="math" src="_images/math/f17b551f5909d3d00a2a02498aa05feaaf2b00fa.png" alt="z(\cos(x),y)"/>. Let&#8217;s calculate <img class="math" src="_images/math/fd073a38d9d0b95d33fe16c99aa444312f6affe6.png" alt="\frac{\partial \sin(z)}
+{\partial \cos(x)}"/> and <img class="math" src="_images/math/8bc7c95e9c4803652c2ed461d565822ac00f6e00.png" alt="\frac{\partial z^2}{\partial x}"/> :</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare depend [z,cos x,y]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>simplify (df (sin z) (cos x))<span class="p">;</span>
+cos z*df z (cos x)
+<span class="gp">&gt; </span>simplify (df (z^<span class="mi">2</span>) x)<span class="p">;</span>
+<span class="mi">2</span>*df z x*z
+</pre></div>
+</div>
+<p>Note how to declare dependencies.</p>
+<p>The results are <img class="math" src="_images/math/0cdbe7c88c7d85d852c7ab1cee1b7ed57b6d3fce.png" alt="\cos(z) \frac{\partial z}
+{\partial \cos(x)}"/> and  <img class="math" src="_images/math/8c5193aefe42abfae1781d7443e0d82fc08bbace.png" alt="2 z \frac{\partial z} {\partial x}"/>,
+respectively, as expected.</p>
+</div>
+<div class="section" id="integration">
+<h3>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">INT</span></tt> is an operator in REDUCE for indefinite integration using a
+combination of the Risch-Norman algorithm and pattern matching.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">intg exprn var</tt></dt>
+<dd></dd></dl>
+
+<p>Note that in Pure the operator is called <tt class="docutils literal"><span class="pre">intg</span></tt> in order not to clash
+with the <a class="reference internal" href="purelib.html#int" title="int"><tt class="xref pure pure-func docutils literal"><span class="pre">int</span></tt></a> conversion function.</p>
+<p>Example 1:</p>
+<div class="math">
+<p><img src="_images/math/d50d198cd362adedbd72aa07c42ec19e77012ec9.png" alt="\int \frac{1}{a x + b} dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ intg (<span class="mi">1</span>/(a*x+b)) x<span class="p">;</span>
+log (a*x+b)/a
+</pre></div>
+</div>
+<p>Example 2:</p>
+<div class="math">
+<p><img src="_images/math/c899f1b26ad30e41c731c4b1b99818309b557183.png" alt="I(a,b,n) = \int x^2 (a x + b)^n dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>I a b n = simplify $ intg (x^<span class="mi">2</span>*(a*x+b)^n) x<span class="p">;</span>
+<span class="gp">&gt; </span>I a b n<span class="p">;</span>
+((a*x+b)^n*a^<span class="mi">3</span>*n^<span class="mi">2</span>*x^<span class="mi">3</span>+<span class="mi">3</span>*(a*x+b)^n*a^<span class="mi">3</span>*n*x^<span class="mi">3</span>+<span class="mi">2</span>*(a*x+b)^n*a^<span class="mi">3</span>*x^<span class="mi">3</span>+
+ (a*x+b)^n*a^<span class="mi">2</span>*b*n^<span class="mi">2</span>*x^<span class="mi">2</span>+(a*x+b)^n*a^<span class="mi">2</span>*b*n*x^<span class="mi">2</span>-<span class="mi">2</span>*(a*x+b)^n*a*b^<span class="mi">2</span>*
+  n*x+<span class="mi">2</span>*(a*x+b)^n*b^<span class="mi">3</span>)/(a^<span class="mi">3</span>*n^<span class="mi">3</span>+<span class="mi">6</span>*a^<span class="mi">3</span>*n^<span class="mi">2</span>+<span class="mi">11</span>*a^<span class="mi">3</span>*n+<span class="mi">6</span>*a^<span class="mi">3</span>)
+<span class="gp">&gt; </span>I a b <span class="mi">0</span> <span class="p">;</span>
+x^<span class="mi">3</span>/<span class="mi">3</span>
+<span class="gp">&gt; </span>I <span class="mi">0</span> b n<span class="p">;</span>
+b^n*x^<span class="mi">3</span>/<span class="mi">3</span>
+<span class="gp">&gt; </span>I a <span class="mi">0</span> k<span class="p">;</span>
+x^k*a^k*x^<span class="mi">3</span>/(k+<span class="mi">3</span>)
+</pre></div>
+</div>
+<p>Example 3:</p>
+<div class="math">
+<p><img src="_images/math/f7a6e901cfdb9900d803827750209a2f4315b375.png" alt="\int \frac{\sqrt{x+\sqrt{x^2+1}}}{x} dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ intg (sqrt(x+sqrt(x^<span class="mi">2</span>+<span class="mi">1</span>))/x) x <span class="p">;</span>
+intg (sqrt (sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)+x)/x) x
+</pre></div>
+</div>
+<p>Apparently no solution was found. There is a package <tt class="docutils literal"><span class="pre">ALGINT</span></tt> in REDUCE
+which specifically deals with algebraic functions. The REDUCE User&#8217;s Manual
+<a class="reference internal" href="#redum">[REDUM]</a> says:</p>
+<blockquote class="pull-quote">
+<div><em>This package [...] will analytically integrate a wide range
+of expressions involving square roots where the answer exists in that class
+of functions.  It is an implementation of the work described in
+J.H. Davenport</em> <a class="reference internal" href="#lncs102">[LNCS102]</a>.</div></blockquote>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>load <span class="s">&quot;algint&quot;</span> <span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>simplify $ intg (sqrt(x+sqrt(x^<span class="mi">2</span>+<span class="mi">1</span>))/x) x <span class="p">;</span>
+atan ((sqrt (sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)+x)*sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)-sqrt (sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)+x)*x-sqrt
+(sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)+x))/<span class="mi">2</span>)+<span class="mi">2</span>*sqrt (sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)+x)+log (sqrt (sqrt
+(x^<span class="mi">2</span>+<span class="mi">1</span>)+x)-<span class="mi">1</span>)-log (sqrt (sqrt (x^<span class="mi">2</span>+<span class="mi">1</span>)+x)+<span class="mi">1</span>)
+</pre></div>
+</div>
+<p>Note how to load packages.</p>
+</div>
+<div class="section" id="length-map-and-select">
+<h3>Length, Map and Select<a class="headerlink" href="#length-map-and-select" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">LENGTH</span></tt> is a generic operator for finding the length of compound objects.
+Besides lists and matrices, this also includes algebraic expressions. The
+<tt class="docutils literal"><span class="pre">MAP</span></tt> and <tt class="docutils literal"><span class="pre">SELECT</span></tt> operators let you manipulate such objects by applying a
+function to each element of the structure, or by picking the elements
+satisfying a given predicate function. Thus these operations serve pretty much
+the same purposes as <a class="reference internal" href="purelib.html##" title="#"><tt class="xref pure pure-func docutils literal"><span class="pre">#</span></tt></a> (or <a class="reference internal" href="purelib.html#dim" title="dim"><tt class="xref pure pure-func docutils literal"><span class="pre">dim</span></tt></a>), <a class="reference internal" href="purelib.html#map" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a> and
+<a class="reference internal" href="purelib.html#filter" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a> in Pure, but in REDUCE they also work with the operands of an
+algebraic expression.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">length exprn</tt></dt>
+<dt>
+<tt class="descname">map fun exprn</tt></dt>
+<dt>
+<tt class="descname">select fun exprn</tt></dt>
+<dd></dd></dl>
+
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ length (a+b)<span class="p">;</span>
+<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ length (x^n+a*x+<span class="mi">2</span>)<span class="p">;</span>
+<span class="mi">3</span>
+
+<span class="gp">&gt; </span>simplify $ &#39;map sqrt [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
+[<span class="mi">1</span>,<span class="mi">2</span>^(<span class="mi">1</span>/<span class="mi">2</span>),<span class="mi">3</span>^(<span class="mi">1</span>/<span class="mi">2</span>)]
+<span class="gp">&gt; </span>simplify $ &#39;map log  [x^n,x^m,sin x]<span class="p">;</span>
+[log (x^n),log (x^m),log (sin x)]
+</pre></div>
+</div>
+<p>Note that <tt class="docutils literal"><span class="pre">map</span></tt> must be quoted if we want to evaluate it in REDUCE, since
+it&#8217;s also a function in Pure. In this case, we might as well do the
+calculation using Pure&#8217;s <tt class="docutils literal"><span class="pre">map</span></tt>; the result is exactly the same.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ map sqrt [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
+[<span class="mi">1</span>,<span class="mi">2</span>^(<span class="mi">1</span>/<span class="mi">2</span>),<span class="mi">3</span>^(<span class="mi">1</span>/<span class="mi">2</span>)]
+<span class="gp">&gt; </span>simplify $ map log  [x^n,x^m,sin x]<span class="p">;</span>
+[log (x^n),log (x^m),log (sin x)]
+</pre></div>
+</div>
+<p>If the function to be applied in calls to <tt class="docutils literal"><span class="pre">MAP</span></tt> or <tt class="docutils literal"><span class="pre">SELECT</span></tt> is a compound
+expression, it must either contain a single free variable (indicated with the
+<tt class="docutils literal"><span class="pre">~</span></tt> prefix, e.g.: <tt class="docutils literal"><span class="pre">~w</span></tt>) or a replacement rule of the form <tt class="docutils literal"><span class="pre">var</span> <span class="pre">=&gt;</span>
+<span class="pre">exprn</span></tt>. In either case the current elements are substituted for the free
+variable when the function is applied.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ &#39;map (y=&gt;df y x)   [x^n,x^m,sin x]<span class="p">;</span>
+[x^n*n/x,x^m*m/x,cos x]
+<span class="gp">&gt; </span>simplify $ &#39;map (y=&gt;intg y x) [x^n,x^m,sin x]<span class="p">;</span>
+[x^n*x/(n+<span class="mi">1</span>),x^m*x/(m+<span class="mi">1</span>),-cos x]
+
+<span class="gp">&gt; </span>simplify $ select (evenp (deg (~w) y)) ((x+y)^<span class="mi">5</span>)<span class="p">;</span>
+x^<span class="mi">5</span>+<span class="mi">10</span>*x^<span class="mi">3</span>*y^<span class="mi">2</span>+<span class="mi">5</span>*x*y^<span class="mi">4</span>
+<span class="gp">&gt; </span>simplify $ select (w=&gt;evenp (deg w y)) ((x+y)^<span class="mi">5</span>)<span class="p">;</span>
+x^<span class="mi">5</span>+<span class="mi">10</span>*x^<span class="mi">3</span>*y^<span class="mi">2</span>+<span class="mi">5</span>*x*y^<span class="mi">4</span>
+</pre></div>
+</div>
+<p>Contrast this with Pure where the function argument to <a class="reference internal" href="purelib.html#map" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a> is often
+specified as a lambda:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ map (\y-&gt;df y x)   [x^n,x^m,sin x]<span class="p">;</span>
+[x^n*n/x,x^m*m/x,cos x]
+<span class="gp">&gt; </span>simplify $ map (\y-&gt;intg y x) [x^n,x^m,sin x]<span class="p">;</span>
+[x^n*x/(n+<span class="mi">1</span>),x^m*x/(m+<span class="mi">1</span>),-cos x]
+</pre></div>
+</div>
+<p>In principle, the same correspondences also hold between REDUCE&#8217;s <tt class="docutils literal"><span class="pre">select</span></tt>
+and Pure&#8217;s <a class="reference internal" href="purelib.html#filter" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a>. For instance, consider:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ select (w=&gt;evenp (deg w x)) [<span class="mi">2</span>*x^<span class="mi">2</span>,<span class="mi">3</span>*x^<span class="mi">3</span>,<span class="mi">4</span>*x^<span class="mi">4</span>]<span class="p">;</span>
+[<span class="mi">2</span>*x^<span class="mi">2</span>,<span class="mi">4</span>*x^<span class="mi">4</span>]
+</pre></div>
+</div>
+<p>The equivalent Pure <a class="reference internal" href="purelib.html#filter" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a> is:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>filter (\w-&gt;simplify $ evenp (deg w x)) [<span class="mi">2</span>*x^<span class="mi">2</span>,<span class="mi">3</span>*x^<span class="mi">3</span>,<span class="mi">4</span>*x^<span class="mi">4</span>]<span class="p">;</span>
+[<span class="mi">2</span>*x^<span class="mi">2</span>,<span class="mi">4</span>*x^<span class="mi">4</span>]
+</pre></div>
+</div>
+<p>Note that REDUCE is now being called inside the predicate function, the rest
+of the processing is done in Pure.</p>
+<p>Of course, if you want to apply <a class="reference internal" href="purelib.html#map" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a>, <a class="reference internal" href="purelib.html#filter" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a> and similar Pure
+functions to an algebraic expression, you&#8217;ll first have to extract its
+components as a list. Here&#8217;s a little Pure function which mimics the way in
+which <tt class="docutils literal"><span class="pre">MAP</span></tt> and <tt class="docutils literal"><span class="pre">SELECT</span></tt> decompose an expression:</p>
+<div class="highlight-pure"><div class="highlight"><pre>terms x = <span class="kr">case</span> x <span class="kr">of</span>
+  f<span class="p">@</span>_ u v = collect f x <span class="kr">with</span>
+    <span class="c1">// Collect the operands of variadic Reduce operators.</span>
+    collect f (f<span class="p">@</span>_ u v) = collect f u+collect f v<span class="p">;</span>
+    collect f x = [x] <span class="kr">otherwise</span><span class="p">;</span>
+  <span class="kr">end</span> <span class="kr">if</span> any (===eval f) [(+),(-),(*),min,max]<span class="p">;</span>
+  = [u,v] <span class="kr">if</span> arity f == <span class="mi">2</span><span class="p">;</span>
+  _ = [x] <span class="kr">otherwise</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>For instance, consider:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ &#39;map (w=&gt;w+<span class="mi">1</span>) (df ((x+y)^<span class="mi">3</span>) x)<span class="p">;</span>
+<span class="mi">3</span>*x^<span class="mi">2</span>+<span class="mi">6</span>*x*y+<span class="mi">3</span>*y^<span class="mi">2</span>+<span class="mi">3</span>
+</pre></div>
+</div>
+<p>With the help of <tt class="docutils literal"><span class="pre">terms</span></tt> we can also do this using Pure&#8217;s <a class="reference internal" href="purelib.html#map" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a> as
+follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (+<span class="mi">1</span>) $ terms (simplify (df ((x+y)^<span class="mi">3</span>) x))<span class="p">;</span>
+[<span class="mi">3</span>*x^<span class="mi">2</span>+<span class="mi">1</span>,<span class="mi">6</span>*x*y+<span class="mi">1</span>,<span class="mi">3</span>*y^<span class="mi">2</span>+<span class="mi">1</span>]
+<span class="gp">&gt; </span>simplify $ foldl (+) <span class="mi">0</span> ans<span class="p">;</span>
+<span class="mi">3</span>*x^<span class="mi">2</span>+<span class="mi">6</span>*x*y+<span class="mi">3</span>*y^<span class="mi">2</span>+<span class="mi">3</span>
+</pre></div>
+</div>
+<p>While the REDUCE version is shorter and only involves a single call to
+<a class="reference internal" href="#simplify" title="simplify"><tt class="xref pure pure-func docutils literal"><span class="pre">simplify</span></tt></a>, with a little bit of programming the Pure solution can be
+made just as convenient. More importantly, this method easily generalizes to
+other list operations. This makes it possible to apply Pure&#8217;s full arsenal of
+generic list functions which goes beyond what&#8217;s available in REDUCE.</p>
+</div>
+<div class="section" id="partial-fractions">
+<h3>Partial Fractions<a class="headerlink" href="#partial-fractions" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">PF</span></tt> operator transforms an expression into a list of partial fractions
+with respect to the main variable. <tt class="docutils literal"><span class="pre">PF</span></tt> does a complete partial fraction
+decomposition.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">pf expr var</tt></dt>
+<dd></dd></dl>
+
+<p>Let us find the decomposition of:</p>
+<div class="math">
+<p><img src="_images/math/6ad7d10cfa19f1ccab4ae0c476fef6d8370f68c7.png" alt="f(x) = \frac{2}{(x+1)^2 \,(x+2)}"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> f = <span class="mi">2</span>/((x+<span class="mi">1</span>)^<span class="mi">2</span>*(x+<span class="mi">2</span>))<span class="p">;</span>
+<span class="gp">&gt; </span>simplify $ pf f x<span class="p">;</span>
+[<span class="mi">2</span>/(x+<span class="mi">2</span>),(-<span class="mi">2</span>)/(x+<span class="mi">1</span>),<span class="mi">2</span>/(x^<span class="mi">2</span>+<span class="mi">2</span>*x+<span class="mi">1</span>)]
+</pre></div>
+</div>
+<p>This means:</p>
+<div class="math">
+<p><img src="_images/math/75656f73ed0eba76e6598833830deebf17c26288.png" alt="f(x) = \frac{2}{x+2} + \frac{-2}{x+1} + \frac{2}{x^2+2x+1}"/></p>
+</div><p>If one wants the denominators in factored form, one has to use the
+switch <tt class="docutils literal"><span class="pre">off</span> <span class="pre">exp</span></tt>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>switch <span class="s">&quot;exp&quot;</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>simplify $ pf f x<span class="p">;</span>
+[<span class="mi">2</span>/(x+<span class="mi">2</span>),(-<span class="mi">2</span>)/(x+<span class="mi">1</span>),<span class="mi">2</span>/(x+<span class="mi">1</span>)^<span class="mi">2</span>]
+</pre></div>
+</div>
+<p>Note how the value of a Reduce switch is changed in Pure.</p>
+</div>
+<div class="section" id="solving">
+<h3>Solving<a class="headerlink" href="#solving" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">SOLVE</span></tt> is an operator for solving one or more simultaneous algebraic
+equations. It is used with the syntax:</p>
+<dl class="describe">
+<dt>
+<tt class="descname">solve expr [var | varlist]</tt></dt>
+<dd></dd></dl>
+
+<p>where <tt class="docutils literal"><span class="pre">expr</span></tt> is a list of one or more expressions. Each expression is an
+algebraic equation, or is the difference of the two sides of the equation.</p>
+<p>Example 1:</p>
+<p>Find the solutions to</p>
+<div class="math">
+<p><img src="_images/math/30b528de263466ab1d4b4dac653d077b4a8b5e0b.png" alt="\log(\sin(x+3))^5 = 8"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> eqn1 = log(sin (x+<span class="mi">3</span>))^<span class="mi">5</span> == <span class="mi">8</span> <span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> sol1 = simplify $ solve eqn1 x<span class="p">;</span>
+</pre></div>
+</div>
+<p>The variable <tt class="docutils literal"><span class="pre">sol1</span></tt> now contains an entire list of solutions. How many are
+there?</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>#sol1 <span class="p">;</span>
+<span class="mi">10</span>
+</pre></div>
+</div>
+<p>The first one is:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sol1!<span class="mi">0</span><span class="p">;</span>
+x==<span class="mi">2</span>*arbint <span class="mi">5</span>*pi+asin (e^(<span class="mi">2</span>^(<span class="mi">3</span>/<span class="mi">5</span>)*cos (<span class="mi">2</span>*pi/<span class="mi">5</span>))/e^(<span class="mi">2</span>^(<span class="mi">3</span>/<span class="mi">5</span>)*sin (<span class="mi">2</span>*pi/<span class="mi">5</span>)*i))-<span class="mi">3</span>
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/fbfbb9959df12ca065293445cc528fb3f88c4010.png" alt="x=
+2\cdot n \cdot \pi +{\tt asin}
+(\frac{e^{2^{\frac{3}{
+                   5}}\cdot \cos
+          (\frac{2\cdot \pi }{
+                  5}
+          )
+          }}{
+       e^{2^{\frac{3}{
+                   5}}\cdot \sin
+          (\frac{2\cdot \pi }{
+                  5}
+          )
+          \cdot i}}
+)
+-3"/></p>
+</div><p>where <tt class="docutils literal"><span class="pre">n</span></tt> is an arbitrary integer constant (shown as <tt class="docutils literal"><span class="pre">arbint</span> <span class="pre">5</span></tt> in the
+result of <tt class="docutils literal"><span class="pre">simplify</span></tt>).</p>
+<p>It is also possible to obtain the right-hand side of any solution in the list
+via REDUCE commands:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ rhs $ first $ solve eqn1 x<span class="p">;</span>
+<span class="mi">2</span>*arbint <span class="mi">10</span>*pi+asin (e^(<span class="mi">2</span>^(<span class="mi">3</span>/<span class="mi">5</span>)*cos (<span class="mi">2</span>*pi/<span class="mi">5</span>))/e^(<span class="mi">2</span>^(<span class="mi">3</span>/<span class="mi">5</span>)*sin (<span class="mi">2</span>*pi/<span class="mi">5</span>)*i))-<span class="mi">3</span>
+</pre></div>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">first</span></tt> gets the first solution in the list and <tt class="docutils literal"><span class="pre">rhs</span></tt> obtains the
+right-hand side. Hence there is a wealth of possibilities to process the
+solution list.</p>
+<p>Example 2:</p>
+<p>Here are some simpler examples for the sake of clarity:</p>
+<div class="math">
+<p><img src="_images/math/f9a7082422990788860c04d3a950a67b59cc4ec1.png" alt="X^2+1 = 0"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ solve [X^<span class="mi">2</span>+<span class="mi">1</span>==<span class="mi">0</span>] X<span class="p">;</span>
+[X==i,X==-i]
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/b968e3106d18a983ac4bbfcfcdfbcb358c684d81.png" alt="(x+3\,y = 7) \wedge (y-x = 1)"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ solve [x+<span class="mi">3</span>*y==<span class="mi">7</span>,y-x==<span class="mi">1</span>] [x,y] <span class="p">;</span>
+[[x==<span class="mi">1</span>,y==<span class="mi">2</span>]]
+</pre></div>
+</div>
+<p>To get the multiplicities, turn on the switch <tt class="docutils literal"><span class="pre">multiplicities</span></tt>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ solve [x^<span class="mi">2</span>==<span class="mi">2</span>*x-<span class="mi">1</span>] x<span class="p">;</span>
+[x==<span class="mi">1</span>]
+<span class="gp">&gt; </span>reduce<span class="p">::</span>switch <span class="s">&quot;multiplicities&quot;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>simplify $ solve [x^<span class="mi">2</span>==<span class="mi">2</span>*x-<span class="mi">1</span>] x<span class="p">;</span>
+[x==<span class="mi">1</span>,x==<span class="mi">1</span>]
+</pre></div>
+</div>
+<p>For details consult the REDUCE user manual.</p>
+</div>
+<div class="section" id="even-and-odd-operators">
+<h3>Even and Odd Operators<a class="headerlink" href="#even-and-odd-operators" title="Permalink to this headline">¶</a></h3>
+<p>An operator can be declared to be even or odd in its first argument by the
+declarations <tt class="docutils literal"><span class="pre">EVEN</span></tt> and <tt class="docutils literal"><span class="pre">ODD</span></tt> respectively.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator [f1,f2]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare odd f1<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare even f2<span class="p">;</span>
+[]
+
+<span class="gp">&gt; </span>simplify $ f1(-a)<span class="p">;</span>
+-f1 a
+
+<span class="gp">&gt; </span>simplify $ f2 (-a)<span class="p">;</span>
+f2 a
+
+<span class="gp">&gt; </span>simplify $ f1 (-a) (-b)<span class="p">;</span>
+-f1 a (-b)
+</pre></div>
+</div>
+</div>
+<div class="section" id="linear-operators">
+<h3>Linear Operators<a class="headerlink" href="#linear-operators" title="Permalink to this headline">¶</a></h3>
+<p>An operator can be declared to be linear in its first argument over powers
+of its second argument.</p>
+<div class="math">
+<p><img src="_images/math/00f5f22f7944f4a4e4c6c07fab02bbf642007331.png" alt="L(a\,x^5+b\,x+c,x) = L(x^5,x)\cdot a + L(x,x)\cdot b +L(1,x)\cdot c"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator L<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare linear L<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>simplify $ L (a*x^<span class="mi">5</span>+b*x+c) x <span class="p">;</span>
+L (x^<span class="mi">5</span>) x*a+L x x*b+L <span class="mi">1</span> x*c
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/480d0c34e36dc76f7ce22067b6d93e9d3254a596.png" alt="L(a+b+c+d,y) = L(1,y)\cdot (a+b+c+d)"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ L (a+b+c+d) y<span class="p">;</span>
+L <span class="mi">1</span> y*a+L <span class="mi">1</span> y*b+L <span class="mi">1</span> y*c+L <span class="mi">1</span> y*d
+</pre></div>
+</div>
+<p>Note that <tt class="docutils literal"><span class="pre">L</span> <span class="pre">x</span> <span class="pre">y</span></tt> binds stronger than <tt class="docutils literal"><span class="pre">(*)</span></tt> in Pure.</p>
+</div>
+<div class="section" id="non-commuting-operators">
+<h3>Non-commuting Operators<a class="headerlink" href="#non-commuting-operators" title="Permalink to this headline">¶</a></h3>
+<p>An operator can be declared to be non-commutative under multiplication by the
+declaration <tt class="docutils literal"><span class="pre">NONCOM</span></tt>.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator [u,v]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>simplify (u(x)*u(y)-u(y)*u(x))<span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>declare noncom [u,v]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>simplify (u(x)*u(y)-u(y)*u(x))<span class="p">;</span>
+u x*u y-u y*u x
+</pre></div>
+</div>
+</div>
+<div class="section" id="symmetric-and-antisymmetric-operators">
+<h3>Symmetric and Antisymmetric Operators<a class="headerlink" href="#symmetric-and-antisymmetric-operators" title="Permalink to this headline">¶</a></h3>
+<p>An operator can be declared to be symmetric with respect to its arguments by
+the declaration <tt class="docutils literal"><span class="pre">SYMMETRIC</span></tt>. Similarly, the declaration <tt class="docutils literal"><span class="pre">ANTISYMMETRIC</span></tt>
+declares an operator antisymmetric.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator [A,S]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare symmetric S<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare antisymmetric A<span class="p">;</span>
+[]
+
+<span class="gp">&gt; </span>simplify $ A x x <span class="p">;</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>simplify $ (A x y z) + (A x z y) <span class="p">;</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>simplify $ S y x <span class="p">;</span>
+S x y
+
+<span class="gp">&gt; </span>simplify $ A y x <span class="p">;</span>
+-A x y
+</pre></div>
+</div>
+</div>
+<div class="section" id="creating-removing-variable-dependencies">
+<h3>Creating/Removing Variable Dependencies<a class="headerlink" href="#creating-removing-variable-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>There are several facilities in REDUCE, such as the differentiation operator
+and the linear operator facility, which can utilize knowledge of the
+dependencies between various variables. Such dependencies may be expressed by
+the command <tt class="docutils literal"><span class="pre">DEPEND</span></tt>.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator D <span class="p">;</span>
+[]
+<span class="gp">&gt; </span>declare depend [D,x,y]<span class="p">;</span>
+[]
+
+<span class="gp">&gt; </span>simplify $ df D a<span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">D</span></tt> does not depend on <tt class="docutils literal"><span class="pre">a</span></tt>, thus differentiating with respect to <tt class="docutils literal"><span class="pre">a</span></tt>
+yields 0, but</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ df D x<span class="p">;</span>
+df D x
+</pre></div>
+</div>
+<p>because <tt class="docutils literal"><span class="pre">D</span></tt> is declared to depend on <tt class="docutils literal"><span class="pre">x</span></tt>.
+If we also let <tt class="docutils literal"><span class="pre">a</span></tt> depend on <tt class="docutils literal"><span class="pre">x</span></tt>, then:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare depend [a,x]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>simplify $ df (D*a) x<span class="p">;</span>
+df D x*a+df a x*D
+</pre></div>
+</div>
+<p><strong>Note:</strong> Dependencies remain active until they are explicitly removed:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare nodepend [a,x]<span class="p">;</span>
+<span class="gp">&gt; </span>simplify $ df a x<span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>simplify $ df (D*a) x<span class="p">;</span>
+df D x*a
+</pre></div>
+</div>
+</div>
+<div class="section" id="internal-order-of-variables">
+<h3>Internal Order of Variables<a class="headerlink" href="#internal-order-of-variables" title="Permalink to this headline">¶</a></h3>
+<p>It is possible for the user to change the internal order of variables
+by means of the declaration <tt class="docutils literal"><span class="pre">KORDER</span></tt>. The syntax for this is:</p>
+<dl class="describe">
+<dt>
+<tt class="descname">declare korder [v1,...,vn]</tt></dt>
+<dd></dd></dl>
+
+<p>Unlike the ORDER declaration, which has a purely cosmetic effect on the way
+results are printed, the use of KORDER can have a significant effect on
+computation time.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare korder [z,y,x]<span class="p">;</span>
+[]
+<span class="gp">&gt; </span>x+y+z<span class="p">;</span>
+x+y+z
+<span class="gp">&gt; </span>simplify $ x+y+z<span class="p">;</span>
+z+y+x
+</pre></div>
+</div>
+</div>
+<div class="section" id="parts-of-algebraic-expressions">
+<h3>Parts of Algebraic Expressions<a class="headerlink" href="#parts-of-algebraic-expressions" title="Permalink to this headline">¶</a></h3>
+<p>The following operators can be used to obtain a specific part of an expression,
+or even change such a part to another expression.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">coeff expr::polynomial var</tt></dt>
+<dt>
+<tt class="descname">coeffn expr::polynomial var n::int</tt></dt>
+<dt>
+<tt class="descname">part expr::algebraic [n::int]</tt></dt>
+<dd></dd></dl>
+
+<p>Examples:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ coeff ((y^<span class="mi">2</span>+z)^<span class="mi">3</span>/z) y <span class="p">;</span>
+[z^<span class="mi">2</span>,<span class="mi">0</span>,<span class="mi">3</span>*z,<span class="mi">0</span>,<span class="mi">3</span>,<span class="mi">0</span>,<span class="mi">1</span>/z]
+
+<span class="gp">&gt; </span>simplify $ coeffn ((y^<span class="mi">2</span>+z)^<span class="mi">3</span>/z) y <span class="mi">6</span><span class="p">;</span>
+<span class="mi">1</span>/z
+
+<span class="gp">&gt; </span>simplify $ part (a+b) <span class="mi">2</span> <span class="p">;</span>
+b
+
+<span class="gp">&gt; </span>simplify $ part (a+b) <span class="mi">1</span> <span class="p">;</span>
+a
+
+<span class="gp">&gt; </span>simplify $ part (a+b) <span class="mi">0</span> <span class="p">;</span>
+(+)
+</pre></div>
+</div>
+<p><tt class="docutils literal"><span class="pre">PART</span></tt> may also be used to substitute a given part of an expression. In
+this case, the <tt class="docutils literal"><span class="pre">PART</span></tt> construct appears on the left-hand side of an
+assignment statement (cf. <a class="reference internal" href="#assignment">Assignment</a>), and the expression to replace the
+given part on the right-hand side.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span> simplify $ xx:=a+b<span class="p">;</span>
+a+b
+<span class="gp">&gt; </span> simplify $ part xx <span class="mi">2</span> := c <span class="p">;</span>
+c
+<span class="gp">&gt; </span> simplify $ xx<span class="p">;</span>
+a+c
+</pre></div>
+</div>
+</div>
+<div class="section" id="polynomials-and-rationals">
+<h3>Polynomials and Rationals<a class="headerlink" href="#polynomials-and-rationals" title="Permalink to this headline">¶</a></h3>
+<p>REDUCE is capable of factorizing univariate and multivariate polynomials with
+integer coefficients, finding all factors with integer coefficients. The
+package for doing this was written by Dr. Arthur C. Norman and Ms. P. Mary Ann
+Moore at The University of Cambridge.  It is described in <a class="reference internal" href="#symsac81">[SYMSAC81]</a>.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">factorize expr::polynomial [p::prime]</tt></dt>
+<dd></dd></dl>
+
+<p>Some examples:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ factorize (x^<span class="mi">105</span>-<span class="mi">1</span>) <span class="p">;</span>
+[[x^<span class="mi">48</span>+x^<span class="mi">47</span>+x^<span class="mi">46</span>-x^<span class="mi">43</span>-x^<span class="mi">42</span>-<span class="mi">2</span>*x^<span class="mi">41</span>-x^<span class="mi">40</span> ... ]
+
+<span class="gp">&gt; </span>reduce<span class="p">::</span>switch <span class="s">&quot;ifactor&quot;</span> <span class="mi">1</span><span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>simplify $ factorize (<span class="mi">12</span>*x^<span class="mi">2</span> - <span class="mi">12</span>) <span class="p">;</span>
+[[<span class="mi">2</span>,<span class="mi">2</span>],[<span class="mi">3</span>,<span class="mi">1</span>],[x+<span class="mi">1</span>,<span class="mi">1</span>],[x-<span class="mi">1</span>,<span class="mi">1</span>]]
+<span class="gp">&gt; </span>reduce<span class="p">::</span>switch <span class="s">&quot;ifactor&quot;</span> <span class="mi">0</span><span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>The following operators should be well known:</p>
+<dl class="describe">
+<dt>
+<tt class="descname">gcd expr1::polynomial expr2::polynomial -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">lcm expr1::polynomial expr2::polynomial -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">remainder expr1::polynomial expr2::polynomial -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">resultant expr1::polynomial expr2::polynomial var -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">decompose expr::polynomial -&gt; list</tt></dt>
+<dt>
+<tt class="descname">interpol &lt;values&gt; &lt;variable&gt; &lt;points&gt;)  -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">deg expr::polynomial var -&gt;int</tt></dt>
+<dt>
+<tt class="descname">den expr::rational -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">lcof expr::polynomial var -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">lpower expr::polynomial var-&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">lterm expr::polynomial var -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">mainvar expr::polynomial -&gt; expr</tt></dt>
+<dt>
+<tt class="descname">num expr::rational -&gt; polynomial</tt></dt>
+<dt>
+<tt class="descname">reduct expr::polynomial var -&gt; polynomial</tt></dt>
+<dd></dd></dl>
+
+<p>Some examples of each operator:</p>
+<p>GCD/LCM</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ gcd (x^<span class="mi">2</span>+<span class="mi">2</span>*x+<span class="mi">1</span>) (x^<span class="mi">2</span>+<span class="mi">3</span>*x+<span class="mi">2</span>) <span class="p">;</span>
+x+<span class="mi">1</span>
+<span class="gp">&gt; </span>simplify $ gcd (<span class="mi">2</span>*x^<span class="mi">2</span>-<span class="mi">2</span>*y^<span class="mi">2</span>) (<span class="mi">4</span>*x+<span class="mi">4</span>*y) <span class="p">;</span>
+<span class="mi">2</span>*x+<span class="mi">2</span>*y
+<span class="gp">&gt; </span>simplify $ gcd (x^<span class="mi">2</span>+y^<span class="mi">2</span>) (x-y) <span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>simplify $ lcm (x^<span class="mi">2</span>+<span class="mi">2</span>*x+<span class="mi">1</span>) (x^<span class="mi">2</span>+<span class="mi">3</span>*x+<span class="mi">2</span>) <span class="p">;</span>
+x^<span class="mi">3</span>+<span class="mi">4</span>*x^<span class="mi">2</span>+<span class="mi">5</span>*x+<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ lcm (<span class="mi">2</span>*x^<span class="mi">2</span>-<span class="mi">2</span>*y^<span class="mi">2</span>) (<span class="mi">4</span>*x+<span class="mi">4</span>*y) <span class="p">;</span>
+<span class="mi">4</span>*x^<span class="mi">2</span>-<span class="mi">4</span>*y^<span class="mi">2</span>
+</pre></div>
+</div>
+<p>REMAINDER/RESULTANT</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ remainder ((x+y)*(x+<span class="mi">2</span>*y)) (x+<span class="mi">3</span>*y) <span class="p">;</span>
+<span class="mi">2</span>*y^<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ remainder (<span class="mi">2</span>*x+y) <span class="mi">2</span> <span class="p">;</span>
+y
+
+<span class="gp">&gt; </span>simplify $ resultant (x/r*u+y) (u*y) u <span class="p">;</span>
+-y^<span class="mi">2</span>
+</pre></div>
+</div>
+<p>DECOMPOSE</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ decompose (x^<span class="mi">8</span>-<span class="mi">88</span>*x^<span class="mi">7</span>+<span class="mi">2924</span>*x^<span class="mi">6</span>-<span class="mi">43912</span>*x^<span class="mi">5</span>+<span class="mi">263431</span>*x^<span class="mi">4</span>-
+<span class="gp">&gt; </span>                      <span class="mi">218900</span>*x^<span class="mi">3</span>+<span class="mi">65690</span>*x^<span class="mi">2</span>-<span class="mi">7700</span>*x+<span class="mi">234</span>) <span class="p">;</span>
+[u^<span class="mi">2</span>+<span class="mi">35</span>*u+<span class="mi">234</span>,u==v^<span class="mi">2</span>+<span class="mi">10</span>*v,v==x^<span class="mi">2</span>-<span class="mi">22</span>*x]
+
+<span class="gp">&gt; </span>simplify $ decompose (u^<span class="mi">2</span>+v^<span class="mi">2</span>+<span class="mi">2</span>*u*v+<span class="mi">1</span>) <span class="p">;</span>
+[w^<span class="mi">2</span>+<span class="mi">1</span>,w==u+v]
+</pre></div>
+</div>
+<p>DEG/DEN</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ deg ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) d <span class="p">;</span>
+<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ deg ((x+b)*(x^<span class="mi">6</span>+<span class="mi">2</span>*y)^<span class="mi">2</span>) x <span class="p">;</span>
+<span class="mi">13</span>
+
+<span class="gp">&gt; </span>simplify $ den (x/y^<span class="mi">2</span>) <span class="p">;</span>
+y^<span class="mi">2</span>
+</pre></div>
+</div>
+<p>LCOF/LPOWER/LTERM</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ lcof ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) a <span class="p">;</span>
+c^<span class="mi">2</span>+<span class="mi">4</span>*c*d+<span class="mi">4</span>*d^<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ lcof ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) d <span class="p">;</span>
+<span class="mi">4</span>*a+<span class="mi">4</span>*b
+<span class="gp">&gt; </span>simplify $ lcof ((a+b)*(c+<span class="mi">2</span>*d)) (&#39;e) <span class="p">;</span>
+a*c+<span class="mi">2</span>*a*d+b*c+<span class="mi">2</span>*b*d
+
+<span class="gp">&gt; </span>simplify $ lpower ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) a <span class="p">;</span>
+a
+<span class="gp">&gt; </span>simplify $ lpower ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) d <span class="p">;</span>
+d^<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ lpower ((a+b)*(c+<span class="mi">2</span>*d)) x <span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>simplify $ lterm ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) a <span class="p">;</span>
+a*c^<span class="mi">2</span>+<span class="mi">4</span>*a*c*d+<span class="mi">4</span>*a*d^<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ lterm ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) d <span class="p">;</span>
+<span class="mi">4</span>*a*d^<span class="mi">2</span>+<span class="mi">4</span>*b*d^<span class="mi">2</span>
+<span class="gp">&gt; </span>simplify $ lterm ((a+b)*(c+<span class="mi">2</span>*d)) x <span class="p">;</span>
+a*c+<span class="mi">2</span>*a*d+b*c+<span class="mi">2</span>*b*d
+</pre></div>
+</div>
+<p>MAINVAR/NUM/REDUCT</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ mainvar ((a+b)*(c+<span class="mi">2</span>*d)^<span class="mi">2</span>) <span class="p">;</span>
+a
+<span class="gp">&gt; </span>simplify $ mainvar <span class="mi">2</span> <span class="p">;</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>simplify $ num (x/y^<span class="mi">2</span>) <span class="p">;</span>
+x
+<span class="gp">&gt; </span>simplify $ num (&#39;(<span class="mi">100</span>/<span class="mi">6</span>)) <span class="p">;</span>
+<span class="mi">50</span>
+<span class="gp">&gt; </span>simplify $ num (a/<span class="mi">4</span>+b/<span class="mi">6</span>) <span class="p">;</span>
+<span class="mi">3</span>*a+<span class="mi">2</span>*b
+
+<span class="gp">&gt; </span>simplify $ reduct ((a+b)*(c+<span class="mi">2</span>*d)) a <span class="p">;</span>
+b*c+<span class="mi">2</span>*b*d
+<span class="gp">&gt; </span>simplify $ reduct ((a+b)*(c+<span class="mi">2</span>*d)) d <span class="p">;</span>
+a*c+b*c
+<span class="gp">&gt; </span>simplify $ reduct ((a+b)*(c+<span class="mi">2</span>*d)) x <span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="substitution">
+<h3>Substitution<a class="headerlink" href="#substitution" title="Permalink to this headline">¶</a></h3>
+<p>An important class of commands in REDUCE define substitutions for variables and
+expressions to be made during the evaluation of expressions.
+One such operation is the prefix operator <tt class="docutils literal"><span class="pre">SUB</span></tt>.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">sub &lt;substlist&gt; exprn::algebraic -&gt; algebraic</tt></dt>
+<dd></dd></dl>
+
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ sub [x==a+y,y==y+<span class="mi">1</span>] (x^<span class="mi">2</span>+y^<span class="mi">2</span>) <span class="p">;</span>
+a^<span class="mi">2</span>+<span class="mi">2</span>*a*y+<span class="mi">2</span>*y^<span class="mi">2</span>+<span class="mi">2</span>*y+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>simplify $ sub [a==sin x, b==sin y] (a^<span class="mi">2</span>+b^<span class="mi">2</span>) <span class="p">;</span>
+sin x^<span class="mi">2</span>+sin y^<span class="mi">2</span>
+</pre></div>
+</div>
+<p>Note that simple substitutions of this kind can also be done directly in Pure,
+using the <a class="reference internal" href="purelib.html#reduce" title="reduce"><tt class="xref pure pure-macro docutils literal"><span class="pre">reduce</span></tt></a> macro.</p>
+</div>
+<div class="section" id="assignment">
+<h3>Assignment<a class="headerlink" href="#assignment" title="Permalink to this headline">¶</a></h3>
+<p>One may assign values to variables in the REDUCE environment. Note that
+in Pure the <tt class="docutils literal"><span class="pre">set</span></tt> operator and <tt class="docutils literal"><span class="pre">:=</span></tt> are equivalent, i.e. both sides
+are evaluated, contrary to the <tt class="docutils literal"><span class="pre">:=</span></tt> version in REDUCE.</p>
+<dl class="describe">
+<dt>
+<tt class="descname">set expr expr</tt></dt>
+<dt>
+<tt class="descname">expr := expr</tt></dt>
+<dd></dd></dl>
+
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ P := a*x^n + b* x^m + c <span class="p">;</span>      <span class="c1">// P:=a*x^n + b* x^m + c;</span>
+x^m*b+x^n*a+c
+<span class="gp">&gt; </span>simplify P <span class="p">;</span>                              <span class="c1">// return P (from Reduce)</span>
+x^m*b+x^n*a+c
+<span class="gp">&gt; </span>simplify $ df P x<span class="p">;</span>                        <span class="c1">// diff P x</span>
+(x^m*b*m+x^n*a*n)/x
+<span class="gp">&gt; </span>simplify $ Q := intg P x <span class="p">;</span>                <span class="c1">// integrate P x, store in Q</span>
+(x^m*b*n*x+x^m*b*x+x^n*a*m*x+x^n*a*x+c*m*n*x+c*m*x+c*n*x+c*x)/(m*n+m+n+<span class="mi">1</span>)
+
+<span class="gp">&gt; </span>simplify $ set Q (a*x^n + b* x^m + c) <span class="p">;</span>
+x^m*b+x^n*a+c
+</pre></div>
+</div>
+</div>
+<div class="section" id="matrix-calculations">
+<h3>Matrix Calculations<a class="headerlink" href="#matrix-calculations" title="Permalink to this headline">¶</a></h3>
+<p>A very powerful feature of REDUCE is the ease with which matrix calculations
+can be performed. It fits very well into Pure&#8217;s native matrix type.</p>
+<p>To keep it simple we show the usage of the different operators by examples
+using the well known <cite>Pauli matrices</cite>. See, e.g.,
+<a class="reference external" href="http://en.wikipedia.org/wiki/Pauli_matrices">http://en.wikipedia.org/wiki/Pauli_matrices</a> for a reference.</p>
+<div class="math">
+<p><img src="_images/math/ef9429df1c03f8216e05dac3b1d943d56fb88af8.png" alt="\sigma_1 = \begin{pmatrix} 0&amp;1\\ 1&amp;0 \end{pmatrix} \,\,\,\,\,
+\sigma_2 = \begin{pmatrix} 0&amp;-i\\i&amp;0 \end{pmatrix} \,\,\,\,\,
+\sigma_3 = \begin{pmatrix} 1&amp;0\\ 0&amp;-1\end{pmatrix}"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="kr">let</span> s0 = {<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>} <span class="p">;</span>
+<span class="kr">let</span> s1 = {<span class="mi">0</span>,<span class="mi">1</span><span class="p">;</span><span class="mi">1</span>,<span class="mi">0</span>} <span class="p">;</span>
+<span class="kr">let</span> s2 = {<span class="mi">0</span>,-i<span class="p">;</span>i,<span class="mi">0</span>}<span class="p">;</span>
+<span class="kr">let</span> s3 = {<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,-<span class="mi">1</span>}<span class="p">;</span>
+</pre></div>
+</div>
+<p>Check the identities</p>
+<div class="math">
+<p><img src="_images/math/216b21e2179433dcc0e06ff4647d3664ccf499c1.png" alt="\sigma_1^2=\sigma_2^2=\sigma_3^2=
+-i \sigma_1 \, \sigma_2 \, \sigma_3 = \sigma_0"/></p>
+</div><p>where <img class="math" src="_images/math/84e3ca966fe4905aa8e6549a570dd032675fb5da.png" alt="\sigma_0"/> denotes the unit matrix.</p>
+<p>Note: Instead of  <tt class="docutils literal"><span class="pre">s1*s1</span></tt> we could also write <tt class="docutils literal"><span class="pre">s1^2</span></tt> here.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> r1 = simplify $ (s1*s1) <span class="p">;</span> r1<span class="p">;</span>
+{<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>}
+<span class="gp">&gt; </span><span class="kr">let</span> r2 = simplify $ (s2*s2) <span class="p">;</span> r2<span class="p">;</span>
+{<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>}
+<span class="gp">&gt; </span><span class="kr">let</span> r3 = simplify $ (s3*s3) <span class="p">;</span> r3<span class="p">;</span>
+{<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>}
+<span class="gp">&gt; </span><span class="kr">let</span> r4 = simplify $ (-i*s1*s2*s3) <span class="p">;</span> r4<span class="p">;</span>
+{<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>}
+<span class="gp">&gt; </span><span class="kr">let</span> r5 = all (==s0) [r1,r2,r3,r4] <span class="p">;</span> r5<span class="p">;</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>Check: <img class="math" src="_images/math/cd4a6dc4452fe2f8d015170e3e9f54378c498b36.png" alt="\det \sigma_i = -1, \forall i \in \{1,2,3\}."/></p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (simplify . det) [s1,s2,s3] <span class="p">;</span>
+[-<span class="mi">1</span>,-<span class="mi">1</span>,-<span class="mi">1</span>]
+</pre></div>
+</div>
+<p>Calculate the eigenvalues/-vectors of <img class="math" src="_images/math/c228ed3c88cd90a7dff90a1693e80272b2e39303.png" alt="\sigma_2"/>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> r7 = simplify $ mateigen s2 q<span class="p">;</span> r7<span class="p">;</span>
+[[q-<span class="mi">1</span>,<span class="mi">1</span>,{-c1*i<span class="p">;</span>c2}],[q+<span class="mi">1</span>,<span class="mi">1</span>,{c3*i<span class="p">;</span>c4}]]
+
+<span class="gp">&gt; </span><span class="kr">let</span> r8 = map head r7<span class="p">;</span> r8<span class="p">;</span> <span class="c1">// -&gt; [q-1,q+1] =&gt; Eigenvalues q=+/-1</span>
+[q-<span class="mi">1</span>,q+<span class="mi">1</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> r9 = map (head.tail) r7 <span class="p">;</span> r9<span class="p">;</span> <span class="c1">// multiplicities</span>
+[<span class="mi">1</span>,<span class="mi">1</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> r10 = map last r7 <span class="p">;</span> r10<span class="p">;</span> <span class="c1">// eigenvectors</span>
+[{-c1*i<span class="p">;</span>c2},{c3*i<span class="p">;</span>c4}]
+</pre></div>
+</div>
+<p>Transpose (operator <tt class="docutils literal"><span class="pre">tp</span></tt>):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (simplify.tp) [s1,s2,s3] <span class="p">;</span> <span class="c1">// -&gt; [s1&#39;,s2&#39;,s3&#39;]</span>
+[{<span class="mi">0</span>,<span class="mi">1</span><span class="p">;</span><span class="mi">1</span>,<span class="mi">0</span>},{<span class="mi">0</span>,i<span class="p">;</span>-i,<span class="mi">0</span>},{<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,-<span class="mi">1</span>}]
+</pre></div>
+</div>
+<p>Trace (operator <tt class="docutils literal"><span class="pre">trace</span></tt>):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (simplify.trace) [s1,s2,s3] <span class="p">;</span>
+[<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>]
+</pre></div>
+</div>
+<p>Cofactor (trivial here):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ cofactor s2 <span class="mi">1</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>Nullspace of <img class="math" src="_images/math/c228ed3c88cd90a7dff90a1693e80272b2e39303.png" alt="\sigma_2"/> + {0,i;0,0}:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ nullspace (s2+{<span class="mi">0</span>,i<span class="p">;</span><span class="mi">0</span>,<span class="mi">0</span>}) <span class="p">;</span>
+[{<span class="mi">0</span><span class="p">;</span><span class="mi">1</span>}]
+</pre></div>
+</div>
+<p>Rank:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (simplify . rank) [s0,s1,s2,s3] <span class="p">;</span>
+[<span class="mi">2</span>,<span class="mi">2</span>,<span class="mi">2</span>,<span class="mi">2</span>]
+</pre></div>
+</div>
+<p>Inverse (simply <img class="math" src="_images/math/eca231602567a7238426dd18cd9b8884244e80a6.png" alt="\frac{1}{matrix}"/>):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> r15 = simplify $ <span class="mi">1</span>/s2 <span class="p">;</span> r15<span class="p">;</span>
+{<span class="mi">0</span>,<span class="mi">1</span>/i<span class="p">;</span>(-<span class="mi">1</span>)/i,<span class="mi">0</span>}
+
+<span class="gp">&gt; </span>simplify $ s2*r15 <span class="p">;</span>
+{<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>}
+</pre></div>
+</div>
+<p>Solving without <tt class="docutils literal"><span class="pre">solve</span></tt>:</p>
+<div class="math">
+<p><img src="_images/math/34f3da77dd3b880fec7bf1e230ffeca5cfbda0f1.png" alt="a_{11}\, x_1 + a_{12}\,x_2 = y_1 \\
+a_{21}\, x_1 + a_{22}\,x_2 = y_2"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ (<span class="mi">1</span>/{a11,a12<span class="p">;</span>a21,a22}*{y1<span class="p">;</span>y2}) <span class="p">;</span> <span class="c1">// A^-1 * y&#39; ;</span>
+{(-a12*y2+a22*y1)/(a11*a22-a12*a21)<span class="p">;</span>(a11*y2-a21*y1)/(a11*a22-a12*a21)}
+</pre></div>
+</div>
+</div>
+<div class="section" id="limits">
+<h3>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h3>
+<p>From the package description:</p>
+<p>LIMITS is a fast limit package for REDUCE for functions which are continuous
+except for computable poles and singularities, based on some earlier work by
+Ian Cohen and John P. Fitch.
+This package defines a LIMIT operator, called with the syntax:</p>
+<dl class="describe">
+<dt>
+<tt class="descname">limit expr::alg var limpoint::alg -&gt; alg</tt></dt>
+<dd></dd></dl>
+
+<div class="math">
+<p><img src="_images/math/f8a2e36dcd35ca36fedb4eeec36b0083ef7e03a4.png" alt="\lim_{x \to \infty} x\,\sin \frac{1}{x} = ?, \,\,\,
+\lim_{x \to 0} \frac{1}{x} = ?"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ limit (x*sin(<span class="mi">1</span>/x)) x infinity <span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>simplify $ limit (<span class="mi">1</span>/x) x <span class="mi">0</span> <span class="p">;</span>
+inf
+</pre></div>
+</div>
+<p>Notes: This package loads automatically.
+Author: Stanley L. Kameny.</p>
+</div>
+<div class="section" id="ordinary-differential-equations-solver">
+<h3>Ordinary differential equations solver<a class="headerlink" href="#ordinary-differential-equations-solver" title="Permalink to this headline">¶</a></h3>
+<p>The <tt class="docutils literal"><span class="pre">ODESOLVE</span></tt> package is a solver for ordinary differential equations.</p>
+<p>Problem 1:</p>
+<div class="math">
+<p><img src="_images/math/f24b04d99037127809e6e6b1fbab50d43bfd555a.png" alt="\frac{dy}{dx} = x^2 + e^x"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare depend [y,x]<span class="p">;</span>  <span class="c1">// declare: y depends on x</span>
+[]
+
+<span class="gp">&gt; </span>simplify $ odesolve [df y x == x^<span class="mi">2</span>+exp(x)] [y] x <span class="p">;</span>
+[y==(<span class="mi">3</span>*C+<span class="mi">3</span>*e^x+x^<span class="mi">3</span>)/<span class="mi">3</span>]
+</pre></div>
+</div>
+<p>Problem 2:</p>
+<div class="math">
+<p><img src="_images/math/0a39511ff3e7958dca65d4615b1b5346d2e537fa.png" alt="\frac{d^2\,y}{dx^2} = y(x) \,\,\, \wedge \,\,\,
+y(0) = A \,\,\, \wedge \,\,\,
+y(1) = B"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ odesolve [(df y x <span class="mi">2</span>) == y] [y] x [[x==<span class="mi">0</span>,y==A],[x==<span class="mi">1</span>,y==B]] <span class="p">;</span>
+[y==(-e^(<span class="mi">2</span>*x)*A+e^(<span class="mi">2</span>*x)*B*e+A*e^<span class="mi">2</span>-B*e)/(e^x*e^<span class="mi">2</span>-e^x)]
+</pre></div>
+</div>
+<p>Remember to remove dependencies:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare nodepend [y,x]<span class="p">;</span>
+[]
+</pre></div>
+</div>
+</div>
+<div class="section" id="series-summation-and-products">
+<h3>Series Summation and Products<a class="headerlink" href="#series-summation-and-products" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">SUM</span></tt>: A package for series summation</p>
+<p>From the package description:</p>
+<p>The package implements the Gosper algorithm for the summation of series. It
+defines operators <tt class="docutils literal"><span class="pre">SUM</span></tt> and <tt class="docutils literal"><span class="pre">PROD</span></tt>. The operator <tt class="docutils literal"><span class="pre">SUM</span></tt> returns the
+indefinite or definite summation of a given expression, and <tt class="docutils literal"><span class="pre">PROD</span></tt> returns
+the product of the given expression.
+This package loads automatically.
+Author: Fujio Kako.</p>
+<p>Calculate</p>
+<div class="math">
+<p><img src="_images/math/fc9dd7cf2c7384de8e0a7981da76bb7e1d63e312.png" alt="\sum_{n=1}^N \, n^3,\,\,\, \sum_{k=0}^{n-1} (a+k\,r),\,\,\,
+\sum_{k=1}^{n+1} \frac{1}{(p+(k-1)\,q)\cdot (p+k\,q)},\,\,\,
+\prod_{k=1}^N \frac{k}{k+2}"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ sum (n^<span class="mi">3</span>) n <span class="mi">1</span> N <span class="p">;</span>
+(N^<span class="mi">4</span>+<span class="mi">2</span>*N^<span class="mi">3</span>+N^<span class="mi">2</span>)/<span class="mi">4</span>
+
+<span class="gp">&gt; </span>simplify $ sum (a+k*r) k <span class="mi">0</span> (n-<span class="mi">1</span>) <span class="p">;</span>
+(<span class="mi">2</span>*a*n+n^<span class="mi">2</span>*r-n*r)/<span class="mi">2</span>
+
+<span class="gp">&gt; </span>simplify $ sum (<span class="mi">1</span>/((p+(k-<span class="mi">1</span>)*q)*(p+k*q))) k <span class="mi">1</span> (n+<span class="mi">1</span>) <span class="p">;</span>
+(n+<span class="mi">1</span>)/(n*p*q+p^<span class="mi">2</span>+p*q)
+
+<span class="gp">&gt; </span>simplify $ prod (k/(k+<span class="mi">2</span>)) k <span class="mi">1</span> N <span class="p">;</span>
+<span class="mi">2</span>/(N^<span class="mi">2</span>+<span class="mi">3</span>*N+<span class="mi">2</span>)
+</pre></div>
+</div>
+</div>
+<div class="section" id="taylor-series">
+<h3>Taylor Series<a class="headerlink" href="#taylor-series" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">TAYLOR</span></tt>: Manipulation of Taylor series</p>
+<p>From the package description:</p>
+<p>This package carries out the Taylor expansion of an expression in one or more
+variables and efficient manipulation of the resulting Taylor series.
+Capabilities include basic operations (addition, subtraction, multiplication
+and division) and also application of certain algebraic and transcendental
+functions.
+Author: Rainer Schöpf.</p>
+<p>Example:</p>
+<div class="math">
+<p><img src="_images/math/d1ad9405c881f837437198ce7a7e55ca096b8ed7.png" alt="e^{x^2 + y^2} = 1+y^{2}+x^{2}+y^{2}\cdot x^{2}+O(x^{3},y^{3})"/></p>
+</div><p>For details consult the package documentation in the REDUCE distribution.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ taylor (exp (x^<span class="mi">2</span>+y^<span class="mi">2</span>)) x <span class="mi">0</span> <span class="mi">2</span> y <span class="mi">0</span> <span class="mi">2</span> <span class="p">;</span>
+x^<span class="mi">2</span>*y^<span class="mi">2</span>+x^<span class="mi">2</span>+y^<span class="mi">2</span>+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>simplify $ taylor (exp x) x <span class="mi">0</span> <span class="mi">3</span><span class="p">;</span>
+(x^<span class="mi">3</span>+<span class="mi">3</span>*x^<span class="mi">2</span>+<span class="mi">6</span>*x+<span class="mi">6</span>)/<span class="mi">6</span>
+
+<span class="gp">&gt; </span>simplify $ implicit_taylor (x^<span class="mi">2</span>+y^<span class="mi">2</span>-<span class="mi">1</span>) x y <span class="mi">0</span> <span class="mi">1</span> <span class="mi">5</span> <span class="p">;</span>
+(-x^<span class="mi">4</span>-<span class="mi">4</span>*x^<span class="mi">2</span>+<span class="mi">8</span>)/<span class="mi">8</span>
+
+<span class="gp">&gt; </span>simplify $ inverse_taylor (exp(x)-<span class="mi">1</span>) x y <span class="mi">0</span> <span class="mi">8</span><span class="p">;</span>
+(-<span class="mi">105</span>*y^<span class="mi">8</span>+<span class="mi">120</span>*y^<span class="mi">7</span>-<span class="mi">140</span>*y^<span class="mi">6</span>+<span class="mi">168</span>*y^<span class="mi">5</span>-<span class="mi">210</span>*y^<span class="mi">4</span>+<span class="mi">280</span>*y^<span class="mi">3</span>-<span class="mi">420</span>*y^<span class="mi">2</span>+<span class="mi">840</span>*y)/<span class="mi">840</span>
+</pre></div>
+</div>
+<p>Note that the &#8220;big O&#8221; residual terms are omitted in the results returned by
+<tt class="docutils literal"><span class="pre">simplify</span></tt>, although REDUCE will print them.</p>
+</div>
+<div class="section" id="boolean-expressions">
+<h3>Boolean Expressions<a class="headerlink" href="#boolean-expressions" title="Permalink to this headline">¶</a></h3>
+<p>The truth values within REDUCE are <tt class="docutils literal"><span class="pre">t</span></tt> and <tt class="docutils literal"><span class="pre">nil</span> <span class="pre">=</span> <span class="pre">()</span></tt>. Not all predicates
+(functions returning a truth value) can be called by <tt class="docutils literal"><span class="pre">simplify</span></tt>, however,
+so one has to use the <tt class="docutils literal"><span class="pre">lisp</span></tt> function in some circumstances.</p>
+<p>Some examples:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ evenp <span class="mi">200</span> <span class="p">;</span>
+t
+<span class="gp">&gt; </span>simplify $ evenp <span class="mi">201</span> <span class="p">;</span>
+[]
+
+<span class="gp">&gt; </span>lisp (fixp <span class="mi">200</span>) <span class="p">;</span>
+t
+</pre></div>
+</div>
+<p>where <tt class="docutils literal"><span class="pre">fixp</span></tt> tests for integers.</p>
+<p>The following example shows a pitfall. Since there is a <tt class="docutils literal"><span class="pre">numberp</span></tt> function
+in both Pure and REDUCE, the function needs to be quoted to make the
+expression go through to REDUCE:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lisp (numberp x) <span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>lisp (numberp <span class="mi">111</span>) <span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>lisp (&#39;numberp x) <span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (&#39;numberp <span class="mi">111</span>) <span class="p">;</span>
+t
+</pre></div>
+</div>
+<p>In the first case <tt class="docutils literal"><span class="pre">numberp</span> <span class="pre">x</span></tt> evaluates to zero in Pure, so the <tt class="docutils literal"><span class="pre">lisp</span></tt>
+function gets <tt class="docutils literal"><span class="pre">0</span></tt> and returns <tt class="docutils literal"><span class="pre">0</span></tt>. In the second case (quoted) the
+function <tt class="docutils literal"><span class="pre">numberp</span></tt> is evaluated in REDUCE and returns <tt class="docutils literal"><span class="pre">nil</span></tt>, i.e.
+<tt class="docutils literal"><span class="pre">[]</span></tt> in Pure. Of course, both results are correct but there may be other
+cases where equally named functions have different meanings in the two
+environments.</p>
+<p>Some other useful predicates in REDUCE are <tt class="docutils literal"><span class="pre">ordp</span></tt> and <tt class="docutils literal"><span class="pre">freeof</span></tt>:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lisp (ordp x y) <span class="p">;</span>
+t
+<span class="gp">&gt; </span>lisp (ordp y x) <span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (ordp <span class="s">&quot;abc&quot;</span> <span class="s">&quot;abd&quot;</span>) <span class="p">;</span>
+t
+<span class="gp">&gt; </span>lisp (ordp <span class="s">&quot;abd&quot;</span> <span class="s">&quot;abc&quot;</span>) <span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (ordp <span class="mi">3</span> <span class="mi">5</span>) <span class="p">;</span>
+[]
+<span class="gp">&gt; </span>lisp (ordp <span class="mi">5</span> <span class="mi">3</span>) <span class="p">;</span>
+t
+
+<span class="gp">&gt; </span>simplify $ freeof (x^<span class="mi">2</span>+y) x <span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>simplify $ freeof (x^<span class="mi">2</span>+y) z <span class="p">;</span>
+<span class="mi">1</span>
+<span class="gp">&gt; </span>simplify $ freeof (x^n*y^m) (y^m) <span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="mathematical-functions">
+<h3>Mathematical Functions<a class="headerlink" href="#mathematical-functions" title="Permalink to this headline">¶</a></h3>
+<p>REDUCE provides many mathematical functions which can take arbitrary scalar
+expressions as their single argument:</p>
+<blockquote>
+<div><ul class="simple">
+<li>ACOS ACOSH ACOT ACOTH ACSC ACSCH ASEC ASECH ASIN ASINH</li>
+<li>ATAN ATANH ATAN2 COS COSH COT COTH CSC CSCH DILOG EI EXP</li>
+<li>HYPOT LN LOG LOGB LOG10 SEC SECH SIN SINH SQRT TAN TANH ERF</li>
+</ul>
+</div></blockquote>
+<p>Note that Pure also defines some these functions in its <a class="reference internal" href="purelib.html#module-math"><tt class="xref pure pure-mod docutils literal"><span class="pre">math</span></tt></a> module, so
+these may have to be quoted to prevent evaluation on the Pure side. For
+instance:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ cos <span class="mf">4.3</span><span class="p">;</span>
+cos (<span class="mi">43</span>/<span class="mi">10</span>)
+<span class="gp">&gt; </span><span class="kr">using</span> math<span class="p">;</span>
+warning: external &#39;exp&#39; shadows previous undefined use <span class="kr">of</span> this symbol
+warning: external &#39;sin&#39; shadows previous undefined use <span class="kr">of</span> this symbol
+warning: external &#39;cos&#39; shadows previous undefined use <span class="kr">of</span> this symbol
+<span class="gp">&gt; </span>simplify $ cos <span class="mf">4.3</span><span class="p">;</span>
+(-<span class="mi">21601483</span>)/<span class="mi">53896027</span>
+</pre></div>
+</div>
+<p>Some examples:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ cos (-x) <span class="p">;</span>
+cos x
+<span class="gp">&gt; </span>simplify $ cos (n*pi) <span class="p">;</span>
+cos (<span class="mi">80143857</span>*n/<span class="mi">25510582</span>)
+<span class="gp">&gt; </span>simplify $ (quote e)^(<span class="mi">3</span>*i*(quote pi)/<span class="mi">2</span>) <span class="p">;</span>
+-i
+<span class="gp">&gt; </span>simplify $ sec (quote pi)<span class="p">;</span>
+-<span class="mi">1</span>
+<span class="gp">&gt; </span><span class="kr">let</span> simplify $ log10 <span class="mi">10</span> <span class="p">;</span>
+<span class="mi">1</span>
+<span class="gp">&gt; </span>simplify $ erf (-a)<span class="p">;</span>
+-erf a
+</pre></div>
+</div>
+<p>The special functions are in two separate packages <tt class="docutils literal"><span class="pre">SPECFN</span></tt> and <tt class="docutils literal"><span class="pre">SPECFN2</span></tt>:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Bernoulli Numbers and Euler Numbers;</li>
+<li>Stirling Numbers;</li>
+<li>Binomial Coefficients;</li>
+<li>Pochhammer notation;</li>
+<li>The Gamma function;</li>
+<li>The Psi function and its derivatives;</li>
+<li>The Riemann Zeta function;</li>
+<li>The Bessel functions J and Y of the first and second kind;</li>
+<li>The modified Bessel functions I and K;</li>
+<li>The Hankel functions H1 and H2;</li>
+<li>The Kummer hypergeometric functions M and U;</li>
+<li>The Beta function, and Struve, Lommel and Whittaker functions;</li>
+<li>The Airy functions;</li>
+<li>The Exponential Integral, the Sine and Cosine Integrals;</li>
+<li>The Hyperbolic Sine and Cosine Integrals;</li>
+<li>The Fresnel Integrals and the Error function;</li>
+<li>The Dilog function;</li>
+<li>Hermite Polynomials;</li>
+<li>Jacobi Polynomials;</li>
+<li>Legendre Polynomials;</li>
+<li>Spherical and Solid Harmonics;</li>
+<li>Laguerre Polynomials;</li>
+<li>Chebyshev Polynomials;</li>
+<li>Gegenbauer Polynomials;</li>
+<li>Euler Polynomials;</li>
+<li>Bernoulli Polynomials.</li>
+<li>Jacobi Elliptic Functions and Integrals;</li>
+<li>3j symbols, 6j symbols and Clebsch Gordan coefficients;</li>
+</ul>
+</div></blockquote>
+<p>In <tt class="docutils literal"><span class="pre">SPECFN2</span></tt> are the generalized hypergeometric functions and
+Meijer’s G function.</p>
+<p>Author: Chris Cannam, with contributions from Winfried Neun, Herbert Melenk,
+Victor Adamchik, Francis Wright and several others.</p>
+</div>
+<div class="section" id="definite-integrals">
+<h3>Definite Integrals<a class="headerlink" href="#definite-integrals" title="Permalink to this headline">¶</a></h3>
+<p><tt class="docutils literal"><span class="pre">DEFINT</span></tt>: Calculating definite integrals by using the Meijer G integration
+formula.</p>
+<div class="math">
+<p><img src="_images/math/33dd216945188977c58adbd8625803b758ee4ca3.png" alt="\int_0^\infty e^{-x} \, dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>load <span class="s">&quot;defint&quot;</span> <span class="p">;</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>simplify $ intg (exp(-x)) x <span class="mi">0</span> infinity <span class="p">;</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/061df7e1c31cee25f62ca1f993eb96c9bfa5c5bc.png" alt="\int_0^\infty x^2\,\cos(x)\,e^{-2\,x}  \, dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ intg (x^<span class="mi">2</span>*cos(x)*exp(-<span class="mi">2</span>*x)) x <span class="mi">0</span> infinity <span class="p">;</span>
+<span class="mi">4</span>/<span class="mi">125</span>
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/53005462bb7553344bca7b6e7ed26502fd107f17.png" alt="\int_0^1 x\,e^{-\frac{1}{2}\,x}  \, dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ intg (x*exp(-<span class="mi">1</span>/<span class="mi">2</span>*x)) x <span class="mi">0</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="mi">2</span>*sqrt e*(<span class="mi">2</span>*sqrt e-<span class="mi">3</span>)/e
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/fccfe728856311a1b54d285d9380b3f884ae324f.png" alt="\int_0^1 x\, \log(1+x) \, dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ intg (x*log(<span class="mi">1</span>+x)) x <span class="mi">0</span> <span class="mi">1</span> <span class="p">;</span>
+<span class="mi">1</span>/<span class="mi">4</span>
+</pre></div>
+</div>
+<div class="math">
+<p><img src="_images/math/af9af53f1a7cfc1c898f0ba87bee44344987cab4.png" alt="\int_y^{2\,y} \cos(2\,x)\, dx"/></p>
+</div><div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ intg (cos(<span class="mi">2</span>*x)) x y (<span class="mi">2</span>*y)<span class="p">;</span>
+(sin (<span class="mi">4</span>*y)-sin (<span class="mi">2</span>*y))/<span class="mi">2</span>
+</pre></div>
+</div>
+<p>Various transformations:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ laplace_transform (exp(-a*x)) x <span class="p">;</span>
+<span class="mi">1</span>/(a+s)
+
+<span class="gp">&gt; </span>simplify $ hankel_transform (exp(-a*x)) x <span class="p">;</span>
+s^(n/<span class="mi">2</span>)*gamma (n/<span class="mi">2</span>)*hypergeometric [(n+<span class="mi">2</span>)/<span class="mi">2</span>] [n+<span class="mi">1</span>]
+((-s)/a)*n/(<span class="mi">2</span>*a^(n/<span class="mi">2</span>)*gamma (n+<span class="mi">1</span>)*a)
+
+<span class="gp">&gt; </span>simplify $ y_transform (exp(-a*x)) x <span class="p">;</span>
+(a^n*gamma (n+<span class="mi">1</span>)*gamma ((-n)/<span class="mi">2</span>)*gamma ((-<span class="mi">2</span>*n-<span class="mi">1</span>)/<span class="mi">2</span>)*gamma
+((<span class="mi">2</span>*n+<span class="mi">3</span>)/<span class="mi">2</span>)*hypergeometric [(-n+<span class="mi">2</span>)/<span class="mi">2</span>] [-n+<span class="mi">1</span>] ((-s)/a)+s^n*gamma
+(-n)*gamma (n/<span class="mi">2</span>)*hypergeometric [(n+<span class="mi">2</span>)/<span class="mi">2</span>] [n+<span class="mi">1</span>] ((-s)/a)*n*pi)/
+(<span class="mi">2</span>*s^(n/<span class="mi">2</span>)*a^(n/<span class="mi">2</span>)*gamma ((-<span class="mi">2</span>*n-<span class="mi">1</span>)/<span class="mi">2</span>)*gamma ((<span class="mi">2</span>*n+<span class="mi">3</span>)/<span class="mi">2</span>)*a*pi)
+
+<span class="gp">&gt; </span>simplify $ k_transform (exp(-a*x)) x <span class="p">;</span>
+(-a^n*gamma (n+<span class="mi">1</span>)*gamma ((-n)/<span class="mi">2</span>)*hypergeometric [(-n+<span class="mi">2</span>)/<span class="mi">2</span>] [-n+<span class="mi">1</span>]
+(s/a)+s^n*gamma (-n)*gamma (n/<span class="mi">2</span>)*hypergeometric [(n+<span class="mi">2</span>)/<span class="mi">2</span>] [n+<span class="mi">1</span>] (s/a)*n)/
+(<span class="mi">4</span>*s^(n/<span class="mi">2</span>)*a^(n/<span class="mi">2</span>)*a)
+
+<span class="gp">&gt; </span> simplify $ struveh_transform (exp(-a*x)) x <span class="p">;</span>
+<span class="mi">2</span>*s^((n+<span class="mi">1</span>)/<span class="mi">2</span>)*gamma ((n+<span class="mi">3</span>)/<span class="mi">2</span>)*hypergeometric [<span class="mi">1</span>,(n+<span class="mi">3</span>)/<span class="mi">2</span>] [(<span class="mi">2</span>*n+<span class="mi">3</span>)/<span class="mi">2</span>,<span class="mi">3</span>/<span class="mi">2</span>]
+((-s)/a)/(sqrt pi*a^((n+<span class="mi">1</span>)/<span class="mi">2</span>)*gamma ((<span class="mi">2</span>*n+<span class="mi">3</span>)/<span class="mi">2</span>)*a)
+
+<span class="gp">&gt; </span>simplify $ fourier_sin (exp(-a*x)) x <span class="p">;</span>
+s/(a^<span class="mi">2</span>+s^<span class="mi">2</span>)
+<span class="gp">&gt; </span>simplify $ fourier_cos (exp(-a*x)) x <span class="p">;</span>
+a/(a^<span class="mi">2</span>+s^<span class="mi">2</span>)
+</pre></div>
+</div>
+</div>
+<div class="section" id="declarations-switches-and-loading">
+<h3>Declarations, Switches and Loading<a class="headerlink" href="#declarations-switches-and-loading" title="Permalink to this headline">¶</a></h3>
+<p>Lisp evaluation can be used in the REDUCE system, in particular, to declare
+operator symbols and their properties (<tt class="docutils literal"><span class="pre">simplify</span></tt> won&#8217;t do that). E.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lisp (&#39;operator [myop])<span class="p">;</span>
+<span class="gp">&gt; </span>lisp (&#39;flag [myop] odd)<span class="p">;</span>
+<span class="gp">&gt; </span>lisp (&#39;prop myop)<span class="p">;</span> <span class="c1">// =&gt; [odd:t,simpfn:simpiden]</span>
+<span class="gp">&gt; </span>simplify (myop (-x))<span class="p">;</span> <span class="c1">// =&gt; -myop x</span>
+</pre></div>
+</div>
+<p>For the most common kinds of declarations, the <a class="reference internal" href="#module-reduce"><tt class="xref pure pure-mod docutils literal"><span class="pre">reduce</span></tt></a> module provides
+the <a class="reference internal" href="#declare" title="declare"><tt class="xref pure pure-func docutils literal"><span class="pre">declare</span></tt></a> function which takes care of the necessary Lisp magic and
+is safe to use. The above example can also be done as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>declare operator myop<span class="p">;</span>
+<span class="gp">&gt; </span>declare odd myop<span class="p">;</span>
+<span class="gp">&gt; </span>simplify (myop (-x))<span class="p">;</span>
+-myop x
+</pre></div>
+</div>
+<p>Please see the description of <a class="reference internal" href="#declare" title="declare"><tt class="xref pure pure-func docutils literal"><span class="pre">declare</span></tt></a> for a list of supported
+declarations.</p>
+<p>The <a class="reference internal" href="#module-reduce"><tt class="xref pure pure-mod docutils literal"><span class="pre">reduce</span></tt></a> module also provides a few other basic maintenance functions
+which are done with special commands in REDUCE:</p>
+<dl class="describe">
+<dt>
+<tt class="descname">reduce::switch &quot;switch-name&quot; 0|1</tt></dt>
+<dt>
+<tt class="descname">reduce::load &quot;package-name&quot;</tt></dt>
+<dt>
+<tt class="descname">reduce::in &quot;path/filename.red&quot;</tt></dt>
+<dt>
+<tt class="descname">reduce::capture 0|1</tt></dt>
+<dt>
+<tt class="descname">reduce::feed &quot;text&quot;</tt></dt>
+<dd></dd></dl>
+
+<p>As already mentioned, REDUCE switches can be turned on and off with
+<a class="reference internal" href="#reduce::switch" title="reduce::switch"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::switch</span></tt></a>, e.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>switch <span class="s">&quot;exp&quot;</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>Packages can be loaded with the <a class="reference internal" href="#reduce::load" title="reduce::load"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::load</span></tt></a> command:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>load <span class="s">&quot;defint&quot;</span> <span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>REDUCE source files can be read in with the <a class="reference internal" href="#reduce::in" title="reduce::in"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::in</span></tt></a> command:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>in <span class="s">&quot;myreduce.red&quot;</span> <span class="p">;</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>Last but not least, REDUCE terminal input and output can also be redirected to
+string buffers using the <a class="reference internal" href="#reduce::feed" title="reduce::feed"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::feed</span></tt></a> and <a class="reference internal" href="#reduce::capture" title="reduce::capture"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::capture</span></tt></a>
+functions. For instance, the following code feeds some text with a Lisp form
+to REDUCE, which gets read by evaluating the Lisp form <tt class="docutils literal"><span class="pre">(eval</span> <span class="pre">read)</span></tt>. The
+output is captured and can be inspected with the <a class="reference internal" href="#reduce::output" title="reduce::output"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce::output</span></tt></a>
+function:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce<span class="p">::</span>feed <span class="s">&quot;(print &#39;(a b c d))&quot;</span><span class="p">;</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>reduce<span class="p">::</span>capture <span class="mi">1</span><span class="p">;</span> <span class="c1">// start capturing output</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>lisp (&#39;eval read)<span class="p">;</span> <span class="c1">// read buffered input and evaluate</span>
+[a,b,c,d]
+<span class="gp">&gt; </span>reduce<span class="p">::</span>output<span class="p">;</span>    <span class="c1">// inspect buffered output</span>
+<span class="s">&quot;(a b c d)</span><span class="se">\n</span><span class="s">&quot;</span>
+<span class="gp">&gt; </span>reduce<span class="p">::</span>capture <span class="mi">0</span><span class="p">;</span> <span class="c1">// stop capturing output</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plotting">
+<h3>Plotting<a class="headerlink" href="#plotting" title="Permalink to this headline">¶</a></h3>
+<p>REDUCE can do 2- and 3-dimensional function plots through its <a class="reference external" href="http://www.gnuplot.info/">gnuplot</a>
+package. Some examples (note that we have to quote the <tt class="docutils literal"><span class="pre">x..y</span></tt> ranges here so
+that they get through to Reduce, rather than being evaluated on the Pure
+side):</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>simplify $ plot (sin x/x) (x==&#39;(-<span class="mi">15</span>..<span class="mi">15</span>))<span class="p">;</span>
+
+<span class="c1">// Multiple ranges.</span>
+<span class="gp">&gt; </span>simplify $ plot (sin(x^<span class="mi">2</span> + y^<span class="mi">2</span>) / sqrt(x^<span class="mi">2</span> + y^<span class="mi">2</span>)) [x==&#39;(-<span class="mi">12</span>..<span class="mi">12</span>), y==&#39;(-<span class="mi">12</span>..<span class="mi">12</span>)]<span class="p">;</span>
+
+<span class="c1">// Specifying options.</span>
+<span class="gp">&gt; </span>simplify $ plot (cos (sqrt(x^<span class="mi">2</span> + y^<span class="mi">2</span>))) [x==&#39;(-<span class="mi">3</span>..<span class="mi">3</span>),y==&#39;(-<span class="mi">3</span> .. <span class="mi">3</span>)] hidden3d<span class="p">;</span>
+
+<span class="c1">// Specifying points.</span>
+<span class="gp">&gt; </span>simplify $ plot [[<span class="mi">0</span>,<span class="mi">0</span>],[<span class="mi">0</span>,<span class="mi">1</span>],[<span class="mi">1</span>,<span class="mi">1</span>],[<span class="mi">0</span>,<span class="mi">0</span>],[<span class="mi">1</span>,<span class="mi">0</span>],[<span class="mi">0</span>,<span class="mi">1</span>],[<span class="mf">0.5</span>,<span class="mf">1.5</span>],[<span class="mi">1</span>,<span class="mi">1</span>],[<span class="mi">1</span>,<span class="mi">0</span>]]<span class="p">;</span>
+
+<span class="c1">// Output options.</span>
+<span class="gp">&gt; </span>simplify $ plot (sin x) [x==&#39;(<span class="mi">0</span>..<span class="mi">10</span>),terminal==postscript,output==<span class="s">&quot;sin.ps&quot;</span>]<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="redum">
+<dt>[REDUM]</dt>
+<dd><em>REDUCE User’s Manual</em>, Version 3.8, Anthony C. Hearn, Santa Monica, CA, USA.</dd>
+</dl>
+<dl class="docutils" id="lncs102">
+<dt>[LNCS102]</dt>
+<dd><em>On the Integration of Algebraic Functions</em>, LNCS 102, Springer Verlag, 1981.</dd>
+</dl>
+<dl class="docutils" id="symsac81">
+<dt>[SYMSAC81]</dt>
+<dd>P. M. A. Moore and A.C. Norman, <em>Implementing a Polynomial Factorization and
+GCD Package</em>, Proc.  SYMSAC ’81, ACM (New York) (1981), 109-116.</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Computer Algebra with Pure: A Reduce Interface</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#low-level-interface">Low-Level Interface</a></li>
+<li><a class="reference internal" href="#high-level-interface">High-Level Interface</a><ul>
+<li><a class="reference internal" href="#starting-and-stopping-reduce">Starting and Stopping Reduce</a></li>
+<li><a class="reference internal" href="#maintenance-operations">Maintenance Operations</a></li>
+<li><a class="reference internal" href="#evaluation">Evaluation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#basic-examples">Basic Examples</a></li>
+<li><a class="reference internal" href="#examples-by-topic">Examples by Topic</a><ul>
+<li><a class="reference internal" href="#differentiation">Differentiation</a></li>
+<li><a class="reference internal" href="#integration">Integration</a></li>
+<li><a class="reference internal" href="#length-map-and-select">Length, Map and Select</a></li>
+<li><a class="reference internal" href="#partial-fractions">Partial Fractions</a></li>
+<li><a class="reference internal" href="#solving">Solving</a></li>
+<li><a class="reference internal" href="#even-and-odd-operators">Even and Odd Operators</a></li>
+<li><a class="reference internal" href="#linear-operators">Linear Operators</a></li>
+<li><a class="reference internal" href="#non-commuting-operators">Non-commuting Operators</a></li>
+<li><a class="reference internal" href="#symmetric-and-antisymmetric-operators">Symmetric and Antisymmetric Operators</a></li>
+<li><a class="reference internal" href="#creating-removing-variable-dependencies">Creating/Removing Variable Dependencies</a></li>
+<li><a class="reference internal" href="#internal-order-of-variables">Internal Order of Variables</a></li>
+<li><a class="reference internal" href="#parts-of-algebraic-expressions">Parts of Algebraic Expressions</a></li>
+<li><a class="reference internal" href="#polynomials-and-rationals">Polynomials and Rationals</a></li>
+<li><a class="reference internal" href="#substitution">Substitution</a></li>
+<li><a class="reference internal" href="#assignment">Assignment</a></li>
+<li><a class="reference internal" href="#matrix-calculations">Matrix Calculations</a></li>
+<li><a class="reference internal" href="#limits">Limits</a></li>
+<li><a class="reference internal" href="#ordinary-differential-equations-solver">Ordinary differential equations solver</a></li>
+<li><a class="reference internal" href="#series-summation-and-products">Series Summation and Products</a></li>
+<li><a class="reference internal" href="#taylor-series">Taylor Series</a></li>
+<li><a class="reference internal" href="#boolean-expressions">Boolean Expressions</a></li>
+<li><a class="reference internal" href="#mathematical-functions">Mathematical Functions</a></li>
+<li><a class="reference internal" href="#definite-integrals">Definite Integrals</a></li>
+<li><a class="reference internal" href="#declarations-switches-and-loading">Declarations, Switches and Loading</a></li>
+<li><a class="reference internal" href="#plotting">Plotting</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-rational.html"
+                        title="previous chapter">Pure-Rational - Rational number library for the Pure programming language</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-csv.html"
+                        title="next chapter">Pure-CSV - Comma Separated Value Interface for the Pure Programming Language</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-reduce.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-csv.html" title="Pure-CSV - Comma Separated Value Interface for the Pure Programming Language"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-rational.html" title="Pure-Rational - Rational number library for the Pure programming language"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 11, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,2085 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-stlmap &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-stlvec" href="pure-stlvec.html" />
+    <link rel="prev" title="pure-stllib" href="pure-stllib.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stlvec.html" title="pure-stlvec"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-stllib.html" title="pure-stllib"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-stlmap">
+<span id="pure-stlmap"></span><h1>pure-stlmap<a class="headerlink" href="#module-stlmap" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-stlmmap"></span><span class="target" id="module-stlhmap"></span><p>Version 0.4, September 08, 2013</p>
+<div class="line-block">
+<div class="line">Peter Summerland &lt;<a class="reference external" href="mailto:p&#46;summerland&#37;&#52;&#48;gmail&#46;com">p<span>&#46;</span>summerland<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
+</div>
+<p>pure-stlmap is a <a class="reference external" href="http://purelang.bitbucket.org">Pure</a> interface to six associative containers provided by
+the <a class="reference external" href="http://en.cppreference.com/w/cpp">C++ Standard Library</a>: map, set, multimap, multiset, unordered_map and
+unordered_set.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#copying" id="id7">Copying</a></li>
+<li><a class="reference internal" href="#introduction" id="id8">Introduction</a><ul>
+<li><a class="reference internal" href="#supported-containers" id="id9">Supported Containers</a></li>
+<li><a class="reference internal" href="#interface" id="id10">Interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation" id="id11">Installation</a></li>
+<li><a class="reference internal" href="#examples" id="id12">Examples</a></li>
+<li><a class="reference internal" href="#quick-start" id="id13">Quick Start</a><ul>
+<li><a class="reference internal" href="#example-containers" id="id14">Example Containers</a></li>
+<li><a class="reference internal" href="#constructors" id="id15">Constructors</a></li>
+<li><a class="reference internal" href="#ranges" id="id16">Ranges</a></li>
+<li><a class="reference internal" href="#inserting-and-replacing-elements" id="id17">Inserting and Replacing Elements</a></li>
+<li><a class="reference internal" href="#access" id="id18">Access</a></li>
+<li><a class="reference internal" href="#erasing-elements" id="id19">Erasing Elements</a></li>
+<li><a class="reference internal" href="#conversions" id="id20">Conversions</a></li>
+<li><a class="reference internal" href="#functional-programming" id="id21">Functional Programming</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concepts" id="id22">Concepts</a><ul>
+<li><a class="reference internal" href="#containers-and-elements" id="id23">Containers and Elements</a></li>
+<li><a class="reference internal" href="#id1" id="id24">Ranges</a></li>
+<li><a class="reference internal" href="#iterators" id="id25">Iterators</a></li>
+<li><a class="reference internal" href="#selecting-elements-using-keys" id="id26">Selecting Elements Using Keys</a></li>
+<li><a class="reference internal" href="#c-implementation" id="id27">C++ Implementation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modules" id="id28">Modules</a><ul>
+<li><a class="reference internal" href="#the-stlhmap-module" id="id29">The stlhmap Module</a></li>
+<li><a class="reference internal" href="#the-stlmap-module" id="id30">The stlmap Module</a></li>
+<li><a class="reference internal" href="#the-stlmmap-module" id="id31">The stlmmap Module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#container-operations" id="id32">Container Operations</a><ul>
+<li><a class="reference internal" href="#container-construction" id="id33">Container Construction</a></li>
+<li><a class="reference internal" href="#information" id="id34">Information</a></li>
+<li><a class="reference internal" href="#modification" id="id35">Modification</a></li>
+<li><a class="reference internal" href="#accessing-elements" id="id36">Accessing Elements</a></li>
+<li><a class="reference internal" href="#id2" id="id37">Conversions</a></li>
+<li><a class="reference internal" href="#id3" id="id38">Functional Programming</a></li>
+<li><a class="reference internal" href="#comparison" id="id39">Comparison</a></li>
+<li><a class="reference internal" href="#set-algorithms" id="id40">Set Algorithms</a></li>
+<li><a class="reference internal" href="#direct-c-calls" id="id41">Direct C Calls</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4" id="id42">Iterators</a><ul>
+<li><a class="reference internal" href="#id5" id="id43">Concepts</a></li>
+<li><a class="reference internal" href="#exceptions" id="id44">Exceptions</a></li>
+<li><a class="reference internal" href="#functions" id="id45">Functions</a></li>
+<li><a class="reference internal" href="#id6" id="id46">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#backward-compatibilty" id="id47">Backward Compatibilty</a><ul>
+<li><a class="reference internal" href="#pure-stlmap-0-2" id="id48">pure-stlmap-0.2</a></li>
+<li><a class="reference internal" href="#pure-stlmap-0-3" id="id49">pure-stlmap-0.3</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="copying">
+<h2><a class="toc-backref" href="#id7">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">Copyright (c) 2012 by Peter Summerland &lt;<a class="reference external" href="mailto:p&#46;summerland&#37;&#52;&#48;gmail&#46;com">p<span>&#46;</span>summerland<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;.</div>
+</div>
+<p>All rights reserved.</p>
+<p>pure-stlmap is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
+A PARTICULAR PURPOSE.</p>
+<p>pure-stlmap is distributed under a BSD-style license, see the COPYING file
+for details.</p>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id8">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This is pure-stlmap-0.1, the first release of pure-stlmap. It is possible that
+some of the functions might be changed slightly or even removed. Comments and
+questions would be especially appreciated at this early stage.</p>
+<div class="section" id="supported-containers">
+<h3><a class="toc-backref" href="#id9">Supported Containers</a><a class="headerlink" href="#supported-containers" title="Permalink to this headline">¶</a></h3>
+<p>The Standard C++ Containers Library, often refered to as the standard template
+library (&#8220;STL&#8221;), provides templates for generic containers and generic
+algorithms. pure-stlmap provides six mutable containers, &#8220;stlmap&#8221;, &#8220;stlset&#8221;,
+&#8220;stlmmap&#8221;, &#8220;stlmset&#8221;, &#8220;stlhmap&#8221; and &#8220;stlhset&#8221;, that are thin wrappers around
+the corresponding associative containers provided by the STL, map, set,
+multimap, multiset, unordered_map and unordered_set, specialized to hold
+pure-expressions. pure-stlmap does not provide wrappers for unordered_multimap
+and unordered_multiset.</p>
+</div>
+<div class="section" id="interface">
+<h3><a class="toc-backref" href="#id10">Interface</a><a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
+<p>pure-stlmap provides a &#8220;key-based&#8221; interface that can be used to work with the
+supported STL containers in a way that should feel natural to Pure
+programmers. For example, the (!) function can be used to access values
+associated with keys and functions like <a class="reference internal" href="#map/stlmap" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a>,
+<a class="reference internal" href="#foldl/stlmap" title="foldl"><tt class="xref pure pure-func docutils literal"><span class="pre">foldl</span></tt></a>, <a class="reference internal" href="#filter/stlmap" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a> and <a class="reference internal" href="#do/stlmap" title="do"><tt class="xref pure pure-func docutils literal"><span class="pre">do</span></tt></a> can be used
+to operate on all or part of a container&#8217;s elements without using an explict
+tail recursive loop. In addition, for the ordered containers, stlmap, stlmmap,
+stlset and stlmset, pure-stlmap provides an &#8220;interator-based&#8221; interface that
+corresponds to the C++ interface, mostly on a one-to-one basis.</p>
+<p>The interface for the unordered or &#8220;hash table&#8221; containers, stlhmap and
+stlhset, is limited compared to that provided for the ordered containers. In
+particular iterators, operations on subsequences (ranges) and set operations
+are not supported.</p>
+<p>In some cases, the STL&#8217;s associative containers have different semantics than
+the the associative containers provided by the Pure standard library. Where
+there is a conflict, pure-stlmap follows the STL.</p>
+<p>Many of the functions provided by pure-stlmap, such as the constructors,
+equivalence and lexicographical comparison operations, insert and erase
+operations, and the set operations are just thin wrappers around the the
+corresponding C++ functions. Users can consult the C++ Library documentation
+to understand the performance characteristics and corner case behavior of any
+pure-stlmap function that has a corresponding function in the STL.</p>
+<p>The C++ library is sometimes more complicated than the Pure Standard
+Library. For example many of the applicable C++ functions, including set
+operations and tests for equality, assume that the containers are
+lexicographically ordered. The reward for playing by the rules (which occurs
+automatically for stlmap and stlset) is O(n) time complexity for comparison
+and set operations.</p>
+</div>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id11">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>pure-stlmap-0.4 is included in the &#8220;umbrella&#8221; addon, <a class="reference internal" href="pure-stllib.html"><em>pure-stllib</em></a>
+which is available at <a class="reference external" href="http://code.google.com/p/pure-lang/downloads/list">http://code.google.com/p/pure-lang/downloads/list</a>. After
+you have downloaded and installed <a class="reference internal" href="pure-stllib.html"><em>pure-stllib</em></a>, you will be able to use
+pure-stlmap (and <a class="reference internal" href="pure-stlvec.html"><em>pure-stlvec</em></a>, as well).</p>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id12">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>The pure-stlmap/uts subdirectory contains Pure scripts that are used to test
+pure-stlmap. These scripts contain simple tests, each of which consists of a
+single line of code followed by a comment that contains the expected
+output. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">let</span> sm1 = stlmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+<span class="c1">//- ()</span>
+
+sm1!stl<span class="p">::</span>smbeg, sm1!<span class="s">&quot;a&quot;</span>, sm1!<span class="s">&quot;d&quot;</span>, sm1!<span class="s">&quot;e&quot;</span>
+<span class="c1">//- 1,1,4,5</span>
+
+<span class="nb">catch</span> id $ sm1!<span class="s">&quot;0&quot;</span><span class="p">;</span>
+<span class="c1">//- out_of_bounds</span>
+</pre></div>
+</div>
+<p>You might consider pasting parts of these scripts into a temporary file that
+you can play with if you are curious about how something works.</p>
+<p>Two short example programs, anagrams.pure and poly.pure, can be found in the
+pure-stlmap/examples subdirectory.</p>
+</div>
+<div class="section" id="quick-start">
+<h2><a class="toc-backref" href="#id13">Quick Start</a><a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<p>This section introduces the basic functions you need to get up and running
+with pure-stlmap. For a quick look at the other functions provided by
+pure-stlmap, you can refer to pure-stllib-cheatsheet.pdf, which can be found
+in the pure-stllib/doc directory.</p>
+<div class="section" id="example-containers">
+<h3><a class="toc-backref" href="#id14">Example Containers</a><a class="headerlink" href="#example-containers" title="Permalink to this headline">¶</a></h3>
+<p>The code snippets that appear in the examples that follow assume that
+six containers have been created by entering the following at the prompt.</p>
+<div class="highlight-pure"><div class="highlight"><pre>$&gt; pure -q
+<span class="gp">&gt; </span><span class="kr">using</span> stlmap, stlhmap, stlmmap<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> stl<span class="p">;</span>
+
+<span class="gp">&gt; </span><span class="c1">// Make some maps and sets with default characteristics</span>
+<span class="gp">&gt; </span><span class="kr">let</span> sm  = stlmap  [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> shm = stlhmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> smm = stlmmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> ss  = stlset  [<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> shs = stlhset [<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> sms = stlmset [<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>]<span class="p">;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">using</span></tt> statement imports the three modules provided by pure-stlmap:
+<a class="reference internal" href="#module-stlmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmap</span></tt></a> provides the interface for the stlmap and stlset containers,
+<a class="reference internal" href="#module-stlmmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmmap</span></tt></a> provides the interface the stlmmap and stlmset containers, and
+<a class="reference internal" href="#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a> provides the interface to the stlhmap and stlhset
+containers. The <tt class="docutils literal"><span class="pre">let</span></tt> statements set up an instance of each of the containers
+provided by pure-stlmap, loaded with some sample elements.</p>
+<p>To save typing you can run readme-data.pure, a file that contains the
+corresponding source code. It can be found in in the pure-stlmap/examples
+directory.</p>
+</div>
+<div class="section" id="constructors">
+<h3><a class="toc-backref" href="#id15">Constructors</a><a class="headerlink" href="#constructors" title="Permalink to this headline">¶</a></h3>
+<p>You can construct empty pure-stlmap containers using the
+<a class="reference internal" href="#emptystlmap/stlmap" title="emptystlmap"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlmap</span></tt></a>, <a class="reference internal" href="#emptystlset/stlmap" title="emptystlset"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlset</span></tt></a>,
+<a class="reference internal" href="#emptystlmmap/stlmap" title="emptystlmmap"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlmmap</span></tt></a>, <a class="reference internal" href="#emptystlmset/stlmap" title="emptystlmset"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlmset</span></tt></a>,
+<a class="reference internal" href="#emptystlhmap/stlmap" title="emptystlhmap"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlhmap</span></tt></a> and <a class="reference internal" href="#emptystlhset/stlmap" title="emptystlhset"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlhset</span></tt></a> functions.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm1 = emptystlmap<span class="p">;</span>   <span class="c1">// uses (&lt;) to order keys</span>
+</pre></div>
+</div>
+<p>You can construct a pure-stlmap container and fill it with elements all in one
+go using the <a class="reference internal" href="#stlmap/stlmap" title="stlmap"><tt class="xref pure pure-func docutils literal"><span class="pre">stlmap</span></tt></a>, <a class="reference internal" href="#stlset/stlmap" title="stlset"><tt class="xref pure pure-func docutils literal"><span class="pre">stlset</span></tt></a>,
+<a class="reference internal" href="#stlmmap/stlmap" title="stlmmap"><tt class="xref pure pure-func docutils literal"><span class="pre">stlmmap</span></tt></a>, <a class="reference internal" href="#stlmset/stlmap" title="stlmset"><tt class="xref pure pure-func docutils literal"><span class="pre">stlmset</span></tt></a>, <a class="reference internal" href="#stlhmap/stlmap" title="stlhmap"><tt class="xref pure pure-func docutils literal"><span class="pre">stlhmap</span></tt></a> and
+<a class="reference internal" href="#stlhset/stlmap" title="stlhset"><tt class="xref pure pure-func docutils literal"><span class="pre">stlhset</span></tt></a> functions.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> shm1 = stlhmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]<span class="p">;</span>
+
+<span class="gp">&gt; </span>members shm1<span class="p">;</span>
+[<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>]
+
+<span class="gp">&gt; </span>smh1!<span class="s">&quot;b&quot;</span><span class="p">;</span>
+<span class="mi">2</span>
+</pre></div>
+</div>
+<p>As opposed to the hashed containers (stlhmap and stlhset), the ordered
+containers (stlmap, stlset, stlmmap and stlmset) keep their elements ordered
+by key.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm1 = stlmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]<span class="p">;</span> members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="ranges">
+<h3><a class="toc-backref" href="#id16">Ranges</a><a class="headerlink" href="#ranges" title="Permalink to this headline">¶</a></h3>
+<p>For the ordered containers (stlmap, stlset, stlmmap and stlmset) you can work
+with subsequences, called &#8220;ranges&#8221;, of the containers&#8217; elements. A range is
+specified by a tuple that consists of a container and two keys. If (sm,
+first_key, last_key) designates a range, the elements of the range are
+all of elements of the container sm whose keys are equivalent to or
+greater than first_key and less than last_key. If first_key and
+last_key are left out of the tuple, the range consists of all of sm&#8217;s
+elements.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>               <span class="c1">// no range keys - the whole container</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>members (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>     <span class="c1">// a range from &quot;b&quot; up but not including &quot;e&quot;</span>
+[<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>members (sm,<span class="s">&quot;c1&quot;</span>,<span class="s">&quot;z&quot;</span>)<span class="p">;</span>    <span class="c1">// keys do not have to be stored</span>
+[<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>members shm<span class="p">;</span>              <span class="c1">// works on a unordered set (with no range keys)</span>
+[<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>,<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>]
+</pre></div>
+</div>
+<p>Two special keys, <a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a> and <a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a> are
+reserved for use in ranges to designate the first element in a container and
+the imaginary &#8220;past-end&#8221; element.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members (sm,smbeg,<span class="s">&quot;d&quot;</span>)<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]
+
+<span class="gp">&gt; </span>members (sm,<span class="s">&quot;b&quot;</span>,smend)<span class="p">;</span>
+[<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>Perhaps it should go without saying, but you cannot use either of these
+symbols as the keys of elements stored in a pure-stlmap container.</p>
+</div>
+<div class="section" id="inserting-and-replacing-elements">
+<h3><a class="toc-backref" href="#id17">Inserting and Replacing Elements</a><a class="headerlink" href="#inserting-and-replacing-elements" title="Permalink to this headline">¶</a></h3>
+<p>You can insert elements and, for the maps (stlmap, stlmmap and stlhmap),
+replace the values associated with keys that are already stored in the map,
+using the <a class="reference internal" href="#insert/stlmap" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a>, <a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a> and
+<a class="reference internal" href="#insert_or_replace/stlmap" title="insert_or_replace"><tt class="xref pure pure-func docutils literal"><span class="pre">insert_or_replace</span></tt></a> functions. For the maps, the elements to
+inserted are specified as (key=&gt;value) hash-pairs.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm1 = emptystlmap<span class="p">;</span>
+
+<span class="gp">&gt; </span>insert sm1 (<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>)<span class="p">;</span>              <span class="c1">// returns number of elements inserted</span>
+<span class="mi">1</span>
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>replace sm1 <span class="s">&quot;e&quot;</span> <span class="mi">15</span><span class="p">;</span>               <span class="c1">// returns value</span>
+<span class="mi">15</span>
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">15</span>]
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ replace sm1 <span class="s">&quot;x&quot;</span> <span class="mi">10</span><span class="p">;</span>    <span class="c1">// replace never inserts new elements</span>
+out_of_bounds
+
+<span class="gp">&gt; </span>insert sm1 (<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">25</span>)<span class="p">;</span>             <span class="c1">// insert never changes existing elements</span>
+<span class="mi">0</span>
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">15</span>]
+
+<span class="gp">&gt; </span>insert_or_replace sm1 (<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">25</span>)<span class="p">;</span>  <span class="c1">// 1 value changed</span>
+<span class="mi">1</span>
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">25</span>]
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="#insert/stlmap" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a> and <a class="reference internal" href="#insert_or_replace/stlmap" title="insert_or_replace"><tt class="xref pure pure-func docutils literal"><span class="pre">insert_or_replace</span></tt></a> functions are
+overloaded to insert or replace elements specified in a list, vector, stlvec
+or another pure-stlmap container (of the same type). E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm2 = emptystlmap<span class="p">;</span>
+
+<span class="gp">&gt; </span>insert sm2 [<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>]<span class="p">;</span>       <span class="c1">// insert from a list</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>insert sm2 (sm,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>          <span class="c1">// insert from a range</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>members sm2<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>insert_or_replace sm2 {<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">11</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">15</span>}<span class="p">;</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>members sm2<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">11</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">15</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="access">
+<h3><a class="toc-backref" href="#id18">Access</a><a class="headerlink" href="#access" title="Permalink to this headline">¶</a></h3>
+<p>If you want to see if a key is stored in a container use the
+<a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> function. (A key, k, is considered to be &#8220;stored&#8221; in a
+container if there is an element in the container that is equivalent to k.)</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>member sm <span class="s">&quot;x&quot;</span><span class="p">;</span>  <span class="c1">// (&quot;x&quot;=&gt;val) is not an element of sm for any val</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>member sm <span class="s">&quot;a&quot;</span><span class="p">;</span>  <span class="c1">// (&quot;a&quot;=&gt;1) is an element with key equivalent to &quot;a&quot;</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+<p>The value (or values for a multi-key container) associated with a key can be
+accessed using the (!) function.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sm!<span class="s">&quot;a&quot;</span><span class="p">;</span>   <span class="c1">// return the value associated with &quot;a&quot;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>shm!<span class="s">&quot;b&quot;</span><span class="p">;</span>  <span class="c1">// try it with a hashed map</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>smm!<span class="s">&quot;c&quot;</span><span class="p">;</span>  <span class="c1">// multimap returns a the list of values associated with &quot;c&quot;</span>
+[<span class="mi">31</span>,<span class="mi">32</span>]
+
+<span class="gp">&gt; </span>ss!<span class="s">&quot;a&quot;</span><span class="p">;</span>   <span class="c1">// with sets, return the key</span>
+<span class="s">&quot;a&quot;</span>
+
+<span class="gp">&gt; </span>sms!<span class="s">&quot;c&quot;</span><span class="p">;</span>  <span class="c1">// with multisets, return a list of keys</span>
+[<span class="s">&quot;c&quot;</span>,<span class="s">&quot;c&quot;</span>]
+</pre></div>
+</div>
+<p>If the key is not stored in the container, (!) throws an <a class="reference internal" href="purelib.html#out_of_bounds" title="out_of_bounds"><tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt></a>
+exception.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="nb">catch</span> id $ sm!<span class="s">&quot;x&quot;</span><span class="p">;</span> <span class="c1">// &quot;x&quot; is not stored as a key in sm</span>
+out_of_bounds
+</pre></div>
+</div>
+<p>Please note that all access is strictly by keys. For example you cannot use
+the <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> function to determine if (&#8220;a&#8221;=&gt;1) is an element
+stored in sm; you can only ask if the key &#8220;a&#8221; is stored in sm.</p>
+</div>
+<div class="section" id="erasing-elements">
+<h3><a class="toc-backref" href="#id19">Erasing Elements</a><a class="headerlink" href="#erasing-elements" title="Permalink to this headline">¶</a></h3>
+<p>For any pure-stlmap container, you can use the <a class="reference internal" href="#erase/stlmap" title="erase"><tt class="xref pure pure-func docutils literal"><span class="pre">erase</span></tt></a> function
+to remove all the elements associated with a given key in the container, all
+of the elements in the container or, unless the container is a stlhmap or
+stlhset, all of the elements in a range defined on the container.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> shm1 = stlhmap shm<span class="p">;</span>       <span class="c1">// make some copies of maps</span>
+<span class="gp">&gt; </span><span class="kr">let</span> smm1 = stlmmap smm<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> sm1 = stlmap sm<span class="p">;</span>
+
+<span class="gp">&gt; </span>members smm1<span class="p">;</span>                 <span class="c1">// smm1 has multiple values for &quot;c&quot;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>erase (shm1,<span class="s">&quot;c&quot;</span>)<span class="p">;</span>             <span class="c1">// erase &quot;c&quot; keyed elements from a stlmmap</span>
+<span class="mi">1</span>
+<span class="gp">&gt; </span>members shm1<span class="p">;</span>                 <span class="c1">// all the &quot;c&quot; keyed elements are gone</span>
+[<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>,<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>]
+
+<span class="gp">&gt; </span>erase shm1<span class="p">;</span>                   <span class="c1">// erase all elements</span>
+<span class="mi">4</span>
+<span class="gp">&gt; </span>empty shm1<span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>erase (sm1,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;d&quot;</span>)<span class="p">;</span>         <span class="c1">// erase a subsequence</span>
+<span class="mi">2</span>
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>erase (sm1,<span class="s">&quot;x&quot;</span>)<span class="p">;</span>             <span class="c1">// attempt to erase something not there</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>erase (smm1,<span class="s">&quot;c&quot;</span>)<span class="p">;</span>            <span class="c1">// erase all elements with key &quot;c&quot;</span>
+<span class="mi">2</span>
+<span class="gp">&gt; </span>members smm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="conversions">
+<h3><a class="toc-backref" href="#id20">Conversions</a><a class="headerlink" href="#conversions" title="Permalink to this headline">¶</a></h3>
+<p>The elements of an associated container be copied into a list, vector or
+stlvec using the <a class="reference internal" href="#members/stlmap" title="members"><tt class="xref pure pure-func docutils literal"><span class="pre">members</span></tt></a>, <a class="reference internal" href="#stl::vector/stlmap" title="stl::vector"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::vector</span></tt></a> and
+<a class="reference internal" href="#stlvec/stlmap" title="stlvec"><tt class="xref pure pure-func docutils literal"><span class="pre">stlvec</span></tt></a> functions. For ordered containers (stlmap, stlset,
+stlmmap and stlmset) the list, vector or stlvec can be built from a range.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members ss<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>]
+
+<span class="gp">&gt; </span>members (ss,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;d&quot;</span>)<span class="p">;</span> <span class="c1">// list subsequence from &quot;b&quot; up to but not &quot;d&quot;</span>
+[<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>]
+
+<span class="gp">&gt; </span>members (smm,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+[<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>members (shm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;d&quot;</span>)<span class="p">;</span> <span class="c1">// fails - ranges not supported for stlhmaps</span>
+stl<span class="p">::</span>members (<span class="kt">#&lt;pointer 0x83b4908&gt;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;d&quot;</span>)
+
+<span class="gp">&gt; </span>members shm<span class="p">;</span>          <span class="c1">// ok - all elements are copied</span>
+[<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>,<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]
+
+<span class="gp">&gt; </span>vector (sm,smbeg,<span class="s">&quot;d&quot;</span>)<span class="p">;</span>
+{<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>}
+
+<span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">;</span>
+<span class="gp">&gt; </span>members $ stlvec sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>You can convert the contents of an ordered container (stlmap, stlset, stlmmap
+or stlmset) or a range defined on one to a stream using the
+<a class="reference internal" href="#stream/stlmap" title="stream"><tt class="xref pure pure-func docutils literal"><span class="pre">stream</span></tt></a> function.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> ss1 = stlhset (<span class="mi">0</span>..<span class="mi">100000</span>)<span class="p">;</span>
+
+<span class="gp">&gt; </span>stats -m
+
+<span class="gp">&gt; </span><span class="kr">let</span> xx = drop <span class="mi">99998</span> $ scanl (+) <span class="mi">0</span> (stream ss)<span class="p">;</span>
+<span class="mi">0</span>.3s, <span class="mi">18</span> cells
+
+<span class="gp">&gt; </span>list xx<span class="p">;</span>
+[<span class="mi">704782707</span>,<span class="mi">704882705</span>,<span class="mi">704982704</span>,<span class="mi">705082704</span>]
+0s, <span class="mi">17</span> cells
+</pre></div>
+</div>
+</div>
+<div class="section" id="functional-programming">
+<h3><a class="toc-backref" href="#id21">Functional Programming</a><a class="headerlink" href="#functional-programming" title="Permalink to this headline">¶</a></h3>
+<p>Most of the Pure list operations, including <a class="reference internal" href="#map/stlmap" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a>,
+<a class="reference internal" href="#do/stlmap" title="do"><tt class="xref pure pure-func docutils literal"><span class="pre">do</span></tt></a>, <a class="reference internal" href="#filter/stlmap" title="filter"><tt class="xref pure pure-func docutils literal"><span class="pre">filter</span></tt></a>, <a class="reference internal" href="#catmap/stlmap" title="catmap"><tt class="xref pure pure-func docutils literal"><span class="pre">catmap</span></tt></a>,
+<a class="reference internal" href="#foldl/stlmap" title="foldl"><tt class="xref pure pure-func docutils literal"><span class="pre">foldl</span></tt></a> and <a class="reference internal" href="#foldl1/stlmap" title="foldl1"><tt class="xref pure pure-func docutils literal"><span class="pre">foldl1</span></tt></a> can be applied to any of
+pure-stlmap&#8217;s associative containers. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (\x-&gt;x-<span class="mi">32</span>) shs<span class="p">;</span>
+[<span class="s">&quot;D&quot;</span>,<span class="s">&quot;E&quot;</span>,<span class="s">&quot;A&quot;</span>,<span class="s">&quot;B&quot;</span>,<span class="s">&quot;C&quot;</span>]
+
+<span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+
+<span class="gp">&gt; </span>do (puts . str) (sm,smbeg,<span class="s">&quot;c&quot;</span>)<span class="p">;</span>
+<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>
+<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>
+()
+</pre></div>
+</div>
+<p>List comprehensions also work.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>[k-<span class="mi">32</span>=&gt;v+<span class="mi">100</span> | (k=&gt;v) = smm<span class="p">;</span> k&gt;<span class="s">&quot;a&quot;</span> &amp;&amp; k&lt;<span class="s">&quot;e&quot;</span>]<span class="p">;</span>
+[<span class="s">&quot;B&quot;</span>=&gt;<span class="mi">102</span>,<span class="s">&quot;C&quot;</span>=&gt;<span class="mi">131</span>,<span class="s">&quot;C&quot;</span>=&gt;<span class="mi">132</span>,<span class="s">&quot;D&quot;</span>=&gt;<span class="mi">104</span>]
+
+<span class="gp">&gt; </span>{k-<span class="mi">32</span>=&gt;v+<span class="mi">100</span> | (k=&gt;v) = (smm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)}<span class="p">;</span>
+{<span class="s">&quot;B&quot;</span>=&gt;<span class="mi">102</span>,<span class="s">&quot;C&quot;</span>=&gt;<span class="mi">131</span>,<span class="s">&quot;C&quot;</span>=&gt;<span class="mi">132</span>,<span class="s">&quot;D&quot;</span>=&gt;<span class="mi">104</span>}
+</pre></div>
+</div>
+<p>It is highly recommended that you use the functional programming operations,
+as opposed to recursive loops, whenever possible.</p>
+</div>
+</div>
+<div class="section" id="concepts">
+<h2><a class="toc-backref" href="#id22">Concepts</a><a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h2>
+<p>This section describes pure-stlmap&#8217;s containers, iterators, ranges, elements,
+keys, values and how these objects are related to each other. It also
+describes a group of functions associated with containers that help define the
+container&#8217;s behavior. E.g., each ordered container (stlmap, stlset, stlmmap or
+stlmset) stores a function that it used to order its keys and to determine if
+two keys are equivalent.</p>
+<div class="section" id="containers-and-elements">
+<h3><a class="toc-backref" href="#id23">Containers and Elements</a><a class="headerlink" href="#containers-and-elements" title="Permalink to this headline">¶</a></h3>
+<p>The six associative containers supported by pure-stlmap can be grouped
+together in terms of certain defining attributes.</p>
+<p>The three &#8220;maps&#8221; provided by pure-stlmap, stlmap, stlmmap and stlhmap,
+associate values with keys. If a value v is associated with a key, k, in an
+map, m, then we say that (k=&gt;v) is an element of m, k is a key stored in m and
+v is a value stored in m.</p>
+<p>The three &#8220;sets&#8221; provided by pure-stlmap, stlset, stlmset and stlhset, hold
+single elements, as opposed to key value pairs. If an element e is contained a
+set, s, we say that e is simultaneously an element, key and value stored s. In
+other words, we sometimes speak of a set as if it were a map where each
+element, key and value are the same object.</p>
+<p>The &#8220;ordered&#8221; containers, stlmap, stlset, stlmmap and stlmset, each have a
+&#8220;key-less-than&#8221; function that they use keep their elements in a sequence that
+is ordered by keys. The default key-less-than function is <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;)</span></tt>,
+but this can be changed when the container is created. The elements stored in
+a stlmap or stlset have unique keys, i.e., two elements stored in the
+container will never have equivalent keys. For these purposes, two keys are
+&#8220;equivalent&#8221; if neither key is key-less-than the other. In contrast, stlmmap
+and stlmset do not have unique keys. I.e., it is possible for different
+elements stored in a stlmmap or stlmset can have equivalent keys.</p>
+<p>The &#8220;hashed&#8221; containers, sthmap and stlhset do not keep their elements in a
+sequence. Instead they store their elments in a hash table using a &#8220;key-hash&#8221;
+function and a &#8220;key-equal&#8221; function. Currently the key-hash function is always
+<a class="reference internal" href="purelib.html#hash" title="hash"><tt class="xref pure pure-func docutils literal"><span class="pre">hash</span></tt></a> and the key-equal function is always (===), both of which are
+defined in the Prelude. The elements stored in a hashed container have unique
+keys. I.e., two elements stored in the container will never by &#8220;key-equal&#8221;. At
+times we say that two keys stored in a hashed container are &#8220;equivalent&#8221; if
+they are key-equal.</p>
+<p>The &#8220;ordered maps&#8221;, stlmap and stlmmap, each have a &#8220;value-less-than&#8221; function
+and a &#8220;value-equal&#8221; function that is used for lexicographical comparisons. The
+default functions are <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;)</span></tt> and (==) respectively, but these can
+customized when the container is created.</p>
+<p>As is the case for the underlying C++ functions, set operations (i.e., union,
+intersection, etc.) and container equivalence for the ordered containers are
+based on lexicographical comparisons. For these purposes one element, e1, is
+less than another, e2, if (a) e1&#8217;s key is less-than e2&#8217;s key and, (b) if the
+ordered container is a stlmap or stlmap, e1&#8217;s value is value-less-than e2&#8217;s
+value. Finally, for purposes of determining if two ordered containers are
+equal, e1 and e2 are considered to be equal if (a) their keys are equivalent
+and (b), in the case of stlmap or stlmmap, their values are value-equal.</p>
+<p>Set operations are not provided for the hashed containers, stlhmap and
+stlhset.</p>
+</div>
+<div class="section" id="id1">
+<h3><a class="toc-backref" href="#id24">Ranges</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>For the ordered containers (stlmap, stlset, stlmmap and stlmset), you can work
+with a subsequence or &#8220;range&#8221; of a container&#8217;s elements. Given an ordered
+container, oc, and keys f and l, the range (oc,f,l) consists of all of the
+elements in oc starting with the first element that is not less than f up to
+but not including the first element that is greater or equal to l. Note that f
+and l do not have to be stored in oc.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+[<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>members (sm,<span class="s">&quot;c1&quot;</span>,smend)<span class="p">;</span>
+[<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>When a range is passed to a function provided by pure-stlmap, the keys can be
+dropped, in which case the range consists of all of the container&#8217;s
+elements.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>Please note that support for ranges is not provided for the unordered
+containers (stlhmap and stlhset). Most pure-stlmap functions that act on
+ranges can, however, operate on stlhmaps or stlhsets as well, except that, for
+stlhmaps and stlhsets, they always operate on all of the container&#8217;s
+elements. Accordingly, whenever the documentation of a function refers to a
+range, and the container in question is a a stlhmap or stlhset, the range
+simply refers to the container itself.</p>
+</div>
+<div class="section" id="iterators">
+<h3><a class="toc-backref" href="#id25">Iterators</a><a class="headerlink" href="#iterators" title="Permalink to this headline">¶</a></h3>
+<p>The native STL interface is based on &#8220;iterators&#8221; that point to elements in
+containers. pure-stlmap provides support for iterators defined on its ordered
+containers (stlmap, stlmmap, stlset and stlmset) but not for its unordered
+containers (stlhmap and stlhset).</p>
+<p>Iterators are most useful when dealing with stlmmaps where elements with
+different values can have equivalent keys. In most cases, it is recommended
+that you avoid using iterators. The functions that operate on or return
+iterators are discussed separately at the end of this document.</p>
+</div>
+<div class="section" id="selecting-elements-using-keys">
+<h3><a class="toc-backref" href="#id26">Selecting Elements Using Keys</a><a class="headerlink" href="#selecting-elements-using-keys" title="Permalink to this headline">¶</a></h3>
+<p>Throughout pure-stlmap, unless you resort to using iterators, you can only
+specify elements and ranges of elements using keys. For example you cannot use
+the <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> function to see if a specific key, value pair is an
+element of a stlmap.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>member sm <span class="s">&quot;a&quot;</span><span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ member sm (a=&gt;<span class="mi">1</span>)<span class="p">;</span>
+bad_argument
+</pre></div>
+</div>
+<p>In the last line of code, <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> treats (a=&gt;1) as a
+key. Because (a=&gt;1) cannot be compared to a string using <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;)</span></tt>,
+the ersatz key is treated as a bad argument.</p>
+<p>This &#8220;key access only&#8221; approach can be an issue for stlmmaps and because
+multiple elements can have equivalent keys. I.e., given a stlmmap, smm, that
+containes multiple element with keys equivalent to, say, k, which element
+should (!) return? pure-stlmap dodges this issue by returning all on
+them. Thus, for stlmmap and stlmset (!) and <a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a> work with
+lists of elements associated with a given key rather than, say, the first
+elment with the given key.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]<span class="p">;</span>
+
+<span class="gp">&gt; </span>smm!<span class="s">&quot;c&quot;</span><span class="p">;</span>
+<span class="s">&quot;c&quot;</span>=&gt;[<span class="mi">31</span>,<span class="mi">32</span>]
+
+<span class="gp">&gt; </span>replace smm <span class="s">&quot;c&quot;</span> [<span class="mi">31</span>,<span class="mi">32</span>,<span class="mi">33</span>]<span class="p">;</span> members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">33</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>replace smm <span class="s">&quot;c&quot;</span> []<span class="p">;</span> members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>If selecting and replacing lists of elements with the same key is not
+convenient, you can always use iterators to track down and modify any specific
+element.</p>
+</div>
+<div class="section" id="c-implementation">
+<h3><a class="toc-backref" href="#id27">C++ Implementation</a><a class="headerlink" href="#c-implementation" title="Permalink to this headline">¶</a></h3>
+<p>For those that want to refer to the <a class="reference external" href="http://en.cppreference.com/w/cpp">C++ standard library documentation</a>,
+stlmap is (essentially) map&lt;px*,px*&gt;, stlmmap is multimap&lt;px*,px*&gt; and stlhmap
+is unordered_map&lt;px*,px*&gt;, where px is defined by &#8220;typedef pure_expr
+px&#8221;. I.e., in C++ Containers library speak, key_type is px*, mapped_type is
+px* and value_type is pair&lt;px*,px*&gt;. This might be a bit confusing because
+pure-stlmap&#8217;s (key=&gt;value) &#8220;elements&#8221; correspond to C++ value_types, a
+pair&lt;key_type,mapped_type&gt;, and pure-stlmap&#8217;s values correspond to
+mapped_types. The C++ objects for stlset, stlmset and stlhset are the same as
+stlmap, stmmap and stlhmap except that pure-stlmap ensures that the second
+member of the C++ value_type pair is always NULL.</p>
+</div>
+</div>
+<div class="section" id="modules">
+<h2><a class="toc-backref" href="#id28">Modules</a><a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<p>pure-stlmap provides three separate modules <a class="reference internal" href="#module-stlmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmap</span></tt></a>, <a class="reference internal" href="#module-stlmmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmmap</span></tt></a> and
+<a class="reference internal" href="#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a>.</p>
+<p>Importing any one of these modules defines the stl namespace as well as two
+important symbols, <a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a> and <a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a>.</p>
+<dl class="constructor">
+<dt id="stl::smbeg/stlmap">
+<em class="property">constructor </em><tt class="descclassname">stl::</tt><tt class="descname">smbeg</tt><a class="headerlink" href="#stl::smbeg/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::smend/stlmap">
+<em class="property">constructor </em><tt class="descclassname">stl::</tt><tt class="descname">smend</tt><a class="headerlink" href="#stl::smend/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>These symbols are used to designate the key of the first element in an
+ordered container (stlmap, stlset, stlmmap or stlmset) and the key of an
+imaginary element that would come immediately after the last element of in
+the constainer. They are used to define ranges over the ordered
+containers.</p>
+</dd></dl>
+
+<p>E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>members (sm,<span class="s">&quot;c&quot;</span>,smend)<span class="p">;</span>
+[<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<div class="section" id="the-stlhmap-module">
+<h3><a class="toc-backref" href="#id29">The stlhmap Module</a><a class="headerlink" href="#the-stlhmap-module" title="Permalink to this headline">¶</a></h3>
+<p>If all you want is fast insertion and lookup, you don&#8217;t care about the order
+of the elements stored in the container, and you do not want to use set
+operations like <a class="reference internal" href="#stl::map_intersection/stlmap" title="stl::map_intersection"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::map_intersection</span></tt></a>, then <a class="reference internal" href="#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a> is
+probably your best choice. The supported containers, stlhmap and stlhset are
+simpler to use and faster than the other containers provided by pure-stlmap.</p>
+<p>The <a class="reference internal" href="#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a> module defines stlhmaps and stlhsets and provides functions
+for dealing with them. You can import it by adding the following <tt class="docutils literal"><span class="pre">using</span></tt>
+statement to your code.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlhmap<span class="p">;</span>
+</pre></div>
+</div>
+<p>The <a class="reference internal" href="#module-stlhmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlhmap</span></tt></a> module defines types two types:</p>
+<dl class="type">
+<dt id="stlhmap/type">
+<em class="property">type </em><tt class="descname">stlhmap</tt><a class="headerlink" href="#stlhmap/type" title="Permalink to this definition">¶</a></dt>
+<dt id="stlhset/type">
+<em class="property">type </em><tt class="descname">stlhset</tt><a class="headerlink" href="#stlhset/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Please note that a stlhset is just a stlhmap where the values associated with
+keys cannot be accessed or modified. I.e., a stlhset is a specialized kind of
+stlhmap.</p>
+</div>
+<div class="section" id="the-stlmap-module">
+<h3><a class="toc-backref" href="#id30">The stlmap Module</a><a class="headerlink" href="#the-stlmap-module" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="#module-stlmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmap</span></tt></a> module provides you with stlmaps and stlsets and the
+functions that operate on them. Consider using these containers if you want
+their elements to be orderd by key, want to use ranges or if you are using any
+set operations (<a class="reference internal" href="#stl::map_union/stlmap" title="stl::map_union"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::map_union</span></tt></a>,
+<a class="reference internal" href="#stl::map_intersection/stlmap" title="stl::map_intersection"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::map_intersection</span></tt></a>, etc).</p>
+<p>You can import the stlmap module by adding the following using statement to
+your code.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlmap<span class="p">;</span>
+</pre></div>
+</div>
+<p>Importing the stlmap module introduces types to describe stlmap and stlset,
+their iterators and ranges defined on them.</p>
+<dl class="type">
+<dt id="stlmap/type">
+<em class="property">type </em><tt class="descname">stlmap</tt><a class="headerlink" href="#stlmap/type" title="Permalink to this definition">¶</a></dt>
+<dt id="stlset/type">
+<em class="property">type </em><tt class="descname">stlset</tt><a class="headerlink" href="#stlset/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="stlmap_iter/type">
+<em class="property">type </em><tt class="descname">stlmap_iter</tt><a class="headerlink" href="#stlmap_iter/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="stlmap_rng/type">
+<em class="property">type </em><tt class="descname">stlmap_rng</tt><a class="headerlink" href="#stlmap_rng/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Please note that a stlset is just a stlmap where the values associated with
+keys cannot be accessed or modified. I.e., a stlset is a specialized kind of
+stlmap. Accordingly, it is not necessary, for example, to define a separate
+type for iterators on stlsets as opposed to iterators on stlmaps.</p>
+</div>
+<div class="section" id="the-stlmmap-module">
+<h3><a class="toc-backref" href="#id31">The stlmmap Module</a><a class="headerlink" href="#the-stlmmap-module" title="Permalink to this headline">¶</a></h3>
+<p>If you need a multi-keyed container, the <a class="reference internal" href="#module-stlmmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmmap</span></tt></a> module, which provides
+support for stlmaps and stlmsets, is your only choice. Set operations and
+ranges are supported, but the semantics are more complicated than is the case
+for stlmap and stlset. Because the keys stored in multi-keyed containers are
+not unique you might have to resort to using iterators when working with them.</p>
+<p>You can import the <a class="reference internal" href="#module-stlmmap"><tt class="xref pure pure-mod docutils literal"><span class="pre">stlmmap</span></tt></a> module by adding the following using
+statement to your code.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlmmap<span class="p">;</span>
+</pre></div>
+</div>
+<p>Importing the stlmmap module introduces types to describe stlmmap and stlmset,
+along with their iterators and ranges defined on them.</p>
+<dl class="type">
+<dt id="stlmmap/type">
+<em class="property">type </em><tt class="descname">stlmmap</tt><a class="headerlink" href="#stlmmap/type" title="Permalink to this definition">¶</a></dt>
+<dt id="stlmset/type">
+<em class="property">type </em><tt class="descname">stlmset</tt><a class="headerlink" href="#stlmset/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="stlmmap_iter/type">
+<em class="property">type </em><tt class="descname">stlmmap_iter</tt><a class="headerlink" href="#stlmmap_iter/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="type">
+<dt id="stlmmap_rng/type">
+<em class="property">type </em><tt class="descname">stlmmap_rng</tt><a class="headerlink" href="#stlmmap_rng/type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>Please note that a stlmset is just a stlmmap where the values associated with
+keys cannot be accessed or modified. I.e., a stlmset is a specialized kind of
+stlmmap. Accordingly, it is not necessary, for example, to define a separate
+type for iterators on stlmsets as opposed to iterators on stlmmaps.</p>
+</div>
+</div>
+<div class="section" id="container-operations">
+<h2><a class="toc-backref" href="#id32">Container Operations</a><a class="headerlink" href="#container-operations" title="Permalink to this headline">¶</a></h2>
+<p>Each of the six associative containers supported by pure-stlmap has its own
+set of unique characteristics. Because of this the description of functions
+that operate on more than one type of container can get a little complicated.
+When reading this section it might be helpful to consult
+pure-stllib-cheatsheet.pdf which can be found in the pure-stlib/doc directory.</p>
+<div class="section" id="container-construction">
+<h3><a class="toc-backref" href="#id33">Container Construction</a><a class="headerlink" href="#container-construction" title="Permalink to this headline">¶</a></h3>
+<p>New empty ordered containers (stlmap, stlset, stlmmap and stlmset) can be
+constructed using optional parameters that allow you to specify customized
+key-less-than functions, default values, value-less-than and value-equal
+functions.</p>
+<dl class="function">
+<dt id="mkstlmap/stlmap">
+<tt class="descname">mkstlmap</tt> (klt,dflt,vlt,veq)<a class="headerlink" href="#mkstlmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="mkstlmmap/stlmap">
+<tt class="descname">mkstlmmap</tt> (klt,dflt,vlt,veq)<a class="headerlink" href="#mkstlmmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new stlmap or stlmmap where <tt class="docutils literal"><span class="pre">klt</span></tt> is the map&#8217;s key-less-than
+function. dflt is the maps default value (used by replace_with and
+find_with_default). vlt is the map&#8217;s value-compare function and veq is its
+value-equal function.  Only <tt class="docutils literal"><span class="pre">klt</span></tt> is required, and the default values for
+dflt, vlt, veq are [], (&lt;) and (==) respectively.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="mkstlset/stlmap">
+<tt class="descname">mkstlset</tt> klt<a class="headerlink" href="#mkstlset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="mkstlmset/stlmap">
+<tt class="descname">mkstlmset</tt> klt<a class="headerlink" href="#mkstlmset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new stlset or stlmset where <tt class="docutils literal"><span class="pre">klt</span></tt> is the set&#8217;s key-less-than
+function.</p>
+</dd></dl>
+
+<p>The internal lookup functions for the ordered containers (stlmap, stlset,
+stlmmap and stlmset) are optimized to avoid callbacks if the container&#8217;s
+key-less-than function is is <tt class="xref pure pure-func docutils literal"><span class="pre">(&gt;)</span></tt> or <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;)</span></tt> and the
+keys being compared are a pair of strings, ints, bigints or doubles.</p>
+<p>You can create an empty associative container using default values for using
+<a class="reference internal" href="#emptystlmap/stlmap" title="emptystlmap"><tt class="xref pure pure-func docutils literal"><span class="pre">emptystlmap</span></tt></a> and friends.</p>
+<dl class="function">
+<dt id="emptystlmap/stlmap">
+<tt class="descname">emptystlmap</tt><a class="headerlink" href="#emptystlmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="emptystlmmap/stlmap">
+<tt class="descname">emptystlmmap</tt><a class="headerlink" href="#emptystlmmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="emptystlset/stlmap">
+<tt class="descname">emptystlset</tt><a class="headerlink" href="#emptystlset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="emptystlmset/stlmap">
+<tt class="descname">emptystlmset</tt><a class="headerlink" href="#emptystlmset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new ordered map or set using default values. I.e., emptystlmap is
+the same as mkstlmap <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;)</span></tt>, and so on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="emptystlhmap/stlmap">
+<tt class="descname">emptystlhmap</tt><a class="headerlink" href="#emptystlhmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="emptystlhset/stlmap">
+<tt class="descname">emptystlhset</tt><a class="headerlink" href="#emptystlhset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new stlhmap or stlhset with default values. The hash-function is
+hash and the value-equal function is (===).</p>
+</dd></dl>
+
+<p>Convenience functions are also provided to construct an empty container and
+insert elements into it in one go. The source of the elements can be a list,
+vector, a stlvec, or a range defined on another container of the same type as
+the new container.</p>
+<dl class="function">
+<dt id="stlmap/stlmap">
+<tt class="descname">stlmap</tt> src<a class="headerlink" href="#stlmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stlmmap/stlmap">
+<tt class="descname">stlmmap</tt> src<a class="headerlink" href="#stlmmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stlset/stlmap">
+<tt class="descname">stlset</tt> src<a class="headerlink" href="#stlset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stlmset/stlmap">
+<tt class="descname">stlmset</tt> src<a class="headerlink" href="#stlmset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stlhmap/stlmap">
+<tt class="descname">stlhmap</tt> src<a class="headerlink" href="#stlhmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stlhset/stlmap">
+<tt class="descname">stlhset</tt> src<a class="headerlink" href="#stlhset/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an associative constructor using default values and insert elements
+from copied from <tt class="docutils literal"><span class="pre">src</span></tt>. <tt class="docutils literal"><span class="pre">src</span></tt> can be a list, vector or stlvec of
+elements or a range defined over a container of the same type as the new
+container. If the new container is a stlmap, stlmmap or stlhmap, the
+elements of src must be (key=&gt;val) pairs. If the new container is a stlset,
+stlmset or stlhset they can be any pure expression that can be used as a
+key (i.e., anything except for <a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a> or
+<a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a>).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="information">
+<h3><a class="toc-backref" href="#id34">Information</a><a class="headerlink" href="#information" title="Permalink to this headline">¶</a></h3>
+<p>This group of functions allows you make inquiries regarding the number of
+elments in a container, the number of instances of a given key held by a
+container, the upper and lower bounds of a range and other information. In
+addition this group includes a function that can be used to change the number
+of slots used by a stlhmap or stlhset.</p>
+<dl class="function">
+<dt id="#/stlmap">
+<tt class="descname">#</tt> acon<a class="headerlink" href="##/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of elements in <tt class="docutils literal"><span class="pre">acon</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::empty/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">empty</tt> acon<a class="headerlink" href="#stl::empty/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return true if <tt class="docutils literal"><span class="pre">acon</span></tt> is empty, else false.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::distance/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">distance</tt> rng<a class="headerlink" href="#stl::distance/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of elements contained in <tt class="docutils literal"><span class="pre">rng</span></tt> where rng is a range
+defined on an ordered container (stlmap, stlmmap, stlset, stlmset).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::count/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">count</tt> acon k<a class="headerlink" href="#stl::count/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of elements in an associative container, acon, that have
+a key that is equivalent to <tt class="docutils literal"><span class="pre">k</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::bounds/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">bounds</tt> rng<a class="headerlink" href="#stl::bounds/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a pair of keys, first and last, such that first &lt;= k &lt; last for each
+k, where k is the key of an element in <tt class="docutils literal"><span class="pre">rng</span></tt>. If there is no such last,
+the second member of the returned pair will be
+<a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a>. If first is the key of the first element of
+<tt class="docutils literal"><span class="pre">rng's</span></tt> container, the first member of the returned pair will
+<a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a>.</p>
+</dd></dl>
+
+<p>Here are two examples using the <a class="reference internal" href="#stl::bounds/stlmap" title="stl::bounds"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::bounds</span></tt></a> function. Notice
+that bounds returns <a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a> instead of &#8220;a&#8221; in the first
+example.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>bounds sm<span class="p">;</span>
+stl<span class="p">::</span>smbeg,stl<span class="p">::</span>smend
+
+<span class="gp">&gt; </span>bounds (sm,<span class="s">&quot;a1&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>
+</pre></div>
+</div>
+<dl class="function">
+<dt id="stl::container_info/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">container_info</tt> acon<a class="headerlink" href="#stl::container_info/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <tt class="docutils literal"><span class="pre">acon</span></tt> is a stlmap or stlmmap, returns (0, klt, dflt, vlt, veq) where
+klt is <tt class="docutils literal"><span class="pre">acon</span></tt>&#8216;s key-less-than function, dflt is its default value, vlt is
+its value-less-than function and veq is its value_equal function. If
+<tt class="docutils literal"><span class="pre">acon</span></tt> is a stlset or stlmset, returns (1,klt,_,_,_) where klt is
+<tt class="docutils literal"><span class="pre">acon</span></tt>&#8216;s key-less-than function. If <tt class="docutils literal"><span class="pre">acon</span></tt> is a stlhmap or stlhset,
+returns (is_set, bucket_count, load_factor, max_load_factor).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::bucket_size/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">bucket_size</tt> hacon n<a class="headerlink" href="#stl::bucket_size/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the number of elements in <tt class="docutils literal"><span class="pre">hacon</span></tt>&#8216;s nth (zero-based) bucket where
+<tt class="docutils literal"><span class="pre">hacon</span></tt> is a stlhmap or stlhset.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::hmap_reserve/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">hmap_reserve</tt> hacon mlf size<a class="headerlink" href="#stl::hmap_reserve/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets <tt class="docutils literal"><span class="pre">hacon</span></tt>&#8216;s max_load_factor to <tt class="docutils literal"><span class="pre">mlf</span></tt>, sets the number of <tt class="docutils literal"><span class="pre">hacon</span> <span class="pre">'s</span>
+<span class="pre">buckets</span> <span class="pre">to</span> <span class="pre">``size</span></tt>/<tt class="docutils literal"><span class="pre">mlf`</span> <span class="pre">and</span> <span class="pre">rehashes</span> <span class="pre">``hacon</span></tt> where <tt class="docutils literal"><span class="pre">hacon</span></tt> is a
+stlhmap or stlhset.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="modification">
+<h3><a class="toc-backref" href="#id35">Modification</a><a class="headerlink" href="#modification" title="Permalink to this headline">¶</a></h3>
+<p>You can insert new items or, for the maps (stlmap, stlmmap and stlhmap),
+replace values associated with keys using the <a class="reference internal" href="#insert/stlmap" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a>,
+<a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a> or <a class="reference internal" href="#insert_or_replace/stlmap" title="insert_or_replace"><tt class="xref pure pure-func docutils literal"><span class="pre">insert_or_replace</span></tt></a> functions.</p>
+<p>Please note that when working with the ordered containers (stlmap, stlset,
+stlmmap and stlmset) the keys of elements passed to these functions must be
+compatible with the container&#8217;s key-less-than function and keys that are
+already inserted. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members ss<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>]
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ insert ss <span class="mi">1</span><span class="p">;</span>   <span class="c1">// e.g., 1&lt;&quot;a&quot; is not defined</span>
+bad_argument
+</pre></div>
+</div>
+<p>Currently there is no similar restriction for stlhmaps and stlhsets because
+(a) they do not have a key-less-than function and (b) the function they do use
+for testing equality, the key-equal function is always (===), a function that
+can compare any two objects.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members shs<span class="p">;</span>
+[<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>,<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>]
+
+<span class="gp">&gt; </span>insert shs <span class="mi">1</span><span class="p">;</span>
+<span class="mi">1</span>
+<span class="gp">&gt; </span>members shs<span class="p">;</span>
+[<span class="s">&quot;c&quot;</span>,<span class="mi">1</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>,<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>]
+</pre></div>
+</div>
+<p>Elements can be inserted into a pure-stlmap container individually or en masse
+from a list, vector, stlvec or another container of the same type. If there is
+a key in the container that is equivalent to the key of the element being
+inserted, the element will not be inserted (unless the container is a stlmmap
+or stlmset, both of which can hold multiple elements with equivalent keys).</p>
+<dl class="function">
+<dt id="insert/stlmap">
+<tt class="descname">insert</tt> acon src<a class="headerlink" href="#insert/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to copy elements from <tt class="docutils literal"><span class="pre">src</span></tt> a valid &#8220;insert source&#8221; into <tt class="docutils literal"><span class="pre">acon</span></tt>
+which can be any pure-stlmap container. A valid insert source is (a) a
+single element, (b) a list, vector, stlvec of elements or (c), a range over
+an associative container of the same type as <tt class="docutils literal"><span class="pre">acon</span></tt>. If <tt class="docutils literal"><span class="pre">acon</span></tt> is an
+associative map (stlmap, stlmmap or stlhmap), the <tt class="docutils literal"><span class="pre">src</span></tt> itself, or all the
+elements of <tt class="docutils literal"><span class="pre">src</span></tt>, must be key value pairs of the form (k=&gt;v). In
+contrast, if <tt class="docutils literal"><span class="pre">acon</span></tt> is a stlset, stlmset or stlhset, <tt class="docutils literal"><span class="pre">src</span></tt> or all of its
+elements can be any pure object (except <a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a> or
+<a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a>). If <tt class="docutils literal"><span class="pre">acon</span></tt> is a stlmap, stlset, stlhmap or
+stlhset, the element will not be inserted if its key is already stored in
+the target container. Returns the number of elements inserted, if any.</p>
+</dd></dl>
+
+<p>If you are dealing with a stlmap or stlhmap and want to override the values of
+elements have keys that equivalent to the keys of the items you wan to insert
+you can use the <a class="reference internal" href="#insert_or_replace/stlmap" title="insert_or_replace"><tt class="xref pure pure-func docutils literal"><span class="pre">insert_or_replace</span></tt></a> function.</p>
+<dl class="function">
+<dt id="insert_or_replace/stlmap">
+<tt class="descname">insert_or_replace</tt> acon src<a class="headerlink" href="#insert_or_replace/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>The same as <a class="reference internal" href="#insert/stlmap" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a> except that (a) <tt class="docutils literal"><span class="pre">acon</span></tt> must be a stlmap
+or a stlhmap and (b) if an element (key=&gt;newval) is about to be inserted and
+the container already contains an element (key=&gt;oldval) the element in the
+container will be changed to (key=&gt;newval). Returns the number of elements
+inserted or updated.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="replace/stlmap">
+<tt class="descname">replace</tt> map key x<a class="headerlink" href="#replace/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">map</span></tt> must be a stlmap, stlmmap or stlhmap. If <tt class="docutils literal"><span class="pre">key</span></tt> is not stored in
+<tt class="docutils literal"><span class="pre">map</span></tt> this function throws <a class="reference internal" href="purelib.html#out_of_bounds" title="out_of_bounds"><tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt></a>. If <tt class="docutils literal"><span class="pre">map</span></tt> is a stlmap
+or stlhmap and (oldkey=&gt;oldval) is an element of <tt class="docutils literal"><span class="pre">map</span></tt>, where oldkey is
+equivalent to <tt class="docutils literal"><span class="pre">key</span></tt>, change the element to (oldkey=&gt;``x``). If <tt class="docutils literal"><span class="pre">map</span></tt> is
+a stlmmap and <tt class="docutils literal"><span class="pre">key</span></tt> is stored in <tt class="docutils literal"><span class="pre">map</span></tt>, change the values of elements
+with key eqivalent to <tt class="docutils literal"><span class="pre">key</span></tt>, one by one, to the elements of <tt class="docutils literal"><span class="pre">x</span></tt>. Add or
+delete elements as necessary so that, when the smoke clears, the values of
+<tt class="docutils literal"><span class="pre">map</span></tt>!``key`` are copies of the elements of <tt class="docutils literal"><span class="pre">x</span></tt>. In all cases, if
+<tt class="docutils literal"><span class="pre">key</span></tt> is stored in <tt class="docutils literal"><span class="pre">map</span></tt> returns <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+</dd></dl>
+
+<p>Here are some examples using <a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a>.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>replace sm1 <span class="s">&quot;e&quot;</span> <span class="mi">50</span><span class="p">;</span>
+<span class="mi">50</span>
+
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">50</span>]
+
+<span class="gp">&gt; </span>members smm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>replace smm1 <span class="s">&quot;c&quot;</span> [<span class="mi">31</span>,<span class="mi">33</span>,<span class="mi">35</span>,<span class="mi">36</span>] $$ smm1!<span class="s">&quot;c&quot;</span><span class="p">;</span>
+[<span class="mi">31</span>,<span class="mi">33</span>,<span class="mi">35</span>,<span class="mi">36</span>]
+
+<span class="gp">&gt; </span>replace smm1 <span class="s">&quot;c&quot;</span> [] $$ smm1!<span class="s">&quot;c&quot;</span><span class="p">;</span>
+[]
+
+<span class="gp">&gt; </span>members smm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<dl class="function">
+<dt id="replace_with/stlmap">
+<tt class="descname">replace_with</tt> fun map (k=&gt;v)<a class="headerlink" href="#replace_with/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">map</span></tt> must be a stlmap. The effect of this function is as follows: (a) if
+~ <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> <tt class="docutils literal"><span class="pre">map</span></tt> <tt class="docutils literal"><span class="pre">k</span></tt> then <a class="reference internal" href="#insert/stlmap" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a> <tt class="docutils literal"><span class="pre">map</span></tt>
+(<tt class="docutils literal"><span class="pre">k``=&gt;dflt)</span> <span class="pre">else</span> <span class="pre">(),</span> <span class="pre">where</span> <span class="pre">dflt</span> <span class="pre">is</span> <span class="pre">``map</span></tt>&#8216;s dflt value, (b)
+<a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a> <tt class="docutils literal"><span class="pre">map</span></tt> <tt class="docutils literal"><span class="pre">k</span></tt> nv when nv = <tt class="docutils literal"><span class="pre">fun</span></tt> <tt class="docutils literal"><span class="pre">v</span></tt>
+(<tt class="docutils literal"><span class="pre">map</span></tt>!``k``) end. Returns <tt class="docutils literal"><span class="pre">map</span></tt>.</p>
+</dd></dl>
+
+<p>Here is an example using <a class="reference internal" href="#replace_with/stlmap" title="replace_with"><tt class="xref pure pure-func docutils literal"><span class="pre">replace_with</span></tt></a> in which a stlmmap is
+converted to a stlmap.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm1 = emptystlmap<span class="p">;</span>
+
+<span class="gp">&gt; </span>members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>do (replace_with (:) sm1) smm<span class="p">;</span>
+()
+
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;[<span class="mi">1</span>],<span class="s">&quot;b&quot;</span>=&gt;[<span class="mi">2</span>],<span class="s">&quot;c&quot;</span>=&gt;[<span class="mi">32</span>,<span class="mi">31</span>],<span class="s">&quot;d&quot;</span>=&gt;[<span class="mi">4</span>],<span class="s">&quot;e&quot;</span>=&gt;[<span class="mi">5</span>]]
+</pre></div>
+</div>
+<p>Here is another example in which items are counted.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm1 = mkstlmap ( (&lt;), <span class="mi">0</span> )<span class="p">;</span>
+
+<span class="gp">&gt; </span>members sms<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>]
+
+<span class="gp">&gt; </span>do (\x-&gt;replace_with (+) sm1 (x=&gt;<span class="mi">1</span>)) sms<span class="p">;</span>
+()
+
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">1</span>]
+</pre></div>
+</div>
+<p>You can remove all the elements in a container, remove all the elements
+equivalent to a given key or a remove a range of elements using the
+<a class="reference internal" href="#erase/stlmap" title="erase"><tt class="xref pure pure-func docutils literal"><span class="pre">erase</span></tt></a> function.</p>
+<dl class="function">
+<dt id="erase/stlmap">
+<tt class="descname">erase</tt> acon<a class="headerlink" href="#erase/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt>
+<tt class="descname">erase</tt> (acon,k)</dt>
+<dt>
+<tt class="descname">erase</tt> (acon,k1,k2)</dt>
+<dd><p>The first form erases all elements in <tt class="docutils literal"><span class="pre">acon</span></tt> which can be any container
+provided by pure-stlmap. The second erases all elements in <tt class="docutils literal"><span class="pre">acon</span></tt> with key
+equivalent to <tt class="docutils literal"><span class="pre">k</span></tt>. The third erases the elements in the range
+(<tt class="docutils literal"><span class="pre">acon</span></tt>,``k1``,``k2``). The third form only applys to the ordered
+containers (stlmap, stlmmap, stlset and stlmset), not stlhmap or stlhset
+(because ranges are not defined for stlhmaps or stlhsets). Returns the
+number of elements removed from the container.</p>
+</dd></dl>
+
+<p>Here are some examples using <a class="reference internal" href="#erase/stlmap" title="erase"><tt class="xref pure pure-func docutils literal"><span class="pre">erase</span></tt></a>.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>erase (sm,<span class="s">&quot;z&quot;</span>)<span class="p">;</span>
+<span class="mi">0</span>
+
+<span class="gp">&gt; </span>erase (smm,<span class="s">&quot;c&quot;</span>)<span class="p">;</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>erase (smm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>members smm<span class="p">;;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<dl class="function">
+<dt id="stl::swap/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">swap</tt> acon1 acon2<a class="headerlink" href="#stl::swap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Swaps the elements of the two containers, <tt class="docutils literal"><span class="pre">acon1</span></tt> and <tt class="docutils literal"><span class="pre">acon2</span></tt> where
+<tt class="docutils literal"><span class="pre">acon1</span></tt> and <tt class="docutils literal"><span class="pre">acon2</span></tt> are the same type of container (E.g., both are
+stlmaps or both are stlmsets).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="accessing-elements">
+<h3><a class="toc-backref" href="#id36">Accessing Elements</a><a class="headerlink" href="#accessing-elements" title="Permalink to this headline">¶</a></h3>
+<p>You can test if a key is stored in a container and access the value associated
+with a key using the familiar <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> and (!) functions.</p>
+<dl class="function">
+<dt id="member/stlmap">
+<tt class="descname">member</tt> acon k<a class="headerlink" href="#member/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if <tt class="docutils literal"><span class="pre">acon</span></tt>, any container provided by pure-stlmap, contains
+an element that has a key that is equivalent to <tt class="docutils literal"><span class="pre">k</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="!/stlmap">
+acon <tt class="descname">!</tt> k<a class="headerlink" href="#!/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>If <tt class="docutils literal"><span class="pre">acon</span></tt> is not a stlmmap then (a) if <tt class="docutils literal"><span class="pre">acon</span></tt> has an element with key
+equivalent to <tt class="docutils literal"><span class="pre">k</span></tt> return its value, otherwise (b) throw an
+<a class="reference internal" href="purelib.html#out_of_bounds" title="out_of_bounds"><tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt></a> exception. If <tt class="docutils literal"><span class="pre">acon</span></tt> is a stlmmap then (a) if acon
+has as least one element with key equivalent to <tt class="docutils literal"><span class="pre">k</span></tt> return a list of
+values of all the elements with key equivalent to <tt class="docutils literal"><span class="pre">k</span></tt>, otherwise (b)
+return an null list.</p>
+</dd></dl>
+
+<p>E.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sm!<span class="s">&quot;c&quot;</span><span class="p">;</span>
+<span class="mi">3</span>
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ sm!<span class="s">&quot;f&quot;</span><span class="p">;</span>    <span class="c1">// &quot;f&quot; is not stored in sm</span>
+out_of_bounds
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ sm!<span class="mi">100</span><span class="p">;</span>    <span class="c1">// 100 cannot be compared to strings using (&lt;)</span>
+bad_argument
+
+<span class="gp">&gt; </span>smm!<span class="s">&quot;c&quot;</span><span class="p">;</span>              <span class="c1">// for stlmmap, return list of values</span>
+[<span class="mi">31</span>,<span class="mi">32</span>]
+
+<span class="gp">&gt; </span>smm!<span class="s">&quot;f&quot;</span><span class="p">;</span>              <span class="c1">// stlmmap returns null list if key is not stored</span>
+[]
+</pre></div>
+</div>
+<p>You can access a sequence of elements in an ordered container (stlmap, stlset,
+stlmmap or stlmset) without resorting to iterators using the next_key and
+prev_key functions.</p>
+<dl class="function">
+<dt id="stl::next_key/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">next_key</tt> acon k<a class="headerlink" href="#stl::next_key/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::prev_key/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">prev_key</tt> acon k<a class="headerlink" href="#stl::prev_key/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="docutils literal"><span class="pre">acon</span></tt> must be a stlmap, stlset, stlmmap or stlmmap. Also if <tt class="docutils literal"><span class="pre">k</span></tt> is not
+<a class="reference internal" href="#stl::smbeg/stlmap" title="stl::smbeg"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smbeg</span></tt></a>, <a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a> or an element of acon
+an <tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt> exception will be throw.  <a class="reference internal" href="#stl::next_key/stlmap" title="stl::next_key"><tt class="xref pure pure-func docutils literal"><span class="pre">next_key</span></tt></a>
+returns the key of the first element in acon that has a key that is greater
+than <tt class="docutils literal"><span class="pre">k</span></tt>. If no such element exists or if <tt class="docutils literal"><span class="pre">k</span></tt> is
+<a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a>, returns <a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a>.
+<a class="reference internal" href="#stl::prev_key/stlmap" title="stl::prev_key"><tt class="xref pure pure-func docutils literal"><span class="pre">prev_key</span></tt></a> returns the last element in acon that has a key
+that is less that <tt class="docutils literal"><span class="pre">k</span></tt>, or, if no such element exists, throws an
+<tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt> exception.</p>
+</dd></dl>
+
+<p>For various reasons, it is very common to see a call to (!) or
+<a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a> preceded by a call to <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> with the
+same container and key. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>bump_wc sm w = <span class="kr">if</span> member sm w <span class="kr">then</span> replace sm w (sm!w + <span class="mi">1</span>)
+                 <span class="kr">else</span> insert sm (w=&gt;<span class="mi">1</span>)<span class="p">;</span>
+</pre></div>
+</div>
+<p>In general, this function would require two lookups to add a new word and
+three lookups to bump the count for an existing word. For the ordered
+containers, lookups have O(log N) complexity which can be relatively slow for
+large containers.</p>
+<p>To speed things up, each stlmap or stlset maintains a small cache of (key, C++
+iterator) pairs for recently accessed keys. During lookup, the cache is
+checked for a matching key, and if the key is found, the element pointed to by
+the C++ iterator is used immediately. Thus, when applied to a stlmap or
+stlset bump_wc will use only one O(log N) search, rather than two or
+three. For these purposes, a key matches a key in the cache only if it is the
+same Pure object (i.e., the test is C++ pointer equality, not Pure&#8217;s (===) or
+(==) functions). For example, the following will result in two O(log N)
+lookups.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">if</span> member sm <span class="s">&quot;a&quot;</span> <span class="kr">then</span> sm!<span class="s">&quot;a&quot;</span> <span class="kr">else</span> insert sm (<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">10</span>)<span class="p">;</span>
+</pre></div>
+</div>
+<p>Here each &#8220;a&#8221; is a distinct Pure object. The two &#8220;a&#8221;s satisfy (==) and even
+(===) but they are not the same internally and the caching mechanism will not
+help.</p>
+<p>Almost any pure-stlmap function that accepts a stlmap or stlset as an argument
+will check the container&#8217;s cache before doing an O(log N) lookup.  Currently
+the cache is limited to hold only the most recently used key.</p>
+<p>Here are some examples produced by compiling pure-stlmap with a trace function
+that shows caching in action.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> a_key = <span class="s">&quot;a&quot;</span><span class="p">;</span>
+
+<span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>member sm a_key<span class="p">;</span>           <span class="c1">// a_key is not yet in the cache</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>sm!a_key<span class="p">;</span>                  <span class="c1">// a_key is found in the cache</span>
+found iterator for: <span class="s">&quot;a&quot;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>replace sm a_key <span class="mi">10</span><span class="p">;</span>
+found iterator for: <span class="s">&quot;a&quot;</span>
+<span class="mi">10</span>
+
+<span class="gp">&gt; </span>sm!<span class="s">&quot;a&quot;</span><span class="p">;</span>                    <span class="c1">// &quot;a&quot; is a new key, not same C++ pointer as k or a_key</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span><span class="kr">let</span> k = next_key sm a_key<span class="p">;</span> <span class="c1">// now k is in the cache, in front of a_key</span>
+found iterator for: <span class="s">&quot;a&quot;</span>
+
+<span class="gp">&gt; </span><span class="kr">let</span> k1 = next_key sm k<span class="p">;</span>    <span class="c1">// now k1 is at the head of the queue</span>
+found iterator for: <span class="s">&quot;b&quot;</span>
+
+<span class="gp">&gt; </span>replace sm k1 <span class="mi">30</span><span class="p">;</span>
+found iterator for: <span class="s">&quot;c&quot;</span>
+<span class="mi">30</span>
+
+<span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">10</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">30</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>These examples show that caching can be effective wnen visiting elements of a
+stlmap or stlset in order using <tt class="xref pure pure-func docutils literal"><span class="pre">next_key</span></tt> or
+<tt class="xref pure pure-func docutils literal"><span class="pre">prev_key</span></tt>.</p>
+</div>
+<div class="section" id="id2">
+<h3><a class="toc-backref" href="#id37">Conversions</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>The contents of a pure-stlmap container can be copied to a list, vector,
+stlvec. For stlmaps, stlsets, stlmmaps and stlmsets, these operations
+act on ranges as well as on the entire container.</p>
+<dl class="function">
+<dt id="members/stlmap">
+<tt class="descname">members</tt> rng<a class="headerlink" href="#members/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a list of the elments in the range, <tt class="docutils literal"><span class="pre">rng</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="keys/stlmap">
+<tt class="descname">keys</tt> rng<a class="headerlink" href="#keys/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="vals/stlmap">
+<tt class="descname">vals</tt> rng<a class="headerlink" href="#vals/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the keys and vals of the range&#8217;s elements.</p>
+</dd></dl>
+
+<p>Here are some examples using the <a class="reference internal" href="#members/stlmap" title="members"><tt class="xref pure pure-func docutils literal"><span class="pre">members</span></tt></a>, <a class="reference internal" href="#keys/stlmap" title="keys"><tt class="xref pure pure-func docutils literal"><span class="pre">keys</span></tt></a>
+and <a class="reference internal" href="#vals/stlmap" title="vals"><tt class="xref pure pure-func docutils literal"><span class="pre">vals</span></tt></a> functions.</p>
+<div class="highlight-pure"><div class="highlight"><pre> &gt; members shm<span class="p">;</span>   <span class="c1">// must do all of shm elements because shm is a stlhmap</span>
+[<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>,<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]
+
+<span class="gp">&gt; </span>keys (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span> <span class="c1">// can ask for a range - sm is an ordered container</span>
+[<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>]
+
+<span class="gp">&gt; </span>vals (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+[<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>]
+</pre></div>
+</div>
+<dl class="function">
+<dt id="stl::vector/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">vector</tt> rng<a class="headerlink" href="#stl::vector/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a vector containing the elments of in the range, rng.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stlvec/stlmap">
+<tt class="descname">stlvec</tt> rng<a class="headerlink" href="#stlvec/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>returns a stlvec containing the elments of in the range, rng.</p>
+</dd></dl>
+
+<p>You can also convert an ordered container (stlmap, stlset, stlmmap or stlmset)
+into a stream of elements.</p>
+<dl class="function">
+<dt id="stream/stlmap">
+<tt class="descname">stream</tt> rng<a class="headerlink" href="#stream/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a stream consisting of the range&#8217;s elements.</p>
+</dd></dl>
+
+<p>Here is an example using the stream function on a stlmmap.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>take <span class="mi">3</span> $ stream smm<span class="p">;</span>
+(<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>):<span class="kt">#&lt;thunk 0xb70f438c&gt;</span>
+
+<span class="gp">&gt; </span>list ans<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><a class="toc-backref" href="#id38">Functional Programming</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>pure-stlmap provides the most commonly used functional programming operations,
+implemented to act on ranges as if they were lists.</p>
+<dl class="function">
+<dt id="do/stlmap">
+<tt class="descname">do</tt> fun rng<a class="headerlink" href="#do/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="map/stlmap">
+<tt class="descname">map</tt> fun rng<a class="headerlink" href="#map/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="filter/stlmap">
+<tt class="descname">filter</tt> pred rng<a class="headerlink" href="#filter/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="foldl/stlmap">
+<tt class="descname">foldl</tt> fun x rng<a class="headerlink" href="#foldl/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="foldl1/stlmap">
+<tt class="descname">foldl1</tt> fun rng<a class="headerlink" href="#foldl1/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="foldr/stlmap">
+<tt class="descname">foldr</tt> fun x rng<a class="headerlink" href="#foldr/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="foldr1/stlmap">
+<tt class="descname">foldr1</tt> fun rng<a class="headerlink" href="#foldr1/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>These functions are the same as the corresponding functions provided in the
+Prelude for lists. <tt class="docutils literal"><span class="pre">rng</span></tt> is a rng defined on a stlmap, stlset, stlmmap or
+stlmset or <tt class="docutils literal"><span class="pre">rng</span></tt> is simply a stlhmap or stlhset. <a class="reference internal" href="#foldr/stlmap" title="foldr"><tt class="xref pure pure-func docutils literal"><span class="pre">foldr</span></tt></a> and
+<a class="reference internal" href="#foldr1/stlmap" title="foldr1"><tt class="xref pure pure-func docutils literal"><span class="pre">foldr1</span></tt></a> are not defined for stlhmaps or stlhsets.</p>
+</dd></dl>
+
+<p>Here are some examples.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>map (\(k=&gt;v)-&gt;k+str v) (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+[<span class="s">&quot;b2&quot;</span>,<span class="s">&quot;c3&quot;</span>,<span class="s">&quot;d4&quot;</span>]
+
+<span class="gp">&gt; </span>foldr1 (\(k=&gt;v) (ks=&gt;sum)-&gt; (k+ks=&gt;v+sum)) (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+<span class="s">&quot;bcd&quot;</span>=&gt;<span class="mi">9</span>
+
+<span class="gp">&gt; </span>filter (\(k=&gt;v)-&gt;v mod <span class="mi">2</span>) sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<dl class="function">
+<dt id="listmap/stlmap">
+<tt class="descname">listmap</tt> fun rng<a class="headerlink" href="#listmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="catmap/stlmap">
+<tt class="descname">catmap</tt> fun rng<a class="headerlink" href="#catmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="rowmap/stlmap">
+<tt class="descname">rowmap</tt> fun rng<a class="headerlink" href="#rowmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="rowcatmap/stlmap">
+<tt class="descname">rowcatmap</tt> fun rng<a class="headerlink" href="#rowcatmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="colmap/stlmap">
+<tt class="descname">colmap</tt> fun rng<a class="headerlink" href="#colmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="colcatmap/stlmap">
+<tt class="descname">colcatmap</tt> fun rng<a class="headerlink" href="#colcatmap/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>These functions are the same as the corresponding functions provided in the
+Prelude for lists. <tt class="docutils literal"><span class="pre">rng</span></tt> is a rng defined on a stlmap, stlset, stlmmap or
+stlmset or simply a stlhmap or stlhset.</p>
+</dd></dl>
+
+<p>These functions are provided primarily to enable the use of list and matrix
+comprehensions over pure-stlmap&#8217;s containers. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>[ k + str v | (k=&gt;v) = (sm,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)]<span class="p">;</span>
+[<span class="s">&quot;b2&quot;</span>,<span class="s">&quot;c3&quot;</span>,<span class="s">&quot;d4&quot;</span>]
+
+<span class="gp">&gt; </span>[ k=&gt;v | (k=&gt;v) = sm<span class="p">;</span> v mod <span class="mi">2</span>]<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>{ {k<span class="p">;</span>v} |  (k=&gt;v) = sm<span class="p">;</span> v mod <span class="mi">2</span>}<span class="p">;</span>
+{<span class="s">&quot;a&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;e&quot;</span><span class="p">;</span><span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">5</span>}
+</pre></div>
+</div>
+<p>The functional programming operations work directly on the underlying data
+structure.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> ints = <span class="mi">0</span>..<span class="mi">10000</span><span class="p">;</span>
+
+stats -m
+<span class="gp">&gt; </span>filter (==<span class="mi">99</span>) ints<span class="p">;</span>
+[<span class="mi">99</span>]
+0s, <span class="mi">6</span> cells
+</pre></div>
+</div>
+</div>
+<div class="section" id="comparison">
+<h3><a class="toc-backref" href="#id39">Comparison</a><a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h3>
+<p>Two associative containers of the same type are considered to be equal if they
+contain the same number of elements and if each pair of their corresponding
+elements are equal. Two elements are equal if their keys are equivalent and,
+if the container is a stlmap, stlmap or stlhmap, the values associated with
+equal keys are equal (using the container&#8217;s value-equal function).</p>
+<dl class="function">
+<dt id="stl::map_equal/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_equal</tt> rng1 rng2<a class="headerlink" href="#stl::map_equal/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="==/stlmap">
+rng1 <tt class="descname">==</tt> rng2<a class="headerlink" href="#==/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="~=/stlmap">
+rng1 <tt class="descname">~=</tt> rng2<a class="headerlink" href="#~=/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <tt class="docutils literal"><span class="pre">rng1</span></tt> and <tt class="docutils literal"><span class="pre">rng2</span></tt> for equality or nonequality where <tt class="docutils literal"><span class="pre">rng1</span></tt> and
+<tt class="docutils literal"><span class="pre">rng2</span></tt> are ranges defined over containers of the same type.</p>
+</dd></dl>
+
+<p>You need to be careful when using these operators. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members ss<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> xx = stlset ss<span class="p">;</span>
+
+<span class="gp">&gt; </span>xx == ss<span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>(xx,<span class="s">&quot;a&quot;</span>,<span class="s">&quot;c&quot;</span>) == (ss,<span class="s">&quot;a&quot;</span>,<span class="s">&quot;c&quot;</span>)<span class="p">;</span>  <span class="c1">// oops!</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>The second comparison was intended to compare identical ranges and return
+true. It failed to do so because (==) is defined in the Prelude to compare
+tuples element by element, long before it is defined in the stlmap module to
+compare ranges. The tuple operation take precedence and determines that the
+tuples are not equal because <tt class="docutils literal"><span class="pre">xx</span></tt> and <tt class="docutils literal"><span class="pre">ss</span></tt> are different (pointers) for
+purposes of this comparison. To avoid this issue when using ranges, you can
+use the <a class="reference internal" href="#stl::map_equal/stlmap" title="stl::map_equal"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::map_equal</span></tt></a> function.</p>
+<blockquote>
+<div>&gt; map_equal (xx,&#8221;a&#8221;,&#8221;c&#8221;) (ss,&#8221;a&#8221;,&#8221;c&#8221;);
+1</div></blockquote>
+<p>The other comparison operators <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;)</span></tt>, <tt class="xref pure pure-func docutils literal"><span class="pre">(&lt;=)</span></tt>,
+<tt class="xref pure pure-func docutils literal"><span class="pre">(&gt;)</span></tt> and <tt class="xref pure pure-func docutils literal"><span class="pre">(&gt;=)</span></tt> are provided only for the ordered
+containers (stlmap, stlset, stlmmap and stlmset). These operators reflect
+lexicographical comparisons of keys and, then if the keys are equal,
+lexicographical comparisons of values. I.e., this is not set inclusion - order
+matters. Accordingly, these comparison operators are not defined for a stlhmap
+or stlhset.</p>
+<dl class="function">
+<dt id="&lt;/stlmap">
+rng1 <tt class="descname">&lt;</tt> rng2<a class="headerlink" href="#</stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Traverse the ranges comparing pairs of elements e1 and e2. If e1 is less
+than e2, stop and return true; if e2 is less than e1 then stop and return
+false. If rng1 is exhausted but rng2 is not, return true, else return false.
+The two ranges must be defined on ordered associative containers of the
+same type.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="&gt;/stlmap">
+rng1 <tt class="descname">&gt;</tt> rng2<a class="headerlink" href="#>/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="&lt;=/stlmap">
+rng1 <tt class="descname">&lt;=</tt> rng2<a class="headerlink" href="#<=/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="&gt;=/stlmap">
+rng1 <tt class="descname">&gt;=</tt> rng2<a class="headerlink" href="#>=/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>The these three operators are the same as <tt class="docutils literal"><span class="pre">rng2</span></tt> &lt; <tt class="docutils literal"><span class="pre">rng1</span></tt>,
+~(<tt class="docutils literal"><span class="pre">rng1</span></tt>&gt;``rng2`) and ~(<tt class="docutils literal"><span class="pre">rng1``&lt;``rng2</span></tt>) respectively.</p>
+</dd></dl>
+
+<p>You also have to be careful when using equivalence and comparison operators
+with stlmmaps because elements with the same key and different values are not
+necessarily ordered by values.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> smm2 = stlmmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]<span class="p">;</span>
+
+<span class="gp">&gt; </span>members smm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>members smm2<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+
+<span class="gp">&gt; </span>smm == smm2<span class="p">;</span> <span class="c1">// probably not what you want</span>
+<span class="mi">0</span>
+</pre></div>
+</div>
+<p>These operations do not make much sense for a stlmmap unless elements with
+equivalent keys are stored by value, in the order enforced by the stlmmap&#8217;s
+value-comp function. In this regard it is worth noting that, depending on your
+implementation, the <a class="reference internal" href="#insert/stlmap" title="insert"><tt class="xref pure pure-func docutils literal"><span class="pre">insert</span></tt></a> function may or may not preserve the
+order of insertion of elements with equivalent keys (C++11 does preserve the
+order).</p>
+</div>
+<div class="section" id="set-algorithms">
+<h3><a class="toc-backref" href="#id40">Set Algorithms</a><a class="headerlink" href="#set-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>pure-stlmap provides wrappers for the STL set algorithms that apply to ranges
+defined on the four ordered associative containers (stlmap, stlset, stlmmap
+and stlmset). These algorithms are very efficient, with linear time
+complexity, but they do require that the elements of the two ranges be
+ordered. Accordingly, the set algorithms are not applicable to stlhmap or
+stlhset. Also, when dealing with stlmmaps, care must be taken to ensure that
+items with the equivalent keys are ordered by their values.</p>
+<dl class="function">
+<dt id="stl::map_merge/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_merge</tt> rng1 rng2<a class="headerlink" href="#stl::map_merge/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constructs a new ordered container from <tt class="docutils literal"><span class="pre">rng1</span></tt> and then insert the elments
+of <tt class="docutils literal"><span class="pre">rng2</span></tt> into the new container and return it. <tt class="docutils literal"><span class="pre">rng1</span></tt> and <tt class="docutils literal"><span class="pre">rng2</span></tt> must
+be defined on the same type of ordered container.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::map_union/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_union</tt> rng1 rng2<a class="headerlink" href="#stl::map_union/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::map_difference/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_difference</tt> rng1 rng2<a class="headerlink" href="#stl::map_difference/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::map_intersection/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_intersection</tt> rng1 rng2<a class="headerlink" href="#stl::map_intersection/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::map_symmetric_difference/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_symmetric_difference</tt> rng1 rng2<a class="headerlink" href="#stl::map_symmetric_difference/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::map_includes/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">map_includes</tt> rng1 rng2<a class="headerlink" href="#stl::map_includes/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new ordered associative container of the same type as the ordered
+containers underlying <tt class="docutils literal"><span class="pre">rng1</span></tt> and <tt class="docutils literal"><span class="pre">rng2</span></tt>. If the ranges are defined over
+a stlmap or stlmmap elements of <tt class="docutils literal"><span class="pre">rng1</span></tt> have priority over the elments of
+<tt class="docutils literal"><span class="pre">rng2</span></tt>. Uses <tt class="docutils literal"><span class="pre">rng1</span></tt>&#8216;s key-less-than, value-less-than and value-equal
+functions.</p>
+</dd></dl>
+
+<p>pure-stlmap&#8217;s set functions do not necessarily produce the same results as
+their Pure standard library counterparts. In particular, when applied to
+multi-keyed contaners, <a class="reference internal" href="#stl::map_union/stlmap" title="stl::map_union"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::map_union</span></tt></a> Produces the multiset
+union of its arguments while (+) in the Pure standard library produces the
+multiset sum. If you want the multiset sum of a stlmmap or stlhmap, use
+<a class="reference internal" href="#stl::map_merge/stlmap" title="stl::map_merge"><tt class="xref pure pure-func docutils literal"><span class="pre">stl::map_merge</span></tt></a>. Also, in pure-stlmap, as in the STL, the left
+hand map or set has priority of elements while in the Pure standard library
+the right hand set has priority of elements. This can make a difference when
+applying set operations to a pair of stlmaps or stlmmaps. E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> smm1 = stlmmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> smm2 = stlmmap [<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">33</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+
+<span class="gp">&gt; </span>members $ map_merge smm1 smm2<span class="p">;</span> <span class="c1">// three &quot;c&quot;=&gt;32</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">33</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>members $ map_union smm1 smm2<span class="p">;</span>  <span class="c1">// two &quot;c&quot;=&gt;32</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">33</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> sm1 = stlmap [<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>]<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> sm2 = stlmap [<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+
+<span class="gp">&gt; </span>members $ map_union sm1 sm2<span class="p">;</span> <span class="c1">// &quot;c&quot;=&gt;31 from sm1, not &quot;c&quot;=&gt;32 from sm2</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>members $ map_intersection sm1 sm2<span class="p">;</span> <span class="c1">// &quot;c&quot;=&gt;31 from sm1</span>
+[<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="direct-c-calls">
+<h3><a class="toc-backref" href="#id41">Direct C Calls</a><a class="headerlink" href="#direct-c-calls" title="Permalink to this headline">¶</a></h3>
+<p>It is common to encounter code that (a) tests if a key is stored in a
+container using <a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">member</span></tt></a> and (b) in the case of maps, retreives
+the value or values associated with the key using (!) and/or (c) changes the
+value or values using <a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">replace</span></tt></a>. Depending on what modules have
+been loaded, these functions may be heavily overloaded which can cause a small
+delay when the functions are called. To avoid this, pure-stlmap exposes the
+corresponding C functions so that they can be called directly. The C functions
+have the same name as the overloaded functions except for a prefix. E.g.,</p>
+<dl class="function">
+<dt id="stl::sm_member/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">sm_member</tt> sm key<a class="headerlink" href="#stl::sm_member/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::sm_get/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">sm_get</tt> sm key<a class="headerlink" href="#stl::sm_get/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::sm_put/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">sm_put</tt> sm key val<a class="headerlink" href="#stl::sm_put/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>The first two functions are the direct C call equivalents of
+(<a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">::member</span></tt></a> <tt class="docutils literal"><span class="pre">sm</span></tt> <tt class="docutils literal"><span class="pre">key</span></tt>) and (<tt class="docutils literal"><span class="pre">sm!key</span></tt>). The third is like
+(<a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">::replace</span></tt></a> <tt class="docutils literal"><span class="pre">sm</span></tt> <tt class="docutils literal"><span class="pre">key</span></tt> <tt class="docutils literal"><span class="pre">val</span></tt>) except that it will insert
+(key=&gt;val) if key is not already stored in <tt class="docutils literal"><span class="pre">sm</span></tt>. Here, <tt class="docutils literal"><span class="pre">sm</span></tt> is a stlmap
+or a stlset (except that sm_put is not defined for stlsets).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::shm_member/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">shm_member</tt> shm key<a class="headerlink" href="#stl::shm_member/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::shm_get/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">shm_get</tt> shm key<a class="headerlink" href="#stl::shm_get/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::shm_put/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">shm_put</tt> shm key val<a class="headerlink" href="#stl::shm_put/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>The first two functions are the direct C call equivalents of
+(<a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">::member</span></tt></a> <tt class="docutils literal"><span class="pre">shm</span></tt> <tt class="docutils literal"><span class="pre">key</span></tt>) and (<tt class="docutils literal"><span class="pre">shm!key</span></tt>). The third is
+like (<a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">::replace</span></tt></a> <tt class="docutils literal"><span class="pre">shm</span></tt> <tt class="docutils literal"><span class="pre">key</span></tt> <tt class="docutils literal"><span class="pre">val</span></tt>) except that it will
+insert (key=&gt;val) if key is not already stored in <tt class="docutils literal"><span class="pre">shm</span></tt>. Here, <tt class="docutils literal"><span class="pre">shm</span></tt> is
+a stlhmap or a stlhset (except that shm_put is not defined for stlhsets).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::smm_member/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">smm_member</tt> smm key<a class="headerlink" href="#stl::smm_member/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::smm_get/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">smm_get</tt> smm key<a class="headerlink" href="#stl::smm_get/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::smm_put/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">smm_put</tt> smm key vals<a class="headerlink" href="#stl::smm_put/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>The first two functions are the direct C call equivalents of
+(<a class="reference internal" href="#member/stlmap" title="member"><tt class="xref pure pure-func docutils literal"><span class="pre">::member</span></tt></a> <tt class="docutils literal"><span class="pre">smm</span></tt> <tt class="docutils literal"><span class="pre">key</span></tt>) and (<tt class="docutils literal"><span class="pre">smm!key</span></tt>). The third is
+like (<a class="reference internal" href="#replace/stlmap" title="replace"><tt class="xref pure pure-func docutils literal"><span class="pre">::replace</span></tt></a> <tt class="docutils literal"><span class="pre">smm</span></tt> <tt class="docutils literal"><span class="pre">key</span></tt> <tt class="docutils literal"><span class="pre">val</span></tt>) except that it will
+insert (key=&gt;val1, key=&gt;val2, ...) if key is not already stored in <tt class="docutils literal"><span class="pre">smm</span></tt>.
+Here, <tt class="docutils literal"><span class="pre">smm</span></tt> is a stlmmap or a stlmset (except that smm_put is not defined
+for stlmsets).</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id42">Iterators</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>This section provides a quick overview of pure-stlmap&#8217;s &#8220;iterator-based&#8221;
+interface.</p>
+<div class="section" id="id5">
+<h3><a class="toc-backref" href="#id43">Concepts</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>Given a valid iterator you can access, modify or erase the element it points
+to.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sm1 = stlmap sm<span class="p">;</span> members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]<span class="p">;</span>
+
+<span class="gp">&gt; </span><span class="kr">let</span> i = find sm1 <span class="s">&quot;b&quot;</span><span class="p">;</span>   <span class="c1">// use find to get an iterator - like C++</span>
+
+<span class="gp">&gt; </span>get_elm i<span class="p">;</span>
+<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>
+
+<span class="gp">&gt; </span>get_val i<span class="p">;</span>
+<span class="mi">2</span>
+
+<span class="gp">&gt; </span>put_val i <span class="mi">20</span><span class="p">;</span>
+<span class="mi">20</span>
+
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">20</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>Please note that you can never modify an element&#8217;s key, only its value. If you
+want to change both key and value, you have to erase the element and insert a
+new element.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>erase (sm1,i) $$ insert sm1 (<span class="s">&quot;b1&quot;</span>=&gt;<span class="mi">21</span>)<span class="p">;</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>members sm1<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b1&quot;</span>=&gt;<span class="mi">21</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+</pre></div>
+</div>
+<p>Given two iterators, i and j, pointing into a ordered container oc, the
+range (i,j), denotes oc&#8217;s elements starting with &#8220;oc[i]&#8221;, the element pointed
+to by i, up to but not including oc[j]. In pure-stlmap, this range is denoted
+by the tuple (i,j).</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members sm<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> i = stl<span class="p">::</span>find sm1 <span class="s">&quot;b&quot;</span><span class="p">;</span> <span class="c1">// get the iterator</span>
+
+<span class="gp">&gt; </span><span class="kr">let</span> j = stl<span class="p">::</span>find sm1 <span class="s">&quot;e&quot;</span><span class="p">;</span>
+
+<span class="gp">&gt; </span>members (i,j)<span class="p">;</span>             <span class="c1">// get the elements in the range</span>
+[<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+</pre></div>
+</div>
+<p>Perhaps it is worth mentioning that functions that act on ranges do not care
+if the range is specified by a pair of iterators or by keys.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members ss<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="s">&quot;e&quot;</span>]
+
+<span class="gp">&gt; </span>map (+<span class="mi">21</span>) (ss,<span class="s">&quot;c&quot;</span>,smend)<span class="p">;</span>
+[<span class="s">&quot;x&quot;</span>,<span class="s">&quot;y&quot;</span>,<span class="s">&quot;z&quot;</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> i = find ss <span class="s">&quot;c&quot;</span><span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> j = pastend ss<span class="p">;</span>
+<span class="gp">&gt; </span>map (+<span class="mi">21</span>) (i,j)<span class="p">;</span>
+[<span class="s">&quot;x&quot;</span>,<span class="s">&quot;y&quot;</span>,<span class="s">&quot;z&quot;</span>]
+</pre></div>
+</div>
+</div>
+<div class="section" id="exceptions">
+<h3><a class="toc-backref" href="#id44">Exceptions</a><a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h3>
+<p>In pure-stlmap functions that accept iterators throw a <tt class="xref pure pure-cons docutils literal"><span class="pre">bad_argument</span></tt>
+exception if called with an invalid iterator. An iterator remains valid until
+the element it was pointing to has been erased. These functions also attempt
+to throw bad argument exceptions for invalid usage that would otherwise result
+in undefined behavior. An example of an invalid use would be a range specified
+by iterators from different containers. Here are some examples of iterator
+errors.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> i,j = find sm <span class="s">&quot;a&quot;</span>, find sm <span class="s">&quot;d&quot;</span><span class="p">;</span>
+
+<span class="gp">&gt; </span>get_elm i, get_elm j<span class="p">;</span>
+<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>
+
+<span class="gp">&gt; </span>members (i,j)<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>]
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ members (j,i)<span class="p">;</span> <span class="c1">// j and i transposed, C++ would segfault</span>
+bad_argument
+
+<span class="gp">&gt; </span>erase (sm,<span class="s">&quot;b&quot;</span>)<span class="p">;</span>  <span class="c1">// erase &quot;b&quot;=&gt;2, leaving i and j valid</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span>get_elm i<span class="p">;</span> <span class="c1">// still valid</span>
+<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>
+
+<span class="gp">&gt; </span>erase (sm,<span class="s">&quot;a&quot;</span>)<span class="p">;</span>  <span class="c1">// erase &quot;a&quot;=&gt;1 - invalidating i</span>
+<span class="mi">1</span>
+
+<span class="gp">&gt; </span><span class="nb">catch</span> id $ get_elm i<span class="p">;</span> <span class="c1">// bad iterator exception</span>
+bad_argument
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions">
+<h3><a class="toc-backref" href="#id45">Functions</a><a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p>In this section &#8220;acon&#8221; always denotes one of the containers that supports
+interators (stlmap, stlset, stlmmap and stlmset).</p>
+<dl class="function">
+<dt id="stl::iterator/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">iterator</tt> i<a class="headerlink" href="#stl::iterator/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a new iterator that points to the same element as <tt class="docutils literal"><span class="pre">i</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::begin/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">begin</tt> acon<a class="headerlink" href="#stl::begin/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::pastend/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">pastend</tt> acon<a class="headerlink" href="#stl::pastend/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns <tt class="docutils literal"><span class="pre">acon</span></tt>&#8216;s begin or past-end iterator.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::find/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">find</tt> acon k<a class="headerlink" href="#stl::find/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a new iterator that points to an element in <tt class="docutils literal"><span class="pre">acon</span></tt> with key
+equivalent to <tt class="docutils literal"><span class="pre">k</span></tt> (if any) or <tt class="docutils literal"><span class="pre">acon</span></tt>&#8216;s past-end iterator if no such
+element exists.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::find_with_default/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">find_with_default</tt> map k<a class="headerlink" href="#stl::find_with_default/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator pointing to the element in <tt class="docutils literal"><span class="pre">map</span></tt>, a stlmap, with key
+equivalent to <tt class="docutils literal"><span class="pre">k</span></tt>. If no such element existed before the call, one is
+created and inserted using <tt class="docutils literal"><span class="pre">k</span></tt> and <tt class="docutils literal"><span class="pre">map</span></tt>&#8216;s default value. This function
+is pure-stlmap&#8217;s version of C++&#8217;s [] operator for associative containers.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::insert_elm/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">insert_elm</tt> acon elm<a class="headerlink" href="#stl::insert_elm/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attempts to insert <tt class="docutils literal"><span class="pre">elm</span></tt> into <tt class="docutils literal"><span class="pre">acon</span></tt>. (If <tt class="docutils literal"><span class="pre">acon</span></tt> is a stlmap or
+stlmmap, then elm must be a key value pair, (k=&gt;v)). If acon is a stlmap or
+stlset (i.e., with unique keys) <a class="reference internal" href="#stl::insert_elm/stlmap" title="stl::insert_elm"><tt class="xref pure pure-func docutils literal"><span class="pre">insert_elm</span></tt></a> returns a pair,
+the first of which is an iterator pointing to the element with key k that
+was just inserted (or the pre-existing element that blocked the
+insertion). The second element in the pair is a boolean value that is true
+if a new element was inserted. In contrast, if <tt class="docutils literal"><span class="pre">acon</span></tt> is a multi-keyed
+container (stlmmap or stlmset) the insert will always be successful and
+<a class="reference internal" href="#stl::insert_elm/stlmap" title="stl::insert_elm"><tt class="xref pure pure-func docutils literal"><span class="pre">insert_elm</span></tt></a> returns an iterator pointing to the element with
+key k that was just inserted, instead of an (iterator, boolean) tuple.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descclassname">stl::</tt><tt class="descname">insert_elm</tt> acon (elm,i)</dt>
+<dd><p>This is the same as the previous function except that (a) <tt class="docutils literal"><span class="pre">i</span></tt> is passed in
+as a hint to where the new element should be inserted and (b) a single
+iterator is returned rather than a iterator,boolean pair. If the new element
+is inserted just after <tt class="docutils literal"><span class="pre">i</span></tt>, the insertion can have constant time
+complexity.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::l_bound/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">l_bound</tt> acon k<a class="headerlink" href="#stl::l_bound/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new iterator that points to the first element in <tt class="docutils literal"><span class="pre">acon</span></tt>, a
+stlmap, stlset, stlmmap or stlmset, that is not less than <tt class="docutils literal"><span class="pre">k</span></tt>, or
+<tt class="docutils literal"><span class="pre">acon</span></tt>&#8216;s past-end iterator if none exists.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::u_bound/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">u_bound</tt> acon k<a class="headerlink" href="#stl::u_bound/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new iterator that points to the first element in <tt class="docutils literal"><span class="pre">acon</span></tt>, a
+stlmap, stlset, stlmmap or stlmset, that is greater than <tt class="docutils literal"><span class="pre">k</span></tt>, or
+<tt class="docutils literal"><span class="pre">acon</span></tt>&#8216;s past-end iterator if none exists.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::lu_bounds/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">lu_bounds</tt> acon k<a class="headerlink" href="#stl::lu_bounds/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the pair l_bound <tt class="docutils literal"><span class="pre">acon</span></tt> <tt class="docutils literal"><span class="pre">k</span></tt>, u_bound <tt class="docutils literal"><span class="pre">acon</span></tt> <tt class="docutils literal"><span class="pre">k</span></tt>.</p>
+</dd></dl>
+
+<p>E.g.,</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> ok, smx, f, l = stl<span class="p">::</span>range_info (sm1,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+
+<span class="gp">&gt; </span>ok, smx === sm1, stl<span class="p">::</span>members (f,l)<span class="p">;</span>
+<span class="mi">1</span>,<span class="mi">1</span>,[<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">3</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>]
+</pre></div>
+</div>
+<dl class="function">
+<dt id="stl::inc/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">inc</tt> i<a class="headerlink" href="#stl::inc/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::dec/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">dec</tt> i<a class="headerlink" href="#stl::dec/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::move/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">move</tt> i n::int<a class="headerlink" href="#stl::move/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Move the iterator <tt class="docutils literal"><span class="pre">i</span></tt> forward one, back one or forward <tt class="docutils literal"><span class="pre">n</span></tt> elements
+respectively, where n can be negative.  The iterator is mutated by these
+operations, provided the move is successful. An attempt to move to a
+position before the first element&#8217;s position causes an <tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt>
+exception. Moves past the last element return the past-end iterator for the
+container that <tt class="docutils literal"><span class="pre">i</span></tt> is defined on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::get_elm/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">get_elm</tt> i<a class="headerlink" href="#stl::get_elm/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::get_key/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">get_key</tt> i<a class="headerlink" href="#stl::get_key/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::get_val/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">get_val</tt> i<a class="headerlink" href="#stl::get_val/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the element pointed to by the iterator <tt class="docutils literal"><span class="pre">i</span></tt>, or the element&#8217;s key
+or value. For maps the element is returned as a key=&gt;value hash rocket
+pair. For sets, get_elem, get_key and get_val all return the element (which
+is the same as its key).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::put_val">
+<tt class="descclassname">stl::</tt><tt class="descname">put_val</tt> i newvalue<a class="headerlink" href="#stl::put_val" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the value of the element pointed to by the iterator <tt class="docutils literal"><span class="pre">i</span></tt> to
+<tt class="docutils literal"><span class="pre">newvalue</span></tt>. The element&#8217;s key cannot be changed. The iterator must point
+into a stlmap or stlmmap.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::beginp/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">beginp</tt> i<a class="headerlink" href="#stl::beginp/stlmap" title="Permalink to this definition">¶</a></dt>
+<dt id="stl::pastendp/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">pastendp</tt> i<a class="headerlink" href="#stl::pastendp/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if the iterator <tt class="docutils literal"><span class="pre">i</span></tt> is the begin iterator or pastend
+iterator of the container it is defined on.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="stl::get_info/stlmap">
+<tt class="descclassname">stl::</tt><tt class="descname">get_info</tt> i<a class="headerlink" href="#stl::get_info/stlmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple (is_valid,acon,key,val) where is_valid is true if the
+iterator <tt class="docutils literal"><span class="pre">i</span></tt> is valid or false if not, acon is the container that i is
+defined on, and key, val are the key and value of the element <tt class="docutils literal"><span class="pre">i</span></tt> points
+to, if any. If <tt class="docutils literal"><span class="pre">i</span></tt> is the past-end iterator, key and val are set to
+<a class="reference internal" href="#stl::smend/stlmap" title="stl::smend"><tt class="xref pure pure-cons docutils literal"><span class="pre">stl::smend</span></tt></a> and <tt class="docutils literal"><span class="pre">[]</span></tt>, respectively.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+i <tt class="descname">==</tt> j</dt>
+<dd><p>Returns true if the iterators <tt class="docutils literal"><span class="pre">i</span></tt> and <tt class="docutils literal"><span class="pre">j</span></tt> point to the same element.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">erase</tt> (acon,i)</dt>
+<dt>
+<tt class="descname">erase</tt> (acon,i,j)</dt>
+<dd><p>Erases the element pointed to by <tt class="docutils literal"><span class="pre">i</span></tt> or the elements in the range
+(<tt class="docutils literal"><span class="pre">i</span></tt>, <tt class="docutils literal"><span class="pre">j</span></tt>). Both <tt class="docutils literal"><span class="pre">i</span></tt> and <tt class="docutils literal"><span class="pre">j</span></tt> must be iterators defined on
+<tt class="docutils literal"><span class="pre">acon</span></tt> (or a <tt class="xref pure pure-cons docutils literal"><span class="pre">bad_argument</span></tt> exception will be thrown).</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id6">
+<h3><a class="toc-backref" href="#id46">Examples</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Here are some examples using iterators.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> b,e = begin smm, pastend smm<span class="p">;</span>
+
+<span class="gp">&gt; </span>members (b,e)<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> i,j = lu_bounds smm <span class="s">&quot;c&quot;</span><span class="p">;</span>
+
+<span class="gp">&gt; </span>members (b,i)<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>]
+
+<span class="gp">&gt; </span>members (i,j)<span class="p">;</span>
+[<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>]
+
+<span class="gp">&gt; </span>members (j,e)<span class="p">;</span>
+[<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>]
+
+<span class="gp">&gt; </span>get_elm i<span class="p">;</span>
+<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>
+
+<span class="gp">&gt; </span>get_elm (inc i)<span class="p">;</span>
+<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">32</span>
+
+<span class="gp">&gt; </span>put_val i <span class="mi">132</span><span class="p">;</span>
+<span class="mi">132</span>
+
+<span class="gp">&gt; </span>map (\(k=&gt;_)-&gt;k=&gt;ord k) (b,i)<span class="p">;</span>
+[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">97</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">98</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">99</span>]
+
+<span class="gp">&gt; </span><span class="kr">let</span> is_set, smm1, k, v = get_info i<span class="p">;</span> is_set, members smm1, k, v<span class="p">;</span>
+<span class="mi">1</span>,[<span class="s">&quot;a&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;b&quot;</span>=&gt;<span class="mi">2</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">31</span>,<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">132</span>,<span class="s">&quot;d&quot;</span>=&gt;<span class="mi">4</span>,<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>],<span class="s">&quot;c&quot;</span>,<span class="mi">132</span>
+
+<span class="gp">&gt; </span>get_elm (dec j)<span class="p">;</span>
+<span class="s">&quot;c&quot;</span>=&gt;<span class="mi">132</span>
+
+<span class="gp">&gt; </span>inc j $$ inc j $$ get_elm j<span class="p">;</span>
+<span class="s">&quot;e&quot;</span>=&gt;<span class="mi">5</span>
+
+<span class="gp">&gt; </span>inc j $$ endp j<span class="p">;</span>
+<span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="backward-compatibilty">
+<h2><a class="toc-backref" href="#id47">Backward Compatibilty</a><a class="headerlink" href="#backward-compatibilty" title="Permalink to this headline">¶</a></h2>
+<p>This section documents changes in pure-stlmap.</p>
+<div class="section" id="pure-stlmap-0-2">
+<h3><a class="toc-backref" href="#id48">pure-stlmap-0.2</a><a class="headerlink" href="#pure-stlmap-0-2" title="Permalink to this headline">¶</a></h3>
+<p>Optimized common predicates, such as (&lt;) and (&gt;)</p>
+</div>
+<div class="section" id="pure-stlmap-0-3">
+<h3><a class="toc-backref" href="#id49">pure-stlmap-0.3</a><a class="headerlink" href="#pure-stlmap-0-3" title="Permalink to this headline">¶</a></h3>
+<p>Fixed (&gt;) comparisons on plain old data.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-stlmap</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li><a class="reference internal" href="#supported-containers">Supported Containers</a></li>
+<li><a class="reference internal" href="#interface">Interface</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#quick-start">Quick Start</a><ul>
+<li><a class="reference internal" href="#example-containers">Example Containers</a></li>
+<li><a class="reference internal" href="#constructors">Constructors</a></li>
+<li><a class="reference internal" href="#ranges">Ranges</a></li>
+<li><a class="reference internal" href="#inserting-and-replacing-elements">Inserting and Replacing Elements</a></li>
+<li><a class="reference internal" href="#access">Access</a></li>
+<li><a class="reference internal" href="#erasing-elements">Erasing Elements</a></li>
+<li><a class="reference internal" href="#conversions">Conversions</a></li>
+<li><a class="reference internal" href="#functional-programming">Functional Programming</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#concepts">Concepts</a><ul>
+<li><a class="reference internal" href="#containers-and-elements">Containers and Elements</a></li>
+<li><a class="reference internal" href="#id1">Ranges</a></li>
+<li><a class="reference internal" href="#iterators">Iterators</a></li>
+<li><a class="reference internal" href="#selecting-elements-using-keys">Selecting Elements Using Keys</a></li>
+<li><a class="reference internal" href="#c-implementation">C++ Implementation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modules">Modules</a><ul>
+<li><a class="reference internal" href="#the-stlhmap-module">The stlhmap Module</a></li>
+<li><a class="reference internal" href="#the-stlmap-module">The stlmap Module</a></li>
+<li><a class="reference internal" href="#the-stlmmap-module">The stlmmap Module</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#container-operations">Container Operations</a><ul>
+<li><a class="reference internal" href="#container-construction">Container Construction</a></li>
+<li><a class="reference internal" href="#information">Information</a></li>
+<li><a class="reference internal" href="#modification">Modification</a></li>
+<li><a class="reference internal" href="#accessing-elements">Accessing Elements</a></li>
+<li><a class="reference internal" href="#id2">Conversions</a></li>
+<li><a class="reference internal" href="#id3">Functional Programming</a></li>
+<li><a class="reference internal" href="#comparison">Comparison</a></li>
+<li><a class="reference internal" href="#set-algorithms">Set Algorithms</a></li>
+<li><a class="reference internal" href="#direct-c-calls">Direct C Calls</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id4">Iterators</a><ul>
+<li><a class="reference internal" href="#id5">Concepts</a></li>
+<li><a class="reference internal" href="#exceptions">Exceptions</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+<li><a class="reference internal" href="#id6">Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#backward-compatibilty">Backward Compatibilty</a><ul>
+<li><a class="reference internal" href="#pure-stlmap-0-2">pure-stlmap-0.2</a></li>
+<li><a class="reference internal" href="#pure-stlmap-0-3">pure-stlmap-0.3</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-stllib.html"
+                        title="previous chapter">pure-stllib</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-stlvec.html"
+                        title="next chapter">pure-stlvec</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-stlmap.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stlvec.html" title="pure-stlvec"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-stllib.html" title="pure-stllib"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

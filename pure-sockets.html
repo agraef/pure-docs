@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-sockets: Pure Sockets Interface &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-stldict" href="pure-stldict.html" />
+    <link rel="prev" title="pure-readline" href="pure-readline.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stldict.html" title="pure-stldict"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-readline.html" title="pure-readline"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-sockets">
+<span id="pure-sockets-pure-sockets-interface"></span><h1>pure-sockets: Pure Sockets Interface<a class="headerlink" href="#module-sockets" title="Permalink to this headline">¶</a></h1>
+<p>Version 0.6, September 08, 2013</p>
+<p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This is an interface to the Berkeley socket functions. It provides most of the
+core functionality, so you can create sockets for both stream and datagram
+based protocols and use these to transmit messages. Unix-style file sockets
+are also available if the host system supports them.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-sockets-0.6.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-sockets-0.6.tar.gz</a>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt> to install it in
+the Pure library directory. To uninstall the module, use <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span>
+<span class="pre">uninstall</span></tt>. There are a number of other targets (mostly for maintainers),
+please see the Makefile for details.</p>
+<p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
+setup. If it gets this wrong, you can set some variables manually. In
+particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets the installation prefix, and
+<tt class="docutils literal"><span class="pre">make</span> <span class="pre">PIC=-fPIC</span></tt> or some similar flag might be needed for compilation on 64
+bit systems. You can also set custom compilation options with the CFLAGS
+variable, e.g.: <tt class="docutils literal"><span class="pre">make</span> <span class="pre">CFLAGS=-O3</span></tt>. Again, please see the Makefile for
+details.</p>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To use the operations of this module, put the following in your Pure script:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> sockets<span class="p">;</span>
+</pre></div>
+</div>
+<p>With the <a class="reference internal" href="#module-sockets"><tt class="xref pure pure-mod docutils literal"><span class="pre">sockets</span></tt></a> module loaded, all the standard socket functions are
+available and work pretty much like in C. The only real difference is that,
+for convenience, functions taking socket addresses as parameters
+(<tt class="docutils literal"><span class="pre">struct_sockaddr*</span></tt> pointers in Pure), are called without the <tt class="docutils literal"><span class="pre">addrlen</span></tt>
+parameter; the size of the socket address structure will be inferred
+automatically and passed to the underlying C functions. Also, there are some
+convenience functions which act as wrappers around <tt class="docutils literal"><span class="pre">getaddrinfo</span></tt> and
+<tt class="docutils literal"><span class="pre">getnameinfo</span></tt> to create socket addresses from symbolic information (hostname
+or ip, port names or numbers) and return information about existing address
+pointers, see <a class="reference internal" href="#creating-and-inspecting-socket-addresses">Creating and Inspecting Socket Addresses</a> below.</p>
+<p>Below is a list of the provided functions. Please see the corresponding manual
+pages for details, and check the Pure scripts in the examples subdirectory for
+some examples.</p>
+<div class="section" id="creating-and-inspecting-socket-addresses">
+<h3>Creating and Inspecting Socket Addresses<a class="headerlink" href="#creating-and-inspecting-socket-addresses" title="Permalink to this headline">¶</a></h3>
+<p>These functions are Pure-specific. The created socket addresses are malloc&#8217;ed
+and free themselves automatically when garbage-collected.</p>
+<dl class="function">
+<dt id="sockaddr">
+<tt class="descname">sockaddr</tt> ()<a class="headerlink" href="#sockaddr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a pointer to an empty socket address suitable to hold the socket
+address result of routines like <a class="reference internal" href="#accept" title="accept"><tt class="xref pure pure-func docutils literal"><span class="pre">accept</span></tt></a>, <a class="reference internal" href="#getsockname" title="getsockname"><tt class="xref pure pure-func docutils literal"><span class="pre">getsockname</span></tt></a>,
+<a class="reference internal" href="#recvfrom" title="recvfrom"><tt class="xref pure pure-func docutils literal"><span class="pre">recvfrom</span></tt></a>, etc. which return a socket address.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">sockaddr</tt> ([int family,] char *path)</dt>
+<dd><p>Create a local (a.k.a. file) socket address for the given pathname. The
+<tt class="docutils literal"><span class="pre">family</span></tt> parameter, if specified, must be <tt class="xref pure pure-const docutils literal"><span class="pre">AF_UNIX</span></tt> here. Please
+note that <tt class="xref pure pure-const docutils literal"><span class="pre">AF_UNIX</span></tt> is not supported on all platforms. You can check
+for this by testing the <tt class="xref pure pure-const docutils literal"><span class="pre">HAVE_AF_UNIX</span></tt> constant, which is a truth
+value specifying whether <tt class="xref pure pure-const docutils literal"><span class="pre">AF_UNIX</span></tt> is available on your system.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<tt class="descname">sockaddr</tt> ([int family,] char *host, char *port)</dt>
+<dt>
+<tt class="descname">sockaddr</tt> ([int family,] char *host, int port)</dt>
+<dd><p>This uses <tt class="docutils literal"><span class="pre">getaddrinfo</span></tt> to retrieve an <tt class="xref pure pure-const docutils literal"><span class="pre">AF_INET</span></tt> or
+<tt class="xref pure pure-const docutils literal"><span class="pre">AF_INET6</span></tt> address for the given hostname (or numeric IP address in
+string form) and port (specified either as an int or a string). If
+<tt class="docutils literal"><span class="pre">family</span></tt> is omitted, it defaults to <tt class="xref pure pure-const docutils literal"><span class="pre">AF_UNSPEC</span></tt> which matches both
+<tt class="xref pure pure-const docutils literal"><span class="pre">AF_INET</span></tt> and <tt class="xref pure pure-const docutils literal"><span class="pre">AF_INET6</span></tt> addresses.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddrs">
+<tt class="descname">sockaddrs</tt> ([int family,] char *host, char *port)<a class="headerlink" href="#sockaddrs" title="Permalink to this definition">¶</a></dt>
+<dt>
+<tt class="descname">sockaddrs</tt> ([int family,] char *host, int port)</dt>
+<dd><p>This works like <a class="reference internal" href="#sockaddr" title="sockaddr"><tt class="xref pure pure-func docutils literal"><span class="pre">sockaddr</span></tt></a> above, but returns a list with <em>all</em>
+matching addresses.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_family">
+<tt class="descname">sockaddr_family</tt> addr<a class="headerlink" href="#sockaddr_family" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the address family of the given address.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_path">
+<tt class="descname">sockaddr_path</tt> addr<a class="headerlink" href="#sockaddr_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the pathname for <tt class="xref pure pure-const docutils literal"><span class="pre">AF_UNIX</span></tt> addresses.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_hostname">
+<tt class="descname">sockaddr_hostname</tt> addr<a class="headerlink" href="#sockaddr_hostname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the hostname if available, the IP address otherwise.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_ip">
+<tt class="descname">sockaddr_ip</tt> addr<a class="headerlink" href="#sockaddr_ip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the IP address.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_service">
+<tt class="descname">sockaddr_service</tt> addr<a class="headerlink" href="#sockaddr_service" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the service (a.k.a. port) name.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_port">
+<tt class="descname">sockaddr_port</tt> addr<a class="headerlink" href="#sockaddr_port" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the port number.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="sockaddr_info">
+<tt class="descname">sockaddr_info</tt> addr<a class="headerlink" href="#sockaddr_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a readable description of a socket address, as a
+<tt class="docutils literal"><span class="pre">(family,hostname,port)</span></tt> tuple. You should be able to pass this into
+<a class="reference internal" href="#sockaddr" title="sockaddr"><tt class="xref pure pure-func docutils literal"><span class="pre">sockaddr</span></tt></a> again to get the original address.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="creating-and-closing-sockets">
+<h3>Creating and Closing Sockets<a class="headerlink" href="#creating-and-closing-sockets" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="socket">
+<tt class="descname">socket</tt> domain type protocol<a class="headerlink" href="#socket" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a socket for the given protocol family (<tt class="xref pure pure-const docutils literal"><span class="pre">AF_UNIX</span></tt>,
+<tt class="xref pure pure-const docutils literal"><span class="pre">AF_INET</span></tt> or <tt class="xref pure pure-const docutils literal"><span class="pre">AF_INET6</span></tt>), socket type (<tt class="xref pure pure-const docutils literal"><span class="pre">SOCK_STREAM</span></tt>,
+<tt class="xref pure pure-const docutils literal"><span class="pre">SOCK_DGRAM</span></tt>, etc.) and protocol. Note that on Linux we also support
+the <tt class="xref pure pure-const docutils literal"><span class="pre">SOCK_NONBLOCK</span></tt> (non-blocking) and <tt class="xref pure pure-const docutils literal"><span class="pre">SOCK_CLOEXEC</span></tt>
+(close-on-exec) flags which can be or&#8217;ed with the socket type to get
+sockets with the corresponding features. The protocol number is usually 0,
+denoting the default protocol, but it can also be any of the prescribed
+<tt class="xref pure pure-const docutils literal"><span class="pre">IPPROTO</span></tt> constants (a few common ones are predefined by this
+module, try <tt class="docutils literal"><span class="pre">show</span> <span class="pre">-g</span> <span class="pre">IPPROTO_*</span></tt> for a list of those).</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="socketpair">
+<tt class="descname">socketpair</tt> domain type protocol sv<a class="headerlink" href="#socketpair" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a pair of sockets. The descriptors are returned in the integer
+vector <tt class="docutils literal"><span class="pre">sv</span></tt> passed in the last argument.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="shutdown">
+<tt class="descname">shutdown</tt> fd how<a class="headerlink" href="#shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform shutdown on a socket. The second argument should be one of
+<tt class="xref pure pure-const docutils literal"><span class="pre">SHUT_RD</span></tt>, <tt class="xref pure pure-const docutils literal"><span class="pre">SHUT_WR</span></tt> and <tt class="xref pure pure-const docutils literal"><span class="pre">SHUT_RDWR</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="closesocket">
+<tt class="descname">closesocket</tt> fd<a class="headerlink" href="#closesocket" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is provided for Windows compatibility. On POSIX systems this is just
+<tt class="docutils literal"><span class="pre">close</span></tt>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="establishing-connections">
+<h3>Establishing Connections<a class="headerlink" href="#establishing-connections" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="accept">
+<tt class="descname">accept</tt> sockfd addr<a class="headerlink" href="#accept" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="bind">
+<tt class="descname">bind</tt> sockfd addr<a class="headerlink" href="#bind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="connect">
+<tt class="descname">connect</tt> sockfd addr<a class="headerlink" href="#connect" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="listen">
+<tt class="descname">listen</tt> sockfd backlog<a class="headerlink" href="#listen" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="socket-i-o">
+<h3>Socket I/O<a class="headerlink" href="#socket-i-o" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="recv">
+<tt class="descname">recv</tt> fd buf len flags<a class="headerlink" href="#recv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="send">
+<tt class="descname">send</tt> fd buf len flags<a class="headerlink" href="#send" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="recvfrom">
+<tt class="descname">recvfrom</tt> fd buf len flags addr<a class="headerlink" href="#recvfrom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="sendto">
+<tt class="descname">sendto</tt> fd buf len flags addr<a class="headerlink" href="#sendto" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The usual <a class="reference internal" href="#send" title="send"><tt class="xref pure pure-func docutils literal"><span class="pre">send</span></tt></a>/<a class="reference internal" href="#recv" title="recv"><tt class="xref pure pure-func docutils literal"><span class="pre">recv</span></tt></a> flags specified by POSIX
+(<tt class="xref pure pure-const docutils literal"><span class="pre">MSG_EOR</span></tt>, <tt class="xref pure pure-const docutils literal"><span class="pre">MSG_OOB</span></tt>, <tt class="xref pure pure-const docutils literal"><span class="pre">MSG_PEEK</span></tt>, <tt class="xref pure pure-const docutils literal"><span class="pre">MSG_WAITALL</span></tt>)
+are provided. On Linux we also support <tt class="xref pure pure-const docutils literal"><span class="pre">MSG_DONTWAIT</span></tt>. Note that on
+POSIX systems you can also just <a class="reference internal" href="purelib.html#fdopen" title="fdopen"><tt class="xref pure pure-func docutils literal"><span class="pre">fdopen</span></tt></a> the socket descriptor and use
+the standard file I/O operations from the <a class="reference internal" href="purelib.html#module-system"><tt class="xref pure pure-mod docutils literal"><span class="pre">system</span></tt></a> module instead.</p>
+</div>
+<div class="section" id="socket-information">
+<h3>Socket Information<a class="headerlink" href="#socket-information" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="getsockname">
+<tt class="descname">getsockname</tt> fd addr<a class="headerlink" href="#getsockname" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="getpeername">
+<tt class="descname">getpeername</tt> fd addr<a class="headerlink" href="#getpeername" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="getsockopt">
+<tt class="descname">getsockopt</tt> fd level name val len<a class="headerlink" href="#getsockopt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="setsockopt">
+<tt class="descname">setsockopt</tt> fd level name val len<a class="headerlink" href="#setsockopt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>For <a class="reference internal" href="#getsockopt" title="getsockopt"><tt class="xref pure pure-func docutils literal"><span class="pre">getsockopt</span></tt></a> and <a class="reference internal" href="#setsockopt" title="setsockopt"><tt class="xref pure pure-func docutils literal"><span class="pre">setsockopt</span></tt></a>, currently only the
+<tt class="xref pure pure-const docutils literal"><span class="pre">SOL_SOCKET</span></tt> level is defined (<tt class="docutils literal"><span class="pre">level</span></tt> argument) along with the
+available POSIX socket options (<tt class="docutils literal"><span class="pre">name</span></tt> argument). Try <tt class="docutils literal"><span class="pre">show</span> <span class="pre">-g</span> <span class="pre">SO_*</span></tt> to
+get a list of those. Also note that for most socket level options the <tt class="docutils literal"><span class="pre">val</span></tt>
+argument is actually an <tt class="docutils literal"><span class="pre">int*</span></tt>, so you can pass a Pure int vector (with
+<tt class="docutils literal"><span class="pre">len</span> <span class="pre">=</span> <span class="pre">SIZEOF_INT</span></tt>) for that parameter.</p>
+</div>
+</div>
+<div class="section" id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<p>Here is a fairly minimal example using Unix stream sockets. To keep things
+simple, this does no error checking whatsoever and just keeps sending strings
+back and forth. More elaborate examples can be found in the examples directory
+in the sources.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> sockets, system<span class="p">;</span>
+
+<span class="kr">const</span> path = <span class="s">&quot;server_socket&quot;</span><span class="p">;</span>
+<span class="kr">extern</span> <span class="kt">int</span> unlink(<span class="kt">char</span> *name)<span class="p">;</span>
+
+server = loop <span class="kr">with</span>
+  loop = loop <span class="kr">if</span> ~null s &amp;&amp; ~response fp s <span class="kr">when</span>
+    <span class="c1">// Connect to a client.</span>
+    cfd = accept fd $ sockaddr ()<span class="p">;</span>
+    <span class="c1">// Open the client socket as a FILE* and read a request.</span>
+    fp = fdopen cfd <span class="s">&quot;r+&quot;</span><span class="p">;</span> s = fgets fp<span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+  loop = puts <span class="s">&quot;server is exiting&quot;</span> $$ closesocket fd $$
+         unlink path $$ () <span class="kr">otherwise</span><span class="p">;</span>
+  response fp s<span class="p">::</span><span class="kt">string</span> = s==<span class="s">&quot;quit</span><span class="se">\n</span><span class="s">&quot;</span> <span class="kr">when</span>
+    <span class="c1">// Process the request. (Here we just print the received</span>
+    <span class="c1">// message and echo it back to the client.)</span>
+    printf <span class="s">&quot;server&gt; %s&quot;</span> s<span class="p">;</span>
+    fputs s fp<span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+<span class="kr">end</span> <span class="kr">when</span>
+  <span class="c1">// Create the server socket and start listening.</span>
+  unlink path<span class="p">;</span>
+  fd = socket AF_UNIX SOCK_STREAM <span class="mi">0</span><span class="p">;</span>
+  bind fd (sockaddr path)<span class="p">;</span> listen fd <span class="mi">5</span><span class="p">;</span>
+  printf <span class="s">&quot;server listening at &#39;%s&#39;</span><span class="se">\n</span><span class="s">&quot;</span> path<span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+
+client = loop <span class="kr">with</span>
+  <span class="c1">// Keep reading requests from stdin.</span>
+  loop = loop <span class="kr">if</span> ~null s &amp;&amp; ~request s <span class="kr">when</span>
+    fputs <span class="s">&quot;client&gt; &quot;</span> stdout<span class="p">;</span> s = fgets stdin<span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+  loop = puts <span class="s">&quot;client is exiting&quot;</span> $$ () <span class="kr">otherwise</span><span class="p">;</span>
+  request s<span class="p">::</span><span class="kt">string</span> = s==<span class="s">&quot;quit</span><span class="se">\n</span><span class="s">&quot;</span> <span class="kr">when</span>
+    fd = socket AF_UNIX SOCK_STREAM <span class="mi">0</span><span class="p">;</span>
+    connect fd (sockaddr path)<span class="p">;</span>
+    <span class="c1">// Send the request to the server.</span>
+    fp = fdopen fd <span class="s">&quot;r+&quot;</span><span class="p">;</span> fputs s fp<span class="p">;</span>
+    <span class="c1">// Get the reply.</span>
+    s = fgets fp<span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To use this example, run the <tt class="docutils literal"><span class="pre">server</span></tt> function in one instance of the Pure
+interpreter and the <tt class="docutils literal"><span class="pre">client</span></tt> function in another. Enter a line when the
+client prompts you for input; it will be printed by the server. Behind the
+scenes, the server also sends the line back to the client. After receiving the
+reply, the client prompts for the next input line. Entering end-of-file at the
+client prompt terminates the client but keeps the server running, so that you
+can start another client and reconnect to the server. Entering just <tt class="docutils literal"><span class="pre">quit</span></tt>
+in the client terminates both server and client. Here is how a typical
+interaction may look like:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>client<span class="p">;</span>
+client&gt; <span class="mi">1</span>+<span class="mi">1</span>
+client&gt; foo bar
+client&gt; quit
+client is exiting
+()
+
+<span class="gp">&gt; </span>server<span class="p">;</span>
+server listening at &#39;server_socket&#39;
+server&gt; <span class="mi">1</span>+<span class="mi">1</span>
+server&gt; foo bar
+server&gt; quit
+server is exiting
+()
+</pre></div>
+</div>
+<p>Note that while the server processes requests sequentially, it accepts
+connections from a new client after each request, so that you can run as many
+clients as you like.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-sockets: Pure Sockets Interface</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#creating-and-inspecting-socket-addresses">Creating and Inspecting Socket Addresses</a></li>
+<li><a class="reference internal" href="#creating-and-closing-sockets">Creating and Closing Sockets</a></li>
+<li><a class="reference internal" href="#establishing-connections">Establishing Connections</a></li>
+<li><a class="reference internal" href="#socket-i-o">Socket I/O</a></li>
+<li><a class="reference internal" href="#socket-information">Socket Information</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-readline.html"
+                        title="previous chapter">pure-readline</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-stldict.html"
+                        title="next chapter">pure-stldict</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-sockets.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-stldict.html" title="pure-stldict"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-readline.html" title="pure-readline"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

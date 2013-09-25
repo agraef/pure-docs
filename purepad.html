@@ -1,0 +1,341 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using PurePad &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="Reporting Bugs" href="bugs.html" />
+    <link rel="prev" title="Running Pure on Windows" href="windows.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bugs.html" title="Reporting Bugs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="windows.html" title="Running Pure on Windows"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-purepad">
+<h1>Using PurePad<a class="headerlink" href="#using-purepad" title="Permalink to this headline">¶</a></h1>
+<p>The following information is available:</p>
+<ul class="simple">
+<li><a class="reference internal" href="windows.html"><em>Running Pure on Windows</em></a>: important release notes that you should read first</li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a>: a brief overview of PurePad</li>
+<li><a class="reference internal" href="#editing-scripts">Editing Scripts</a>: manage Pure scripts with PurePad</li>
+<li><a class="reference internal" href="#running-scripts">Running Scripts</a>: run Pure scripts using the Pure interpreter</li>
+<li><a class="reference internal" href="#using-the-log">Using the Log</a>: how to interact with the Pure interpreter</li>
+<li><a class="reference internal" href="#locating-source-lines">Locating Source Lines</a>: quickly find source lines in error messages from
+the interpreter</li>
+</ul>
+<p>Please also check the sidebar for other available documentation, including
+<a class="reference internal" href="pure.html"><em>The Pure Manual</em></a>, the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a> and information about various bundled modules.
+(Note that at present only a subset of all available addon modules is included
+in the Windows distribution.)</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>PurePad is a standard Windows application, with the menus, toolbar and status
+line you are familiar with (see figure below). Like the standard Windows
+editor from ancient times, PurePad is a single-document application, i.e.,
+there is only one source file open at any time. The main window is divided
+into two panes. The upper pane is the source pane which usually contains the
+Pure script you are currently working with. The lower pane is the log pane in
+which you interact with the interpreter (input expressions to be evaluated,
+watch the interpreter&#8217;s output, etc.). Editing operations, as well as the
+<em class="menuselection">Font</em> and <em class="menuselection">Tab Stops</em> commands in the
+<em class="menuselection">View</em> menu and the <em class="menuselection">Print</em> and
+<em class="menuselection">Print Preview</em> commands in the <em class="menuselection">File</em> menu,
+always apply to the currently selected pane, i.e., the pane which contains the
+cursor.</p>
+<div class="figure">
+<img alt="_images/purepad.png" src="_images/purepad.png" />
+<p class="caption">PurePad main window.</p>
+</div>
+<p>To start up the interpreter you use <em class="menuselection">Script ‣ Run</em>
+(<tt class="kbd docutils literal"><span class="pre">F9</span></tt>) and wait for the interpreter&#8217;s <tt class="docutils literal"><span class="pre">&gt;</span></tt> prompt to appear. This
+command will run the Pure interpreter with the script currently shown in the
+source pane (or an empty script if you haven&#8217;t yet loaded a script using the
+<em class="menuselection">File ‣ Open</em> (<tt class="kbd docutils literal"><span class="pre">Ctrl-O</span></tt>) command). The cursor will be
+placed in the log pane (see <a class="reference internal" href="#using-the-log">Using the Log</a>) and you can start typing in
+expressions and definitions to be evaluated. See <a class="reference internal" href="#running-scripts">Running Scripts</a> for more
+information on this.</p>
+<p>To begin a new script, use the <em class="menuselection">File ‣ New</em> (<tt class="kbd docutils literal"><span class="pre">Ctrl-N</span></tt>)
+command. Probably the next thing you want to do is to enter your first own
+little Pure script. For instance, here is a version of the factorial
+function:</p>
+<div class="highlight-pure"><div class="highlight"><pre>fact n = <span class="kr">if</span> n&gt;<span class="mi">0</span> <span class="kr">then</span> n*fact (n-<span class="mi">1</span>) <span class="kr">else</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Enter this equation into the source editor pane, save the script as
+<tt class="docutils literal"><span class="pre">fact.pure</span></tt> with the <em class="menuselection">File ‣ Save</em> (<tt class="kbd docutils literal"><span class="pre">Ctrl-S</span></tt>) command
+and press <tt class="kbd docutils literal"><span class="pre">F9</span></tt>. The cursor will be placed into the log pane and after a
+while the interpreter&#8217;s <tt class="docutils literal"><span class="pre">&gt;</span></tt> prompt will appear. You can now type an
+expression like</p>
+<div class="highlight-pure"><div class="highlight"><pre>map fact (<span class="mi">1</span>.. <span class="mi">10</span>)<span class="p">;</span>
+</pre></div>
+</div>
+<p>and see what happens.</p>
+<p>The currently selected pane (source or log) can be printed using the
+<em class="menuselection">File ‣ Print</em> (<tt class="kbd docutils literal"><span class="pre">Ctrl-P</span></tt>) command; you can also obtain a
+print preview with the <em class="menuselection">Print Preview</em> command in the
+<em class="menuselection">File</em> menu. To change the font and tabulator settings in the
+current pane, use the <em class="menuselection">Font</em> and <em class="menuselection">Tab Stops</em>
+commands in the <em class="menuselection">View</em> menu. (Usually it is best to choose a
+fixed-width font here, like <tt class="docutils literal"><span class="pre">Fixedsys</span></tt>, which is also the default. Tab stops
+are set to 8 by default.)</p>
+</div>
+<div class="section" id="editing-scripts">
+<h2>Editing Scripts<a class="headerlink" href="#editing-scripts" title="Permalink to this headline">¶</a></h2>
+<p>The <em class="menuselection">File</em> menu contains the usual set of operations which let
+you create new script files, open existing files, save a file that has been
+edited, preview and print the current file and exit the application. The
+<em class="menuselection">View</em> menu allows you to change tabulator settings
+(<em class="menuselection">Tab Stops</em> option) and the font used for display and printing
+(<em class="menuselection">Font</em> option). Scripts are edited in the upper (source) pane
+of the main window just as in the Windows Notepad editor. In the
+<em class="menuselection">Edit</em> menu you find the common editing operations
+(<em class="menuselection">Undo</em>, <em class="menuselection">Cut</em>, <em class="menuselection">Copy</em>,
+<em class="menuselection">Paste</em>, <em class="menuselection">Select All</em>, <em class="menuselection">Find</em>,
+<em class="menuselection">Replace</em>, and <em class="menuselection">Go To</em>, which allows you to jump
+to the line number you specify). Many of these operations can also be accessed
+by means of the familiar accelerator keys or the toolbar.</p>
+</div>
+<div class="section" id="running-scripts">
+<h2>Running Scripts<a class="headerlink" href="#running-scripts" title="Permalink to this headline">¶</a></h2>
+<p>Once you have entered your script and saved it in a file, you can run the
+script using the Pure interpreter. The relevant commands can be found in the
+<em class="menuselection">Script</em> menu:</p>
+<ul class="simple">
+<li><em class="menuselection">Run</em> runs your script with the Pure interpreter, in the
+directory where your source script is located. If the interpreter is already
+running, it is terminated first.</li>
+<li><em class="menuselection">Debug</em> invokes the interpreter with the built-in debugger.
+This allows you to trace the calculations (&#8220;reductions&#8221; in Pure parlance)
+performed by your script. Note that to actually debug a function, you must
+first set a breakpoint using the interpreter&#8217;s <tt class="docutils literal"><span class="pre">break</span></tt> command; please see
+<a class="reference internal" href="pure.html"><em>The Pure Manual</em></a> for details.</li>
+<li><em class="menuselection">Break</em> sends a <tt class="kbd docutils literal"><span class="pre">Ctrl-C</span></tt> to the interpreter process.
+This allows you to interrupt the interpreter when it is doing a
+time-intensive evaluation, is producing output or is waiting for input.</li>
+<li><em class="menuselection">Quit</em> exits the interpreter. This usually has the same
+effect as typing <tt class="docutils literal"><span class="pre">quit</span></tt> at the interpreter&#8217;s prompt and is performed
+automatically when PurePad is exited and the interpreter is still active. It
+also kills off the interpreter process if it does not terminate within a
+reasonable amount of time after it has been notified.</li>
+</ul>
+<p>As soon as the script has been started, the cursor switches to the log (the
+lower pane), the interpreter&#8217;s prompt will appear and you can start typing
+definitions and expressions, and watch the interpreter print the results. The
+log pane is an edit control into which you can type text as usual. It also has
+some special commands which allow you to access an input history and to
+quickly locate positions in source files, see <a class="reference internal" href="#using-the-log">Using the Log</a> for details.</p>
+<p>If you run a script which has errors in it then the Pure compiler will display
+a list of error messages. To quickly locate the source file positions listed
+in the error messages, use the commands described in <a class="reference internal" href="#locating-source-lines">Locating Source Lines</a>.</p>
+<p>You can check whether a script is running by taking a look at the title bar of
+the PurePad window. The name of the previously started script is shown there
+inside brackets. If it is preceded with the text <tt class="docutils literal"><span class="pre">Terminated</span> <span class="pre">-</span></tt>, then the
+script is not currently running, either because the interpreter was exited in
+a regular fashion, or because some other, unexpected event happened, like a
+stack overflow.</p>
+<p>There are a number of other items in the <em class="menuselection">Script</em> menu which
+deal with the running script and the interpreter&#8217;s configuration:</p>
+<ul class="simple">
+<li><em class="menuselection">Open</em> reopens the previously started script (the one whose
+name is shown inside brackets in the title bar) in the upper source
+pane. This operation is useful when you have opened other source files and
+now want to quickly reload your &#8220;main&#8221; script.</li>
+<li>The <em class="menuselection">Prompt</em> option allows you to change the interpreter&#8217;s
+prompt (this only becomes effective when the interpreter is started the next
+time using the <em class="menuselection">Run</em> or the <em class="menuselection">Debug</em> command).</li>
+<li><em class="menuselection">History File</em>, <em class="menuselection">History Size</em>. With these
+options you can set the name of the file used to store the input history,
+and the size of the history, respectively (see <a class="reference internal" href="#using-the-log">Using the Log</a> for
+details).</li>
+<li><em class="menuselection">Reset Log</em>. When this option is checked, the log is cleared
+any time a new script is run.</li>
+</ul>
+</div>
+<div class="section" id="using-the-log">
+<h2>Using the Log<a class="headerlink" href="#using-the-log" title="Permalink to this headline">¶</a></h2>
+<p>The log, the lower pane of the PurePad main window, is an edit control which
+logs both your input to the interpreter and the interpreter&#8217;s output. In the
+log you can use all the usual editing operations, as well as the commands in
+the <em class="menuselection">Edit</em> menu. Furthermore, printouts and print previews of
+the current contents of the log can be obtained using the corresponding
+operations of the <em class="menuselection">File</em> menu, and the <em class="menuselection">View</em>
+menu allows you to change tabulator settings and the font used for display and
+printing.</p>
+<p>The size (i.e. number of lines) of the log is limited. This limit (500 lines
+by default, but you can change this manually with the Windows regedit utility)
+is necessary because each evaluation can produce an arbitrary amount of
+output, while the text size of a Windows edit control is usually limited to 64
+KB.</p>
+<p>When the interpreter is currently running, typing <tt class="kbd docutils literal"><span class="pre">Return</span></tt> in the last
+line (the current input line) of the log sends the line (with the prompt
+removed) to the interpreter. In fact, any line in the log window, not only the
+last one, can be edited and sent to the interpreter using <tt class="kbd docutils literal"><span class="pre">Ctrl-Return</span></tt>.
+When using this command, the line is copied down to the end of the log.</p>
+<p>The log also maintains an input history for the (non-empty) lines you sent to
+the interpreter. When positioned at the input line, you can browse through
+this history using the <tt class="kbd docutils literal"><span class="pre">Ctrl-Up</span></tt> and <tt class="kbd docutils literal"><span class="pre">Ctrl-Down</span></tt> cursor keys (which
+recall and insert the previous and the next input line, respectively).
+<tt class="kbd docutils literal"><span class="pre">Ctrl-PgUp</span></tt> and <tt class="kbd docutils literal"><span class="pre">Ctrl-PgDn</span></tt> go to the first and the last line of the
+history, respectively. Finally, you can search the history using the
+<tt class="kbd docutils literal"><span class="pre">Shift-Ctrl-Up</span></tt> and <tt class="kbd docutils literal"><span class="pre">Shift-Ctrl-Down</span></tt> keys which look for the
+closest previous (resp. next) history line which matches the text before the
+current cursor position. The size of the input history (100 lines by default)
+can be set using the <em class="menuselection">History Size</em> option of the
+<em class="menuselection">Script</em> menu. Furthermore, the history is stored in a text
+file (<tt class="docutils literal"><span class="pre">PurePadHistory</span></tt> by default) when PurePad is exited. You can switch to
+another history file using the <em class="menuselection">History File</em> command in the
+<em class="menuselection">Script</em> menu.</p>
+</div>
+<div class="section" id="locating-source-lines">
+<h2>Locating Source Lines<a class="headerlink" href="#locating-source-lines" title="Permalink to this headline">¶</a></h2>
+<p>To quickly locate the source line of an error message shown in the log pane,
+PurePad provides some keyboard commands and toolbar buttons which can be
+invoked from both the source and the log pane.</p>
+<ul class="simple">
+<li><tt class="kbd docutils literal"><span class="pre">F3</span></tt> (<em class="menuselection">Next Error</em>, <em class="guilabel">&gt;</em> button) finds and
+displays the position of the next source line reference in the log, starting
+below the current line in the log.</li>
+<li><tt class="kbd docutils literal"><span class="pre">Shift-F3</span></tt> (<em class="menuselection">Previous Error</em>, <em class="guilabel">&lt;</em> button)
+finds and displays the position of the previous source line reference in the
+log, starting above the current line in the log.</li>
+<li><tt class="kbd docutils literal"><span class="pre">Ctrl-F3</span></tt> (<em class="menuselection">Last Error</em>, <em class="guilabel">&gt;&gt;</em> button) finds
+and displays the position of the last source line reference in a sequence of
+consecutive messages in the log, starting at or above the current line in
+the log.</li>
+<li><tt class="kbd docutils literal"><span class="pre">Shift-Ctrl-F3</span></tt> (<em class="menuselection">First Error</em>, <em class="guilabel">&lt;&lt;</em> button)
+finds and displays the position of the first source line reference in a
+sequence of consecutive messages in the log, starting at or above the
+current line in the log.</li>
+</ul>
+<p>Each of these commands opens the file indicated by the message (if it is not
+open already) and sets the cursor to the corresponding line. Furthermore, it
+marks the message in the log and also displays the source position in the
+status line. Please note that since PurePad is a single-document application,
+opening a new source file in this manner closes the file currently in the
+source pane. If this file has been modified, you will be prompted to save the
+file, just as if you used the <em class="menuselection">File ‣ Open</em> command.</p>
+<p>Another useful command in the <em class="menuselection">View</em> menu, which is often used
+in conjunction with the above operations is <em class="menuselection">To Input Line</em>
+(<tt class="kbd docutils literal"><span class="pre">Esc</span></tt>) which quickly returns you to the input (i.e., last) line in the
+log pane.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using PurePad</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#editing-scripts">Editing Scripts</a></li>
+<li><a class="reference internal" href="#running-scripts">Running Scripts</a></li>
+<li><a class="reference internal" href="#using-the-log">Using the Log</a></li>
+<li><a class="reference internal" href="#locating-source-lines">Locating Source Lines</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="windows.html"
+                        title="previous chapter">Running Pure on Windows</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="bugs.html"
+                        title="next chapter">Reporting Bugs</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/purepad.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="bugs.html" title="Reporting Bugs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="windows.html" title="Running Pure on Windows"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

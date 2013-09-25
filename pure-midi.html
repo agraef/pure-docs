@@ -1,0 +1,182 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>pure-midi &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="Installing Pure (and LLVM)" href="install.html" />
+    <link rel="prev" title="pure-liblo" href="pure-liblo.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installing Pure (and LLVM)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-liblo.html" title="pure-liblo"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-midi">
+<span id="pure-midi"></span><h1>pure-midi<a class="headerlink" href="#module-midi" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-midifile"></span><p>Version 0.5, September 08, 2013</p>
+<p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<p>This is a MIDI interface for the Pure programming language (Pure 0.45 or later
+is required). It includes the following modules:</p>
+<ul class="simple">
+<li>midi.pure: A PortMidi/PortTime wrapper which gives you portable access to
+realtime MIDI input and output. This uses PortMidi (by Roger B. Dannenberg
+et al) from the PortMedia project, see <a class="reference external" href="http://portmedia.sourceforge.net/">http://portmedia.sourceforge.net/</a>.</li>
+<li>midifile.pure: Reading and writing standard MIDI files. This is based on
+David G. Slomin&#8217;s light-weight midifile library, which comes bundled with
+the pure-midi sources.</li>
+</ul>
+<p>Documentation still needs to be written, so for the time being please read the
+source modules listed above and have a look at the examples provided in the
+distribution.</p>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.5.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.5.tar.gz</a>.</p>
+<p>You need to have the PortMidi library installed on your system. This release
+was tested with PortMidi 2.00 (I recommend using the svn version of PortMidi,
+since it fixes some 64 bit compilation problems). If you have to use some
+earlier PortMidi version then you may have to fiddle with portmidi.pure and/or
+midi.pure to make it work. (You can also just regenerate the wrapper by
+copying portmidi.h and porttime.h from your PortMidi installation to the
+pure-midi source directory and running &#8216;make generate&#8217;. This requires
+pure-gen. See the toplevel Makefile for details.)</p>
+<p>Run &#8216;make&#8217; to compile the package. If you&#8217;re lucky and everything compiles
+smoothly, you can install with &#8216;sudo make install&#8217;.</p>
+<p>If you&#8217;re not so lucky, you can get help on the Pure mailing list, see
+<a class="reference external" href="http://groups.google.com/group/pure-lang">http://groups.google.com/group/pure-lang</a>.</p>
+<p>NOTE: You may also want to install the related pure-audio package. In
+particular, pure-audio also provides realtime.pure, a little utility module
+which gives Pure programs access to realtime scheduling.</p>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>pure-midi is Copyright (c) 2010 by Albert Graef, licensed under the 3-clause
+BSD license, see the COPYING file for details.</p>
+<p>For convenience, I&#8217;ve bundled some (BSD-licensed or compatible) source files
+from other packages with this release. portmidi.h and porttime.h are from
+PortMidi 2.00 (<a class="reference external" href="http://portmedia.sourceforge.net/">http://portmedia.sourceforge.net/</a>) which is</p>
+<p>Copyright (c) 1999-2000 Ross Bencina and Phil Burk
+Copyright (c) 2001-2006 Roger B. Dannenberg</p>
+<p>midifile.c and midifile.h in the midifile subdirectory are from &#8220;Div&#8217;s midi
+utilities&#8221; (<a class="reference external" href="http://public.sreal.com:8000/~div/midi-utilities/">http://public.sreal.com:8000/~div/midi-utilities/</a>) which is</p>
+<p>Copyright (c) 2003-2006 David G. Slomin</p>
+<p>Please see portmidi.h and midifile.h for the pertaining copyrights and license
+conditions.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">pure-midi</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-liblo.html"
+                        title="previous chapter">pure-liblo</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="install.html"
+                        title="next chapter">Installing Pure (and LLVM)</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-midi.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="install.html" title="Installing Pure (and LLVM)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-liblo.html" title="pure-liblo"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

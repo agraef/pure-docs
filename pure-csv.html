@@ -1,0 +1,547 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Pure-CSV - Comma Separated Value Interface for the Pure Programming Language &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-fastcgi: FastCGI module for Pure" href="pure-fastcgi.html" />
+    <link rel="prev" title="Computer Algebra with Pure: A Reduce Interface" href="pure-reduce.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-fastcgi.html" title="pure-fastcgi: FastCGI module for Pure"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-reduce.html" title="Computer Algebra with Pure: A Reduce Interface"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="pure-csv-comma-separated-value-interface-for-the-pure-programming-language">
+<h1>Pure-CSV - Comma Separated Value Interface for the Pure Programming Language<a class="headerlink" href="#pure-csv-comma-separated-value-interface-for-the-pure-programming-language" title="Permalink to this headline">¶</a></h1>
+<p>Version 1.5, September 08, 2013</p>
+<p>Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</p>
+<p>The CSV library provides an interface for reading and writing comma
+separated value files. The module is very loosely based on Python&#8217;s CSV
+module (<a class="reference external" href="http://docs.python.org/lib/module-csv.html">http://docs.python.org/lib/module-csv.html</a>).</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#installation" id="id2">Installation</a></li>
+<li><a class="reference internal" href="#usage" id="id3">Usage</a><ul>
+<li><a class="reference internal" href="#handling-errors" id="id4">Handling Errors</a></li>
+<li><a class="reference internal" href="#creating-dialects" id="id5">Creating Dialects</a></li>
+<li><a class="reference internal" href="#opening-csv-files" id="id6">Opening CSV Files</a></li>
+<li><a class="reference internal" href="#file-reading-functions" id="id7">File Reading Functions</a></li>
+<li><a class="reference internal" href="#file-writing-functions" id="id8">File Writing Functions</a></li>
+<li><a class="reference internal" href="#examples" id="id9">Examples</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2><a class="toc-backref" href="#id2">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-csv-1.5.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-csv-1.5.tar.gz</a>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> (as root) to
+install it in the Pure library directory. This requires GNU make. The
+<tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> step is only necessary for system-wide installation.</p>
+<p>The <tt class="docutils literal"><span class="pre">make</span></tt> utility tries to guess your Pure installation directory
+and platform-specific setup. If it gets this wrong, you can set some
+variables manually. In particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets
+the installation prefix, and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">PIC=-fPIC</span></tt> or some similar flag
+might be needed for compilation on 64 bit systems. Please see the
+Makefile for details.</p>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Data records are represented as vectors or lists of any Pure values. Values
+are converted as necessary and written as a group of strings, integers, or
+doubles separated by a delimiter. Three predefined dialects are provided;
+<tt class="docutils literal"><span class="pre">DEFAULT</span></tt> (record terminator= <tt class="docutils literal"><span class="pre">\n</span></tt> ), <tt class="docutils literal"><span class="pre">RFC4180</span></tt> (record terminator=
+<tt class="docutils literal"><span class="pre">\r\n</span></tt> ), and <tt class="docutils literal"><span class="pre">Excel</span></tt>. Procedures are provided to create other
+CSV dialects. See (<a class="reference external" href="http://www.ietf.org/rfc/rfc4180.txt">http://www.ietf.org/rfc/rfc4180.txt</a>) for more details about
+the RFC4180 standard.</p>
+<div class="section" id="handling-errors">
+<h3><a class="toc-backref" href="#id4">Handling Errors</a><a class="headerlink" href="#handling-errors" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="error">
+<dt><tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt></dt>
+<dd>is an error handling term. Operations resulting in parse errors, memory
+errors, or read/write errors produce a special <tt class="docutils literal"><span class="pre">csv::error</span> <span class="pre">msg</span></tt> term,
+where <tt class="docutils literal"><span class="pre">msg</span></tt> is a string describing the particular error. Your
+application should either check for these or have <tt class="docutils literal"><span class="pre">csv::error</span></tt> defined
+to directly handle errors in some way (e.g., provide a default value, or
+raise an exception).</dd>
+</dl>
+</div>
+<div class="section" id="creating-dialects">
+<h3><a class="toc-backref" href="#id5">Creating Dialects</a><a class="headerlink" href="#creating-dialects" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="dialect">
+<dt><tt class="docutils literal"><span class="pre">dialect</span> <span class="pre">record</span></tt></dt>
+<dd><p class="first">creates a dialect from a record of dialect option pairs. The dialect
+object is freed automatically when exiting the pure script. The list of
+possible options and option values are presented below.</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">delimiter</span></tt> - Character used to separate fields.<ul>
+<li>Value - any string.</li>
+<li>Default - <tt class="docutils literal"><span class="pre">&quot;,&quot;</span></tt>.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">escape</span></tt> - Embedded escape character used to embed a delimiter,
+escape, or terminator into unquoted fields. If the escape character is
+not null, then the quote character is ignored.<ul>
+<li>Value - any string.</li>
+<li>Default - <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt>.</li>
+<li>Reading - The escape character is dropped and the next char is inserted
+into the field.</li>
+<li>Writing - The escape character is written into the output stream before
+the delimiter, escape, or return character.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">quote</span></tt> - Quotes are used to embed delimiters, quotes, or
+terminators into a field.<ul>
+<li>Value - any string.</li>
+<li>Default - <tt class="docutils literal"><span class="pre">&quot;\&quot;&quot;</span></tt>.</li>
+<li>Notes - Embedded quotes are doubled. The <tt class="docutils literal"><span class="pre">escape</span></tt> option must be the
+null string.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">terminator</span></tt> - Record termination string.<ul>
+<li>Value - any string.</li>
+<li>Reading - Either a user specified string or if not specivied
+the file is sniffed for a <tt class="docutils literal"><span class="pre">\r</span></tt>, <tt class="docutils literal"><span class="pre">\r\n</span></tt>, or <tt class="docutils literal"><span class="pre">\n</span></tt>.</li>
+<li>Writing - Either a user specified string, <tt class="docutils literal"><span class="pre">\r\n</span></tt> for
+Windows platforms, or <tt class="docutils literal"><span class="pre">\n</span></tt> for everything else.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">quote_flag</span></tt> - Sets the quoting style of strings and/or numbers.<ul>
+<li>Value - One of {<tt class="docutils literal"><span class="pre">ALL</span></tt>, <tt class="docutils literal"><span class="pre">STRINGS</span></tt>, <tt class="docutils literal"><span class="pre">MINIMAL</span></tt>}.</li>
+<li>Default - <tt class="docutils literal"><span class="pre">ALL</span></tt>.</li>
+<li>Reading -<ol class="arabic">
+<li><tt class="docutils literal"><span class="pre">ALL</span></tt> - Every field is read as a string.</li>
+<li><tt class="docutils literal"><span class="pre">STRING</span></tt>, <tt class="docutils literal"><span class="pre">MINIMAL</span></tt> - Fields within quotes and fields that cannot
+be converted to integers or doubles are read as strings.</li>
+</ol>
+</li>
+<li>Writing -<ol class="arabic">
+<li><tt class="docutils literal"><span class="pre">ALL</span></tt> - Every field is written within quotes.</li>
+<li><tt class="docutils literal"><span class="pre">STRING</span></tt> - Only fields of type <tt class="docutils literal"><span class="pre">string</span></tt> are quoted.</li>
+<li><tt class="docutils literal"><span class="pre">MINIMAL</span></tt> - Only fields containing embedded quotes, terminators, or
+delimiters are written within quotes.</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">space_around_quoted_field</span></tt> - Determines how white space between quotes
+and delimiters should be treated.<ul>
+<li>Value - One of {<tt class="docutils literal"><span class="pre">NO</span></tt>, <tt class="docutils literal"><span class="pre">LEFT</span></tt>, <tt class="docutils literal"><span class="pre">RIGHT</span></tt>, <tt class="docutils literal"><span class="pre">BOTH</span></tt>}.</li>
+<li>Default - <tt class="docutils literal"><span class="pre">NO</span></tt>.</li>
+<li>Reading -<ol class="arabic">
+<li><tt class="docutils literal"><span class="pre">NO</span></tt> - Follows RFC4180 rules.</li>
+<li><tt class="docutils literal"><span class="pre">LEFT</span></tt> - Allows space before a quoted field.</li>
+<li><tt class="docutils literal"><span class="pre">RIGHT</span></tt> - Allows space between a quoted field and a delimiter.</li>
+<li><tt class="docutils literal"><span class="pre">BOTH</span></tt> - Allows space before and after a quoted field.</li>
+</ol>
+</li>
+<li>Writing - fields are never written with space before a quoted field or
+between a quoted field and a delimiter.</li>
+<li>Notes this option does not affect space within quotes or fields written
+using the <tt class="docutils literal"><span class="pre">escape</span></tt> string option.</li>
+</ul>
+</li>
+<li><tt class="docutils literal"><span class="pre">trim_space</span></tt> - trim white space before or after field contents.<ul>
+<li>Value - One of {<tt class="docutils literal"><span class="pre">NO</span></tt>, <tt class="docutils literal"><span class="pre">LEFT</span></tt>, <tt class="docutils literal"><span class="pre">RIGHT</span></tt>, <tt class="docutils literal"><span class="pre">BOTH</span></tt>}.</li>
+<li>Default - <tt class="docutils literal"><span class="pre">NO</span></tt>.</li>
+<li>Reading -<ol class="arabic">
+<li><tt class="docutils literal"><span class="pre">NO</span></tt> - Reading follows RFC4180 rules.</li>
+<li><tt class="docutils literal"><span class="pre">LEFT</span></tt>, <tt class="docutils literal"><span class="pre">RIGHT</span></tt>, or <tt class="docutils literal"><span class="pre">BOTH</span></tt> - The field is trimmed accordingly.
+Use <em>caution</em> because trimming may allow automatic conversion of
+numbers if the <tt class="docutils literal"><span class="pre">quote_flag</span></tt> is set to <tt class="docutils literal"><span class="pre">MINIMAL</span></tt>.</li>
+</ol>
+</li>
+<li>Writing -<ol class="arabic">
+<li><tt class="docutils literal"><span class="pre">NO</span></tt> - Reading follows RFC4180 rules</li>
+<li><tt class="docutils literal"><span class="pre">LEFT</span></tt>, <tt class="docutils literal"><span class="pre">RIGHT</span></tt>, or <tt class="docutils literal"><span class="pre">BOTH</span></tt> - Trimming space is probably a bad
+idea since leading or trailing space may be significant for other
+applications.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p class="last">The following example illustrates the construction of a dialect for
+reading tab delimited files without quoted strings.</p>
+</dd>
+</dl>
+<p id="example-dialect">Example</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {delimiter=&gt;<span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>, quote_flag=&gt;STRING}<span class="p">;</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="opening-csv-files">
+<h3><a class="toc-backref" href="#id6">Opening CSV Files</a><a class="headerlink" href="#opening-csv-files" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="open">
+<dt><tt class="docutils literal"><span class="pre">open</span> <span class="pre">name::string</span></tt></dt>
+<dd>opens a CSV file for reading using the default dialect. If the file does
+not exist, the <tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt> rule is invoked.</dd>
+<dt><tt class="docutils literal"><span class="pre">open</span> <span class="pre">(name::string,</span> <span class="pre">rw_flag::string)</span></tt></dt>
+<dd>opens a CSV file for reading, writing, or appending using the default
+dialect. Valid <tt class="docutils literal"><span class="pre">rw_flag</span></tt> values are <tt class="docutils literal"><span class="pre">&quot;r&quot;</span></tt> for reading, <tt class="docutils literal"><span class="pre">&quot;w&quot;</span></tt> for
+writing, and <tt class="docutils literal"><span class="pre">&quot;a&quot;</span></tt> for appending. If the file does not exist when
+opened for reading, the <tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt> rule is invoked. When a file is
+opened for writing and the file exists, the old file is overwritten. If
+the file does not exist, a new empty file is created. When a file is
+opened for appending and the file exists, new records are appended to
+the end of the file, otherwise a new empty file is created.</dd>
+<dt><tt class="docutils literal"><span class="pre">open</span> <span class="pre">(name::string,</span> <span class="pre">rw_flag::string,</span> <span class="pre">d::matrix)</span></tt></dt>
+<dd>exactly as above except reading/writing is done according to a user defined
+dialect <tt class="docutils literal"><span class="pre">d</span></tt>.</dd>
+<dt><tt class="docutils literal"><span class="pre">open</span> <span class="pre">(name::string,</span> <span class="pre">rw_flag::string,</span> <span class="pre">d::matrix,</span> <span class="pre">opts&#64;(_:_))</span></tt></dt>
+<dd><p class="first">exactly as above except allows for list output or header options when
+reading.</p>
+<ol class="last arabic simple">
+<li>If <tt class="docutils literal"><span class="pre">opts</span></tt> contains <tt class="docutils literal"><span class="pre">LIST</span></tt>, the output of <tt class="docutils literal"><span class="pre">getr</span></tt>, <tt class="docutils literal"><span class="pre">fgetr</span></tt>, and
+<tt class="docutils literal"><span class="pre">fgetr_lazy</span></tt> is a list instead of a vector.</li>
+<li>If <tt class="docutils literal"><span class="pre">opts</span></tt> contains <tt class="docutils literal"><span class="pre">HEADER</span></tt>, the first line of the file is
+automatically read and parsed as a record where entries are
+<tt class="docutils literal"><span class="pre">key=&gt;position</span></tt> pairs where <tt class="docutils literal"><span class="pre">key</span></tt> is a string and <tt class="docutils literal"><span class="pre">position</span></tt>
+is an integer denoting the location of a field within the record.
+The header record may be accessed by <tt class="docutils literal"><span class="pre">header</span></tt>.</li>
+</ol>
+</dd>
+</dl>
+<p id="examples-open">Examples</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {delimiter=&gt;<span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;junk.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>putr f {<span class="s">&quot;hello&quot;</span>,<span class="mi">123</span>,<span class="s">&quot;&quot;</span>,<span class="mi">3</span>+:<span class="mi">4</span>,world}<span class="p">;</span>
+()
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;junk.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>getr f<span class="p">;</span>
+{<span class="s">&quot;hello&quot;</span>,<span class="s">&quot;123&quot;</span>,<span class="s">&quot;&quot;</span>,<span class="s">&quot;3+:4&quot;</span>,<span class="s">&quot;world&quot;</span>}
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>Suppose our file &#8220;test.csv&#8221; is as presented below.</p>
+<div class="highlight-pure"><div class="highlight"><pre>ir$ more test.csv
+NAME,TEST1,TEST2
+<span class="s">&quot;HOPE, BOB&quot;</span>,<span class="mi">90</span>,<span class="mi">95</span>
+<span class="s">&quot;JONES, SALLY&quot;</span>,<span class="mi">88</span>,<span class="mi">72</span>
+<span class="s">&quot;RED, FEEFEE&quot;</span>,<span class="mi">45</span>,<span class="mi">52</span>
+</pre></div>
+</div>
+<p>Notice how the <tt class="docutils literal"><span class="pre">LIST</span></tt> option affects the return of <tt class="docutils literal"><span class="pre">getr</span></tt> and how the
+<tt class="docutils literal"><span class="pre">HEADER</span></tt> option may be used to index records.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;MINIMAL}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d, [LIST,HEADER])<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> r = getr f<span class="p">;</span>
+<span class="gp">&gt; </span>r!<span class="mi">0</span><span class="p">;</span>
+<span class="s">&quot;HOPE, BOB&quot;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> k = header f<span class="p">;</span>
+<span class="gp">&gt; </span>k<span class="p">;</span>
+{<span class="s">&quot;NAME&quot;</span>=&gt;<span class="mi">0</span>,<span class="s">&quot;TEST1&quot;</span>=&gt;<span class="mi">1</span>,<span class="s">&quot;TEST2&quot;</span>=&gt;<span class="mi">2</span>}
+<span class="gp">&gt; </span>r!(k!<span class="s">&quot;NAME&quot;</span>)<span class="p">;</span>
+<span class="s">&quot;HOPE, BOB&quot;</span>
+<span class="gp">&gt; </span>r!!(k!![<span class="s">&quot;NAME&quot;</span>,<span class="s">&quot;TEST1&quot;</span>])<span class="p">;</span>
+[<span class="s">&quot;HOPE, BOB&quot;</span>,<span class="mi">90</span>]
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="file-reading-functions">
+<h3><a class="toc-backref" href="#id7">File Reading Functions</a><a class="headerlink" href="#file-reading-functions" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils" id="header">
+<dt><tt class="docutils literal"><span class="pre">header</span> <span class="pre">csv_file::pointer</span></tt></dt>
+<dd>returns the record of <tt class="docutils literal"><span class="pre">key=&gt;position</span></tt> pairs when opened by
+<tt class="docutils literal"><span class="pre">csv::open</span></tt> using the header option. If the file was opened without the
+<tt class="docutils literal"><span class="pre">HEADER</span></tt> option, <tt class="docutils literal"><span class="pre">{}</span></tt> is returned.</dd>
+</dl>
+<dl class="docutils" id="getr">
+<dt><tt class="docutils literal"><span class="pre">getr</span> <span class="pre">csv_file::pointer</span></tt></dt>
+<dd>reads from a <tt class="docutils literal"><span class="pre">csv_file</span></tt> opened by <tt class="docutils literal"><span class="pre">csv::open</span></tt> and returns a record
+represented as a row matrix. Reading from a file opened for writing or
+appending invokes the <tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt> rule.</dd>
+</dl>
+<dl class="docutils" id="fgetr">
+<dt><tt class="docutils literal"><span class="pre">fgetr</span> <span class="pre">csv_file::pointer</span></tt></dt>
+<dd>reads a whole file and returns a list of records. This procedure
+should only be used on data files that are small enough to fit in the
+computer&#8217;s primary memory. Reading from a file opened for writing or
+appending invokes the <tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt> rule.</dd>
+<dt><tt class="docutils literal"><span class="pre">fgetr_lazy</span> <span class="pre">csv_file::pointer</span></tt></dt>
+<dd>Lazy version of <tt class="docutils literal"><span class="pre">fgetr</span></tt>.</dd>
+</dl>
+</div>
+<div class="section" id="file-writing-functions">
+<h3><a class="toc-backref" href="#id8">File Writing Functions</a><a class="headerlink" href="#file-writing-functions" title="Permalink to this headline">¶</a></h3>
+<p>When modifying CSV files that will be imported into Microsoft Excel,
+fields with significant leading 0s should be written using a
+<tt class="docutils literal"><span class="pre">&quot;=&quot;&quot;0...&quot;&quot;&quot;</span></tt> formatting scheme. This same technique will work for
+preserving leading space too. Again, this quirk should only be
+necessary for files to be imported into MS Excel.</p>
+<dl class="docutils" id="putr">
+<dt><tt class="docutils literal"><span class="pre">putr</span> <span class="pre">csv_file::pointer</span> <span class="pre">rec::matrix</span></tt></dt>
+<dd>writes a record in row matrix format to <tt class="docutils literal"><span class="pre">csv_file</span></tt>. Writing to a file
+opened for reading invokes the <tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt> rule.</dd>
+</dl>
+<dl class="docutils" id="fputr">
+<dt><tt class="docutils literal"><span class="pre">fputr</span> <span class="pre">csv_file::pointer</span> <span class="pre">l&#64;(_:_)</span></tt></dt>
+<dd>writes a list of records where each record is a row matrix to <tt class="docutils literal"><span class="pre">csv_file</span></tt>.
+Writing to a file opened for reading invokes the <tt class="docutils literal"><span class="pre">error</span> <span class="pre">msg</span></tt> rule.</dd>
+</dl>
+</div>
+<div class="section" id="examples">
+<span id="id1"></span><h3><a class="toc-backref" href="#id9">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
+<p>The first example shows how to write and read a default CSV file.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;testing.csv&quot;</span>, <span class="s">&quot;w&quot;</span>)<span class="p">;</span>
+<span class="gp">&gt; </span>fputr f [{<span class="s">&quot;bob&quot;</span>,<span class="mf">3.9</span>,<span class="s">&quot;&quot;</span>,-<span class="mi">2</span>},{<span class="s">&quot;fred&quot;</span>,-<span class="mf">11.8</span>,<span class="s">&quot;&quot;</span>,<span class="mi">0</span>},{<span class="s">&quot;mary&quot;</span>,<span class="mf">2.3</span>,<span class="s">&quot;$&quot;</span>,<span class="mi">11</span>}]<span class="p">;</span>
+()
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt; </span><span class="kr">let</span> f = open <span class="s">&quot;testing.csv&quot;</span><span class="p">;</span>
+<span class="gp">&gt; </span>fgetr f<span class="p">;</span>
+[{<span class="s">&quot;bob&quot;</span>,<span class="s">&quot;3.9&quot;</span>,<span class="s">&quot;&quot;</span>,<span class="s">&quot;-2&quot;</span>},{<span class="s">&quot;fred&quot;</span>,<span class="s">&quot;-11.8&quot;</span>,<span class="s">&quot;&quot;</span>,<span class="s">&quot;0&quot;</span>},{<span class="s">&quot;mary&quot;</span>,<span class="s">&quot;2.3&quot;</span>,<span class="s">&quot;$&quot;</span>,<span class="s">&quot;11&quot;</span>}]
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The second example illustrates how to write and read a CSV file using
+automatic conversions.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;MINIMAL}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>putr f {<span class="s">&quot;I&quot;</span>,<span class="s">&quot;&quot;</span>,-<span class="mi">4</span>,<span class="mf">1.2</span>,<span class="mi">2</span>%<span class="mi">4</span>,like}<span class="p">;</span>
+()
+<span class="gp">&gt; </span>putr f {<span class="s">&quot;playing&quot;</span>,<span class="s">&quot;the&quot;</span>,<span class="mi">0</span>,-<span class="mf">0.2</span>,<span class="mi">1</span>+:<span class="mi">4</span>,drums}<span class="p">;</span>
+()
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>fgetr f<span class="p">;</span>
+[{<span class="s">&quot;I&quot;</span>,<span class="s">&quot;&quot;</span>,-<span class="mi">4</span>,<span class="mf">1.2</span>,<span class="s">&quot;2%4&quot;</span>,<span class="s">&quot;like&quot;</span>},{<span class="s">&quot;playing&quot;</span>,<span class="s">&quot;the&quot;</span>,<span class="mi">0</span>,-<span class="mf">0.2</span>,<span class="s">&quot;1+:4&quot;</span>,<span class="s">&quot;drums&quot;</span>}]
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>Records containing quotes, delimiters, and line breaks are also properly
+handled.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;STRING}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>fputr f [{<span class="s">&quot;this</span><span class="se">\n</span><span class="s">is</span><span class="se">\n</span><span class="s">&quot;</span>,<span class="mi">1</span>},{<span class="s">&quot;a </span><span class="se">\&quot;</span><span class="s">test</span><span class="se">\&quot;</span><span class="s">&quot;</span>,<span class="mi">2</span>}]<span class="p">;</span>
+()
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>fgetr f<span class="p">;</span>
+[{<span class="s">&quot;this</span><span class="se">\n</span><span class="s">is</span><span class="se">\n</span><span class="s">&quot;</span>,<span class="mi">1</span>},{<span class="s">&quot;a </span><span class="se">\&quot;</span><span class="s">test</span><span class="se">\&quot;</span><span class="s">&quot;</span>,<span class="mi">2</span>}]
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>Consider the following hand written CSV file. According to RFC4180, this is
+not a valid CSV file. However, by using the <tt class="docutils literal"><span class="pre">space_around_quoted_field</span></tt>, the
+file can still be read.</p>
+<div class="highlight-pure"><div class="highlight"><pre>erucker:$ more test.csv
+  <span class="s">&quot;this&quot;</span>,   <span class="s">&quot;is&quot;</span>,  <span class="s">&quot;not&quot;</span>, <span class="s">&quot;valid&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open <span class="s">&quot;test.csv&quot;</span><span class="p">;</span>
+<span class="gp">&gt; </span>getr f<span class="p">;</span>
+csv<span class="p">::</span>error <span class="s">&quot;parse error at line 1&quot;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {space_around_quoted_field=&gt;BOTH}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>getr f<span class="p">;</span>
+{<span class="s">&quot;this&quot;</span>,<span class="s">&quot;is&quot;</span>,<span class="s">&quot;not&quot;</span>,<span class="s">&quot;valid&quot;</span>}
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">trim_space</span></tt> flag should be used with caution. A field with space in
+front of a number should be interpreted as a string, but consider the following
+file.</p>
+<div class="highlight-pure"><div class="highlight"><pre>erucker:$ more test.csv
+<span class="s">&quot;  this   &quot;</span>, <span class="mi">45</span> ,<span class="mi">23</span>,  hello
+</pre></div>
+</div>
+<p>Now observe the differences for the two dialects below.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {trim_space=&gt;BOTH}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>,<span class="s">&quot;r&quot;</span>,d)<span class="p">;</span>
+<span class="gp">&gt; </span>getr f<span class="p">;</span>
+{<span class="s">&quot;this&quot;</span>,<span class="s">&quot;45&quot;</span>,<span class="s">&quot;23&quot;</span>,<span class="s">&quot;hello&quot;</span>}
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {trim_space=&gt;BOTH, quote_flag=&gt;MINIMAL}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>getr f<span class="p">;</span>
+{<span class="s">&quot;this&quot;</span>,<span class="mi">45</span>,<span class="mi">23</span>,<span class="s">&quot;hello&quot;</span>}
+<span class="gp">&gt;</span>
+</pre></div>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">trim_space</span></tt> flag also affects writing.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {trim_space=&gt;BOTH}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
+<span class="gp">&gt; </span>putr f {<span class="s">&quot;   this   &quot;</span>,<span class="s">&quot;   45 &quot;</span>}<span class="p">;</span>
+()
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt; </span>quit
+
+erucker:$ more test.csv
+<span class="s">&quot;this&quot;</span>,<span class="s">&quot;45&quot;</span>
+</pre></div>
+</div>
+<p>For the last example a tab delimiter is used, automatic conversions is on,
+and records are represented as lists. Files are automatically closed when
+the script is finished.</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;MINIMAL, delimiter=&gt;<span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>}<span class="p">;</span>
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d, [LIST])<span class="p">;</span>
+<span class="gp">&gt; </span>fputr f [[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,-<span class="mf">4.5</span>,<span class="s">&quot;&quot;</span>],[<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="mf">2.3</span>,<span class="s">&quot;-&quot;</span>]]<span class="p">;</span>
+()
+<span class="gp">&gt; </span>close f<span class="p">;</span>
+()
+<span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d, [LIST])<span class="p">;</span>
+<span class="gp">&gt; </span>fgetr f<span class="p">;</span>
+[[<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,-<span class="mf">4.5</span>,<span class="s">&quot;&quot;</span>],[<span class="s">&quot;c&quot;</span>,<span class="s">&quot;d&quot;</span>,<span class="mf">2.3</span>,<span class="s">&quot;-&quot;</span>]]
+<span class="gp">&gt; </span>quit
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Pure-CSV - Comma Separated Value Interface for the Pure Programming Language</a><ul>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#usage">Usage</a><ul>
+<li><a class="reference internal" href="#handling-errors">Handling Errors</a></li>
+<li><a class="reference internal" href="#creating-dialects">Creating Dialects</a></li>
+<li><a class="reference internal" href="#opening-csv-files">Opening CSV Files</a></li>
+<li><a class="reference internal" href="#file-reading-functions">File Reading Functions</a></li>
+<li><a class="reference internal" href="#file-writing-functions">File Writing Functions</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-reduce.html"
+                        title="previous chapter">Computer Algebra with Pure: A Reduce Interface</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-fastcgi.html"
+                        title="next chapter">pure-fastcgi: FastCGI module for Pure</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-csv.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-fastcgi.html" title="pure-fastcgi: FastCGI module for Pure"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-reduce.html" title="Computer Algebra with Pure: A Reduce Interface"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>

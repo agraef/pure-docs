@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Gnuplot bindings &mdash; Pure Language and Library Documentation</title>
+    
+    <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.58',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
+    <link rel="next" title="pure-gsl - GNU Scientific Library Interface for Pure" href="pure-gsl.html" />
+    <link rel="prev" title="Pure-GLPK - GLPK interface for the Pure programming language" href="pure-glpk.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-gsl.html" title="pure-gsl - GNU Scientific Library Interface for Pure"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pure-glpk.html" title="Pure-GLPK - GLPK interface for the Pure programming language"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="gnuplot-bindings">
+<h1>Gnuplot bindings<a class="headerlink" href="#gnuplot-bindings" title="Permalink to this headline">¶</a></h1>
+<p>Kay-Uwe Kirstein</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2009, 2010 by Kay-Uwe Kirstein.</p>
+<p>pure-gplot is free software: you can redistribute it and/or modify it under
+the terms of the GNU Lesser General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option) any
+later version.</p>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>This module contains a pure binding to gnuplot. Communication to gnuplot is
+performed via pipes.
+The usual work flow to generate plot via gnuplot is the following:</p>
+<ol class="arabic simple">
+<li>open pipe via <tt class="docutils literal"><span class="pre">open</span></tt></li>
+<li>send plot commands, e.g., with <tt class="docutils literal"><span class="pre">plot</span></tt></li>
+<li>close pipe with <tt class="docutils literal"><span class="pre">close</span></tt></li>
+</ol>
+</div>
+<div class="section" id="function-reference">
+<h2>Function Reference<a class="headerlink" href="#function-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="open-closing-functions">
+<h3>Open / Closing Functions<a class="headerlink" href="#open-closing-functions" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::open</span> <span class="pre">cmd;</span></tt></div></blockquote>
+<p>opens a pipe to gnuplot, using <em>cmd</em>. <em>cmd</em> usually is something like <tt class="docutils literal"><span class="pre">gnuplot</span></tt> or <tt class="docutils literal"><span class="pre">/path/to/gnuplot/bin/gnuplot</span></tt> depending on your path configuration.
+<tt class="docutils literal"><span class="pre">open</span></tt> returns a pointer to the actual pipe for later usage, so a typical call to open might look like this:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">let</span> <span class="pre">gp</span> <span class="pre">=</span> <span class="pre">gplot::open</span> <span class="pre">&quot;/path_to_gnuplot/gnuplot&quot;;</span></tt></div></blockquote>
+<p>gplot::GPLOT_EXE is a predefined variable with the standard Gnuplot executable.
+It is set to <tt class="docutils literal"><span class="pre">pgnuplot</span></tt> on Windows and to <tt class="docutils literal"><span class="pre">gnuplot</span></tt> otherwise and can be overridden bythe GPLOT_EXE environment variable. (<tt class="docutils literal"><span class="pre">pgnuplot.exe</span></tt> is a special executable for Windows, which is capable of stdin pipes in contrast to the normal <tt class="docutils literal"><span class="pre">gnuplot.exe</span></tt>).
+Usage of <tt class="docutils literal"><span class="pre">gplot::GPLOT_EXE</span></tt> might look like this:</p>
+<blockquote>
+<div><p><tt class="docutils literal"><span class="pre">let</span> <span class="pre">gp</span> <span class="pre">=</span> <span class="pre">gplot::open</span> <span class="pre">gplot::GPLOT_EXE;</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">gplot::close</span> <span class="pre">gp;</span></tt></p>
+</div></blockquote>
+<p>closes a gnuplot session, given by the handle <em>gp</em>.</p>
+</div>
+<div class="section" id="low-level-commands">
+<h3>Low-Level Commands<a class="headerlink" href="#low-level-commands" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::puts_no_echo</span> <span class="pre">string</span> <span class="pre">gp;</span></tt></div></blockquote>
+<p>sends the string to the gnuplot session <em>gp</em> points to. As the name states, there is no echo read back from gnuplot (Don&#8217;t know whether <em>gnuplot</em> or <em>pgnuplot.exe</em> supports reading/bidirectional pipes at all).</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::puts</span> <span class="pre">string</span> <span class="pre">gp;</span></tt></div></blockquote>
+<p>is a convenience wrapper to <tt class="docutils literal"><span class="pre">gplot::puts_no_echo</span></tt>.</p>
+</div>
+<div class="section" id="plot-commands">
+<h3>Plot Commands<a class="headerlink" href="#plot-commands" title="Permalink to this headline">¶</a></h3>
+<p>The main (versatile) function to generate plots is the simple plot command, which expects a list of the data to be plotted.</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::plot</span> <span class="pre">gp</span> <span class="pre">data</span> <span class="pre">opt;</span></tt></div></blockquote>
+<p>where <em>gp</em> is the pointer to the gnuplot session, <em>data</em> is a list containing the data to be plotted and <em>opt</em> is a tuple, containing options for the plot. <em>opt</em> might be empty () or <tt class="docutils literal"><span class="pre">DEFAULT</span></tt> for default options (refer to gnuplot for them).</p>
+<p>If data for the x-axis (ordinate) should be explicitely given <em>plotxy</em> should be used instead:</p>
+<blockquote>
+<div><p><tt class="docutils literal"><span class="pre">gplot::plotxy_deprecated</span> <span class="pre">gp</span> <span class="pre">(xdata,</span> <span class="pre">ydata)</span> <span class="pre">opt;</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">gplot::plotxy</span> <span class="pre">gp</span> <span class="pre">(xdata,</span> <span class="pre">ydata)</span> <span class="pre">opt</span> <span class="pre">[];</span></tt></p>
+</div></blockquote>
+<p>Multiple datasets can be plotted into a single graph by combining them to tuples of lists:</p>
+<blockquote>
+<div><p><tt class="docutils literal"><span class="pre">gplot::plotxy</span> <span class="pre">gp</span> <span class="pre">(xdata,</span> <span class="pre">y1data,</span> <span class="pre">y2data,</span> <span class="pre">..)</span> <span class="pre">opt;</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">gplot::plotxy</span> <span class="pre">gp</span> <span class="pre">(xdata,</span> <span class="pre">y1data,</span> <span class="pre">y2data,</span> <span class="pre">..)</span> <span class="pre">opt</span> <span class="pre">[];</span></tt></p>
+<p><tt class="docutils literal"><span class="pre">gplot::plotxy</span> <span class="pre">gp</span> <span class="pre">(xdata,</span> <span class="pre">y1data,</span> <span class="pre">y2data,</span> <span class="pre">..)</span> <span class="pre">opt</span> <span class="pre">titles;</span></tt></p>
+</div></blockquote>
+<p>where the latter form gives additional titles for each y-data set.</p>
+</div>
+<div class="section" id="plot-options">
+<h3>Plot Options<a class="headerlink" href="#plot-options" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::xtics</span> <span class="pre">gp</span> <span class="pre">list_of_tic_labels;</span></tt></div></blockquote>
+<p>Sets the tic labels of the x-axis to the given text labels.
+The labels can be given aas a simple list of strings, which are taken as successive labels or as a list of tuples with the form <tt class="docutils literal"><span class="pre">(value,</span> <span class="pre">label)</span></tt>, in which case each label is placed at its <tt class="docutils literal"><span class="pre">value</span></tt> position.</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::xtics</span> <span class="pre">gp</span> <span class="pre">()</span></tt> or <tt class="docutils literal"><span class="pre">gplot::xtics</span> <span class="pre">gp</span> <span class="pre">&quot;default&quot;;</span></tt></div></blockquote>
+<p>This restores the default tics on the y-axis.</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::title</span> <span class="pre">t;</span></tt></div></blockquote>
+<p>Sets a title string on top of the plot (default location)</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::output</span> <span class="pre">gp</span> <span class="pre">terminal</span> <span class="pre">name;</span></tt></div></blockquote>
+<p>Sets the terminal and output name for the successive plots. For some terminal additional options might be given:</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::output</span> <span class="pre">gp</span> <span class="pre">(terminal,</span> <span class="pre">options)</span> <span class="pre">name</span></tt>.</div></blockquote>
+<p>For terminals like x11 or windows, name can be empty <tt class="docutils literal"><span class="pre">()</span></tt>.</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::xlabel</span> <span class="pre">gp</span> <span class="pre">name</span></tt> or <tt class="docutils literal"><span class="pre">gplot::ylabel</span> <span class="pre">gp</span> <span class="pre">name</span></tt></div></blockquote>
+<p>Adds labels to the x- or y-axis, respectively. An empty name removes the label for successive plots, e.g., <tt class="docutils literal"><span class="pre">gplot::xlabel</span> <span class="pre">gp</span> <span class="pre">&quot;&quot;</span></tt>.</p>
+</div>
+<div class="section" id="private-functions">
+<h3>Private Functions<a class="headerlink" href="#private-functions" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gpdata</span> <span class="pre">data</span></tt>, <tt class="docutils literal"><span class="pre">gpxydata</span> <span class="pre">(xdata,</span> <span class="pre">y1data,</span> <span class="pre">..)</span></tt></div></blockquote>
+<p>Internal functions to handle lists of data point (<tt class="docutils literal"><span class="pre">gpdata</span></tt>) or tuples of lists of data points (<tt class="docutils literal"><span class="pre">gpxydata</span></tt>) and convert them to be understood by Gnuplot.</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gpxycmd</span></tt>, <tt class="docutils literal"><span class="pre">gpxycmdtitle</span></tt></div></blockquote>
+<p>Internal function to generate the plotting command for multiple datasets. <tt class="docutils literal"><span class="pre">gpxycmdtitle</span></tt> adds titles to each dataset, a.k.a plot legend.</p>
+<p><tt class="docutils literal"><span class="pre">gplot::gpopt</span> <span class="pre">(&quot;style&quot;,</span> <span class="pre">style,</span> <span class="pre">args);</span></tt></p>
+<p>Internal function to convert a plot style to the respective gnuplot syntax</p>
+<blockquote>
+<div><tt class="docutils literal"><span class="pre">gplot::gptitle</span> <span class="pre">t;</span></tt></div></blockquote>
+<p>Internal function to generate title information for individual datasets</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Gnuplot bindings</a><ul>
+<li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#function-reference">Function Reference</a><ul>
+<li><a class="reference internal" href="#open-closing-functions">Open / Closing Functions</a></li>
+<li><a class="reference internal" href="#low-level-commands">Low-Level Commands</a></li>
+<li><a class="reference internal" href="#plot-commands">Plot Commands</a></li>
+<li><a class="reference internal" href="#plot-options">Plot Options</a></li>
+<li><a class="reference internal" href="#private-functions">Private Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pure-glpk.html"
+                        title="previous chapter">Pure-GLPK - GLPK interface for the Pure programming language</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="pure-gsl.html"
+                        title="next chapter">pure-gsl - GNU Scientific Library Interface for Pure</a></p>
+<h3>This Page</h3>
+<ul class="this-page-menu">
+  <li><a href="bugs.html">Report a Bug</a></li>
+  <li><a href="_sources/pure-gplot.txt"
+         rel="nofollow">Show Source</a></li>
+</ul>
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="pure-modindex.html" title="Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pure-gsl.html" title="pure-gsl - GNU Scientific Library Interface for Pure"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pure-glpk.html" title="Pure-GLPK - GLPK interface for the Pure programming language"
+             >previous</a> |</li>
+        <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+    &copy; Copyright 2009-2013, Albert Gräf et al.
+    Last updated on Sep 08, 2013.
+    Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+
+  </body>
+</html>
