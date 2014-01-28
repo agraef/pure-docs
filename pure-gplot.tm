@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -210,23 +210,23 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gplot-toc>>
 
   <\itemize>
-    <item><hlink|Gnuplot bindings|#>\ 
+    <item><hlink|Gnuplot bindings|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
-      <item><hlink|Function Reference|#function-reference>\ 
+      <item><hlink|Function Reference|#function-reference>
 
       <\itemize>
-        <item><hlink|Open / Closing Functions|#open-closing-functions>\ 
+        <item><hlink|Open / Closing Functions|#open-closing-functions>
 
-        <item><hlink|Low-Level Commands|#low-level-commands>\ 
+        <item><hlink|Low-Level Commands|#low-level-commands>
 
-        <item><hlink|Plot Commands|#plot-commands>\ 
+        <item><hlink|Plot Commands|#plot-commands>
 
-        <item><hlink|Plot Options|#plot-options>\ 
+        <item><hlink|Plot Options|#plot-options>
 
         <item><hlink|Private Functions|#private-functions>
       </itemize>
@@ -247,6 +247,6 @@
   <hlink|previous|pure-glpk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

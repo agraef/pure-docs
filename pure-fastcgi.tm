@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-fastcgi: FastCGI module for Pure<label|module-fastcgi>>
 
-  Version 0.5, September 08, 2013
+  Version 0.5, January 28, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -105,14 +105,14 @@
   to compile the script to a native executable instead.)
 
   This script keeps running until <hlink|<with|font-family|tt|accept>|#fastcgi::accept>
-  returns <verbatim|-1> to indicate that the script should exit. Each call
-  to <hlink|<with|font-family|tt|accept>|#fastcgi::accept> blocks until
-  either a request is available or the FastCGI server detects an error or
-  other kind of termination condition. As with ordinary CGI, additional
-  information about the request is available through various environment
-  variables. A list of commonly supported environment variables and their
-  meaning can be found in <hlink|The Common Gateway
-  Interface|http://hoohoo.ncsa.uiuc.edu/cgi/> specification.
+  returns <verbatim|-1> to indicate that the script should exit. Each call to
+  <hlink|<with|font-family|tt|accept>|#fastcgi::accept> blocks until either a
+  request is available or the FastCGI server detects an error or other kind
+  of termination condition. As with ordinary CGI, additional information
+  about the request is available through various environment variables. A
+  list of commonly supported environment variables and their meaning can be
+  found in <hlink|The Common Gateway Interface|http://hoohoo.ncsa.uiuc.edu/cgi/>
+  specification.
 
   A number of other routines are provided to deal with data filters, finish a
   request and set an exit status for a request. These correspond to
@@ -182,12 +182,12 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-fastcgi-toc>>
 
   <\itemize>
-    <item><hlink|pure-fastcgi: FastCGI module for Pure|#>\ 
+    <item><hlink|pure-fastcgi: FastCGI module for Pure|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
       <item><hlink|Usage|#usage>
     </itemize>
@@ -208,6 +208,6 @@
   <hlink|previous|pure-csv.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

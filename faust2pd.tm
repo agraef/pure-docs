@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust<label|faust2pd-pd-patch-generator-for-faust>>
 
-  Version 2.5, September 08, 2013
+  Version 2.5, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -69,12 +69,12 @@
   supported by Pure.
 
   The faust2pd script is written in the <hlink|Pure|http://purelang.bitbucket.org>
-  programming language and requires Pure's XML module, so you need to
-  install these to make it work. Install the latest pure*.tar.gz and
-  pure-xml*.tar.gz packages and you should be set. (Pure 0.47 or later is
-  required.) Also make sure that the LLVM base package is installed, as
-  described in the Pure INSTALL file, some LLVM utilities are needed to make
-  Pure's batch compiler work.
+  programming language and requires Pure's XML module, so you need to install
+  these to make it work. Install the latest pure*.tar.gz and pure-xml*.tar.gz
+  packages and you should be set. (Pure 0.47 or later is required.) Also make
+  sure that the LLVM base package is installed, as described in the Pure
+  INSTALL file, some LLVM utilities are needed to make Pure's batch compiler
+  work.
 
   To run the seqdemo example, you'll also need the Pd Pure external
   (pd-pure*.tar.gz), also available at the
@@ -258,7 +258,7 @@
     group and control names in the Faust source are mangled into a form which
     only contains alphanumeric characters and hyphens, so that the control
     names are always legal Pd symbols. For instance, a Faust control name
-    like <verbatim|meter> <verbatim|#1> <verbatim|(dB)> will become
+    like <verbatim|meter> <verbatim|<1>> <verbatim|(dB)> will become
     <verbatim|meter-1-dB> which can be input directly as a symbol in Pd
     without any problems.
 
@@ -487,8 +487,8 @@
   applications which need to inspect description of Faust DSPs.
 
   The main entry point is the <hlink|<with|font-family|tt|info>|#faustxml::info>
-  function which takes the name of a Faust-generated XML file as argument
-  and returns a tuple <verbatim|(name,> <verbatim|descr,> <verbatim|version,>
+  function which takes the name of a Faust-generated XML file as argument and
+  returns a tuple <verbatim|(name,> <verbatim|descr,> <verbatim|version,>
   <verbatim|in,> <verbatim|out,> <verbatim|controls)> with the name,
   description, version, number of inputs and outputs and the toplevel group
   with the descriptions of the controls of the dsp. A couple of other
@@ -627,35 +627,35 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|faust2pd-toc>>
 
   <\itemize>
-    <item><hlink|faust2pd: Pd Patch Generator for Faust|#>\ 
+    <item><hlink|faust2pd: Pd Patch Generator for Faust|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Requirements|#requirements>\ 
+      <item><hlink|Requirements|#requirements>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Quickstart|#quickstart>\ 
+      <item><hlink|Quickstart|#quickstart>
 
-      <item><hlink|Control Interface|#control-interface>\ 
+      <item><hlink|Control Interface|#control-interface>
 
-      <item><hlink|Examples|#examples>\ 
+      <item><hlink|Examples|#examples>
 
-      <item><hlink|Wrapping DSPs with faust2pd|#wrapping-dsps-with-faust2pd>\ 
+      <item><hlink|Wrapping DSPs with faust2pd|#wrapping-dsps-with-faust2pd>
 
-      <item><hlink|Conclusion|#conclusion>\ 
+      <item><hlink|Conclusion|#conclusion>
 
       <\itemize>
         <item><hlink|Acknowledgements|#acknowledgements>
       </itemize>
 
-      <item><hlink|Appendix: faustxml|#appendix-faustxml>\ 
+      <item><hlink|Appendix: faustxml|#appendix-faustxml>
 
       <\itemize>
-        <item><hlink|Usage|#usage>\ 
+        <item><hlink|Usage|#usage>
 
-        <item><hlink|Data Structure|#data-structure>\ 
+        <item><hlink|Data Structure|#data-structure>
 
         <item><hlink|Operations|#operations>
       </itemize>
@@ -675,6 +675,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

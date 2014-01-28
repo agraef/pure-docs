@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-stllib<label|pure-stllib>>
 
-  Version 0.5, September 08, 2013
+  Version 0.5, January 28, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -37,16 +37,16 @@
   useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
-  <hlink|<em|pure-stllib>|> is distributed under a BSD-style license, see
-  the COPYING file for details.
+  <hlink|<em|pure-stllib>|> is distributed under a BSD-style license, see the
+  COPYING file for details.
 
   <subsection|Installation<label|installation>>
 
   pure-stllib-0.5 requires at least Pure 0.50. The latest version of Pure is
   available at <hlink|http://code.google.com/p/pure-lang/downloads/list|http://code.google.com/p/pure-lang/downloads/list>.
 
-  The latest version of the source code for <hlink|<em|pure-stllib>|> can
-  be downloaded from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz>.
+  The latest version of the source code for <hlink|<em|pure-stllib>|> can be
+  downloaded from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz>.
 
   To install pure-stllib-0.5 (on Linux), extract the source code (e.g., tar
   -xzf pure-stllib-0.5.tar.gz), cd to the pure-stllib-0.5 directory, and run
@@ -72,16 +72,16 @@
   specialized to hold Pure expressions. It also provides functions that
   correspond to C++'s STL algorithms specialized to act on stlvecs.
 
-  <hlink|<em|pure-stlmap>|pure-stlmap.tm> provides functions that act on
-  six mutable containers, ``stlmap'', ``stlset'', ``stlmmap'', ``stlmset'',
+  <hlink|<em|pure-stlmap>|pure-stlmap.tm> provides functions that act on six
+  mutable containers, ``stlmap'', ``stlset'', ``stlmmap'', ``stlmset'',
   ``stlhmap'' and ``stlhset'', that are thin wrappers around the
   corresponding associative containers provided by C++, map, set, multimap,
   multiset, unordered_map and unordered_set, specialized to hold Pure
   expressions.
 
   The functions provided by <hlink|<em|pure-stlvec>|pure-stlvec.tm> and
-  <hlink|<em|pure-stlmap>|pure-stlmap.tm> are made available by importing
-  one or more of the following modules.
+  <hlink|<em|pure-stlmap>|pure-stlmap.tm> are made available by importing one
+  or more of the following modules.
 
   <\quote-env>
     <hlink|<with|font-family|tt|stlvec>|pure-stlvec.tm#module-stlvec> -
@@ -124,16 +124,16 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stllib-toc>>
 
   <\itemize>
-    <item><hlink|pure-stllib|#>\ 
+    <item><hlink|pure-stllib|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
-      <item><hlink|Documentation|#documentation>\ 
+      <item><hlink|Documentation|#documentation>
 
       <item><hlink|Changes|#changes>
     </itemize>
@@ -152,6 +152,6 @@
   <hlink|previous|pure-stldict.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

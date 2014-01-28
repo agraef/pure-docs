@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|Pure-Sql3<label|module-sql3>>
 
-  Version 0.4, September 08, 2013
+  Version 0.4, January 28, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -278,8 +278,8 @@
 
   If SQLite cannot open the connection, it still returns a pointer to a
   database connection object that must be closed. In this case,
-  <hlink|<with|font-family|tt|open>|#sql3::open> automatically closes the
-  the connection object and then throws an exception. E.g.,:
+  <hlink|<with|font-family|tt|open>|#sql3::open> automatically closes the the
+  connection object and then throws an exception. E.g.,:
 
   <\verbatim>
     \<gtr\> catch error (open ("RM_zyx.db",SQLITE_OPEN_READONLY));
@@ -535,8 +535,8 @@
   </verbatim>
 
   If a prepared statement does not have any binding parameters, the call to
-  <hlink|<with|font-family|tt|exec>|#sql3::exec> should use <verbatim|()>
-  as the binding argument.
+  <hlink|<with|font-family|tt|exec>|#sql3::exec> should use <verbatim|()> as
+  the binding argument.
 
   <\verbatim>
     \<gtr\> let sp3 = prep dbp "c:" "select name from RM";
@@ -577,8 +577,8 @@
 
   <paragraph|Executing Lazily<label|executing-lazily>>
 
-  The <hlink|<with|font-family|tt|exec>|#sql3::exec> function returns
-  result sets as eager lists which can sometimes be inefficient or simply not
+  The <hlink|<with|font-family|tt|exec>|#sql3::exec> function returns result
+  sets as eager lists which can sometimes be inefficient or simply not
   feasible for large result sets. In such cases it is preferable to use
   <hlink|<with|font-family|tt|lexec>|#sql3::lexec> instead of
   <hlink|<with|font-family|tt|exec>|#sql3::exec>.
@@ -599,14 +599,13 @@
 
   Note that no changes to <verbatim|sp2> were required. In addition, for most
   purposes the lazy list returned by <hlink|<with|font-family|tt|lexec>|#sql3::lexec>
-  can be processed by the same code that processed the eager list returned
-  by <hlink|<with|font-family|tt|exec>|#sql3::exec>.
+  can be processed by the same code that processed the eager list returned by
+  <hlink|<with|font-family|tt|exec>|#sql3::exec>.
 
   <paragraph|Executing Directly on a db_ptr<label|executing-directly-on-a-db-ptr>>
 
   For statements that have no parameters and which do not return results,
-  <hlink|<with|font-family|tt|exec>|#sql3::exec> can be applied to a
-  db_ptr.
+  <hlink|<with|font-family|tt|exec>|#sql3::exec> can be applied to a db_ptr.
 
   <\description>
     <item*|sql3::exec dbp::db_ptr sql_statement::string>constructs a
@@ -664,8 +663,8 @@
 
   The upshot of this, in Sql3 terms, is that unless a transaction is started
   manually, the database will be updated each time
-  <hlink|<with|font-family|tt|exec>|#sql3::exec> is called. For a long
-  series of updates or inserts this a can be very slow. The way to avoid this
+  <hlink|<with|font-family|tt|exec>|#sql3::exec> is called. For a long series
+  of updates or inserts this a can be very slow. The way to avoid this
   problem is to manually begin and end transactions manually.
 
   Sql3 provides the following convenience functions all of which simply call
@@ -784,8 +783,8 @@
   <\description>
     <item*|<em|constructor> sql3::db_busy dbp<label|sql3::db-busy>>Sql3
     functions <hlink|<with|font-family|tt|exec>|#sql3::exec> and
-    <hlink|<with|font-family|tt|lexec>|#sql3::lexec> throw exceptions of
-    the form ``<verbatim|db_busy> <verbatim|dbp>'', where <verbatim|dbp> is a
+    <hlink|<with|font-family|tt|lexec>|#sql3::lexec> throw exceptions of the
+    form ``<verbatim|db_busy> <verbatim|dbp>'', where <verbatim|dbp> is a
     db_ptr, if they are prevented from executing successfully because the
     database referenced by <verbatim|dbp> is locked (See <hlink|Executing
     Against a Busy Database|#executing-against-a-busy-database>).
@@ -1013,11 +1012,11 @@
   <subsubsection|Accessing the Rest of SQLite's C
   Interface<label|accessing-the-rest-of-sqlite-s-c-interface>>
 
-  The db_ptrs returned by <hlink|<with|font-family|tt|open>|#sql3::open>
-  and stmt_ptrs returned by <hlink|<with|font-family|tt|prep>|#sql3::prep>
-  are sentry guarded versions of the actual pointers to the data base
-  connection objects and prepared statement objects returned by their
-  corresponding native C interface functions <verbatim|sqlite3_open_v2> and
+  The db_ptrs returned by <hlink|<with|font-family|tt|open>|#sql3::open> and
+  stmt_ptrs returned by <hlink|<with|font-family|tt|prep>|#sql3::prep> are
+  sentry guarded versions of the actual pointers to the data base connection
+  objects and prepared statement objects returned by their corresponding
+  native C interface functions <verbatim|sqlite3_open_v2> and
   <verbatim|sqlite3_prepare_v2>. This makes it easy to call almost any
   external function in SQLite's C interface directly, passing it the same
   db_ptr or stmt_ptr that is passed to Sql3's functions, such as
@@ -1197,92 +1196,92 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-sql3-toc>>
 
   <\itemize>
-    <item><hlink|Pure-Sql3|#>\ 
+    <item><hlink|Pure-Sql3|#>
 
     <\itemize>
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
       <\itemize>
-        <item><hlink|Simple Example|#simple-example>\ 
+        <item><hlink|Simple Example|#simple-example>
 
-        <item><hlink|More Examples|#more-examples>\ 
+        <item><hlink|More Examples|#more-examples>
 
-        <item><hlink|SQLite Documentation|#sqlite-documentation>\ 
+        <item><hlink|SQLite Documentation|#sqlite-documentation>
 
         <item><hlink|Sqlite3 - The SQLite Command-Line
         Utility|#sqlite3-the-sqlite-command-line-utility>
       </itemize>
 
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Data Structure|#data-structure>\ 
+      <item><hlink|Data Structure|#data-structure>
 
-      <item><hlink|Core Database Operations|#core-database-operations>\ 
+      <item><hlink|Core Database Operations|#core-database-operations>
 
       <\itemize>
-        <item><hlink|Database Connections|#database-connections>\ 
+        <item><hlink|Database Connections|#database-connections>
 
         <\itemize>
           <item><hlink|Opening a Database
-          Connection|#opening-a-database-connection>\ 
+          Connection|#opening-a-database-connection>
 
           <item><hlink|Failure to Open a Database
-          Connection|#failure-to-open-a-database-connection>\ 
+          Connection|#failure-to-open-a-database-connection>
 
-          <item><hlink|Testing a db_ptr|#testing-a-db-ptr>\ 
+          <item><hlink|Testing a db_ptr|#testing-a-db-ptr>
 
           <item><hlink|Closing a Database
           Connection|#closing-a-database-connection>
         </itemize>
 
-        <item><hlink|Prepared Statements|#prepared-statements>\ 
+        <item><hlink|Prepared Statements|#prepared-statements>
 
         <\itemize>
           <item><hlink|Constructing Prepared
-          Statements|#constructing-prepared-statements>\ 
+          Statements|#constructing-prepared-statements>
 
-          <item><hlink|Testing a stmt_ptr|#testing-a-stmt-ptr>\ 
+          <item><hlink|Testing a stmt_ptr|#testing-a-stmt-ptr>
 
           <item><hlink|Executing Prepared
-          Statements|#executing-prepared-statements>\ 
+          Statements|#executing-prepared-statements>
 
-          <item><hlink|Executing Lazily|#executing-lazily>\ 
+          <item><hlink|Executing Lazily|#executing-lazily>
 
           <item><hlink|Executing Directly on a
-          db_ptr|#executing-directly-on-a-db-ptr>\ 
+          db_ptr|#executing-directly-on-a-db-ptr>
 
           <item><hlink|Executing Against a Busy
-          Database|#executing-against-a-busy-database>\ 
+          Database|#executing-against-a-busy-database>
 
           <item><hlink|Grouping Execution with
-          Transactions|#grouping-execution-with-transactions>\ 
+          Transactions|#grouping-execution-with-transactions>
 
           <item><hlink|Finalizing Prepared
           Statements|#finalizing-prepared-statements>
         </itemize>
 
-        <item><hlink|Exceptions|#exceptions>\ 
+        <item><hlink|Exceptions|#exceptions>
 
         <\itemize>
           <item><hlink|SQLite Error Codes|#sqlite-error-codes>
         </itemize>
       </itemize>
 
-      <item><hlink|Advanced Features|#advanced-features>\ 
+      <item><hlink|Advanced Features|#advanced-features>
 
       <\itemize>
-        <item><hlink|Custom SQL Functions|#custom-sql-functions>\ 
+        <item><hlink|Custom SQL Functions|#custom-sql-functions>
 
         <\itemize>
-          <item><hlink|Scalar SQL Functions|#scalar-sql-functions>\ 
+          <item><hlink|Scalar SQL Functions|#scalar-sql-functions>
 
           <item><hlink|Aggregate SQL Functions|#aggregate-sql-functions>
         </itemize>
 
         <item><hlink|Accessing the Rest of SQLite's C
-        Interface|#accessing-the-rest-of-sqlite-s-c-interface>\ 
+        Interface|#accessing-the-rest-of-sqlite-s-c-interface>
 
         <item><hlink|Custom Binding Types for Prepared
         Statements|#custom-binding-types-for-prepared-statements>
@@ -1306,6 +1305,6 @@
   <hlink|previous|pure-odbc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

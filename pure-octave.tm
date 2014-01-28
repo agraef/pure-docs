@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-octave<label|module-octave>>
 
-  Version 0.3, September 08, 2013
+  Version 0.3, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -247,8 +247,8 @@
   Pure data types in a straightforward manner (scalars to scalars, matrices
   to matrices and strings to strings). Note that in any case these
   conversions create <em|copies> of the data, so modifying, say, an Octave
-  matrix received via <hlink|<with|font-family|tt|octave_get>|#octave-get>
-  in Pure only affects the Pure copy of the matrix and leaves the original
+  matrix received via <hlink|<with|font-family|tt|octave_get>|#octave-get> in
+  Pure only affects the Pure copy of the matrix and leaves the original
   Octave matrix unchanged.
 
   Octave's higher-dimensional numeric arrays, cell arrays and structures are
@@ -594,24 +594,24 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-octave-toc>>
 
   <\itemize>
-    <item><hlink|pure-octave|#>\ 
+    <item><hlink|pure-octave|#>
 
     <\itemize>
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Basic Usage|#basic-usage>\ 
+      <item><hlink|Basic Usage|#basic-usage>
 
-      <item><hlink|Direct Function Calls|#direct-function-calls>\ 
+      <item><hlink|Direct Function Calls|#direct-function-calls>
 
-      <item><hlink|Data Conversions|#data-conversions>\ 
+      <item><hlink|Data Conversions|#data-conversions>
 
-      <item><hlink|Calling Back Into Pure|#calling-back-into-pure>\ 
+      <item><hlink|Calling Back Into Pure|#calling-back-into-pure>
 
-      <item><hlink|Gnuplot Interface|#gnuplot-interface>\ 
+      <item><hlink|Gnuplot Interface|#gnuplot-interface>
 
       <item><hlink|Caveats and Notes|#caveats-and-notes>
     </itemize>
@@ -631,6 +631,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

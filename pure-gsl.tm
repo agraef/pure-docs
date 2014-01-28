@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|pure-gsl - GNU Scientific Library Interface for
   Pure<label|module-gsl>>
 
-  Version 0.11, September 08, 2013
+  Version 0.11, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -2020,9 +2020,9 @@
   respectively of the GSL Reference Manual:
 
   <\itemize>
-    <item><hlink|Vectors and Matrices|http://www.gnu.org/software/gsl/manual/html-node/Vectors-and-Matrices.html>\ 
+    <item><hlink|Vectors and Matrices|http://www.gnu.org/software/gsl/manual/html-node/Vectors-and-Matrices.html>
 
-    <item><hlink|BLAS Support|http://www.gnu.org/software/gsl/manual/html-node/BLAS-Support.html>\ 
+    <item><hlink|BLAS Support|http://www.gnu.org/software/gsl/manual/html-node/BLAS-Support.html>
 
     <item><hlink|Linear Algebra|http://www.gnu.org/software/gsl/manual/html-node/Linear-Algebra.html>
   </itemize>
@@ -2299,28 +2299,28 @@
 
   <\description>
     <item*|x \<less\>\<less\> a<label|\<less\>\<less\>/gsl-matrix>>returns an
-    integer matrix with entries <verbatim|x!(i,j)>
-    <verbatim|\<less\>\<less\>> <verbatim|a>. Note that <verbatim|a> must be
-    an integer and matrix <verbatim|x> must have integer entries.
+    integer matrix with entries <verbatim|x!(i,j)> <verbatim|\<\<>
+    <verbatim|a>. Note that <verbatim|a> must be an integer and matrix
+    <verbatim|x> must have integer entries.
   </description>
 
   <\description>
     <item*|x \<less\>\<less\> y>returns an integer matrix with entries
-    <verbatim|x!(i,j)> <verbatim|\<less\>\<less\>> <verbatim|y!(i,j)>. Note
-    that <verbatim|x> and <verbatim|y> must have integer entries.
+    <verbatim|x!(i,j)> <verbatim|\<\<> <verbatim|y!(i,j)>. Note that
+    <verbatim|x> and <verbatim|y> must have integer entries.
   </description>
 
   <\description>
     <item*|x \<gtr\>\<gtr\> a<label|\<gtr\>\<gtr\>/gsl-matrix>>returns an
-    integer matrix with entries <verbatim|x!(i,j)> <verbatim|\<gtr\>\<gtr\>>
+    integer matrix with entries <verbatim|x!(i,j)> <verbatim|\>\>>
     <verbatim|a>. Note that <verbatim|a> must be an integer and matrix
     <verbatim|x> must have integer entries.
   </description>
 
   <\description>
     <item*|x \<gtr\>\<gtr\> y>returns an integer matrix with entries
-    <verbatim|x!(i,j)> <verbatim|\<gtr\>\<gtr\>> <verbatim|y!(i,j)>. Note
-    that <verbatim|x> and <verbatim|y> must have integer entries.
+    <verbatim|x!(i,j)> <verbatim|\>\>> <verbatim|y!(i,j)>. Note that
+    <verbatim|x> and <verbatim|y> must have integer entries.
   </description>
 
   <\description>
@@ -2388,8 +2388,8 @@
   <\description>
     <item*|gsl::matrix::svd_mod x<label|gsl::matrix::svd-mod>>This uses the
     modified Golub-Reinsch algorithm, which is faster if <verbatim|n>
-    <verbatim|\<gtr\>> <verbatim|m> but needs <with|font-series|bold|O(m^2)>
-    extra memory as internal workspace.
+    <verbatim|\>> <verbatim|m> but needs <with|font-series|bold|O(m^2)> extra
+    memory as internal workspace.
   </description>
 
   <\description>
@@ -4299,67 +4299,67 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gsl-toc>>
 
   <\itemize>
-    <item><hlink|pure-gsl - GNU Scientific Library Interface for Pure|#>\ 
+    <item><hlink|pure-gsl - GNU Scientific Library Interface for Pure|#>
 
     <\itemize>
-      <item><hlink|Polynomials|#module-gsl::poly>\ 
+      <item><hlink|Polynomials|#module-gsl::poly>
 
       <\itemize>
-        <item><hlink|Routines|#routines>\ 
+        <item><hlink|Routines|#routines>
 
         <item><hlink|Examples|#examples>
       </itemize>
 
-      <item><hlink|Special Functions|#module-gsl::sf>\ 
+      <item><hlink|Special Functions|#module-gsl::sf>
 
       <\itemize>
-        <item><hlink|Airy Functions|#airy-functions>\ 
+        <item><hlink|Airy Functions|#airy-functions>
 
         <item>Examples
 
-        <item><hlink|Bessel Functions|#bessel-functions>\ 
+        <item><hlink|Bessel Functions|#bessel-functions>
 
         <item>Examples
 
-        <item><hlink|Clausen Functions|#clausen-functions>\ 
+        <item><hlink|Clausen Functions|#clausen-functions>
 
         <item>Examples
 
-        <item><hlink|Colomb Functions|#colomb-functions>\ 
+        <item><hlink|Colomb Functions|#colomb-functions>
 
         <item>Examples
 
-        <item><hlink|Coupling Coefficients|#coupling-coefficients>\ 
+        <item><hlink|Coupling Coefficients|#coupling-coefficients>
 
         <item>Examples
 
-        <item><hlink|Dawson Function|#dawson-function>\ 
+        <item><hlink|Dawson Function|#dawson-function>
 
         <item>Examples
 
-        <item><hlink|Debye Functions|#debye-functions>\ 
+        <item><hlink|Debye Functions|#debye-functions>
 
         <item>Examples
 
-        <item><hlink|Dilogarithm|#dilogarithm>\ 
+        <item><hlink|Dilogarithm|#dilogarithm>
 
         <item>Examples
 
         <item>Examples
       </itemize>
 
-      <item><hlink|Matrices|#module-gsl::matrix>\ 
+      <item><hlink|Matrices|#module-gsl::matrix>
 
       <\itemize>
-        <item><hlink|Matrix Creation|#matrix-creation>\ 
+        <item><hlink|Matrix Creation|#matrix-creation>
 
         <item><hlink|Matrix Operators and
-        Functions|#matrix-operators-and-functions>\ 
+        Functions|#matrix-operators-and-functions>
 
         <item><hlink|Singular Value Decomposition|#singular-value-decomposition>
       </itemize>
 
-      <item><hlink|Least-Squares Fitting|#module-gsl::fit>\ 
+      <item><hlink|Least-Squares Fitting|#module-gsl::fit>
 
       <\itemize>
         <item>Routines
@@ -4367,7 +4367,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|Statistics|#module-gsl::stats>\ 
+      <item><hlink|Statistics|#module-gsl::stats>
 
       <\itemize>
         <item>Routines
@@ -4375,7 +4375,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|Random Number Distributions|#module-gsl::randist>\ 
+      <item><hlink|Random Number Distributions|#module-gsl::randist>
 
       <\itemize>
         <item>Routines
@@ -4383,7 +4383,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|Sorting|#module-gsl::sort>\ 
+      <item><hlink|Sorting|#module-gsl::sort>
 
       <\itemize>
         <item>Routines
@@ -4406,6 +4406,6 @@
   <hlink|previous|pure-gplot.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

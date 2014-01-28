@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.58, September 08, 2013
+  Version 0.59, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -40,7 +40,7 @@
   <subsection|Quick Summary<label|quick-summary>>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.3 and Pure 0.58, please substitute your actual version numbers
+  using LLVM 3.4 and Pure 0.59, please substitute your actual version numbers
   in the commands given below.
 
   Prerequisites: gcc, GNU make, flex/bison (development sources only),
@@ -52,13 +52,13 @@
   You'll probably need the latest Pure and LLVM tarballs which, at the time
   of this writing, are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.58.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.58.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.59.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.59.tar.gz>
 
-  <hlink|http://llvm.org/releases/3.3/llvm-3.3.src.tar.gz|http://llvm.org/releases/3.3/llvm-3.3.src.tar.gz>
+  <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
-  <hlink|http://llvm.org/releases/3.3/cfe-3.3.src.tar.gz|http://llvm.org/releases/3.3/cfe-3.3.src.tar.gz>
+  <hlink|http://llvm.org/releases/3.4/clang-3.4.src.tar.gz|http://llvm.org/releases/3.4/clang-3.4.src.tar.gz>
 
-  <hlink|http://llvm.org/releases/3.3/dragonegg-3.3.src.tar.gz|http://llvm.org/releases/3.3/dragonegg-3.3.src.tar.gz>
+  <hlink|http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz|http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz>
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
   then the Pure version described here most likely is still under
@@ -70,11 +70,11 @@
   Installing LLVM and clang (the latter is optional but recommended):
 
   <\verbatim>
-    $ tar xfvz llvm-3.3.src.tar.gz
+    $ tar xfvz llvm-3.4.src.tar.gz
 
-    $ tar xfvz cfe-3.3.src.tar.gz && mv cfe-3.3.src llvm-3.3.src/tools/clang
+    $ tar xfvz clang-3.4.src.tar.gz && mv clang-3.4 llvm-3.4/tools/clang
 
-    $ cd llvm-3.3.src
+    $ cd llvm-3.4
 
     $ ./configure --enable-shared --enable-optimized
     --enable-targets=host-only
@@ -96,9 +96,9 @@
   Installing Pure:
 
   <\verbatim>
-    $ tar xfvz pure-0.58.tar.gz
+    $ tar xfvz pure-0.59.tar.gz
 
-    $ cd pure-0.58
+    $ cd pure-0.59
 
     $ ./configure --enable-release
 
@@ -132,9 +132,9 @@
   the pure-docs tarball manually in the usual way, e.g.:
 
   <\verbatim>
-    $ tar xfvz pure-docs-0.58.tar.gz
+    $ tar xfvz pure-docs-0.59.tar.gz
 
-    $ cd pure-docs-0.58
+    $ cd pure-docs-0.59
 
     $ sudo make install
   </verbatim>
@@ -148,11 +148,11 @@
   Uninstalling:
 
   <\verbatim>
-    $ cd pure-0.58
+    $ cd pure-0.59
 
     $ sudo make uninstall
 
-    $ cd ../llvm-3.3.src
+    $ cd ../llvm-3.4
 
     $ sudo make uninstall
   </verbatim>
@@ -215,24 +215,24 @@
   need or want to install the dependencies from source:
 
   <\itemize>
-    <item>Autoconf: <hlink|http://www.gnu.org/software/autoconf|http://www.gnu.org/software/autoconf>\ 
+    <item>Autoconf: <hlink|http://www.gnu.org/software/autoconf|http://www.gnu.org/software/autoconf>
 
-    <item>Automake: <hlink|http://www.gnu.org/software/automake|http://www.gnu.org/software/automake>\ 
+    <item>Automake: <hlink|http://www.gnu.org/software/automake|http://www.gnu.org/software/automake>
 
-    <item>GNU C/C++: <hlink|http://gcc.gnu.org|http://gcc.gnu.org>\ 
+    <item>GNU C/C++: <hlink|http://gcc.gnu.org|http://gcc.gnu.org>
 
-    <item>GNU make: <hlink|http://www.gnu.org/software/make|http://www.gnu.org/software/make>\ 
+    <item>GNU make: <hlink|http://www.gnu.org/software/make|http://www.gnu.org/software/make>
 
-    <item>Flex: <hlink|http://flex.sourceforge.net|http://flex.sourceforge.net>\ 
+    <item>Flex: <hlink|http://flex.sourceforge.net|http://flex.sourceforge.net>
 
-    <item>Bison: <hlink|http://www.gnu.org/software/bison|http://www.gnu.org/software/bison>\ 
+    <item>Bison: <hlink|http://www.gnu.org/software/bison|http://www.gnu.org/software/bison>
 
-    <item>GNU Emacs: <hlink|http://www.gnu.org/software/emacs|http://www.gnu.org/software/emacs>\ 
+    <item>GNU Emacs: <hlink|http://www.gnu.org/software/emacs|http://www.gnu.org/software/emacs>
 
-    <item>GNU TeXmacs: <hlink|http://savannah.gnu.org/projects/texmacs|http://savannah.gnu.org/projects/texmacs>\ 
+    <item>GNU TeXmacs: <hlink|http://savannah.gnu.org/projects/texmacs|http://savannah.gnu.org/projects/texmacs>
 
     <item>GNU ltdl (part of the libtool software):
-    <hlink|http://www.gnu.org/software/libtool|http://www.gnu.org/software/libtool>\ 
+    <hlink|http://www.gnu.org/software/libtool|http://www.gnu.org/software/libtool>
 
     <item>Mercurial: <hlink|http://mercurial.selenic.com|http://mercurial.selenic.com>
     (There's also a very nice Windows frontend, TortoiseHg, see
@@ -244,7 +244,7 @@
   You can find these here:
 
   <\itemize>
-    <item>GMP: <hlink|http://www.gnu.org/software/gmp|http://www.gnu.org/software/gmp>\ 
+    <item>GMP: <hlink|http://www.gnu.org/software/gmp|http://www.gnu.org/software/gmp>
 
     <item>MPIR: <hlink|http://www.mpir.org|http://www.mpir.org>
   </itemize>
@@ -277,7 +277,7 @@
   editline/libedit:
 
   <\itemize>
-    <item>GNU readline: <hlink|http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html|http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html>\ 
+    <item>GNU readline: <hlink|http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html|http://cnswww.cns.cwru.edu/php/chet/readline/rltop.html>
 
     <item>BSD editline/libedit: <hlink|http://www.thrysoee.dk/editline|http://www.thrysoee.dk/editline>
   </itemize>
@@ -294,8 +294,8 @@
   You can find these at <hlink|http://llvm.org/releases/download.html|http://llvm.org/releases/download.html>.
 
   You only need the llvm-2.x or 3.x tarball which contains the LLVM library
-  as well as most of the LLVM toolchain. LLVM 3.3 is the latest stable
-  release at the time of this writing. LLVM versions 2.5 thru 3.3 have all
+  as well as most of the LLVM toolchain. LLVM 3.4 is the latest stable
+  release at the time of this writing. LLVM versions 2.5 thru 3.4 have all
   been tested and are known to work with Pure. We really recommend using LLVM
   2.8 or later, however, because LLVM has improved considerably in recent
   releases. (Support for older versions may be dropped in the future.)
@@ -328,7 +328,7 @@
   follows:
 
   <\verbatim>
-    $ cd llvm-3.3.src
+    $ cd llvm-3.4
 
     $ ./configure --enable-shared --enable-optimized
     --enable-targets=host-only
@@ -475,13 +475,13 @@
   If Pure appears to be broken on your system (<verbatim|make>
   <verbatim|check> reports a lot of failures), it's often because of a
   miscompiled LLVM. Please review the instructions under step 3, and check
-  the <hlink|System Notes|#system-notes> section to see whether your
-  platform is known to have issues and which workarounds may be needed. If
-  all that doesn't help then you might be running into LLVM bugs and
-  limitations on not-so-well supported platforms; in that case please also
-  report the results of <verbatim|make> <verbatim|check> as described above,
-  so that we can try to figure out what is going on and whether there's a fix
-  or workaround for the problem.
+  the <hlink|System Notes|#system-notes> section to see whether your platform
+  is known to have issues and which workarounds may be needed. If all that
+  doesn't help then you might be running into LLVM bugs and limitations on
+  not-so-well supported platforms; in that case please also report the
+  results of <verbatim|make> <verbatim|check> as described above, so that we
+  can try to figure out what is going on and whether there's a fix or
+  workaround for the problem.
 
   <with|font-series|bold|Note:> If you have one of the LLVM C/C++ compilers
   installed (see <hlink|Installing an LLVM-capable C/C++
@@ -536,9 +536,9 @@
   documentation in pdf format, so that you can print it if you like. In
   addition, as of version 0.56 the tarball also contains the documentation in
   TeXmacs format so that you can read it inside TeXmacs (see <hlink|TeXmacs
-  Plugin|#texmacs-plugin> below). After unpacking the tarball and
-  installing the html documentation, you can install the TeXmacs-formatted
-  documentation as follows:
+  Plugin|#texmacs-plugin> below). After unpacking the tarball and installing
+  the html documentation, you can install the TeXmacs-formatted documentation
+  as follows:
 
   <\verbatim>
     $ sudo make install-tm
@@ -552,7 +552,7 @@
   <\verbatim>
     $ pure
 
-    Pure 0.58 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert
+    Pure 0.59 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert
     Graef
 
     (Type 'help' for help, 'help copying' for license information.)
@@ -743,7 +743,7 @@
   <verbatim|clang>. Then build and install clang as follows:
 
   <\verbatim>
-    $ cd llvm-3.3.src/tools/clang
+    $ cd llvm-3.4/tools/clang
 
     $ make
 
@@ -754,8 +754,7 @@
 
   <with|font-series|bold|Note:> This section applies to LLVM versions up to
   2.9. With LLVM 3.0 or later, llvm-gcc is not supported any more and you
-  should use <hlink|clang|#clang> or <hlink|dragonegg|#dragonegg>
-  instead.
+  should use <hlink|clang|#clang> or <hlink|dragonegg|#dragonegg> instead.
 
   If available, llvm-gcc can be installed either as an alternative or in
   addition to clang. The main advantage of llvm-gcc over clang is that it has
@@ -972,7 +971,7 @@
   using the <verbatim|--with-tool-prefix> configure option. E.g.:
 
   <\verbatim>
-    $ ./configure --with-tool-prefix=/usr/lib/llvm-3.3/bin
+    $ ./configure --with-tool-prefix=/usr/lib/llvm-3.4/bin
   </verbatim>
 
   This is also the directory where configure will first look for the
@@ -1257,8 +1256,8 @@
   mishap and generate an orderly exception instead, it has no way of knowing
   the actual stack size available to programs on your system. So if you're
   getting segfaults due to stack overflows then you'll have to set an
-  appropriate stack size limit manually with the
-  <label|index-0><hlink|<with|font-family|tt|PURE_STACK>|pure.tm#envvar-PURE-STACK>
+  appropriate stack size limit manually with
+  the<label|index-0><hlink|<with|font-family|tt|PURE_STACK>|pure.tm#envvar-PURE-STACK>
   environment variable; see the Pure manual for details.
 
   <subsubsection|32 Bit Systems<label|bit-systems>>
@@ -1367,72 +1366,72 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|install-toc>>
 
   <\itemize>
-    <item><hlink|Installing Pure (and LLVM)|#>\ 
+    <item><hlink|Installing Pure (and LLVM)|#>
 
     <\itemize>
-      <item><hlink|Quick Summary|#quick-summary>\ 
+      <item><hlink|Quick Summary|#quick-summary>
 
-      <item><hlink|Basic Installation|#basic-installation>\ 
+      <item><hlink|Basic Installation|#basic-installation>
 
-      <item><hlink|Emacs Pure Mode|#emacs-pure-mode>\ 
+      <item><hlink|Emacs Pure Mode|#emacs-pure-mode>
 
-      <item><hlink|TeXmacs Plugin|#texmacs-plugin>\ 
+      <item><hlink|TeXmacs Plugin|#texmacs-plugin>
 
       <item><hlink|Installing an LLVM-capable C/C++
-      Compiler|#installing-an-llvm-capable-c-c-compiler>\ 
+      Compiler|#installing-an-llvm-capable-c-c-compiler>
 
       <\itemize>
-        <item><hlink|clang|#clang>\ 
+        <item><hlink|clang|#clang>
 
-        <item><hlink|llvm-gcc|#llvm-gcc>\ 
+        <item><hlink|llvm-gcc|#llvm-gcc>
 
         <item><hlink|dragonegg|#dragonegg>
       </itemize>
 
       <item><hlink|Installing From Development
-      Sources|#installing-from-development-sources>\ 
+      Sources|#installing-from-development-sources>
 
       <item><hlink|Other Build and Installation
-      Options|#other-build-and-installation-options>\ 
+      Options|#other-build-and-installation-options>
 
       <\itemize>
-        <item><hlink|Installation Path|#installation-path>\ 
+        <item><hlink|Installation Path|#installation-path>
 
         <item><hlink|Tool Prefix and LLVM
-        Version|#tool-prefix-and-llvm-version>\ 
+        Version|#tool-prefix-and-llvm-version>
 
-        <item><hlink|Versioned Installations|#versioned-installations>\ 
+        <item><hlink|Versioned Installations|#versioned-installations>
 
-        <item><hlink|Separate Build Directory|#separate-build-directory>\ 
+        <item><hlink|Separate Build Directory|#separate-build-directory>
 
-        <item><hlink|Compiler and Linker Options|#compiler-and-linker-options>\ 
+        <item><hlink|Compiler and Linker Options|#compiler-and-linker-options>
 
-        <item><hlink|Predefined Build Types|#predefined-build-types>\ 
+        <item><hlink|Predefined Build Types|#predefined-build-types>
 
         <item><hlink|Running Pure From The Source
-        Directory|#running-pure-from-the-source-directory>\ 
+        Directory|#running-pure-from-the-source-directory>
 
-        <item><hlink|Other Targets|#other-targets>\ 
+        <item><hlink|Other Targets|#other-targets>
 
         <item><hlink|Pkg-config Support|#pkg-config-support>
       </itemize>
 
-      <item><hlink|System Notes|#system-notes>\ 
+      <item><hlink|System Notes|#system-notes>
 
       <\itemize>
-        <item><hlink|All Platforms|#all-platforms>\ 
+        <item><hlink|All Platforms|#all-platforms>
 
-        <item><hlink|32 Bit Systems|#bit-systems>\ 
+        <item><hlink|32 Bit Systems|#bit-systems>
 
         <item>64 Bit Systems
 
-        <item><hlink|PowerPC|#powerpc>\ 
+        <item><hlink|PowerPC|#powerpc>
 
-        <item><hlink|Linux|#linux>\ 
+        <item><hlink|Linux|#linux>
 
-        <item><hlink|Mac OSX|#mac-osx>\ 
+        <item><hlink|Mac OSX|#mac-osx>
 
-        <item><hlink|BSD|#bsd>\ 
+        <item><hlink|BSD|#bsd>
 
         <item><hlink|MS Windows|#ms-windows>
       </itemize>
@@ -1452,6 +1451,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

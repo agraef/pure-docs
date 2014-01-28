@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pd-faust<label|pd-faust>>
 
-  Version 0.5, September 08, 2013
+  Version 0.5, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -60,9 +60,9 @@
   have been tested.
 
   The pd-faust objects are written in the
-  <hlink|Pure|http://purelang.bitbucket.org/> programming language, so
-  you'll also need an installation of the Pure interpreter (0.51 or later),
-  along with the following packages (minimum required versions are given in
+  <hlink|Pure|http://purelang.bitbucket.org/> programming language, so you'll
+  also need an installation of the Pure interpreter (0.51 or later), along
+  with the following packages (minimum required versions are given in
   parentheses): <hlink|<em|pd-pure>|pd-pure.tm> (0.15),
   <hlink|<em|pure-faust>|pure-faust.tm> (0.8),
   <hlink|<em|pure-midi>|pure-midi.tm> (0.5) and
@@ -647,9 +647,9 @@
   Also included in the sources is a helper abstraction faust-remote.pd and an
   accompanying elisp program faust-remote.el. These work pretty much like
   pure-remote.pd and pure-remote.el in the <hlink|<em|pd-pure>|pd-pure.tm>
-  distribution, but are tailored for the remote control of Faust dsps in a
-  Pd patch. In particular, they enable you to quickly reload the Faust dsps
-  in Pd using a simple keyboard command (<verbatim|C-C> <verbatim|C-X> by
+  distribution, but are tailored for the remote control of Faust dsps in a Pd
+  patch. In particular, they enable you to quickly reload the Faust dsps in
+  Pd using a simple keyboard command (<verbatim|C-C> <verbatim|C-X> by
   default) from Emacs. The faust-remote.el program was designed to be used
   with Juan Romero's Emacs <hlink|Faust mode|https://github.com/rukano/emacs-faust-mode>;
   please see etc/pure-remote.el in the pd-faust source for usage
@@ -688,29 +688,29 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pd-faust-toc>>
 
   <\itemize>
-    <item><hlink|pd-faust|#>\ 
+    <item><hlink|pd-faust|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
       <\itemize>
         <item><hlink|The fdsp<math|\<sim\>> and fsynth<math|\<sim\>>
-        Objects|#the-fdsp-and-fsynth-objects>\ 
+        Objects|#the-fdsp-and-fsynth-objects>
 
-        <item><hlink|GUI Subpatches|#gui-subpatches>\ 
+        <item><hlink|GUI Subpatches|#gui-subpatches>
 
-        <item><hlink|Examples|#examples>\ 
+        <item><hlink|Examples|#examples>
 
-        <item><hlink|Operating the Patches|#operating-the-patches>\ 
+        <item><hlink|Operating the Patches|#operating-the-patches>
 
         <item><hlink|External MIDI and OSC
-        Controllers|#external-midi-and-osc-controllers>\ 
+        Controllers|#external-midi-and-osc-controllers>
 
-        <item><hlink|Tweaking the GUI Layout|#tweaking-the-gui-layout>\ 
+        <item><hlink|Tweaking the GUI Layout|#tweaking-the-gui-layout>
 
         <item><hlink|Remote Control|#remote-control>
       </itemize>
@@ -732,6 +732,6 @@
   <hlink|previous|faust2pd.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

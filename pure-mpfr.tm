@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,14 +10,14 @@
 
   <section*|pure-mpfr<label|module-mpfr>>
 
-  Version 0.4, September 08, 2013
+  Version 0.4, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   The <hlink|GNU MPFR|http://www.mpfr.org/> library is a C library for
   multiple-precision floating-point computations with correct rounding. It is
-  based on <hlink|GMP|http://gmplib.org> which Pure also uses for its
-  bigint support.
+  based on <hlink|GMP|http://gmplib.org> which Pure also uses for its bigint
+  support.
 
   This module makes the MPFR multiprecision floats (henceforth referred to as
   <verbatim|mpfr> numbers or values) available in Pure, so that they work
@@ -87,14 +87,14 @@
   </verbatim>
 
   <with|font-series|bold|Note:> This also pulls in the
-  <hlink|<with|font-family|tt|math>|purelib.tm#module-math> standard
-  library module, whose operations are overloaded by the <verbatim|mpfr>
-  module in order to provide support for <verbatim|mpfr> values. Thus you
-  don't need to explicitly import the <verbatim|math> module when using the
-  <verbatim|mpfr> module.
+  <hlink|<with|font-family|tt|math>|purelib.tm#module-math> standard library
+  module, whose operations are overloaded by the <verbatim|mpfr> module in
+  order to provide support for <verbatim|mpfr> values. Thus you don't need to
+  explicitly import the <verbatim|math> module when using the <verbatim|mpfr>
+  module.
 
-  If you use both the <hlink|<with|font-family|tt|mpfr>|#module-mpfr>
-  module and the <hlink|<with|font-family|tt|pointers>|purelib.tm#module-pointers>
+  If you use both the <hlink|<with|font-family|tt|mpfr>|#module-mpfr> module
+  and the <hlink|<with|font-family|tt|pointers>|purelib.tm#module-pointers>
   standard library module in your script, make sure that you import the
   <verbatim|pointers> module <em|after> <verbatim|mpfr>, so that the
   definitions of pointer arithmetic in the <verbatim|pointers> module do not
@@ -225,15 +225,15 @@
     <verbatim|rational> conversion, as MPFR does not provide such an
     operation, but if you need this then you can first convert <verbatim|x>
     to a <verbatim|double> and then apply the standard library
-    <hlink|<with|font-family|tt|rational>|purelib.tm#rational> function to
-    it (this may loose precision, of course).
+    <hlink|<with|font-family|tt|rational>|purelib.tm#rational> function to it
+    (this may loose precision, of course).
   </description>
 
   <\description>
     <item*|str x<label|str/mpfr>>By virtue of the custom pretty-printer
     provided by this module, the standard library
-    <hlink|<with|font-family|tt|str>|purelib.tm#str> function can be used
-    to obtain a printable representation of an <verbatim|mpfr> number
+    <hlink|<with|font-family|tt|str>|purelib.tm#str> function can be used to
+    obtain a printable representation of an <verbatim|mpfr> number
     <verbatim|x> in decimal notation. The result is a string.
   </description>
 
@@ -248,8 +248,8 @@
 
     <item*|frac x<label|frac/mpfr>>Rounding and truncation functions. These
     all take and yield <verbatim|mpfr> numbers.
-    <hlink|<with|font-family|tt|frac>|#frac/mpfr> returns the fractional
-    part of an <verbatim|mpfr> number, i.e., <verbatim|x-trunc> <verbatim|x>.
+    <hlink|<with|font-family|tt|frac>|#frac/mpfr> returns the fractional part
+    of an <verbatim|mpfr> number, i.e., <verbatim|x-trunc> <verbatim|x>.
   </description>
 
   <subsubsection|Arithmetic<label|arithmetic>>
@@ -446,25 +446,25 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-mpfr-toc>>
 
   <\itemize>
-    <item><hlink|pure-mpfr|#>\ 
+    <item><hlink|pure-mpfr|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
       <\itemize>
-        <item><hlink|Precision and Rounding|#precision-and-rounding>\ 
+        <item><hlink|Precision and Rounding|#precision-and-rounding>
 
-        <item><hlink|MPFR Numbers|#mpfr-numbers>\ 
+        <item><hlink|MPFR Numbers|#mpfr-numbers>
 
-        <item><hlink|Conversions|#conversions>\ 
+        <item><hlink|Conversions|#conversions>
 
-        <item><hlink|Arithmetic|#arithmetic>\ 
+        <item><hlink|Arithmetic|#arithmetic>
 
-        <item><hlink|Math Functions|#math-functions>\ 
+        <item><hlink|Math Functions|#math-functions>
 
         <item><hlink|Complex Number Support|#complex-number-support>
       </itemize>
@@ -486,6 +486,6 @@
   <hlink|previous|pure-gsl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

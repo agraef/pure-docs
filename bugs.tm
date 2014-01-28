@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -17,7 +17,7 @@
 
   <\quote-env>
     <hlink|https://bitbucket.org/purelang/pure-lang/issues|https://bitbucket.org/purelang/pure-lang/issues>
-    </quote-env>
+  </quote-env>
 
   If you are unsure if the problem you are hitting is really a bug, or if
   you'd like to discuss possible enhancements and other kinds of fixes, then
@@ -25,7 +25,7 @@
 
   <\quote-env>
     <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
-    </quote-env>
+  </quote-env>
 
   Some issues are best discussed interactively. For these purposes we also
   have an IRC chat at Freenode (archived <hlink|here|https://yanovich.net/pure-lang/>):
@@ -39,6 +39,6 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|previous|purepad.tm> \|
   <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

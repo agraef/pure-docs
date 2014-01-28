@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-stlmap<label|module-stlmap>>
 
-  <label|module-stlmmap><label|module-stlhmap>Version 0.4, September 08, 2013
+  <label|module-stlmmap><label|module-stlhmap>Version 0.4, January 28, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -186,8 +186,7 @@
   <hlink|<with|font-family|tt|emptystlmmap>|#emptystlmmap/stlmap>,
   <hlink|<with|font-family|tt|emptystlmset>|#emptystlmset/stlmap>,
   <hlink|<with|font-family|tt|emptystlhmap>|#emptystlhmap/stlmap> and
-  <hlink|<with|font-family|tt|emptystlhset>|#emptystlhset/stlmap>
-  functions.
+  <hlink|<with|font-family|tt|emptystlhset>|#emptystlhset/stlmap> functions.
 
   <\verbatim>
     \<gtr\> let sm1 = emptystlmap; \ \ // uses (\<less\>) to order keys
@@ -352,9 +351,8 @@
 
   The <hlink|<with|font-family|tt|insert>|#insert/stlmap> and
   <hlink|<with|font-family|tt|insert_or_replace>|#insert-or-replace/stlmap>
-  functions are overloaded to insert or replace elements specified in a
-  list, vector, stlvec or another pure-stlmap container (of the same type).
-  E.g.,
+  functions are overloaded to insert or replace elements specified in a list,
+  vector, stlvec or another pure-stlmap container (of the same type). E.g.,
 
   <\verbatim>
     \<gtr\> let sm2 = emptystlmap;
@@ -394,8 +392,8 @@
   <subsubsection|Access<label|access>>
 
   If you want to see if a key is stored in a container use the
-  <hlink|<with|font-family|tt|member>|#member/stlmap> function. (A key, k,
-  is considered to be ``stored'' in a container if there is an element in the
+  <hlink|<with|font-family|tt|member>|#member/stlmap> function. (A key, k, is
+  considered to be ``stored'' in a container if there is an element in the
   container that is equivalent to k.)
 
   <\verbatim>
@@ -540,9 +538,9 @@
   The elements of an associated container be copied into a list, vector or
   stlvec using the <hlink|<with|font-family|tt|members>|#members/stlmap>,
   <hlink|<with|font-family|tt|stl::vector>|#stl::vector/stlmap> and
-  <hlink|<with|font-family|tt|stlvec>|#stlvec/stlmap> functions. For
-  ordered containers (stlmap, stlset, stlmmap and stlmset) the list, vector
-  or stlvec can be built from a range.
+  <hlink|<with|font-family|tt|stlvec>|#stlvec/stlmap> functions. For ordered
+  containers (stlmap, stlset, stlmmap and stlmset) the list, vector or stlvec
+  can be built from a range.
 
   <\verbatim>
     \<gtr\> members ss;
@@ -693,13 +691,13 @@
   The ``ordered'' containers, stlmap, stlset, stlmmap and stlmset, each have
   a ``key-less-than'' function that they use keep their elements in a
   sequence that is ordered by keys. The default key-less-than function is
-  <verbatim|(\<less\>)>, but this can be changed when the container is
-  created. The elements stored in a stlmap or stlset have unique keys, i.e.,
-  two elements stored in the container will never have equivalent keys. For
-  these purposes, two keys are ``equivalent'' if neither key is key-less-than
-  the other. In contrast, stlmmap and stlmset do not have unique keys. I.e.,
-  it is possible for different elements stored in a stlmmap or stlmset can
-  have equivalent keys.
+  <verbatim|(\<)>, but this can be changed when the container is created. The
+  elements stored in a stlmap or stlset have unique keys, i.e., two elements
+  stored in the container will never have equivalent keys. For these
+  purposes, two keys are ``equivalent'' if neither key is key-less-than the
+  other. In contrast, stlmmap and stlmset do not have unique keys. I.e., it
+  is possible for different elements stored in a stlmmap or stlmset can have
+  equivalent keys.
 
   The ``hashed'' containers, sthmap and stlhset do not keep their elements in
   a sequence. Instead they store their elments in a hash table using a
@@ -713,7 +711,7 @@
 
   The ``ordered maps'', stlmap and stlmmap, each have a ``value-less-than''
   function and a ``value-equal'' function that is used for lexicographical
-  comparisons. The default functions are <verbatim|(\<less\>)> and (==)
+  comparisons. The default functions are <verbatim|(\<)> and (==)
   respectively, but these can customized when the container is created.
 
   As is the case for the underlying C++ functions, set operations (i.e.,
@@ -785,8 +783,8 @@
 
   Throughout pure-stlmap, unless you resort to using iterators, you can only
   specify elements and ranges of elements using keys. For example you cannot
-  use the <hlink|<with|font-family|tt|member>|#member/stlmap> function to
-  see if a specific key, value pair is an element of a stlmap.
+  use the <hlink|<with|font-family|tt|member>|#member/stlmap> function to see
+  if a specific key, value pair is an element of a stlmap.
 
   <\verbatim>
     \<gtr\> members sm;
@@ -807,9 +805,8 @@
   </verbatim>
 
   In the last line of code, <hlink|<with|font-family|tt|member>|#member/stlmap>
-  treats (a=\<gtr\>1) as a key. Because (a=\<gtr\>1) cannot be compared to
-  a string using <verbatim|(\<less\>)>, the ersatz key is treated as a bad
-  argument.
+  treats (a=\<gtr\>1) as a key. Because (a=\<gtr\>1) cannot be compared to a
+  string using <verbatim|(\<)>, the ersatz key is treated as a bad argument.
 
   This ``key access only'' approach can be an issue for stlmmaps and because
   multiple elements can have equivalent keys. I.e., given a stlmmap, smm,
@@ -904,9 +901,9 @@
   If all you want is fast insertion and lookup, you don't care about the
   order of the elements stored in the container, and you do not want to use
   set operations like <hlink|<with|font-family|tt|stl::map_intersection>|#stl::map-intersection/stlmap>,
-  then <hlink|<with|font-family|tt|stlhmap>|#module-stlhmap> is probably
-  your best choice. The supported containers, stlhmap and stlhset are simpler
-  to use and faster than the other containers provided by pure-stlmap.
+  then <hlink|<with|font-family|tt|stlhmap>|#module-stlhmap> is probably your
+  best choice. The supported containers, stlhmap and stlhset are simpler to
+  use and faster than the other containers provided by pure-stlmap.
 
   The <hlink|<with|font-family|tt|stlhmap>|#module-stlhmap> module defines
   stlhmaps and stlhsets and provides functions for dealing with them. You can
@@ -931,10 +928,10 @@
 
   <subsubsection|The stlmap Module<label|the-stlmap-module>>
 
-  The <hlink|<with|font-family|tt|stlmap>|#module-stlmap> module provides
-  you with stlmaps and stlsets and the functions that operate on them.
-  Consider using these containers if you want their elements to be orderd by
-  key, want to use ranges or if you are using any set operations
+  The <hlink|<with|font-family|tt|stlmap>|#module-stlmap> module provides you
+  with stlmaps and stlsets and the functions that operate on them. Consider
+  using these containers if you want their elements to be orderd by key, want
+  to use ranges or if you are using any set operations
   (<hlink|<with|font-family|tt|stl::map_union>|#stl::map-union/stlmap>,
   <hlink|<with|font-family|tt|stl::map_intersection>|#stl::map-intersection/stlmap>,
   etc).
@@ -1045,9 +1042,8 @@
 
   The internal lookup functions for the ordered containers (stlmap, stlset,
   stlmmap and stlmset) are optimized to avoid callbacks if the container's
-  key-less-than function is is <verbatim|(\<gtr\>)> or <verbatim|(\<less\>)>
-  and the keys being compared are a pair of strings, ints, bigints or
-  doubles.
+  key-less-than function is is <verbatim|(\>)> or <verbatim|(\<)> and the
+  keys being compared are a pair of strings, ints, bigints or doubles.
 
   You can create an empty associative container using default values for
   using <hlink|<with|font-family|tt|emptystlmap>|#emptystlmap/stlmap> and
@@ -1062,7 +1058,7 @@
 
     <item*|emptystlmset<label|emptystlmset/stlmap>>Create a new ordered map
     or set using default values. I.e., emptystlmap is the same as mkstlmap
-    <verbatim|(\<less\>)>, and so on.
+    <verbatim|(\<)>, and so on.
   </description>
 
   <\description>
@@ -1338,9 +1334,9 @@
     must be a stlmap. The effect of this function is as follows: (a) if
     <math|\<sim\>> <hlink|<with|font-family|tt|member>|#member/stlmap>
     <verbatim|map> <verbatim|k> then <hlink|<with|font-family|tt|insert>|#insert/stlmap>
-    <verbatim|map> (<verbatim|k``=\<gtr\>dflt)> <verbatim|else>
-    <verbatim|(),> <verbatim|where> <verbatim|dflt> <verbatim|is>
-    <verbatim|``map>`s dflt value, (b) <hlink|<with|font-family|tt|replace>|#replace/stlmap>
+    <verbatim|map> (<verbatim|k``=\>dflt)> <verbatim|else> <verbatim|(),>
+    <verbatim|where> <verbatim|dflt> <verbatim|is> <verbatim|``map>`s dflt
+    value, (b) <hlink|<with|font-family|tt|replace>|#replace/stlmap>
     <verbatim|map> <verbatim|k> nv when nv = <verbatim|fun> <verbatim|v>
     (<verbatim|map>!``k``) end. Returns <verbatim|map>.
   </description>
@@ -1475,10 +1471,10 @@
     (a) if <verbatim|acon> has an element with key equivalent to <verbatim|k>
     return its value, otherwise (b) throw an
     <hlink|<with|font-family|tt|out_of_bounds>|purelib.tm#out-of-bounds>
-    exception. If <verbatim|acon> is a stlmmap then (a) if acon has as
-    least one element with key equivalent to <verbatim|k> return a list of
-    values of all the elements with key equivalent to <verbatim|k>, otherwise
-    (b) return an null list.
+    exception. If <verbatim|acon> is a stlmmap then (a) if acon has as least
+    one element with key equivalent to <verbatim|k> return a list of values
+    of all the elements with key equivalent to <verbatim|k>, otherwise (b)
+    return an null list.
   </description>
 
   E.g.:
@@ -1526,23 +1522,22 @@
     <item*|stl::prev_key acon k<label|stl::prev-key/stlmap>><verbatim|acon>
     must be a stlmap, stlset, stlmmap or stlmmap. Also if <verbatim|k> is not
     <hlink|<with|font-family|tt|stl::smbeg>|#stl::smbeg/stlmap>,
-    <hlink|<with|font-family|tt|stl::smend>|#stl::smend/stlmap> or an
-    element of acon an <verbatim|out_of_bounds> exception will be throw.
-    <hlink|<with|font-family|tt|next_key>|#stl::next-key/stlmap> returns
-    the key of the first element in acon that has a key that is greater than
+    <hlink|<with|font-family|tt|stl::smend>|#stl::smend/stlmap> or an element
+    of acon an <verbatim|out_of_bounds> exception will be throw.
+    <hlink|<with|font-family|tt|next_key>|#stl::next-key/stlmap> returns the
+    key of the first element in acon that has a key that is greater than
     <verbatim|k>. If no such element exists or if <verbatim|k> is
     <hlink|<with|font-family|tt|stl::smend>|#stl::smend/stlmap>, returns
     <hlink|<with|font-family|tt|stl::smend>|#stl::smend/stlmap>.
-    <hlink|<with|font-family|tt|prev_key>|#stl::prev-key/stlmap> returns
-    the last element in acon that has a key that is less that <verbatim|k>,
-    or, if no such element exists, throws an <verbatim|out_of_bounds>
-    exception.
+    <hlink|<with|font-family|tt|prev_key>|#stl::prev-key/stlmap> returns the
+    last element in acon that has a key that is less that <verbatim|k>, or,
+    if no such element exists, throws an <verbatim|out_of_bounds> exception.
   </description>
 
   For various reasons, it is very common to see a call to (!) or
-  <hlink|<with|font-family|tt|replace>|#replace/stlmap> preceded by a call
-  to <hlink|<with|font-family|tt|member>|#member/stlmap> with the same
-  container and key. E.g.,
+  <hlink|<with|font-family|tt|replace>|#replace/stlmap> preceded by a call to
+  <hlink|<with|font-family|tt|member>|#member/stlmap> with the same container
+  and key. E.g.,
 
   <\verbatim>
     \<gtr\> bump_wc sm w = if member sm w then replace sm w (sm!w + 1)
@@ -1901,13 +1896,13 @@
     \<gtr\> map_equal (xx,''a'',''c'') (ss,''a'',''c''); 1
   </quote-env>
 
-  The other comparison operators <verbatim|(\<less\>)>,
-  <verbatim|(\<less\>=)>, <verbatim|(\<gtr\>)> and <verbatim|(\<gtr\>=)> are
-  provided only for the ordered containers (stlmap, stlset, stlmmap and
-  stlmset). These operators reflect lexicographical comparisons of keys and,
-  then if the keys are equal, lexicographical comparisons of values. I.e.,
-  this is not set inclusion - order matters. Accordingly, these comparison
-  operators are not defined for a stlhmap or stlhset.
+  The other comparison operators <verbatim|(\<)>, <verbatim|(\<=)>,
+  <verbatim|(\>)> and <verbatim|(\>=)> are provided only for the ordered
+  containers (stlmap, stlset, stlmmap and stlmset). These operators reflect
+  lexicographical comparisons of keys and, then if the keys are equal,
+  lexicographical comparisons of values. I.e., this is not set inclusion -
+  order matters. Accordingly, these comparison operators are not defined for
+  a stlhmap or stlhset.
 
   <\description>
     <item*|rng1 \<less\> rng2<label|\<less\>/stlmap>>Traverse the ranges
@@ -1925,7 +1920,7 @@
     <item*|rng1 \<gtr\>= rng2<label|\<gtr\>=/stlmap>>The these three
     operators are the same as <verbatim|rng2> \<less\> <verbatim|rng1>,
     <math|\<sim\>>(<verbatim|rng1>\<gtr\>``rng2`) and
-    <math|\<sim\>>(<verbatim|rng1``\<less\>``rng2>) respectively.
+    <math|\<sim\>>(<verbatim|rng1``\<``rng2>) respectively.
   </description>
 
   You also have to be careful when using equivalence and comparison operators
@@ -1999,9 +1994,9 @@
   pure-stlmap's set functions do not necessarily produce the same results as
   their Pure standard library counterparts. In particular, when applied to
   multi-keyed contaners, <hlink|<with|font-family|tt|stl::map_union>|#stl::map-union/stlmap>
-  Produces the multiset union of its arguments while (+) in the Pure
-  standard library produces the multiset sum. If you want the multiset sum of
-  a stlmmap or stlhmap, use <hlink|<with|font-family|tt|stl::map_merge>|#stl::map-merge/stlmap>.
+  Produces the multiset union of its arguments while (+) in the Pure standard
+  library produces the multiset sum. If you want the multiset sum of a
+  stlmmap or stlhmap, use <hlink|<with|font-family|tt|stl::map_merge>|#stl::map-merge/stlmap>.
   Also, in pure-stlmap, as in the STL, the left hand map or set has priority
   of elements while in the Pure standard library the right hand set has
   priority of elements. This can make a difference when applying set
@@ -2047,9 +2042,9 @@
   <subsubsection|Direct C Calls<label|direct-c-calls>>
 
   It is common to encounter code that (a) tests if a key is stored in a
-  container using <hlink|<with|font-family|tt|member>|#member/stlmap> and
-  (b) in the case of maps, retreives the value or values associated with the
-  key using (!) and/or (c) changes the value or values using
+  container using <hlink|<with|font-family|tt|member>|#member/stlmap> and (b)
+  in the case of maps, retreives the value or values associated with the key
+  using (!) and/or (c) changes the value or values using
   <hlink|<with|font-family|tt|replace>|#replace/stlmap>. Depending on what
   modules have been loaded, these functions may be heavily overloaded which
   can cause a small delay when the functions are called. To avoid this,
@@ -2312,13 +2307,13 @@
     insert <verbatim|elm> into <verbatim|acon>. (If <verbatim|acon> is a
     stlmap or stlmmap, then elm must be a key value pair, (k=\<gtr\>v)). If
     acon is a stlmap or stlset (i.e., with unique keys)
-    <hlink|<with|font-family|tt|insert_elm>|#stl::insert-elm/stlmap>
-    returns a pair, the first of which is an iterator pointing to the
-    element with key k that was just inserted (or the pre-existing element
-    that blocked the insertion). The second element in the pair is a boolean
-    value that is true if a new element was inserted. In contrast, if
-    <verbatim|acon> is a multi-keyed container (stlmmap or stlmset) the
-    insert will always be successful and <hlink|<with|font-family|tt|insert_elm>|#stl::insert-elm/stlmap>
+    <hlink|<with|font-family|tt|insert_elm>|#stl::insert-elm/stlmap> returns
+    a pair, the first of which is an iterator pointing to the element with
+    key k that was just inserted (or the pre-existing element that blocked
+    the insertion). The second element in the pair is a boolean value that is
+    true if a new element was inserted. In contrast, if <verbatim|acon> is a
+    multi-keyed container (stlmmap or stlmset) the insert will always be
+    successful and <hlink|<with|font-family|tt|insert_elm>|#stl::insert-elm/stlmap>
     returns an iterator pointing to the element with key k that was just
     inserted, instead of an (iterator, boolean) tuple.
   </description>
@@ -2527,87 +2522,87 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stlmap-toc>>
 
   <\itemize>
-    <item><hlink|pure-stlmap|#>\ 
+    <item><hlink|pure-stlmap|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
       <\itemize>
-        <item><hlink|Supported Containers|#supported-containers>\ 
+        <item><hlink|Supported Containers|#supported-containers>
 
         <item><hlink|Interface|#interface>
       </itemize>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Examples|#examples>\ 
+      <item><hlink|Examples|#examples>
 
-      <item><hlink|Quick Start|#quick-start>\ 
+      <item><hlink|Quick Start|#quick-start>
 
       <\itemize>
-        <item><hlink|Example Containers|#example-containers>\ 
+        <item><hlink|Example Containers|#example-containers>
 
-        <item><hlink|Constructors|#constructors>\ 
+        <item><hlink|Constructors|#constructors>
 
-        <item><hlink|Ranges|#ranges>\ 
+        <item><hlink|Ranges|#ranges>
 
         <item><hlink|Inserting and Replacing
-        Elements|#inserting-and-replacing-elements>\ 
+        Elements|#inserting-and-replacing-elements>
 
-        <item><hlink|Access|#access>\ 
+        <item><hlink|Access|#access>
 
-        <item><hlink|Erasing Elements|#erasing-elements>\ 
+        <item><hlink|Erasing Elements|#erasing-elements>
 
-        <item><hlink|Conversions|#conversions>\ 
+        <item><hlink|Conversions|#conversions>
 
         <item><hlink|Functional Programming|#functional-programming>
       </itemize>
 
-      <item><hlink|Concepts|#concepts>\ 
+      <item><hlink|Concepts|#concepts>
 
       <\itemize>
-        <item><hlink|Containers and Elements|#containers-and-elements>\ 
+        <item><hlink|Containers and Elements|#containers-and-elements>
 
         <item>Ranges
 
-        <item><hlink|Iterators|#iterators>\ 
+        <item><hlink|Iterators|#iterators>
 
         <item><hlink|Selecting Elements Using
-        Keys|#selecting-elements-using-keys>\ 
+        Keys|#selecting-elements-using-keys>
 
         <item><hlink|C++ Implementation|#c-implementation>
       </itemize>
 
-      <item><hlink|Modules|#modules>\ 
+      <item><hlink|Modules|#modules>
 
       <\itemize>
-        <item><hlink|The stlhmap Module|#the-stlhmap-module>\ 
+        <item><hlink|The stlhmap Module|#the-stlhmap-module>
 
-        <item><hlink|The stlmap Module|#the-stlmap-module>\ 
+        <item><hlink|The stlmap Module|#the-stlmap-module>
 
         <item><hlink|The stlmmap Module|#the-stlmmap-module>
       </itemize>
 
-      <item><hlink|Container Operations|#container-operations>\ 
+      <item><hlink|Container Operations|#container-operations>
 
       <\itemize>
-        <item><hlink|Container Construction|#container-construction>\ 
+        <item><hlink|Container Construction|#container-construction>
 
-        <item><hlink|Information|#information>\ 
+        <item><hlink|Information|#information>
 
-        <item><hlink|Modification|#modification>\ 
+        <item><hlink|Modification|#modification>
 
-        <item><hlink|Accessing Elements|#accessing-elements>\ 
+        <item><hlink|Accessing Elements|#accessing-elements>
 
         <item>Conversions
 
         <item>Functional Programming
 
-        <item><hlink|Comparison|#comparison>\ 
+        <item><hlink|Comparison|#comparison>
 
-        <item><hlink|Set Algorithms|#set-algorithms>\ 
+        <item><hlink|Set Algorithms|#set-algorithms>
 
         <item><hlink|Direct C Calls|#direct-c-calls>
       </itemize>
@@ -2617,17 +2612,17 @@
       <\itemize>
         <item>Concepts
 
-        <item><hlink|Exceptions|#exceptions>\ 
+        <item><hlink|Exceptions|#exceptions>
 
-        <item><hlink|Functions|#functions>\ 
+        <item><hlink|Functions|#functions>
 
         <item>Examples
       </itemize>
 
-      <item><hlink|Backward Compatibilty|#backward-compatibilty>\ 
+      <item><hlink|Backward Compatibilty|#backward-compatibilty>
 
       <\itemize>
-        <item><hlink|pure-stlmap-0.2|#pure-stlmap-0-2>\ 
+        <item><hlink|pure-stlmap-0.2|#pure-stlmap-0-2>
 
         <item><hlink|pure-stlmap-0.3|#pure-stlmap-0-3>
       </itemize>
@@ -2647,6 +2642,6 @@
   <hlink|previous|pure-stllib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

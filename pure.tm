@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,14 +10,14 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.58, September 15, 2013
+  Version 0.59, January 28, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   Copyright (c) 2009-2013 by Albert Gräf. This document is available under
   the <hlink|GNU Free Documentation License|http://www.gnu.org/copyleft/fdl.html>.
-  Also see the <hlink|Copying|#copying> section for licensing information
-  of the software.
+  Also see the <hlink|Copying|#copying> section for licensing information of
+  the software.
 
   This manual describes the Pure programming language and how to invoke the
   Pure interpreter program. To read the manual inside the interpreter, just
@@ -25,12 +25,12 @@
   Help|#online-help> section for details.
 
   There is a companion to this manual, the <hlink|<em|Pure Library
-  Manual>|purelib.tm> which contains the description of the standard
-  library operations. More information about Pure and the latest sources can
-  be found under the following URLs:
+  Manual>|purelib.tm> which contains the description of the standard library
+  operations. More information about Pure and the latest sources can be found
+  under the following URLs:
 
   <\itemize>
-    <item>Pure website: <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>\ 
+    <item>Pure website: <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>
 
     <item>Pure mailing list: <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
   </itemize>
@@ -76,7 +76,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.58
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.59
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2013 by
@@ -128,16 +128,16 @@
   More information about invoking the Pure interpreter can be found in the
   <hlink|Invoking Pure|#invoking-pure> section below. This is followed by a
   description of the Pure language in <hlink|Pure Overview|#pure-overview>
-  and subsequent sections, including an extensive
-  <hlink|Examples|#examples> section which can serve as a mini-tutorial on
-  Pure. The interactive facilities of the Pure interpreter are discussed in
-  the <hlink|Interactive Usage|#interactive-usage> section, while the
-  <hlink|Batch Compilation|#batch-compilation> section explains how to
-  translate Pure programs to native executables and a number of other object
-  file formats. The <hlink|Caveats and Notes|#caveats-and-notes> section
-  discusses useful tips and tricks, as well as various pitfalls and how to
-  avoid them. The manual concludes with some authorship and licensing
-  information and pointers to related software.
+  and subsequent sections, including an extensive <hlink|Examples|#examples>
+  section which can serve as a mini-tutorial on Pure. The interactive
+  facilities of the Pure interpreter are discussed in the <hlink|Interactive
+  Usage|#interactive-usage> section, while the <hlink|Batch
+  Compilation|#batch-compilation> section explains how to translate Pure
+  programs to native executables and a number of other object file formats.
+  The <hlink|Caveats and Notes|#caveats-and-notes> section discusses useful
+  tips and tricks, as well as various pitfalls and how to avoid them. The
+  manual concludes with some authorship and licensing information and
+  pointers to related software.
 
   <subsubsection|Further Reading<label|further-reading>>
 
@@ -145,10 +145,10 @@
   programming, so at least some familiarity with this programming style is
   assumed. If Pure is your first functional language then you might want to
   look at the <hlink|Functional Programming|http://en.wikipedia.org/wiki/Functional-programming>
-  wikipedia article to see what it is all about and find pointers to
-  current literature on the subject. In any case we hope that you'll find
-  Pure helpful in exploring functional programming, as it is fairly easy to
-  learn but a very powerful language.
+  wikipedia article to see what it is all about and find pointers to current
+  literature on the subject. In any case we hope that you'll find Pure
+  helpful in exploring functional programming, as it is fairly easy to learn
+  but a very powerful language.
 
   As already mentioned, Pure uses term rewriting as its underlying
   computational model, which goes well beyond functional programming in some
@@ -372,7 +372,7 @@
   <\description>
     <item*|--escape char<label|cmdoption-pure--escape>>Interactive commands
     are prefixed with the specified character. Permitted prefixes are:
-    <verbatim|!$%&*,:\<less\>\<gtr\>@\\\|>.
+    <verbatim|!$%&*,:\<\>@\\\|>.
   </description>
 
   <\description>
@@ -517,15 +517,15 @@
   Options and source files are processed in the order in which they are given
   on the command line. Processing of options and source files ends when
   either the <hlink|<em|-->|#cmdoption-pure--> or the
-  <hlink|<em|-x>|#cmdoption-pure-x> option is encountered, or after the
-  first script (non-option) argument in <with|font-series|bold|script mode>
-  (i.e., if none of the options <hlink|<em|-b>|#cmdoption-pure-b>,
+  <hlink|<em|-x>|#cmdoption-pure-x> option is encountered, or after the first
+  script (non-option) argument in <with|font-series|bold|script mode> (i.e.,
+  if none of the options <hlink|<em|-b>|#cmdoption-pure-b>,
   <hlink|<em|-i>|#cmdoption-pure-i>, <hlink|<em|--ctags>|#cmdoption-pure--ctags>
   and <hlink|<em|--etags>|#cmdoption-pure--etags> is present). In either
   case, any remaining parameters are passed to the executing script by means
   of the global <hlink|<with|font-family|tt|argc>|#argc> and
-  <hlink|<with|font-family|tt|argv>|#argv> variables, denoting the number
-  of arguments and the list of the actual parameter strings, respectively. In
+  <hlink|<with|font-family|tt|argv>|#argv> variables, denoting the number of
+  arguments and the list of the actual parameter strings, respectively. In
   script mode this also includes the script name as <verbatim|argv!0>.
 
   Script mode is useful, in particular, to turn Pure scripts into executable
@@ -568,16 +568,16 @@
   If available, the prelude script prelude.pure is loaded by the interpreter
   prior to any other definitions, unless the
   <hlink|<em|-n>|#cmdoption-pure-n> or <hlink|<em|--noprelude>|#cmdoption-pure--noprelude>
-  option is specified. The prelude is searched for in the directory
-  specified with the <label|index-0><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
-  environment variable. If the <label|index-1><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
-  variable is not set, a system-specific default is used. Relative
-  pathnames of other source scripts specified on the command line are
-  interpreted relative to the current working directory. In addition, the
-  executed program may load other scripts and libraries via a
-  <hlink|<with|font-family|tt|using>|#using> declaration in the source,
-  which are searched for in a number of locations, including the directories
-  named with the <hlink|<em|-I>|#cmdoption-pure-I> and
+  option is specified. The prelude is searched for in the directory specified
+  with the<label|index-0><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+  environment variable. If the<label|index-1><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+  variable is not set, a system-specific default is used. Relative pathnames
+  of other source scripts specified on the command line are interpreted
+  relative to the current working directory. In addition, the executed
+  program may load other scripts and libraries via a
+  <hlink|<with|font-family|tt|using>|#using> declaration in the source, which
+  are searched for in a number of locations, including the directories named
+  with the <hlink|<em|-I>|#cmdoption-pure-I> and
   <hlink|<em|-L>|#cmdoption-pure-L> options; see the
   <hlink|Declarations|#declarations> and <hlink|C Interface|#c-interface>
   sections for details.
@@ -595,9 +595,9 @@
   Pure's LLVM backend does ``lazy JIT compilation'' by default, meaning that
   each function (global or local) is compiled no sooner than it is run for
   the first time. With the <hlink|<em|--eager-jit>|#cmdoption-pure--eager-jit>
-  option, however, it will also compile all other (global or local)
-  functions that may be called by the compiled function. (The
-  <label|index-2><hlink|<with|font-family|tt|PURE_EAGER_JIT>|#envvar-PURE-EAGER-JIT>
+  option, however, it will also compile all other (global or local) functions
+  that may be called by the compiled function.
+  (The<label|index-2><hlink|<with|font-family|tt|PURE_EAGER_JIT>|#envvar-PURE-EAGER-JIT>
   environment variable, when set to any value, has the same effect, so that
   you do not have to specify the <hlink|<em|--eager-jit>|#cmdoption-pure--eager-jit>
   option each time you run the interpreter.) Eager JIT compilation may be
@@ -610,8 +610,8 @@
   otherwise this option will be ignored.
 
   It is also possible to compile your scripts to native code beforehand,
-  using the <hlink|<em|-c>|#cmdoption-pure-c> batch compilation option.
-  This option forces the interpreter to batch mode (unless
+  using the <hlink|<em|-c>|#cmdoption-pure-c> batch compilation option. This
+  option forces the interpreter to batch mode (unless
   <hlink|<em|-i>|#cmdoption-pure-i> is specified as well, which overrides
   <hlink|<em|-c>|#cmdoption-pure-c>). Any scripts specified on the command
   line are then executed as usual, but after execution the interpreter takes
@@ -632,12 +632,12 @@
   on which it invokes the LLVM tools <with|font-series|bold|opt> and
   <with|font-series|bold|llc> to create a native assembler file, and then
   uses the C/C++ compiler (normally <with|font-series|bold|gcc>, but you can
-  change this with the <label|index-3><hlink|<with|font-family|tt|CC>|#envvar-CC>
-  and <label|index-4><hlink|<with|font-family|tt|CXX>|#envvar-CXX>
-  environment variables) to assemble and link the resulting program (if
-  requested). You can also specify additional libraries to be linked into the
-  executable with the <hlink|<em|-l>|#cmdoption-pure-l> option. If the
-  output filename is omitted, it defaults to a.out (a.exe on Windows).
+  change this with the<label|index-3><hlink|<with|font-family|tt|CC>|#envvar-CC>
+  and<label|index-4><hlink|<with|font-family|tt|CXX>|#envvar-CXX> environment
+  variables) to assemble and link the resulting program (if requested). You
+  can also specify additional libraries to be linked into the executable with
+  the <hlink|<em|-l>|#cmdoption-pure-l> option. If the output filename is
+  omitted, it defaults to a.out (a.exe on Windows).
 
   The <hlink|<em|-c>|#cmdoption-pure-c> option provides a convenient way to
   quickly turn a Pure script into a standalone executable which can be
@@ -648,16 +648,16 @@
   Pure installation (usually only the runtime library is required on the
   target system). On the other hand, compiled scripts also have some
   limitations, mostly concerning the use of the built-in
-  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> function. Please see
-  the <hlink|Batch Compilation|#batch-compilation> section for details.
+  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> function. Please see the
+  <hlink|Batch Compilation|#batch-compilation> section for details.
 
   The <verbatim|-v64> (or <verbatim|-v0100>) verbosity option can be used to
   have the interpreter print the commands it executes during compilation, see
   <hlink|Verbosity and Debugging Options|#verbosity-and-debugging-options>
-  below. When creating an object file, this also prints the suggested
-  linker command (including all the dynamic modules loaded by the script,
-  which also have to be linked in to create a working executable), to which
-  you only have to add the options describing the desired output file.
+  below. When creating an object file, this also prints the suggested linker
+  command (including all the dynamic modules loaded by the script, which also
+  have to be linked in to create a working executable), to which you only
+  have to add the options describing the desired output file.
 
   <subsubsection|Tagging Scripts<label|tagging-scripts>>
 
@@ -680,19 +680,19 @@
   The desired name of the tags file can be specified with the
   <hlink|<em|-T>|#cmdoption-pure-T> option; it defaults to tags for
   <hlink|<em|--ctags>|#cmdoption-pure--ctags> and TAGS for
-  <hlink|<em|--etags>|#cmdoption-pure--etags> (which matches the default
-  tags file names used by <with|font-series|bold|vi> and
+  <hlink|<em|--etags>|#cmdoption-pure--etags> (which matches the default tags
+  file names used by <with|font-series|bold|vi> and
   <with|font-series|bold|emacs>, respectively).
 
   The tags file contains information about the global constant, variable,
   macro, function and operator symbols of all scripts specified on the
   command line, as well as the prelude and other scripts included via a
-  <hlink|<with|font-family|tt|using>|#using> clause. Tagged scripts which
-  are located in the same directory as the tags file (or, recursively, in one
-  of its subdirectories) are specified using relative pathnames, while
-  scripts outside this hierarchy (such as included scripts from the standard
-  library) are denoted with absolute pathnames. This scheme makes it possible
-  to move an entire directory together with its tags file and have the tags
+  <hlink|<with|font-family|tt|using>|#using> clause. Tagged scripts which are
+  located in the same directory as the tags file (or, recursively, in one of
+  its subdirectories) are specified using relative pathnames, while scripts
+  outside this hierarchy (such as included scripts from the standard library)
+  are denoted with absolute pathnames. This scheme makes it possible to move
+  an entire directory together with its tags file and have the tags
   information still work in the new location.
 
   <subsubsection|Running Interactively<label|running-interactively>>
@@ -727,9 +727,9 @@
   The interpreter also provides a simple source level debugger when run in
   interactive mode, see <hlink|Debugging|#debugging> for details. To enable
   the debugger, you need to specify the <hlink|<em|-g>|#cmdoption-pure-g>
-  option when invoking the interpreter. This option causes your script to
-  run <em|much> slower, so you should only use this option if you want to run
-  the debugger.
+  option when invoking the interpreter. This option causes your script to run
+  <em|much> slower, so you should only use this option if you want to run the
+  debugger.
 
   <subsubsection|Verbosity and Debugging Options<label|verbosity-and-debugging-options>>
 
@@ -827,15 +827,15 @@
     <item*|--nochecks<label|cmdoption-pure--nochecks>>Enable or disable
     various extra stack and signal checks. By default, the interpreter checks
     for stack overflows and pending signals on entry to every function, see
-    <hlink|Stack Size and Tail Recursion|#stack-size-and-tail-recursion>
-    and <hlink|Handling of Asynchronous
-    Signals|#handling-of-asynchronous-signals> for details. This is needed
-    to catch these conditions in a reliable way, so we recommend to leave
-    this enabled. However, these checks also make programs run a little
-    slower (typically some 5%, YMMV). If performance is critical then you can
-    disable the checks with the <hlink|<em|--nochecks>|#cmdoption-pure--nochecks>
-    option. (Even then, a minimal amount of checking will be done, usually
-    on entry to every global function.)
+    <hlink|Stack Size and Tail Recursion|#stack-size-and-tail-recursion> and
+    <hlink|Handling of Asynchronous Signals|#handling-of-asynchronous-signals>
+    for details. This is needed to catch these conditions in a reliable way,
+    so we recommend to leave this enabled. However, these checks also make
+    programs run a little slower (typically some 5%, YMMV). If performance is
+    critical then you can disable the checks with the
+    <hlink|<em|--nochecks>|#cmdoption-pure--nochecks> option. (Even then, a
+    minimal amount of checking will be done, usually on entry to every global
+    function.)
   </description>
 
   <\description>
@@ -845,9 +845,9 @@
     precomputing of constant values in batch compilation (cf.
     <hlink|Compiling Scripts|#compiling-scripts>). If enabled (which is the
     default), the values of constants in <hlink|<with|font-family|tt|const>|#const>
-    definitions are precomputed at compile time (if possible) and then
-    stored in the generated executable. This usually yields faster startup
-    times but bigger executables. You can disable this option with
+    definitions are precomputed at compile time (if possible) and then stored
+    in the generated executable. This usually yields faster startup times but
+    bigger executables. You can disable this option with
     <hlink|<em|--noconst>|#cmdoption-pure--noconst> to get smaller
     executables at the expense of slower startup times. Please see the
     <hlink|Batch Compilation|#batch-compilation> section for an example.
@@ -909,8 +909,8 @@
       a+1
     </verbatim>
 
-    The <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> option
-    changes this behaviour so that if a global function has <em|any> defining
+    The <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> option changes
+    this behaviour so that if a global function has <em|any> defining
     equations, then an attempt to invoke the function on a combination of
     arguments for which there is no applicable equation, raises an exception.
     So if the interpreter is invoked with
@@ -937,12 +937,11 @@
     advisable to run the interpreter with a global
     <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> option, except
     maybe for debugging purposes. More commonly
-    <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> is used as a
-    pragma in source code where it only applies to a specific collection of
-    function definitions. In addition, there's a
-    <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> pragma which
-    enables you to mark individual functions as ``defined functions'', see
-    below.
+    <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> is used as a pragma
+    in source code where it only applies to a specific collection of function
+    definitions. In addition, there's a <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
+    pragma which enables you to mark individual functions as ``defined
+    functions'', see below.
   </description>
 
   <\description>
@@ -953,8 +952,8 @@
     execute in constant stack space, so we recommend to leave this enabled.
     However, at the time of this writing LLVM's TCO support is still
     bug-ridden on some platforms, so the <hlink|<em|--notc>|#cmdoption-pure--notc>
-    option allows you to disable it. (Note that TCO can also be disabled
-    when compiling the Pure interpreter, in which case these options have no
+    option allows you to disable it. (Note that TCO can also be disabled when
+    compiling the Pure interpreter, in which case these options have no
     effect; see the <hlink|<em|installation instructions>|install.tm> for
     details.)
   </description>
@@ -998,10 +997,10 @@
     the given function symbol <verbatim|fun> should never be stripped from
     the program. This is useful, e.g., if a function is never called
     explicitly but only through <hlink|<with|font-family|tt|eval>|purelib.tm#eval>.
-    Adding a <hlink|<em|--required>|#cmdoption-pure-pragma--required>
-    pragma for the function then makes sure that the function is always
-    linked into the program. Please see the <hlink|Batch
-    Compilation|#batch-compilation> section for an example.
+    Adding a <hlink|<em|--required>|#cmdoption-pure-pragma--required> pragma
+    for the function then makes sure that the function is always linked into
+    the program. Please see the <hlink|Batch Compilation|#batch-compilation>
+    section for an example.
   </description>
 
   <\description>
@@ -1071,8 +1070,7 @@
   <em|undefined> and <em|enabled>. An option becomes <em|defined> as soon as
   it is set explicitly, either with an environment variable or one of the
   <hlink|<em|--enable>|#cmdoption-pure-pragma--enable> and
-  <hlink|<em|--disable>|#cmdoption-pure-pragma--disable> pragmas, see
-  below.
+  <hlink|<em|--disable>|#cmdoption-pure-pragma--disable> pragmas, see below.
 
   You can define the value of an option by setting a corresponding
   environment variable <verbatim|PURE_OPTION_OPT>, where <verbatim|OPT> is
@@ -1120,8 +1118,8 @@
     <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
     <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef>,
     <hlink|<em|--if>|#cmdoption-pure-pragma--if> or
-    <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> section was
-    excluded, and vice versa.
+    <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> section was excluded,
+    and vice versa.
   </description>
 
   <\description>
@@ -1133,11 +1131,10 @@
   <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
   <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef>,
   <hlink|<em|--if>|#cmdoption-pure-pragma--if> or
-  <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> pragma must be
-  followed by a matching <hlink|<em|--endif>|#cmdoption-pure-pragma--endif>.
-  The <hlink|<em|--else>|#cmdoption-pure-pragma--else> section is optional;
-  if present, it applies to the most recent
-  <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
+  <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> pragma must be followed
+  by a matching <hlink|<em|--endif>|#cmdoption-pure-pragma--endif>. The
+  <hlink|<em|--else>|#cmdoption-pure-pragma--else> section is optional; if
+  present, it applies to the most recent <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
   <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef>,
   <hlink|<em|--if>|#cmdoption-pure-pragma--if> or
   <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> section not terminated
@@ -1149,10 +1146,10 @@
   them.
 
   The <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef> and
-  <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef> pragmas are
-  typically used to change the default of an option without clobbering
-  defaults set by the user through an environment variable or a command line
-  option. For instance:
+  <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef> pragmas are typically
+  used to change the default of an option without clobbering defaults set by
+  the user through an environment variable or a command line option. For
+  instance:
 
   <\verbatim>
     #! --ifndef opt
@@ -1317,8 +1314,8 @@
 
     <item>Last but not least, the interpreter always defines the target
     triplet of the host system as an option symbol. This is the same as what
-    <hlink|<with|font-family|tt|sysinfo>|#sysinfo> returns, so you can
-    check for a specific system like this:
+    <hlink|<with|font-family|tt|sysinfo>|#sysinfo> returns, so you can check
+    for a specific system like this:
 
     <\verbatim>
       #! --if x86_64-unknown-linux-gnu
@@ -1385,8 +1382,8 @@
 
   (The same could also be achieved with conditional compilation, but only
   much more clumsily. However, note that <hlink|<em|--rewarn>|#cmdoption-pure-pragma--rewarn>
-  only provides a single level of ``backup'', so nesting such sections is
-  not supported.)
+  only provides a single level of ``backup'', so nesting such sections is not
+  supported.)
 
   <subsubsection|Startup Files<label|startup-files>>
 
@@ -1422,18 +1419,17 @@
   </description>
 
   <\description>
-    <item*|BROWSER<label|envvar-BROWSER>>If the
-    <label|index-5><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
-    variable is not set (see below), this specifies a colon-separated list
-    of browsers to try for reading the online documentation. See
+    <item*|BROWSER<label|envvar-BROWSER>>If
+    the<label|index-5><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
+    variable is not set (see below), this specifies a colon-separated list of
+    browsers to try for reading the online documentation. See
     <hlink|http://catb.org/<math|\<sim\>>esr/BROWSER/|http://catb.org/-tildeesr/BROWSER/>.
   </description>
 
   <\description>
     <item*|PURELIB<label|envvar-PURELIB>>Directory to search for library
-    scripts, including the prelude. If <label|index-6><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
-    is not set, it defaults to some location specified at installation
-    time.
+    scripts, including the prelude. If<label|index-6><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+    is not set, it defaults to some location specified at installation time.
   </description>
 
   <\description>
@@ -1468,7 +1464,7 @@
   <\description>
     <item*|PURE_MORE<label|envvar-PURE-MORE>>Shell command to be used for
     paging through output of the <verbatim|show> command, when the
-    interpreter runs in interactive mode. <label|index-7><verbatim|PURE_LESS>
+    interpreter runs in interactive mode.<label|index-7><verbatim|PURE_LESS>
     does the same for evaluation results printed by the interpreter.
   </description>
 
@@ -1544,7 +1540,7 @@
 
   A few ASCII symbols are reserved for special uses, namely the semicolon,
   the ``at'' symbol <verbatim|@>, the equals sign <verbatim|=>, the backslash
-  <verbatim|\\>, the Unix pipe symbol <verbatim|\|>, parentheses
+  <verbatim|<>>, the Unix pipe symbol <verbatim|\|>, parentheses
   <verbatim|()>, brackets <verbatim|[]> and curly braces <verbatim|{}>.
   (Among these, only the semicolon is a ``hard delimiter'' which is always a
   lexeme by itself; the other symbols can be used inside operator symbols.)
@@ -1676,19 +1672,19 @@
   </verbatim>
 
   Special escape sequences may be used to denote double quotes and
-  backslashes (<verbatim|\\">, <verbatim|\\\\>), control characters
-  (<verbatim|\\b>, <verbatim|\\f>, <verbatim|\\n>, <verbatim|\\r>,
-  <verbatim|\\t>, these have the same meaning as in C), and arbitrary Unicode
+  backslashes (<verbatim|<">>, <verbatim|<next-line>>), control characters
+  (<verbatim|<b>>, <verbatim|<f>>, <verbatim|<n>>, <verbatim|<r>>,
+  <verbatim|<t>>, these have the same meaning as in C), and arbitrary Unicode
   characters given by their number or <hlink|XML entity
-  name|http://www.w3.org/TR/xml-entity-names/> (e.g., <verbatim|\\169>,
-  <verbatim|\\0xa9> and <verbatim|\\&copy;> all denote the Unicode copyright
+  name|http://www.w3.org/TR/xml-entity-names/> (e.g., <verbatim|<169>>,
+  <verbatim|<0xa9>> and <verbatim|<&copy;>> all denote the Unicode copyright
   character, code point U+00A9). As indicated, numeric escapes can be
   specified in any of the supported bases for integer literals. For
   disambiguating purposes, these can also be enclosed in parentheses. E.g.,
   <verbatim|"\\(123)4"> is a string consisting of the character
-  <verbatim|\\123> followed by the digit <verbatim|4>. Strings can also be
+  <verbatim|<123>> followed by the digit <verbatim|4>. Strings can also be
   continued across line ends by escaping the line end with a backslash. The
-  escaped line end is ignored (use <verbatim|\\n> if you need to embed a
+  escaped line end is ignored (use <verbatim|<n>> if you need to embed a
   newline in a string). For instance,
 
   <\verbatim>
@@ -1723,12 +1719,12 @@
   positive integer. Note the <verbatim|n::int> construct on the left-hand
   side, which means that the equation is restricted to (machine) integers
   <verbatim|n>. This construct is also called a ``type tag'' in Pure
-  parlance. In addition, the <verbatim|n\<gtr\>0> in the condition part of
-  the second equation ensures that <verbatim|n> is positive. If these
-  conditions are met, the equation becomes applicable and we recursively
-  compute <verbatim|fact> <verbatim|(n-1)> and multiply by <verbatim|n> to
-  obtain the result. The <verbatim|fact> function thus computes the product
-  of all positive integers up to <verbatim|n>, which is indeed just how the
+  parlance. In addition, the <verbatim|n\>0> in the condition part of the
+  second equation ensures that <verbatim|n> is positive. If these conditions
+  are met, the equation becomes applicable and we recursively compute
+  <verbatim|fact> <verbatim|(n-1)> and multiply by <verbatim|n> to obtain the
+  result. The <verbatim|fact> function thus computes the product of all
+  positive integers up to <verbatim|n>, which is indeed just how the
   factorial is defined in mathematics.
 
   To give this definition a try, you can just enter it at the command prompt
@@ -1745,8 +1741,8 @@
   </verbatim>
 
   On the surface, Pure is quite similar to other modern functional languages
-  like <hlink|Haskell|#haskell> and <hlink|ML|#ml>. But under the hood it
-  is a much more dynamic language, more akin to Lisp. In particular, Pure is
+  like <hlink|Haskell|#haskell> and <hlink|ML|#ml>. But under the hood it is
+  a much more dynamic language, more akin to Lisp. In particular, Pure is
   dynamically typed, so functions can process arguments of as many different
   types as you like. In fact, you can add to the definition of an existing
   function at any time. For instance, we can extend our example above to make
@@ -1832,10 +1828,10 @@
   <verbatim|3>. This matches both equations of our generic definition of
   <verbatim|fact> from above, with <verbatim|n> bound to <verbatim|3>. But
   the condition <verbatim|3==0> of the first equation fails, so we come to
-  consider the second equation, whose condition <verbatim|3\<gtr\>0> holds.
-  Thus we can perform the reduction <verbatim|fact> <verbatim|3>
-  <verbatim|==\<gtr\>> <verbatim|3*fact> <verbatim|(3-1)> and then evaluate
-  the new target term <verbatim|3*fact> <verbatim|(3-1)> recursively.
+  consider the second equation, whose condition <verbatim|3\>0> holds. Thus
+  we can perform the reduction <verbatim|fact> <verbatim|3> <verbatim|==\>>
+  <verbatim|3*fact> <verbatim|(3-1)> and then evaluate the new target term
+  <verbatim|3*fact> <verbatim|(3-1)> recursively.
 
   At this point, we have to decide which of the several subterms we should
   reduce first. This is also called the <with|font-series|bold|reduction
@@ -2039,8 +2035,8 @@
   Function application binds stronger than all operators. Parentheses can be
   used to group expressions and override default precedences as usual.
 
-  <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<cwith|1|1|1|-1|cell-bborder|1ln>|<table|<row|<cell|Type>|<cell|Example>|<cell|Description>>|<row|<cell|Block>|<cell|<verbatim|\\x>
-  <verbatim|y-\<gtr\>2*x-y>>|<cell|anonymous function
+  <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<cwith|1|1|1|-1|cell-bborder|1ln>|<table|<row|<cell|Type>|<cell|Example>|<cell|Description>>|<row|<cell|Block>|<cell|<verbatim|<x>>
+  <verbatim|y-\>2*x-y>>|<cell|anonymous function
   (lambda)>>|<row|<cell|>|<cell|<verbatim|case> <verbatim|f> <verbatim|u>
   <verbatim|of> <verbatim|x,y> <verbatim|=> <verbatim|x+y>
   <verbatim|end>>|<cell|case expression>>|<row|<cell|>|<cell|<verbatim|x+y>
@@ -2048,8 +2044,8 @@
   <verbatim|end>>|<cell|local variable definition>>|<row|<cell|>|<cell|<verbatim|f>
   <verbatim|u> <verbatim|with> <verbatim|f> <verbatim|(x,y)> <verbatim|=>
   <verbatim|x+y> <verbatim|end>>|<cell|local function
-  definition>>|<row|<cell|Conditional>|<cell|<verbatim|if>
-  <verbatim|x\<gtr\>0> <verbatim|then> <verbatim|x> <verbatim|else>
+  definition>>|<row|<cell|Conditional>|<cell|<verbatim|if> <verbatim|x\>0>
+  <verbatim|then> <verbatim|x> <verbatim|else>
   <verbatim|-x>>|<cell|conditional expression>>|<row|<cell|Simple>|<cell|<verbatim|x+y>,
   <verbatim|-x>, <verbatim|x> <verbatim|mod> <verbatim|y>>|<cell|operator
   application>>|<row|<cell|>|<cell|<verbatim|sin> <verbatim|x>,
@@ -2061,7 +2057,7 @@
   symbol>>|<row|<cell|>|<cell|<verbatim|[1,2,3]>,
   <verbatim|(1,2,3)>>|<cell|list and tuple>>|<row|<cell|>|<cell|<verbatim|{1,2;3,4}>>|<cell|matrix>>|<row|<cell|>|<cell|<verbatim|[x,-y>
   <verbatim|\|> <verbatim|x=1..n;> <verbatim|y=1..m;>
-  <verbatim|x\<less\>y]>>|<cell|list comprehension>>|<row|<cell|>|<cell|<verbatim|{i==j>
+  <verbatim|x\<y]>>|<cell|list comprehension>>|<row|<cell|>|<cell|<verbatim|{i==j>
   <verbatim|\|> <verbatim|i=1..n;> <verbatim|j=1..m}>>|<cell|matrix
   comprehension>>>>>
 
@@ -2148,9 +2144,9 @@
   <hlink|<with|font-family|tt|true>|purelib.tm#true> to denote these. Pure
   also supports generic C pointers, but these don't have a syntactic
   representation in Pure, except that the predefined constant
-  <hlink|<with|font-family|tt|NULL>|purelib.tm#NULL> may be used to denote
-  a generic null pointer; other pointer values need to be created with
-  external C functions.
+  <hlink|<with|font-family|tt|NULL>|purelib.tm#NULL> may be used to denote a
+  generic null pointer; other pointer values need to be created with external
+  C functions.
 
   Together, these atomic types of expressions make up most of Pure's
   <with|font-series|bold|primary expression> syntax. Pure also provides
@@ -2205,10 +2201,10 @@
     infix, prefix and postfix operators, Pure also provides outfix (bracket)
     and nonfix (nullary operator) symbols. (Nonfix symbols actually work more
     or less like ordinary identifiers, but the
-    <hlink|<with|font-family|tt|nonfix>|#nonfix> attribute tells the
-    compiler that when such a symbol occurs on the left-hand side of an
-    equation, it is always to be interpreted as a literal, cf. <hlink|The
-    ``Head = Function'' Rule|#the-head-function-rule>.)
+    <hlink|<with|font-family|tt|nonfix>|#nonfix> attribute tells the compiler
+    that when such a symbol occurs on the left-hand side of an equation, it
+    is always to be interpreted as a literal, cf. <hlink|The ``Head =
+    Function'' Rule|#the-head-function-rule>.)
 
     Operator (and nonfix) symbols may take the form of an identifier or a
     sequence of punctuation characters, which may optionally be qualified
@@ -2260,8 +2256,8 @@
     elaborate hierarchical structure is needed. They are constructed using
     the infix ``pairing'' operator `<hlink|<with|font-family|tt|,>|purelib.tm#,>`,
     for which the empty tuple <hlink|<with|font-family|tt|()>|purelib.tm#()>
-    acts as a neutral element (i.e., <verbatim|(),x> is just <verbatim|x>,
-    as is <verbatim|x,()>). Pairs always associate to the right, meaning that
+    acts as a neutral element (i.e., <verbatim|(),x> is just <verbatim|x>, as
+    is <verbatim|x,()>). Pairs always associate to the right, meaning that
     <verbatim|x,y,z> <verbatim|=> <verbatim|x,(y,z)> <verbatim|=>
     <verbatim|(x,y),z>, where <verbatim|x,(y,z)> is the normalized
     representation. These rules imply that tuples can't be nested and that
@@ -2313,8 +2309,7 @@
     write the 2x2 matrix <verbatim|{1,2;3,4}>. Row vectors are denoted as 1 x
     <verbatim|n> matrices (<verbatim|{1,2,3}>), column vectors as
     <verbatim|n> x 1 matrices (<verbatim|{1;2;3}>). More examples can be
-    found in the <hlink|Matrices and Vectors|#matrices-and-vectors>
-    section.
+    found in the <hlink|Matrices and Vectors|#matrices-and-vectors> section.
 
     Pure supports both numeric and symbolic matrices. The former are
     homogeneous arrays of double, complex double or (machine) int matrices,
@@ -2344,15 +2339,15 @@
     Thus, for instance, <verbatim|[f> <verbatim|x> <verbatim|\|>
     <verbatim|x=1..n]> is pretty much the same as <verbatim|map> <verbatim|f>
     <verbatim|(1..n)>, while <verbatim|[x> <verbatim|\|> <verbatim|x=xs;>
-    <verbatim|x\<gtr\>0]> corresponds to <verbatim|filter>
-    <verbatim|(\<gtr\>0)> <verbatim|xs>. However, comprehensions are
-    considerably more general in that they allow you to draw values from
-    different kinds of aggregates including lists, matrices and strings.
-    Also, matrix comprehensions alternate between row and column generation
-    so that most common mathematical abbreviations carry over quite easily.
-    Patterns can be used on the left-hand side of generator clauses as usual,
-    and will be matched against the actual list or matrix elements; any
-    unmatched elements are filtered out automatically, like in Haskell.
+    <verbatim|x\>0]> corresponds to <verbatim|filter> <verbatim|(\>0)>
+    <verbatim|xs>. However, comprehensions are considerably more general in
+    that they allow you to draw values from different kinds of aggregates
+    including lists, matrices and strings. Also, matrix comprehensions
+    alternate between row and column generation so that most common
+    mathematical abbreviations carry over quite easily. Patterns can be used
+    on the left-hand side of generator clauses as usual, and will be matched
+    against the actual list or matrix elements; any unmatched elements are
+    filtered out automatically, like in Haskell.
 
     More details and examples can be found in the <hlink|Examples|#examples>
     section; in particular, see <hlink|List
@@ -2418,9 +2413,9 @@
 
   The common operator symbols like <verbatim|+>, <verbatim|->, <verbatim|*>,
   <verbatim|/> etc. are all declared at the beginning of the prelude, see the
-  <hlink|<em|Pure Library Manual>|purelib.tm> for a list of these.
-  Arithmetic and relational operators mostly follow C conventions. However,
-  since <verbatim|!>, <verbatim|&> and <verbatim|\|> are used for other
+  <hlink|<em|Pure Library Manual>|purelib.tm> for a list of these. Arithmetic
+  and relational operators mostly follow C conventions. However, since
+  <verbatim|!>, <verbatim|<line-sep>> and <verbatim|\|> are used for other
   purposes in Pure, the logical and bitwise operations, as well as the
   negated equality predicates are named a bit differently: <verbatim|~>,
   <verbatim|&&> and <verbatim|\|\|> denote logical negation, conjunction and
@@ -2464,10 +2459,9 @@
     left-hand side pattern <verbatim|x> and then evaluates the right-hand
     side body <verbatim|y> with the variables in <verbatim|x> bound to their
     corresponding values. Pure supports multiple-argument lambdas (e.g,
-    <verbatim|\\x> <verbatim|y> <verbatim|-\<gtr\>> <verbatim|x*y>), as well
-    as pattern-matching lambda abstractions such as <verbatim|\\(x,y)>
-    <verbatim|-\<gtr\>> <verbatim|x*y>. A
-    <hlink|<with|font-family|tt|failed_match>|purelib.tm#failed-match>
+    <verbatim|<x>> <verbatim|y> <verbatim|-\>> <verbatim|x*y>), as well as
+    pattern-matching lambda abstractions such as <verbatim|<(x,y)>>
+    <verbatim|-\>> <verbatim|x*y>. A <hlink|<with|font-family|tt|failed_match>|purelib.tm#failed-match>
     exception is raised if the actual arguments do not match the given
     patterns.
   </description>
@@ -2491,7 +2485,7 @@
     corresponding patterns, similar to <hlink|Aardappel|#aardappel>`s
     <verbatim|when> construct. A single binding <verbatim|x> <verbatim|when>
     <verbatim|u> <verbatim|=> <verbatim|v> <verbatim|end> is equivalent to
-    the lambda expression <verbatim|(\\u> <verbatim|-\<gtr\>> <verbatim|x)>
+    the lambda expression <verbatim|(\\u> <verbatim|-\>> <verbatim|x)>
     <verbatim|v> or the <verbatim|case> expression <verbatim|case>
     <verbatim|v> <verbatim|of> <verbatim|u> <verbatim|=> <verbatim|x>
     <verbatim|end>, so it matches <verbatim|v> against the pattern
@@ -2637,9 +2631,9 @@
     </verbatim>
 
     We mention in passing here that the same effect can be achieved with a
-    <hlink|<with|font-family|tt|when>|#when> clause, which also allows you
-    to execute a function solely for its side-effects and just ignore the
-    return value:
+    <hlink|<with|font-family|tt|when>|#when> clause, which also allows you to
+    execute a function solely for its side-effects and just ignore the return
+    value:
 
     <\verbatim>
       \<gtr\> scanf "%g" when puts "Enter a number:" end;
@@ -2653,11 +2647,11 @@
   </description>
 
   <\description>
-    <item*|x &<label|-amp>>The <hlink|<with|font-family|tt|&>|#-amp>
-    operator does lazy evaluation. This is the only postfix operator
-    defined in the standard prelude. It turns its operand into a kind of
-    parameterless anonymous closure, deferring its evaluation. These kinds of
-    objects are also commonly known as <with|font-series|bold|thunks> or
+    <item*|x &<label|-amp>>The <hlink|<with|font-family|tt|&>|#-amp> operator
+    does lazy evaluation. This is the only postfix operator defined in the
+    standard prelude. It turns its operand into a kind of parameterless
+    anonymous closure, deferring its evaluation. These kinds of objects are
+    also commonly known as <with|font-series|bold|thunks> or
     <with|font-series|bold|futures>. When the value of a future is actually
     needed (during pattern-matching, or when the value becomes an argument of
     a C call), it is evaluated automatically and gets memoized, i.e., the
@@ -2722,8 +2716,8 @@
   </verbatim>
 
   These elements are discussed in more detail in the <hlink|Rule
-  Syntax|#rule-syntax> section. Also, a few additional toplevel elements
-  are part of the declaration syntax, see <hlink|Declarations|#declarations>.
+  Syntax|#rule-syntax> section. Also, a few additional toplevel elements are
+  part of the declaration syntax, see <hlink|Declarations|#declarations>.
 
   <\description>
     <item*|lhs = rhs;>Rewriting rules always combine a left-hand side pattern
@@ -2731,14 +2725,14 @@
     any kind of Pure expression described above). The same format is also
     used in <hlink|<with|font-family|tt|with>|#with>,
     <hlink|<with|font-family|tt|when>|#when> and
-    <hlink|<with|font-family|tt|case>|#case> expressions. In toplevel
-    rules, <hlink|<with|font-family|tt|with>|#with> and
-    <hlink|<with|font-family|tt|case>|#case> expressions, this basic form
-    can also be augmented with a condition <verbatim|if> <verbatim|guard>
-    tacked on to the end of the rule, where <verbatim|guard> is an integer
+    <hlink|<with|font-family|tt|case>|#case> expressions. In toplevel rules,
+    <hlink|<with|font-family|tt|with>|#with> and
+    <hlink|<with|font-family|tt|case>|#case> expressions, this basic form can
+    also be augmented with a condition <verbatim|if> <verbatim|guard> tacked
+    on to the end of the rule, where <verbatim|guard> is an integer
     expression which determines whether the rule is applicable. Moreover, the
-    keyword <hlink|<with|font-family|tt|otherwise>|#otherwise> may be used
-    to denote an empty guard which is always true (this is syntactic sugar to
+    keyword <hlink|<with|font-family|tt|otherwise>|#otherwise> may be used to
+    denote an empty guard which is always true (this is syntactic sugar to
     point out the ``default'' case of a definition; the interpreter just
     treats this as a comment). Pure also provides some abbreviations for
     factoring out common left-hand or right-hand sides in collections of
@@ -2782,9 +2776,9 @@
     simply stand for themselves!) Like <hlink|<with|font-family|tt|let>|#let>,
     this construct binds the variable symbols on the left-hand side to the
     corresponding values on the right-hand side (after evaluation). The
-    difference is that <hlink|<with|font-family|tt|const>|#const> symbols
-    can only be defined once, and thus their values do not change during
-    program execution. This also allows the compiler to apply some special
+    difference is that <hlink|<with|font-family|tt|const>|#const> symbols can
+    only be defined once, and thus their values do not change during program
+    execution. This also allows the compiler to apply some special
     optimizations such as constant folding.
   </description>
 
@@ -2814,7 +2808,7 @@
   The precise scoping rules for the different constructs are as follows:
 
   <\itemize>
-    <item><verbatim|\\x> <verbatim|-\<gtr\>> <verbatim|y>: The scope of the
+    <item><verbatim|<x>> <verbatim|-\>> <verbatim|y>: The scope of the
     variables bound by the pattern <verbatim|x> is the lambda body
     <verbatim|y>.
 
@@ -3222,8 +3216,8 @@
   is possible to declare an identifier as a
   <hlink|<with|font-family|tt|nonfix>|#nonfix> symbol so that it will be
   interpreted as a literal function symbol even if it occurs in a variable
-  position, see <hlink|Symbol Declarations|#symbol-declarations> for
-  details. For instance:
+  position, see <hlink|Symbol Declarations|#symbol-declarations> for details.
+  For instance:
 
   <\verbatim>
     nonfix nil;
@@ -3443,8 +3437,8 @@
     <verbatim|matrix>, <verbatim|pointer>, or an identifier denoting a
     user-defined data type. The variable can then match only values of the
     designated type. Thus, for instance, `<verbatim|x::int>` only matches
-    machine integers. See the <hlink|Type Tags|#type-tags> section below
-    for details.
+    machine integers. See the <hlink|Type Tags|#type-tags> section below for
+    details.
   </itemize>
 
   To these ends, the expression syntax is augmented with the following
@@ -3945,9 +3939,9 @@
   indirect way through so-called <hlink|interface types|#interface-types>
   from which the corresponding type rules are derived automatically. These
   are part of Pure's declaration syntax and thus will be discussed later in
-  the <hlink|Declarations|#declarations> section. In this section we focus
-  on how you can write your own type rules in order to define types in a
-  direct fashion.
+  the <hlink|Declarations|#declarations> section. In this section we focus on
+  how you can write your own type rules in order to define types in a direct
+  fashion.
 
   The identifier in the head of the left-hand side of a type rule is the name
   of the type which can then be used as a type tag in other equations, cf.
@@ -4346,16 +4340,16 @@
   <subsection|Examples<label|examples>>
 
   This section assumes that you've read the <hlink|Pure
-  Overview|#pure-overview> and <hlink|Rule Syntax|#rule-syntax> sections,
-  so that you are familiar with the basic elements of the Pure language. We
-  now bring the pieces together and show you how simple but typical problems
-  can be solved using Pure. You might use this section as a mini-tutorial on
-  the Pure language. As we haven't discussed the more advanced elements of
-  the Pure language yet, the scope of this section is necessarily limited.
-  But it should give you a pretty good idea of how Pure programs looks like.
-  After working through these examples you should be able to write useful
-  Pure programs and understand the more advanced features discussed in
-  subsequent sections.
+  Overview|#pure-overview> and <hlink|Rule Syntax|#rule-syntax> sections, so
+  that you are familiar with the basic elements of the Pure language. We now
+  bring the pieces together and show you how simple but typical problems can
+  be solved using Pure. You might use this section as a mini-tutorial on the
+  Pure language. As we haven't discussed the more advanced elements of the
+  Pure language yet, the scope of this section is necessarily limited. But it
+  should give you a pretty good idea of how Pure programs looks like. After
+  working through these examples you should be able to write useful Pure
+  programs and understand the more advanced features discussed in subsequent
+  sections.
 
   <subsubsection|Hello, World<label|hello-world>>
 
@@ -4394,8 +4388,8 @@
   line. To these ends, just follow the script name with the required
   parameters. The interpreter makes the command line parameters (including
   the script name) available as a list of strings in the
-  <hlink|<with|font-family|tt|argv>|#argv> variable. For instance, here is
-  a version of the ``hello world'' program which uses
+  <hlink|<with|font-family|tt|argv>|#argv> variable. For instance, here is a
+  version of the ``hello world'' program which uses
   <hlink|<with|font-family|tt|printf>|purelib.tm#printf> to print the line
   <verbatim|Hello,> <verbatim|foo!> where <verbatim|foo> is whatever was
   specified as the first command line parameter:
@@ -4417,8 +4411,8 @@
   Of course, many real-world programs will require more elaborate processing
   of command line parameters, such as recognizing program options. We won't
   discuss this here, but you can have a look at the
-  <hlink|<with|font-family|tt|getopt>|purelib.tm#module-getopt> module
-  which provides that kind of functionality in a convenient package.
+  <hlink|<with|font-family|tt|getopt>|purelib.tm#module-getopt> module which
+  provides that kind of functionality in a convenient package.
 
   <paragraph|Executable Scripts<label|executable-scripts>>
 
@@ -4487,7 +4481,7 @@
   This has the advantage that you don't have to hardcode the path to the Pure
   interpreter into the shebang; the <verbatim|/usr/bin/env> utility will
   locate the interpreter for you, provided that it is installed somewhere on
-  the system <label|index-8><verbatim|PATH>.
+  the system<label|index-8><verbatim|PATH>.
 
   <paragraph|Compiled Scripts<label|compiled-scripts>>
 
@@ -4497,9 +4491,9 @@
   the <hlink|<em|installation instructions>|install.tm> for details). The
   result is a real native executable which can then be run directly just like
   any other binary program on your system. To these ends, the interpreter is
-  run with the <hlink|<em|-c>|#cmdoption-pure-c> option which tells it to
-  run in batch compilation mode, and the <hlink|<em|-o>|#cmdoption-pure-o>
-  option which specifies the desired name of the executable. For instance:
+  run with the <hlink|<em|-c>|#cmdoption-pure-c> option which tells it to run
+  in batch compilation mode, and the <hlink|<em|-o>|#cmdoption-pure-o> option
+  which specifies the desired name of the executable. For instance:
 
   <\verbatim>
     $ pure -c hello.pure -o hello
@@ -4569,7 +4563,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.58
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.59
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2013 by
@@ -4835,8 +4829,8 @@
   working with the interpreter, and you can even define your own. These
   interactive commands are special; they have their own syntax and need to be
   typed on a separate line. Please refer to <hlink|Interactive
-  Usage|#interactive-usage> for a detailed explanation of the command
-  syntax and the available commands.
+  Usage|#interactive-usage> for a detailed explanation of the command syntax
+  and the available commands.
 
   <subsubsection|Basic Examples<label|basic-examples>>
 
@@ -4963,10 +4957,10 @@
   </verbatim>
 
   Also note that many of the standard math functions are available in a
-  separate <hlink|<with|font-family|tt|math>|purelib.tm#module-math>
-  module, so we need to import that module if we want to use one of these
-  (see <hlink|Modules and Imports|#modules-and-imports> for a detailed
-  explanation of Pure's module system). For instance:
+  separate <hlink|<with|font-family|tt|math>|purelib.tm#module-math> module,
+  so we need to import that module if we want to use one of these (see
+  <hlink|Modules and Imports|#modules-and-imports> for a detailed explanation
+  of Pure's module system). For instance:
 
   <\verbatim>
     \<gtr\> using math;
@@ -5037,9 +5031,9 @@
     2.44948974278318
   </verbatim>
 
-  The <hlink|<with|font-family|tt|map>|purelib.tm#map> function lets us
-  apply a function to each member of a given list, which gives us a quick way
-  of tabulating function values:
+  The <hlink|<with|font-family|tt|map>|purelib.tm#map> function lets us apply
+  a function to each member of a given list, which gives us a quick way of
+  tabulating function values:
 
   <\verbatim>
     \<gtr\> map sqrt (0..2);
@@ -5163,9 +5157,9 @@
   </verbatim>
 
   Such explicit applications of <hlink|<with|font-family|tt|flip>|purelib.tm#flip>
-  also work with ordinary functions like
-  <hlink|<with|font-family|tt|pow>|purelib.tm#pow>, so if we want to compute
-  the cubes as exact bigint numbers, we can also write:
+  also work with ordinary functions like <hlink|<with|font-family|tt|pow>|purelib.tm#pow>,
+  so if we want to compute the cubes as exact bigint numbers, we can also
+  write:
 
   <\verbatim>
     \<gtr\> map (flip pow 3) (1..5);
@@ -5179,9 +5173,9 @@
 
   Sometimes it is convenient to have function application as an explicit
   operation which can be passed as a function value to other functions. The
-  <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> operator is provided
-  for this purpose. <verbatim|f> <verbatim|$> <verbatim|x> is just
-  <verbatim|f> <verbatim|x>, so you can write, e.g.:
+  <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> operator is provided for
+  this purpose. <verbatim|f> <verbatim|$> <verbatim|x> is just <verbatim|f>
+  <verbatim|x>, so you can write, e.g.:
 
   <\verbatim>
     \<gtr\> map ($1) [(+2),(*2),(/2)];
@@ -5275,8 +5269,8 @@
 
   Pure also provides a kind of ``read-only'' variables a.k.a.
   <with|font-series|bold|constants>. They are defined pretty much like global
-  variables (using the <hlink|<with|font-family|tt|const>|#const> keyword
-  in lieu of <hlink|<with|font-family|tt|let>|#let>), but work more like a
+  variables (using the <hlink|<with|font-family|tt|const>|#const> keyword in
+  lieu of <hlink|<with|font-family|tt|let>|#let>), but work more like a
   parameterless function whose value is precomputed at compile time:
 
   <\verbatim>
@@ -5303,7 +5297,7 @@
   <hlink|Constant Definitions|#constant-definitions> for details.
 
   As an aside, the last example also shows that Pure has no problems with
-  Unicode. <verbatim|\\ensuremath{\\pi}> is a Greek letter and thus an
+  Unicode. <verbatim|<ensuremath{\\pi}>> is a Greek letter and thus an
   identifier as good as any other, although you will have a hard time finding
   that letter on an English keyboard. Fortunately, most operating systems
   nowadays provide you with an applet that lets you enter foreign language
@@ -5493,8 +5487,8 @@
   name, so that the value can be simply recalled when <verbatim|bar> is later
   invoked in an expression. Also, the value of <verbatim|bar> can be changed
   at any time with an appropriate <hlink|<with|font-family|tt|let>|#let>
-  statement. (If the value is not supposed to change later then you can
-  also define it as a <hlink|<with|font-family|tt|const>|#const> instead.)
+  statement. (If the value is not supposed to change later then you can also
+  define it as a <hlink|<with|font-family|tt|const>|#const> instead.)
 
   In contrast, <verbatim|foo> is a function which recomputes the list value
   on each invocation. To avoid the overhead of recalculating the same value
@@ -5502,8 +5496,8 @@
   parameterless function in Pure. However, a parameterless function will be
   needed if the computation involves some hidden side effects which cause a
   new value to be produced for each invocation. For instance, the
-  <hlink|<with|font-family|tt|math>|purelib.tm#module-math> module provides
-  a parameterless function <hlink|<with|font-family|tt|random>|purelib.tm#random>
+  <hlink|<with|font-family|tt|math>|purelib.tm#module-math> module provides a
+  parameterless function <hlink|<with|font-family|tt|random>|purelib.tm#random>
   which computes a new pseudo random number each time it is called:
 
   <\verbatim>
@@ -5540,10 +5534,10 @@
 
   Note that here we omitted the left-hand side in the second and third
   equations, in which case the compiler assumes that it's the same as for the
-  first equation; cf. <hlink|Rule Syntax|#rule-syntax> for details. Also
-  note that the <hlink|<with|font-family|tt|otherwise>|#otherwise> keyword
-  is only syntactic sugar in Pure, you can always omit it. However, it tends
-  to improve readability by marking the default case of a definition.
+  first equation; cf. <hlink|Rule Syntax|#rule-syntax> for details. Also note
+  that the <hlink|<with|font-family|tt|otherwise>|#otherwise> keyword is only
+  syntactic sugar in Pure, you can always omit it. However, it tends to
+  improve readability by marking the default case of a definition.
 
   Both styles are frequently used in Pure programs; it depends on the
   situation which one is more appropriate. Conditional rules make the
@@ -5575,8 +5569,8 @@
   the right-hand side of the rule is invoked with the variables in the
   patterns bound to their corresponding values.
 
-  The simplest nontrivial patterns are <hlink|type tags|#type-tags> which
-  can be placed on a variable to restrict the type of value an argument can
+  The simplest nontrivial patterns are <hlink|type tags|#type-tags> which can
+  be placed on a variable to restrict the type of value an argument can
   match. For instance:
 
   <\verbatim>
@@ -5752,10 +5746,10 @@
   <verbatim|x> added to the sum of the remaining list elements <verbatim|xs>.
   (In fact, this computational pattern is so common that the prelude provides
   a family of functions such as <hlink|<with|font-family|tt|foldl>|purelib.tm#foldl>
-  and <hlink|<with|font-family|tt|foldr>|purelib.tm#foldr> to do this
-  kind of operation in a generic way. Our <verbatim|sum> function above is
-  actually equivalent to <verbatim|foldr> <verbatim|(+)> <verbatim|0>, see
-  <hlink|List Processing|#list-processing> below for details.)
+  and <hlink|<with|font-family|tt|foldr>|purelib.tm#foldr> to do this kind of
+  operation in a generic way. Our <verbatim|sum> function above is actually
+  equivalent to <verbatim|foldr> <verbatim|(+)> <verbatim|0>, see <hlink|List
+  Processing|#list-processing> below for details.)
 
   Instead of placing the patterns directly into the left-hand sides of the
   function definition, you might also do the necessary pattern-matching in
@@ -5767,8 +5761,8 @@
   </verbatim>
 
   This works a bit different, though, since a
-  <hlink|<with|font-family|tt|case>|#case> expression raises an exception
-  if the target expression is not matched (cf. <hlink|Patterns|#patterns>):
+  <hlink|<with|font-family|tt|case>|#case> expression raises an exception if
+  the target expression is not matched (cf. <hlink|Patterns|#patterns>):
 
   <\verbatim>
     \<gtr\> sum (1:2:xs);
@@ -5829,9 +5823,9 @@
   Note that <verbatim|nil> needs to be declared as a
   <hlink|<with|font-family|tt|nonfix>|#nonfix> symbol here, so that the
   compiler doesn't mistake it for a variable; see <hlink|The ``Head =
-  Function'' Rule|#the-head-function-rule> for details. The following
-  example illustrates how the above definition may be used to obtain a binary
-  tree data structure from a list:
+  Function'' Rule|#the-head-function-rule> for details. The following example
+  illustrates how the above definition may be used to obtain a binary tree
+  data structure from a list:
 
   <\verbatim>
     \<gtr\> tree [] = nil;
@@ -5904,14 +5898,14 @@
   Local functions can also be created without actually naming them, by
   employing a so-called <with|font-series|bold|lambda abstraction>. For
   instance, a function which squares its argument might be denoted as
-  <verbatim|\\x> <verbatim|-\<gtr\>> <verbatim|x*x>. This is pretty much the
-  same as a local function <verbatim|f> <verbatim|with> <verbatim|f>
-  <verbatim|x> <verbatim|=> <verbatim|x*x> <verbatim|end> except that the
-  function remains nameless. This notation is pretty convenient for making up
-  little ``one-off'' functions which are to be applied on the spot or passed
-  as function arguments or results to other functions. For instance, here's
-  how you can compute the first ten squares, first with an ordinary (named)
-  local function, and then with an equivalent lambda:
+  <verbatim|<x>> <verbatim|-\>> <verbatim|x*x>. This is pretty much the same
+  as a local function <verbatim|f> <verbatim|with> <verbatim|f> <verbatim|x>
+  <verbatim|=> <verbatim|x*x> <verbatim|end> except that the function remains
+  nameless. This notation is pretty convenient for making up little
+  ``one-off'' functions which are to be applied on the spot or passed as
+  function arguments or results to other functions. For instance, here's how
+  you can compute the first ten squares, first with an ordinary (named) local
+  function, and then with an equivalent lambda:
 
   <\verbatim>
     \<gtr\> map f (1..10) with f x = x*x end;
@@ -5971,13 +5965,13 @@
 
   Note that there are actually <em|two> separate functions named
   <verbatim|sum> here. This works because according to the <hlink|scoping
-  rules|#scoping-rules> the right-hand side of the global definition is
-  under the scope of the <hlink|<with|font-family|tt|with>|#with> clause,
-  and thus the call <verbatim|sum> <verbatim|0> <verbatim|n> on the
-  right-hand refers to the <em|local> <verbatim|sum> function, not the global
-  one. (While it is perfectly correct and even makes sense in this example,
-  this style may be somewhat confusing, so we often prefer to give wrapper
-  and worker different names for clarity.)
+  rules|#scoping-rules> the right-hand side of the global definition is under
+  the scope of the <hlink|<with|font-family|tt|with>|#with> clause, and thus
+  the call <verbatim|sum> <verbatim|0> <verbatim|n> on the right-hand refers
+  to the <em|local> <verbatim|sum> function, not the global one. (While it is
+  perfectly correct and even makes sense in this example, this style may be
+  somewhat confusing, so we often prefer to give wrapper and worker different
+  names for clarity.)
 
   As discussed in <hlink|Scoping Rules|#scoping-rules>, a local function can
   refer to other local functions and variables in its parent environments. It
@@ -6005,9 +5999,9 @@
   had an invisible <verbatim|x> argument of <verbatim|5> attached to it. (And
   this is in fact how closures are implemented internally, using a
   transformation called <hlink|lambda lifting|http://en.wikipedia.org/wiki/Lambda-lifting>
-  which effectively turns local functions into global ones.) You should
-  study this example carefully until you fully understand how it works; we'll
-  see a bunch of other, more complicated examples of this kind later.
+  which effectively turns local functions into global ones.) You should study
+  this example carefully until you fully understand how it works; we'll see a
+  bunch of other, more complicated examples of this kind later.
 
   Lexical closures also provide a means to encapsulate data in a way
   reminiscent of object-oriented programming. For instance:
@@ -6180,10 +6174,10 @@
 
   If we want, we can define a new data type for the data structure we just
   invented. This works by giving a number of <hlink|type rules|#type-rules>
-  similar to those used in function definitions. In general, these may
-  denote arbitrary unary predicates, but in our case it's sufficient to just
-  list the patterns of terms which are supposed to be members of the type
-  (see <hlink|Type Rules|#type-rules> for an explanation of the definition
+  similar to those used in function definitions. In general, these may denote
+  arbitrary unary predicates, but in our case it's sufficient to just list
+  the patterns of terms which are supposed to be members of the type (see
+  <hlink|Type Rules|#type-rules> for an explanation of the definition
   syntax):
 
   <\verbatim>
@@ -6265,8 +6259,8 @@
   provides a little utility module, <hlink|<with|font-family|tt|enum>|purelib.tm#module-enum>,
   which generates the necessary definitions in an automatic fashion. All we
   have to do is to import the module and then invoke the
-  <hlink|<with|font-family|tt|enum>|purelib.tm#enum> function on the type
-  and we're set:
+  <hlink|<with|font-family|tt|enum>|purelib.tm#enum> function on the type and
+  we're set:
 
   <\verbatim>
     using enum;
@@ -6367,12 +6361,11 @@
   `<verbatim|+>` operations in the prelude.
 
   Pure's interface types are a first attempt at formalizing the notion of
-  <hlink|Duck typing|http://en.wikipedia.org/wiki/Duck-typing> in Pure.
-  They are thus still a bit experimental and require some diligence in
-  defining the interface operations in a suitable way. Please check
-  <hlink|Interface Types|#interface-types> in the
-  <hlink|Declarations|#declarations> section for more information and
-  examples.
+  <hlink|Duck typing|http://en.wikipedia.org/wiki/Duck-typing> in Pure. They
+  are thus still a bit experimental and require some diligence in defining
+  the interface operations in a suitable way. Please check <hlink|Interface
+  Types|#interface-types> in the <hlink|Declarations|#declarations> section
+  for more information and examples.
 
   <subsubsection|Recursion<label|recursion>>
 
@@ -6403,16 +6396,15 @@
   </verbatim>
 
   It's not hard to see how this definition operates. The first rule only
-  applies if <verbatim|n\<gtr\>0>, otherwise the second rule kicks in so that
+  applies if <verbatim|n\>0>, otherwise the second rule kicks in so that
   <verbatim|fact> <verbatim|n> becomes <verbatim|1> if <verbatim|n> is zero
   or negative (which is consistent with our informal description because in
   this case the product of all positive integers up to <verbatim|n> is the
   empty product which is <verbatim|1> by mathematical convention). The first
-  rule is the interesting one where the recursion happens. If
-  <verbatim|n\<gtr\>0> then we may compute <verbatim|fact> <verbatim|n> by
-  computing <verbatim|fact> <verbatim|(n-1)> recursively and multiplying that
-  with <verbatim|n>, giving <verbatim|n*(n-1)*...*1>. Let's check that this
-  works:
+  rule is the interesting one where the recursion happens. If <verbatim|n\>0>
+  then we may compute <verbatim|fact> <verbatim|n> by computing
+  <verbatim|fact> <verbatim|(n-1)> recursively and multiplying that with
+  <verbatim|n>, giving <verbatim|n*(n-1)*...*1>. Let's check that this works:
 
   <\verbatim>
     \<gtr\> map fact (1..10);
@@ -6739,7 +6731,7 @@
   function which iterates <verbatim|improve> until the current candidate
   solution is ``good enough''. A suitable termination criterion is that the
   improvement drops below a certain threshold (i.e., <verbatim|abs>
-  <verbatim|(x-f> <verbatim|x)> <verbatim|\<less\>=> <verbatim|dy> for some
+  <verbatim|(x-f> <verbatim|x)> <verbatim|\<=> <verbatim|dy> for some
   reasonably small <verbatim|dy>). For extra safety, we'll also bail out of
   the loop if a prescribed number <verbatim|n> of iterations has been
   performed. This function can be implemented in a tail-recursive fashion as
@@ -6807,8 +6799,8 @@
 
   Here are some examples showing how the <verbatim|solve> function is used.
   Note that we specify the target functions to be solved as lambdas here.
-  E.g., <verbatim|\\t> <verbatim|-\<gtr\>> <verbatim|t^3-x> denotes a
-  function mapping <verbatim|t> to <verbatim|t^3-x>, which becomes zero if
+  E.g., <verbatim|<t>> <verbatim|-\>> <verbatim|t^3-x> denotes a function
+  mapping <verbatim|t> to <verbatim|t^3-x>, which becomes zero if
   <verbatim|t> equals the cube root of <verbatim|x>.
 
   <\verbatim>
@@ -6913,8 +6905,8 @@
   whether they have the same fringe. Of course, we can easily solve this by
   just computing the fringes and comparing them with
   `<hlink|<with|font-family|tt|===>|purelib.tm#===>` (note that we employ
-  <hlink|syntactic equality|#syntactic-equality> here which also allows us
-  to compare symbols, for which `<hlink|<with|font-family|tt|==>|purelib.tm#==>`
+  <hlink|syntactic equality|#syntactic-equality> here which also allows us to
+  compare symbols, for which `<hlink|<with|font-family|tt|==>|purelib.tm#==>`
   isn't normally defined):
 
   <\verbatim>
@@ -6982,8 +6974,7 @@
   definition of the local <verbatim|samefringe> function, which can be done
   by adding a little debugging statement as follows (this also needs an
   import clause ``<verbatim|using> <verbatim|system;>'' to make the
-  <hlink|<with|font-family|tt|printf>|purelib.tm#printf> function
-  available):
+  <hlink|<with|font-family|tt|printf>|purelib.tm#printf> function available):
 
   <\verbatim>
     samefringe g1 g2 =
@@ -7100,7 +7091,7 @@
   The second equation for <verbatim|genfringe> is the interesting one where
   the recursion happens. It deals with a nonempty tree <verbatim|x:t> by
   invoking itself recursively on <verbatim|x>, setting up a new continuation
-  <verbatim|\\c> <verbatim|-\<gtr\>> <verbatim|genfringe> <verbatim|t>
+  <verbatim|<c>> <verbatim|-\>> <verbatim|genfringe> <verbatim|t>
   <verbatim|c> <verbatim|g>, which will take care of processing the rest of
   the subtree <verbatim|t>, after which it chains to the previous
   continuation <verbatim|g> which will handle the rest of the tree.
@@ -7162,18 +7153,18 @@
     samefringe g1 g2)));
   </verbatim>
 
-  Note that the outer lambda <verbatim|(\\x1> <verbatim|g1>
-  <verbatim|-\<gtr\>> <verbatim|...)> becomes the consumer for the first
-  generator <verbatim|g1> which traverses <verbatim|t1>. When called, it then
-  invokes the second generator <verbatim|g2>, which traverses <verbatim|t2>,
-  on the consumer (inner lambda) <verbatim|(\\x2> <verbatim|g2>
-  <verbatim|-\<gtr\>> <verbatim|...)>. This in turn does the necessary tests
-  to verify that the current leaf elements are the same, or to bail out from
-  the recursion if they aren't or if we reached the end of the fringes. Also
-  note that this is still tail-recursive because the short-circuit logical
-  operations <hlink|<with|font-family|tt|&&>|purelib.tm#-amp-amp> and
-  <hlink|<with|font-family|tt|\|\|>|purelib.tm#\|\|> are both
-  tail-recursive in their second operand (cf. <hlink|Stack Size and Tail
+  Note that the outer lambda <verbatim|(\\x1> <verbatim|g1> <verbatim|-\>>
+  <verbatim|...)> becomes the consumer for the first generator <verbatim|g1>
+  which traverses <verbatim|t1>. When called, it then invokes the second
+  generator <verbatim|g2>, which traverses <verbatim|t2>, on the consumer
+  (inner lambda) <verbatim|(\\x2> <verbatim|g2> <verbatim|-\>>
+  <verbatim|...)>. This in turn does the necessary tests to verify that the
+  current leaf elements are the same, or to bail out from the recursion if
+  they aren't or if we reached the end of the fringes. Also note that this is
+  still tail-recursive because the short-circuit logical operations
+  <hlink|<with|font-family|tt|&&>|purelib.tm#-amp-amp> and
+  <hlink|<with|font-family|tt|\|\|>|purelib.tm#\|\|> are both tail-recursive
+  in their second operand (cf. <hlink|Stack Size and Tail
   Recursion|#stack-size-and-tail-recursion>).
 
   <subsubsection|Higher-Order Functions<label|higher-order-functions>>
@@ -7268,8 +7259,8 @@
   `<hlink|<with|font-family|tt|.>|purelib.tm#.>` we can easily create a
   function which ``clamps'' its argument between given bounds by just
   combining the <hlink|<with|font-family|tt|min>|purelib.tm#min> and
-  <hlink|<with|font-family|tt|max>|purelib.tm#max> functions from the
-  prelude as follows:
+  <hlink|<with|font-family|tt|max>|purelib.tm#max> functions from the prelude
+  as follows:
 
   <\verbatim>
     \<gtr\> clamp a b = max a . min b;
@@ -7475,16 +7466,16 @@
   </verbatim>
 
   There's also a function <hlink|<with|font-family|tt|do>|purelib.tm#do>
-  which works in the same fashion but throws away all the results and
-  simply returns <verbatim|()>. Of course this makes sense only if the
-  applied function has some interesting side-effect. E.g., here's a quick way
-  to print all members of a list, one per line. This combines the
+  which works in the same fashion but throws away all the results and simply
+  returns <verbatim|()>. Of course this makes sense only if the applied
+  function has some interesting side-effect. E.g., here's a quick way to
+  print all members of a list, one per line. This combines the
   <hlink|<with|font-family|tt|str>|purelib.tm#str> function (which converts
   any Pure expression to its printable representation, cf. <hlink|String
   Processing|#string-processing> below) with the
   <hlink|<with|font-family|tt|puts>|purelib.tm#puts> function from the
-  <hlink|<with|font-family|tt|system>|purelib.tm#module-system> module
-  (which is just the corresponding C function, so it prints a string on the
+  <hlink|<with|font-family|tt|system>|purelib.tm#module-system> module (which
+  is just the corresponding C function, so it prints a string on the
   terminal, followed by a newline).
 
   <\verbatim>
@@ -7561,8 +7552,8 @@
   (``fold-left'') accumulates results from left to right, so the result
   accumulated so far is passed as the <em|left> argument to the function
   <verbatim|f>. There's a <hlink|<with|font-family|tt|foldr>|purelib.tm#foldr>
-  (``fold-right'') function which works analogously but collects results
-  from right to left, and accordingly passes the accumulated result in the
+  (``fold-right'') function which works analogously but collects results from
+  right to left, and accordingly passes the accumulated result in the
   <em|right> argument. Usually this won't make a difference if the iterated
   function is associative, but <verbatim|foldl> and <verbatim|foldr> have
   lots of applications beyond these simple use cases. For instance, we may
@@ -7635,8 +7626,8 @@
   one go.
 
   Like <verbatim|foldl>, <verbatim|scanl> also has a sibling called
-  <hlink|<with|font-family|tt|scanr>|purelib.tm#scanr> which collects
-  results from right to left, starting at the end of the list:
+  <hlink|<with|font-family|tt|scanr>|purelib.tm#scanr> which collects results
+  from right to left, starting at the end of the list:
 
   <\verbatim>
     \<gtr\> scanr (+) 0 (1..10);
@@ -7692,11 +7683,11 @@
   </verbatim>
 
   The <hlink|<with|font-family|tt|take>|purelib.tm#take> and
-  <hlink|<with|font-family|tt|drop>|purelib.tm#drop> functions take or
-  remove a given number of initial elements, while
+  <hlink|<with|font-family|tt|drop>|purelib.tm#drop> functions take or remove
+  a given number of initial elements, while
   <hlink|<with|font-family|tt|takewhile>|purelib.tm#takewhile> and
-  <hlink|<with|font-family|tt|dropwhile>|purelib.tm#dropwhile> take or
-  remove initial elements while a given predicate is satisfied:
+  <hlink|<with|font-family|tt|dropwhile>|purelib.tm#dropwhile> take or remove
+  initial elements while a given predicate is satisfied:
 
   <\verbatim>
     \<gtr\> take 4 xs; drop 4 xs;
@@ -7755,10 +7746,10 @@
     [1,2,3,4,5],["a","b","c","d","e"]
   </verbatim>
 
-  The <hlink|<with|font-family|tt|zipwith>|purelib.tm#zipwith> function is
-  a generic version of <hlink|<with|font-family|tt|zip>|purelib.tm#zip>
-  which combines corresponding members from two lists using a given binary
-  function <verbatim|f>:
+  The <hlink|<with|font-family|tt|zipwith>|purelib.tm#zipwith> function is a
+  generic version of <hlink|<with|font-family|tt|zip>|purelib.tm#zip> which
+  combines corresponding members from two lists using a given binary function
+  <verbatim|f>:
 
   <\verbatim>
     \<gtr\> zipwith (*) (1..10) (1..10);
@@ -7905,8 +7896,8 @@
   </verbatim>
 
   A slight complication arises with the <hlink|<with|font-family|tt|map>|purelib.tm#map>
-  function, because in this case the result is not guaranteed to be a
-  string in all cases. For instance:
+  function, because in this case the result is not guaranteed to be a string
+  in all cases. For instance:
 
   <\verbatim>
     \<gtr\> map ord "HAL";
@@ -7917,8 +7908,7 @@
   To have <verbatim|map> work consistently, it will thus yield a list even in
   cases where the result <em|could> again be represented as a string. If you
   want a string result instead, you'll have to do the conversion explicitly,
-  using the <hlink|<with|font-family|tt|string>|purelib.tm#string>
-  function:
+  using the <hlink|<with|font-family|tt|string>|purelib.tm#string> function:
 
   <\verbatim>
     \<gtr\> map (+1) "HAL";
@@ -7931,9 +7921,9 @@
   </verbatim>
 
   Conversely, you can also convert a string to a list of its characters using
-  either <hlink|<with|font-family|tt|chars>|purelib.tm#chars> or the
-  generic <hlink|<with|font-family|tt|list>|purelib.tm#list/string>
-  conversion function:
+  either <hlink|<with|font-family|tt|chars>|purelib.tm#chars> or the generic
+  <hlink|<with|font-family|tt|list>|purelib.tm#list/string> conversion
+  function:
 
   <\verbatim>
     \<gtr\> list ans;
@@ -7969,7 +7959,7 @@
     1
   </verbatim>
 
-  Maybe you wondered how that <verbatim|"HAL"> <verbatim|=\<gtr\>>
+  Maybe you wondered how that <verbatim|"HAL"> <verbatim|=\>>
   <verbatim|"IBM"> transformation above came about? Well, the prelude also
   defines basic arithmetic on characters:
 
@@ -8109,9 +8099,8 @@
   These operations are all implemented in an efficient way so that they run
   in linear time. (Note that the <hlink|<with|font-family|tt|string>|purelib.tm#string>
   conversion function we mentioned above is in fact just
-  <hlink|<with|font-family|tt|strcat>|purelib.tm#strcat> on lists of
-  strings, but it also works with other aggregates such as vectors of
-  strings.)
+  <hlink|<with|font-family|tt|strcat>|purelib.tm#strcat> on lists of strings,
+  but it also works with other aggregates such as vectors of strings.)
 
   For more elaborate needs there's also a suite of functions for doing
   regular expression matching in the <hlink|<with|font-family|tt|regex>|purelib.tm#module-regex>
@@ -8197,8 +8186,7 @@
   want. The clauses are considered in left-to-right order so that later
   clauses may refer to any variables introduced in earlier generator clauses.
   E.g., here's how you can generate the list of all pairs <verbatim|(i,j)>
-  with <verbatim|1\<less\>=i\<less\>=j\<less\>=5> such that <verbatim|i+j> is
-  even:
+  with <verbatim|1\<=i\<=j\<=5> such that <verbatim|i+j> is even:
 
   <\verbatim>
     \<gtr\> [i,j \| i = 1..5; j = i..5; ~(i+j) mod 2];
@@ -8681,10 +8669,10 @@
 
   A number of other specific conversion operations are available, such as
   <hlink|<with|font-family|tt|rowvector>|purelib.tm#rowvector> and
-  <hlink|<with|font-family|tt|colvector>|purelib.tm#colvector> which
-  convert a matrix to a row or column vector, respectively, or
-  <hlink|<with|font-family|tt|diag>|purelib.tm#diag> which extracts the
-  main diagonal of a matrix:
+  <hlink|<with|font-family|tt|colvector>|purelib.tm#colvector> which convert
+  a matrix to a row or column vector, respectively, or
+  <hlink|<with|font-family|tt|diag>|purelib.tm#diag> which extracts the main
+  diagonal of a matrix:
 
   <\verbatim>
     \<gtr\> rowvector x;
@@ -8824,11 +8812,10 @@
   on the element types. Homogeneous matrices which contain only
   <hlink|<with|font-family|tt|int>|#int/type>,
   <hlink|<with|font-family|tt|double>|#double/type> or
-  <hlink|<with|font-family|tt|complex>|purelib.tm#complex/type> values
-  yield the corresponding type of GSL matrix. Matrices can also hold any
-  other type of Pure value or an arbitrary mix of values, in which case they
-  become <with|font-series|bold|symbolic matrices>; we'll discuss these
-  later.
+  <hlink|<with|font-family|tt|complex>|purelib.tm#complex/type> values yield
+  the corresponding type of GSL matrix. Matrices can also hold any other type
+  of Pure value or an arbitrary mix of values, in which case they become
+  <with|font-series|bold|symbolic matrices>; we'll discuss these later.
 
   The functions <hlink|<with|font-family|tt|imatrix>|purelib.tm#imatrix>,
   <hlink|<with|font-family|tt|dmatrix>|purelib.tm#dmatrix> and
@@ -8887,8 +8874,8 @@
   The prelude offers matrix versions of the common list operations like
   <hlink|<with|font-family|tt|map>|purelib.tm#map>,
   <hlink|<with|font-family|tt|foldl>|purelib.tm#foldl>,
-  <hlink|<with|font-family|tt|zip>|purelib.tm#zip> etc., which provide a
-  way to implement common matrix operations. E.g., multiplying a matrix
+  <hlink|<with|font-family|tt|zip>|purelib.tm#zip> etc., which provide a way
+  to implement common matrix operations. E.g., multiplying a matrix
   <verbatim|x> with a scalar <verbatim|a> amounts to mapping the function
   <verbatim|(a*)> to x, which can be done as follows:
 
@@ -8902,14 +8889,14 @@
     {2,4,6;8,10,12}
   </verbatim>
 
-  Note that the <hlink|<with|font-family|tt|matrix>|#matrix/type> type tag
-  or the <hlink|<with|font-family|tt|matrixp>|purelib.tm#matrixp> predicate
-  can be used to restrict a variable to matrix values. (The prelude provides
-  a few other types and corresponding predicates for various specific kinds
-  of matrices, see the <hlink|<em|Pure Library Manual>|purelib.tm> for
-  details.) In addition, we also introduced a convenience type
-  <verbatim|scalar> for non-matrix values here, so that we can distinguish
-  scalar from matrix multiplication which will be discussed below.
+  Note that the <hlink|<with|font-family|tt|matrix>|#matrix/type> type tag or
+  the <hlink|<with|font-family|tt|matrixp>|purelib.tm#matrixp> predicate can
+  be used to restrict a variable to matrix values. (The prelude provides a
+  few other types and corresponding predicates for various specific kinds of
+  matrices, see the <hlink|<em|Pure Library Manual>|purelib.tm> for details.)
+  In addition, we also introduced a convenience type <verbatim|scalar> for
+  non-matrix values here, so that we can distinguish scalar from matrix
+  multiplication which will be discussed below.
 
   Matrix addition and other element-wise operations can be realized using
   <hlink|<with|font-family|tt|zipwith>|purelib.tm#zipwith>, which combines
@@ -8984,10 +8971,10 @@
 
   Note that a matrix comprehension involving filters may fail because the
   filtered result isn't a rectangular matrix any more. E.g.,
-  <verbatim|{2*x\|x={1,2,3,-4};x\<gtr\>0}> works, as does
-  <verbatim|{2*x\|x={-1,2;3,-4};x\<gtr\>0}>, but
-  <verbatim|{2*x\|x={1,2;3,-4};x\<gtr\>0}> doesn't because the rows of the
-  result matrix have different lengths.
+  <verbatim|{2*x\|x={1,2,3,-4};x\>0}> works, as does
+  <verbatim|{2*x\|x={-1,2;3,-4};x\>0}>, but
+  <verbatim|{2*x\|x={1,2;3,-4};x\>0}> doesn't because the rows of the result
+  matrix have different lengths.
 
   As a slightly more comprehensive example (no pun intended!), here is a
   definition of matrix multiplication in Pure:
@@ -9305,8 +9292,8 @@
 
   Symbolic matrices also provide a means to represent simple record-like
   data, by encoding records as symbolic vectors consisting of ``hash pairs''
-  of the form <verbatim|key> <verbatim|=\<gtr\>> <verbatim|value>. This kind
-  of data structure is very convenient to represent aggregates with lots of
+  of the form <verbatim|key> <verbatim|=\>> <verbatim|value>. This kind of
+  data structure is very convenient to represent aggregates with lots of
   different components. Since the components of records can be accessed by
   indexing with key values, you don't have to remember which components are
   stored in which order, just knowing the keys of the required members is
@@ -9359,15 +9346,14 @@
   </verbatim>
 
   Note the use of the ``hash rocket'' <hlink|<with|font-family|tt|=\<gtr\>>|purelib.tm#=\>>
-  which denotes the <verbatim|key=\<gtr\>value> associations in a record.
-  The hash rocket is a constructor declared as an infix operator in the
-  prelude, see the <hlink|<em|Hash Pairs>|purelib.tm#hash-pairs> section in
-  the <hlink|<em|Pure Library Manual>|purelib.tm> for details. There's one
-  caveat here, however. Since neither `<verbatim|=\<gtr\>>` nor
-  `<verbatim|!>` treat their key operand in a special way, you'll have to
-  take care that the key symbols do not evaluate to something else, as might
-  be the case if they are bound to a global or local variable or
-  parameterless function:
+  which denotes the <verbatim|key=\>value> associations in a record. The hash
+  rocket is a constructor declared as an infix operator in the prelude, see
+  the <hlink|<em|Hash Pairs>|purelib.tm#hash-pairs> section in the
+  <hlink|<em|Pure Library Manual>|purelib.tm> for details. There's one caveat
+  here, however. Since neither `<verbatim|=\>>` nor `<verbatim|!>` treat
+  their key operand in a special way, you'll have to take care that the key
+  symbols do not evaluate to something else, as might be the case if they are
+  bound to a global or local variable or parameterless function:
 
   <\verbatim>
     \<gtr\> let u = 99;
@@ -9399,8 +9385,8 @@
   </verbatim>
 
   In such cases you'll either have to rename the local variable, or use the
-  prelude function <hlink|<with|font-family|tt|val>|purelib.tm#val> to
-  quote the symbol:
+  prelude function <hlink|<with|font-family|tt|val>|purelib.tm#val> to quote
+  the symbol:
 
   <\verbatim>
     \<gtr\> {'u=\<gtr\>v} when v = 99 end;
@@ -9442,7 +9428,7 @@
   As records are in fact just special kinds of matrices, the standard matrix
   operations can be used on record values as well. For instance, the matrix
   constructor provides an alternative way to quickly augment a record with a
-  collection of new <verbatim|key=\<gtr\>value> associations:
+  collection of new <verbatim|key=\>value> associations:
 
   <\verbatim>
     \<gtr\> let r = {x=\<gtr\>5, y=\<gtr\>12};
@@ -9552,9 +9538,9 @@
 
   Another interesting application of records are the ``virtual method
   tables'' used in object-oriented programming. Pure has a built-in
-  <hlink|<with|font-family|tt|__locals__>|purelib.tm#--locals--> macro
-  which captures the environment of local functions at the point of the call
-  and returns it as a list of hash pairs of function symbols and the
+  <hlink|<with|font-family|tt|__locals__>|purelib.tm#--locals--> macro which
+  captures the environment of local functions at the point of the call and
+  returns it as a list of hash pairs of function symbols and the
   corresponding closures. We can readily convert this into a record data
   structure which can be used as a virtual method table. For instance:
 
@@ -9657,8 +9643,8 @@
   Lisp programmers will be well familiar with this operation which enables
   some powerful metaprogramming techniques. However, there are some notable
   differences to Lisp's quote. In particular,
-  <hlink|<with|font-family|tt|quote>|#quote> only inhibits the evaluation
-  of global variables, <em|local> variables are substituted as usual:
+  <hlink|<with|font-family|tt|quote>|#quote> only inhibits the evaluation of
+  global variables, <em|local> variables are substituted as usual:
 
   <\verbatim>
     \<gtr\> (\\x -\<gtr\> '(2*x+1)) 99;
@@ -9747,12 +9733,12 @@
     {1,{2,3},4}
   </verbatim>
 
-  <hlink|Special expressions|#special-expressions> (conditionals, lambda
-  and the <hlink|<with|font-family|tt|case>|#case>,
+  <hlink|Special expressions|#special-expressions> (conditionals, lambda and
+  the <hlink|<with|font-family|tt|case>|#case>,
   <hlink|<with|font-family|tt|when>|#when> and
-  <hlink|<with|font-family|tt|with>|#with> constructs) can be quoted as
-  well. But since these constructs cannot be directly represented at runtime,
-  the quote actually produces some ordinary ``placeholder'' terms for these:
+  <hlink|<with|font-family|tt|with>|#with> constructs) can be quoted as well.
+  But since these constructs cannot be directly represented at runtime, the
+  quote actually produces some ordinary ``placeholder'' terms for these:
 
   <\verbatim>
     \<gtr\> '(x+1 when x = '(2*3) end);
@@ -9819,11 +9805,11 @@
     <item><hlink|<with|font-family|tt|extern>|#extern> declarations specify
     external C functions;
 
-    <item><hlink|<with|font-family|tt|using>|#using> clauses let you
-    include other scripts in a Pure script;
+    <item><hlink|<with|font-family|tt|using>|#using> clauses let you include
+    other scripts in a Pure script;
 
-    <item><hlink|<with|font-family|tt|namespace>|#namespace> declarations
-    let you avoid name clashes and thereby make it easier to manage large
+    <item><hlink|<with|font-family|tt|namespace>|#namespace> declarations let
+    you avoid name clashes and thereby make it easier to manage large
     programs consisting of many separate modules.
   </itemize>
 
@@ -9896,8 +9882,8 @@
   types of symbol declarations discussed below. (Commas are <em|not> allowed
   as delimiters here, as they may occur as legal symbol constituents in the
   list of symbols.) The <hlink|<with|font-family|tt|public>|#public> and
-  <hlink|<with|font-family|tt|private>|#private> keywords can also be used
-  as a prefix in any of the special symbol declarations discussed below, to
+  <hlink|<with|font-family|tt|private>|#private> keywords can also be used as
+  a prefix in any of the special symbol declarations discussed below, to
   specify the scope of the declared symbols (if the scope prefix is omitted,
   it defaults to <hlink|<with|font-family|tt|public>|#public>).
 
@@ -9934,11 +9920,10 @@
   non-associative), <hlink|<with|font-family|tt|infixl>|#infixl> (binary
   left-associative), <hlink|<with|font-family|tt|infixr>|#infixr> (binary
   right-associative), <hlink|<with|font-family|tt|prefix>|#prefix> (unary
-  prefix) and <hlink|<with|font-family|tt|postfix>|#postfix> (unary
-  postfix) operators. For instance, here is a typical excerpt from the
-  prelude (the full table can be found in the
-  <hlink|<em|Prelude>|purelib.tm#prelude> section of the <hlink|<em|Pure
-  Library Manual>|purelib.tm>):
+  prefix) and <hlink|<with|font-family|tt|postfix>|#postfix> (unary postfix)
+  operators. For instance, here is a typical excerpt from the prelude (the
+  full table can be found in the <hlink|<em|Prelude>|purelib.tm#prelude>
+  section of the <hlink|<em|Pure Library Manual>|purelib.tm>):
 
   <\verbatim>
     infix \ 1800 \<less\> \<gtr\> \<less\>= \<gtr\>= == ~= ;
@@ -10061,10 +10046,10 @@
   </verbatim>
 
   Examples for all types of symbol declarations can be found in the
-  <hlink|<em|prelude>|purelib.tm#prelude> which declares a bunch of
-  standard (arithmetic, relational, logical) operator symbols as well as the
-  list and pair constructors `<verbatim|:>` and `<verbatim|,>`, and a few
-  nonfix symbols (<hlink|<with|font-family|tt|true>|purelib.tm#true> and
+  <hlink|<em|prelude>|purelib.tm#prelude> which declares a bunch of standard
+  (arithmetic, relational, logical) operator symbols as well as the list and
+  pair constructors `<verbatim|:>` and `<verbatim|,>`, and a few nonfix
+  symbols (<hlink|<with|font-family|tt|true>|purelib.tm#true> and
   <hlink|<with|font-family|tt|false>|purelib.tm#false>, as well as different
   kinds of exceptions).
 
@@ -10594,9 +10579,9 @@
   </verbatim>
 
   In fact this is equivalent to the following
-  <hlink|<with|font-family|tt|using>|#using> clause which spells out the
-  real filename of the script between double quotes (the <verbatim|.pure>
-  suffix can also be omitted in which case it is added automatically):
+  <hlink|<with|font-family|tt|using>|#using> clause which spells out the real
+  filename of the script between double quotes (the <verbatim|.pure> suffix
+  can also be omitted in which case it is added automatically):
 
   <\verbatim>
     using "examples/libor/bits.pure";
@@ -10623,35 +10608,33 @@
 
   <\itemize>
     <item>the directory of the current script, which is the directory of the
-    script containing the <hlink|<with|font-family|tt|using>|#using>
-    clause, or the current working directory if the clause was read from
-    standard input (as is the case, e.g., in an interactive session);
+    script containing the <hlink|<with|font-family|tt|using>|#using> clause,
+    or the current working directory if the clause was read from standard
+    input (as is the case, e.g., in an interactive session);
 
-    <item>the directories named in <hlink|<em|-I>|#cmdoption-pure-I>
-    options on the command line (in the given order);
+    <item>the directories named in <hlink|<em|-I>|#cmdoption-pure-I> options
+    on the command line (in the given order);
 
-    <item>the colon-separated list of directories in the
-    <label|index-9><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+    <item>the colon-separated list of directories in
+    the<label|index-9><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
     environment variable (in the given order);
 
-    <item>finally the directory named by the
-    <label|index-10><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+    <item>finally the directory named by the<label|index-10><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
     environment variable.
   </itemize>
 
   Note that the current working directory is not searched by default (unless
-  the <hlink|<with|font-family|tt|using>|#using> clause is read from
-  standard input), but of course you can force this by adding the option
+  the <hlink|<with|font-family|tt|using>|#using> clause is read from standard
+  input), but of course you can force this by adding the option
   <hlink|<em|-I>|#cmdoption-pure-I>. to the command line, or by including `.'
-  in the <label|index-11><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+  in the<label|index-11><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
   variable.
 
   The directory of the current script (the first item above) can be skipped
   by specifying the script to be loaded as a filename in double quotes,
   prefixed with the special <verbatim|sys:> tag. The search then starts with
-  the ``system'' directories (<hlink|<em|-I>|#cmdoption-pure-I>,
-  <label|index-12><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
-  and <label|index-13><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>)
+  the ``system'' directories (<hlink|<em|-I>|#cmdoption-pure-I>,<label|index-12><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+  and<label|index-13><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>)
   instead. This is useful, e.g., if you want to provide your own custom
   version of a standard library script which in turn imports that library
   script. For instance, a custom version of math.pure might employ the
@@ -10692,12 +10675,12 @@
   The directory of the canonicalized pathname is also used when searching
   other scripts included in a script. This makes it possible to have an
   executable script with a shebang line in its own directory, which is then
-  executed via a symbolic link placed on the system
-  <label|index-14><verbatim|PATH>. In this case the script search performed
-  in <hlink|<with|font-family|tt|using>|#using> clauses will use the real
-  script directory and thus other required scripts can be located there. This
-  is the recommended practice for installing standalone Pure applications in
-  source form which are to be run directly from the shell.
+  executed via a symbolic link placed on the
+  system<label|index-14><verbatim|PATH>. In this case the script search
+  performed in <hlink|<with|font-family|tt|using>|#using> clauses will use
+  the real script directory and thus other required scripts can be located
+  there. This is the recommended practice for installing standalone Pure
+  applications in source form which are to be run directly from the shell.
 
   <subsubsection|Namespaces<label|namespaces>>
 
@@ -10744,8 +10727,8 @@
   The basic form of the <hlink|<with|font-family|tt|namespace>|#namespace>
   declaration looks as follows (there's also a ``scoped'' form of the
   <hlink|<with|font-family|tt|namespace>|#namespace> declaration which will
-  be discussed in <hlink|Scoped Namespaces|#scoped-namespaces> at the end
-  of this section):
+  be discussed in <hlink|Scoped Namespaces|#scoped-namespaces> at the end of
+  this section):
 
   <\verbatim>
     namespace name;
@@ -10818,8 +10801,8 @@
   in this case is with <hlink|namespace brackets|#namespace-brackets> or by
   using a <hlink|<with|font-family|tt|namespace>|#namespace> or
   <hlink|<with|font-family|tt|using> <with|font-family|tt|namespace>|#using-namespace>
-  declaration (for the latter see <hlink|Using
-  Namespaces|#using-namespaces> below).
+  declaration (for the latter see <hlink|Using Namespaces|#using-namespaces>
+  below).
 
   <paragraph|Using Namespaces<label|using-namespaces>>
 
@@ -10884,8 +10867,8 @@
   only gives you ``read access'' to the imported symbols, so you can't
   accidentally mess up the definitions of the namespace you're using. Another
   advantage is that the <hlink|<with|font-family|tt|using>
-  <with|font-family|tt|namespace>|#using-namespace> declaration also lets
-  you search multiple namespaces at once:
+  <with|font-family|tt|namespace>|#using-namespace> declaration also lets you
+  search multiple namespaces at once:
 
   <\verbatim>
     using namespace foo, bar;
@@ -10998,10 +10981,10 @@
   Pure|#invoking-pure>) to check your scripts for (non-defining) uses of
   undeclared unqualified function symbols. This is highly recommended. For
   instance, in the following example we forgot to import the
-  <hlink|<with|font-family|tt|system>|purelib.tm#module-system> module
-  which defines the <hlink|<with|font-family|tt|puts>|purelib.tm#puts>
-  function. Running the interpreter with <hlink|<em|-w>|#cmdoption-pure-w>
-  highlights such potential errors:
+  <hlink|<with|font-family|tt|system>|purelib.tm#module-system> module which
+  defines the <hlink|<with|font-family|tt|puts>|purelib.tm#puts> function.
+  Running the interpreter with <hlink|<em|-w>|#cmdoption-pure-w> highlights
+  such potential errors:
 
   <\verbatim>
     $ pure -w
@@ -11061,10 +11044,10 @@
   <verbatim|bar> <verbatim|(bar> <verbatim|x)> of the first rule is a
   <em|defining> occurrence, as are the occurrences of <verbatim|x> and
   <verbatim|y> on the left-hand side of the
-  <hlink|<with|font-family|tt|let>|#let> definition. Hence these symbols
-  are created as new symbols in the namespace <verbatim|foo>. On the other
-  hand, the other occurrences of <verbatim|bar> in the first rule, as well as
-  the `<verbatim|,>` symbol on the left-hand side of the
+  <hlink|<with|font-family|tt|let>|#let> definition. Hence these symbols are
+  created as new symbols in the namespace <verbatim|foo>. On the other hand,
+  the other occurrences of <verbatim|bar> in the first rule, as well as the
+  `<verbatim|,>` symbol on the left-hand side of the
   <hlink|<with|font-family|tt|let>|#let> definition are <em|referring>
   occurrences. In the former case, <verbatim|bar> refers to the
   <verbatim|bar> symbol defined by the rule, while in the latter case the
@@ -11098,10 +11081,10 @@
 
   Note that special operator (and nonfix) symbols <em|always> require an
   explicit declaration. This works as already discussed in the <hlink|Symbol
-  Declarations|#symbol-declarations> section, except that you first switch
-  to the appropriate namespace before declaring the symbols. For instance,
-  here is how you can create a new <verbatim|+> operation which multiplies
-  its operands rather than adding them:
+  Declarations|#symbol-declarations> section, except that you first switch to
+  the appropriate namespace before declaring the symbols. For instance, here
+  is how you can create a new <verbatim|+> operation which multiplies its
+  operands rather than adding them:
 
   <\verbatim>
     \<gtr\> namespace my;
@@ -11286,8 +11269,8 @@
 
   The code above introduces a <verbatim|foo> namespace which defines a
   special variation of the <verbatim|(^)> operator. It also associates the
-  namespace with the <verbatim|\<less\>\<less\>> <verbatim|\<gtr\>\<gtr\>>
-  brackets so that you can write:
+  namespace with the <verbatim|\<\<> <verbatim|\>\>> brackets so that you can
+  write:
 
   <\verbatim>
     \<gtr\> (a+b)^c+10;
@@ -11386,11 +11369,10 @@
 
   As this example illustrates, namespace brackets can also be nested, which
   is useful, e.g., if you need to combine subexpressions from several DSLs in
-  a single expression. In this example we employ the
-  <verbatim|\<less\>\<less\>:x^y:\<gtr\>\<gtr\>> subexpression to temporarily
-  switch back to the default namespace inside the <verbatim|\<less\>\<less\>>
-  <verbatim|\<gtr\>\<gtr\>>-bracketed expression which is parsed in the
-  <verbatim|foo> namespace.
+  a single expression. In this example we employ the <verbatim|\<\<:x^y:\>\>>
+  subexpression to temporarily switch back to the default namespace inside
+  the <verbatim|\<\<> <verbatim|\>\>>-bracketed expression which is parsed in
+  the <verbatim|foo> namespace.
 
   <paragraph|Hierarchical Namespaces<label|hierarchical-namespaces>>
 
@@ -11435,7 +11417,7 @@
   the root directory), the symbols in each namespace correspond to the files
   in a directory, and the <hlink|<with|font-family|tt|using>
   <with|font-family|tt|namespace>|#using-namespace> declaration functions
-  similar to the shell's <label|index-15><verbatim|PATH> variable.
+  similar to the shell's<label|index-15><verbatim|PATH> variable.
 
   Sometimes it is necessary to tell the compiler to use a symbol in a
   specific namespace, bypassing the usual symbol lookup mechanism. For
@@ -11804,8 +11786,8 @@
   As you can see, the definition is pretty straightforward; exactly the same
   rules might also be used for an ordinary function definition, although the
   standard library actually implements <hlink|<with|font-family|tt|#>|purelib.tm##>
-  a bit differently to make good use of tail recursion. Let's check that
-  this actually works:
+  a bit differently to make good use of tail recursion. Let's check that this
+  actually works:
 
   <\verbatim>
     \<gtr\> foo = #[1,2,3,4];
@@ -11840,8 +11822,8 @@
   (Note the <verbatim|f@_>, which is an anonymous ``as'' pattern forcing the
   compiler to recognize <verbatim|f> as a function variable, rather than a
   literal function symbol. See <hlink|``As'' Patterns|#as-patterns> in the
-  <hlink|Caveats and Notes|#caveats-and-notes> section for an explanation
-  of this trick.)
+  <hlink|Caveats and Notes|#caveats-and-notes> section for an explanation of
+  this trick.)
 
   The first rule above takes care of ``unquoting'' embedded subterms. The
   second rule ``splices'' an argument list into an enclosing function
@@ -11926,8 +11908,8 @@
   right-hand-side of a macro definition is determined statically by the text
   of the definition, and macro parameter substitution also takes into account
   binding constructs, such as <hlink|<with|font-family|tt|with>|#with> and
-  <hlink|<with|font-family|tt|when>|#when> clauses, in the right-hand side
-  of the definition. Macro facilities with these pleasant properties are also
+  <hlink|<with|font-family|tt|when>|#when> clauses, in the right-hand side of
+  the definition. Macro facilities with these pleasant properties are also
   known as <with|font-series|bold|hygienic macros>. They are not susceptible
   to so-called ``name capture,'' which makes macros in less sophisticated
   languages bug-ridden and hard to use.
@@ -11962,8 +11944,8 @@
   is sometimes used deliberately in order to make the macro use the binding
   of the symbol which is active at the point of the macro call. Normally,
   this won't work in Pure, although there is a way to force this behaviour in
-  Pure as well, see <hlink|Name Capture|#name-capture> in the
-  <hlink|Caveats and Notes|#caveats-and-notes> section.)
+  Pure as well, see <hlink|Name Capture|#name-capture> in the <hlink|Caveats
+  and Notes|#caveats-and-notes> section.)
 
   In contrast, the second form of name capture is usually not intended, and
   is therefore more dangerous. Consider the following example:
@@ -12016,8 +11998,8 @@
 
   <\description>
     <item*|<em|macro> __lambda__ [x1,...,xn] y<label|--lambda-->>Expands to
-    the lambda expression <verbatim|\\x1> <verbatim|...> <verbatim|xn>
-    <verbatim|-\<gtr\>> <verbatim|y>.
+    the lambda expression <verbatim|<x1>> <verbatim|...> <verbatim|xn>
+    <verbatim|-\>> <verbatim|y>.
   </description>
 
   <\description>
@@ -12026,9 +12008,8 @@
     expression <verbatim|case> <verbatim|x> <verbatim|of> <verbatim|x1>
     <verbatim|=> <verbatim|y1;> <verbatim|...;> <verbatim|xn> <verbatim|=>
     <verbatim|yn> <verbatim|end>. Note that the
-    <hlink|<with|font-family|tt|--\<gtr\>>|#--\>> symbol is used to
-    separate the left-hand side and the right-hand side of each rule (see
-    below).
+    <hlink|<with|font-family|tt|--\<gtr\>>|#--\>> symbol is used to separate
+    the left-hand side and the right-hand side of each rule (see below).
   </description>
 
   <\description>
@@ -12039,7 +12020,7 @@
     <verbatim|end>. Here the left-hand side of a rule may be omitted if it is
     just the anonymous variable; i.e., <verbatim|x> <verbatim|__when__>
     <verbatim|[foo> <verbatim|y]> is the same as <verbatim|x>
-    <verbatim|__when__> <verbatim|[_> <verbatim|--\<gtr\>> <verbatim|foo>
+    <verbatim|__when__> <verbatim|[_> <verbatim|--\>> <verbatim|foo>
     <verbatim|y]>.
   </description>
 
@@ -12063,10 +12044,10 @@
 
   <\description>
     <item*|<em|constructor> x __if__ y<label|--if-->>Attaches a guard to the
-    right-hand side of an equation. That is, <verbatim|x>
-    <verbatim|--\<gtr\>> <verbatim|y> <verbatim|__if__> <verbatim|z> denotes
-    the conditional equation <verbatim|x> <verbatim|=> <verbatim|y>
-    <verbatim|if> <verbatim|z>. This symbol is only recognized in
+    right-hand side of an equation. That is, <verbatim|x> <verbatim|--\>>
+    <verbatim|y> <verbatim|__if__> <verbatim|z> denotes the conditional
+    equation <verbatim|x> <verbatim|=> <verbatim|y> <verbatim|if>
+    <verbatim|z>. This symbol is only recognized in
     <hlink|<with|font-family|tt|__case__>|#--case--> and
     <hlink|<with|font-family|tt|__with__>|#--with--> calls.
   </description>
@@ -12179,8 +12160,8 @@
   </verbatim>
 
   This is useful to see which expression a quoted special will expand to.
-  Note that <hlink|<with|font-family|tt|__str__>|purelib.tm#--str--> can
-  also be used to define print representations for quoted specials with
+  Note that <hlink|<with|font-family|tt|__str__>|purelib.tm#--str--> can also
+  be used to define print representations for quoted specials with
   <hlink|<with|font-family|tt|__show__>|#--show--> (described in
   <hlink|Pretty-Printing|#pretty-printing>) if you always want to have them
   printed that way by the interpreter.
@@ -12245,12 +12226,12 @@
     __lambda__ [b,a] (a-b)
   </verbatim>
 
-  The <hlink|<em|--quoteargs>|#cmdoption-pure-pragma--quoteargs> pragma
-  makes the <verbatim|swap> macro receive its argument unevaluated, as if it
-  was quoted (but without a literal quote around it). Therefore the quote on
-  the lambda argument of <verbatim|swap> can now be omitted. However, the
-  result is still a quoted lambda. It's tempting to just omit the quote on
-  the right-hand side of the macro definition as well, in order to get a real
+  The <hlink|<em|--quoteargs>|#cmdoption-pure-pragma--quoteargs> pragma makes
+  the <verbatim|swap> macro receive its argument unevaluated, as if it was
+  quoted (but without a literal quote around it). Therefore the quote on the
+  lambda argument of <verbatim|swap> can now be omitted. However, the result
+  is still a quoted lambda. It's tempting to just omit the quote on the
+  right-hand side of the macro definition as well, in order to get a real
   lambda instead:
 
   <\verbatim>
@@ -12280,13 +12261,13 @@
     #\<less\>closure 0x7f1934157248\<gtr\>
   </verbatim>
 
-  Ok, so the result is the lambda <verbatim|\\y> <verbatim|x>
-  <verbatim|-\<gtr\>> <verbatim|a-b>, not <verbatim|\\b> <verbatim|a>
-  <verbatim|-\<gtr\>> <verbatim|a-b> as we expected. This happens because we
-  used a literal (unquoted) lambda on the right-hand side, which does its own
-  variable binding; consequently, the variables <verbatim|x> and <verbatim|y>
-  are bound by the lambda in this context, not by the left-hand side of the
-  macro rule.
+  Ok, so the result is the lambda <verbatim|<y>> <verbatim|x> <verbatim|-\>>
+  <verbatim|a-b>, not <verbatim|<b>> <verbatim|a> <verbatim|-\>>
+  <verbatim|a-b> as we expected. This happens because we used a literal
+  (unquoted) lambda on the right-hand side, which does its own variable
+  binding; consequently, the variables <verbatim|x> and <verbatim|y> are
+  bound by the lambda in this context, not by the left-hand side of the macro
+  rule.
 
   So just putting an unquoted lambda on the right-hand side doesn't do the
   job. One way to deal with the situation is to just employ the
@@ -12514,14 +12495,13 @@
   First, note that the <hlink|<with|font-family|tt|void>|purelib.tm#void>
   function simply throws away its argument and returns
   <hlink|<with|font-family|tt|()>|purelib.tm#()> instead. The
-  <hlink|<with|font-family|tt|do>|purelib.tm#do> function applies a
-  function to every member of a list (like
-  <hlink|<with|font-family|tt|map>|purelib.tm#map>), but throws away all
-  intermediate results and just returns <hlink|<with|font-family|tt|()>|purelib.tm#()>,
-  which is much more efficient if you don't need those results anyway. These
-  are both defined in the prelude, but we define our own version of
-  <verbatim|void> here so that we can hook it up to our simplified version of
-  the <verbatim|__do__> macro.
+  <hlink|<with|font-family|tt|do>|purelib.tm#do> function applies a function
+  to every member of a list (like <hlink|<with|font-family|tt|map>|purelib.tm#map>),
+  but throws away all intermediate results and just returns
+  <hlink|<with|font-family|tt|()>|purelib.tm#()>, which is much more
+  efficient if you don't need those results anyway. These are both defined in
+  the prelude, but we define our own version of <verbatim|void> here so that
+  we can hook it up to our simplified version of the <verbatim|__do__> macro.
 
   The <verbatim|__do__> macro eventually reduces to just a plain
   <verbatim|do> call, but applies some optimizations along the way. While the
@@ -12578,8 +12558,8 @@
   </verbatim>
 
   As you can see, the <hlink|<with|font-family|tt|catmap>|purelib.tm#catmap>
-  got replaced with a <hlink|<with|font-family|tt|do>|purelib.tm#do>, and
-  the list brackets inside the lambda were eliminated as well. These
+  got replaced with a <hlink|<with|font-family|tt|do>|purelib.tm#do>, and the
+  list brackets inside the lambda were eliminated as well. These
   optimizations are just what's needed to make this code go essentially as
   fast as a <verbatim|for> loop in traditional programming languages (up to
   constant factors, of course). Here's how it looks like when we run the
@@ -12635,10 +12615,10 @@
   it can inspect and recurse into the lambda terms in its argument. Also note
   the <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> on the right-hand
   side of this rule; this is also implemented as a macro in the prelude. Here
-  the <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> operator is used
-  to forcibly evaluate the macro argument <verbatim|__lambda__>
-  <verbatim|[x]> <verbatim|(void> <verbatim|y)>, so that the embedded call to
-  the <verbatim|void> macro gets expanded. (Without the
+  the <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> operator is used to
+  forcibly evaluate the macro argument <verbatim|__lambda__> <verbatim|[x]>
+  <verbatim|(void> <verbatim|y)>, so that the embedded call to the
+  <verbatim|void> macro gets expanded. (Without the
   <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> the argument to
   <verbatim|__do__> would be quoted and thus not be evaluated.) A similar
   rule is used to recurse into embedded filter clauses, as in the example of
@@ -12684,9 +12664,9 @@
   Specifically, the <hlink|<with|font-family|tt|get_fundef>|purelib.tm#get-fundef>
   function allows you to retrieve the definition of a global Pure function.
   Given the symbol denoting the function,
-  <hlink|<with|font-family|tt|get_fundef>|purelib.tm#get-fundef> returns
-  the list of rewriting rules implementing the functions, using the same
-  <verbatim|lhs> <verbatim|--\<gtr\>> <verbatim|rhs> format used by the
+  <hlink|<with|font-family|tt|get_fundef>|purelib.tm#get-fundef> returns the
+  list of rewriting rules implementing the functions, using the same
+  <verbatim|lhs> <verbatim|--\>> <verbatim|rhs> format used by the
   <hlink|<with|font-family|tt|__case__>|#--case-->,
   <hlink|<with|font-family|tt|__when__>|#--when--> and
   <hlink|<with|font-family|tt|__with__>|#--with--> macros discussed above.
@@ -12799,7 +12779,7 @@
   are completely analogous to <hlink|<with|font-family|tt|get_fundef>|purelib.tm#get-fundef>,
   but return the definitions of types, macros, (global) variables and
   constants. Note that in the latter two cases the rule list takes the form
-  <verbatim|[var--\<gtr\>val]> if the symbol is defined, <verbatim|[]> if it
+  <verbatim|[var--\>val]> if the symbol is defined, <verbatim|[]> if it
   isn't.
 
   For instance, let's check the definition of the
@@ -12825,7 +12805,7 @@
 
     [(argc--\<gtr\>0),(argv--\<gtr\>[]),(compiling--\<gtr\>0),
 
-    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.58")]
+    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.59")]
   </verbatim>
 
   The counterparts of <hlink|<with|font-family|tt|add_fundef>|purelib.tm#add-fundef>
@@ -12859,15 +12839,14 @@
   Library Manual>|purelib.tm> for details.
 
   Finally, a word of caution: The use of <hlink|<with|font-family|tt|add_fundef>|purelib.tm#add-fundef>,
-  <hlink|<with|font-family|tt|del_fundef>|purelib.tm#del-fundef> and
-  similar operations to modify a running program breaks referential
-  transparency and hence these functions should be used with care. Moreover,
-  at present the JIT compiler doesn't support truly self-modifying code
-  (i.e., functions modifying themselves while they're executing); this
-  results in undefined behaviour. Also, note that none of the inspection and
-  mutation capabilities provided by these operations will work in
-  batch-compiled programs, please check the <hlink|Batch
-  Compilation|#batch-compilation> section for details.
+  <hlink|<with|font-family|tt|del_fundef>|purelib.tm#del-fundef> and similar
+  operations to modify a running program breaks referential transparency and
+  hence these functions should be used with care. Moreover, at present the
+  JIT compiler doesn't support truly self-modifying code (i.e., functions
+  modifying themselves while they're executing); this results in undefined
+  behaviour. Also, note that none of the inspection and mutation capabilities
+  provided by these operations will work in batch-compiled programs, please
+  check the <hlink|Batch Compilation|#batch-compilation> section for details.
 
   <subsection|Exception Handling<label|exception-handling>>
 
@@ -12970,9 +12949,9 @@
     \<gtr\> trap SIG_TRAP SIGQUIT;
   </verbatim>
 
-  You can also use <hlink|<with|font-family|tt|trap>|purelib.tm#trap> to
-  just ignore a signal or revert to the system's default handler (which might
-  take different actions depending on the type of signal, see signal(7) for
+  You can also use <hlink|<with|font-family|tt|trap>|purelib.tm#trap> to just
+  ignore a signal or revert to the system's default handler (which might take
+  different actions depending on the type of signal, see signal(7) for
   details):
 
   <\verbatim>
@@ -12995,8 +12974,8 @@
   solution. Note the use of <hlink|<with|font-family|tt|throw>|purelib.tm#throw>
   in the recursive search routine to bail out with a solution as soon as we
   found one. The value thrown there is caught in the main routine. Also note
-  the use of <hlink|<with|font-family|tt|void>|purelib.tm#void> in the
-  second equation of <verbatim|search>. This effectively turns the list
+  the use of <hlink|<with|font-family|tt|void>|purelib.tm#void> in the second
+  equation of <verbatim|search>. This effectively turns the list
   comprehension into a simple loop which suppresses the normal list result
   and just returns <verbatim|()> instead. Thus, if no value gets thrown then
   the function regularly returns with <verbatim|()> to indicate that there is
@@ -13038,9 +13017,9 @@
   and logical operations) and to do most kind of list processing you can find
   in ML- and Haskell-like languages. It also provides a collection of basic
   string and matrix operations. Please refer to the <hlink|<em|Pure Library
-  Manual>|purelib.tm> for details on the provided operations. Here is a
-  very brief summary of some of the prelude operations which, besides the
-  usual arithmetic and logical operators, are probably used most frequently:
+  Manual>|purelib.tm> for details on the provided operations. Here is a very
+  brief summary of some of the prelude operations which, besides the usual
+  arithmetic and logical operators, are probably used most frequently:
 
   <\description>
     <item*|x+y>The arithmetic <verbatim|+> operation is also used to denote
@@ -13123,9 +13102,9 @@
   Besides the prelude, Pure's standard library also comprises a growing
   number of additional library modules which we can only mention in passing
   here. In particular, the <hlink|<with|font-family|tt|math>|purelib.tm#module-math>
-  module provides additional mathematical functions as well as Pure's
-  complex and rational number data types. Common container data structures
-  like sets and dictionaries are implemented in the
+  module provides additional mathematical functions as well as Pure's complex
+  and rational number data types. Common container data structures like sets
+  and dictionaries are implemented in the
   <hlink|<with|font-family|tt|set>|purelib.tm#module-set> and
   <hlink|<with|font-family|tt|dict>|purelib.tm#module-dict> modules, among
   others. Moreover, the system interface can be found in the
@@ -13144,11 +13123,11 @@
   and the Pure runtime are readily available to Pure scripts. Functions can
   also be loaded from dynamic libraries and LLVM bitcode files at runtime. In
   the latter case, you don't even need to write any
-  <hlink|<with|font-family|tt|extern>|#extern> declarations, the
-  interpreter will do that for you. As of Pure 0.45, you can also add inline
-  C/C++ and Fortran code to your Pure scripts and have the Pure interpreter
-  compile them on the fly, provided that you have the corresponding compilers
-  from the LLVM project installed.
+  <hlink|<with|font-family|tt|extern>|#extern> declarations, the interpreter
+  will do that for you. As of Pure 0.45, you can also add inline C/C++ and
+  Fortran code to your Pure scripts and have the Pure interpreter compile
+  them on the fly, provided that you have the corresponding compilers from
+  the LLVM project installed.
 
   In some cases you will still have to rely on big and complicated
   third-party and system libraries which aren't readily available in bitcode
@@ -13419,14 +13398,14 @@
   <subsubsection|C Types<label|c-types>>
 
   As indicated in the previous section, the data types in
-  <hlink|<with|font-family|tt|extern>|#extern> declarations are either C
-  type names or pointer types derived from these. The special
-  <verbatim|expr*> pointer type is simply passed through; this provides a
-  means to deal with Pure data in C functions in a direct fashion. For all
-  other C types, Pure values are ``marshalled'' (converted) from Pure to C
-  when passed as arguments to C functions, and the result returned by the C
-  function is then converted back from C to Pure. All of this is handled by
-  the runtime system in a transparent way, of course.
+  <hlink|<with|font-family|tt|extern>|#extern> declarations are either C type
+  names or pointer types derived from these. The special <verbatim|expr*>
+  pointer type is simply passed through; this provides a means to deal with
+  Pure data in C functions in a direct fashion. For all other C types, Pure
+  values are ``marshalled'' (converted) from Pure to C when passed as
+  arguments to C functions, and the result returned by the C function is then
+  converted back from C to Pure. All of this is handled by the runtime system
+  in a transparent way, of course.
 
   Note that, to keep things simple, Pure does <em|not> provide any notations
   for C structs or function types, although it is possible to represent
@@ -13522,8 +13501,7 @@
     matrices between Pure and GSL routines in a direct fashion without any
     overhead. (For convenience, there are also some other pointer conversions
     for marshalling matrix arguments to numeric C vectors, which are
-    described in <hlink|Pointers and Matrices|#pointers-and-matrices>
-    below.)
+    described in <hlink|Pointers and Matrices|#pointers-and-matrices> below.)
 
     <item><verbatim|expr*> is for any kind of Pure value. A pointer to the
     expression node is passed to or from the C function. This type is to be
@@ -13794,20 +13772,19 @@
   Shared libraries opened with using clauses are searched for in the same way
   as source scripts (see section <hlink|Modules and
   Imports|#modules-and-imports> above), using the
-  <hlink|<em|-L>|#cmdoption-pure-L> option and the
-  <label|index-16><hlink|<with|font-family|tt|PURE_LIBRARY>|#envvar-PURE-LIBRARY>
-  environment variable in place of <hlink|<em|-I>|#cmdoption-pure-I> and
-  <label|index-17><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>.
+  <hlink|<em|-L>|#cmdoption-pure-L> option and
+  the<label|index-16><hlink|<with|font-family|tt|PURE_LIBRARY>|#envvar-PURE-LIBRARY>
+  environment variable in place of <hlink|<em|-I>|#cmdoption-pure-I>
+  and<label|index-17><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>.
   If the library isn't found by these means, the interpreter will also
   consider other platform-specific locations searched by the dynamic linker,
-  such as the system library directories and
-  <label|index-18><verbatim|LD_LIBRARY_PATH> on Linux. The necessary filename
-  suffix (e.g., .so on Linux or .dll on Windows) will be supplied
-  automatically when needed. Of course you can also specify a full pathname
-  for the library if you prefer that. If a library file cannot be found, or
-  if an <hlink|<with|font-family|tt|extern>|#extern> declaration names a
-  function symbol which cannot be resolved, an appropriate error message is
-  printed.
+  such as the system library directories and<label|index-18><verbatim|LD_LIBRARY_PATH>
+  on Linux. The necessary filename suffix (e.g., .so on Linux or .dll on
+  Windows) will be supplied automatically when needed. Of course you can also
+  specify a full pathname for the library if you prefer that. If a library
+  file cannot be found, or if an <hlink|<with|font-family|tt|extern>|#extern>
+  declaration names a function symbol which cannot be resolved, an
+  appropriate error message is printed.
 
   <subsubsection|Importing LLVM Bitcode<label|importing-llvm-bitcode>>
 
@@ -13818,8 +13795,8 @@
   <hlink|<with|font-family|tt|extern>|#extern> declarations automatically.
   This is more than just a convenience, as it also eliminates at least some
   of the mistakes in <hlink|<with|font-family|tt|extern>|#extern>
-  declarations that may arise when importing functions manually from
-  dynamic libraries.
+  declarations that may arise when importing functions manually from dynamic
+  libraries.
 
   <with|font-series|bold|Note:> The facilities described below require that
   you have an LLVM-capable C/C++ compiler installed. The available options
@@ -13923,10 +13900,10 @@
   build an LLVM bitcode module. Of course, you can also add optimizations and
   other options to the compile command as desired.
 
-  Using <hlink|dragonegg|#dragonegg> is somewhat more involved, as it
-  doesn't provide a direct way to produce a bitcode file yet. However, you
-  can create an LLVM assembler file which can then be translated to bitcode
-  using the llvm-as program as follows:
+  Using <hlink|dragonegg|#dragonegg> is somewhat more involved, as it doesn't
+  provide a direct way to produce a bitcode file yet. However, you can create
+  an LLVM assembler file which can then be translated to bitcode using the
+  llvm-as program as follows:
 
   <\verbatim>
     gcc -fplugin=dragonegg -flto -S mygcd.c -o mygcd.ll
@@ -14014,10 +13991,9 @@
 
   Instead of manually compiling source files to bitcode modules, you can also
   just place the source code into a Pure script, enclosing it in
-  <verbatim|%\<less\>> <verbatim|...> <verbatim|%\<gtr\>>. (Optionally, the
-  opening brace may also be preceded with a
-  <hlink|<with|font-family|tt|public>|#public> or
-  <hlink|<with|font-family|tt|private>|#private> scope specifier, which is
+  <verbatim|%\<> <verbatim|...> <verbatim|%\>>. (Optionally, the opening
+  brace may also be preceded with a <hlink|<with|font-family|tt|public>|#public>
+  or <hlink|<with|font-family|tt|private>|#private> scope specifier, which is
   used in the same way as the scope specifier following the
   <hlink|<with|font-family|tt|using>|#using> keyword when importing bitcode
   files.)
@@ -14105,26 +14081,25 @@
   by a module name, using the format <verbatim|-*-> <verbatim|lang:name>
   <verbatim|-*->. This is optional for all languages except Faust (where the
   module name specifies the namespace for the interface routines of the Faust
-  module; see <hlink|Interfacing to Faust|#interfacing-to-faust> below).
-  So, e.g., a Faust DSP named <verbatim|test> would be specified with a
+  module; see <hlink|Interfacing to Faust|#interfacing-to-faust> below). So,
+  e.g., a Faust DSP named <verbatim|test> would be specified with a
   <verbatim|dsp:test> tag. Case is <em|significant> in the module name.
 
   The Pure interpreter has some built-in knowledge on how to invoke the LLVM
   compilers to produce a working bitcode file ready to be loaded by the
   interpreter, so the examples above should work out of the box if you have
-  the required compilers installed on your <label|index-19><verbatim|PATH>.
+  the required compilers installed on your<label|index-19><verbatim|PATH>.
   However, there are also some environment variables you can set for
-  customization purposes. Specifically, <label|index-20><verbatim|PURE_CC> is
+  customization purposes. Specifically,<label|index-20><verbatim|PURE_CC> is
   the command to invoke the C compiler. This variable lets you specify the
   exact name of the executable along with any debugging and optimization
-  options that you may want to add. Likewise,
-  <label|index-21><verbatim|PURE_CXX>, <label|index-22><verbatim|PURE_FC> and
-  <label|index-23><verbatim|PURE_FAUST> are used for the C++, Fortran and
+  options that you may want to add. Likewise,<label|index-21><verbatim|PURE_CXX>,<label|index-22><verbatim|PURE_FC>
+  and<label|index-23><verbatim|PURE_FAUST> are used for the C++, Fortran and
   Faust compilers, respectively.
 
   For instance, if you prefer to use <hlink|llvm-gcc|#llvm-gcc> as your C
   compiler, and you'd like to invoke it with the <verbatim|-O3> optimization
-  option, you would set <label|index-24><verbatim|PURE_CC> to
+  option, you would set<label|index-24><verbatim|PURE_CC> to
   <verbatim|"llvm-gcc> <verbatim|-O3">. (To verify the settings you made, you
   can have the interpreter echo the compilation commands which are actually
   executed, by running Pure with the <verbatim|-v0100> option, see
@@ -14371,13 +14346,12 @@
   </verbatim>
 
   A third possibility is to just inline Faust code in a Pure script, as
-  described in the <hlink|Inline Code|#inline-code> section. The
-  compilation step is then handled by the Pure compiler and the
-  <verbatim|-double> option is added automatically. The
-  <label|index-25><verbatim|PURE_FAUST> environment variable can be used to
-  specify a custom Faust command to be invoked by the Pure interpreter. This
-  is useful if you'd like to invoke the Faust compiler with some special
-  options, e.g.:
+  described in the <hlink|Inline Code|#inline-code> section. The compilation
+  step is then handled by the Pure compiler and the <verbatim|-double> option
+  is added automatically. The<label|index-25><verbatim|PURE_FAUST>
+  environment variable can be used to specify a custom Faust command to be
+  invoked by the Pure interpreter. This is useful if you'd like to invoke the
+  Faust compiler with some special options, e.g.:
 
   <\verbatim>
     PURE_FAUST="faust -single -vec"
@@ -14386,7 +14360,7 @@
   (Note that you do not have to include the <verbatim|-lang> <verbatim|llvm>
   option; the inline compiler will supply it automatically.)
 
-  Moreover, you can also set the <label|index-26><verbatim|FAUST_OPT>
+  Moreover, you can also set the<label|index-26><verbatim|FAUST_OPT>
   environment variable to specify any needed postprocessing of the output of
   the Faust compiler; this is typically used to invoke the LLVM
   <verbatim|opt> utility in a pipeline, in order to have some additional
@@ -14409,8 +14383,8 @@
   effect. This is mainly intended as a convenience for interactive usage, so
   that you can test different versions of a Faust module without having to
   restart the Pure interpreter. But it is also put to good use in addon
-  packages like <hlink|<em|pd-faust>|pd-faust.tm> which allows Faust dsps
-  to be reloaded at runtime.
+  packages like <hlink|<em|pd-faust>|pd-faust.tm> which allows Faust dsps to
+  be reloaded at runtime.
 
   For instance, consider the following little Faust program, which takes a
   stereo audio signal as input, mixes the two channels and multiplies the
@@ -14564,10 +14538,10 @@
   below.)
 
   In a similar fashion, the <verbatim|meta> function provides some
-  ``metadata'' about the Faust dsp, as a list of <verbatim|key=\<gtr\>val>
-  string pairs. This is static data which doesn't belong to any particular
-  dsp instance, so it can be extracted without actually creating an instance.
-  In our case the metadata will be empty, since we didn't supply any in the
+  ``metadata'' about the Faust dsp, as a list of <verbatim|key=\>val> string
+  pairs. This is static data which doesn't belong to any particular dsp
+  instance, so it can be extracted without actually creating an instance. In
+  our case the metadata will be empty, since we didn't supply any in the
   Faust program. If needed, we can add some metadata as follows:
 
   <\verbatim>
@@ -14716,7 +14690,7 @@
 
   Faust also allows metadata to be attached to individual controls and
   control groups, which is available in the same form of a list of
-  <verbatim|key=\<gtr\>val> string pairs that we have seen already with the
+  <verbatim|key=\>val> string pairs that we have seen already with the
   <verbatim|meta> operation. This metadata is used to provide auxiliary
   information about a control to specific applications. It's completely up to
   the application how to interpret this metadata. Typical examples are style
@@ -14769,8 +14743,8 @@
   realm of sophisticated multimedia and signal processing applications. More
   Faust-related examples can be found in the Pure distribution. Also, have a
   look at the <hlink|<em|pd-pure>|pd-pure.tm> and
-  <hlink|<em|pd-faust>|pd-faust.tm> packages to see how these facilities
-  can be used in Pd modules written in Pure.
+  <hlink|<em|pd-faust>|pd-faust.tm> packages to see how these facilities can
+  be used in Pd modules written in Pure.
 
   <subsection|Interactive Usage<label|interactive-usage>>
 
@@ -14811,11 +14785,10 @@
   However, there are a few special kinds of objects like anonymous closures,
   thunks (``lazy'' values to be evaluated when needed) and pointers which
   don't have a textual representation in the Pure syntax and will be printed
-  in the format <verbatim|#\<less\>><em|object description><verbatim|\<gtr\>>
-  by default. It is also possible to override the print representation of any
+  in the format <verbatim|#\<><em|object description><verbatim|\>> by
+  default. It is also possible to override the print representation of any
   kind of expression by means of the <hlink|<with|font-family|tt|__show__>|#--show-->
-  function, see <hlink|Pretty-Printing|#pretty-printing> below for
-  details.
+  function, see <hlink|Pretty-Printing|#pretty-printing> below for details.
 
   A number of other special features of Pure's command line interface are
   discussed in the following subsections.
@@ -14858,8 +14831,8 @@
   character, without any intervening whitespace. Any line not prefixed with
   the prefix character will then be considered normal Pure code. This mode
   can be enabled with the <hlink|<em|--escape>|#cmdoption-pure--escape>
-  option, which takes the desired prefix character as an argument, or you
-  can just set the <label|index-27><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  option, which takes the desired prefix character as an argument, or you can
+  just set the<label|index-27><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   variable in your environment to enable escape mode by default.
 
   For example, to set the escape character to `<verbatim|:>` you'll invoke
@@ -14869,7 +14842,7 @@
     $ pure --escape=':'
   </verbatim>
 
-  Alternatively, you could also set the <label|index-28><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  Alternatively, you could also set the<label|index-28><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   environment variable like this (using Bourne shell syntax):
 
   <\verbatim>
@@ -14877,18 +14850,18 @@
   </verbatim>
 
   Note that specifying the prefix character with the
-  <hlink|<em|--escape>|#cmdoption-pure--escape> option overrides the value
-  of the environment variable, and only the initial character in the value of
-  <hlink|<em|--escape>|#cmdoption-pure--escape> or
-  <label|index-29><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  <hlink|<em|--escape>|#cmdoption-pure--escape> option overrides the value of
+  the environment variable, and only the initial character in the value of
+  <hlink|<em|--escape>|#cmdoption-pure--escape>
+  or<label|index-29><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   will be used. If the specified value is empty, the interpreter reverts to
   the default mode. The following prefix characters can be used:
-  <verbatim|!$%&*,:\<less\>\<gtr\>@\\\|>. Note that these all belong to 7 bit
-  ASCII, and only some of the ASCII punctuation characters are permitted in
-  order to prevent conflicts with ordinary Pure code. In any case, all of
-  these characters <em|can> also occur in ordinary Pure code, so you should
-  use a prefix that you aren't likely to type at the beginning of a line in
-  your usual coding style.
+  <verbatim|!$%&*,:\<\>@\\\|>. Note that these all belong to 7 bit ASCII, and
+  only some of the ASCII punctuation characters are permitted in order to
+  prevent conflicts with ordinary Pure code. In any case, all of these
+  characters <em|can> also occur in ordinary Pure code, so you should use a
+  prefix that you aren't likely to type at the beginning of a line in your
+  usual coding style.
 
   Many Pure programmers prefer escape mode, and in fact we recommend it for
   Pure novices even though it's not the default (yet). Others may prefer
@@ -14944,8 +14917,8 @@
 
   You need to have a html browser installed to make this work. By default,
   the <verbatim|help> command uses <with|font-series|bold|w3m>, but you can
-  change this by setting either the <label|index-30><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
-  or the <label|index-31><hlink|<with|font-family|tt|BROWSER>|#envvar-BROWSER>
+  change this by setting either the<label|index-30><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
+  or the<label|index-31><hlink|<with|font-family|tt|BROWSER>|#envvar-BROWSER>
   environment variable accordingly.
 
   When invoked without arguments, the <verbatim|help> command displays an
@@ -15042,17 +15015,17 @@
     function or operator symbols. All symbols must be specified in fully
     qualified form, see the remarks below. If invoked without arguments,
     prints all currently defined breakpoints. This requires that the
-    interpreter was invoked with the <hlink|<em|-g>|#cmdoption-pure-g>
-    option to enable debugging support. See <hlink|Debugging|#debugging>
-    below for details.
+    interpreter was invoked with the <hlink|<em|-g>|#cmdoption-pure-g> option
+    to enable debugging support. See <hlink|Debugging|#debugging> below for
+    details.
   </description>
 
   <\description>
     <item*|bt><label|index-34>Prints a full backtrace of the call sequence of
     the most recent evaluation, if that evaluation ended with an unhandled
     exception. This requires that the interpreter was invoked with the
-    <hlink|<em|-g>|#cmdoption-pure-g> option to enable debugging support.
-    See <hlink|Debugging|#debugging> below for details.
+    <hlink|<em|-g>|#cmdoption-pure-g> option to enable debugging support. See
+    <hlink|Debugging|#debugging> below for details.
   </description>
 
   <\description>
@@ -15231,8 +15204,8 @@
     The <verbatim|-m> option allows you to trace macro (rather than function)
     calls. If this option is specified, the compiler prints reduction
     sequences involving the given macro symbol, which is useful when
-    debugging macros; see the <hlink|Macros|#macros> section for details
-    and examples. Note that macro tracing works even if the interpreter was
+    debugging macros; see the <hlink|Macros|#macros> section for details and
+    examples. Note that macro tracing works even if the interpreter was
     invoked without debugging mode.
 
     If the <verbatim|-a> option is specified, tracepoints are set on <em|all>
@@ -15349,8 +15322,8 @@
   which case a command like <verbatim|clear> <verbatim|-tn> <verbatim|foo>
   might only affect some part of <verbatim|foo>`s definition. The
   <verbatim|dump> and <verbatim|show> commands work analogously (albeit less
-  destructively). See <hlink|Definition Levels|#definition-levels> below
-  for some examples.
+  destructively). See <hlink|Definition Levels|#definition-levels> below for
+  some examples.
 
   <subsubsection|The show Command<label|the-show-command>>
 
@@ -15375,8 +15348,8 @@
   -s Summary format, print just summary information about listed symbols.
   Symbols are always listed in lexicographic order. Note that some of the
   options (in particular, <verbatim|-a> and <verbatim|-d>) may produce
-  excessive amounts of information. By setting the
-  <label|index-51><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  excessive amounts of information. By setting
+  the<label|index-51><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
   environment variable, you can specify a shell command to be used for
   paging, usually <with|font-series|bold|more> or
   <with|font-series|bold|less>.
@@ -15450,7 +15423,7 @@
 
     sysinfo \ \ \ var \ sysinfo = "x86_64-unknown-linux-gnu";
 
-    version \ \ \ var \ version = "0.58";
+    version \ \ \ var \ version = "0.59";
 
     5 variables
   </verbatim>
@@ -15484,8 +15457,8 @@
     <item><verbatim|show> <verbatim|interface> lists the actual
     <hlink|<with|font-family|tt|type>|#type> rules for an interface type.
     This is useful if you want to verify which patterns will be matched by an
-    interface type, see <hlink|Interface Types|#interface-types> for
-    details. For instance:
+    interface type, see <hlink|Interface Types|#interface-types> for details.
+    For instance:
 
     <\verbatim>
       \<gtr\> interface stack with
@@ -15813,14 +15786,14 @@
     \ \ \ \ \ x1 = out_of_bounds
   </verbatim>
 
-  The last call, which is also marked with the <verbatim|\<gtr\>\<gtr\>>
-  symbol, is the call that raised the exception. The format is similar to the
-  <verbatim|p> command of the debugger, see below, but <verbatim|bt> always
-  prints a full backtrace. (As with the <verbatim|show> command of the
-  interpreter, you can set the <label|index-52><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
-  environment variable to pipe the output through the corresponding
-  command, or use <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd>
-  to capture the output of <verbatim|bt> in a string.)
+  The last call, which is also marked with the <verbatim|\>\>> symbol, is the
+  call that raised the exception. The format is similar to the <verbatim|p>
+  command of the debugger, see below, but <verbatim|bt> always prints a full
+  backtrace. (As with the <verbatim|show> command of the interpreter, you can
+  set the<label|index-52><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  environment variable to pipe the output through the corresponding command,
+  or use <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> to capture
+  the output of <verbatim|bt> in a string.)
 
   The debugger can also be used interactively. To these ends, you can set
   breakpoints on functions with the <verbatim|break> command. The debugger
@@ -15881,17 +15854,16 @@
   function and the values of parameters and other local variables in the
   current lexical environment. In contrast, the prefix <verbatim|++> denotes
   reductions which were actually performed during the evaluation and the
-  results that were returned by the function call (printed as
-  <verbatim|--\<gtr\>> <verbatim|return> <verbatim|value>).
+  results that were returned by the function call (printed as <verbatim|--\>>
+  <verbatim|return> <verbatim|value>).
 
-  Sometimes you might also see funny symbols like
-  <verbatim|#\<less\>closure\<gtr\>>, <verbatim|#\<less\>case\<gtr\>> or
-  <verbatim|#\<less\>when\<gtr\>> instead of the function name. These
-  indicate lambdas and the special variable-binding environments, which are
-  all implemented as anonymous closures in Pure. Also note that the debugger
-  doesn't know about the argument names of external functions (which are
-  optional in Pure and not recorded anywhere), so it will display the generic
-  names <verbatim|x1>, <verbatim|x2> etc. instead.
+  Sometimes you might also see funny symbols like <verbatim|#\<closure\>>,
+  <verbatim|#\<case\>> or <verbatim|#\<when\>> instead of the function name.
+  These indicate lambdas and the special variable-binding environments, which
+  are all implemented as anonymous closures in Pure. Also note that the
+  debugger doesn't know about the argument names of external functions (which
+  are optional in Pure and not recorded anywhere), so it will display the
+  generic names <verbatim|x1>, <verbatim|x2> etc. instead.
 
   At the debugger prompt `<verbatim|:>` you can enter various special
   debugger commands, or just keep on hitting the carriage return key to walk
@@ -15978,8 +15950,7 @@
 
   In addition, you can use the <verbatim|!> command (or whatever command
   prefix has been set with the <hlink|<em|--escape>|#cmdoption-pure--escape>
-  option) to run any interpreter command while in the debugger. For
-  instance:
+  option) to run any interpreter command while in the debugger. For instance:
 
   <\verbatim>
     : !ls
@@ -15995,21 +15966,21 @@
 
   The interpreter's shell escape can also be used from the debugger. In
   default mode or when using <verbatim|!> as the
-  <hlink|<em|--escape>|#cmdoption-pure--escape> prefix, you'll have to
-  escape shell commands with <verbatim|!!>, otherwise a single <verbatim|!>
+  <hlink|<em|--escape>|#cmdoption-pure--escape> prefix, you'll have to escape
+  shell commands with <verbatim|!!>, otherwise a single <verbatim|!>
   suffices.
 
   At the debugger prompt, you can use the <verbatim|u> (``up''), <verbatim|d>
   (``down''), <verbatim|t> (``top'') and <verbatim|b> (``bottom'') commands
   to move around on the current call stack. The <verbatim|p> command prints a
   range of the call stack centered around the currently selected stack frame,
-  which is indicated with the <verbatim|\<gtr\>\<gtr\>> tag, whereas
-  <verbatim|**> denotes the current bottom of the stack (which is the rule to
-  be executed with the single step command). The <verbatim|p> command can
-  also be followed by a numeric argument which indicates the number of stack
-  frames to be printed (this will then become the default for subsequent
-  invocations of <verbatim|p>). The <verbatim|n> command steps over the call
-  selected with the stack navigation commands. For instance:
+  which is indicated with the <verbatim|\>\>> tag, whereas <verbatim|**>
+  denotes the current bottom of the stack (which is the rule to be executed
+  with the single step command). The <verbatim|p> command can also be
+  followed by a numeric argument which indicates the number of stack frames
+  to be printed (this will then become the default for subsequent invocations
+  of <verbatim|p>). The <verbatim|n> command steps over the call selected
+  with the stack navigation commands. For instance:
 
   <\verbatim>
     \<gtr\> fact 3;
@@ -16243,8 +16214,8 @@
   Please see <hlink|Interactive Commands|#interactive-commands> above for
   details. Also note that these are really interpreter commands, so to invoke
   them in the debugger you have to escape them with the <verbatim|!> command
-  (or whatever other <hlink|<em|--escape>|#cmdoption-pure--escape> prefix
-  you specified).
+  (or whatever other <hlink|<em|--escape>|#cmdoption-pure--escape> prefix you
+  specified).
 
   The debugger can also be triggered programmatically with the built-in
   parameter-less functions <hlink|<with|font-family|tt|__break__>|purelib.tm#--break-->
@@ -16252,9 +16223,9 @@
   gives you much better control over the precise location and the conditions
   under which the debugger should be invoked. Just place a call to
   <hlink|<with|font-family|tt|__break__>|purelib.tm#--break--> or
-  <hlink|<with|font-family|tt|__trace__>|purelib.tm#--trace--> near the
-  point where you'd like to start debugging or tracing; this can be done
-  either with the sequencing operator `<hlink|<with|font-family|tt|$$>|#-dollar-dollar>`
+  <hlink|<with|font-family|tt|__trace__>|purelib.tm#--trace--> near the point
+  where you'd like to start debugging or tracing; this can be done either
+  with the sequencing operator `<hlink|<with|font-family|tt|$$>|#-dollar-dollar>`
   or with a <hlink|<with|font-family|tt|when>|#when> clause. The debugger
   will then be invoked at the next opportunity (usually when a function is
   called or a reduction is completed). For instance:
@@ -16286,12 +16257,11 @@
   <hlink|<with|font-family|tt|__break__>|purelib.tm#--break-->, and continues
   until the current stack frame is exited. One major advantage of this method
   is that it is possible to invoke <hlink|<with|font-family|tt|__break__>|purelib.tm#--break-->
-  or <hlink|<with|font-family|tt|__trace__>|purelib.tm#--trace--> only
-  under certain conditions, so that you can focus on interesting ``events''
-  during evaluation, which can make debugging much less tedious. In our
-  example, in order to stop when <verbatim|n> becomes <verbatim|1>, we might
-  invoke <hlink|<with|font-family|tt|__break__>|purelib.tm#--break--> as
-  follows:
+  or <hlink|<with|font-family|tt|__trace__>|purelib.tm#--trace--> only under
+  certain conditions, so that you can focus on interesting ``events'' during
+  evaluation, which can make debugging much less tedious. In our example, in
+  order to stop when <verbatim|n> becomes <verbatim|1>, we might invoke
+  <hlink|<with|font-family|tt|__break__>|purelib.tm#--break--> as follows:
 
   <\verbatim>
     \<gtr\> fact n::int = if n\<gtr\>0 then n\<gtr\>1\|\|__break__ $$ n*fact
@@ -16336,8 +16306,8 @@
   <subsubsection|Last Result<label|last-result>>
 
   Another convenience for interactive usage is the
-  <hlink|<with|font-family|tt|ans>|purelib.tm#ans> function, which
-  retrieves the most recent result printed in interactive mode. For instance:
+  <hlink|<with|font-family|tt|ans>|purelib.tm#ans> function, which retrieves
+  the most recent result printed in interactive mode. For instance:
 
   <\verbatim>
     \<gtr\> fact n = if n\<less\>=1 then 1 else n*fact (n-1);
@@ -16380,10 +16350,10 @@
   function expected to return a string with the desired custom representation
   of a normal form value given as the function's single argument. The
   interpreter prints the strings returned by
-  <hlink|<with|font-family|tt|__show__>|#--show--> just as they are. It
-  will not check whether they conform to Pure syntax and/or semantics, or
-  modify them in any way. Also, the library doesn't define this function
-  anywhere, so you are free to add any rules that you want.
+  <hlink|<with|font-family|tt|__show__>|#--show--> just as they are. It will
+  not check whether they conform to Pure syntax and/or semantics, or modify
+  them in any way. Also, the library doesn't define this function anywhere,
+  so you are free to add any rules that you want.
 
   Custom print representations are most useful for interactive purposes, if
   you're not happy with the default print syntax of some kinds of objects.
@@ -16425,10 +16395,10 @@
   </verbatim>
 
   Conversely, you can call the <hlink|<with|font-family|tt|str>|purelib.tm#str>
-  function from <hlink|<with|font-family|tt|__show__>|#--show-->, but in
-  this case it always returns the default representation of an expression.
-  This prevents the expression printer from going recursive, and allows you
-  to define your custom representation in terms of the default one. E.g., the
+  function from <hlink|<with|font-family|tt|__show__>|#--show-->, but in this
+  case it always returns the default representation of an expression. This
+  prevents the expression printer from going recursive, and allows you to
+  define your custom representation in terms of the default one. E.g., the
   following rule removes the <verbatim|L> suffixes from bigint values:
 
   <\verbatim>
@@ -16487,8 +16457,8 @@
   </verbatim>
 
   Finally, by just purging the definition of the
-  <hlink|<with|font-family|tt|__show__>|#--show--> function you can easily
-  go back to the standard print syntax:
+  <hlink|<with|font-family|tt|__show__>|#--show--> function you can easily go
+  back to the standard print syntax:
 
   <\verbatim>
     \<gtr\> clear __show__
@@ -16515,8 +16485,8 @@
   public function definitions in the special <verbatim|__cmd__> namespace
   (cf. <hlink|Namespaces|#namespaces>). These definitions are typically
   placed in one of the interpreter's startup files (see <hlink|Interactive
-  Startup|#interactive-startup> below) so that they are always available
-  when running the interpreter interactively.
+  Startup|#interactive-startup> below) so that they are always available when
+  running the interpreter interactively.
 
   A command function is invoked with one string argument which contains the
   rest of the command line (with leading and trailing whitespace stripped
@@ -16635,8 +16605,8 @@
   Syntax|#command-syntax>.)
 
   To do more interesting things, you should take a look at the reflection
-  capabilities discussed in the <hlink|Macros|#macros> section, which open
-  up endless possibilities for commands to inspect and manipulate the running
+  capabilities discussed in the <hlink|Macros|#macros> section, which open up
+  endless possibilities for commands to inspect and manipulate the running
   program in an interactive fashion. For instance, let's define a variation
   of the built-in <verbatim|clear> command which allows us to delete a
   specific rule rather than an entire function definition:
@@ -16758,7 +16728,7 @@
   line. This lets you tailor the interactive environment to your liking.
 
   The interpreter first looks for a .purerc file in the user's home directory
-  (as given by the <label|index-53><verbatim|HOME> environment variable) and
+  (as given by the<label|index-53><verbatim|HOME> environment variable) and
   then for a .purerc file in the current working directory. These are just
   ordinary Pure scripts which may contain any additional definitions
   (including command definitions, as described in the previous section) that
@@ -16773,17 +16743,17 @@
 
   The interpreter processes all these files in the same way as with the
   <verbatim|run> command (see <hlink|Interactive
-  Commands|#interactive-commands> above). When invoking the interpreter,
-  you can specify the <hlink|<em|--norc>|#cmdoption-pure--norc> option on
-  the command line if you wish to skip these initializations.
+  Commands|#interactive-commands> above). When invoking the interpreter, you
+  can specify the <hlink|<em|--norc>|#cmdoption-pure--norc> option on the
+  command line if you wish to skip these initializations.
 
   <subsection|Batch Compilation<label|batch-compilation>>
 
-  The interpreter's <hlink|<em|-c>|#cmdoption-pure-c> option provides a
-  means to turn Pure scripts into standalone executables. This feature is
-  still a bit experimental. In particular, note that the compiled executable
-  is essentially a <em|static snapshot> of your program which is executed on
-  the ``bare metal'', without a hosting interpreter. Only a minimal runtime
+  The interpreter's <hlink|<em|-c>|#cmdoption-pure-c> option provides a means
+  to turn Pure scripts into standalone executables. This feature is still a
+  bit experimental. In particular, note that the compiled executable is
+  essentially a <em|static snapshot> of your program which is executed on the
+  ``bare metal'', without a hosting interpreter. Only a minimal runtime
   system is provided. This considerably reduces startup times, but also
   implies some quirks and limitations as detailed below.
 
@@ -16837,8 +16807,8 @@
   anything in your program can actually depend on previous computations
   performed while the program is being executed. To make this work in
   batch-compiled scripts, the batch compiler thus executes the script as
-  usual. The <hlink|<with|font-family|tt|compiling>|#compiling> variable
-  can be used to check whether the script is being batch-compiled, so you can
+  usual. The <hlink|<with|font-family|tt|compiling>|#compiling> variable can
+  be used to check whether the script is being batch-compiled, so you can
   adjust to that by selectively enabling or disabling parts of the code. For
   instance, you will usually want to skip execution of the ``main program''
   during batch compilation.
@@ -16848,13 +16818,13 @@
   programs:
 
   <\itemize>
-    <item>The <hlink|<with|font-family|tt|eval>|purelib.tm#eval> function
-    can only be used to evaluate plain toplevel expressions. You can define
-    local functions and variables in <hlink|<with|font-family|tt|with>|#with>
-    and <hlink|<with|font-family|tt|when>|#when> clauses inside an
-    expression, but you can't use <hlink|<with|font-family|tt|eval>|purelib.tm#eval>
-    to define new global variables and functions. In other words, anything
-    which changes the executing program is ``verboten''. Moreover, the
+    <item>The <hlink|<with|font-family|tt|eval>|purelib.tm#eval> function can
+    only be used to evaluate plain toplevel expressions. You can define local
+    functions and variables in <hlink|<with|font-family|tt|with>|#with> and
+    <hlink|<with|font-family|tt|when>|#when> clauses inside an expression,
+    but you can't use <hlink|<with|font-family|tt|eval>|purelib.tm#eval> to
+    define new global variables and functions. In other words, anything which
+    changes the executing program is ``verboten''. Moreover, the
     introspective capabilities provided by
     <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> and similar
     operations (discussed under <hlink|Reflection|#reflection> in the
@@ -16863,10 +16833,10 @@
 
     <item>Constant and macro definitions, being compile time features, aren't
     available in the compiled program. If you need to use these with
-    <hlink|<with|font-family|tt|eval>|purelib.tm#eval> at run time, you
-    have to provide them through variable and function definitions instead.
-    Also, the compiler usually strips unused functions from the output code,
-    so that only functions which are actually called somewhere in the static
+    <hlink|<with|font-family|tt|eval>|purelib.tm#eval> at run time, you have
+    to provide them through variable and function definitions instead. Also,
+    the compiler usually strips unused functions from the output code, so
+    that only functions which are actually called somewhere in the static
     program text are available to <hlink|<with|font-family|tt|eval>|purelib.tm#eval>.
     (The <hlink|<em|-u>|#cmdoption-pure-u> option and the
     <hlink|<em|--required>|#cmdoption-pure-pragma--required> pragma can be
@@ -16890,8 +16860,8 @@
   of the interpreter. These restrictions only apply at run time, of course.
   At compile time the program <em|is> being executed by the full version of
   the interpreter so you can use <hlink|<with|font-family|tt|eval>|purelib.tm#eval>
-  and <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> in any
-  desired way.
+  and <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> in any desired
+  way.
 
   For most kinds of scripts, the above restrictions aren't really that much
   of an obstacle, or can easily be worked around. For the few scripts which
@@ -16955,8 +16925,8 @@
 
   To turn the script into an executable, we just invoke the Pure interpreter
   with the <hlink|<em|-c>|#cmdoption-pure-c> option, using the
-  <hlink|<em|-o>|#cmdoption-pure-o> option to specify the desired output
-  file name:
+  <hlink|<em|-o>|#cmdoption-pure-o> option to specify the desired output file
+  name:
 
   <\verbatim>
     $ pure -c hello.pure -o hello
@@ -17155,12 +17125,12 @@
   careful when using <hlink|<with|font-family|tt|eval>|purelib.tm#eval> in
   your compiled program. The compiler only does a <em|static> analysis of
   which functions might be reached from the initialization code (i.e.,
-  toplevel expressions and <hlink|<with|font-family|tt|let>|#let>
-  bindings). It does <em|not> take into account code run via the
-  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> routine. Thus,
-  functions used only in <hlink|<with|font-family|tt|eval>|purelib.tm#eval>ed
-  code will be stripped from the executable, as if they were never defined at
-  all. If such a function is then being called using
+  toplevel expressions and <hlink|<with|font-family|tt|let>|#let> bindings).
+  It does <em|not> take into account code run via the
+  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> routine. Thus, functions
+  used only in <hlink|<with|font-family|tt|eval>|purelib.tm#eval>ed code will
+  be stripped from the executable, as if they were never defined at all. If
+  such a function is then being called using
   <hlink|<with|font-family|tt|eval>|purelib.tm#eval> at runtime, it will
   evaluate to a plain constructor symbol.
 
@@ -17168,8 +17138,8 @@
   <hlink|<em|-u>|#cmdoption-pure-u> option to produce an unstripped
   executable, or you can force specific functions to be included in the
   stripped executable with the <hlink|<em|--required>|#cmdoption-pure-pragma--required>
-  pragma (cf. <hlink|Code Generation Options|#code-generation-options>).
-  For instance:
+  pragma (cf. <hlink|Code Generation Options|#code-generation-options>). For
+  instance:
 
   <\verbatim>
     #! --required foo
@@ -17206,16 +17176,16 @@
   </verbatim>
 
   On my 64 bit Linux system this produces a 187115 bytes executable. Without
-  <hlink|<em|--noconst>|#cmdoption-pure--noconst> the code becomes almost
-  an order of magnitude larger in this case (1788699 bytes). On the other
-  hand, the smaller executable also takes a little longer to run since it
-  must first recompute the value of the list constant at startup. So you have
-  to consider the tradeoffs in a given situation. Usually big executables
-  aren't much of a problem on modern operating systems, but if your program
-  contains a lot of big constants then this may become an important
-  consideration. However, if a constant value takes a long time to compute
-  then you'll be better off with the default behaviour of precomputing the
-  value at compile time.
+  <hlink|<em|--noconst>|#cmdoption-pure--noconst> the code becomes almost an
+  order of magnitude larger in this case (1788699 bytes). On the other hand,
+  the smaller executable also takes a little longer to run since it must
+  first recompute the value of the list constant at startup. So you have to
+  consider the tradeoffs in a given situation. Usually big executables aren't
+  much of a problem on modern operating systems, but if your program contains
+  a lot of big constants then this may become an important consideration.
+  However, if a constant value takes a long time to compute then you'll be
+  better off with the default behaviour of precomputing the value at compile
+  time.
 
   <subsubsection|Other Output Code Formats<label|other-output-code-formats>>
 
@@ -17359,14 +17329,14 @@
   This has two effects. First, the main entry point will be called whatever
   you specified with <hlink|<em|--main>|#cmdoption-pure--main>, so you have
   to call this function instead of <verbatim|__pure_main__> to initialize the
-  module. Second, if <hlink|<em|--main>|#cmdoption-pure--main> is
-  specified, then all Pure functions in the module will be changed to
-  internal linkage (like <verbatim|static> functions in C) to prevent any
-  possible name clashes between different modules. (Alas, this also makes it
-  impossible to employ <verbatim|pure_funcall> to call Pure functions
-  directly from C, as described in the following section, so you'll have to
-  use other runtime routines such as <verbatim|pure_eval> or
-  <verbatim|pure_appl> to achieve this in an indirect way.)
+  module. Second, if <hlink|<em|--main>|#cmdoption-pure--main> is specified,
+  then all Pure functions in the module will be changed to internal linkage
+  (like <verbatim|static> functions in C) to prevent any possible name
+  clashes between different modules. (Alas, this also makes it impossible to
+  employ <verbatim|pure_funcall> to call Pure functions directly from C, as
+  described in the following section, so you'll have to use other runtime
+  routines such as <verbatim|pure_eval> or <verbatim|pure_appl> to achieve
+  this in an indirect way.)
 
   Last but not least, <verbatim|pure> <verbatim|-c> can also generate just
   plain LLVM assembler code:
@@ -17478,14 +17448,13 @@
 
   <subsubsection|Backward Compatibility<label|backward-compatibility>>
 
-  Pure is based on the author's earlier <hlink|Q|#q> language, but it
-  offers many new and powerful features and programs run much faster than
-  their Q equivalents. The language also went through a thorough facelift in
-  order to modernize the syntax and make it more similar to other
-  modern-style functional languages, in particular <hlink|Miranda|#miranda>
-  and <hlink|Haskell|#haskell>. Thus porting Q scripts to Pure often
-  involves a substantial amount of manual work, but it can (and has) been
-  done.
+  Pure is based on the author's earlier <hlink|Q|#q> language, but it offers
+  many new and powerful features and programs run much faster than their Q
+  equivalents. The language also went through a thorough facelift in order to
+  modernize the syntax and make it more similar to other modern-style
+  functional languages, in particular <hlink|Miranda|#miranda> and
+  <hlink|Haskell|#haskell>. Thus porting Q scripts to Pure often involves a
+  substantial amount of manual work, but it can (and has) been done.
 
   Since its modest beginnings in April 2008, Pure has gone through a lot of
   major and minor revisions which raise various backward compatibility
@@ -17552,18 +17521,18 @@
 
   Also, as of Pure 0.41 the batch compiler produces stripped executables by
   default. To create unstripped executables you now have to use the
-  <hlink|<em|-u>|#cmdoption-pure-u> option, see <hlink|Options Affecting
-  Code Size|#options-affecting-code-size> for details. The <em|-s> option
-  to produce stripped executables is still provided for backward
-  compatibility, but it won't have any effect unless you use it to override a
-  previous <hlink|<em|-u>|#cmdoption-pure-u> option.
+  <hlink|<em|-u>|#cmdoption-pure-u> option, see <hlink|Options Affecting Code
+  Size|#options-affecting-code-size> for details. The <em|-s> option to
+  produce stripped executables is still provided for backward compatibility,
+  but it won't have any effect unless you use it to override a previous
+  <hlink|<em|-u>|#cmdoption-pure-u> option.
 
   Pure 0.43 changed the rules for looking up symbols in user-defined
   namespaces. Unqualified symbols are now created in the current (rather than
   the global) namespace by default, see <hlink|Symbol Lookup and
   Creation|#symbol-lookup-and-creation> for details. The
-  <hlink|<em|-w>|#cmdoption-pure-w> option can be used to get warnings
-  about unqualified symbols which are resolved to a different namespace than
+  <hlink|<em|-w>|#cmdoption-pure-w> option can be used to get warnings about
+  unqualified symbols which are resolved to a different namespace than
   previously. It also provides a means to check your scripts for implicit
   declarations which might indicate missing or mistyped function symbols.
 
@@ -17587,19 +17556,19 @@
     namespace; see <hlink|User-Defined Commands|#user-defined-commands> for
     details.
 
-    <item>The syntax used to denote <hlink|inline code|#inline-code>
-    sections was changed from <verbatim|%{...%}> to
-    <verbatim|%\<less\>...%\<gtr\>>. This resolves an ambiguity in the syntax
-    (note that <verbatim|%{> is legal Pure syntax; it could denote a
-    <verbatim|%> operator followed by a matrix value), and also makes it
-    easier to properly support this construct in Emacs Pure mode.
+    <item>The syntax used to denote <hlink|inline code|#inline-code> sections
+    was changed from <verbatim|%{...%}> to <verbatim|%\<...%\>>. This
+    resolves an ambiguity in the syntax (note that <verbatim|%{> is legal
+    Pure syntax; it could denote a <verbatim|%> operator followed by a matrix
+    value), and also makes it easier to properly support this construct in
+    Emacs Pure mode.
 
     <item>It is now possible to declare variadic externs, so that functions
     like <verbatim|printf> can be called without much ado; see
     <hlink|Variadic C Functions|#variadic-c-functions>.
 
-    <item>Support for simple kinds of matrix <hlink|patterns|#patterns>
-    like <verbatim|{x,y}>, <verbatim|{x::int,y}>, <verbatim|{x,y;z,t}>,
+    <item>Support for simple kinds of matrix <hlink|patterns|#patterns> like
+    <verbatim|{x,y}>, <verbatim|{x::int,y}>, <verbatim|{x,y;z,t}>,
     <verbatim|{{x,y},z}> was added.
 
     <item>The meaning of quoted specials such as lambdas and local
@@ -17620,19 +17589,19 @@
     patterns involving unary constructor symbols, aren't supported any more,
     so you'll have to fix up your old scripts accordingly. To assist with
     this, the Pure interpreter can be run with the
-    <hlink|<em|-w>|#cmdoption-pure-w> option in order to identify
-    occurrences of undefined (presumably old-style) type tags. You should
-    either change these to the corresponding ``as'' pattern (i.e.,
-    <verbatim|x::foo> to <verbatim|x@(foo> <verbatim|_)>), or just add a
-    proper type definition for the tag (like <verbatim|type> <verbatim|foo>
-    <verbatim|(foo> <verbatim|_);>).
+    <hlink|<em|-w>|#cmdoption-pure-w> option in order to identify occurrences
+    of undefined (presumably old-style) type tags. You should either change
+    these to the corresponding ``as'' pattern (i.e., <verbatim|x::foo> to
+    <verbatim|x@(foo> <verbatim|_)>), or just add a proper type definition
+    for the tag (like <verbatim|type> <verbatim|foo> <verbatim|(foo>
+    <verbatim|_);>).
   </itemize>
 
   Pure 0.48 moved pointer arithmetic and the regex functions into separate
   <hlink|<with|font-family|tt|pointers>|purelib.tm#module-pointers> and
-  <hlink|<with|font-family|tt|regex>|purelib.tm#module-regex> modules, so
-  you now have to import these modules if you need this functionality. It
-  also introduced the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
+  <hlink|<with|font-family|tt|regex>|purelib.tm#module-regex> modules, so you
+  now have to import these modules if you need this functionality. It also
+  introduced the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
   pragma which lets you have ``defined'' functions in Pure which throw an
   exception if they can't be applied, e.g., because they are invoked with the
   wrong arguments.
@@ -17675,13 +17644,12 @@
   This also has the advantage that shebangs like <verbatim|#!/usr/bin/env>
   <verbatim|pure> can now be used without any caveats. If you do want to
   execute multiple script files in batch mode then you now have to explicitly
-  indicate this with the new <hlink|<em|-b>|#cmdoption-pure-b> option;
-  please see <hlink|Invoking Pure|#invoking-pure> for details. Pure 0.58
-  also adds two new code generation options
-  <hlink|<em|--symbolic>|#cmdoption-pure--symbolic> and
-  <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> to set the default
-  evaluation mode of global functions; these are discussed in <hlink|Defined
-  Functions|#defined-functions> below.
+  indicate this with the new <hlink|<em|-b>|#cmdoption-pure-b> option; please
+  see <hlink|Invoking Pure|#invoking-pure> for details. Pure 0.58 also adds
+  two new code generation options <hlink|<em|--symbolic>|#cmdoption-pure--symbolic>
+  and <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> to set the
+  default evaluation mode of global functions; these are discussed in
+  <hlink|Defined Functions|#defined-functions> below.
 
   <subsubsection|Error Recovery<label|error-recovery>>
 
@@ -17769,14 +17737,13 @@
   <hlink|<with|font-family|tt|when>|#when> the latter.
 
   Also note that the function definitions in a
-  <hlink|<with|font-family|tt|with>|#with> clause are all done
-  simultaneously (and can thus be mutually recursive), while the individual
-  variable definitions and expressions in a
-  <hlink|<with|font-family|tt|when>|#when> clause are executed in order.
-  This works in exactly the same fashion as <verbatim|letrec> and
-  <verbatim|let> in Scheme. (As a mnemonic, consider that
-  <hlink|<with|font-family|tt|when>|#when> conveys a sense of time, so its
-  parts are ``executed in sequence''.)
+  <hlink|<with|font-family|tt|with>|#with> clause are all done simultaneously
+  (and can thus be mutually recursive), while the individual variable
+  definitions and expressions in a <hlink|<with|font-family|tt|when>|#when>
+  clause are executed in order. This works in exactly the same fashion as
+  <verbatim|letrec> and <verbatim|let> in Scheme. (As a mnemonic, consider
+  that <hlink|<with|font-family|tt|when>|#when> conveys a sense of time, so
+  its parts are ``executed in sequence''.)
 
   The sequential execution aspect of <hlink|<with|font-family|tt|when>|#when>
   is rather important in Pure, because it enables you to do a series of
@@ -17847,9 +17814,8 @@
   another section with local variables needed by those functions, etc. When
   looking at such a complicated series of definitions, it sometimes helps to
   read the <hlink|<with|font-family|tt|with>|#with> and
-  <hlink|<with|font-family|tt|when>|#when> blocks ``in reverse'', i.e.,
-  from bottom to top, which is the order in which they will actually be
-  executed.
+  <hlink|<with|font-family|tt|when>|#when> blocks ``in reverse'', i.e., from
+  bottom to top, which is the order in which they will actually be executed.
 
   <subsubsection|Non-Linear Patterns<label|non-linear-patterns>>
 
@@ -17866,10 +17832,10 @@
   <hlink|<with|font-family|tt|same>|purelib.tm#same> primitive provided by
   the prelude. This may need time proportional to the sizes of both argument
   terms, and thus become quite costly for big terms. In fact,
-  <hlink|<with|font-family|tt|same>|purelib.tm#same> might not even
-  terminate at all if the compared terms are both infinite lazy data
-  structures, such as in <verbatim|foo> <verbatim|(1..inf)>
-  <verbatim|(1..inf)>. So you have to be careful to avoid such uses.
+  <hlink|<with|font-family|tt|same>|purelib.tm#same> might not even terminate
+  at all if the compared terms are both infinite lazy data structures, such
+  as in <verbatim|foo> <verbatim|(1..inf)> <verbatim|(1..inf)>. So you have
+  to be careful to avoid such uses.
 
   When using non-linearities in conjunction with ``as'' patterns, you also
   have to make sure that the ``as'' variable does not occur inside the
@@ -18041,8 +18007,8 @@
   deeply in a big program which runs unattended (in batch mode).
 
   As a remedy, Pure 0.48 introduces the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  pragma (cf. <hlink|Code Generation Options|#code-generation-options>)
-  which allows you to explicitly declare a function symbol as a ``defined''
+  pragma (cf. <hlink|Code Generation Options|#code-generation-options>) which
+  allows you to explicitly declare a function symbol as a ``defined''
   function, so that it will raise a proper exception when the defining
   equations (or, as it were, the external definition) of the function are not
   applicable to the subject expression:
@@ -18061,8 +18027,8 @@
   patterns in a <hlink|<with|font-family|tt|case>|#case> construct, cf.
   <hlink|Exception Handling|#exception-handling>.
 
-  Note that the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  pragma only has an effect on global functions; local functions in a
+  Note that the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> pragma
+  only has an effect on global functions; local functions in a
   <hlink|<with|font-family|tt|with>|#with> expression will always be
   evaluated in Pure's default symbolic mode. Thus, if you need the above
   behaviour with a local function then you'll either have to add the
@@ -18082,8 +18048,8 @@
   </verbatim>
 
   Nevertheless, the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  pragma will be recorded and take effect as soon as you add an equation
-  for the function:
+  pragma will be recorded and take effect as soon as you add an equation for
+  the function:
 
   <\verbatim>
     \<gtr\> foo x::int = x+1;
@@ -18107,8 +18073,8 @@
   </verbatim>
 
   As indicated, the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  and <hlink|<em|--nodefined>|#cmdoption-pure-pragma--nodefined> pragmas
-  can be invoked freely at any time, and the interpreter takes care that the
+  and <hlink|<em|--nodefined>|#cmdoption-pure-pragma--nodefined> pragmas can
+  be invoked freely at any time, and the interpreter takes care that the
   affected function is recompiled automatically as needed.
 
   Pure 0.58 and later also provide a <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic>
@@ -18180,16 +18146,15 @@
   of these functions.
 
   At this time, the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  and <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> pragmas are
-  still considered experimental. They interfere with Pure's symbolic
-  evaluation capabilities, so they aren't currently used in the standard
-  library and we recommend that programmers shouldn't use them in a careless
-  fashion either. However, while most error conditions stemming from
-  unexpected normal forms can also be caught with diligent unit testing,
-  these pragmas can save you time and trouble, especially when testing
-  programs which are to be executed mostly in batch mode. Future versions of
-  the interpreter might also make good use of these pragmas for static checks
-  and optimization purposes.
+  and <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> pragmas are still
+  considered experimental. They interfere with Pure's symbolic evaluation
+  capabilities, so they aren't currently used in the standard library and we
+  recommend that programmers shouldn't use them in a careless fashion either.
+  However, while most error conditions stemming from unexpected normal forms
+  can also be caught with diligent unit testing, these pragmas can save you
+  time and trouble, especially when testing programs which are to be executed
+  mostly in batch mode. Future versions of the interpreter might also make
+  good use of these pragmas for static checks and optimization purposes.
 
   <subsubsection|Stack Size and Tail Recursion<label|stack-size-and-tail-recursion>>
 
@@ -18200,21 +18165,21 @@
   probably need more). The interpreter automatically performs advisory stack
   checks on function entry and raises a Pure exception if the current stack
   size exceeds a given limit. A reasonable default for the stack limit is
-  defined by the implementation, please check the description of the
-  <label|index-54><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  defined by the implementation, please check the description of
+  the<label|index-54><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   environment variable for details.
 
-  You can also change this limit if needed, by setting the
-  <label|index-55><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
-  environment variable accordingly. The value of
-  <label|index-56><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  You can also change this limit if needed, by setting
+  the<label|index-55><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  environment variable accordingly. The value
+  of<label|index-56><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   should be the maximum stack size in kilobytes. Please note that this is
   only an advisory limit which does not change the program's physical stack
   size, so you can set this to any value that seems appropriate. (You can
-  also set <label|index-57><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
-  to zero to completely disable the checks, but this isn't recommended.)
-  Your operating system should supply you with a command such as ulimit(1) to
-  set the real process stack size. (The <label|index-58><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  also set<label|index-57><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  to zero to completely disable the checks, but this isn't recommended.) Your
+  operating system should supply you with a command such as ulimit(1) to set
+  the real process stack size. (The<label|index-58><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   limit should be a little less than that, to account for temporary stack
   usage by the interpreter itself.)
 
@@ -18440,9 +18405,9 @@
   Note that the recursion is missing here and thus this type can always be
   checked in O(1) time, performing just a single pattern match, which is
   efficient. Hence, if we replace <hlink|<with|font-family|tt|rlist>|purelib.tm#rlist/type>
-  with the <hlink|<with|font-family|tt|list>|purelib.tm#list/type> type
-  in our original definition then <verbatim|sum> will now run in O(n) time,
-  as desired. On the other hand, this approach also has its drawbacks. For
+  with the <hlink|<with|font-family|tt|list>|purelib.tm#list/type> type in
+  our original definition then <verbatim|sum> will now run in O(n) time, as
+  desired. On the other hand, this approach also has its drawbacks. For
   instance, consider:
 
   <\verbatim>
@@ -18476,8 +18441,8 @@
 
   <subsubsection|Interfaces<label|interfaces>>
 
-  Pure's implementation of <hlink|interface types|#interface-types> has
-  some notable differences to interfaces in a statically typed language like
+  Pure's implementation of <hlink|interface types|#interface-types> has some
+  notable differences to interfaces in a statically typed language like
   <hlink|Go|#go>. These are mostly due to Pure's dynamically typed nature.
 
   <\itemize>
@@ -18666,9 +18631,9 @@
   rule in a definition or a <hlink|<with|font-family|tt|case>|#case>
   expression), but only if they're also declared as
   <hlink|<with|font-family|tt|nonfix>|#nonfix>. The prelude already does this
-  for the truth values <hlink|<with|font-family|tt|true>|purelib.tm#true>
-  and <hlink|<with|font-family|tt|false>|purelib.tm#false> (which are in
-  fact just <verbatim|1> and <verbatim|0>), so that you can write, e.g.:
+  for the truth values <hlink|<with|font-family|tt|true>|purelib.tm#true> and
+  <hlink|<with|font-family|tt|false>|purelib.tm#false> (which are in fact
+  just <verbatim|1> and <verbatim|0>), so that you can write, e.g.:
 
   <\verbatim>
     \<gtr\> check false = "no"; check true = "yes";
@@ -18701,8 +18666,8 @@
   in particular, for constants in the <hlink|<with|font-family|tt|math>|purelib.tm#module-math>
   module such as <hlink|<with|font-family|tt|e>|purelib.tm#e>,
   <hlink|<with|font-family|tt|pi>|purelib.tm#pi> and
-  <hlink|<with|font-family|tt|i>|purelib.tm#i> which are much more likely
-  to be used as variable symbols.
+  <hlink|<with|font-family|tt|i>|purelib.tm#i> which are much more likely to
+  be used as variable symbols.
 
   As the value of a constant is known at compile time, the compiler can apply
   various optimizations to uses of such values. In particular, the Pure
@@ -18818,30 +18783,29 @@
   otherwise your program might well give a segfault when calling the
   function. This problem can to some extent be alleviated by using the
   bitcode interface, see <hlink|Importing LLVM
-  Bitcode|#importing-llvm-bitcode> and <hlink|Inline Code|#inline-code>
-  in the <hlink|C Interface|#c-interface> section. However, you always
-  have to be careful when calling <hlink|variadic C
-  functions|#variadic-c-functions>, as the compiler has no way of checking
-  which combinations of extra parameters a function like <verbatim|printf> is
-  to be invoked with. (As a remedy, the standard library provides safe
-  implementations of <hlink|<with|font-family|tt|printf>|purelib.tm#printf>
-  and other commonly used variadic functions from the C library, see the
-  <hlink|<em|Pure Library Manual>|purelib.tm> for details.)
+  Bitcode|#importing-llvm-bitcode> and <hlink|Inline Code|#inline-code> in
+  the <hlink|C Interface|#c-interface> section. However, you always have to
+  be careful when calling <hlink|variadic C functions|#variadic-c-functions>,
+  as the compiler has no way of checking which combinations of extra
+  parameters a function like <verbatim|printf> is to be invoked with. (As a
+  remedy, the standard library provides safe implementations of
+  <hlink|<with|font-family|tt|printf>|purelib.tm#printf> and other commonly
+  used variadic functions from the C library, see the <hlink|<em|Pure Library
+  Manual>|purelib.tm> for details.)
 
   Another limitation of the C interface is that it does not offer any special
   support for C structs and C function parameters. However, an optional addon
   module is available which interfaces to the
   <hlink|libffi|http://sourceware.org/libffi/> library to provide that kind
-  of functionality, please see <hlink|<em|pure-ffi>|pure-ffi.tm> for
-  details.
+  of functionality, please see <hlink|<em|pure-ffi>|pure-ffi.tm> for details.
 
   Last but not least, to make it easier to create Pure interfaces to large C
   libraries, there's a separate pure-gen program available at the Pure
   website. This program takes a C header (.h) file and creates a
   corresponding Pure module with definitions and
-  <hlink|<with|font-family|tt|extern>|#extern> declarations for the
-  constants and functions declared in the header. Please refer to
-  <hlink|<em|pure-gen: Pure interface generator>|pure-gen.tm> for details.
+  <hlink|<with|font-family|tt|extern>|#extern> declarations for the constants
+  and functions declared in the header. Please refer to <hlink|<em|pure-gen:
+  Pure interface generator>|pure-gen.tm> for details.
 
   <subsubsection|Calling Special Forms<label|calling-special-forms>>
 
@@ -18979,9 +18943,9 @@
   by the quoted <hlink|<with|font-family|tt|when>|#when> clause when the
   quoted expression is evaluated. This happens because, using call by value,
   the call <verbatim|G> <verbatim|10> gets evaluated before the
-  <hlink|<with|font-family|tt|__when__>|#--when--> macro. So the behaviour
-  of the macro evaluator in this case is in fact correct; the only remedy
-  here is to avoid macros involving free variables inside a quoted block
+  <hlink|<with|font-family|tt|__when__>|#--when--> macro. So the behaviour of
+  the macro evaluator in this case is in fact correct; the only remedy here
+  is to avoid macros involving free variables inside a quoted block
   construct. The same applies to ``<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>''
   macros which quote their arguments automatically, as described in
   <hlink|Built-in Macros and Special Expressions|#built-in-macros-and-special-expressions>.
@@ -19109,15 +19073,14 @@
 
   One thing to note here is that the interpreter program is distributed under
   the <hlink|GNU General Public License|http://www.gnu.org/copyleft/gpl.html>
-  and is thus subject to stricter license terms than the runtime library
-  and the standard library which are licensed under the <hlink|GNU Lesser
-  General Public License|http://www.gnu.org/copyleft/lgpl.html>. The main
-  reason for these conditions is that the interpreter program includes
-  support for the readline library which is GPL-licensed software. If this is
-  a problem for your application then you're welcome to use pure_norl.cc
-  instead. This is a readline-free replacement for the interpreter main
-  program included in the distribution, which is licensed under a 3-clause
-  BSD-style license.
+  and is thus subject to stricter license terms than the runtime library and
+  the standard library which are licensed under the <hlink|GNU Lesser General
+  Public License|http://www.gnu.org/copyleft/lgpl.html>. The main reason for
+  these conditions is that the interpreter program includes support for the
+  readline library which is GPL-licensed software. If this is a problem for
+  your application then you're welcome to use pure_norl.cc instead. This is a
+  readline-free replacement for the interpreter main program included in the
+  distribution, which is licensed under a 3-clause BSD-style license.
 
   Please see the <hlink|GNU General Public
   License|http://www.gnu.org/copyleft/gpl.html> and the <hlink|GNU Lesser
@@ -19253,323 +19216,323 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-toc>>
 
   <\itemize>
-    <item><hlink|The Pure Manual|#>\ 
+    <item><hlink|The Pure Manual|#>
 
     <\itemize>
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
       <\itemize>
-        <item><hlink|Further Reading|#further-reading>\ 
+        <item><hlink|Further Reading|#further-reading>
 
         <item><hlink|Typographical Conventions|#typographical-conventions>
       </itemize>
 
-      <item><hlink|Invoking Pure|#invoking-pure>\ 
+      <item><hlink|Invoking Pure|#invoking-pure>
 
       <\itemize>
-        <item><hlink|Options|#options>\ 
+        <item><hlink|Options|#options>
 
-        <item><hlink|Overview of Operation|#overview-of-operation>\ 
+        <item><hlink|Overview of Operation|#overview-of-operation>
 
-        <item><hlink|Compiling Scripts|#compiling-scripts>\ 
+        <item><hlink|Compiling Scripts|#compiling-scripts>
 
-        <item><hlink|Tagging Scripts|#tagging-scripts>\ 
+        <item><hlink|Tagging Scripts|#tagging-scripts>
 
-        <item><hlink|Running Interactively|#running-interactively>\ 
+        <item><hlink|Running Interactively|#running-interactively>
 
         <item><hlink|Verbosity and Debugging
-        Options|#verbosity-and-debugging-options>\ 
+        Options|#verbosity-and-debugging-options>
 
-        <item><hlink|Compilation Options|#compilation-options>\ 
+        <item><hlink|Compilation Options|#compilation-options>
 
         <\itemize>
-          <item><hlink|Code Generation Options|#code-generation-options>\ 
+          <item><hlink|Code Generation Options|#code-generation-options>
 
-          <item><hlink|Conditional Compilation|#conditional-compilation>\ 
+          <item><hlink|Conditional Compilation|#conditional-compilation>
 
           <item><hlink|Warning Options|#warning-options>
         </itemize>
 
-        <item><hlink|Startup Files|#startup-files>\ 
+        <item><hlink|Startup Files|#startup-files>
 
         <item><hlink|Environment|#environment>
       </itemize>
 
-      <item><hlink|Pure Overview|#pure-overview>\ 
+      <item><hlink|Pure Overview|#pure-overview>
 
       <\itemize>
-        <item><hlink|Lexical Matters|#lexical-matters>\ 
+        <item><hlink|Lexical Matters|#lexical-matters>
 
         <item><hlink|Definitions and Expression
-        Evaluation|#definitions-and-expression-evaluation>\ 
+        Evaluation|#definitions-and-expression-evaluation>
 
         <\itemize>
           <item><hlink|Variables in Equations|#variables-in-equations>
         </itemize>
 
-        <item><hlink|Expression Syntax|#expression-syntax>\ 
+        <item><hlink|Expression Syntax|#expression-syntax>
 
         <\itemize>
-          <item><hlink|Primary Expressions|#primary-expressions>\ 
+          <item><hlink|Primary Expressions|#primary-expressions>
 
-          <item><hlink|Simple Expressions|#simple-expressions>\ 
+          <item><hlink|Simple Expressions|#simple-expressions>
 
           <item><hlink|Special Expressions|#special-expressions>
         </itemize>
 
-        <item><hlink|Special Forms|#special-forms>\ 
+        <item><hlink|Special Forms|#special-forms>
 
-        <item><hlink|Toplevel|#toplevel>\ 
+        <item><hlink|Toplevel|#toplevel>
 
         <item><hlink|Scoping Rules|#scoping-rules>
       </itemize>
 
-      <item><hlink|Rule Syntax|#rule-syntax>\ 
+      <item><hlink|Rule Syntax|#rule-syntax>
 
       <\itemize>
-        <item><hlink|Patterns|#patterns>\ 
+        <item><hlink|Patterns|#patterns>
 
         <\itemize>
-          <item><hlink|The ``Head = Function'' Rule|#the-head-function-rule>\ 
+          <item><hlink|The ``Head = Function'' Rule|#the-head-function-rule>
 
-          <item><hlink|Constant Patterns|#constant-patterns>\ 
+          <item><hlink|Constant Patterns|#constant-patterns>
 
-          <item><hlink|The Anonymous Variable|#the-anonymous-variable>\ 
+          <item><hlink|The Anonymous Variable|#the-anonymous-variable>
 
           <item><hlink|Non-Linear Patterns and Syntactic
-          Equality|#non-linear-patterns-and-syntactic-equality>\ 
+          Equality|#non-linear-patterns-and-syntactic-equality>
 
           <item><hlink|Special Patterns|#special-patterns>
         </itemize>
 
-        <item><hlink|Type Tags|#type-tags>\ 
+        <item><hlink|Type Tags|#type-tags>
 
-        <item><hlink|General Rules|#general-rules>\ 
+        <item><hlink|General Rules|#general-rules>
 
-        <item><hlink|Simple Rules|#simple-rules>\ 
+        <item><hlink|Simple Rules|#simple-rules>
 
         <item><hlink|Type Rules|#type-rules>
       </itemize>
 
-      <item><hlink|Examples|#examples>\ 
+      <item><hlink|Examples|#examples>
 
       <\itemize>
-        <item><hlink|Hello, World|#hello-world>\ 
+        <item><hlink|Hello, World|#hello-world>
 
         <\itemize>
-          <item><hlink|Passing Parameters|#passing-parameters>\ 
+          <item><hlink|Passing Parameters|#passing-parameters>
 
-          <item><hlink|Executable Scripts|#executable-scripts>\ 
+          <item><hlink|Executable Scripts|#executable-scripts>
 
           <item><hlink|Compiled Scripts|#compiled-scripts>
         </itemize>
 
-        <item><hlink|Running the Interpreter|#running-the-interpreter>\ 
+        <item><hlink|Running the Interpreter|#running-the-interpreter>
 
-        <item><hlink|Basic Examples|#basic-examples>\ 
+        <item><hlink|Basic Examples|#basic-examples>
 
-        <item><hlink|Defining Functions|#defining-functions>\ 
+        <item><hlink|Defining Functions|#defining-functions>
 
-        <item><hlink|Pattern Matching|#pattern-matching>\ 
+        <item><hlink|Pattern Matching|#pattern-matching>
 
-        <item><hlink|Local Functions and Variables|#local-functions-and-variables>\ 
+        <item><hlink|Local Functions and Variables|#local-functions-and-variables>
 
-        <item><hlink|Data Types|#data-types>\ 
+        <item><hlink|Data Types|#data-types>
 
-        <item><hlink|Recursion|#recursion>\ 
+        <item><hlink|Recursion|#recursion>
 
         <\itemize>
-          <item><hlink|A Numeric Root Finder|#a-numeric-root-finder>\ 
+          <item><hlink|A Numeric Root Finder|#a-numeric-root-finder>
 
           <item><hlink|The Same-Fringe Problem|#the-same-fringe-problem>
         </itemize>
 
-        <item><hlink|Higher-Order Functions|#higher-order-functions>\ 
+        <item><hlink|Higher-Order Functions|#higher-order-functions>
 
-        <item><hlink|List Processing|#list-processing>\ 
+        <item><hlink|List Processing|#list-processing>
 
-        <item><hlink|String Processing|#string-processing>\ 
+        <item><hlink|String Processing|#string-processing>
 
-        <item><hlink|List Comprehensions|#list-comprehensions>\ 
+        <item><hlink|List Comprehensions|#list-comprehensions>
 
-        <item><hlink|Lazy Evaluation and Streams|#lazy-evaluation-and-streams>\ 
+        <item><hlink|Lazy Evaluation and Streams|#lazy-evaluation-and-streams>
 
-        <item><hlink|Matrices and Vectors|#matrices-and-vectors>\ 
+        <item><hlink|Matrices and Vectors|#matrices-and-vectors>
 
-        <item><hlink|Symbolic Matrices|#symbolic-matrices>\ 
+        <item><hlink|Symbolic Matrices|#symbolic-matrices>
 
-        <item><hlink|Record Data|#record-data>\ 
+        <item><hlink|Record Data|#record-data>
 
         <item><hlink|The Quote|#the-quote>
       </itemize>
 
-      <item><hlink|Declarations|#declarations>\ 
+      <item><hlink|Declarations|#declarations>
 
       <\itemize>
-        <item><hlink|Symbol Declarations|#symbol-declarations>\ 
+        <item><hlink|Symbol Declarations|#symbol-declarations>
 
-        <item><hlink|Interface Types|#interface-types>\ 
+        <item><hlink|Interface Types|#interface-types>
 
-        <item><hlink|Modules and Imports|#modules-and-imports>\ 
+        <item><hlink|Modules and Imports|#modules-and-imports>
 
-        <item><hlink|Namespaces|#namespaces>\ 
+        <item><hlink|Namespaces|#namespaces>
 
         <\itemize>
-          <item><hlink|Using Namespaces|#using-namespaces>\ 
+          <item><hlink|Using Namespaces|#using-namespaces>
 
-          <item><hlink|Symbol Lookup and Creation|#symbol-lookup-and-creation>\ 
+          <item><hlink|Symbol Lookup and Creation|#symbol-lookup-and-creation>
 
-          <item><hlink|Private Symbols|#private-symbols>\ 
+          <item><hlink|Private Symbols|#private-symbols>
 
-          <item><hlink|Namespace Brackets|#namespace-brackets>\ 
+          <item><hlink|Namespace Brackets|#namespace-brackets>
 
-          <item><hlink|Hierarchical Namespaces|#hierarchical-namespaces>\ 
+          <item><hlink|Hierarchical Namespaces|#hierarchical-namespaces>
 
           <item><hlink|Scoped Namespaces|#scoped-namespaces>
         </itemize>
       </itemize>
 
-      <item><hlink|Macros|#macros>\ 
+      <item><hlink|Macros|#macros>
 
       <\itemize>
-        <item><hlink|Optimization Rules|#optimization-rules>\ 
+        <item><hlink|Optimization Rules|#optimization-rules>
 
-        <item><hlink|Recursive Macros|#recursive-macros>\ 
+        <item><hlink|Recursive Macros|#recursive-macros>
 
-        <item><hlink|User-Defined Special Forms|#user-defined-special-forms>\ 
+        <item><hlink|User-Defined Special Forms|#user-defined-special-forms>
 
-        <item><hlink|Macro Hygiene|#macro-hygiene>\ 
+        <item><hlink|Macro Hygiene|#macro-hygiene>
 
         <item><hlink|Built-in Macros and Special
-        Expressions|#built-in-macros-and-special-expressions>\ 
+        Expressions|#built-in-macros-and-special-expressions>
 
-        <item><hlink|Advanced Optimization|#advanced-optimization>\ 
+        <item><hlink|Advanced Optimization|#advanced-optimization>
 
         <item><hlink|Reflection|#reflection>
       </itemize>
 
-      <item><hlink|Exception Handling|#exception-handling>\ 
+      <item><hlink|Exception Handling|#exception-handling>
 
-      <item><hlink|Standard Library|#standard-library>\ 
+      <item><hlink|Standard Library|#standard-library>
 
-      <item><hlink|C Interface|#c-interface>\ 
+      <item><hlink|C Interface|#c-interface>
 
       <\itemize>
-        <item><hlink|Extern Declarations|#extern-declarations>\ 
+        <item><hlink|Extern Declarations|#extern-declarations>
 
-        <item><hlink|Variadic C Functions|#variadic-c-functions>\ 
+        <item><hlink|Variadic C Functions|#variadic-c-functions>
 
-        <item><hlink|C Types|#c-types>\ 
+        <item><hlink|C Types|#c-types>
 
         <\itemize>
-          <item><hlink|Basic C Types|#basic-c-types>\ 
+          <item><hlink|Basic C Types|#basic-c-types>
 
-          <item><hlink|Pointer Types|#pointer-types>\ 
+          <item><hlink|Pointer Types|#pointer-types>
 
-          <item><hlink|Pointers and Matrices|#pointers-and-matrices>\ 
+          <item><hlink|Pointers and Matrices|#pointers-and-matrices>
 
           <item><hlink|Pointer Examples|#pointer-examples>
         </itemize>
 
-        <item><hlink|Importing Dynamic Libraries|#importing-dynamic-libraries>\ 
+        <item><hlink|Importing Dynamic Libraries|#importing-dynamic-libraries>
 
-        <item><hlink|Importing LLVM Bitcode|#importing-llvm-bitcode>\ 
+        <item><hlink|Importing LLVM Bitcode|#importing-llvm-bitcode>
 
-        <item><hlink|Inline Code|#inline-code>\ 
+        <item><hlink|Inline Code|#inline-code>
 
-        <item><hlink|Interfacing to C++|#interfacing-to-c>\ 
+        <item><hlink|Interfacing to C++|#interfacing-to-c>
 
         <item><hlink|Interfacing to Faust|#interfacing-to-faust>
       </itemize>
 
-      <item><hlink|Interactive Usage|#interactive-usage>\ 
+      <item><hlink|Interactive Usage|#interactive-usage>
 
       <\itemize>
-        <item><hlink|Command Syntax|#command-syntax>\ 
+        <item><hlink|Command Syntax|#command-syntax>
 
-        <item><hlink|Online Help|#online-help>\ 
+        <item><hlink|Online Help|#online-help>
 
-        <item><hlink|Interactive Commands|#interactive-commands>\ 
+        <item><hlink|Interactive Commands|#interactive-commands>
 
-        <item><hlink|Specifying Symbol Selections|#specifying-symbol-selections>\ 
+        <item><hlink|Specifying Symbol Selections|#specifying-symbol-selections>
 
-        <item><hlink|The show Command|#the-show-command>\ 
+        <item><hlink|The show Command|#the-show-command>
 
-        <item><hlink|Definition Levels|#definition-levels>\ 
+        <item><hlink|Definition Levels|#definition-levels>
 
-        <item><hlink|Debugging|#debugging>\ 
+        <item><hlink|Debugging|#debugging>
 
-        <item><hlink|Last Result|#last-result>\ 
+        <item><hlink|Last Result|#last-result>
 
-        <item><hlink|Pretty-Printing|#pretty-printing>\ 
+        <item><hlink|Pretty-Printing|#pretty-printing>
 
-        <item><hlink|User-Defined Commands|#user-defined-commands>\ 
+        <item><hlink|User-Defined Commands|#user-defined-commands>
 
         <item><hlink|Interactive Startup|#interactive-startup>
       </itemize>
 
-      <item><hlink|Batch Compilation|#batch-compilation>\ 
+      <item><hlink|Batch Compilation|#batch-compilation>
 
       <\itemize>
-        <item><hlink|Example|#example>\ 
+        <item><hlink|Example|#example>
 
         <item><hlink|Options Affecting Code
-        Size|#options-affecting-code-size>\ 
+        Size|#options-affecting-code-size>
 
-        <item><hlink|Other Output Code Formats|#other-output-code-formats>\ 
+        <item><hlink|Other Output Code Formats|#other-output-code-formats>
 
         <item><hlink|Calling Pure Functions From
         C|#calling-pure-functions-from-c>
       </itemize>
 
-      <item><hlink|Caveats and Notes|#caveats-and-notes>\ 
+      <item><hlink|Caveats and Notes|#caveats-and-notes>
 
       <\itemize>
-        <item><hlink|Etymology|#etymology>\ 
+        <item><hlink|Etymology|#etymology>
 
-        <item><hlink|Backward Compatibility|#backward-compatibility>\ 
+        <item><hlink|Backward Compatibility|#backward-compatibility>
 
-        <item><hlink|Error Recovery|#error-recovery>\ 
+        <item><hlink|Error Recovery|#error-recovery>
 
-        <item><hlink|Splicing Tuples and Matrices|#splicing-tuples-and-matrices>\ 
+        <item><hlink|Splicing Tuples and Matrices|#splicing-tuples-and-matrices>
 
-        <item><hlink|With and when|#with-and-when>\ 
+        <item><hlink|With and when|#with-and-when>
 
-        <item><hlink|Non-Linear Patterns|#non-linear-patterns>\ 
+        <item><hlink|Non-Linear Patterns|#non-linear-patterns>
 
-        <item><hlink|``As'' Patterns|#as-patterns>\ 
+        <item><hlink|``As'' Patterns|#as-patterns>
 
-        <item><hlink|``Head = Function'' Pitfalls|#head-function-pitfalls>\ 
+        <item><hlink|``Head = Function'' Pitfalls|#head-function-pitfalls>
 
-        <item><hlink|Defined Functions|#defined-functions>\ 
+        <item><hlink|Defined Functions|#defined-functions>
 
-        <item><hlink|Stack Size and Tail Recursion|#stack-size-and-tail-recursion>\ 
+        <item><hlink|Stack Size and Tail Recursion|#stack-size-and-tail-recursion>
 
         <item><hlink|Handling of Asynchronous
-        Signals|#handling-of-asynchronous-signals>\ 
+        Signals|#handling-of-asynchronous-signals>
 
-        <item><hlink|Recursive Types|#recursive-types>\ 
+        <item><hlink|Recursive Types|#recursive-types>
 
-        <item><hlink|Interfaces|#interfaces>\ 
+        <item><hlink|Interfaces|#interfaces>
 
-        <item><hlink|Numeric Calculations|#numeric-calculations>\ 
+        <item><hlink|Numeric Calculations|#numeric-calculations>
 
-        <item><hlink|Constant Definitions|#constant-definitions>\ 
+        <item><hlink|Constant Definitions|#constant-definitions>
 
-        <item><hlink|External C Functions|#external-c-functions>\ 
+        <item><hlink|External C Functions|#external-c-functions>
 
-        <item><hlink|Calling Special Forms|#calling-special-forms>\ 
+        <item><hlink|Calling Special Forms|#calling-special-forms>
 
-        <item><hlink|Laziness|#laziness>\ 
+        <item><hlink|Laziness|#laziness>
 
         <item><hlink|Name Capture|#name-capture>
       </itemize>
 
-      <item><hlink|Author|#author>\ 
+      <item><hlink|Author|#author>
 
-      <item><hlink|Acknowledgements|#acknowledgements>\ 
+      <item><hlink|Acknowledgements|#acknowledgements>
 
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
       <item><hlink|References and Links|#references-and-links>
     </itemize>
@@ -19588,6 +19551,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  15, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

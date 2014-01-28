@@ -1,25 +1,25 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
 <\body>
   <hlink|toc|#index-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \|
-  <hlink|Pure Language and Library Documentation|#>
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \| <hlink|Pure
+  Language and Library Documentation|#>
 
   <section*|Pure Language and Library Documentation<label|pure-language-and-library-documentation>>
 
-  Last updated: September 08, 2013 (v0.58)
+  Last updated: January 28, 2014 (v0.59)
 
   This manual collects all of Pure's online documentation: <hlink|<em|The
   Pure Manual>|pure.tm> which covers the Pure language and the operation of
-  the Pure interpreter; the <hlink|<em|Pure Library Manual>|purelib.tm>
-  which describes the standard library modules included in the distribution
-  of the Pure interpreter; all available documentation for the various
-  <hlink|addon modules|#addon-modules> which can be downloaded as separate
-  packages from the Pure website; and an appendix with
-  <hlink|<em|installation instructions>|install.tm> and additional
-  information for <hlink|<em|Windows users>|windows.tm>.
+  the Pure interpreter; the <hlink|<em|Pure Library Manual>|purelib.tm> which
+  describes the standard library modules included in the distribution of the
+  Pure interpreter; all available documentation for the various <hlink|addon
+  modules|#addon-modules> which can be downloaded as separate packages from
+  the Pure website; and an appendix with <hlink|<em|installation
+  instructions>|install.tm> and additional information for <hlink|<em|Windows
+  users>|windows.tm>.
 
   Most of the Pure documentation is distributed under the <hlink|GNU Free
   Documentation License|http://www.gnu.org/copyleft/fdl.html>. The authors of
@@ -52,18 +52,18 @@
   interpreter runtime, the standard library and most of the addon modules are
   distributed under the <hlink|GNU Lesser General Public
   License|http://www.gnu.org/copyleft/lgpl.html> or the 3-clause <hlink|BSD
-  License|http://www.opensource.org/licenses/bsd-license.php> which allow
-  for commercial applications. Some parts of the system also use the
-  <hlink|GNU General Public License|http://www.gnu.org/copyleft/gpl.html>
-  (typically because they interface to other GPL'ed software such as
-  Gnumeric, GSL and Octave). Details about authorship and license conditions
-  can be found in the sources or in the various manual sections.
+  License|http://www.opensource.org/licenses/bsd-license.php> which allow for
+  commercial applications. Some parts of the system also use the <hlink|GNU
+  General Public License|http://www.gnu.org/copyleft/gpl.html> (typically
+  because they interface to other GPL'ed software such as Gnumeric, GSL and
+  Octave). Details about authorship and license conditions can be found in
+  the sources or in the various manual sections.
 
   For more information, discussions, feedback, questions, suggestions etc.
   please see:
 
   <\itemize>
-    <item>Pure website: <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>\ 
+    <item>Pure website: <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>
 
     <item>Pure mailing list: <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
   </itemize>
@@ -77,7 +77,7 @@
   well as the standard library distributed with the interpreter.
 
   <\itemize>
-    <item><hlink|The Pure Manual|pure.tm>\ 
+    <item><hlink|The Pure Manual|pure.tm>
 
     <item><hlink|Pure Library Manual|purelib.tm>
   </itemize>
@@ -89,21 +89,23 @@
   in many Pure programs but don't come bundled with the interpreter.
 
   <\itemize>
-    <item><hlink|pure-doc|pure-doc.tm>\ 
+    <item><hlink|pure-avahi: Pure Avahi Interface|pure-avahi.tm>
 
-    <item><hlink|pure-ffi|pure-ffi.tm>\ 
+    <item><hlink|pure-doc|pure-doc.tm>
 
-    <item><hlink|pure-gen: Pure interface generator|pure-gen.tm>\ 
+    <item><hlink|pure-ffi|pure-ffi.tm>
 
-    <item><hlink|pure-readline|pure-readline.tm>\ 
+    <item><hlink|pure-gen: Pure interface generator|pure-gen.tm>
 
-    <item><hlink|pure-sockets: Pure Sockets Interface|pure-sockets.tm>\ 
+    <item><hlink|pure-readline|pure-readline.tm>
 
-    <item><hlink|pure-stldict|pure-stldict.tm>\ 
+    <item><hlink|pure-sockets: Pure Sockets Interface|pure-sockets.tm>
 
-    <item><hlink|pure-stllib|pure-stllib.tm>\ 
+    <item><hlink|pure-stldict|pure-stldict.tm>
 
-    <item><hlink|pure-stlmap|pure-stlmap.tm>\ 
+    <item><hlink|pure-stllib|pure-stllib.tm>
+
+    <item><hlink|pure-stlmap|pure-stlmap.tm>
 
     <item><hlink|pure-stlvec|pure-stlvec.tm>
   </itemize>
@@ -113,22 +115,22 @@
   Interfaces to various 3rd party mathematical software.
 
   <\itemize>
-    <item><hlink|Gnumeric/Pure: A Pure Plugin for Gnumeric|gnumeric-pure.tm>\ 
+    <item><hlink|Gnumeric/Pure: A Pure Plugin for Gnumeric|gnumeric-pure.tm>
 
     <item><hlink|Pure-GLPK - GLPK interface for the Pure programming
-    language|pure-glpk.tm>\ 
+    language|pure-glpk.tm>
 
-    <item><hlink|Gnuplot bindings|pure-gplot.tm>\ 
+    <item><hlink|Gnuplot bindings|pure-gplot.tm>
 
     <item><hlink|pure-gsl - GNU Scientific Library Interface for
-    Pure|pure-gsl.tm>\ 
+    Pure|pure-gsl.tm>
 
-    <item><hlink|pure-mpfr|pure-mpfr.tm>\ 
+    <item><hlink|pure-mpfr|pure-mpfr.tm>
 
-    <item><hlink|pure-octave|pure-octave.tm>\ 
+    <item><hlink|pure-octave|pure-octave.tm>
 
     <item><hlink|Pure-Rational - Rational number library for the Pure
-    programming language|pure-rational.tm>\ 
+    programming language|pure-rational.tm>
 
     <item><hlink|Computer Algebra with Pure: A Reduce
     Interface|pure-reduce.tm>
@@ -142,14 +144,14 @@
 
   <\itemize>
     <item><hlink|Pure-CSV - Comma Separated Value Interface for the Pure
-    Programming Language|pure-csv.tm>\ 
+    Programming Language|pure-csv.tm>
 
-    <item><hlink|pure-fastcgi: FastCGI module for Pure|pure-fastcgi.tm>\ 
+    <item><hlink|pure-fastcgi: FastCGI module for Pure|pure-fastcgi.tm>
 
     <item><hlink|Pure-ODBC - ODBC interface for the Pure programming
-    language|pure-odbc.tm>\ 
+    language|pure-odbc.tm>
 
-    <item><hlink|Pure-Sql3|pure-sql3.tm>\ 
+    <item><hlink|Pure-Sql3|pure-sql3.tm>
 
     <item><hlink|Pure-XML - XML/XSLT interface|pure-xml.tm>
   </itemize>
@@ -159,11 +161,11 @@
   Various interfaces to 3rd party GUI and graphics libraries.
 
   <\itemize>
-    <item><hlink|pure-g2|pure-g2.tm>\ 
+    <item><hlink|pure-g2|pure-g2.tm>
 
-    <item><hlink|Pure OpenGL Bindings|pure-gl.tm>\ 
+    <item><hlink|Pure OpenGL Bindings|pure-gl.tm>
 
-    <item><hlink|Pure GTK+ Bindings|pure-gtk.tm>\ 
+    <item><hlink|Pure GTK+ Bindings|pure-gtk.tm>
 
     <item><hlink|pure-tk|pure-tk.tm>
   </itemize>
@@ -177,17 +179,17 @@
   available.
 
   <\itemize>
-    <item><hlink|faust2pd: Pd Patch Generator for Faust|faust2pd.tm>\ 
+    <item><hlink|faust2pd: Pd Patch Generator for Faust|faust2pd.tm>
 
-    <item><hlink|pd-faust|pd-faust.tm>\ 
+    <item><hlink|pd-faust|pd-faust.tm>
 
-    <item><hlink|pd-pure: Pd loader for Pure scripts|pd-pure.tm>\ 
+    <item><hlink|pd-pure: Pd loader for Pure scripts|pd-pure.tm>
 
-    <item><hlink|pure-audio|pure-audio.tm>\ 
+    <item><hlink|pure-audio|pure-audio.tm>
 
-    <item><hlink|pure-faust|pure-faust.tm>\ 
+    <item><hlink|pure-faust|pure-faust.tm>
 
-    <item><hlink|pure-liblo|pure-liblo.tm>\ 
+    <item><hlink|pure-liblo|pure-liblo.tm>
 
     <item><hlink|pure-midi|pure-midi.tm>
   </itemize>
@@ -197,11 +199,11 @@
   General information about installing and using Pure.
 
   <\itemize>
-    <item><hlink|Installing Pure (and LLVM)|install.tm>\ 
+    <item><hlink|Installing Pure (and LLVM)|install.tm>
 
-    <item><hlink|Running Pure on Windows|windows.tm>\ 
+    <item><hlink|Running Pure on Windows|windows.tm>
 
-    <item><hlink|Using PurePad|purepad.tm>\ 
+    <item><hlink|Using PurePad|purepad.tm>
 
     <item><hlink|Reporting Bugs|bugs.tm>
   </itemize>
@@ -209,7 +211,7 @@
   <subsection|Index<label|index>>
 
   <\itemize>
-    <item><hlink|<em|Module Index>|pure-modindex.tm>\ 
+    <item><hlink|<em|Module Index>|pure-modindex.tm>
 
     <item><hlink|<em|Index>|genindex.tm>
   </itemize>
@@ -217,24 +219,24 @@
   <subsubsection*|<hlink|Table Of Contents|#><label|index-toc>>
 
   <\itemize>
-    <item><hlink|Pure Language and Library Documentation|#>\ 
+    <item><hlink|Pure Language and Library Documentation|#>
 
     <\itemize>
-      <item><hlink|Language and Standard Library|#language-and-standard-library>\ 
+      <item><hlink|Language and Standard Library|#language-and-standard-library>
 
       <item><hlink|Basic Support Utilities and
-      Libraries|#basic-support-utilities-and-libraries>\ 
+      Libraries|#basic-support-utilities-and-libraries>
 
-      <item><hlink|Scientific Computing|#scientific-computing>\ 
+      <item><hlink|Scientific Computing|#scientific-computing>
 
-      <item><hlink|Database and Web Programming|#database-and-web-programming>\ 
+      <item><hlink|Database and Web Programming|#database-and-web-programming>
 
-      <item><hlink|GUI and Graphics|#gui-and-graphics>\ 
+      <item><hlink|GUI and Graphics|#gui-and-graphics>
 
-      <item><hlink|Multimedia|#multimedia>\ 
+      <item><hlink|Multimedia|#multimedia>
 
       <item><hlink|Appendix: Installation and
-      Usage|#appendix-installation-and-usage>\ 
+      Usage|#appendix-installation-and-usage>
 
       <item><hlink|Index|#index>
     </itemize>
@@ -245,9 +247,9 @@
   <hlink|The Pure Manual|pure.tm>
 
   <hlink|toc|#index-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \|
-  <hlink|Pure Language and Library Documentation|#>
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \| <hlink|Pure
+  Language and Library Documentation|#>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  15, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

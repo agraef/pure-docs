@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|Computer Algebra with Pure: A Reduce
   Interface<label|module-reduce>>
 
-  Version 0.3, September 11, 2013
+  Version 0.3, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -30,8 +30,8 @@
   efficient.
 
   This is also the approach taken by Pure's
-  <hlink|<with|font-family|tt|reduce>|#module-reduce> module which
-  interfaces to the well-known <hlink|Reduce|http://reduce-algebra.sourceforge.net/>
+  <hlink|<with|font-family|tt|reduce>|#module-reduce> module which interfaces
+  to the well-known <hlink|Reduce|http://reduce-algebra.sourceforge.net/>
   system. Along with Macsyma/<hlink|Maxima|http://maxima.sourceforge.net/>,
   Reduce is one of the oldest computer algebra systems which has been around
   since the 1960s and is widely recognized as a state-of-the-art, powerful
@@ -43,9 +43,9 @@
   functionality of Reduce available in Pure in a seamless way. It uses an
   ``embedded'' version of Reduce in the form of a shared library which is
   easy to build from the Reduce sources; the
-  <hlink|Installation|#installation> section below describes how to do
-  this. More background information and a discussion of the interface can be
-  found in the <hlink|Embedding REDUCE|http://groups.google.com/group/pure-lang/browse-thread/thread/c11e82ca2e9e8cbb>
+  <hlink|Installation|#installation> section below describes how to do this.
+  More background information and a discussion of the interface can be found
+  in the <hlink|Embedding REDUCE|http://groups.google.com/group/pure-lang/browse-thread/thread/c11e82ca2e9e8cbb>
   thread on the Pure mailing list.
 
   The interface can be found in the reduce.pure module. It has two parts, a
@@ -60,9 +60,9 @@
   <subsection|Copying<label|copying>>
 
   pure-reduce is available under the same 2-clause BSD
-  <hlink|license|http://www.reduce-algebra.com/license.htm> as Reduce
-  itself, please see the accompanying COPYING file and the reduce.pure file
-  for details.
+  <hlink|license|http://www.reduce-algebra.com/license.htm> as Reduce itself,
+  please see the accompanying COPYING file and the reduce.pure file for
+  details.
 
   <subsection|Installation<label|installation>>
 
@@ -84,7 +84,7 @@
 
   <\quote-env>
     <hlink|https://bitbucket.org/purelang/pure-lang/downloads/reduce-algebra-csl-r2204.tar.bz2|https://bitbucket.org/purelang/pure-lang/downloads/reduce-algebra-csl-r2204.tar.bz2>
-    </quote-env>
+  </quote-env>
 
   (You may want to check the download section on the Pure website for newer
   revisions of this package, since we may update the package from time to
@@ -132,8 +132,8 @@
   The low-level interface is a straight wrapper of the C entry points
   provided by the Reduce library, also known as the ``procedural'' or
   <hlink|PROC|http://reduce-algebra.svn.sourceforge.net/viewvc/reduce-algebra/trunk/csl/cslbase/proc.h?view=markup>
-  interface, for short. It uses an embedded version of Reduce which runs on
-  a free and open-source Lisp flavour known as
+  interface, for short. It uses an embedded version of Reduce which runs on a
+  free and open-source Lisp flavour known as
   <hlink|CSL|http://lisp.codemist.co.uk/> (Codemist Standard Lisp). The
   external C routines are all declared in the <verbatim|reduce> namespace.
   Normally you shouldn't have to call these functions directly, since we
@@ -173,16 +173,15 @@
     and any desired extra arguments as a string vector. Unless the filename
     contains a slash, <hlink|<with|font-family|tt|reduce::start>|#reduce::start>
     searches the directories in <hlink|<with|font-family|tt|REDUCE_PATH>|#REDUCE-PATH>
-    for the image file. An exception is raised if the image file isn't
-    found.
+    for the image file. An exception is raised if the image file isn't found.
   </description>
 
   <\description>
     <item*|reduce::finish<label|reduce::finish>>Finalizes the Reduce system.
     You can call this to release the resources of the Reduce system.
-    (<hlink|<with|font-family|tt|reduce::start>|#reduce::start> also
-    invokes this automatically if a Reduce instance is already running, so it
-    isn't necessary to call <hlink|<with|font-family|tt|reduce::finish>|#reduce::finish>
+    (<hlink|<with|font-family|tt|reduce::start>|#reduce::start> also invokes
+    this automatically if a Reduce instance is already running, so it isn't
+    necessary to call <hlink|<with|font-family|tt|reduce::finish>|#reduce::finish>
     in this case.)
   </description>
 
@@ -302,8 +301,8 @@
     as <verbatim|lisp> <verbatim|(lispsym> <verbatim|"oem-supervisor")>.
     (Note that if such a special symbol occurs as a literal in a result
     returned by <hlink|<with|font-family|tt|lisp>|#lisp> or
-    <hlink|<with|font-family|tt|simplify>|#simplify> then it will get
-    mangled into a form which conforms to Pure syntax.)
+    <hlink|<with|font-family|tt|simplify>|#simplify> then it will get mangled
+    into a form which conforms to Pure syntax.)
   </description>
 
   <\description>
@@ -356,14 +355,14 @@
   bigints, doubles, rationals and complex numbers). Some special conversions
   are applied to algebraic expressions to make arithmetic operations such as
   <verbatim|+>, <verbatim|*> etc. work as expected. In addition, the
-  <verbatim|==>, <verbatim|=\<gtr\>>, <verbatim|..> and <verbatim|:=> infix
+  <verbatim|==>, <verbatim|=\>>, <verbatim|..> and <verbatim|:=> infix
   operators can be used to denote equations, replacement rules, ranges and
   assignments in Reduce, respectively. (Note that you may have to quote these
   in some cases so that they don't get evaluated on the Pure side.) Also,
   Reduce's <verbatim|arbconst> <verbatim|n>, <verbatim|arbint> <verbatim|n>
   and <verbatim|arbcomplex> <verbatim|n> terms can be mapped to Greek symbols
-  <verbatim|\\ensuremath{\\alpha}n>, <verbatim|\\ensuremath{\\beta}n> and
-  <verbatim|\\ensuremath{\\zeta}n> on the Pure side. (This may cause issues
+  <verbatim|<ensuremath{\\alpha}n>>, <verbatim|<ensuremath{\\beta}n>> and
+  <verbatim|<ensuremath{\\zeta}n>> on the Pure side. (This may cause issues
   in environments without proper Unicode support, so it's disabled by
   default.) For debugging purposes, all these automatic conversions can also
   be turned off on the output side with the `<verbatim|#!><nbsp>
@@ -411,8 +410,8 @@
   </verbatim>
 
   Note that the result returned by <hlink|<with|font-family|tt|simplify>|#simplify>
-  is always a quoted expression. If the expression can be further reduced
-  on the Pure side, you'll have to use Pure's
+  is always a quoted expression. If the expression can be further reduced on
+  the Pure side, you'll have to use Pure's
   <hlink|<with|font-family|tt|eval>|purelib.tm#eval> function to force its
   evaluation:
 
@@ -434,8 +433,8 @@
   </verbatim>
 
   This pops up a wxWidgets window (<verbatim|terminal=="wxt">) with a plot of
-  the given function in it, see the <hlink|screenshot|#screenshot> below.
-  The <verbatim|x=='(-20..20)> argument specifies the desired range of the
+  the given function in it, see the <hlink|screenshot|#screenshot> below. The
+  <verbatim|x=='(-20..20)> argument specifies the desired range of the
   <verbatim|x> variable (note that the range needs to be quoted so that it
   gets through to Reduce rather than being evaluated on the Pure side).
 
@@ -533,8 +532,8 @@
   For basic Pure-based usage of Reduce, it's convenient to have a simple
   read-eval-print loop which lets you type some declarations and expressions
   to be simplified (in Pure syntax), and takes care of all the quoting and
-  invoking <hlink|<with|font-family|tt|simplify>|#simplify> for you. Here's
-  a little Pure script which does that:
+  invoking <hlink|<with|font-family|tt|simplify>|#simplify> for you. Here's a
+  little Pure script which does that:
 
   <\verbatim>
     using math, reduce, system;
@@ -716,8 +715,8 @@
   </description>
 
   Note that in Pure the operator is called <verbatim|intg> in order not to
-  clash with the <hlink|<with|font-family|tt|int>|purelib.tm#int>
-  conversion function.
+  clash with the <hlink|<with|font-family|tt|int>|purelib.tm#int> conversion
+  function.
 
   Example 1:
 
@@ -860,7 +859,7 @@
   If the function to be applied in calls to <verbatim|MAP> or
   <verbatim|SELECT> is a compound expression, it must either contain a single
   free variable (indicated with the <verbatim|~> prefix, e.g.: <verbatim|~w>)
-  or a replacement rule of the form <verbatim|var> <verbatim|=\<gtr\>>
+  or a replacement rule of the form <verbatim|var> <verbatim|=\>>
   <verbatim|exprn>. In either case the current elements are substituted for
   the free variable when the function is applied.
 
@@ -1728,7 +1727,7 @@
   type.
 
   To keep it simple we show the usage of the different operators by examples
-  using the well known Pauli matrices. See, e.g.,
+  using the well known <with|font-series|bold|Pauli matrices>. See, e.g.,
   <hlink|http://en.wikipedia.org/wiki/Pauli_matrices|http://en.wikipedia.org/wiki/Pauli-matrices>
   for a reference.
 
@@ -2164,9 +2163,8 @@
   </quote-env>
 
   Note that Pure also defines some these functions in its
-  <hlink|<with|font-family|tt|math>|purelib.tm#module-math> module, so
-  these may have to be quoted to prevent evaluation on the Pure side. For
-  instance:
+  <hlink|<with|font-family|tt|math>|purelib.tm#module-math> module, so these
+  may have to be quoted to prevent evaluation on the Pure side. For instance:
 
   <\verbatim>
     \<gtr\> simplify $ cos 4.3;
@@ -2421,9 +2419,9 @@
 
   For the most common kinds of declarations, the
   <hlink|<with|font-family|tt|reduce>|#module-reduce> module provides the
-  <hlink|<with|font-family|tt|declare>|#declare> function which takes care
-  of the necessary Lisp magic and is safe to use. The above example can also
-  be done as follows:
+  <hlink|<with|font-family|tt|declare>|#declare> function which takes care of
+  the necessary Lisp magic and is safe to use. The above example can also be
+  done as follows:
 
   <\verbatim>
     \<gtr\> declare operator myop;
@@ -2515,9 +2513,9 @@
   <subsubsection|Plotting<label|plotting>>
 
   REDUCE can do 2- and 3-dimensional function plots through its
-  <hlink|gnuplot|http://www.gnuplot.info/> package. Some examples (note
-  that we have to quote the <verbatim|x..y> ranges here so that they get
-  through to Reduce, rather than being evaluated on the Pure side):
+  <hlink|gnuplot|http://www.gnuplot.info/> package. Some examples (note that
+  we have to quote the <verbatim|x..y> ranges here so that they get through
+  to Reduce, rather than being evaluated on the Pure side):
 
   <\verbatim>
     \<gtr\> simplify $ plot (sin x/x) (x=='(-15..15));
@@ -2570,85 +2568,85 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-reduce-toc>>
 
   <\itemize>
-    <item><hlink|Computer Algebra with Pure: A Reduce Interface|#>\ 
+    <item><hlink|Computer Algebra with Pure: A Reduce Interface|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Low-Level Interface|#low-level-interface>\ 
+      <item><hlink|Low-Level Interface|#low-level-interface>
 
-      <item><hlink|High-Level Interface|#high-level-interface>\ 
+      <item><hlink|High-Level Interface|#high-level-interface>
 
       <\itemize>
         <item><hlink|Starting and Stopping
-        Reduce|#starting-and-stopping-reduce>\ 
+        Reduce|#starting-and-stopping-reduce>
 
-        <item><hlink|Maintenance Operations|#maintenance-operations>\ 
+        <item><hlink|Maintenance Operations|#maintenance-operations>
 
         <item><hlink|Evaluation|#evaluation>
       </itemize>
 
-      <item><hlink|Basic Examples|#basic-examples>\ 
+      <item><hlink|Basic Examples|#basic-examples>
 
-      <item><hlink|Examples by Topic|#examples-by-topic>\ 
+      <item><hlink|Examples by Topic|#examples-by-topic>
 
       <\itemize>
-        <item><hlink|Differentiation|#differentiation>\ 
+        <item><hlink|Differentiation|#differentiation>
 
-        <item><hlink|Integration|#integration>\ 
+        <item><hlink|Integration|#integration>
 
-        <item><hlink|Length, Map and Select|#length-map-and-select>\ 
+        <item><hlink|Length, Map and Select|#length-map-and-select>
 
-        <item><hlink|Partial Fractions|#partial-fractions>\ 
+        <item><hlink|Partial Fractions|#partial-fractions>
 
-        <item><hlink|Solving|#solving>\ 
+        <item><hlink|Solving|#solving>
 
-        <item><hlink|Even and Odd Operators|#even-and-odd-operators>\ 
+        <item><hlink|Even and Odd Operators|#even-and-odd-operators>
 
-        <item><hlink|Linear Operators|#linear-operators>\ 
+        <item><hlink|Linear Operators|#linear-operators>
 
-        <item><hlink|Non-commuting Operators|#non-commuting-operators>\ 
+        <item><hlink|Non-commuting Operators|#non-commuting-operators>
 
         <item><hlink|Symmetric and Antisymmetric
-        Operators|#symmetric-and-antisymmetric-operators>\ 
+        Operators|#symmetric-and-antisymmetric-operators>
 
         <item><hlink|Creating/Removing Variable
-        Dependencies|#creating-removing-variable-dependencies>\ 
+        Dependencies|#creating-removing-variable-dependencies>
 
-        <item><hlink|Internal Order of Variables|#internal-order-of-variables>\ 
+        <item><hlink|Internal Order of Variables|#internal-order-of-variables>
 
-        <item><hlink|Parts of Algebraic Expressions|#parts-of-algebraic-expressions>\ 
+        <item><hlink|Parts of Algebraic Expressions|#parts-of-algebraic-expressions>
 
-        <item><hlink|Polynomials and Rationals|#polynomials-and-rationals>\ 
+        <item><hlink|Polynomials and Rationals|#polynomials-and-rationals>
 
-        <item><hlink|Substitution|#substitution>\ 
+        <item><hlink|Substitution|#substitution>
 
-        <item><hlink|Assignment|#assignment>\ 
+        <item><hlink|Assignment|#assignment>
 
-        <item><hlink|Matrix Calculations|#matrix-calculations>\ 
+        <item><hlink|Matrix Calculations|#matrix-calculations>
 
-        <item><hlink|Limits|#limits>\ 
+        <item><hlink|Limits|#limits>
 
         <item><hlink|Ordinary differential equations
-        solver|#ordinary-differential-equations-solver>\ 
+        solver|#ordinary-differential-equations-solver>
 
         <item><hlink|Series Summation and
-        Products|#series-summation-and-products>\ 
+        Products|#series-summation-and-products>
 
-        <item><hlink|Taylor Series|#taylor-series>\ 
+        <item><hlink|Taylor Series|#taylor-series>
 
-        <item><hlink|Boolean Expressions|#boolean-expressions>\ 
+        <item><hlink|Boolean Expressions|#boolean-expressions>
 
-        <item><hlink|Mathematical Functions|#mathematical-functions>\ 
+        <item><hlink|Mathematical Functions|#mathematical-functions>
 
-        <item><hlink|Definite Integrals|#definite-integrals>\ 
+        <item><hlink|Definite Integrals|#definite-integrals>
 
         <item><hlink|Declarations, Switches and
-        Loading|#declarations-switches-and-loading>\ 
+        Loading|#declarations-switches-and-loading>
 
-        <item><hlink|Plotting|#plotting>\ 
+        <item><hlink|Plotting|#plotting>
 
         <item><hlink|References|#references>
       </itemize>
@@ -2670,6 +2668,6 @@
   <hlink|previous|pure-rational.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  11, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

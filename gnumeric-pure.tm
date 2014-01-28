@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,26 +11,26 @@
   <section*|Gnumeric/Pure: A Pure Plugin for
   Gnumeric<label|gnumeric-pure-a-pure-plugin-for-gnumeric>>
 
-  Version 0.13, September 08, 2013
+  Version 0.13, January 28, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   Gnumeric/Pure is a <hlink|Gnumeric|http://www.gnumeric.org/> extension
-  which lets you use <hlink|Pure|http://purelang.bitbucket.org/> functions
-  in Gnumeric, the Gnome spreadsheet. It offers better execution speed than
-  the existing Perl and Python plugins, and provides some powerful features
-  not found in other Gnumeric scripting plugins, such as asynchronous data
+  which lets you use <hlink|Pure|http://purelang.bitbucket.org/> functions in
+  Gnumeric, the Gnome spreadsheet. It offers better execution speed than the
+  existing Perl and Python plugins, and provides some powerful features not
+  found in other Gnumeric scripting plugins, such as asynchronous data
   sources created from Pure streams and OpenGL rendering in Gnumeric frame
   widgets via Pure's OpenGL module.
 
   <subsection|Introduction<label|introduction>>
 
-  This package provides a <hlink|Gnumeric|http://www.gnumeric.org/>
-  extension which gives you access to the
-  <hlink|Pure|http://purelang.bitbucket.org/> programming language in
-  Gnumeric. It works pretty much like the Perl and Python plugin loaders
-  which are distributed with Gnumeric, but Gnumeric/Pure offers some powerful
-  features which aren't found in other Gnumeric scripting plugins:
+  This package provides a <hlink|Gnumeric|http://www.gnumeric.org/> extension
+  which gives you access to the <hlink|Pure|http://purelang.bitbucket.org/>
+  programming language in Gnumeric. It works pretty much like the Perl and
+  Python plugin loaders which are distributed with Gnumeric, but
+  Gnumeric/Pure offers some powerful features which aren't found in other
+  Gnumeric scripting plugins:
 
   <\itemize>
     <item>Pure is a functional programming language which fits the
@@ -117,14 +117,14 @@
 
   <\quote-env>
     <hlink|https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz>
-    </quote-env>
+  </quote-env>
 
   In the 0.12 version of the module, the Makefile is set up to build
   Gnumeric/Pure with OpenGL support, which requires that you have the OpenGL
-  libraries as well as <hlink|GtkGLExt|http://gtkglext.sourceforge.net>
-  (the Gtk OpenGL extension) for GTK2 installed. These should be readily
-  available on most systems, but you can also disable this feature by
-  invoking <verbatim|make> as <verbatim|make> <verbatim|GLDEPS=>.
+  libraries as well as <hlink|GtkGLExt|http://gtkglext.sourceforge.net> (the
+  Gtk OpenGL extension) for GTK2 installed. These should be readily available
+  on most systems, but you can also disable this feature by invoking
+  <verbatim|make> as <verbatim|make> <verbatim|GLDEPS=>.
 
   For the repository version, you'll need a GTK3-compatible version of
   GtkGLExt which can be found at <hlink|https://github.com/tdz/gtkglext|https://github.com/tdz/gtkglext>.
@@ -146,18 +146,17 @@
 
   Typically, <verbatim|make> <verbatim|install> and <verbatim|make>
   <verbatim|install-local> will install the plugins into the following
-  directories by default (here and in the following
-  <verbatim|\<less\>version\<gtr\>> denotes the version of Gnumeric you have
-  installed):
+  directories by default (here and in the following <verbatim|\<version\>>
+  denotes the version of Gnumeric you have installed):
 
   <\itemize>
     <item>System-wide installations go into
-    <verbatim|/usr/local/lib/gnumeric/\<less\>version\<gtr\>/plugins> or
-    similar, depending on Gnumeric's installation prefix (usually either
+    <verbatim|/usr/local/lib/gnumeric/\<version\>/plugins> or similar,
+    depending on Gnumeric's installation prefix (usually either
     <verbatim|/usr/local> or <verbatim|/usr>).
 
     <item>User-specific installations go into
-    <verbatim|~/.gnumeric/\<less\>version\<gtr\>/plugins>.
+    <verbatim|~/.gnumeric/\<version\>/plugins>.
   </itemize>
 
   The Makefile tries to guess the installation path and version number of
@@ -323,8 +322,8 @@
     \ \ [0,1,3,6,10,15,21,28,36,45,55,66,78,91,105,120,136,153,171,190,210]
   </verbatim>
 
-  Note that here and in the following the prompt <verbatim|\<gtr\>> indicates
-  a Pure expression to be evaluated in <em|Gnumeric> (rather than the
+  Note that here and in the following the prompt <verbatim|\>> indicates a
+  Pure expression to be evaluated in <em|Gnumeric> (rather than the
   standalone Pure interpreter), which is followed by another line indicating
   the result (printed in the output cell below the input cell of the Pure
   shell). You can find the Pure shell at the bottom of the first sheet in
@@ -569,24 +568,22 @@
   file generated by <verbatim|pure-gnm>.
 
   Two specific items that you might want to edit by hand are the
-  <verbatim|\<less\>require_explicit_enabling/\<gtr\>> tag and the
-  <verbatim|id> properties of the <verbatim|\<less\>plugin\<gtr\>> and
-  <verbatim|\<less\>service\<gtr\>> tags:
+  <verbatim|\<require_explicit_enabling/\>> tag and the <verbatim|id>
+  properties of the <verbatim|\<plugin\>> and <verbatim|\<service\>> tags:
 
   <\itemize>
-    <item>The <verbatim|\<less\>require_explicit_enabling/\<gtr\>> tag
-    indicates that Gnumeric shouldn't enable the new plugin until you
-    explicitly tell it to. You can remove that line if you want Gnumeric to
-    automatically enable new plugins as they are added to the system.
+    <item>The <verbatim|\<require_explicit_enabling/\>> tag indicates that
+    Gnumeric shouldn't enable the new plugin until you explicitly tell it to.
+    You can remove that line if you want Gnumeric to automatically enable new
+    plugins as they are added to the system.
 
     <item>The <verbatim|pure-gnm> script automatically derives the
-    <verbatim|id> properties of the <verbatim|\<less\>plugin\<gtr\>> and
-    <verbatim|\<less\>service\<gtr\>> tags from the name of the plugin
-    script, which is a sensible default in most cases. However, you might
-    have to change these identifiers if they happen to collide with other
-    Gnumeric plugins and services. This can be done by either editing the
-    generated <verbatim|plugin.xml> file or by renaming the plugin script
-    accordingly.
+    <verbatim|id> properties of the <verbatim|\<plugin\>> and
+    <verbatim|\<service\>> tags from the name of the plugin script, which is
+    a sensible default in most cases. However, you might have to change these
+    identifiers if they happen to collide with other Gnumeric plugins and
+    services. This can be done by either editing the generated
+    <verbatim|plugin.xml> file or by renaming the plugin script accordingly.
   </itemize>
 
   Note that the only really Pure-specific part in the xml file is the loader
@@ -628,8 +625,8 @@
 
     <item>Second, you can also move or copy the entire
     <verbatim|/some/path/myplugin> directory to your personal Gnumeric plugin
-    folder (usually <verbatim|~/.gnumeric/\<less\>version\<gtr\>/plugins>).
-    Gnumeric will always search this directory for new plugins by default, so
+    folder (usually <verbatim|~/.gnumeric/\<version\>/plugins>). Gnumeric
+    will always search this directory for new plugins by default, so
     modifying the plugin search path is not necessary. However, keeping the
     plugin script in a hidden location in your home directory may not be very
     convenient if you want to modify the script later.
@@ -799,8 +796,8 @@
   <subsubsection|Function Descriptions<label|function-descriptions>>
 
   To describe a given function to Gnumeric, define <verbatim|gnm_info>
-  <verbatim|"\<less\>name\<gtr\>"> (where <verbatim|\<less\>name\<gtr\>> is
-  the name of the function) as a pair with the following elements:
+  <verbatim|"\<name\>"> (where <verbatim|\<name\>> is the name of the
+  function) as a pair with the following elements:
 
   <\itemize>
     <item>The first element, a string, gives the signature of the function.
@@ -811,14 +808,14 @@
     (two non-optional floats, followed by an optional string). See below for
     a complete list of the supported parameter types.
 
-    <item>The second element is a list of hash pairs
-    <verbatim|key=\<gtr\>text> which together make up the help text shown in
-    Gnumeric's ``f(x)'' dialog. You should at least specify the function name
-    along with a short synopsis here, e.g. <verbatim|GNM_FUNC_HELP_NAME>
-    <verbatim|=\<gtr\>> <verbatim|"frob:the> <verbatim|frob>
-    <verbatim|function">. Parameter descriptions take the form
-    <verbatim|GNM_FUNC_HELP_ARG> <verbatim|=\<gtr\>> <verbatim|"x:integer">.
-    There are a number of other useful elements, see below for details.
+    <item>The second element is a list of hash pairs <verbatim|key=\>text>
+    which together make up the help text shown in Gnumeric's ``f(x)'' dialog.
+    You should at least specify the function name along with a short synopsis
+    here, e.g. <verbatim|GNM_FUNC_HELP_NAME> <verbatim|=\>>
+    <verbatim|"frob:the> <verbatim|frob> <verbatim|function">. Parameter
+    descriptions take the form <verbatim|GNM_FUNC_HELP_ARG> <verbatim|=\>>
+    <verbatim|"x:integer">. There are a number of other useful elements, see
+    below for details.
   </itemize>
 
   Both the signature and the function description are optional. That is,
@@ -1653,55 +1650,55 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|gnumeric-pure-toc>>
 
   <\itemize>
-    <item><hlink|Gnumeric/Pure: A Pure Plugin for Gnumeric|#>\ 
+    <item><hlink|Gnumeric/Pure: A Pure Plugin for Gnumeric|#>
 
     <\itemize>
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Setup|#setup>\ 
+      <item><hlink|Setup|#setup>
 
-      <item><hlink|Basic Usage|#basic-usage>\ 
+      <item><hlink|Basic Usage|#basic-usage>
 
-      <item><hlink|Interactive Pure Shell|#interactive-pure-shell>\ 
+      <item><hlink|Interactive Pure Shell|#interactive-pure-shell>
 
-      <item><hlink|Defining Your Own Functions|#defining-your-own-functions>\ 
+      <item><hlink|Defining Your Own Functions|#defining-your-own-functions>
 
       <\itemize>
-        <item><hlink|Creating a Simple Plugin|#creating-a-simple-plugin>\ 
+        <item><hlink|Creating a Simple Plugin|#creating-a-simple-plugin>
 
-        <item><hlink|The plugin.xml File|#the-plugin-xml-file>\ 
+        <item><hlink|The plugin.xml File|#the-plugin-xml-file>
 
-        <item><hlink|Loading the Plugin|#loading-the-plugin>\ 
+        <item><hlink|Loading the Plugin|#loading-the-plugin>
 
         <item><hlink|Spicing It Up|#spicing-it-up>
       </itemize>
 
-      <item><hlink|Gnumeric/Pure Interface|#gnumeric-pure-interface>\ 
+      <item><hlink|Gnumeric/Pure Interface|#gnumeric-pure-interface>
 
       <\itemize>
-        <item><hlink|Function Descriptions|#function-descriptions>\ 
+        <item><hlink|Function Descriptions|#function-descriptions>
 
         <item><hlink|Conversions Between Pure and Gnumeric
         Values|#conversions-between-pure-and-gnumeric-values>
       </itemize>
 
-      <item><hlink|Advanced Features|#advanced-features>\ 
+      <item><hlink|Advanced Features|#advanced-features>
 
       <\itemize>
-        <item><hlink|Calling Gnumeric from Pure|#calling-gnumeric-from-pure>\ 
+        <item><hlink|Calling Gnumeric from Pure|#calling-gnumeric-from-pure>
 
         <item><hlink|Accessing Spreadsheet
-        Cells|#accessing-spreadsheet-cells>\ 
+        Cells|#accessing-spreadsheet-cells>
 
-        <item><hlink|Asynchronous Data Sources|#asynchronous-data-sources>\ 
+        <item><hlink|Asynchronous Data Sources|#asynchronous-data-sources>
 
-        <item><hlink|Triggers|#triggers>\ 
+        <item><hlink|Triggers|#triggers>
 
-        <item><hlink|Sheet Objects|#sheet-objects>\ 
+        <item><hlink|Sheet Objects|#sheet-objects>
 
         <item><hlink|OpenGL Interface|#opengl-interface>
       </itemize>
@@ -1722,6 +1719,6 @@
   <hlink|previous|pure-stlvec.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

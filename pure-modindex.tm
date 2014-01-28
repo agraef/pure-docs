@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -32,6 +32,8 @@
   <hlink|atk|pure-gtk.tm#module-atk>
 
   <hlink|audio|pure-audio.tm#module-audio>
+
+  <hlink|avahi|pure-avahi.tm#module-avahi>
 
   <subsection*|c<label|cap-c>>
 
@@ -185,10 +187,9 @@
 
   <hlink|xml|pure-xml.tm#module-xml>
 
-  <hlink|toc|#pure-modindex-toc> <hlink|index|genindex.tm>
-  <hlink|modules|#> \| <hlink|Pure Language and Library
-  Documentation|index.tm>
+  <hlink|toc|#pure-modindex-toc> <hlink|index|genindex.tm> <hlink|modules|#>
+  \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  15, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

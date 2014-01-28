@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|Pure-GLPK - GLPK interface for the Pure programming
   language<label|pure-glpk-glpk-interface-for-the-pure-programming-language>>
 
-  Version 0.4, September 08, 2013
+  Version 0.4, January 28, 2014
 
   Jiri Spitz \<less\><hlink|jiri.spitz@bluetone.cz|mailto:jiri.spitz@bluetone.cz>\<gtr\>
 
@@ -3827,11 +3827,11 @@
   <\quote-env>
     lp: pointer to the LP problem object indices: list indices k of of rows
     and columns to be included in the report. If 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if
-    m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable
-    is (k - m)-th structural variable, where m is the number of rows and n is
-    the number of columns in the specified problem object. An empty lists
-    means printing report for all rows and columns. filename: file name
+    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if m
+    + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable is (k -
+    m)-th structural variable, where m is the number of rows and n is the
+    number of columns in the specified problem object. An empty lists means
+    printing report for all rows and columns. filename: file name
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -4336,12 +4336,11 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    If basic variable (xB )k , 1 <math|\<leq\>> k <math|\<leq\>> m, is
-    i-th auxiliary variable (1 <math|\<leq\>> i <math|\<leq\>> m), the
-    routine returns i. Otherwise, if (xB )k is j-th structural variable (1
-    <math|\<leq\>> j <math|\<leq\>> n), the routine returns m+j. Here m
-    is the number of rows and n is the number of columns in the problem
-    object.
+    If basic variable (xB )k , 1 <math|\<leq\>> k <math|\<leq\>> m, is i-th
+    auxiliary variable (1 <math|\<leq\>> i <math|\<leq\>> m), the routine
+    returns i. Otherwise, if (xB )k is j-th structural variable (1
+    <math|\<leq\>> j <math|\<leq\>> n), the routine returns m+j. Here m is
+    the number of rows and n is the number of columns in the problem object.
   </quote-env>
 
   <with|font-series|bold|Example>:
@@ -4371,12 +4370,11 @@
 
   <\quote-env>
     This routine returns the index k of basic variable (xB )k, 1
-    <math|\<leq\>> k <math|\<leq\>> m, which is i-th auxiliary variable
-    (that is, the auxiliary variable corresponding to i-th row), 1
-    <math|\<leq\>> i <math|\<leq\>> m, in the current basis associated
-    with the specified problem object, where m is the number of rows.
-    However, if i-th auxiliary variable is non-basic, the routine returns
-    zero.
+    <math|\<leq\>> k <math|\<leq\>> m, which is i-th auxiliary variable (that
+    is, the auxiliary variable corresponding to i-th row), 1 <math|\<leq\>> i
+    <math|\<leq\>> m, in the current basis associated with the specified
+    problem object, where m is the number of rows. However, if i-th auxiliary
+    variable is non-basic, the routine returns zero.
   </quote-env>
 
   <with|font-series|bold|Example>:
@@ -4408,10 +4406,10 @@
     This routine returns the index k of basic variable (xB )k, 1
     <math|\<leq\>> k <math|\<leq\>> m, which is j-th structural variable
     (that is, the structural variable corresponding to j-th column), 1
-    <math|\<leq\>> j <math|\<leq\>> n, in the current basis associated
-    with the specified problem object, where m is the number of rows, n is
-    the number of columns. However, if j-th structural variable is non-basic,
-    the routine returns zero.
+    <math|\<leq\>> j <math|\<leq\>> n, in the current basis associated with
+    the specified problem object, where m is the number of rows, n is the
+    number of columns. However, if j-th structural variable is non-basic, the
+    routine returns zero.
   </quote-env>
 
   <with|font-series|bold|Example>:
@@ -4532,12 +4530,12 @@
 
   <\quote-env>
     lp: pointer to the LP problem object k: variable index such that it
-    corresponds to some basic variable: if 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if
-    m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the basic variable is (k
-    - m)-th structural variable, where m is the number of rows and n is the
-    number of columns in the specified problem object (the basis
-    factorization must exist)
+    corresponds to some basic variable: if 1 <math|\<leq\>> k <math|\<leq\>>
+    m, the basic variable is k-th auxiliary variable, and if m + 1
+    <math|\<leq\>> k <math|\<leq\>> m + n, the basic variable is (k - m)-th
+    structural variable, where m is the number of rows and n is the number of
+    columns in the specified problem object (the basis factorization must
+    exist)
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -4568,10 +4566,10 @@
   <\quote-env>
     lp: pointer to the LP problem object k: variable index such that it
     corresponds to some non-basic variable: if 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable,
-    and if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic
-    variable is (k - m)-th structural variable, where m is the number of rows
-    and n is the number of columns in the specified problem object (the basis
+    <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable, and
+    if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable is
+    (k - m)-th structural variable, where m is the number of rows and n is
+    the number of columns in the specified problem object (the basis
     factorization must exist)
   </quote-env>
 
@@ -4605,10 +4603,10 @@
     lp: pointer to the LP problem object rowvector: row vector to be
     transformed in a sparse form as a list of tuples (k, value): if 1
     <math|\<leq\>> k <math|\<leq\>> m, the non-basic variable is k-th
-    auxiliary variable, and if m + 1 <math|\<leq\>> k <math|\<leq\>> m +
-    n, the non-basic variable is (k - m)-th structural variable, where m is
-    the number of rows and n is the number of columns in the specified
-    problem object (the basis factorization must exist)
+    auxiliary variable, and if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n,
+    the non-basic variable is (k - m)-th structural variable, where m is the
+    number of rows and n is the number of columns in the specified problem
+    object (the basis factorization must exist)
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -4641,10 +4639,10 @@
     lp: pointer to the LP problem object colvector: column vector to be
     transformed in a sparse form as a list of tuples (k, value): if 1
     <math|\<leq\>> k <math|\<leq\>> m, the non-basic variable is k-th
-    auxiliary variable, and if m + 1 <math|\<leq\>> k <math|\<leq\>> m +
-    n, the non-basic variable is (k - m)-th structural variable, where m is
-    the number of rows and n is the number of columns in the specified
-    problem object (the basis factorization must exist)
+    auxiliary variable, and if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n,
+    the non-basic variable is (k - m)-th structural variable, where m is the
+    number of rows and n is the number of columns in the specified problem
+    object (the basis factorization must exist)
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -4675,9 +4673,9 @@
   <\quote-env>
     lp: pointer to the LP problem object colvector: simplex tableau column
     in a sparse form as a list of tuples (k, value): if 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if
-    m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the basic variable is (k
-    - m)-th structural variable, where m is the number of rows and n is the
+    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if m
+    + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the basic variable is (k -
+    m)-th structural variable, where m is the number of rows and n is the
     number of columns in the specified problem object (the basis
     factorization must exist and the primal solution must be feasible) dir:
     specifies in which direction the variable y changes on entering the
@@ -4689,8 +4687,8 @@
 
   <\quote-env>
     The routine returns the index, piv, in the colvector corresponding to
-    the pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If
-    the adjacent basic solution is primal unbounded, and therefore the choice
+    the pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If the
+    adjacent basic solution is primal unbounded, and therefore the choice
     cannot be made, the routine returns zero.
   </quote-env>
 
@@ -4715,10 +4713,10 @@
   <\quote-env>
     lp: pointer to the LP problem object rowvector: simplex tableau row in
     a sparse form as a list of tuples (k, value): if 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable,
-    and if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic
-    variable is (k - m)-th structural variable, where m is the number of rows
-    and n is the number of columns in the specified problem object (the basis
+    <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable, and
+    if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable is
+    (k - m)-th structural variable, where m is the number of rows and n is
+    the number of columns in the specified problem object (the basis
     factorization must exist and the dual solution must be feasible) dir:
     specifies in which direction the variable y changes on leaving the basis:
     +1 means increasing, -1 means decreasing eps: relative tolerance (small
@@ -4729,8 +4727,8 @@
 
   <\quote-env>
     The routine returns the index, piv, in the rowvector corresponding to
-    the pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If
-    the adjacent basic solution is dual unbounded, and therefore the choice
+    the pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If the
+    adjacent basic solution is dual unbounded, and therefore the choice
     cannot be made, the routine returns zero.
   </quote-env>
 
@@ -4755,10 +4753,10 @@
 
   <\quote-env>
     lp: pointer to the LP problem object k: if 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable,
-    and if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic
-    variable is (k - m)-th structural variable, where m is the number of rows
-    and n is the number of columns in the specified problem object (the basis
+    <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable, and
+    if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable is
+    (k - m)-th structural variable, where m is the number of rows and n is
+    the number of columns in the specified problem object (the basis
     factorization must exist and the solution must be optimal)
   </quote-env>
 
@@ -4802,10 +4800,10 @@
 
   <\quote-env>
     lp: pointer to the LP problem object k: if 1 <math|\<leq\>> k
-    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if
-    m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable
-    is (k - m)-th structural variable, where m is the number of rows and n is
-    the number of columns in the specified problem object (the basis
+    <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if m
+    + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable is (k -
+    m)-th structural variable, where m is the number of rows and n is the
+    number of columns in the specified problem object (the basis
     factorization must exist and the solution must be optimal)
   </quote-env>
 
@@ -5465,8 +5463,8 @@
     rowtype: one of the following:
 
     glp::lo: \<big-sum\>(aj.xj) \<geq\> RHS constraint glp::up:
-    \<big-sum\>(aj.xj) <math|\<leq\>> RHS constraint rhs: right hand side
-    of the constraint
+    \<big-sum\>(aj.xj) <math|\<leq\>> RHS constraint rhs: right hand side of
+    the constraint
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5685,9 +5683,8 @@
 
   <\quote-env>
     graph: pointer to the graph object v_size: size of vertex data blocks,
-    in bytes, 0 <math|\<leq\>> v size <math|\<leq\>> 256 a_size: size of
-    arc data blocks, in bytes, 0 <math|\<leq\>> a size <math|\<leq\>>
-    256.
+    in bytes, 0 <math|\<leq\>> v size <math|\<leq\>> 256 a_size: size of arc
+    data blocks, in bytes, 0 <math|\<leq\>> a size <math|\<leq\>> 256.
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -6535,285 +6532,285 @@
 
   <\itemize>
     <item><hlink|Pure-GLPK - GLPK interface for the Pure programming
-    language|#>\ 
+    language|#>
 
     <\itemize>
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Error Handling|#error-handling>\ 
+      <item><hlink|Error Handling|#error-handling>
 
       <item><hlink|Further Information and
-      Examples|#further-information-and-examples>\ 
+      Examples|#further-information-and-examples>
 
-      <item><hlink|Interface description|#interface-description>\ 
+      <item><hlink|Interface description|#interface-description>
 
       <item><hlink|Descriptions of interface
-      functions|#descriptions-of-interface-functions>\ 
+      functions|#descriptions-of-interface-functions>
 
       <\itemize>
-        <item><hlink|Basic API routines|#basic-api-routines>\ 
+        <item><hlink|Basic API routines|#basic-api-routines>
 
         <\itemize>
           <item><hlink|Problem creating and modifying
-          routines|#problem-creating-and-modifying-routines>\ 
+          routines|#problem-creating-and-modifying-routines>
 
           <\itemize>
             <item><hlink|Create the GLPK problem
-            object|#create-the-glpk-problem-object>\ 
+            object|#create-the-glpk-problem-object>
 
-            <item><hlink|Set the problem name|#set-the-problem-name>\ 
+            <item><hlink|Set the problem name|#set-the-problem-name>
 
-            <item><hlink|Set objective name|#set-objective-name>\ 
+            <item><hlink|Set objective name|#set-objective-name>
 
             <item><hlink|Set the objective
-            direction|#set-the-objective-direction>\ 
+            direction|#set-the-objective-direction>
 
             <item><hlink|Add new rows to the
-            problem|#add-new-rows-to-the-problem>\ 
+            problem|#add-new-rows-to-the-problem>
 
             <item><hlink|Add new columns to the
-            problem|#add-new-columns-to-the-problem>\ 
+            problem|#add-new-columns-to-the-problem>
 
-            <item><hlink|Set the row name|#set-the-row-name>\ 
+            <item><hlink|Set the row name|#set-the-row-name>
 
-            <item><hlink|Set the column name|#set-the-column-name>\ 
+            <item><hlink|Set the column name|#set-the-column-name>
 
-            <item><hlink|Set (change) row bounds|#set-change-row-bounds>\ 
+            <item><hlink|Set (change) row bounds|#set-change-row-bounds>
 
             <item><hlink|Set (change) column
-            bounds|#set-change-column-bounds>\ 
+            bounds|#set-change-column-bounds>
 
             <item><hlink|Set (change) objective coefficient or constant
-            term|#set-change-objective-coefficient-or-constant-term>\ 
+            term|#set-change-objective-coefficient-or-constant-term>
 
             <item><hlink|Load or replace matrix
-            row|#load-or-replace-matrix-row>\ 
+            row|#load-or-replace-matrix-row>
 
             <item><hlink|Load or replace matrix
-            column|#load-or-replace-matrix-column>\ 
+            column|#load-or-replace-matrix-column>
 
             <item><hlink|Load or replace the whole problem
-            matrix|#load-or-replace-the-whole-problem-matrix>\ 
+            matrix|#load-or-replace-the-whole-problem-matrix>
 
             <item><hlink|Check for duplicate elements in sparse
-            matrix|#check-for-duplicate-elements-in-sparse-matrix>\ 
+            matrix|#check-for-duplicate-elements-in-sparse-matrix>
 
             <item><hlink|Sort elements of the constraint
-            matrix|#sort-elements-of-the-constraint-matrix>\ 
+            matrix|#sort-elements-of-the-constraint-matrix>
 
             <item><hlink|Delete rows from the
-            matrix|#delete-rows-from-the-matrix>\ 
+            matrix|#delete-rows-from-the-matrix>
 
             <item><hlink|Delete columns from the
-            matrix|#delete-columns-from-the-matrix>\ 
+            matrix|#delete-columns-from-the-matrix>
 
             <item><hlink|Copy the whole content of the GLPK problem object to
-            another one|#copy-the-whole-content-of-the-glpk-problem-object-to-another-one>\ 
+            another one|#copy-the-whole-content-of-the-glpk-problem-object-to-another-one>
 
             <item><hlink|Erase all data from the GLPK problem
-            object|#erase-all-data-from-the-glpk-problem-object>\ 
+            object|#erase-all-data-from-the-glpk-problem-object>
 
             <item><hlink|Delete the GLPK problem
             object|#delete-the-glpk-problem-object>
           </itemize>
 
           <item><hlink|Problem retrieving
-          routines|#problem-retrieving-routines>\ 
+          routines|#problem-retrieving-routines>
 
           <\itemize>
-            <item><hlink|Get the problem name|#get-the-problem-name>\ 
+            <item><hlink|Get the problem name|#get-the-problem-name>
 
-            <item><hlink|Get the objective name|#get-the-objective-name>\ 
+            <item><hlink|Get the objective name|#get-the-objective-name>
 
             <item><hlink|Get the objective
-            direction|#get-the-objective-direction>\ 
+            direction|#get-the-objective-direction>
 
-            <item><hlink|Get number of rows|#get-number-of-rows>\ 
+            <item><hlink|Get number of rows|#get-number-of-rows>
 
-            <item><hlink|Get number of columns|#get-number-of-columns>\ 
+            <item><hlink|Get number of columns|#get-number-of-columns>
 
-            <item><hlink|Get name of a row|#get-name-of-a-row>\ 
+            <item><hlink|Get name of a row|#get-name-of-a-row>
 
-            <item><hlink|Get name of a column|#get-name-of-a-column>\ 
+            <item><hlink|Get name of a column|#get-name-of-a-column>
 
-            <item><hlink|Get row type|#get-row-type>\ 
+            <item><hlink|Get row type|#get-row-type>
 
-            <item><hlink|Get row lower bound|#get-row-lower-bound>\ 
+            <item><hlink|Get row lower bound|#get-row-lower-bound>
 
-            <item><hlink|Get row upper bound|#get-row-upper-bound>\ 
+            <item><hlink|Get row upper bound|#get-row-upper-bound>
 
-            <item><hlink|Get column type|#get-column-type>\ 
+            <item><hlink|Get column type|#get-column-type>
 
-            <item><hlink|Get column lower bound|#get-column-lower-bound>\ 
+            <item><hlink|Get column lower bound|#get-column-lower-bound>
 
-            <item><hlink|Get column upper bound|#get-column-upper-bound>\ 
+            <item><hlink|Get column upper bound|#get-column-upper-bound>
 
-            <item><hlink|Get objective coefficient|#get-objective-coefficient>\ 
+            <item><hlink|Get objective coefficient|#get-objective-coefficient>
 
             <item><hlink|Get number of nonzero
-            coefficients|#get-number-of-nonzero-coefficients>\ 
+            coefficients|#get-number-of-nonzero-coefficients>
 
             <item><hlink|Retrive a row from the problem
-            matrix|#retrive-a-row-from-the-problem-matrix>\ 
+            matrix|#retrive-a-row-from-the-problem-matrix>
 
             <item><hlink|Retrive a column from the problem
             matrix|#retrive-a-column-from-the-problem-matrix>
           </itemize>
 
           <item><hlink|Row and column searching
-          routines|#row-and-column-searching-routines>\ 
+          routines|#row-and-column-searching-routines>
 
           <\itemize>
             <item><hlink|Create index for searching rows and columns by their
-            names|#create-index-for-searching-rows-and-columns-by-their-names>\ 
+            names|#create-index-for-searching-rows-and-columns-by-their-names>
 
             <item><hlink|Find a row number by
-            name|#find-a-row-number-by-name>\ 
+            name|#find-a-row-number-by-name>
 
             <item><hlink|Find a column number by
-            name|#find-a-column-number-by-name>\ 
+            name|#find-a-column-number-by-name>
 
             <item><hlink|Delete index for searching rows and columns by their
             names|#delete-index-for-searching-rows-and-columns-by-their-names>
           </itemize>
 
-          <item><hlink|Problem scaling routines|#problem-scaling-routines>\ 
+          <item><hlink|Problem scaling routines|#problem-scaling-routines>
 
           <\itemize>
-            <item><hlink|Set the row scale factor|#set-the-row-scale-factor>\ 
+            <item><hlink|Set the row scale factor|#set-the-row-scale-factor>
 
             <item><hlink|Set the column scale
-            factor|#set-the-column-scale-factor>\ 
+            factor|#set-the-column-scale-factor>
 
             <item><hlink|Retrieve the row scale
-            factor|#retrieve-the-row-scale-factor>\ 
+            factor|#retrieve-the-row-scale-factor>
 
             <item><hlink|Retrieve the column scale
-            factor|#retrieve-the-column-scale-factor>\ 
+            factor|#retrieve-the-column-scale-factor>
 
             <item><hlink|Scale the problem data according to supplied
-            flags|#scale-the-problem-data-according-to-supplied-flags>\ 
+            flags|#scale-the-problem-data-according-to-supplied-flags>
 
             <item><hlink|Unscale the problem data|#unscale-the-problem-data>
           </itemize>
 
           <item><hlink|LP basis constructing
-          routines|#lp-basis-constructing-routines>\ 
+          routines|#lp-basis-constructing-routines>
 
           <\itemize>
-            <item><hlink|Set the row status|#set-the-row-status>\ 
+            <item><hlink|Set the row status|#set-the-row-status>
 
-            <item><hlink|Set the column status|#set-the-column-status>\ 
+            <item><hlink|Set the column status|#set-the-column-status>
 
             <item><hlink|Construct standard problem
-            basis|#construct-standard-problem-basis>\ 
+            basis|#construct-standard-problem-basis>
 
             <item><hlink|Construct advanced problem
-            basis|#construct-advanced-problem-basis>\ 
+            basis|#construct-advanced-problem-basis>
 
             <item><hlink|Construct Bixby's problem
             basis|#construct-bixby-s-problem-basis>
           </itemize>
 
-          <item><hlink|Simplex method routines|#simplex-method-routines>\ 
+          <item><hlink|Simplex method routines|#simplex-method-routines>
 
           <\itemize>
             <item><hlink|Solve the LP problem using simplex
-            method|#solve-the-lp-problem-using-simplex-method>\ 
+            method|#solve-the-lp-problem-using-simplex-method>
 
             <item><hlink|Solve the LP problem using simplex method in exact
-            arithmetics|#solve-the-lp-problem-using-simplex-method-in-exact-arithmetics>\ 
+            arithmetics|#solve-the-lp-problem-using-simplex-method-in-exact-arithmetics>
 
             <item><hlink|Retrieve generic status of basic
-            solution|#retrieve-generic-status-of-basic-solution>\ 
+            solution|#retrieve-generic-status-of-basic-solution>
 
             <item><hlink|Retrieve generic status of primal
-            solution|#retrieve-generic-status-of-primal-solution>\ 
+            solution|#retrieve-generic-status-of-primal-solution>
 
             <item><hlink|Retrieve generic status of dual
-            solution|#retrieve-generic-status-of-dual-solution>\ 
+            solution|#retrieve-generic-status-of-dual-solution>
 
             <item><hlink|Retrieve value of the objective
-            function|#retrieve-value-of-the-objective-function>\ 
+            function|#retrieve-value-of-the-objective-function>
 
             <item><hlink|Retrieve generic status of a row
-            variable|#retrieve-generic-status-of-a-row-variable>\ 
+            variable|#retrieve-generic-status-of-a-row-variable>
 
             <item><hlink|Retrieve row primal
-            value|#retrieve-row-primal-value>\ 
+            value|#retrieve-row-primal-value>
 
-            <item><hlink|Retrieve row dual value|#retrieve-row-dual-value>\ 
+            <item><hlink|Retrieve row dual value|#retrieve-row-dual-value>
 
             <item><hlink|Retrieve generic status of a column
-            variable|#retrieve-generic-status-of-a-column-variable>\ 
+            variable|#retrieve-generic-status-of-a-column-variable>
 
             <item><hlink|Retrieve column primal
-            value|#retrieve-column-primal-value>\ 
+            value|#retrieve-column-primal-value>
 
             <item><hlink|Retrieve column dual
-            value|#retrieve-column-dual-value>\ 
+            value|#retrieve-column-dual-value>
 
             <item><hlink|Determine variable causing
             unboundedness|#determine-variable-causing-unboundedness>
           </itemize>
 
           <item><hlink|Interior-point method
-          routines|#interior-point-method-routines>\ 
+          routines|#interior-point-method-routines>
 
           <\itemize>
             <item><hlink|Solve the LP problem using interior-point
-            method|#solve-the-lp-problem-using-interior-point-method>\ 
+            method|#solve-the-lp-problem-using-interior-point-method>
 
             <item><hlink|Retrieve status of interior-point
-            solution|#retrieve-status-of-interior-point-solution>\ 
+            solution|#retrieve-status-of-interior-point-solution>
 
             <item><hlink|Retrieve the objective function value of
-            interior-point solution|#retrieve-the-objective-function-value-of-interior-point-solution>\ 
+            interior-point solution|#retrieve-the-objective-function-value-of-interior-point-solution>
 
             <item><hlink|Retrieve row primal value of interior-point
-            solution|#retrieve-row-primal-value-of-interior-point-solution>\ 
+            solution|#retrieve-row-primal-value-of-interior-point-solution>
 
             <item><hlink|Retrieve row dual value of interior-point
-            solution|#retrieve-row-dual-value-of-interior-point-solution>\ 
+            solution|#retrieve-row-dual-value-of-interior-point-solution>
 
             <item><hlink|Retrieve column primal value of interior-point
-            solution|#retrieve-column-primal-value-of-interior-point-solution>\ 
+            solution|#retrieve-column-primal-value-of-interior-point-solution>
 
             <item><hlink|Retrieve column dual value of interior-point
             solution|#retrieve-column-dual-value-of-interior-point-solution>
           </itemize>
 
           <item><hlink|Mixed integer programming
-          routines|#mixed-integer-programming-routines>\ 
+          routines|#mixed-integer-programming-routines>
 
           <\itemize>
-            <item><hlink|Set column kind|#set-column-kind>\ 
+            <item><hlink|Set column kind|#set-column-kind>
 
-            <item><hlink|Retrieve column kind|#retrieve-column-kind>\ 
+            <item><hlink|Retrieve column kind|#retrieve-column-kind>
 
             <item><hlink|Retrieve number of integer
-            columns|#retrieve-number-of-integer-columns>\ 
+            columns|#retrieve-number-of-integer-columns>
 
             <item><hlink|Retrieve number of binary
-            columns|#retrieve-number-of-binary-columns>\ 
+            columns|#retrieve-number-of-binary-columns>
 
             <item><hlink|Solve the MIP problem using branch-and-cut
-            method|#solve-the-mip-problem-using-branch-and-cut-method>\ 
+            method|#solve-the-mip-problem-using-branch-and-cut-method>
 
             <item><hlink|Retrieve status of mip
-            solution|#retrieve-status-of-mip-solution>\ 
+            solution|#retrieve-status-of-mip-solution>
 
             <item><hlink|Retrieve the objective function value of mip
-            solution|#retrieve-the-objective-function-value-of-mip-solution>\ 
+            solution|#retrieve-the-objective-function-value-of-mip-solution>
 
             <item><hlink|Retrieve row value of mip
-            solution|#retrieve-row-value-of-mip-solution>\ 
+            solution|#retrieve-row-value-of-mip-solution>
 
             <item><hlink|Retrieve column value of mip
             solution|#retrieve-column-value-of-mip-solution>
           </itemize>
 
-          <item><hlink|Additional routines|#additional-routines>\ 
+          <item><hlink|Additional routines|#additional-routines>
 
           <\itemize>
             <item><hlink|Check Karush-Kuhn-Tucker
@@ -6821,234 +6818,234 @@
           </itemize>
         </itemize>
 
-        <item><hlink|Utility API routines|#utility-api-routines>\ 
+        <item><hlink|Utility API routines|#utility-api-routines>
 
         <\itemize>
           <item><hlink|Problem data reading/writing
-          routines|#problem-data-reading-writing-routines>\ 
+          routines|#problem-data-reading-writing-routines>
 
           <\itemize>
             <item><hlink|Read LP problem data from a MPS
-            file|#read-lp-problem-data-from-a-mps-file>\ 
+            file|#read-lp-problem-data-from-a-mps-file>
 
             <item><hlink|Write LP problem data into a MPS
-            file|#write-lp-problem-data-into-a-mps-file>\ 
+            file|#write-lp-problem-data-into-a-mps-file>
 
             <item><hlink|Read LP problem data from a CPLEX
-            file|#read-lp-problem-data-from-a-cplex-file>\ 
+            file|#read-lp-problem-data-from-a-cplex-file>
 
             <item><hlink|Write LP problem data into a CPLEX
-            file|#write-lp-problem-data-into-a-cplex-file>\ 
+            file|#write-lp-problem-data-into-a-cplex-file>
 
             <item><hlink|Read LP problem data in GLPK
-            format|#read-lp-problem-data-in-glpk-format>\ 
+            format|#read-lp-problem-data-in-glpk-format>
 
             <item><hlink|Write LP problem data in GLPK
             format|#write-lp-problem-data-in-glpk-format>
           </itemize>
 
           <item><hlink|Routines for MathProg
-          models|#routines-for-mathprog-models>\ 
+          models|#routines-for-mathprog-models>
 
           <\itemize>
             <item><hlink|Create the MathProg translator
-            object|#create-the-mathprog-translator-object>\ 
+            object|#create-the-mathprog-translator-object>
 
             <item><hlink|Read and translate model
-            section|#read-and-translate-model-section>\ 
+            section|#read-and-translate-model-section>
 
             <item><hlink|Read and translate data
-            section|#read-and-translate-data-section>\ 
+            section|#read-and-translate-data-section>
 
-            <item><hlink|Generate the model|#generate-the-model>\ 
+            <item><hlink|Generate the model|#generate-the-model>
 
             <item><hlink|Build problem instance from the
-            model|#build-problem-instance-from-the-model>\ 
+            model|#build-problem-instance-from-the-model>
 
-            <item><hlink|Postsolve the model|#postsolve-the-model>\ 
+            <item><hlink|Postsolve the model|#postsolve-the-model>
 
             <item><hlink|Delete the MathProg translator
             object|#delete-the-mathprog-translator-object>
           </itemize>
 
           <item><hlink|Problem solution reading/writing
-          routines|#problem-solution-reading-writing-routines>\ 
+          routines|#problem-solution-reading-writing-routines>
 
           <\itemize>
             <item><hlink|Write basic solution in printable
-            format|#write-basic-solution-in-printable-format>\ 
+            format|#write-basic-solution-in-printable-format>
 
             <item><hlink|Read basic solution from a text
-            file|#read-basic-solution-from-a-text-file>\ 
+            file|#read-basic-solution-from-a-text-file>
 
             <item><hlink|Write basic solution into a text
-            file|#write-basic-solution-into-a-text-file>\ 
+            file|#write-basic-solution-into-a-text-file>
 
             <item><hlink|Print sensitivity analysis
-            report|#print-sensitivity-analysis-report>\ 
+            report|#print-sensitivity-analysis-report>
 
             <item><hlink|Write interior-point solution in printable
-            format|#write-interior-point-solution-in-printable-format>\ 
+            format|#write-interior-point-solution-in-printable-format>
 
             <item><hlink|Read interior-point solution from a text
-            file|#read-interior-point-solution-from-a-text-file>\ 
+            file|#read-interior-point-solution-from-a-text-file>
 
             <item><hlink|Write interior-point solution into a text
-            file|#write-interior-point-solution-into-a-text-file>\ 
+            file|#write-interior-point-solution-into-a-text-file>
 
             <item><hlink|Write MIP solution in printable
-            format|#write-mip-solution-in-printable-format>\ 
+            format|#write-mip-solution-in-printable-format>
 
             <item><hlink|Read MIP solution from a text
-            file|#read-mip-solution-from-a-text-file>\ 
+            file|#read-mip-solution-from-a-text-file>
 
             <item><hlink|Write MIP solution into a text
             file|#write-mip-solution-into-a-text-file>
           </itemize>
         </itemize>
 
-        <item><hlink|Advanced API routines|#advanced-api-routines>\ 
+        <item><hlink|Advanced API routines|#advanced-api-routines>
 
         <\itemize>
-          <item><hlink|LP basis routines|#lp-basis-routines>\ 
+          <item><hlink|LP basis routines|#lp-basis-routines>
 
           <\itemize>
             <item><hlink|Check whether basis factorization
-            exists|#check-whether-basis-factorization-exists>\ 
+            exists|#check-whether-basis-factorization-exists>
 
             <item><hlink|Compute the basis
-            factorization|#compute-the-basis-factorization>\ 
+            factorization|#compute-the-basis-factorization>
 
             <item><hlink|Check whether basis factorization has been
-            updated|#check-whether-basis-factorization-has-been-updated>\ 
+            updated|#check-whether-basis-factorization-has-been-updated>
 
             <item><hlink|Get basis factorization
-            parameters|#get-basis-factorization-parameters>\ 
+            parameters|#get-basis-factorization-parameters>
 
             <item><hlink|Change basis factorization
-            parameters|#change-basis-factorization-parameters>\ 
+            parameters|#change-basis-factorization-parameters>
 
             <item><hlink|Retrieve the basis header
-            information|#retrieve-the-basis-header-information>\ 
+            information|#retrieve-the-basis-header-information>
 
             <item><hlink|Retrieve row index in the basis
-            header|#retrieve-row-index-in-the-basis-header>\ 
+            header|#retrieve-row-index-in-the-basis-header>
 
             <item><hlink|Retrieve column index in the basis
-            header|#retrieve-column-index-in-the-basis-header>\ 
+            header|#retrieve-column-index-in-the-basis-header>
 
-            <item><hlink|Perform forward transformation|#perform-forward-transformation>\ 
+            <item><hlink|Perform forward transformation|#perform-forward-transformation>
 
             <item><hlink|Perform backward
-            transformation|#perform-backward-transformation>\ 
+            transformation|#perform-backward-transformation>
 
             <item><hlink|Warm up LP basis|#warm-up-lp-basis>
           </itemize>
 
-          <item><hlink|Simplex tableau routines|#simplex-tableau-routines>\ 
+          <item><hlink|Simplex tableau routines|#simplex-tableau-routines>
 
           <\itemize>
             <item><hlink|Compute row of the
-            tableau|#compute-row-of-the-tableau>\ 
+            tableau|#compute-row-of-the-tableau>
 
             <item><hlink|Compute column of the
-            tableau|#compute-column-of-the-tableau>\ 
+            tableau|#compute-column-of-the-tableau>
 
             <item><hlink|Transform explicitly specified
-            row|#transform-explicitly-specified-row>\ 
+            row|#transform-explicitly-specified-row>
 
             <item><hlink|Transform explicitly specified
-            column|#transform-explicitly-specified-column>\ 
+            column|#transform-explicitly-specified-column>
 
             <item><hlink|Perform primal ratio
-            test|#perform-primal-ratio-test>\ 
+            test|#perform-primal-ratio-test>
 
-            <item><hlink|Perform dual ratio test|#perform-dual-ratio-test>\ 
+            <item><hlink|Perform dual ratio test|#perform-dual-ratio-test>
 
             <item><hlink|Analyze active bound of non-basic
-            variable|#analyze-active-bound-of-non-basic-variable>\ 
+            variable|#analyze-active-bound-of-non-basic-variable>
 
             <item><hlink|Analyze objective coefficient at basic
             variable|#analyze-objective-coefficient-at-basic-variable>
           </itemize>
         </itemize>
 
-        <item><hlink|Branch-and-cut API routines|#branch-and-cut-api-routines>\ 
+        <item><hlink|Branch-and-cut API routines|#branch-and-cut-api-routines>
 
         <\itemize>
-          <item><hlink|Basic routines|#basic-routines>\ 
+          <item><hlink|Basic routines|#basic-routines>
 
           <\itemize>
             <item><hlink|Determine reason for calling the callback
-            routine|#determine-reason-for-calling-the-callback-routine>\ 
+            routine|#determine-reason-for-calling-the-callback-routine>
 
             <item><hlink|Access the problem
-            object|#access-the-problem-object>\ 
+            object|#access-the-problem-object>
 
             <item><hlink|Determine additional row
-            attributes|#determine-additional-row-attributes>\ 
+            attributes|#determine-additional-row-attributes>
 
-            <item><hlink|Compute relative MIP gap|#compute-relative-mip-gap>\ 
+            <item><hlink|Compute relative MIP gap|#compute-relative-mip-gap>
 
             <item><hlink|Access application-specific
-            data|#access-application-specific-data>\ 
+            data|#access-application-specific-data>
 
             <item><hlink|Select subproblem to continue the
-            search|#select-subproblem-to-continue-the-search>\ 
+            search|#select-subproblem-to-continue-the-search>
 
             <item><hlink|Provide solution found by
-            heuristic|#provide-solution-found-by-heuristic>\ 
+            heuristic|#provide-solution-found-by-heuristic>
 
             <item><hlink|Check whether can branch upon specified
-            variable|#check-whether-can-branch-upon-specified-variable>\ 
+            variable|#check-whether-can-branch-upon-specified-variable>
 
             <item><hlink|Choose variable to branch
-            upon|#choose-variable-to-branch-upon>\ 
+            upon|#choose-variable-to-branch-upon>
 
             <item><hlink|Terminate the solution
             process|#terminate-the-solution-process>
           </itemize>
 
           <item><hlink|The search tree exploring
-          routines|#the-search-tree-exploring-routines>\ 
+          routines|#the-search-tree-exploring-routines>
 
           <\itemize>
             <item><hlink|Determine the search tree
-            size|#determine-the-search-tree-size>\ 
+            size|#determine-the-search-tree-size>
 
             <item><hlink|Determine current active
-            subproblem|#determine-current-active-subproblem>\ 
+            subproblem|#determine-current-active-subproblem>
 
             <item><hlink|Determine next active
-            subproblem|#determine-next-active-subproblem>\ 
+            subproblem|#determine-next-active-subproblem>
 
             <item><hlink|Determine previous active
-            subproblem|#determine-previous-active-subproblem>\ 
+            subproblem|#determine-previous-active-subproblem>
 
             <item><hlink|Determine parent active
-            subproblem|#determine-parent-active-subproblem>\ 
+            subproblem|#determine-parent-active-subproblem>
 
             <item><hlink|Determine subproblem
-            level|#determine-subproblem-level>\ 
+            level|#determine-subproblem-level>
 
             <item><hlink|Determine subproblem local
-            bound|#determine-subproblem-local-bound>\ 
+            bound|#determine-subproblem-local-bound>
 
             <item><hlink|Find active subproblem with the best local
             bound|#find-active-subproblem-with-the-best-local-bound>
           </itemize>
 
-          <item><hlink|The cut pool routines|#the-cut-pool-routines>\ 
+          <item><hlink|The cut pool routines|#the-cut-pool-routines>
 
           <\itemize>
             <item><hlink|Determine current size of the cut
-            pool|#determine-current-size-of-the-cut-pool>\ 
+            pool|#determine-current-size-of-the-cut-pool>
 
             <item><hlink|Add constraint to the cut
-            pool|#add-constraint-to-the-cut-pool>\ 
+            pool|#add-constraint-to-the-cut-pool>
 
             <item><hlink|Remove constraint from the cut
-            pool|#remove-constraint-from-the-cut-pool>\ 
+            pool|#remove-constraint-from-the-cut-pool>
 
             <item><hlink|Remove all constraints from the cut
             pool|#remove-all-constraints-from-the-cut-pool>
@@ -7056,106 +7053,106 @@
         </itemize>
 
         <item><hlink|Graph and network API
-        routines|#graph-and-network-api-routines>\ 
+        routines|#graph-and-network-api-routines>
 
         <\itemize>
-          <item><hlink|Basic graph routines|#basic-graph-routines>\ 
+          <item><hlink|Basic graph routines|#basic-graph-routines>
 
           <\itemize>
             <item><hlink|Create the GLPK graph
-            object|#create-the-glpk-graph-object>\ 
+            object|#create-the-glpk-graph-object>
 
-            <item><hlink|Set the graph name|#set-the-graph-name>\ 
+            <item><hlink|Set the graph name|#set-the-graph-name>
 
-            <item><hlink|Add vertices to a graph|#add-vertices-to-a-graph>\ 
+            <item><hlink|Add vertices to a graph|#add-vertices-to-a-graph>
 
-            <item><hlink|Add arc to a graph|#add-arc-to-a-graph>\ 
+            <item><hlink|Add arc to a graph|#add-arc-to-a-graph>
 
             <item><hlink|Erase content of the GLPK graph
-            object|#erase-content-of-the-glpk-graph-object>\ 
+            object|#erase-content-of-the-glpk-graph-object>
 
             <item><hlink|Delete the GLPK graph
-            object|#delete-the-glpk-graph-object>\ 
+            object|#delete-the-glpk-graph-object>
 
             <item><hlink|Read graph in a plain text
-            format|#read-graph-in-a-plain-text-format>\ 
+            format|#read-graph-in-a-plain-text-format>
 
             <item><hlink|Write graph in a plain text
             format|#write-graph-in-a-plain-text-format>
           </itemize>
 
-          <item><hlink|Graph analysis routines|#graph-analysis-routines>\ 
+          <item><hlink|Graph analysis routines|#graph-analysis-routines>
 
           <\itemize>
             <item><hlink|Find all weakly connected components of a
-            graph|#find-all-weakly-connected-components-of-a-graph>\ 
+            graph|#find-all-weakly-connected-components-of-a-graph>
 
             <item><hlink|Find all strongly connected components of a
             graph|#find-all-strongly-connected-components-of-a-graph>
           </itemize>
 
-          <item><hlink|Minimum cost flow problem|#minimum-cost-flow-problem>\ 
+          <item><hlink|Minimum cost flow problem|#minimum-cost-flow-problem>
 
           <\itemize>
             <item><hlink|Read minimum cost flow problem data in DIMACS
-            format|#read-minimum-cost-flow-problem-data-in-dimacs-format>\ 
+            format|#read-minimum-cost-flow-problem-data-in-dimacs-format>
 
             <item><hlink|Write minimum cost flow problem data in DIMACS
-            format|#write-minimum-cost-flow-problem-data-in-dimacs-format>\ 
+            format|#write-minimum-cost-flow-problem-data-in-dimacs-format>
 
             <item><hlink|Convert minimum cost flow problem to
-            LP|#convert-minimum-cost-flow-problem-to-lp>\ 
+            LP|#convert-minimum-cost-flow-problem-to-lp>
 
             <item><hlink|Solve minimum cost flow problem with out-of-kilter
-            algorithm|#solve-minimum-cost-flow-problem-with-out-of-kilter-algorithm>\ 
+            algorithm|#solve-minimum-cost-flow-problem-with-out-of-kilter-algorithm>
 
             <item><hlink|Klingman's network problem
-            generator|#klingman-s-network-problem-generator>\ 
+            generator|#klingman-s-network-problem-generator>
 
             <item><hlink|Grid-like network problem
             generator|#grid-like-network-problem-generator>
           </itemize>
 
-          <item><hlink|Maximum flow problem|#maximum-flow-problem>\ 
+          <item><hlink|Maximum flow problem|#maximum-flow-problem>
 
           <\itemize>
             <item><hlink|Read maximum cost flow problem data in DIMACS
-            format|#read-maximum-cost-flow-problem-data-in-dimacs-format>\ 
+            format|#read-maximum-cost-flow-problem-data-in-dimacs-format>
 
             <item><hlink|Write maximum cost flow problem data in DIMACS
-            format|#write-maximum-cost-flow-problem-data-in-dimacs-format>\ 
+            format|#write-maximum-cost-flow-problem-data-in-dimacs-format>
 
             <item><hlink|Convert maximum flow problem to
-            LP|#convert-maximum-flow-problem-to-lp>\ 
+            LP|#convert-maximum-flow-problem-to-lp>
 
             <item><hlink|Solve maximum flow problem with Ford-Fulkerson
-            algorithm|#solve-maximum-flow-problem-with-ford-fulkerson-algorithm>\ 
+            algorithm|#solve-maximum-flow-problem-with-ford-fulkerson-algorithm>
 
             <item><hlink|Goldfarb's maximum flow problem
             generator|#goldfarb-s-maximum-flow-problem-generator>
           </itemize>
         </itemize>
 
-        <item><hlink|Miscellaneous routines|#miscellaneous-routines>\ 
+        <item><hlink|Miscellaneous routines|#miscellaneous-routines>
 
         <\itemize>
           <item><hlink|Library environment
-          routines|#library-environment-routines>\ 
+          routines|#library-environment-routines>
 
           <\itemize>
             <item><hlink|Determine library
-            version|#determine-library-version>\ 
+            version|#determine-library-version>
 
             <item><hlink|Enable/disable terminal
-            output|#enable-disable-terminal-output>\ 
+            output|#enable-disable-terminal-output>
 
             <item><hlink|Enable/disable the terminal hook
-            routine|#enable-disable-the-terminal-hook-routine>\ 
+            routine|#enable-disable-the-terminal-hook-routine>
 
             <item><hlink|Get memory usage
-            information|#get-memory-usage-information>\ 
+            information|#get-memory-usage-information>
 
-            <item><hlink|Set memory usage limit|#set-memory-usage-limit>\ 
+            <item><hlink|Set memory usage limit|#set-memory-usage-limit>
 
             <item><hlink|Free GLPK library
             environment|#free-glpk-library-environment>
@@ -7178,6 +7175,6 @@
   <hlink|previous|gnumeric-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

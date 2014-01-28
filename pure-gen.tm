@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-gen: Pure interface generator<label|pure-gen-pure-interface-generator>>
 
-  Version 0.16, September 08, 2013
+  Version 0.16, January 28, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -18,9 +18,9 @@
   header file as input and generates a corresponding Pure module with the
   constant definitions and extern declarations needed to use the C module
   from Pure. pure-gen can also generate FFI interfaces rather than externs
-  (using the <hlink|<em|pure-ffi>|pure-ffi.tm> module), and it can
-  optionally create a C wrapper module which allows you to create interfaces
-  to pretty much any code which can be called via C.
+  (using the <hlink|<em|pure-ffi>|pure-ffi.tm> module), and it can optionally
+  create a C wrapper module which allows you to create interfaces to pretty
+  much any code which can be called via C.
 
   <subsection|Synopsis<label|synopsis>>
 
@@ -251,8 +251,8 @@
   actually generating any output files. This is useful for checking the input
   (possibly in combination with the <hlink|<em|-e>|#cmdoption-pure-gen-e>,
   <hlink|<em|-v>|#cmdoption-pure-gen-v> and/or
-  <hlink|<em|-w>|#cmdoption-pure-gen-w> options) before generating output.
-  A particularly useful example is
+  <hlink|<em|-w>|#cmdoption-pure-gen-w> options) before generating output. A
+  particularly useful example is
 
   <\verbatim>
     pure-gen -ne foo.h \\
@@ -342,10 +342,10 @@
   Processing of glob patterns is performed using the customary rules for
   filename matching, see glob(7) for details. Note that some include files
   may be specified using a full pathname. This is the case, in particular,
-  for system includes such as <verbatim|#include>
-  <verbatim|\<less\>stdio.h\<gtr\>>, which are resolved by the C preprocessor
-  employing a search of the system include directories (as well as any
-  directories named with the <hlink|<em|-I>|#cmdoption-pure-gen-I> option).
+  for system includes such as <verbatim|#include> <verbatim|\<stdio.h\>>,
+  which are resolved by the C preprocessor employing a search of the system
+  include directories (as well as any directories named with the
+  <hlink|<em|-I>|#cmdoption-pure-gen-I> option).
 
   Since the <verbatim|*> and <verbatim|?> wildcards never match the pathname
   separator <verbatim|/>, you have to specify the path in the glob patterns
@@ -364,9 +364,9 @@
   C symbols. Case is insignificant and a trailing underscore will be removed
   as well, so <verbatim|-p> <verbatim|foo> turns <verbatim|fooBar> into
   <verbatim|Bar> and <verbatim|FOO_BAR> into <verbatim|BAR>. Moreover, the
-  <hlink|<em|-m>|#cmdoption-pure-gen-m> option allows you to specify the
-  name of a Pure namespace in which the resulting constants and functions are
-  to be declared. So, for instance, <verbatim|-s> <verbatim|"^(foo\|FOO)">
+  <hlink|<em|-m>|#cmdoption-pure-gen-m> option allows you to specify the name
+  of a Pure namespace in which the resulting constants and functions are to
+  be declared. So, for instance, <verbatim|-s> <verbatim|"^(foo\|FOO)">
   <verbatim|-p> <verbatim|foo> <verbatim|-m> <verbatim|foo> will select all
   symbols starting with the <verbatim|foo> or <verbatim|FOO> prefix,
   stripping the prefix from the selected symbols and finally adding a
@@ -633,10 +633,9 @@
 
   (Note that the generated code in this case comes from an alternate
   template. It's possible to configure the alternate template just like the
-  normal one, using the <hlink|<em|-T>|#cmdoption-pure-gen-T> option
-  instead of <hlink|<em|-t>|#cmdoption-pure-gen-t>. See the <hlink|Generating
-  C Code|#generating-c-code> section above for details about code
-  templates.)
+  normal one, using the <hlink|<em|-T>|#cmdoption-pure-gen-T> option instead
+  of <hlink|<em|-t>|#cmdoption-pure-gen-t>. See the <hlink|Generating C
+  Code|#generating-c-code> section above for details about code templates.)
 
   In a Pure script you can now call <verbatim|foo> and <verbatim|bar> as:
 
@@ -717,10 +716,10 @@
   selections and/or namespace/prefix settings. In such a situation it is
   usually possible to just concatenate the various output files produced by
   pure-gen to consolidate them into a single wrapper module. To make this
-  easier, pure-gen provides the <hlink|<em|-N>|#cmdoption-pure-gen-N>
-  a.k.a. <hlink|<em|--noclobber>|#cmdoption-pure-gen--noclobber> option
-  which appends the output to existing files instead of overwriting them. See
-  the example below.
+  easier, pure-gen provides the <hlink|<em|-N>|#cmdoption-pure-gen-N> a.k.a.
+  <hlink|<em|--noclobber>|#cmdoption-pure-gen--noclobber> option which
+  appends the output to existing files instead of overwriting them. See the
+  example below.
 
   <subsection|Example<label|example>>
 
@@ -775,40 +774,40 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gen-toc>>
 
   <\itemize>
-    <item><hlink|pure-gen: Pure interface generator|#>\ 
+    <item><hlink|pure-gen: Pure interface generator|#>
 
     <\itemize>
-      <item><hlink|Synopsis|#synopsis>\ 
+      <item><hlink|Synopsis|#synopsis>
 
-      <item><hlink|Options|#options>\ 
+      <item><hlink|Options|#options>
 
       <\itemize>
-        <item><hlink|General Options|#general-options>\ 
+        <item><hlink|General Options|#general-options>
 
-        <item><hlink|Preprocessor Options|#preprocessor-options>\ 
+        <item><hlink|Preprocessor Options|#preprocessor-options>
 
-        <item><hlink|Generator Options|#generator-options>\ 
+        <item><hlink|Generator Options|#generator-options>
 
         <item><hlink|Output Options|#output-options>
       </itemize>
 
-      <item><hlink|Description|#description>\ 
+      <item><hlink|Description|#description>
 
-      <item><hlink|Filtering|#filtering>\ 
+      <item><hlink|Filtering|#filtering>
 
-      <item><hlink|Name Mangling|#name-mangling>\ 
+      <item><hlink|Name Mangling|#name-mangling>
 
-      <item><hlink|Generating C Code|#generating-c-code>\ 
+      <item><hlink|Generating C Code|#generating-c-code>
 
-      <item><hlink|Dealing with C Structs|#dealing-with-c-structs>\ 
+      <item><hlink|Dealing with C Structs|#dealing-with-c-structs>
 
-      <item><hlink|Notes|#notes>\ 
+      <item><hlink|Notes|#notes>
 
-      <item><hlink|Example|#example>\ 
+      <item><hlink|Example|#example>
 
-      <item><hlink|License|#license>\ 
+      <item><hlink|License|#license>
 
-      <item><hlink|Authors|#authors>\ 
+      <item><hlink|Authors|#authors>
 
       <item><hlink|See Also|#see-also>
     </itemize>
@@ -827,6 +826,6 @@
   <hlink|previous|pure-ffi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

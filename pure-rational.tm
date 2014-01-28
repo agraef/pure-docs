@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|Pure-Rational - Rational number library for the Pure programming
   language<label|pure-rational-rational-number-library-for-the-pure-programming-language>>
 
-  Version 0.1, September 08, 2013
+  Version 0.1, January 28, 2014
 
   Rob Hubbard
 
@@ -47,8 +47,8 @@
 
   Also note that <hlink|<with|font-family|tt|rational>|#module-rational>
   always pulls in the <hlink|<with|font-family|tt|math>|purelib.tm#module-math>
-  module, so you don't have to import the latter explicitly if you are
-  using <hlink|<with|font-family|tt|rational>|#module-rational>.
+  module, so you don't have to import the latter explicitly if you are using
+  <hlink|<with|font-family|tt|rational>|#module-rational>.
 
   Another minor difference to the Q version of this module is that rational
   results always have Pure bigints as their numerators and denominators,
@@ -146,14 +146,14 @@
   usually denote integers (<math|\<in\>> <with|font-series|bold|Z>), r, ...
   usually denote real numbers (<math|\<in\>> <with|font-series|bold|R>), c,
   ... usually denote complex numbers (<math|\<in\>>
-  <with|font-series|bold|C>), n, ... usually denote parameters of any
-  numeric type, v, ... usually denote parameters of any interval type, and x,
-  ... usually denote parameters of any type.
+  <with|font-series|bold|C>), n, ... usually denote parameters of any numeric
+  type, v, ... usually denote parameters of any interval type, and x, ...
+  usually denote parameters of any type.
 
   The reals are not just the doubles, but include rationals and integers. The
   term `rational' usually refers to a rational number <math|\<in\>>
-  <with|font-series|bold|Q> <math|\<supset\>> <with|font-series|bold|Z>,
-  or an expression of type rational or integer.
+  <with|font-series|bold|Q> <math|\<supset\>> <with|font-series|bold|Z>, or
+  an expression of type rational or integer.
 
   <subsection|The Rational Type<label|the-rational-type>>
 
@@ -260,8 +260,8 @@
   and <hlink|<with|font-family|tt|ratvalp>|purelib.tm#ratvalp> and other
   rational variants are new for rationals and the standard functions
   <hlink|<with|font-family|tt|exactp>|purelib.tm#exactp> and
-  <hlink|<with|font-family|tt|inexactp>|purelib.tm#inexactp> are extended
-  for rationals.
+  <hlink|<with|font-family|tt|inexactp>|purelib.tm#inexactp> are extended for
+  rationals.
 
   A value is `exact', or of an exact type, if it is of a type that is able to
   represent the values returned by arithmetical operations exactly; in a
@@ -271,16 +271,16 @@
   The doubles are not an exact type. The results of some operations on some
   values that are stored exactly, can't be stored exactly. (Furthermore,
   doubles are intended to represent real numbers; no irrational number
-  (<math|\<in\>> <with|font-series|bold|R> \\ <with|font-series|bold|Q>)
-  can be stored exactly as a double; even some rational (<math|\<in\>>
+  (<math|\<in\>> <with|font-series|bold|R> \\ <with|font-series|bold|Q>) can
+  be stored exactly as a double; even some rational (<math|\<in\>>
   <with|font-series|bold|Q>) numbers are not stored exactly.)
 
   The rationals are an exact type. All rational numbers (subject to available
   resources, of course) are stored exactly. The results of the arithmetical
   operations on rationals are rationals represented exactly. Beware that the
   standard <verbatim|intvalp> and <hlink|<with|font-family|tt|ratvalp>|purelib.tm#ratvalp>
-  may return 1 even if the value is of double type. However, these
-  functions may be combined with <hlink|<with|font-family|tt|exactp>|purelib.tm#exactp>.
+  may return 1 even if the value is of double type. However, these functions
+  may be combined with <hlink|<with|font-family|tt|exactp>|purelib.tm#exactp>.
 
   <\description>
     <item*|exactp x<label|exactp/rational>>returns whether x has an exact
@@ -338,10 +338,10 @@
     [1,1,0,0,0,0,0,0]
   </verbatim>
 
-  See <hlink|Rational Complex Numbers|#rational-complex-numbers> for
-  details about rational complex numbers, and <hlink|Rational Complex Type
-  and Value Tests|#rational-complex-type-and-value-tests> for details of
-  their type and value tests.
+  See <hlink|Rational Complex Numbers|#rational-complex-numbers> for details
+  about rational complex numbers, and <hlink|Rational Complex Type and Value
+  Tests|#rational-complex-type-and-value-tests> for details of their type and
+  value tests.
 
   <subsection|Arithmetic<label|arithmetic>>
 
@@ -487,10 +487,10 @@
     <math|\<leq\>> r \<less\> d. If <verbatim|roundfun> =
     <hlink|<with|font-family|tt|ceil>|purelib.tm#ceil> then -d \<less\> r
     <math|\<leq\>> 0. If <verbatim|roundfun> =
-    <hlink|<with|font-family|tt|trunc>|purelib.tm#trunc> then \|r\|
-    \<less\> \|d\| and sgn r <math|\<in\>> {0, sgn d}. If
-    <verbatim|roundfun> = <hlink|<with|font-family|tt|round>|purelib.tm#round>,
-    <verbatim|roundfun> = <verbatim|round_zero_bias> or <verbatim|roundfun> =
+    <hlink|<with|font-family|tt|trunc>|purelib.tm#trunc> then \|r\| \<less\>
+    \|d\| and sgn r <math|\<in\>> {0, sgn d}. If <verbatim|roundfun> =
+    <hlink|<with|font-family|tt|round>|purelib.tm#round>, <verbatim|roundfun>
+    = <verbatim|round_zero_bias> or <verbatim|roundfun> =
     <hlink|<with|font-family|tt|round_unbiased>|#rational::round-unbiased>
     then \|r\| <math|\<leq\>> d/2.
   </description>
@@ -516,8 +516,8 @@
     <item*|q1 mod q2<label|mod/rational>>(overload of the built-in mod) q1
     and q2 may be rational or integer. Returns a rational. If q = q1 div q2
     and r = q1 mod q2 then q1 = q * q2 + q, q <math|\<in\>>
-    <with|font-series|bold|Z>, \|r\| \<less\> \|q2\| and sgn r
-    <math|\<in\>> {0, sgn q2}.
+    <with|font-series|bold|Z>, \|r\| \<less\> \|q2\| and sgn r <math|\<in\>>
+    {0, sgn q2}.
   </description>
 
   <subsubsection|Relations \V Equality and Inequality
@@ -1019,10 +1019,10 @@
     [9,9,9L%2L,4.5,9+:1,9L%2L+:1]
   </verbatim>
 
-  See <hlink|Rational Complex Numbers|#rational-complex-numbers> for
-  details about rational complex numbers, and <hlink|Rational Complex Type
-  Simplification|#rational-complex-type-simplification> for details of
-  their type simplification.
+  See <hlink|Rational Complex Numbers|#rational-complex-numbers> for details
+  about rational complex numbers, and <hlink|Rational Complex Type
+  Simplification|#rational-complex-type-simplification> for details of their
+  type simplification.
 
   <subsection|Q -\<gtr\> Z \V Rounding<label|q-z-rounding>>
 
@@ -1143,11 +1143,11 @@
   then 0 <math|\<leq\>> f \<less\> 1. If <verbatim|roundfun> =
   <hlink|<with|font-family|tt|ceil>|purelib.tm#ceil> then -1 \<less\> f
   <math|\<leq\>> 0. If <verbatim|roundfun> =
-  <hlink|<with|font-family|tt|trunc>|purelib.tm#trunc> then \|f\| \<less\>
-  1 and sgn f <math|\<in\>> {0, sgn q}. If <verbatim|roundfun> =
+  <hlink|<with|font-family|tt|trunc>|purelib.tm#trunc> then \|f\| \<less\> 1
+  and sgn f <math|\<in\>> {0, sgn q}. If <verbatim|roundfun> =
   <hlink|<with|font-family|tt|round>|purelib.tm#round>, <verbatim|roundfun> =
-  <hlink|<with|font-family|tt|round_zero_bias>|#rational::round-zero-bias>
-  or <verbatim|roundfun> = <hlink|<with|font-family|tt|round_unbiased>|#rational::round-unbiased>
+  <hlink|<with|font-family|tt|round_zero_bias>|#rational::round-zero-bias> or
+  <verbatim|roundfun> = <hlink|<with|font-family|tt|round_unbiased>|#rational::round-unbiased>
   then \|f\| <math|\<leq\>> 1/2.
 
   <\description>
@@ -1763,8 +1763,8 @@
     <hlink|Complexity Extrema|#complexity-extrema>) rational approximation to
     r (usually a double) that is <math|\<varepsilon\>>-close. That is find
     the q with the smallest possible denominator such that such that \|q -
-    r\| <math|\<leq\>> <math|\<varepsilon\>>. (<math|\<varepsilon\>>
-    \<gtr\> 0.)
+    r\| <math|\<leq\>> <math|\<varepsilon\>>. (<math|\<varepsilon\>> \<gtr\>
+    0.)
   </description>
 
   <with|font-series|bold|Example 42> Rational approximation to <math|\<pi\>>
@@ -1797,8 +1797,8 @@
 
   <\description>
     <item*|rational::rational_approxs_epsilon <math|\<varepsilon\>>
-    r<label|rational::rational-approxs-epsilon>>Produce a list of ever
-    better rational approximations to r (usually a double) that is eventually
+    r<label|rational::rational-approxs-epsilon>>Produce a list of ever better
+    rational approximations to r (usually a double) that is eventually
     <math|\<varepsilon\>>-close. (<math|\<varepsilon\>> \<gtr\> 0.)
   </description>
 
@@ -1827,13 +1827,13 @@
 
   <\description>
     <item*|rational::rational_interval_epsilon <math|\<varepsilon\>>
-    r<label|rational::rational-interval-epsilon>>Find the least complex
-    (see <hlink|Complexity Extrema|#complexity-extrema>) rational interval
+    r<label|rational::rational-interval-epsilon>>Find the least complex (see
+    <hlink|Complexity Extrema|#complexity-extrema>) rational interval
     containing r (usually a double) that is <math|\<varepsilon\>>-small. That
     is find the least complex (see <hlink|Complexity
     Extrema|#complexity-extrema>) q1 <math|\<leq\>> q2 such that r
-    <math|\<in\>> [q1, q2] and q2 - q1 <math|\<leq\>>
-    <math|\<varepsilon\>>. (<math|\<varepsilon\>> \<gtr\> 0.)
+    <math|\<in\>> [q1, q2] and q2 - q1 <math|\<leq\>> <math|\<varepsilon\>>.
+    (<math|\<varepsilon\>> \<gtr\> 0.)
   </description>
 
   <with|font-series|bold|Example 46> Rational interval surrounding
@@ -1991,9 +1991,9 @@
   a<textsubscr|1>, a<textsubscr|2>, ... , a<textsubscr|n>].
 
   A `simple' continued fraction is one in which <math|\<forall\>>i
-  <math|\<bullet\>> a<textsubscr|i> <math|\<in\>>
-  <with|font-series|bold|Z> and <math|\<forall\>>i \<gtr\> 0
-  <math|\<bullet\>> a<textsubscr|i> \<gtr\> 0.
+  <math|\<bullet\>> a<textsubscr|i> <math|\<in\>> <with|font-series|bold|Z>
+  and <math|\<forall\>>i \<gtr\> 0 <math|\<bullet\>> a<textsubscr|i> \<gtr\>
+  0.
 
   Simple continued fractions for rationals are not quite unique since
   [a<textsubscr|0>, a<textsubscr|1>, ... , a<textsubscr|n>, 1] =
@@ -2050,9 +2050,9 @@
 
   <\description>
     <item*|rational::continued_fraction_epsilon <math|\<varepsilon\>>
-    r<label|rational::continued-fraction-epsilon>>Find enough of the
-    initial terms of a continued fraction to within <math|\<varepsilon\>>
-    of the value r with the `remainder', if any, in the final element.
+    r<label|rational::continued-fraction-epsilon>>Find enough of the initial
+    terms of a continued fraction to within <math|\<varepsilon\>> of the
+    value r with the `remainder', if any, in the final element.
   </description>
 
   <with|font-series|bold|Example 56> First few terms of the value
@@ -2222,8 +2222,8 @@
     integral complex (Gaussian integral) numerator n, and the smallest
     natural (i.e. positive integral real) complex denominator d, i.e. a
     complex number where <math|<with|math-font|Euler|R>>(d) <math|\<in\>>
-    <with|font-series|bold|Z>, <math|<with|math-font|Euler|R>>(d) \<gtr\>
-    0, <math|<with|math-font|Euler|I>>(d) = 0; i.e. the numerator and
+    <with|font-series|bold|Z>, <math|<with|math-font|Euler|R>>(d) \<gtr\> 0,
+    <math|<with|math-font|Euler|I>>(d) = 0; i.e. the numerator and
     denominator of one `normalised' form of c.
 
     This is an inverse (up to equivalence) of rational as defined on integral
@@ -2236,8 +2236,8 @@
     integral complex (Gaussian integral) numerator n, and an absolutely
     smallest integral complex denominator d chosen s.t.
     <math|<with|math-font|Euler|R>>(d),=(d) <math|\<in\>>
-    <with|font-series|bold|Z>, <math|<with|math-font|Euler|R>>(d) \<gtr\>
-    0, and either \|<math|<with|math-font|Euler|R>>(d)\| \<less\>
+    <with|font-series|bold|Z>, <math|<with|math-font|Euler|R>>(d) \<gtr\> 0,
+    and either \|<math|<with|math-font|Euler|R>>(d)\| \<less\>
     <math|<with|math-font|Euler|I>>(d) or <math|<with|math-font|Euler|R>>(d)
     = <math|<with|math-font|Euler|I>>(d) \<gtr\> 0; i.e. the numerator and
     denominator of another `normalised' form of c.
@@ -2351,8 +2351,8 @@
 
   <\description>
     <item*|compvalp x<label|compvalp/rational>>standard function; returns
-    whether x has a complex value (<math|\<in\>> <with|font-series|bold|C>
-    = <with|font-series|bold|R>[i]).
+    whether x has a complex value (<math|\<in\>> <with|font-series|bold|C> =
+    <with|font-series|bold|R>[i]).
   </description>
 
   <\description>
@@ -3176,8 +3176,7 @@
     <item*|rational::join_str_real_recur fmt intGroup sign i fracInit
     fracRecur<label|rational::join-str-real-recur>>formats the parts in the
     quadruple returned by <hlink|<with|font-family|tt|strs_real_recur>|#rational::strs-real-recur>
-    to the sort of string as returned by
-    <hlink|<with|font-family|tt|str_real_recur>|#rational::str-real-recur>.
+    to the sort of string as returned by <hlink|<with|font-family|tt|str_real_recur>|#rational::str-real-recur>.
   </description>
 
   <subsubsection|Evaluation of Recurring Expansion
@@ -3336,8 +3335,7 @@
     err<label|rational::join-str-real-approx>>formats the parts in the
     quadruple returned by <hlink|<with|font-family|tt|strs_real_approx_dp>|#rational::strs-real-approx-dp>
     or <hlink|<with|font-family|tt|strs_real_approx_sf>|#rational::strs-real-approx-sf>
-    to the sort of string as returned by
-    <hlink|<with|font-family|tt|str_real_approx_dp>|#rational::str-real-approx-dp>
+    to the sort of string as returned by <hlink|<with|font-family|tt|str_real_approx_dp>|#rational::str-real-approx-dp>
     or <hlink|<with|font-family|tt|str_real_approx_sf>|#rational::str-real-approx-sf>.
   </description>
 
@@ -3727,25 +3725,25 @@
 
   <\itemize>
     <item><hlink|Pure-Rational - Rational number library for the Pure
-    programming language|#>\ 
+    programming language|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
       <\itemize>
-        <item><hlink|The Rational Module|#module-rational>\ 
+        <item><hlink|The Rational Module|#module-rational>
 
         <item><hlink|The Files and the Default
-        Prelude|#the-files-and-the-default-prelude>\ 
+        Prelude|#the-files-and-the-default-prelude>
 
         <\itemize>
-          <item><hlink|math.pure and Other Files|#math-pure-and-other-files>\ 
+          <item><hlink|math.pure and Other Files|#math-pure-and-other-files>
 
-          <item><hlink|rational.pure|#rational-pure>\ 
+          <item><hlink|rational.pure|#rational-pure>
 
           <item><hlink|rat_interval.pure|#rat-interval-pure>
         </itemize>
@@ -3753,176 +3751,176 @@
         <item><hlink|Notation|#notation>
       </itemize>
 
-      <item><hlink|The Rational Type|#the-rational-type>\ 
+      <item><hlink|The Rational Type|#the-rational-type>
 
       <\itemize>
-        <item><hlink|Constructors|#constructors>\ 
+        <item><hlink|Constructors|#constructors>
 
-        <item><hlink|`Deconstructors'|#deconstructors>\ 
+        <item><hlink|`Deconstructors'|#deconstructors>
 
         <item><hlink|Type and Value Tests|#type-and-value-tests>
       </itemize>
 
-      <item><hlink|Arithmetic|#arithmetic>\ 
+      <item><hlink|Arithmetic|#arithmetic>
 
       <\itemize>
-        <item><hlink|Operators|#operators>\ 
+        <item><hlink|Operators|#operators>
 
-        <item><hlink|More on Division|#more-on-division>\ 
+        <item><hlink|More on Division|#more-on-division>
 
         <item><hlink|Relations \V Equality and Inequality
-        Tests|#relations-equality-and-inequality-tests>\ 
+        Tests|#relations-equality-and-inequality-tests>
 
         <item><hlink|Comparison Function|#comparison-function>
       </itemize>
 
-      <item><hlink|Mathematical Functions|#mathematical-functions>\ 
+      <item><hlink|Mathematical Functions|#mathematical-functions>
 
       <\itemize>
-        <item><hlink|Absolute Value and Sign|#absolute-value-and-sign>\ 
+        <item><hlink|Absolute Value and Sign|#absolute-value-and-sign>
 
         <item><hlink|Greatest Common Divisor (GCD) and Least Common Multiple
-        (LCM)|#greatest-common-divisor-gcd-and-least-common-multiple-lcm>\ 
+        (LCM)|#greatest-common-divisor-gcd-and-least-common-multiple-lcm>
 
         <item><hlink|Extrema (Minima and Maxima)|#extrema-minima-and-maxima>
       </itemize>
 
-      <item><hlink|Special Rational Functions|#special-rational-functions>\ 
+      <item><hlink|Special Rational Functions|#special-rational-functions>
 
       <\itemize>
-        <item><hlink|Complexity|#complexity>\ 
+        <item><hlink|Complexity|#complexity>
 
         <\itemize>
-          <item><hlink|Complexity Relations|#complexity-relations>\ 
+          <item><hlink|Complexity Relations|#complexity-relations>
 
           <item><hlink|Complexity Comparison
-          Function|#complexity-comparison-function>\ 
+          Function|#complexity-comparison-function>
 
-          <item><hlink|Complexity Extrema|#complexity-extrema>\ 
+          <item><hlink|Complexity Extrema|#complexity-extrema>
 
           <item><hlink|Other Complexity Functions|#other-complexity-functions>
         </itemize>
 
-        <item><hlink|Mediants and Farey Sequences|#mediants-and-farey-sequences>\ 
+        <item><hlink|Mediants and Farey Sequences|#mediants-and-farey-sequences>
 
         <item><hlink|Rational Type Simplification|#rational-type-simplification>
       </itemize>
 
       <item><hlink|<with|font-series|bold|Q> -\<gtr\>
-      <with|font-series|bold|Z> \V Rounding|#q-z-rounding>\ 
+      <with|font-series|bold|Z> \V Rounding|#q-z-rounding>
 
       <\itemize>
-        <item><hlink|Rounding to Integer|#rounding-to-integer>\ 
+        <item><hlink|Rounding to Integer|#rounding-to-integer>
 
         <item><hlink|Integer and Fraction Parts|#integer-and-fraction-parts>
       </itemize>
 
-      <item><hlink|Rounding to Multiples|#rounding-to-multiples>\ 
+      <item><hlink|Rounding to Multiples|#rounding-to-multiples>
 
       <item><hlink|<with|font-series|bold|Q> -\<gtr\>
       <with|font-series|bold|R> \V Conversion /
-      Casting|#q-r-conversion-casting>\ 
+      Casting|#q-r-conversion-casting>
 
       <item><hlink|<with|font-series|bold|R> -\<gtr\>
-      <with|font-series|bold|Q> \V Approximation|#r-q-approximation>\ 
+      <with|font-series|bold|Q> \V Approximation|#r-q-approximation>
 
       <\itemize>
-        <item><hlink|Intervals|#module-rat-interval>\ 
+        <item><hlink|Intervals|#module-rat-interval>
 
         <\itemize>
           <item><hlink|Interval Constructors and
-          `Deconstructors'|#interval-constructors-and-deconstructors>\ 
+          `Deconstructors'|#interval-constructors-and-deconstructors>
 
-          <item><hlink|Interval Type Tests|#interval-type-tests>\ 
+          <item><hlink|Interval Type Tests|#interval-type-tests>
 
           <item><hlink|Interval Arithmetic Operators and
-          Relations|#interval-arithmetic-operators-and-relations>\ 
+          Relations|#interval-arithmetic-operators-and-relations>
 
           <item><hlink|Interval Maths|#interval-maths>
         </itemize>
 
         <item><hlink|Least Complex Approximation within
-        Epsilon|#least-complex-approximation-within-epsilon>\ 
+        Epsilon|#least-complex-approximation-within-epsilon>
 
         <item><hlink|Best Approximation with Bounded
         Denominator|#best-approximation-with-bounded-denominator>
       </itemize>
 
-      <item><hlink|Decomposition|#decomposition>\ 
+      <item><hlink|Decomposition|#decomposition>
 
-      <item><hlink|Continued Fractions|#continued-fractions>\ 
+      <item><hlink|Continued Fractions|#continued-fractions>
 
       <\itemize>
         <item>Introduction
 
         <item><hlink|Generating Continued
-        Fractions|#generating-continued-fractions>\ 
+        Fractions|#generating-continued-fractions>
 
         <\itemize>
-          <item><hlink|Exact|#exact>\ 
+          <item><hlink|Exact|#exact>
 
           <item><hlink|Inexact|#inexact>
         </itemize>
 
         <item><hlink|Evaluating Continued
-        Fractions|#evaluating-continued-fractions>\ 
+        Fractions|#evaluating-continued-fractions>
 
         <\itemize>
           <item><hlink|Convergents|#convergents>
         </itemize>
       </itemize>
 
-      <item><hlink|Rational Complex Numbers|#rational-complex-numbers>\ 
+      <item><hlink|Rational Complex Numbers|#rational-complex-numbers>
 
       <\itemize>
         <item><hlink|Rational Complex Constructors and
-        `Deconstructors'|#rational-complex-constructors-and-deconstructors>\ 
+        `Deconstructors'|#rational-complex-constructors-and-deconstructors>
 
         <item><hlink|Rational Complex Type and Value
-        Tests|#rational-complex-type-and-value-tests>\ 
+        Tests|#rational-complex-type-and-value-tests>
 
         <item><hlink|Rational Complex Arithmetic Operators and
-        Relations|#rational-complex-arithmetic-operators-and-relations>\ 
+        Relations|#rational-complex-arithmetic-operators-and-relations>
 
-        <item><hlink|Rational Complex Maths|#rational-complex-maths>\ 
+        <item><hlink|Rational Complex Maths|#rational-complex-maths>
 
         <item><hlink|Rational Complex Type
         Simplification|#rational-complex-type-simplification>
       </itemize>
 
-      <item><hlink|String Formatting and Evaluation|#string-formatting-and-evaluation>\ 
+      <item><hlink|String Formatting and Evaluation|#string-formatting-and-evaluation>
 
       <\itemize>
         <item><hlink|The Naming of the String Conversion
-        Functions|#the-naming-of-the-string-conversion-functions>\ 
+        Functions|#the-naming-of-the-string-conversion-functions>
 
         <item><hlink|Internationalisation and Format
-        Structures|#internationalisation-and-format-structures>\ 
+        Structures|#internationalisation-and-format-structures>
 
-        <item><hlink|Digit Grouping|#digit-grouping>\ 
+        <item><hlink|Digit Grouping|#digit-grouping>
 
-        <item><hlink|Radices|#radices>\ 
+        <item><hlink|Radices|#radices>
 
         <item><hlink|Error Terms|#error-terms>
       </itemize>
 
       <item><hlink|<with|font-series|bold|Q> \<less\>-\<gtr\> Fraction String
-      (``i + n/d'')|#q-fraction-string-i-n-d>\ 
+      (``i + n/d'')|#q-fraction-string-i-n-d>
 
       <\itemize>
         <item><hlink|Formatting to Fraction
-        Strings|#formatting-to-fraction-strings>\ 
+        Strings|#formatting-to-fraction-strings>
 
         <item><hlink|Evaluation of Fraction
         Strings|#evaluation-of-fraction-strings>
       </itemize>
 
       <item><hlink|<with|font-series|bold|Q> \<less\>-\<gtr\> Recurring
-      Numeral Expansion String (``I.FR'')|#q-recurring-numeral-expansion-string-i-fr>\ 
+      Numeral Expansion String (``I.FR'')|#q-recurring-numeral-expansion-string-i-fr>
 
       <\itemize>
         <item><hlink|Formatting to Recurring Expansion
-        Strings|#formatting-to-recurring-expansion-strings>\ 
+        Strings|#formatting-to-recurring-expansion-strings>
 
         <item><hlink|Evaluation of Recurring Expansion
         Strings|#evaluation-of-recurring-expansion-strings>
@@ -3930,18 +3928,18 @@
 
       <item><hlink|<with|font-series|bold|Q> \<less\>-\<gtr\> Numeral
       Expansion String (``I.F <math|\<times\>>
-      10E'')|#q-numeral-expansion-string-i-f-10e>\ 
+      10E'')|#q-numeral-expansion-string-i-f-10e>
 
       <\itemize>
         <item><hlink|Formatting to Expansion
-        Strings|#formatting-to-expansion-strings>\ 
+        Strings|#formatting-to-expansion-strings>
 
         <\itemize>
           <item><hlink|Functions for Fixed Decimal
-          Places|#functions-for-fixed-decimal-places>\ 
+          Places|#functions-for-fixed-decimal-places>
 
           <item><hlink|Functions for Significant
-          Figures|#functions-for-significant-figures>\ 
+          Figures|#functions-for-significant-figures>
 
           <item><hlink|Functions for Scientific Notation and Engineering
           Notation|#functions-for-scientific-notation-and-engineering-notation>
@@ -3969,6 +3967,6 @@
   <hlink|previous|pure-octave.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

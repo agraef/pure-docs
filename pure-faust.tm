@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-faust<label|module-faust>>
 
-  Version 0.9, September 08, 2013
+  Version 0.9, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -24,12 +24,12 @@
   <with|font-series|bold|Note:> As of Pure 0.45, there's also built-in
   support for Faust interoperability in the Pure core, including the ability
   to inline Faust code in Pure programs; see <hlink|<em|Interfacing to
-  Faust>|pure.tm#interfacing-to-faust> in the Pure manual. The built-in
-  Faust interface requires <hlink|Faust2|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
-  which is still under development and available as a separate package in
-  the Faust git repository. Both interfaces provide pretty much the same
-  basic capabilities and should work equally well for most applications. In
-  fact, as of version 0.5 pure-faust comes with a compatibility module which
+  Faust>|pure.tm#interfacing-to-faust> in the Pure manual. The built-in Faust
+  interface requires <hlink|Faust2|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
+  which is still under development and available as a separate package in the
+  Faust git repository. Both interfaces provide pretty much the same basic
+  capabilities and should work equally well for most applications. In fact,
+  as of version 0.5 pure-faust comes with a compatibility module which
   provides the pure-faust API on top of the built-in Faust interface, see the
   description of the <hlink|<with|font-family|tt|faust2>|#module-faust2>
   module below for details.
@@ -190,9 +190,8 @@
     \<gtr\> let n,m,ui = faust_info dsp;
   </verbatim>
 
-  Global metadata of the dsp is available as a list of
-  <verbatim|key=\<gtr\>val> string pairs with the <verbatim|faust_meta>
-  function. For instance:
+  Global metadata of the dsp is available as a list of <verbatim|key=\>val>
+  string pairs with the <verbatim|faust_meta> function. For instance:
 
   <\verbatim>
     \<gtr\> faust_meta dsp;
@@ -273,11 +272,11 @@
 
   The <em|second> parameter of a control description is a list holding the
   Faust metadata of the control. This list will be empty if the control does
-  not have any metadata. Otherwise you will find some of
-  <verbatim|key=\<gtr\>val> string pairs in this list. It is completely up to
-  the application how to interpret the metadata, which may consist, e.g., of
-  GUI layout hints or various kinds of controller definitions. For instance,
-  a MIDI controller assignment might look as follows in the Faust source:
+  not have any metadata. Otherwise you will find some of <verbatim|key=\>val>
+  string pairs in this list. It is completely up to the application how to
+  interpret the metadata, which may consist, e.g., of GUI layout hints or
+  various kinds of controller definitions. For instance, a MIDI controller
+  assignment might look as follows in the Faust source:
 
   <\verbatim>
     gain = nentry("gain[midi:ctrl 7]", 1.0, 0, 10, 0.01);
@@ -370,10 +369,10 @@
   </verbatim>
 
   To instantiate a Faust dsp using the <hlink|<with|font-family|tt|faust2>|#module-faust2>
-  interface, you'll have to compile the Faust program to LLVM bitcode
-  format. The examples directory includes a <verbatim|pure.c> Faust
-  architecture file to help with this. Please see the <hlink|<em|Interfacing
-  to Faust>|pure.tm#interfacing-to-faust> section in the Pure manual for
+  interface, you'll have to compile the Faust program to LLVM bitcode format.
+  The examples directory includes a <verbatim|pure.c> Faust architecture file
+  to help with this. Please see the <hlink|<em|Interfacing to
+  Faust>|pure.tm#interfacing-to-faust> section in the Pure manual for
   details.
 
   Note that only one of the <hlink|<with|font-family|tt|faust>|#module-faust>
@@ -393,16 +392,16 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-faust-toc>>
 
   <\itemize>
-    <item><hlink|pure-faust|#>\ 
+    <item><hlink|pure-faust|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
-      <item><hlink|Faust2 Compatibility|#module-faust2>\ 
+      <item><hlink|Faust2 Compatibility|#module-faust2>
 
       <item><hlink|Acknowledgements|#acknowledgements>
     </itemize>
@@ -421,6 +420,6 @@
   <hlink|previous|pure-audio.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

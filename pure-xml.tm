@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,17 +10,16 @@
 
   <section*|Pure-XML - XML/XSLT interface<label|module-xml>>
 
-  Version 0.6, September 08, 2013
+  Version 0.6, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   <hlink|XML|http://www.w3.org/TR/xml>, the Extensible Markup Language,
   facilitates the exchange of complex structured data between applications
-  and systems. <hlink|XSLT|http://www.w3.org/TR/xslt> allows you to
-  transform XML documents to other XML-based formats such as HTML. Together,
-  XML and XSLT let you create dynamic web content with ease. Both XML and
-  XSLT are open standards by the W3C consortium
-  (<hlink|http://www.w3.org|http://www.w3.org>).
+  and systems. <hlink|XSLT|http://www.w3.org/TR/xslt> allows you to transform
+  XML documents to other XML-based formats such as HTML. Together, XML and
+  XSLT let you create dynamic web content with ease. Both XML and XSLT are
+  open standards by the W3C consortium (<hlink|http://www.w3.org|http://www.w3.org>).
 
   Pure's XML interface is based on the libxml2 and libxslt libraries from the
   GNOME project. If you have a Linux system then you most likely have these
@@ -122,9 +121,9 @@
     <verbatim|prefix> is the prefix associated with the namespace and
     <verbatim|href> the corresponding URI (the name of the namespace), but
     they can also be just a string <verbatim|href> if the namespace prefix is
-    missing. Attributes are encoded as <verbatim|key=\<gtr\>value> pairs,
-    where <verbatim|key> is the attribute name and <verbatim|value> the
-    associated value; both <verbatim|key> and <verbatim|value> are strings.
+    missing. Attributes are encoded as <verbatim|key=\>value> pairs, where
+    <verbatim|key> is the attribute name and <verbatim|value> the associated
+    value; both <verbatim|key> and <verbatim|value> are strings.
   </description>
 
   <\description>
@@ -186,8 +185,8 @@
     the name of the root element, and <verbatim|extid> is a pair consisting
     of the external identifier and the URI of the DTD (or just the URI if
     there is no external identifier). The
-    <hlink|<with|font-family|tt|xml::doctype>|#xml::doctype> node has as
-    its children zero or more of the following kinds of DTD declaration nodes
+    <hlink|<with|font-family|tt|xml::doctype>|#xml::doctype> node has as its
+    children zero or more of the following kinds of DTD declaration nodes
     (these are just straightforward abstract syntax for the !ELEMENT,
     !ATTLIST and !ENTITY declarations inside a DTD declaration; see the XML
     specification for details).
@@ -195,9 +194,9 @@
 
   <label|element-declaration><em|Element declarations:> Here, <verbatim|name>
   is the element tag and <verbatim|content> the definition of the element
-  structure, see <hlink|element content|#element-content> below. XML
-  supports various kinds of element types, please refer to <hlink|document
-  type definition|http://www.w3.org/TR/REC-xml/#dt-doctype> in the XML
+  structure, see <hlink|element content|#element-content> below. XML supports
+  various kinds of element types, please refer to <hlink|document type
+  definition|http://www.w3.org/TR/REC-xml/#dt-doctype> in the XML
   specification for details.
 
   <\description>
@@ -234,8 +233,8 @@
   declare the attributes of an element. <verbatim|elem_name> is the name of
   an element which describes the attribute type, <verbatim|name> is the name
   of the attribute itself, and <verbatim|default> specifies the default value
-  of the attribute, see <hlink|attribute defaults|#attribute-defaults>
-  below. XML supports a bunch of different attribute types, please refer to
+  of the attribute, see <hlink|attribute defaults|#attribute-defaults> below.
+  XML supports a bunch of different attribute types, please refer to
   <hlink|document type definition|http://www.w3.org/TR/REC-xml/#dt-doctype>
   in the XML specification for details.
 
@@ -315,8 +314,8 @@
   </description>
 
   <label|element-content>The element content type (<verbatim|content>
-  argument of the <hlink|element declaration|#element-declaration> nodes)
-  is a kind of regular expression formed with tags (specified as strings) and
+  argument of the <hlink|element declaration|#element-declaration> nodes) is
+  a kind of regular expression formed with tags (specified as strings) and
   the following constructors:
 
   <\description>
@@ -350,8 +349,8 @@
   </description>
 
   <label|attribute-defaults>Attribute defaults (the <verbatim|default>
-  argument of <hlink|attribute declaration|#attribute-declaration> nodes)
-  are represented using the following constructor symbols:
+  argument of <hlink|attribute declaration|#attribute-declaration> nodes) are
+  represented using the following constructor symbols:
 
   <\description>
     <item*|<em|constructor> xml::required<label|xml::required>>a required
@@ -390,12 +389,11 @@
     creates an XML document. It returns a pointer to the new document.
     <verbatim|version> is a string denoting the XML version (or <verbatim|"">
     to indicate the default). <verbatim|info> is the <hlink|node
-    info|#node-info> of the root node (which should denote an element
-    node). <verbatim|dtd> denotes the document type which can be
-    <verbatim|()> to denote an empty DTD, a string (the URI/filename of the
-    DTD), or a pair <verbatim|(pubid,sysid)> where <verbatim|pubid> denotes
-    the public identifier of the DTD and <verbatim|sysid> its system
-    identifier (URI).
+    info|#node-info> of the root node (which should denote an element node).
+    <verbatim|dtd> denotes the document type which can be <verbatim|()> to
+    denote an empty DTD, a string (the URI/filename of the DTD), or a pair
+    <verbatim|(pubid,sysid)> where <verbatim|pubid> denotes the public
+    identifier of the DTD and <verbatim|sysid> its system identifier (URI).
 
     Note that only simple kinds of documents with an internal DTD can be
     created this way. Use the <verbatim|load_file> or <verbatim|load_string>
@@ -576,23 +574,23 @@
     <item*|xml::select doc xpath<label|xml::select>>
 
     <item*|xml::select doc (xpath,ns)>Retrieve nodes using an
-    <hlink|XPath|http://www.w3.org/TR/xpath> specification. Given an XPath
-    (a string) <verbatim|xpath>, this operation returns the list of all
-    matching nodes in the given document <verbatim|doc>. You can also specify
-    a node as the first argument, in which case the document of the given
-    node is searched and paths are interpreted relative to the given node
-    (rather than the root node of the document).
+    <hlink|XPath|http://www.w3.org/TR/xpath> specification. Given an XPath (a
+    string) <verbatim|xpath>, this operation returns the list of all matching
+    nodes in the given document <verbatim|doc>. You can also specify a node
+    as the first argument, in which case the document of the given node is
+    searched and paths are interpreted relative to the given node (rather
+    than the root node of the document).
 
     Moreover, instead of just an XPath you can also specify a pair
     <verbatim|(xpath,ns)> consisting of an XPath <verbatim|xpath> and a list
-    <verbatim|ns> of <verbatim|prefix=\<gtr\>uri> string pairs which describe
-    the namespaces to be recognized in the XPath expression. This is
-    necessary to select nodes by qualified tag or attribute names. Note that
-    only the namespace URIs must match up with those used in the queried
-    document; the corresponding namespace prefixes can be chosen freely, so
-    you can use whatever prefixes are convenient to formulate the XPath
-    query. However, for each namespace prefix used in the XPath expression
-    (not the document!), there <em|must> be a corresponding binding in the
+    <verbatim|ns> of <verbatim|prefix=\>uri> string pairs which describe the
+    namespaces to be recognized in the XPath expression. This is necessary to
+    select nodes by qualified tag or attribute names. Note that only the
+    namespace URIs must match up with those used in the queried document; the
+    corresponding namespace prefixes can be chosen freely, so you can use
+    whatever prefixes are convenient to formulate the XPath query. However,
+    for each namespace prefix used in the XPath expression (not the
+    document!), there <em|must> be a corresponding binding in the
     <verbatim|ns> list. Otherwise the underlying libxml2 function will
     complain about an undefined namespace prefix and
     <hlink|<with|font-family|tt|xml::select>|#xml::select> will fail.
@@ -803,7 +801,7 @@
     params<label|xslt::apply-stylesheet>>Apply the stylesheet
     <verbatim|style> to the given document <verbatim|doc> with the given
     parameters <verbatim|params>. The third argument is a (possibly empty)
-    list of <verbatim|key=\<gtr\>value> string pairs which allows you to pass
+    list of <verbatim|key=\>value> string pairs which allows you to pass
     additional parameters to the stylesheet.
   </description>
 
@@ -847,33 +845,33 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-xml-toc>>
 
   <\itemize>
-    <item><hlink|Pure-XML - XML/XSLT interface|#>\ 
+    <item><hlink|Pure-XML - XML/XSLT interface|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
-      <item><hlink|Data Structure|#data-structure>\ 
+      <item><hlink|Data Structure|#data-structure>
 
       <\itemize>
-        <item><hlink|The Document Tree|#the-document-tree>\ 
+        <item><hlink|The Document Tree|#the-document-tree>
 
         <item><hlink|Document Types|#document-types>
       </itemize>
 
-      <item><hlink|Operations|#operations>\ 
+      <item><hlink|Operations|#operations>
 
       <\itemize>
-        <item><hlink|Document Operations|#document-operations>\ 
+        <item><hlink|Document Operations|#document-operations>
 
-        <item><hlink|Traversing Documents|#traversing-documents>\ 
+        <item><hlink|Traversing Documents|#traversing-documents>
 
-        <item><hlink|Node Information|#node-information>\ 
+        <item><hlink|Node Information|#node-information>
 
-        <item><hlink|Node Manipulation|#node-manipulation>\ 
+        <item><hlink|Node Manipulation|#node-manipulation>
 
         <item><hlink|Transformations|#transformations>
       </itemize>
@@ -893,6 +891,6 @@
   <hlink|previous|pure-sql3.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

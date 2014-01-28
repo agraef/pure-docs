@@ -22,7 +22,7 @@ The Pure Manual
    \hyphenation{name-spaces}
    \hyphenation{white-space}
 
-Version 0.58, |today|
+Version 0.59, |today|
 
 Albert Gräf <aggraef@gmail.com>
 
@@ -85,7 +85,7 @@ calculator" program. Simply run the program from the shell as follows:
 
    $ pure
 
-    __ \  |   |  __| _ \    Pure 0.58 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.59 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2013 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)
@@ -3600,7 +3600,7 @@ way. You then simply run it like this:
 
    $ pure
    
-    __ \  |   |  __| _ \    Pure 0.58 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.59 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2013 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)
@@ -9271,7 +9271,7 @@ Or let's lists all global variables along with their values::
 
   > catmap get_vardef (globsym "*" 0);
   [(argc-->0),(argv-->[]),(compiling-->0),
-  (sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.58")]
+  (sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.59")]
 
 The counterparts of :func:`add_fundef` and :func:`del_fundef` are provided as
 well. Not very surprisingly, they are named :func:`add_typedef`,
@@ -11290,7 +11290,7 @@ values (using the "long" format)::
   argv       var  argv = [];
   compiling  var  compiling = 0;
   sysinfo    var  sysinfo = "x86_64-unknown-linux-gnu";
-  version    var  version = "0.58";
+  version    var  version = "0.59";
   5 variables
 
 Or you can list just private symbols of the namespace ``foo``, as follows::

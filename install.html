@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.58',
+        VERSION:     '0.59',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.58, September 08, 2013</p>
+<p>Version 0.59, January 28, 2014</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -82,7 +82,7 @@ for other (UNIX-like) systems is provided at the same location.</p>
 <div class="section" id="quick-summary">
 <h2>Quick Summary<a class="headerlink" href="#quick-summary" title="Permalink to this headline">¶</a></h2>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
-using LLVM 3.3 and Pure 0.58, please substitute your actual version
+using LLVM 3.4 and Pure 0.59, please substitute your actual version
 numbers in the commands given below.</p>
 <p>Prerequisites: gcc, GNU make, flex/bison (development sources only), libltdl,
 libgmp and libmpfr (including header files for development), wget (for
@@ -92,10 +92,10 @@ most systems.</p>
 <p>You&#8217;ll probably need the latest Pure and LLVM tarballs which, at the time of
 this writing, are available here:</p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.58.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.58.tar.gz</a></div>
-<div class="line"><a class="reference external" href="http://llvm.org/releases/3.3/llvm-3.3.src.tar.gz">http://llvm.org/releases/3.3/llvm-3.3.src.tar.gz</a></div>
-<div class="line"><a class="reference external" href="http://llvm.org/releases/3.3/cfe-3.3.src.tar.gz">http://llvm.org/releases/3.3/cfe-3.3.src.tar.gz</a></div>
-<div class="line"><a class="reference external" href="http://llvm.org/releases/3.3/dragonegg-3.3.src.tar.gz">http://llvm.org/releases/3.3/dragonegg-3.3.src.tar.gz</a></div>
+<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.59.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.59.tar.gz</a></div>
+<div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
+<div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
+<div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -106,9 +106,9 @@ development sources instead (see <a class="reference internal" href="#installing
 below).</p>
 </div>
 <p>Installing LLVM and clang (the latter is optional but recommended):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz llvm-3.3.src.tar.gz
-<span class="gp">$</span> tar xfvz cfe-3.3.src.tar.gz <span class="o">&amp;&amp;</span> mv cfe-3.3.src llvm-3.3.src/tools/clang
-<span class="gp">$</span> <span class="nb">cd </span>llvm-3.3.src
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz llvm-3.4.src.tar.gz
+<span class="gp">$</span> tar xfvz clang-3.4.src.tar.gz <span class="o">&amp;&amp;</span> mv clang-3.4 llvm-3.4/tools/clang
+<span class="gp">$</span> <span class="nb">cd </span>llvm-3.4
 <span class="gp">$</span> ./configure --enable-shared --enable-optimized --enable-targets<span class="o">=</span>host-only
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -122,8 +122,8 @@ to disable stuff that makes LLVM very slow and/or breaks it on some systems.)</p
 &#8220;DragonEgg&#8221; plugin for gcc, please check the <a class="reference internal" href="#dragonegg">dragonegg</a> section below for
 details.</p>
 <p>Installing Pure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.58.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-0.58
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.59.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-0.59
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -146,8 +146,8 @@ the documentation files:</p>
 </div>
 <p>This needs the <tt class="docutils literal"><span class="pre">wget</span></tt> program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.58.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.58
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.59.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.59
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -156,9 +156,9 @@ pure-docs tarball manually in the usual way, e.g.:</p>
 </pre></div>
 </div>
 <p>Uninstalling:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.58
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.59
 <span class="gp">$</span> sudo make uninstall
-<span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.3.src
+<span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.4
 <span class="gp">$</span> sudo make uninstall
 </pre></div>
 </div>
@@ -252,8 +252,8 @@ also lets you disable readline and/or editline support using the
 <p><strong>Step 2.</strong> Get and unpack the latest LLVM sources.</p>
 <p>You can find these at <a class="reference external" href="http://llvm.org/releases/download.html">http://llvm.org/releases/download.html</a>.</p>
 <p>You only need the llvm-2.x or 3.x tarball which contains the LLVM library as
-well as most of the LLVM toolchain. LLVM 3.3 is the latest stable release at
-the time of this writing. LLVM versions 2.5 thru 3.3 have all been tested and
+well as most of the LLVM toolchain. LLVM 3.4 is the latest stable release at
+the time of this writing. LLVM versions 2.5 thru 3.4 have all been tested and
 are known to work with Pure. We really recommend using LLVM 2.8 or later,
 however, because LLVM has improved considerably in recent releases. (Support
 for older versions may be dropped in the future.)</p>
@@ -279,7 +279,7 @@ If the Pure interpreter segfaults on startup or fails its test suite
 available for your system, or compile LLVM yourself.</p>
 </div>
 <p><strong>Step 3.</strong> Configure, build and install LLVM as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-3.3.src
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-3.4
 <span class="gp">$</span> ./configure --enable-shared --enable-optimized --enable-targets<span class="o">=</span>host-only
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
@@ -445,7 +445,7 @@ the TeXmacs-formatted documentation as follows:</p>
 <p><strong>Step 7.</strong> The Pure interpreter should be ready to go now.</p>
 <p>Run Pure interactively as:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
-<span class="go">Pure 0.58 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert Graef</span>
+<span class="go">Pure 0.59 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert Graef</span>
 <span class="go">(Type &#39;help&#39; for help, &#39;help copying&#39; for license information.)</span>
 <span class="go">Loaded prelude from /usr/local/lib/pure/prelude.pure.</span>
 </pre></div>
@@ -584,7 +584,7 @@ want to use that feature.</p>
 contents of the clang-x.y tarball into the <tt class="docutils literal"><span class="pre">llvm-x.y/tools</span></tt> directory,
 renaming the resulting <tt class="docutils literal"><span class="pre">clang-x.y</span></tt> directory to just <tt class="docutils literal"><span class="pre">clang</span></tt>. Then build
 and install clang as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-3.3.src/tools/clang
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-3.4/tools/clang
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
 </pre></div>
@@ -747,7 +747,7 @@ package.</p>
 <p>To deal with this situation, the configure script distributed with Pure 0.55
 and later allows you to specify the directory with the LLVM toolchain using
 the <tt class="docutils literal"><span class="pre">--with-tool-prefix</span></tt> configure option. E.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --with-tool-prefix<span class="o">=</span>/usr/lib/llvm-3.3/bin
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --with-tool-prefix<span class="o">=</span>/usr/lib/llvm-3.4/bin
 </pre></div>
 </div>
 <p>This is also the directory where configure will first look for the
@@ -1153,8 +1153,8 @@ unzip these into some convenient location on your harddrive and set up
       </ul>
     </div>
     <div class="footer">
-    &copy; Copyright 2009-2013, Albert Gräf et al.
-    Last updated on Sep 08, 2013.
+    &copy; Copyright 2009-2014, Albert Gräf et al.
+    Last updated on Jan 28, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

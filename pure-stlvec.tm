@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-stlvec<label|module-stlvec>>
 
-  <label|module-stlvec::algorithms>Version 0.4, September 08, 2013
+  <label|module-stlvec::algorithms>Version 0.4, January 28, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -1211,8 +1211,8 @@
   <\description>
     <item*|stl::remove_copy (sv,first,last) (msv,first)
     x<label|stl::remove-copy/stlvec>>same as
-    <hlink|<with|font-family|tt|remove>|#stl::remove/stlvec> except that
-    the purged sequence is copied to (msv,first) and sv[first,last) is not
+    <hlink|<with|font-family|tt|remove>|#stl::remove/stlvec> except that the
+    purged sequence is copied to (msv,first) and sv[first,last) is not
     changed
   </description>
 
@@ -1236,8 +1236,8 @@
   <\description>
     <item*|stl::unique_copy (sv,first,last) (msv,first)
     bin_pred<label|stl::unique-copy/stlvec>>same as
-    <hlink|<with|font-family|tt|unique>|#stl::unique/stlvec> except that
-    the purged sequence is copied to (msv,first) and sv[first,last) is not
+    <hlink|<with|font-family|tt|unique>|#stl::unique/stlvec> except that the
+    purged sequence is copied to (msv,first) and sv[first,last) is not
     changed
   </description>
 
@@ -1670,8 +1670,8 @@
   The <hlink|<with|font-family|tt|replace>|#replace/stlvec> function was
   added to the stlvec module. This function is the same as
   <hlink|<with|font-family|tt|update>|#update/stlvec> except that
-  ``<hlink|<with|font-family|tt|replace>|#replace/stlvec> sv i x'' returns
-  x instead of sv.
+  ``<hlink|<with|font-family|tt|replace>|#replace/stlvec> sv i x'' returns x
+  instead of sv.
 
   The <verbatim|stl::replace> function was removed from the stlvec/modifying
   module. You can use ``<hlink|<with|font-family|tt|stl::replace_if>|#stl::replace-if/stlvec>
@@ -1698,88 +1698,78 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stlvec-toc>>
 
   <\itemize>
-    <item><hlink|pure-stlvec|#>\ 
+    <item><hlink|pure-stlvec|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Overview|#overview>\ 
+      <item><hlink|Overview|#overview>
 
       <\itemize>
-        <item><hlink|Modules|#modules>\ 
+        <item><hlink|Modules|#modules>
 
-        <item><hlink|Simple Examples|#simple-examples>\ 
+        <item><hlink|Simple Examples|#simple-examples>
 
         <item><hlink|Members and Sequences of
-        Members|#members-and-sequences-of-members>\ 
+        Members|#members-and-sequences-of-members>
 
         <item><hlink|STL Iterators and Value
-        Semantics|#stl-iterators-and-value-semantics>\ 
+        Semantics|#stl-iterators-and-value-semantics>
 
-        <item><hlink|Iterator Tuples|#iterator-tuples>\ 
+        <item><hlink|Iterator Tuples|#iterator-tuples>
 
         <item><hlink|Predefined Iterator Tuple
-        Indexes|#predefined-iterator-tuple-indexes>\ 
+        Indexes|#predefined-iterator-tuple-indexes>
 
-        <item><hlink|Back Insert Iterators|#back-insert-iterators>\ 
+        <item><hlink|Back Insert Iterators|#back-insert-iterators>
 
-        <item><hlink|Data Structure|#data-structure>\ 
+        <item><hlink|Data Structure|#data-structure>
 
-        <item><hlink|Types|#types>\ 
+        <item><hlink|Types|#types>
 
-        <item><hlink|Copy-On-Write Semantics|#copy-on-write-semantics>\ 
+        <item><hlink|Copy-On-Write Semantics|#copy-on-write-semantics>
 
-        <item><hlink|Documentation|#documentation>\ 
+        <item><hlink|Documentation|#documentation>
 
         <item><hlink|Parameter Names|#parameter-names>
       </itemize>
 
-      <item><hlink|Error Handling|#error-handling>\ 
+      <item><hlink|Error Handling|#error-handling>
 
       <\itemize>
-        <item><hlink|Exception Symbols|#exception-symbols>\ 
+        <item><hlink|Exception Symbols|#exception-symbols>
 
         <item><hlink|Examples|#examples>
       </itemize>
 
       <item><hlink|Operations Included in the stlvec
-      Module|#operations-included-in-the-stlvec-module>\ 
+      Module|#operations-included-in-the-stlvec-module>
 
       <\itemize>
-        <item><hlink|Imports|#imports>\ 
+        <item><hlink|Imports|#imports>
 
         <item><hlink|Operations in the Global
-        Namespace|#operations-in-the-global-namespace>\ 
+        Namespace|#operations-in-the-global-namespace>
 
         <item><hlink|Operations in the stl
-        Namespace|#operations-in-the-stl-namespace>\ 
+        Namespace|#operations-in-the-stl-namespace>
 
         <item>Examples
       </itemize>
 
-      <item><hlink|STL Nonmodifying Algorithms|#stl-nonmodifying-algorithms>\ 
+      <item><hlink|STL Nonmodifying Algorithms|#stl-nonmodifying-algorithms>
 
       <\itemize>
         <item>Imports
 
-        <item><hlink|Operations|#operations>\ 
+        <item><hlink|Operations|#operations>
 
         <item>Examples
       </itemize>
 
-      <item><hlink|STL Modifying Algorithms|#stl-modifying-algorithms>\ 
-
-      <\itemize>
-        <item>Imports
-
-        <item>Operations
-
-        <item>Examples
-      </itemize>
-
-      <item><hlink|STL Sort Algorithms|#stl-sort-algorithms>\ 
+      <item><hlink|STL Modifying Algorithms|#stl-modifying-algorithms>
 
       <\itemize>
         <item>Imports
@@ -1789,7 +1779,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|STL Merge Algorithms|#stl-merge-algorithms>\ 
+      <item><hlink|STL Sort Algorithms|#stl-sort-algorithms>
 
       <\itemize>
         <item>Imports
@@ -1799,7 +1789,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|STL Heap Algorithms|#stl-heap-algorithms>\ 
+      <item><hlink|STL Merge Algorithms|#stl-merge-algorithms>
 
       <\itemize>
         <item>Imports
@@ -1809,7 +1799,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|Min/Max STL Algorithms|#min-max-stl-algorithms>\ 
+      <item><hlink|STL Heap Algorithms|#stl-heap-algorithms>
 
       <\itemize>
         <item>Imports
@@ -1819,7 +1809,7 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|STL Numeric Algorithms|#stl-numeric-algorithms>\ 
+      <item><hlink|Min/Max STL Algorithms|#min-max-stl-algorithms>
 
       <\itemize>
         <item>Imports
@@ -1829,14 +1819,24 @@
         <item>Examples
       </itemize>
 
-      <item><hlink|Reference Counting|#reference-counting>\ 
-
-      <item><hlink|Backward Compatibilty|#backward-compatibilty>\ 
+      <item><hlink|STL Numeric Algorithms|#stl-numeric-algorithms>
 
       <\itemize>
-        <item><hlink|pure-stlvec-0.2|#pure-stlvec-0-2>\ 
+        <item>Imports
 
-        <item><hlink|pure-stlvec-0.3|#pure-stlvec-0-3>\ 
+        <item>Operations
+
+        <item>Examples
+      </itemize>
+
+      <item><hlink|Reference Counting|#reference-counting>
+
+      <item><hlink|Backward Compatibilty|#backward-compatibilty>
+
+      <\itemize>
+        <item><hlink|pure-stlvec-0.2|#pure-stlvec-0-2>
+
+        <item><hlink|pure-stlvec-0.3|#pure-stlvec-0-3>
 
         <item><hlink|pure-stlvec-0.4|#pure-stlvec-0-4>
       </itemize>
@@ -1856,6 +1856,6 @@
   <hlink|previous|pure-stlmap.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,16 +1,16 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
 <\body>
   <hlink|toc|#purelib-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-doc.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-avahi.tm> \|
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|Pure Library Manual<label|pure-library-manual>>
 
-  Version 0.58, September 08, 2013
+  Version 0.59, January 28, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -178,8 +178,8 @@
   module, see <hlink|Semantic Number Predicates and
   Types|#semantic-number-predicates-and-types>.
 
-  <hlink|<with|font-family|tt|integer>|#integer/type> is the union of
-  Pure's built-in integer types, i.e., it comprises all
+  <hlink|<with|font-family|tt|integer>|#integer/type> is the union of Pure's
+  built-in integer types, i.e., it comprises all
   <hlink|<with|font-family|tt|int>|pure.tm#int/type> and
   <hlink|<with|font-family|tt|bigint>|pure.tm#bigint/type> values.
   <hlink|<with|font-family|tt|bool>|#bool/type> is a subtype of
@@ -193,20 +193,19 @@
   complex types, while <hlink|<with|font-family|tt|real>|#real/type> is the
   union of the <hlink|<with|font-family|tt|double>|pure.tm#double/type>,
   <hlink|<with|font-family|tt|integer>|#integer/type> and
-  <hlink|<with|font-family|tt|rational>|#rational/type> types (i.e.,
-  anything that can represent a real number and be used for the real and
-  imaginary parts of a <hlink|<with|font-family|tt|complex>|#complex/type>
-  number). Finally, <hlink|<with|font-family|tt|number>|#number/type> is
-  the union of all numeric types, i.e., this type can be used to match any
-  kind of number.
+  <hlink|<with|font-family|tt|rational>|#rational/type> types (i.e., anything
+  that can represent a real number and be used for the real and imaginary
+  parts of a <hlink|<with|font-family|tt|complex>|#complex/type> number).
+  Finally, <hlink|<with|font-family|tt|number>|#number/type> is the union of
+  all numeric types, i.e., this type can be used to match any kind of number.
 
   Note that the operations of the <hlink|<with|font-family|tt|rational>|#rational/type>
-  and <hlink|<with|font-family|tt|complex>|#complex/type> types are
-  actually defined in the <hlink|<with|font-family|tt|math>|#module-math>
-  module which isn't part of the prelude, so you have to import this module
-  in order to do computations with these types of values. However, the type
-  tags and constructors for these types are defined in the prelude so that
-  these kinds of values can be parsed and recognized without having the
+  and <hlink|<with|font-family|tt|complex>|#complex/type> types are actually
+  defined in the <hlink|<with|font-family|tt|math>|#module-math> module which
+  isn't part of the prelude, so you have to import this module in order to do
+  computations with these types of values. However, the type tags and
+  constructors for these types are defined in the prelude so that these kinds
+  of values can be parsed and recognized without having the
   <hlink|<with|font-family|tt|math>|#module-math> module loaded.
 
   The prelude also provides a subtype of the built-in
@@ -950,10 +949,10 @@
   <subsubsection|Hash Pairs<label|hash-pairs>>
 
   <label|index-14>The prelude provides another special kind of pairs called
-  ``hash pairs'', which take the form <verbatim|key=\<gtr\>value>. These are
-  used in various contexts to denote key-value associations. The only
-  operations on hash pairs provided by the prelude are equality testing
-  (which recursively compares the components) and the functions
+  ``hash pairs'', which take the form <verbatim|key=\>value>. These are used
+  in various contexts to denote key-value associations. The only operations
+  on hash pairs provided by the prelude are equality testing (which
+  recursively compares the components) and the functions
   <hlink|<with|font-family|tt|key>|#key> and
   <hlink|<with|font-family|tt|val>|#val>:
 
@@ -990,14 +989,13 @@
   Note that in difference to the tuple operator
   `<hlink|<with|font-family|tt|,>|#,>`, the hash rocket
   `<hlink|<with|font-family|tt|=\<gtr\>>|#=\>>` is non-associative, so nested
-  applications <em|must> be parenthesized, and
-  <verbatim|(x=\<gtr\>y)=\<gtr\>z> is generally <em|not> the same as
-  <verbatim|x=\<gtr\>(y=\<gtr\>z)>. Also note that
+  applications <em|must> be parenthesized, and <verbatim|(x=\>y)=\>z> is
+  generally <em|not> the same as <verbatim|x=\>(y=\>z)>. Also note that
   `<hlink|<with|font-family|tt|,>|#,>` has lower precedence than
   `<hlink|<with|font-family|tt|=\<gtr\>>|#=\>>`, so to include a tuple as key
   or value in a hash pair, the tuple must be parenthesized, as in
-  <verbatim|"foo"=\<gtr\>(1,2)> (whereas <verbatim|"foo"=\<gtr\>1,2> denotes
-  a tuple whose first element happens to be a hash pair).
+  <verbatim|"foo"=\>(1,2)> (whereas <verbatim|"foo"=\>1,2> denotes a tuple
+  whose first element happens to be a hash pair).
 
   <subsubsection|List Functions<label|list-functions>>
 
@@ -1088,8 +1086,8 @@
 
     Note: This uses equality <hlink|<with|font-family|tt|==>|#==> to decide
     whether a member of <verbatim|xs> is an occurrence of <verbatim|x>, so
-    <hlink|<with|font-family|tt|==>|#==> must have an appropriate
-    definition on the list members.
+    <hlink|<with|font-family|tt|==>|#==> must have an appropriate definition
+    on the list members.
   </description>
 
   <\description>
@@ -1181,8 +1179,8 @@
   Some useful (infinite) list generators, as well as some finite (and eager)
   variations of these. The latter work like a combination of
   <hlink|<with|font-family|tt|take>|#take> or
-  <hlink|<with|font-family|tt|takewhile>|#takewhile> and the former, but
-  are implemented directly for better efficiency.
+  <hlink|<with|font-family|tt|takewhile>|#takewhile> and the former, but are
+  implemented directly for better efficiency.
 
   <\description>
     <item*|cycle xs<label|cycle>>cycles through the elements of the nonempty
@@ -1577,8 +1575,8 @@
   to pass an <verbatim|argv>-like string vector (i.e., a <verbatim|char**> or
   <verbatim|char*[]>) to C routines. The computed C vectors are malloced
   pointers which have an extra <hlink|<with|font-family|tt|NULL>|#NULL>
-  pointer as the last entry, and should thus be usable for almost any
-  purpose which requires such a string vector in C. They also take care of
+  pointer as the last entry, and should thus be usable for almost any purpose
+  which requires such a string vector in C. They also take care of
   garbage-collecting themselves. The original string data is always copied.
   As usual, the <hlink|<with|font-family|tt|cstring>|#cstring> variants do
   automatic conversions to the system encoding.
@@ -1775,8 +1773,8 @@
   contiguous index ranges in an efficient manner, see
   <hlink|Slicing|#slicing> for details. To these ends, the helper functions
   <hlink|<with|font-family|tt|subseq>|#subseq/matrix> and
-  <hlink|<with|font-family|tt|subseq2>|#subseq2/matrix> are defined to
-  handle the necessary compile time optimizations.
+  <hlink|<with|font-family|tt|subseq2>|#subseq2/matrix> are defined to handle
+  the necessary compile time optimizations.
 
   Most of the generic list operations are implemented on matrices as well,
   see <hlink|Common List Functions|#common-list-functions>. Hence operations
@@ -1797,22 +1795,22 @@
   operations, including all the necessary operations for matrix
   comprehensions. We briefly summarize the most important operations below;
   please refer to matrices.pure for all the gory details. Also make sure you
-  check <hlink|<em|Matrices and Vectors>|pure.tm#matrices-and-vectors> in
-  the Pure Manual for some more examples, and the <hlink|Record
-  Functions|#record-functions> section for an implementation of records
-  using symbolic vectors.
+  check <hlink|<em|Matrices and Vectors>|pure.tm#matrices-and-vectors> in the
+  Pure Manual for some more examples, and the <hlink|Record
+  Functions|#record-functions> section for an implementation of records using
+  symbolic vectors.
 
   <paragraph|Matrix Construction and Conversions<label|matrix-construction-and-conversions>>
 
   <\description>
     <item*|matrix xs<label|matrix>>This function converts a list or tuple to
-    a corresponding matrix. <hlink|<with|font-family|tt|matrix>|#matrix>
-    also turns a list of lists or matrices specifying the rows of the
-    matrix to the corresponding rectangular matrix; otherwise, the result is
-    a row vector. (In the former case, <hlink|<with|font-family|tt|matrix>|#matrix>
+    a corresponding matrix. <hlink|<with|font-family|tt|matrix>|#matrix> also
+    turns a list of lists or matrices specifying the rows of the matrix to
+    the corresponding rectangular matrix; otherwise, the result is a row
+    vector. (In the former case, <hlink|<with|font-family|tt|matrix>|#matrix>
     may throw a <hlink|<with|font-family|tt|bad_matrix_value>|#bad-matrix-value>
-    exception in case of dimension mismatch, with the offending submatrix
-    as argument.)
+    exception in case of dimension mismatch, with the offending submatrix as
+    argument.)
 
     <\verbatim>
       \<gtr\> matrix [1,2,3];
@@ -1831,8 +1829,8 @@
     <item*|colvector xs<label|colvector>>
 
     <item*|vector xs<label|vector>>The <hlink|<with|font-family|tt|rowvector>|#rowvector>
-    and <hlink|<with|font-family|tt|colvector>|#colvector> functions work
-    in a similar fashion, but expect a list, tuple or matrix of elements and
+    and <hlink|<with|font-family|tt|colvector>|#colvector> functions work in
+    a similar fashion, but expect a list, tuple or matrix of elements and
     always return a row or column vector, respectively (i.e., a
     <puredoc-image|_images/math/d27c43e5796d05a1f8593a5c9307fc0fc5ef1e7d.png|66%|66%||>
     or <puredoc-image|_images/math/74745a97c0fc5faec3f205a2c39ff354206b0f3c.png|66%|66%||>
@@ -1939,8 +1937,8 @@
     to a matrix of the corresponding type (integer, double, complex or
     symbolic). If the input is a list, the result is always a row vector;
     this is usually faster than the <hlink|<with|font-family|tt|matrix>|#matrix>
-    and <hlink|<with|font-family|tt|vector>|#vector> operations, but
-    requires that the elements already are of the appropriate type.
+    and <hlink|<with|font-family|tt|vector>|#vector> operations, but requires
+    that the elements already are of the appropriate type.
 
     <\verbatim>
       \<gtr\> imatrix [1,2,3];
@@ -2162,10 +2160,9 @@
     columns. These take either scalars or submatrices as inputs;
     corresponding dimensions must match. <hlink|<with|font-family|tt|rowcat>|#rowcat>
     combines submatrices vertically, like <verbatim|{x;y}>;
-    <hlink|<with|font-family|tt|colcat>|#colcat> combines them
-    horizontally, like <verbatim|{x,y}>. Note: Like the built-in matrix
-    constructs, these operations may throw a
-    <hlink|<with|font-family|tt|bad_matrix_value>|#bad-matrix-value>
+    <hlink|<with|font-family|tt|colcat>|#colcat> combines them horizontally,
+    like <verbatim|{x,y}>. Note: Like the built-in matrix constructs, these
+    operations may throw a <hlink|<with|font-family|tt|bad_matrix_value>|#bad-matrix-value>
     exception in case of dimension mismatch.
   </description>
 
@@ -2223,14 +2220,14 @@
     <item*|packed x<label|packed>>Pack a matrix. This creates a copy of the
     matrix which has the data in contiguous storage. It also frees up extra
     memory if the matrix was created as a slice from a bigger matrix (see
-    <hlink|<with|font-family|tt|submat>|#submat> above) which has since
-    gone the way of the dodo. The <hlink|<with|font-family|tt|packed>|#packed>
-    predicate can be used to verify whether a matrix is already packed.
-    Note that even if a matrix is already packed,
+    <hlink|<with|font-family|tt|submat>|#submat> above) which has since gone
+    the way of the dodo. The <hlink|<with|font-family|tt|packed>|#packed>
+    predicate can be used to verify whether a matrix is already packed. Note
+    that even if a matrix is already packed,
     <hlink|<with|font-family|tt|pack>|#pack> will make a copy of it anyway,
-    so <hlink|<with|font-family|tt|pack>|#pack> also provides a quick way
-    to copy a matrix, e.g., if you want to pass it as an input/output
-    parameter to a GSL routine.
+    so <hlink|<with|font-family|tt|pack>|#pack> also provides a quick way to
+    copy a matrix, e.g., if you want to pass it as an input/output parameter
+    to a GSL routine.
   </description>
 
   <\description>
@@ -2286,8 +2283,8 @@
     routines for sorting numeric (int and double) vectors using the standard
     order. These will usually be much faster than
     <hlink|<with|font-family|tt|sort>|#sort/matrix>, whereas
-    <hlink|<with|font-family|tt|sort>|#sort/matrix> is more flexible in
-    that it also allows you to sort symbolic matrices and to choose the order
+    <hlink|<with|font-family|tt|sort>|#sort/matrix> is more flexible in that
+    it also allows you to sort symbolic matrices and to choose the order
     predicate.
   </description>
 
@@ -2378,10 +2375,10 @@
     to create a matrix from a pointer, copying the data and converting it
     from the source type on the fly if necessary. The result will be a
     numeric matrix of the appropriate type, except in the case of
-    <hlink|<with|font-family|tt|int64_matrix>|#int64-matrix> where the
-    result is a symbolic matrix consisting of bigint values. The source
-    pointer <verbatim|p> may also be <hlink|<with|font-family|tt|NULL>|#NULL>,
-    in which case the new matrix is filled with zeros instead. Otherwise the
+    <hlink|<with|font-family|tt|int64_matrix>|#int64-matrix> where the result
+    is a symbolic matrix consisting of bigint values. The source pointer
+    <verbatim|p> may also be <hlink|<with|font-family|tt|NULL>|#NULL>, in
+    which case the new matrix is filled with zeros instead. Otherwise the
     caller must ensure that the pointer points to properly initialized memory
     big enough for the requested dimensions. The given dimension may also be
     just an integer <verbatim|n> if a row vector is to be created.
@@ -2395,8 +2392,8 @@
     <item*|int_matrix_view (n,m) p<label|int-matrix-view>>These operations
     can be used to create a numeric matrix view of existing data, without
     copying the data. The data must be double, complex or int, the pointer
-    must not be <hlink|<with|font-family|tt|NULL>|#NULL> and the caller
-    must also ensure that the memory persists for the entire lifetime of the
+    must not be <hlink|<with|font-family|tt|NULL>|#NULL> and the caller must
+    also ensure that the memory persists for the entire lifetime of the
     matrix object. The given dimension may also be just an integer
     <verbatim|n> if a row vector view is to be created.
   </description>
@@ -2404,16 +2401,15 @@
   <subsubsection|Record Functions<label|record-functions>>
 
   As of Pure 0.41, the prelude also provides a basic record data structure,
-  implemented as symbolic vectors of <verbatim|key=\<gtr\>value> pairs which
+  implemented as symbolic vectors of <verbatim|key=\>value> pairs which
   support a few dictionary-like operations such as
   <hlink|<with|font-family|tt|member>|#member/record>,
   <hlink|<with|font-family|tt|insert>|#insert/record> and indexing. Records
   may be represented as row, column or empty vectors (i.e., the number of
   rows or columns must be zero or one). They must be symbolic matrices
-  consisting only of ``hash pairs'' <verbatim|key=\<gtr\>value>, where the
-  keys can be either symbols or strings. The values can be any kind of Pure
-  data; in particular, they may themselves be records, so records can be
-  nested.
+  consisting only of ``hash pairs'' <verbatim|key=\>value>, where the keys
+  can be either symbols or strings. The values can be any kind of Pure data;
+  in particular, they may themselves be records, so records can be nested.
 
   The following operations are provided. Please note that all updates of
   record members are non-destructive and thus involve copying, which takes
@@ -2605,16 +2601,15 @@
   (inexact)>>|<row|<cell|>|<cell|<verbatim|div> <verbatim|mod>>|<cell|exact
   int/bigint division/modulus>>|<row|<cell|>|<cell|<verbatim|^>>|<cell|exponentiation
   (inexact)>>|<row|<cell|Comparisons>|<cell|<verbatim|==>
-  <verbatim|~=>>|<cell|equality, inequality>>|<row|<cell|>|<cell|<verbatim|\<less\>>
-  <verbatim|\<gtr\>>>|<cell|less than, greater
-  than>>|<row|<cell|>|<cell|<verbatim|\<less\>=>
-  <verbatim|\<gtr\>=>>|<cell|less than or equal, greater than or
-  equal>>|<row|<cell|Logic>|<cell|<verbatim|~>>|<cell|logical
+  <verbatim|~=>>|<cell|equality, inequality>>|<row|<cell|>|<cell|<verbatim|\<>
+  <verbatim|\>>>|<cell|less than, greater
+  than>>|<row|<cell|>|<cell|<verbatim|\<=> <verbatim|\>=>>|<cell|less than or
+  equal, greater than or equal>>|<row|<cell|Logic>|<cell|<verbatim|~>>|<cell|logical
   not>>|<row|<cell|>|<cell|<verbatim|&&> <verbatim|\|\|>>|<cell|and, or
   (short-circuit)>>|<row|<cell|Bitwise>|<cell|<verbatim|not>>|<cell|bitwise
   not>>|<row|<cell|>|<cell|<verbatim|and> <verbatim|or>>|<cell|and,
-  or>>|<row|<cell|>|<cell|<verbatim|\<less\>\<less\>>
-  <verbatim|\<gtr\>\<gtr\>>>|<cell|bit shifts>>>>>
+  or>>|<row|<cell|>|<cell|<verbatim|\<\<> <verbatim|\>\>>>|<cell|bit
+  shifts>>>>>
 
   Precedence and and associativity of the operators can be found in the
   <hlink|<em|operators>|#operators> table at the beginning of this section.
@@ -2623,9 +2618,9 @@
   logical negation is denoted <verbatim|~> instead of <verbatim|!> (and,
   consequently, <verbatim|~=> denotes inequality, rather than <verbatim|!=>),
   and the bitwise operations are named differently. This is necessary because
-  Pure uses <verbatim|!>, <verbatim|&> and <verbatim|\|> for other purposes.
-  Also, <verbatim|/> always denotes inexact (double) division in Pure,
-  whereas the integer division operators are called <verbatim|div> and
+  Pure uses <verbatim|!>, <verbatim|<line-sep>> and <verbatim|\|> for other
+  purposes. Also, <verbatim|/> always denotes inexact (double) division in
+  Pure, whereas the integer division operators are called <verbatim|div> and
   <verbatim|mod>. (<verbatim|%>, which is not defined by this module, also
   has a different meaning in Pure; it's the exact division operator, see
   <hlink|Rational Numbers|#rational-numbers>.)
@@ -2642,11 +2637,11 @@
   in order to provide for short-circuit evaluation. This needs special
   support from the compiler to work. The primitives module still provides
   definitions for these, as well as other special forms like <verbatim|quote>
-  and the thunking operator <verbatim|&> so that they may be used as function
-  values and in partial applications, but when used in this manner they lose
-  all their special call-by-name properties; see <hlink|<em|Special
-  Forms>|pure.tm#special-forms> in the Pure Manual for details. The rules
-  for the logical connectives are actually slightly more general than the
+  and the thunking operator <verbatim|<line-sep>> so that they may be used as
+  function values and in partial applications, but when used in this manner
+  they lose all their special call-by-name properties; see <hlink|<em|Special
+  Forms>|pure.tm#special-forms> in the Pure Manual for details. The rules for
+  the logical connectives are actually slightly more general than the
   built-in rules so that an expression of the form <verbatim|x&&y> or
   <verbatim|x\|\|y> will always be simplified in a sensible way if at least
   one of the operands is a machine int; e.g., both <verbatim|x&&1> and
@@ -2770,7 +2765,7 @@
     result is always a bigint. Note that <verbatim|y> must always be
     nonnegative here, but see the math module (<hlink|Mathematical
     Functions|#mathematical-functions>) which deals with the case
-    <verbatim|y\<less\>0> using rational numbers.
+    <verbatim|y\<0> using rational numbers.
   </description>
 
   <paragraph|Conversions<label|conversions>>
@@ -2834,7 +2829,7 @@
     <verbatim|long> for the host architecture.
   </description>
 
-  The following <label|rounding-functions>rounding functions work with all
+  The following<label|rounding-functions>rounding functions work with all
   kinds of numbers:
 
   <\description>
@@ -2887,8 +2882,8 @@
     (<hlink|<with|font-family|tt|int>|pure.tm#int/type>,
     <hlink|<with|font-family|tt|bigint>|pure.tm#bigint/type> etc.) or any
     type defined in a <hlink|<with|font-family|tt|type>|pure.tm#type>
-    definition. (Note that you may have to quote <verbatim|ty> if it
-    happens to be defined as a variable or parameterless function.)
+    definition. (Note that you may have to quote <verbatim|ty> if it happens
+    to be defined as a variable or parameterless function.)
   </description>
 
   <\description>
@@ -2963,9 +2958,9 @@
     list constructor, whereas <hlink|<with|font-family|tt|rlistp>|#rlistp>
     also recursively checks the tails of the list; the latter may need time
     proportional to the list size. The <hlink|<with|font-family|tt|applp>|#applp>
-    and <hlink|<with|font-family|tt|tuplep>|#tuplep> predicates look for
-    an application or tuple constructor at the toplevel only, which can
-    always be done in constant time.
+    and <hlink|<with|font-family|tt|tuplep>|#tuplep> predicates look for an
+    application or tuple constructor at the toplevel only, which can always
+    be done in constant time.
   </description>
 
   <\description>
@@ -3011,8 +3006,8 @@
     convenience for interactive usage. Note that the
     <hlink|<with|font-family|tt|ans>|#ans> value will stick around until a
     new expression is computed. (It is possible to clear the
-    <hlink|<with|font-family|tt|ans>|#ans> value with the interactive
-    command <verbatim|clear> <verbatim|ans>, however.) Example:
+    <hlink|<with|font-family|tt|ans>|#ans> value with the interactive command
+    <verbatim|clear> <verbatim|ans>, however.) Example:
 
     <\verbatim>
       \<gtr\> 1/3;
@@ -3031,8 +3026,8 @@
     a local (named) function introduced in a
     <hlink|<with|font-family|tt|with>|pure.tm#with> clause or an anonymous
     function (a lambda). Fails (returning just the literal symbol
-    <hlink|<with|font-family|tt|__func__>|#--func--> by default) if there
-    is no such function (i.e., if the call is at the toplevel). Note that in
+    <hlink|<with|font-family|tt|__func__>|#--func--> by default) if there is
+    no such function (i.e., if the call is at the toplevel). Note that in
     contrast to the C99 variable of the same name, this really returns the
     function value itself in Pure; the <hlink|<with|font-family|tt|str>|#str>
     function can be used if you need the print name of the function.
@@ -3156,9 +3151,8 @@
     Another rather obscure point that deserves mentioning here is that the
     special processing of parenthesized expressions happens also if the macro
     is applied in prefix form. This should rarely be a problem in practice,
-    but if it is then you can use <hlink|<with|font-family|tt|$>|#-dollar>
-    to pass arguments without adding an (undesired) extra level of
-    parentheses:
+    but if it is then you can use <hlink|<with|font-family|tt|$>|#-dollar> to
+    pass arguments without adding an (undesired) extra level of parentheses:
 
     <\verbatim>
       \<gtr\> ((::)) ((1,2),(3,4));
@@ -3194,11 +3188,11 @@
   <\description>
     <item*|<em|macro> __locals__<label|--locals-->>Built-in macro which
     expands to a list with the local function bindings
-    (<hlink|<with|font-family|tt|with>|pure.tm#with> clauses) visible at
-    this point in the program. The return value is a list of hash pairs
-    <verbatim|x=\<gtr\>f> where <verbatim|x> is the global symbol denoting
-    the function (the symbol is always quoted) and <verbatim|f> is the
-    function value itself. Example:
+    (<hlink|<with|font-family|tt|with>|pure.tm#with> clauses) visible at this
+    point in the program. The return value is a list of hash pairs
+    <verbatim|x=\>f> where <verbatim|x> is the global symbol denoting the
+    function (the symbol is always quoted) and <verbatim|f> is the function
+    value itself. Example:
 
     <\verbatim>
       \<gtr\> __locals__ with foo x = x+1; x = a+b end;
@@ -3214,18 +3208,18 @@
   The <hlink|<with|font-family|tt|__locals__>|#--locals--> macro is useful
   for debugging purposes, as well as to implement dynamic environments. It is
   also used internally to implement the <hlink|<with|font-family|tt|reduce>|#reduce>
-  macro, see <hlink|Eval and Friends|#eval-and-friends>. Here are some
-  things that you should keep in mind when working with this macro:
+  macro, see <hlink|Eval and Friends|#eval-and-friends>. Here are some things
+  that you should keep in mind when working with this macro:
 
   <\itemize>
     <item><hlink|<with|font-family|tt|__locals__>|#--locals--> always
     evaluates parameterless functions and returns the resulting value instead
-    of a closure (as can be seen in the binding <verbatim|x=\<gtr\>a+b> in
-    the example above). Normally this is what you want, but it can be a
-    problem with parameterless functions involving side effects. In such a
-    case, if you want to evaluate the function at a later time, you'll either
-    have to use a thunk or massage the local function so that it takes a
-    dummy argument such as <verbatim|()>.
+    of a closure (as can be seen in the binding <verbatim|x=\>a+b> in the
+    example above). Normally this is what you want, but it can be a problem
+    with parameterless functions involving side effects. In such a case, if
+    you want to evaluate the function at a later time, you'll either have to
+    use a thunk or massage the local function so that it takes a dummy
+    argument such as <verbatim|()>.
 
     <item>If the call to <hlink|<with|font-family|tt|__locals__>|#--locals-->
     is inside a local function then that local function will itself be
@@ -3313,7 +3307,7 @@
 
     <item*|get_constdef sym<label|get-constdef>>If the given symbol is
     defined as a variable or constant, return the corresponding definition as
-    a singleton list of the form <verbatim|[sym> <verbatim|--\<gtr\>>
+    a singleton list of the form <verbatim|[sym> <verbatim|--\>>
     <verbatim|value]>. Otherwise return the empty list.
   </description>
 
@@ -3330,8 +3324,8 @@
     (given in the same format as returned by the
     <hlink|<with|font-family|tt|get_fundef>|#get-fundef>,
     <hlink|<with|font-family|tt|get_typedef>|#get-typedef> and
-    <hlink|<with|font-family|tt|get_macdef>|#get-macdef> functions above)
-    to the running program.
+    <hlink|<with|font-family|tt|get_macdef>|#get-macdef> functions above) to
+    the running program.
   </description>
 
   <\description>
@@ -3363,9 +3357,9 @@
     <item*|add_vardef rules<label|add-vardef>>
 
     <item*|add_constdef rules<label|add-constdef>>Define variables and
-    constants. Each rule must take the form <verbatim|sym>
-    <verbatim|--\<gtr\>> <verbatim|value> with a symbol on the left-hand side
-    (no pattern matching is performed by these functions).
+    constants. Each rule must take the form <verbatim|sym> <verbatim|--\>>
+    <verbatim|value> with a symbol on the left-hand side (no pattern matching
+    is performed by these functions).
   </description>
 
   The following functions may be used to delete individual rewriting rules,
@@ -3380,9 +3374,8 @@
     (given in the same format as returned by the
     <hlink|<with|font-family|tt|get_fundef>|#get-fundef>,
     <hlink|<with|font-family|tt|get_typedef>|#get-typedef> and
-    <hlink|<with|font-family|tt|get_macdef>|#get-macdef> functions) from
-    the running program. Returns <verbatim|()> if successful, fails
-    otherwise.
+    <hlink|<with|font-family|tt|get_macdef>|#get-macdef> functions) from the
+    running program. Returns <verbatim|()> if successful, fails otherwise.
   </description>
 
   <\description>
@@ -3441,9 +3434,9 @@
 
   Note that only closures (i.e., named and anonymous functions and thunks)
   have a defined argument count in Pure, otherwise
-  <hlink|<with|font-family|tt|nargs>|#nargs> returns -1 indicating an
-  unknown argument count. Partial applications of closures return the number
-  of remaining arguments, which may be zero to indicate a
+  <hlink|<with|font-family|tt|nargs>|#nargs> returns -1 indicating an unknown
+  argument count. Partial applications of closures return the number of
+  remaining arguments, which may be zero to indicate a
   <with|font-series|bold|saturated> (but unevaluated) application, or -1 for
   <with|font-series|bold|over-saturated> and constructor applications. (Note
   that in Pure a saturated application may also remain unevaluated because
@@ -3490,9 +3483,9 @@
   expressions (<verbatim|'x>). The string conversions
   <hlink|<with|font-family|tt|str>|#str>,
   <hlink|<with|font-family|tt|val>|#val> and
-  <hlink|<with|font-family|tt|eval>|#eval> also provide a convenient means
-  to serialize Pure expressions, e.g., when terms are to be transferred
-  to/from persistent storage. (Note, however, that this has its limitations.
+  <hlink|<with|font-family|tt|eval>|#eval> also provide a convenient means to
+  serialize Pure expressions, e.g., when terms are to be transferred to/from
+  persistent storage. (Note, however, that this has its limitations.
   Specifically, some objects like pointers and anonymous functions do not
   have a parsable string representation. Also see the <hlink|Expression
   Serialization|#expression-serialization> section for some dedicated
@@ -3556,8 +3549,8 @@
     <hlink|<with|font-family|tt|val>|#val>,
     <hlink|<with|font-family|tt|eval>|#eval> and
     <hlink|<with|font-family|tt|evalcmd>|#evalcmd> (as well as in
-    <hlink|<with|font-family|tt|add_fundef>|#add-fundef> et al, described
-    in the previous subsection). This string value will be nonempty iff a
+    <hlink|<with|font-family|tt|add_fundef>|#add-fundef> et al, described in
+    the previous subsection). This string value will be nonempty iff a
     compilation or execution error was encountered during the most recent
     invocation of these functions. In that case each reported error message
     is terminated with a newline character.
@@ -3572,14 +3565,13 @@
     position is available, or a tuple of the form
     <verbatim|msg,file,l1,c1,l2,c2> where <verbatim|msg> is the error
     message, <verbatim|file> the name of the file containing the error (which
-    will usually be <verbatim|"\<less\>stdin\<gtr\>"> indicating that the
-    error is in the source string, but may also be a proper filename of a
-    module imported in the evaluated code), <verbatim|l1,c1> denotes the
-    beginning of the range with the errorneous construct (given as line and
-    column indices) and <verbatim|l2,c2> its end (or rather the character
-    position following it). For convenience, both line and column indices are
-    zero-based, in order to facilitate extraction of the text from the actual
-    source string.
+    will usually be <verbatim|"\<stdin\>"> indicating that the error is in
+    the source string, but may also be a proper filename of a module imported
+    in the evaluated code), <verbatim|l1,c1> denotes the beginning of the
+    range with the errorneous construct (given as line and column indices)
+    and <verbatim|l2,c2> its end (or rather the character position following
+    it). For convenience, both line and column indices are zero-based, in
+    order to facilitate extraction of the text from the actual source string.
 
     <with|font-series|bold|Note:> The indicated error positions are only
     approximate, and may in many cases span an entire syntactic construct
@@ -3634,8 +3626,8 @@
   provides the following function for pretty-printing the internal
   representation used to denote quoted specials. This is commonly used in
   conjunction with the <hlink|<with|font-family|tt|__show__>|pure.tm#--show-->
-  function, please see the <hlink|<em|Macros>|pure.tm#macros> section in
-  the Pure manual for details.
+  function, please see the <hlink|<em|Macros>|pure.tm#macros> section in the
+  Pure manual for details.
 
   <\description>
     <item*|__str__ x<label|--str-->>Pretty-prints special expressions.
@@ -3666,11 +3658,10 @@
 
   <\description>
     <item*|clearsym sym level<label|clearsym>>This uses
-    <hlink|<with|font-family|tt|evalcmd>|#evalcmd> with the
-    <verbatim|clear> command to delete the definition of the given symbol at
-    the given definition level. No glob patterns are permitted here. The
-    <verbatim|sym> argument may either be a string or a literal (quoted)
-    symbol.
+    <hlink|<with|font-family|tt|evalcmd>|#evalcmd> with the <verbatim|clear>
+    command to delete the definition of the given symbol at the given
+    definition level. No glob patterns are permitted here. The <verbatim|sym>
+    argument may either be a string or a literal (quoted) symbol.
   </description>
 
   Example:
@@ -3706,20 +3697,19 @@
     <item*|<em|macro> reduce x<label|reduce>>Reevaluates an expression in a
     local environment. This dynamically rebinds function symbols in the given
     expression to whatever local function definitions are in effect at the
-    point of the <hlink|<with|font-family|tt|reduce>|#reduce> call. Note
-    that <hlink|<with|font-family|tt|reduce>|#reduce> is actually
-    implemented as a macro which expands to the
-    <hlink|<with|font-family|tt|reduce_with>|#reduce-with> primitive (see
-    below), using the <hlink|<with|font-family|tt|__locals__>|#--locals-->
+    point of the <hlink|<with|font-family|tt|reduce>|#reduce> call. Note that
+    <hlink|<with|font-family|tt|reduce>|#reduce> is actually implemented as a
+    macro which expands to the <hlink|<with|font-family|tt|reduce_with>|#reduce-with>
+    primitive (see below), using the <hlink|<with|font-family|tt|__locals__>|#--locals-->
     builtin to enumerate the bindings which are in effect at the call site.
   </description>
 
   <\description>
     <item*|reduce_with env x<label|reduce-with>>Like
     <hlink|<with|font-family|tt|reduce>|#reduce> above, but takes a list of
-    replacements (given as hash pairs <verbatim|u=\<gtr\>v>) as the first
-    argument. The <hlink|<with|font-family|tt|reduce>|#reduce> macro
-    expands to <verbatim|reduce_with> <verbatim|__locals__>.
+    replacements (given as hash pairs <verbatim|u=\>v>) as the first
+    argument. The <hlink|<with|font-family|tt|reduce>|#reduce> macro expands
+    to <verbatim|reduce_with> <verbatim|__locals__>.
   </description>
 
   The <hlink|<with|font-family|tt|reduce>|#reduce> macro provides a
@@ -3802,8 +3792,8 @@
   </verbatim>
 
   Or you can just invoke the underlying <hlink|<with|font-family|tt|reduce_with>|#reduce-with>
-  builtin directly, with the desired substitutions given as hash pairs in
-  the first argument:
+  builtin directly, with the desired substitutions given as hash pairs in the
+  first argument:
 
   <\verbatim>
     \<gtr\> reduce_with [x=\<gtr\>u+v] y;
@@ -3828,8 +3818,8 @@
   transfer expression data to/from persistent storage and between different
   processes (using, e.g., POSIX shared memory, pipes or sockets). However,
   <hlink|<with|font-family|tt|blob>|#blob> and
-  <hlink|<with|font-family|tt|val>|#val> use a binary format which is
-  usually much more compact and gets processed much faster than the string
+  <hlink|<with|font-family|tt|val>|#val> use a binary format which is usually
+  much more compact and gets processed much faster than the string
   representations used by <hlink|<with|font-family|tt|str>|#str> and
   <hlink|<with|font-family|tt|eval>|#eval>. Also,
   <hlink|<with|font-family|tt|val>|#val> offers some additional protection
@@ -3856,8 +3846,8 @@
     <hlink|<with|font-family|tt|blobp>|#blobp> returns <verbatim|true>,
     because for performance reasons <hlink|<with|font-family|tt|blobp>|#blobp>
     only does a quick plausibility check on the header information of the
-    blob, whereas <hlink|<with|font-family|tt|val>|#val> also performs a
-    crc check and verifies data integrity.)
+    blob, whereas <hlink|<with|font-family|tt|val>|#val> also performs a crc
+    check and verifies data integrity.)
   </description>
 
   <\description>
@@ -3868,10 +3858,10 @@
     <item*|blob_crc p<label|blob-crc>>Determines the size (in bytes) and crc
     checksum of a blob, respectively. <hlink|<with|font-family|tt|blob_size>|#blob-size>
     always returns a bigint, <hlink|<with|font-family|tt|blob_crc>|#blob-crc>
-    a machine int (use <hlink|<with|font-family|tt|uint>|#uint> on the
-    latter to get a proper unsigned 32 bit value). For convenience,
-    <verbatim|#p> is defined as an alias for <verbatim|blob_size>
-    <verbatim|p> on <hlink|<with|font-family|tt|blob>|#blob> pointers.
+    a machine int (use <hlink|<with|font-family|tt|uint>|#uint> on the latter
+    to get a proper unsigned 32 bit value). For convenience, <verbatim|#p> is
+    defined as an alias for <verbatim|blob_size> <verbatim|p> on
+    <hlink|<with|font-family|tt|blob>|#blob> pointers.
   </description>
 
   Example:
@@ -3902,8 +3892,8 @@
     <hlink|<with|font-family|tt|blob>|#blob> to fail. However, it <em|is>
     possible to transfer a global function, provided that the function exists
     (and is the same) in both the sending and the receiving process. (This
-    condition can't be verified by <hlink|<with|font-family|tt|val>|#val>
-    and thus is at the programmer's responsibilty.)
+    condition can't be verified by <hlink|<with|font-family|tt|val>|#val> and
+    thus is at the programmer's responsibilty.)
 
     <item>Sharing of subexpressions will in general be preserved, but sharing
     of list and tuple <em|tails> will be lost (unless the entire list or
@@ -4306,8 +4296,8 @@
   Note that in the case of a non-<hlink|<with|font-family|tt|NULL>|#NULL>
   pointer, <hlink|<with|font-family|tt|check_ptrtag>|#check-ptrtag> just
   tests the tags for equality. On the other hand, a generic
-  <hlink|<with|font-family|tt|NULL>|#NULL> pointer, like in C, is
-  considered compatible with all pointer types:
+  <hlink|<with|font-family|tt|NULL>|#NULL> pointer, like in C, is considered
+  compatible with all pointer types:
 
   <\verbatim>
     \<gtr\> let t1 = make_ptrtag; t1;
@@ -4342,8 +4332,8 @@
     <verbatim|x>. In the former case, the type should be specified in the
     C-like syntax used in <hlink|<with|font-family|tt|extern>|pure.tm#extern>
     declarations; a new tag will be created using
-    <hlink|<with|font-family|tt|make_ptrtag>|#make-ptrtag> if needed. In
-    the latter case, <hlink|<with|font-family|tt|pointer_tag>|#pointer-tag>
+    <hlink|<with|font-family|tt|make_ptrtag>|#make-ptrtag> if needed. In the
+    latter case, <hlink|<with|font-family|tt|pointer_tag>|#pointer-tag>
     simply acts as a frontend for <hlink|<with|font-family|tt|get_ptrtag>|#get-ptrtag>
     above.
   </description>
@@ -4408,12 +4398,12 @@
   </verbatim>
 
   Note that you have to be careful when casting a cooked pointer, because
-  <hlink|<with|font-family|tt|pointer_cast>|#pointer-cast> may have to
-  create a copy of the original pointer value in order not to clobber the
-  original type tag. The sentry will then still be with the original cooked
-  pointer value, thus you have to ensure that this value survives its
-  type-cast duplicate. It's usually best to apply the cast right at the spot
-  where the pointer gets passed to an external function, e.g.:
+  <hlink|<with|font-family|tt|pointer_cast>|#pointer-cast> may have to create
+  a copy of the original pointer value in order not to clobber the original
+  type tag. The sentry will then still be with the original cooked pointer
+  value, thus you have to ensure that this value survives its type-cast
+  duplicate. It's usually best to apply the cast right at the spot where the
+  pointer gets passed to an external function, e.g.:
 
   <\verbatim>
     \<gtr\> extern char *gets(char*);
@@ -4424,9 +4414,9 @@
   </verbatim>
 
   Such usage is always safe. If this approach isn't possible, you might want
-  to use the lowlevel <hlink|<with|font-family|tt|ptrtag>|#ptrtag>
-  operation instead. (This will clobber the type tag of the pointer, but
-  you can always change it back afterwards.)
+  to use the lowlevel <hlink|<with|font-family|tt|ptrtag>|#ptrtag> operation
+  instead. (This will clobber the type tag of the pointer, but you can always
+  change it back afterwards.)
 
   <paragraph|Expression References<label|expression-references>>
 
@@ -4470,9 +4460,9 @@
   </description>
 
   Note that manually changing or removing the
-  <hlink|<with|font-family|tt|unref>|#unref> sentry of a reference turns
-  the reference into just a normal pointer object and renders it unusable as
-  a reference. Doing this will also leak memory, so don't!
+  <hlink|<with|font-family|tt|unref>|#unref> sentry of a reference turns the
+  reference into just a normal pointer object and renders it unusable as a
+  reference. Doing this will also leak memory, so don't!
 
   There is another pitfall with expression references, namely that they can
   be used to create cyclic chains which currently can't be reclaimed by
@@ -4615,10 +4605,10 @@
   release of the Mersenne twister which fixes issues with some kinds of seed
   values, and will yield different values for given seeds. Also, the
   <hlink|<with|font-family|tt|random31>|#random31> and
-  <hlink|<with|font-family|tt|random53>|#random53> functions have been
-  added as a convenience to compute unsigned 31 bit integers and 53 bit
-  double values, and the <hlink|<with|font-family|tt|srandom>|#srandom>
-  function now also accepts an int matrix as seed value.
+  <hlink|<with|font-family|tt|random53>|#random53> functions have been added
+  as a convenience to compute unsigned 31 bit integers and 53 bit double
+  values, and the <hlink|<with|font-family|tt|srandom>|#srandom> function now
+  also accepts an int matrix as seed value.
 
   <\description>
     <item*|random<label|random>>Return 32 bit pseudo random ints in the range
@@ -4709,18 +4699,17 @@
     <item*|<em|constant> i = 0+:1<label|i>>Imaginary unit.
   </description>
 
-  We provide both rectangular (<verbatim|x+:y>) and polar
-  (<verbatim|r\<less\>:a>) representations, where <verbatim|(x,y)> are the
-  Cartesian coordinates and <verbatim|(r,t)> the radius (absolute value) and
-  angle (in radians) of a complex number, respectively. The
-  <hlink|<with|font-family|tt|+:>|#+:> and
-  <hlink|<with|font-family|tt|\<less\>:>|#\<:> constructors (declared in
-  the prelude) bind weaker than all other arithmetic operators and are
+  We provide both rectangular (<verbatim|x+:y>) and polar (<verbatim|r\<:a>)
+  representations, where <verbatim|(x,y)> are the Cartesian coordinates and
+  <verbatim|(r,t)> the radius (absolute value) and angle (in radians) of a
+  complex number, respectively. The <hlink|<with|font-family|tt|+:>|#+:> and
+  <hlink|<with|font-family|tt|\<less\>:>|#\<:> constructors (declared in the
+  prelude) bind weaker than all other arithmetic operators and are
   non-associative.
 
-  The polar representation <verbatim|r\<less\>:t> is normalized so that
+  The polar representation <verbatim|r\<:t> is normalized so that
   <verbatim|r> is always nonnegative and <verbatim|t> falls in the range
-  <verbatim|-pi\<less\>t\<less\>=pi>.
+  <verbatim|-pi\<t\<=pi>.
 
   The constant <hlink|<with|font-family|tt|i>|#i> is provided to denote the
   imaginary unit <verbatim|0+:1>.
@@ -4760,7 +4749,7 @@
   <\description>
     <item*|cis t<label|cis>>Create complex values on the unit circle. Note:
     To quickly compute <verbatim|exp> <verbatim|(x+:y)> in polar form, use
-    <verbatim|exp> <verbatim|x> <verbatim|\<less\>:> <verbatim|y>.
+    <verbatim|exp> <verbatim|x> <verbatim|\<:> <verbatim|y>.
   </description>
 
   <\description>
@@ -4804,9 +4793,9 @@
   </verbatim>
 
   Please note that, as the <hlink|<with|font-family|tt|+:>|#+:> and
-  <hlink|<with|font-family|tt|\<less\>:>|#\<:> constructors bind weaker
-  than the other arithmetic operators, complex numbers <em|must> be
-  parenthesized accordingly, e.g.:
+  <hlink|<with|font-family|tt|\<less\>:>|#\<:> constructors bind weaker than
+  the other arithmetic operators, complex numbers <em|must> be parenthesized
+  accordingly, e.g.:
 
   <\verbatim>
     \<gtr\> (1+:2)*(3+:4);
@@ -4930,10 +4919,10 @@
   represented as an object of the given target type (up to rounding errors).
   Note that if <verbatim|x> is of syntactic type <verbatim|X>, then it is
   also of semantic type <verbatim|X>. Moreover, <verbatim|intvalp>
-  <verbatim|x> <verbatim|=\<gtr\>> <verbatim|bigintvalp> <verbatim|x>
-  <verbatim|=\<gtr\>> <verbatim|ratvalp> <verbatim|x> <verbatim|=\<gtr\>>
-  <verbatim|realvalp> <verbatim|x> <verbatim|=\<gtr\>> <verbatim|compvalp>
-  <verbatim|x> <verbatim|\<less\>=\<gtr\>> <verbatim|numberp> <verbatim|x>.
+  <verbatim|x> <verbatim|=\>> <verbatim|bigintvalp> <verbatim|x>
+  <verbatim|=\>> <verbatim|ratvalp> <verbatim|x> <verbatim|=\>>
+  <verbatim|realvalp> <verbatim|x> <verbatim|=\>> <verbatim|compvalp>
+  <verbatim|x> <verbatim|\<=\>> <verbatim|numberp> <verbatim|x>.
 
   <\description>
     <item*|compvalp x<label|compvalp>>Check for complex values (this is the
@@ -5126,9 +5115,9 @@
   </verbatim>
 
   Note that given one member of the enumeration, you can use
-  <hlink|<with|font-family|tt|enumof>|#enumof> to quickly enumerate
-  <em|all> members of the type starting at the given member. Here's a little
-  helper function which does this:
+  <hlink|<with|font-family|tt|enumof>|#enumof> to quickly enumerate <em|all>
+  members of the type starting at the given member. Here's a little helper
+  function which does this:
 
   <\verbatim>
     enumerate x::enum = iterwhile (typep ty) succ x when ty = enumof x end;
@@ -5190,8 +5179,8 @@
   comparing their members. In addition, the dictionary, set and bag data
   structures also provide the other comparison predicates
   (<hlink|<with|font-family|tt|\<less\>>|#\<>,
-  <hlink|<with|font-family|tt|\<less\>=>|#\<=> etc.) which check whether
-  one dictionary, set or bag is contained in another.
+  <hlink|<with|font-family|tt|\<less\>=>|#\<=> etc.) which check whether one
+  dictionary, set or bag is contained in another.
 
   <label|module-array><subsubsection|Arrays<label|arrays>>
 
@@ -5407,9 +5396,9 @@
   Bags|#sets-and-bags>).
 
   Heap members <em|must> be ordered by the
-  <hlink|<with|font-family|tt|\<less\>=>|#\<=> predicate. Multiple
-  instances of the same element may be stored in a heap; however, the order
-  in which equal elements are retrieved is not specified.
+  <hlink|<with|font-family|tt|\<less\>=>|#\<=> predicate. Multiple instances
+  of the same element may be stored in a heap; however, the order in which
+  equal elements are retrieved is not specified.
 
   <\description>
     <item*|<em|type> heap<label|heap/type>>The heap data type.
@@ -5537,16 +5526,15 @@
   <hlink|<with|font-family|tt|\<less\>=>|#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all
   dictionary types, where two dictionaries are considered ``equal''
-  (<verbatim|d1==d2>) if they both contain the same
-  <verbatim|key=\<gtr\>value> pairs, and <verbatim|d1\<less\>=d2> means that
-  <verbatim|d1> is a sub-dictionary of <verbatim|d2>, i.e., all
-  <verbatim|key=\<gtr\>value> pairs of <verbatim|d1> are also contained in
-  <verbatim|d2> (taking into account multiplicities in the multidict case).
-  Ordered dictionaries compare keys using equality (assuming two keys
-  <verbatim|a> and <verbatim|b> to be equal if neither <verbatim|a\<less\>b>
-  nor <verbatim|b\<less\>a> holds), while hashed dictionaries check for
-  syntactical equality (using <hlink|<with|font-family|tt|===>|#===>). The
-  associated values are compared using the
+  (<verbatim|d1==d2>) if they both contain the same <verbatim|key=\>value>
+  pairs, and <verbatim|d1\<=d2> means that <verbatim|d1> is a sub-dictionary
+  of <verbatim|d2>, i.e., all <verbatim|key=\>value> pairs of <verbatim|d1>
+  are also contained in <verbatim|d2> (taking into account multiplicities in
+  the multidict case). Ordered dictionaries compare keys using equality
+  (assuming two keys <verbatim|a> and <verbatim|b> to be equal if neither
+  <verbatim|a\<b> nor <verbatim|b\<a> holds), while hashed dictionaries check
+  for syntactical equality (using <hlink|<with|font-family|tt|===>|#===>).
+  The associated values are compared using the
   <hlink|<with|font-family|tt|==>|#==> predicate if it is defined, falling
   back to syntactic equality otherwise.
 
@@ -5596,8 +5584,8 @@
 
     <item*|hmdict xs<label|hmdict>>create a dictionary of the corresponding
     type either from a list <verbatim|xs> of key-value pairs in the form
-    <verbatim|key=\<gtr\>value>, or from another dictionary; in the latter
-    case the argument is converted to a dictionary of the desired target type
+    <verbatim|key=\>value>, or from another dictionary; in the latter case
+    the argument is converted to a dictionary of the desired target type
   </description>
 
   <\description>
@@ -5691,13 +5679,13 @@
   <\description>
     <item*|insert d (x=\<gtr\>y)<label|insert/dict>>
 
-    <item*|update d x y<label|update/dict>>insert <verbatim|x=\<gtr\>y> into
+    <item*|update d x y<label|update/dict>>insert <verbatim|x=\>y> into
     <verbatim|d> (this always adds a new member in a multidict, otherwise it
     replaces an existing value if there is one); note that
-    <hlink|<with|font-family|tt|update>|#update/dict> is just a fully
-    curried version of <hlink|<with|font-family|tt|insert>|#insert/dict>, so
+    <hlink|<with|font-family|tt|update>|#update/dict> is just a fully curried
+    version of <hlink|<with|font-family|tt|insert>|#insert/dict>, so
     <verbatim|update> <verbatim|d> <verbatim|x> <verbatim|y> behaves exactly
-    like <verbatim|insert> <verbatim|d> <verbatim|(x=\<gtr\>y)>
+    like <verbatim|insert> <verbatim|d> <verbatim|(x=\>y)>
   </description>
 
   <\description>
@@ -5708,9 +5696,9 @@
 
   <\description>
     <item*|delete_val d (x=\<gtr\>y)<label|delete-val/dict>>remove a specific
-    key-value pair <verbatim|x=\<gtr\>y> from <verbatim|d> if present (in the
-    multidict case, only the first instance of <verbatim|x=\<gtr\>y> is
-    removed); please also see the notes below regarding this operation
+    key-value pair <verbatim|x=\>y> from <verbatim|d> if present (in the
+    multidict case, only the first instance of <verbatim|x=\>y> is removed);
+    please also see the notes below regarding this operation
   </description>
 
   <\description>
@@ -5726,8 +5714,8 @@
     <hlink|<with|font-family|tt|->|#-/dict> and
     <hlink|<with|font-family|tt|*>|#*/dict> work like the corresponding set
     and bag operations (see <hlink|Sets and Bags|#sets-and-bags>), treating
-    dictionaries as collections of <verbatim|key=\<gtr\>val> pairs. You can
-    mix arbitrary operand types with these operations, as well as with the
+    dictionaries as collections of <verbatim|key=\>val> pairs. You can mix
+    arbitrary operand types with these operations, as well as with the
     comparison operations; the necessary conversions from less general
     dictionary types (ordered, single-valued) to more general types (hashed,
     multi-valued) are handled automatically.
@@ -5738,8 +5726,8 @@
     syntactic equality (<hlink|<with|font-family|tt|===>|#===>) otherwise. If
     there is more than one instance of the given value under the given key,
     the first such instance will be removed (which, if
-    <hlink|<with|font-family|tt|==>|#==> is defined on the values, may be
-    any instance that compares equal, not necessarily an exact match).
+    <hlink|<with|font-family|tt|==>|#==> is defined on the values, may be any
+    instance that compares equal, not necessarily an exact match).
 
     <item>In the multidict case, <hlink|<with|font-family|tt|delete_val>|#delete-val/dict>
     may require linear time with respect to the number of different values
@@ -5869,7 +5857,7 @@
   </verbatim>
 
   There are also some set-like operations which allow you to add/remove the
-  members (<verbatim|key=\<gtr\>val> pairs) of one dictionary to/from another
+  members (<verbatim|key=\>val> pairs) of one dictionary to/from another
   dictionary, and to compute the intersection of two dictionaries. For
   instance:
 
@@ -5933,7 +5921,7 @@
 
     <item*|<em|type> bag<label|bag/type>>These implement the ordered set
     types. They require that members be ordered, i.e., the predicate
-    <verbatim|\<less\>> must be defined on them.
+    <verbatim|\<> must be defined on them.
   </description>
 
   <\description>
@@ -5952,17 +5940,16 @@
   The usual comparison predicates (<hlink|<with|font-family|tt|==>|#==>,
   <hlink|<with|font-family|tt|<math|\<sim\>>=>|#-tilde=>,
   <hlink|<with|font-family|tt|\<less\>=>|#\<=>,
-  <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all set
-  and bag types, where two sets or bags are considered ``equal''
+  <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all set and
+  bag types, where two sets or bags are considered ``equal''
   (<verbatim|m1==m2>) if they both contain the same elements, and
-  <verbatim|m1\<less\>=m2> means that <verbatim|m1> is a subset or subbag of
+  <verbatim|m1\<=m2> means that <verbatim|m1> is a subset or subbag of
   <verbatim|m2>, i.e., all elements of <verbatim|m1> are also contained in
   <verbatim|m2> (taking into account multiplicities in the multiset case).
   Ordered sets and bags compare elements using equality (considering two
   elements <verbatim|a> and <verbatim|b> to be equal if neither
-  <verbatim|a\<less\>b> nor <verbatim|b\<less\>a> holds), while hashed sets
-  and bags check for syntactical equality (using
-  <hlink|<with|font-family|tt|===>|#===>).
+  <verbatim|a\<b> nor <verbatim|b\<a> holds), while hashed sets and bags
+  check for syntactical equality (using <hlink|<with|font-family|tt|===>|#===>).
 
   The underlying AVL tree data structure can be found in the avltrees.pure
   module which is included in the library, but not to be invoked directly.
@@ -6089,8 +6076,8 @@
   types (hashed, multiset) are handled automatically.
 
   Also note that in the case of sets, <hlink|<with|font-family|tt|+>|#+/set>
-  is just the ordinary set union. There are basically two generalizations
-  of this operation to bags, <with|font-series|bold|multiset union> and
+  is just the ordinary set union. There are basically two generalizations of
+  this operation to bags, <with|font-series|bold|multiset union> and
   <with|font-series|bold|multiset sum>; <hlink|<with|font-family|tt|+>|#+/set>
   implements the <em|latter>. Thus, if a bag <verbatim|m1> contains
   <verbatim|k1> instances of an element <verbatim|x> and a bag <verbatim|m2>
@@ -6291,8 +6278,8 @@
   or the current locale when passing <hlink|<with|font-family|tt|NULL>|#NULL>
   for the locale parameter. In either case, the string returned by
   <hlink|<with|font-family|tt|setlocale>|#setlocale> is such that it can be
-  passed to <hlink|<with|font-family|tt|setlocale>|#setlocale> to restore
-  the same locale again. In case of an error,
+  passed to <hlink|<with|font-family|tt|setlocale>|#setlocale> to restore the
+  same locale again. In case of an error,
   <hlink|<with|font-family|tt|setlocale>|#setlocale> fails (rather than
   returning a null pointer).
 
@@ -6317,14 +6304,13 @@
     handlers.
   </description>
 
-  The action parameter of <hlink|<with|font-family|tt|trap>|#trap> can be
-  one of the predefined integer values <verbatim|SIG_TRAP>,
-  <verbatim|SIG_IGN> and <verbatim|SIG_DFL>. <verbatim|SIG_TRAP> causes the
-  given signal to be handled by mapping it to a Pure exception of the form
-  <verbatim|signal> <verbatim|sig>. <verbatim|SIG_IGN> ignores the signal,
-  <verbatim|SIG_DFL> reverts to the system's default handling. See
-  <verbatim|show> <verbatim|-g> <verbatim|SIG*> for a list of known signal
-  values on your system.
+  The action parameter of <hlink|<with|font-family|tt|trap>|#trap> can be one
+  of the predefined integer values <verbatim|SIG_TRAP>, <verbatim|SIG_IGN>
+  and <verbatim|SIG_DFL>. <verbatim|SIG_TRAP> causes the given signal to be
+  handled by mapping it to a Pure exception of the form <verbatim|signal>
+  <verbatim|sig>. <verbatim|SIG_IGN> ignores the signal, <verbatim|SIG_DFL>
+  reverts to the system's default handling. See <verbatim|show> <verbatim|-g>
+  <verbatim|SIG*> for a list of known signal values on your system.
 
   Note: When the interpreter runs interactively, most standard termination
   signals (<verbatim|SIGINT>, <verbatim|SIGTERM>, etc.) are already set up to
@@ -6332,8 +6318,8 @@
   <hlink|<with|font-family|tt|trap>|#trap> to either ignore these or revert
   to the default handlers instead.
 
-  See <hlink|<em|Exception Handling>|pure.tm#exception-handling> in the
-  Pure Manual for details and examples.
+  See <hlink|<em|Exception Handling>|pure.tm#exception-handling> in the Pure
+  Manual for details and examples.
 
   <subsubsection|Time Functions<label|time-functions>>
 
@@ -6372,13 +6358,13 @@
     <item*|nanosleep t<label|nanosleep>>Suspend execution for a given time
     interval in seconds. <hlink|<with|font-family|tt|sleep>|#sleep> takes
     integer (int/bigint) arguments only and uses the <verbatim|sleep()>
-    system function. <hlink|<with|font-family|tt|nanosleep>|#nanosleep>
-    also accepts double arguments and theoretically supports resolutions
-    down to 1 nanosecond (again, actual resolutions vary). This function may
-    actually be implemented through different system calls, depending on
-    what's available on the host OS. Both functions usually return zero,
-    unless the sleep was interrupted by a signal, in which case the time
-    remaining to be slept is returned.
+    system function. <hlink|<with|font-family|tt|nanosleep>|#nanosleep> also
+    accepts double arguments and theoretically supports resolutions down to 1
+    nanosecond (again, actual resolutions vary). This function may actually
+    be implemented through different system calls, depending on what's
+    available on the host OS. Both functions usually return zero, unless the
+    sleep was interrupted by a signal, in which case the time remaining to be
+    slept is returned.
   </description>
 
   Examples:
@@ -6528,8 +6514,8 @@
     "CEST",{10,23,22,2,3,110,5,91,1}
   </verbatim>
 
-  In the above example, <hlink|<with|font-family|tt|strptime>|#strptime>
-  was given a static pointer to a <verbatim|tm> struct returned by
+  In the above example, <hlink|<with|font-family|tt|strptime>|#strptime> was
+  given a static pointer to a <verbatim|tm> struct returned by
   <hlink|<with|font-family|tt|localtime>|#localtime>. This always works, but
   in some situations it may be preferable to allocate dynamic storage
   instead. This storage should be properly initialized (zeroed out) before
@@ -6628,8 +6614,8 @@
 
     <item><verbatim|%F>: The ISO 8601 date format (<verbatim|%Y-%m-%d>).
     (This is generally supported by <hlink|<with|font-family|tt|strftime>|#strftime>
-    only, but <hlink|<with|font-family|tt|strptime>|#strptime> from GNU
-    libc has it.)
+    only, but <hlink|<with|font-family|tt|strptime>|#strptime> from GNU libc
+    has it.)
 
     <item><verbatim|%r>: The time in AM/PM notation (<verbatim|%I:%M:%S>
     <verbatim|%p>).
@@ -6674,11 +6660,11 @@
     <verbatim|argv> the argument vector (which repeats the program name in
     the first component), and <verbatim|envp> a vector of environment strings
     of the form <verbatim|"var=value">. The
-    <hlink|<with|font-family|tt|execv>|#execv> function executes the
-    program <verbatim|prog> exactly as given, while
-    <hlink|<with|font-family|tt|execvp>|#execvp> also performs a path
-    search. The <hlink|<with|font-family|tt|execve>|#execve> function is
-    like <hlink|<with|font-family|tt|execv>|#execv>, but also specifies an
+    <hlink|<with|font-family|tt|execv>|#execv> function executes the program
+    <verbatim|prog> exactly as given, while
+    <hlink|<with|font-family|tt|execvp>|#execvp> also performs a path search.
+    The <hlink|<with|font-family|tt|execve>|#execve> function is like
+    <hlink|<with|font-family|tt|execv>|#execv>, but also specifies an
     environment to be passed to the process. In either case, the new process
     replaces the current process. For convenience, both <verbatim|argv> and
     <verbatim|envp> can be specified as a Pure string vector or a list, which
@@ -6697,14 +6683,14 @@
     systems this functionality is implemented using a combination of
     <hlink|<with|font-family|tt|fork>|#fork> and
     <hlink|<with|font-family|tt|execv>|#execv>. The arguments are the same as
-    for the <hlink|<with|font-family|tt|execv>|#execv> functions, except
-    that there's an additional <verbatim|mode> argument which specifies how
-    the process is to be executed: <verbatim|P_WAIT> waits for the process to
-    finish, after which <hlink|<with|font-family|tt|spawnv>|#spawnv>
-    returns with the exit status of the terminated child process;
-    <verbatim|P_NOWAIT> makes <hlink|<with|font-family|tt|spawnv>|#spawnv>
-    return immediately, returning the process id; and <verbatim|P_OVERLAY>
-    causes the child process to replace its parent, just like with
+    for the <hlink|<with|font-family|tt|execv>|#execv> functions, except that
+    there's an additional <verbatim|mode> argument which specifies how the
+    process is to be executed: <verbatim|P_WAIT> waits for the process to
+    finish, after which <hlink|<with|font-family|tt|spawnv>|#spawnv> returns
+    with the exit status of the terminated child process; <verbatim|P_NOWAIT>
+    makes <hlink|<with|font-family|tt|spawnv>|#spawnv> return immediately,
+    returning the process id; and <verbatim|P_OVERLAY> causes the child
+    process to replace its parent, just like with
     <hlink|<with|font-family|tt|execv>|#execv>. (On Windows, there's an
     additional <verbatim|P_DETACH> flag which works like <verbatim|P_NOWAIT>
     but also turns the child process into a background task.)
@@ -6742,10 +6728,10 @@
   Note that this module also defines the standard I/O streams
   <hlink|<with|font-family|tt|stdin>|#stdin>,
   <hlink|<with|font-family|tt|stdout>|#stdout> and
-  <hlink|<with|font-family|tt|stderr>|#stderr> as variables on startup.
-  These are ready to be used with the operations described below. Also note
-  that for convenience some of the following routines are actually Pure
-  wrappers, rather than just providing the raw C library routines.
+  <hlink|<with|font-family|tt|stderr>|#stderr> as variables on startup. These
+  are ready to be used with the operations described below. Also note that
+  for convenience some of the following routines are actually Pure wrappers,
+  rather than just providing the raw C library routines.
 
   <\description>
     <item*|<em|variable> stdin<label|stdin>>
@@ -6820,8 +6806,8 @@
 
   <\description>
     <item*|fget fp<label|fget>>A variation of
-    <hlink|<with|font-family|tt|fgets>|#fgets> which slurps in an entire
-    text file at once.
+    <hlink|<with|font-family|tt|fgets>|#fgets> which slurps in an entire text
+    file at once.
   </description>
 
   <\description>
@@ -6956,8 +6942,8 @@
     error). However, in case of an abnormal condition in the wrapper
     function, such as argument mismatch, they will throw an exception. (In
     particular, an <hlink|<with|font-family|tt|out_of_bounds>|#out-of-bounds>
-    exception will be thrown if there are not enough arguments for the
-    given format string.)
+    exception will be thrown if there are not enough arguments for the given
+    format string.)
   </description>
 
   <\description>
@@ -7306,7 +7292,7 @@
   <\description>
     <item*|regs info<label|regs>>Returns all valid submatches, i.e., the list
     of all triples <verbatim|(n,p,s)> for which <verbatim|reg> <verbatim|n>
-    <verbatim|==> <verbatim|(p,s)> with <verbatim|p\<gtr\>=0>.
+    <verbatim|==> <verbatim|(p,s)> with <verbatim|p\>=0>.
   </description>
 
   In addition, the following convenience functions are provided to perform
@@ -7702,8 +7688,8 @@
   throws the offending option string as an exception.
 
   The <verbatim|opts_return> value is a list of ``hash pairs''
-  <verbatim|opt=\<gtr\>val> where <verbatim|opt> is the (long) option name
-  (as given by the <verbatim|long_opt> field given in the <verbatim|opts>
+  <verbatim|opt=\>val> where <verbatim|opt> is the (long) option name (as
+  given by the <verbatim|long_opt> field given in the <verbatim|opts>
   argument, see below) and <verbatim|val> is the corresponding value
   (<verbatim|()> if none). Note that this format is ready to be passed to the
   <hlink|<with|font-family|tt|dict>|#dict> or
@@ -7764,118 +7750,118 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|purelib-toc>>
 
   <\itemize>
-    <item><hlink|Pure Library Manual|#>\ 
+    <item><hlink|Pure Library Manual|#>
 
     <\itemize>
-      <item><hlink|Prelude|#prelude>\ 
+      <item><hlink|Prelude|#prelude>
 
       <\itemize>
-        <item><hlink|Constants and Operators|#constants-and-operators>\ 
+        <item><hlink|Constants and Operators|#constants-and-operators>
 
-        <item><hlink|Prelude Types|#prelude-types>\ 
+        <item><hlink|Prelude Types|#prelude-types>
 
-        <item><hlink|Basic Combinators|#basic-combinators>\ 
+        <item><hlink|Basic Combinators|#basic-combinators>
 
-        <item><hlink|Lists and Tuples|#lists-and-tuples>\ 
+        <item><hlink|Lists and Tuples|#lists-and-tuples>
 
-        <item><hlink|Slicing|#slicing>\ 
+        <item><hlink|Slicing|#slicing>
 
-        <item><hlink|Hash Pairs|#hash-pairs>\ 
+        <item><hlink|Hash Pairs|#hash-pairs>
 
-        <item><hlink|List Functions|#list-functions>\ 
+        <item><hlink|List Functions|#list-functions>
 
         <\itemize>
-          <item><hlink|Common List Functions|#common-list-functions>\ 
+          <item><hlink|Common List Functions|#common-list-functions>
 
-          <item><hlink|List Generators|#list-generators>\ 
+          <item><hlink|List Generators|#list-generators>
 
           <item><hlink|Zip and Friends|#zip-and-friends>
         </itemize>
 
-        <item><hlink|String Functions|#string-functions>\ 
+        <item><hlink|String Functions|#string-functions>
 
         <\itemize>
-          <item><hlink|Basic String Functions|#basic-string-functions>\ 
+          <item><hlink|Basic String Functions|#basic-string-functions>
 
           <item><hlink|Low-Level Operations|#low-level-operations>
         </itemize>
 
-        <item><hlink|Matrix Functions|#matrix-functions>\ 
+        <item><hlink|Matrix Functions|#matrix-functions>
 
         <\itemize>
           <item><hlink|Matrix Construction and
-          Conversions|#matrix-construction-and-conversions>\ 
+          Conversions|#matrix-construction-and-conversions>
 
           <item><hlink|Matrix Inspection and
-          Manipulation|#matrix-inspection-and-manipulation>\ 
+          Manipulation|#matrix-inspection-and-manipulation>
 
           <item><hlink|Pointers and Matrices|#pointers-and-matrices>
         </itemize>
 
-        <item><hlink|Record Functions|#record-functions>\ 
+        <item><hlink|Record Functions|#record-functions>
 
-        <item><hlink|Primitives|#primitives>\ 
+        <item><hlink|Primitives|#primitives>
 
         <\itemize>
-          <item><hlink|Special Constants|#special-constants>\ 
+          <item><hlink|Special Constants|#special-constants>
 
-          <item><hlink|Arithmetic|#arithmetic>\ 
+          <item><hlink|Arithmetic|#arithmetic>
 
-          <item><hlink|Conversions|#conversions>\ 
+          <item><hlink|Conversions|#conversions>
 
-          <item><hlink|Predicates|#predicates>\ 
+          <item><hlink|Predicates|#predicates>
 
-          <item><hlink|Inspection|#inspection>\ 
+          <item><hlink|Inspection|#inspection>
 
-          <item><hlink|Eval and Friends|#eval-and-friends>\ 
+          <item><hlink|Eval and Friends|#eval-and-friends>
 
-          <item><hlink|Expression Serialization|#expression-serialization>\ 
+          <item><hlink|Expression Serialization|#expression-serialization>
 
-          <item><hlink|Other Special Primitives|#other-special-primitives>\ 
+          <item><hlink|Other Special Primitives|#other-special-primitives>
 
-          <item><hlink|Pointer Operations|#pointer-operations>\ 
+          <item><hlink|Pointer Operations|#pointer-operations>
 
-          <item><hlink|Sentries|#sentries>\ 
+          <item><hlink|Sentries|#sentries>
 
-          <item><hlink|Tagged Pointers|#tagged-pointers>\ 
+          <item><hlink|Tagged Pointers|#tagged-pointers>
 
-          <item><hlink|Expression References|#expression-references>\ 
+          <item><hlink|Expression References|#expression-references>
 
           <item><hlink|Pointer Arithmetic|#pointer-arithmetic>
         </itemize>
       </itemize>
 
-      <item><hlink|Mathematical Functions|#module-math>\ 
+      <item><hlink|Mathematical Functions|#module-math>
 
       <\itemize>
-        <item><hlink|Imports|#imports>\ 
+        <item><hlink|Imports|#imports>
 
-        <item><hlink|Basic Math Functions|#basic-math-functions>\ 
+        <item><hlink|Basic Math Functions|#basic-math-functions>
 
-        <item><hlink|Complex Numbers|#complex-numbers>\ 
+        <item><hlink|Complex Numbers|#complex-numbers>
 
-        <item><hlink|Rational Numbers|#rational-numbers>\ 
+        <item><hlink|Rational Numbers|#rational-numbers>
 
         <item><hlink|Semantic Number Predicates and
         Types|#semantic-number-predicates-and-types>
       </itemize>
 
-      <item><hlink|Enumerated Types|#enumerated-types>\ 
+      <item><hlink|Enumerated Types|#enumerated-types>
 
-      <item><hlink|Container Types|#container-types>\ 
+      <item><hlink|Container Types|#container-types>
 
       <\itemize>
-        <item><hlink|Arrays|#arrays>\ 
+        <item><hlink|Arrays|#arrays>
 
         <\itemize>
           <item>Imports
 
-          <item><hlink|Operations|#operations>\ 
+          <item><hlink|Operations|#operations>
 
           <item><hlink|Examples|#examples>
         </itemize>
 
-        <item><hlink|Heaps|#heaps>\ 
+        <item><hlink|Heaps|#heaps>
 
         <\itemize>
           <item>Imports
@@ -7885,7 +7871,7 @@
           <item>Examples
         </itemize>
 
-        <item><hlink|Dictionaries|#dictionaries>\ 
+        <item><hlink|Dictionaries|#dictionaries>
 
         <\itemize>
           <item>Imports
@@ -7895,7 +7881,7 @@
           <item>Examples
         </itemize>
 
-        <item><hlink|Sets and Bags|#sets-and-bags>\ 
+        <item><hlink|Sets and Bags|#sets-and-bags>
 
         <\itemize>
           <item>Imports
@@ -7906,43 +7892,43 @@
         </itemize>
       </itemize>
 
-      <item><hlink|System Interface|#system-interface>\ 
+      <item><hlink|System Interface|#system-interface>
 
       <\itemize>
         <item>Imports
 
-        <item><hlink|Errno and Friends|#errno-and-friends>\ 
+        <item><hlink|Errno and Friends|#errno-and-friends>
 
-        <item><hlink|POSIX Locale|#posix-locale>\ 
+        <item><hlink|POSIX Locale|#posix-locale>
 
-        <item><hlink|Signal Handling|#signal-handling>\ 
+        <item><hlink|Signal Handling|#signal-handling>
 
-        <item><hlink|Time Functions|#time-functions>\ 
+        <item><hlink|Time Functions|#time-functions>
 
-        <item><hlink|Process Functions|#process-functions>\ 
+        <item><hlink|Process Functions|#process-functions>
 
-        <item><hlink|Basic I/O Interface|#basic-i-o-interface>\ 
+        <item><hlink|Basic I/O Interface|#basic-i-o-interface>
 
-        <item><hlink|Stat and Friends|#stat-and-friends>\ 
+        <item><hlink|Stat and Friends|#stat-and-friends>
 
-        <item><hlink|Reading Directories|#reading-directories>\ 
+        <item><hlink|Reading Directories|#reading-directories>
 
-        <item><hlink|Shell Globbing|#shell-globbing>\ 
+        <item><hlink|Shell Globbing|#shell-globbing>
 
-        <item><hlink|Regex Matching|#module-regex>\ 
+        <item><hlink|Regex Matching|#module-regex>
 
         <\itemize>
-          <item><hlink|Basic Examples|#basic-examples>\ 
+          <item><hlink|Basic Examples|#basic-examples>
 
           <item><hlink|Regex Substitutions and
-          Splitting|#regex-substitutions-and-splitting>\ 
+          Splitting|#regex-substitutions-and-splitting>
 
-          <item><hlink|Empty Matches|#empty-matches>\ 
+          <item><hlink|Empty Matches|#empty-matches>
 
           <item><hlink|Submatches|#submatches>
         </itemize>
 
-        <item><hlink|Additional POSIX Functions|#module-posix>\ 
+        <item><hlink|Additional POSIX Functions|#module-posix>
 
         <item><hlink|Option Parsing|#option-parsing>
       </itemize>
@@ -7955,13 +7941,13 @@
 
   Next topic
 
-  <hlink|pure-doc|pure-doc.tm>
+  <hlink|pure-avahi: Pure Avahi Interface|pure-avahi.tm>
 
   <hlink|toc|#purelib-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-doc.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-avahi.tm> \|
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

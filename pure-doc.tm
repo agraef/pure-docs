@@ -1,16 +1,16 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
 <\body>
   <hlink|toc|#pure-doc-toc> <hlink|index|genindex.tm>
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-ffi.tm> \|
-  <hlink|previous|purelib.tm> \| <hlink|Pure Language and Library
+  <hlink|previous|pure-avahi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|pure-doc<label|pure-doc>>
 
-  Version 0.7, September 08, 2013
+  Version 0.7, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -194,10 +194,9 @@
 
   pure-doc also recognizes literate code delimited by comments which, besides
   the comment delimiters and whitespace, contain nothing but the special
-  start and end ``tags'' <verbatim|\<gtr\>\<gtr\>\<gtr\>> and
-  <verbatim|\<less\>\<less\>\<less\>>. Code between these delimiters
-  (including all comments) is extracted from the source and output as a RST
-  literal code block.
+  start and end ``tags'' <verbatim|\>\>\>> and <verbatim|\<\<\<>. Code
+  between these delimiters (including all comments) is extracted from the
+  source and output as a RST literal code block.
 
   For instance:
 
@@ -266,8 +265,8 @@
   When run with the <verbatim|-i> option, pure-doc supplements the normal
   hyperlink target processing by the docutils tools, by recognizing explicit
   hyperlink targets of the form <verbatim|..> <verbatim|_target:> and
-  automatically creating raw html targets (<verbatim|\<less\>a>
-  <verbatim|name=...\<gtr\>>) for them. This works around the docutils name
+  automatically creating raw html targets (<verbatim|\<a>
+  <verbatim|name=...\>>) for them. This works around the docutils name
   mangling (which is undesirable if you're indexing, say, function names). It
   also resolves a quirk with some w3m versions which don't pick up all
   <verbatim|id> attributes in the docutils-generated html source.
@@ -501,22 +500,22 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-doc-toc>>
 
   <\itemize>
-    <item><hlink|pure-doc|#>\ 
+    <item><hlink|pure-doc|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
-      <item><hlink|Literate Programming|#literate-programming>\ 
+      <item><hlink|Literate Programming|#literate-programming>
 
       <item><hlink|Hyperlink Targets and Index
-      Generation|#hyperlink-targets-and-index-generation>\ 
+      Generation|#hyperlink-targets-and-index-generation>
 
       <item><hlink|Generating and Installing Local
-      Documentation|#generating-and-installing-local-documentation>\ 
+      Documentation|#generating-and-installing-local-documentation>
 
       <item><hlink|Formatting Tips|#formatting-tips>
     </itemize>
@@ -524,7 +523,7 @@
 
   Previous topic
 
-  <hlink|Pure Library Manual|purelib.tm>
+  <hlink|pure-avahi: Pure Avahi Interface|pure-avahi.tm>
 
   Next topic
 
@@ -532,9 +531,9 @@
 
   <hlink|toc|#pure-doc-toc> <hlink|index|genindex.tm>
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-ffi.tm> \|
-  <hlink|previous|purelib.tm> \| <hlink|Pure Language and Library
+  <hlink|previous|pure-avahi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

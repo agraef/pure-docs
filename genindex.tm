@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -35,7 +35,7 @@
   <hlink|<with|font-series|bold|V>|#V> \|
   <hlink|<with|font-series|bold|W>|#W> \|
   <hlink|<with|font-series|bold|X>|#X> \|
-  <hlink|<with|font-series|bold|Z>|#Z> 
+  <hlink|<with|font-series|bold|Z>|#Z>
 
   <subsection*|Symbols<label|Symbols>>
 
@@ -79,30 +79,30 @@
 
   <hlink|<with|font-series|bold|& (postfix function)>|pure.tm#-amp>
 
-  <hlink|<with|font-series|bold|&& (infix function)>|purelib.tm#-amp-amp>,
-  <hlink|<with|font-series|bold|[1]>|pure.tm#-amp-amp/special>
+  <hlink|<with|font-series|bold|&& (infix
+  function)>|pure.tm#-amp-amp/special>, <hlink|<with|font-series|bold|[1]>|purelib.tm#-amp-amp>
 
   <hlink|<with|font-series|bold|' (prefix function)>|pure.tm#'>
 
   <hlink|<with|font-series|bold|() (constructor)>|purelib.tm#()>
   <hlink|<with|font-series|bold|(command)>|pure.tm#index-32>
 
-  <hlink|<with|font-series|bold|* (infix function)>|purelib.tm#*>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#*/dict>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#*/set>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#*/gsl-matrix>,
-  <hlink|<with|font-series|bold|[4]>|pure-gsl.tm#*/gsl-matrix>,
+  <hlink|<with|font-series|bold|* (infix function)>|pure-gsl.tm#*/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#*/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#*>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#*/dict>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#*/set>,
   <hlink|<with|font-series|bold|[5]>|pure-mpfr.tm#*/mpfr>,
   <hlink|<with|font-series|bold|[6]>|pure-stldict.tm#*/stldict>
 
-  <hlink|<with|font-series|bold|+ (infix function)>|purelib.tm#+/list>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#+/string>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#+>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#+/pointer>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#+/dict>,
-  <hlink|<with|font-series|bold|[5]>|purelib.tm#+/set>,
-  <hlink|<with|font-series|bold|[6]>|pure-gsl.tm#+/gsl-matrix>,
-  <hlink|<with|font-series|bold|[7]>|pure-gsl.tm#+/gsl-matrix>,
+  <hlink|<with|font-series|bold|+ (infix function)>|pure-gsl.tm#+/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#+/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#+/list>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#+/string>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#+>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#+/pointer>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#+/dict>,
+  <hlink|<with|font-series|bold|[7]>|purelib.tm#+/set>,
   <hlink|<with|font-series|bold|[8]>|pure-mpfr.tm#+/mpfr>,
   <hlink|<with|font-series|bold|[9]>|pure-stldict.tm#+/stldict>
 
@@ -110,17 +110,17 @@
 
   <hlink|<with|font-series|bold|, (infix constructor)>|purelib.tm#,>
 
-  <hlink|<with|font-series|bold|- (infix function)>|purelib.tm#->,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#-/pointer>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#-/pointerdiff>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#-/dict>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#-/set>,
-  <hlink|<with|font-series|bold|[5]>|pure-gsl.tm#-/gsl-matrix>,
-  <hlink|<with|font-series|bold|[6]>|pure-gsl.tm#-/gsl-matrix>,
-  <hlink|<with|font-series|bold|[7]>|pure-gsl.tm#-/gsl-matrix>,
-  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#-/stldict>
-  <hlink|<with|font-series|bold|(prefix function)>|purelib.tm#-/unary>,
+  <hlink|<with|font-series|bold|- (infix function)>|pure-gsl.tm#-/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#-/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#-/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#->,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#-/pointer>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#-/pointerdiff>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#-/dict>,
+  <hlink|<with|font-series|bold|[7]>|purelib.tm#-/set>,
+  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#-/stldict>
+  <hlink|<with|font-series|bold|(prefix function)>|pure-gsl.tm#-/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#-/unary>,
   <hlink|<with|font-series|bold|[2]>|pure-mpfr.tm#-/mpfr>
 
   -- <hlink|pure command line option|pure.tm#cmdoption-pure-->
@@ -378,10 +378,10 @@
   <hlink|<with|font-series|bold|.^ (infix
   function)>|pure-gsl.tm#.?5E/gsl-matrix>
 
-  <hlink|<with|font-series|bold|/ (infix function)>|purelib.tm#/>,
+  <hlink|<with|font-series|bold|/ (infix function)>|pure-gsl.tm#//gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#//gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#//gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#//gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#/>,
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#//mpfr>
 
   <hlink|<with|font-series|bold|: (infix constructor)>|purelib.tm#:>
@@ -395,8 +395,9 @@
   <hlink|<with|font-series|bold|\<less\>: (infix function)>|purelib.tm#\<:>
 
   <hlink|<with|font-series|bold|\<less\>\<less\> (infix
-  function)>|purelib.tm#\<\<>, <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\<\</gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#\<\</gsl-matrix>
+  function)>|pure-gsl.tm#\<\</gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\<\</gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#\<\<>
 
   <hlink|<with|font-series|bold|\<less\>= (infix
   function)>|purelib.tm#\<=/string>, <hlink|<with|font-series|bold|[1]>|purelib.tm#\<=>,
@@ -433,24 +434,25 @@
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#\>=/mpfr>
 
   <hlink|<with|font-series|bold|\<gtr\>\<gtr\> (infix
-  function)>|purelib.tm#\>\>>, <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\>\>/gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#\>\>/gsl-matrix>
+  function)>|pure-gsl.tm#\>\>/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\>\>/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#\>\>>
 
   <hlink|<with|font-series|bold|[] (constructor)>|purelib.tm#[]>
 
   <hlink|<with|font-series|bold|\\ (infix
   function)>|pure-gsl.tm#?5C/gsl-matrix>
 
-  <hlink|<with|font-series|bold|^ (infix function)>|purelib.tm#?5E>,
+  <hlink|<with|font-series|bold|^ (infix function)>|pure-gsl.tm#?5E/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#?5E/gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#?5E/gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#?5E/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#?5E>,
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#?5E/mpfr>
 
   <hlink|<with|font-series|bold|{\| \|} (outfix macro)>|purelib.tm#?7B\|>
 
-  <hlink|<with|font-series|bold|\|\| (infix function)>|purelib.tm#\|\|>,
-  <hlink|<with|font-series|bold|[1]>|pure.tm#\|\|/special>
+  <hlink|<with|font-series|bold|\|\| (infix function)>|pure.tm#\|\|/special>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#\|\|>
 
   <hlink|<with|font-series|bold|<math|\<sim\>> (prefix
   function)>|purelib.tm#-tilde>
@@ -467,7 +469,7 @@
   <hlink|<with|font-series|bold|[9]>|pure-stlvec.tm#-tilde=/stlvec>
 
   <hlink|<with|font-series|bold|<math|\<sim\>>== (infix
-  function)>|purelib.tm#-tilde==> 
+  function)>|purelib.tm#-tilde==>
 
   <subsection*|_<label|->>
 
@@ -511,7 +513,7 @@
 
   <hlink|<with|font-series|bold|__when__ (infix macro)>|pure.tm#--when-->
 
-  <hlink|<with|font-series|bold|__with__ (infix macro)>|pure.tm#--with--> 
+  <hlink|<with|font-series|bold|__with__ (infix macro)>|pure.tm#--with-->
 
   <subsection*|A<label|A>>
 
@@ -563,9 +565,10 @@
 
   <hlink|<with|font-series|bold|all (function)>|purelib.tm#all>
 
-  <hlink|<with|font-series|bold|and (infix function)>|purelib.tm#and>,
+  <hlink|<with|font-series|bold|and (infix
+  function)>|pure-gsl.tm#and/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#and/gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#and/gsl-matrix>
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#and>
 
   <hlink|<with|font-series|bold|ans (function)>|purelib.tm#ans>
 
@@ -619,7 +622,23 @@
   <hlink|attribute defaults|pure-xml.tm#index-6>
 
   <hlink|<with|font-series|bold|audio (module)>|pure-audio.tm#module-audio>
-  
+
+  <hlink|<with|font-series|bold|avahi (module)>|pure-avahi.tm#module-avahi>
+
+  <hlink|<with|font-series|bold|avahi::avail
+  (function)>|pure-avahi.tm#avahi::avail>
+
+  <hlink|<with|font-series|bold|avahi::browse
+  (function)>|pure-avahi.tm#avahi::browse>
+
+  <hlink|<with|font-series|bold|avahi::check
+  (function)>|pure-avahi.tm#avahi::check>
+
+  <hlink|<with|font-series|bold|avahi::get
+  (function)>|pure-avahi.tm#avahi::get>
+
+  <hlink|<with|font-series|bold|avahi::publish
+  (function)>|pure-avahi.tm#avahi::publish>
 
   <subsection*|B<label|B>>
 
@@ -694,7 +713,7 @@
   (function)>|purelib.tm#byte-string>
 
   <hlink|<with|font-series|bold|byte_string_pointer
-  (function)>|purelib.tm#byte-string-pointer> 
+  (function)>|purelib.tm#byte-string-pointer>
 
   <subsection*|C<label|C>>
 
@@ -863,7 +882,7 @@
 
   <hlink|<with|font-series|bold|cycle (function)>|purelib.tm#cycle>
 
-  <hlink|<with|font-series|bold|cyclen (function)>|purelib.tm#cyclen> 
+  <hlink|<with|font-series|bold|cyclen (function)>|purelib.tm#cyclen>
 
   <subsection*|D<label|D>>
 
@@ -919,10 +938,11 @@
 
   <hlink|<with|font-series|bold|dim (function)>|purelib.tm#dim>
 
-  <hlink|<with|font-series|bold|div (infix function)>|purelib.tm#div>,
+  <hlink|<with|font-series|bold|div (infix
+  function)>|pure-gsl.tm#div/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#div/gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#div/gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#div/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#div>,
   <hlink|<with|font-series|bold|[4]>|pure-rational.tm#div/rational>
 
   <hlink|<with|font-series|bold|dmatrix (function)>|purelib.tm#dmatrix>
@@ -960,7 +980,7 @@
 
   <hlink|dtd|pure-xml.tm#index-1>
 
-  <hlink|dump (command)|pure.tm#index-38> 
+  <hlink|dump (command)|pure.tm#index-38>
 
   <subsection*|E<label|E>>
 
@@ -1103,7 +1123,7 @@
   <hlink|<with|font-series|bold|exit (function)>|purelib.tm#exit>
 
   <hlink|<with|font-series|bold|exp (function)>|purelib.tm#exp>,
-  <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#exp/mpfr> 
+  <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#exp/mpfr>
 
   <subsection*|F<label|F>>
 
@@ -1282,7 +1302,7 @@
 
   <hlink|<with|font-series|bold|funp (function)>|purelib.tm#funp>
 
-  <hlink|<with|font-series|bold|fwrite (function)>|purelib.tm#fwrite> 
+  <hlink|<with|font-series|bold|fwrite (function)>|purelib.tm#fwrite>
 
   <subsection*|G<label|G>>
 
@@ -2085,11 +2105,11 @@
   <hlink|<with|font-series|bold|gsl::sf::bessel_k0_scaled
   (function)>|pure-gsl.tm#gsl::sf::bessel-k0-scaled>
 
-  <hlink|<with|font-series|bold|gsl::sf::bessel_k0_scaled_e
-  (function)>|pure-gsl.tm#gsl::sf::bessel-k0-scaled-e>
-
   <hlink|<with|font-series|bold|gsl::sf::bessel_K0_scaled_e
   (function)>|pure-gsl.tm#gsl::sf::bessel-K0-scaled-e>
+
+  <hlink|<with|font-series|bold|gsl::sf::bessel_k0_scaled_e
+  (function)>|pure-gsl.tm#gsl::sf::bessel-k0-scaled-e>
 
   <hlink|<with|font-series|bold|gsl::sf::bessel_K1
   (function)>|pure-gsl.tm#gsl::sf::bessel-K1>
@@ -2487,7 +2507,7 @@
   <hlink|<with|font-series|bold|gsl::stats::wvariance_with_fixed_mean
   (function)>|pure-gsl.tm#gsl::stats::wvariance-with-fixed-mean>
 
-  <hlink|<with|font-series|bold|gtk (module)>|pure-gtk.tm#module-gtk> 
+  <hlink|<with|font-series|bold|gtk (module)>|pure-gtk.tm#module-gtk>
 
   <subsection*|H<label|H>>
 
@@ -2552,7 +2572,7 @@
   <hlink|<with|font-series|bold|hset (function)>|purelib.tm#hset>
   <hlink|<with|font-series|bold|(type)>|purelib.tm#hset/type>
 
-  <hlink|<with|font-series|bold|hsetp (function)>|purelib.tm#hsetp> 
+  <hlink|<with|font-series|bold|hsetp (function)>|purelib.tm#hsetp>
 
   <subsection*|I<label|I>>
 
@@ -2684,11 +2704,10 @@
   <hlink|<with|font-series|bold|iteraten (function)>|purelib.tm#iteraten>
 
   <hlink|<with|font-series|bold|iterwhile (function)>|purelib.tm#iterwhile>
-  
 
   <subsection*|J<label|J>>
 
-  <hlink|<with|font-series|bold|join (function)>|purelib.tm#join> 
+  <hlink|<with|font-series|bold|join (function)>|purelib.tm#join>
 
   <subsection*|K<label|K>>
 
@@ -2699,7 +2718,7 @@
   <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#keys/stlmap>,
   <hlink|<with|font-series|bold|[3]>|pure-stldict.tm#keys/stldict>
 
-  <hlink|<with|font-series|bold|kill (function)>|purelib.tm#kill> 
+  <hlink|<with|font-series|bold|kill (function)>|purelib.tm#kill>
 
   <subsection*|L<label|L>>
 
@@ -2777,7 +2796,7 @@
 
   <hlink|ls (command)|pure.tm#index-40>
 
-  <hlink|<with|font-series|bold|lstat (function)>|purelib.tm#lstat> 
+  <hlink|<with|font-series|bold|lstat (function)>|purelib.tm#lstat>
 
   <subsection*|M<label|M>>
 
@@ -2795,8 +2814,7 @@
 
   <hlink|<with|font-series|bold|matcat (function)>|purelib.tm#matcat>
 
-  <hlink|<with|font-series|bold|math (module)>|purelib.tm#module-math>
-  matrix
+  <hlink|<with|font-series|bold|math (module)>|purelib.tm#module-math> matrix
 
   <hlink|dimensions|purelib.tm#index-23>
 
@@ -2877,10 +2895,11 @@
 
   <hlink|<with|font-series|bold|mktime (function)>|purelib.tm#mktime>
 
-  <hlink|<with|font-series|bold|mod (infix function)>|purelib.tm#mod>,
+  <hlink|<with|font-series|bold|mod (infix
+  function)>|pure-gsl.tm#mod/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#mod/gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#mod/gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#mod/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#mod>,
   <hlink|<with|font-series|bold|[4]>|pure-rational.tm#mod/rational>
 
   <hlink|<with|font-series|bold|mpfr (function)>|pure-mpfr.tm#mpfr>,
@@ -2926,7 +2945,7 @@
   (type)>|pure-stlvec.tm#mutable-stlvec/type>
 
   <hlink|<with|font-series|bold|mutable_svit
-  (type)>|pure-stlvec.tm#mutable-svit/type> 
+  (type)>|pure-stlvec.tm#mutable-svit/type>
 
   <subsection*|N<label|N>>
 
@@ -2944,8 +2963,9 @@
 
   <hlink|node info|pure-xml.tm#index-0>
 
-  <hlink|<with|font-series|bold|not (prefix function)>|purelib.tm#not>,
-  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#not/gsl-matrix>
+  <hlink|<with|font-series|bold|not (prefix
+  function)>|pure-gsl.tm#not/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#not>
 
   <hlink|<with|font-series|bold|NULL (constant)>|purelib.tm#NULL>
 
@@ -2965,7 +2985,7 @@
 
   <hlink|<with|font-series|bold|number (type)>|purelib.tm#number/type>
 
-  <hlink|<with|font-series|bold|numberp (function)>|purelib.tm#numberp> 
+  <hlink|<with|font-series|bold|numberp (function)>|purelib.tm#numberp>
 
   <subsection*|O<label|O>>
 
@@ -2997,9 +3017,9 @@
 
   <hlink|operators|purelib.tm#index-0>
 
-  <hlink|<with|font-series|bold|or (infix function)>|purelib.tm#or>,
-  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#or/gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#or/gsl-matrix>
+  <hlink|<with|font-series|bold|or (infix
+  function)>|pure-gsl.tm#or/gsl-matrix>, <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#or/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#or>
 
   <hlink|<with|font-series|bold|ord (function)>|purelib.tm#ord>
 
@@ -3032,7 +3052,7 @@
   (constructor)>|purelib.tm#out-of-bounds>,
   <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#out-of-bounds/stlvec>
 
-  <hlink|override (command)|pure.tm#index-42> 
+  <hlink|override (command)|pure.tm#index-42>
 
   <subsection*|P<label|P>>
 
@@ -3112,8 +3132,8 @@
 
   <hlink|<with|font-series|bold|posix (module)>|purelib.tm#module-posix>
 
-  <hlink|<with|font-series|bold|pow (function)>|purelib.tm#pow>,
-  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#pow/gsl-matrix>
+  <hlink|<with|font-series|bold|pow (function)>|pure-gsl.tm#pow/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#pow>
 
   <hlink|<with|font-series|bold|precision
   (function)>|pure-reduce.tm#precision>
@@ -3389,13 +3409,13 @@
 
   <hlink|<with|font-series|bold|puts (function)>|purelib.tm#puts>
 
-  <hlink|pwd (command)|pure.tm#index-43> 
+  <hlink|pwd (command)|pure.tm#index-43>
 
   <subsection*|Q<label|Q>>
 
   <hlink|quit (command)|pure.tm#index-44>
 
-  <hlink|<with|font-series|bold|quote (function)>|pure.tm#quote> 
+  <hlink|<with|font-series|bold|quote (function)>|pure.tm#quote>
 
   <subsection*|R<label|R>>
 
@@ -3844,7 +3864,7 @@
   <hlink|<with|font-series|bold|rowvectorseq
   (function)>|purelib.tm#rowvectorseq>
 
-  <hlink|run (command)|pure.tm#index-45> 
+  <hlink|run (command)|pure.tm#index-45>
 
   <subsection*|S<label|S>>
 
@@ -4507,8 +4527,7 @@
 
   <hlink|<with|font-series|bold|strftime (function)>|purelib.tm#strftime>
 
-  <hlink|<with|font-series|bold|stride (function)>|purelib.tm#stride>
-  string
+  <hlink|<with|font-series|bold|stride (function)>|purelib.tm#stride> string
 
   <hlink|comparisons|purelib.tm#index-20>
 
@@ -4566,7 +4585,7 @@
   <hlink|<with|font-series|bold|sysinfo (variable)>|pure.tm#sysinfo>
 
   <hlink|<with|font-series|bold|system (function)>|purelib.tm#system>
-  <hlink|<with|font-series|bold|(module)>|purelib.tm#module-system> 
+  <hlink|<with|font-series|bold|(module)>|purelib.tm#module-system>
 
   <subsection*|T<label|T>>
 
@@ -4652,7 +4671,7 @@
 
   <hlink|<with|font-series|bold|tzname (variable)>|purelib.tm#tzname>
 
-  <hlink|<with|font-series|bold|tzset (function)>|purelib.tm#tzset> 
+  <hlink|<with|font-series|bold|tzset (function)>|purelib.tm#tzset>
 
   <subsection*|U<label|U>>
 
@@ -4684,7 +4703,7 @@
 
   <hlink|<with|font-series|bold|update2 (function)>|purelib.tm#update2/array>
 
-  <hlink|<with|font-series|bold|ushort (function)>|purelib.tm#ushort> 
+  <hlink|<with|font-series|bold|ushort (function)>|purelib.tm#ushort>
 
   <subsection*|V<label|V>>
 
@@ -4710,7 +4729,7 @@
 
   <hlink|<with|font-series|bold|version (variable)>|pure.tm#version>
 
-  <hlink|<with|font-series|bold|void (function)>|purelib.tm#void> 
+  <hlink|<with|font-series|bold|void (function)>|purelib.tm#void>
 
   <subsection*|W<label|W>>
 
@@ -4719,7 +4738,7 @@
   <hlink|<with|font-series|bold|waitpid (function)>|purelib.tm#waitpid>
 
   <hlink|<with|font-series|bold|write_history
-  (function)>|pure-readline.tm#write-history> 
+  (function)>|pure-readline.tm#write-history>
 
   <subsection*|X<label|X>>
 
@@ -4956,7 +4975,7 @@
   (function)>|pure-xml.tm#xslt::save-result-string>
 
   <hlink|<with|font-series|bold|xslt::stylesheetp
-  (function)>|pure-xml.tm#xslt::stylesheetp> 
+  (function)>|pure-xml.tm#xslt::stylesheetp>
 
   <subsection*|Z<label|Z>>
 
@@ -4968,10 +4987,9 @@
 
   <hlink|<with|font-series|bold|zipwith3 (function)>|purelib.tm#zipwith3>
 
-  <hlink|toc|#genindex-toc> <hlink|index|#>
-  <hlink|modules|pure-modindex.tm> \| <hlink|Pure Language and Library
-  Documentation|index.tm>
+  <hlink|toc|#genindex-toc> <hlink|index|#> <hlink|modules|pure-modindex.tm>
+  \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  15, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

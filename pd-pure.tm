@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts<label|pd-pure-pd-loader-for-pure-scripts>>
 
-  Version 0.16, September 08, 2013
+  Version 0.16, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -406,8 +406,8 @@
   <verbatim|block~> object, see the Pd documentation for details.) Note that
   the input matrix will have zero rows if the object has zero signal inlets,
   in which case the row size of the matrix (as reported by the
-  <hlink|<with|font-family|tt|dim>|purelib.tm#dim> function) still
-  indicates the block size.
+  <hlink|<with|font-family|tt|dim>|purelib.tm#dim> function) still indicates
+  the block size.
 
   When invoked with a signal matrix as argument, the object function should
   return another double matrix with the resulting sample data for the signal
@@ -459,8 +459,8 @@
 
   Here's another example which takes no inputs and produces one output
   signal, a random wave (i.e., white noise). Note the use of the
-  <hlink|<with|font-family|tt|dim>|purelib.tm#dim> function to determine
-  the number of samples to be generated for each block.
+  <hlink|<with|font-family|tt|dim>|purelib.tm#dim> function to determine the
+  number of samples to be generated for each block.
 
   <\verbatim>
     extern double genrand_real1() = random1;
@@ -582,8 +582,8 @@
   generation of output control messages to send the dB meter values (also
   computed in the Faust dsp) to Pd. (To run this example, you need the
   ``faust2'' branch of the Faust compiler so that the dsp can be inlined into
-  the Pure program. Note that the entire section inside the
-  <verbatim|%\<less\>> <verbatim|%\<gtr\>> braces is Faust code.)
+  the Pure program. Note that the entire section inside the <verbatim|%\<>
+  <verbatim|%\>> braces is Faust code.)
 
   <\verbatim>
     %\<less\> -*- dsp:amp -*-
@@ -961,9 +961,9 @@
   <hlink|<with|font-family|tt|pd_time()>|#pd-time> function, which is
   provided by the Pure loader so that Pure scripts can access the current
   logical Pd time in milliseconds (see <hlink|Programming
-  Interface|#programming-interface> below). This is convenient if we need
-  to deal with absolute time values, which we use in this example to keep
-  track of the times at which messages in the queue are to be delivered:
+  Interface|#programming-interface> below). This is convenient if we need to
+  deal with absolute time values, which we use in this example to keep track
+  of the times at which messages in the queue are to be delivered:
 
   <\verbatim>
     extern double pd_time();
@@ -1089,9 +1089,9 @@
   code. pd-pure makes it possible to transfer audio data directly between Pd
   arrays and Pure double vectors by means of the
   <hlink|<with|font-family|tt|pd_getbuffer()>|#pd-getbuffer> and
-  <hlink|<with|font-family|tt|pd_setbuffer()>|#pd-setbuffer> routines.
-  Please see <hlink|Programming Interface|#programming-interface> below for
-  a closer description of the provided routines.
+  <hlink|<with|font-family|tt|pd_setbuffer()>|#pd-setbuffer> routines. Please
+  see <hlink|Programming Interface|#programming-interface> below for a closer
+  description of the provided routines.
 
   For instance, here is a <verbatim|randomwave> object which fills a Pd array
   (whose name is given as the creation argument) with random values in
@@ -1219,10 +1219,10 @@
     <verbatim|pd_save> message. In response, the object should return a Pure
     expression encoding its internal state in a way which can be serialized
     (see the description of the <hlink|<with|font-family|tt|blob>|purelib.tm#blob>
-    function in the <hlink|<em|Pure Library Manual>|purelib.tm> for
-    details). Usually, it is sufficient to just pack up all state data in a
-    tuple, list or some other aggregate and return that as the response to
-    the <verbatim|pd_save> message.
+    function in the <hlink|<em|Pure Library Manual>|purelib.tm> for details).
+    Usually, it is sufficient to just pack up all state data in a tuple, list
+    or some other aggregate and return that as the response to the
+    <verbatim|pd_save> message.
 
     <item>After reloading, the Pure object will receive a
     <verbatim|pd_restore> <verbatim|state> message, where <verbatim|state> is
@@ -1236,9 +1236,9 @@
   protocol, an object must subscribe to it. This is done by setting
   <verbatim|pd_save> as a sentry on the object function (see the description
   of the <hlink|<with|font-family|tt|sentry>|purelib.tm#sentry> function in
-  the <hlink|<em|Pure Library Manual>|purelib.tm> for details). For
-  instance, here's the counter example from <hlink|Local State|#local-state>
-  again, with the necessary additions to support the
+  the <hlink|<em|Pure Library Manual>|purelib.tm> for details). For instance,
+  here's the counter example from <hlink|Local State|#local-state> again,
+  with the necessary additions to support the
   <verbatim|pd_save>/<verbatim|pd_restore> protocol:
 
   <\verbatim>
@@ -1292,19 +1292,19 @@
 
   <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<table|<row|<cell|<verbatim|C-C>
   <verbatim|C-X>>|<cell|Quick Reload>|<cell|Sends a <verbatim|bang> message
-  to reload object scripts. >>|<row|<cell|<verbatim|C-C>
+  to reload object scripts.>>|<row|<cell|<verbatim|C-C>
   <verbatim|M-X>>|<cell|Full Reload>|<cell|Sends a <verbatim|reload> message
-  to reload everything. >>|<row|<cell|<verbatim|C-C>
+  to reload everything.>>|<row|<cell|<verbatim|C-C>
   <verbatim|C-M>>|<cell|Message>|<cell|Prompts for a message and sends it to
   pure-remote.>>|<row|<cell|<verbatim|C-C> <verbatim|C-S>>|<cell|Play>|<cell|
-  Sends a <verbatim|play> <verbatim|1> message. >>|<row|<cell|<verbatim|C-C>
+  Sends a <verbatim|play> <verbatim|1> message.>>|<row|<cell|<verbatim|C-C>
   <verbatim|C-T>>|<cell|Stop>|<cell|Sends a <verbatim|play> <verbatim|0>
-  message. >>|<row|<cell|<verbatim|C-C> <verbatim|C-G>>|<cell|Restart>|<cell|
+  message.>>|<row|<cell|<verbatim|C-C> <verbatim|C-G>>|<cell|Restart>|<cell|
   Sends a <verbatim|play> <verbatim|0> message followed by <verbatim|play>
-  <verbatim|1>. >>|<row|<cell|<verbatim|C-/>>|<cell|Dsp On>|<cell|Sends a
-  <verbatim|pd> <verbatim|dsp> <verbatim|1> (enable audio processing).
-  >>|<row|<cell|<verbatim|C-.>>|<cell|Dsp Off>|<cell|Sends a <verbatim|pd>
-  <verbatim|dsp> <verbatim|0> (disable audio processing).>>>>>
+  <verbatim|1>.>>|<row|<cell|<verbatim|C-/>>|<cell|Dsp On>|<cell|Sends a
+  <verbatim|pd> <verbatim|dsp> <verbatim|1> (enable audio
+  processing).>>|<row|<cell|<verbatim|C-.>>|<cell|Dsp Off>|<cell|Sends a
+  <verbatim|pd> <verbatim|dsp> <verbatim|0> (disable audio processing).>>>>>
 
   Of course you can easily add more like these, just have a look at how the
   keybindings are implemented in pure-remote.el or pure-mode.el and create
@@ -1462,8 +1462,7 @@
     uint32_t<em|<nbsp>sz>)<label|pd-setbuffersize>>Routines to access the Pd
     array (sample buffer) with the given name. These functions can be used to
     transfer audio data between Pd and Pure scripts; see <hlink|Reading and
-    Writing Audio Data|#reading-and-writing-audio-data> above for an
-    example.
+    Writing Audio Data|#reading-and-writing-audio-data> above for an example.
 
     <hlink|<with|font-family|tt|pd_getbuffersize()>|#pd-getbuffersize> and
     <hlink|<with|font-family|tt|pd_setbuffersize()>|#pd-setbuffersize> gets
@@ -1479,61 +1478,61 @@
     truncated. Conversely, if the size of the buffer exceeds the size of the
     Pure vector, the trailing samples are unaffected. <em|Note:> The second
     argument of <hlink|<with|font-family|tt|pd_setbuffer()>|#pd-setbuffer>
-    can also be a pair <verbatim|(i,x)> denoting an offset <verbatim|i>
-    into the array at which the sample data is to be written, so that this
-    routine allows you to overwrite any part of the array.
+    can also be a pair <verbatim|(i,x)> denoting an offset <verbatim|i> into
+    the array at which the sample data is to be written, so that this routine
+    allows you to overwrite any part of the array.
   </description>
 
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pd-pure-toc>>
 
   <\itemize>
-    <item><hlink|pd-pure: Pd loader for Pure scripts|#>\ 
+    <item><hlink|pd-pure: Pd loader for Pure scripts|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
       <\itemize>
         <item><hlink|pd-pure on Windows|#pd-pure-on-windows>
       </itemize>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
-      <item><hlink|Control Objects|#control-objects>\ 
+      <item><hlink|Control Objects|#control-objects>
 
       <\itemize>
-        <item><hlink|Simple Objects|#simple-objects>\ 
+        <item><hlink|Simple Objects|#simple-objects>
 
-        <item><hlink|Creation Arguments|#creation-arguments>\ 
+        <item><hlink|Creation Arguments|#creation-arguments>
 
-        <item><hlink|The [pure] Object|#the-pure-object>\ 
+        <item><hlink|The [pure] Object|#the-pure-object>
 
         <item><hlink|Configuring Inlets and
-        Outlets|#configuring-inlets-and-outlets>\ 
+        Outlets|#configuring-inlets-and-outlets>
 
         <item><hlink|Local State|#local-state>
       </itemize>
 
-      <item><hlink|Audio Objects|#audio-objects>\ 
+      <item><hlink|Audio Objects|#audio-objects>
 
-      <item><hlink|Advanced Features|#advanced-features>\ 
+      <item><hlink|Advanced Features|#advanced-features>
 
       <\itemize>
-        <item><hlink|Asynchronous Messages|#asynchronous-messages>\ 
+        <item><hlink|Asynchronous Messages|#asynchronous-messages>
 
-        <item><hlink|Wireless Messaging|#wireless-messaging>\ 
+        <item><hlink|Wireless Messaging|#wireless-messaging>
 
         <item><hlink|Reading and Writing Audio
-        Data|#reading-and-writing-audio-data>\ 
+        Data|#reading-and-writing-audio-data>
 
-        <item><hlink|Controlling the Runtime|#controlling-the-runtime>\ 
+        <item><hlink|Controlling the Runtime|#controlling-the-runtime>
 
-        <item><hlink|Livecoding|#livecoding>\ 
+        <item><hlink|Livecoding|#livecoding>
 
-        <item><hlink|Remote Control|#remote-control>\ 
+        <item><hlink|Remote Control|#remote-control>
 
-        <item><hlink|Compiling Objects|#compiling-objects>\ 
+        <item><hlink|Compiling Objects|#compiling-objects>
 
         <item><hlink|Programming Interface|#programming-interface>
       </itemize>
@@ -1553,6 +1552,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

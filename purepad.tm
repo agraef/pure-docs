@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -59,29 +59,29 @@
 
   To start up the interpreter you use <em|Script
   <math|\<blacktriangleright\>> Run> (<verbatim|F9>) and wait for the
-  interpreter's <verbatim|\<gtr\>> prompt to appear. This command will run
-  the Pure interpreter with the script currently shown in the source pane (or
-  an empty script if you haven't yet loaded a script using the <em|File
+  interpreter's <verbatim|\>> prompt to appear. This command will run the
+  Pure interpreter with the script currently shown in the source pane (or an
+  empty script if you haven't yet loaded a script using the <em|File
   <math|\<blacktriangleright\>> Open> (<verbatim|Ctrl-O>) command). The
   cursor will be placed in the log pane (see <hlink|Using the
   Log|#using-the-log>) and you can start typing in expressions and
   definitions to be evaluated. See <hlink|Running Scripts|#running-scripts>
   for more information on this.
 
-  To begin a new script, use the <em|File <math|\<blacktriangleright\>>
-  New> (<verbatim|Ctrl-N>) command. Probably the next thing you want to do
-  is to enter your first own little Pure script. For instance, here is a
-  version of the factorial function:
+  To begin a new script, use the <em|File <math|\<blacktriangleright\>> New>
+  (<verbatim|Ctrl-N>) command. Probably the next thing you want to do is to
+  enter your first own little Pure script. For instance, here is a version of
+  the factorial function:
 
   <\verbatim>
     fact n = if n\<gtr\>0 then n*fact (n-1) else 1;
   </verbatim>
 
   Enter this equation into the source editor pane, save the script as
-  <verbatim|fact.pure> with the <em|File <math|\<blacktriangleright\>>
-  Save> (<verbatim|Ctrl-S>) command and press <verbatim|F9>. The cursor
-  will be placed into the log pane and after a while the interpreter's
-  <verbatim|\<gtr\>> prompt will appear. You can now type an expression like
+  <verbatim|fact.pure> with the <em|File <math|\<blacktriangleright\>> Save>
+  (<verbatim|Ctrl-S>) command and press <verbatim|F9>. The cursor will be
+  placed into the log pane and after a while the interpreter's <verbatim|\>>
+  prompt will appear. You can now type an expression like
 
   <\verbatim>
     map fact (1.. 10);
@@ -90,10 +90,10 @@
   and see what happens.
 
   The currently selected pane (source or log) can be printed using the
-  <em|File <math|\<blacktriangleright\>> Print> (<verbatim|Ctrl-P>)
-  command; you can also obtain a print preview with the <em|Print Preview>
-  command in the <em|File> menu. To change the font and tabulator settings in
-  the current pane, use the <em|Font> and <em|Tab Stops> commands in the
+  <em|File <math|\<blacktriangleright\>> Print> (<verbatim|Ctrl-P>) command;
+  you can also obtain a print preview with the <em|Print Preview> command in
+  the <em|File> menu. To change the font and tabulator settings in the
+  current pane, use the <em|Font> and <em|Tab Stops> commands in the
   <em|View> menu. (Usually it is best to choose a fixed-width font here, like
   <verbatim|Fixedsys>, which is also the default. Tab stops are set to 8 by
   default.)
@@ -263,16 +263,16 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|purepad-toc>>
 
   <\itemize>
-    <item><hlink|Using PurePad|#>\ 
+    <item><hlink|Using PurePad|#>
 
     <\itemize>
-      <item><hlink|Getting Started|#getting-started>\ 
+      <item><hlink|Getting Started|#getting-started>
 
-      <item><hlink|Editing Scripts|#editing-scripts>\ 
+      <item><hlink|Editing Scripts|#editing-scripts>
 
-      <item><hlink|Running Scripts|#running-scripts>\ 
+      <item><hlink|Running Scripts|#running-scripts>
 
-      <item><hlink|Using the Log|#using-the-log>\ 
+      <item><hlink|Using the Log|#using-the-log>
 
       <item><hlink|Locating Source Lines|#locating-source-lines>
     </itemize>
@@ -291,6 +291,6 @@
   <hlink|previous|windows.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

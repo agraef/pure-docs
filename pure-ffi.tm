@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-ffi<label|module-ffi>>
 
-  Version 0.13, September 08, 2013
+  Version 0.13, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -96,8 +96,8 @@
   </description>
 
   Note that in difference to <hlink|<with|font-family|tt|extern>|pure.tm#extern>
-  functions, arguments to functions created with libffi are always passed
-  in uncurried form, as a Pure tuple. E.g.:
+  functions, arguments to functions created with libffi are always passed in
+  uncurried form, as a Pure tuple. E.g.:
 
   <\verbatim>
     \<gtr\> using ffi;
@@ -136,14 +136,14 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-ffi-toc>>
 
   <\itemize>
-    <item><hlink|pure-ffi|#>\ 
+    <item><hlink|pure-ffi|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
       <item><hlink|TODO|#todo>
     </itemize>
@@ -162,6 +162,6 @@
   <hlink|previous|pure-doc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <label|module-readline><section*|pure-readline<label|pure-readline>>
 
-  Version 0.2, September 08, 2013
+  Version 0.2, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -24,7 +24,7 @@
   replacement licensed under the 3-clause BSD license. You can find these at:
 
   <\itemize>
-    <item>GNU readline: <hlink|http://tiswww.tis.case.edu/<math|\<sim\>>chet/readline/rltop.html|http://tiswww.tis.case.edu/-tildechet/readline/rltop.html>\ 
+    <item>GNU readline: <hlink|http://tiswww.tis.case.edu/<math|\<sim\>>chet/readline/rltop.html|http://tiswww.tis.case.edu/-tildechet/readline/rltop.html>
 
     <item>BSD editline/libedit: <hlink|http://www.thrysoee.dk/editline|http://www.thrysoee.dk/editline>
   </itemize>
@@ -69,8 +69,8 @@
     <item*|read_history fname<label|read-history>>Reads the command history
     from the given file. Note that this in fact <em|adds> the contents of the
     history file to the current history, so you may want to call
-    <hlink|<with|font-family|tt|clear_history>|#clear-history> beforehand
-    if this function is called multiple times.
+    <hlink|<with|font-family|tt|clear_history>|#clear-history> beforehand if
+    this function is called multiple times.
   </description>
 
   <\description>
@@ -123,6 +123,6 @@
   <hlink|previous|pure-gen.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

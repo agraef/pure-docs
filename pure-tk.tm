@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-tk<label|module-tk>>
 
-  Version 0.4, September 08, 2013
+  Version 0.4, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -93,12 +93,12 @@
   You can submit a command to the Tcl interpreter with <verbatim|tk>
   <verbatim|cmd> where <verbatim|cmd> is a string containing the command to
   be executed. If the Tcl command returns a value (i.e., a nonempty string)
-  then <hlink|<with|font-family|tt|tk>|#tk> returns that string, otherwise
-  it returns <verbatim|()>.
+  then <hlink|<with|font-family|tt|tk>|#tk> returns that string, otherwise it
+  returns <verbatim|()>.
 
-  <hlink|<with|font-family|tt|tk>|#tk> also starts a new instance of the
-  Tcl interpreter if it is not already running. To stop the Tcl interpreter,
-  you can use the <hlink|<with|font-family|tt|tk_quit>|#tk-quit> function.
+  <hlink|<with|font-family|tt|tk>|#tk> also starts a new instance of the Tcl
+  interpreter if it is not already running. To stop the Tcl interpreter, you
+  can use the <hlink|<with|font-family|tt|tk_quit>|#tk-quit> function.
 
   <\description>
     <item*|tk_quit<label|tk-quit>>stop the Tcl interpreter
@@ -176,10 +176,10 @@
 
   The main loop terminates as soon as the Tcl interpreter is exited, which
   can happen, e.g., in response to a callback which invokes the
-  <hlink|<with|font-family|tt|tk_quit>|#tk-quit> function (as shown above)
-  or Tcl code which destroys the main window (<verbatim|destroy>
-  <verbatim|.>). The user can also close the main window from the window
-  manager in order to exit the main loop.
+  <hlink|<with|font-family|tt|tk_quit>|#tk-quit> function (as shown above) or
+  Tcl code which destroys the main window (<verbatim|destroy> <verbatim|.>).
+  The user can also close the main window from the window manager in order to
+  exit the main loop.
 
   <subsection|Accessing Tcl Variables<label|accessing-tcl-variables>>
 
@@ -216,9 +216,9 @@
     tk_get "entry_val"
   </verbatim>
 
-  Note that <hlink|<with|font-family|tt|tk_set>|#tk-set> returns the
-  assigned value, so it is possible to chain such calls if several variables
-  have to be set to the same value:
+  Note that <hlink|<with|font-family|tt|tk_set>|#tk-set> returns the assigned
+  value, so it is possible to chain such calls if several variables have to
+  be set to the same value:
 
   <\verbatim>
     \<gtr\> tk_set "foo" $ tk_set "bar" "yes";
@@ -313,8 +313,8 @@
 
     If no definition for this function is provided, then errors cause a
     literal <verbatim|tk_error> <verbatim|msg> expression to be returned as
-    the result of the <hlink|<with|font-family|tt|tk>|#tk> function. You
-    can then check for such results and take an appropriate action.
+    the result of the <hlink|<with|font-family|tt|tk>|#tk> function. You can
+    then check for such results and take an appropriate action.
 
     <item>The Tcl interpreter, when started, displays a default main window,
     which is required by most Tk applications. If this is not desired (e.g.,
@@ -347,11 +347,11 @@
     background processing using the Tcl interpreter's own facilities (e.g.,
     by setting up a Pure callback with the Tcl <verbatim|after> command).
 
-    <item>The <hlink|<with|font-family|tt|tk>|#tk> function can become
-    rather tedious when coding larger Tk applications. Usually, you will
-    prefer to put the commands making up your application into a separate Tcl
-    script. One way to incorporate the Tcl script into your your Pure program
-    is to use the Tcl <verbatim|source> command, e.g.:
+    <item>The <hlink|<with|font-family|tt|tk>|#tk> function can become rather
+    tedious when coding larger Tk applications. Usually, you will prefer to
+    put the commands making up your application into a separate Tcl script.
+    One way to incorporate the Tcl script into your your Pure program is to
+    use the Tcl <verbatim|source> command, e.g.:
 
     <\verbatim>
       tk "source myapp.tcl";
@@ -396,14 +396,13 @@
       tk "package require Gnocl";
     </verbatim>
 
-    This loads Peter G. Baum's <hlink|Gnocl|http://www.gnocl.org/>
-    extension which turns Tcl into a frontend for
-    <hlink|GTK+|http://www.gtk.org/> and
+    This loads Peter G. Baum's <hlink|Gnocl|http://www.gnocl.org/> extension
+    which turns Tcl into a frontend for <hlink|GTK+|http://www.gtk.org/> and
     <hlink|Gnome|http://www.gnome.org/>. In fact, pure-tk includes a special
     module to handle the nitty-gritty details of creating a GTK+/Gnome
-    application from a <hlink|Glade|http://glade.gnome.org/> UI file and
-    set up Pure callbacks as specified in the UI file. To use this, just
-    import the gnocl.pure module into your Pure scripts:
+    application from a <hlink|Glade|http://glade.gnome.org/> UI file and set
+    up Pure callbacks as specified in the UI file. To use this, just import
+    the gnocl.pure module into your Pure scripts:
 
     <\verbatim>
       using gnocl;
@@ -455,25 +454,25 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-tk-toc>>
 
   <\itemize>
-    <item><hlink|pure-tk|#>\ 
+    <item><hlink|pure-tk|#>
 
     <\itemize>
-      <item><hlink|Introduction|#introduction>\ 
+      <item><hlink|Introduction|#introduction>
 
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Basic Usage|#basic-usage>\ 
+      <item><hlink|Basic Usage|#basic-usage>
 
-      <item><hlink|Callbacks|#callbacks>\ 
+      <item><hlink|Callbacks|#callbacks>
 
-      <item><hlink|The Main Loop|#the-main-loop>\ 
+      <item><hlink|The Main Loop|#the-main-loop>
 
-      <item><hlink|Accessing Tcl Variables|#accessing-tcl-variables>\ 
+      <item><hlink|Accessing Tcl Variables|#accessing-tcl-variables>
 
       <item><hlink|Conversions Between Pure and Tcl
-      Values|#conversions-between-pure-and-tcl-values>\ 
+      Values|#conversions-between-pure-and-tcl-values>
 
       <item><hlink|Tips and Tricks|#tips-and-tricks>
     </itemize>
@@ -492,6 +491,6 @@
   <hlink|previous|pure-gtk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

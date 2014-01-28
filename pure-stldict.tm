@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.17>
+<TeXmacs|1.0.7.20>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,8 +10,7 @@
 
   <section*|pure-stldict<label|module-stldict>>
 
-  <label|module-hashdict><label|module-orddict>Version 0.6, September 08,
-  2013
+  <label|module-hashdict><label|module-orddict>Version 0.6, January 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -107,14 +106,14 @@
 
     <item*|<em|type> ordmdict<label|ordmdict/type>>Ordered dictionary data
     structures. These require the keys to be ordered by the standard
-    <verbatim|\<less\>> predicate, like the ordered dictionary and set data
+    <verbatim|\<> predicate, like the ordered dictionary and set data
     structures in the standard library, and can be found in the
     <verbatim|orddict.pure> module.
   </description>
 
   Note that <hlink|<with|font-family|tt|hashdict>|#hashdict/type> and
-  <hlink|<with|font-family|tt|hashmdict>|#hashmdict/type> differ in that
-  the former has exactly one key-value association for each key in the
+  <hlink|<with|font-family|tt|hashmdict>|#hashmdict/type> differ in that the
+  former has exactly one key-value association for each key in the
   dictionary, while the latter is a ``multidict'' which allows multiple
   values to be associated with a key. The same applies to the
   <hlink|<with|font-family|tt|orddict>|#orddict/type> and
@@ -147,8 +146,8 @@
   <hlink|<with|font-family|tt|hashmdict>|#hashmdict/type> values. Likewise,
   <hlink|<with|font-family|tt|stlmdict>|#stlmdict/type> matches both
   <hlink|<with|font-family|tt|hashmdict>|#hashmdict/type> and
-  <hlink|<with|font-family|tt|ordmdict>|#ordmdict/type> values. To match
-  any kind of dictionary, use the <hlink|<with|font-family|tt|stlxdict>|#stlxdict/type>
+  <hlink|<with|font-family|tt|ordmdict>|#ordmdict/type> values. To match any
+  kind of dictionary, use the <hlink|<with|font-family|tt|stlxdict>|#stlxdict/type>
   type.
 
   These data structures are very thin wrappers around the C++ container
@@ -173,23 +172,23 @@
   All types of dictionaries are simply pointers to the corresponding C++
   containers which hold key-value associations where both keys and values may
   be arbitrary Pure expressions. The <hlink|basic
-  operations|#basic-operations> described below can be used to create,
-  query and modify these objects. <hlink|Comparisons|#comparisons> of
-  dictionaries are implemented as well, and the <hlink|set-like
-  operations|#set-like-operations> let you combine dictionaries in
-  different ways. These operations provide an interface similar to the usual
-  Pure container API.
+  operations|#basic-operations> described below can be used to create, query
+  and modify these objects. <hlink|Comparisons|#comparisons> of dictionaries
+  are implemented as well, and the <hlink|set-like
+  operations|#set-like-operations> let you combine dictionaries in different
+  ways. These operations provide an interface similar to the usual Pure
+  container API.
 
   In addition, the <hlink|<with|font-family|tt|stldict>|#module-stldict>
-  module provides some <hlink|list-like operations|#list-like-operations>
-  on dictionaries, so that the member data can be processed and aggregated
-  in a convenient fashion (including the ability to use dictionaries as
-  generators in list and matrix comprehensions), and there's also an
-  interface to C++ <hlink|iterators|#iterators> which enables you to
-  traverse, inspect and modify the containers in a more C++-like way. Some
-  <hlink|low-level operations|#low-level-operations> are available to
-  access information about the underlying hash table of a hashed dictionary.
-  Last but not least, the module also offers some operations to customize the
+  module provides some <hlink|list-like operations|#list-like-operations> on
+  dictionaries, so that the member data can be processed and aggregated in a
+  convenient fashion (including the ability to use dictionaries as generators
+  in list and matrix comprehensions), and there's also an interface to C++
+  <hlink|iterators|#iterators> which enables you to traverse, inspect and
+  modify the containers in a more C++-like way. Some <hlink|low-level
+  operations|#low-level-operations> are available to access information about
+  the underlying hash table of a hashed dictionary. Last but not least, the
+  module also offers some operations to customize the
   <hlink|pretty-printing|#pretty-printing> of dictionary values.
 
   When working with these data structures, please note the following special
@@ -232,7 +231,7 @@
     also be used as a set data structure. This obviates the need for a
     separate set data structure at the cost of some (small) increase in
     memory usage. Also note that you can't really have a hash pair
-    <verbatim|x=\<gtr\>y> as a member of a set, since it always denotes a
+    <verbatim|x=\>y> as a member of a set, since it always denotes a
     key-value association. As a remedy, you may use ordinary pairs
     <verbatim|(x,y)> instead.
   </itemize>
@@ -248,10 +247,10 @@
 
     <item*|ordmdict xs<label|ordmdict>>Create a dictionary of the
     corresponding type from a list, tuple or vector of its members. Members
-    can be specified as hash pairs <verbatim|x=\<gtr\>y> to denote a
-    key-value association. Any other kind of value denotes a singleton key
-    without associated value. Note that the ordered dictionaries require that
-    the keys be ordered, i.e., the <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<>
+    can be specified as hash pairs <verbatim|x=\>y> to denote a key-value
+    association. Any other kind of value denotes a singleton key without
+    associated value. Note that the ordered dictionaries require that the
+    keys be ordered, i.e., the <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<>
     predicate must be defined on them.
 
     The same operations can also be used to construct a dictionary from
@@ -388,23 +387,23 @@
     <item*|insert m (x=\<gtr\>y)<label|insert/stldict2>>
 
     <item*|update m x y<label|update/stldict>>Insert a singleton key
-    <verbatim|x> or a key-value pair <verbatim|x=\<gtr\>y> into <verbatim|m>
-    and return the modified dictionary. This always adds a new member in a
+    <verbatim|x> or a key-value pair <verbatim|x=\>y> into <verbatim|m> and
+    return the modified dictionary. This always adds a new member in a
     multidict, otherwise it replaces an existing value if there is one.
     <hlink|<with|font-family|tt|update>|#update/stldict> is provided as a
     fully curried version of <hlink|<with|font-family|tt|insert>|#insert/stldict2>,
     so <verbatim|update> <verbatim|m> <verbatim|x> <verbatim|y> behaves
-    exactly like <verbatim|insert> <verbatim|m> <verbatim|(x=\<gtr\>y)>.
+    exactly like <verbatim|insert> <verbatim|m> <verbatim|(x=\>y)>.
   </description>
 
   <\description>
     <item*|delete m x<label|delete/stldict>>
 
     <item*|delete m (x=\<gtr\>y)<label|delete/stldict2>>Remove the key
-    <verbatim|x> or the specific key-value pair <verbatim|x=\<gtr\>y> from
+    <verbatim|x> or the specific key-value pair <verbatim|x=\>y> from
     <verbatim|m> (if present) and return the modified dictionary. In the
     multidict case, only the first member with the given key <verbatim|x> or
-    key-value pair <verbatim|x=\<gtr\>y> is removed.
+    key-value pair <verbatim|x=\>y> is removed.
   </description>
 
   <\description>
@@ -419,18 +418,17 @@
   <hlink|<with|font-family|tt|\<less\>=>|purelib.tm#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<> etc.) are defined on
   all dictionary types, where two dictionaries are considered ``equal''
-  (<verbatim|m1==m2>) if they both contain the same
-  <verbatim|key=\<gtr\>value> pairs, and <verbatim|m1\<less\>=m2> means that
-  <verbatim|m1> is a sub-dictionary of <verbatim|m2>, i.e., all
-  <verbatim|key=\<gtr\>value> pairs of <verbatim|m1> are also contained in
-  <verbatim|m2> (taking into account multiplicities in the multidict case).
-  Ordered dictionaries compare keys using equality (assuming two keys
-  <verbatim|a> and <verbatim|b> to be equal if neither <verbatim|a\<less\>b>
-  nor <verbatim|b\<less\>a> holds), while hashed dictionaries check for
-  syntactical equality (using <hlink|<with|font-family|tt|===>|purelib.tm#===>).
+  (<verbatim|m1==m2>) if they both contain the same <verbatim|key=\>value>
+  pairs, and <verbatim|m1\<=m2> means that <verbatim|m1> is a sub-dictionary
+  of <verbatim|m2>, i.e., all <verbatim|key=\>value> pairs of <verbatim|m1>
+  are also contained in <verbatim|m2> (taking into account multiplicities in
+  the multidict case). Ordered dictionaries compare keys using equality
+  (assuming two keys <verbatim|a> and <verbatim|b> to be equal if neither
+  <verbatim|a\<b> nor <verbatim|b\<a> holds), while hashed dictionaries check
+  for syntactical equality (using <hlink|<with|font-family|tt|===>|purelib.tm#===>).
   The associated values are compared using the
-  <hlink|<with|font-family|tt|==>|purelib.tm#==> predicate if it is
-  defined, falling back to syntactic equality otherwise.
+  <hlink|<with|font-family|tt|==>|purelib.tm#==> predicate if it is defined,
+  falling back to syntactic equality otherwise.
 
   The module also defines syntactic equality on all dictionary types, so that
   two dictionaries of the same type are considered syntactically equal iff
@@ -489,7 +487,7 @@
     <hlink|<with|font-family|tt|rowmap>|purelib.tm#rowmap>,
     <hlink|<with|font-family|tt|rowcatmap>|purelib.tm#rowcatmap>,
     <hlink|<with|font-family|tt|colmap>|purelib.tm#colmap>,
-    <hlink|<with|font-family|tt|colcatmap>|purelib.tm#colcatmap>\ 
+    <hlink|<with|font-family|tt|colcatmap>|purelib.tm#colcatmap>
 
     <item><hlink|<with|font-family|tt|all>|purelib.tm#all>,
     <hlink|<with|font-family|tt|any>|purelib.tm#any>,
@@ -527,8 +525,8 @@
 
   You should only use these directly if you know what you are doing. In
   particular, make sure to consult the <hlink|C++ standard library
-  documentation|http://en.cppreference.com/w/cpp> for further details on
-  C++ iterator usage.
+  documentation|http://en.cppreference.com/w/cpp> for further details on C++
+  iterator usage.
 
   The following operations are provided to create an iterator for a given
   dictionary.
@@ -538,9 +536,9 @@
 
     <item*|stldict::end m<label|stldict::end>>Return iterators pointing to
     the beginning and the end of the container. (Note that
-    <hlink|<with|font-family|tt|stldict::end>|#stldict::end> <em|must>
-    always be specified in qualified form since <verbatim|end> is a keyword
-    in the Pure language.)
+    <hlink|<with|font-family|tt|stldict::end>|#stldict::end> <em|must> always
+    be specified in qualified form since <verbatim|end> is a keyword in the
+    Pure language.)
   </description>
 
   <\description>
@@ -865,9 +863,9 @@
   member list of the dictionary as an intermediate value, which will need
   considerable extra memory in the case of large dictionaries. As a remedy,
   you can also use the <hlink|<with|font-family|tt|stream>|#stream/stldict>
-  function to convert the dictionary to a lazy list instead. This will
-  often be slower, but in the case of big dictionaries the tradeoff between
-  memory usage and execution speed might be worth considering. For instance:
+  function to convert the dictionary to a lazy list instead. This will often
+  be slower, but in the case of big dictionaries the tradeoff between memory
+  usage and execution speed might be worth considering. For instance:
 
   <\verbatim>
     \<gtr\> let m = hashdict [foo i =\<gtr\> i \| i = 1..10000];
@@ -906,31 +904,31 @@
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stldict-toc>>
 
   <\itemize>
-    <item><hlink|pure-stldict|#>\ 
+    <item><hlink|pure-stldict|#>
 
     <\itemize>
-      <item><hlink|Copying|#copying>\ 
+      <item><hlink|Copying|#copying>
 
-      <item><hlink|Installation|#installation>\ 
+      <item><hlink|Installation|#installation>
 
-      <item><hlink|Usage|#usage>\ 
+      <item><hlink|Usage|#usage>
 
-      <item><hlink|Types|#types>\ 
+      <item><hlink|Types|#types>
 
-      <item><hlink|Operations|#operations>\ 
+      <item><hlink|Operations|#operations>
 
       <\itemize>
-        <item><hlink|Basic Operations|#basic-operations>\ 
+        <item><hlink|Basic Operations|#basic-operations>
 
-        <item><hlink|Comparisons|#comparisons>\ 
+        <item><hlink|Comparisons|#comparisons>
 
-        <item><hlink|Set-Like Operations|#set-like-operations>\ 
+        <item><hlink|Set-Like Operations|#set-like-operations>
 
-        <item><hlink|List-Like Operations|#list-like-operations>\ 
+        <item><hlink|List-Like Operations|#list-like-operations>
 
-        <item><hlink|Iterators|#iterators>\ 
+        <item><hlink|Iterators|#iterators>
 
-        <item><hlink|Low-Level Operations|#low-level-operations>\ 
+        <item><hlink|Low-Level Operations|#low-level-operations>
 
         <item><hlink|Pretty-Printing|#pretty-printing>
       </itemize>
@@ -952,6 +950,6 @@
   <hlink|previous|pure-sockets.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2013, Albert Gräf et al. Last updated on Sep
-  08, 2013. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.\ 
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
