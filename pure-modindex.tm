@@ -190,6 +190,6 @@
   <hlink|toc|#pure-modindex-toc> <hlink|index|genindex.tm> <hlink|modules|#>
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  03, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

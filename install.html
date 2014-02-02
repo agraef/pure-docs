@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.59, January 28, 2014</p>
+<p>Version 0.59, February 03, 2014</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -84,6 +84,14 @@ for other (UNIX-like) systems is provided at the same location.</p>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
 using LLVM 3.4 and Pure 0.59, please substitute your actual version
 numbers in the commands given below.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you&#8217;re reading this documentation online, then the Pure version
+described here most likely is still under development, in which case you
+can either grab the latest available release, or install from the
+development sources instead (see <a class="reference internal" href="#installing-from-development-sources">Installing From Development Sources</a>
+below).</p>
+</div>
 <p>Prerequisites: gcc, GNU make, flex/bison (development sources only), libltdl,
 libgmp and libmpfr (including header files for development), wget (for
 downloading and installing the online documentation), GNU emacs (if you want
@@ -99,11 +107,11 @@ this writing, are available here:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">If you&#8217;re reading this documentation online, then the Pure version
-described here most likely is still under development, in which case you
-can either grab the latest available release, or install from the
-development sources instead (see <a class="reference internal" href="#installing-from-development-sources">Installing From Development Sources</a>
-below).</p>
+<p class="last">LLVM 3.4 is known to have issues with its <tt class="docutils literal"><span class="pre">llc</span></tt> program, which
+affects Pure&#8217;s batch compiler (<tt class="docutils literal"><span class="pre">pure</span> <span class="pre">-c</span></tt>). If you find that you get lots
+of error messages when running <tt class="docutils literal"><span class="pre">pure</span> <span class="pre">-c</span></tt> then you might want to stick to
+LLVM 3.3 for now. (As a workaround, it&#8217;s also be possible to replace the
+<tt class="docutils literal"><span class="pre">llc</span></tt> and <tt class="docutils literal"><span class="pre">opt</span></tt> programs from LLVM 3.4 with the ones from LLVM 3.3.)</p>
 </div>
 <p>Installing LLVM and clang (the latter is optional but recommended):</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz llvm-3.4.src.tar.gz
@@ -1154,7 +1162,7 @@ unzip these into some convenient location on your harddrive and set up
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Jan 28, 2014.
+    Last updated on Feb 03, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

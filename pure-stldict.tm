@@ -10,7 +10,7 @@
 
   <section*|pure-stldict<label|module-stldict>>
 
-  <label|module-hashdict><label|module-orddict>Version 0.6, January 28, 2014
+  <label|module-hashdict><label|module-orddict>Version 0.7, February 03, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -45,7 +45,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.6.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.7.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.7.tar.gz>.
 
   Run <verbatim|make> to compile the modules and <verbatim|make>
   <verbatim|install> (as root) to install them in the Pure library directory.
@@ -950,6 +950,6 @@
   <hlink|previous|pure-sockets.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  03, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

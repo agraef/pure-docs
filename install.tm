@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.59, January 28, 2014
+  Version 0.59, February 03, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -43,6 +43,13 @@
   using LLVM 3.4 and Pure 0.59, please substitute your actual version numbers
   in the commands given below.
 
+  <with|font-series|bold|Note:> If you're reading this documentation online,
+  then the Pure version described here most likely is still under
+  development, in which case you can either grab the latest available
+  release, or install from the development sources instead (see
+  <hlink|Installing From Development Sources|#installing-from-development-sources>
+  below).
+
   Prerequisites: gcc, GNU make, flex/bison (development sources only),
   libltdl, libgmp and libmpfr (including header files for development), wget
   (for downloading and installing the online documentation), GNU emacs (if
@@ -60,12 +67,13 @@
 
   <hlink|http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz|http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz>
 
-  <with|font-series|bold|Note:> If you're reading this documentation online,
-  then the Pure version described here most likely is still under
-  development, in which case you can either grab the latest available
-  release, or install from the development sources instead (see
-  <hlink|Installing From Development Sources|#installing-from-development-sources>
-  below).
+  <with|font-series|bold|Note:> LLVM 3.4 is known to have issues with its
+  <verbatim|llc> program, which affects Pure's batch compiler
+  (<verbatim|pure> <verbatim|-c>). If you find that you get lots of error
+  messages when running <verbatim|pure> <verbatim|-c> then you might want to
+  stick to LLVM 3.3 for now. (As a workaround, it's also be possible to
+  replace the <verbatim|llc> and <verbatim|opt> programs from LLVM 3.4 with
+  the ones from LLVM 3.3.)
 
   Installing LLVM and clang (the latter is optional but recommended):
 
@@ -1451,6 +1459,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  03, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
