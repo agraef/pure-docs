@@ -57,7 +57,7 @@
             
   <div class="section" id="the-pure-manual">
 <h1>The Pure Manual<a class="headerlink" href="#the-pure-manual" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.59, January 28, 2014</p>
+<p>Version 0.59, February 04, 2014</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Copyright (c) 2009-2013 by Albert Gräf. This document is available under the
 <a class="reference external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</a>. Also see the <a class="reference internal" href="#copying">Copying</a> section for licensing information of the
@@ -774,12 +774,23 @@ file is created instead.</p>
 external tools are required to generate these. If the target is an .s, .o or
 executable file, the Pure interpreter creates a temporary bitcode file on
 which it invokes the LLVM tools <strong class="program">opt</strong> and <strong class="program">llc</strong> to create a
-native assembler file, and then uses the C/C++ compiler (normally
-<strong class="program">gcc</strong>, but you can change this with the <span class="target" id="index-3"></span><a class="reference internal" href="#envvar-CC"><tt class="xref std std-envvar docutils literal"><span class="pre">CC</span></tt></a> and
-<span class="target" id="index-4"></span><a class="reference internal" href="#envvar-CXX"><tt class="xref std std-envvar docutils literal"><span class="pre">CXX</span></tt></a> environment variables) to assemble and link the resulting
-program (if requested). You can also specify additional libraries to be linked
-into the executable with the <a class="reference internal" href="#cmdoption-pure-l"><em class="xref std std-option">-l</em></a> option. If the output filename is
-omitted, it defaults to a.out (a.exe on Windows).</p>
+native assembler file, and then uses the C/C++ compiler to assemble and link
+the resulting program (if requested). You can also specify additional
+libraries to be linked into the executable with the <a class="reference internal" href="#cmdoption-pure-l"><em class="xref std std-option">-l</em></a> option. If
+the output filename is omitted, it defaults to a.out (a.exe on Windows).</p>
+<p>The C/C++ compiler invoked by the batch compiler is normally <strong class="program">gcc</strong> by
+default, but you can change this with the <span class="target" id="index-3"></span><a class="reference internal" href="#envvar-CC"><tt class="xref std std-envvar docutils literal"><span class="pre">CC</span></tt></a> and <span class="target" id="index-4"></span><a class="reference internal" href="#envvar-CXX"><tt class="xref std std-envvar docutils literal"><span class="pre">CXX</span></tt></a>
+environment variables. The LLVM tools <strong class="program">opt</strong> and <strong class="program">llc</strong> are
+usually located on the <span class="target" id="index-5"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt> or in a system-specific directory
+determined at installation time. It is also possible to use custom versions of
+these programs with the batch compiler, by placing them into the Pure library
+directory, as specified at installation time or by the <span class="target" id="index-6"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a>
+environment variable. (Note that this lets you use the batch compiler on
+systems which don&#8217;t have the LLVM toolchain installed. In fact, you could even
+deploy a stand-alone version of the interpreter together with the requisite
+LLVM tools on systems which don&#8217;t have LLVM installed at all, by linking both
+the Pure runtime and the <strong class="program">opt</strong> and <strong class="program">llc</strong> programs statically
+against LLVM.)</p>
 <p>The <a class="reference internal" href="#cmdoption-pure-c"><em class="xref std std-option">-c</em></a> option provides a convenient way to quickly turn a Pure
 script into a standalone executable which can be invoked directly from the
 shell. One advantage of compiling your script is that this eliminates the JIT
@@ -1402,7 +1413,7 @@ respectively.</p>
 <dl class="envvar">
 <dt id="envvar-BROWSER">
 <tt class="descname">BROWSER</tt><a class="headerlink" href="#envvar-BROWSER" title="Permalink to this definition">¶</a></dt>
-<dd><p>If the <span class="target" id="index-5"></span><a class="reference internal" href="#envvar-PURE_HELP"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_HELP</span></tt></a> variable is not set (see below), this specifies
+<dd><p>If the <span class="target" id="index-7"></span><a class="reference internal" href="#envvar-PURE_HELP"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_HELP</span></tt></a> variable is not set (see below), this specifies
 a colon-separated list of browsers to try for reading the online
 documentation. See <a class="reference external" href="http://catb.org/~esr/BROWSER/">http://catb.org/~esr/BROWSER/</a>.</p>
 </dd></dl>
@@ -1411,7 +1422,7 @@ documentation. See <a class="reference external" href="http://catb.org/~esr/BROW
 <dt id="envvar-PURELIB">
 <tt class="descname">PURELIB</tt><a class="headerlink" href="#envvar-PURELIB" title="Permalink to this definition">¶</a></dt>
 <dd><p>Directory to search for library scripts, including the prelude. If
-<span class="target" id="index-6"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a> is not set, it defaults to some location specified at
+<span class="target" id="index-8"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a> is not set, it defaults to some location specified at
 installation time.</p>
 </dd></dl>
 
@@ -1455,7 +1466,7 @@ dynamic libraries.</p>
 <dt id="envvar-PURE_MORE">
 <tt class="descname">PURE_MORE</tt><a class="headerlink" href="#envvar-PURE_MORE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shell command to be used for paging through output of the <tt class="docutils literal"><span class="pre">show</span></tt> command,
-when the interpreter runs in interactive mode. <span class="target" id="index-7"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_LESS</span></tt> does the
+when the interpreter runs in interactive mode. <span class="target" id="index-9"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_LESS</span></tt> does the
 same for evaluation results printed by the interpreter.</p>
 </dd></dl>
 
@@ -3747,7 +3758,7 @@ also use a shebang like:</p>
 <p class="last">This has the advantage that you don&#8217;t have to hardcode the path to the Pure
 interpreter into the shebang; the <tt class="docutils literal"><span class="pre">/usr/bin/env</span></tt> utility will locate the
 interpreter for you, provided that it is installed somewhere on the system
-<span class="target" id="index-8"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>.</p>
+<span class="target" id="index-10"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>.</p>
 </div>
 </div>
 <div class="section" id="compiled-scripts">
@@ -7814,18 +7825,18 @@ the clause was read from standard input (as is the case, e.g., in an
 interactive session);</li>
 <li>the directories named in <a class="reference internal" href="#cmdoption-pure-I"><em class="xref std std-option">-I</em></a> options on the command line (in the
 given order);</li>
-<li>the colon-separated list of directories in the <span class="target" id="index-9"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a>
+<li>the colon-separated list of directories in the <span class="target" id="index-11"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a>
 environment variable (in the given order);</li>
-<li>finally the directory named by the <span class="target" id="index-10"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a> environment variable.</li>
+<li>finally the directory named by the <span class="target" id="index-12"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a> environment variable.</li>
 </ul>
 <p>Note that the current working directory is not searched by default (unless the
 <a class="reference internal" href="#using"><tt class="xref std std-keyword docutils literal"><span class="pre">using</span></tt></a> clause is read from standard input), but of course you can
 force this by adding the option <a class="reference internal" href="#cmdoption-pure-I"><em class="xref std std-option">-I</em></a>. to the command line, or by
-including &#8216;.&#8217; in the <span class="target" id="index-11"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a> variable.</p>
+including &#8216;.&#8217; in the <span class="target" id="index-13"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a> variable.</p>
 <p>The directory of the current script (the first item above) can be skipped by
 specifying the script to be loaded as a filename in double quotes, prefixed
 with the special <tt class="docutils literal"><span class="pre">sys:</span></tt> tag. The search then starts with the &#8220;system&#8221;
-directories (<a class="reference internal" href="#cmdoption-pure-I"><em class="xref std std-option">-I</em></a>, <span class="target" id="index-12"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a> and <span class="target" id="index-13"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a>)
+directories (<a class="reference internal" href="#cmdoption-pure-I"><em class="xref std std-option">-I</em></a>, <span class="target" id="index-14"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a> and <span class="target" id="index-15"></span><a class="reference internal" href="#envvar-PURELIB"><tt class="xref std std-envvar docutils literal"><span class="pre">PURELIB</span></tt></a>)
 instead. This is useful, e.g., if you want to provide your own custom version
 of a standard library script which in turn imports that library script. For
 instance, a custom version of math.pure might employ the following
@@ -7855,7 +7866,7 @@ done on Unix-like systems.)</li>
 <p>The directory of the canonicalized pathname is also used when searching other
 scripts included in a script. This makes it possible to have an executable
 script with a shebang line in its own directory, which is then executed via a
-symbolic link placed on the system <span class="target" id="index-14"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>. In this case the script
+symbolic link placed on the system <span class="target" id="index-16"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>. In this case the script
 search performed in <a class="reference internal" href="#using"><tt class="xref std std-keyword docutils literal"><span class="pre">using</span></tt></a> clauses will use the real script
 directory and thus other required scripts can be located there. This is the
 recommended practice for installing standalone Pure applications in source
@@ -8347,7 +8358,7 @@ in name lookup accordingly, so that you can write:</p>
 namespaces play the role of the directories (with the default namespace as the
 root directory), the symbols in each namespace correspond to the files in a
 directory, and the <a class="reference internal" href="#using-namespace"><tt class="xref std std-keyword docutils literal"><span class="pre">using</span> <span class="pre">namespace</span></tt></a> declaration functions similar to
-the shell&#8217;s <span class="target" id="index-15"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt> variable.</p>
+the shell&#8217;s <span class="target" id="index-17"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt> variable.</p>
 <p>Sometimes it is necessary to tell the compiler to use a symbol in a specific
 namespace, bypassing the usual symbol lookup mechanism. For instance, suppose
 that we introduce another <em>global</em> <tt class="docutils literal"><span class="pre">old</span></tt> namespace and define yet another
@@ -9958,11 +9969,11 @@ be imported into your Pure program by means of corresponding <a class="reference
 declarations.</p>
 <p>Shared libraries opened with using clauses are searched for in the same way as
 source scripts (see section <a class="reference internal" href="#modules-and-imports">Modules and Imports</a> above), using the
-<a class="reference internal" href="#cmdoption-pure-L"><em class="xref std std-option">-L</em></a> option and the <span class="target" id="index-16"></span><a class="reference internal" href="#envvar-PURE_LIBRARY"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_LIBRARY</span></tt></a> environment variable in
-place of <a class="reference internal" href="#cmdoption-pure-I"><em class="xref std std-option">-I</em></a> and <span class="target" id="index-17"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a>. If the library isn&#8217;t found
+<a class="reference internal" href="#cmdoption-pure-L"><em class="xref std std-option">-L</em></a> option and the <span class="target" id="index-18"></span><a class="reference internal" href="#envvar-PURE_LIBRARY"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_LIBRARY</span></tt></a> environment variable in
+place of <a class="reference internal" href="#cmdoption-pure-I"><em class="xref std std-option">-I</em></a> and <span class="target" id="index-19"></span><a class="reference internal" href="#envvar-PURE_INCLUDE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_INCLUDE</span></tt></a>. If the library isn&#8217;t found
 by these means, the interpreter will also consider other platform-specific
 locations searched by the dynamic linker, such as the system library
-directories and <span class="target" id="index-18"></span><tt class="xref std std-envvar docutils literal"><span class="pre">LD_LIBRARY_PATH</span></tt> on Linux. The necessary filename
+directories and <span class="target" id="index-20"></span><tt class="xref std std-envvar docutils literal"><span class="pre">LD_LIBRARY_PATH</span></tt> on Linux. The necessary filename
 suffix (e.g., .so on Linux or .dll on Windows) will be supplied automatically
 when needed. Of course you can also specify a full pathname for the library if
 you prefer that. If a library file cannot be found, or if an <a class="reference internal" href="#extern"><tt class="xref std std-keyword docutils literal"><span class="pre">extern</span></tt></a>
@@ -10182,16 +10193,16 @@ Faust</a> below). So, e.g., a Faust DSP named <tt class="docutils literal"><span
 <p>The Pure interpreter has some built-in knowledge on how to invoke the LLVM
 compilers to produce a working bitcode file ready to be loaded by the
 interpreter, so the examples above should work out of the box if you have the
-required compilers installed on your <span class="target" id="index-19"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>. However, there are also
+required compilers installed on your <span class="target" id="index-21"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PATH</span></tt>. However, there are also
 some environment variables you can set for customization purposes.
-Specifically, <span class="target" id="index-20"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_CC</span></tt> is the command to invoke the C compiler. This
+Specifically, <span class="target" id="index-22"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_CC</span></tt> is the command to invoke the C compiler. This
 variable lets you specify the exact name of the executable along with any
 debugging and optimization options that you may want to add. Likewise,
-<span class="target" id="index-21"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_CXX</span></tt>, <span class="target" id="index-22"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_FC</span></tt> and <span class="target" id="index-23"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_FAUST</span></tt> are used for
+<span class="target" id="index-23"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_CXX</span></tt>, <span class="target" id="index-24"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_FC</span></tt> and <span class="target" id="index-25"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_FAUST</span></tt> are used for
 the C++, Fortran and Faust compilers, respectively.</p>
 <p>For instance, if you prefer to use <a class="reference internal" href="#llvm-gcc">llvm-gcc</a> as your C compiler, and you&#8217;d
 like to invoke it with the <tt class="docutils literal"><span class="pre">-O3</span></tt> optimization option, you would set
-<span class="target" id="index-24"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_CC</span></tt> to <tt class="docutils literal"><span class="pre">&quot;llvm-gcc</span> <span class="pre">-O3&quot;</span></tt>. (To verify the settings you made, you
+<span class="target" id="index-26"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_CC</span></tt> to <tt class="docutils literal"><span class="pre">&quot;llvm-gcc</span> <span class="pre">-O3&quot;</span></tt>. (To verify the settings you made, you
 can have the interpreter echo the compilation commands which are actually
 executed, by running Pure with the <tt class="docutils literal"><span class="pre">-v0100</span></tt> option, see <a class="reference internal" href="#verbosity-and-debugging-options">Verbosity and
 Debugging Options</a>. Also note that the options necessary to produce LLVM
@@ -10345,7 +10356,7 @@ Faust module needs to be linked against additional C/C++ code. For instance:</p>
 <p>A third possibility is to just inline Faust code in a Pure script, as
 described in the <a class="reference internal" href="#inline-code">Inline Code</a> section. The compilation step is then handled
 by the Pure compiler and the <tt class="docutils literal"><span class="pre">-double</span></tt> option is added automatically. The
-<span class="target" id="index-25"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_FAUST</span></tt> environment variable can be used to specify a custom
+<span class="target" id="index-27"></span><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_FAUST</span></tt> environment variable can be used to specify a custom
 Faust command to be invoked by the Pure interpreter. This is useful if you&#8217;d
 like to invoke the Faust compiler with some special options, e.g.:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="go">PURE_FAUST=&quot;faust -single -vec&quot;</span>
@@ -10353,7 +10364,7 @@ like to invoke the Faust compiler with some special options, e.g.:</p>
 </div>
 <p>(Note that you do not have to include the <tt class="docutils literal"><span class="pre">-lang</span> <span class="pre">llvm</span></tt> option; the inline
 compiler will supply it automatically.)</p>
-<p>Moreover, you can also set the <span class="target" id="index-26"></span><tt class="xref std std-envvar docutils literal"><span class="pre">FAUST_OPT</span></tt> environment variable to
+<p>Moreover, you can also set the <span class="target" id="index-28"></span><tt class="xref std std-envvar docutils literal"><span class="pre">FAUST_OPT</span></tt> environment variable to
 specify any needed postprocessing of the output of the Faust compiler; this is
 typically used to invoke the LLVM <tt class="docutils literal"><span class="pre">opt</span></tt> utility in a pipeline, in order to
 have some additional optimizations performed on the Faust-generated code:</p>
@@ -10686,21 +10697,21 @@ The command itself must follow the prefix character, without any intervening
 whitespace. Any line not prefixed with the prefix character will then be
 considered normal Pure code. This mode can be enabled with the
 <a class="reference internal" href="#cmdoption-pure--escape"><em class="xref std std-option">--escape</em></a> option, which takes the desired prefix character as an
-argument, or you can just set the <span class="target" id="index-27"></span><a class="reference internal" href="#envvar-PURE_ESCAPE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_ESCAPE</span></tt></a> variable in your
+argument, or you can just set the <span class="target" id="index-29"></span><a class="reference internal" href="#envvar-PURE_ESCAPE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_ESCAPE</span></tt></a> variable in your
 environment to enable escape mode by default.</p>
 <p>For example, to set the escape character to &#8216;<tt class="docutils literal"><span class="pre">:</span></tt>&#8216; you&#8217;ll invoke the
 interpreter as follows:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure --escape<span class="o">=</span><span class="s1">&#39;:&#39;</span>
 </pre></div>
 </div>
-<p>Alternatively, you could also set the <span class="target" id="index-28"></span><a class="reference internal" href="#envvar-PURE_ESCAPE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_ESCAPE</span></tt></a> environment
+<p>Alternatively, you could also set the <span class="target" id="index-30"></span><a class="reference internal" href="#envvar-PURE_ESCAPE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_ESCAPE</span></tt></a> environment
 variable like this (using Bourne shell syntax):</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">export </span><span class="nv">PURE_ESCAPE</span><span class="o">=</span><span class="s1">&#39;:&#39;</span>
 </pre></div>
 </div>
 <p>Note that specifying the prefix character with the <a class="reference internal" href="#cmdoption-pure--escape"><em class="xref std std-option">--escape</em></a> option
 overrides the value of the environment variable, and only the initial
-character in the value of <a class="reference internal" href="#cmdoption-pure--escape"><em class="xref std std-option">--escape</em></a> or <span class="target" id="index-29"></span><a class="reference internal" href="#envvar-PURE_ESCAPE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_ESCAPE</span></tt></a> will be
+character in the value of <a class="reference internal" href="#cmdoption-pure--escape"><em class="xref std std-option">--escape</em></a> or <span class="target" id="index-31"></span><a class="reference internal" href="#envvar-PURE_ESCAPE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_ESCAPE</span></tt></a> will be
 used. If the specified value is empty, the interpreter reverts to the default
 mode. The following prefix characters can be used: <tt class="docutils literal"><span class="pre">!$%&amp;*,:&lt;&gt;&#64;\|</span></tt>. Note that
 these all belong to 7 bit ASCII, and only some of the ASCII punctuation
@@ -10751,7 +10762,7 @@ format; this includes the present manual, the <a class="reference internal" href
 manuals of the addon modules available from the Pure website.</p>
 <p>You need to have a html browser installed to make this work. By default, the
 <tt class="docutils literal"><span class="pre">help</span></tt> command uses <strong class="program">w3m</strong>, but you can change this by setting
-either the <span class="target" id="index-30"></span><a class="reference internal" href="#envvar-PURE_HELP"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_HELP</span></tt></a> or the <span class="target" id="index-31"></span><a class="reference internal" href="#envvar-BROWSER"><tt class="xref std std-envvar docutils literal"><span class="pre">BROWSER</span></tt></a> environment variable
+either the <span class="target" id="index-32"></span><a class="reference internal" href="#envvar-PURE_HELP"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_HELP</span></tt></a> or the <span class="target" id="index-33"></span><a class="reference internal" href="#envvar-BROWSER"><tt class="xref std std-envvar docutils literal"><span class="pre">BROWSER</span></tt></a> environment variable
 accordingly.</p>
 <p>When invoked without arguments, the <tt class="docutils literal"><span class="pre">help</span></tt> command displays an overview of
 the available documentation, from which you can follow the links to the
@@ -10815,13 +10826,13 @@ your browser program can handle these. For instance:</p>
 <p>The following built-in commands are always understood by the interpreter. (In
 addition, you can define your own commands for frequently-used operations; see
 <a class="reference internal" href="#user-defined-commands">User-Defined Commands</a> below.)</p>
-<span class="target" id="index-32"></span><dl class="describe">
+<span class="target" id="index-34"></span><dl class="describe">
 <dt>
 <tt class="descname">! command</tt></dt>
 <dd><p>Shell escape.</p>
 </dd></dl>
 
-<span class="target" id="index-33"></span><dl class="describe">
+<span class="target" id="index-35"></span><dl class="describe">
 <dt>
 <tt class="descname">break [symbol ...]</tt></dt>
 <dd><p>Sets breakpoints on the given function or operator symbols. All symbols
@@ -10831,7 +10842,7 @@ requires that the interpreter was invoked with the <a class="reference internal"
 enable debugging support. See <a class="reference internal" href="#debugging">Debugging</a> below for details.</p>
 </dd></dl>
 
-<span class="target" id="index-34"></span><dl class="describe">
+<span class="target" id="index-36"></span><dl class="describe">
 <dt>
 <tt class="descname">bt</tt></dt>
 <dd><p>Prints a full backtrace of the call sequence of the most recent evaluation,
@@ -10840,13 +10851,13 @@ the interpreter was invoked with the <a class="reference internal" href="#cmdopt
 debugging support. See <a class="reference internal" href="#debugging">Debugging</a> below for details.</p>
 </dd></dl>
 
-<span class="target" id="index-35"></span><dl class="describe">
+<span class="target" id="index-37"></span><dl class="describe">
 <dt>
 <tt class="descname">cd dir</tt></dt>
 <dd><p>Change the current working dir.</p>
 </dd></dl>
 
-<span class="target" id="index-36"></span><dl class="describe">
+<span class="target" id="index-38"></span><dl class="describe">
 <dt>
 <tt class="descname">clear [option ...] [symbol ...]</tt></dt>
 <dd><p>Purge the definitions of the given symbols (functions, macros, constants or
@@ -10863,7 +10874,7 @@ of the common options accepted by the <tt class="docutils literal"><span class="
 commands can be found in <a class="reference internal" href="#specifying-symbol-selections">Specifying Symbol Selections</a> below.</p>
 </dd></dl>
 
-<span class="target" id="index-37"></span><dl class="describe">
+<span class="target" id="index-39"></span><dl class="describe">
 <dt>
 <tt class="descname">del [-b|-m|-t] [symbol ...]</tt></dt>
 <dd><p>Deletes breakpoints and tracepoints on the given function or operator
@@ -10878,7 +10889,7 @@ currently defined breakpoints and/or tracepoints (after confirmation); see
 function tracepoints, see the description of the <tt class="docutils literal"><span class="pre">trace</span></tt> command below.</p>
 </dd></dl>
 
-<span class="target" id="index-38"></span><dl class="describe">
+<span class="target" id="index-40"></span><dl class="describe">
 <dt>
 <tt class="descname">dump [-n filename] [option ...] [symbol ...]</tt></dt>
 <dd><p>Dump a snapshot of the current function, macro, constant and variable
@@ -10903,7 +10914,7 @@ the <tt class="docutils literal"><span class="pre">run</span></tt> command (see 
 interpreter session.</p>
 </dd></dl>
 
-<span class="target" id="index-39"></span><dl class="describe">
+<span class="target" id="index-41"></span><dl class="describe">
 <dt>
 <tt class="descname">help [topic]</tt></dt>
 <dd><p>Display online documentation. If a topic is given, it is looked up in the
@@ -10912,13 +10923,13 @@ installed help files, or any other html document denoted by a proper URL.
 Please see <a class="reference internal" href="#online-help">Online Help</a> above for details.</p>
 </dd></dl>
 
-<span class="target" id="index-40"></span><dl class="describe">
+<span class="target" id="index-42"></span><dl class="describe">
 <dt>
 <tt class="descname">ls [args]</tt></dt>
 <dd><p>List files (shell <strong class="command">ls</strong> command).</p>
 </dd></dl>
 
-<span class="target" id="index-41"></span><dl class="describe">
+<span class="target" id="index-43"></span><dl class="describe">
 <dt>
 <tt class="descname">mem</tt></dt>
 <dd><p>Print current memory usage. This reports the number of expression cells
@@ -10930,7 +10941,7 @@ Also, this figure does not reflect other heap-allocated memory in use by
 the program, such as strings or malloc&#8217;ed pointers.</p>
 </dd></dl>
 
-<span class="target" id="index-42"></span><dl class="describe">
+<span class="target" id="index-44"></span><dl class="describe">
 <dt>
 <tt class="descname">override</tt></dt>
 <dd><p>Enter &#8220;override&#8221; mode. This allows you to add equations &#8220;above&#8221; existing
@@ -10938,19 +10949,19 @@ definitions in the source script, possibly overriding existing
 equations. See <a class="reference internal" href="#definition-levels">Definition Levels</a> below for details.</p>
 </dd></dl>
 
-<span class="target" id="index-43"></span><dl class="describe">
+<span class="target" id="index-45"></span><dl class="describe">
 <dt>
 <tt class="descname">pwd</tt></dt>
 <dd><p>Print the current working dir (shell <strong class="command">pwd</strong> command).</p>
 </dd></dl>
 
-<span class="target" id="index-44"></span><dl class="describe">
+<span class="target" id="index-46"></span><dl class="describe">
 <dt>
 <tt class="descname">quit</tt></dt>
 <dd><p>Exits the interpreter.</p>
 </dd></dl>
 
-<span class="target" id="index-45"></span><dl class="describe">
+<span class="target" id="index-47"></span><dl class="describe">
 <dt>
 <tt class="descname">run [-g|script]</tt></dt>
 <dd><p>When invoked without arguments or with the <tt class="docutils literal"><span class="pre">-g</span></tt> option, <tt class="docutils literal"><span class="pre">run</span></tt> does a
@@ -10977,7 +10988,7 @@ also use the interpreter&#8217;s startup files for that purpose, see <a class="r
 Startup</a> below.)</p>
 </dd></dl>
 
-<span class="target" id="index-46"></span><dl class="describe">
+<span class="target" id="index-48"></span><dl class="describe">
 <dt>
 <tt class="descname">save</tt></dt>
 <dd><p>Begin a new level of temporary definitions. A subsequent <tt class="docutils literal"><span class="pre">clear</span></tt> command
@@ -10985,7 +10996,7 @@ Startup</a> below.)</p>
 command. See <a class="reference internal" href="#definition-levels">Definition Levels</a> below for details.</p>
 </dd></dl>
 
-<span class="target" id="index-47"></span><dl class="describe">
+<span class="target" id="index-49"></span><dl class="describe">
 <dt>
 <tt class="descname">show [option ...] [symbol ...]</tt></dt>
 <dd><p>Show the definitions of symbols in various formats. See <a class="reference internal" href="#the-show-command">The show Command</a>
@@ -10995,7 +11006,7 @@ see the remarks below. A description of the common options accepted by the
 Symbol Selections</a> below.</p>
 </dd></dl>
 
-<span class="target" id="index-48"></span><dl class="describe">
+<span class="target" id="index-50"></span><dl class="describe">
 <dt>
 <tt class="descname">stats [-m] [on|off]</tt></dt>
 <dd><p>Enables (default) or disables &#8220;stats&#8221; mode, in which some statistics are
@@ -11008,7 +11019,7 @@ disables stats mode, while <tt class="docutils literal"><span class="pre">stats<
 the memory usage statistics.</p>
 </dd></dl>
 
-<span class="target" id="index-49"></span><dl class="describe">
+<span class="target" id="index-51"></span><dl class="describe">
 <dt>
 <tt class="descname">trace [-a] [-m] [-r] [-s] [symbol ...]</tt></dt>
 <dd><p>Sets tracepoints on the given function or operator symbols. Without the
@@ -11036,7 +11047,7 @@ Note that, as with the <tt class="docutils literal"><span class="pre">break</spa
 deleted with the <tt class="docutils literal"><span class="pre">del</span></tt> command (see above).</p>
 </dd></dl>
 
-<span class="target" id="index-50"></span><dl class="describe">
+<span class="target" id="index-52"></span><dl class="describe">
 <dt>
 <tt class="descname">underride</tt></dt>
 <dd><p>Exits &#8220;override&#8221; mode. This returns you to the normal mode of operation,
@@ -11169,7 +11180,7 @@ information. This implies <tt class="docutils literal"><span class="pre">-s</spa
 </table>
 <p>Symbols are always listed in lexicographic order. Note that some of the
 options (in particular, <tt class="docutils literal"><span class="pre">-a</span></tt> and <tt class="docutils literal"><span class="pre">-d</span></tt>) may produce excessive amounts of
-information. By setting the <span class="target" id="index-51"></span><a class="reference internal" href="#envvar-PURE_MORE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_MORE</span></tt></a> environment variable, you can
+information. By setting the <span class="target" id="index-53"></span><a class="reference internal" href="#envvar-PURE_MORE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_MORE</span></tt></a> environment variable, you can
 specify a shell command to be used for paging, usually <strong class="command">more</strong> or
 <strong class="command">less</strong>.</p>
 <p>For instance, to list all temporary definitions made in an interactive
@@ -11439,7 +11450,7 @@ instance:</p>
 <p>The last call, which is also marked with the <tt class="docutils literal"><span class="pre">&gt;&gt;</span></tt> symbol, is the call that
 raised the exception. The format is similar to the <tt class="docutils literal"><span class="pre">p</span></tt> command of the
 debugger, see below, but <tt class="docutils literal"><span class="pre">bt</span></tt> always prints a full backtrace. (As with the
-<tt class="docutils literal"><span class="pre">show</span></tt> command of the interpreter, you can set the <span class="target" id="index-52"></span><a class="reference internal" href="#envvar-PURE_MORE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_MORE</span></tt></a>
+<tt class="docutils literal"><span class="pre">show</span></tt> command of the interpreter, you can set the <span class="target" id="index-54"></span><a class="reference internal" href="#envvar-PURE_MORE"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_MORE</span></tt></a>
 environment variable to pipe the output through the corresponding command, or
 use <a class="reference internal" href="purelib.html#evalcmd" title="evalcmd"><tt class="xref pure pure-func docutils literal"><span class="pre">evalcmd</span></tt></a> to capture the output of <tt class="docutils literal"><span class="pre">bt</span></tt> in a string.)</p>
 <p>The debugger can also be used interactively. To these ends, you can set
@@ -12018,7 +12029,7 @@ interpreter.</p>
 after loading the prelude and the scripts specified on the command line. This
 lets you tailor the interactive environment to your liking.</p>
 <p>The interpreter first looks for a .purerc file in the user&#8217;s home directory
-(as given by the <span class="target" id="index-53"></span><tt class="xref std std-envvar docutils literal"><span class="pre">HOME</span></tt> environment variable) and then for a .purerc
+(as given by the <span class="target" id="index-55"></span><tt class="xref std std-envvar docutils literal"><span class="pre">HOME</span></tt> environment variable) and then for a .purerc
 file in the current working directory. These are just ordinary Pure scripts
 which may contain any additional definitions (including command definitions,
 as described in the previous section) that you need. The .purerc file in the
@@ -13028,16 +13039,16 @@ recommended for 32 bit systems, systems with 64 bit pointers probably need
 more). The interpreter automatically performs advisory stack checks on
 function entry and raises a Pure exception if the current stack size exceeds a
 given limit. A reasonable default for the stack limit is defined by the
-implementation, please check the description of the <span class="target" id="index-54"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a>
+implementation, please check the description of the <span class="target" id="index-56"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a>
 environment variable for details.</p>
-<p>You can also change this limit if needed, by setting the <span class="target" id="index-55"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a>
-environment variable accordingly. The value of <span class="target" id="index-56"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> should be
+<p>You can also change this limit if needed, by setting the <span class="target" id="index-57"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a>
+environment variable accordingly. The value of <span class="target" id="index-58"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> should be
 the maximum stack size in kilobytes. Please note that this is only an advisory
 limit which does not change the program&#8217;s physical stack size, so you can set
 this to any value that seems appropriate. (You can also set
-<span class="target" id="index-57"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> to zero to completely disable the checks, but this isn&#8217;t
+<span class="target" id="index-59"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> to zero to completely disable the checks, but this isn&#8217;t
 recommended.) Your operating system should supply you with a command such as
-ulimit(1) to set the real process stack size. (The <span class="target" id="index-58"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> limit
+ulimit(1) to set the real process stack size. (The <span class="target" id="index-60"></span><a class="reference internal" href="#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> limit
 should be a little less than that, to account for temporary stack usage by the
 interpreter itself.)</p>
 <p>Like Scheme, Pure does proper tail calls (if LLVM provides that feature on the
@@ -14039,7 +14050,7 @@ sessions. See <a class="reference external" href="http://www.texmacs.org">http:/
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Jan 28, 2014.
+    Last updated on Feb 04, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

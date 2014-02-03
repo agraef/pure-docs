@@ -69,7 +69,7 @@ the <a class="reference internal" href="#system-notes">System Notes</a> section 
 necessary to make Pure compile and run on various other platforms. More
 information about installing LLVM and the required LLVM source packages can be
 found at <a class="reference external" href="http://llvm.org">http://llvm.org</a>.</p>
-<p>Pure is known to work on Linux, FreeBSD, NetBSD, Mac OSX and MS Windows, and
+<p>Pure is known to work on Linux, FreeBSD, NetBSD, Mac OS X and MS Windows, and
 should compile (with the usual amount of tweaking) on all recent UNIX/POSIX-
 based platforms. We recommend using version 4.x of the GNU C++ compiler; it
 should be available almost everywhere (in fact, since you&#8217;ll need LLVM anyway,
@@ -104,14 +104,6 @@ this writing, are available here:</p>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
-</div>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">LLVM 3.4 is known to have issues with its <tt class="docutils literal"><span class="pre">llc</span></tt> program, which
-affects Pure&#8217;s batch compiler (<tt class="docutils literal"><span class="pre">pure</span> <span class="pre">-c</span></tt>). If you find that you get lots
-of error messages when running <tt class="docutils literal"><span class="pre">pure</span> <span class="pre">-c</span></tt> then you might want to stick to
-LLVM 3.3 for now. (As a workaround, it&#8217;s also be possible to replace the
-<tt class="docutils literal"><span class="pre">llc</span></tt> and <tt class="docutils literal"><span class="pre">opt</span></tt> programs from LLVM 3.4 with the ones from LLVM 3.3.)</p>
 </div>
 <p>Installing LLVM and clang (the latter is optional but recommended):</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz llvm-3.4.src.tar.gz
@@ -957,10 +949,11 @@ examples/hellomod directory in the sources.</p>
 </div>
 <div class="section" id="system-notes">
 <h2>System Notes<a class="headerlink" href="#system-notes" title="Permalink to this headline">¶</a></h2>
-<p>Pure is known to work on recent Linux, Mac OSX and BSD versions under x86,
+<p>Pure is known to work on recent Linux, Mac OS X and BSD versions under x86,
 x86-64 (AMD/Intel x86, 32 and 64 bit) and ppc (PowerPC), as well as on MS
-Windows (AMD/Intel x86, 32 bit). There are a few known system-specific quirks
-and corresponding workarounds which are discussed below.</p>
+Windows (AMD/Intel x86, 32 bit). There are a few known quirks for specific
+platforms and/or LLVM versions which are discussed below, along with
+corresponding workarounds.</p>
 <div class="section" id="all-platforms">
 <h3>All Platforms<a class="headerlink" href="#all-platforms" title="Permalink to this headline">¶</a></h3>
 <p>Compiling the default and release versions using gcc with all warnings turned
@@ -975,24 +968,52 @@ segfaults due to stack overflows then you&#8217;ll have to set an appropriate st
 size limit manually with the <span class="target" id="index-0"></span><a class="reference internal" href="pure.html#envvar-PURE_STACK"><tt class="xref std std-envvar docutils literal"><span class="pre">PURE_STACK</span></tt></a> environment variable; see
 the Pure manual for details.</p>
 </div>
-<div class="section" id="bit-systems">
-<h3>32 Bit Systems<a class="headerlink" href="#bit-systems" title="Permalink to this headline">¶</a></h3>
-<p>With LLVM 2.5 and earlier, the JIT is broken on x86-32 if it is built with
-<tt class="docutils literal"><span class="pre">--enable-pic</span></tt>, so make sure you do <em>not</em> use this option when compiling
-LLVM &lt;=2.5 on 32 bit systems.</p>
-<p>Some older LLVM 2.5 packages for Linux are broken on x86-32 for this reason
-(this has been reported for Ubuntu 9.04 and Fedora Core 10), the symptom being
-that the Pure interpreter fails a lot of checks and/or segfaults right at
-startup. In that case you&#8217;ll have to find a newer, corrected package or build
-your own LLVM from source instead.</p>
+<div class="section" id="llvm-2-5">
+<h3>LLVM 2.5<a class="headerlink" href="#llvm-2-5" title="Permalink to this headline">¶</a></h3>
+<p>The LLVM 2.5 JIT is broken on x86-32 if it is built with <tt class="docutils literal"><span class="pre">--enable-pic</span></tt>, so
+make sure you do <em>not</em> use this option when compiling LLVM &lt;=2.5 on 32 bit
+systems. Some older LLVM 2.5 packages for Linux are broken on x86-32 for this
+reason (this has been reported for Ubuntu 9.04 and Fedora Core 10), the
+symptom being that the Pure interpreter fails a lot of checks and/or segfaults
+right at startup. In that case you&#8217;ll have to find a newer, corrected package
+or build your own LLVM from source instead.</p>
+<p>On the other hand, building the Pure runtime library (libpure) on x86-64
+systems <em>requires</em> that you configure LLVM 2.5 with <tt class="docutils literal"><span class="pre">--enable-pic</span></tt> so that
+the static LLVM libraries can be linked into the runtime library. With LLVM
+2.6 and later, this option isn&#8217;t needed anymore.</p>
+<p>This LLVM version also has issues on PowerPC. Use LLVM 2.6 or later instead
+and check the notes on <a class="reference internal" href="#powerpc">PowerPC</a> below.</p>
+<p>Please also note that LLVM 2.5 is the oldest LLVM version that we still
+support right now. If you&#8217;re still running this version (or any of the 2.x
+versions) then you should really upgrade. Newer LLVM versions offer
+substantial improvements in both compilation time and code quality. Support
+for LLVM versions older than 3.0 is likely to be dropped in future Pure
+releases.</p>
 </div>
-<div class="section" id="id1">
-<h3>64 Bit Systems<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<p>64 bit systems are fully supported by Pure (as far as LLVM supports them).</p>
-<p>With LLVM 2.5 and earlier, building the Pure runtime library (libpure)
-requires that you configure LLVM with <tt class="docutils literal"><span class="pre">--enable-pic</span></tt> so that the static LLVM
-libraries can be linked into the runtime library. With LLVM 2.6 and later,
-this option isn&#8217;t needed anymore.</p>
+<div class="section" id="llvm-3-3">
+<h3>LLVM 3.3<a class="headerlink" href="#llvm-3-3" title="Permalink to this headline">¶</a></h3>
+<p>Reportedly the Pure batch compiler is broken when using LLVM 3.3 on Mac OS X.
+If you need the batch compiler then use either LLVM 3.2 or 3.4 on OS X
+instead, these are known to work on that platform.</p>
+</div>
+<div class="section" id="llvm-3-4">
+<h3>LLVM 3.4<a class="headerlink" href="#llvm-3-4" title="Permalink to this headline">¶</a></h3>
+<p>On Linux, the <tt class="docutils literal"><span class="pre">llc</span></tt> program from LLVM 3.4 is known to have issues which
+cause Pure&#8217;s batch compiler to fail. As a remedy, you can use the <tt class="docutils literal"><span class="pre">llc</span></tt> and
+<tt class="docutils literal"><span class="pre">opt</span></tt> executables from LLVM 3.3 instead (note that both programs are needed
+since the <tt class="docutils literal"><span class="pre">llc</span></tt> from LLVM 3.3 won&#8217;t work with the <tt class="docutils literal"><span class="pre">opt</span></tt> program from LLVM
+3.4). To these ends, simply copy these executables to the Pure library
+directory (/usr/local/lib/pure by default). The Pure interpreter will then use
+these executables instead of the LLVM tools installed on your system. Prebuilt
+<tt class="docutils literal"><span class="pre">llc</span></tt> and <tt class="docutils literal"><span class="pre">opt</span></tt> binaries for Linux can be found in the download section on
+Bitbucket:</p>
+<blockquote>
+<div><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2">https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2</a></div></blockquote>
+<p>The tarball contains ELF executables for both 32 and 64 bit Linux systems
+which have been linked statically and thus don&#8217;t need the LLVM 3.3 libraries
+to be installed on your system. The binaries should hopefully work on most
+recent Linux systems; if they don&#8217;t work for you then please check the README
+file included in the tarball for instructions on how to build your own.</p>
 </div>
 <div class="section" id="powerpc">
 <h3>PowerPC<a class="headerlink" href="#powerpc" title="Permalink to this headline">¶</a></h3>
@@ -1009,20 +1030,19 @@ should build out of the box on all recent Linux distributions. Packages for
 various Linux distributions are also available, please check the Pure website
 for details.</p>
 </div>
-<div class="section" id="mac-osx">
-<h3>Mac OSX<a class="headerlink" href="#mac-osx" title="Permalink to this headline">¶</a></h3>
-<p>Pure should build fine on recent OSX versions, and a port by Ryan Schmidt
+<div class="section" id="mac-os-x">
+<h3>Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h3>
+<p>Pure should build fine on recent OS X versions, and a port by Ryan Schmidt
 exists in the MacPorts collection, see <a class="reference external" href="http://www.macports.org/">http://www.macports.org/</a>. If you
 install straight from the source, make sure that you use a recent LLVM version
 (LLVM 2.7 or later should work fine on all flavours of Intel Macs). On
 PowerPC, you might have to build Pure with <tt class="docutils literal"><span class="pre">--disable-fastcc</span></tt>, see the
 <a class="reference internal" href="#powerpc">PowerPC</a> section above.</p>
-<p>Also note that with at least some versions of the Apple gcc compiler, with all
+<p>Also note that with some older versions of the Apple gcc compiler, with all
 warnings turned on you may get the (bogus) warning &#8220;control reaches end of
 non-void function&#8221; a couple of times in interpreter.cc. These are due to a bug
 in older gcc versions (see <a class="reference external" href="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=16558">http://gcc.gnu.org/bugzilla/show_bug.cgi?id=16558</a>),
-but they are harmless and can be ignored. These warnings should also go away
-once Apple upgrades its SDK to a newer gcc version.</p>
+but they are harmless and can be ignored.</p>
 </div>
 <div class="section" id="bsd">
 <h3>BSD<a class="headerlink" href="#bsd" title="Permalink to this headline">¶</a></h3>
@@ -1099,11 +1119,12 @@ unzip these into some convenient location on your harddrive and set up
 </li>
 <li><a class="reference internal" href="#system-notes">System Notes</a><ul>
 <li><a class="reference internal" href="#all-platforms">All Platforms</a></li>
-<li><a class="reference internal" href="#bit-systems">32 Bit Systems</a></li>
-<li><a class="reference internal" href="#id1">64 Bit Systems</a></li>
+<li><a class="reference internal" href="#llvm-2-5">LLVM 2.5</a></li>
+<li><a class="reference internal" href="#llvm-3-3">LLVM 3.3</a></li>
+<li><a class="reference internal" href="#llvm-3-4">LLVM 3.4</a></li>
 <li><a class="reference internal" href="#powerpc">PowerPC</a></li>
 <li><a class="reference internal" href="#linux">Linux</a></li>
-<li><a class="reference internal" href="#mac-osx">Mac OSX</a></li>
+<li><a class="reference internal" href="#mac-os-x">Mac OS X</a></li>
 <li><a class="reference internal" href="#bsd">BSD</a></li>
 <li><a class="reference internal" href="#ms-windows">MS Windows</a></li>
 </ul>

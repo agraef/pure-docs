@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.59, January 28, 2014
+  Version 0.59, February 04, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -631,13 +631,28 @@
   or executable file, the Pure interpreter creates a temporary bitcode file
   on which it invokes the LLVM tools <with|font-series|bold|opt> and
   <with|font-series|bold|llc> to create a native assembler file, and then
-  uses the C/C++ compiler (normally <with|font-series|bold|gcc>, but you can
-  change this with the<label|index-3><hlink|<with|font-family|tt|CC>|#envvar-CC>
+  uses the C/C++ compiler to assemble and link the resulting program (if
+  requested). You can also specify additional libraries to be linked into the
+  executable with the <hlink|<em|-l>|#cmdoption-pure-l> option. If the output
+  filename is omitted, it defaults to a.out (a.exe on Windows).
+
+  The C/C++ compiler invoked by the batch compiler is normally
+  <with|font-series|bold|gcc> by default, but you can change this with
+  the<label|index-3><hlink|<with|font-family|tt|CC>|#envvar-CC>
   and<label|index-4><hlink|<with|font-family|tt|CXX>|#envvar-CXX> environment
-  variables) to assemble and link the resulting program (if requested). You
-  can also specify additional libraries to be linked into the executable with
-  the <hlink|<em|-l>|#cmdoption-pure-l> option. If the output filename is
-  omitted, it defaults to a.out (a.exe on Windows).
+  variables. The LLVM tools <with|font-series|bold|opt> and
+  <with|font-series|bold|llc> are usually located on
+  the<label|index-5><verbatim|PATH> or in a system-specific directory
+  determined at installation time. It is also possible to use custom versions
+  of these programs with the batch compiler, by placing them into the Pure
+  library directory, as specified at installation time or by
+  the<label|index-6><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+  environment variable. (Note that this lets you use the batch compiler on
+  systems which don't have the LLVM toolchain installed. In fact, you could
+  even deploy a stand-alone version of the interpreter together with the
+  requisite LLVM tools on systems which don't have LLVM installed at all, by
+  linking both the Pure runtime and the <with|font-series|bold|opt> and
+  <with|font-series|bold|llc> programs statically against LLVM.)
 
   The <hlink|<em|-c>|#cmdoption-pure-c> option provides a convenient way to
   quickly turn a Pure script into a standalone executable which can be
@@ -1420,7 +1435,7 @@
 
   <\description>
     <item*|BROWSER<label|envvar-BROWSER>>If
-    the<label|index-5><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
+    the<label|index-7><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
     variable is not set (see below), this specifies a colon-separated list of
     browsers to try for reading the online documentation. See
     <hlink|http://catb.org/<math|\<sim\>>esr/BROWSER/|http://catb.org/-tildeesr/BROWSER/>.
@@ -1428,7 +1443,7 @@
 
   <\description>
     <item*|PURELIB<label|envvar-PURELIB>>Directory to search for library
-    scripts, including the prelude. If<label|index-6><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+    scripts, including the prelude. If<label|index-8><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
     is not set, it defaults to some location specified at installation time.
   </description>
 
@@ -1464,7 +1479,7 @@
   <\description>
     <item*|PURE_MORE<label|envvar-PURE-MORE>>Shell command to be used for
     paging through output of the <verbatim|show> command, when the
-    interpreter runs in interactive mode.<label|index-7><verbatim|PURE_LESS>
+    interpreter runs in interactive mode.<label|index-9><verbatim|PURE_LESS>
     does the same for evaluation results printed by the interpreter.
   </description>
 
@@ -4481,7 +4496,7 @@
   This has the advantage that you don't have to hardcode the path to the Pure
   interpreter into the shebang; the <verbatim|/usr/bin/env> utility will
   locate the interpreter for you, provided that it is installed somewhere on
-  the system<label|index-8><verbatim|PATH>.
+  the system<label|index-10><verbatim|PATH>.
 
   <paragraph|Compiled Scripts<label|compiled-scripts>>
 
@@ -10616,10 +10631,10 @@
     on the command line (in the given order);
 
     <item>the colon-separated list of directories in
-    the<label|index-9><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+    the<label|index-11><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
     environment variable (in the given order);
 
-    <item>finally the directory named by the<label|index-10><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
+    <item>finally the directory named by the<label|index-12><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
     environment variable.
   </itemize>
 
@@ -10627,14 +10642,14 @@
   the <hlink|<with|font-family|tt|using>|#using> clause is read from standard
   input), but of course you can force this by adding the option
   <hlink|<em|-I>|#cmdoption-pure-I>. to the command line, or by including `.'
-  in the<label|index-11><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+  in the<label|index-13><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
   variable.
 
   The directory of the current script (the first item above) can be skipped
   by specifying the script to be loaded as a filename in double quotes,
   prefixed with the special <verbatim|sys:> tag. The search then starts with
-  the ``system'' directories (<hlink|<em|-I>|#cmdoption-pure-I>,<label|index-12><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
-  and<label|index-13><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>)
+  the ``system'' directories (<hlink|<em|-I>|#cmdoption-pure-I>,<label|index-14><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+  and<label|index-15><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>)
   instead. This is useful, e.g., if you want to provide your own custom
   version of a standard library script which in turn imports that library
   script. For instance, a custom version of math.pure might employ the
@@ -10676,7 +10691,7 @@
   other scripts included in a script. This makes it possible to have an
   executable script with a shebang line in its own directory, which is then
   executed via a symbolic link placed on the
-  system<label|index-14><verbatim|PATH>. In this case the script search
+  system<label|index-16><verbatim|PATH>. In this case the script search
   performed in <hlink|<with|font-family|tt|using>|#using> clauses will use
   the real script directory and thus other required scripts can be located
   there. This is the recommended practice for installing standalone Pure
@@ -11417,7 +11432,7 @@
   the root directory), the symbols in each namespace correspond to the files
   in a directory, and the <hlink|<with|font-family|tt|using>
   <with|font-family|tt|namespace>|#using-namespace> declaration functions
-  similar to the shell's<label|index-15><verbatim|PATH> variable.
+  similar to the shell's<label|index-17><verbatim|PATH> variable.
 
   Sometimes it is necessary to tell the compiler to use a symbol in a
   specific namespace, bypassing the usual symbol lookup mechanism. For
@@ -13773,12 +13788,12 @@
   as source scripts (see section <hlink|Modules and
   Imports|#modules-and-imports> above), using the
   <hlink|<em|-L>|#cmdoption-pure-L> option and
-  the<label|index-16><hlink|<with|font-family|tt|PURE_LIBRARY>|#envvar-PURE-LIBRARY>
+  the<label|index-18><hlink|<with|font-family|tt|PURE_LIBRARY>|#envvar-PURE-LIBRARY>
   environment variable in place of <hlink|<em|-I>|#cmdoption-pure-I>
-  and<label|index-17><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>.
+  and<label|index-19><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>.
   If the library isn't found by these means, the interpreter will also
   consider other platform-specific locations searched by the dynamic linker,
-  such as the system library directories and<label|index-18><verbatim|LD_LIBRARY_PATH>
+  such as the system library directories and<label|index-20><verbatim|LD_LIBRARY_PATH>
   on Linux. The necessary filename suffix (e.g., .so on Linux or .dll on
   Windows) will be supplied automatically when needed. Of course you can also
   specify a full pathname for the library if you prefer that. If a library
@@ -14088,18 +14103,18 @@
   The Pure interpreter has some built-in knowledge on how to invoke the LLVM
   compilers to produce a working bitcode file ready to be loaded by the
   interpreter, so the examples above should work out of the box if you have
-  the required compilers installed on your<label|index-19><verbatim|PATH>.
+  the required compilers installed on your<label|index-21><verbatim|PATH>.
   However, there are also some environment variables you can set for
-  customization purposes. Specifically,<label|index-20><verbatim|PURE_CC> is
+  customization purposes. Specifically,<label|index-22><verbatim|PURE_CC> is
   the command to invoke the C compiler. This variable lets you specify the
   exact name of the executable along with any debugging and optimization
-  options that you may want to add. Likewise,<label|index-21><verbatim|PURE_CXX>,<label|index-22><verbatim|PURE_FC>
-  and<label|index-23><verbatim|PURE_FAUST> are used for the C++, Fortran and
+  options that you may want to add. Likewise,<label|index-23><verbatim|PURE_CXX>,<label|index-24><verbatim|PURE_FC>
+  and<label|index-25><verbatim|PURE_FAUST> are used for the C++, Fortran and
   Faust compilers, respectively.
 
   For instance, if you prefer to use <hlink|llvm-gcc|#llvm-gcc> as your C
   compiler, and you'd like to invoke it with the <verbatim|-O3> optimization
-  option, you would set<label|index-24><verbatim|PURE_CC> to
+  option, you would set<label|index-26><verbatim|PURE_CC> to
   <verbatim|"llvm-gcc> <verbatim|-O3">. (To verify the settings you made, you
   can have the interpreter echo the compilation commands which are actually
   executed, by running Pure with the <verbatim|-v0100> option, see
@@ -14348,7 +14363,7 @@
   A third possibility is to just inline Faust code in a Pure script, as
   described in the <hlink|Inline Code|#inline-code> section. The compilation
   step is then handled by the Pure compiler and the <verbatim|-double> option
-  is added automatically. The<label|index-25><verbatim|PURE_FAUST>
+  is added automatically. The<label|index-27><verbatim|PURE_FAUST>
   environment variable can be used to specify a custom Faust command to be
   invoked by the Pure interpreter. This is useful if you'd like to invoke the
   Faust compiler with some special options, e.g.:
@@ -14360,7 +14375,7 @@
   (Note that you do not have to include the <verbatim|-lang> <verbatim|llvm>
   option; the inline compiler will supply it automatically.)
 
-  Moreover, you can also set the<label|index-26><verbatim|FAUST_OPT>
+  Moreover, you can also set the<label|index-28><verbatim|FAUST_OPT>
   environment variable to specify any needed postprocessing of the output of
   the Faust compiler; this is typically used to invoke the LLVM
   <verbatim|opt> utility in a pipeline, in order to have some additional
@@ -14832,7 +14847,7 @@
   the prefix character will then be considered normal Pure code. This mode
   can be enabled with the <hlink|<em|--escape>|#cmdoption-pure--escape>
   option, which takes the desired prefix character as an argument, or you can
-  just set the<label|index-27><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  just set the<label|index-29><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   variable in your environment to enable escape mode by default.
 
   For example, to set the escape character to `<verbatim|:>` you'll invoke
@@ -14842,7 +14857,7 @@
     $ pure --escape=':'
   </verbatim>
 
-  Alternatively, you could also set the<label|index-28><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  Alternatively, you could also set the<label|index-30><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   environment variable like this (using Bourne shell syntax):
 
   <\verbatim>
@@ -14853,7 +14868,7 @@
   <hlink|<em|--escape>|#cmdoption-pure--escape> option overrides the value of
   the environment variable, and only the initial character in the value of
   <hlink|<em|--escape>|#cmdoption-pure--escape>
-  or<label|index-29><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  or<label|index-31><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   will be used. If the specified value is empty, the interpreter reverts to
   the default mode. The following prefix characters can be used:
   <verbatim|!$%&*,:\<\>@\\\|>. Note that these all belong to 7 bit ASCII, and
@@ -14917,8 +14932,8 @@
 
   You need to have a html browser installed to make this work. By default,
   the <verbatim|help> command uses <with|font-series|bold|w3m>, but you can
-  change this by setting either the<label|index-30><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
-  or the<label|index-31><hlink|<with|font-family|tt|BROWSER>|#envvar-BROWSER>
+  change this by setting either the<label|index-32><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
+  or the<label|index-33><hlink|<with|font-family|tt|BROWSER>|#envvar-BROWSER>
   environment variable accordingly.
 
   When invoked without arguments, the <verbatim|help> command displays an
@@ -15007,11 +15022,11 @@
   below.)
 
   <\description>
-    <item*|! command><label|index-32>Shell escape.
+    <item*|! command><label|index-34>Shell escape.
   </description>
 
   <\description>
-    <item*|break [symbol ...]><label|index-33>Sets breakpoints on the given
+    <item*|break [symbol ...]><label|index-35>Sets breakpoints on the given
     function or operator symbols. All symbols must be specified in fully
     qualified form, see the remarks below. If invoked without arguments,
     prints all currently defined breakpoints. This requires that the
@@ -15021,7 +15036,7 @@
   </description>
 
   <\description>
-    <item*|bt><label|index-34>Prints a full backtrace of the call sequence of
+    <item*|bt><label|index-36>Prints a full backtrace of the call sequence of
     the most recent evaluation, if that evaluation ended with an unhandled
     exception. This requires that the interpreter was invoked with the
     <hlink|<em|-g>|#cmdoption-pure-g> option to enable debugging support. See
@@ -15029,11 +15044,11 @@
   </description>
 
   <\description>
-    <item*|cd dir><label|index-35>Change the current working dir.
+    <item*|cd dir><label|index-37>Change the current working dir.
   </description>
 
   <\description>
-    <item*|clear [option ...] [symbol ...]><label|index-36>Purge the
+    <item*|clear [option ...] [symbol ...]><label|index-38>Purge the
     definitions of the given symbols (functions, macros, constants or global
     variables). All symbols must be specified in fully qualified form, see
     the remarks below. If invoked as <verbatim|clear> <verbatim|ans>, clears
@@ -15053,7 +15068,7 @@
   </description>
 
   <\description>
-    <item*|del [-b\|-m\|-t] [symbol ...]><label|index-37>Deletes breakpoints
+    <item*|del [-b\|-m\|-t] [symbol ...]><label|index-39>Deletes breakpoints
     and tracepoints on the given function or operator symbols. If the
     <verbatim|-b> option is specified then only breakpoints are deleted;
     similarly, <verbatim|del> <verbatim|-t> only deletes tracepoints. If none
@@ -15069,7 +15084,7 @@
   </description>
 
   <\description>
-    <item*|dump [-n filename] [option ...] [symbol ...]><label|index-38>Dump
+    <item*|dump [-n filename] [option ...] [symbol ...]><label|index-40>Dump
     a snapshot of the current function, macro, constant and variable
     definitions in Pure syntax to a text file. All symbols must be specified
     in fully qualified form, see the remarks below. This works similar to the
@@ -15096,7 +15111,7 @@
   </description>
 
   <\description>
-    <item*|help [topic]><label|index-39>Display online documentation. If a
+    <item*|help [topic]><label|index-41>Display online documentation. If a
     topic is given, it is looked up in the index. Alternatively, you can also
     specify a link target in any of the installed help files, or any other
     html document denoted by a proper URL. Please see <hlink|Online
@@ -15104,12 +15119,12 @@
   </description>
 
   <\description>
-    <item*|ls [args]><label|index-40>List files (shell
+    <item*|ls [args]><label|index-42>List files (shell
     <with|font-series|bold|ls> command).
   </description>
 
   <\description>
-    <item*|mem><label|index-41>Print current memory usage. This reports the
+    <item*|mem><label|index-43>Print current memory usage. This reports the
     number of expression cells currently in use by the program, along with
     the size of the freelist (the number of allocated but currently unused
     expression cells). Note that the actual size of the expression storage
@@ -15120,23 +15135,23 @@
   </description>
 
   <\description>
-    <item*|override><label|index-42>Enter ``override'' mode. This allows you
+    <item*|override><label|index-44>Enter ``override'' mode. This allows you
     to add equations ``above'' existing definitions in the source script,
     possibly overriding existing equations. See <hlink|Definition
     Levels|#definition-levels> below for details.
   </description>
 
   <\description>
-    <item*|pwd><label|index-43>Print the current working dir (shell
+    <item*|pwd><label|index-45>Print the current working dir (shell
     <with|font-series|bold|pwd> command).
   </description>
 
   <\description>
-    <item*|quit><label|index-44>Exits the interpreter.
+    <item*|quit><label|index-46>Exits the interpreter.
   </description>
 
   <\description>
-    <item*|run [-g\|script]><label|index-45>When invoked without arguments or
+    <item*|run [-g\|script]><label|index-47>When invoked without arguments or
     with the <verbatim|-g> option, <verbatim|run> does a ``cold'' restart of
     the interpreter, with the scripts and options given on the interpreter's
     original command line. If just <verbatim|-g> is specified as the
@@ -15164,14 +15179,14 @@
   </description>
 
   <\description>
-    <item*|save><label|index-46>Begin a new level of temporary definitions. A
+    <item*|save><label|index-48>Begin a new level of temporary definitions. A
     subsequent <verbatim|clear> command (see above) will purge the
     definitions made since the most recent <verbatim|save> command. See
     <hlink|Definition Levels|#definition-levels> below for details.
   </description>
 
   <\description>
-    <item*|show [option ...] [symbol ...]><label|index-47>Show the
+    <item*|show [option ...] [symbol ...]><label|index-49>Show the
     definitions of symbols in various formats. See <hlink|The show
     Command|#the-show-command> below for details. All symbols must be
     specified in fully qualified form, see the remarks below. A description
@@ -15181,7 +15196,7 @@
   </description>
 
   <\description>
-    <item*|stats [-m] [on\|off]><label|index-48>Enables (default) or disables
+    <item*|stats [-m] [on\|off]><label|index-50>Enables (default) or disables
     ``stats'' mode, in which some statistics are printed after an expression
     has been evaluated. Invoking just <verbatim|stats> or <verbatim|stats>
     <verbatim|on> only prints the cpu time in seconds for each evaluation. If
@@ -15194,7 +15209,7 @@
   </description>
 
   <\description>
-    <item*|trace [-a] [-m] [-r] [-s] [symbol ...]><label|index-49>Sets
+    <item*|trace [-a] [-m] [-r] [-s] [symbol ...]><label|index-51>Sets
     tracepoints on the given function or operator symbols. Without the
     <verbatim|-m> option, this works pretty much like the <verbatim|break>
     command (see above) but only prints rule invocations and reductions
@@ -15229,7 +15244,7 @@
   </description>
 
   <\description>
-    <item*|underride><label|index-50>Exits ``override'' mode. This returns
+    <item*|underride><label|index-52>Exits ``override'' mode. This returns
     you to the normal mode of operation, where new equations are added
     ``below'' previous rules of an existing function. See <hlink|Definition
     Levels|#definition-levels> below for details.
@@ -15349,7 +15364,7 @@
   Symbols are always listed in lexicographic order. Note that some of the
   options (in particular, <verbatim|-a> and <verbatim|-d>) may produce
   excessive amounts of information. By setting
-  the<label|index-51><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  the<label|index-53><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
   environment variable, you can specify a shell command to be used for
   paging, usually <with|font-series|bold|more> or
   <with|font-series|bold|less>.
@@ -15790,7 +15805,7 @@
   call that raised the exception. The format is similar to the <verbatim|p>
   command of the debugger, see below, but <verbatim|bt> always prints a full
   backtrace. (As with the <verbatim|show> command of the interpreter, you can
-  set the<label|index-52><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  set the<label|index-54><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
   environment variable to pipe the output through the corresponding command,
   or use <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> to capture
   the output of <verbatim|bt> in a string.)
@@ -16728,7 +16743,7 @@
   line. This lets you tailor the interactive environment to your liking.
 
   The interpreter first looks for a .purerc file in the user's home directory
-  (as given by the<label|index-53><verbatim|HOME> environment variable) and
+  (as given by the<label|index-55><verbatim|HOME> environment variable) and
   then for a .purerc file in the current working directory. These are just
   ordinary Pure scripts which may contain any additional definitions
   (including command definitions, as described in the previous section) that
@@ -18166,20 +18181,20 @@
   checks on function entry and raises a Pure exception if the current stack
   size exceeds a given limit. A reasonable default for the stack limit is
   defined by the implementation, please check the description of
-  the<label|index-54><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  the<label|index-56><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   environment variable for details.
 
   You can also change this limit if needed, by setting
-  the<label|index-55><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  the<label|index-57><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   environment variable accordingly. The value
-  of<label|index-56><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  of<label|index-58><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   should be the maximum stack size in kilobytes. Please note that this is
   only an advisory limit which does not change the program's physical stack
   size, so you can set this to any value that seems appropriate. (You can
-  also set<label|index-57><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  also set<label|index-59><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   to zero to completely disable the checks, but this isn't recommended.) Your
   operating system should supply you with a command such as ulimit(1) to set
-  the real process stack size. (The<label|index-58><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  the real process stack size. (The<label|index-60><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   limit should be a little less than that, to account for temporary stack
   usage by the interpreter itself.)
 
@@ -19551,6 +19566,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  04, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

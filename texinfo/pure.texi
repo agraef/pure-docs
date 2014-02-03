@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.59, February 03, 2014
+Pure 0.59, February 04, 2014
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 @anchor{pure doc}@anchor{0}
 @c Teach TeX how to hyphenate 'namespace' and 'whitespace'.
 
-Version 0.59, January 28, 2014
+Version 0.59, February 04, 2014
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -966,17 +966,36 @@ The .ll and .bc formats are supported natively by the Pure interpreter, no
 external tools are required to generate these. If the target is an .s, .o or
 executable file, the Pure interpreter creates a temporary bitcode file on
 which it invokes the LLVM tools @strong{opt} and @strong{llc} to create a
-native assembler file, and then uses the C/C++ compiler (normally
-@strong{gcc}, but you can change this with the 
+native assembler file, and then uses the C/C++ compiler to assemble and link
+the resulting program (if requested). You can also specify additional
+libraries to be linked into the executable with the @pxref{27,,-l} option. If
+the output filename is omitted, it defaults to a.out (a.exe on Windows).
+
+The C/C++ compiler invoked by the batch compiler is normally @strong{gcc} by
+default, but you can change this with the 
 @geindex CC
 @geindex environment variable; CC
-@pxref{45,,CC} and
+@pxref{45,,CC} and 
 @geindex CXX
 @geindex environment variable; CXX
-@pxref{46,,CXX} environment variables) to assemble and link the resulting
-program (if requested). You can also specify additional libraries to be linked
-into the executable with the @pxref{27,,-l} option. If the output filename is
-omitted, it defaults to a.out (a.exe on Windows).
+@pxref{46,,CXX}
+environment variables. The LLVM tools @strong{opt} and @strong{llc} are
+usually located on the 
+@geindex PATH
+@geindex environment variable; PATH
+@code{PATH} or in a system-specific directory
+determined at installation time. It is also possible to use custom versions of
+these programs with the batch compiler, by placing them into the Pure library
+directory, as specified at installation time or by the 
+@geindex PURELIB
+@geindex environment variable; PURELIB
+@pxref{40,,PURELIB}
+environment variable. (Note that this lets you use the batch compiler on
+systems which don't have the LLVM toolchain installed. In fact, you could even
+deploy a stand-alone version of the interpreter together with the requisite
+LLVM tools on systems which don't have LLVM installed at all, by linking both
+the Pure runtime and the @strong{opt} and @strong{llc} programs statically
+against LLVM.)
 
 The @pxref{18,,-c} option provides a convenient way to quickly turn a Pure
 script into a standalone executable which can be invoked directly from the
