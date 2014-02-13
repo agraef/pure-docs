@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.59, February 04, 2014
+Pure 0.59, February 13, 2014
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-pure doc}@anchor{0}
-Version 0.16, January 28, 2014
+Version 0.17, February 13, 2014
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -91,7 +91,7 @@ Copyright (c) 2009-2011 by Albert Graef. pd-pure is distributed under a
 MS Windows users please see @pxref{4,,pd-pure on Windows} below.
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz}.
 
 Usually, @code{make && sudo make install} should do the trick. This will compile
 the external (you need to have GNU make, Pd and Pure installed to do that) and
@@ -123,7 +123,7 @@ your system then you'll have to edit the Makefile accordingly.
 
 
 There's a binary package in MSI format available at the Pure website:
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi}. Use that if you
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi}. Use that if you
 can. You'll also need the latest Pure version (0.50 at the time of this
 writing), and Pd 0.43 or later, which is available from Miller Puckette's
 website: @indicateurl{http://crca.ucsd.edu/~msp/software.html}.
@@ -342,6 +342,7 @@ versa).
 * Creation Arguments:: 
 * The [pure] Object:: 
 * Configuring Inlets and Outlets:: 
+* Variadic Creation Functions:: 
 * Local State:: 
 
 @end menu
@@ -379,10 +380,13 @@ add x y = x+y;
 @noindent
 
 This object can then be invoked, e.g., as @code{[add 5]} in the Pd patch to
-supply the needed creation argument @code{x}.
+supply the needed creation argument @code{x}. Please note that only a fixed
+number of creation arguments can be processed this way. However, the Pure
+loader also provides a mechanism to handle a variable number of creation
+arguments, see @pxref{b,,Variadic Creation Functions} below.
 
 @node The [pure] Object,Configuring Inlets and Outlets,Creation Arguments,Control Objects
-@anchor{pd-pure the-pure-object}@anchor{b}
+@anchor{pd-pure the-pure-object}@anchor{c}
 @section The [pure] Object
 
 
@@ -392,7 +396,7 @@ without actually preparing a script file. The creation parameter of @code{[pure]
 is the object function. This can be a predefined Pure function, or you can
 define it on the fly in a @code{with} clause. (It is also possible to explicitly
 load additional script files needed to implement objects defined using
-@code{[pure]}; see @pxref{c,,Controlling the Runtime} for details.)
+@code{[pure]}; see @pxref{d,,Controlling the Runtime} for details.)
 
 For instance, @code{[pure succ]} uses the predefined Pure function @code{succ} which
 adds 1 to its input, while the object @code{[pure add 5 with add x y = x+y end]}
@@ -402,8 +406,8 @@ that way. E.g., the object @code{[pure cst 1.618]} responds to any message (such
 as @code{bang}) by producing the constant value 1.618, while the object @code{[pure
 cst [1..10]]} yields the constant list containing the numbers 1..10.
 
-@node Configuring Inlets and Outlets,Local State,The [pure] Object,Control Objects
-@anchor{pd-pure configuring-inlets-and-outlets}@anchor{d}
+@node Configuring Inlets and Outlets,Variadic Creation Functions,The [pure] Object,Control Objects
+@anchor{pd-pure configuring-inlets-and-outlets}@anchor{e}
 @section Configuring Inlets and Outlets
 
 
@@ -491,18 +495,64 @@ echo = 1,0,puts.str;
 
 @noindent
 
-@node Local State,,Configuring Inlets and Outlets,Control Objects
-@anchor{pd-pure local-state}@anchor{e}
+@node Variadic Creation Functions,Local State,Configuring Inlets and Outlets,Control Objects
+@anchor{pd-pure variadic-creation-functions}@anchor{b}
+@section Variadic Creation Functions
+
+
+Sometimes you may wish to implement an object which accepts a variable number
+of creation arguments. To these ends, the creation function @code{foo} may return
+an application of the form @code{varargs bar}. In this case, the function @code{bar}
+becomes the actual object creation function which is applied to a single
+argument, the list of all supplied creation arguments. For instance, if you
+invoke @code{foo} through an object like @code{[foo a b c]} in a patch, the loader
+would then create the object by calling @code{bar [a,b,c]} instead. Likewise, if
+the object gets created without any arguments at all, i.e., @code{[foo]}, then
+@code{bar} would be called as @code{bar []}. The function @code{bar} may then be used
+as the runtime function of the object, or it may yield the object function to
+be used, along with the desired number of inlets and outlets, as described in
+the previous subsection. This makes it possible to configure the inlets and
+outlets of the object according to the number and values of the supplied
+creation arguments, pretty much like some of the built-in Pd objects do, such
+as @code{pack} and @code{sel}.
+
+For instance, here is how you could implement something like Pd's built-in
+@code{sel} object in Pure. The object compares its input against a number of
+values given as creation arguments, and bangs the corresponding outlet if it
+is found, or passes on the input on the rightmost outlet otherwise:
+
+@example
+mysel = varargs mysel with
+  mysel xs = 1,#xs+1,mysel with
+    mysel x = i,bang if i<#xs when i = #takewhile (~==x) xs end;
+            = #xs,x otherwise;
+  end;
+end;
+@end example
+
+@noindent
+
+Note that the runtime function is the innermost local @code{mysel} function (at
+line 3 in the example). The outermost local @code{mysel} function (at line 2) is
+the actual creation function which gets invoked by the loader on the list of
+all creation arguments; here it yields the number of inlets and outlets (where
+the latter depends on the number of creation arguments) along with the runtime
+function. You can invoke this object as, e.g., @code{[mysel a b c]}, in which
+case there will be four outlets, one for each given value and one for the
+rightmost "default" outlet.
+
+@node Local State,,Variadic Creation Functions,Control Objects
+@anchor{pd-pure local-state}@anchor{f}
 @section Local State
 
 
 Local state can be kept in Pure reference values. For instance, the following
-@code{[counter]} object produces the next counter value when receiving a @code{bang}
-message:
+@code{[mycounter]} object produces the next counter value when receiving a
+@code{bang} message:
 
 @example
 nonfix bang;
-counter = next (ref 0) with
+mycounter = next (ref 0) with
   next r bang = put r (get r+1);
   next _ _    = () otherwise;
 end;
@@ -512,11 +562,11 @@ end;
 
 Note that the state is kept as an additional first parameter to the local
 function @code{next} here. Alternatively, you can also make the state a local
-variable of @code{counter}:
+variable of @code{mycounter}:
 
 @example
 nonfix bang;
-counter = next with
+mycounter = next with
   next bang = put r (get r+1);
   next _    = () otherwise;
 end when r = ref 0 end;
@@ -855,7 +905,7 @@ it avoids the overhead of the extra Pure layer. However, invoking Faust dsps
 via Pure also offers some benefits. In particular, it enables you to add more
 sophisticated control processing, interface to other 3rd party software for
 additional pre- and postprocessing of the signal data, or do live editing of
-Faust programs using the facilities described in @pxref{f,,Livecoding} below.
+Faust programs using the facilities described in @pxref{10,,Livecoding} below.
 
 @node Advanced Features,Index,Audio Objects,Top
 @anchor{pd-pure advanced-features}@anchor{8}
@@ -880,7 +930,7 @@ the API provided for pd-pure programmers.
 @end menu
 
 @node Asynchronous Messages,Wireless Messaging,,Advanced Features
-@anchor{pd-pure asynchronous-messages}@anchor{10}
+@anchor{pd-pure asynchronous-messages}@anchor{11}
 @section Asynchronous Messages
 
 
@@ -938,9 +988,9 @@ mydelay t msg = pd_delay t (alarm msg) otherwise;
 More elaborate functionality can be built on top of the basic timer facility.
 The following example shows how to maintain a timed message queue in a Pure
 list, in order to implement a simple delay line similar to Pd's builtin
-@code{pipe} object. Here we also employ the @pxref{11,,pd_time()} function, which is
+@code{pipe} object. Here we also employ the @pxref{12,,pd_time()} function, which is
 provided by the Pure loader so that Pure scripts can access the current
-logical Pd time in milliseconds (see @pxref{12,,Programming Interface} below). This is
+logical Pd time in milliseconds (see @pxref{13,,Programming Interface} below). This is
 convenient if we need to deal with absolute time values, which we use in this
 example to keep track of the times at which messages in the queue are to be
 delivered:
@@ -962,15 +1012,15 @@ end;
 @noindent
 
 @node Wireless Messaging,Reading and Writing Audio Data,Asynchronous Messages,Advanced Features
-@anchor{pd-pure wireless-messaging}@anchor{13}
+@anchor{pd-pure wireless-messaging}@anchor{14}
 @section Wireless Messaging
 
 
 As of version 0.14, pd-pure offers some facilities for sending and receiving
 messages directly, without any wired connections to the inlets and outlets of
 an object (similar to what the Pd @code{[send]} and @code{[receive]} objects
-provide). See the description for the @pxref{14,,pd_send()} and
-@pxref{15,,pd_receive()} routines in the @pxref{12,,Programming Interface} section.
+provide). See the description for the @pxref{15,,pd_send()} and
+@pxref{16,,pd_receive()} routines in the @pxref{13,,Programming Interface} section.
 
 For instance, here's how you can use the @code{pd_send} function to send messages
 to the Pd runtime:
@@ -1035,7 +1085,7 @@ between Pd GUI elements and Pure objects. Wireless connections are often
 preferred in such cases, to reduce display clutter.
 
 @node Reading and Writing Audio Data,Controlling the Runtime,Wireless Messaging,Advanced Features
-@anchor{pd-pure reading-and-writing-audio-data}@anchor{16}
+@anchor{pd-pure reading-and-writing-audio-data}@anchor{17}
 @section Reading and Writing Audio Data
 
 
@@ -1048,8 +1098,8 @@ implement distortion effects.
 
 Each array has a name (Pd symbol) under which it can be accessed from Pure
 code. pd-pure makes it possible to transfer audio data directly between Pd
-arrays and Pure double vectors by means of the @pxref{17,,pd_getbuffer()} and
-@pxref{18,,pd_setbuffer()} routines. Please see @pxref{12,,Programming Interface} below for
+arrays and Pure double vectors by means of the @pxref{18,,pd_getbuffer()} and
+@pxref{19,,pd_setbuffer()} routines. Please see @pxref{13,,Programming Interface} below for
 a closer description of the provided routines.
 
 For instance, here is a @code{randomwave} object which fills a Pd array (whose
@@ -1074,7 +1124,7 @@ end;
 @noindent
 
 @node Controlling the Runtime,Livecoding,Reading and Writing Audio Data,Advanced Features
-@anchor{pd-pure controlling-the-runtime}@anchor{c}
+@anchor{pd-pure controlling-the-runtime}@anchor{d}
 @section Controlling the Runtime
 
 
@@ -1117,7 +1167,7 @@ a patch using the @strong{pdsend} program. This is described in the
 following subsection.
 
 @node Livecoding,Remote Control,Controlling the Runtime,Advanced Features
-@anchor{pd-pure livecoding}@anchor{f}
+@anchor{pd-pure livecoding}@anchor{10}
 @section Livecoding
 
 
@@ -1170,7 +1220,7 @@ themselves can be kept small, resulting in faster compilation.
 @end itemize
 
 Also note that the reloading of object scripts amounts to a "cold restart" of
-the Pure objects in your patches. If a Pure object keeps some @pxref{e,,local state},
+the Pure objects in your patches. If a Pure object keeps some @pxref{f,,local state},
 it will be lost. As a remedy, the loader implements a simple protocol which
 allows Pure objects to record their internal state before a script gets
 reloaded, and restore it afterwards. To these ends, a Pure object may respond
@@ -1198,13 +1248,13 @@ invocation is ignored.)
 In order to participate in the @code{pd_save}/@code{pd_restore} protocol, an object
 must subscribe to it. This is done by setting @code{pd_save} as a sentry on the
 object function (see the description of the @code{sentry} function in
-the @code{purelib} for details). For instance, here's the counter example from
-@pxref{e,,Local State} again, with the necessary additions to support the
+the @code{purelib} for details). For instance, here's the mycounter example
+from @pxref{f,,Local State} again, with the necessary additions to support the
 @code{pd_save}/@code{pd_restore} protocol:
 
 @example
 nonfix bang pd_save;
-counter = sentry pd_save $ next (ref 0) with
+mycounter = sentry pd_save $ next (ref 0) with
   next r bang = put r (get r+1);
   next r pd_save = get r;
   next r (pd_restore n) = put r n;
@@ -1215,7 +1265,7 @@ end;
 @noindent
 
 @node Remote Control,Compiling Objects,Livecoding,Advanced Features
-@anchor{pd-pure remote-control}@anchor{19}
+@anchor{pd-pure remote-control}@anchor{1a}
 @section Remote Control
 
 
@@ -1353,7 +1403,7 @@ own in an analogous fashion. Together with Pure mode, this gives you a nice
 interactive environment for developing pd-pure applications.
 
 @node Compiling Objects,Programming Interface,Remote Control,Advanced Features
-@anchor{pd-pure compiling-objects}@anchor{1a}
+@anchor{pd-pure compiling-objects}@anchor{1b}
 @section Compiling Objects
 
 
@@ -1378,7 +1428,7 @@ infrastructure required to run any kind of pd-pure object (no matter whether
 it's implemented in compiled or source form).
 
 @node Programming Interface,,Compiling Objects,Advanced Features
-@anchor{pd-pure programming-interface}@anchor{12}
+@anchor{pd-pure programming-interface}@anchor{13}
 @section Programming Interface
 
 
@@ -1388,7 +1438,7 @@ functions, you'll have to add the corresponding @code{extern} declarations to
 your scripts.
 
 @geindex pd_version_s (C function)
-@anchor{pd-pure pd_version_s}@anchor{1b}
+@anchor{pd-pure pd_version_s}@anchor{1c}
 @deffn {C Function} extern char *pd_version_s ()
 
 Returns the Pd version number as a string. Note that this routine will only
@@ -1405,7 +1455,7 @@ The @code{ok} variable will then be true iff the script is running inside Pd.
 @end deffn
 
 @geindex pd_path (C function)
-@anchor{pd-pure pd_path}@anchor{1c}
+@anchor{pd-pure pd_path}@anchor{1d}
 @deffn {C Function} extern expr *pd_path ()
 
 Returns the Pd path (set in Pd's @code{Path} dialog or via the @code{-path}
@@ -1414,7 +1464,7 @@ Pure scripts need to locate files on the Pd search path.
 @end deffn
 
 @geindex pd_libdir (C function)
-@anchor{pd-pure pd_libdir}@anchor{1d}
+@anchor{pd-pure pd_libdir}@anchor{1e}
 @deffn {C Function} extern char *pd_libdir ()
 
 Returns the Pd library dir (as determined at compile time). This is useful
@@ -1422,7 +1472,7 @@ if your Pure scripts need to access files in that directory.
 @end deffn
 
 @geindex pd_getdir (C function)
-@anchor{pd-pure pd_getdir}@anchor{1e}
+@anchor{pd-pure pd_getdir}@anchor{1f}
 @deffn {C Function} extern expr *pd_getdir ()
 
 Returns the directory of the patch the current object is in. This is useful
@@ -1435,19 +1485,19 @@ the objects are located in.
 @end deffn
 
 @geindex pd_getfile (C function)
-@anchor{pd-pure pd_getfile}@anchor{1f}
+@anchor{pd-pure pd_getfile}@anchor{20}
 @deffn {C Function} extern expr *pd_getfile ()
 
 Returns the name of the file that will be opened with the @code{menu-open}
 action (accessible by right-clicking on a Pure object and selecting
 @code{Open}). This is usually the Pure script of the object, if available, but
-this can be changed with @pxref{20,,pd_setfile()} below. The function must be
+this can be changed with @pxref{21,,pd_setfile()} below. The function must be
 called during object creation or in the method calls of an object, so that
 it is clear what the current object is; otherwise the function will fail.
 @end deffn
 
 @geindex pd_setfile (C function)
-@anchor{pd-pure pd_setfile}@anchor{20}
+@anchor{pd-pure pd_setfile}@anchor{21}
 @deffn {C Function} extern void pd_setfile (char@w{ }*s)
 
 Sets the name of the file to be opened with the @code{menu-open} action. By
@@ -1459,7 +1509,7 @@ function will have no effect.
 @end deffn
 
 @geindex pd_post (C function)
-@anchor{pd-pure pd_post}@anchor{21}
+@anchor{pd-pure pd_post}@anchor{22}
 @deffn {C Function} extern void pd_post (char@w{ }*s)
 
 Posts a message in the Pd main window. A trailing newline is added
@@ -1468,10 +1518,10 @@ calling Pd's @code{post()} (which is a varargs function) as @code{post "%s" s}.
 @end deffn
 
 @geindex pd_error_s (C function)
-@anchor{pd-pure pd_error_s}@anchor{22}
+@anchor{pd-pure pd_error_s}@anchor{23}
 @deffn {C Function} extern void pd_error_s (char@w{ }*s)
 
-Like @pxref{21,,pd_post()}, but prints an error message instead. If this
+Like @pxref{22,,pd_post()}, but prints an error message instead. If this
 routine is invoked from an object (i.e., during object creation or a method
 call) then Pd's @code{pd_error()} function is called, which allows the object
 to be tracked down with Pd's @code{Find Last Error} menu command. Otherwise
@@ -1480,16 +1530,16 @@ called which just outputs the message.
 @end deffn
 
 @geindex pd_time (C function)
-@anchor{pd-pure pd_time}@anchor{11}
+@anchor{pd-pure pd_time}@anchor{12}
 @deffn {C Function} extern double pd_time ()
 
 Retrieves the current Pd time as a double value in milliseconds, which is
 useful, in particular, when used in conjunction with the asynchronous
-message facility described under @pxref{10,,Asynchronous Messages}.
+message facility described under @pxref{11,,Asynchronous Messages}.
 @end deffn
 
 @geindex pd_send (C function)
-@anchor{pd-pure pd_send}@anchor{14}
+@anchor{pd-pure pd_send}@anchor{15}
 @deffn {C Function} extern void pd_send (char@w{ }*sym, expr@w{ }*x)
 
 Sends a message, specified as a Pure term @code{x}, to the receiver given by
@@ -1498,7 +1548,7 @@ doesn't exist.
 @end deffn
 
 @geindex pd_receive (C function)
-@anchor{pd-pure pd_receive}@anchor{15}
+@anchor{pd-pure pd_receive}@anchor{16}
 @deffn {C Function} extern void pd_receive (char@w{ }*sym)
 
 Prepares an object so that it can receive messages sent to the given symbol
@@ -1510,7 +1560,7 @@ where the message came from.
 @end deffn
 
 @geindex pd_unreceive (C function)
-@anchor{pd-pure pd_unreceive}@anchor{23}
+@anchor{pd-pure pd_unreceive}@anchor{24}
 @deffn {C Function} extern void pd_unreceive (char@w{ }*sym)
 
 Switches off receiving messages for the given symbol @code{sym}. Use this
@@ -1521,30 +1571,30 @@ to undo the effects of a previous @code{pd_receive} call.
 @geindex pd_setbuffer (C function)
 @geindex pd_getbuffersize (C function)
 @geindex pd_setbuffersize (C function)
-@anchor{pd-pure pd_getbuffer}@anchor{17}
+@anchor{pd-pure pd_getbuffer}@anchor{18}
 @deffn {C Function} extern expr *pd_getbuffer (char@w{ }*name)
-@anchor{pd-pure pd_setbuffer}@anchor{18}
+@anchor{pd-pure pd_setbuffer}@anchor{19}
 @deffnx {C Function} extern void pd_setbuffer (char@w{ }*name, expr@w{ }*x)
-@anchor{pd-pure pd_getbuffersize}@anchor{24}
+@anchor{pd-pure pd_getbuffersize}@anchor{25}
 @deffnx {C Function} extern int pd_getbuffersize (char@w{ }*name)
-@anchor{pd-pure pd_setbuffersize}@anchor{25}
+@anchor{pd-pure pd_setbuffersize}@anchor{26}
 @deffnx {C Function} extern void pd_setbuffersize (char@w{ }*name, uint32_t@w{ }sz)
 
 Routines to access the Pd array (sample buffer) with the given name. These
 functions can be used to transfer audio data between Pd and Pure scripts;
-see @pxref{16,,Reading and Writing Audio Data} above for an example.
+see @pxref{17,,Reading and Writing Audio Data} above for an example.
 
-@pxref{24,,pd_getbuffersize()} and @pxref{25,,pd_setbuffersize()} gets or sets the
+@pxref{25,,pd_getbuffersize()} and @pxref{26,,pd_setbuffersize()} gets or sets the
 size of the given buffer, respectively.
 
-@pxref{17,,pd_getbuffer()} reads the contents of the buffer and returns it as a
+@pxref{18,,pd_getbuffer()} reads the contents of the buffer and returns it as a
 Pure vector (or fails if the array with the given name doesn't exist).
 
-@pxref{18,,pd_setbuffer()} sets the contents of the buffer from the given Pure
+@pxref{19,,pd_setbuffer()} sets the contents of the buffer from the given Pure
 vector @code{x}. If the size of the vector exceeds the size of the buffer, the
 former is truncated. Conversely, if the size of the buffer exceeds the size
 of the Pure vector, the trailing samples are unaffected. @emph{Note:} The
-second argument of @pxref{18,,pd_setbuffer()} can also be a pair @code{(i,x)}
+second argument of @pxref{19,,pd_setbuffer()} can also be a pair @code{(i,x)}
 denoting an offset @code{i} into the array at which the sample data is to be
 written, so that this routine allows you to overwrite any part of the
 array.

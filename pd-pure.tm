@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts<label|pd-pure-pd-loader-for-pure-scripts>>
 
-  Version 0.16, January 28, 2014
+  Version 0.17, February 13, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -39,7 +39,7 @@
   MS Windows users please see <hlink|pd-pure on Windows|#pd-pure-on-windows>
   below.
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -67,7 +67,7 @@
   <subsubsection|pd-pure on Windows<label|pd-pure-on-windows>>
 
   There's a binary package in MSI format available at the Pure website:
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi>.
   Use that if you can. You'll also need the latest Pure version (0.50 at the
   time of this writing), and Pd 0.43 or later, which is available from Miller
   Puckette's website: <hlink|http://crca.ucsd.edu/<math|\<sim\>>msp/software.html|http://crca.ucsd.edu/-tildemsp/software.html>.
@@ -227,7 +227,11 @@
   </verbatim>
 
   This object can then be invoked, e.g., as <verbatim|[add> <verbatim|5]> in
-  the Pd patch to supply the needed creation argument <verbatim|x>.
+  the Pd patch to supply the needed creation argument <verbatim|x>. Please
+  note that only a fixed number of creation arguments can be processed this
+  way. However, the Pure loader also provides a mechanism to handle a
+  variable number of creation arguments, see <hlink|Variadic Creation
+  Functions|#variadic-creation-functions> below.
 
   <subsubsection|The [pure] Object<label|the-pure-object>>
 
@@ -330,16 +334,68 @@
     echo = 1,0,puts.str;
   </verbatim>
 
+  <subsubsection|Variadic Creation Functions<label|variadic-creation-functions>>
+
+  Sometimes you may wish to implement an object which accepts a variable
+  number of creation arguments. To these ends, the creation function
+  <verbatim|foo> may return an application of the form <verbatim|varargs>
+  <verbatim|bar>. In this case, the function <verbatim|bar> becomes the
+  actual object creation function which is applied to a single argument, the
+  list of all supplied creation arguments. For instance, if you invoke
+  <verbatim|foo> through an object like <verbatim|[foo> <verbatim|a>
+  <verbatim|b> <verbatim|c]> in a patch, the loader would then create the
+  object by calling <verbatim|bar> <verbatim|[a,b,c]> instead. Likewise, if
+  the object gets created without any arguments at all, i.e.,
+  <verbatim|[foo]>, then <verbatim|bar> would be called as <verbatim|bar>
+  <verbatim|[]>. The function <verbatim|bar> may then be used as the runtime
+  function of the object, or it may yield the object function to be used,
+  along with the desired number of inlets and outlets, as described in the
+  previous subsection. This makes it possible to configure the inlets and
+  outlets of the object according to the number and values of the supplied
+  creation arguments, pretty much like some of the built-in Pd objects do,
+  such as <verbatim|pack> and <verbatim|sel>.
+
+  For instance, here is how you could implement something like Pd's built-in
+  <verbatim|sel> object in Pure. The object compares its input against a
+  number of values given as creation arguments, and bangs the corresponding
+  outlet if it is found, or passes on the input on the rightmost outlet
+  otherwise:
+
+  <\verbatim>
+    mysel = varargs mysel with
+
+    \ \ mysel xs = 1,#xs+1,mysel with
+
+    \ \ \ \ mysel x = i,bang if i\<less\>#xs when i = #takewhile (~==x) xs
+    end;
+
+    \ \ \ \ \ \ \ \ \ \ \ \ = #xs,x otherwise;
+
+    \ \ end;
+
+    end;
+  </verbatim>
+
+  Note that the runtime function is the innermost local <verbatim|mysel>
+  function (at line 3 in the example). The outermost local <verbatim|mysel>
+  function (at line 2) is the actual creation function which gets invoked by
+  the loader on the list of all creation arguments; here it yields the number
+  of inlets and outlets (where the latter depends on the number of creation
+  arguments) along with the runtime function. You can invoke this object as,
+  e.g., <verbatim|[mysel> <verbatim|a> <verbatim|b> <verbatim|c]>, in which
+  case there will be four outlets, one for each given value and one for the
+  rightmost ``default'' outlet.
+
   <subsubsection|Local State<label|local-state>>
 
   Local state can be kept in Pure reference values. For instance, the
-  following <verbatim|[counter]> object produces the next counter value when
-  receiving a <verbatim|bang> message:
+  following <verbatim|[mycounter]> object produces the next counter value
+  when receiving a <verbatim|bang> message:
 
   <\verbatim>
     nonfix bang;
 
-    counter = next (ref 0) with
+    mycounter = next (ref 0) with
 
     \ \ next r bang = put r (get r+1);
 
@@ -350,12 +406,12 @@
 
   Note that the state is kept as an additional first parameter to the local
   function <verbatim|next> here. Alternatively, you can also make the state a
-  local variable of <verbatim|counter>:
+  local variable of <verbatim|mycounter>:
 
   <\verbatim>
     nonfix bang;
 
-    counter = next with
+    mycounter = next with
 
     \ \ next bang = put r (get r+1);
 
@@ -1237,14 +1293,14 @@
   <verbatim|pd_save> as a sentry on the object function (see the description
   of the <hlink|<with|font-family|tt|sentry>|purelib.tm#sentry> function in
   the <hlink|<em|Pure Library Manual>|purelib.tm> for details). For instance,
-  here's the counter example from <hlink|Local State|#local-state> again,
+  here's the mycounter example from <hlink|Local State|#local-state> again,
   with the necessary additions to support the
   <verbatim|pd_save>/<verbatim|pd_restore> protocol:
 
   <\verbatim>
     nonfix bang pd_save;
 
-    counter = sentry pd_save $ next (ref 0) with
+    mycounter = sentry pd_save $ next (ref 0) with
 
     \ \ next r bang = put r (get r+1);
 
@@ -1511,6 +1567,8 @@
         <item><hlink|Configuring Inlets and
         Outlets|#configuring-inlets-and-outlets>
 
+        <item><hlink|Variadic Creation Functions|#variadic-creation-functions>
+
         <item><hlink|Local State|#local-state>
       </itemize>
 
@@ -1552,6 +1610,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  13, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

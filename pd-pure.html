@@ -57,7 +57,7 @@
             
   <div class="section" id="pd-pure-pd-loader-for-pure-scripts">
 <h1>pd-pure: Pd loader for Pure scripts<a class="headerlink" href="#pd-pure-pd-loader-for-pure-scripts" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.16, January 28, 2014</p>
+<p>Version 0.17, February 13, 2014</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>This is a <a class="reference external" href="http://puredata.info/">Pd</a> loader plugin for the Pure programming language which lets you
 write external Pd objects in Pure.</p>
@@ -83,19 +83,20 @@ to a library in binary format which can be loaded much faster with Pd&#8217;s
 <li><a class="reference internal" href="#creation-arguments" id="id8">Creation Arguments</a></li>
 <li><a class="reference internal" href="#the-pure-object" id="id9">The [pure] Object</a></li>
 <li><a class="reference internal" href="#configuring-inlets-and-outlets" id="id10">Configuring Inlets and Outlets</a></li>
-<li><a class="reference internal" href="#local-state" id="id11">Local State</a></li>
+<li><a class="reference internal" href="#variadic-creation-functions" id="id11">Variadic Creation Functions</a></li>
+<li><a class="reference internal" href="#local-state" id="id12">Local State</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#audio-objects" id="id12">Audio Objects</a></li>
-<li><a class="reference internal" href="#advanced-features" id="id13">Advanced Features</a><ul>
-<li><a class="reference internal" href="#asynchronous-messages" id="id14">Asynchronous Messages</a></li>
-<li><a class="reference internal" href="#wireless-messaging" id="id15">Wireless Messaging</a></li>
-<li><a class="reference internal" href="#reading-and-writing-audio-data" id="id16">Reading and Writing Audio Data</a></li>
-<li><a class="reference internal" href="#controlling-the-runtime" id="id17">Controlling the Runtime</a></li>
-<li><a class="reference internal" href="#livecoding" id="id18">Livecoding</a></li>
-<li><a class="reference internal" href="#remote-control" id="id19">Remote Control</a></li>
-<li><a class="reference internal" href="#compiling-objects" id="id20">Compiling Objects</a></li>
-<li><a class="reference internal" href="#programming-interface" id="id21">Programming Interface</a></li>
+<li><a class="reference internal" href="#audio-objects" id="id13">Audio Objects</a></li>
+<li><a class="reference internal" href="#advanced-features" id="id14">Advanced Features</a><ul>
+<li><a class="reference internal" href="#asynchronous-messages" id="id15">Asynchronous Messages</a></li>
+<li><a class="reference internal" href="#wireless-messaging" id="id16">Wireless Messaging</a></li>
+<li><a class="reference internal" href="#reading-and-writing-audio-data" id="id17">Reading and Writing Audio Data</a></li>
+<li><a class="reference internal" href="#controlling-the-runtime" id="id18">Controlling the Runtime</a></li>
+<li><a class="reference internal" href="#livecoding" id="id19">Livecoding</a></li>
+<li><a class="reference internal" href="#remote-control" id="id20">Remote Control</a></li>
+<li><a class="reference internal" href="#compiling-objects" id="id21">Compiling Objects</a></li>
+<li><a class="reference internal" href="#programming-interface" id="id22">Programming Interface</a></li>
 </ul>
 </li>
 </ul>
@@ -109,7 +110,7 @@ to a library in binary format which can be loaded much faster with Pd&#8217;s
 <h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>MS Windows users please see <a class="reference internal" href="#pd-pure-on-windows">pd-pure on Windows</a> below.</p>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.tar.gz</a>.</p>
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz</a>.</p>
 <p>Usually, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt> should do the trick. This will compile
 the external (you need to have GNU make, Pd and Pure installed to do that) and
 install it in the lib/pd/extra/pure directory.</p>
@@ -128,7 +129,7 @@ your system then you&#8217;ll have to edit the Makefile accordingly.</p>
 <div class="section" id="pd-pure-on-windows">
 <h3><a class="toc-backref" href="#id4">pd-pure on Windows</a><a class="headerlink" href="#pd-pure-on-windows" title="Permalink to this headline">¶</a></h3>
 <p>There&#8217;s a binary package in MSI format available at the Pure website:
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.16.msi</a>. Use that if you
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi</a>. Use that if you
 can. You&#8217;ll also need the latest Pure version (0.50 at the time of this
 writing), and Pd 0.43 or later, which is available from Miller Puckette&#8217;s
 website: <a class="reference external" href="http://crca.ucsd.edu/~msp/software.html">http://crca.ucsd.edu/~msp/software.html</a>.</p>
@@ -287,7 +288,10 @@ the Pure function at object creation time. For instance:</p>
 </pre></div>
 </div>
 <p>This object can then be invoked, e.g., as <tt class="docutils literal"><span class="pre">[add</span> <span class="pre">5]</span></tt> in the Pd patch to
-supply the needed creation argument <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
+supply the needed creation argument <tt class="docutils literal"><span class="pre">x</span></tt>. Please note that only a fixed
+number of creation arguments can be processed this way. However, the Pure
+loader also provides a mechanism to handle a variable number of creation
+arguments, see <a class="reference internal" href="#variadic-creation-functions">Variadic Creation Functions</a> below.</p>
 </div>
 <div class="section" id="the-pure-object">
 <h3><a class="toc-backref" href="#id9">The [pure] Object</a><a class="headerlink" href="#the-pure-object" title="Permalink to this headline">¶</a></h3>
@@ -366,13 +370,51 @@ echo = <span class="mi">1</span>,<span class="mi">0</span>,puts.str<span class="
 </pre></div>
 </div>
 </div>
+<div class="section" id="variadic-creation-functions">
+<h3><a class="toc-backref" href="#id11">Variadic Creation Functions</a><a class="headerlink" href="#variadic-creation-functions" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes you may wish to implement an object which accepts a variable number
+of creation arguments. To these ends, the creation function <tt class="docutils literal"><span class="pre">foo</span></tt> may return
+an application of the form <tt class="docutils literal"><span class="pre">varargs</span> <span class="pre">bar</span></tt>. In this case, the function <tt class="docutils literal"><span class="pre">bar</span></tt>
+becomes the actual object creation function which is applied to a single
+argument, the list of all supplied creation arguments. For instance, if you
+invoke <tt class="docutils literal"><span class="pre">foo</span></tt> through an object like <tt class="docutils literal"><span class="pre">[foo</span> <span class="pre">a</span> <span class="pre">b</span> <span class="pre">c]</span></tt> in a patch, the loader
+would then create the object by calling <tt class="docutils literal"><span class="pre">bar</span> <span class="pre">[a,b,c]</span></tt> instead. Likewise, if
+the object gets created without any arguments at all, i.e., <tt class="docutils literal"><span class="pre">[foo]</span></tt>, then
+<tt class="docutils literal"><span class="pre">bar</span></tt> would be called as <tt class="docutils literal"><span class="pre">bar</span> <span class="pre">[]</span></tt>. The function <tt class="docutils literal"><span class="pre">bar</span></tt> may then be used
+as the runtime function of the object, or it may yield the object function to
+be used, along with the desired number of inlets and outlets, as described in
+the previous subsection. This makes it possible to configure the inlets and
+outlets of the object according to the number and values of the supplied
+creation arguments, pretty much like some of the built-in Pd objects do, such
+as <tt class="docutils literal"><span class="pre">pack</span></tt> and <tt class="docutils literal"><span class="pre">sel</span></tt>.</p>
+<p>For instance, here is how you could implement something like Pd&#8217;s built-in
+<tt class="docutils literal"><span class="pre">sel</span></tt> object in Pure. The object compares its input against a number of
+values given as creation arguments, and bangs the corresponding outlet if it
+is found, or passes on the input on the rightmost outlet otherwise:</p>
+<div class="highlight-pure"><div class="highlight"><pre>mysel = varargs mysel <span class="kr">with</span>
+  mysel xs = <span class="mi">1</span>,#xs+<span class="mi">1</span>,mysel <span class="kr">with</span>
+    mysel x = i,bang <span class="kr">if</span> i&lt;#xs <span class="kr">when</span> i = #takewhile (~==x) xs <span class="kr">end</span><span class="p">;</span>
+            = #xs,x <span class="kr">otherwise</span><span class="p">;</span>
+  <span class="kr">end</span><span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Note that the runtime function is the innermost local <tt class="docutils literal"><span class="pre">mysel</span></tt> function (at
+line 3 in the example). The outermost local <tt class="docutils literal"><span class="pre">mysel</span></tt> function (at line 2) is
+the actual creation function which gets invoked by the loader on the list of
+all creation arguments; here it yields the number of inlets and outlets (where
+the latter depends on the number of creation arguments) along with the runtime
+function. You can invoke this object as, e.g., <tt class="docutils literal"><span class="pre">[mysel</span> <span class="pre">a</span> <span class="pre">b</span> <span class="pre">c]</span></tt>, in which
+case there will be four outlets, one for each given value and one for the
+rightmost &#8220;default&#8221; outlet.</p>
+</div>
 <div class="section" id="local-state">
-<h3><a class="toc-backref" href="#id11">Local State</a><a class="headerlink" href="#local-state" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id12">Local State</a><a class="headerlink" href="#local-state" title="Permalink to this headline">¶</a></h3>
 <p>Local state can be kept in Pure reference values. For instance, the following
-<tt class="docutils literal"><span class="pre">[counter]</span></tt> object produces the next counter value when receiving a <tt class="docutils literal"><span class="pre">bang</span></tt>
-message:</p>
+<tt class="docutils literal"><span class="pre">[mycounter]</span></tt> object produces the next counter value when receiving a
+<tt class="docutils literal"><span class="pre">bang</span></tt> message:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang<span class="p">;</span>
-counter = next (ref <span class="mi">0</span>) <span class="kr">with</span>
+mycounter = next (ref <span class="mi">0</span>) <span class="kr">with</span>
   next r bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
   next _ _    = () <span class="kr">otherwise</span><span class="p">;</span>
 <span class="kr">end</span><span class="p">;</span>
@@ -380,9 +422,9 @@ counter = next (ref <span class="mi">0</span>) <span class="kr">with</span>
 </div>
 <p>Note that the state is kept as an additional first parameter to the local
 function <tt class="docutils literal"><span class="pre">next</span></tt> here. Alternatively, you can also make the state a local
-variable of <tt class="docutils literal"><span class="pre">counter</span></tt>:</p>
+variable of <tt class="docutils literal"><span class="pre">mycounter</span></tt>:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang<span class="p">;</span>
-counter = next <span class="kr">with</span>
+mycounter = next <span class="kr">with</span>
   next bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
   next _    = () <span class="kr">otherwise</span><span class="p">;</span>
 <span class="kr">end</span> <span class="kr">when</span> r = ref <span class="mi">0</span> <span class="kr">end</span><span class="p">;</span>
@@ -391,7 +433,7 @@ counter = next <span class="kr">with</span>
 </div>
 </div>
 <div class="section" id="audio-objects">
-<h2><a class="toc-backref" href="#id12">Audio Objects</a><a class="headerlink" href="#audio-objects" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Audio Objects</a><a class="headerlink" href="#audio-objects" title="Permalink to this headline">¶</a></h2>
 <p>If the name of a Pure object (i.e., the basename of the corresponding Pure
 script) ends with the <tt class="docutils literal"><span class="pre">~</span></tt> character, pd-pure assumes that it denotes an
 audio object whose primary purpose is to process sample data. The basic setup
@@ -682,13 +724,13 @@ additional pre- and postprocessing of the signal data, or do live editing of
 Faust programs using the facilities described in <a class="reference internal" href="#livecoding">Livecoding</a> below.</p>
 </div>
 <div class="section" id="advanced-features">
-<h2><a class="toc-backref" href="#id13">Advanced Features</a><a class="headerlink" href="#advanced-features" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Advanced Features</a><a class="headerlink" href="#advanced-features" title="Permalink to this headline">¶</a></h2>
 <p>This section discusses some advanced features of the Pd Pure loader. It
 explains the use of timer callbacks, wireless connections and wave arrays, and
 the livecoding and interactive control facilities. We also give an overview of
 the API provided for pd-pure programmers.</p>
 <div class="section" id="asynchronous-messages">
-<h3><a class="toc-backref" href="#id14">Asynchronous Messages</a><a class="headerlink" href="#asynchronous-messages" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id15">Asynchronous Messages</a><a class="headerlink" href="#asynchronous-messages" title="Permalink to this headline">¶</a></h3>
 <p>pd-pure provides a simple asynchronous messaging facility which allows a Pure
 object to schedule a message to be delivered to itself later. This is useful
 for implementing all kinds of delays and, more generally, any kind of object
@@ -752,7 +794,7 @@ mypipe t = process (ref []) <span class="kr">with</span>
 </div>
 </div>
 <div class="section" id="wireless-messaging">
-<h3><a class="toc-backref" href="#id15">Wireless Messaging</a><a class="headerlink" href="#wireless-messaging" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id16">Wireless Messaging</a><a class="headerlink" href="#wireless-messaging" title="Permalink to this headline">¶</a></h3>
 <p>As of version 0.14, pd-pure offers some facilities for sending and receiving
 messages directly, without any wired connections to the inlets and outlets of
 an object (similar to what the Pd <tt class="docutils literal"><span class="pre">[send]</span></tt> and <tt class="docutils literal"><span class="pre">[receive]</span></tt> objects
@@ -809,7 +851,7 @@ between Pd GUI elements and Pure objects. Wireless connections are often
 preferred in such cases, to reduce display clutter.</p>
 </div>
 <div class="section" id="reading-and-writing-audio-data">
-<h3><a class="toc-backref" href="#id16">Reading and Writing Audio Data</a><a class="headerlink" href="#reading-and-writing-audio-data" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Reading and Writing Audio Data</a><a class="headerlink" href="#reading-and-writing-audio-data" title="Permalink to this headline">¶</a></h3>
 <p>Besides the realtime processing of audio data, Pd also provides a means to
 store sample data in <cite>arrays</cite> which can be displayed in a patch and modified
 interactively, see the section on numeric arrays in the Pd documentation for
@@ -840,7 +882,7 @@ randomwave name = <span class="mi">1</span>,<span class="mi">0</span>,process <s
 </div>
 </div>
 <div class="section" id="controlling-the-runtime">
-<h3><a class="toc-backref" href="#id17">Controlling the Runtime</a><a class="headerlink" href="#controlling-the-runtime" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id18">Controlling the Runtime</a><a class="headerlink" href="#controlling-the-runtime" title="Permalink to this headline">¶</a></h3>
 <p>pd-pure provides a predefined <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object which makes it
 possible to control the embedded Pure interpreter in some ways. There can be
 any number of <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> objects in a patch, which all refer to the
@@ -872,7 +914,7 @@ a patch using the <strong class="program">pdsend</strong> program. This is descr
 following subsection.</p>
 </div>
 <div class="section" id="livecoding">
-<h3><a class="toc-backref" href="#id18">Livecoding</a><a class="headerlink" href="#livecoding" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id19">Livecoding</a><a class="headerlink" href="#livecoding" title="Permalink to this headline">¶</a></h3>
 <p>Livecoding means changing Pure objects on the fly while a patch is running. A
 simple, but limited way to do this is to just edit the boxes containing Pure
 objects interactively, as you can do with any kind of Pd object. In this case,
@@ -933,11 +975,11 @@ invocation is ignored.)</li>
 <p>In order to participate in the <tt class="docutils literal"><span class="pre">pd_save</span></tt>/<tt class="docutils literal"><span class="pre">pd_restore</span></tt> protocol, an object
 must subscribe to it. This is done by setting <tt class="docutils literal"><span class="pre">pd_save</span></tt> as a sentry on the
 object function (see the description of the <a class="reference internal" href="purelib.html#sentry" title="sentry"><tt class="xref pure pure-func docutils literal"><span class="pre">sentry</span></tt></a> function in
-the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a> for details). For instance, here&#8217;s the counter example from
-<a class="reference internal" href="#local-state">Local State</a> again, with the necessary additions to support the
+the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a> for details). For instance, here&#8217;s the mycounter example
+from <a class="reference internal" href="#local-state">Local State</a> again, with the necessary additions to support the
 <tt class="docutils literal"><span class="pre">pd_save</span></tt>/<tt class="docutils literal"><span class="pre">pd_restore</span></tt> protocol:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang pd_save<span class="p">;</span>
-counter = sentry pd_save $ next (ref <span class="mi">0</span>) <span class="kr">with</span>
+mycounter = sentry pd_save $ next (ref <span class="mi">0</span>) <span class="kr">with</span>
   next r bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
   next r pd_save = get r<span class="p">;</span>
   next r (pd_restore n) = put r n<span class="p">;</span>
@@ -947,7 +989,7 @@ counter = sentry pd_save $ next (ref <span class="mi">0</span>) <span class="kr"
 </div>
 </div>
 <div class="section" id="remote-control">
-<h3><a class="toc-backref" href="#id19">Remote Control</a><a class="headerlink" href="#remote-control" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id20">Remote Control</a><a class="headerlink" href="#remote-control" title="Permalink to this headline">¶</a></h3>
 <p>The distribution also includes an abstraction pure-remote.pd which you can
 include in your patch to enable live coding, as well as remote control of the
 patch through the <strong class="program">pdsend</strong> program. Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> (or
@@ -1019,7 +1061,7 @@ own in an analogous fashion. Together with Pure mode, this gives you a nice
 interactive environment for developing pd-pure applications.</p>
 </div>
 <div class="section" id="compiling-objects">
-<h3><a class="toc-backref" href="#id20">Compiling Objects</a><a class="headerlink" href="#compiling-objects" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id21">Compiling Objects</a><a class="headerlink" href="#compiling-objects" title="Permalink to this headline">¶</a></h3>
 <p>pd-pure&#8217;s livecoding abilities require that objects are run from source code.
 As already mentioned, this needs some (in some cases, substantial) time at
 startup when the Pure interpreter is loaded and your Pure scripts are compiled
@@ -1039,7 +1081,7 @@ infrastructure required to run any kind of pd-pure object (no matter whether
 it&#8217;s implemented in compiled or source form).</p>
 </div>
 <div class="section" id="programming-interface">
-<h3><a class="toc-backref" href="#id21">Programming Interface</a><a class="headerlink" href="#programming-interface" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id22">Programming Interface</a><a class="headerlink" href="#programming-interface" title="Permalink to this headline">¶</a></h3>
 <p>The Pure loader provides a number of interface routines which can be called by
 Pure scripts running in the Pd environment. Note that in order to access these
 functions, you&#8217;ll have to add the corresponding <tt class="docutils literal"><span class="pre">extern</span></tt> declarations to
@@ -1208,6 +1250,7 @@ array.</p>
 <li><a class="reference internal" href="#creation-arguments">Creation Arguments</a></li>
 <li><a class="reference internal" href="#the-pure-object">The [pure] Object</a></li>
 <li><a class="reference internal" href="#configuring-inlets-and-outlets">Configuring Inlets and Outlets</a></li>
+<li><a class="reference internal" href="#variadic-creation-functions">Variadic Creation Functions</a></li>
 <li><a class="reference internal" href="#local-state">Local State</a></li>
 </ul>
 </li>
@@ -1277,7 +1320,7 @@ array.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Jan 28, 2014.
+    Last updated on Feb 13, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
