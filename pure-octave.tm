@@ -10,7 +10,7 @@
 
   <section*|pure-octave<label|module-octave>>
 
-  Version 0.3, January 28, 2014
+  Version 0.4, February 20, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -39,7 +39,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.3.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.3.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.4.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.4.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -53,9 +53,9 @@
   <verbatim|prefix=/usr> sets the installation prefix. Please see the
   Makefile for details.
 
-  NOTE: This release of pure-octave has been tested with Octave 3.6.2. Older
-  versions might require some fiddling with the sources to get the embedded
-  Octave interface working.
+  NOTE: This release of pure-octave has been tested with Octave 3.6.2 and
+  3.8.0. Older versions might require some fiddling with the sources to get
+  the embedded Octave interface working.
 
   <subsection|Basic Usage<label|basic-usage>>
 
@@ -631,6 +631,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

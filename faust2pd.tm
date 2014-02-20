@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust<label|faust2pd-pd-patch-generator-for-faust>>
 
-  Version 2.5, January 28, 2014
+  Version 2.6, February 20, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -88,7 +88,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.5.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.6.tar.gz>.
 
   Run <verbatim|make> and <verbatim|make> <verbatim|install> to compile and
   install the faust2pd program on your system. You can set the installation
@@ -675,6 +675,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
