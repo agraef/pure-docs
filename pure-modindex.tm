@@ -109,6 +109,8 @@
 
   <subsection*|l<label|cap-l>>
 
+  <hlink|lilv|pure-lilv.tm#module-lilv>
+
   <hlink|lo|pure-liblo.tm#module-lo>
 
   <subsection*|m<label|cap-m>>
@@ -191,5 +193,5 @@
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  21, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

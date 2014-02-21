@@ -2740,6 +2740,8 @@
 
   <hlink|LD_LIBRARY_PATH|pure.tm#index-20>
 
+  <hlink|<with|font-series|bold|lilv (module)>|pure-lilv.tm#module-lilv>
+
   <hlink|<with|font-series|bold|lisp (function)>|pure-reduce.tm#lisp>
 
   <hlink|<with|font-series|bold|lispsym (function)>|pure-reduce.tm#lispsym>
@@ -4988,5 +4990,5 @@
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  21, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
