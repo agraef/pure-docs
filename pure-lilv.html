@@ -57,8 +57,28 @@
             
   <div class="section" id="module-lilv">
 <span id="pure-lilv-pure-lilv-interface"></span><h1>pure-lilv: Pure Lilv Interface<a class="headerlink" href="#module-lilv" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.1, February 21, 2014</p>
+<p>Version 0.2, February 23, 2014</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<div class="section" id="copying">
+<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
+<p>pure-lilv is Copyright (c) 2014 by Albert Gräf. It is distributed under a
+3-clause BSD license, please check the COPYING file included in the
+distribution for details.</p>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<p>Get the latest source from
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.2.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.2.tar.gz</a>.</p>
+<p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt> to install it in
+the Pure library directory. To uninstall the module, use <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span>
+<span class="pre">uninstall</span></tt>. There are a number of other targets (mostly for maintainers),
+please see the Makefile for details.</p>
+<p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
+setup. If it gets this wrong, you can set some variables manually. In
+particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets the installation prefix.</p>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>This package provides a Pure module for David Robillard&#8217;s <a class="reference external" href="http://drobilla.net/software/lilv/">Lilv</a>, a library for
 LV2 plugin host writers. <a class="reference external" href="http://lv2plug.in/">LV2</a> is the new Linux audio plugin standard (LADSPA
 successor) which aims to be portable and extensible. Lilv makes it possible to
@@ -66,25 +86,63 @@ load LV2 plugins in audio and other multimedia software. It is provided as a
 comprehensive and well-tested reference implementation for LV2 plugin hosts,
 so that authors of multimedia software don&#8217;t have to craft their own (and
 often incomplete or bug-ridden) implementations of the LV2 plugin API.</p>
-<p>This module is still under development. When it is finished, it should provide
-all the common facilities needed to write LV2 hosts in Pure. We already offer
-operations to retrieve information about the LV2 plugins installed on a
-system, and to instantiate and run most basic plugins. Basic MIDI support is
-also available. More work is still needed in order to support more exotic
-event types such as transport state and tempo changes, handling of presets and
-plugin state, and any other extensions which may be required to run more
+<p>This module is still under development, but we already offer operations to
+retrieve information about the LV2 plugins installed on a system, and to
+instantiate and run most basic plugins. Support for MIDI input and output and
+handling LV2 presets and plugin state is also available. More work is still
+needed in order to support more exotic event types such as transport state and
+tempo changes, and any other extensions which may be required to run more
 advanced plugins. We&#8217;re still trying to figure these out, so if you notice
 anything that&#8217;s missing in the current implementation then please submit a
 feature request.</p>
 <p>Documentation still needs to be written. For the time being, please refer to
 the lilv.pure script for a description of the programming interface, and to
 the scripts in the examples folder for examples showing how to use the
-operations provided by this module.</p>
-<div class="section" id="copying">
-<h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
-<p>pure-lilv is Copyright (c) 2014 by Albert Gräf. It is distributed under a
-3-clause BSD license, please check the COPYING file included in the
-distribution for details.</p>
+operations provided by this module. Specifically, have a look at the
+lilv_examp.pure script which illustrates most the API functions and how they
+are used in a Pure script. There&#8217;s also a fairly complete software synthesizer
+example, synth.pure, which shows how to run instrument and effect plugins in a
+synth/effects chain in order to synthesize audio from MIDI input. Another
+complete example is the lv2plugin~ host for Pd which is written entirely in
+Pure; you can find this at <a class="reference external" href="https://bitbucket.org/agraef/pd-lv2plugin">https://bitbucket.org/agraef/pd-lv2plugin</a>.</p>
+<p>Here&#8217;s a brief excerpt from lilv_examp.pure which shows the necessary steps
+involved in running an LV2 audio plugin with Pure:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="c1">// Import the module.</span>
+<span class="kr">using</span> lilv<span class="p">;</span>
+<span class="c1">// Load the LV2 world state.</span>
+<span class="kr">let</span> world = lilv<span class="p">::</span>world<span class="p">;</span>
+
+<span class="c1">// Instantiate a plugin.</span>
+<span class="kr">let</span> p = lilv<span class="p">::</span>plugin world <span class="s">&quot;http://faust-lv2.googlecode.com/amp&quot;</span> <span class="mi">44100</span> <span class="mi">64</span><span class="p">;</span>
+
+<span class="c1">// Get some information about the plugin (number of audio inputs and</span>
+<span class="c1">// outputs, port descriptions).</span>
+<span class="kr">let</span> n,m = lilv<span class="p">::</span>num_audio_inputs p, lilv<span class="p">::</span>num_audio_outputs p<span class="p">;</span>
+<span class="kr">let</span> ports = [i, lilv<span class="p">::</span>port_info p i | i = <span class="mi">0</span>..lilv<span class="p">::</span>num_ports p-<span class="mi">1</span>]<span class="p">;</span>
+
+<span class="c1">// Create some audio buffers for input and output.</span>
+<span class="kr">let</span> in = <span class="kt">dmatrix</span> {<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">0</span>,-<span class="mi">1</span>,<span class="mi">0</span>,<span class="mi">1</span>,-<span class="mi">1</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">0</span>,-<span class="mi">1</span>,<span class="mi">0</span>,<span class="mi">1</span>,-<span class="mi">1</span>,<span class="mi">0</span>}<span class="p">;</span>
+<span class="kr">let</span> out = <span class="kt">dmatrix</span> (<span class="mi">2</span>,<span class="mi">8</span>)<span class="p">;</span>
+
+<span class="c1">// Activate the plugin.</span>
+lilv<span class="p">::</span>activate p<span class="p">;</span>
+
+<span class="c1">// Run some samples through the plugin.</span>
+lilv<span class="p">::</span>run p in out<span class="p">;</span>
+
+<span class="c1">// Set a control value.</span>
+lilv<span class="p">::</span>set_control p <span class="mi">2</span> <span class="mi">10</span><span class="p">;</span>
+<span class="c1">// Compute some more samples.</span>
+lilv<span class="p">::</span>run p in out<span class="p">;</span>
+<span class="c1">// Get the values of some output controls.</span>
+map (lilv<span class="p">::</span>get_control p) [<span class="mi">4</span>,<span class="mi">5</span>]<span class="p">;</span>
+
+<span class="c1">// Send a MIDI message.</span>
+lilv<span class="p">::</span>set_midi p <span class="mi">10</span> [{<span class="mh">0xb0</span>, <span class="mi">7</span>, <span class="mi">127</span>}]<span class="p">;</span>
+<span class="c1">// Compute some more samples.</span>
+lilv<span class="p">::</span>run p in out<span class="p">;</span>
+</pre></div>
+</div>
 </div>
 </div>
 
@@ -98,6 +156,8 @@ distribution for details.</p>
   <ul>
 <li><a class="reference internal" href="#">pure-lilv: Pure Lilv Interface</a><ul>
 <li><a class="reference internal" href="#copying">Copying</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#description">Description</a></li>
 </ul>
 </li>
 </ul>
@@ -152,7 +212,7 @@ distribution for details.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Feb 21, 2014.
+    Last updated on Feb 23, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

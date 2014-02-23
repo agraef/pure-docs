@@ -39,35 +39,35 @@
 
   <subsection*|Symbols<label|Symbols>>
 
-  <hlink|<with|font-series|bold|! (infix function)>|purelib.tm#!>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#!/string>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#!/matrix>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#!/record>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#!/array>,
+  <hlink|<with|font-series|bold|! (infix function)>|pure-stlvec.tm#!/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#!>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#!/string>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#!/matrix>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#!/record>,
   <hlink|<with|font-series|bold|[5]>|purelib.tm#!/array>,
-  <hlink|<with|font-series|bold|[6]>|purelib.tm#!/dict>,
-  <hlink|<with|font-series|bold|[7]>|pure-stlmap.tm#!/stlmap>,
-  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#!/stldict>,
-  <hlink|<with|font-series|bold|[9]>|pure-stlvec.tm#!/stlvec>
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#!/array>,
+  <hlink|<with|font-series|bold|[7]>|purelib.tm#!/dict>,
+  <hlink|<with|font-series|bold|[8]>|pure-stlmap.tm#!/stlmap>,
+  <hlink|<with|font-series|bold|[9]>|pure-stldict.tm#!/stldict>
 
   <hlink|<with|font-series|bold|!! (infix function)>|purelib.tm#!!>,
   <hlink|<with|font-series|bold|[1]>|purelib.tm#!!/string>,
   <hlink|<with|font-series|bold|[2]>|purelib.tm#!!/matrix>,
   <hlink|<with|font-series|bold|[3]>|purelib.tm#!!/record>
 
-  <hlink|<with|font-series|bold|# (prefix function)>|purelib.tm##>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm##/string>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm##/matrix>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm##/record>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm##/blob>,
-  <hlink|<with|font-series|bold|[5]>|purelib.tm##/array>,
-  <hlink|<with|font-series|bold|[6]>|purelib.tm##/heap>,
-  <hlink|<with|font-series|bold|[7]>|purelib.tm##/dict>,
-  <hlink|<with|font-series|bold|[8]>|purelib.tm##/set>,
-  <hlink|<with|font-series|bold|[9]>|pure-stlmap.tm##/stlmap>,
-  <hlink|<with|font-series|bold|[10]>|pure-rational.tm##/rational>,
-  <hlink|<with|font-series|bold|[11]>|pure-stldict.tm##/stldict>,
-  <hlink|<with|font-series|bold|[12]>|pure-stlvec.tm##/stlvec>
+  <hlink|<with|font-series|bold|# (prefix
+  function)>|pure-stlvec.tm##/stlvec>, <hlink|<with|font-series|bold|[1]>|purelib.tm##>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm##/string>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm##/matrix>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm##/record>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm##/blob>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm##/array>,
+  <hlink|<with|font-series|bold|[7]>|purelib.tm##/heap>,
+  <hlink|<with|font-series|bold|[8]>|purelib.tm##/dict>,
+  <hlink|<with|font-series|bold|[9]>|purelib.tm##/set>,
+  <hlink|<with|font-series|bold|[10]>|pure-stlmap.tm##/stlmap>,
+  <hlink|<with|font-series|bold|[11]>|pure-rational.tm##/rational>,
+  <hlink|<with|font-series|bold|[12]>|pure-stldict.tm##/stldict>
 
   <hlink|<with|font-series|bold|$ (infix function)>|purelib.tm#-dollar>
 
@@ -404,17 +404,17 @@
   <hlink|<with|font-series|bold|[3]>|pure-stlmap.tm#\<=/stlmap>,
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#\<=/mpfr>
 
-  <hlink|<with|font-series|bold|== (infix function)>|purelib.tm#==/list>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#==/hashpair>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#==/string>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#==/matrix>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#==>,
-  <hlink|<with|font-series|bold|[5]>|purelib.tm#==/pointer>,
-  <hlink|<with|font-series|bold|[6]>|pure-stlmap.tm#==/stlmap>,
+  <hlink|<with|font-series|bold|== (infix
+  function)>|pure-stlvec.tm#==/stlvec>, <hlink|<with|font-series|bold|[1]>|purelib.tm#==/list>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#==/hashpair>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#==/string>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#==/matrix>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#==>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#==/pointer>,
   <hlink|<with|font-series|bold|[7]>|pure-stlmap.tm#==/stlmap>,
-  <hlink|<with|font-series|bold|[8]>|pure-mpfr.tm#==/mpfr>,
-  <hlink|<with|font-series|bold|[9]>|pure-stldict.tm#==/stldict-iterator>,
-  <hlink|<with|font-series|bold|[10]>|pure-stlvec.tm#==/stlvec>
+  <hlink|<with|font-series|bold|[8]>|pure-stlmap.tm#==/stlmap>,
+  <hlink|<with|font-series|bold|[9]>|pure-mpfr.tm#==/mpfr>,
+  <hlink|<with|font-series|bold|[10]>|pure-stldict.tm#==/stldict-iterator>
 
   <hlink|<with|font-series|bold|=== (infix function)>|purelib.tm#===>
 
@@ -456,15 +456,16 @@
   function)>|purelib.tm#-tilde>
 
   <hlink|<with|font-series|bold|<math|\<sim\>>= (infix
-  function)>|purelib.tm#-tilde=/list>, <hlink|<with|font-series|bold|[1]>|purelib.tm#-tilde=/hashpair>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#-tilde=/string>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#-tilde=/matrix>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#-tilde=>,
-  <hlink|<with|font-series|bold|[5]>|purelib.tm#-tilde=/pointer>,
-  <hlink|<with|font-series|bold|[6]>|pure-stlmap.tm#-tilde=/stlmap>,
-  <hlink|<with|font-series|bold|[7]>|pure-mpfr.tm#-tilde=/mpfr>,
-  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#-tilde=/stldict-iterator>,
-  <hlink|<with|font-series|bold|[9]>|pure-stlvec.tm#-tilde=/stlvec>
+  function)>|pure-stlvec.tm#-tilde=/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#-tilde=/list>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#-tilde=/hashpair>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#-tilde=/string>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#-tilde=/matrix>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#-tilde=>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#-tilde=/pointer>,
+  <hlink|<with|font-series|bold|[7]>|pure-stlmap.tm#-tilde=/stlmap>,
+  <hlink|<with|font-series|bold|[8]>|pure-mpfr.tm#-tilde=/mpfr>,
+  <hlink|<with|font-series|bold|[9]>|pure-stldict.tm#-tilde=/stldict-iterator>
 
   <hlink|<with|font-series|bold|<math|\<sim\>>== (infix
   function)>|purelib.tm#-tilde==>
@@ -571,8 +572,8 @@
 
   <hlink|<with|font-series|bold|any (function)>|purelib.tm#any>
 
-  <hlink|<with|font-series|bold|append (function)>|purelib.tm#append/array>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#append/stlvec>
+  <hlink|<with|font-series|bold|append (function)>|pure-stlvec.tm#append/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#append/array>
 
   <hlink|<with|font-series|bold|appl (type)>|purelib.tm#appl/type>
 
@@ -722,9 +723,9 @@
 
   <hlink|<with|font-series|bold|catch (function)>|pure.tm#catch>
 
-  <hlink|<with|font-series|bold|catmap (function)>|purelib.tm#catmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#catmap/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#catmap/stlvec>
+  <hlink|<with|font-series|bold|catmap (function)>|pure-stlvec.tm#catmap/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#catmap>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#catmap/stlmap>
 
   <hlink|CC|pure.tm#index-3>
 
@@ -781,13 +782,14 @@
 
   <hlink|<with|font-series|bold|colcat (function)>|purelib.tm#colcat>
 
-  <hlink|<with|font-series|bold|colcatmap (function)>|purelib.tm#colcatmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#colcatmap/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#colcatmap/stlvec>
+  <hlink|<with|font-series|bold|colcatmap
+  (function)>|pure-stlvec.tm#colcatmap/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#colcatmap>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#colcatmap/stlmap>
 
-  <hlink|<with|font-series|bold|colmap (function)>|purelib.tm#colmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#colmap/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#colmap/stlvec>
+  <hlink|<with|font-series|bold|colmap (function)>|pure-stlvec.tm#colmap/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#colmap>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#colmap/stlmap>
 
   <hlink|<with|font-series|bold|colrev (function)>|purelib.tm#colrev>
 
@@ -946,9 +948,9 @@
 
   <hlink|<with|font-series|bold|dmatrixp (function)>|purelib.tm#dmatrixp>
 
-  <hlink|<with|font-series|bold|do (function)>|purelib.tm#do>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#do/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#do/stlvec>
+  <hlink|<with|font-series|bold|do (function)>|pure-stlvec.tm#do/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#do>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#do/stlmap>
 
   <hlink|<with|font-series|bold|double (function)>|purelib.tm#double>,
   <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#double/mpfr>,
@@ -1097,9 +1099,9 @@
   <hlink|[4]|pure.tm#index-59>, <hlink|[5]|pure.tm#index-60>,
   <hlink|[6]|install.tm#index-0>
 
-  <hlink|<with|font-series|bold|erase (function)>|pure-stlmap.tm#erase/stlmap>,
+  <hlink|<with|font-series|bold|erase (function)>|pure-stlvec.tm#erase/stlvec>,
   <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#erase/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#erase/stlvec>
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#erase/stlmap>
 
   <hlink|<with|font-series|bold|errno (function)>|purelib.tm#errno>
 
@@ -1126,8 +1128,8 @@
   <subsection*|F<label|F>>
 
   <hlink|<with|font-series|bold|failed_cond
-  (constructor)>|purelib.tm#failed-cond>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#failed-cond/stlvec>
+  (constructor)>|pure-stlvec.tm#failed-cond/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#failed-cond>
 
   <hlink|<with|font-series|bold|failed_match
   (constructor)>|purelib.tm#failed-match>
@@ -1222,15 +1224,15 @@
 
   <hlink|<with|font-series|bold|fileno (function)>|purelib.tm#fileno>
 
-  <hlink|<with|font-series|bold|filter (function)>|purelib.tm#filter>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#filter/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#filter/stlvec>
+  <hlink|<with|font-series|bold|filter (function)>|pure-stlvec.tm#filter/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#filter>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#filter/stlmap>
 
-  <hlink|<with|font-series|bold|first (function)>|purelib.tm#first/array>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#first/heap>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#first/dict>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#first/set>,
-  <hlink|<with|font-series|bold|[4]>|pure-stlvec.tm#first/stlvec>
+  <hlink|<with|font-series|bold|first (function)>|pure-stlvec.tm#first/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#first/array>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#first/heap>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#first/dict>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#first/set>
 
   <hlink|<with|font-series|bold|fix (function)>|purelib.tm#fix>
 
@@ -1250,13 +1252,13 @@
 
   <hlink|<with|font-series|bold|fnmatch (function)>|purelib.tm#fnmatch>
 
-  <hlink|<with|font-series|bold|foldl (function)>|purelib.tm#foldl>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#foldl/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#foldl/stlvec>
+  <hlink|<with|font-series|bold|foldl (function)>|pure-stlvec.tm#foldl/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#foldl>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#foldl/stlmap>
 
-  <hlink|<with|font-series|bold|foldl1 (function)>|purelib.tm#foldl1>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#foldl1/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#foldl1/stlvec>
+  <hlink|<with|font-series|bold|foldl1 (function)>|pure-stlvec.tm#foldl1/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#foldl1>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#foldl1/stlmap>
 
   <hlink|<with|font-series|bold|foldr (function)>|purelib.tm#foldr>,
   <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#foldr/stlmap>
@@ -2600,15 +2602,15 @@
 
   <hlink|<with|font-series|bold|init (function)>|purelib.tm#init>
 
-  <hlink|<with|font-series|bold|insert (function)>|purelib.tm#insert/record>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#insert/array>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#insert/heap>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#insert/dict>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#insert/set>,
-  <hlink|<with|font-series|bold|[5]>|pure-stlmap.tm#insert/stlmap>,
-  <hlink|<with|font-series|bold|[6]>|pure-stldict.tm#insert/stldict>,
-  <hlink|<with|font-series|bold|[7]>|pure-stldict.tm#insert/stldict2>,
-  <hlink|<with|font-series|bold|[8]>|pure-stlvec.tm#insert/stlvec>
+  <hlink|<with|font-series|bold|insert (function)>|pure-stlvec.tm#insert/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#insert/record>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#insert/array>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#insert/heap>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#insert/dict>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#insert/set>,
+  <hlink|<with|font-series|bold|[6]>|pure-stlmap.tm#insert/stlmap>,
+  <hlink|<with|font-series|bold|[7]>|pure-stldict.tm#insert/stldict>,
+  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#insert/stldict2>
 
   <hlink|<with|font-series|bold|insert_or_replace
   (function)>|pure-stlmap.tm#insert-or-replace/stlmap>
@@ -2724,11 +2726,11 @@
 
   <hlink|<with|font-series|bold|lambdap (function)>|purelib.tm#lambdap>
 
-  <hlink|<with|font-series|bold|last (function)>|purelib.tm#last>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#last/array>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#last/dict>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#last/set>,
-  <hlink|<with|font-series|bold|[4]>|pure-stlvec.tm#last/stlvec>
+  <hlink|<with|font-series|bold|last (function)>|pure-stlvec.tm#last/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#last>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#last/array>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#last/dict>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#last/set>
 
   <hlink|<with|font-series|bold|lasterr (function)>|purelib.tm#lasterr>
 
@@ -2776,9 +2778,9 @@
 
   <hlink|<with|font-series|bold|listen (function)>|pure-sockets.tm#listen>
 
-  <hlink|<with|font-series|bold|listmap (function)>|purelib.tm#listmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#listmap/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#listmap/stlvec>
+  <hlink|<with|font-series|bold|listmap (function)>|pure-stlvec.tm#listmap/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#listmap>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#listmap/stlmap>
 
   <hlink|<with|font-series|bold|listp (function)>|purelib.tm#listp>
 
@@ -2808,9 +2810,9 @@
   <hlink|<with|font-series|bold|malloc_error
   (constructor)>|purelib.tm#malloc-error>
 
-  <hlink|<with|font-series|bold|map (function)>|purelib.tm#map>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#map/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#map/stlvec>
+  <hlink|<with|font-series|bold|map (function)>|pure-stlvec.tm#map/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#map>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#map/stlmap>
 
   <hlink|<with|font-series|bold|matcat (function)>|purelib.tm#matcat>
 
@@ -2841,13 +2843,13 @@
   <hlink|<with|font-series|bold|[3]>|pure-stlmap.tm#member/stlmap>,
   <hlink|<with|font-series|bold|[4]>|pure-stldict.tm#member/stldict>
 
-  <hlink|<with|font-series|bold|members (function)>|purelib.tm#members/array>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#members/heap>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#members/dict>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#members/set>,
-  <hlink|<with|font-series|bold|[4]>|pure-stlmap.tm#members/stlmap>,
-  <hlink|<with|font-series|bold|[5]>|pure-stldict.tm#members/stldict>,
-  <hlink|<with|font-series|bold|[6]>|pure-stlvec.tm#members/stlvec>
+  <hlink|<with|font-series|bold|members (function)>|pure-stlvec.tm#members/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#members/array>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#members/heap>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#members/dict>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#members/set>,
+  <hlink|<with|font-series|bold|[5]>|pure-stlmap.tm#members/stlmap>,
+  <hlink|<with|font-series|bold|[6]>|pure-stldict.tm#members/stldict>
 
   <hlink|<with|font-series|bold|members2 (function)>|purelib.tm#members2/array>
 
@@ -3047,8 +3049,8 @@
   <hlink|<with|font-series|bold|osc (module)>|pure-liblo.tm#module-osc>
 
   <hlink|<with|font-series|bold|out_of_bounds
-  (constructor)>|purelib.tm#out-of-bounds>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#out-of-bounds/stlvec>
+  (constructor)>|pure-stlvec.tm#out-of-bounds/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#out-of-bounds>
 
   <hlink|override (command)|pure.tm#index-44>
 
@@ -3810,8 +3812,8 @@
 
   <hlink|<with|font-series|bold|repeatn (function)>|purelib.tm#repeatn>
 
-  <hlink|<with|font-series|bold|replace (function)>|pure-stlmap.tm#replace/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#replace/stlvec>
+  <hlink|<with|font-series|bold|replace (function)>|pure-stlvec.tm#replace/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#replace/stlmap>
 
   <hlink|<with|font-series|bold|replace_with
   (function)>|pure-stlmap.tm#replace-with/stlmap>
@@ -3825,16 +3827,16 @@
 
   <hlink|<with|font-series|bold|rlistp (function)>|purelib.tm#rlistp>
 
-  <hlink|<with|font-series|bold|rmfirst (function)>|purelib.tm#rmfirst/array>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#rmfirst/heap>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#rmfirst/dict>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#rmfirst/set>,
-  <hlink|<with|font-series|bold|[4]>|pure-stlvec.tm#rmfirst/stlvec>
+  <hlink|<with|font-series|bold|rmfirst (function)>|pure-stlvec.tm#rmfirst/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#rmfirst/array>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#rmfirst/heap>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#rmfirst/dict>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#rmfirst/set>
 
-  <hlink|<with|font-series|bold|rmlast (function)>|purelib.tm#rmlast/array>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#rmlast/dict>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#rmlast/set>,
-  <hlink|<with|font-series|bold|[3]>|pure-stlvec.tm#rmlast/stlvec>
+  <hlink|<with|font-series|bold|rmlast (function)>|pure-stlvec.tm#rmlast/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#rmlast/array>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#rmlast/dict>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#rmlast/set>
 
   <hlink|<with|font-series|bold|round (function)>|purelib.tm#round>,
   <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#round/mpfr>,
@@ -3844,13 +3846,14 @@
 
   <hlink|<with|font-series|bold|rowcat (function)>|purelib.tm#rowcat>
 
-  <hlink|<with|font-series|bold|rowcatmap (function)>|purelib.tm#rowcatmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#rowcatmap/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#rowcatmap/stlvec>
+  <hlink|<with|font-series|bold|rowcatmap
+  (function)>|pure-stlvec.tm#rowcatmap/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#rowcatmap>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#rowcatmap/stlmap>
 
-  <hlink|<with|font-series|bold|rowmap (function)>|purelib.tm#rowmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#rowmap/stlmap>,
-  <hlink|<with|font-series|bold|[2]>|pure-stlvec.tm#rowmap/stlvec>
+  <hlink|<with|font-series|bold|rowmap (function)>|pure-stlvec.tm#rowmap/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#rowmap>,
+  <hlink|<with|font-series|bold|[2]>|pure-stlmap.tm#rowmap/stlmap>
 
   <hlink|<with|font-series|bold|rowrev (function)>|purelib.tm#rowrev>
 
@@ -4090,8 +4093,8 @@
   (function)>|pure-stlvec.tm#stl::binary-search/stlvec>
 
   <hlink|<with|font-series|bold|stl::bounds
-  (function)>|pure-stlmap.tm#stl::bounds/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#stl::bounds/stlvec>
+  (function)>|pure-stlvec.tm#stl::bounds/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#stl::bounds/stlmap>
 
   <hlink|<with|font-series|bold|stl::bucket_size
   (function)>|pure-stlmap.tm#stl::bucket-size/stlmap>
@@ -4109,8 +4112,8 @@
   (function)>|pure-stlvec.tm#stl::copy-backward/stlvec>
 
   <hlink|<with|font-series|bold|stl::count
-  (function)>|pure-stlmap.tm#stl::count/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#stl::count/stlvec>
+  (function)>|pure-stlvec.tm#stl::count/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#stl::count/stlmap>
 
   <hlink|<with|font-series|bold|stl::count_if
   (function)>|pure-stlvec.tm#stl::count-if/stlvec>
@@ -4121,8 +4124,8 @@
   (function)>|pure-stlmap.tm#stl::distance/stlmap>
 
   <hlink|<with|font-series|bold|stl::empty
-  (function)>|pure-stlmap.tm#stl::empty/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#stl::empty/stlvec>
+  (function)>|pure-stlvec.tm#stl::empty/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#stl::empty/stlmap>
 
   <hlink|<with|font-series|bold|stl::equal
   (function)>|pure-stlvec.tm#stl::equal/stlvec>
@@ -4137,8 +4140,8 @@
   (function)>|pure-stlvec.tm#stl::fill-n/stlvec>
 
   <hlink|<with|font-series|bold|stl::find
-  (function)>|pure-stlmap.tm#stl::find/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#stl::find/stlvec>
+  (function)>|pure-stlvec.tm#stl::find/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#stl::find/stlmap>
 
   <hlink|<with|font-series|bold|stl::find_end
   (function)>|pure-stlvec.tm#stl::find-end/stlvec>
@@ -4426,8 +4429,8 @@
   (function)>|pure-stlvec.tm#stl::upper-bound/stlvec>
 
   <hlink|<with|font-series|bold|stl::vector
-  (function)>|pure-stlmap.tm#stl::vector/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#stl::vector/stlvec>
+  (function)>|pure-stlvec.tm#stl::vector/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#stl::vector/stlmap>
 
   <hlink|<with|font-series|bold|stldict (module)>|pure-stldict.tm#module-stldict>
   <hlink|<with|font-series|bold|(type)>|pure-stldict.tm#stldict/type>
@@ -4499,8 +4502,8 @@
   <hlink|<with|font-series|bold|stlset (function)>|pure-stlmap.tm#stlset/stlmap>
   <hlink|<with|font-series|bold|(type)>|pure-stlmap.tm#stlset/type>
 
-  <hlink|<with|font-series|bold|stlvec (function)>|pure-stlmap.tm#stlvec/stlmap>,
-  <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#stlvec>
+  <hlink|<with|font-series|bold|stlvec (function)>|pure-stlvec.tm#stlvec>,
+  <hlink|<with|font-series|bold|[1]>|pure-stlmap.tm#stlvec/stlmap>
   <hlink|<with|font-series|bold|(module)>|pure-stlvec.tm#module-stlvec>
   <hlink|<with|font-series|bold|(type)>|pure-stlvec.tm#stlvec/type>
 
@@ -4694,11 +4697,11 @@
 
   <hlink|<with|font-series|bold|unzip3 (function)>|purelib.tm#unzip3>
 
-  <hlink|<with|font-series|bold|update (function)>|purelib.tm#update/record>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#update/array>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#update/dict>,
-  <hlink|<with|font-series|bold|[3]>|pure-stldict.tm#update/stldict>,
-  <hlink|<with|font-series|bold|[4]>|pure-stlvec.tm#update/stlvec>
+  <hlink|<with|font-series|bold|update (function)>|pure-stlvec.tm#update/stlvec>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#update/record>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#update/array>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#update/dict>,
+  <hlink|<with|font-series|bold|[4]>|pure-stldict.tm#update/stldict>
 
   <hlink|<with|font-series|bold|update2 (function)>|purelib.tm#update2/array>
 
@@ -4990,5 +4993,5 @@
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  21, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  23, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
