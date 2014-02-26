@@ -10,11 +10,11 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.59, February 04, 2014
+  Version 0.59, February 26, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  Copyright (c) 2009-2013 by Albert Gräf. This document is available under
+  Copyright (c) 2009-2014 by Albert Gräf. This document is available under
   the <hlink|GNU Free Documentation License|http://www.gnu.org/copyleft/fdl.html>.
   Also see the <hlink|Copying|#copying> section for licensing information of
   the software.
@@ -19567,5 +19567,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  04, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  26, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
