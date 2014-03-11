@@ -84,43 +84,124 @@ the Makefile for details.</p>
 </div>
 <div class="section" id="description">
 <h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
-<p>This package provides a generic LV2 plugin wrapper for Pure. <a class="reference external" href="http://lv2plug.in/">LV2</a> is the new
-Linux audio plugin standard (LADSPA successor) which aims to be portable and
-extensible. The package contains some C wrapper code which can be linked with
-a batch-compiled Pure script to obtain an LV2 plugin module. A shell script
-named pure2lv2 is included, which lets you compile the plugin and turn it into
-an LV2 bundle, ready to be loaded by any LV2 host. There&#8217;s also an lv2.pure
-module which provides some operations needed to implement the functionality of
-a plugin, such as functions to read and write LV2 ports in Pure.</p>
-<p>Documentation still needs to be written. For the time being, please refer to
-the lv2.pure script for a description of the programming interface, and to the
-scripts in the examples folder for LV2 plugin examples written in Pure.</p>
+<p><a class="reference external" href="http://lv2plug.in/">LV2</a> is the new Linux audio plugin standard (successor of the venerable
+<a class="reference external" href="http://www.ladspa.org/">LADSPA</a> standard) which aims to be portable and extensible. LV2 plugins can
+process any combination of audio, MIDI and control data in order to implement
+various kinds of real-time signal processing modules for use in digital audio
+and MIDI software such as <a class="reference external" href="http://ardour.org/">Ardour</a> and <a class="reference external" href="http://qtractor.sourceforge.net/">Qtractor</a>.  A companion module is
+available which lets you implement LV2 plugin hosts in Pure, see
+<a class="reference internal" href="pure-lilv.html"><em>pure-lilv: Pure Lilv Interface</em></a>. Support for Miller Puckette&#8217;s graphical computer music and
+multimedia software <a class="reference external" href="http://puredata.info/">Pd</a> is available through the author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/pd-lv2plugin">lv2plugin~</a>
+external. Moreover, stand-alone LV2 hosts such as <a class="reference external" href="http://drobilla.net/software/jalv/">jalv</a> can be used to
+interface with other software which doesn&#8217;t support LV2 directly, via the
+<a class="reference external" href="http://jackaudio.org/">Jack audio connection kit</a>.</p>
+<p>This package provides a generic LV2 plugin wrapper for Pure which can be
+linked with batch-compiled Pure scripts to obtain LV2 plugin modules. For
+convenience, a shell script named pure2lv2 is included, which lets you compile
+the plugin and turn it into a complete LV2 bundle (consisting of an LV2 plugin
+manifest and the plugin binary), ready to be loaded by any LV2 host. The
+package also includes an lv2.pure module which provides the operations needed
+to implement the functionality of a plugin, such as functions to read and
+write LV2 port data in Pure.</p>
+<p>Our implementation supports all standard LV2 port types (including MIDI via
+LV2 atom ports) and should thus be able to work with most LV2 hosts right out
+of the box. Experimental support for the LV2 time extension is also available,
+so that MIDI plugins written in Pure can obtain musical time and position data
+if the host supports this; please check lv2.pure for details. The package
+includes several examples which demonstrate how to write LV2 plugins of
+various kinds in Pure, specifically:</p>
+<ul class="simple">
+<li>pure_amp.pure shows how to do basic audio and control processing in order to
+amplify an incoming audio signal.</li>
+<li>pure_transp.pure demonstrates how to implement a simple MIDI processing
+module which transposes incoming MIDI notes.</li>
+<li>pure_metro.pure shows how to implement a MIDI metronome by making use of the
+musical time and tempo data provided by the LV2 time extension (this
+currently requires Ardour to work).</li>
+</ul>
+<p>Please also check the <a class="reference internal" href="#usage">Usage</a> section below for information on how to run the
+pure2lv2 script.</p>
+</div>
+<div class="section" id="requirements-and-limitations">
+<h2>Requirements and Limitations<a class="headerlink" href="#requirements-and-limitations" title="Permalink to this headline">¶</a></h2>
+<p>Our implementation uses LV2&#8217;s <a class="reference external" href="http://lv2plug.in/ns/ext/dynmanifest/">dynamic manifests</a>, so that the plugin
+manifest, which describes the ports and other properties of the plugin, can be
+included in the plugin module. This makes things easier, but requires an LV2
+host which supports the dynamic manifest extension (most LV2 hosts nowadays
+do; this includes all the hosts we mentioned above).</p>
+<p>As the Pure runtime isn&#8217;t thread-safe yet, our implementation effectively
+serializes the plugin callbacks (invocations of the <tt class="docutils literal"><span class="pre">plugin</span></tt> function)
+across <em>all</em> Pure plugins running inside a host. While this won&#8217;t make a
+difference for single-threaded LV2 hosts such as jalv and Pd, it also makes
+the Pure plugins work reliably in heavily multi-threaded hosts such as Ardour.
+However, the serialization of callbacks may become a major bottleneck if a
+multi-threaded host runs many Pure plugins concurrently on a multi-processor
+machine. At present there is no way around this, but hopefully this limitation
+will go away in the not-too-distant future when the Pure runtime becomes
+thread-safe.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>The pure2lv2 script is invoked simply as <tt class="docutils literal"><span class="pre">pure2lv2</span> <span class="pre">myplugin.pure</span></tt> where
-<tt class="docutils literal"><span class="pre">myplugin.pure</span></tt> is the Pure script implementing the plugin. The plugin
-script must provide two functions <tt class="docutils literal"><span class="pre">manifest</span></tt>, which returns the port
-descriptions from which the plugin manifest is created, and <tt class="docutils literal"><span class="pre">plugin</span></tt> which
-implements the plugin itself. Please check the included examples to get an
-idea how the plugin scripts look like.</p>
-<p>Running <tt class="docutils literal"><span class="pre">pure2lv2</span> <span class="pre">myplugin.pure</span></tt> turns the plugin script into an LV2 bundle,
-which will be written to <tt class="docutils literal"><span class="pre">myplugin.lv2</span></tt> by default. You can also specify a
-different name for the bundle directory with the <tt class="docutils literal"><span class="pre">-o</span></tt> (or <tt class="docutils literal"><span class="pre">--output</span></tt>)
-option, and a custom URI prefix for the bundle with the <tt class="docutils literal"><span class="pre">-u</span></tt> (or
-<tt class="docutils literal"><span class="pre">--uriprefix</span></tt>) option. In either case, you still have to move the bundle
-directory to a directory on your <tt class="docutils literal"><span class="pre">LV2_PATH</span></tt> before you can use it with your
-LV2 hosts.</p>
-<p>Normally the code of the plugin will be compiled to a native object file which
-gets linked into the plugin binary. However, there&#8217;s also a <tt class="docutils literal"><span class="pre">-s</span></tt> (or
-<tt class="docutils literal"><span class="pre">--script</span></tt>) option which copies the source script (along with any additional
-source files specified after the plugin script on the command line) to the
-bundle directory instead, from where it will be loaded dynamically when the
-plugin is used.  This increases load times (sometimes substantially), but lets
-you modify the plugin more easily, by just changing the plugin script inside
-the bundle, which may be more convenient during plugin development.</p>
 <p>A summary of the command syntax and options of the pure2lv2 script can be
-printed with <tt class="docutils literal"><span class="pre">purelv2</span> <span class="pre">-h</span></tt>.</p>
+printed with <tt class="docutils literal"><span class="pre">purelv2</span> <span class="pre">-h</span></tt>. Usually the script is invoked simply as
+<tt class="docutils literal"><span class="pre">pure2lv2</span> <span class="pre">myplugin.pure</span></tt>, where <tt class="docutils literal"><span class="pre">myplugin.pure</span></tt> is the Pure script
+implementing the plugin. The plugin script must provide two functions in order
+to implement the functionality of the plugin:</p>
+<ul class="simple">
+<li>The <tt class="docutils literal"><span class="pre">manifest</span></tt> function returns the port descriptions from which the
+plugin manifest is created when the LV2 host performs plugin discovery. This
+may be implemented either as a parameter-less function or a global variable
+in the Pure script. In either case it should return the list of port
+descriptions in a format described in the lv2.pure module.</li>
+<li>The <tt class="docutils literal"><span class="pre">plugin</span></tt> function implements the plugin itself. It gets invoked with a
+pointer object representing the plugin data which can be passed to the
+operations in the lv2.pure module. Often the plugin will actually be
+implemented as a closure which also encapsulates the local state maintained
+by the plugin; please check the included examples for details. At runtime,
+the <tt class="docutils literal"><span class="pre">plugin</span></tt> function gets invoked repeatedly with an additional
+parameter, either a truth value denoting a change in the activation status,
+or the value <tt class="docutils literal"><span class="pre">()</span></tt> to indicate that a block of samples (and/or MIDI
+messages and control data) is to be processed.</li>
+</ul>
+<p>Please check the included examples to get an idea how the plugin scripts look
+like. Here is a simple example (an abridged version of pure_amp.pure) which
+multiplies an incoming audio signal with a volume control:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> lv2<span class="p">;</span>
+
+manifest = [(<span class="s">&quot;vol&quot;</span>, <span class="s">&quot;Volume&quot;</span>, lv2<span class="p">::</span>controlin, <span class="mf">0.5</span>, <span class="mf">0.0</span>, <span class="mf">1.0</span>),
+            (<span class="s">&quot;audioin&quot;</span>, lv2<span class="p">::</span>audioin), (<span class="s">&quot;audioout&quot;</span>, lv2<span class="p">::</span>audioout)]<span class="p">;</span>
+
+plugin self () = () <span class="kr">when</span>
+  <span class="c1">// Process a block of samples.</span>
+  vol = lv2<span class="p">::</span>get_port self <span class="mi">0</span><span class="p">;</span> <span class="c1">// control value from port #0 (control input)</span>
+  wav = lv2<span class="p">::</span>get_port self <span class="mi">1</span><span class="p">;</span> <span class="c1">// sample data from port #1 (audio input)</span>
+  <span class="c1">// Multiply the sample data with the vol control value and output the</span>
+  <span class="c1">// resulting wave on port #2 (audio output).</span>
+  lv2<span class="p">::</span>set_port self <span class="mi">2</span> (map (*vol) wav)<span class="p">;</span>
+<span class="kr">end</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Running <tt class="docutils literal"><span class="pre">pure2lv2</span> <span class="pre">myplugin.pure</span></tt> turns the plugin script into an LV2 bundle,
+which will be written to <tt class="docutils literal"><span class="pre">myplugin.lv2</span></tt> by default (i.e., using the same
+basename as the plugin script). You can also specify a different name and path
+for the bundle directory with the <tt class="docutils literal"><span class="pre">-o</span></tt> (or <tt class="docutils literal"><span class="pre">--output</span></tt>) option, and a
+custom URI prefix for the bundle with the <tt class="docutils literal"><span class="pre">-u</span></tt> (or <tt class="docutils literal"><span class="pre">--uriprefix</span></tt>) option.
+Before you can use the plugin with your LV2 hosts, you still have to move the
+bundle directory to a directory on your <tt class="docutils literal"><span class="pre">LV2_PATH</span></tt> (unless you already
+specified a suitable target path with <tt class="docutils literal"><span class="pre">-o</span></tt>). The examples folder in the
+source package contains a GNU Makefile which shows how to automate this
+process.</p>
+<p>Normally the Pure code of the plugin will be compiled to a native object file
+which gets linked directly into the plugin binary. However, there&#8217;s also a
+<tt class="docutils literal"><span class="pre">-s</span></tt> (or <tt class="docutils literal"><span class="pre">--script</span></tt>) option which copies the source script (along with any
+additional source files specified after the plugin script on the command line)
+to the bundle directory instead, from where it will be loaded dynamically when
+the plugin is used. This increases load times, sometimes substantially, since
+the Pure interpreter will have to JIT-compile the Pure script every time the
+host starts up and loads the plugins. But it also reduces turnaround times
+since you can easily change the plugin script right inside the bundle, without
+having to run pure2lv2 in between; this may be convenient when developing and
+testing a plugin.</p>
 </div>
 </div>
 
@@ -136,6 +217,7 @@ printed with <tt class="docutils literal"><span class="pre">purelv2</span> <span
 <li><a class="reference internal" href="#copying">Copying</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#requirements-and-limitations">Requirements and Limitations</a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 </ul>
 </li>
