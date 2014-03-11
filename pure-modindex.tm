@@ -113,6 +113,8 @@
 
   <hlink|lo|pure-liblo.tm#module-lo>
 
+  <hlink|lv2|pure-lv2.tm#module-lv2>
+
   <subsection*|m<label|cap-m>>
 
   <hlink|math|purelib.tm#module-math>
@@ -192,6 +194,6 @@
   <hlink|toc|#pure-modindex-toc> <hlink|index|genindex.tm> <hlink|modules|#>
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  26, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  11, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
