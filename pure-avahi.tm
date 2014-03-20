@@ -4,13 +4,13 @@
 
 <\body>
   <hlink|toc|#pure-avahi-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-doc.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-bonjour.tm> \|
   <hlink|previous|purelib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|pure-avahi: Pure Avahi Interface<label|module-avahi>>
 
-  Version 0.1, January 28, 2014
+  Version 0.1, March 20, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -32,6 +32,17 @@
   in the default Avahi domain only. Typically this is the <verbatim|local>
   domain, limiting you to services in the local network. However, this should
   cover most common uses of Zeroconf.
+
+  There's a companion <hlink|<with|font-family|tt|bonjour>|pure-bonjour.tm#module-bonjour>
+  module which implements the same API for
+  <hlink|Bonjour|http://developer.apple.com/bonjour/>, Apple's Zeroconf
+  implementation. Since both modules implement the same functions, albeit in
+  different namespaces, they can be used as drop-in replacements for each
+  other. We also offer a compatibility module named <verbatim|zeroconf> which
+  can be used with either pure-avahi or pure-bonjour in a transparent
+  fashion, so that no source changes are needed when switching the underlying
+  implementation; please check the zeroconf.pure script included in the
+  sources for details.
 
   This module is in its early stages, so it may still contain bugs or lack
   some features. Please report bugs on the issue tracker at the Pure
@@ -68,6 +79,10 @@
   <verbatim|make> tries to guess your Pure installation directory and
   platform-specific setup. If it gets this wrong, you can set some variables
   manually, please check the Makefile for details.
+
+  Please note that the zeroconf.pure compatibility module is not installed by
+  default, so you may want to copy it to the Pure library directory if
+  needed.
 
   <subsection|Usage<label|usage>>
 
@@ -246,13 +261,13 @@
 
   Next topic
 
-  <hlink|pure-doc|pure-doc.tm>
+  <hlink|pure-bonjour: Pure Bonjour Interface|pure-bonjour.tm>
 
   <hlink|toc|#pure-avahi-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-doc.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-bonjour.tm> \|
   <hlink|previous|purelib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

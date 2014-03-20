@@ -10,7 +10,7 @@
 
   <section*|pure-octave<label|module-octave>>
 
-  Version 0.4, February 20, 2014
+  Version 0.5, March 20, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -39,7 +39,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.4.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.4.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.5.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -631,6 +631,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
   20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

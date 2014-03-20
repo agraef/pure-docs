@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>pure-avahi: Pure Avahi Interface &mdash; Pure Language and Library Documentation</title>
+    <title>pure-bonjour: Pure Bonjour Interface &mdash; Pure Language and Library Documentation</title>
     
     <link rel="stylesheet" href="_static/pydoctheme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
-    <link rel="next" title="pure-bonjour: Pure Bonjour Interface" href="pure-bonjour.html" />
-    <link rel="prev" title="Pure Library Manual" href="purelib.html" /> 
+    <link rel="next" title="pure-doc" href="pure-doc.html" />
+    <link rel="prev" title="pure-avahi: Pure Avahi Interface" href="pure-avahi.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,10 +41,10 @@
           <a href="pure-modindex.html" title="Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pure-bonjour.html" title="pure-bonjour: Pure Bonjour Interface"
+          <a href="pure-doc.html" title="pure-doc"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="purelib.html" title="Pure Library Manual"
+          <a href="pure-avahi.html" title="pure-avahi: Pure Avahi Interface"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
       </ul>
@@ -55,42 +55,43 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="module-avahi">
-<span id="pure-avahi-pure-avahi-interface"></span><h1>pure-avahi: Pure Avahi Interface<a class="headerlink" href="#module-avahi" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-bonjour">
+<span id="pure-bonjour-pure-bonjour-interface"></span><h1>pure-bonjour: Pure Bonjour Interface<a class="headerlink" href="#module-bonjour" title="Permalink to this headline">¶</a></h1>
 <p>Version 0.1, March 20, 2014</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
-<p>This is a simple interface to <a class="reference external" href="http://avahi.org/">Avahi</a>, a <a class="reference external" href="http://en.wikipedia.org/wiki/Zero-configuration_networking">Zeroconf</a> implementation for Linux and
-other Un*x systems. The module lets you publish and query Zeroconf network
-services using Avahi, allowing you to establish connections for various kinds
-of TCP and UDP network services without having to manually configure network
-addresses. It is typically used along with the <a class="reference internal" href="pure-sockets.html#module-sockets"><tt class="xref pure pure-mod docutils literal"><span class="pre">sockets</span></tt></a> module which
-lets you create the network connections discovered with <a class="reference internal" href="#module-avahi"><tt class="xref pure pure-mod docutils literal"><span class="pre">avahi</span></tt></a>.</p>
+<p>This is a simple interface to <a class="reference external" href="http://developer.apple.com/bonjour/">Bonjour</a>, Apple&#8217;s <a class="reference external" href="http://en.wikipedia.org/wiki/Zero-configuration_networking">Zeroconf</a> implementation. The
+module lets you publish and query Zeroconf network services using Bonjour,
+allowing you to establish connections for various kinds of TCP and UDP network
+services without having to manually configure network addresses. It is
+typically used along with the <a class="reference internal" href="pure-sockets.html#module-sockets"><tt class="xref pure pure-mod docutils literal"><span class="pre">sockets</span></tt></a> module which lets you create the
+network connections discovered with <a class="reference internal" href="#module-bonjour"><tt class="xref pure pure-mod docutils literal"><span class="pre">bonjour</span></tt></a>.</p>
 <p>To keep things simple and easy to use, the module only exposes the most
-essential functionality of Ahavi right now, but the provided functions should
-hopefully be sufficient for most programs which require interoperability with
-other Avahi or Apple Bonjour applications. One known limitation is that the
-module allows you to publish and discover services in the default Avahi domain
-only. Typically this is the <tt class="docutils literal"><span class="pre">local</span></tt> domain, limiting you to services in the
-local network.  However, this should cover most common uses of Zeroconf.</p>
-<p>There&#8217;s a companion <a class="reference internal" href="pure-bonjour.html#module-bonjour"><tt class="xref pure pure-mod docutils literal"><span class="pre">bonjour</span></tt></a> module which implements the same API for
-<a class="reference external" href="http://developer.apple.com/bonjour/">Bonjour</a>, Apple&#8217;s Zeroconf implementation. Since both modules implement the
-same functions, albeit in different namespaces, they can be used as drop-in
-replacements for each other. We also offer a compatibility module named
-<tt class="docutils literal"><span class="pre">zeroconf</span></tt> which can be used with either pure-avahi or pure-bonjour in a
-transparent fashion, so that no source changes are needed when switching the
-underlying implementation; please check the zeroconf.pure script included in
-the sources for details.</p>
+essential functionality of Bonjour right now, but the provided functions
+should hopefully be sufficient for most programs which require
+interoperability with other Zeroconf applications. One known limitation is
+that the module allows you to publish and discover services in the default
+Bonjour domain only. Typically this is the <tt class="docutils literal"><span class="pre">local</span></tt> domain, limiting you to
+services in the local network.  However, this should cover most common uses of
+Zeroconf.</p>
+<p>There&#8217;s a companion <a class="reference internal" href="pure-avahi.html#module-avahi"><tt class="xref pure pure-mod docutils literal"><span class="pre">avahi</span></tt></a> module which implements the same API for
+<a class="reference external" href="http://avahi.org/">Avahi</a>, the prevalent Zeroconf implementation on Linux systems. Since both
+modules implement the same functions, albeit in different namespaces, they can
+be used as drop-in replacements for each other. We also offer a compatibility
+module named <tt class="docutils literal"><span class="pre">zeroconf</span></tt> which can be used with either pure-avahi or
+pure-bonjour in a transparent fashion, so that no source changes are needed
+when switching the underlying implementation; please check the zeroconf.pure
+script included in the sources for details.</p>
 <p>This module is in its early stages, so it may still contain bugs or lack some
 features. Please report bugs on the issue tracker at the Pure Bitbucket site,
 and use the Pure mailing list for general discussion of the module.</p>
 <div class="section" id="copying">
 <h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
 <p>Copyright (c) 2014 by Albert Graef.</p>
-<p>pure-avahi is free software: you can redistribute it and/or modify it under
+<p>pure-bonjour is free software: you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published by the Free
 Software Foundation, either version 3 of the License, or (at your option) any
 later version.</p>
-<p>pure-avahi is distributed in the hope that it will be useful, but WITHOUT ANY
+<p>pure-bonjour is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR
 A PARTICULAR PURPOSE.  See the GNU Lesser General Public License for more
 details.</p>
@@ -100,10 +101,10 @@ with this program.  If not, see &lt;<a class="reference external" href="http://w
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-avahi-0.1.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-avahi-0.1.tar.gz</a>.</p>
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-bonjour-0.1.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-bonjour-0.1.tar.gz</a>.</p>
 <p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> (as root) to install
 it in the Pure library directory. This requires GNU make, and of course you
-need to have Pure and Avahi installed. The latter should be readily available
+need to have Pure and Bonjour installed. The latter should be readily available
 on most Linux systems, and ports are available for BSD systems as well.</p>
 <p><tt class="docutils literal"><span class="pre">make</span></tt> tries to guess your Pure installation directory and platform-specific
 setup. If it gets this wrong, you can set some variables manually, please
@@ -113,25 +114,26 @@ default, so you may want to copy it to the Pure library directory if needed.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>To use the operations of this module, you need to have Avahi installed and the
-Avahi daemon running on your system. The details of this depend on the
-particular system that you use, so please consult the documentation of your
-Linux or BSD distribution for instructions.</p>
-<p>The following import declaration loads the functions of the avahi module in
+<p>To use the operations of this module, you need to have Bonjour (or a
+compatible Zeroconf implementation such as Avahi) installed and the
+corresponding service running on your system. If you have a Mac running OS X,
+then most likely Bonjour is already up and running, but for other systems
+you&#8217;ll have to consult your system documentation for instructions.</p>
+<p>The following import declaration loads the functions of the bonjour module in
 your Pure script:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> avahi<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> bonjour<span class="p">;</span>
 </pre></div>
 </div>
-<p>All operations are in the <tt class="docutils literal"><span class="pre">avahi</span></tt> namespace, so you might want to add the
+<p>All operations are in the <tt class="docutils literal"><span class="pre">bonjour</span></tt> namespace, so you might want to add the
 following declaration to access the functions using their unqualified
 identifiers:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> <span class="kr">namespace</span> avahi<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> <span class="kr">namespace</span> bonjour<span class="p">;</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="publishing-services">
 <h2>Publishing Services<a class="headerlink" href="#publishing-services" title="Permalink to this headline">¶</a></h2>
-<p>These functions allow you to advertise a network service using Avahi, so that
+<p>These functions allow you to advertise a network service using Bonjour, so that
 the service can be discovered by other applications participating in the
 Zeroconf protocol. Each service has a name (a string which uniquely identifies
 the service), a type (indicating the application and transport protocols
@@ -142,30 +144,29 @@ protocol of the particular application (such as <tt class="docutils literal"><sp
 printers, or <tt class="docutils literal"><span class="pre">_osc</span></tt> for applications speaking the OSC a.k.a. Open Sound
 Control protocol).</p>
 <dl class="function">
-<dt id="avahi::publish">
-<tt class="descclassname">avahi::</tt><tt class="descname">publish</tt> name stype port<a class="headerlink" href="#avahi::publish" title="Permalink to this definition">¶</a></dt>
+<dt id="bonjour::publish">
+<tt class="descclassname">bonjour::</tt><tt class="descname">publish</tt> name stype port<a class="headerlink" href="#bonjour::publish" title="Permalink to this definition">¶</a></dt>
 <dd><p>Advertise a service in the local domain, given by its name (a string),
 service type (a string) and (TCP or UDP) port number (an integer). Note
 that this operation is actually carried out asynchronously. Use
-<a class="reference internal" href="#avahi::check" title="avahi::check"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::check</span></tt></a> below to wait for and report the result of the
+<a class="reference internal" href="#bonjour::check" title="bonjour::check"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::check</span></tt></a> below to wait for and report the result of the
 operation. The returned result is a pointer to the service object which can
 be passed to the following operations, or <tt class="docutils literal"><span class="pre">NULL</span></tt> in case of error. (A
-<tt class="docutils literal"><span class="pre">NULL</span></tt> pointer can be passed safely to <a class="reference internal" href="#avahi::check" title="avahi::check"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::check</span></tt></a>; it will fail
+<tt class="docutils literal"><span class="pre">NULL</span></tt> pointer can be passed safely to <a class="reference internal" href="#bonjour::check" title="bonjour::check"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::check</span></tt></a>; it will fail
 in this case.) The service will be unpublished automatically when the
 service object is garbage-collected.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="avahi::check">
-<tt class="descclassname">avahi::</tt><tt class="descname">check</tt> service<a class="headerlink" href="#avahi::check" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check for the result of a <a class="reference internal" href="#avahi::publish" title="avahi::publish"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::publish</span></tt></a> operation. This blocks
+<dt id="bonjour::check">
+<tt class="descclassname">bonjour::</tt><tt class="descname">check</tt> service<a class="headerlink" href="#bonjour::check" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the result of a <a class="reference internal" href="#bonjour::publish" title="bonjour::publish"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::publish</span></tt></a> operation. This blocks
 until a result is available. A negative integer value indicates failure (in
-this case the result is the Avahi error code). Otherwise the result is a
+this case the result is the Bonjour error code). Otherwise the result is a
 triple with the actual service name, type and port. Note that the name may
-be different from the one passed to <a class="reference internal" href="#avahi::publish" title="avahi::publish"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::publish</span></tt></a> if there was a
-name collision with another service. Such collisions are resolved
-automatically by tacking on a suffix of the form <tt class="docutils literal"><span class="pre">#n</span></tt> to the service
-name.</p>
+be different from the one passed to <a class="reference internal" href="#bonjour::publish" title="bonjour::publish"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::publish</span></tt></a> if there was a
+name collision with another service. Such collisions are usually resolved
+automatically by tacking on a suffix to the service name.</p>
 </dd></dl>
 
 </div>
@@ -176,13 +177,13 @@ name.</p>
 address and port, which is what you&#8217;ll need to actually open a network
 connection to communicate with the service.</p>
 <dl class="function">
-<dt id="avahi::browse">
-<tt class="descclassname">avahi::</tt><tt class="descname">browse</tt> stype<a class="headerlink" href="#avahi::browse" title="Permalink to this definition">¶</a></dt>
+<dt id="bonjour::browse">
+<tt class="descclassname">bonjour::</tt><tt class="descname">browse</tt> stype<a class="headerlink" href="#bonjour::browse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Browse available services of a given type in the local domain. This
-operation is carried out asynchronously; use <a class="reference internal" href="#avahi::avail" title="avahi::avail"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::avail</span></tt></a> below to
-check whether new information is available, and <a class="reference internal" href="#avahi::get" title="avahi::get"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::get</span></tt></a> to
+operation is carried out asynchronously; use <a class="reference internal" href="#bonjour::avail" title="bonjour::avail"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::avail</span></tt></a> below to
+check whether new information is available, and <a class="reference internal" href="#bonjour::get" title="bonjour::get"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::get</span></tt></a> to
 retrieve the actual service list. The result returned by
-<a class="reference internal" href="#avahi::browse" title="avahi::browse"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::browse</span></tt></a> is a pointer to the browser object which can be
+<a class="reference internal" href="#bonjour::browse" title="bonjour::browse"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::browse</span></tt></a> is a pointer to the browser object which can be
 passed to the following operations, or <tt class="docutils literal"><span class="pre">NULL</span></tt> in case of error. (A
 <tt class="docutils literal"><span class="pre">NULL</span></tt> pointer can be passed safely to the other operations; they will
 fail in this case.) Any resources allocated to the browser will be released
@@ -190,26 +191,26 @@ automatically when the browser object is garbage-collected.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="avahi::avail">
-<tt class="descclassname">avahi::</tt><tt class="descname">avail</tt> browser<a class="headerlink" href="#avahi::avail" title="Permalink to this definition">¶</a></dt>
+<dt id="bonjour::avail">
+<tt class="descclassname">bonjour::</tt><tt class="descname">avail</tt> browser<a class="headerlink" href="#bonjour::avail" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check whether the service information was updated since the last invocation
-of <a class="reference internal" href="#avahi::get" title="avahi::get"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::get</span></tt></a>. Returns an integer (truth value), which may also be
-negative (indicating the Avahi error code) in case of error.</p>
+of <a class="reference internal" href="#bonjour::get" title="bonjour::get"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::get</span></tt></a>. Returns an integer (truth value), which may also be
+negative (indicating the Bonjour error code) in case of error.</p>
 </dd></dl>
 
 <dl class="function">
-<dt id="avahi::get">
-<tt class="descclassname">avahi::</tt><tt class="descname">get</tt> browser<a class="headerlink" href="#avahi::get" title="Permalink to this definition">¶</a></dt>
+<dt id="bonjour::get">
+<tt class="descclassname">bonjour::</tt><tt class="descname">get</tt> browser<a class="headerlink" href="#bonjour::get" title="Permalink to this definition">¶</a></dt>
 <dd><p>Retrieve the current list of services. Each list entry is a tuple with the
 name, type, domain, IP address (all string values) and port number (an
 integer) of a service. The entries are in the same order as returned by
-Avahi, but only include services whose network addresses can actually be
-resolved using Avahi. Note that this information may change over time, as
+Bonjour, but only include services whose network addresses can actually be
+resolved using Bonjour. Note that this information may change over time, as
 new services are announced on the network or removed from it. An
-application will typically call <a class="reference internal" href="#avahi::avail" title="avahi::avail"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::avail</span></tt></a> from time to time to
+application will typically call <a class="reference internal" href="#bonjour::avail" title="bonjour::avail"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::avail</span></tt></a> from time to time to
 check whether new information is available and then retrieve the updated
-service list using <a class="reference internal" href="#avahi::get" title="avahi::get"><tt class="xref pure pure-func docutils literal"><span class="pre">avahi::get</span></tt></a>. The result may also be a negative
-integer (indicating the Avahi error code) in case of error.</p>
+service list using <a class="reference internal" href="#bonjour::get" title="bonjour::get"><tt class="xref pure pure-func docutils literal"><span class="pre">bonjour::get</span></tt></a>. The result may also be a negative
+integer (indicating the Bonjour error code) in case of error.</p>
 </dd></dl>
 
 </div>
@@ -218,8 +219,8 @@ integer (indicating the Avahi error code) in case of error.</p>
 <p>Here&#8217;s an example showing how to publish an UDP OSC (Open Sound Control)
 service which might be used to connect to mobile OSC applications such as
 hexler&#8217;s TouchOSC:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> avahi<span class="p">;</span>
-<span class="kr">using</span> <span class="kr">namespace</span> avahi<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> bonjour<span class="p">;</span>
+<span class="kr">using</span> <span class="kr">namespace</span> bonjour<span class="p">;</span>
 
 <span class="kr">let</span> s = publish <span class="s">&quot;OSC Server&quot;</span> <span class="s">&quot;_osc._udp&quot;</span> <span class="mi">8000</span><span class="p">;</span>
 check s<span class="p">;</span>
@@ -254,7 +255,7 @@ service list, using code like the following:</p>
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">pure-avahi: Pure Avahi Interface</a><ul>
+<li><a class="reference internal" href="#">pure-bonjour: Pure Bonjour Interface</a><ul>
 <li><a class="reference internal" href="#copying">Copying</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
@@ -266,15 +267,15 @@ service list, using code like the following:</p>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="purelib.html"
-                        title="previous chapter">Pure Library Manual</a></p>
+  <p class="topless"><a href="pure-avahi.html"
+                        title="previous chapter">pure-avahi: Pure Avahi Interface</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="pure-bonjour.html"
-                        title="next chapter">pure-bonjour: Pure Bonjour Interface</a></p>
+  <p class="topless"><a href="pure-doc.html"
+                        title="next chapter">pure-doc</a></p>
 <h3>This Page</h3>
 <ul class="this-page-menu">
   <li><a href="bugs.html">Report a Bug</a></li>
-  <li><a href="_sources/pure-avahi.txt"
+  <li><a href="_sources/pure-bonjour.txt"
          rel="nofollow">Show Source</a></li>
 </ul>
 
@@ -305,10 +306,10 @@ service list, using code like the following:</p>
           <a href="pure-modindex.html" title="Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="pure-bonjour.html" title="pure-bonjour: Pure Bonjour Interface"
+          <a href="pure-doc.html" title="pure-doc"
              >next</a> |</li>
         <li class="right" >
-          <a href="purelib.html" title="Pure Library Manual"
+          <a href="pure-avahi.html" title="pure-avahi: Pure Avahi Interface"
              >previous</a> |</li>
         <li><a href="index.html">Pure Language and Library Documentation</a> &raquo;</li> 
       </ul>

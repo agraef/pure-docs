@@ -10,6 +10,7 @@
   <section*|Module Index>
 
   <hlink|<with|font-series|bold|a>|#cap-a> \|
+  <hlink|<with|font-series|bold|b>|#cap-b> \|
   <hlink|<with|font-series|bold|c>|#cap-c> \|
   <hlink|<with|font-series|bold|d>|#cap-d> \|
   <hlink|<with|font-series|bold|e>|#cap-e> \|
@@ -34,6 +35,10 @@
   <hlink|audio|pure-audio.tm#module-audio>
 
   <hlink|avahi|pure-avahi.tm#module-avahi>
+
+  <subsection*|b<label|cap-b>>
+
+  <hlink|bonjour|pure-bonjour.tm#module-bonjour>
 
   <subsection*|c<label|cap-c>>
 
@@ -195,5 +200,5 @@
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  11, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
