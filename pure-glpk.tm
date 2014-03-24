@@ -11,7 +11,7 @@
   <section*|Pure-GLPK - GLPK interface for the Pure programming
   language<label|pure-glpk-glpk-interface-for-the-pure-programming-language>>
 
-  Version 0.4, January 28, 2014
+  Version 0.5, March 24, 2014
 
   Jiri Spitz \<less\><hlink|jiri.spitz@bluetone.cz|mailto:jiri.spitz@bluetone.cz>\<gtr\>
 
@@ -36,7 +36,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.4.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.4.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -7175,6 +7175,6 @@
   <hlink|previous|gnumeric-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

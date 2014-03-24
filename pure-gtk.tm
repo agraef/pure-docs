@@ -10,7 +10,7 @@
 
   <section*|Pure GTK+ Bindings<label|pure-gtk-bindings>>
 
-  Version 0.12, January 28, 2014
+  Version 0.13, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -45,10 +45,10 @@
 
   <subsection|Installation<label|installation>>
 
-  You can get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.12.tar.gz>.
+  You can get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.13.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.13.tar.gz>.
 
   For Windows users, a ready-made package in msi format is available from
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.12.msi|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.12.msi>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.13.msi|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.13.msi>.
 
   To install from source, do the usual <verbatim|make> <verbatim|&&>
   <verbatim|sudo> <verbatim|make> <verbatim|install> (see the Makefile for
@@ -106,6 +106,6 @@
   <hlink|previous|pure-gl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -10,7 +10,7 @@
 
   <section*|pd-faust<label|pd-faust>>
 
-  Version 0.6, March 11, 2014
+  Version 0.7, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -41,7 +41,7 @@
 
   <subsection|Copying<label|copying>>
 
-  Copyright (c) 2011 by Albert Graef
+  Copyright (c) 2011-2014 by Albert Graef
 
   pd-faust is distributed under the GNU LGPL v3+. Please see the included
   COPYING and COPYING.LESSER files for details.
@@ -56,8 +56,8 @@
 
   You'll need <hlink|Faust|http://faust.grame.fr/> and
   <hlink|Pd|http://puredata.info/>, obviously. Fairly recent versions of
-  these are required. Faust versions 0.9.46 and 2.0.a3 and Pd version 0.43.1
-  have been tested.
+  these are required. Faust versions \<gtr\>= 0.9.46 and 2.0.a3 and Pd
+  version \<gtr\>= 0.43.1 have been tested and are known to work.
 
   The pd-faust objects are written in the
   <hlink|Pure|http://purelang.bitbucket.org/> programming language, so you'll
@@ -733,5 +733,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  11, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

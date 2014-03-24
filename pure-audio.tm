@@ -11,7 +11,7 @@
   <section*|pure-audio<label|module-audio>>
 
   <label|module-fftw><label|module-sndfile><label|module-samplerate><label|module-realtime>Version
-  0.5, January 28, 2014
+  0.6, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -47,7 +47,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.5.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.6.tar.gz>.
 
   You need to have libportaudio (v19), libsndfile (1.x), libsamplerate
   (0.1.x) and libfftw3 (3.x) installed on your system. Any fairly recent
@@ -103,6 +103,6 @@
   <hlink|previous|pd-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

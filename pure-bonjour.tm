@@ -10,7 +10,7 @@
 
   <section*|pure-bonjour: Pure Bonjour Interface<label|module-bonjour>>
 
-  Version 0.1, March 20, 2014
+  Version 0.1, March 24, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -269,5 +269,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

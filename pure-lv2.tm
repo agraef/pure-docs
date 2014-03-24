@@ -10,7 +10,7 @@
 
   <section*|pure-lv2<label|module-lv2>>
 
-  Version 0.1, March 11, 2014
+  Version 0.1, March 24, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -24,8 +24,8 @@
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.1.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.1.tar.gz>.
 
-  Make sure that you have the latest Pure version installed. (At the time of
-  this writing, the latest Pure source from hg is needed.)
+  Make sure that you have the latest Pure version installed. Pure 0.60 or
+  later is needed.
 
   Run <verbatim|make> to compile and <verbatim|sudo> <verbatim|make>
   <verbatim|install> to install the module. This installs the lv2.pure module
@@ -229,5 +229,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  11, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

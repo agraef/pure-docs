@@ -1,7 +1,7 @@
 This is pure-stlvec.info, produced by makeinfo version 5.2 from
 pure-stlvec.texi.
 
-     Pure 0.59, March 20, 2014
+     Pure 0.60, March 24, 2014
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pure-stlvec.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-stlvec
 ***********
 
-     Pure 0.59, March 20, 2014
+     Pure 0.60, March 24, 2014
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2014, Albert Gräf et al
 
-  Version 0.4, January 28, 2014
+  Version 0.4, March 24, 2014
 
      Peter Summerland <<p.summerland@gmail.com>> 
 
@@ -1957,414 +1957,414 @@ Ref: pure-stlvec doc569
 Ref: 2569
 Ref: pure-stlvec module-stlvec algorithms569
 Ref: 1569
-Node: Copying1214
-Ref: pure-stlvec pure-stlvec1299
-Ref: 31299
-Ref: pure-stlvec copying1299
-Ref: 41299
-Ref: pure-stlvec module-stlvec1299
-Ref: 01299
-Node: Installation1691
-Ref: pure-stlvec installation1781
-Ref: 51781
-Node: Overview2094
-Ref: pure-stlvec overview2191
-Ref: 62191
-Node: Modules3059
-Ref: pure-stlvec modules3140
-Ref: 73140
-Node: Simple Examples4389
-Ref: pure-stlvec simple-examples4511
-Ref: 84511
-Node: Members and Sequences of Members6307
-Ref: pure-stlvec members-and-sequences-of-members6455
-Ref: 96455
-Node: STL Iterators and Value Semantics7248
-Ref: pure-stlvec stl-iterators-and-value-semantics7396
-Ref: a7396
-Node: Iterator Tuples9347
-Ref: pure-stlvec iterator-tuples9496
-Ref: b9496
-Node: Predefined Iterator Tuple Indexes11930
-Ref: pure-stlvec predefined-iterator-tuple-indexes12067
-Ref: c12067
-Ref: pure-stlvec stl svbeg12238
-Ref: d12238
-Ref: pure-stlvec stl svend12267
-Ref: e12267
-Ref: pure-stlvec stl svback12297
-Ref: f12297
-Node: Back Insert Iterators12776
-Ref: pure-stlvec back-insert-iterators12912
-Ref: 1012912
-Node: Data Structure13916
-Ref: pure-stlvec data-structure14024
-Ref: 1114024
-Node: Types14923
-Ref: pure-stlvec types15033
-Ref: 1215033
-Ref: pure-stlvec mutable_stlvec/type15135
-Ref: 1315135
-Ref: pure-stlvec const_stlvec/type15203
-Ref: 1415203
-Ref: pure-stlvec stlvec/type15272
-Ref: 1515272
-Ref: pure-stlvec mutable_svit/type15346
-Ref: 1615346
-Ref: pure-stlvec const_svit/type15448
-Ref: 1715448
-Ref: pure-stlvec svit/type15555
-Ref: 1815555
-Node: Copy-On-Write Semantics15671
-Ref: pure-stlvec copy-on-write-semantics15780
-Ref: 1915780
-Node: Documentation17325
-Ref: pure-stlvec documentation17444
-Ref: 1a17444
-Node: Parameter Names18636
-Ref: pure-stlvec parameter-names18723
-Ref: 1b18723
-Node: Error Handling20857
-Ref: pure-stlvec error-handling20982
-Ref: 1c20982
-Node: Exception Symbols21138
-Ref: pure-stlvec exception-symbols21228
-Ref: 1d21228
-Ref: pure-stlvec bad_argument/stlvec21273
-Ref: 1e21273
-Ref: pure-stlvec bad_function/stlvec21503
-Ref: 1f21503
-Ref: pure-stlvec failed_cond/stlvec21638
-Ref: 2021638
-Ref: pure-stlvec out_of_bounds/stlvec21777
-Ref: 2121777
-Ref: pure-stlvec range_overflow/stlvec21886
-Ref: 2221886
-Ref: pure-stlvec range_overlap/stlvec22090
-Ref: 2322090
-Node: Examples22461
-Ref: pure-stlvec examples22551
-Ref: 2422551
-Node: Operations Included in the stlvec Module23553
-Ref: pure-stlvec operations-included-in-the-stlvec-module23697
-Ref: 2523697
-Node: Imports24537
-Ref: pure-stlvec imports24669
-Ref: 2624669
-Node: Operations in the Global Namespace24807
-Ref: pure-stlvec operations-in-the-global-namespace24979
-Ref: 2724979
-Ref: pure-stlvec emptystlvec/stlvec25363
-Ref: 2825363
-Ref: pure-stlvec stlvec25424
-Ref: 2925424
-Ref: pure-stlvec mkstlvec/stlvec25835
-Ref: 2a25835
-Ref: pure-stlvec const_stlvec/stlvec25925
-Ref: 2b25925
-Ref: pure-stlvec #/stlvec26292
-Ref: 2c26292
-Ref: pure-stlvec !/stlvec26575
-Ref: 2d26575
-Ref: pure-stlvec first/stlvec26950
-Ref: 2e26950
-Ref: pure-stlvec last/stlvec26978
-Ref: 2f26978
-Ref: pure-stlvec members/stlvec27040
-Ref: 3027040
-Ref: pure-stlvec replace/stlvec27141
-Ref: 3127141
-Ref: pure-stlvec update/stlvec27334
-Ref: 3227334
-Ref: pure-stlvec append/stlvec27474
-Ref: 3327474
-Ref: pure-stlvec insert/stlvec27538
-Ref: 3427538
-Ref: pure-stlvec rmfirst/stlvec27808
-Ref: 3527808
-Ref: pure-stlvec rmlast/stlvec27839
-Ref: 3627839
-Ref: pure-stlvec erase/stlvec27917
-Ref: 3727917
-Ref: pure-stlvec ==/stlvec28155
-Ref: 3828155
-Ref: pure-stlvec ~=/stlvec28185
-Ref: 3928185
-Ref: pure-stlvec map/stlvec28616
-Ref: 3a28616
-Ref: pure-stlvec listmap/stlvec28739
-Ref: 3b28739
-Ref: pure-stlvec catmap/stlvec28842
-Ref: 3c28842
-Ref: pure-stlvec do/stlvec28971
-Ref: 3d28971
-Ref: pure-stlvec foldl/stlvec29092
-Ref: 3e29092
-Ref: pure-stlvec foldl1/stlvec29219
-Ref: 3f29219
-Ref: pure-stlvec filter/stlvec29344
-Ref: 4029344
-Ref: pure-stlvec rowmap/stlvec29607
-Ref: 4129607
-Ref: pure-stlvec rowcatmap/stlvec29662
-Ref: 4229662
-Ref: pure-stlvec colmap/stlvec29720
-Ref: 4329720
-Ref: pure-stlvec colcatmap/stlvec29775
-Ref: 4429775
-Node: Operations in the stl Namespace29833
-Ref: pure-stlvec operations-in-the-stl-namespace30009
-Ref: 4530009
-Ref: pure-stlvec stl empty/stlvec30082
-Ref: 4630082
-Ref: pure-stlvec stl vector/stlvec30147
-Ref: 4730147
-Ref: pure-stlvec stl allpairs/stlvec30266
-Ref: 4830266
-Ref: pure-stlvec stl bounds/stlvec30480
-Ref: 4930480
-Ref: pure-stlvec stl reserve/stlvec30779
-Ref: 4a30779
-Ref: pure-stlvec stl capacity/stlvec31003
-Ref: 4b31003
-Node: Examples<2>31151
-Ref: pure-stlvec id131284
-Ref: 4c31284
-Node: STL Nonmodifying Algorithms31390
-Ref: pure-stlvec stl-nonmodifying-algorithms31544
-Ref: 4d31544
-Node: Imports<2>31786
-Ref: pure-stlvec id231884
-Ref: 4e31884
-Node: Operations32086
-Ref: pure-stlvec operations32204
-Ref: 4f32204
-Ref: pure-stlvec stl for_each/stlvec32235
-Ref: 5032235
-Ref: pure-stlvec stl find/stlvec32363
-Ref: 5132363
-Ref: pure-stlvec stl find_if/stlvec32537
-Ref: 5232537
-Ref: pure-stlvec stl find_first_of/stlvec32728
-Ref: 5332728
-Ref: pure-stlvec stl adjacent_find/stlvec33021
-Ref: 5433021
-Ref: pure-stlvec stl count/stlvec33284
-Ref: 5533284
-Ref: pure-stlvec stl count_if/stlvec33429
-Ref: 5633429
-Ref: pure-stlvec stl mismatch/stlvec33591
-Ref: 5733591
-Ref: pure-stlvec stl equal/stlvec34034
-Ref: 5834034
-Ref: pure-stlvec stl search/stlvec34308
-Ref: 5934308
-Ref: pure-stlvec stl search_n/stlvec34649
-Ref: 5a34649
-Ref: pure-stlvec stl find_end/stlvec34980
-Ref: 5b34980
-Node: Examples<3>35320
-Ref: pure-stlvec id335419
-Ref: 5c35419
-Node: STL Modifying Algorithms35505
-Ref: pure-stlvec stl-modifying-algorithms35638
-Ref: 5d35638
-Node: Imports<3>35872
-Ref: pure-stlvec id435970
-Ref: 5e35970
-Node: Operations<2>36169
-Ref: pure-stlvec id536287
-Ref: 5f36287
-Ref: pure-stlvec stl copy/stlvec36318
-Ref: 6036318
-Ref: pure-stlvec stl copy_backward/stlvec36484
-Ref: 6136484
-Ref: pure-stlvec stl swap_ranges/stlvec36744
-Ref: 6236744
-Ref: pure-stlvec stl transform/stlvec36909
-Ref: 6336909
-Ref: pure-stlvec stl transform_2/stlvec37194
-Ref: 6437194
-Ref: pure-stlvec stl replace_if/stlvec37496
-Ref: 6537496
-Ref: pure-stlvec stl replace_copy/stlvec37645
-Ref: 6637645
-Ref: pure-stlvec stl replace_copy_if/stlvec37832
-Ref: 6737832
-Ref: pure-stlvec stl fill/stlvec38028
-Ref: 6838028
-Ref: pure-stlvec stl fill_n/stlvec38130
-Ref: 6938130
-Ref: pure-stlvec stl generate/stlvec38234
-Ref: 6a38234
-Ref: pure-stlvec stl generate_n/stlvec38625
-Ref: 6b38625
-Ref: pure-stlvec stl remove/stlvec38796
-Ref: 6c38796
-Ref: pure-stlvec stl remove_if/stlvec38906
-Ref: 6d38906
-Ref: pure-stlvec stl remove_copy/stlvec39306
-Ref: 6e39306
-Ref: pure-stlvec stl remove_copy_if/stlvec39501
-Ref: 6f39501
-Ref: pure-stlvec stl unique/stlvec39721
-Ref: 7039721
-Ref: pure-stlvec stl unique_copy/stlvec40113
-Ref: 7140113
-Ref: pure-stlvec stl reverse/stlvec40315
-Ref: 7240315
-Ref: pure-stlvec stl reverse_copy/stlvec40425
-Ref: 7340425
-Ref: pure-stlvec stl rotate/stlvec40623
-Ref: 7440623
-Ref: pure-stlvec stl rotate_copy/stlvec40798
-Ref: 7540798
-Ref: pure-stlvec stl random_shuffle/stlvec40990
-Ref: 7640990
-Ref: pure-stlvec stl partition/stlvec41113
-Ref: 7741113
-Ref: pure-stlvec stl stable_partition/stlvec41432
-Ref: 7841432
-Node: Examples<4>41610
-Ref: pure-stlvec id641709
-Ref: 7941709
-Node: STL Sort Algorithms41792
-Ref: pure-stlvec stl-sort-algorithms41918
-Ref: 7a41918
-Node: Imports<4>42153
-Ref: pure-stlvec id742246
-Ref: 7b42246
-Node: Operations<3>42440
-Ref: pure-stlvec id842553
-Ref: 7c42553
-Ref: pure-stlvec stl sort/stlvec42734
-Ref: 7d42734
-Ref: pure-stlvec stl stable_sort/stlvec42817
-Ref: 7e42817
-Ref: pure-stlvec stl partial_sort/stlvec42960
-Ref: 7f42960
-Ref: pure-stlvec stl partial_sort_copy/stlvec43255
-Ref: 8043255
-Ref: pure-stlvec stl nth_element/stlvec43771
-Ref: 8143771
-Ref: pure-stlvec stl lower_bound/stlvec44267
-Ref: 8244267
-Ref: pure-stlvec stl upper_bound/stlvec44474
-Ref: 8344474
-Ref: pure-stlvec stl equal_range/stlvec44680
-Ref: 8444680
-Ref: pure-stlvec stl binary_search/stlvec44894
-Ref: 8544894
-Node: Examples<5>45015
-Ref: pure-stlvec id945109
-Ref: 8645109
-Node: STL Merge Algorithms45187
-Ref: pure-stlvec stl-merge-algorithms45308
-Ref: 8745308
-Node: Imports<5>45570
-Ref: pure-stlvec id1045664
-Ref: 8845664
-Node: Operations<4>45859
-Ref: pure-stlvec id1145973
-Ref: 8945973
-Ref: pure-stlvec stl merge/stlvec46650
-Ref: 8a46650
-Ref: pure-stlvec stl inplace_merge/stlvec46866
-Ref: 8b46866
-Ref: pure-stlvec stl includes/stlvec47031
-Ref: 8c47031
-Ref: pure-stlvec stl set_union/stlvec47215
-Ref: 8d47215
-Ref: pure-stlvec stl set_intersection/stlvec47523
-Ref: 8e47523
-Ref: pure-stlvec stl set_difference/stlvec47846
-Ref: 8f47846
-Ref: pure-stlvec stl set_symmetric_difference/stlvec48163
-Ref: 9048163
-Node: Examples<6>48518
-Ref: pure-stlvec id1248613
-Ref: 9148613
-Node: STL Heap Algorithms48692
-Ref: pure-stlvec stl-heap-algorithms48816
-Ref: 9248816
-Node: Imports<6>49032
-Ref: pure-stlvec id1349125
-Ref: 9349125
-Node: Operations<5>49321
-Ref: pure-stlvec id1449434
-Ref: 9449434
-Ref: pure-stlvec stl make_heap/stlvec49657
-Ref: 9549657
-Ref: pure-stlvec stl push_heap/stlvec49919
-Ref: 9649919
-Ref: pure-stlvec stl pop_heap/stlvec50061
-Ref: 9750061
-Ref: pure-stlvec stl sort_heap/stlvec50241
-Ref: 9850241
-Node: Examples<7>50342
-Ref: pure-stlvec id1550436
-Ref: 9950436
-Node: Min/Max STL Algorithms50516
-Ref: pure-stlvec min-max-stl-algorithms50642
-Ref: 9a50642
-Node: Imports<7>50870
-Ref: pure-stlvec id1650966
-Ref: 9b50966
-Node: Operations<6>51164
-Ref: pure-stlvec id1751280
-Ref: 9c51280
-Ref: pure-stlvec stl min_element/stlvec51503
-Ref: 9d51503
-Ref: pure-stlvec stl max_element/stlvec51669
-Ref: 9e51669
-Ref: pure-stlvec stl lexicographical_compare/stlvec51835
-Ref: 9f51835
-Ref: pure-stlvec stl next_permutation/stlvec52385
-Ref: a052385
-Ref: pure-stlvec stl prev_permutation/stlvec52686
-Ref: a152686
-Node: Examples<8>52784
-Ref: pure-stlvec id1852881
-Ref: a252881
-Node: STL Numeric Algorithms52963
-Ref: pure-stlvec stl-numeric-algorithms53088
-Ref: a353088
-Node: Imports<8>53316
-Ref: pure-stlvec id1953412
-Ref: a453412
-Node: Operations<7>53611
-Ref: pure-stlvec id2053727
-Ref: a553727
-Ref: pure-stlvec stl accumulate/stlvec53760
-Ref: a653760
-Ref: pure-stlvec stl inner_product/stlvec53905
-Ref: a753905
-Ref: pure-stlvec stl partial_sum/stlvec54271
-Ref: a854271
-Ref: pure-stlvec stl adjacent_difference/stlvec54564
-Ref: a954564
-Node: Examples<9>54928
-Ref: pure-stlvec id2155025
-Ref: aa55025
-Node: Reference Counting55108
-Ref: pure-stlvec reference-counting55232
-Ref: ab55232
-Ref: pure-stlvec stl refc/stlvec55437
-Ref: ac55437
-Node: Backward Compatibilty55579
-Ref: pure-stlvec backward-compatibilty55693
-Ref: ad55693
-Node: pure-stlvec-0 255969
-Ref: pure-stlvec pure-stlvec-0-256071
-Ref: ae56071
-Node: pure-stlvec-0 356126
-Ref: pure-stlvec pure-stlvec-0-356252
-Ref: af56252
-Node: pure-stlvec-0 457257
-Ref: pure-stlvec pure-stlvec-0-457359
-Ref: b057359
-Node: Module Index57482
-Node: Index57660
+Node: Copying1212
+Ref: pure-stlvec pure-stlvec1297
+Ref: 31297
+Ref: pure-stlvec copying1297
+Ref: 41297
+Ref: pure-stlvec module-stlvec1297
+Ref: 01297
+Node: Installation1689
+Ref: pure-stlvec installation1779
+Ref: 51779
+Node: Overview2092
+Ref: pure-stlvec overview2189
+Ref: 62189
+Node: Modules3057
+Ref: pure-stlvec modules3138
+Ref: 73138
+Node: Simple Examples4387
+Ref: pure-stlvec simple-examples4509
+Ref: 84509
+Node: Members and Sequences of Members6305
+Ref: pure-stlvec members-and-sequences-of-members6453
+Ref: 96453
+Node: STL Iterators and Value Semantics7246
+Ref: pure-stlvec stl-iterators-and-value-semantics7394
+Ref: a7394
+Node: Iterator Tuples9345
+Ref: pure-stlvec iterator-tuples9494
+Ref: b9494
+Node: Predefined Iterator Tuple Indexes11928
+Ref: pure-stlvec predefined-iterator-tuple-indexes12065
+Ref: c12065
+Ref: pure-stlvec stl svbeg12236
+Ref: d12236
+Ref: pure-stlvec stl svend12265
+Ref: e12265
+Ref: pure-stlvec stl svback12295
+Ref: f12295
+Node: Back Insert Iterators12774
+Ref: pure-stlvec back-insert-iterators12910
+Ref: 1012910
+Node: Data Structure13914
+Ref: pure-stlvec data-structure14022
+Ref: 1114022
+Node: Types14921
+Ref: pure-stlvec types15031
+Ref: 1215031
+Ref: pure-stlvec mutable_stlvec/type15133
+Ref: 1315133
+Ref: pure-stlvec const_stlvec/type15201
+Ref: 1415201
+Ref: pure-stlvec stlvec/type15270
+Ref: 1515270
+Ref: pure-stlvec mutable_svit/type15344
+Ref: 1615344
+Ref: pure-stlvec const_svit/type15446
+Ref: 1715446
+Ref: pure-stlvec svit/type15553
+Ref: 1815553
+Node: Copy-On-Write Semantics15669
+Ref: pure-stlvec copy-on-write-semantics15778
+Ref: 1915778
+Node: Documentation17323
+Ref: pure-stlvec documentation17442
+Ref: 1a17442
+Node: Parameter Names18634
+Ref: pure-stlvec parameter-names18721
+Ref: 1b18721
+Node: Error Handling20855
+Ref: pure-stlvec error-handling20980
+Ref: 1c20980
+Node: Exception Symbols21136
+Ref: pure-stlvec exception-symbols21226
+Ref: 1d21226
+Ref: pure-stlvec bad_argument/stlvec21271
+Ref: 1e21271
+Ref: pure-stlvec bad_function/stlvec21501
+Ref: 1f21501
+Ref: pure-stlvec failed_cond/stlvec21636
+Ref: 2021636
+Ref: pure-stlvec out_of_bounds/stlvec21775
+Ref: 2121775
+Ref: pure-stlvec range_overflow/stlvec21884
+Ref: 2221884
+Ref: pure-stlvec range_overlap/stlvec22088
+Ref: 2322088
+Node: Examples22459
+Ref: pure-stlvec examples22549
+Ref: 2422549
+Node: Operations Included in the stlvec Module23551
+Ref: pure-stlvec operations-included-in-the-stlvec-module23695
+Ref: 2523695
+Node: Imports24535
+Ref: pure-stlvec imports24667
+Ref: 2624667
+Node: Operations in the Global Namespace24805
+Ref: pure-stlvec operations-in-the-global-namespace24977
+Ref: 2724977
+Ref: pure-stlvec emptystlvec/stlvec25361
+Ref: 2825361
+Ref: pure-stlvec stlvec25422
+Ref: 2925422
+Ref: pure-stlvec mkstlvec/stlvec25833
+Ref: 2a25833
+Ref: pure-stlvec const_stlvec/stlvec25923
+Ref: 2b25923
+Ref: pure-stlvec #/stlvec26290
+Ref: 2c26290
+Ref: pure-stlvec !/stlvec26573
+Ref: 2d26573
+Ref: pure-stlvec first/stlvec26948
+Ref: 2e26948
+Ref: pure-stlvec last/stlvec26976
+Ref: 2f26976
+Ref: pure-stlvec members/stlvec27038
+Ref: 3027038
+Ref: pure-stlvec replace/stlvec27139
+Ref: 3127139
+Ref: pure-stlvec update/stlvec27332
+Ref: 3227332
+Ref: pure-stlvec append/stlvec27472
+Ref: 3327472
+Ref: pure-stlvec insert/stlvec27536
+Ref: 3427536
+Ref: pure-stlvec rmfirst/stlvec27806
+Ref: 3527806
+Ref: pure-stlvec rmlast/stlvec27837
+Ref: 3627837
+Ref: pure-stlvec erase/stlvec27915
+Ref: 3727915
+Ref: pure-stlvec ==/stlvec28153
+Ref: 3828153
+Ref: pure-stlvec ~=/stlvec28183
+Ref: 3928183
+Ref: pure-stlvec map/stlvec28614
+Ref: 3a28614
+Ref: pure-stlvec listmap/stlvec28737
+Ref: 3b28737
+Ref: pure-stlvec catmap/stlvec28840
+Ref: 3c28840
+Ref: pure-stlvec do/stlvec28969
+Ref: 3d28969
+Ref: pure-stlvec foldl/stlvec29090
+Ref: 3e29090
+Ref: pure-stlvec foldl1/stlvec29217
+Ref: 3f29217
+Ref: pure-stlvec filter/stlvec29342
+Ref: 4029342
+Ref: pure-stlvec rowmap/stlvec29605
+Ref: 4129605
+Ref: pure-stlvec rowcatmap/stlvec29660
+Ref: 4229660
+Ref: pure-stlvec colmap/stlvec29718
+Ref: 4329718
+Ref: pure-stlvec colcatmap/stlvec29773
+Ref: 4429773
+Node: Operations in the stl Namespace29831
+Ref: pure-stlvec operations-in-the-stl-namespace30007
+Ref: 4530007
+Ref: pure-stlvec stl empty/stlvec30080
+Ref: 4630080
+Ref: pure-stlvec stl vector/stlvec30145
+Ref: 4730145
+Ref: pure-stlvec stl allpairs/stlvec30264
+Ref: 4830264
+Ref: pure-stlvec stl bounds/stlvec30478
+Ref: 4930478
+Ref: pure-stlvec stl reserve/stlvec30777
+Ref: 4a30777
+Ref: pure-stlvec stl capacity/stlvec31001
+Ref: 4b31001
+Node: Examples<2>31149
+Ref: pure-stlvec id131282
+Ref: 4c31282
+Node: STL Nonmodifying Algorithms31388
+Ref: pure-stlvec stl-nonmodifying-algorithms31542
+Ref: 4d31542
+Node: Imports<2>31784
+Ref: pure-stlvec id231882
+Ref: 4e31882
+Node: Operations32084
+Ref: pure-stlvec operations32202
+Ref: 4f32202
+Ref: pure-stlvec stl for_each/stlvec32233
+Ref: 5032233
+Ref: pure-stlvec stl find/stlvec32361
+Ref: 5132361
+Ref: pure-stlvec stl find_if/stlvec32535
+Ref: 5232535
+Ref: pure-stlvec stl find_first_of/stlvec32726
+Ref: 5332726
+Ref: pure-stlvec stl adjacent_find/stlvec33019
+Ref: 5433019
+Ref: pure-stlvec stl count/stlvec33282
+Ref: 5533282
+Ref: pure-stlvec stl count_if/stlvec33427
+Ref: 5633427
+Ref: pure-stlvec stl mismatch/stlvec33589
+Ref: 5733589
+Ref: pure-stlvec stl equal/stlvec34032
+Ref: 5834032
+Ref: pure-stlvec stl search/stlvec34306
+Ref: 5934306
+Ref: pure-stlvec stl search_n/stlvec34647
+Ref: 5a34647
+Ref: pure-stlvec stl find_end/stlvec34978
+Ref: 5b34978
+Node: Examples<3>35318
+Ref: pure-stlvec id335417
+Ref: 5c35417
+Node: STL Modifying Algorithms35503
+Ref: pure-stlvec stl-modifying-algorithms35636
+Ref: 5d35636
+Node: Imports<3>35870
+Ref: pure-stlvec id435968
+Ref: 5e35968
+Node: Operations<2>36167
+Ref: pure-stlvec id536285
+Ref: 5f36285
+Ref: pure-stlvec stl copy/stlvec36316
+Ref: 6036316
+Ref: pure-stlvec stl copy_backward/stlvec36482
+Ref: 6136482
+Ref: pure-stlvec stl swap_ranges/stlvec36742
+Ref: 6236742
+Ref: pure-stlvec stl transform/stlvec36907
+Ref: 6336907
+Ref: pure-stlvec stl transform_2/stlvec37192
+Ref: 6437192
+Ref: pure-stlvec stl replace_if/stlvec37494
+Ref: 6537494
+Ref: pure-stlvec stl replace_copy/stlvec37643
+Ref: 6637643
+Ref: pure-stlvec stl replace_copy_if/stlvec37830
+Ref: 6737830
+Ref: pure-stlvec stl fill/stlvec38026
+Ref: 6838026
+Ref: pure-stlvec stl fill_n/stlvec38128
+Ref: 6938128
+Ref: pure-stlvec stl generate/stlvec38232
+Ref: 6a38232
+Ref: pure-stlvec stl generate_n/stlvec38623
+Ref: 6b38623
+Ref: pure-stlvec stl remove/stlvec38794
+Ref: 6c38794
+Ref: pure-stlvec stl remove_if/stlvec38904
+Ref: 6d38904
+Ref: pure-stlvec stl remove_copy/stlvec39304
+Ref: 6e39304
+Ref: pure-stlvec stl remove_copy_if/stlvec39499
+Ref: 6f39499
+Ref: pure-stlvec stl unique/stlvec39719
+Ref: 7039719
+Ref: pure-stlvec stl unique_copy/stlvec40111
+Ref: 7140111
+Ref: pure-stlvec stl reverse/stlvec40313
+Ref: 7240313
+Ref: pure-stlvec stl reverse_copy/stlvec40423
+Ref: 7340423
+Ref: pure-stlvec stl rotate/stlvec40621
+Ref: 7440621
+Ref: pure-stlvec stl rotate_copy/stlvec40796
+Ref: 7540796
+Ref: pure-stlvec stl random_shuffle/stlvec40988
+Ref: 7640988
+Ref: pure-stlvec stl partition/stlvec41111
+Ref: 7741111
+Ref: pure-stlvec stl stable_partition/stlvec41430
+Ref: 7841430
+Node: Examples<4>41608
+Ref: pure-stlvec id641707
+Ref: 7941707
+Node: STL Sort Algorithms41790
+Ref: pure-stlvec stl-sort-algorithms41916
+Ref: 7a41916
+Node: Imports<4>42151
+Ref: pure-stlvec id742244
+Ref: 7b42244
+Node: Operations<3>42438
+Ref: pure-stlvec id842551
+Ref: 7c42551
+Ref: pure-stlvec stl sort/stlvec42732
+Ref: 7d42732
+Ref: pure-stlvec stl stable_sort/stlvec42815
+Ref: 7e42815
+Ref: pure-stlvec stl partial_sort/stlvec42958
+Ref: 7f42958
+Ref: pure-stlvec stl partial_sort_copy/stlvec43253
+Ref: 8043253
+Ref: pure-stlvec stl nth_element/stlvec43769
+Ref: 8143769
+Ref: pure-stlvec stl lower_bound/stlvec44265
+Ref: 8244265
+Ref: pure-stlvec stl upper_bound/stlvec44472
+Ref: 8344472
+Ref: pure-stlvec stl equal_range/stlvec44678
+Ref: 8444678
+Ref: pure-stlvec stl binary_search/stlvec44892
+Ref: 8544892
+Node: Examples<5>45013
+Ref: pure-stlvec id945107
+Ref: 8645107
+Node: STL Merge Algorithms45185
+Ref: pure-stlvec stl-merge-algorithms45306
+Ref: 8745306
+Node: Imports<5>45568
+Ref: pure-stlvec id1045662
+Ref: 8845662
+Node: Operations<4>45857
+Ref: pure-stlvec id1145971
+Ref: 8945971
+Ref: pure-stlvec stl merge/stlvec46648
+Ref: 8a46648
+Ref: pure-stlvec stl inplace_merge/stlvec46864
+Ref: 8b46864
+Ref: pure-stlvec stl includes/stlvec47029
+Ref: 8c47029
+Ref: pure-stlvec stl set_union/stlvec47213
+Ref: 8d47213
+Ref: pure-stlvec stl set_intersection/stlvec47521
+Ref: 8e47521
+Ref: pure-stlvec stl set_difference/stlvec47844
+Ref: 8f47844
+Ref: pure-stlvec stl set_symmetric_difference/stlvec48161
+Ref: 9048161
+Node: Examples<6>48516
+Ref: pure-stlvec id1248611
+Ref: 9148611
+Node: STL Heap Algorithms48690
+Ref: pure-stlvec stl-heap-algorithms48814
+Ref: 9248814
+Node: Imports<6>49030
+Ref: pure-stlvec id1349123
+Ref: 9349123
+Node: Operations<5>49319
+Ref: pure-stlvec id1449432
+Ref: 9449432
+Ref: pure-stlvec stl make_heap/stlvec49655
+Ref: 9549655
+Ref: pure-stlvec stl push_heap/stlvec49917
+Ref: 9649917
+Ref: pure-stlvec stl pop_heap/stlvec50059
+Ref: 9750059
+Ref: pure-stlvec stl sort_heap/stlvec50239
+Ref: 9850239
+Node: Examples<7>50340
+Ref: pure-stlvec id1550434
+Ref: 9950434
+Node: Min/Max STL Algorithms50514
+Ref: pure-stlvec min-max-stl-algorithms50640
+Ref: 9a50640
+Node: Imports<7>50868
+Ref: pure-stlvec id1650964
+Ref: 9b50964
+Node: Operations<6>51162
+Ref: pure-stlvec id1751278
+Ref: 9c51278
+Ref: pure-stlvec stl min_element/stlvec51501
+Ref: 9d51501
+Ref: pure-stlvec stl max_element/stlvec51667
+Ref: 9e51667
+Ref: pure-stlvec stl lexicographical_compare/stlvec51833
+Ref: 9f51833
+Ref: pure-stlvec stl next_permutation/stlvec52383
+Ref: a052383
+Ref: pure-stlvec stl prev_permutation/stlvec52684
+Ref: a152684
+Node: Examples<8>52782
+Ref: pure-stlvec id1852879
+Ref: a252879
+Node: STL Numeric Algorithms52961
+Ref: pure-stlvec stl-numeric-algorithms53086
+Ref: a353086
+Node: Imports<8>53314
+Ref: pure-stlvec id1953410
+Ref: a453410
+Node: Operations<7>53609
+Ref: pure-stlvec id2053725
+Ref: a553725
+Ref: pure-stlvec stl accumulate/stlvec53758
+Ref: a653758
+Ref: pure-stlvec stl inner_product/stlvec53903
+Ref: a753903
+Ref: pure-stlvec stl partial_sum/stlvec54269
+Ref: a854269
+Ref: pure-stlvec stl adjacent_difference/stlvec54562
+Ref: a954562
+Node: Examples<9>54926
+Ref: pure-stlvec id2155023
+Ref: aa55023
+Node: Reference Counting55106
+Ref: pure-stlvec reference-counting55230
+Ref: ab55230
+Ref: pure-stlvec stl refc/stlvec55435
+Ref: ac55435
+Node: Backward Compatibilty55577
+Ref: pure-stlvec backward-compatibilty55691
+Ref: ad55691
+Node: pure-stlvec-0 255967
+Ref: pure-stlvec pure-stlvec-0-256069
+Ref: ae56069
+Node: pure-stlvec-0 356124
+Ref: pure-stlvec pure-stlvec-0-356250
+Ref: af56250
+Node: pure-stlvec-0 457255
+Ref: pure-stlvec pure-stlvec-0-457357
+Ref: b057357
+Node: Module Index57480
+Node: Index57658
 
 End Tag Table
 

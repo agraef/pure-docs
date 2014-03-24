@@ -10,7 +10,7 @@
 
   <section*|pure-stllib<label|pure-stllib>>
 
-  Version 0.5, January 28, 2014
+  Version 0.6, March 24, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -42,14 +42,14 @@
 
   <subsection|Installation<label|installation>>
 
-  pure-stllib-0.5 requires at least Pure 0.50. The latest version of Pure is
+  pure-stllib-0.6 requires at least Pure 0.50. The latest version of Pure is
   available at <hlink|http://code.google.com/p/pure-lang/downloads/list|http://code.google.com/p/pure-lang/downloads/list>.
 
   The latest version of the source code for <hlink|<em|pure-stllib>|> can be
-  downloaded from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.5.tar.gz>.
+  downloaded from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.6.tar.gz>.
 
-  To install pure-stllib-0.5 (on Linux), extract the source code (e.g., tar
-  -xzf pure-stllib-0.5.tar.gz), cd to the pure-stllib-0.5 directory, and run
+  To install pure-stllib-0.6 (on Linux), extract the source code (e.g., tar
+  -xzf pure-stllib-0.6.tar.gz), cd to the pure-stllib-0.6 directory, and run
   <verbatim|make>. After this you can (and should) also run <verbatim|make>
   <verbatim|check> to run a few unit tests to make sure that
   <hlink|<em|pure-stlvec>|pure-stlvec.tm> and
@@ -152,6 +152,6 @@
   <hlink|previous|pure-stldict.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

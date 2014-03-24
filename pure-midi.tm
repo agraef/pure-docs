@@ -5,12 +5,12 @@
 <\body>
   <hlink|toc|#pure-midi-toc> <hlink|index|genindex.tm>
   <hlink|modules|pure-modindex.tm> \| <hlink|next|install.tm> \|
-  <hlink|previous|pure-liblo.tm> \| <hlink|Pure Language and Library
+  <hlink|previous|pure-lv2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|pure-midi<label|module-midi>>
 
-  <label|module-midifile>Version 0.5, January 28, 2014
+  <label|module-midifile>Version 0.6, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -34,7 +34,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.5.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.6.tar.gz>.
 
   You need to have the PortMidi library installed on your system. This
   release was tested with PortMidi 2.00 (I recommend using the svn version of
@@ -91,7 +91,7 @@
 
   Previous topic
 
-  <hlink|pure-liblo|pure-liblo.tm>
+  <hlink|pure-lv2|pure-lv2.tm>
 
   Next topic
 
@@ -99,9 +99,9 @@
 
   <hlink|toc|#pure-midi-toc> <hlink|index|genindex.tm>
   <hlink|modules|pure-modindex.tm> \| <hlink|next|install.tm> \|
-  <hlink|previous|pure-liblo.tm> \| <hlink|Pure Language and Library
+  <hlink|previous|pure-lv2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.59',
+        VERSION:     '0.60',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.59, February 03, 2014</p>
+<p>Version 0.60, March 24, 2014</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -82,7 +82,7 @@ for other (UNIX-like) systems is provided at the same location.</p>
 <div class="section" id="quick-summary">
 <h2>Quick Summary<a class="headerlink" href="#quick-summary" title="Permalink to this headline">¶</a></h2>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
-using LLVM 3.4 and Pure 0.59, please substitute your actual version
+using LLVM 3.4 and Pure 0.60, please substitute your actual version
 numbers in the commands given below.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -100,7 +100,7 @@ most systems.</p>
 <p>You&#8217;ll probably need the latest Pure and LLVM tarballs which, at the time of
 this writing, are available here:</p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.59.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.59.tar.gz</a></div>
+<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
@@ -122,8 +122,8 @@ to disable stuff that makes LLVM very slow and/or breaks it on some systems.)</p
 &#8220;DragonEgg&#8221; plugin for gcc, please check the <a class="reference internal" href="#dragonegg">dragonegg</a> section below for
 details.</p>
 <p>Installing Pure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.59.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-0.59
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.60.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-0.60
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -146,8 +146,8 @@ the documentation files:</p>
 </div>
 <p>This needs the <tt class="docutils literal"><span class="pre">wget</span></tt> program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.59.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.59
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.60.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.60
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -156,7 +156,7 @@ pure-docs tarball manually in the usual way, e.g.:</p>
 </pre></div>
 </div>
 <p>Uninstalling:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.59
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.60
 <span class="gp">$</span> sudo make uninstall
 <span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.4
 <span class="gp">$</span> sudo make uninstall
@@ -445,7 +445,7 @@ the TeXmacs-formatted documentation as follows:</p>
 <p><strong>Step 7.</strong> The Pure interpreter should be ready to go now.</p>
 <p>Run Pure interactively as:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
-<span class="go">Pure 0.59 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert Graef</span>
+<span class="go">Pure 0.60 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert Graef</span>
 <span class="go">(Type &#39;help&#39; for help, &#39;help copying&#39; for license information.)</span>
 <span class="go">Loaded prelude from /usr/local/lib/pure/prelude.pure.</span>
 </pre></div>
@@ -1183,7 +1183,7 @@ unzip these into some convenient location on your harddrive and set up
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Feb 03, 2014.
+    Last updated on Mar 24, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

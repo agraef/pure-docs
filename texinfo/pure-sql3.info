@@ -1,7 +1,7 @@
 This is pure-sql3.info, produced by makeinfo version 5.2 from
 pure-sql3.texi.
 
-     Pure 0.59, March 20, 2014
+     Pure 0.60, March 24, 2014
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pure-sql3.info,  Node: Top,  Next: Introduction,  Up: (dir)
 pure-sql3
 *********
 
-     Pure 0.59, March 20, 2014
+     Pure 0.60, March 24, 2014
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2014, Albert Gräf et al
 
-  Version 0.4, January 28, 2014
+  Version 0.5, March 24, 2014
 
      Peter Summerland <<p.summerland@gmail.com>> 
      Albert Graef <<aggraef@gmail.com>> 
@@ -259,7 +259,7 @@ File: pure-sql3.info,  Node: Installation,  Next: Data Structure,  Prev: Copying
 **************
 
 Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pure-sql3-0.4.tar.gz’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/pure-sql3-0.5.tar.gz’.
 
   Unless you already have them on your machine, download SQLite and
 sqlite3 from the SQLite website and install as indicated.  To install
@@ -1308,158 +1308,158 @@ Tag Table:
 Node: Top359
 Ref: pure-sql3 doc558
 Ref: 1558
-Ref: Top-Footnote-11962
-Ref: Top-Footnote-21992
-Node: Introduction2030
-Ref: pure-sql3 introduction2113
-Ref: 22113
-Ref: pure-sql3 module-sql32113
-Ref: 02113
-Ref: pure-sql3 pure-sql32113
-Ref: 32113
-Ref: Introduction-Footnote-12852
-Node: Simple Example2897
-Ref: pure-sql3 simple-example2985
-Ref: 42985
-Node: More Examples3823
-Ref: pure-sql3 more-examples3940
-Ref: 83940
-Node: SQLite Documentation4383
-Ref: pure-sql3 sqlite-documentation4527
-Ref: 94527
-Ref: SQLite Documentation-Footnote-15275
-Ref: SQLite Documentation-Footnote-25318
-Node: Sqlite3 - The SQLite Command-Line Utility5360
-Ref: pure-sql3 sqlite3-the-sqlite-command-line-utility5482
-Ref: a5482
-Ref: pure-sql3 an-introduction-to-the-sqlite-c-c-interface5482
-Ref: b5482
-Node: Copying6428
-Ref: pure-sql3 copying6520
-Ref: c6520
-Node: Installation7104
-Ref: pure-sql3 installation7198
-Ref: d7198
-Node: Data Structure7577
-Ref: pure-sql3 data-structure7688
-Ref: e7688
-Node: Core Database Operations8992
-Ref: pure-sql3 core-database-operations9108
-Ref: f9108
-Node: Database Connections9870
-Ref: pure-sql3 database-connections9982
-Ref: 109982
-Node: Opening a Database Connection10583
-Ref: pure-sql3 opening-a-database-connection10718
-Ref: 1110718
-Ref: pure-sql3 sql3 open10900
-Ref: 510900
-Node: Failure to Open a Database Connection12581
-Ref: pure-sql3 failure-to-open-a-database-connection12741
-Ref: 1312741
-Node: Testing a db_ptr13403
-Ref: pure-sql3 testing-a-db-ptr13563
-Ref: 1413563
-Ref: pure-sql3 typep/sql3dbptr13682
-Ref: 1513682
-Ref: pure-sql3 sql3 is_open13855
-Ref: 1613855
-Node: Closing a Database Connection13971
-Ref: pure-sql3 closing-a-database-connection14085
-Ref: 1714085
-Ref: pure-sql3 sql3 close14284
-Ref: 1814284
-Node: Prepared Statements15986
-Ref: pure-sql3 prepared-statements16117
-Ref: 1916117
-Node: Constructing Prepared Statements17488
-Ref: pure-sql3 constructing-prepared-statements17606
-Ref: 1c17606
-Ref: pure-sql3 sql3 prep17796
-Ref: 617796
-Node: Testing a stmt_ptr22271
-Ref: pure-sql3 testing-a-stmt-ptr22427
-Ref: 1d22427
-Ref: pure-sql3 typep/sql3stmtptr22546
-Ref: 1e22546
-Node: Executing Prepared Statements22646
-Ref: pure-sql3 executing-prepared-statements22786
-Ref: 1f22786
-Ref: pure-sql3 sql3 exec22987
-Ref: 722987
-Node: Executing Lazily24667
-Ref: pure-sql3 executing-lazily24819
-Ref: 2024819
-Ref: pure-sql3 sql3 lexec25092
-Ref: 1a25092
-Node: Executing Directly on a db_ptr25497
-Ref: pure-sql3 executing-directly-on-a-db-ptr25653
-Ref: 2125653
-Node: Executing Against a Busy Database26173
-Ref: pure-sql3 executing-against-a-busy-database26349
-Ref: 2226349
-Node: Grouping Execution with Transactions27285
-Ref: pure-sql3 grouping-execution-with-transactions27461
-Ref: 2427461
-Ref: pure-sql3 sql3 begin28903
-Ref: 2528903
-Ref: pure-sql3 sql3 begin_exclusive28947
-Ref: 2628947
-Ref: pure-sql3 sql3 begin_immediate29001
-Ref: 2729001
-Ref: pure-sql3 sql3 commit29055
-Ref: 2829055
-Ref: pure-sql3 sql3 rollback29100
-Ref: 2929100
-Ref: pure-sql3 sql3 savepoint29147
-Ref: 2a29147
-Ref: pure-sql3 sql3 release29214
-Ref: 2b29214
-Ref: pure-sql3 sql3 rollback_to29279
-Ref: 2c29279
-Node: Finalizing Prepared Statements29507
-Ref: pure-sql3 finalizing-prepared-statements29641
-Ref: 2d29641
-Ref: pure-sql3 sql3 finalize29836
-Ref: 1b29836
-Node: Exceptions31130
-Ref: pure-sql3 exceptions31232
-Ref: 2e31232
-Ref: pure-sql3 sql3 db_error31365
-Ref: 2f31365
-Ref: pure-sql3 sql3 db_busy32190
-Ref: 2332190
-Node: SQLite Error Codes32578
-Ref: pure-sql3 sqlite-error-codes32646
-Ref: 3032646
-Node: Advanced Features34661
-Ref: pure-sql3 advanced-features34778
-Ref: 3134778
-Node: Custom SQL Functions35185
-Ref: pure-sql3 custom-sql-functions35313
-Ref: 3235313
-Node: Scalar SQL Functions35894
-Ref: pure-sql3 scalar-sql-functions36006
-Ref: 3436006
-Ref: pure-sql3 sql3 create_function36177
-Ref: 3336177
-Node: Aggregate SQL Functions38493
-Ref: pure-sql3 aggregate-sql-functions38605
-Ref: 3538605
-Node: Accessing the Rest of SQLite's C Interface39952
-Ref: pure-sql3 accessing-the-rest-of-sqlite-s-c-interface40133
-Ref: 3640133
-Node: Custom Binding Types for Prepared Statements42623
-Ref: pure-sql3 custom-binding-types-for-prepared-statements42775
-Ref: 1242775
-Node: Threading Modes44574
-Ref: pure-sql3 threading-modes44679
-Ref: 3744679
-Ref: Threading Modes-Footnote-146499
-Ref: Threading Modes-Footnote-246541
-Ref: Threading Modes-Footnote-346587
-Node: Module Index46639
-Node: Index46781
+Ref: Top-Footnote-11960
+Ref: Top-Footnote-21990
+Node: Introduction2028
+Ref: pure-sql3 introduction2111
+Ref: 22111
+Ref: pure-sql3 module-sql32111
+Ref: 02111
+Ref: pure-sql3 pure-sql32111
+Ref: 32111
+Ref: Introduction-Footnote-12850
+Node: Simple Example2895
+Ref: pure-sql3 simple-example2983
+Ref: 42983
+Node: More Examples3821
+Ref: pure-sql3 more-examples3938
+Ref: 83938
+Node: SQLite Documentation4381
+Ref: pure-sql3 sqlite-documentation4525
+Ref: 94525
+Ref: SQLite Documentation-Footnote-15273
+Ref: SQLite Documentation-Footnote-25316
+Node: Sqlite3 - The SQLite Command-Line Utility5358
+Ref: pure-sql3 sqlite3-the-sqlite-command-line-utility5480
+Ref: a5480
+Ref: pure-sql3 an-introduction-to-the-sqlite-c-c-interface5480
+Ref: b5480
+Node: Copying6426
+Ref: pure-sql3 copying6518
+Ref: c6518
+Node: Installation7102
+Ref: pure-sql3 installation7196
+Ref: d7196
+Node: Data Structure7575
+Ref: pure-sql3 data-structure7686
+Ref: e7686
+Node: Core Database Operations8990
+Ref: pure-sql3 core-database-operations9106
+Ref: f9106
+Node: Database Connections9868
+Ref: pure-sql3 database-connections9980
+Ref: 109980
+Node: Opening a Database Connection10581
+Ref: pure-sql3 opening-a-database-connection10716
+Ref: 1110716
+Ref: pure-sql3 sql3 open10898
+Ref: 510898
+Node: Failure to Open a Database Connection12579
+Ref: pure-sql3 failure-to-open-a-database-connection12739
+Ref: 1312739
+Node: Testing a db_ptr13401
+Ref: pure-sql3 testing-a-db-ptr13561
+Ref: 1413561
+Ref: pure-sql3 typep/sql3dbptr13680
+Ref: 1513680
+Ref: pure-sql3 sql3 is_open13853
+Ref: 1613853
+Node: Closing a Database Connection13969
+Ref: pure-sql3 closing-a-database-connection14083
+Ref: 1714083
+Ref: pure-sql3 sql3 close14282
+Ref: 1814282
+Node: Prepared Statements15984
+Ref: pure-sql3 prepared-statements16115
+Ref: 1916115
+Node: Constructing Prepared Statements17486
+Ref: pure-sql3 constructing-prepared-statements17604
+Ref: 1c17604
+Ref: pure-sql3 sql3 prep17794
+Ref: 617794
+Node: Testing a stmt_ptr22269
+Ref: pure-sql3 testing-a-stmt-ptr22425
+Ref: 1d22425
+Ref: pure-sql3 typep/sql3stmtptr22544
+Ref: 1e22544
+Node: Executing Prepared Statements22644
+Ref: pure-sql3 executing-prepared-statements22784
+Ref: 1f22784
+Ref: pure-sql3 sql3 exec22985
+Ref: 722985
+Node: Executing Lazily24665
+Ref: pure-sql3 executing-lazily24817
+Ref: 2024817
+Ref: pure-sql3 sql3 lexec25090
+Ref: 1a25090
+Node: Executing Directly on a db_ptr25495
+Ref: pure-sql3 executing-directly-on-a-db-ptr25651
+Ref: 2125651
+Node: Executing Against a Busy Database26171
+Ref: pure-sql3 executing-against-a-busy-database26347
+Ref: 2226347
+Node: Grouping Execution with Transactions27283
+Ref: pure-sql3 grouping-execution-with-transactions27459
+Ref: 2427459
+Ref: pure-sql3 sql3 begin28901
+Ref: 2528901
+Ref: pure-sql3 sql3 begin_exclusive28945
+Ref: 2628945
+Ref: pure-sql3 sql3 begin_immediate28999
+Ref: 2728999
+Ref: pure-sql3 sql3 commit29053
+Ref: 2829053
+Ref: pure-sql3 sql3 rollback29098
+Ref: 2929098
+Ref: pure-sql3 sql3 savepoint29145
+Ref: 2a29145
+Ref: pure-sql3 sql3 release29212
+Ref: 2b29212
+Ref: pure-sql3 sql3 rollback_to29277
+Ref: 2c29277
+Node: Finalizing Prepared Statements29505
+Ref: pure-sql3 finalizing-prepared-statements29639
+Ref: 2d29639
+Ref: pure-sql3 sql3 finalize29834
+Ref: 1b29834
+Node: Exceptions31128
+Ref: pure-sql3 exceptions31230
+Ref: 2e31230
+Ref: pure-sql3 sql3 db_error31363
+Ref: 2f31363
+Ref: pure-sql3 sql3 db_busy32188
+Ref: 2332188
+Node: SQLite Error Codes32576
+Ref: pure-sql3 sqlite-error-codes32644
+Ref: 3032644
+Node: Advanced Features34659
+Ref: pure-sql3 advanced-features34776
+Ref: 3134776
+Node: Custom SQL Functions35183
+Ref: pure-sql3 custom-sql-functions35311
+Ref: 3235311
+Node: Scalar SQL Functions35892
+Ref: pure-sql3 scalar-sql-functions36004
+Ref: 3436004
+Ref: pure-sql3 sql3 create_function36175
+Ref: 3336175
+Node: Aggregate SQL Functions38491
+Ref: pure-sql3 aggregate-sql-functions38603
+Ref: 3538603
+Node: Accessing the Rest of SQLite's C Interface39950
+Ref: pure-sql3 accessing-the-rest-of-sqlite-s-c-interface40131
+Ref: 3640131
+Node: Custom Binding Types for Prepared Statements42621
+Ref: pure-sql3 custom-binding-types-for-prepared-statements42773
+Ref: 1242773
+Node: Threading Modes44572
+Ref: pure-sql3 threading-modes44677
+Ref: 3744677
+Ref: Threading Modes-Footnote-146497
+Ref: Threading Modes-Footnote-246539
+Ref: Threading Modes-Footnote-346585
+Node: Module Index46637
+Node: Index46779
 
 End Tag Table
 

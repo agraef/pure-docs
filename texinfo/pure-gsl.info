@@ -1,7 +1,7 @@
 This is pure-gsl.info, produced by makeinfo version 5.2 from
 pure-gsl.texi.
 
-     Pure 0.59, March 20, 2014
+     Pure 0.60, March 24, 2014
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pure-gsl.info,  Node: Top,  Next: Polynomials,  Up: (dir)
 pure-gsl
 ********
 
-     Pure 0.59, March 20, 2014
+     Pure 0.60, March 24, 2014
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2014, Albert Gräf et al
 
-  Version 0.11, January 28, 2014
+  Version 0.12, March 24, 2014
 
      Albert Graef <<aggraef@gmail.com>> 
      Eddie Rucker <<erucker@bmc.edu>> 
@@ -61,7 +61,7 @@ implemented:
    - Linear least-squares fitting.  Multi-fitting is not available yet.
 
   Installation instructions: Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pure-gsl-0.11.tar.gz’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/pure-gsl-0.12.tar.gz’.
 Run ‘make’ to compile the module and ‘make install’ (as root) to install
 it in the Pure library directory.  This requires GNU make, and of course
 you need to have Pure and GSL installed.  The ‘make install’ step is
@@ -3740,891 +3740,891 @@ Tag Table:
 Node: Top398
 Ref: pure-gsl doc593
 Ref: 8593
-Node: Polynomials5207
-Ref: pure-gsl module-gsl poly5298
-Ref: 35298
-Ref: pure-gsl pure-gsl-gnu-scientific-library-interface-for-pure5298
-Ref: 95298
-Ref: pure-gsl polynomials5298
-Ref: a5298
-Ref: pure-gsl module-gsl5298
-Ref: 05298
-Node: Routines5637
-Ref: pure-gsl routines5712
-Ref: b5712
-Ref: pure-gsl gsl poly eval5739
-Ref: c5739
-Ref: pure-gsl gsl poly dd_init6149
-Ref: d6149
-Ref: pure-gsl gsl poly dd_eval6282
-Ref: e6282
-Ref: pure-gsl gsl poly dd_taylor6427
-Ref: f6427
-Ref: pure-gsl gsl poly solve_quadratic6604
-Ref: 106604
-Ref: pure-gsl gsl poly complex_solve_quadratic6825
-Ref: 116825
-Ref: pure-gsl gsl poly solve_cubic7057
-Ref: 127057
-Ref: pure-gsl gsl poly complex_solve_cubic7281
-Ref: 137281
-Ref: pure-gsl gsl poly complex_solve7521
-Ref: 147521
-Node: Examples7760
-Ref: pure-gsl examples7835
-Ref: 157835
-Node: Special Functions8936
-Ref: pure-gsl special-functions9032
-Ref: 169032
-Ref: pure-gsl module-gsl sf9032
-Ref: 59032
-Node: Airy Functions10258
-Ref: pure-gsl airy-functions10348
-Ref: 1710348
-Ref: pure-gsl gsl sf airy_Ai10387
-Ref: 1810387
-Ref: pure-gsl gsl sf airy_Ai_e10595
-Ref: 1910595
-Ref: pure-gsl gsl sf airy_Ai_scaled10809
-Ref: 1a10809
-Ref: pure-gsl gsl sf airy_Ai_scaled_e11038
-Ref: 1b11038
-Ref: pure-gsl gsl sf airy_Bi11273
-Ref: 1c11273
-Ref: pure-gsl gsl sf airy_Bi_e11481
-Ref: 1d11481
-Ref: pure-gsl gsl sf airy_Bi_scaled11695
-Ref: 1e11695
-Ref: pure-gsl gsl sf airy_Bi_scaled_e11924
-Ref: 1f11924
-Ref: pure-gsl gsl sf airy_Ai_deriv12159
-Ref: 2012159
-Ref: pure-gsl gsl sf airy_Ai_deriv_e12385
-Ref: 2112385
-Ref: pure-gsl gsl sf airy_Ai_deriv_scaled12617
-Ref: 2212617
-Ref: pure-gsl gsl sf airy_Ai_deriv_scaled_e12864
-Ref: 2312864
-Ref: pure-gsl gsl sf airy_Bi_deriv13117
-Ref: 2413117
-Ref: pure-gsl gsl sf airy_Bi_deriv_e13343
-Ref: 2513343
-Ref: pure-gsl gsl sf airy_Bi_deriv_scaled13575
-Ref: 2613575
-Ref: pure-gsl gsl sf airy_Bi_deriv_scaled_e13822
-Ref: 2713822
-Ref: pure-gsl gsl sf airy_zero_Ai14075
-Ref: 2814075
-Ref: pure-gsl gsl sf airy_zero_Ai_e14163
-Ref: 2914163
-Ref: pure-gsl gsl sf airy_zero_Bi14255
-Ref: 2a14255
-Ref: pure-gsl gsl sf airy_zero_Bi_e14343
-Ref: 2b14343
-Ref: pure-gsl gsl sf airy_zero_Ai_deriv14435
-Ref: 2c14435
-Ref: pure-gsl gsl sf airy_zero_Ai_deriv_e14535
-Ref: 2d14535
-Ref: pure-gsl gsl sf airy_zero_Bi_deriv14639
-Ref: 2e14639
-Ref: pure-gsl gsl sf airy_zero_Bi_deriv_e14739
-Ref: 2f14739
-Node: Examples<2>14843
-Ref: pure-gsl id114958
-Ref: 3014958
-Node: Bessel Functions17985
-Ref: pure-gsl bessel-functions18097
-Ref: 3118097
-Ref: pure-gsl gsl sf bessel_J018140
-Ref: 3218140
-Ref: pure-gsl gsl sf bessel_J0_e18222
-Ref: 3318222
-Ref: pure-gsl gsl sf bessel_J118307
-Ref: 3418307
-Ref: pure-gsl gsl sf bessel_J1_e18389
-Ref: 3518389
-Ref: pure-gsl gsl sf bessel_Jn18475
-Ref: 3618475
-Ref: pure-gsl gsl sf bessel_Jn_e18559
-Ref: 3718559
-Ref: pure-gsl gsl sf bessel_Jn_array18647
-Ref: 3818647
-Ref: pure-gsl gsl sf bessel_Y018761
-Ref: 3918761
-Ref: pure-gsl gsl sf bessel_Y0_e18843
-Ref: 3a18843
-Ref: pure-gsl gsl sf bessel_Y118929
-Ref: 3b18929
-Ref: pure-gsl gsl sf bessel_Y1_e19011
-Ref: 3c19011
-Ref: pure-gsl gsl sf bessel_Yn19097
-Ref: 3d19097
-Ref: pure-gsl gsl sf bessel_Yn_e19179
-Ref: 3e19179
-Ref: pure-gsl gsl sf bessel_Yn_array19265
-Ref: 3f19265
-Ref: pure-gsl gsl sf bessel_I019379
-Ref: 4019379
-Ref: pure-gsl gsl sf bessel_I0_e19461
-Ref: 4119461
-Ref: pure-gsl gsl sf bessel_I119547
-Ref: 4219547
-Ref: pure-gsl gsl sf bessel_I1_e19629
-Ref: 4319629
-Ref: pure-gsl gsl sf bessel_In19715
-Ref: 4419715
-Ref: pure-gsl gsl sf bessel_In_e19804
-Ref: 4519804
-Ref: pure-gsl gsl sf bessel_In_array19896
-Ref: 4619896
-Ref: pure-gsl gsl sf bessel_I0_scaled20010
-Ref: 4720010
-Ref: pure-gsl gsl sf bessel_I0_scaled_e20106
-Ref: 4820106
-Ref: pure-gsl gsl sf bessel_I1_scaled20206
-Ref: 4920206
-Ref: pure-gsl gsl sf bessel_I1_scaled_e20302
-Ref: 4a20302
-Ref: pure-gsl gsl sf bessel_In_scaled20402
-Ref: 4b20402
-Ref: pure-gsl gsl sf bessel_In_scaled_e20505
-Ref: 4c20505
-Ref: pure-gsl gsl sf bessel_In_scaled_array20612
-Ref: 4d20612
-Ref: pure-gsl gsl sf bessel_K020733
-Ref: 4e20733
-Ref: pure-gsl gsl sf bessel_K0_e20815
-Ref: 4f20815
-Ref: pure-gsl gsl sf bessel_K120901
-Ref: 5020901
-Ref: pure-gsl gsl sf bessel_K1_e20983
-Ref: 5120983
-Ref: pure-gsl gsl sf bessel_Kn21069
-Ref: 5221069
-Ref: pure-gsl gsl sf bessel_Kn_e21158
-Ref: 5321158
-Ref: pure-gsl gsl sf bessel_Kn_array21250
-Ref: 5421250
-Ref: pure-gsl gsl sf bessel_K0_scaled21364
-Ref: 5521364
-Ref: pure-gsl gsl sf bessel_K0_scaled_e21460
-Ref: 5621460
-Ref: pure-gsl gsl sf bessel_K1_scaled21560
-Ref: 5721560
-Ref: pure-gsl gsl sf bessel_K1_scaled_e21656
-Ref: 5821656
-Ref: pure-gsl gsl sf bessel_Kn_scaled21756
-Ref: 5921756
-Ref: pure-gsl gsl sf bessel_Kn_scaled_e21859
-Ref: 5a21859
-Ref: pure-gsl gsl sf bessel_Kn_scaled_array21966
-Ref: 5b21966
-Ref: pure-gsl gsl sf bessel_j022087
-Ref: 5c22087
-Ref: pure-gsl gsl sf bessel_j0_e22169
-Ref: 5d22169
-Ref: pure-gsl gsl sf bessel_j122255
-Ref: 5e22255
-Ref: pure-gsl gsl sf bessel_j1_e22337
-Ref: 5f22337
-Ref: pure-gsl gsl sf bessel_j222423
-Ref: 6022423
-Ref: pure-gsl gsl sf bessel_j2_e22505
-Ref: 6122505
-Ref: pure-gsl gsl sf bessel_jl22591
-Ref: 6222591
-Ref: pure-gsl gsl sf bessel_jl_e22680
-Ref: 6322680
-Ref: pure-gsl gsl sf bessel_jl_array22773
-Ref: 6422773
-Ref: pure-gsl gsl sf bessel_jl_steed_array22877
-Ref: 6522877
-Ref: pure-gsl gsl sf bessel_y022993
-Ref: 6622993
-Ref: pure-gsl gsl sf bessel_y0_e23075
-Ref: 6723075
-Ref: pure-gsl gsl sf bessel_y123161
-Ref: 6823161
-Ref: pure-gsl gsl sf bessel_y1_e23243
-Ref: 6923243
-Ref: pure-gsl gsl sf bessel_y223329
-Ref: 6a23329
-Ref: pure-gsl gsl sf bessel_y2_e23411
-Ref: 6b23411
-Ref: pure-gsl gsl sf bessel_yl23497
-Ref: 6c23497
-Ref: pure-gsl gsl sf bessel_yl_e23586
-Ref: 6d23586
-Ref: pure-gsl gsl sf bessel_yl_array23679
-Ref: 6e23679
-Ref: pure-gsl gsl sf bessel_i0_scaled23783
-Ref: 6f23783
-Ref: pure-gsl gsl sf bessel_i0_scaled_e23879
-Ref: 7023879
-Ref: pure-gsl gsl sf bessel_i1_scaled23979
-Ref: 7123979
-Ref: pure-gsl gsl sf bessel_i1_scaled_e24075
-Ref: 7224075
-Ref: pure-gsl gsl sf bessel_i2_scaled24175
-Ref: 7324175
-Ref: pure-gsl gsl sf bessel_i2_scaled_e24271
-Ref: 7424271
-Ref: pure-gsl gsl sf bessel_il_scaled24371
-Ref: 7524371
-Ref: pure-gsl gsl sf bessel_il_scaled_e24474
-Ref: 7624474
-Ref: pure-gsl gsl sf bessel_il_scaled_array24581
-Ref: 7724581
-Ref: pure-gsl gsl sf bessel_k0_scaled24699
-Ref: 7824699
-Ref: pure-gsl gsl sf bessel_k0_scaled_e24795
-Ref: 7924795
-Ref: pure-gsl gsl sf bessel_k1_scaled24895
-Ref: 7a24895
-Ref: pure-gsl gsl sf bessel_k1_scaled_e24991
-Ref: 7b24991
-Ref: pure-gsl gsl sf bessel_k2_scaled25091
-Ref: 7c25091
-Ref: pure-gsl gsl sf bessel_k2_scaled_e25187
-Ref: 7d25187
-Ref: pure-gsl gsl sf bessel_kl_scaled25287
-Ref: 7e25287
-Ref: pure-gsl gsl sf bessel_kl_scaled_e25390
-Ref: 7f25390
-Ref: pure-gsl gsl sf bessel_kl_scaled_array25497
-Ref: 8025497
-Ref: pure-gsl gsl sf bessel_Jnu25615
-Ref: 8125615
-Ref: pure-gsl gsl sf bessel_Jnu_e25702
-Ref: 8225702
-Ref: pure-gsl gsl sf bessel_sequence_Jnu_e25793
-Ref: 8325793
-Ref: pure-gsl gsl sf bessel_Ynu25910
-Ref: 8425910
-Ref: pure-gsl gsl sf bessel_Ynu_e25997
-Ref: 8525997
-Ref: pure-gsl gsl sf bessel_Inu26088
-Ref: 8626088
-Ref: pure-gsl gsl sf bessel_Inu_e26175
-Ref: 8726175
-Ref: pure-gsl gsl sf bessel_Inu_scaled26266
-Ref: 8826266
-Ref: pure-gsl gsl sf bessel_Inu_scaled_e26367
-Ref: 8926367
-Ref: pure-gsl gsl sf bessel_Knu26472
-Ref: 8a26472
-Ref: pure-gsl gsl sf bessel_Knu_e26559
-Ref: 8b26559
-Ref: pure-gsl gsl sf bessel_lnKnu26648
-Ref: 8c26648
-Ref: pure-gsl gsl sf bessel_lnKnu_e26739
-Ref: 8d26739
-Ref: pure-gsl gsl sf bessel_Knu_scaled26834
-Ref: 8e26834
-Ref: pure-gsl gsl sf bessel_Knu_scaled_e26935
-Ref: 8f26935
-Ref: pure-gsl gsl sf bessel_zero_J027040
-Ref: 9027040
-Ref: pure-gsl gsl sf bessel_zero_J0_e27137
-Ref: 9127137
-Ref: pure-gsl gsl sf bessel_zero_J127238
-Ref: 9227238
-Ref: pure-gsl gsl sf bessel_zero_J1_e27335
-Ref: 9327335
-Ref: pure-gsl gsl sf bessel_zero_Jnu27436
-Ref: 9427436
-Ref: pure-gsl gsl sf bessel_zero_Jnu_e27538
-Ref: 9527538
-Node: Examples<3>27642
-Ref: pure-gsl id227760
-Ref: 9627760
-Node: Clausen Functions34325
-Ref: pure-gsl clausen-functions34438
-Ref: 9734438
-Ref: pure-gsl gsl sf clausen34483
-Ref: 9834483
-Ref: pure-gsl gsl sf clausen_e34561
-Ref: 9934561
-Node: Examples<4>34643
-Ref: pure-gsl id334761
-Ref: 9a34761
-Node: Colomb Functions35005
-Ref: pure-gsl colomb-functions35117
-Ref: 9b35117
-Ref: pure-gsl gsl sf hydrogenicR_135338
-Ref: 9c35338
-Ref: pure-gsl gsl sf hydrogenicR_1_e35430
-Ref: 9d35430
-Ref: pure-gsl gsl sf hydrogenicR35526
-Ref: 9e35526
-Ref: pure-gsl gsl sf hydrogenicR_e35630
-Ref: 9f35630
-Ref: pure-gsl gsl sf coulomb_wave_FG_e35738
-Ref: a035738
-Ref: pure-gsl gsl sf coulomb_wave_F_array35851
-Ref: a135851
-Ref: pure-gsl gsl sf coulomb_wave_FG_array35975
-Ref: a235975
-Ref: pure-gsl gsl sf coulomb_wave_FGp_array36101
-Ref: a336101
-Ref: pure-gsl gsl sf coulomb_wave_sphF_array36229
-Ref: a436229
-Ref: pure-gsl gsl sf coulomb_CL_e36369
-Ref: a536369
-Ref: pure-gsl gsl sf coulomb_CL_array36466
-Ref: a636466
-Node: Examples<5>36579
-Ref: pure-gsl id436701
-Ref: a736701
-Node: Coupling Coefficients37918
-Ref: pure-gsl coupling-coefficients38035
-Ref: a838035
-Ref: pure-gsl gsl sf coupling_3j38088
-Ref: a938088
-Ref: pure-gsl gsl sf coupling_3j_e38277
-Ref: aa38277
-Ref: pure-gsl gsl sf coupling_6j38470
-Ref: ab38470
-Ref: pure-gsl gsl sf coupling_6j_e38659
-Ref: ac38659
-Ref: pure-gsl gsl sf coupling_9j38852
-Ref: ad38852
-Ref: pure-gsl gsl sf coupling_9j_e39025
-Ref: ae39025
-Node: Examples<6>39202
-Ref: pure-gsl id539323
-Ref: af39323
-Node: Dawson Function39902
-Ref: pure-gsl dawson-function40013
-Ref: b040013
-Ref: pure-gsl gsl sf dawson40056
-Ref: b140056
-Ref: pure-gsl gsl sf dawson_e40132
-Ref: b240132
-Node: Examples<7>40212
-Ref: pure-gsl id640327
-Ref: b340327
-Node: Debye Functions40513
-Ref: pure-gsl debye-functions40624
-Ref: b440624
-Ref: pure-gsl gsl sf debye_140667
-Ref: b540667
-Ref: pure-gsl gsl sf debye_1_e40745
-Ref: b640745
-Ref: pure-gsl gsl sf debye_240827
-Ref: b740827
-Ref: pure-gsl gsl sf debye_2_e40905
-Ref: b840905
-Ref: pure-gsl gsl sf debye_340987
-Ref: b940987
-Ref: pure-gsl gsl sf debye_3_e41065
-Ref: ba41065
-Ref: pure-gsl gsl sf debye_441147
-Ref: bb41147
-Ref: pure-gsl gsl sf debye_4_e41225
-Ref: bc41225
-Ref: pure-gsl gsl sf debye_541307
-Ref: bd41307
-Ref: pure-gsl gsl sf debye_5_e41385
-Ref: be41385
-Ref: pure-gsl gsl sf debye_641467
-Ref: bf41467
-Ref: pure-gsl gsl sf debye_6_e41545
-Ref: c041545
-Node: Examples<8>41627
-Ref: pure-gsl id741738
-Ref: c141738
-Node: Dilogarithm42482
-Ref: pure-gsl dilogarithm42589
-Ref: c242589
-Ref: pure-gsl gsl sf dilog42624
-Ref: c342624
-Ref: pure-gsl gsl sf dilog_e42906
-Ref: c442906
-Node: Examples<9>43163
-Ref: pure-gsl id843271
-Ref: c543271
-Ref: pure-gsl gsl sf multiply_e43637
-Ref: c643637
-Ref: pure-gsl gsl sf multiply_err_e43723
-Ref: c743723
-Node: Examples<10>43823
-Ref: pure-gsl id943911
-Ref: c843911
-Node: Matrices44129
-Ref: pure-gsl matrices44235
-Ref: c944235
-Ref: pure-gsl module-gsl matrix44235
-Ref: 244235
-Ref: Matrices-Footnote-144784
-Ref: Matrices-Footnote-244868
-Ref: Matrices-Footnote-344944
-Node: Matrix Creation45022
-Ref: pure-gsl matrix-creation45123
-Ref: ca45123
-Ref: pure-gsl linear-algebra45123
-Ref: cb45123
-Ref: pure-gsl gsl matrix zeros45653
-Ref: cc45653
-Ref: pure-gsl gsl matrix izeros45925
-Ref: cd45925
-Ref: pure-gsl gsl matrix czeros46203
-Ref: ce46203
-Ref: pure-gsl gsl matrix ones46479
-Ref: cf46479
-Ref: pure-gsl gsl matrix iones46747
-Ref: d046747
-Ref: pure-gsl gsl matrix cones47019
-Ref: d147019
-Ref: pure-gsl gsl matrix eye47291
-Ref: d247291
-Ref: pure-gsl gsl matrix ieye47523
-Ref: d347523
-Ref: pure-gsl gsl matrix ceye47759
-Ref: d447759
-Node: Matrix Operators and Functions47995
-Ref: pure-gsl matrix-operators-and-functions48133
-Ref: d548133
-Ref: pure-gsl +/gsl_matrix48387
-Ref: d648387
-Ref: pure-gsl -/gsl_matrix48565
-Ref: d748565
-Ref: pure-gsl */gsl_matrix48938
-Ref: d848938
-Ref: d949045
-Ref: pure-gsl //gsl_matrix49215
-Ref: da49215
-Ref: db49481
-Ref: pure-gsl \/gsl_matrix49635
-Ref: dc49635
-Ref: pure-gsl div/gsl_matrix49706
-Ref: dd49706
-Ref: pure-gsl mod/gsl_matrix50212
-Ref: de50212
-Ref: pure-gsl not/gsl_matrix50737
-Ref: df50737
-Ref: pure-gsl ^/gsl_matrix50942
-Ref: e050942
-Ref: e151190
-Ref: pure-gsl <</gsl_matrix51365
-Ref: e251365
-Ref: pure-gsl >>/gsl_matrix51707
-Ref: e351707
-Ref: pure-gsl and/gsl_matrix52049
-Ref: e452049
-Ref: pure-gsl or/gsl_matrix52474
-Ref: e552474
-Ref: pure-gsl pow/gsl_matrix52982
-Ref: e652982
-Node: Singular Value Decomposition53206
-Ref: pure-gsl singular-value-decomposition53320
-Ref: e753320
-Ref: pure-gsl gsl matrix svd54027
-Ref: e854027
-Ref: pure-gsl gsl matrix svd_mod54120
-Ref: e954120
-Ref: pure-gsl gsl matrix svd_jacobi54308
-Ref: ea54308
-Ref: pure-gsl gsl matrix svd_solve54465
-Ref: eb54465
-Ref: pure-gsl gsl matrix pinv54818
-Ref: ec54818
-Node: Least-Squares Fitting54948
-Ref: pure-gsl least-squares-fitting55047
-Ref: ed55047
-Ref: pure-gsl module-gsl fit55047
-Ref: 155047
-Node: Routines<2>55418
-Ref: pure-gsl id1055510
-Ref: ee55510
-Ref: pure-gsl gsl fit linear55537
-Ref: ef55537
-Ref: pure-gsl gsl fit wlinear55784
-Ref: f055784
-Ref: pure-gsl gsl fit linear_est56055
-Ref: f156055
-Ref: pure-gsl gsl fit mul56270
-Ref: f256270
-Ref: pure-gsl gsl fit wmul56494
-Ref: f356494
-Ref: pure-gsl gsl fit mul_est56729
-Ref: f456729
-Node: Examples<11>56889
-Ref: pure-gsl id1156981
-Ref: f556981
-Node: Statistics59442
-Ref: pure-gsl statistics59560
-Ref: f659560
-Ref: pure-gsl module-gsl stats59560
-Ref: 759560
-Node: Routines<3>59885
-Ref: pure-gsl id1259966
-Ref: f759966
-Ref: pure-gsl gsl stats mean59993
-Ref: f859993
-Ref: pure-gsl gsl stats variance60125
-Ref: f960125
-Ref: pure-gsl gsl stats sd60417
-Ref: fa60417
-Ref: pure-gsl gsl stats sd_m60545
-Ref: fb60545
-Ref: pure-gsl gsl stats tss60682
-Ref: fc60682
-Ref: pure-gsl gsl stats tss_m60812
-Ref: fd60812
-Ref: pure-gsl gsl stats variance_with_fixed_mean60951
-Ref: fe60951
-Ref: pure-gsl gsl stats sd_with_fixed_mean61143
-Ref: ff61143
-Ref: pure-gsl gsl stats absdev61313
-Ref: 10061313
-Ref: pure-gsl gsl stats absdev_m61449
-Ref: 10161449
-Ref: pure-gsl gsl stats skew61594
-Ref: 10261594
-Ref: pure-gsl gsl stats skew_m_sd61731
-Ref: 10361731
-Ref: pure-gsl gsl stats kurtosis61886
-Ref: 10461886
-Ref: pure-gsl gsl stats kurtosis_m_sd62026
-Ref: 10562026
-Ref: pure-gsl gsl stats lag1_autocorrelation62189
-Ref: 10662189
-Ref: pure-gsl gsl stats lag1_autocorrelation_m62358
-Ref: 10762358
-Ref: pure-gsl gsl stats covariance62536
-Ref: 10862536
-Ref: pure-gsl gsl stats covariance_m62711
-Ref: 10962711
-Ref: pure-gsl gsl stats correlation62912
-Ref: 10a62912
-Ref: pure-gsl gsl stats wmean63089
-Ref: 10b63089
-Ref: pure-gsl gsl stats wvariance63238
-Ref: 10c63238
-Ref: pure-gsl gsl stats wvariance_m63400
-Ref: 10d63400
-Ref: pure-gsl gsl stats wsd63581
-Ref: 10e63581
-Ref: pure-gsl gsl stats wsd_m63726
-Ref: 10f63726
-Ref: pure-gsl gsl stats wvariance_with_fixed_mean63880
-Ref: 11063880
-Ref: pure-gsl gsl stats wsd_with_fixed_mean64089
-Ref: 11164089
-Ref: pure-gsl gsl stats wtss64286
-Ref: 11264286
-Ref: pure-gsl gsl stats wtss_m64433
-Ref: 11364433
-Ref: pure-gsl gsl stats wabsdev64589
-Ref: 11464589
-Ref: pure-gsl gsl stats wabsdev_m64742
-Ref: 11564742
-Ref: pure-gsl gsl stats wskew64919
-Ref: 11664919
-Ref: pure-gsl gsl stats wskew_m_sd65068
-Ref: 11765068
-Ref: pure-gsl gsl stats wkurtosis65250
-Ref: 11865250
-Ref: pure-gsl gsl stats wkurtosis_m_sd65412
-Ref: 11965412
-Ref: pure-gsl gsl stats max65594
-Ref: 11a65594
-Ref: pure-gsl gsl stats min65724
-Ref: 11b65724
-Ref: pure-gsl gsl stats minmax65854
-Ref: 11c65854
-Ref: pure-gsl gsl stats min_index66044
-Ref: 11d66044
-Ref: pure-gsl gsl stats max_index66191
-Ref: 11e66191
-Ref: pure-gsl gsl stats minmax_index66338
-Ref: 11f66338
-Ref: pure-gsl gsl stats median_from_sorted_data66558
-Ref: 12066558
-Ref: pure-gsl gsl stats quantile_from_sorted_data66733
-Ref: 12166733
-Node: Examples<12>66932
-Ref: pure-gsl id1367013
-Ref: 12267013
-Node: Random Number Distributions69628
-Ref: pure-gsl random-number-distributions69732
-Ref: 12369732
-Ref: pure-gsl module-gsl randist69732
-Ref: 469732
-Node: Routines<4>70382
-Ref: pure-gsl id1470480
-Ref: 12470480
-Ref: pure-gsl gsl ran ugaussian_pdf70507
-Ref: 12570507
-Ref: pure-gsl gsl ran gaussian_pdf70595
-Ref: 12670595
-Ref: pure-gsl gsl ran gaussian_tail_pdf70691
-Ref: 12770691
-Ref: pure-gsl gsl ran ugaussian_tail_pdf70799
-Ref: 12870799
-Ref: pure-gsl gsl ran bivariate_gaussian_pdf70903
-Ref: 12970903
-Ref: pure-gsl gsl ran exponential_pdf71015
-Ref: 12a71015
-Ref: pure-gsl gsl ran laplace_pdf71114
-Ref: 12b71114
-Ref: pure-gsl gsl ran exppow_pdf71204
-Ref: 12c71204
-Ref: pure-gsl gsl ran cauchy_pdf71294
-Ref: 12d71294
-Ref: pure-gsl gsl ran rayleigh_pdf71382
-Ref: 12e71382
-Ref: pure-gsl gsl ran rayleigh_tail_pdf71478
-Ref: 12f71478
-Ref: pure-gsl gsl ran landau_pdf71586
-Ref: 13071586
-Ref: pure-gsl gsl ran gamma_pdf71672
-Ref: 13171672
-Ref: pure-gsl gsl ran flat_pdf71760
-Ref: 13271760
-Ref: pure-gsl gsl ran lognormal_pdf71846
-Ref: 13371846
-Ref: pure-gsl gsl ran chisq_pdf71949
-Ref: 13471949
-Ref: pure-gsl gsl ran fdist_pdf72036
-Ref: 13572036
-Ref: pure-gsl gsl ran tdist_pdf72128
-Ref: 13672128
-Ref: pure-gsl gsl ran beta_pdf72215
-Ref: 13772215
-Ref: pure-gsl gsl ran logistic_pdf72301
-Ref: 13872301
-Ref: pure-gsl gsl ran pareto_pdf72393
-Ref: 13972393
-Ref: pure-gsl gsl ran weibull_pdf72483
-Ref: 13a72483
-Ref: pure-gsl gsl ran gumbel1_pdf72575
-Ref: 13b72575
-Ref: pure-gsl gsl ran gumbel2_pdf72667
-Ref: 13c72667
-Ref: pure-gsl gsl ran dirichlet_pdf72759
-Ref: 13d72759
-Ref: pure-gsl gsl ran dirichlet_lnpdf72877
-Ref: 13e72877
-Ref: pure-gsl gsl ran discrete_preproc72999
-Ref: 13f72999
-Ref: pure-gsl gsl ran discrete_pdf73135
-Ref: 14073135
-Ref: pure-gsl gsl ran discrete_free73271
-Ref: 14173271
-Ref: pure-gsl gsl ran poisson_pdf73371
-Ref: 14273371
-Ref: pure-gsl gsl ran bernoulli_pdf73467
-Ref: 14373467
-Ref: pure-gsl gsl ran binomial_pdf73566
-Ref: 14473566
-Ref: pure-gsl gsl ran multinomial_pdf73670
-Ref: 14573670
-Ref: pure-gsl gsl ran multinomial_lnpdf73784
-Ref: 14673784
-Ref: pure-gsl gsl ran negative_binomial_pdf73902
-Ref: 14773902
-Ref: pure-gsl gsl ran pascal_pdf74019
-Ref: 14874019
-Ref: pure-gsl gsl ran geometric_pdf74119
-Ref: 14974119
-Ref: pure-gsl gsl ran hypergeometric_pdf74218
-Ref: 14a74218
-Ref: pure-gsl gsl ran logarithmic_pdf74358
-Ref: 14b74358
-Ref: pure-gsl gsl cdf ugaussian_P74461
-Ref: 14c74461
-Ref: pure-gsl gsl cdf ugaussian_Q74549
-Ref: 14d74549
-Ref: pure-gsl gsl cdf ugaussian_Pinv74637
-Ref: 14e74637
-Ref: pure-gsl gsl cdf ugaussian_Qinv74731
-Ref: 14f74731
-Ref: pure-gsl gsl cdf gaussian_P74825
-Ref: 15074825
-Ref: pure-gsl gsl cdf gaussian_Q74917
-Ref: 15174917
-Ref: pure-gsl gsl cdf gaussian_Pinv75009
-Ref: 15275009
-Ref: pure-gsl gsl cdf guassian_Qinv75107
-Ref: 15375107
-Ref: pure-gsl gsl cdf exponential_P75205
-Ref: 15475205
-Ref: pure-gsl gsl cdf exponential_Q75300
-Ref: 15575300
-Ref: pure-gsl gsl cdf exponential_Pinv75395
-Ref: 15675395
-Ref: pure-gsl gsl cdf exponential_Qinv75496
-Ref: 15775496
-Ref: pure-gsl gsl cdf laplace_P75597
-Ref: 15875597
-Ref: pure-gsl gsl cdf laplace_Q75683
-Ref: 15975683
-Ref: pure-gsl gsl cdf laplace_Pinv75769
-Ref: 15a75769
-Ref: pure-gsl gsl cdf laplace_Qinv75861
-Ref: 15b75861
-Ref: pure-gsl gsl cdf exppow_P75953
-Ref: 15c75953
-Ref: pure-gsl gsl cdf exppow_Q76039
-Ref: 15d76039
-Ref: pure-gsl gsl cdf cauchy_P76125
-Ref: 15e76125
-Ref: pure-gsl gsl cdf cauchy_Q76209
-Ref: 15f76209
-Ref: pure-gsl gsl cdf cauchy_Pinv76293
-Ref: 16076293
-Ref: pure-gsl gsl cdf cauchy_Qinv76383
-Ref: 16176383
-Ref: pure-gsl gsl cdf rayleigh_P76473
-Ref: 16276473
-Ref: pure-gsl gsl cdf rayleigh_Q76565
-Ref: 16376565
-Ref: pure-gsl gsl cdf rayleigh_Pinv76657
-Ref: 16476657
-Ref: pure-gsl gsl cdf rayleigh_Qinv76755
-Ref: 16576755
-Ref: pure-gsl gsl cdf gamma_P76853
-Ref: 16676853
-Ref: pure-gsl gsl cdf gamma_Q76937
-Ref: 16776937
-Ref: pure-gsl gsl cdf gamma_Pinv77021
-Ref: 16877021
-Ref: pure-gsl gsl cdf gamma_Qinv77111
-Ref: 16977111
-Ref: pure-gsl gsl cdf flat_P77201
-Ref: 16a77201
-Ref: pure-gsl gsl cdf flat_Q77283
-Ref: 16b77283
-Ref: pure-gsl gsl cdf flat_Pinv77365
-Ref: 16c77365
-Ref: pure-gsl gsl cdf flat_Qinv77453
-Ref: 16d77453
-Ref: pure-gsl gsl cdf lognormal_P77541
-Ref: 16e77541
-Ref: pure-gsl gsl cdf lognormal_Q77640
-Ref: 16f77640
-Ref: pure-gsl gsl cdf lognormal_Pinv77739
-Ref: 17077739
-Ref: pure-gsl gsl cdf lognormal_Qinv77844
-Ref: 17177844
-Ref: pure-gsl gsl cdf chisq_P77949
-Ref: 17277949
-Ref: pure-gsl gsl cdf chisq_Q78032
-Ref: 17378032
-Ref: pure-gsl gsl cdf chisq_Pinv78115
-Ref: 17478115
-Ref: pure-gsl gsl cdf chisq_Qinv78204
-Ref: 17578204
-Ref: pure-gsl gsl cdf fdist_P78293
-Ref: 17678293
-Ref: pure-gsl gsl cdf fdist_Q78381
-Ref: 17778381
-Ref: pure-gsl gsl cdf fdist_Pinv78469
-Ref: 17878469
-Ref: pure-gsl gsl cdf fdist_Qinv78563
-Ref: 17978563
-Ref: pure-gsl gsl cdf tdist_P78657
-Ref: 17a78657
-Ref: pure-gsl gsl cdf tdist_Q78740
-Ref: 17b78740
-Ref: pure-gsl gsl cdf tdist_Pinv78823
-Ref: 17c78823
-Ref: pure-gsl gsl cdf tdist_Qinv78912
-Ref: 17d78912
-Ref: pure-gsl gsl cdf beta_P79001
-Ref: 17e79001
-Ref: pure-gsl gsl cdf beta_Q79083
-Ref: 17f79083
-Ref: pure-gsl gsl cdf beta_Pinv79165
-Ref: 18079165
-Ref: pure-gsl gsl cdf beta_Qinv79253
-Ref: 18179253
-Ref: pure-gsl gsl cdf logistic_P79341
-Ref: 18279341
-Ref: pure-gsl gsl cdf logistic_Q79429
-Ref: 18379429
-Ref: pure-gsl gsl cdf logistic_Pinv79517
-Ref: 18479517
-Ref: pure-gsl gsl cdf logistic_Qinv79611
-Ref: 18579611
-Ref: pure-gsl gsl cdf pareto_P79705
-Ref: 18679705
-Ref: pure-gsl gsl cdf pareto_Q79791
-Ref: 18779791
-Ref: pure-gsl gsl cdf pareto_Pinv79877
-Ref: 18879877
-Ref: pure-gsl gsl cdf pareto_Qinv79969
-Ref: 18979969
-Ref: pure-gsl gsl cdf weibull_P80061
-Ref: 18a80061
-Ref: pure-gsl gsl cdf weibull_Q80149
-Ref: 18b80149
-Ref: pure-gsl gsl cdf weibull_Pinv80237
-Ref: 18c80237
-Ref: pure-gsl gsl cdf weibull_Qinv80331
-Ref: 18d80331
-Ref: pure-gsl gsl cdf gumbel1_P80425
-Ref: 18e80425
-Ref: pure-gsl gsl cdf gumbel1_Q80513
-Ref: 18f80513
-Ref: pure-gsl gsl cdf gumbel1_Pinv80601
-Ref: 19080601
-Ref: pure-gsl gsl cdf gumbel1_Qinv80695
-Ref: 19180695
-Ref: pure-gsl gsl cdf gumbel2_P80789
-Ref: 19280789
-Ref: pure-gsl gsl cdf gumbel2_Q80877
-Ref: 19380877
-Ref: pure-gsl gsl cdf gumbel2_Pinv80965
-Ref: 19480965
-Ref: pure-gsl gsl cdf gumbel2_Qinv81059
-Ref: 19581059
-Ref: pure-gsl gsl cdf poisson_P81153
-Ref: 19681153
-Ref: pure-gsl gsl cdf poisson_Q81245
-Ref: 19781245
-Ref: pure-gsl gsl cdf binomial_P81337
-Ref: 19881337
-Ref: pure-gsl gsl cdf binomial_Q81437
-Ref: 19981437
-Ref: pure-gsl gsl cdf negative_binomial_P81537
-Ref: 19a81537
-Ref: pure-gsl gsl cdf negative_binomial_Q81650
-Ref: 19b81650
-Ref: pure-gsl gsl cdf pascal_P81763
-Ref: 19c81763
-Ref: pure-gsl gsl cdf pascal_Q81859
-Ref: 19d81859
-Ref: pure-gsl gsl cdf geometric_P81955
-Ref: 19e81955
-Ref: pure-gsl gsl cdf geometric_Q82050
-Ref: 19f82050
-Ref: pure-gsl gsl cdf hypergeometric_P82145
-Ref: 1a082145
-Ref: pure-gsl gsl cdf hypergeometric_Q82281
-Ref: 1a182281
-Node: Examples<13>82417
-Ref: pure-gsl id1582515
-Ref: 1a282515
-Node: Sorting89627
-Ref: pure-gsl sorting89733
-Ref: 1a389733
-Ref: pure-gsl module-gsl sort89733
-Ref: 689733
-Node: Routines<5>90045
-Ref: pure-gsl id1690123
-Ref: 1a490123
-Ref: pure-gsl gsl sort_vector90150
-Ref: 1a590150
-Ref: pure-gsl gsl sort_vector_index90302
-Ref: 1a690302
-Node: Examples<14>90472
-Ref: pure-gsl id1790550
-Ref: 1a790550
-Node: Module Index90803
-Node: Index91057
+Node: Polynomials5205
+Ref: pure-gsl module-gsl poly5296
+Ref: 35296
+Ref: pure-gsl pure-gsl-gnu-scientific-library-interface-for-pure5296
+Ref: 95296
+Ref: pure-gsl polynomials5296
+Ref: a5296
+Ref: pure-gsl module-gsl5296
+Ref: 05296
+Node: Routines5635
+Ref: pure-gsl routines5710
+Ref: b5710
+Ref: pure-gsl gsl poly eval5737
+Ref: c5737
+Ref: pure-gsl gsl poly dd_init6147
+Ref: d6147
+Ref: pure-gsl gsl poly dd_eval6280
+Ref: e6280
+Ref: pure-gsl gsl poly dd_taylor6425
+Ref: f6425
+Ref: pure-gsl gsl poly solve_quadratic6602
+Ref: 106602
+Ref: pure-gsl gsl poly complex_solve_quadratic6823
+Ref: 116823
+Ref: pure-gsl gsl poly solve_cubic7055
+Ref: 127055
+Ref: pure-gsl gsl poly complex_solve_cubic7279
+Ref: 137279
+Ref: pure-gsl gsl poly complex_solve7519
+Ref: 147519
+Node: Examples7758
+Ref: pure-gsl examples7833
+Ref: 157833
+Node: Special Functions8934
+Ref: pure-gsl special-functions9030
+Ref: 169030
+Ref: pure-gsl module-gsl sf9030
+Ref: 59030
+Node: Airy Functions10256
+Ref: pure-gsl airy-functions10346
+Ref: 1710346
+Ref: pure-gsl gsl sf airy_Ai10385
+Ref: 1810385
+Ref: pure-gsl gsl sf airy_Ai_e10593
+Ref: 1910593
+Ref: pure-gsl gsl sf airy_Ai_scaled10807
+Ref: 1a10807
+Ref: pure-gsl gsl sf airy_Ai_scaled_e11036
+Ref: 1b11036
+Ref: pure-gsl gsl sf airy_Bi11271
+Ref: 1c11271
+Ref: pure-gsl gsl sf airy_Bi_e11479
+Ref: 1d11479
+Ref: pure-gsl gsl sf airy_Bi_scaled11693
+Ref: 1e11693
+Ref: pure-gsl gsl sf airy_Bi_scaled_e11922
+Ref: 1f11922
+Ref: pure-gsl gsl sf airy_Ai_deriv12157
+Ref: 2012157
+Ref: pure-gsl gsl sf airy_Ai_deriv_e12383
+Ref: 2112383
+Ref: pure-gsl gsl sf airy_Ai_deriv_scaled12615
+Ref: 2212615
+Ref: pure-gsl gsl sf airy_Ai_deriv_scaled_e12862
+Ref: 2312862
+Ref: pure-gsl gsl sf airy_Bi_deriv13115
+Ref: 2413115
+Ref: pure-gsl gsl sf airy_Bi_deriv_e13341
+Ref: 2513341
+Ref: pure-gsl gsl sf airy_Bi_deriv_scaled13573
+Ref: 2613573
+Ref: pure-gsl gsl sf airy_Bi_deriv_scaled_e13820
+Ref: 2713820
+Ref: pure-gsl gsl sf airy_zero_Ai14073
+Ref: 2814073
+Ref: pure-gsl gsl sf airy_zero_Ai_e14161
+Ref: 2914161
+Ref: pure-gsl gsl sf airy_zero_Bi14253
+Ref: 2a14253
+Ref: pure-gsl gsl sf airy_zero_Bi_e14341
+Ref: 2b14341
+Ref: pure-gsl gsl sf airy_zero_Ai_deriv14433
+Ref: 2c14433
+Ref: pure-gsl gsl sf airy_zero_Ai_deriv_e14533
+Ref: 2d14533
+Ref: pure-gsl gsl sf airy_zero_Bi_deriv14637
+Ref: 2e14637
+Ref: pure-gsl gsl sf airy_zero_Bi_deriv_e14737
+Ref: 2f14737
+Node: Examples<2>14841
+Ref: pure-gsl id114956
+Ref: 3014956
+Node: Bessel Functions17983
+Ref: pure-gsl bessel-functions18095
+Ref: 3118095
+Ref: pure-gsl gsl sf bessel_J018138
+Ref: 3218138
+Ref: pure-gsl gsl sf bessel_J0_e18220
+Ref: 3318220
+Ref: pure-gsl gsl sf bessel_J118305
+Ref: 3418305
+Ref: pure-gsl gsl sf bessel_J1_e18387
+Ref: 3518387
+Ref: pure-gsl gsl sf bessel_Jn18473
+Ref: 3618473
+Ref: pure-gsl gsl sf bessel_Jn_e18557
+Ref: 3718557
+Ref: pure-gsl gsl sf bessel_Jn_array18645
+Ref: 3818645
+Ref: pure-gsl gsl sf bessel_Y018759
+Ref: 3918759
+Ref: pure-gsl gsl sf bessel_Y0_e18841
+Ref: 3a18841
+Ref: pure-gsl gsl sf bessel_Y118927
+Ref: 3b18927
+Ref: pure-gsl gsl sf bessel_Y1_e19009
+Ref: 3c19009
+Ref: pure-gsl gsl sf bessel_Yn19095
+Ref: 3d19095
+Ref: pure-gsl gsl sf bessel_Yn_e19177
+Ref: 3e19177
+Ref: pure-gsl gsl sf bessel_Yn_array19263
+Ref: 3f19263
+Ref: pure-gsl gsl sf bessel_I019377
+Ref: 4019377
+Ref: pure-gsl gsl sf bessel_I0_e19459
+Ref: 4119459
+Ref: pure-gsl gsl sf bessel_I119545
+Ref: 4219545
+Ref: pure-gsl gsl sf bessel_I1_e19627
+Ref: 4319627
+Ref: pure-gsl gsl sf bessel_In19713
+Ref: 4419713
+Ref: pure-gsl gsl sf bessel_In_e19802
+Ref: 4519802
+Ref: pure-gsl gsl sf bessel_In_array19894
+Ref: 4619894
+Ref: pure-gsl gsl sf bessel_I0_scaled20008
+Ref: 4720008
+Ref: pure-gsl gsl sf bessel_I0_scaled_e20104
+Ref: 4820104
+Ref: pure-gsl gsl sf bessel_I1_scaled20204
+Ref: 4920204
+Ref: pure-gsl gsl sf bessel_I1_scaled_e20300
+Ref: 4a20300
+Ref: pure-gsl gsl sf bessel_In_scaled20400
+Ref: 4b20400
+Ref: pure-gsl gsl sf bessel_In_scaled_e20503
+Ref: 4c20503
+Ref: pure-gsl gsl sf bessel_In_scaled_array20610
+Ref: 4d20610
+Ref: pure-gsl gsl sf bessel_K020731
+Ref: 4e20731
+Ref: pure-gsl gsl sf bessel_K0_e20813
+Ref: 4f20813
+Ref: pure-gsl gsl sf bessel_K120899
+Ref: 5020899
+Ref: pure-gsl gsl sf bessel_K1_e20981
+Ref: 5120981
+Ref: pure-gsl gsl sf bessel_Kn21067
+Ref: 5221067
+Ref: pure-gsl gsl sf bessel_Kn_e21156
+Ref: 5321156
+Ref: pure-gsl gsl sf bessel_Kn_array21248
+Ref: 5421248
+Ref: pure-gsl gsl sf bessel_K0_scaled21362
+Ref: 5521362
+Ref: pure-gsl gsl sf bessel_K0_scaled_e21458
+Ref: 5621458
+Ref: pure-gsl gsl sf bessel_K1_scaled21558
+Ref: 5721558
+Ref: pure-gsl gsl sf bessel_K1_scaled_e21654
+Ref: 5821654
+Ref: pure-gsl gsl sf bessel_Kn_scaled21754
+Ref: 5921754
+Ref: pure-gsl gsl sf bessel_Kn_scaled_e21857
+Ref: 5a21857
+Ref: pure-gsl gsl sf bessel_Kn_scaled_array21964
+Ref: 5b21964
+Ref: pure-gsl gsl sf bessel_j022085
+Ref: 5c22085
+Ref: pure-gsl gsl sf bessel_j0_e22167
+Ref: 5d22167
+Ref: pure-gsl gsl sf bessel_j122253
+Ref: 5e22253
+Ref: pure-gsl gsl sf bessel_j1_e22335
+Ref: 5f22335
+Ref: pure-gsl gsl sf bessel_j222421
+Ref: 6022421
+Ref: pure-gsl gsl sf bessel_j2_e22503
+Ref: 6122503
+Ref: pure-gsl gsl sf bessel_jl22589
+Ref: 6222589
+Ref: pure-gsl gsl sf bessel_jl_e22678
+Ref: 6322678
+Ref: pure-gsl gsl sf bessel_jl_array22771
+Ref: 6422771
+Ref: pure-gsl gsl sf bessel_jl_steed_array22875
+Ref: 6522875
+Ref: pure-gsl gsl sf bessel_y022991
+Ref: 6622991
+Ref: pure-gsl gsl sf bessel_y0_e23073
+Ref: 6723073
+Ref: pure-gsl gsl sf bessel_y123159
+Ref: 6823159
+Ref: pure-gsl gsl sf bessel_y1_e23241
+Ref: 6923241
+Ref: pure-gsl gsl sf bessel_y223327
+Ref: 6a23327
+Ref: pure-gsl gsl sf bessel_y2_e23409
+Ref: 6b23409
+Ref: pure-gsl gsl sf bessel_yl23495
+Ref: 6c23495
+Ref: pure-gsl gsl sf bessel_yl_e23584
+Ref: 6d23584
+Ref: pure-gsl gsl sf bessel_yl_array23677
+Ref: 6e23677
+Ref: pure-gsl gsl sf bessel_i0_scaled23781
+Ref: 6f23781
+Ref: pure-gsl gsl sf bessel_i0_scaled_e23877
+Ref: 7023877
+Ref: pure-gsl gsl sf bessel_i1_scaled23977
+Ref: 7123977
+Ref: pure-gsl gsl sf bessel_i1_scaled_e24073
+Ref: 7224073
+Ref: pure-gsl gsl sf bessel_i2_scaled24173
+Ref: 7324173
+Ref: pure-gsl gsl sf bessel_i2_scaled_e24269
+Ref: 7424269
+Ref: pure-gsl gsl sf bessel_il_scaled24369
+Ref: 7524369
+Ref: pure-gsl gsl sf bessel_il_scaled_e24472
+Ref: 7624472
+Ref: pure-gsl gsl sf bessel_il_scaled_array24579
+Ref: 7724579
+Ref: pure-gsl gsl sf bessel_k0_scaled24697
+Ref: 7824697
+Ref: pure-gsl gsl sf bessel_k0_scaled_e24793
+Ref: 7924793
+Ref: pure-gsl gsl sf bessel_k1_scaled24893
+Ref: 7a24893
+Ref: pure-gsl gsl sf bessel_k1_scaled_e24989
+Ref: 7b24989
+Ref: pure-gsl gsl sf bessel_k2_scaled25089
+Ref: 7c25089
+Ref: pure-gsl gsl sf bessel_k2_scaled_e25185
+Ref: 7d25185
+Ref: pure-gsl gsl sf bessel_kl_scaled25285
+Ref: 7e25285
+Ref: pure-gsl gsl sf bessel_kl_scaled_e25388
+Ref: 7f25388
+Ref: pure-gsl gsl sf bessel_kl_scaled_array25495
+Ref: 8025495
+Ref: pure-gsl gsl sf bessel_Jnu25613
+Ref: 8125613
+Ref: pure-gsl gsl sf bessel_Jnu_e25700
+Ref: 8225700
+Ref: pure-gsl gsl sf bessel_sequence_Jnu_e25791
+Ref: 8325791
+Ref: pure-gsl gsl sf bessel_Ynu25908
+Ref: 8425908
+Ref: pure-gsl gsl sf bessel_Ynu_e25995
+Ref: 8525995
+Ref: pure-gsl gsl sf bessel_Inu26086
+Ref: 8626086
+Ref: pure-gsl gsl sf bessel_Inu_e26173
+Ref: 8726173
+Ref: pure-gsl gsl sf bessel_Inu_scaled26264
+Ref: 8826264
+Ref: pure-gsl gsl sf bessel_Inu_scaled_e26365
+Ref: 8926365
+Ref: pure-gsl gsl sf bessel_Knu26470
+Ref: 8a26470
+Ref: pure-gsl gsl sf bessel_Knu_e26557
+Ref: 8b26557
+Ref: pure-gsl gsl sf bessel_lnKnu26646
+Ref: 8c26646
+Ref: pure-gsl gsl sf bessel_lnKnu_e26737
+Ref: 8d26737
+Ref: pure-gsl gsl sf bessel_Knu_scaled26832
+Ref: 8e26832
+Ref: pure-gsl gsl sf bessel_Knu_scaled_e26933
+Ref: 8f26933
+Ref: pure-gsl gsl sf bessel_zero_J027038
+Ref: 9027038
+Ref: pure-gsl gsl sf bessel_zero_J0_e27135
+Ref: 9127135
+Ref: pure-gsl gsl sf bessel_zero_J127236
+Ref: 9227236
+Ref: pure-gsl gsl sf bessel_zero_J1_e27333
+Ref: 9327333
+Ref: pure-gsl gsl sf bessel_zero_Jnu27434
+Ref: 9427434
+Ref: pure-gsl gsl sf bessel_zero_Jnu_e27536
+Ref: 9527536
+Node: Examples<3>27640
+Ref: pure-gsl id227758
+Ref: 9627758
+Node: Clausen Functions34323
+Ref: pure-gsl clausen-functions34436
+Ref: 9734436
+Ref: pure-gsl gsl sf clausen34481
+Ref: 9834481
+Ref: pure-gsl gsl sf clausen_e34559
+Ref: 9934559
+Node: Examples<4>34641
+Ref: pure-gsl id334759
+Ref: 9a34759
+Node: Colomb Functions35003
+Ref: pure-gsl colomb-functions35115
+Ref: 9b35115
+Ref: pure-gsl gsl sf hydrogenicR_135336
+Ref: 9c35336
+Ref: pure-gsl gsl sf hydrogenicR_1_e35428
+Ref: 9d35428
+Ref: pure-gsl gsl sf hydrogenicR35524
+Ref: 9e35524
+Ref: pure-gsl gsl sf hydrogenicR_e35628
+Ref: 9f35628
+Ref: pure-gsl gsl sf coulomb_wave_FG_e35736
+Ref: a035736
+Ref: pure-gsl gsl sf coulomb_wave_F_array35849
+Ref: a135849
+Ref: pure-gsl gsl sf coulomb_wave_FG_array35973
+Ref: a235973
+Ref: pure-gsl gsl sf coulomb_wave_FGp_array36099
+Ref: a336099
+Ref: pure-gsl gsl sf coulomb_wave_sphF_array36227
+Ref: a436227
+Ref: pure-gsl gsl sf coulomb_CL_e36367
+Ref: a536367
+Ref: pure-gsl gsl sf coulomb_CL_array36464
+Ref: a636464
+Node: Examples<5>36577
+Ref: pure-gsl id436699
+Ref: a736699
+Node: Coupling Coefficients37916
+Ref: pure-gsl coupling-coefficients38033
+Ref: a838033
+Ref: pure-gsl gsl sf coupling_3j38086
+Ref: a938086
+Ref: pure-gsl gsl sf coupling_3j_e38275
+Ref: aa38275
+Ref: pure-gsl gsl sf coupling_6j38468
+Ref: ab38468
+Ref: pure-gsl gsl sf coupling_6j_e38657
+Ref: ac38657
+Ref: pure-gsl gsl sf coupling_9j38850
+Ref: ad38850
+Ref: pure-gsl gsl sf coupling_9j_e39023
+Ref: ae39023
+Node: Examples<6>39200
+Ref: pure-gsl id539321
+Ref: af39321
+Node: Dawson Function39900
+Ref: pure-gsl dawson-function40011
+Ref: b040011
+Ref: pure-gsl gsl sf dawson40054
+Ref: b140054
+Ref: pure-gsl gsl sf dawson_e40130
+Ref: b240130
+Node: Examples<7>40210
+Ref: pure-gsl id640325
+Ref: b340325
+Node: Debye Functions40511
+Ref: pure-gsl debye-functions40622
+Ref: b440622
+Ref: pure-gsl gsl sf debye_140665
+Ref: b540665
+Ref: pure-gsl gsl sf debye_1_e40743
+Ref: b640743
+Ref: pure-gsl gsl sf debye_240825
+Ref: b740825
+Ref: pure-gsl gsl sf debye_2_e40903
+Ref: b840903
+Ref: pure-gsl gsl sf debye_340985
+Ref: b940985
+Ref: pure-gsl gsl sf debye_3_e41063
+Ref: ba41063
+Ref: pure-gsl gsl sf debye_441145
+Ref: bb41145
+Ref: pure-gsl gsl sf debye_4_e41223
+Ref: bc41223
+Ref: pure-gsl gsl sf debye_541305
+Ref: bd41305
+Ref: pure-gsl gsl sf debye_5_e41383
+Ref: be41383
+Ref: pure-gsl gsl sf debye_641465
+Ref: bf41465
+Ref: pure-gsl gsl sf debye_6_e41543
+Ref: c041543
+Node: Examples<8>41625
+Ref: pure-gsl id741736
+Ref: c141736
+Node: Dilogarithm42480
+Ref: pure-gsl dilogarithm42587
+Ref: c242587
+Ref: pure-gsl gsl sf dilog42622
+Ref: c342622
+Ref: pure-gsl gsl sf dilog_e42904
+Ref: c442904
+Node: Examples<9>43161
+Ref: pure-gsl id843269
+Ref: c543269
+Ref: pure-gsl gsl sf multiply_e43635
+Ref: c643635
+Ref: pure-gsl gsl sf multiply_err_e43721
+Ref: c743721
+Node: Examples<10>43821
+Ref: pure-gsl id943909
+Ref: c843909
+Node: Matrices44127
+Ref: pure-gsl matrices44233
+Ref: c944233
+Ref: pure-gsl module-gsl matrix44233
+Ref: 244233
+Ref: Matrices-Footnote-144782
+Ref: Matrices-Footnote-244866
+Ref: Matrices-Footnote-344942
+Node: Matrix Creation45020
+Ref: pure-gsl matrix-creation45121
+Ref: ca45121
+Ref: pure-gsl linear-algebra45121
+Ref: cb45121
+Ref: pure-gsl gsl matrix zeros45651
+Ref: cc45651
+Ref: pure-gsl gsl matrix izeros45923
+Ref: cd45923
+Ref: pure-gsl gsl matrix czeros46201
+Ref: ce46201
+Ref: pure-gsl gsl matrix ones46477
+Ref: cf46477
+Ref: pure-gsl gsl matrix iones46745
+Ref: d046745
+Ref: pure-gsl gsl matrix cones47017
+Ref: d147017
+Ref: pure-gsl gsl matrix eye47289
+Ref: d247289
+Ref: pure-gsl gsl matrix ieye47521
+Ref: d347521
+Ref: pure-gsl gsl matrix ceye47757
+Ref: d447757
+Node: Matrix Operators and Functions47993
+Ref: pure-gsl matrix-operators-and-functions48131
+Ref: d548131
+Ref: pure-gsl +/gsl_matrix48385
+Ref: d648385
+Ref: pure-gsl -/gsl_matrix48563
+Ref: d748563
+Ref: pure-gsl */gsl_matrix48936
+Ref: d848936
+Ref: d949043
+Ref: pure-gsl //gsl_matrix49213
+Ref: da49213
+Ref: db49479
+Ref: pure-gsl \/gsl_matrix49633
+Ref: dc49633
+Ref: pure-gsl div/gsl_matrix49704
+Ref: dd49704
+Ref: pure-gsl mod/gsl_matrix50210
+Ref: de50210
+Ref: pure-gsl not/gsl_matrix50735
+Ref: df50735
+Ref: pure-gsl ^/gsl_matrix50940
+Ref: e050940
+Ref: e151188
+Ref: pure-gsl <</gsl_matrix51363
+Ref: e251363
+Ref: pure-gsl >>/gsl_matrix51705
+Ref: e351705
+Ref: pure-gsl and/gsl_matrix52047
+Ref: e452047
+Ref: pure-gsl or/gsl_matrix52472
+Ref: e552472
+Ref: pure-gsl pow/gsl_matrix52980
+Ref: e652980
+Node: Singular Value Decomposition53204
+Ref: pure-gsl singular-value-decomposition53318
+Ref: e753318
+Ref: pure-gsl gsl matrix svd54025
+Ref: e854025
+Ref: pure-gsl gsl matrix svd_mod54118
+Ref: e954118
+Ref: pure-gsl gsl matrix svd_jacobi54306
+Ref: ea54306
+Ref: pure-gsl gsl matrix svd_solve54463
+Ref: eb54463
+Ref: pure-gsl gsl matrix pinv54816
+Ref: ec54816
+Node: Least-Squares Fitting54946
+Ref: pure-gsl least-squares-fitting55045
+Ref: ed55045
+Ref: pure-gsl module-gsl fit55045
+Ref: 155045
+Node: Routines<2>55416
+Ref: pure-gsl id1055508
+Ref: ee55508
+Ref: pure-gsl gsl fit linear55535
+Ref: ef55535
+Ref: pure-gsl gsl fit wlinear55782
+Ref: f055782
+Ref: pure-gsl gsl fit linear_est56053
+Ref: f156053
+Ref: pure-gsl gsl fit mul56268
+Ref: f256268
+Ref: pure-gsl gsl fit wmul56492
+Ref: f356492
+Ref: pure-gsl gsl fit mul_est56727
+Ref: f456727
+Node: Examples<11>56887
+Ref: pure-gsl id1156979
+Ref: f556979
+Node: Statistics59440
+Ref: pure-gsl statistics59558
+Ref: f659558
+Ref: pure-gsl module-gsl stats59558
+Ref: 759558
+Node: Routines<3>59883
+Ref: pure-gsl id1259964
+Ref: f759964
+Ref: pure-gsl gsl stats mean59991
+Ref: f859991
+Ref: pure-gsl gsl stats variance60123
+Ref: f960123
+Ref: pure-gsl gsl stats sd60415
+Ref: fa60415
+Ref: pure-gsl gsl stats sd_m60543
+Ref: fb60543
+Ref: pure-gsl gsl stats tss60680
+Ref: fc60680
+Ref: pure-gsl gsl stats tss_m60810
+Ref: fd60810
+Ref: pure-gsl gsl stats variance_with_fixed_mean60949
+Ref: fe60949
+Ref: pure-gsl gsl stats sd_with_fixed_mean61141
+Ref: ff61141
+Ref: pure-gsl gsl stats absdev61311
+Ref: 10061311
+Ref: pure-gsl gsl stats absdev_m61447
+Ref: 10161447
+Ref: pure-gsl gsl stats skew61592
+Ref: 10261592
+Ref: pure-gsl gsl stats skew_m_sd61729
+Ref: 10361729
+Ref: pure-gsl gsl stats kurtosis61884
+Ref: 10461884
+Ref: pure-gsl gsl stats kurtosis_m_sd62024
+Ref: 10562024
+Ref: pure-gsl gsl stats lag1_autocorrelation62187
+Ref: 10662187
+Ref: pure-gsl gsl stats lag1_autocorrelation_m62356
+Ref: 10762356
+Ref: pure-gsl gsl stats covariance62534
+Ref: 10862534
+Ref: pure-gsl gsl stats covariance_m62709
+Ref: 10962709
+Ref: pure-gsl gsl stats correlation62910
+Ref: 10a62910
+Ref: pure-gsl gsl stats wmean63087
+Ref: 10b63087
+Ref: pure-gsl gsl stats wvariance63236
+Ref: 10c63236
+Ref: pure-gsl gsl stats wvariance_m63398
+Ref: 10d63398
+Ref: pure-gsl gsl stats wsd63579
+Ref: 10e63579
+Ref: pure-gsl gsl stats wsd_m63724
+Ref: 10f63724
+Ref: pure-gsl gsl stats wvariance_with_fixed_mean63878
+Ref: 11063878
+Ref: pure-gsl gsl stats wsd_with_fixed_mean64087
+Ref: 11164087
+Ref: pure-gsl gsl stats wtss64284
+Ref: 11264284
+Ref: pure-gsl gsl stats wtss_m64431
+Ref: 11364431
+Ref: pure-gsl gsl stats wabsdev64587
+Ref: 11464587
+Ref: pure-gsl gsl stats wabsdev_m64740
+Ref: 11564740
+Ref: pure-gsl gsl stats wskew64917
+Ref: 11664917
+Ref: pure-gsl gsl stats wskew_m_sd65066
+Ref: 11765066
+Ref: pure-gsl gsl stats wkurtosis65248
+Ref: 11865248
+Ref: pure-gsl gsl stats wkurtosis_m_sd65410
+Ref: 11965410
+Ref: pure-gsl gsl stats max65592
+Ref: 11a65592
+Ref: pure-gsl gsl stats min65722
+Ref: 11b65722
+Ref: pure-gsl gsl stats minmax65852
+Ref: 11c65852
+Ref: pure-gsl gsl stats min_index66042
+Ref: 11d66042
+Ref: pure-gsl gsl stats max_index66189
+Ref: 11e66189
+Ref: pure-gsl gsl stats minmax_index66336
+Ref: 11f66336
+Ref: pure-gsl gsl stats median_from_sorted_data66556
+Ref: 12066556
+Ref: pure-gsl gsl stats quantile_from_sorted_data66731
+Ref: 12166731
+Node: Examples<12>66930
+Ref: pure-gsl id1367011
+Ref: 12267011
+Node: Random Number Distributions69626
+Ref: pure-gsl random-number-distributions69730
+Ref: 12369730
+Ref: pure-gsl module-gsl randist69730
+Ref: 469730
+Node: Routines<4>70380
+Ref: pure-gsl id1470478
+Ref: 12470478
+Ref: pure-gsl gsl ran ugaussian_pdf70505
+Ref: 12570505
+Ref: pure-gsl gsl ran gaussian_pdf70593
+Ref: 12670593
+Ref: pure-gsl gsl ran gaussian_tail_pdf70689
+Ref: 12770689
+Ref: pure-gsl gsl ran ugaussian_tail_pdf70797
+Ref: 12870797
+Ref: pure-gsl gsl ran bivariate_gaussian_pdf70901
+Ref: 12970901
+Ref: pure-gsl gsl ran exponential_pdf71013
+Ref: 12a71013
+Ref: pure-gsl gsl ran laplace_pdf71112
+Ref: 12b71112
+Ref: pure-gsl gsl ran exppow_pdf71202
+Ref: 12c71202
+Ref: pure-gsl gsl ran cauchy_pdf71292
+Ref: 12d71292
+Ref: pure-gsl gsl ran rayleigh_pdf71380
+Ref: 12e71380
+Ref: pure-gsl gsl ran rayleigh_tail_pdf71476
+Ref: 12f71476
+Ref: pure-gsl gsl ran landau_pdf71584
+Ref: 13071584
+Ref: pure-gsl gsl ran gamma_pdf71670
+Ref: 13171670
+Ref: pure-gsl gsl ran flat_pdf71758
+Ref: 13271758
+Ref: pure-gsl gsl ran lognormal_pdf71844
+Ref: 13371844
+Ref: pure-gsl gsl ran chisq_pdf71947
+Ref: 13471947
+Ref: pure-gsl gsl ran fdist_pdf72034
+Ref: 13572034
+Ref: pure-gsl gsl ran tdist_pdf72126
+Ref: 13672126
+Ref: pure-gsl gsl ran beta_pdf72213
+Ref: 13772213
+Ref: pure-gsl gsl ran logistic_pdf72299
+Ref: 13872299
+Ref: pure-gsl gsl ran pareto_pdf72391
+Ref: 13972391
+Ref: pure-gsl gsl ran weibull_pdf72481
+Ref: 13a72481
+Ref: pure-gsl gsl ran gumbel1_pdf72573
+Ref: 13b72573
+Ref: pure-gsl gsl ran gumbel2_pdf72665
+Ref: 13c72665
+Ref: pure-gsl gsl ran dirichlet_pdf72757
+Ref: 13d72757
+Ref: pure-gsl gsl ran dirichlet_lnpdf72875
+Ref: 13e72875
+Ref: pure-gsl gsl ran discrete_preproc72997
+Ref: 13f72997
+Ref: pure-gsl gsl ran discrete_pdf73133
+Ref: 14073133
+Ref: pure-gsl gsl ran discrete_free73269
+Ref: 14173269
+Ref: pure-gsl gsl ran poisson_pdf73369
+Ref: 14273369
+Ref: pure-gsl gsl ran bernoulli_pdf73465
+Ref: 14373465
+Ref: pure-gsl gsl ran binomial_pdf73564
+Ref: 14473564
+Ref: pure-gsl gsl ran multinomial_pdf73668
+Ref: 14573668
+Ref: pure-gsl gsl ran multinomial_lnpdf73782
+Ref: 14673782
+Ref: pure-gsl gsl ran negative_binomial_pdf73900
+Ref: 14773900
+Ref: pure-gsl gsl ran pascal_pdf74017
+Ref: 14874017
+Ref: pure-gsl gsl ran geometric_pdf74117
+Ref: 14974117
+Ref: pure-gsl gsl ran hypergeometric_pdf74216
+Ref: 14a74216
+Ref: pure-gsl gsl ran logarithmic_pdf74356
+Ref: 14b74356
+Ref: pure-gsl gsl cdf ugaussian_P74459
+Ref: 14c74459
+Ref: pure-gsl gsl cdf ugaussian_Q74547
+Ref: 14d74547
+Ref: pure-gsl gsl cdf ugaussian_Pinv74635
+Ref: 14e74635
+Ref: pure-gsl gsl cdf ugaussian_Qinv74729
+Ref: 14f74729
+Ref: pure-gsl gsl cdf gaussian_P74823
+Ref: 15074823
+Ref: pure-gsl gsl cdf gaussian_Q74915
+Ref: 15174915
+Ref: pure-gsl gsl cdf gaussian_Pinv75007
+Ref: 15275007
+Ref: pure-gsl gsl cdf guassian_Qinv75105
+Ref: 15375105
+Ref: pure-gsl gsl cdf exponential_P75203
+Ref: 15475203
+Ref: pure-gsl gsl cdf exponential_Q75298
+Ref: 15575298
+Ref: pure-gsl gsl cdf exponential_Pinv75393
+Ref: 15675393
+Ref: pure-gsl gsl cdf exponential_Qinv75494
+Ref: 15775494
+Ref: pure-gsl gsl cdf laplace_P75595
+Ref: 15875595
+Ref: pure-gsl gsl cdf laplace_Q75681
+Ref: 15975681
+Ref: pure-gsl gsl cdf laplace_Pinv75767
+Ref: 15a75767
+Ref: pure-gsl gsl cdf laplace_Qinv75859
+Ref: 15b75859
+Ref: pure-gsl gsl cdf exppow_P75951
+Ref: 15c75951
+Ref: pure-gsl gsl cdf exppow_Q76037
+Ref: 15d76037
+Ref: pure-gsl gsl cdf cauchy_P76123
+Ref: 15e76123
+Ref: pure-gsl gsl cdf cauchy_Q76207
+Ref: 15f76207
+Ref: pure-gsl gsl cdf cauchy_Pinv76291
+Ref: 16076291
+Ref: pure-gsl gsl cdf cauchy_Qinv76381
+Ref: 16176381
+Ref: pure-gsl gsl cdf rayleigh_P76471
+Ref: 16276471
+Ref: pure-gsl gsl cdf rayleigh_Q76563
+Ref: 16376563
+Ref: pure-gsl gsl cdf rayleigh_Pinv76655
+Ref: 16476655
+Ref: pure-gsl gsl cdf rayleigh_Qinv76753
+Ref: 16576753
+Ref: pure-gsl gsl cdf gamma_P76851
+Ref: 16676851
+Ref: pure-gsl gsl cdf gamma_Q76935
+Ref: 16776935
+Ref: pure-gsl gsl cdf gamma_Pinv77019
+Ref: 16877019
+Ref: pure-gsl gsl cdf gamma_Qinv77109
+Ref: 16977109
+Ref: pure-gsl gsl cdf flat_P77199
+Ref: 16a77199
+Ref: pure-gsl gsl cdf flat_Q77281
+Ref: 16b77281
+Ref: pure-gsl gsl cdf flat_Pinv77363
+Ref: 16c77363
+Ref: pure-gsl gsl cdf flat_Qinv77451
+Ref: 16d77451
+Ref: pure-gsl gsl cdf lognormal_P77539
+Ref: 16e77539
+Ref: pure-gsl gsl cdf lognormal_Q77638
+Ref: 16f77638
+Ref: pure-gsl gsl cdf lognormal_Pinv77737
+Ref: 17077737
+Ref: pure-gsl gsl cdf lognormal_Qinv77842
+Ref: 17177842
+Ref: pure-gsl gsl cdf chisq_P77947
+Ref: 17277947
+Ref: pure-gsl gsl cdf chisq_Q78030
+Ref: 17378030
+Ref: pure-gsl gsl cdf chisq_Pinv78113
+Ref: 17478113
+Ref: pure-gsl gsl cdf chisq_Qinv78202
+Ref: 17578202
+Ref: pure-gsl gsl cdf fdist_P78291
+Ref: 17678291
+Ref: pure-gsl gsl cdf fdist_Q78379
+Ref: 17778379
+Ref: pure-gsl gsl cdf fdist_Pinv78467
+Ref: 17878467
+Ref: pure-gsl gsl cdf fdist_Qinv78561
+Ref: 17978561
+Ref: pure-gsl gsl cdf tdist_P78655
+Ref: 17a78655
+Ref: pure-gsl gsl cdf tdist_Q78738
+Ref: 17b78738
+Ref: pure-gsl gsl cdf tdist_Pinv78821
+Ref: 17c78821
+Ref: pure-gsl gsl cdf tdist_Qinv78910
+Ref: 17d78910
+Ref: pure-gsl gsl cdf beta_P78999
+Ref: 17e78999
+Ref: pure-gsl gsl cdf beta_Q79081
+Ref: 17f79081
+Ref: pure-gsl gsl cdf beta_Pinv79163
+Ref: 18079163
+Ref: pure-gsl gsl cdf beta_Qinv79251
+Ref: 18179251
+Ref: pure-gsl gsl cdf logistic_P79339
+Ref: 18279339
+Ref: pure-gsl gsl cdf logistic_Q79427
+Ref: 18379427
+Ref: pure-gsl gsl cdf logistic_Pinv79515
+Ref: 18479515
+Ref: pure-gsl gsl cdf logistic_Qinv79609
+Ref: 18579609
+Ref: pure-gsl gsl cdf pareto_P79703
+Ref: 18679703
+Ref: pure-gsl gsl cdf pareto_Q79789
+Ref: 18779789
+Ref: pure-gsl gsl cdf pareto_Pinv79875
+Ref: 18879875
+Ref: pure-gsl gsl cdf pareto_Qinv79967
+Ref: 18979967
+Ref: pure-gsl gsl cdf weibull_P80059
+Ref: 18a80059
+Ref: pure-gsl gsl cdf weibull_Q80147
+Ref: 18b80147
+Ref: pure-gsl gsl cdf weibull_Pinv80235
+Ref: 18c80235
+Ref: pure-gsl gsl cdf weibull_Qinv80329
+Ref: 18d80329
+Ref: pure-gsl gsl cdf gumbel1_P80423
+Ref: 18e80423
+Ref: pure-gsl gsl cdf gumbel1_Q80511
+Ref: 18f80511
+Ref: pure-gsl gsl cdf gumbel1_Pinv80599
+Ref: 19080599
+Ref: pure-gsl gsl cdf gumbel1_Qinv80693
+Ref: 19180693
+Ref: pure-gsl gsl cdf gumbel2_P80787
+Ref: 19280787
+Ref: pure-gsl gsl cdf gumbel2_Q80875
+Ref: 19380875
+Ref: pure-gsl gsl cdf gumbel2_Pinv80963
+Ref: 19480963
+Ref: pure-gsl gsl cdf gumbel2_Qinv81057
+Ref: 19581057
+Ref: pure-gsl gsl cdf poisson_P81151
+Ref: 19681151
+Ref: pure-gsl gsl cdf poisson_Q81243
+Ref: 19781243
+Ref: pure-gsl gsl cdf binomial_P81335
+Ref: 19881335
+Ref: pure-gsl gsl cdf binomial_Q81435
+Ref: 19981435
+Ref: pure-gsl gsl cdf negative_binomial_P81535
+Ref: 19a81535
+Ref: pure-gsl gsl cdf negative_binomial_Q81648
+Ref: 19b81648
+Ref: pure-gsl gsl cdf pascal_P81761
+Ref: 19c81761
+Ref: pure-gsl gsl cdf pascal_Q81857
+Ref: 19d81857
+Ref: pure-gsl gsl cdf geometric_P81953
+Ref: 19e81953
+Ref: pure-gsl gsl cdf geometric_Q82048
+Ref: 19f82048
+Ref: pure-gsl gsl cdf hypergeometric_P82143
+Ref: 1a082143
+Ref: pure-gsl gsl cdf hypergeometric_Q82279
+Ref: 1a182279
+Node: Examples<13>82415
+Ref: pure-gsl id1582513
+Ref: 1a282513
+Node: Sorting89625
+Ref: pure-gsl sorting89731
+Ref: 1a389731
+Ref: pure-gsl module-gsl sort89731
+Ref: 689731
+Node: Routines<5>90043
+Ref: pure-gsl id1690121
+Ref: 1a490121
+Ref: pure-gsl gsl sort_vector90148
+Ref: 1a590148
+Ref: pure-gsl gsl sort_vector_index90300
+Ref: 1a690300
+Node: Examples<14>90470
+Ref: pure-gsl id1790548
+Ref: 1a790548
+Node: Module Index90801
+Node: Index91055
 
 End Tag Table
 

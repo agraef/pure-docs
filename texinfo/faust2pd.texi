@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.59, March 20, 2014
+Pure 0.60, March 24, 2014
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 
 @c %**start of body
 @anchor{faust2pd doc}@anchor{1}
-Version 2.6, February 20, 2014
+Version 2.7, March 24, 2014
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -108,7 +108,7 @@ big advantage because most xml files don't take long to be processed.
 @chapter Copying
 
 
-Copyright (c) 2009-2011 by Albert Graef.
+Copyright (c) 2009-2014 by Albert Graef.
 
 faust2pd is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
@@ -152,7 +152,7 @@ DSPs.
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.6.tar.gz}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.7.tar.gz}.
 
 Run @code{make} and @code{make install} to compile and install the faust2pd program
 on your system. You can set the installation prefix by running make as @code{make
@@ -518,7 +518,7 @@ control from 1 back to 0, which can be changed by sending a value in
 milliseconds to the @code{faust-delay} receiver. If you need interactive
 control over the switching time then it is better to use checkboxes instead,
 or you can have faust2pd automatically substitute checkboxes for all buttons
-in a patch by invoking it with the -f a.k.a. --fake-buttons option.
+in a patch by invoking it with the -b a.k.a. --fake-buttons option.
 
 @item 
 Sliders in Pd do not display their value in numeric form so it may be hard

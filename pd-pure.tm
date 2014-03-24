@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts<label|pd-pure-pd-loader-for-pure-scripts>>
 
-  Version 0.17, February 13, 2014
+  Version 0.18, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -30,7 +30,7 @@
 
   <subsection|Copying<label|copying>>
 
-  Copyright (c) 2009-2011 by Albert Graef. pd-pure is distributed under a
+  Copyright (c) 2009-2014 by Albert Graef. pd-pure is distributed under a
   3-clause BSD-style license, please see the included COPYING file for
   details.
 
@@ -39,7 +39,7 @@
   MS Windows users please see <hlink|pd-pure on Windows|#pd-pure-on-windows>
   below.
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -67,7 +67,7 @@
   <subsubsection|pd-pure on Windows<label|pd-pure-on-windows>>
 
   There's a binary package in MSI format available at the Pure website:
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.17.msi>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.msi>.
   Use that if you can. You'll also need the latest Pure version (0.50 at the
   time of this writing), and Pd 0.43 or later, which is available from Miller
   Puckette's website: <hlink|http://crca.ucsd.edu/<math|\<sim\>>msp/software.html|http://crca.ucsd.edu/-tildemsp/software.html>.
@@ -1610,6 +1610,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  13, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

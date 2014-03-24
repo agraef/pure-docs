@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.59',
+        VERSION:     '0.60',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
             
   <div class="section" id="faust2pd-pd-patch-generator-for-faust">
 <h1>faust2pd: Pd Patch Generator for Faust<a class="headerlink" href="#faust2pd-pd-patch-generator-for-faust" title="Permalink to this headline">¶</a></h1>
-<p>Version 2.6, February 20, 2014</p>
+<p>Version 2.7, March 24, 2014</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>This package contains software which makes it easier to use Faust DSPs with Pd
 and the Pure programming language. The main component is the faust2pd script
@@ -106,7 +106,7 @@ big advantage because most xml files don&#8217;t take long to be processed.</p>
 </div>
 <div class="section" id="copying">
 <h2><a class="toc-backref" href="#id2">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
-<p>Copyright (c) 2009-2011 by Albert Graef.</p>
+<p>Copyright (c) 2009-2014 by Albert Graef.</p>
 <p>faust2pd is free software: you can redistribute it and/or modify it under the
 terms of the GNU General Public License as published by the Free Software
 Foundation, either version 3 of the License, or (at your option) any later
@@ -138,7 +138,7 @@ DSPs.</p>
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#id4">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.6.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.6.tar.gz</a>.</p>
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.7.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.7.tar.gz</a>.</p>
 <p>Run <tt class="docutils literal"><span class="pre">make</span></tt> and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> to compile and install the faust2pd program
 on your system. You can set the installation prefix by running make as <tt class="docutils literal"><span class="pre">make</span>
 <span class="pre">install</span> <span class="pre">prefix=/some/path</span></tt>. Default installation prefix is /usr/local,
@@ -409,7 +409,7 @@ control from 1 back to 0, which can be changed by sending a value in
 milliseconds to the <tt class="docutils literal"><span class="pre">faust-delay</span></tt> receiver. If you need interactive
 control over the switching time then it is better to use checkboxes instead,
 or you can have faust2pd automatically substitute checkboxes for all buttons
-in a patch by invoking it with the -f a.k.a. &#8211;fake-buttons option.</li>
+in a patch by invoking it with the -b a.k.a. &#8211;fake-buttons option.</li>
 <li>Sliders in Pd do not display their value in numeric form so it may be hard
 to figure out what the current value is. Therefore faust2pd has an option -s
 a.k.a. &#8211;slider-nums which causes it to add a number box to each slider
@@ -693,7 +693,7 @@ faustxml<span class="p">::</span>hslider (<span class="s">&quot;freeverb/wet&quo
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Feb 20, 2014.
+    Last updated on Mar 24, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

@@ -4,13 +4,13 @@
 
 <\body>
   <hlink|toc|#pure-lilv-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-midi.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-lv2.tm> \|
   <hlink|previous|pure-liblo.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|pure-lilv: Pure Lilv Interface<label|module-lilv>>
 
-  Version 0.2, February 23, 2014
+  Version 0.3, March 24, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -22,7 +22,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.2.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.2.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.3.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.3.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|sudo>
   <verbatim|make> <verbatim|install> to install it in the Pure library
@@ -163,13 +163,13 @@
 
   Next topic
 
-  <hlink|pure-midi|pure-midi.tm>
+  <hlink|pure-lv2|pure-lv2.tm>
 
   <hlink|toc|#pure-lilv-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-midi.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-lv2.tm> \|
   <hlink|previous|pure-liblo.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Feb
-  23, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

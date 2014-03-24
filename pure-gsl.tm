@@ -11,7 +11,7 @@
   <section*|pure-gsl - GNU Scientific Library Interface for
   Pure<label|module-gsl>>
 
-  Version 0.11, January 28, 2014
+  Version 0.12, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -47,7 +47,7 @@
   </itemize>
 
   Installation instructions: Get the latest source from
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gsl-0.11.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gsl-0.11.tar.gz>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gsl-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gsl-0.12.tar.gz>.
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
   This requires GNU make, and of course you need to have Pure and GSL
@@ -4406,6 +4406,6 @@
   <hlink|previous|pure-gplot.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

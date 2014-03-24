@@ -5,12 +5,12 @@
 <\body>
   <hlink|toc|#pure-doc-toc> <hlink|index|genindex.tm>
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-ffi.tm> \|
-  <hlink|previous|pure-avahi.tm> \| <hlink|Pure Language and Library
+  <hlink|previous|pure-bonjour.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|pure-doc<label|pure-doc>>
 
-  Version 0.7, January 28, 2014
+  Version 0.7, March 24, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -523,7 +523,7 @@
 
   Previous topic
 
-  <hlink|pure-avahi: Pure Avahi Interface|pure-avahi.tm>
+  <hlink|pure-bonjour: Pure Bonjour Interface|pure-bonjour.tm>
 
   Next topic
 
@@ -531,9 +531,9 @@
 
   <hlink|toc|#pure-doc-toc> <hlink|index|genindex.tm>
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure-ffi.tm> \|
-  <hlink|previous|pure-avahi.tm> \| <hlink|Pure Language and Library
+  <hlink|previous|pure-bonjour.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

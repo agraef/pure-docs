@@ -10,7 +10,7 @@
 
   <section*|Pure OpenGL Bindings<label|pure-opengl-bindings>>
 
-  Version 0.8, January 28, 2014
+  Version 0.9, March 24, 2014
 
   Scott Dillard
 
@@ -45,7 +45,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gl-0.8.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gl-0.8.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gl-0.9.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gl-0.9.tar.gz>.
 
   Normally you just run <verbatim|make> <verbatim|&&> <verbatim|sudo>
   <verbatim|make> <verbatim|install>, as with the other Pure modules. (See
@@ -197,6 +197,6 @@
   <hlink|previous|pure-g2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Jan
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
