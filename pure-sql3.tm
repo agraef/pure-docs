@@ -10,7 +10,7 @@
 
   <section*|Pure-Sql3<label|module-sql3>>
 
-  Version 0.5, March 24, 2014
+  Version 0.5, April 16, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -185,11 +185,11 @@
 
   Sql3 introduces two new data types, ``db_ptr'' and ``stmt_ptr'' which refer
   to the cooked versions of sqlite3* and sqlite3_stmt*, respectively. These
-  two new data types are defined using :func: <with|font-series|bold|type>,
-  and therefore can be used as type tags in rule patterns or as the first
-  parameter passed to in the typep function. It follows that all db_ptrs are
-  sqlite3* pointers and all stmt_ptrs are sqlite3_stmt* pointers. Thus, using
-  dbp and sp1 from the introductory example:
+  two new data types are defined using <verbatim|type>, and therefore can be
+  used as type tags in rule patterns or as the first parameter passed to in
+  the typep function. It follows that all db_ptrs are sqlite3* pointers and
+  all stmt_ptrs are sqlite3_stmt* pointers. Thus, using dbp and sp1 from the
+  introductory example:
 
   <\verbatim>
     \<gtr\> typep db_ptr dbp, pointer_type dbp;
@@ -704,10 +704,10 @@
     <item*|sql3::rollback_to dbp::db_ptr save_point::string<label|sql3::rollback-to>>
   </description>
 
-  Note that transactions created using :func: <with|font-series|bold|begin>
-  and :func: <with|font-series|bold|commit> do not nest. For nested
-  transactions, use :func: <with|font-series|bold|savepoint> and :func:
-  <with|font-series|bold|release>.
+  Note that transactions created using <hlink|<with|font-family|tt|begin>|#sql3::begin>
+  and <hlink|<with|font-family|tt|commit>|#sql3::commit> do not nest. For
+  nested transactions, use <hlink|<with|font-family|tt|savepoint>|#sql3::savepoint>
+  and <hlink|<with|font-family|tt|release>|#sql3::release>.
 
   <paragraph|Finalizing Prepared Statements<label|finalizing-prepared-statements>>
 
@@ -1305,6 +1305,6 @@
   <hlink|previous|pure-odbc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

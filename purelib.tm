@@ -10,7 +10,7 @@
 
   <section*|Pure Library Manual<label|pure-library-manual>>
 
-  Version 0.60, March 24, 2014
+  Version 0.60, April 16, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -2461,7 +2461,7 @@
   <\description>
     <item*|x ! y<label|!/record>>Retrieves the (last) value associated with
     the key <verbatim|y> in <verbatim|x>, if any, otherwise throws an
-    <verbatim|out_of_bound> exception.
+    <hlink|<with|font-family|tt|out_of_bounds>|#out-of-bounds> exception.
   </description>
 
   <\description>
@@ -7948,6 +7948,6 @@
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

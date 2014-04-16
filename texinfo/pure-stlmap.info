@@ -1,7 +1,7 @@
 This is pure-stlmap.info, produced by makeinfo version 5.2 from
 pure-stlmap.texi.
 
-     Pure 0.60, March 24, 2014
+     Pure 0.60, April 16, 2014
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pure-stlmap.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-stlmap
 ***********
 
-     Pure 0.60, March 24, 2014
+     Pure 0.60, April 16, 2014
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2014, Albert Gräf et al
 
-  Version 0.4, March 24, 2014
+  Version 0.4, April 16, 2014
 
      Peter Summerland <<p.summerland@gmail.com>> 
 
@@ -1373,7 +1373,7 @@ act on ranges as well as on the entire container.
   Here are some examples using the *note members: 2a, *note keys: 5f.
 and *note vals: 60. functions.
 
-      > members shm;   // must do all of shm elements because shm is a stlhmap
+     > members shm;   // must do all of shm elements because shm is a stlhmap
      ["d"=>4,"e"=>5,"a"=>1,"b"=>2,"c"=>3]
 
      > keys (sm,"b","e"); // can ask for a range - sm is an ordered container
@@ -1521,7 +1521,8 @@ different (pointers) for purposes of this comparison.  To avoid this
 issue when using ranges, you can use the *note stl;;map_equal: 6a.
 function.
 
-     > map_equal (xx,"a","c") (ss,"a","c"); 1
+     > map_equal (xx,"a","c") (ss,"a","c");
+     1
 
   The other comparison operators ‘(<)’, ‘(<=)’, ‘(>)’ and ‘(>=)’ are
 provided only for the ordered containers (stlmap, stlset, stlmmap and
@@ -2026,12 +2027,12 @@ Index
 
 * ! (infix function):                    Accessing Elements.  (line  15)
 * # (prefix function):                   Information.         (line  12)
-* < (infix function):                    Comparison.          (line  52)
-* <= (infix function):                   Comparison.          (line  60)
+* < (infix function):                    Comparison.          (line  53)
+* <= (infix function):                   Comparison.          (line  61)
 * == (infix function):                   Comparison.          (line  15)
 * == (infix function) <1>:               Functions.           (line 118)
-* > (infix function):                    Comparison.          (line  60)
-* >= (infix function):                   Comparison.          (line  60)
+* > (infix function):                    Comparison.          (line  61)
+* >= (infix function):                   Comparison.          (line  61)
 * ~= (infix function):                   Comparison.          (line  15)
 * catmap (function):                     Functional Programming<2>.
                                                               (line  37)
@@ -2376,158 +2377,158 @@ Ref: pure-stlmap keys/stlmap48111
 Ref: 5f48111
 Ref: pure-stlmap vals/stlmap48139
 Ref: 6048139
-Ref: pure-stlmap stl vector/stlmap48588
-Ref: 2b48588
-Ref: pure-stlmap stlvec/stlmap48691
-Ref: 2c48691
-Ref: pure-stlmap stream/stlmap48899
-Ref: 2d48899
-Node: Functional Programming<2>49235
-Ref: pure-stlmap id349364
-Ref: 6149364
-Ref: pure-stlmap do/stlmap49551
-Ref: c49551
-Ref: pure-stlmap map/stlmap49581
-Ref: 949581
-Ref: pure-stlmap filter/stlmap49612
-Ref: b49612
-Ref: pure-stlmap foldl/stlmap49647
-Ref: a49647
-Ref: pure-stlmap foldl1/stlmap49682
-Ref: 3049682
-Ref: pure-stlmap foldr/stlmap49716
-Ref: 6249716
-Ref: pure-stlmap foldr1/stlmap49751
-Ref: 6349751
-Ref: pure-stlmap listmap/stlmap50403
-Ref: 6450403
-Ref: pure-stlmap catmap/stlmap50438
-Ref: 2f50438
-Ref: pure-stlmap rowmap/stlmap50472
-Ref: 6550472
-Ref: pure-stlmap rowcatmap/stlmap50506
-Ref: 6650506
-Ref: pure-stlmap colmap/stlmap50543
-Ref: 6750543
-Ref: pure-stlmap colcatmap/stlmap50577
-Ref: 6850577
-Node: Comparison51350
-Ref: pure-stlmap comparison51479
-Ref: 6951479
-Ref: pure-stlmap stl map_equal/stlmap51889
-Ref: 6a51889
-Ref: pure-stlmap ==/stlmap51934
-Ref: 6b51934
-Ref: pure-stlmap ~=/stlmap51966
-Ref: 6c51966
-Ref: pure-stlmap </stlmap53356
-Ref: 6d53356
-Ref: pure-stlmap >/stlmap53724
-Ref: 6e53724
-Ref: pure-stlmap <=/stlmap53755
-Ref: 6f53755
-Ref: pure-stlmap >=/stlmap53787
-Ref: 7053787
-Node: Set Algorithms54807
-Ref: pure-stlmap set-algorithms54925
-Ref: 7154925
-Ref: pure-stlmap stl map_merge/stlmap55472
-Ref: 7255472
-Ref: pure-stlmap stl map_union/stlmap55746
-Ref: 3e55746
-Ref: pure-stlmap stl map_difference/stlmap55790
-Ref: 7355790
-Ref: pure-stlmap stl map_intersection/stlmap55839
-Ref: 3a55839
-Ref: pure-stlmap stl map_symmetric_difference/stlmap55890
-Ref: 7455890
-Ref: pure-stlmap stl map_includes/stlmap55949
-Ref: 7555949
-Node: Direct C Calls57693
-Ref: pure-stlmap direct-c-calls57792
-Ref: 7657792
-Ref: pure-stlmap stl sm_member/stlmap58437
-Ref: 7758437
-Ref: pure-stlmap stl sm_get/stlmap58478
-Ref: 7858478
-Ref: pure-stlmap stl sm_put/stlmap58516
-Ref: 7958516
-Ref: pure-stlmap stl shm_member/stlmap58947
-Ref: 7a58947
-Ref: pure-stlmap stl shm_get/stlmap58990
-Ref: 7b58990
-Ref: pure-stlmap stl shm_put/stlmap59030
-Ref: 7c59030
-Ref: pure-stlmap stl smm_member/stlmap59477
-Ref: 7d59477
-Ref: pure-stlmap stl smm_get/stlmap59520
-Ref: 7e59520
-Ref: pure-stlmap stl smm_put/stlmap59560
-Ref: 7f59560
-Node: Iterators<2>60025
-Ref: pure-stlmap id460141
-Ref: 8060141
-Node: Concepts<2>60346
-Ref: pure-stlmap id560430
-Ref: 8160430
-Node: Exceptions61987
-Ref: pure-stlmap exceptions62089
-Ref: 8262089
-Node: Functions63088
-Ref: pure-stlmap functions63190
-Ref: 8363190
-Ref: pure-stlmap stl iterator/stlmap63344
-Ref: 8463344
-Ref: pure-stlmap stl begin/stlmap63453
-Ref: 8563453
-Ref: pure-stlmap stl pastend/stlmap63488
-Ref: 8663488
-Ref: pure-stlmap stl find/stlmap63583
-Ref: 8763583
-Ref: pure-stlmap stl find_with_default/stlmap63802
-Ref: 8863802
-Ref: pure-stlmap stl insert_elm/stlmap64190
-Ref: 8964190
-Ref: pure-stlmap stl l_bound/stlmap65402
-Ref: 8a65402
-Ref: pure-stlmap stl u_bound/stlmap65649
-Ref: 8b65649
-Ref: pure-stlmap stl lu_bounds/stlmap65895
-Ref: 8c65895
-Ref: pure-stlmap stl inc/stlmap66160
-Ref: 8d66160
-Ref: pure-stlmap stl dec/stlmap66190
-Ref: 8e66190
-Ref: pure-stlmap stl move/stlmap66220
-Ref: 8f66220
-Ref: pure-stlmap stl get_elm/stlmap66701
-Ref: 9066701
-Ref: pure-stlmap stl get_key/stlmap66735
-Ref: 9166735
-Ref: pure-stlmap stl get_val/stlmap66769
-Ref: 9266769
-Ref: pure-stlmap stl put_val67077
-Ref: 9367077
-Ref: pure-stlmap stl beginp/stlmap67314
-Ref: 9467314
-Ref: pure-stlmap stl pastendp/stlmap67347
-Ref: 9567347
-Ref: pure-stlmap stl get_info/stlmap67508
-Ref: 9667508
-Node: Examples<2>68331
-Ref: pure-stlmap id668414
-Ref: 9768414
-Node: Backward Compatibilty69196
-Ref: pure-stlmap backward-compatibilty69304
-Ref: 9869304
-Node: pure-stlmap-0 269487
-Ref: pure-stlmap pure-stlmap-0-269589
-Ref: 9969589
-Node: pure-stlmap-0 369682
-Ref: pure-stlmap pure-stlmap-0-369784
-Ref: 9a69784
-Node: Module Index69869
-Node: Index70051
+Ref: pure-stlmap stl vector/stlmap48587
+Ref: 2b48587
+Ref: pure-stlmap stlvec/stlmap48690
+Ref: 2c48690
+Ref: pure-stlmap stream/stlmap48898
+Ref: 2d48898
+Node: Functional Programming<2>49234
+Ref: pure-stlmap id349363
+Ref: 6149363
+Ref: pure-stlmap do/stlmap49550
+Ref: c49550
+Ref: pure-stlmap map/stlmap49580
+Ref: 949580
+Ref: pure-stlmap filter/stlmap49611
+Ref: b49611
+Ref: pure-stlmap foldl/stlmap49646
+Ref: a49646
+Ref: pure-stlmap foldl1/stlmap49681
+Ref: 3049681
+Ref: pure-stlmap foldr/stlmap49715
+Ref: 6249715
+Ref: pure-stlmap foldr1/stlmap49750
+Ref: 6349750
+Ref: pure-stlmap listmap/stlmap50402
+Ref: 6450402
+Ref: pure-stlmap catmap/stlmap50437
+Ref: 2f50437
+Ref: pure-stlmap rowmap/stlmap50471
+Ref: 6550471
+Ref: pure-stlmap rowcatmap/stlmap50505
+Ref: 6650505
+Ref: pure-stlmap colmap/stlmap50542
+Ref: 6750542
+Ref: pure-stlmap colcatmap/stlmap50576
+Ref: 6850576
+Node: Comparison51349
+Ref: pure-stlmap comparison51478
+Ref: 6951478
+Ref: pure-stlmap stl map_equal/stlmap51888
+Ref: 6a51888
+Ref: pure-stlmap ==/stlmap51933
+Ref: 6b51933
+Ref: pure-stlmap ~=/stlmap51965
+Ref: 6c51965
+Ref: pure-stlmap </stlmap53360
+Ref: 6d53360
+Ref: pure-stlmap >/stlmap53728
+Ref: 6e53728
+Ref: pure-stlmap <=/stlmap53759
+Ref: 6f53759
+Ref: pure-stlmap >=/stlmap53791
+Ref: 7053791
+Node: Set Algorithms54811
+Ref: pure-stlmap set-algorithms54929
+Ref: 7154929
+Ref: pure-stlmap stl map_merge/stlmap55476
+Ref: 7255476
+Ref: pure-stlmap stl map_union/stlmap55750
+Ref: 3e55750
+Ref: pure-stlmap stl map_difference/stlmap55794
+Ref: 7355794
+Ref: pure-stlmap stl map_intersection/stlmap55843
+Ref: 3a55843
+Ref: pure-stlmap stl map_symmetric_difference/stlmap55894
+Ref: 7455894
+Ref: pure-stlmap stl map_includes/stlmap55953
+Ref: 7555953
+Node: Direct C Calls57697
+Ref: pure-stlmap direct-c-calls57796
+Ref: 7657796
+Ref: pure-stlmap stl sm_member/stlmap58441
+Ref: 7758441
+Ref: pure-stlmap stl sm_get/stlmap58482
+Ref: 7858482
+Ref: pure-stlmap stl sm_put/stlmap58520
+Ref: 7958520
+Ref: pure-stlmap stl shm_member/stlmap58951
+Ref: 7a58951
+Ref: pure-stlmap stl shm_get/stlmap58994
+Ref: 7b58994
+Ref: pure-stlmap stl shm_put/stlmap59034
+Ref: 7c59034
+Ref: pure-stlmap stl smm_member/stlmap59481
+Ref: 7d59481
+Ref: pure-stlmap stl smm_get/stlmap59524
+Ref: 7e59524
+Ref: pure-stlmap stl smm_put/stlmap59564
+Ref: 7f59564
+Node: Iterators<2>60029
+Ref: pure-stlmap id460145
+Ref: 8060145
+Node: Concepts<2>60350
+Ref: pure-stlmap id560434
+Ref: 8160434
+Node: Exceptions61991
+Ref: pure-stlmap exceptions62093
+Ref: 8262093
+Node: Functions63092
+Ref: pure-stlmap functions63194
+Ref: 8363194
+Ref: pure-stlmap stl iterator/stlmap63348
+Ref: 8463348
+Ref: pure-stlmap stl begin/stlmap63457
+Ref: 8563457
+Ref: pure-stlmap stl pastend/stlmap63492
+Ref: 8663492
+Ref: pure-stlmap stl find/stlmap63587
+Ref: 8763587
+Ref: pure-stlmap stl find_with_default/stlmap63806
+Ref: 8863806
+Ref: pure-stlmap stl insert_elm/stlmap64194
+Ref: 8964194
+Ref: pure-stlmap stl l_bound/stlmap65406
+Ref: 8a65406
+Ref: pure-stlmap stl u_bound/stlmap65653
+Ref: 8b65653
+Ref: pure-stlmap stl lu_bounds/stlmap65899
+Ref: 8c65899
+Ref: pure-stlmap stl inc/stlmap66164
+Ref: 8d66164
+Ref: pure-stlmap stl dec/stlmap66194
+Ref: 8e66194
+Ref: pure-stlmap stl move/stlmap66224
+Ref: 8f66224
+Ref: pure-stlmap stl get_elm/stlmap66705
+Ref: 9066705
+Ref: pure-stlmap stl get_key/stlmap66739
+Ref: 9166739
+Ref: pure-stlmap stl get_val/stlmap66773
+Ref: 9266773
+Ref: pure-stlmap stl put_val67081
+Ref: 9367081
+Ref: pure-stlmap stl beginp/stlmap67318
+Ref: 9467318
+Ref: pure-stlmap stl pastendp/stlmap67351
+Ref: 9567351
+Ref: pure-stlmap stl get_info/stlmap67512
+Ref: 9667512
+Node: Examples<2>68335
+Ref: pure-stlmap id668418
+Ref: 9768418
+Node: Backward Compatibilty69200
+Ref: pure-stlmap backward-compatibilty69308
+Ref: 9869308
+Node: pure-stlmap-0 269491
+Ref: pure-stlmap pure-stlmap-0-269593
+Ref: 9969593
+Node: pure-stlmap-0 369686
+Ref: pure-stlmap pure-stlmap-0-369788
+Ref: 9a69788
+Node: Module Index69873
+Node: Index70055
 
 End Tag Table
 

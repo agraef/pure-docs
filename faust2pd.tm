@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust<label|faust2pd-pd-patch-generator-for-faust>>
 
-  Version 2.7, March 24, 2014
+  Version 2.7, April 16, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -484,7 +484,7 @@
   The faustxml module is provided along with faust2pd to retrieve the
   description of a Faust DSP from its XML file as a data structure which is
   ready to be processed by Pure programs. It may also be useful in other Pure
-  applications which need to inspect description of Faust DSPs.
+  applications which need to inspect descriptions of Faust DSPs.
 
   The main entry point is the <hlink|<with|font-family|tt|info>|#faustxml::info>
   function which takes the name of a Faust-generated XML file as argument and
@@ -675,6 +675,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

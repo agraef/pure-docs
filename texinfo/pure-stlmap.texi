@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.60, March 24, 2014
+Pure 0.60, April 16, 2014
 
 Albert Gräf (Editor)
 
@@ -52,7 +52,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 @anchor{pure-stlmap module-stlhmap}@anchor{0}
 @geindex stlhmap (module)
 
-Version 0.4, March 24, 2014
+Version 0.4, April 16, 2014
 
 
 @display
@@ -1623,7 +1623,7 @@ Here are some examples using the @pxref{2a,,members}, @pxref{5f,,keys}
 and @pxref{60,,vals} functions.
 
 @example
- > members shm;   // must do all of shm elements because shm is a stlhmap
+> members shm;   // must do all of shm elements because shm is a stlhmap
 ["d"=>4,"e"=>5,"a"=>1,"b"=>2,"c"=>3]
 
 > keys (sm,"b","e"); // can ask for a range - sm is an ordered container
@@ -1834,11 +1834,12 @@ tuples are not equal because @code{xx} and @code{ss} are different (pointers) fo
 purposes of this comparison. To avoid this issue when using ranges, you can
 use the @pxref{6a,,stl;;map_equal} function.
 
-@quotation
-
+@example
 > map_equal (xx,"a","c") (ss,"a","c");
 1
-@end quotation
+@end example
+
+@noindent
 
 The other comparison operators @code{(<)}, @code{(<=)},
 @code{(>)} and @code{(>=)} are provided only for the ordered

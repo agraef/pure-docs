@@ -57,8 +57,34 @@
             
   <div class="section" id="pure-gen-pure-interface-generator">
 <h1>pure-gen: Pure interface generator<a class="headerlink" href="#pure-gen-pure-interface-generator" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.16, March 24, 2014</p>
+<p>Version 0.17, April 16, 2014</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#name" id="id1">Name</a></li>
+<li><a class="reference internal" href="#synopsis" id="id2">Synopsis</a></li>
+<li><a class="reference internal" href="#options" id="id3">Options</a><ul>
+<li><a class="reference internal" href="#general-options" id="id4">General Options</a></li>
+<li><a class="reference internal" href="#preprocessor-options" id="id5">Preprocessor Options</a></li>
+<li><a class="reference internal" href="#generator-options" id="id6">Generator Options</a></li>
+<li><a class="reference internal" href="#output-options" id="id7">Output Options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#description" id="id8">Description</a></li>
+<li><a class="reference internal" href="#filtering" id="id9">Filtering</a></li>
+<li><a class="reference internal" href="#name-mangling" id="id10">Name Mangling</a></li>
+<li><a class="reference internal" href="#generating-c-code" id="id11">Generating C Code</a></li>
+<li><a class="reference internal" href="#dealing-with-c-structs" id="id12">Dealing with C Structs</a></li>
+<li><a class="reference internal" href="#notes" id="id13">Notes</a></li>
+<li><a class="reference internal" href="#example" id="id14">Example</a></li>
+<li><a class="reference internal" href="#license" id="id15">License</a></li>
+<li><a class="reference internal" href="#authors" id="id16">Authors</a></li>
+<li><a class="reference internal" href="#see-also" id="id17">See Also</a></li>
+</ul>
+</div>
+<div class="section" id="name">
+<h2><a class="toc-backref" href="#id1">Name</a><a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
+<p>pure-gen &#8211; Pure interface generator</p>
 <p>pure-gen is a C interface generator for the Pure language. It takes a C header
 file as input and generates a corresponding Pure module with the constant
 definitions and extern declarations needed to use the C module from
@@ -66,38 +92,17 @@ Pure. pure-gen can also generate FFI interfaces rather than externs (using the
 <a class="reference internal" href="pure-ffi.html"><em>pure-ffi</em></a> module), and it can optionally create a C wrapper module which
 allows you to create interfaces to pretty much any code which can be called
 via C.</p>
-<div class="contents local topic" id="contents">
-<ul class="simple">
-<li><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></li>
-<li><a class="reference internal" href="#options" id="id2">Options</a><ul>
-<li><a class="reference internal" href="#general-options" id="id3">General Options</a></li>
-<li><a class="reference internal" href="#preprocessor-options" id="id4">Preprocessor Options</a></li>
-<li><a class="reference internal" href="#generator-options" id="id5">Generator Options</a></li>
-<li><a class="reference internal" href="#output-options" id="id6">Output Options</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#description" id="id7">Description</a></li>
-<li><a class="reference internal" href="#filtering" id="id8">Filtering</a></li>
-<li><a class="reference internal" href="#name-mangling" id="id9">Name Mangling</a></li>
-<li><a class="reference internal" href="#generating-c-code" id="id10">Generating C Code</a></li>
-<li><a class="reference internal" href="#dealing-with-c-structs" id="id11">Dealing with C Structs</a></li>
-<li><a class="reference internal" href="#notes" id="id12">Notes</a></li>
-<li><a class="reference internal" href="#example" id="id13">Example</a></li>
-<li><a class="reference internal" href="#license" id="id14">License</a></li>
-<li><a class="reference internal" href="#authors" id="id15">Authors</a></li>
-<li><a class="reference internal" href="#see-also" id="id16">See Also</a></li>
-</ul>
 </div>
 <div class="section" id="synopsis">
-<h2><a class="toc-backref" href="#id1">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-pure"><div class="highlight"><pre>pure-gen [options ...] input-file
 </pre></div>
 </div>
 </div>
 <div class="section" id="options">
-<h2><a class="toc-backref" href="#id2">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Options</a><a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="general-options">
-<h3><a class="toc-backref" href="#id3">General Options</a><a class="headerlink" href="#general-options" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">General Options</a><a class="headerlink" href="#general-options" title="Permalink to this headline">¶</a></h3>
 <dl class="option">
 <dt id="cmdoption-pure-gen-h">
 <tt class="descname">-h</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-h" title="Permalink to this definition">¶</a></dt>
@@ -144,7 +149,7 @@ debugging purposes).</p>
 
 </div>
 <div class="section" id="preprocessor-options">
-<h3><a class="toc-backref" href="#id4">Preprocessor Options</a><a class="headerlink" href="#preprocessor-options" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Preprocessor Options</a><a class="headerlink" href="#preprocessor-options" title="Permalink to this headline">¶</a></h3>
 <dl class="option">
 <dt id="cmdoption-pure-gen-I">
 <tt class="descname">-I</tt><tt class="descclassname"> path</tt><a class="headerlink" href="#cmdoption-pure-gen-I" title="Permalink to this definition">¶</a></dt>
@@ -179,7 +184,7 @@ debugging purposes).</p>
 
 </div>
 <div class="section" id="generator-options">
-<h3><a class="toc-backref" href="#id5">Generator Options</a><a class="headerlink" href="#generator-options" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Generator Options</a><a class="headerlink" href="#generator-options" title="Permalink to this headline">¶</a></h3>
 <dl class="option">
 <dt id="cmdoption-pure-gen-f">
 <tt class="descname">-f</tt><tt class="descclassname"> iface</tt><a class="headerlink" href="#cmdoption-pure-gen-f" title="Permalink to this definition">¶</a></dt>
@@ -283,7 +288,7 @@ selection.</p>
 
 </div>
 <div class="section" id="output-options">
-<h3><a class="toc-backref" href="#id6">Output Options</a><a class="headerlink" href="#output-options" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">Output Options</a><a class="headerlink" href="#output-options" title="Permalink to this headline">¶</a></h3>
 <dl class="option">
 <dt id="cmdoption-pure-gen-n">
 <tt class="descname">-n</tt><tt class="descclassname"></tt><a class="headerlink" href="#cmdoption-pure-gen-n" title="Permalink to this definition">¶</a></dt>
@@ -321,7 +326,7 @@ extension .c.</p>
 </div>
 </div>
 <div class="section" id="description">
-<h2><a class="toc-backref" href="#id7">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>pure-gen generates Pure bindings for C functions from a C header file. For
 instance, the command</p>
 <div class="highlight-pure"><div class="highlight"><pre>pure-gen foo.h
@@ -362,7 +367,7 @@ be loaded. Any number of <a class="reference internal" href="#cmdoption-pure-gen
 <p>Other options for more advanced uses are explained in the following sections.</p>
 </div>
 <div class="section" id="filtering">
-<h2><a class="toc-backref" href="#id8">Filtering</a><a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">Filtering</a><a class="headerlink" href="#filtering" title="Permalink to this headline">¶</a></h2>
 <p>Note that pure-gen always parses the given header file as well as <em>all</em> its
 includes. If the header file includes system headers, by default you will get
 those declarations as well. This is often undesirable. As a remedy, pure-gen
@@ -413,7 +418,7 @@ in this case. On the other hand, if you have set up your C sources in some
 local directory then specifying a relative pathname is ok.</p>
 </div>
 <div class="section" id="name-mangling">
-<h2><a class="toc-backref" href="#id9">Name Mangling</a><a class="headerlink" href="#name-mangling" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">Name Mangling</a><a class="headerlink" href="#name-mangling" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="#cmdoption-pure-gen-s"><em class="xref std std-option">-s</em></a> option is often used in conjuction with the <a class="reference internal" href="#cmdoption-pure-gen-p"><em class="xref std std-option">-p</em></a>
 option, which lets you specify a &#8220;module name prefix&#8221; which should be stripped
 off from C symbols. Case is insignificant and a trailing underscore will be
@@ -426,7 +431,7 @@ the selected symbols and finally adding a <tt class="docutils literal"><span cla
 them instead.</p>
 </div>
 <div class="section" id="generating-c-code">
-<h2><a class="toc-backref" href="#id10">Generating C Code</a><a class="headerlink" href="#generating-c-code" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Generating C Code</a><a class="headerlink" href="#generating-c-code" title="Permalink to this headline">¶</a></h2>
 <p>As already mentioned, pure-gen can be invoked with the <tt class="docutils literal"><span class="pre">-fc</span></tt> or
 <tt class="docutils literal"><span class="pre">-fc-ffi</span></tt> option to create a C wrapper module along with the Pure module
 it generates. There are various situations in which this is preferable, e.g.:</p>
@@ -538,7 +543,7 @@ purpose the following template will do the trick:</p>
 </div>
 </div>
 <div class="section" id="dealing-with-c-structs">
-<h2><a class="toc-backref" href="#id11">Dealing with C Structs</a><a class="headerlink" href="#dealing-with-c-structs" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">Dealing with C Structs</a><a class="headerlink" href="#dealing-with-c-structs" title="Permalink to this headline">¶</a></h2>
 <p>Modern C compilers allow you to pass C structs by value or return them as
 results from a C function. This represents a problem, because Pure doesn&#8217;t
 provide any support for that in its extern declarations. Even Pure&#8217;s libffi
@@ -625,7 +630,7 @@ also allows you to access the members of the structs in a direct fashion.
 Please refer to the <a class="reference internal" href="pure-ffi.html"><em>pure-ffi</em></a> documentation for further details.</p>
 </div>
 <div class="section" id="notes">
-<h2><a class="toc-backref" href="#id12">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Notes</a><a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
 <p>pure-gen currently requires gcc (<tt class="docutils literal"><span class="pre">-E</span></tt>) as the C preprocessor. It also needs
 a version of gcc which understands the <tt class="docutils literal"><span class="pre">-fdirectives-only</span></tt> option, which
 means gcc 4.3 or later. It will run with older versions of gcc, but then
@@ -663,7 +668,7 @@ the output to existing files instead of overwriting them. See the example
 below.</p>
 </div>
 <div class="section" id="example">
-<h2><a class="toc-backref" href="#id13">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Example</a><a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>For the sake of a substantial, real-world example, here is how you can wrap
 the entire GNU Scientific Library in a single Pure module mygsl.pure, with the
 accompanying C module in mygsl.c:</p>
@@ -675,7 +680,7 @@ accompanying C module in mygsl.c:</p>
 </pre></div>
 </div>
 <p>The C module can then be compiled with:</p>
-<div class="highlight-sh"><div class="highlight"><pre>gcc <span class="nv">$DEFS</span> -shared -o mygsl.so mygsl.c
+<div class="highlight-sh"><div class="highlight"><pre>gcc <span class="nv">$DEFS</span> -shared -o mygsl.so mygsl.c -lgsl
 </pre></div>
 </div>
 <p>Note that the <tt class="docutils literal"><span class="pre">GSL_DISABLE_DEPRECATED</span></tt> symbol must be defined here to avoid
@@ -686,16 +691,16 @@ working around them through some appropriate cpp options should be a piece of
 cake, though.</p>
 </div>
 <div class="section" id="license">
-<h2><a class="toc-backref" href="#id14">License</a><a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">License</a><a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
 <p>BSD-like. See the accompanying COPYING file for details.</p>
 </div>
 <div class="section" id="authors">
-<h2><a class="toc-backref" href="#id15">Authors</a><a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Authors</a><a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
 <p>Scott E. Dillard (University of California at Davis), Albert Graef (Johannes
 Gutenberg University at Mainz, Germany).</p>
 </div>
 <div class="section" id="see-also">
-<h2><a class="toc-backref" href="#id16">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">See Also</a><a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <dl class="docutils">
 <dt>Language.C</dt>
 <dd>A C parser written in Haskell by Manuel Chakravarty et al,
@@ -715,6 +720,7 @@ Gutenberg University at Mainz, Germany).</p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">pure-gen: Pure interface generator</a><ul>
+<li><a class="reference internal" href="#name">Name</a></li>
 <li><a class="reference internal" href="#synopsis">Synopsis</a></li>
 <li><a class="reference internal" href="#options">Options</a><ul>
 <li><a class="reference internal" href="#general-options">General Options</a></li>
@@ -787,7 +793,7 @@ Gutenberg University at Mainz, Germany).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Mar 24, 2014.
+    Last updated on Apr 16, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

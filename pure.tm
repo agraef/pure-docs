@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.60, March 24, 2014
+  Version 0.60, April 16, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -79,7 +79,7 @@
     \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.60
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2013 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -4341,10 +4341,11 @@
   predicate, it is up to the programmer to ensure that the definition of a
   type is actually computable. In fact, you should strive for the best
   possible efficiency in type predicates. A type definition which has worse
-  than O(1) complexity may well be a serious performance hog depending on the
-  way in which it is used, see <hlink|Recursive Types|#recursive-types> in
-  the <hlink|Caveats and Notes|#caveats-and-notes> section for more
-  information about this.
+  than <puredoc-image|_images/math/62d0effd6477f4244d585fc25f46a645378a4ceb.png|66%|66%||>
+  complexity may well be a serious performance hog depending on the way in
+  which it is used, see <hlink|Recursive Types|#recursive-types> in the
+  <hlink|Caveats and Notes|#caveats-and-notes> section for more information
+  about this.
 
   Finally, note that in general it may be hard or even impossible to predict
   exactly when the code of a type definition will be executed at runtime.
@@ -4581,7 +4582,7 @@
     \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.60
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2013 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -18382,17 +18383,19 @@
   There's yet another important issue with recursive type definitions, namely
   the <em|time> it takes to check the definition. In the above example,
   checking <hlink|<with|font-family|tt|rlist>|purelib.tm#rlist/type> takes
-  O(n) time, where n is the size of the list. This will have dire
-  consequences if you do this check repeatedly while traversing a list, as in
-  the following <verbatim|sum> function:
+  <puredoc-image|_images/math/6c57aa00a4239462db1583967b78dccfa03de09a.png|66%|66%||>
+  time, where n is the size of the list. This will have dire consequences if
+  you do this check repeatedly while traversing a list, as in the following
+  <verbatim|sum> function:
 
   <\verbatim>
     sum xs::rlist = if null xs then 0 else head xs+sum (tail xs);
   </verbatim>
 
   As this function repeatedly checks its entire argument, the total time it
-  takes to compute the sum of a list this way becomes O(n^2). To see how slow
-  this function is, just try it on successively larger lists
+  takes to compute the sum of a list this way becomes
+  <puredoc-image|_images/math/225cf199c9568a1a204e4c364ebed6a991b6a00d.png|66%|66%||>.
+  To see how slow this function is, just try it on successively larger lists
   <verbatim|1..1000>, <verbatim|1..2000>, etc. One way to work around this is
   to write a ``wrapper'' function which simply checks the type of its
   argument in advance and then invokes a ``worker'' function to do the actual
@@ -18418,12 +18421,14 @@
   </verbatim>
 
   Note that the recursion is missing here and thus this type can always be
-  checked in O(1) time, performing just a single pattern match, which is
-  efficient. Hence, if we replace <hlink|<with|font-family|tt|rlist>|purelib.tm#rlist/type>
-  with the <hlink|<with|font-family|tt|list>|purelib.tm#list/type> type in
-  our original definition then <verbatim|sum> will now run in O(n) time, as
-  desired. On the other hand, this approach also has its drawbacks. For
-  instance, consider:
+  checked in <puredoc-image|_images/math/62d0effd6477f4244d585fc25f46a645378a4ceb.png|66%|66%||>
+  time, performing just a single pattern match, which is efficient. Hence, if
+  we replace <hlink|<with|font-family|tt|rlist>|purelib.tm#rlist/type> with
+  the <hlink|<with|font-family|tt|list>|purelib.tm#list/type> type in our
+  original definition then <verbatim|sum> will now run in
+  <puredoc-image|_images/math/6c57aa00a4239462db1583967b78dccfa03de09a.png|66%|66%||>
+  time, as desired. On the other hand, this approach also has its drawbacks.
+  For instance, consider:
 
   <\verbatim>
     \<gtr\> sum xs::list = if null xs then 0 else head xs+sum (tail xs);
@@ -19566,6 +19571,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

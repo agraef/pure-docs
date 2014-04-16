@@ -442,10 +442,14 @@ the TeXmacs-formatted documentation as follows::
 
 Run Pure interactively as::
 
-  $ pure
-  Pure 0.60 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert Graef
-  (Type 'help' for help, 'help copying' for license information.)
-  Loaded prelude from /usr/local/lib/pure/prelude.pure.
+   $ pure
+
+    __ \  |   |  __| _ \    Pure 0.60 (x86_64-unknown-linux-gnu)
+    |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
+    .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
+   _|                       for license information.)
+
+   Loaded prelude from /usr/lib/pure/prelude.pure.
 
 Check that it works::
 
@@ -553,11 +557,10 @@ It's also possible to disable the automatic installation by invoking configure
 with the ``--without-texmacs`` option. To do a manual installation, it should
 be sufficient to drop the texmacs/plugins/pure directory in the distribution
 into your personal TeXmacs plugins folder, usually ~/.TeXmacs/plugins. You can
-also do this with ``make install-tm tmdir=~/.TeXmacs/plugins`` (in this case,
-uninstall with ``make uninstall-tm tmdir=~/.TeXmacs/plugins``). This has the
-advantage that it doesn't require root access and you can easily edit the
-plugin files under ~/.TeXmacs/plugins/pure/progs afterwards to tailor them to
-your needs.
+also do this with ``make install-tm tmdir=~/.TeXmacs`` (in this case,
+uninstall with ``make uninstall-tm tmdir=~/.TeXmacs``). This has the advantage
+that it doesn't require root access and you can easily edit the plugin files
+under ~/.TeXmacs/plugins/pure/progs afterwards to tailor them to your needs.
 
 The distributed plugin has support for reading the Pure online help in TeXmacs
 format. See Step 6 under `Basic Installation`_ above for instructions on how
@@ -1117,15 +1120,25 @@ Mac OS X
 Pure should build fine on recent OS X versions, and a port by Ryan Schmidt
 exists in the MacPorts collection, see http://www.macports.org/. If you
 install straight from the source, make sure that you use a recent LLVM version
-(LLVM 2.7 or later should work fine on all flavours of Intel Macs). On
-PowerPC, you might have to build Pure with ``--disable-fastcc``, see the
-`PowerPC`_ section above.
+(LLVM 2.7 or later should work fine on all flavours of Intel Macs).
 
-Also note that with some older versions of the Apple gcc compiler, with all
-warnings turned on you may get the (bogus) warning "control reaches end of
-non-void function" a couple of times in interpreter.cc. These are due to a bug
-in older gcc versions (see http://gcc.gnu.org/bugzilla/show_bug.cgi?id=16558),
-but they are harmless and can be ignored.
+Even if you compile Pure from source, we recommend installing LLVM and the
+other dependencies from MacPorts. In that case you'll have to add a few
+options to the configure command so that the required header files, libraries
+and LLVM tools are found::
+
+  ./configure --enable-release --prefix=/opt/local \
+  CPPFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib \
+  --with-tool-prefix=/opt/local/libexec/llvm-3.4/bin
+
+This assumes that your MacPorts installation lives under /opt/local and that
+you're using LLVM 3.4; otherwise you'll have to adjust the configure options
+accordingly.
+
+On really old Macs from the bygone PPC era you'll have to be prepared to deal
+with all kinds of issues with compilers, LLVM toolchain etc. If you're still
+using one of these, your best bet is to find a port on MacPorts which works
+for your OS X version.
 
 BSD
 ---

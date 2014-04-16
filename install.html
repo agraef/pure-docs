@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.60, March 24, 2014</p>
+<p>Version 0.60, April 16, 2014</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -445,9 +445,13 @@ the TeXmacs-formatted documentation as follows:</p>
 <p><strong>Step 7.</strong> The Pure interpreter should be ready to go now.</p>
 <p>Run Pure interactively as:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
-<span class="go">Pure 0.60 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert Graef</span>
-<span class="go">(Type &#39;help&#39; for help, &#39;help copying&#39; for license information.)</span>
-<span class="go">Loaded prelude from /usr/local/lib/pure/prelude.pure.</span>
+
+<span class="go"> __ \  |   |  __| _ \    Pure 0.60 (x86_64-unknown-linux-gnu)</span>
+<span class="go"> |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef</span>
+<span class="go"> .__/ \__,_|_|  \___|    (Type &#39;help&#39; for help, &#39;help copying&#39;</span>
+<span class="go">_|                       for license information.)</span>
+
+<span class="go">Loaded prelude from /usr/lib/pure/prelude.pure.</span>
 </pre></div>
 </div>
 <p>Check that it works:</p>
@@ -536,11 +540,10 @@ sufficient to uninstall the plugin; you can also do this with <tt class="docutil
 with the <tt class="docutils literal"><span class="pre">--without-texmacs</span></tt> option. To do a manual installation, it should
 be sufficient to drop the texmacs/plugins/pure directory in the distribution
 into your personal TeXmacs plugins folder, usually ~/.TeXmacs/plugins. You can
-also do this with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install-tm</span> <span class="pre">tmdir=~/.TeXmacs/plugins</span></tt> (in this case,
-uninstall with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">uninstall-tm</span> <span class="pre">tmdir=~/.TeXmacs/plugins</span></tt>). This has the
-advantage that it doesn&#8217;t require root access and you can easily edit the
-plugin files under ~/.TeXmacs/plugins/pure/progs afterwards to tailor them to
-your needs.</p>
+also do this with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install-tm</span> <span class="pre">tmdir=~/.TeXmacs</span></tt> (in this case,
+uninstall with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">uninstall-tm</span> <span class="pre">tmdir=~/.TeXmacs</span></tt>). This has the advantage
+that it doesn&#8217;t require root access and you can easily edit the plugin files
+under ~/.TeXmacs/plugins/pure/progs afterwards to tailor them to your needs.</p>
 <p>The distributed plugin has support for reading the Pure online help in TeXmacs
 format. See Step 6 under <a class="reference internal" href="#basic-installation">Basic Installation</a> above for instructions on how
 you can obtain the necessary TeXmacs files and install them in the Pure
@@ -1035,14 +1038,23 @@ for details.</p>
 <p>Pure should build fine on recent OS X versions, and a port by Ryan Schmidt
 exists in the MacPorts collection, see <a class="reference external" href="http://www.macports.org/">http://www.macports.org/</a>. If you
 install straight from the source, make sure that you use a recent LLVM version
-(LLVM 2.7 or later should work fine on all flavours of Intel Macs). On
-PowerPC, you might have to build Pure with <tt class="docutils literal"><span class="pre">--disable-fastcc</span></tt>, see the
-<a class="reference internal" href="#powerpc">PowerPC</a> section above.</p>
-<p>Also note that with some older versions of the Apple gcc compiler, with all
-warnings turned on you may get the (bogus) warning &#8220;control reaches end of
-non-void function&#8221; a couple of times in interpreter.cc. These are due to a bug
-in older gcc versions (see <a class="reference external" href="http://gcc.gnu.org/bugzilla/show_bug.cgi?id=16558">http://gcc.gnu.org/bugzilla/show_bug.cgi?id=16558</a>),
-but they are harmless and can be ignored.</p>
+(LLVM 2.7 or later should work fine on all flavours of Intel Macs).</p>
+<p>Even if you compile Pure from source, we recommend installing LLVM and the
+other dependencies from MacPorts. In that case you&#8217;ll have to add a few
+options to the configure command so that the required header files, libraries
+and LLVM tools are found:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">./configure --enable-release --prefix=/opt/local \</span>
+<span class="go">CPPFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib \</span>
+<span class="go">--with-tool-prefix=/opt/local/libexec/llvm-3.4/bin</span>
+</pre></div>
+</div>
+<p>This assumes that your MacPorts installation lives under /opt/local and that
+you&#8217;re using LLVM 3.4; otherwise you&#8217;ll have to adjust the configure options
+accordingly.</p>
+<p>On really old Macs from the bygone PPC era you&#8217;ll have to be prepared to deal
+with all kinds of issues with compilers, LLVM toolchain etc. If you&#8217;re still
+using one of these, your best bet is to find a port on MacPorts which works
+for your OS X version.</p>
 </div>
 <div class="section" id="bsd">
 <h3>BSD<a class="headerlink" href="#bsd" title="Permalink to this headline">¶</a></h3>
@@ -1183,7 +1195,7 @@ unzip these into some convenient location on your harddrive and set up
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Mar 24, 2014.
+    Last updated on Apr 16, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

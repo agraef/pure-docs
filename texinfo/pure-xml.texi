@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.60, March 24, 2014
+Pure 0.60, April 16, 2014
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 @anchor{pure-xml doc}@anchor{1}
 @geindex xml (module)
 
-Version 0.7, March 24, 2014
+Version 0.7, April 16, 2014
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -426,34 +426,46 @@ identifier/URI pair) identifying the entity.
 The element content type (@code{content} argument of the @pxref{18,,element declaration} nodes) is a kind of regular expression formed with tags
 (specified as strings) and the following constructors:
 
-@geindex xml;;pcdata; (constructor)
+@geindex xml;;pcdata (constructor)
 @anchor{pure-xml xml pcdata}@anchor{30}
-@deffn {Pure Constructor} xml::pcdata: text data (`@w{`}#PCDATA`@w{`})
+@deffn {Pure Constructor} xml::pcdata
+
+text data (@code{#PCDATA})
 @end deffn
 
 @geindex xml;;sequence (constructor)
 @anchor{pure-xml xml sequence}@anchor{31}
-@deffn {Pure Constructor} xml::sequence xs: concatenation (`@w{`}x,y,z`@w{`})
+@deffn {Pure Constructor} xml::sequence xs
+
+concatenation (@code{x,y,z})
 @end deffn
 
 @geindex xml;;union (constructor)
 @anchor{pure-xml xml union}@anchor{32}
-@deffn {Pure Constructor} xml::union xs: alternatives (`@w{`}x|y|z`@w{`})
+@deffn {Pure Constructor} xml::union xs
+
+alternatives (@code{x|y|z})
 @end deffn
 
 @geindex xml;;opt (constructor)
 @anchor{pure-xml xml opt}@anchor{33}
-@deffn {Pure Constructor} xml::opt x: optional element (`@w{`}x?`@w{`})
+@deffn {Pure Constructor} xml::opt x
+
+optional element (@code{x?})
 @end deffn
 
 @geindex xml;;mult (constructor)
 @anchor{pure-xml xml mult}@anchor{34}
-@deffn {Pure Constructor} xml::mult x: repeated element (`@w{`}x*`@w{`})
+@deffn {Pure Constructor} xml::mult x
+
+repeated element (@code{x*})
 @end deffn
 
 @geindex xml;;plus (constructor)
 @anchor{pure-xml xml plus}@anchor{35}
-@deffn {Pure Constructor} xml::plus x: non-optional repeated element (`@w{`}x+`@w{`})
+@deffn {Pure Constructor} xml::plus x
+
+non-optional repeated element (@code{x+})
 @end deffn
 
 @geindex attribute defaults

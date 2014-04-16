@@ -10,9 +10,13 @@
 
   <section*|pure-gen: Pure interface generator<label|pure-gen-pure-interface-generator>>
 
-  Version 0.16, March 24, 2014
+  Version 0.17, April 16, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
+
+  <subsection|Name<label|name>>
+
+  pure-gen \U Pure interface generator
 
   pure-gen is a C interface generator for the Pure language. It takes a C
   header file as input and generates a corresponding Pure module with the
@@ -742,7 +746,7 @@
   The C module can then be compiled with:
 
   <\verbatim>
-    gcc $DEFS -shared -o mygsl.so mygsl.c
+    gcc $DEFS -shared -o mygsl.so mygsl.c -lgsl
   </verbatim>
 
   Note that the <verbatim|GSL_DISABLE_DEPRECATED> symbol must be defined here
@@ -777,6 +781,8 @@
     <item><hlink|pure-gen: Pure interface generator|#>
 
     <\itemize>
+      <item><hlink|Name|#name>
+
       <item><hlink|Synopsis|#synopsis>
 
       <item><hlink|Options|#options>
@@ -826,6 +832,6 @@
   <hlink|previous|pure-ffi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

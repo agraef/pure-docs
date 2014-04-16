@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.60, March 24, 2014
+  Version 0.60, April 16, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -552,12 +552,21 @@
   <\verbatim>
     $ pure
 
-    Pure 0.60 (x86_64-unknown-linux-gnu) Copyright (c) 2008-2011 by Albert
-    Graef
+    \;
 
-    (Type 'help' for help, 'help copying' for license information.)
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.60
+    (x86_64-unknown-linux-gnu)
 
-    Loaded prelude from /usr/local/lib/pure/prelude.pure.
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
+    Albert Graef
+
+    \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
+
+    _\| \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ for license information.)
+
+    \;
+
+    Loaded prelude from /usr/lib/pure/prelude.pure.
   </verbatim>
 
   Check that it works:
@@ -679,10 +688,10 @@
   installation, it should be sufficient to drop the texmacs/plugins/pure
   directory in the distribution into your personal TeXmacs plugins folder,
   usually <math|\<sim\>>/.TeXmacs/plugins. You can also do this with
-  <verbatim|make> <verbatim|install-tm> <verbatim|tmdir=~/.TeXmacs/plugins>
-  (in this case, uninstall with <verbatim|make> <verbatim|uninstall-tm>
-  <verbatim|tmdir=~/.TeXmacs/plugins>). This has the advantage that it
-  doesn't require root access and you can easily edit the plugin files under
+  <verbatim|make> <verbatim|install-tm> <verbatim|tmdir=~/.TeXmacs> (in this
+  case, uninstall with <verbatim|make> <verbatim|uninstall-tm>
+  <verbatim|tmdir=~/.TeXmacs>). This has the advantage that it doesn't
+  require root access and you can easily edit the plugin files under
   <math|\<sim\>>/.TeXmacs/plugins/pure/progs afterwards to tailor them to
   your needs.
 
@@ -1340,15 +1349,29 @@
   exists in the MacPorts collection, see <hlink|http://www.macports.org/|http://www.macports.org/>.
   If you install straight from the source, make sure that you use a recent
   LLVM version (LLVM 2.7 or later should work fine on all flavours of Intel
-  Macs). On PowerPC, you might have to build Pure with
-  <verbatim|--disable-fastcc>, see the <hlink|PowerPC|#powerpc> section
-  above.
+  Macs).
 
-  Also note that with some older versions of the Apple gcc compiler, with all
-  warnings turned on you may get the (bogus) warning ``control reaches end of
-  non-void function'' a couple of times in interpreter.cc. These are due to a
-  bug in older gcc versions (see <hlink|http://gcc.gnu.org/bugzilla/show_bug.cgi?id=16558|http://gcc.gnu.org/bugzilla/show-bug.cgi?id=16558>),
-  but they are harmless and can be ignored.
+  Even if you compile Pure from source, we recommend installing LLVM and the
+  other dependencies from MacPorts. In that case you'll have to add a few
+  options to the configure command so that the required header files,
+  libraries and LLVM tools are found:
+
+  <\verbatim>
+    ./configure --enable-release --prefix=/opt/local \\
+
+    CPPFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib \\
+
+    --with-tool-prefix=/opt/local/libexec/llvm-3.4/bin
+  </verbatim>
+
+  This assumes that your MacPorts installation lives under /opt/local and
+  that you're using LLVM 3.4; otherwise you'll have to adjust the configure
+  options accordingly.
+
+  On really old Macs from the bygone PPC era you'll have to be prepared to
+  deal with all kinds of issues with compilers, LLVM toolchain etc. If you're
+  still using one of these, your best bet is to find a port on MacPorts which
+  works for your OS X version.
 
   <subsubsection|BSD<label|bsd>>
 
@@ -1488,6 +1511,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

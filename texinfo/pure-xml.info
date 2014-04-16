@@ -1,7 +1,7 @@
 This is pure-xml.info, produced by makeinfo version 5.2 from
 pure-xml.texi.
 
-     Pure 0.60, March 24, 2014
+     Pure 0.60, April 16, 2014
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pure-xml.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-xml
 ********
 
-     Pure 0.60, March 24, 2014
+     Pure 0.60, April 16, 2014
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2014, Albert Gräf et al
 
-  Version 0.7, March 24, 2014
+  Version 0.7, April 16, 2014
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -307,18 +307,29 @@ identifying the entity.
 declaration: 18. nodes) is a kind of regular expression formed with tags
 (specified as strings) and the following constructors:
 
- -- Pure Constructor: xml::pcdata: text data (``#PCDATA``)
+ -- Pure Constructor: xml::pcdata
 
- -- Pure Constructor: xml::sequence xs: concatenation (``x,y,z``)
+     text data (‘#PCDATA’)
 
- -- Pure Constructor: xml::union xs: alternatives (``x|y|z``)
+ -- Pure Constructor: xml::sequence xs
 
- -- Pure Constructor: xml::opt x: optional element (``x?``)
+     concatenation (‘x,y,z’)
 
- -- Pure Constructor: xml::mult x: repeated element (``x*``)
+ -- Pure Constructor: xml::union xs
 
- -- Pure Constructor: xml::plus x: non-optional repeated element
-          (``x+``)
+     alternatives (‘x|y|z’)
+
+ -- Pure Constructor: xml::opt x
+
+     optional element (‘x?’)
+
+ -- Pure Constructor: xml::mult x
+
+     repeated element (‘x*’)
+
+ -- Pure Constructor: xml::plus x
+
+     non-optional repeated element (‘x+’)
 
   Attribute defaults (the ‘default’ argument of *note attribute
 declaration: 1f. nodes) are represented using the following constructor
@@ -784,7 +795,7 @@ Index
 * Menu:
 
 * attribute declaration:                 Document Types.      (line  53)
-* attribute defaults:                    Document Types.      (line 111)
+* attribute defaults:                    Document Types.      (line 122)
 * dtd:                                   Document Types.      (line   6)
 * element content:                       Document Types.      (line  94)
 * element declaration:                   Document Types.      (line  24)
@@ -804,7 +815,7 @@ Index
 * xml;;children (function):              Traversing Documents.
                                                               (line  47)
 * xml;;comment (constructor):            The Document Tree.   (line  45)
-* xml;;default (constructor):            Document Types.      (line 123)
+* xml;;default (constructor):            Document Types.      (line 134)
 * xml;;doc (function):                   Traversing Documents.
                                                               (line  17)
 * xml;;docp (function):                  Data Structure.      (line  19)
@@ -824,11 +835,11 @@ Index
                                                               (line  25)
 * xml;;first_attr (function):            Traversing Documents.
                                                               (line  35)
-* xml;;fixed (constructor):              Document Types.      (line 127)
+* xml;;fixed (constructor):              Document Types.      (line 138)
 * xml;;idrefs_attr (constructor):        Document Types.      (line  67)
 * xml;;idref_attr (constructor):         Document Types.      (line  65)
 * xml;;id_attr (constructor):            Document Types.      (line  63)
-* xml;;implied (constructor):            Document Types.      (line 119)
+* xml;;implied (constructor):            Document Types.      (line 130)
 * xml;;int_entity (constructor):         Document Types.      (line  86)
 * xml;;int_param_entity (constructor):   Document Types.      (line  88)
 * xml;;int_subset (function):            Document Operations. (line  72)
@@ -840,7 +851,7 @@ Index
 * xml;;load_file (function):             Document Operations. (line  26)
 * xml;;load_string (function):           Document Operations. (line  26)
 * xml;;mixed_element (constructor):      Document Types.      (line  42)
-* xml;;mult (constructor):               Document Types.      (line 106)
+* xml;;mult (constructor):               Document Types.      (line 114)
 * xml;;new_doc (function):               Document Operations. (line  10)
 * xml;;next (function):                  Traversing Documents.
                                                               (line  30)
@@ -853,27 +864,27 @@ Index
 * xml;;node_info (function):             Node Information.    (line  34)
 * xml;;node_path (function):             Node Information.    (line  49)
 * xml;;notation_attr (constructor):      Document Types.      (line  79)
-* xml;;opt (constructor):                Document Types.      (line 104)
+* xml;;opt (constructor):                Document Types.      (line 110)
 * xml;;parent (function):                Traversing Documents.
                                                               (line  21)
-* xml;;pcdata; (constructor):            Document Types.      (line  98)
+* xml;;pcdata (constructor):             Document Types.      (line  98)
 * xml;;pi (constructor):                 The Document Tree.   (line  53)
-* xml;;plus (constructor):               Document Types.      (line 108)
+* xml;;plus (constructor):               Document Types.      (line 118)
 * xml;;prev (function):                  Traversing Documents.
                                                               (line  30)
 * xml;;replace (function):               Node Manipulation.   (line  10)
-* xml;;required (constructor):           Document Types.      (line 115)
+* xml;;required (constructor):           Document Types.      (line 126)
 * xml;;root (function):                  Traversing Documents.
                                                               (line  13)
 * xml;;save_file (function):             Document Operations. (line  46)
 * xml;;save_string (function):           Document Operations. (line  46)
 * xml;;select (function):                Node Information.    (line   9)
-* xml;;sequence (constructor):           Document Types.      (line 100)
+* xml;;sequence (constructor):           Document Types.      (line 102)
 * xml;;set_node_attr (function):         Node Information.    (line  67)
 * xml;;std_element (constructor):        Document Types.      (line  48)
 * xml;;text (constructor):               The Document Tree.   (line  37)
 * xml;;undefined_element (constructor):  Document Types.      (line  29)
-* xml;;union (constructor):              Document Types.      (line 102)
+* xml;;union (constructor):              Document Types.      (line 106)
 * xml;;unlink (function):                Node Manipulation.   (line  29)
 * xml;;unset_node_attr (function):       Node Information.    (line  67)
 * xslt;;apply_stylesheet (function):     Transformations.     (line  41)
@@ -988,128 +999,128 @@ Ref: pure-xml element-content10451
 Ref: 1910451
 Ref: pure-xml xml pcdata10652
 Ref: 3010652
-Ref: pure-xml xml sequence10712
-Ref: 3110712
-Ref: pure-xml xml union10779
-Ref: 3210779
-Ref: pure-xml xml opt10842
-Ref: 3310842
-Ref: pure-xml xml mult10903
-Ref: 3410903
-Ref: pure-xml xml plus10965
-Ref: 3510965
-Ref: pure-xml attribute-defaults11050
-Ref: 2011050
-Ref: pure-xml xml required11200
-Ref: 3611200
-Ref: pure-xml xml implied11298
-Ref: 3711298
-Ref: pure-xml xml default11407
-Ref: 3811407
-Ref: pure-xml xml fixed11505
-Ref: 3911505
-Ref: Document Types-Footnote-111635
-Ref: Document Types-Footnote-211684
-Ref: Document Types-Footnote-311733
-Node: Operations11782
-Ref: pure-xml operations11878
-Ref: 3a11878
-Node: Document Operations12248
-Ref: pure-xml document-operations12345
-Ref: 3b12345
-Ref: pure-xml xml new_doc12559
-Ref: 3c12559
-Ref: pure-xml xml load_file13414
-Ref: 3d13414
-Ref: pure-xml xml load_string13459
-Ref: 3e13459
-Ref: pure-xml xml save_file14067
-Ref: 3f14067
-Ref: pure-xml xml save_string14131
-Ref: 4014131
-Ref: pure-xml xml doc_info14551
-Ref: 4114551
-Ref: pure-xml xml int_subset15498
-Ref: 4215498
-Ref: pure-xml xml ext_subset15537
-Ref: 4315537
-Ref: Document Operations-Footnote-116029
-Node: Traversing Documents16075
-Ref: pure-xml traversing-documents16197
-Ref: 4416197
-Ref: pure-xml xml root16662
-Ref: 4816662
-Ref: pure-xml xml doc16729
-Ref: 4516729
-Ref: pure-xml xml parent16804
-Ref: 4916804
-Ref: pure-xml xml first16872
-Ref: 4a16872
-Ref: pure-xml xml last16907
-Ref: 4b16907
-Ref: pure-xml xml next16974
-Ref: 4c16974
-Ref: pure-xml xml prev17008
-Ref: 4d17008
-Ref: pure-xml xml first_attr17075
-Ref: 4e17075
-Ref: pure-xml xml last_attr17115
-Ref: 4f17115
-Ref: pure-xml xml children17443
-Ref: 5017443
-Ref: pure-xml xml attrs17538
-Ref: 5117538
-Node: Node Information18064
-Ref: pure-xml node-information18184
-Ref: 4618184
-Ref: pure-xml xml select18302
-Ref: 5218302
-Ref: pure-xml xml node_info19689
-Ref: 5319689
-Ref: pure-xml xml is_blank_node19942
-Ref: 5419942
-Ref: pure-xml xml node_base20086
-Ref: 5520086
-Ref: pure-xml xml node_path20172
-Ref: 5620172
-Ref: pure-xml xml node_content20307
-Ref: 5720307
-Ref: pure-xml xml node_attr20538
-Ref: 5820538
-Ref: pure-xml xml set_node_attr20686
-Ref: 5920686
-Ref: pure-xml xml unset_node_attr20740
-Ref: 5a20740
-Ref: Node Information-Footnote-121831
-Node: Node Manipulation21866
-Ref: pure-xml node-manipulation21981
-Ref: 4721981
-Ref: pure-xml xml replace22237
-Ref: 5b22237
-Ref: pure-xml xml add_first22371
-Ref: 5c22371
-Ref: pure-xml xml add_last22415
-Ref: 5d22415
-Ref: pure-xml xml add_next22543
-Ref: 5e22543
-Ref: pure-xml xml add_prev22586
-Ref: 5f22586
-Ref: pure-xml xml unlink22792
-Ref: 6022792
-Node: Transformations23358
-Ref: pure-xml transformations23448
-Ref: 723448
-Ref: pure-xml xslt load_stylesheet24993
-Ref: 6124993
-Ref: pure-xml xslt apply_stylesheet25165
-Ref: 6225165
-Ref: pure-xml xslt save_result_file25497
-Ref: 6325497
-Ref: pure-xml xslt save_result_string25566
-Ref: 6425566
-Ref: Transformations-Footnote-126454
-Node: Module Index26488
-Node: Index26623
+Ref: pure-xml xml sequence10719
+Ref: 3110719
+Ref: pure-xml xml union10793
+Ref: 3210793
+Ref: pure-xml xml opt10863
+Ref: 3310863
+Ref: pure-xml xml mult10931
+Ref: 3410931
+Ref: pure-xml xml plus11000
+Ref: 3511000
+Ref: pure-xml attribute-defaults11082
+Ref: 2011082
+Ref: pure-xml xml required11232
+Ref: 3611232
+Ref: pure-xml xml implied11330
+Ref: 3711330
+Ref: pure-xml xml default11439
+Ref: 3811439
+Ref: pure-xml xml fixed11537
+Ref: 3911537
+Ref: Document Types-Footnote-111667
+Ref: Document Types-Footnote-211716
+Ref: Document Types-Footnote-311765
+Node: Operations11814
+Ref: pure-xml operations11910
+Ref: 3a11910
+Node: Document Operations12280
+Ref: pure-xml document-operations12377
+Ref: 3b12377
+Ref: pure-xml xml new_doc12591
+Ref: 3c12591
+Ref: pure-xml xml load_file13446
+Ref: 3d13446
+Ref: pure-xml xml load_string13491
+Ref: 3e13491
+Ref: pure-xml xml save_file14099
+Ref: 3f14099
+Ref: pure-xml xml save_string14163
+Ref: 4014163
+Ref: pure-xml xml doc_info14583
+Ref: 4114583
+Ref: pure-xml xml int_subset15530
+Ref: 4215530
+Ref: pure-xml xml ext_subset15569
+Ref: 4315569
+Ref: Document Operations-Footnote-116061
+Node: Traversing Documents16107
+Ref: pure-xml traversing-documents16229
+Ref: 4416229
+Ref: pure-xml xml root16694
+Ref: 4816694
+Ref: pure-xml xml doc16761
+Ref: 4516761
+Ref: pure-xml xml parent16836
+Ref: 4916836
+Ref: pure-xml xml first16904
+Ref: 4a16904
+Ref: pure-xml xml last16939
+Ref: 4b16939
+Ref: pure-xml xml next17006
+Ref: 4c17006
+Ref: pure-xml xml prev17040
+Ref: 4d17040
+Ref: pure-xml xml first_attr17107
+Ref: 4e17107
+Ref: pure-xml xml last_attr17147
+Ref: 4f17147
+Ref: pure-xml xml children17475
+Ref: 5017475
+Ref: pure-xml xml attrs17570
+Ref: 5117570
+Node: Node Information18096
+Ref: pure-xml node-information18216
+Ref: 4618216
+Ref: pure-xml xml select18334
+Ref: 5218334
+Ref: pure-xml xml node_info19721
+Ref: 5319721
+Ref: pure-xml xml is_blank_node19974
+Ref: 5419974
+Ref: pure-xml xml node_base20118
+Ref: 5520118
+Ref: pure-xml xml node_path20204
+Ref: 5620204
+Ref: pure-xml xml node_content20339
+Ref: 5720339
+Ref: pure-xml xml node_attr20570
+Ref: 5820570
+Ref: pure-xml xml set_node_attr20718
+Ref: 5920718
+Ref: pure-xml xml unset_node_attr20772
+Ref: 5a20772
+Ref: Node Information-Footnote-121863
+Node: Node Manipulation21898
+Ref: pure-xml node-manipulation22013
+Ref: 4722013
+Ref: pure-xml xml replace22269
+Ref: 5b22269
+Ref: pure-xml xml add_first22403
+Ref: 5c22403
+Ref: pure-xml xml add_last22447
+Ref: 5d22447
+Ref: pure-xml xml add_next22575
+Ref: 5e22575
+Ref: pure-xml xml add_prev22618
+Ref: 5f22618
+Ref: pure-xml xml unlink22824
+Ref: 6022824
+Node: Transformations23390
+Ref: pure-xml transformations23480
+Ref: 723480
+Ref: pure-xml xslt load_stylesheet25025
+Ref: 6125025
+Ref: pure-xml xslt apply_stylesheet25197
+Ref: 6225197
+Ref: pure-xml xslt save_result_file25529
+Ref: 6325529
+Ref: pure-xml xslt save_result_string25598
+Ref: 6425598
+Ref: Transformations-Footnote-126486
+Node: Module Index26520
+Node: Index26655
 
 End Tag Table
 

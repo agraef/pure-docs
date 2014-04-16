@@ -4927,8 +4927,8 @@
   <hlink|<with|font-series|bold|xml::parent
   (function)>|pure-xml.tm#xml::parent>
 
-  <hlink|<with|font-series|bold|xml::pcdata:
-  (constructor)>|pure-xml.tm#xml::pcdata:>
+  <hlink|<with|font-series|bold|xml::pcdata
+  (constructor)>|pure-xml.tm#xml::pcdata>
 
   <hlink|<with|font-series|bold|xml::pi (constructor)>|pure-xml.tm#xml::pi>
 
@@ -5008,6 +5008,6 @@
   <hlink|toc|#genindex-toc> <hlink|index|#> <hlink|modules|pure-modindex.tm>
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

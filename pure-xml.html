@@ -57,7 +57,7 @@
             
   <div class="section" id="module-xml">
 <span id="pure-xml-xml-xslt-interface"></span><h1>Pure-XML - XML/XSLT interface<a class="headerlink" href="#module-xml" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.7, March 24, 2014</p>
+<p>Version 0.7, April 16, 2014</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p><a class="reference external" href="http://www.w3.org/TR/xml">XML</a>, the Extensible Markup Language, facilitates the exchange of complex
 structured data between applications and systems. <a class="reference external" href="http://www.w3.org/TR/xslt">XSLT</a> allows you to
@@ -369,34 +369,40 @@ identifier/URI pair) identifying the entity.</p>
 declaration</a> nodes) is a kind of regular expression formed with tags
 (specified as strings) and the following constructors:</p>
 <dl class="constructor">
-<dt id="xml::pcdata:">
-<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">pcdata:</tt> text data (``#PCDATA``)<a class="headerlink" href="#xml::pcdata:" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dt id="xml::pcdata">
+<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">pcdata</tt><a class="headerlink" href="#xml::pcdata" title="Permalink to this definition">¶</a></dt>
+<dd><p>text data (<tt class="docutils literal"><span class="pre">#PCDATA</span></tt>)</p>
+</dd></dl>
 
 <dl class="constructor">
 <dt id="xml::sequence">
-<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">sequence</tt> xs: concatenation (``x,y,z``)<a class="headerlink" href="#xml::sequence" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">sequence</tt> xs<a class="headerlink" href="#xml::sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>concatenation (<tt class="docutils literal"><span class="pre">x,y,z</span></tt>)</p>
+</dd></dl>
 
 <dl class="constructor">
 <dt id="xml::union">
-<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">union</tt> xs: alternatives (``x|y|z``)<a class="headerlink" href="#xml::union" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">union</tt> xs<a class="headerlink" href="#xml::union" title="Permalink to this definition">¶</a></dt>
+<dd><p>alternatives (<tt class="docutils literal"><span class="pre">x|y|z</span></tt>)</p>
+</dd></dl>
 
 <dl class="constructor">
 <dt id="xml::opt">
-<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">opt</tt> x: optional element (``x?``)<a class="headerlink" href="#xml::opt" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">opt</tt> x<a class="headerlink" href="#xml::opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>optional element (<tt class="docutils literal"><span class="pre">x?</span></tt>)</p>
+</dd></dl>
 
 <dl class="constructor">
 <dt id="xml::mult">
-<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">mult</tt> x: repeated element (``x*``)<a class="headerlink" href="#xml::mult" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">mult</tt> x<a class="headerlink" href="#xml::mult" title="Permalink to this definition">¶</a></dt>
+<dd><p>repeated element (<tt class="docutils literal"><span class="pre">x*</span></tt>)</p>
+</dd></dl>
 
 <dl class="constructor">
 <dt id="xml::plus">
-<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">plus</tt> x: non-optional repeated element (``x+``)<a class="headerlink" href="#xml::plus" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">constructor </em><tt class="descclassname">xml::</tt><tt class="descname">plus</tt> x<a class="headerlink" href="#xml::plus" title="Permalink to this definition">¶</a></dt>
+<dd><p>non-optional repeated element (<tt class="docutils literal"><span class="pre">x+</span></tt>)</p>
+</dd></dl>
 
 <p id="attribute-defaults"><span id="index-6"></span>Attribute defaults (the <tt class="docutils literal"><span class="pre">default</span></tt> argument of <a class="reference internal" href="#attribute-declaration">attribute declaration</a>
 nodes) are represented using the following constructor symbols:</p>
@@ -917,7 +923,7 @@ browser.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Mar 24, 2014.
+    Last updated on Apr 16, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

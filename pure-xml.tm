@@ -10,7 +10,7 @@
 
   <section*|Pure-XML - XML/XSLT interface<label|module-xml>>
 
-  Version 0.7, March 24, 2014
+  Version 0.7, April 16, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -319,33 +319,33 @@
   the following constructors:
 
   <\description>
-    <item*|<em|constructor> xml::pcdata: text data
-    (``#PCDATA``)<label|xml::pcdata:>>
+    <item*|<em|constructor> xml::pcdata<label|xml::pcdata>>text data
+    (<verbatim|#PCDATA>)
   </description>
 
   <\description>
-    <item*|<em|constructor> xml::sequence xs: concatenation
-    (``x,y,z``)<label|xml::sequence>>
+    <item*|<em|constructor> xml::sequence
+    xs<label|xml::sequence>>concatenation (<verbatim|x,y,z>)
   </description>
 
   <\description>
-    <item*|<em|constructor> xml::union xs: alternatives
-    (``x\|y\|z``)<label|xml::union>>
+    <item*|<em|constructor> xml::union xs<label|xml::union>>alternatives
+    (<verbatim|x\|y\|z>)
   </description>
 
   <\description>
-    <item*|<em|constructor> xml::opt x: optional element
-    (``x?``)<label|xml::opt>>
+    <item*|<em|constructor> xml::opt x<label|xml::opt>>optional element
+    (<verbatim|x?>)
   </description>
 
   <\description>
-    <item*|<em|constructor> xml::mult x: repeated element
-    (``x*``)<label|xml::mult>>
+    <item*|<em|constructor> xml::mult x<label|xml::mult>>repeated element
+    (<verbatim|x*>)
   </description>
 
   <\description>
-    <item*|<em|constructor> xml::plus x: non-optional repeated element
-    (``x+``)<label|xml::plus>>
+    <item*|<em|constructor> xml::plus x<label|xml::plus>>non-optional
+    repeated element (<verbatim|x+>)
   </description>
 
   <label|attribute-defaults>Attribute defaults (the <verbatim|default>
@@ -891,6 +891,6 @@
   <hlink|previous|pure-sql3.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

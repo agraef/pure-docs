@@ -10,7 +10,7 @@
 
   <section*|pure-stlmap<label|module-stlmap>>
 
-  <label|module-stlmmap><label|module-stlhmap>Version 0.4, March 24, 2014
+  <label|module-stlmmap><label|module-stlhmap>Version 0.4, April 16, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -1671,8 +1671,8 @@
   <hlink|<with|font-family|tt|vals>|#vals/stlmap> functions.
 
   <\verbatim>
-    \ \<gtr\> members shm; \ \ // must do all of shm elements because shm is
-    a stlhmap
+    \<gtr\> members shm; \ \ // must do all of shm elements because shm is a
+    stlhmap
 
     ["d"=\<gtr\>4,"e"=\<gtr\>5,"a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3]
 
@@ -1892,9 +1892,11 @@
   when using ranges, you can use the <hlink|<with|font-family|tt|stl::map_equal>|#stl::map-equal/stlmap>
   function.
 
-  <\quote-env>
-    \<gtr\> map_equal (xx,''a'',''c'') (ss,''a'',''c''); 1
-  </quote-env>
+  <\verbatim>
+    \<gtr\> map_equal (xx,"a","c") (ss,"a","c");
+
+    1
+  </verbatim>
 
   The other comparison operators <verbatim|(\<)>, <verbatim|(\<=)>,
   <verbatim|(\>)> and <verbatim|(\>=)> are provided only for the ordered
@@ -2642,6 +2644,6 @@
   <hlink|previous|pure-stllib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
+  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

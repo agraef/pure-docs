@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.60, March 24, 2014
+Pure 0.60, April 16, 2014
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 @anchor{pure doc}@anchor{0}
 @c Teach TeX how to hyphenate 'namespace' and 'whitespace'.
 
-Version 0.60, March 24, 2014
+Version 0.60, April 16, 2014
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -317,7 +317,7 @@ calculator" program. Simply run the program from the shell as follows:
 $ pure
 
  __ \  |   |  __| _ \    Pure 0.60 (x86_64-unknown-linux-gnu)
- |   | |   | |    __/    Copyright (c) 2008-2013 by Albert Graef
+ |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
  .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
 _|                       for license information.)
 
@@ -2996,16 +2996,16 @@ functions or local function applications:
 
 @example
 \x1 ... xn -> y
-≡ f with f x1 ... xn = y; f _ ... _ = throw failed_match end
+== f with f x1 ... xn = y; f _ ... _ = throw failed_match end
 
 case x of y1 = z1; ...; yn = zn end
-≡ f x with f y1 = z1; ...; f yn = zn; f _ = throw failed_match end
+== f x with f y1 = z1; ...; f yn = zn; f _ = throw failed_match end
 
 x when y = z end
-≡ f z with f y = x; f _ = throw failed_match end
+== f z with f y = x; f _ = throw failed_match end
 
 x when y1 = z1; ...; yn = zn end
-≡ x when yn = zn end ... when y1 = z1 end
+== x when yn = zn end ... when y1 = z1 end
 @end example
 
 @noindent
@@ -4783,10 +4783,10 @@ explicit patterns in order to make the definition extensible.)
 Since the right-hand side of a type definition may in general be any
 predicate, it is up to the programmer to ensure that the definition of a type
 is actually computable. In fact, you should strive for the best possible
-efficiency in type predicates. A type definition which has worse than O(1)
-complexity may well be a serious performance hog depending on the way in which
-it is used, see @pxref{df,,Recursive Types} in the @pxref{c,,Caveats and Notes} section for
-more information about this.
+efficiency in type predicates. A type definition which has worse than
+@math{O(1)} complexity may well be a serious performance hog depending on the
+way in which it is used, see @pxref{df,,Recursive Types} in the @pxref{c,,Caveats and Notes}
+section for more information about this.
 
 Finally, note that in general it may be hard or even impossible to predict
 exactly when the code of a type definition will be executed at runtime. Thus,
@@ -5080,7 +5080,7 @@ way. You then simply run it like this:
 $ pure
 
  __ \  |   |  __| _ \    Pure 0.60 (x86_64-unknown-linux-gnu)
- |   | |   | |    __/    Copyright (c) 2008-2013 by Albert Graef
+ |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
  .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
 _|                       for license information.)
 
@@ -17859,9 +17859,9 @@ a tail-recursive form using a technique like continuation passing@footnote{http:
 
 There's yet another important issue with recursive type definitions, namely
 the @emph{time} it takes to check the definition. In the above example, checking
-@code{rlist} takes O(n) time, where n is the size of the list. This will
-have dire consequences if you do this check repeatedly while traversing a
-list, as in the following @code{sum} function:
+@code{rlist} takes @math{O(n)} time, where n is the size of the
+list. This will have dire consequences if you do this check repeatedly while
+traversing a list, as in the following @code{sum} function:
 
 @example
 sum xs::rlist = if null xs then 0 else head xs+sum (tail xs);
@@ -17870,8 +17870,8 @@ sum xs::rlist = if null xs then 0 else head xs+sum (tail xs);
 @noindent
 
 As this function repeatedly checks its entire argument, the total time it
-takes to compute the sum of a list this way becomes O(n^2). To see how slow
-this function is, just try it on successively larger lists @code{1..1000},
+takes to compute the sum of a list this way becomes @math{O(n^2)}. To see how
+slow this function is, just try it on successively larger lists @code{1..1000},
 @code{1..2000}, etc. One way to work around this is to write a "wrapper" function
 which simply checks the type of its argument in advance and then invokes a
 "worker" function to do the actual computation:
@@ -17897,10 +17897,10 @@ type list [] | list (x:xs);
 @noindent
 
 Note that the recursion is missing here and thus this type can always be
-checked in O(1) time, performing just a single pattern match, which is
+checked in @math{O(1)} time, performing just a single pattern match, which is
 efficient. Hence, if we replace @code{rlist} with the @code{list}
-type in our original definition then @code{sum} will now run in O(n) time, as
-desired. On the other hand, this approach also has its drawbacks. For
+type in our original definition then @code{sum} will now run in @math{O(n)}
+time, as desired. On the other hand, this approach also has its drawbacks. For
 instance, consider:
 
 @example
