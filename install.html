@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.60',
+        VERSION:     '0.61',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.60, April 16, 2014</p>
+<p>Version 0.61, September 11, 2014</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -82,7 +82,7 @@ for other (UNIX-like) systems is provided at the same location.</p>
 <div class="section" id="quick-summary">
 <h2>Quick Summary<a class="headerlink" href="#quick-summary" title="Permalink to this headline">¶</a></h2>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
-using LLVM 3.4 and Pure 0.60, please substitute your actual version
+using LLVM 3.4 and Pure 0.61, please substitute your actual version
 numbers in the commands given below.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -100,7 +100,7 @@ most systems.</p>
 <p>You&#8217;ll probably need the latest Pure and LLVM tarballs which, at the time of
 this writing, are available here:</p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz</a></div>
+<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
@@ -122,8 +122,8 @@ to disable stuff that makes LLVM very slow and/or breaks it on some systems.)</p
 &#8220;DragonEgg&#8221; plugin for gcc, please check the <a class="reference internal" href="#dragonegg">dragonegg</a> section below for
 details.</p>
 <p>Installing Pure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.60.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-0.60
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.61.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-0.61
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -146,8 +146,8 @@ the documentation files:</p>
 </div>
 <p>This needs the <tt class="docutils literal"><span class="pre">wget</span></tt> program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.60.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.60
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.61.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.61
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -156,7 +156,7 @@ pure-docs tarball manually in the usual way, e.g.:</p>
 </pre></div>
 </div>
 <p>Uninstalling:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.60
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.61
 <span class="gp">$</span> sudo make uninstall
 <span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.4
 <span class="gp">$</span> sudo make uninstall
@@ -446,7 +446,7 @@ the TeXmacs-formatted documentation as follows:</p>
 <p>Run Pure interactively as:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
 
-<span class="go"> __ \  |   |  __| _ \    Pure 0.60 (x86_64-unknown-linux-gnu)</span>
+<span class="go"> __ \  |   |  __| _ \    Pure 0.61 (x86_64-unknown-linux-gnu)</span>
 <span class="go"> |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef</span>
 <span class="go"> .__/ \__,_|_|  \___|    (Type &#39;help&#39; for help, &#39;help copying&#39;</span>
 <span class="go">_|                       for license information.)</span>
@@ -996,27 +996,18 @@ releases.</p>
 <div class="section" id="llvm-3-3">
 <h3>LLVM 3.3<a class="headerlink" href="#llvm-3-3" title="Permalink to this headline">¶</a></h3>
 <p>Reportedly the Pure batch compiler is broken when using LLVM 3.3 on Mac OS X.
-If you need the batch compiler then use either LLVM 3.2 or 3.4 on OS X
+If you need the batch compiler then use either LLVM 3.2 or 3.4+ on OS X
 instead, these are known to work on that platform.</p>
 </div>
 <div class="section" id="llvm-3-4">
-<h3>LLVM 3.4<a class="headerlink" href="#llvm-3-4" title="Permalink to this headline">¶</a></h3>
-<p>On Linux, the <tt class="docutils literal"><span class="pre">llc</span></tt> program from LLVM 3.4 is known to have issues which
-cause Pure&#8217;s batch compiler to fail. As a remedy, you can use the <tt class="docutils literal"><span class="pre">llc</span></tt> and
-<tt class="docutils literal"><span class="pre">opt</span></tt> executables from LLVM 3.3 instead (note that both programs are needed
-since the <tt class="docutils literal"><span class="pre">llc</span></tt> from LLVM 3.3 won&#8217;t work with the <tt class="docutils literal"><span class="pre">opt</span></tt> program from LLVM
-3.4). To these ends, simply copy these executables to the Pure library
-directory (/usr/local/lib/pure by default). The Pure interpreter will then use
-these executables instead of the LLVM tools installed on your system. Prebuilt
-<tt class="docutils literal"><span class="pre">llc</span></tt> and <tt class="docutils literal"><span class="pre">opt</span></tt> binaries for Linux can be found in the download section on
-Bitbucket:</p>
-<blockquote>
-<div><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2">https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2</a></div></blockquote>
-<p>The tarball contains ELF executables for both 32 and 64 bit Linux systems
-which have been linked statically and thus don&#8217;t need the LLVM 3.3 libraries
-to be installed on your system. The binaries should hopefully work on most
-recent Linux systems; if they don&#8217;t work for you then please check the README
-file included in the tarball for instructions on how to build your own.</p>
+<h3>LLVM 3.4+<a class="headerlink" href="#llvm-3-4" title="Permalink to this headline">¶</a></h3>
+<p>On Linux, the <tt class="docutils literal"><span class="pre">llc</span></tt> program from LLVM 3.4 and 3.5 is known to create native
+assembler (.s) code which doesn&#8217;t mangle assembler symbols as it used to be in
+earlier releases. When compiling Pure modules with the batch compiler, this
+results in native assembler code which can&#8217;t be compiled using the system
+assemblers. As a remedy, the batch compiler in Pure 0.61 and later now creates
+native object (.o) files directly using llc, without going through the native
+assembler stage.</p>
 </div>
 <div class="section" id="powerpc">
 <h3>PowerPC<a class="headerlink" href="#powerpc" title="Permalink to this headline">¶</a></h3>
@@ -1133,7 +1124,7 @@ unzip these into some convenient location on your harddrive and set up
 <li><a class="reference internal" href="#all-platforms">All Platforms</a></li>
 <li><a class="reference internal" href="#llvm-2-5">LLVM 2.5</a></li>
 <li><a class="reference internal" href="#llvm-3-3">LLVM 3.3</a></li>
-<li><a class="reference internal" href="#llvm-3-4">LLVM 3.4</a></li>
+<li><a class="reference internal" href="#llvm-3-4">LLVM 3.4+</a></li>
 <li><a class="reference internal" href="#powerpc">PowerPC</a></li>
 <li><a class="reference internal" href="#linux">Linux</a></li>
 <li><a class="reference internal" href="#mac-os-x">Mac OS X</a></li>
@@ -1195,7 +1186,7 @@ unzip these into some convenient location on your harddrive and set up
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Apr 16, 2014.
+    Last updated on Sep 11, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

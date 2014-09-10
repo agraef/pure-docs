@@ -3,7 +3,7 @@
 Installing Pure (and LLVM)
 ==========================
 
-Version 0.60, |today|
+Version 0.61, |today|
 
 | Albert Graef <aggraef@gmail.com>
 | Eddie Rucker <erucker@bmc.edu>
@@ -37,7 +37,7 @@ Quick Summary
 =============
 
 Here is the executive summary for the impatient. This assumes that you're
-using LLVM 3.4 and Pure 0.60, please substitute your actual version
+using LLVM 3.4 and Pure 0.61, please substitute your actual version
 numbers in the commands given below.
 
 .. note:: If you're reading this documentation online, then the Pure version
@@ -55,7 +55,7 @@ most systems.
 You'll probably need the latest Pure and LLVM tarballs which, at the time of
 this writing, are available here:
 
-| https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz
+| https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz
 | http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz
 | http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
 | http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz
@@ -80,8 +80,8 @@ details.
 
 Installing Pure::
 
-  $ tar xfvz pure-0.60.tar.gz
-  $ cd pure-0.60
+  $ tar xfvz pure-0.61.tar.gz
+  $ cd pure-0.61
   $ ./configure --enable-release
   $ make && sudo make install
 
@@ -104,8 +104,8 @@ the documentation files::
 This needs the ``wget`` program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.::
 
-  $ tar xfvz pure-docs-0.60.tar.gz
-  $ cd pure-docs-0.60
+  $ tar xfvz pure-docs-0.61.tar.gz
+  $ cd pure-docs-0.61
   $ sudo make install
 
 That's it, Pure should be ready to go now::
@@ -114,7 +114,7 @@ That's it, Pure should be ready to go now::
 
 Uninstalling::
 
-  $ cd pure-0.60
+  $ cd pure-0.61
   $ sudo make uninstall
   $ cd ../llvm-3.4
   $ sudo make uninstall
@@ -444,7 +444,7 @@ Run Pure interactively as::
 
    $ pure
 
-    __ \  |   |  __| _ \    Pure 0.60 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.61 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)
@@ -1073,29 +1073,19 @@ LLVM 3.3
 --------
 
 Reportedly the Pure batch compiler is broken when using LLVM 3.3 on Mac OS X.
-If you need the batch compiler then use either LLVM 3.2 or 3.4 on OS X
+If you need the batch compiler then use either LLVM 3.2 or 3.4+ on OS X
 instead, these are known to work on that platform.
 
-LLVM 3.4
---------
+LLVM 3.4+
+---------
 
-On Linux, the ``llc`` program from LLVM 3.4 is known to have issues which
-cause Pure's batch compiler to fail. As a remedy, you can use the ``llc`` and
-``opt`` executables from LLVM 3.3 instead (note that both programs are needed
-since the ``llc`` from LLVM 3.3 won't work with the ``opt`` program from LLVM
-3.4). To these ends, simply copy these executables to the Pure library
-directory (/usr/local/lib/pure by default). The Pure interpreter will then use
-these executables instead of the LLVM tools installed on your system. Prebuilt
-``llc`` and ``opt`` binaries for Linux can be found in the download section on
-Bitbucket:
-
-  https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2
-
-The tarball contains ELF executables for both 32 and 64 bit Linux systems
-which have been linked statically and thus don't need the LLVM 3.3 libraries
-to be installed on your system. The binaries should hopefully work on most
-recent Linux systems; if they don't work for you then please check the README
-file included in the tarball for instructions on how to build your own.
+On Linux, the ``llc`` program from LLVM 3.4 and 3.5 is known to create native
+assembler (.s) code which doesn't mangle assembler symbols as it used to be in
+earlier releases. When compiling Pure modules with the batch compiler, this
+results in native assembler code which can't be compiled using the system
+assemblers. As a remedy, the batch compiler in Pure 0.61 and later now creates
+native object (.o) files directly using llc, without going through the native
+assembler stage.
 
 PowerPC
 -------

@@ -10,7 +10,7 @@
 
   <section*|pure-stllib<label|pure-stllib>>
 
-  Version 0.6, March 24, 2014
+  Version 0.6, September 09, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -152,6 +152,6 @@
   <hlink|previous|pure-stldict.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
+  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

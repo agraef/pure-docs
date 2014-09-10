@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.60, April 16, 2014
+  Version 0.61, September 11, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -40,7 +40,7 @@
   <subsection|Quick Summary<label|quick-summary>>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.4 and Pure 0.60, please substitute your actual version numbers
+  using LLVM 3.4 and Pure 0.61, please substitute your actual version numbers
   in the commands given below.
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
@@ -59,7 +59,7 @@
   You'll probably need the latest Pure and LLVM tarballs which, at the time
   of this writing, are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.60.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
@@ -96,9 +96,9 @@
   Installing Pure:
 
   <\verbatim>
-    $ tar xfvz pure-0.60.tar.gz
+    $ tar xfvz pure-0.61.tar.gz
 
-    $ cd pure-0.60
+    $ cd pure-0.61
 
     $ ./configure --enable-release
 
@@ -132,9 +132,9 @@
   the pure-docs tarball manually in the usual way, e.g.:
 
   <\verbatim>
-    $ tar xfvz pure-docs-0.60.tar.gz
+    $ tar xfvz pure-docs-0.61.tar.gz
 
-    $ cd pure-docs-0.60
+    $ cd pure-docs-0.61
 
     $ sudo make install
   </verbatim>
@@ -148,7 +148,7 @@
   Uninstalling:
 
   <\verbatim>
-    $ cd pure-0.60
+    $ cd pure-0.61
 
     $ sudo make uninstall
 
@@ -554,7 +554,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.60
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.61
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
@@ -1300,32 +1300,18 @@
   <subsubsection|LLVM 3.3<label|llvm-3-3>>
 
   Reportedly the Pure batch compiler is broken when using LLVM 3.3 on Mac OS
-  X. If you need the batch compiler then use either LLVM 3.2 or 3.4 on OS X
+  X. If you need the batch compiler then use either LLVM 3.2 or 3.4+ on OS X
   instead, these are known to work on that platform.
 
-  <subsubsection|LLVM 3.4<label|llvm-3-4>>
+  <subsubsection|LLVM 3.4+<label|llvm-3-4>>
 
-  On Linux, the <verbatim|llc> program from LLVM 3.4 is known to have issues
-  which cause Pure's batch compiler to fail. As a remedy, you can use the
-  <verbatim|llc> and <verbatim|opt> executables from LLVM 3.3 instead (note
-  that both programs are needed since the <verbatim|llc> from LLVM 3.3 won't
-  work with the <verbatim|opt> program from LLVM 3.4). To these ends, simply
-  copy these executables to the Pure library directory (/usr/local/lib/pure
-  by default). The Pure interpreter will then use these executables instead
-  of the LLVM tools installed on your system. Prebuilt <verbatim|llc> and
-  <verbatim|opt> binaries for Linux can be found in the download section on
-  Bitbucket:
-
-  <\quote-env>
-    <hlink|https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2|https://bitbucket.org/purelang/pure-lang/downloads/llvm-3.3-tools.tar.bz2>
-  </quote-env>
-
-  The tarball contains ELF executables for both 32 and 64 bit Linux systems
-  which have been linked statically and thus don't need the LLVM 3.3
-  libraries to be installed on your system. The binaries should hopefully
-  work on most recent Linux systems; if they don't work for you then please
-  check the README file included in the tarball for instructions on how to
-  build your own.
+  On Linux, the <verbatim|llc> program from LLVM 3.4 and 3.5 is known to
+  create native assembler (.s) code which doesn't mangle assembler symbols as
+  it used to be in earlier releases. When compiling Pure modules with the
+  batch compiler, this results in native assembler code which can't be
+  compiled using the system assemblers. As a remedy, the batch compiler in
+  Pure 0.61 and later now creates native object (.o) files directly using
+  llc, without going through the native assembler stage.
 
   <subsubsection|PowerPC<label|powerpc>>
 
@@ -1483,7 +1469,7 @@
 
         <item><hlink|LLVM 3.3|#llvm-3-3>
 
-        <item><hlink|LLVM 3.4|#llvm-3-4>
+        <item><hlink|LLVM 3.4+|#llvm-3-4>
 
         <item><hlink|PowerPC|#powerpc>
 
@@ -1511,6 +1497,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Apr
-  16, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
+  11, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

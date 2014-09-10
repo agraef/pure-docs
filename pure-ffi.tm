@@ -10,7 +10,7 @@
 
   <section*|pure-ffi<label|module-ffi>>
 
-  Version 0.14, March 24, 2014
+  Version 0.14, September 09, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -162,6 +162,6 @@
   <hlink|previous|pure-doc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Mar
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
+  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
