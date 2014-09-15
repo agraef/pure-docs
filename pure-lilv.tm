@@ -10,7 +10,7 @@
 
   <section*|pure-lilv: Pure Lilv Interface<label|module-lilv>>
 
-  Version 0.3, September 09, 2014
+  Version 0.4, September 15, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -22,7 +22,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.3.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.3.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.4.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.4.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|sudo>
   <verbatim|make> <verbatim|install> to install it in the Pure library
@@ -171,5 +171,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  15, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

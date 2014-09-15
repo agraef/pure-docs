@@ -10,7 +10,7 @@
 
   <section*|pure-lv2<label|module-lv2>>
 
-  Version 0.1, September 09, 2014
+  Version 0.2, September 15, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -22,7 +22,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.1.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.1.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.2.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.2.tar.gz>.
 
   Make sure that you have the latest Pure version installed. Pure 0.60 or
   later is needed.
@@ -229,5 +229,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  15, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

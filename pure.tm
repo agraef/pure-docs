@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.61, September 09, 2014
+  Version 0.61, September 15, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -413,6 +413,11 @@
   </description>
 
   <\description>
+    <item*|-mopt=val<label|cmdoption-pure-mopt>>Add llc machine options in
+    batch compilation.
+  </description>
+
+  <\description>
     <item*|--main name<label|cmdoption-pure--main>>Name of main entry point
     in batch compilation.
   </description>
@@ -630,8 +635,8 @@
   external tools are required to generate these. If the target is an .s, .o
   or executable file, the Pure interpreter creates a temporary bitcode file
   on which it invokes the LLVM tools <with|font-series|bold|opt> and
-  <with|font-series|bold|llc> to create a native assembler file, and then
-  uses the C/C++ compiler to assemble and link the resulting program (if
+  <with|font-series|bold|llc> to create a native assembler or object file,
+  and then uses the C/C++ compiler to link the resulting program (if
   requested). You can also specify additional libraries to be linked into the
   executable with the <hlink|<em|-l>|#cmdoption-pure-l> option. If the output
   filename is omitted, it defaults to a.out (a.exe on Windows).
@@ -17354,8 +17359,25 @@
   routines such as <verbatim|pure_eval> or <verbatim|pure_appl> to achieve
   this in an indirect way.)
 
-  Last but not least, <verbatim|pure> <verbatim|-c> can also generate just
-  plain LLVM assembler code:
+  The batch compiler also lets you pass some special options to the llc
+  program when creating a native assembler or object file. The present
+  implementation understands options of the form
+  <verbatim|-m><em|opt><verbatim|=><em|val> which can be used to select the
+  desired target architecture and cpu type. For instance:
+
+  <\verbatim>
+    $ pure -march=x86_64 -mcpu=generic -c hello.pure -o hello
+  </verbatim>
+
+  This is useful, in particular, in cross compilation and if you need to
+  select a specific processor variant. If you do not specify these options,
+  llc will pick a suitable default based on the characteristics of the host
+  system on which the code is compiled. Please check the documentation of the
+  llc program for further information.
+
+  For more elaborate uses not covered by the options discussed above,
+  <verbatim|pure> <verbatim|-c> can also generate just plain LLVM assembler
+  code:
 
   <\verbatim>
     pure -c hello.pure -o hello.ll
@@ -17369,7 +17391,7 @@
   </verbatim>
 
   In these cases you'll have to have to handle the rest of the compilation
-  yourself. This gives you the opportunity, e.g., to play with special
+  yourself. This gives you the opportunity, e.g., to play with more advanced
   optimization and code generation options provided by the LLVM toolchain.
   Please refer to the <hlink|LLVM documentation|http://llvm.org/docs/> (in
   particular, the description of the opt and llc programs) for details.
@@ -19572,5 +19594,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  15, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

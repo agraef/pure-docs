@@ -11,7 +11,7 @@
   <section*|Gnumeric/Pure: A Pure Plugin for
   Gnumeric<label|gnumeric-pure-a-pure-plugin-for-gnumeric>>
 
-  Version 0.13, September 09, 2014
+  Version 0.13, September 15, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -126,7 +126,7 @@
   on most systems, but you can also disable this feature by invoking
   <verbatim|make> as <verbatim|make> <verbatim|GLDEPS=>.
 
-  For the repository version, you'll need a GTK3-compatible version of
+  For version 0.13 and later, you'll need a GTK3-compatible version of
   GtkGLExt which can be found at <hlink|https://github.com/tdz/gtkglext|https://github.com/tdz/gtkglext>.
   The OpenGL support under GTK3 is still under development and currently has
   some issues, however, so it is disabled by default. If you want to give it
@@ -1720,5 +1720,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  15, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

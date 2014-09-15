@@ -10,7 +10,7 @@
 
   <section*|pure-avahi: Pure Avahi Interface<label|module-avahi>>
 
-  Version 0.2, September 09, 2014
+  Version 0.3, September 15, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -68,7 +68,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-avahi-0.2.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-avahi-0.2.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-avahi-0.3.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-avahi-0.3.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -269,5 +269,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  15, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
