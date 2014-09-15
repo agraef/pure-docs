@@ -12457,7 +12457,7 @@ following section, so you&#8217;ll have to use other runtime routines such as
 when creating a native assembler or object file. The present implementation
 understands options of the form <tt class="docutils literal"><span class="pre">-m</span></tt><em>opt</em><tt class="docutils literal"><span class="pre">=</span></tt><em>val</em> which can be used
 to select the desired target architecture and cpu type. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>$ pure -march=x86_64 -mcpu=generic -c hello.pure -o hello
+<div class="highlight-pure"><div class="highlight"><pre>$ pure -march=x86-<span class="mi">64</span> -mcpu=generic -c hello.pure -o hello
 </pre></div>
 </div>
 <p>This is useful, in particular, in cross compilation and if you need to select

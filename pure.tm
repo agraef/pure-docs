@@ -17366,7 +17366,7 @@
   desired target architecture and cpu type. For instance:
 
   <\verbatim>
-    $ pure -march=x86_64 -mcpu=generic -c hello.pure -o hello
+    $ pure -march=x86-64 -mcpu=generic -c hello.pure -o hello
   </verbatim>
 
   This is useful, in particular, in cross compilation and if you need to
