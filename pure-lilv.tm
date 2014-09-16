@@ -10,7 +10,7 @@
 
   <section*|pure-lilv: Pure Lilv Interface<label|module-lilv>>
 
-  Version 0.4, September 15, 2014
+  Version 0.4, September 17, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -171,5 +171,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  15, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

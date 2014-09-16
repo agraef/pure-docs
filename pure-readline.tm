@@ -10,7 +10,7 @@
 
   <label|module-readline><section*|pure-readline<label|pure-readline>>
 
-  Version 0.3, September 09, 2014
+  Version 0.3, September 17, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -124,5 +124,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  09, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

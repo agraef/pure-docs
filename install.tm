@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.61, September 11, 2014
+  Version 0.62, September 17, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -40,7 +40,7 @@
   <subsection|Quick Summary<label|quick-summary>>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.4 and Pure 0.61, please substitute your actual version numbers
+  using LLVM 3.4 and Pure 0.62, please substitute your actual version numbers
   in the commands given below.
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
@@ -59,7 +59,7 @@
   You'll probably need the latest Pure and LLVM tarballs which, at the time
   of this writing, are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.61.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.62.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.62.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
@@ -96,9 +96,9 @@
   Installing Pure:
 
   <\verbatim>
-    $ tar xfvz pure-0.61.tar.gz
+    $ tar xfvz pure-0.62.tar.gz
 
-    $ cd pure-0.61
+    $ cd pure-0.62
 
     $ ./configure --enable-release
 
@@ -132,9 +132,9 @@
   the pure-docs tarball manually in the usual way, e.g.:
 
   <\verbatim>
-    $ tar xfvz pure-docs-0.61.tar.gz
+    $ tar xfvz pure-docs-0.62.tar.gz
 
-    $ cd pure-docs-0.61
+    $ cd pure-docs-0.62
 
     $ sudo make install
   </verbatim>
@@ -148,7 +148,7 @@
   Uninstalling:
 
   <\verbatim>
-    $ cd pure-0.61
+    $ cd pure-0.62
 
     $ sudo make uninstall
 
@@ -554,7 +554,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.61
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.62
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
@@ -1498,5 +1498,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  11, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
