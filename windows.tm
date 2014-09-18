@@ -90,18 +90,26 @@
     this writing, the <hlink|dragonegg|http://dragonegg.llvm.org/> plugin for
     gcc hasn't been ported to Windows yet.)
 
-    This Pure release has been built and tested with LLVM 3.1, so that is the
-    version that you should get. For your convenience, here is the direct
-    download link of the binary package which contains both the LLVM
-    toolchain and the clang compiler:
+    This Pure release has been built and tested with LLVM 3.5, so that is the
+    version that you should get. A binary Windows release of clang 3.5 is
+    available from the <hlink|LLVM download page|http://llvm.org/releases>,
+    but unfortunately it lacks the LLVM toolchain needed by Pure's batch
+    compiler. Thus you'll either have to compile LLVM+clang 3.5 yourself
+    (which isn't that hard to do, once you have all the requisite tools
+    installed), or use the precompiled binaries that we provide at the Pure
+    website:
 
-    <hlink|http://llvm.org/releases/3.1/clang+llvm-3.1-i386-mingw32-EXPERIMENTAL.tar.bz2|http://llvm.org/releases/3.1/clang+llvm-3.1-i386-mingw32-EXPERIMENTAL.tar.bz2>
+    <hlink|https://bitbucket.org/purelang/pure-lang/downloads/clang+llvm-3.5-x86-mingw32.zip|https://bitbucket.org/purelang/pure-lang/downloads/clang+llvm-3.5-x86-mingw32.zip>
 
-    You should unpack this tarball (using, e.g.,
+    You should unpack this package (using, e.g.,
     <hlink|7-Zip|http://www.7-zip.org/>) to a directory on your harddisk
     (say, <verbatim|c:\\llvm>), and modify the <verbatim|PATH> environment
     variable so that it points to the <verbatim|bin> subdirectory of this
     folder.
+
+    Please note that these binaries were compiled with mingw 4.4 and depend
+    on some of its libraries, so mingw 4.4 needs to be installed to make them
+    work.
 
     <item>Finally, the Pure program directory needs to be added to the gcc
     <verbatim|LIBRARY_PATH> environment variable, so that some
@@ -125,5 +133,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  18, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

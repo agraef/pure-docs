@@ -116,14 +116,19 @@ C/C++ code inlining feature of the Pure interpreter, you&#8217;ll need an
 LLVM-enabled C/C++ compiler such as <a class="reference external" href="http://clang.llvm.org/">clang</a>. (That&#8217;s pretty much the only
 option on Windows right now; at the time of this writing, the <a class="reference external" href="http://dragonegg.llvm.org/">dragonegg</a>
 plugin for gcc hasn&#8217;t been ported to Windows yet.)</p>
-<p>This Pure release has been built and tested with LLVM 3.1, so that is the
-version that you should get. For your convenience, here is the direct
-download link of the binary package which contains both the LLVM toolchain
-and the clang compiler:</p>
-<p><a class="reference external" href="http://llvm.org/releases/3.1/clang+llvm-3.1-i386-mingw32-EXPERIMENTAL.tar.bz2">http://llvm.org/releases/3.1/clang+llvm-3.1-i386-mingw32-EXPERIMENTAL.tar.bz2</a></p>
-<p>You should unpack this tarball (using, e.g., <a class="reference external" href="http://www.7-zip.org/">7-Zip</a>) to a directory on your
+<p>This Pure release has been built and tested with LLVM 3.5, so that is the
+version that you should get. A binary Windows release of clang 3.5 is
+available from the <a class="reference external" href="http://llvm.org/releases">LLVM download page</a>, but unfortunately it lacks the
+LLVM toolchain needed by Pure&#8217;s batch compiler. Thus you&#8217;ll either have to
+compile LLVM+clang 3.5 yourself (which isn&#8217;t that hard to do, once you have
+all the requisite tools installed), or use the precompiled binaries that we
+provide at the Pure website:</p>
+<p><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/clang+llvm-3.5-x86-mingw32.zip">https://bitbucket.org/purelang/pure-lang/downloads/clang+llvm-3.5-x86-mingw32.zip</a></p>
+<p>You should unpack this package (using, e.g., <a class="reference external" href="http://www.7-zip.org/">7-Zip</a>) to a directory on your
 harddisk (say, <tt class="docutils literal"><span class="pre">c:\llvm</span></tt>), and modify the <tt class="docutils literal"><span class="pre">PATH</span></tt> environment variable so
 that it points to the <tt class="docutils literal"><span class="pre">bin</span></tt> subdirectory of this folder.</p>
+<p>Please note that these binaries were compiled with mingw 4.4 and depend on
+some of its libraries, so mingw 4.4 needs to be installed to make them work.</p>
 </li>
 <li><p class="first">Finally, the Pure program directory needs to be added to the gcc
 <tt class="docutils literal"><span class="pre">LIBRARY_PATH</span></tt> environment variable, so that some Windows-specific addon
@@ -190,7 +195,7 @@ of <tt class="docutils literal"><span class="pre">LIBRARY_PATH</span></tt> after
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Sep 17, 2014.
+    Last updated on Sep 18, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
