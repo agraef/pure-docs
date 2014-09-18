@@ -27,10 +27,15 @@
     library modules, available in the <verbatim|lib> subdirectory of the Pure
     program directory. Also, the <verbatim|PATH> environment variable should
     contain both the Pure program directory and the <verbatim|lib>
-    subdirectory, so that you can run the interpreter and compiled programs
-    from the command line. Both environment variables are set automatically
-    during installation. To make this work, you have to install the package
-    with administrator rights.
+    subdirectory, so that you can run the interpreter and the LLVM tools
+    needed for batch compilation from the command line. Both environment
+    variables are set automatically during installation. To make this work,
+    you have to install the package with administrator rights.
+
+    <item>The package includes the requisite LLVM tools (llc, opt, llvm-as)
+    from LLVM, so that Pure's batch compiler can be used to compile Pure
+    scripts to native code, without having to install a full LLVM toolchain
+    on the target system.
 
     <item>The package includes a shortcut to run the Pure interpreter in a
     command window, as well as a shortcut for the online documentation that
@@ -59,10 +64,10 @@
     Optional Bits and Pieces
   </with>
 
-  The Windows package contains all that's needed to run Pure programs with
-  the interpreter. However, in order to be able to run the Pure batch
-  compiler and to make full use of the Pure/C interface on Windows, you may
-  need to install some third-party programming tools:
+  The Windows package contains all that's needed to run and compile Pure
+  programs with the interpreter. However, in order to make full use of the
+  Pure/C interface on Windows, you may need to install some third-party
+  programming tools:
 
   <\itemize>
     <item><hlink|mingw|http://www.mingw.org/> is a full version of the GNU
@@ -81,35 +86,17 @@
     variable so that it points to the directory containing the mingw
     binaries, usually <verbatim|c:\\mingw\\bin>.
 
-    <item>The batch compiler also requires the LLVM toolchain for
-    mingw32/x86, available from the <hlink|LLVM download
-    page|http://llvm.org/releases>. In addition, in order to use the C/C++
-    code inlining feature of the Pure interpreter, you'll need an
-    LLVM-enabled C/C++ compiler such as <hlink|clang|http://clang.llvm.org/>.
-    (That's pretty much the only option on Windows right now; at the time of
-    this writing, the <hlink|dragonegg|http://dragonegg.llvm.org/> plugin for
-    gcc hasn't been ported to Windows yet.)
+    <item>In order to use the C/C++ code inlining feature of the Pure
+    interpreter, you'll also need an LLVM-enabled C/C++ compiler such as
+    <hlink|clang|http://clang.llvm.org/>. (That's pretty much the only option
+    on Windows right now; at the time of this writing, the
+    <hlink|dragonegg|http://dragonegg.llvm.org/> plugin for gcc hasn't been
+    ported to Windows yet.) This Pure release has been built and tested with
+    LLVM 3.5, so this is the version of clang that you should get. Windows
+    binaries for clang 3.5 can be found at the <hlink|LLVM download
+    page|http://llvm.org/releases>:
 
-    This Pure release has been built and tested with LLVM 3.5, so that is the
-    version that you should get. A binary Windows release of clang 3.5 is
-    available from the <hlink|LLVM download page|http://llvm.org/releases>,
-    but unfortunately it lacks the LLVM toolchain needed by Pure's batch
-    compiler. Thus you'll either have to compile LLVM+clang 3.5 yourself
-    (which isn't that hard to do, once you have all the requisite tools
-    installed), or use the precompiled binaries that we provide at the Pure
-    website:
-
-    <hlink|https://bitbucket.org/purelang/pure-lang/downloads/clang+llvm-3.5-x86-mingw32.zip|https://bitbucket.org/purelang/pure-lang/downloads/clang+llvm-3.5-x86-mingw32.zip>
-
-    You should unpack this package (using, e.g.,
-    <hlink|7-Zip|http://www.7-zip.org/>) to a directory on your harddisk
-    (say, <verbatim|c:\\llvm>), and modify the <verbatim|PATH> environment
-    variable so that it points to the <verbatim|bin> subdirectory of this
-    folder.
-
-    Please note that these binaries were compiled with mingw 4.4 and depend
-    on some of its libraries, so mingw 4.4 needs to be installed to make them
-    work.
+    <hlink|http://llvm.org/releases/3.5.0/LLVM-3.5.0-win32.exe|http://llvm.org/releases/3.5.0/LLVM-3.5.0-win32.exe>
 
     <item>Finally, the Pure program directory needs to be added to the gcc
     <verbatim|LIBRARY_PATH> environment variable, so that some
