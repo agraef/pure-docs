@@ -33,11 +33,11 @@
     you have to install the package with administrator rights.
 
     <item>The package includes the requisite LLVM tools (llc, opt, llvm-as)
-    from LLVM, so that Pure's batch compiler can be used to compile Pure
-    scripts to native code, without having to install a full LLVM toolchain
-    on the target system.
+    from LLVM, so that Pure's batch compiler and inlining facilities will
+    work without having to install a full LLVM toolchain on the target
+    system.
 
-    <item>The package includes a shortcut to run the Pure interpreter in a
+    <item>The package provides a shortcut to run the Pure interpreter in a
     command window, as well as a shortcut for the online documentation that
     you're looking at. It also includes the <with|font-series|bold|PurePad>
     application, a GUI frontend to the Pure interpreter which lets you edit
@@ -64,10 +64,10 @@
     Optional Bits and Pieces
   </with>
 
-  The Windows package contains all that's needed to run and compile Pure
-  programs with the interpreter. However, in order to make full use of the
-  Pure/C interface on Windows, you may need to install some third-party
-  programming tools:
+  The Windows package contains all that's needed to run Pure programs with
+  the interpreter. However, in order to make full use of the batch compiler
+  and the Pure/C interface on Windows, you may need to install some
+  third-party programming tools:
 
   <\itemize>
     <item><hlink|mingw|http://www.mingw.org/> is a full version of the GNU
@@ -120,5 +120,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  18, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  19, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
