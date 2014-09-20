@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts<label|pd-pure-pd-loader-for-pure-scripts>>
 
-  Version 0.18, September 17, 2014
+  Version 0.19, September 20, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -39,7 +39,7 @@
   MS Windows users please see <hlink|pd-pure on Windows|#pd-pure-on-windows>
   below.
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.19.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.19.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -67,7 +67,7 @@
   <subsubsection|pd-pure on Windows<label|pd-pure-on-windows>>
 
   There's a binary package in MSI format available at the Pure website:
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.18.msi>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.19.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.19.msi>.
   Use that if you can. You'll also need the latest Pure version (0.50 at the
   time of this writing), and Pd 0.43 or later, which is available from Miller
   Puckette's website: <hlink|http://crca.ucsd.edu/<math|\<sim\>>msp/software.html|http://crca.ucsd.edu/-tildemsp/software.html>.
@@ -1611,5 +1611,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  20, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
