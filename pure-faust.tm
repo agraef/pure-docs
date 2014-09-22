@@ -10,7 +10,7 @@
 
   <section*|pure-faust<label|module-faust>>
 
-  Version 0.10, September 17, 2014
+  Version 0.11, September 22, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -55,7 +55,7 @@
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.10.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.10.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz>.
 
   Binary packages can be found at <hlink|http://purelang.bitbucket.org/|http://purelang.bitbucket.org/>.
   To install from source, run the usual <verbatim|make> <verbatim|&&>
@@ -421,5 +421,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
