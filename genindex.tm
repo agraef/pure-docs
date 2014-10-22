@@ -85,7 +85,7 @@
   <hlink|<with|font-series|bold|' (prefix function)>|pure.tm#'>
 
   <hlink|<with|font-series|bold|() (constructor)>|purelib.tm#()>
-  <hlink|<with|font-series|bold|(command)>|pure.tm#index-34>
+  <hlink|<with|font-series|bold|(command)>|pure.tm#index-37>
 
   <hlink|<with|font-series|bold|* (infix function)>|purelib.tm#*>,
   <hlink|<with|font-series|bold|[1]>|purelib.tm#*/dict>,
@@ -707,11 +707,11 @@
 
   <hlink|<with|font-series|bold|boolp (function)>|purelib.tm#boolp>
 
-  <hlink|break (command)|pure.tm#index-35>
+  <hlink|break (command)|pure.tm#index-38>
 
-  <hlink|BROWSER|pure.tm#index-33>
+  <hlink|BROWSER|pure.tm#index-36>
 
-  <hlink|bt (command)|pure.tm#index-36>
+  <hlink|bt (command)|pure.tm#index-39>
 
   <hlink|<with|font-series|bold|byte_cstring
   (function)>|purelib.tm#byte-cstring>
@@ -747,7 +747,7 @@
 
   <hlink|CC|pure.tm#index-3>
 
-  <hlink|cd (command)|pure.tm#index-37>
+  <hlink|cd (command)|pure.tm#index-40>
 
   <hlink|<with|font-series|bold|ceil (function)>|purelib.tm#ceil>,
   <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#ceil/mpfr>,
@@ -769,7 +769,7 @@
   <hlink|<with|font-series|bold|cis (function)>|purelib.tm#cis>,
   <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#cis/mpfr>
 
-  <hlink|clear (command)|pure.tm#index-38>
+  <hlink|clear (command)|pure.tm#index-41>
   <hlink|<with|font-series|bold|(function)>|pure-stldict.tm#clear/stldict>
 
   <hlink|<with|font-series|bold|clear_history
@@ -908,7 +908,7 @@
 
   <hlink|<with|font-series|bold|defenum (function)>|purelib.tm#defenum>
 
-  <hlink|del (command)|pure.tm#index-39>
+  <hlink|del (command)|pure.tm#index-42>
 
   <hlink|<with|font-series|bold|del_constdef
   (function)>|purelib.tm#del-constdef>
@@ -995,7 +995,7 @@
 
   <hlink|dtd|pure-xml.tm#index-1>
 
-  <hlink|dump (command)|pure.tm#index-40>
+  <hlink|dump (command)|pure.tm#index-43>
 
   <subsection*|E<label|E>>
 
@@ -1058,15 +1058,15 @@
   <hlink|<with|font-series|bold|enump (function)>|purelib.tm#enump>
   environment variable
 
-  <hlink|BROWSER|pure.tm#envvar-BROWSER>, <hlink|[1]|pure.tm#index-33>
+  <hlink|BROWSER|pure.tm#envvar-BROWSER>, <hlink|[1]|pure.tm#index-36>
 
   <hlink|CC|pure.tm#index-3>, <hlink|[1]|pure.tm#envvar-CC>
 
   <hlink|CXX|pure.tm#index-4>, <hlink|[1]|pure.tm#envvar-CXX>
 
-  <hlink|FAUST_OPT|pure.tm#index-28>
+  <hlink|FAUST_OPT|pure.tm#index-31>
 
-  <hlink|HOME|pure.tm#index-55>
+  <hlink|HOME|pure.tm#index-58>
 
   <hlink|LD_LIBRARY_PATH|pure.tm#index-20>
 
@@ -1074,12 +1074,16 @@
   <hlink|[2]|pure.tm#index-16>, <hlink|[3]|pure.tm#index-17>,
   <hlink|[4]|pure.tm#index-21>
 
+  <hlink|PATSHOME|pure.tm#index-29>
+
   <hlink|PURELIB|pure.tm#index-0>, <hlink|[1]|pure.tm#index-1>,
   <hlink|[2]|pure.tm#index-6>, <hlink|[3]|pure.tm#envvar-PURELIB>,
   <hlink|[4]|pure.tm#index-8>, <hlink|[5]|pure.tm#index-12>,
   <hlink|[6]|pure.tm#index-15>
 
-  <hlink|PURE_CC|pure.tm#index-22>, <hlink|[1]|pure.tm#index-26>
+  <hlink|PURE_ATS|pure.tm#index-25>, <hlink|[1]|pure.tm#index-28>
+
+  <hlink|PURE_CC|pure.tm#index-22>, <hlink|[1]|pure.tm#index-27>
 
   <hlink|PURE_CXX|pure.tm#index-23>
 
@@ -1087,15 +1091,15 @@
   <hlink|[1]|pure.tm#envvar-PURE-EAGER-JIT>
 
   <hlink|PURE_ESCAPE|pure.tm#envvar-PURE-ESCAPE>,
-  <hlink|[1]|pure.tm#index-29>, <hlink|[2]|pure.tm#index-30>,
-  <hlink|[3]|pure.tm#index-31>
+  <hlink|[1]|pure.tm#index-32>, <hlink|[2]|pure.tm#index-33>,
+  <hlink|[3]|pure.tm#index-34>
 
-  <hlink|PURE_FAUST|pure.tm#index-25>, <hlink|[1]|pure.tm#index-27>
+  <hlink|PURE_FAUST|pure.tm#index-26>, <hlink|[1]|pure.tm#index-30>
 
   <hlink|PURE_FC|pure.tm#index-24>
 
   <hlink|PURE_HELP|pure.tm#index-7>, <hlink|[1]|pure.tm#envvar-PURE-HELP>,
-  <hlink|[2]|pure.tm#index-32>
+  <hlink|[2]|pure.tm#index-35>
 
   <hlink|PURE_INCLUDE|pure.tm#envvar-PURE-INCLUDE>,
   <hlink|[1]|pure.tm#index-11>, <hlink|[2]|pure.tm#index-13>,
@@ -1106,14 +1110,14 @@
   <hlink|PURE_LIBRARY|pure.tm#envvar-PURE-LIBRARY>,
   <hlink|[1]|pure.tm#index-18>
 
-  <hlink|PURE_MORE|pure.tm#envvar-PURE-MORE>, <hlink|[1]|pure.tm#index-53>,
-  <hlink|[2]|pure.tm#index-54>
+  <hlink|PURE_MORE|pure.tm#envvar-PURE-MORE>, <hlink|[1]|pure.tm#index-56>,
+  <hlink|[2]|pure.tm#index-57>
 
   <hlink|PURE_PS|pure.tm#envvar-PURE-PS>
 
-  <hlink|PURE_STACK|pure.tm#envvar-PURE-STACK>, <hlink|[1]|pure.tm#index-56>,
-  <hlink|[2]|pure.tm#index-57>, <hlink|[3]|pure.tm#index-58>,
-  <hlink|[4]|pure.tm#index-59>, <hlink|[5]|pure.tm#index-60>,
+  <hlink|PURE_STACK|pure.tm#envvar-PURE-STACK>, <hlink|[1]|pure.tm#index-59>,
+  <hlink|[2]|pure.tm#index-60>, <hlink|[3]|pure.tm#index-61>,
+  <hlink|[4]|pure.tm#index-62>, <hlink|[5]|pure.tm#index-63>,
   <hlink|[6]|install.tm#index-0>
 
   <hlink|<with|font-series|bold|erase (function)>|pure-stlmap.tm#erase/stlmap>,
@@ -1162,7 +1166,7 @@
 
   <hlink|<with|font-series|bold|faust2 (module)>|pure-faust.tm#module-faust2>
 
-  <hlink|FAUST_OPT|pure.tm#index-28>
+  <hlink|FAUST_OPT|pure.tm#index-31>
 
   <hlink|<with|font-series|bold|faustxml (module)>|faust2pd.tm#module-faustxml>
 
@@ -2577,14 +2581,14 @@
 
   <hlink|<with|font-series|bold|heapp (function)>|purelib.tm#heapp>
 
-  <hlink|help (command)|pure.tm#index-41>
+  <hlink|help (command)|pure.tm#index-44>
 
   <hlink|<with|font-series|bold|hmdict (function)>|purelib.tm#hmdict>
   <hlink|<with|font-series|bold|(type)>|purelib.tm#hmdict/type>
 
   <hlink|<with|font-series|bold|hmdictp (function)>|purelib.tm#hmdictp>
 
-  <hlink|HOME|pure.tm#index-55>
+  <hlink|HOME|pure.tm#index-58>
 
   <hlink|<with|font-series|bold|hset (function)>|purelib.tm#hset>
   <hlink|<with|font-series|bold|(type)>|purelib.tm#hset/type>
@@ -2813,7 +2817,7 @@
   <hlink|<with|font-series|bold|log (function)>|purelib.tm#log>,
   <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#log/mpfr>
 
-  <hlink|ls (command)|pure.tm#index-42>
+  <hlink|ls (command)|pure.tm#index-45>
 
   <hlink|<with|font-series|bold|lstat (function)>|purelib.tm#lstat>
 
@@ -2854,7 +2858,7 @@
 
   <hlink|<with|font-series|bold|mdictp (function)>|purelib.tm#mdictp>
 
-  <hlink|mem (command)|pure.tm#index-43>
+  <hlink|mem (command)|pure.tm#index-46>
 
   <hlink|<with|font-series|bold|member (function)>|purelib.tm#member/record>,
   <hlink|<with|font-series|bold|[1]>|purelib.tm#member/dict>,
@@ -3071,7 +3075,7 @@
   (constructor)>|purelib.tm#out-of-bounds>,
   <hlink|<with|font-series|bold|[1]>|pure-stlvec.tm#out-of-bounds/stlvec>
 
-  <hlink|override (command)|pure.tm#index-44>
+  <hlink|override (command)|pure.tm#index-47>
 
   <subsection*|P<label|P>>
 
@@ -3084,6 +3088,8 @@
   <hlink|PATH|pure.tm#index-5>, <hlink|[1]|pure.tm#index-10>,
   <hlink|[2]|pure.tm#index-16>, <hlink|[3]|pure.tm#index-17>,
   <hlink|[4]|pure.tm#index-21>
+
+  <hlink|PATSHOME|pure.tm#index-29>
 
   <hlink|<with|font-series|bold|pause (function)>|purelib.tm#pause>
 
@@ -3376,20 +3382,22 @@
 
   <hlink|--warn|pure.tm#cmdoption-pure-pragma--warn>
 
-  <hlink|PURE_CC|pure.tm#index-22>, <hlink|[1]|pure.tm#index-26>
+  <hlink|PURE_ATS|pure.tm#index-25>, <hlink|[1]|pure.tm#index-28>
+
+  <hlink|PURE_CC|pure.tm#index-22>, <hlink|[1]|pure.tm#index-27>
 
   <hlink|PURE_CXX|pure.tm#index-23>
 
   <hlink|PURE_EAGER_JIT|pure.tm#index-2>
 
-  <hlink|PURE_ESCAPE|pure.tm#index-29>, <hlink|[1]|pure.tm#index-30>,
-  <hlink|[2]|pure.tm#index-31>
+  <hlink|PURE_ESCAPE|pure.tm#index-32>, <hlink|[1]|pure.tm#index-33>,
+  <hlink|[2]|pure.tm#index-34>
 
-  <hlink|PURE_FAUST|pure.tm#index-25>, <hlink|[1]|pure.tm#index-27>
+  <hlink|PURE_FAUST|pure.tm#index-26>, <hlink|[1]|pure.tm#index-30>
 
   <hlink|PURE_FC|pure.tm#index-24>
 
-  <hlink|PURE_HELP|pure.tm#index-7>, <hlink|[1]|pure.tm#index-32>
+  <hlink|PURE_HELP|pure.tm#index-7>, <hlink|[1]|pure.tm#index-35>
 
   <hlink|PURE_INCLUDE|pure.tm#index-11>, <hlink|[1]|pure.tm#index-13>,
   <hlink|[2]|pure.tm#index-14>, <hlink|[3]|pure.tm#index-19>
@@ -3398,11 +3406,11 @@
 
   <hlink|PURE_LIBRARY|pure.tm#index-18>
 
-  <hlink|PURE_MORE|pure.tm#index-53>, <hlink|[1]|pure.tm#index-54>
+  <hlink|PURE_MORE|pure.tm#index-56>, <hlink|[1]|pure.tm#index-57>
 
-  <hlink|PURE_STACK|pure.tm#index-56>, <hlink|[1]|pure.tm#index-57>,
-  <hlink|[2]|pure.tm#index-58>, <hlink|[3]|pure.tm#index-59>,
-  <hlink|[4]|pure.tm#index-60>, <hlink|[5]|install.tm#index-0>
+  <hlink|PURE_STACK|pure.tm#index-59>, <hlink|[1]|pure.tm#index-60>,
+  <hlink|[2]|pure.tm#index-61>, <hlink|[3]|pure.tm#index-62>,
+  <hlink|[4]|pure.tm#index-63>, <hlink|[5]|install.tm#index-0>
 
   <hlink|PURELIB|pure.tm#index-0>, <hlink|[1]|pure.tm#index-1>,
   <hlink|[2]|pure.tm#index-6>, <hlink|[3]|pure.tm#index-8>,
@@ -3431,11 +3439,11 @@
 
   <hlink|<with|font-series|bold|puts (function)>|purelib.tm#puts>
 
-  <hlink|pwd (command)|pure.tm#index-45>
+  <hlink|pwd (command)|pure.tm#index-48>
 
   <subsection*|Q<label|Q>>
 
-  <hlink|quit (command)|pure.tm#index-46>
+  <hlink|quit (command)|pure.tm#index-49>
 
   <hlink|<with|font-series|bold|quote (function)>|pure.tm#quote>
 
@@ -3886,7 +3894,7 @@
   <hlink|<with|font-series|bold|rowvectorseq
   (function)>|purelib.tm#rowvectorseq>
 
-  <hlink|run (command)|pure.tm#index-47>
+  <hlink|run (command)|pure.tm#index-50>
 
   <subsection*|S<label|S>>
 
@@ -3895,7 +3903,7 @@
   <hlink|<with|font-series|bold|samplerate
   (module)>|pure-audio.tm#module-samplerate>
 
-  <hlink|save (command)|pure.tm#index-48>
+  <hlink|save (command)|pure.tm#index-51>
 
   <hlink|<with|font-series|bold|scanf (function)>|purelib.tm#scanf>
 
@@ -3940,7 +3948,7 @@
   <hlink|<with|font-series|bold|short_pointer
   (function)>|purelib.tm#short-pointer>
 
-  <hlink|show (command)|pure.tm#index-49>
+  <hlink|show (command)|pure.tm#index-52>
 
   <hlink|<with|font-series|bold|shutdown (function)>|pure-sockets.tm#shutdown>
 
@@ -4083,7 +4091,7 @@
 
   <hlink|<with|font-series|bold|stat (function)>|purelib.tm#stat>
 
-  <hlink|stats (command)|pure.tm#index-50>
+  <hlink|stats (command)|pure.tm#index-53>
 
   <hlink|<with|font-series|bold|stderr (variable)>|purelib.tm#stderr>
 
@@ -4656,7 +4664,7 @@
 
   <hlink|<with|font-series|bold|tmpfile (function)>|purelib.tm#tmpfile>
 
-  <hlink|trace (command)|pure.tm#index-51>
+  <hlink|trace (command)|pure.tm#index-54>
 
   <hlink|<with|font-series|bold|transpose
   (function)>|purelib.tm#transpose/matrix>
@@ -4709,7 +4717,7 @@
 
   <hlink|<with|font-series|bold|uncurry3 (function)>|purelib.tm#uncurry3>
 
-  <hlink|underride (command)|pure.tm#index-52>
+  <hlink|underride (command)|pure.tm#index-55>
 
   <hlink|<with|font-series|bold|unref (function)>|purelib.tm#unref>
 
@@ -5012,6 +5020,6 @@
   <hlink|toc|#genindex-toc> <hlink|index|#> <hlink|modules|pure-modindex.tm>
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
   22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

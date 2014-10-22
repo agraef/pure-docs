@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.62, September 22, 2014
+Pure 0.62, October 22, 2014
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 @anchor{pure doc}@anchor{0}
 @c Teach TeX how to hyphenate 'namespace' and 'whitespace'.
 
-Version 0.62, September 17, 2014
+Version 0.62, October 22, 2014
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -225,6 +225,7 @@ C Interface
 * Importing LLVM Bitcode:: 
 * Inline Code:: 
 * Interfacing to C++:: 
+* Interfacing to ATS:: 
 * Interfacing to Faust:: 
 
 C Types
@@ -13038,6 +13039,7 @@ section for details.
 * Importing LLVM Bitcode:: 
 * Inline Code:: 
 * Interfacing to C++:: 
+* Interfacing to ATS:: 
 * Interfacing to Faust:: 
 
 @end menu
@@ -13889,12 +13891,12 @@ this is a problem then it's usually better to import a separate bitcode module
 instead (see @pxref{146,,Importing LLVM Bitcode}), or batch-compile your script to an
 executable (see @pxref{b,,Batch Compilation}).
 
-At present, C, C++, Fortran and Faust are supported as foreign source
-languages, with clang, clang++, gfortran (with the dragonegg plugin) and faust
-as the corresponding (default) compilers. C is the default language. The
-desired source language can be selected by placing an appropriate tag into the
-inline code section, immediately after the opening brace. (The tag is removed
-before the code is submitted to compilation.) For instance:
+At present, C, C++, Fortran, ATS and Faust are supported as foreign source
+languages, with clang, clang++, gfortran (with the dragonegg plugin), patscc
+and faust as the corresponding (default) compilers. C is the default language.
+The desired source language can be selected by placing an appropriate tag into
+the inline code section, immediately after the opening brace. (The tag is
+removed before the code is submitted to compilation.) For instance:
 
 @example
 %< -*- Fortran90 -*-
@@ -13914,15 +13916,17 @@ map fact (1..10);
 @noindent
 
 As indicated, the language tag takes the form @code{-*- lang -*-} where @code{lang}
-can currently be any of @code{c}, @code{c++}, @code{fortran} and @code{dsp} (the latter
-indicates the Faust language). Case is insignificant here, so you can also
-write @code{C}, @code{C++}, @code{Fortran}, @code{DSP} etc. For the @code{fortran} tag, you
-may also have to specify the appropriate language standard, such as
-@code{fortran90} which is used in the example above. The language tag can also be
-followed by a module name, using the format @code{-*- lang:name -*-}. This is
-optional for all languages except Faust (where the module name specifies the
-namespace for the interface routines of the Faust module; see @pxref{14b,,Interfacing to Faust} below). So, e.g., a Faust DSP named @code{test} would be specified with a
-@code{dsp:test} tag. Case is @emph{significant} in the module name.
+can currently be any of @code{c}, @code{c++}, @code{fortran}, @code{ats} and @code{dsp} (the
+latter indicates the Faust language). Case is insignificant here, so you can
+also write @code{C}, @code{C++}, @code{Fortran}, @code{ATS}, @code{DSP} etc. For the
+@code{fortran} tag, you may also have to specify the appropriate language
+standard, such as @code{fortran90} which is used in the example above. The
+language tag can also be followed by a module name, using the format @code{-*-
+lang:name -*-}. This is optional for all languages except Faust (where the
+module name specifies the namespace for the interface routines of the Faust
+module; see @pxref{14b,,Interfacing to Faust} below). So, e.g., a Faust DSP named
+@code{test} would be specified with a @code{dsp:test} tag. Case is @emph{significant} in
+the module name.
 
 The Pure interpreter has some built-in knowledge on how to invoke the LLVM
 compilers to produce a working bitcode file ready to be loaded by the
@@ -13943,11 +13947,14 @@ debugging and optimization options that you may want to add. Likewise,
 @code{PURE_CXX}, 
 @geindex PURE_FC
 @geindex environment variable; PURE_FC
-@code{PURE_FC} and 
+@code{PURE_FC}, 
+@geindex PURE_ATS
+@geindex environment variable; PURE_ATS
+@code{PURE_ATS} and
 @geindex PURE_FAUST
 @geindex environment variable; PURE_FAUST
-@code{PURE_FAUST} are used for
-the C++, Fortran and Faust compilers, respectively.
+@code{PURE_FAUST} are used for the C++, Fortran, ATS and Faust compilers,
+respectively.
 
 For instance, if you prefer to use @pxref{148,,llvm-gcc} as your C compiler, and you'd
 like to invoke it with the @code{-O3} optimization option, you would set
@@ -13972,7 +13979,7 @@ PURE_CC="gcc -fplugin=dragonegg -O3"
 Some further details on the bitcode support for specific target languages can
 be found in the subsections below.
 
-@node Interfacing to C++,Interfacing to Faust,Inline Code,C Interface
+@node Interfacing to C++,Interfacing to ATS,Inline Code,C Interface
 @anchor{pure interfacing-to-c}@anchor{14c}
 @section Interfacing to C++
 
@@ -14063,8 +14070,90 @@ map (map_get m) (map_keys m); // => [bar 4711L,[1,2,3,4,5]]
 
 @noindent
 
-@node Interfacing to Faust,,Interfacing to C++,C Interface
-@anchor{pure interfacing-to-faust}@anchor{14b}@anchor{pure id18}@anchor{14d}
+@node Interfacing to ATS,Interfacing to Faust,Interfacing to C++,C Interface
+@anchor{pure interfacing-to-ats}@anchor{14d}
+@section Interfacing to ATS
+
+
+@pxref{14e,,ATS} is a statically typed functional programming language somewhat similar to
+ML, which also offers imperative and concurrent programming features. One of
+ATS's most unusual and interesting aspects is its highly expressive Applied
+Type System, which gives the language its name. ATS has a very elaborate C interface@footnote{http://ats-lang.sourceforge.net/DOCUMENT/INT2PROGINATS/HTML/c1995.html} which lets you expose functions written in the language using C
+linkage. This makes it easy to call ATS functions from Pure via Pure's C
+interface.
+
+Here is a simple example which illustrates how to implement the factorial in
+ATS and call that function from Pure:
+
+@example
+%< -*- ATS -*-
+
+#include "share/atspre_staload.hats"
+
+// A recursive definition of the factorial relation.
+// FACT (n, r) means ‘the factorial of n equals r’.
+// MUL (i, j, k) means ‘the product of i and j equals k’.
+dataprop FACT (int, int) =
+  | FACT_base (0, 1)
+  | @{n : nat@} @{r1, r : int@}
+    FACT_induction (n, r) of
+      (FACT (n-1, r1), MUL (n, r1, r))
+
+// Declare ifact as an ATS function that is referred to in C by the
+// name ‘ifact_nonneg’. The ‘ifact_nonneg’ function returns an integer
+// equal to r, where r satisfies the relation FACT (n, r).
+extern fun ifact :
+    @{n : nat@} (int n) -<> [r : int] (FACT (n, r) | int r) =
+      "ext#ifact_nonneg"
+
+implement ifact (n) =
+  let
+    fun fact @{n : nat@} .<n>. (n : int n) :<>
+        [r : int] (FACT (n, r) | int r) =
+      begin
+        if n > 0 then
+          let
+            val (pf1 | r1) = ifact (n - 1)
+            val (pfmul | r) = g1int_mul2 (n, r1)
+          in
+            (FACT_induction (pf1, pfmul) | r)
+          end
+        else
+          (FACT_base () | 1)
+      end
+  in
+    fact n
+  end
+
+%>
+
+ifact n::int = ifact_nonneg n if 0 <= n;
+
+map ifact (0..9);
+@end example
+
+@noindent
+
+To make this work in Pure, you need to have ATS2 (the current version of the
+ATS compiler) installed. ATS2 in turn needs a suitable C compiler for
+generating LLVM bitcode. By default, Pure uses clang for that purpose. If you
+have gcc's dragonegg plugin installed , you can also use gcc as the C compiler
+instead, by setting the 
+@geindex PURE_ATS
+@geindex environment variable; PURE_ATS
+@code{PURE_ATS} environment variable to @code{patscc
+-fplugin=dragonegg}. Also make sure that you have the 
+@geindex PATSHOME
+@geindex environment variable; PATSHOME
+@code{PATSHOME}
+environment variable set to ATS's library directory, as explained in the
+ATS installation instructions@footnote{http://www.ats-lang.org/Downloads.html#Install_source_compile}.
+
+More information about ATS, as well as sources and binary packages of the ATS
+compiler can be found on the ATS website@footnote{http://www.ats-lang.org/}.
+
+@node Interfacing to Faust,,Interfacing to ATS,C Interface
+@anchor{pure interfacing-to-faust}@anchor{14b}@anchor{pure id20}@anchor{14f}
 @section Interfacing to Faust
 
 
@@ -14572,7 +14661,7 @@ discussed in the following subsections.
 @end menu
 
 @node Command Syntax,Online Help,,Interactive Usage
-@anchor{pure command-syntax}@anchor{14e}
+@anchor{pure command-syntax}@anchor{150}
 @section Command Syntax
 
 
@@ -14586,7 +14675,7 @@ the beginning of an input line, which may be followed by some parameters as
 required by the command. The command language is intended solely for
 interactive purposes and thus doesn't offer any programming facilities of its
 own. However, it can be extended with user-defined commands implemented as
-ordinary Pure functions; this is described in the @pxref{14f,,User-Defined Commands}
+ordinary Pure functions; this is described in the @pxref{151,,User-Defined Commands}
 section below.
 
 In fact, as of Pure 0.56 the interpreter actually provides two slightly
@@ -14814,13 +14903,13 @@ your browser program can handle these. For instance:
 @noindent
 
 @node Interactive Commands,Specifying Symbol Selections,Online Help,Interactive Usage
-@anchor{pure commands}@anchor{150}@anchor{pure interactive-commands}@anchor{123}
+@anchor{pure commands}@anchor{152}@anchor{pure interactive-commands}@anchor{123}
 @section Interactive Commands
 
 
 The following built-in commands are always understood by the interpreter. (In
 addition, you can define your own commands for frequently-used operations; see
-@pxref{14f,,User-Defined Commands} below.)
+@pxref{151,,User-Defined Commands} below.)
 
 @geindex (command)
 
@@ -14869,15 +14958,15 @@ Change the current working dir.
 Purge the definitions of the given symbols (functions, macros, constants or
 global variables). All symbols must be specified in fully qualified form,
 see the remarks below. If invoked as @code{clear ans}, clears the @code{ans}
-value (see @pxref{151,,Last Result} below). When invoked without any arguments,
+value (see @pxref{153,,Last Result} below). When invoked without any arguments,
 @code{clear} purges all definitions at the current interactive "level" (after
 confirmation) and returns you to the previous level, if any. (It might be a
 good idea to first check your current definitions with @code{show} or back
 them up with @code{dump} before you do that.)  The desired level can be
 specified with the @code{-t} option. See the description of the @code{save}
-command and @pxref{152,,Definition Levels} below for further details. A description
+command and @pxref{154,,Definition Levels} below for further details. A description
 of the common options accepted by the @code{clear}, @code{dump} and @code{show}
-commands can be found in @pxref{153,,Specifying Symbol Selections} below.
+commands can be found in @pxref{155,,Specifying Symbol Selections} below.
 @end deffn
 
 @geindex del (command)
@@ -14916,7 +15005,7 @@ symbols won't be saved unless they're specified explicitly, and some
 objects like closures, thunks and pointers don't have a textual
 representation from which they could be reconstructed. To handle these,
 you'll probably have to prepare a corresponding .purerc file yourself, see
-@pxref{154,,Interactive Startup} below.
+@pxref{156,,Interactive Startup} below.
 
 A different filename can be specified with the @code{-n} option, which expects
 the name of the script to be written in the next argument, e.g: @code{dump -n
@@ -14966,7 +15055,7 @@ the program, such as strings or malloc'ed pointers.
 
 Enter "override" mode. This allows you to add equations "above" existing
 definitions in the source script, possibly overriding existing
-equations. See @pxref{152,,Definition Levels} below for details.
+equations. See @pxref{154,,Definition Levels} below for details.
 @end deffn
 
 @geindex pwd (command)
@@ -15011,7 +15100,7 @@ again. Also note that namespace and pragma settings of scripts loaded with
 @code{run} stick around after loading the script. This allows you to quickly
 set up your environment by just running a script containing the necessary
 namespace declarations and compiler directives. (Alternatively, you can
-also use the interpreter's startup files for that purpose, see @pxref{154,,Interactive Startup} below.)
+also use the interpreter's startup files for that purpose, see @pxref{156,,Interactive Startup} below.)
 @end deffn
 
 @geindex save (command)
@@ -15021,7 +15110,7 @@ also use the interpreter's startup files for that purpose, see @pxref{154,,Inter
 
 Begin a new level of temporary definitions. A subsequent @code{clear} command
 (see above) will purge the definitions made since the most recent @code{save}
-command. See @pxref{152,,Definition Levels} below for details.
+command. See @pxref{154,,Definition Levels} below for details.
 @end deffn
 
 @geindex show (command)
@@ -15032,7 +15121,7 @@ command. See @pxref{152,,Definition Levels} below for details.
 Show the definitions of symbols in various formats. See @pxref{112,,The show Command}
 below for details. All symbols must be specified in fully qualified form,
 see the remarks below. A description of the common options accepted by the
-@code{clear}, @code{dump} and @code{show} commands can be found in @pxref{153,,Specifying Symbol Selections} below.
+@code{clear}, @code{dump} and @code{show} commands can be found in @pxref{155,,Specifying Symbol Selections} below.
 @end deffn
 
 @geindex stats (command)
@@ -15091,7 +15180,7 @@ deleted with the @code{del} command (see above).
 
 Exits "override" mode. This returns you to the normal mode of operation,
 where new equations are added "below" previous rules of an existing
-function. See @pxref{152,,Definition Levels} below for details.
+function. See @pxref{154,,Definition Levels} below for details.
 @end deffn
 
 Commands that accept options generally also understand the @code{-h} (help)
@@ -15109,10 +15198,10 @@ commands for the benefit of other programs such as @strong{emacs} driving
 the interpreter; currently these are @code{completion_matches}, @code{help_matches}
 and @code{help_index}. These aren't supposed to be invoked directly by the user,
 although they may sometimes be useful to implement custom functionality, see
-@pxref{14f,,User-Defined Commands}.
+@pxref{151,,User-Defined Commands}.
 
 @node Specifying Symbol Selections,The show Command,Interactive Commands,Interactive Usage
-@anchor{pure specifying-symbol-selections}@anchor{153}
+@anchor{pure specifying-symbol-selections}@anchor{155}
 @section Specifying Symbol Selections
 
 
@@ -15198,7 +15287,7 @@ consequences as the Unix command @code{rm -rf *}, so don't do that. Also note
 that a macro or function symbol may well have defining equations at different
 levels, in which case a command like @code{clear -tn foo} might only affect some
 part of @code{foo}'s definition. The @code{dump} and @code{show} commands work
-analogously (albeit less destructively). See @pxref{152,,Definition Levels} below for
+analogously (albeit less destructively). See @pxref{154,,Definition Levels} below for
 some examples.
 
 @node The show Command,Definition Levels,Specifying Symbol Selections,Interactive Usage
@@ -15391,7 +15480,7 @@ using namespace C;
 @end itemize
 
 @node Definition Levels,Debugging,The show Command,Interactive Usage
-@anchor{pure definition-levels}@anchor{152}
+@anchor{pure definition-levels}@anchor{154}
 @section Definition Levels
 
 
@@ -15554,7 +15643,7 @@ functions for inspecting and manipulating the source program, which may also
 be useful in custom command definitions; see the @code{purelib} for details.
 
 @node Debugging,Last Result,Definition Levels,Interactive Usage
-@anchor{pure debugging}@anchor{49}@anchor{pure id19}@anchor{155}
+@anchor{pure id21}@anchor{157}@anchor{pure debugging}@anchor{49}
 @section Debugging
 
 
@@ -15683,7 +15772,7 @@ x       exit the interpreter (after confirmation)
 @cartouche
 @quotation Note 
 If you specified an @pxref{1e,,---escape} prefix other than '@code{!}'
-(cf. @pxref{14e,,Command Syntax}), that prefix will be used to execute interpreter
+(cf. @pxref{150,,Command Syntax}), that prefix will be used to execute interpreter
 commands instead, see below. The help message will tell you which command
 prefix is in effect.
 @end quotation
@@ -15964,7 +16053,7 @@ becomes @code{1}, we might invoke @code{__break__} as follows:
 @noindent
 
 @node Last Result,Pretty-Printing,Debugging,Interactive Usage
-@anchor{pure last-result}@anchor{151}
+@anchor{pure last-result}@anchor{153}
 @section Last Result
 
 
@@ -16117,10 +16206,10 @@ can easily go back to the standard print syntax:
 
 Note that if you have a set of definitions for the @pxref{f7,,__show__} function
 which should always be loaded at startup, you can put them into the
-interpreter's interactive startup files, see @pxref{154,,Interactive Startup} below.
+interpreter's interactive startup files, see @pxref{156,,Interactive Startup} below.
 
 @node User-Defined Commands,Interactive Startup,Pretty-Printing,Interactive Usage
-@anchor{pure user-defined-commands}@anchor{14f}
+@anchor{pure user-defined-commands}@anchor{151}
 @section User-Defined Commands
 
 
@@ -16128,7 +16217,7 @@ It is possible to extend the interpreter with your own interactive
 commands. To these ends, all you have to do is provide some corresponding
 public function definitions in the special @code{__cmd__} namespace
 (cf. @pxref{ac,,Namespaces}). These definitions are typically placed in one of the
-interpreter's startup files (see @pxref{154,,Interactive Startup} below) so that they
+interpreter's startup files (see @pxref{156,,Interactive Startup} below) so that they
 are always available when running the interpreter interactively.
 
 A command function is invoked with one string argument which contains the rest
@@ -16230,7 +16319,7 @@ examples/poor.c  examples/sort.c
 interactively, we need to escape the second input line above with leading
 whitespace, so that it's not mistaken for an invocation of the built-in @code{ls}
 command. This isn't necessary if you're using the alternative "escape" command
-syntax described in @pxref{14e,,Command Syntax}.)
+syntax described in @pxref{150,,Command Syntax}.)
 
 To do more interesting things, you should take a look at the reflection
 capabilities discussed in the @pxref{62,,Macros} section, which open up endless
@@ -16318,7 +16407,7 @@ More examples can be found in the sample.purerc file distributed with the Pure
 interpreter.
 
 @node Interactive Startup,,User-Defined Commands,Interactive Usage
-@anchor{pure interactive-startup}@anchor{154}
+@anchor{pure interactive-startup}@anchor{156}
 @section Interactive Startup
 
 
@@ -16348,7 +16437,7 @@ you can specify the @pxref{2d,,---norc} option on the command line if you wish t
 skip these initializations.
 
 @node Batch Compilation,Caveats and Notes,Interactive Usage,Top
-@anchor{pure id20}@anchor{156}@anchor{pure batch-compilation}@anchor{b}
+@anchor{pure id22}@anchor{158}@anchor{pure batch-compilation}@anchor{b}
 @chapter Batch Compilation
 
 
@@ -16434,7 +16523,7 @@ function definitions instead. Also, the compiler usually strips unused
 functions from the output code, so that only functions which are actually
 called somewhere in the static program text are available to @code{eval}.
 (The @pxref{33,,-u} option and the @pxref{5e,,---required}
-pragma can be used to avoid this, see @pxref{157,,Options Affecting Code Size} below.)
+pragma can be used to avoid this, see @pxref{159,,Options Affecting Code Size} below.)
 
 @item 
 Code which gets executed to compute constant values at compile time will
@@ -16444,7 +16533,7 @@ practice anyway). There is an exception to this rule, however, namely if a
 constant value contains run time data such as pointers and local functions
 which requires an initialization at run time, then the batch compiler will
 generate code for that. (The same happens if the @pxref{50,,---noconst} option
-is used to force computation of constant values at run time, see @pxref{157,,Options Affecting Code Size}.)
+is used to force computation of constant values at run time, see @pxref{159,,Options Affecting Code Size}.)
 @end itemize
 
 What this boils down to is that in the batch-compiled program you will have to
@@ -16472,7 +16561,7 @@ different times) to exactly the same code!
 @end menu
 
 @node Example,Options Affecting Code Size,,Batch Compilation
-@anchor{pure example}@anchor{158}
+@anchor{pure example}@anchor{15a}
 @section Example
 
 
@@ -16651,7 +16740,7 @@ like our simple first example will do the trick. But, as you've seen, Pure can
 easily do it.
 
 @node Options Affecting Code Size,Other Output Code Formats,Example,Batch Compilation
-@anchor{pure options-affecting-code-size}@anchor{157}
+@anchor{pure options-affecting-code-size}@anchor{159}
 @section Options Affecting Code Size
 
 
@@ -16733,7 +16822,7 @@ a long time to compute then you'll be better off with the default behaviour of
 precomputing the value at compile time.
 
 @node Other Output Code Formats,Calling Pure Functions From C,Options Affecting Code Size,Batch Compilation
-@anchor{pure other-output-code-formats}@anchor{159}
+@anchor{pure other-output-code-formats}@anchor{15b}
 @section Other Output Code Formats
 
 
@@ -16919,7 +17008,7 @@ toolchain. Please refer to the LLVM documentation@footnote{http://llvm.org/docs/
 description of the opt and llc programs) for details.
 
 @node Calling Pure Functions From C,,Other Output Code Formats,Batch Compilation
-@anchor{pure calling-pure-functions-from-c}@anchor{15a}@anchor{pure llvm-documentation}@anchor{15b}
+@anchor{pure calling-pure-functions-from-c}@anchor{15c}@anchor{pure llvm-documentation}@anchor{15d}
 @section Calling Pure Functions From C
 
 
@@ -17002,7 +17091,7 @@ implementation and how to deal with them.
 @end menu
 
 @node Etymology,Backward Compatibility,,Caveats and Notes
-@anchor{pure etymology}@anchor{15c}
+@anchor{pure etymology}@anchor{15e}
 @section Etymology
 
 
@@ -17021,15 +17110,15 @@ now. If you insist on a (recursive) backronym, just take "Pure" to stand for
 the "Pure universal rewriting engine".
 
 @node Backward Compatibility,Error Recovery,Etymology,Caveats and Notes
-@anchor{pure backward-compatibility}@anchor{15d}
+@anchor{pure backward-compatibility}@anchor{15f}
 @section Backward Compatibility
 
 
-Pure is based on the author's earlier @pxref{15e,,Q} language, but it offers many new and
+Pure is based on the author's earlier @pxref{160,,Q} language, but it offers many new and
 powerful features and programs run much faster than their Q equivalents. The
 language also went through a thorough facelift in order to modernize the
 syntax and make it more similar to other modern-style functional languages, in
-particular @pxref{15f,,Miranda} and @pxref{90,,Haskell}. Thus porting Q scripts to Pure often
+particular @pxref{161,,Miranda} and @pxref{90,,Haskell}. Thus porting Q scripts to Pure often
 involves a substantial amount of manual work, but it can (and has) been done.
 
 Since its modest beginnings in April 2008, Pure has gone through a lot of
@@ -17090,7 +17179,7 @@ result yourself.
 
 Also, as of Pure 0.41 the batch compiler produces stripped executables by
 default. To create unstripped executables you now have to use the @pxref{33,,-u}
-option, see @pxref{157,,Options Affecting Code Size} for details. The @code{-s}
+option, see @pxref{159,,Options Affecting Code Size} for details. The @code{-s}
 option to produce stripped executables is still provided for backward
 compatibility, but it won't have any effect unless you use it to override a
 previous @pxref{33,,-u} option.
@@ -17120,7 +17209,7 @@ the forthcoming 1.0 release:
 
 @item 
 You can now define your own interactive commands by placing suitable
-function definitions in the special @code{__cmd__} namespace; see @pxref{14f,,User-Defined Commands} for details.
+function definitions in the special @code{__cmd__} namespace; see @pxref{151,,User-Defined Commands} for details.
 
 @item 
 The syntax used to denote @pxref{7b,,inline code} sections was changed from
@@ -17189,7 +17278,7 @@ behaviour of raising an exception in such cases offered no real benefits and
 was in fact very inconvenient in most situations. Pure 0.56 also enables stack
 checks by default (see @pxref{4d,,Stack Size and Tail Recursion} for details), and
 interactive commands can optionally be escaped by prefixing them with a
-special character (see @pxref{14e,,Command Syntax}). The @code{true} and
+special character (see @pxref{150,,Command Syntax}). The @code{true} and
 @code{false} constants are now declared as @pxref{93,,nonfix} symbols in the
 prelude so that they can be used in patterns.
 
@@ -17205,7 +17294,7 @@ the default evaluation mode of global functions; these are discussed in
 @pxref{60,,Defined Functions} below.
 
 @node Error Recovery,Splicing Tuples and Matrices,Backward Compatibility,Caveats and Notes
-@anchor{pure error-recovery}@anchor{160}
+@anchor{pure error-recovery}@anchor{162}
 @section Error Recovery
 
 
@@ -17274,7 +17363,7 @@ structures, one which nests, and one which doesn't but has other interesting
 properties.
 
 @node With and when,Non-Linear Patterns,Splicing Tuples and Matrices,Caveats and Notes
-@anchor{pure with-and-when}@anchor{161}
+@anchor{pure with-and-when}@anchor{163}
 @section With and when
 
 
@@ -17354,7 +17443,7 @@ reverse", i.e., from bottom to top, which is the order in which they will
 actually be executed.
 
 @node Non-Linear Patterns,"As" Patterns,With and when,Caveats and Notes
-@anchor{pure non-linear-patterns}@anchor{162}
+@anchor{pure non-linear-patterns}@anchor{164}
 @section Non-Linear Patterns
 
 
@@ -18047,7 +18136,7 @@ argument you want to place the interface type tag, or even have different
 types for each possible argument position.
 
 @node Numeric Calculations,Constant Definitions,Interfaces,Caveats and Notes
-@anchor{pure numeric-calculations}@anchor{163}
+@anchor{pure numeric-calculations}@anchor{165}
 @section Numeric Calculations
 
 
@@ -18262,7 +18351,7 @@ initialization, so the compiler generates the appropriate run time
 initialization code in this case. For all practical purposes, this turns the
 constant into a read-only variable. (There's also a code generation option to
 force this behaviour even for "normal" constants for which it's not strictly
-necessary, in order to create smaller executables; see @pxref{157,,Options Affecting Code Size} for details.)
+necessary, in order to create smaller executables; see @pxref{159,,Options Affecting Code Size} for details.)
 
 @node External C Functions,Calling Special Forms,Constant Definitions,Caveats and Notes
 @anchor{pure external-c-functions}@anchor{137}
@@ -18295,7 +18384,7 @@ and functions declared in the header. Please refer to @code{pure-gen} for
 details.
 
 @node Calling Special Forms,Laziness,External C Functions,Caveats and Notes
-@anchor{pure calling-special-forms}@anchor{164}
+@anchor{pure calling-special-forms}@anchor{166}
 @section Calling Special Forms
 
 
@@ -18307,11 +18396,11 @@ around as function values or in partial applications, but in this case they
 lose all their special call-by-name argument processing.
 
 @node Laziness,Name Capture,Calling Special Forms,Caveats and Notes
-@anchor{pure laziness}@anchor{165}
+@anchor{pure laziness}@anchor{167}
 @section Laziness
 
 
-Pure does lazy evaluation in the same way as @pxref{166,,Alice ML}, providing an
+Pure does lazy evaluation in the same way as @pxref{168,,Alice ML}, providing an
 explicit operation (@pxref{bb,,&}) to defer evaluation and create a "future" which
 is called by need. However, note that like any language with a basically eager
 evaluation strategy, Pure cannot really support lazy evaluation in a fully
@@ -18489,7 +18578,7 @@ bug in the expression printer which will hopefully be fixed some time. But for
 the time being you will have to correct such glitches manually.
 
 @node Author,Acknowledgements,Caveats and Notes,Top
-@anchor{pure author}@anchor{167}
+@anchor{pure author}@anchor{169}
 @chapter Author
 
 
@@ -18497,7 +18586,7 @@ Albert Gräf <@email{aggraef@@gmail.com}>, Dept. of Computer Music, Johannes
 Gutenberg University of Mainz, Germany.
 
 @node Acknowledgements,Copying,Author,Top
-@anchor{pure acknowledgements}@anchor{168}
+@anchor{pure acknowledgements}@anchor{16a}
 @chapter Acknowledgements
 
 
@@ -18577,7 +18666,7 @@ distribution for the exact licensing terms. You can also find the LLVM license
 at the @pxref{6,,LLVM} website.
 
 @node References and Links,Index,Copying,Top
-@anchor{pure references-and-links}@anchor{169}
+@anchor{pure references-and-links}@anchor{16b}
 @chapter References and Links
 
 @anchor{pure aardappel}@anchor{b6}
@@ -18589,7 +18678,7 @@ at the @pxref{6,,LLVM} website.
 Wouter van Oortmerssen's functional programming language based on term
 rewriting, @indicateurl{http://wouter.fov120.com/aardappel}.
 @end table
-@anchor{pure alice-ml}@anchor{166}
+@anchor{pure alice-ml}@anchor{168}
 
 @table @asis
 
@@ -18597,6 +18686,16 @@ rewriting, @indicateurl{http://wouter.fov120.com/aardappel}.
 
 A version of ML (see below) from which Pure borrows its model of lazy
 evaluation, @indicateurl{http://www.ps.uni-sb.de/alice}.
+@end table
+@anchor{pure ats}@anchor{14e}
+
+@table @asis
+
+@item ATS
+
+"Applied Type System", a statically typed, ML-like programming language
+which unifies implementation with formal specification,
+@indicateurl{http://www.ats-lang.org/}.
 @end table
 @anchor{pure baader-and-nipkow}@anchor{f}
 
@@ -18706,7 +18805,7 @@ An LLVM-capable compiler based on gcc, see @indicateurl{http://llvm.org}. This i
 on a fairly old gcc version (4.2) and has been replaced by the @pxref{149,,DragonEgg}
 plugin in the LLVM 3.x series.
 @end table
-@anchor{pure miranda}@anchor{15f}
+@anchor{pure miranda}@anchor{161}
 
 @table @asis
 
@@ -18733,7 +18832,7 @@ D. MacQueen: @emph{The Definition of Standard ML (Revised).} MIT Press, 1997.
 @emph{Equational Logic as a Programming Language.} Series in the Foundations of
 Computing. MIT Press, Cambridge, Mass., 1985.
 @end table
-@anchor{pure q}@anchor{15e}
+@anchor{pure q}@anchor{160}
 
 @table @asis
 

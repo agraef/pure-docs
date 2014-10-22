@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.62, September 17, 2014
+  Version 0.62, October 22, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -14058,12 +14058,13 @@
   Bitcode|#importing-llvm-bitcode>), or batch-compile your script to an
   executable (see <hlink|Batch Compilation|#batch-compilation>).
 
-  At present, C, C++, Fortran and Faust are supported as foreign source
-  languages, with clang, clang++, gfortran (with the dragonegg plugin) and
-  faust as the corresponding (default) compilers. C is the default language.
-  The desired source language can be selected by placing an appropriate tag
-  into the inline code section, immediately after the opening brace. (The tag
-  is removed before the code is submitted to compilation.) For instance:
+  At present, C, C++, Fortran, ATS and Faust are supported as foreign source
+  languages, with clang, clang++, gfortran (with the dragonegg plugin),
+  patscc and faust as the corresponding (default) compilers. C is the default
+  language. The desired source language can be selected by placing an
+  appropriate tag into the inline code section, immediately after the opening
+  brace. (The tag is removed before the code is submitted to compilation.)
+  For instance:
 
   <\verbatim>
     %\<less\> -*- Fortran90 -*-
@@ -14093,17 +14094,18 @@
 
   As indicated, the language tag takes the form <verbatim|-*->
   <verbatim|lang> <verbatim|-*-> where <verbatim|lang> can currently be any
-  of <verbatim|c>, <verbatim|c++>, <verbatim|fortran> and <verbatim|dsp> (the
-  latter indicates the Faust language). Case is insignificant here, so you
-  can also write <verbatim|C>, <verbatim|C++>, <verbatim|Fortran>,
-  <verbatim|DSP> etc. For the <verbatim|fortran> tag, you may also have to
-  specify the appropriate language standard, such as <verbatim|fortran90>
-  which is used in the example above. The language tag can also be followed
-  by a module name, using the format <verbatim|-*-> <verbatim|lang:name>
-  <verbatim|-*->. This is optional for all languages except Faust (where the
-  module name specifies the namespace for the interface routines of the Faust
-  module; see <hlink|Interfacing to Faust|#interfacing-to-faust> below). So,
-  e.g., a Faust DSP named <verbatim|test> would be specified with a
+  of <verbatim|c>, <verbatim|c++>, <verbatim|fortran>, <verbatim|ats> and
+  <verbatim|dsp> (the latter indicates the Faust language). Case is
+  insignificant here, so you can also write <verbatim|C>, <verbatim|C++>,
+  <verbatim|Fortran>, <verbatim|ATS>, <verbatim|DSP> etc. For the
+  <verbatim|fortran> tag, you may also have to specify the appropriate
+  language standard, such as <verbatim|fortran90> which is used in the
+  example above. The language tag can also be followed by a module name,
+  using the format <verbatim|-*-> <verbatim|lang:name> <verbatim|-*->. This
+  is optional for all languages except Faust (where the module name specifies
+  the namespace for the interface routines of the Faust module; see
+  <hlink|Interfacing to Faust|#interfacing-to-faust> below). So, e.g., a
+  Faust DSP named <verbatim|test> would be specified with a
   <verbatim|dsp:test> tag. Case is <em|significant> in the module name.
 
   The Pure interpreter has some built-in knowledge on how to invoke the LLVM
@@ -14114,13 +14116,13 @@
   customization purposes. Specifically,<label|index-22><verbatim|PURE_CC> is
   the command to invoke the C compiler. This variable lets you specify the
   exact name of the executable along with any debugging and optimization
-  options that you may want to add. Likewise,<label|index-23><verbatim|PURE_CXX>,<label|index-24><verbatim|PURE_FC>
-  and<label|index-25><verbatim|PURE_FAUST> are used for the C++, Fortran and
-  Faust compilers, respectively.
+  options that you may want to add. Likewise,<label|index-23><verbatim|PURE_CXX>,<label|index-24><verbatim|PURE_FC>,<label|index-25><verbatim|PURE_ATS>
+  and<label|index-26><verbatim|PURE_FAUST> are used for the C++, Fortran, ATS
+  and Faust compilers, respectively.
 
   For instance, if you prefer to use <hlink|llvm-gcc|#llvm-gcc> as your C
   compiler, and you'd like to invoke it with the <verbatim|-O3> optimization
-  option, you would set<label|index-26><verbatim|PURE_CC> to
+  option, you would set<label|index-27><verbatim|PURE_CC> to
   <verbatim|"llvm-gcc> <verbatim|-O3">. (To verify the settings you made, you
   can have the interpreter echo the compilation commands which are actually
   executed, by running Pure with the <verbatim|-v0100> option, see
@@ -14306,6 +14308,126 @@
     map (map_get m) (map_keys m); // =\<gtr\> [bar 4711L,[1,2,3,4,5]]
   </verbatim>
 
+  <subsubsection|Interfacing to ATS<label|interfacing-to-ats>>
+
+  <hlink|ATS|#ats> is a statically typed functional programming language
+  somewhat similar to ML, which also offers imperative and concurrent
+  programming features. One of ATS's most unusual and interesting aspects is
+  its highly expressive Applied Type System, which gives the language its
+  name. ATS has a very elaborate <hlink|C
+  interface|http://ats-lang.sourceforge.net/DOCUMENT/INT2PROGINATS/HTML/c1995.html>
+  which lets you expose functions written in the language using C linkage.
+  This makes it easy to call ATS functions from Pure via Pure's C interface.
+
+  Here is a simple example which illustrates how to implement the factorial
+  in ATS and call that function from Pure:
+
+  <\verbatim>
+    %\<less\> -*- ATS -*-
+
+    \;
+
+    #include "share/atspre_staload.hats"
+
+    \;
+
+    // A recursive definition of the factorial relation.
+
+    // FACT (n, r) means `the factorial of n equals r'.
+
+    // MUL (i, j, k) means `the product of i and j equals k'.
+
+    dataprop FACT (int, int) =
+
+    \ \ \| FACT_base (0, 1)
+
+    \ \ \| {n : nat} {r1, r : int}
+
+    \ \ \ \ FACT_induction (n, r) of
+
+    \ \ \ \ \ \ (FACT (n-1, r1), MUL (n, r1, r))
+
+    \;
+
+    // Declare ifact as an ATS function that is referred to in C by the
+
+    // name `ifact_nonneg'. The `ifact_nonneg' function returns an integer
+
+    // equal to r, where r satisfies the relation FACT (n, r).
+
+    extern fun ifact :
+
+    \ \ \ \ {n : nat} (int n) -\<less\>\<gtr\> [r : int] (FACT (n, r) \| int
+    r) =
+
+    \ \ \ \ \ \ "ext#ifact_nonneg"
+
+    \;
+
+    implement ifact (n) =
+
+    \ \ let
+
+    \ \ \ \ fun fact {n : nat} .\<less\>n\<gtr\>. (n : int n)
+    :\<less\>\<gtr\>
+
+    \ \ \ \ \ \ \ \ [r : int] (FACT (n, r) \| int r) =
+
+    \ \ \ \ \ \ begin
+
+    \ \ \ \ \ \ \ \ if n \<gtr\> 0 then
+
+    \ \ \ \ \ \ \ \ \ \ let
+
+    \ \ \ \ \ \ \ \ \ \ \ \ val (pf1 \| r1) = ifact (n - 1)
+
+    \ \ \ \ \ \ \ \ \ \ \ \ val (pfmul \| r) = g1int_mul2 (n, r1)
+
+    \ \ \ \ \ \ \ \ \ \ in
+
+    \ \ \ \ \ \ \ \ \ \ \ \ (FACT_induction (pf1, pfmul) \| r)
+
+    \ \ \ \ \ \ \ \ \ \ end
+
+    \ \ \ \ \ \ \ \ else
+
+    \ \ \ \ \ \ \ \ \ \ (FACT_base () \| 1)
+
+    \ \ \ \ \ \ end
+
+    \ \ in
+
+    \ \ \ \ fact n
+
+    \ \ end
+
+    \;
+
+    %\<gtr\>
+
+    \;
+
+    ifact n::int = ifact_nonneg n if 0 \<less\>= n;
+
+    \;
+
+    map ifact (0..9);
+  </verbatim>
+
+  To make this work in Pure, you need to have ATS2 (the current version of
+  the ATS compiler) installed. ATS2 in turn needs a suitable C compiler for
+  generating LLVM bitcode. By default, Pure uses clang for that purpose. If
+  you have gcc's dragonegg plugin installed , you can also use gcc as the C
+  compiler instead, by setting the<label|index-28><verbatim|PURE_ATS>
+  environment variable to <verbatim|patscc> <verbatim|-fplugin=dragonegg>.
+  Also make sure that you have the<label|index-29><verbatim|PATSHOME>
+  environment variable set to ATS's library directory, as explained in the
+  <hlink|ATS installation instructions|http://www.ats-lang.org/Downloads.html#Install-source-compile>.
+
+  More information about ATS, as well as sources and binary packages of the
+  ATS compiler can be found on the <hlink|ATS
+  website|http://www.ats-lang.org/>.
+
   <subsubsection|Interfacing to Faust<label|interfacing-to-faust>>
 
   <hlink|Faust|#faust> is a functional dsp (digital signal processing)
@@ -14369,7 +14491,7 @@
   A third possibility is to just inline Faust code in a Pure script, as
   described in the <hlink|Inline Code|#inline-code> section. The compilation
   step is then handled by the Pure compiler and the <verbatim|-double> option
-  is added automatically. The<label|index-27><verbatim|PURE_FAUST>
+  is added automatically. The<label|index-30><verbatim|PURE_FAUST>
   environment variable can be used to specify a custom Faust command to be
   invoked by the Pure interpreter. This is useful if you'd like to invoke the
   Faust compiler with some special options, e.g.:
@@ -14381,7 +14503,7 @@
   (Note that you do not have to include the <verbatim|-lang> <verbatim|llvm>
   option; the inline compiler will supply it automatically.)
 
-  Moreover, you can also set the<label|index-28><verbatim|FAUST_OPT>
+  Moreover, you can also set the<label|index-31><verbatim|FAUST_OPT>
   environment variable to specify any needed postprocessing of the output of
   the Faust compiler; this is typically used to invoke the LLVM
   <verbatim|opt> utility in a pipeline, in order to have some additional
@@ -14853,7 +14975,7 @@
   the prefix character will then be considered normal Pure code. This mode
   can be enabled with the <hlink|<em|--escape>|#cmdoption-pure--escape>
   option, which takes the desired prefix character as an argument, or you can
-  just set the<label|index-29><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  just set the<label|index-32><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   variable in your environment to enable escape mode by default.
 
   For example, to set the escape character to `<verbatim|:>` you'll invoke
@@ -14863,7 +14985,7 @@
     $ pure --escape=':'
   </verbatim>
 
-  Alternatively, you could also set the<label|index-30><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  Alternatively, you could also set the<label|index-33><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   environment variable like this (using Bourne shell syntax):
 
   <\verbatim>
@@ -14874,7 +14996,7 @@
   <hlink|<em|--escape>|#cmdoption-pure--escape> option overrides the value of
   the environment variable, and only the initial character in the value of
   <hlink|<em|--escape>|#cmdoption-pure--escape>
-  or<label|index-31><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
+  or<label|index-34><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   will be used. If the specified value is empty, the interpreter reverts to
   the default mode. The following prefix characters can be used:
   <verbatim|!$%&*,:\<\>@\\\|>. Note that these all belong to 7 bit ASCII, and
@@ -14938,8 +15060,8 @@
 
   You need to have a html browser installed to make this work. By default,
   the <verbatim|help> command uses <with|font-series|bold|w3m>, but you can
-  change this by setting either the<label|index-32><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
-  or the<label|index-33><hlink|<with|font-family|tt|BROWSER>|#envvar-BROWSER>
+  change this by setting either the<label|index-35><hlink|<with|font-family|tt|PURE_HELP>|#envvar-PURE-HELP>
+  or the<label|index-36><hlink|<with|font-family|tt|BROWSER>|#envvar-BROWSER>
   environment variable accordingly.
 
   When invoked without arguments, the <verbatim|help> command displays an
@@ -15028,11 +15150,11 @@
   below.)
 
   <\description>
-    <item*|! command><label|index-34>Shell escape.
+    <item*|! command><label|index-37>Shell escape.
   </description>
 
   <\description>
-    <item*|break [symbol ...]><label|index-35>Sets breakpoints on the given
+    <item*|break [symbol ...]><label|index-38>Sets breakpoints on the given
     function or operator symbols. All symbols must be specified in fully
     qualified form, see the remarks below. If invoked without arguments,
     prints all currently defined breakpoints. This requires that the
@@ -15042,7 +15164,7 @@
   </description>
 
   <\description>
-    <item*|bt><label|index-36>Prints a full backtrace of the call sequence of
+    <item*|bt><label|index-39>Prints a full backtrace of the call sequence of
     the most recent evaluation, if that evaluation ended with an unhandled
     exception. This requires that the interpreter was invoked with the
     <hlink|<em|-g>|#cmdoption-pure-g> option to enable debugging support. See
@@ -15050,11 +15172,11 @@
   </description>
 
   <\description>
-    <item*|cd dir><label|index-37>Change the current working dir.
+    <item*|cd dir><label|index-40>Change the current working dir.
   </description>
 
   <\description>
-    <item*|clear [option ...] [symbol ...]><label|index-38>Purge the
+    <item*|clear [option ...] [symbol ...]><label|index-41>Purge the
     definitions of the given symbols (functions, macros, constants or global
     variables). All symbols must be specified in fully qualified form, see
     the remarks below. If invoked as <verbatim|clear> <verbatim|ans>, clears
@@ -15074,7 +15196,7 @@
   </description>
 
   <\description>
-    <item*|del [-b\|-m\|-t] [symbol ...]><label|index-39>Deletes breakpoints
+    <item*|del [-b\|-m\|-t] [symbol ...]><label|index-42>Deletes breakpoints
     and tracepoints on the given function or operator symbols. If the
     <verbatim|-b> option is specified then only breakpoints are deleted;
     similarly, <verbatim|del> <verbatim|-t> only deletes tracepoints. If none
@@ -15090,7 +15212,7 @@
   </description>
 
   <\description>
-    <item*|dump [-n filename] [option ...] [symbol ...]><label|index-40>Dump
+    <item*|dump [-n filename] [option ...] [symbol ...]><label|index-43>Dump
     a snapshot of the current function, macro, constant and variable
     definitions in Pure syntax to a text file. All symbols must be specified
     in fully qualified form, see the remarks below. This works similar to the
@@ -15117,7 +15239,7 @@
   </description>
 
   <\description>
-    <item*|help [topic]><label|index-41>Display online documentation. If a
+    <item*|help [topic]><label|index-44>Display online documentation. If a
     topic is given, it is looked up in the index. Alternatively, you can also
     specify a link target in any of the installed help files, or any other
     html document denoted by a proper URL. Please see <hlink|Online
@@ -15125,12 +15247,12 @@
   </description>
 
   <\description>
-    <item*|ls [args]><label|index-42>List files (shell
+    <item*|ls [args]><label|index-45>List files (shell
     <with|font-series|bold|ls> command).
   </description>
 
   <\description>
-    <item*|mem><label|index-43>Print current memory usage. This reports the
+    <item*|mem><label|index-46>Print current memory usage. This reports the
     number of expression cells currently in use by the program, along with
     the size of the freelist (the number of allocated but currently unused
     expression cells). Note that the actual size of the expression storage
@@ -15141,23 +15263,23 @@
   </description>
 
   <\description>
-    <item*|override><label|index-44>Enter ``override'' mode. This allows you
+    <item*|override><label|index-47>Enter ``override'' mode. This allows you
     to add equations ``above'' existing definitions in the source script,
     possibly overriding existing equations. See <hlink|Definition
     Levels|#definition-levels> below for details.
   </description>
 
   <\description>
-    <item*|pwd><label|index-45>Print the current working dir (shell
+    <item*|pwd><label|index-48>Print the current working dir (shell
     <with|font-series|bold|pwd> command).
   </description>
 
   <\description>
-    <item*|quit><label|index-46>Exits the interpreter.
+    <item*|quit><label|index-49>Exits the interpreter.
   </description>
 
   <\description>
-    <item*|run [-g\|script]><label|index-47>When invoked without arguments or
+    <item*|run [-g\|script]><label|index-50>When invoked without arguments or
     with the <verbatim|-g> option, <verbatim|run> does a ``cold'' restart of
     the interpreter, with the scripts and options given on the interpreter's
     original command line. If just <verbatim|-g> is specified as the
@@ -15185,14 +15307,14 @@
   </description>
 
   <\description>
-    <item*|save><label|index-48>Begin a new level of temporary definitions. A
+    <item*|save><label|index-51>Begin a new level of temporary definitions. A
     subsequent <verbatim|clear> command (see above) will purge the
     definitions made since the most recent <verbatim|save> command. See
     <hlink|Definition Levels|#definition-levels> below for details.
   </description>
 
   <\description>
-    <item*|show [option ...] [symbol ...]><label|index-49>Show the
+    <item*|show [option ...] [symbol ...]><label|index-52>Show the
     definitions of symbols in various formats. See <hlink|The show
     Command|#the-show-command> below for details. All symbols must be
     specified in fully qualified form, see the remarks below. A description
@@ -15202,7 +15324,7 @@
   </description>
 
   <\description>
-    <item*|stats [-m] [on\|off]><label|index-50>Enables (default) or disables
+    <item*|stats [-m] [on\|off]><label|index-53>Enables (default) or disables
     ``stats'' mode, in which some statistics are printed after an expression
     has been evaluated. Invoking just <verbatim|stats> or <verbatim|stats>
     <verbatim|on> only prints the cpu time in seconds for each evaluation. If
@@ -15215,7 +15337,7 @@
   </description>
 
   <\description>
-    <item*|trace [-a] [-m] [-r] [-s] [symbol ...]><label|index-51>Sets
+    <item*|trace [-a] [-m] [-r] [-s] [symbol ...]><label|index-54>Sets
     tracepoints on the given function or operator symbols. Without the
     <verbatim|-m> option, this works pretty much like the <verbatim|break>
     command (see above) but only prints rule invocations and reductions
@@ -15250,7 +15372,7 @@
   </description>
 
   <\description>
-    <item*|underride><label|index-52>Exits ``override'' mode. This returns
+    <item*|underride><label|index-55>Exits ``override'' mode. This returns
     you to the normal mode of operation, where new equations are added
     ``below'' previous rules of an existing function. See <hlink|Definition
     Levels|#definition-levels> below for details.
@@ -15370,7 +15492,7 @@
   Symbols are always listed in lexicographic order. Note that some of the
   options (in particular, <verbatim|-a> and <verbatim|-d>) may produce
   excessive amounts of information. By setting
-  the<label|index-53><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  the<label|index-56><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
   environment variable, you can specify a shell command to be used for
   paging, usually <with|font-series|bold|more> or
   <with|font-series|bold|less>.
@@ -15811,7 +15933,7 @@
   call that raised the exception. The format is similar to the <verbatim|p>
   command of the debugger, see below, but <verbatim|bt> always prints a full
   backtrace. (As with the <verbatim|show> command of the interpreter, you can
-  set the<label|index-54><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  set the<label|index-57><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
   environment variable to pipe the output through the corresponding command,
   or use <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> to capture
   the output of <verbatim|bt> in a string.)
@@ -16749,7 +16871,7 @@
   line. This lets you tailor the interactive environment to your liking.
 
   The interpreter first looks for a .purerc file in the user's home directory
-  (as given by the<label|index-55><verbatim|HOME> environment variable) and
+  (as given by the<label|index-58><verbatim|HOME> environment variable) and
   then for a .purerc file in the current working directory. These are just
   ordinary Pure scripts which may contain any additional definitions
   (including command definitions, as described in the previous section) that
@@ -18204,20 +18326,20 @@
   checks on function entry and raises a Pure exception if the current stack
   size exceeds a given limit. A reasonable default for the stack limit is
   defined by the implementation, please check the description of
-  the<label|index-56><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  the<label|index-59><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   environment variable for details.
 
   You can also change this limit if needed, by setting
-  the<label|index-57><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  the<label|index-60><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   environment variable accordingly. The value
-  of<label|index-58><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  of<label|index-61><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   should be the maximum stack size in kilobytes. Please note that this is
   only an advisory limit which does not change the program's physical stack
   size, so you can set this to any value that seems appropriate. (You can
-  also set<label|index-59><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  also set<label|index-62><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   to zero to completely disable the checks, but this isn't recommended.) Your
   operating system should supply you with a command such as ulimit(1) to set
-  the real process stack size. (The<label|index-60><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
+  the real process stack size. (The<label|index-63><hlink|<with|font-family|tt|PURE_STACK>|#envvar-PURE-STACK>
   limit should be a little less than that, to account for temporary stack
   usage by the interpreter itself.)
 
@@ -19155,6 +19277,12 @@
   </description>
 
   <\description>
+    <item*|ATS<label|ats>>``Applied Type System'', a statically typed,
+    ML-like programming language which unifies implementation with formal
+    specification, <hlink|http://www.ats-lang.org/|http://www.ats-lang.org/>.
+  </description>
+
+  <\description>
     <item*|Franz Baader and Tobias Nipkow<label|baader-and-nipkow>><em|Term
     Rewriting and All That.> Cambridge University Press, Cambridge, 1998.
   </description>
@@ -19484,6 +19612,8 @@
 
         <item><hlink|Interfacing to C++|#interfacing-to-c>
 
+        <item><hlink|Interfacing to ATS|#interfacing-to-ats>
+
         <item><hlink|Interfacing to Faust|#interfacing-to-faust>
       </itemize>
 
@@ -19593,6 +19723,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
+  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
