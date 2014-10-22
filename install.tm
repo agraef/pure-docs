@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.62, September 17, 2014
+  Version 0.63, October 22, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -40,7 +40,7 @@
   <subsection|Quick Summary<label|quick-summary>>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.4 and Pure 0.62, please substitute your actual version numbers
+  using LLVM 3.4 and Pure 0.63, please substitute your actual version numbers
   in the commands given below.
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
@@ -59,7 +59,7 @@
   You'll probably need the latest Pure and LLVM tarballs which, at the time
   of this writing, are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.62.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.62.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
@@ -96,9 +96,9 @@
   Installing Pure:
 
   <\verbatim>
-    $ tar xfvz pure-0.62.tar.gz
+    $ tar xfvz pure-0.63.tar.gz
 
-    $ cd pure-0.62
+    $ cd pure-0.63
 
     $ ./configure --enable-release
 
@@ -132,9 +132,9 @@
   the pure-docs tarball manually in the usual way, e.g.:
 
   <\verbatim>
-    $ tar xfvz pure-docs-0.62.tar.gz
+    $ tar xfvz pure-docs-0.63.tar.gz
 
-    $ cd pure-docs-0.62
+    $ cd pure-docs-0.63
 
     $ sudo make install
   </verbatim>
@@ -148,7 +148,7 @@
   Uninstalling:
 
   <\verbatim>
-    $ cd pure-0.62
+    $ cd pure-0.63
 
     $ sudo make uninstall
 
@@ -554,7 +554,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.62
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.63
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
@@ -1497,6 +1497,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Sep
-  17, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
+  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
