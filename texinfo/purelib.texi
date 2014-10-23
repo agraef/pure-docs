@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.63, October 23, 2014
+Pure 0.63, October 24, 2014
 
 Albert Gräf (Editor)
 
@@ -54,7 +54,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 
 @c title here.
 
-Version 0.63, October 22, 2014
+Version 0.63, October 24, 2014
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -191,6 +191,7 @@ Regex Matching
 * Regex Substitutions and Splitting:: 
 * Empty Matches:: 
 * Submatches:: 
+* Perl Regex Compatibility:: 
 
 @end detailmenu
 @end menu
@@ -8720,6 +8721,7 @@ matches one by one, using "call by need" evaluation.
 * Regex Substitutions and Splitting:: 
 * Empty Matches:: 
 * Submatches:: 
+* Perl Regex Compatibility:: 
 
 @end menu
 
@@ -8908,7 +8910,7 @@ This also works when substituting or splitting:
 
 @noindent
 
-@node Submatches,,Empty Matches,Regex Matching
+@node Submatches,Perl Regex Compatibility,Empty Matches,Regex Matching
 @anchor{purelib submatches}@anchor{2fe}
 @subsection Submatches
 
@@ -8965,6 +8967,38 @@ random access to the environment variables:
 
 @noindent
 
+@node Perl Regex Compatibility,,Submatches,Regex Matching
+@anchor{purelib perl-regex-compatibility}@anchor{2ff}
+@subsection Perl Regex Compatibility
+
+
+Pure 0.64 and later can be built with support for Perl-style regular
+expressions in the runtime. This is disabled by default, but you can build
+the interpreter with the @code{--with-pcre} configure option to enable it.
+You need to have the pcreposix library installed to make that work, see
+@indicateurl{http://www.pcre.org/}.
+
+Once this option is enabled, Pure's regex operations will work as discussed
+above, except that they will now understand Perl-style regular expressions,
+as implemented by the libpcre library, instead of the (much more limited)
+POSIX syntax. For instance, you can now write:
+
+@example
+> using regex;
+> regex "(?:Bob says: (\\w+))" 0 "Bob says: Go" 0;
+1,0,"Bob says: Go",10,"Go"
+@end example
+
+@noindent
+
+Note that in Perl-style regexes the @code{(?:...)} construct indicates a
+non-capturing group, so that the above invocation returns just a single
+submatch for the second @code{(\w+)} group.
+
+A discussion of Perl regexes is beyond the scope of this manual, so you may
+want to refer to @indicateurl{http://www.rexegg.com/} for more information or read a good
+book on the subject.
+
 
 @node Additional POSIX Functions,Option Parsing,Regex Matching,System Interface
 @anchor{purelib module-posix}@anchor{7}@anchor{purelib additional-posix-functions}@anchor{29d}
@@ -8999,9 +9033,9 @@ Fork a new process.
 
 @geindex getpid (function)
 @geindex getppid (function)
-@anchor{purelib getpid}@anchor{2ff}
+@anchor{purelib getpid}@anchor{300}
 @deffn {Pure Function} getpid
-@anchor{purelib getppid}@anchor{300}
+@anchor{purelib getppid}@anchor{301}
 @deffnx {Pure Function} getppid
 
 Get the process id of the current process and its parent process,
@@ -9028,14 +9062,14 @@ Send the given signal to the given process.
 @end deffn
 
 @geindex raise (function)
-@anchor{purelib raise}@anchor{301}
+@anchor{purelib raise}@anchor{302}
 @deffn {Pure Function} raise sig
 
 Raise the given signal in the current process.
 @end deffn
 
 @geindex pause (function)
-@anchor{purelib pause}@anchor{302}
+@anchor{purelib pause}@anchor{303}
 @deffn {Pure Function} pause
 
 Sleep until a signal is caught.
@@ -9061,7 +9095,7 @@ using getopt;
 The following operation is provided:
 
 @geindex getopt (function)
-@anchor{purelib getopt}@anchor{303}
+@anchor{purelib getopt}@anchor{304}
 @deffn {Pure Function} getopt opts args
 
 Parse options as given by @code{opts} in the command line arguments
@@ -9069,14 +9103,14 @@ Parse options as given by @code{opts} in the command line arguments
 (non-option) command line arguments.
 @end deffn
 
-The @pxref{303,,getopt} function takes two arguments: @code{opts}, a list of option
+The @pxref{304,,getopt} function takes two arguments: @code{opts}, a list of option
 descriptions in the format described below, and @code{args}, a list of strings
 containing the command line parameters to be parsed for options. The result
 is a pair @code{(opts_return,args_return)} where @code{opts_return} is a list of
 options and their values, and @code{args_return} is the list of remaining
 (non-option) arguments. Options are parsed using the rules of GNU
 getopt(1). If an invalid option is encountered (unrecognized option,
-missing or extra argument, etc.), @pxref{303,,getopt} throws the offending
+missing or extra argument, etc.), @pxref{304,,getopt} throws the offending
 option string as an exception.
 
 The @code{opts_return} value is a list of "hash pairs" @code{opt=>val} where

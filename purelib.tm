@@ -10,7 +10,7 @@
 
   <section*|Pure Library Manual<label|pure-library-manual>>
 
-  Version 0.63, October 22, 2014
+  Version 0.63, October 24, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -7606,6 +7606,35 @@
     {"/bin/bash","/home/ag"}
   </verbatim>
 
+  <paragraph|Perl Regex Compatibility<label|perl-regex-compatibility>>
+
+  Pure 0.64 and later can be built with support for Perl-style regular
+  expressions in the runtime. This is disabled by default, but you can build
+  the interpreter with the <verbatim|--with-pcre> configure option to enable
+  it. You need to have the pcreposix library installed to make that work, see
+  <hlink|http://www.pcre.org/|http://www.pcre.org/>.
+
+  Once this option is enabled, Pure's regex operations will work as discussed
+  above, except that they will now understand Perl-style regular expressions,
+  as implemented by the libpcre library, instead of the (much more limited)
+  POSIX syntax. For instance, you can now write:
+
+  <\verbatim>
+    \<gtr\> using regex;
+
+    \<gtr\> regex "(?:Bob says: (\\\\w+))" 0 "Bob says: Go" 0;
+
+    1,0,"Bob says: Go",10,"Go"
+  </verbatim>
+
+  Note that in Perl-style regexes the <verbatim|(?:...)> construct indicates
+  a non-capturing group, so that the above invocation returns just a single
+  submatch for the second <verbatim|(\\w+)> group.
+
+  A discussion of Perl regexes is beyond the scope of this manual, so you may
+  want to refer to <hlink|http://www.rexegg.com/|http://www.rexegg.com/> for
+  more information or read a good book on the subject.
+
   <subsubsection|Additional POSIX Functions<label|module-posix>>
 
   <em|Platforms:>Mac, Unix
@@ -7926,6 +7955,8 @@
           <item><hlink|Empty Matches|#empty-matches>
 
           <item><hlink|Submatches|#submatches>
+
+          <item><hlink|Perl Regex Compatibility|#perl-regex-compatibility>
         </itemize>
 
         <item><hlink|Additional POSIX Functions|#module-posix>
@@ -7949,5 +7980,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
