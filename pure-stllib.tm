@@ -10,7 +10,7 @@
 
   <section*|pure-stllib<label|pure-stllib>>
 
-  Version 0.6, October 22, 2014
+  Version 0.6, October 23, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -43,7 +43,7 @@
   <subsection|Installation<label|installation>>
 
   pure-stllib-0.6 requires at least Pure 0.50. The latest version of Pure is
-  available at <hlink|http://code.google.com/p/pure-lang/downloads/list|http://code.google.com/p/pure-lang/downloads/list>.
+  available at <hlink|https://bitbucket.org/purelang/pure-lang/downloads|https://bitbucket.org/purelang/pure-lang/downloads>.
 
   The latest version of the source code for <hlink|<em|pure-stllib>|> can be
   downloaded from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stllib-0.6.tar.gz>.
@@ -153,5 +153,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  23, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

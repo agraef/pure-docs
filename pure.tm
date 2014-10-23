@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.63, October 22, 2014
+  Version 0.63, October 23, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -14417,7 +14417,7 @@
   To make this work in Pure, you need to have ATS2 (the current version of
   the ATS compiler) installed. ATS2 in turn needs a suitable C compiler for
   generating LLVM bitcode. By default, Pure uses clang for that purpose. If
-  you have gcc's dragonegg plugin installed , you can also use gcc as the C
+  you have gcc's dragonegg plugin installed, you can also use gcc as the C
   compiler instead, by setting the<label|index-28><verbatim|PURE_ATS>
   environment variable to <verbatim|patscc> <verbatim|-fplugin=dragonegg>.
   Also make sure that you have the<label|index-29><verbatim|PATSHOME>
@@ -19724,5 +19724,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  23, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

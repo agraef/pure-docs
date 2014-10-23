@@ -10,7 +10,7 @@
 
   <section*|pure-stlvec<label|module-stlvec>>
 
-  <label|module-stlvec::algorithms>Version 0.4, October 22, 2014
+  <label|module-stlvec::algorithms>Version 0.4, October 23, 2014
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -35,7 +35,7 @@
 
   pure-stlvec-0.4 is included in the ``umbrella'' addon,
   <hlink|<em|pure-stllib>|pure-stllib.tm>, which is available at
-  <hlink|http://code.google.com/p/pure-lang/downloads/list|http://code.google.com/p/pure-lang/downloads/list>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads|https://bitbucket.org/purelang/pure-lang/downloads>.
   After you have downloaded and installed
   <hlink|<em|pure-stllib>|pure-stllib.tm>, you will be able to use
   pure-stlvec (and <hlink|<em|pure-stlmap>|pure-stlmap.tm>, as well).
@@ -1857,5 +1857,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  23, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
