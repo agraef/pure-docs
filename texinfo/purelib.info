@@ -1,7 +1,7 @@
 This is purelib.info, produced by makeinfo version 5.2 from
 purelib.texi.
 
-     Pure 0.63, October 24, 2014
+     Pure 0.63, October 27, 2014
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: purelib.info,  Node: Top,  Next: Prelude,  Up: (dir)
 Pure Library Manual
 *******************
 
-     Pure 0.63, October 24, 2014
+     Pure 0.63, October 27, 2014
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2014, Albert Gräf et al
 
-  Version 0.63, October 24, 2014
+  Version 0.63, October 27, 2014
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -6002,12 +6002,17 @@ can be done.)
                (bitwise or of any of the flags accepted by regexec(3))
 
   Symbolic ‘REG_*’ constants are provided for the different flag values,
-see the regcomp(3) manpage for an explanation of these.  Two
-particularly important compilation flags (to be included in the ‘cflags’
-argument) are ‘REG_NOSUB’, which prevents submatches to be computed, and
-‘REG_EXTENDED’, which switches *note regex: 2ef. from "basic" to
-"extended" regular expressions so that it understands all the regular
-expression elements of egrep(1) in the pattern argument.
+see the regcomp(3) manpage for an explanation of these.  (Please note
+that these symbolic "constants" aren’t really constants, but are
+actually implemented as variables, since their values may depend on
+which underlying regex library is being used.  Please check *note Perl
+Regex Compatibility: 2f0. below for details.)
+
+  Two particularly important compilation flags (to be included in the
+‘cflags’ argument) are ‘REG_NOSUB’, which prevents submatches to be
+computed, and ‘REG_EXTENDED’, which switches *note regex: 2ef. from
+"basic" to "extended" regular expressions so that it understands all the
+regular expression elements of egrep(1) in the pattern argument.
 
   Depending on the flags and the outcome of the operation, the result of
 this function can take one of the following forms:
@@ -6065,7 +6070,7 @@ returned by *note regex: 2ef.
  -- Pure Function: reg n info
 
      Returns the ‘n’th submatch of the given submatch info, where ‘info’
-     is the result of a *note reg_info: 2f1. call.
+     is the result of a *note reg_info: 2f2. call.
 
  -- Pure Function: regs info
 
@@ -6086,17 +6091,17 @@ a string according to a given delimiter regex.
 
  -- Pure Function: regexgg f pat cflags s eflags
 
-     This works like *note regexg: 2f4, but allows overlapping matches.
+     This works like *note regexg: 2f5, but allows overlapping matches.
 
  -- Pure Function: regsub f pat cflags s eflags
 
      Replaces all non-overlapping instances of a pattern with a computed
      substitution string.  To these ends, the given function ‘f’ is
-     applied to the *note reg_info: 2f1. for each match.  The result
+     applied to the *note reg_info: 2f2. for each match.  The result
      string is then obtained by concatenating ‘f info’ for all matches,
      with the unmatched portions of the string in between.  To make this
      work, ‘f’ must always return a string value; otherwise, *note
-     regsub: 2f6. throws a *note bad_string_value: 18. exception.
+     regsub: 2f7. throws a *note bad_string_value: 18. exception.
 
  -- Pure Function: regsplit pat cflags s eflags
 
@@ -6112,8 +6117,8 @@ the following lazy alternatives are available:
  -- Pure Function: regexggs f pat cflags s eflags
  -- Pure Function: regsplits pat cflags s eflags
 
-     These work like *note regexg: 2f4, *note regexgg: 2f5. and *note
-     regsplit: 2f7. above, but return a stream result which enables you
+     These work like *note regexg: 2f5, *note regexgg: 2f6. and *note
+     regsplit: 2f8. above, but return a stream result which enables you
      to process the matches one by one, using "call by need" evaluation.
 
 * Menu:
@@ -6164,7 +6169,7 @@ match info:
      > regexg (!1) pat 0 s 0;
      ["var","foo","BAR"]
 
-  Lazy versions of both *note regexg: 2f4. and *note regexgg: 2f5. are
+  Lazy versions of both *note regexg: 2f5. and *note regexgg: 2f6. are
 provided which return the result as a stream instead.  These can be
 processed in a "call by need" fashion:
 
@@ -6222,7 +6227,7 @@ pattern):
      > regsplit delim REG_EXTENDED "The   quick brown    fox" 0;
      ["The","quick","brown","fox"]
 
-  The *note regsplit: 2f7. operation also has a lazy variation:
+  The *note regsplit: 2f8. operation also has a lazy variation:
 
      > regsplits "[[:space:]]+" REG_EXTENDED "The   quick brown    fox" 0;
      "The":#<thunk 0x7fb1b79775b0>
@@ -6270,8 +6275,8 @@ a given subexpression.  For instance, suppose we want to parse
 environment lines, such as those returned by the shell’s ‘set’ command.
 These can be dissected using the following regex:
 
-     > const env_pat = "^([^=]+)=(.*)$";
-     > const env_flags = REG_EXTENDED or REG_NEWLINE;
+     > let env_pat = "^([^=]+)=(.*)$";
+     > let env_flags = REG_EXTENDED or REG_NEWLINE;
      > regex env_pat env_flags "SHELL=/bin/sh" 0;
      1,0,"SHELL=/bin/sh",0,"SHELL",6,"/bin/sh"
 
@@ -6328,6 +6333,25 @@ submatch for the second ‘(\w+)’ group.
   A discussion of Perl regexes is beyond the scope of this manual, so
 you may want to refer to ‘http://www.rexegg.com/’ for more information
 or read a good book on the subject.
+
+  Pure scripts can detect whether Perl regexes are enabled by inspecting
+the value of the ‘pcre_version’ variable.  This variable will only be
+defined if the interpreter was built with the ‘--with-pcre’ configure
+option, in which case its value is the version number of the libpcre
+library as a string.
+
+  Please note that enabling this option will change the meaning of some
+constructs in the regular expression syntax, even if you don’t actually
+use any of the Perl-specific extensions.  It’s possible to write Pure
+scripts which work with either libpcre or the default (POSIX) regex
+library, but you need to be aware of the discrepancies.  The most
+notable differences are that ‘REG_EXTENDED’ is always enabled and the
+treatment of newlines is different in some situations if ‘REG_NEWLINE’
+is used; please check the pcreposix(3) manual page for details.  Also,
+the ‘REG_*’ "constants" differ between libpcre and the POSIX regex
+functions, so you should never hard-code these into batch-compiled
+scripts (simply avoid ‘const’ definitions involving these values, then
+you should be fine).
 
 
 File: purelib.info,  Node: Additional POSIX Functions,  Next: Option Parsing,  Prev: Regex Matching,  Up: System Interface
@@ -7180,19 +7204,19 @@ Index
                                                               (line  14)
 * refp (function):                       Expression References.
                                                               (line  37)
-* reg (function):                        Regex Matching.      (line 104)
+* reg (function):                        Regex Matching.      (line 109)
 * regex (function):                      Regex Matching.      (line  24)
 * regex (module):                        Regex Matching.      (line   6)
-* regexg (function):                     Regex Matching.      (line 118)
-* regexgg (function):                    Regex Matching.      (line 126)
-* regexggs (function):                   Regex Matching.      (line 150)
-* regexgs (function):                    Regex Matching.      (line 150)
-* regs (function):                       Regex Matching.      (line 109)
-* regsplit (function):                   Regex Matching.      (line 140)
-* regsplits (function):                  Regex Matching.      (line 150)
-* regsub (function):                     Regex Matching.      (line 130)
-* reg_info (function):                   Regex Matching.      (line 100)
-* reg_result (function):                 Regex Matching.      (line  94)
+* regexg (function):                     Regex Matching.      (line 123)
+* regexgg (function):                    Regex Matching.      (line 131)
+* regexggs (function):                   Regex Matching.      (line 155)
+* regexgs (function):                    Regex Matching.      (line 155)
+* regs (function):                       Regex Matching.      (line 114)
+* regsplit (function):                   Regex Matching.      (line 145)
+* regsplits (function):                  Regex Matching.      (line 155)
+* regsub (function):                     Regex Matching.      (line 135)
+* reg_info (function):                   Regex Matching.      (line 105)
+* reg_result (function):                 Regex Matching.      (line  99)
 * repeat (function):                     List Generators.     (line  36)
 * repeatn (function):                    List Generators.     (line  40)
 * reverse (function):                    Lists and Tuples.    (line 225)
@@ -8979,73 +9003,73 @@ Ref: purelib module-regex209706
 Ref: 8209706
 Ref: purelib regex210653
 Ref: 2ef210653
-Ref: purelib reg_result214149
-Ref: 2f0214149
-Ref: purelib reg_info214363
-Ref: 2f1214363
-Ref: purelib reg214467
-Ref: 2f2214467
-Ref: purelib regs214631
-Ref: 2f3214631
-Ref: purelib regexg214982
-Ref: 2f4214982
-Ref: purelib regexgg215394
-Ref: 2f5215394
-Ref: purelib regsub215517
-Ref: 2f6215517
-Ref: purelib regsplit216067
-Ref: 2f7216067
-Ref: purelib regexgs216470
-Ref: 2f8216470
-Ref: purelib regexggs216519
-Ref: 2f9216519
-Ref: purelib regsplits216569
-Ref: 2fa216569
-Node: Basic Examples216969
-Ref: purelib basic-examples217077
-Ref: 2fb217077
-Node: Regex Substitutions and Splitting219047
-Ref: purelib regex-substitutions-and-splitting219177
-Ref: 2fc219177
-Node: Empty Matches219887
-Ref: purelib empty-matches220013
-Ref: 2fd220013
-Node: Submatches220937
-Ref: purelib submatches221054
-Ref: 2fe221054
-Node: Perl Regex Compatibility222464
-Ref: purelib perl-regex-compatibility222559
-Ref: 2ff222559
-Node: Additional POSIX Functions223705
-Ref: purelib module-posix223831
-Ref: 7223831
-Ref: purelib additional-posix-functions223831
-Ref: 29d223831
-Ref: purelib fork224437
-Ref: 2b9224437
-Ref: purelib getpid224488
-Ref: 300224488
-Ref: purelib getppid224514
-Ref: 301224514
-Ref: purelib wait224633
-Ref: 2bb224633
-Ref: purelib waitpid224664
-Ref: 2bc224664
-Ref: purelib kill224898
-Ref: 2ba224898
-Ref: purelib raise224981
-Ref: 302224981
-Ref: purelib pause225064
-Ref: 303225064
-Ref: purelib module-getopt225127
-Ref: 3225127
-Node: Option Parsing225128
-Ref: purelib option-parsing225231
-Ref: b4225231
-Ref: purelib getopt225521
-Ref: 304225521
-Node: Module Index228811
-Node: Index229082
+Ref: purelib reg_result214417
+Ref: 2f1214417
+Ref: purelib reg_info214631
+Ref: 2f2214631
+Ref: purelib reg214735
+Ref: 2f3214735
+Ref: purelib regs214899
+Ref: 2f4214899
+Ref: purelib regexg215250
+Ref: 2f5215250
+Ref: purelib regexgg215662
+Ref: 2f6215662
+Ref: purelib regsub215785
+Ref: 2f7215785
+Ref: purelib regsplit216335
+Ref: 2f8216335
+Ref: purelib regexgs216738
+Ref: 2f9216738
+Ref: purelib regexggs216787
+Ref: 2fa216787
+Ref: purelib regsplits216837
+Ref: 2fb216837
+Node: Basic Examples217237
+Ref: purelib basic-examples217345
+Ref: 2fc217345
+Node: Regex Substitutions and Splitting219315
+Ref: purelib regex-substitutions-and-splitting219445
+Ref: 2fd219445
+Node: Empty Matches220155
+Ref: purelib empty-matches220281
+Ref: 2fe220281
+Node: Submatches221205
+Ref: purelib submatches221322
+Ref: 2ff221322
+Node: Perl Regex Compatibility222728
+Ref: purelib perl-regex-compatibility222823
+Ref: 2f0222823
+Node: Additional POSIX Functions225088
+Ref: purelib module-posix225214
+Ref: 7225214
+Ref: purelib additional-posix-functions225214
+Ref: 29d225214
+Ref: purelib fork225820
+Ref: 2b9225820
+Ref: purelib getpid225871
+Ref: 300225871
+Ref: purelib getppid225897
+Ref: 301225897
+Ref: purelib wait226016
+Ref: 2bb226016
+Ref: purelib waitpid226047
+Ref: 2bc226047
+Ref: purelib kill226281
+Ref: 2ba226281
+Ref: purelib raise226364
+Ref: 302226364
+Ref: purelib pause226447
+Ref: 303226447
+Ref: purelib module-getopt226510
+Ref: 3226510
+Node: Option Parsing226511
+Ref: purelib option-parsing226614
+Ref: b4226614
+Ref: purelib getopt226904
+Ref: 304226904
+Node: Module Index230194
+Node: Index230465
 
 End Tag Table
 

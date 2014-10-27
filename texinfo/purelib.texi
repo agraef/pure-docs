@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.63, October 24, 2014
+Pure 0.63, October 27, 2014
 
 Albert Gräf (Editor)
 
@@ -54,7 +54,7 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 
 @c title here.
 
-Version 0.63, October 24, 2014
+Version 0.63, October 27, 2014
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -8560,13 +8560,18 @@ flags accepted by regexec(3))
 @end itemize
 @end deffn
 
-Symbolic @code{REG_*} constants are provided for the different flag
-values, see the regcomp(3) manpage for an explanation of these. Two
-particularly important compilation flags (to be included in the @code{cflags}
-argument) are @code{REG_NOSUB}, which prevents submatches to be computed,
-and @code{REG_EXTENDED}, which switches @pxref{2ef,,regex} from "basic" to
-"extended" regular expressions so that it understands all the regular
-expression elements of egrep(1) in the pattern argument.
+Symbolic @code{REG_*} constants are provided for the different flag values,
+see the regcomp(3) manpage for an explanation of these. (Please note that
+these symbolic "constants" aren't really constants, but are actually
+implemented as variables, since their values may depend on which underlying
+regex library is being used. Please check @pxref{2f0,,Perl Regex Compatibility} below
+for details.)
+
+Two particularly important compilation flags (to be included in the
+@code{cflags} argument) are @code{REG_NOSUB}, which prevents submatches to be
+computed, and @code{REG_EXTENDED}, which switches @pxref{2ef,,regex} from
+"basic" to "extended" regular expressions so that it understands all the
+regular expression elements of egrep(1) in the pattern argument.
 
 Depending on the flags and the outcome of the operation, the result of this
 function can take one of the following forms:
@@ -8618,7 +8623,7 @@ The following helper functions are provided to analyze the result returned
 by @pxref{2ef,,regex}.
 
 @geindex reg_result (function)
-@anchor{purelib reg_result}@anchor{2f0}
+@anchor{purelib reg_result}@anchor{2f1}
 @deffn {Pure Function} reg_result res
 
 Returns the result of a @pxref{2ef,,regex} call, i.e., a @code{regerr} term
@@ -8627,22 +8632,22 @@ successful otherwise.
 @end deffn
 
 @geindex reg_info (function)
-@anchor{purelib reg_info}@anchor{2f1}
+@anchor{purelib reg_info}@anchor{2f2}
 @deffn {Pure Function} reg_info res
 
 Returns the submatch info if any, otherwise it returns @code{()}.
 @end deffn
 
 @geindex reg (function)
-@anchor{purelib reg}@anchor{2f2}
+@anchor{purelib reg}@anchor{2f3}
 @deffn {Pure Function} reg n info
 
 Returns the @code{n}th submatch of the given submatch info, where @code{info}
-is the result of a @pxref{2f1,,reg_info} call.
+is the result of a @pxref{2f2,,reg_info} call.
 @end deffn
 
 @geindex regs (function)
-@anchor{purelib regs}@anchor{2f3}
+@anchor{purelib regs}@anchor{2f4}
 @deffn {Pure Function} regs info
 
 Returns all valid submatches, i.e., the list of all triples @code{(n,p,s)}
@@ -8655,7 +8660,7 @@ global regex searches, to perform substitutions, and to tokenize a string
 according to a given delimiter regex.
 
 @geindex regexg (function)
-@anchor{purelib regexg}@anchor{2f4}
+@anchor{purelib regexg}@anchor{2f5}
 @deffn {Pure Function} regexg f pat cflags s eflags
 
 Perform a global regular expression search. This routine will scan the
@@ -8667,27 +8672,27 @@ info.
 @end deffn
 
 @geindex regexgg (function)
-@anchor{purelib regexgg}@anchor{2f5}
+@anchor{purelib regexgg}@anchor{2f6}
 @deffn {Pure Function} regexgg f pat cflags s eflags
 
-This works like @pxref{2f4,,regexg}, but allows overlapping matches.
+This works like @pxref{2f5,,regexg}, but allows overlapping matches.
 @end deffn
 
 @geindex regsub (function)
-@anchor{purelib regsub}@anchor{2f6}
+@anchor{purelib regsub}@anchor{2f7}
 @deffn {Pure Function} regsub f pat cflags s eflags
 
 Replaces all non-overlapping instances of a pattern with a computed
 substitution string. To these ends, the given function @code{f} is applied
-to the @pxref{2f1,,reg_info} for each match. The result string is then
+to the @pxref{2f2,,reg_info} for each match. The result string is then
 obtained by concatenating @code{f info} for all matches, with the unmatched
 portions of the string in between. To make this work, @code{f} must always
-return a string value; otherwise, @pxref{2f6,,regsub} throws a
+return a string value; otherwise, @pxref{2f7,,regsub} throws a
 @pxref{18,,bad_string_value} exception.
 @end deffn
 
 @geindex regsplit (function)
-@anchor{purelib regsplit}@anchor{2f7}
+@anchor{purelib regsplit}@anchor{2f8}
 @deffn {Pure Function} regsplit pat cflags s eflags
 
 Splits a string into constituents delimited by substrings matching the
@@ -8703,14 +8708,14 @@ alternatives are available:
 @geindex regexgs (function)
 @geindex regexggs (function)
 @geindex regsplits (function)
-@anchor{purelib regexgs}@anchor{2f8}
+@anchor{purelib regexgs}@anchor{2f9}
 @deffn {Pure Function} regexgs f pat cflags s eflags
-@anchor{purelib regexggs}@anchor{2f9}
+@anchor{purelib regexggs}@anchor{2fa}
 @deffnx {Pure Function} regexggs f pat cflags s eflags
-@anchor{purelib regsplits}@anchor{2fa}
+@anchor{purelib regsplits}@anchor{2fb}
 @deffnx {Pure Function} regsplits pat cflags s eflags
 
-These work like @pxref{2f4,,regexg}, @pxref{2f5,,regexgg} and @pxref{2f7,,regsplit}
+These work like @pxref{2f5,,regexg}, @pxref{2f6,,regexgg} and @pxref{2f8,,regsplit}
 above, but return a stream result which enables you to process the
 matches one by one, using "call by need" evaluation.
 @end deffn
@@ -8726,7 +8731,7 @@ matches one by one, using "call by need" evaluation.
 @end menu
 
 @node Basic Examples,Regex Substitutions and Splitting,,Regex Matching
-@anchor{purelib basic-examples}@anchor{2fb}
+@anchor{purelib basic-examples}@anchor{2fc}
 @subsection Basic Examples
 
 
@@ -8788,7 +8793,7 @@ info:
 
 @noindent
 
-Lazy versions of both @pxref{2f4,,regexg} and @pxref{2f5,,regexgg} are provided which
+Lazy versions of both @pxref{2f5,,regexg} and @pxref{2f6,,regexgg} are provided which
 return the result as a stream instead. These can be processed in a "call by
 need" fashion:
 
@@ -8838,7 +8843,7 @@ result list in memory. For instance, compare the following:
 @noindent
 
 @node Regex Substitutions and Splitting,Empty Matches,Basic Examples,Regex Matching
-@anchor{purelib regex-substitutions-and-splitting}@anchor{2fc}
+@anchor{purelib regex-substitutions-and-splitting}@anchor{2fd}
 @subsection Regex Substitutions and Splitting
 
 
@@ -8863,7 +8868,7 @@ Or split a string using a delimiter pattern (this uses an egrep pattern):
 
 @noindent
 
-The @pxref{2f7,,regsplit} operation also has a lazy variation:
+The @pxref{2f8,,regsplit} operation also has a lazy variation:
 
 @example
 > regsplits "[[:space:]]+" REG_EXTENDED "The   quick brown    fox" 0;
@@ -8875,7 +8880,7 @@ The @pxref{2f7,,regsplit} operation also has a lazy variation:
 @noindent
 
 @node Empty Matches,Submatches,Regex Substitutions and Splitting,Regex Matching
-@anchor{purelib empty-matches}@anchor{2fd}
+@anchor{purelib empty-matches}@anchor{2fe}
 @subsection Empty Matches
 
 
@@ -8911,7 +8916,7 @@ This also works when substituting or splitting:
 @noindent
 
 @node Submatches,Perl Regex Compatibility,Empty Matches,Regex Matching
-@anchor{purelib submatches}@anchor{2fe}
+@anchor{purelib submatches}@anchor{2ff}
 @subsection Submatches
 
 
@@ -8922,8 +8927,8 @@ lines, such as those returned by the shell's @code{set} command. These can be
 dissected using the following regex:
 
 @example
-> const env_pat = "^([^=]+)=(.*)$";
-> const env_flags = REG_EXTENDED or REG_NEWLINE;
+> let env_pat = "^([^=]+)=(.*)$";
+> let env_flags = REG_EXTENDED or REG_NEWLINE;
 > regex env_pat env_flags "SHELL=/bin/sh" 0;
 1,0,"SHELL=/bin/sh",0,"SHELL",6,"/bin/sh"
 @end example
@@ -8968,7 +8973,7 @@ random access to the environment variables:
 @noindent
 
 @node Perl Regex Compatibility,,Submatches,Regex Matching
-@anchor{purelib perl-regex-compatibility}@anchor{2ff}
+@anchor{purelib perl-regex-compatibility}@anchor{2f0}
 @subsection Perl Regex Compatibility
 
 
@@ -8998,6 +9003,25 @@ submatch for the second @code{(\w+)} group.
 A discussion of Perl regexes is beyond the scope of this manual, so you may
 want to refer to @indicateurl{http://www.rexegg.com/} for more information or read a good
 book on the subject.
+
+Pure scripts can detect whether Perl regexes are enabled by inspecting the
+value of the @code{pcre_version} variable. This variable will only be
+defined if the interpreter was built with the @code{--with-pcre} configure
+option, in which case its value is the version number of the libpcre
+library as a string.
+
+Please note that enabling this option will change the meaning of some
+constructs in the regular expression syntax, even if you don't actually use
+any of the Perl-specific extensions. It's possible to write Pure scripts
+which work with either libpcre or the default (POSIX) regex library, but
+you need to be aware of the discrepancies. The most notable differences are
+that @code{REG_EXTENDED} is always enabled and the treatment of newlines is
+different in some situations if @code{REG_NEWLINE} is used; please check
+the pcreposix(3) manual page for details. Also, the @code{REG_*}
+"constants" differ between libpcre and the POSIX regex functions, so you
+should never hard-code these into batch-compiled scripts (simply avoid
+@code{const} definitions involving these values, then you should be
+fine).
 
 
 @node Additional POSIX Functions,Option Parsing,Regex Matching,System Interface

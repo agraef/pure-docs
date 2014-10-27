@@ -10,7 +10,7 @@
 
   <section*|Pure Library Manual<label|pure-library-manual>>
 
-  Version 0.63, October 24, 2014
+  Version 0.63, October 27, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -7217,8 +7217,13 @@
   </description>
 
   Symbolic <verbatim|REG_*> constants are provided for the different flag
-  values, see the regcomp(3) manpage for an explanation of these. Two
-  particularly important compilation flags (to be included in the
+  values, see the regcomp(3) manpage for an explanation of these. (Please
+  note that these symbolic ``constants'' aren't really constants, but are
+  actually implemented as variables, since their values may depend on which
+  underlying regex library is being used. Please check <hlink|Perl Regex
+  Compatibility|#perl-regex-compatibility> below for details.)
+
+  Two particularly important compilation flags (to be included in the
   <verbatim|cflags> argument) are <verbatim|REG_NOSUB>, which prevents
   submatches to be computed, and <verbatim|REG_EXTENDED>, which switches
   <hlink|<with|font-family|tt|regex>|#regex> from ``basic'' to ``extended''
@@ -7556,9 +7561,9 @@
   can be dissected using the following regex:
 
   <\verbatim>
-    \<gtr\> const env_pat = "^([^=]+)=(.*)$";
+    \<gtr\> let env_pat = "^([^=]+)=(.*)$";
 
-    \<gtr\> const env_flags = REG_EXTENDED or REG_NEWLINE;
+    \<gtr\> let env_flags = REG_EXTENDED or REG_NEWLINE;
 
     \<gtr\> regex env_pat env_flags "SHELL=/bin/sh" 0;
 
@@ -7634,6 +7639,25 @@
   A discussion of Perl regexes is beyond the scope of this manual, so you may
   want to refer to <hlink|http://www.rexegg.com/|http://www.rexegg.com/> for
   more information or read a good book on the subject.
+
+  Pure scripts can detect whether Perl regexes are enabled by inspecting the
+  value of the <verbatim|pcre_version> variable. This variable will only be
+  defined if the interpreter was built with the <verbatim|--with-pcre>
+  configure option, in which case its value is the version number of the
+  libpcre library as a string.
+
+  Please note that enabling this option will change the meaning of some
+  constructs in the regular expression syntax, even if you don't actually use
+  any of the Perl-specific extensions. It's possible to write Pure scripts
+  which work with either libpcre or the default (POSIX) regex library, but
+  you need to be aware of the discrepancies. The most notable differences are
+  that <verbatim|REG_EXTENDED> is always enabled and the treatment of
+  newlines is different in some situations if <verbatim|REG_NEWLINE> is used;
+  please check the pcreposix(3) manual page for details. Also, the
+  <verbatim|REG_*> ``constants'' differ between libpcre and the POSIX regex
+  functions, so you should never hard-code these into batch-compiled scripts
+  (simply avoid <hlink|<with|font-family|tt|const>|pure.tm#const> definitions
+  involving these values, then you should be fine).
 
   <subsubsection|Additional POSIX Functions<label|module-posix>>
 
@@ -7980,5 +8004,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  24, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  27, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
