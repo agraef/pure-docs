@@ -3,7 +3,7 @@
 Installing Pure (and LLVM)
 ==========================
 
-Version 0.63, |today|
+Version 0.64, |today|
 
 | Albert Graef <aggraef@gmail.com>
 | Eddie Rucker <erucker@bmc.edu>
@@ -37,7 +37,7 @@ Quick Summary
 =============
 
 Here is the executive summary for the impatient. This assumes that you're
-using LLVM 3.4 and Pure 0.63, please substitute your actual version
+using LLVM 3.4 and Pure 0.64, please substitute your actual version
 numbers in the commands given below.
 
 .. note:: If you're reading this documentation online, then the Pure version
@@ -55,7 +55,7 @@ most systems.
 You'll probably need the latest Pure and LLVM tarballs which, at the time of
 this writing, are available here:
 
-| https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz
+| https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz
 | http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz
 | http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
 | http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz
@@ -80,8 +80,8 @@ details.
 
 Installing Pure::
 
-  $ tar xfvz pure-0.63.tar.gz
-  $ cd pure-0.63
+  $ tar xfvz pure-0.64.tar.gz
+  $ cd pure-0.64
   $ ./configure --enable-release
   $ make && sudo make install
 
@@ -104,8 +104,8 @@ the documentation files::
 This needs the ``wget`` program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.::
 
-  $ tar xfvz pure-docs-0.63.tar.gz
-  $ cd pure-docs-0.63
+  $ tar xfvz pure-docs-0.64.tar.gz
+  $ cd pure-docs-0.64
   $ sudo make install
 
 That's it, Pure should be ready to go now::
@@ -114,7 +114,7 @@ That's it, Pure should be ready to go now::
 
 Uninstalling::
 
-  $ cd pure-0.63
+  $ cd pure-0.64
   $ sudo make uninstall
   $ cd ../llvm-3.4
   $ sudo make uninstall
@@ -143,6 +143,9 @@ building and installing Pure.
   replacement (see comments below);
 
 - the GNU multiprecision floating point library (``libmpfr``, ``-dev``);
+
+- the PCRE library (``libpcre``, ``-dev``), if you want Perl-compatible regex
+  support (see below);
 
 - GNU readline (``libreadline``, ``-dev``) or some compatible replacement
   (only needed if you want command line editing support in the interpreter;
@@ -229,6 +232,18 @@ license reasons or because it's what the operating system provides. Pure's
 configuration script automatically detects the presence of both packages and
 also lets you disable readline and/or editline support using the
 ``--without-readline`` and ``--without-editline`` options.
+
+Pure normally uses the system's POSIX regex functions for its regular
+expression support (:mod:`regex` module). Instead, you can also build it with
+support for Perl-style regular expressions. This is done by linking in the
+POSIX compatibility layer of the PCRE library:
+
+- PCRE: http://www.pcre.org/
+
+Please note that the PCRE support is still experimental and currently disabled
+by default. Configuring with ``--with-pcre`` enables it. Also note that at
+present this is only available as a compile-time switch; to change the regex
+library used by the Pure runtime you need to recompile the interpreter.
 
 **Step 2.** Get and unpack the latest LLVM sources.
 
@@ -444,7 +459,7 @@ Run Pure interactively as::
 
    $ pure
 
-    __ \  |   |  __| _ \    Pure 0.63 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.64 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)

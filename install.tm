@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
 
-  Version 0.63, October 22, 2014
+  Version 0.64, October 28, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -40,7 +40,7 @@
   <subsection|Quick Summary<label|quick-summary>>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.4 and Pure 0.63, please substitute your actual version numbers
+  using LLVM 3.4 and Pure 0.64, please substitute your actual version numbers
   in the commands given below.
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
@@ -59,7 +59,7 @@
   You'll probably need the latest Pure and LLVM tarballs which, at the time
   of this writing, are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
@@ -96,9 +96,9 @@
   Installing Pure:
 
   <\verbatim>
-    $ tar xfvz pure-0.63.tar.gz
+    $ tar xfvz pure-0.64.tar.gz
 
-    $ cd pure-0.63
+    $ cd pure-0.64
 
     $ ./configure --enable-release
 
@@ -132,9 +132,9 @@
   the pure-docs tarball manually in the usual way, e.g.:
 
   <\verbatim>
-    $ tar xfvz pure-docs-0.63.tar.gz
+    $ tar xfvz pure-docs-0.64.tar.gz
 
-    $ cd pure-docs-0.63
+    $ cd pure-docs-0.64
 
     $ sudo make install
   </verbatim>
@@ -148,7 +148,7 @@
   Uninstalling:
 
   <\verbatim>
-    $ cd pure-0.63
+    $ cd pure-0.64
 
     $ sudo make uninstall
 
@@ -183,6 +183,9 @@
 
     <item>the GNU multiprecision floating point library (<verbatim|libmpfr>,
     <verbatim|-dev>);
+
+    <item>the PCRE library (<verbatim|libpcre>, <verbatim|-dev>), if you want
+    Perl-compatible regex support (see below);
 
     <item>GNU readline (<verbatim|libreadline>, <verbatim|-dev>) or some
     compatible replacement (only needed if you want command line editing
@@ -288,6 +291,22 @@
   configuration script automatically detects the presence of both packages
   and also lets you disable readline and/or editline support using the
   <verbatim|--without-readline> and <verbatim|--without-editline> options.
+
+  Pure normally uses the system's POSIX regex functions for its regular
+  expression support (<hlink|<with|font-family|tt|regex>|purelib.tm#module-regex>
+  module). Instead, you can also build it with support for Perl-style regular
+  expressions. This is done by linking in the POSIX compatibility layer of
+  the PCRE library:
+
+  <\itemize>
+    <item>PCRE: <hlink|http://www.pcre.org/|http://www.pcre.org/>
+  </itemize>
+
+  Please note that the PCRE support is still experimental and currently
+  disabled by default. Configuring with <verbatim|--with-pcre> enables it.
+  Also note that at present this is only available as a compile-time switch;
+  to change the regex library used by the Pure runtime you need to recompile
+  the interpreter.
 
   <with|font-series|bold|Step 2.> Get and unpack the latest LLVM sources.
 
@@ -554,7 +573,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.63
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.64
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
@@ -1498,5 +1517,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  22, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

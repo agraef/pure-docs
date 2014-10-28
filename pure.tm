@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual<label|the-pure-manual>>
 
-  Version 0.63, October 23, 2014
+  Version 0.64, October 28, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -76,7 +76,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.63
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.64
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
@@ -4584,7 +4584,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.63
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.64
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
@@ -12826,7 +12826,7 @@
 
     [(argc--\<gtr\>0),(argv--\<gtr\>[]),(compiling--\<gtr\>0),
 
-    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.63")]
+    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.64")]
   </verbatim>
 
   The counterparts of <hlink|<with|font-family|tt|add_fundef>|purelib.tm#add-fundef>
@@ -15566,7 +15566,7 @@
 
     sysinfo \ \ \ var \ sysinfo = "x86_64-unknown-linux-gnu";
 
-    version \ \ \ var \ version = "0.63";
+    version \ \ \ var \ version = "0.64";
 
     5 variables
   </verbatim>
@@ -19724,5 +19724,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  23, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

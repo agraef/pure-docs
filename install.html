@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.63',
+        VERSION:     '0.64',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.63, October 22, 2014</p>
+<p>Version 0.64, October 28, 2014</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -82,7 +82,7 @@ for other (UNIX-like) systems is provided at the same location.</p>
 <div class="section" id="quick-summary">
 <h2>Quick Summary<a class="headerlink" href="#quick-summary" title="Permalink to this headline">¶</a></h2>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
-using LLVM 3.4 and Pure 0.63, please substitute your actual version
+using LLVM 3.4 and Pure 0.64, please substitute your actual version
 numbers in the commands given below.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -100,7 +100,7 @@ most systems.</p>
 <p>You&#8217;ll probably need the latest Pure and LLVM tarballs which, at the time of
 this writing, are available here:</p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.63.tar.gz</a></div>
+<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
@@ -122,8 +122,8 @@ to disable stuff that makes LLVM very slow and/or breaks it on some systems.)</p
 &#8220;DragonEgg&#8221; plugin for gcc, please check the <a class="reference internal" href="#dragonegg">dragonegg</a> section below for
 details.</p>
 <p>Installing Pure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.63.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-0.63
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.64.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-0.64
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -146,8 +146,8 @@ the documentation files:</p>
 </div>
 <p>This needs the <tt class="docutils literal"><span class="pre">wget</span></tt> program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.63.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.63
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.64.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.64
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -156,7 +156,7 @@ pure-docs tarball manually in the usual way, e.g.:</p>
 </pre></div>
 </div>
 <p>Uninstalling:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.63
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.64
 <span class="gp">$</span> sudo make uninstall
 <span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.4
 <span class="gp">$</span> sudo make uninstall
@@ -181,6 +181,8 @@ building and installing Pure.</p>
 <li>the GNU multiprecision library (<tt class="docutils literal"><span class="pre">libgmp</span></tt>, <tt class="docutils literal"><span class="pre">-dev</span></tt>) or some compatible
 replacement (see comments below);</li>
 <li>the GNU multiprecision floating point library (<tt class="docutils literal"><span class="pre">libmpfr</span></tt>, <tt class="docutils literal"><span class="pre">-dev</span></tt>);</li>
+<li>the PCRE library (<tt class="docutils literal"><span class="pre">libpcre</span></tt>, <tt class="docutils literal"><span class="pre">-dev</span></tt>), if you want Perl-compatible regex
+support (see below);</li>
 <li>GNU readline (<tt class="docutils literal"><span class="pre">libreadline</span></tt>, <tt class="docutils literal"><span class="pre">-dev</span></tt>) or some compatible replacement
 (only needed if you want command line editing support in the interpreter;
 see comments below).</li>
@@ -249,6 +251,17 @@ license reasons or because it&#8217;s what the operating system provides. Pure&#
 configuration script automatically detects the presence of both packages and
 also lets you disable readline and/or editline support using the
 <tt class="docutils literal"><span class="pre">--without-readline</span></tt> and <tt class="docutils literal"><span class="pre">--without-editline</span></tt> options.</p>
+<p>Pure normally uses the system&#8217;s POSIX regex functions for its regular
+expression support (<a class="reference internal" href="purelib.html#module-regex"><tt class="xref pure pure-mod docutils literal"><span class="pre">regex</span></tt></a> module). Instead, you can also build it with
+support for Perl-style regular expressions. This is done by linking in the
+POSIX compatibility layer of the PCRE library:</p>
+<ul class="simple">
+<li>PCRE: <a class="reference external" href="http://www.pcre.org/">http://www.pcre.org/</a></li>
+</ul>
+<p>Please note that the PCRE support is still experimental and currently disabled
+by default. Configuring with <tt class="docutils literal"><span class="pre">--with-pcre</span></tt> enables it. Also note that at
+present this is only available as a compile-time switch; to change the regex
+library used by the Pure runtime you need to recompile the interpreter.</p>
 <p><strong>Step 2.</strong> Get and unpack the latest LLVM sources.</p>
 <p>You can find these at <a class="reference external" href="http://llvm.org/releases/download.html">http://llvm.org/releases/download.html</a>.</p>
 <p>You only need the llvm-2.x or 3.x tarball which contains the LLVM library as
@@ -446,7 +459,7 @@ the TeXmacs-formatted documentation as follows:</p>
 <p>Run Pure interactively as:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
 
-<span class="go"> __ \  |   |  __| _ \    Pure 0.63 (x86_64-unknown-linux-gnu)</span>
+<span class="go"> __ \  |   |  __| _ \    Pure 0.64 (x86_64-unknown-linux-gnu)</span>
 <span class="go"> |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef</span>
 <span class="go"> .__/ \__,_|_|  \___|    (Type &#39;help&#39; for help, &#39;help copying&#39;</span>
 <span class="go">_|                       for license information.)</span>
@@ -1186,7 +1199,7 @@ unzip these into some convenient location on your harddrive and set up
     </div>
     <div class="footer">
     &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Oct 22, 2014.
+    Last updated on Oct 28, 2014.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
