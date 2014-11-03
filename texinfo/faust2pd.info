@@ -121,7 +121,8 @@ course, Faust(4).  Make sure you get a recent version of Faust; Faust
 0.9.67 or later is recommended.  Faust 0.9.70 and later have support for
 the new JSON format and offer some other new and convenient
 capabilities, such as retrieving the JSON description directly from a
-running dsp instance via Faust’s httpd interface.
+running dsp instance via Faust’s httpd interface.  For the latter, you
+also need to have the curl(5) program installed.
 
    ---------- Footnotes ----------
 
@@ -132,6 +133,8 @@ running dsp instance via Faust’s httpd interface.
    (3) http://puredata.info
 
    (4) http://faudiostream.sf.net
+
+   (5) http://curl.haxx.se
 
 
 File: faust2pd.info,  Node: Installation,  Next: Quickstart,  Prev: Requirements,  Up: Top
@@ -239,7 +242,7 @@ library path for system-wide use.
 abstractions (the faust-*.pd files in the faust2pd sources), so you have
 to put these into the directory of the main patch or install them under
 lib/pd/extra as well.  (The ‘make pd-install’ step does the latter, see
-*note Installation: 5. above.)
+*note Installation: 6. above.)
 
 
 File: faust2pd.info,  Node: Control Interface,  Next: Examples,  Prev: Quickstart,  Up: Top
@@ -409,18 +412,24 @@ the httpd interface.  This works with both stand-alone Faust
 applications which have the httpd interface enabled (e.g., created with
 ‘faust2jaqt -httpd mydsp.dsp’) and instances running in Grame’s
 FaustLive application.  To these ends, you just specify the URL of the
-running dsp instance instead of the JSON filename.  For instance,
-assuming that there’s a Faust dsp running locally at port 5510, you can
-run faust2pd as follows to create a GUI patch for it: ‘faust2pd
-http://localhost:5510’.  You can find out about the port a Faust dsp
-runs on by inspecting the terminal output of a stand-alone Faust
-application.  In FaustLive, use the ‘Window / View QRcode’ menu option
-to retrieve the IP under which the httpd interface of a dsp window can
-be accessed.  If FaustLive is running locally on its default port
-(7777), then you can also retrieve a list of dsp instances currently
-running in FaustLive using ‘faust2pd
+running dsp instance instead of the JSON filename.  (To make this work,
+you need to have curl(1) installed.)
+
+  For instance, assuming that there’s a Faust dsp running locally at
+port 5510, you can run faust2pd as follows to create a GUI patch for it:
+‘faust2pd http://localhost:5510’.  You can find out about the port a
+Faust dsp runs on by inspecting the terminal output of a stand-alone
+Faust application.  In FaustLive, use the ‘Window / View QRcode’ menu
+option to retrieve the IP under which the httpd interface of a dsp
+window can be accessed.  If FaustLive is running locally on its default
+port (7777), then you can also retrieve a list of dsp instances
+currently running in FaustLive using ‘faust2pd
 http://localhost:7777/availableInterfaces’.  This prints the dsp names
 along with their URLs on stdout.
+
+   ---------- Footnotes ----------
+
+   (1) http://curl.haxx.se
 
 
 File: faust2pd.info,  Node: faust2pd Options,  Prev: JSON Support,  Up: Wrapping DSPs with faust2pd
@@ -830,91 +839,93 @@ Ref: 32329
 Node: Requirements3008
 Ref: faust2pd requirements3099
 Ref: 43099
-Ref: Requirements-Footnote-14294
-Ref: Requirements-Footnote-24332
-Ref: Requirements-Footnote-34370
-Ref: Requirements-Footnote-44399
-Node: Installation4434
-Ref: faust2pd installation4528
-Ref: 54528
-Ref: faust2pd faust4528
-Ref: 64528
-Node: Quickstart5743
-Ref: faust2pd quickstart5842
-Ref: 85842
-Ref: faust2pd appendix-faustxml5842
-Ref: 75842
-Ref: faust2pd id15842
-Ref: 95842
-Node: Control Interface9836
-Ref: faust2pd control-interface9931
-Ref: b9931
-Node: Examples14446
-Ref: faust2pd examples14558
-Ref: c14558
-Node: Wrapping DSPs with faust2pd16295
-Ref: faust2pd wrapping-dsps-with-faust2pd16400
-Ref: a16400
-Node: JSON Support17086
-Ref: faust2pd json-support17189
-Ref: d17189
-Node: faust2pd Options18918
-Ref: faust2pd faust2pd-options19021
-Ref: e19021
-Node: Conclusion25992
-Ref: faust2pd conclusion26106
-Ref: f26106
-Node: Acknowledgements26800
-Ref: faust2pd acknowledgements26865
-Ref: 1026865
-Ref: faust2pd module-faustxml27020
-Ref: 027020
-Node: Appendix faustxml27020
-Node: Usage27963
-Ref: faust2pd usage28047
-Ref: 1228047
-Node: Data Structure28287
-Ref: faust2pd data-structure28390
-Ref: 1328390
-Ref: faust2pd faustxml button28510
-Ref: 1428510
-Ref: faust2pd faustxml checkbox28555
-Ref: 1528555
-Ref: faust2pd faustxml nentry28652
-Ref: 1628652
-Ref: faust2pd faustxml vslider28717
-Ref: 1728717
-Ref: faust2pd faustxml hslider28783
-Ref: 1828783
-Ref: faust2pd faustxml vbargraph28943
-Ref: 1928943
-Ref: faust2pd faustxml hbargraph29001
-Ref: 1a29001
-Ref: faust2pd faustxml vgroup29123
-Ref: 1b29123
-Ref: faust2pd faustxml hgroup29179
-Ref: 1c29179
-Ref: faust2pd faustxml tgroup29235
-Ref: 1d29235
-Node: Operations29362
-Ref: faust2pd operations29451
-Ref: 1e29451
-Ref: faust2pd faustxml controlp29482
-Ref: 1f29482
-Ref: faust2pd faustxml control_type29567
-Ref: 2029567
-Ref: faust2pd faustxml control_label29611
-Ref: 2129611
-Ref: faust2pd faustxml control_args29656
-Ref: 2229656
-Ref: faust2pd faustxml controls29782
-Ref: 2329782
-Ref: faust2pd faustxml pcontrols30191
-Ref: 2430191
-Ref: faust2pd faustxml info30631
-Ref: 1130631
-Node: Module Index33196
-Node: Index33343
+Ref: Requirements-Footnote-14364
+Ref: Requirements-Footnote-24402
+Ref: Requirements-Footnote-34440
+Ref: Requirements-Footnote-44469
+Ref: Requirements-Footnote-54504
+Node: Installation4532
+Ref: faust2pd curl4626
+Ref: 54626
+Ref: faust2pd installation4626
+Ref: 64626
+Node: Quickstart5841
+Ref: faust2pd quickstart5940
+Ref: 85940
+Ref: faust2pd appendix-faustxml5940
+Ref: 75940
+Ref: faust2pd id15940
+Ref: 95940
+Node: Control Interface9934
+Ref: faust2pd control-interface10029
+Ref: b10029
+Node: Examples14544
+Ref: faust2pd examples14656
+Ref: c14656
+Node: Wrapping DSPs with faust2pd16393
+Ref: faust2pd wrapping-dsps-with-faust2pd16498
+Ref: a16498
+Node: JSON Support17184
+Ref: faust2pd json-support17287
+Ref: d17287
+Ref: JSON Support-Footnote-119112
+Node: faust2pd Options19140
+Ref: faust2pd faust2pd-options19243
+Ref: e19243
+Node: Conclusion26214
+Ref: faust2pd conclusion26328
+Ref: f26328
+Node: Acknowledgements27022
+Ref: faust2pd acknowledgements27087
+Ref: 1027087
+Ref: faust2pd module-faustxml27242
+Ref: 027242
+Node: Appendix faustxml27242
+Node: Usage28185
+Ref: faust2pd usage28269
+Ref: 1228269
+Node: Data Structure28509
+Ref: faust2pd data-structure28612
+Ref: 1328612
+Ref: faust2pd faustxml button28732
+Ref: 1428732
+Ref: faust2pd faustxml checkbox28777
+Ref: 1528777
+Ref: faust2pd faustxml nentry28874
+Ref: 1628874
+Ref: faust2pd faustxml vslider28939
+Ref: 1728939
+Ref: faust2pd faustxml hslider29005
+Ref: 1829005
+Ref: faust2pd faustxml vbargraph29165
+Ref: 1929165
+Ref: faust2pd faustxml hbargraph29223
+Ref: 1a29223
+Ref: faust2pd faustxml vgroup29345
+Ref: 1b29345
+Ref: faust2pd faustxml hgroup29401
+Ref: 1c29401
+Ref: faust2pd faustxml tgroup29457
+Ref: 1d29457
+Node: Operations29584
+Ref: faust2pd operations29673
+Ref: 1e29673
+Ref: faust2pd faustxml controlp29704
+Ref: 1f29704
+Ref: faust2pd faustxml control_type29789
+Ref: 2029789
+Ref: faust2pd faustxml control_label29833
+Ref: 2129833
+Ref: faust2pd faustxml control_args29878
+Ref: 2229878
+Ref: faust2pd faustxml controls30004
+Ref: 2330004
+Ref: faust2pd faustxml pcontrols30413
+Ref: 2430413
+Ref: faust2pd faustxml info30853
+Ref: 1130853
+Node: Module Index33418
+Node: Index33565
 
 End Tag Table
 

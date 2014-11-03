@@ -87,7 +87,9 @@
   version of Faust; Faust 0.9.67 or later is recommended. Faust 0.9.70 and
   later have support for the new JSON format and offer some other new and
   convenient capabilities, such as retrieving the JSON description directly
-  from a running dsp instance via Faust's httpd interface.
+  from a running dsp instance via Faust's httpd interface. For the latter,
+  you also need to have the <hlink|curl|http://curl.haxx.se> program
+  installed.
 
   <subsection|Installation<label|installation>>
 
@@ -365,16 +367,18 @@
   have the httpd interface enabled (e.g., created with <verbatim|faust2jaqt>
   <verbatim|-httpd> <verbatim|mydsp.dsp>) and instances running in Grame's
   FaustLive application. To these ends, you just specify the URL of the
-  running dsp instance instead of the JSON filename. For instance, assuming
-  that there's a Faust dsp running locally at port 5510, you can run faust2pd
-  as follows to create a GUI patch for it: <verbatim|faust2pd>
-  <href|http://localhost:5510>. You can find out about the port a Faust dsp
-  runs on by inspecting the terminal output of a stand-alone Faust
-  application. In FaustLive, use the <verbatim|Window> <verbatim|/>
-  <verbatim|View> <verbatim|QRcode> menu option to retrieve the IP under
-  which the httpd interface of a dsp window can be accessed. If FaustLive is
-  running locally on its default port (7777), then you can also retrieve a
-  list of dsp instances currently running in FaustLive using
+  running dsp instance instead of the JSON filename. (To make this work, you
+  need to have <hlink|curl|http://curl.haxx.se> installed.)
+
+  For instance, assuming that there's a Faust dsp running locally at port
+  5510, you can run faust2pd as follows to create a GUI patch for it:
+  <verbatim|faust2pd> <href|http://localhost:5510>. You can find out about
+  the port a Faust dsp runs on by inspecting the terminal output of a
+  stand-alone Faust application. In FaustLive, use the <verbatim|Window>
+  <verbatim|/> <verbatim|View> <verbatim|QRcode> menu option to retrieve the
+  IP under which the httpd interface of a dsp window can be accessed. If
+  FaustLive is running locally on its default port (7777), then you can also
+  retrieve a list of dsp instances currently running in FaustLive using
   <verbatim|faust2pd> <href|http://localhost:7777/availableInterfaces>. This
   prints the dsp names along with their URLs on stdout.
 

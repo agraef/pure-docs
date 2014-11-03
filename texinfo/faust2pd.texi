@@ -147,9 +147,10 @@ Faust@footnote{http://faudiostream.sf.net}. Make sure you get a recent version o
 recommended. Faust 0.9.70 and later have support for the new JSON format and
 offer some other new and convenient capabilities, such as retrieving the JSON
 description directly from a running dsp instance via Faust's httpd interface.
+For the latter, you also need to have the curl@footnote{http://curl.haxx.se} program installed.
 
 @node Installation,Quickstart,Requirements,Top
-@anchor{faust2pd installation}@anchor{5}@anchor{faust2pd faust}@anchor{6}
+@anchor{faust2pd curl}@anchor{5}@anchor{faust2pd installation}@anchor{6}
 @chapter Installation
 
 
@@ -254,7 +255,7 @@ directory or some other directory on Pd's library path for system-wide use.
 Also, faust2pd-generated wrappers use a number of supporting abstractions (the
 faust-*.pd files in the faust2pd sources), so you have to put these into the
 directory of the main patch or install them under lib/pd/extra as well. (The
-@code{make pd-install} step does the latter, see @pxref{5,,Installation} above.)
+@code{make pd-install} step does the latter, see @pxref{6,,Installation} above.)
 
 @node Control Interface,Examples,Quickstart,Top
 @anchor{faust2pd control-interface}@anchor{b}
@@ -447,16 +448,18 @@ interface. This works with both stand-alone Faust applications which have the
 httpd interface enabled (e.g., created with @code{faust2jaqt -httpd mydsp.dsp})
 and instances running in Grame's FaustLive application. To these ends, you
 just specify the URL of the running dsp instance instead of the JSON
-filename. For instance, assuming that there's a Faust dsp running locally at
-port 5510, you can run faust2pd as follows to create a GUI patch for it:
-@code{faust2pd http://localhost:5510}. You can find out about the port a Faust
-dsp runs on by inspecting the terminal output of a stand-alone Faust
-application. In FaustLive, use the @code{Window / View QRcode} menu option to
-retrieve the IP under which the httpd interface of a dsp window can be
-accessed. If FaustLive is running locally on its default port (7777), then you
-can also retrieve a list of dsp instances currently running in FaustLive using
-@code{faust2pd http://localhost:7777/availableInterfaces}. This prints the dsp
-names along with their URLs on stdout.
+filename. (To make this work, you need to have curl@footnote{http://curl.haxx.se} installed.)
+
+For instance, assuming that there's a Faust dsp running locally at port 5510,
+you can run faust2pd as follows to create a GUI patch for it: @code{faust2pd
+http://localhost:5510}. You can find out about the port a Faust dsp runs on
+by inspecting the terminal output of a stand-alone Faust application. In
+FaustLive, use the @code{Window / View QRcode} menu option to retrieve the IP
+under which the httpd interface of a dsp window can be accessed. If FaustLive
+is running locally on its default port (7777), then you can also retrieve a
+list of dsp instances currently running in FaustLive using @code{faust2pd
+http://localhost:7777/availableInterfaces}. This prints the dsp names along
+with their URLs on stdout.
 
 @node faust2pd Options,,JSON Support,Wrapping DSPs with faust2pd
 @anchor{faust2pd faust2pd-options}@anchor{e}

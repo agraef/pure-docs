@@ -139,7 +139,8 @@ needed to make Pure&#8217;s batch compiler work.</p>
 <a class="reference external" href="http://faudiostream.sf.net">Faust</a>. Make sure you get a recent version of Faust; Faust 0.9.67 or later is
 recommended. Faust 0.9.70 and later have support for the new JSON format and
 offer some other new and convenient capabilities, such as retrieving the JSON
-description directly from a running dsp instance via Faust&#8217;s httpd interface.</p>
+description directly from a running dsp instance via Faust&#8217;s httpd interface.
+For the latter, you also need to have the <a class="reference external" href="http://curl.haxx.se">curl</a> program installed.</p>
 </div>
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#id4">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
@@ -354,16 +355,17 @@ interface. This works with both stand-alone Faust applications which have the
 httpd interface enabled (e.g., created with <tt class="docutils literal"><span class="pre">faust2jaqt</span> <span class="pre">-httpd</span> <span class="pre">mydsp.dsp</span></tt>)
 and instances running in Grame&#8217;s FaustLive application. To these ends, you
 just specify the URL of the running dsp instance instead of the JSON
-filename. For instance, assuming that there&#8217;s a Faust dsp running locally at
-port 5510, you can run faust2pd as follows to create a GUI patch for it:
-<tt class="docutils literal"><span class="pre">faust2pd</span> <span class="pre">http://localhost:5510</span></tt>. You can find out about the port a Faust
-dsp runs on by inspecting the terminal output of a stand-alone Faust
-application. In FaustLive, use the <tt class="docutils literal"><span class="pre">Window</span> <span class="pre">/</span> <span class="pre">View</span> <span class="pre">QRcode</span></tt> menu option to
-retrieve the IP under which the httpd interface of a dsp window can be
-accessed. If FaustLive is running locally on its default port (7777), then you
-can also retrieve a list of dsp instances currently running in FaustLive using
-<tt class="docutils literal"><span class="pre">faust2pd</span> <span class="pre">http://localhost:7777/availableInterfaces</span></tt>. This prints the dsp
-names along with their URLs on stdout.</p>
+filename. (To make this work, you need to have <a class="reference external" href="http://curl.haxx.se">curl</a> installed.)</p>
+<p>For instance, assuming that there&#8217;s a Faust dsp running locally at port 5510,
+you can run faust2pd as follows to create a GUI patch for it: <tt class="docutils literal"><span class="pre">faust2pd</span>
+<span class="pre">http://localhost:5510</span></tt>. You can find out about the port a Faust dsp runs on
+by inspecting the terminal output of a stand-alone Faust application. In
+FaustLive, use the <tt class="docutils literal"><span class="pre">Window</span> <span class="pre">/</span> <span class="pre">View</span> <span class="pre">QRcode</span></tt> menu option to retrieve the IP
+under which the httpd interface of a dsp window can be accessed. If FaustLive
+is running locally on its default port (7777), then you can also retrieve a
+list of dsp instances currently running in FaustLive using <tt class="docutils literal"><span class="pre">faust2pd</span>
+<span class="pre">http://localhost:7777/availableInterfaces</span></tt>. This prints the dsp names along
+with their URLs on stdout.</p>
 </div>
 <div class="section" id="faust2pd-options">
 <h3><a class="toc-backref" href="#id10">faust2pd Options</a><a class="headerlink" href="#faust2pd-options" title="Permalink to this headline">¶</a></h3>
