@@ -11,15 +11,16 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust<label|faust2pd-pd-patch-generator-for-faust>>
 
-  Version 2.9, October 28, 2014
+  Version 2.10, November 03, 2014
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   This package contains software which makes it easier to use Faust DSPs with
   Pd and the Pure programming language. The main component is the faust2pd
-  script which creates GUI wrappers for Faust DSPs. The package also includes
-  a bunch of examples. The software is distributed under the GPL; see the
-  COPYING file for details.
+  script which creates Pd GUI wrappers for Faust DSPs. The package also
+  includes a Pure script faustxml.pure for parsing Faust dsp descriptions in
+  XML or JSON format, as well as a bunch of examples. The software is
+  distributed under the GPL; see the COPYING file for details.
 
   <with|font-series|bold|Note:> This faust2pd version is written in Pure and
   was ported from an earlier version written in Pure's predecessor Q. The
@@ -83,12 +84,14 @@
   To compile the examples, you'll need GNU C++ and make,
   <hlink|Pd|http://puredata.info> and, of course,
   <hlink|Faust|http://faudiostream.sf.net>. Make sure you get a recent
-  version of Faust; Faust releases \<gtr\>0.9.8 include the puredata
-  architecture necessary to create Pd externals from Faust DSPs.
+  version of Faust; Faust 0.9.67 or later is recommended. Faust 0.9.70 and
+  later have support for the new JSON format and offer some other new and
+  convenient capabilities, such as retrieving the JSON description directly
+  from a running dsp instance via Faust's httpd interface.
 
   <subsection|Installation<label|installation>>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.9.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.9.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.10.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.10.tar.gz>.
 
   Run <verbatim|make> and <verbatim|make> <verbatim|install> to compile and
   install the faust2pd program on your system. You can set the installation
@@ -105,10 +108,10 @@
   <verbatim|pdprefix=/some/path>.
 
   The included faustxml.pure script provides access to Faust-generated dsp
-  descriptions in xml files to Pure scripts. This module is described in its
-  own <hlink|appendix|#appendix-faustxml> below. It may have uses beyond
-  faust2pd, but isn't normally installed. If you want to use this module, you
-  can just copy it to your Pure library directory.
+  descriptions in XML or JSON files to Pure scripts. This module is described
+  in its own <hlink|appendix|#appendix-faustxml> below. It may have uses
+  beyond faust2pd, but isn't normally installed. If you want to use this
+  module, you can just copy it to your Pure library directory.
 
   <subsection|Quickstart<label|quickstart>>
 
@@ -180,8 +183,9 @@
     faust2pd freeverb.dsp.xml
   </verbatim>
 
-  Please see <hlink|Wrapping DSPs with faust2pd|#wrapping-dsps-with-faust2pd>
-  below for further details.
+  As of version 2.10, faust2pd can also process dsp descriptions in Faust's
+  new JSON format (-json option). Please see <hlink|Wrapping DSPs with
+  faust2pd|#wrapping-dsps-with-faust2pd> below for further details.
 
   Note that, just as with other Pd externals and abstractions, the compiled
   .pd_linux modules and wrapper patches must be put somewhere where Pd can
@@ -344,6 +348,38 @@
   creates a Pd patch named <verbatim|filename.pd> from the Faust XML
   description in <verbatim|filename.dsp.xml>.
 
+  <subsubsection|JSON Support<label|json-support>>
+
+  As of version 2.10, faust2pd also fully supports Faust's new JSON-based
+  description format, which is generated with the -json option. In this case
+  the filename extension is <verbatim|.dsp.json>, so faust2pd is invoked as
+  <verbatim|faust2pd> <verbatim|filename.dsp.json> instead. This format is
+  only supported in the latest Faust versions (Faust 0.9.70 and later, or
+  Faust 2.0.a30 and later if you are running the Faust2 development version).
+  At the time of this writing, these are only available in the Faust git
+  repository.
+
+  Instead of generating a JSON file with the Faust compiler, you can also
+  read the JSON description straight from a running dsp instance via the
+  httpd interface. This works with both stand-alone Faust applications which
+  have the httpd interface enabled (e.g., created with <verbatim|faust2jaqt>
+  <verbatim|-httpd> <verbatim|mydsp.dsp>) and instances running in Grame's
+  FaustLive application. To these ends, you just specify the URL of the
+  running dsp instance instead of the JSON filename. For instance, assuming
+  that there's a Faust dsp running locally at port 5510, you can run faust2pd
+  as follows to create a GUI patch for it: <verbatim|faust2pd>
+  <href|http://localhost:5510>. You can find out about the port a Faust dsp
+  runs on by inspecting the terminal output of a stand-alone Faust
+  application. In FaustLive, use the <verbatim|Window> <verbatim|/>
+  <verbatim|View> <verbatim|QRcode> menu option to retrieve the IP under
+  which the httpd interface of a dsp window can be accessed. If FaustLive is
+  running locally on its default port (7777), then you can also retrieve a
+  list of dsp instances currently running in FaustLive using
+  <verbatim|faust2pd> <href|http://localhost:7777/availableInterfaces>. This
+  prints the dsp names along with their URLs on stdout.
+
+  <subsubsection|faust2pd Options<label|faust2pd-options>>
+
   The faust2pd program understands a number of options which affect the
   layout of the GUI elements and the contents of the generated patch. Here is
   a brief list of the available options:
@@ -448,18 +484,17 @@
   probably have to edit the generated GUI layouts by hand.)
 
   For convenience, all the content-related command line options mentioned
-  above can also be specified in the Faust source, as special tags in the
-  label of the toplevel group of the dsp. These take the form
-  <verbatim|[pd:option]> or <verbatim|[pd:option=value]> where
-  <verbatim|option> is any of the (long) options understood by faust2pd. For
+  above can also be specified as global meta data in the Faust source. For
   instance:
 
   <\verbatim>
-    process = vgroup("mysynth [pd:nvoices=8] [pd:slider-nums]", ...);
+    declare faust2pd "--nvoices=8 --slider-nums";
   </verbatim>
 
-  Source options carrying arguments, like <verbatim|nvoices> in the above
-  example, can also be overridden with corresponding command line options.
+  Note that source options carrying arguments, like <verbatim|--nvoices> in
+  the above example, can still be overridden with corresponding command line
+  options. Also note that all this works with the JSON format only, as custom
+  global meta data in the Faust source isn't recorded in the XML format.
 
   <subsection|Conclusion<label|conclusion>>
 
@@ -482,17 +517,18 @@
   faustxml<label|appendix-faustxml>>
 
   The faustxml module is provided along with faust2pd to retrieve the
-  description of a Faust DSP from its XML file as a data structure which is
-  ready to be processed by Pure programs. It may also be useful in other Pure
-  applications which need to inspect descriptions of Faust DSPs.
+  description of a Faust DSP from its XML or JSON file as a data structure
+  which is ready to be processed by Pure programs. It may also be useful in
+  other Pure applications which need to inspect descriptions of Faust DSPs.
 
   The main entry point is the <hlink|<with|font-family|tt|info>|#faustxml::info>
-  function which takes the name of a Faust-generated XML file as argument and
-  returns a tuple <verbatim|(name,> <verbatim|descr,> <verbatim|version,>
-  <verbatim|in,> <verbatim|out,> <verbatim|controls)> with the name,
-  description, version, number of inputs and outputs and the toplevel group
-  with the descriptions of the controls of the dsp. A couple of other
-  convenience functions are provided to deal with the control descriptions.
+  function which takes the name of a Faust-generated XML or JSON file as
+  argument and returns a tuple <verbatim|(name,> <verbatim|descr,>
+  <verbatim|version,> <verbatim|in,> <verbatim|out,> <verbatim|controls,>
+  <verbatim|options)> with the name, description, version, number of inputs
+  and outputs, control descriptions and faust2pd options (from the global
+  meta data of the dsp module). A couple of other convenience functions are
+  provided to deal with the control descriptions.
 
   <subsubsection|Usage<label|usage>>
 
@@ -593,11 +629,12 @@
 
   <\description>
     <item*|faustxml::info fname<label|faustxml::info>>Extract the description
-    of a Faust DSP from its XML file. This is the main entry point. Returns a
-    tuple with the name, description and version of the DSP, as well as the
-    number of inputs and outputs and the toplevel group with all the control
-    descriptions. Raises an exception if the XML file doesn't exist or
-    contains invalid contents.
+    of a Faust DSP from its XML or JSON file. This is the main entry point.
+    Returns a tuple with the name, description and version of the DSP, as
+    well as the number of inputs and outputs, the toplevel group with all the
+    control descriptions, and additional faust2pd-specific options specified
+    in the global meta data. Raises an exception if the XML/JSON file doesn't
+    exist or contains invalid contents.
   </description>
 
   Example:
@@ -605,7 +642,7 @@
   <\verbatim>
     \<gtr\> using faustxml;
 
-    \<gtr\> let name,descr,version,in,out,group =
+    \<gtr\> let name,descr,version,in,out,group,opts =
 
     \<gtr\> \ \ faustxml::info "examples/basic/freeverb.dsp.xml";
 
@@ -623,6 +660,34 @@
 
     faustxml::hslider ("freeverb/wet",0.3333,0.0,1.0,0.025)
   </verbatim>
+
+  Note: As of faust2pd 2.10, the <hlink|<with|font-family|tt|info>|#faustxml::info>
+  function can also process descriptions in JSON format (as obtained with
+  <verbatim|faust> <verbatim|-json> in recent Faust versions). Moreover,
+  instead of a JSON file you may also specify the URL of a running Faust dsp
+  instance (typically something like <href|http://localhost:5510>). This
+  works with stand-alone Faust applications which have httpd support enabled
+  (created with, e.g., <verbatim|faust2jaqt> <verbatim|-httpd>), as well as
+  dsp instances running in Grame's FaustLive application. You also need to
+  have the <verbatim|curl> program installed to make this work.
+
+  The latter currently has some minor limitations. Specifically, the
+  httpd/JSON interface only provides the name of a running dsp; the
+  description, version and other global meta data is not available. In the
+  current implementation, we therefore set the description to the name of the
+  dsp, and the version and auxiliary faust2pd options to empty strings in
+  this case.
+
+  Furthermore, the <hlink|<with|font-family|tt|info>|#faustxml::info>
+  function can also be invoked with a special URL of the form
+  <href|http://localhost:7777/availableInterfaces> to retrieve the list of
+  dsp instances running in a (local or remote) FaustLive instance. (Replace
+  <verbatim|localhost> with the hostname or IP address and <verbatim|7777>
+  with the actual port number as necessary. FaustLive's default port is
+  usually <verbatim|7777>, but you should check the actual IP address with
+  FaustLive's <verbatim|Window> <verbatim|/> <verbatim|View>
+  <verbatim|QRcode> option.) The result is a list of hash pairs of names and
+  URLs of dsp instances which can be queried for their JSON data.
 
   <subsubsection*|<hlink|Table Of Contents|index.tm><label|faust2pd-toc>>
 
@@ -643,6 +708,12 @@
       <item><hlink|Examples|#examples>
 
       <item><hlink|Wrapping DSPs with faust2pd|#wrapping-dsps-with-faust2pd>
+
+      <\itemize>
+        <item><hlink|JSON Support|#json-support>
+
+        <item><hlink|faust2pd Options|#faust2pd-options>
+      </itemize>
 
       <item><hlink|Conclusion|#conclusion>
 
@@ -675,6 +746,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Nov
+  03, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

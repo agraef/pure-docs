@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.64, October 28, 2014
+Pure 0.64, November 03, 2014
 
 Albert Gräf (Editor)
 
@@ -46,15 +46,16 @@ Copyright @copyright{} 2009-2014, Albert Gräf et al
 
 @c %**start of body
 @anchor{faust2pd doc}@anchor{1}
-Version 2.9, October 28, 2014
+Version 2.10, November 03, 2014
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
 This package contains software which makes it easier to use Faust DSPs with Pd
 and the Pure programming language. The main component is the faust2pd script
-which creates GUI wrappers for Faust DSPs. The package also includes a bunch
-of examples. The software is distributed under the GPL; see the COPYING file
-for details.
+which creates Pd GUI wrappers for Faust DSPs. The package also includes a Pure
+script faustxml.pure for parsing Faust dsp descriptions in XML or JSON format,
+as well as a bunch of examples. The software is distributed under the GPL; see
+the COPYING file for details.
 
 @cartouche
 @quotation Note 
@@ -142,9 +143,10 @@ To run the seqdemo example, you'll also need the Pd Pure external
 (pd-pure*.tar.gz), also available at the Pure@footnote{http://purelang.bitbucket.org} website.
 
 To compile the examples, you'll need GNU C++ and make, Pd@footnote{http://puredata.info} and, of course,
-Faust@footnote{http://faudiostream.sf.net}. Make sure you get a recent version of Faust; Faust releases >0.9.8
-include the puredata architecture necessary to create Pd externals from Faust
-DSPs.
+Faust@footnote{http://faudiostream.sf.net}. Make sure you get a recent version of Faust; Faust 0.9.67 or later is
+recommended. Faust 0.9.70 and later have support for the new JSON format and
+offer some other new and convenient capabilities, such as retrieving the JSON
+description directly from a running dsp instance via Faust's httpd interface.
 
 @node Installation,Quickstart,Requirements,Top
 @anchor{faust2pd installation}@anchor{5}@anchor{faust2pd faust}@anchor{6}
@@ -152,7 +154,7 @@ DSPs.
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.9.tar.gz}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.10.tar.gz}.
 
 Run @code{make} and @code{make install} to compile and install the faust2pd program
 on your system. You can set the installation prefix by running make as @code{make
@@ -167,8 +169,8 @@ installation, if it guesses wrong, you can specify the prefix explicitly by
 running make as @code{make install-pd pdprefix=/some/path}.
 
 The included faustxml.pure script provides access to Faust-generated dsp
-descriptions in xml files to Pure scripts. This module is described in its own
-@pxref{7,,appendix} below. It may have uses beyond faust2pd, but isn't normally
+descriptions in XML or JSON files to Pure scripts. This module is described in
+its own @pxref{7,,appendix} below. It may have uses beyond faust2pd, but isn't normally
 installed. If you want to use this module, you can just copy it to your Pure
 library directory.
 
@@ -239,7 +241,9 @@ faust2pd freeverb.dsp.xml
 
 @noindent
 
-Please see @pxref{a,,Wrapping DSPs with faust2pd} below for further details.
+As of version 2.10, faust2pd can also process dsp descriptions in Faust's new
+JSON format (-json option). Please see @pxref{a,,Wrapping DSPs with faust2pd} below
+for further details.
 
 Note that, just as with other Pd externals and abstractions, the compiled
 .pd_linux modules and wrapper patches must be put somewhere where Pd can find
@@ -418,6 +422,47 @@ The default output filename is @code{input-file} with new extension
 @code{.pd}. Thus, @code{faust2pd filename.dsp.xml} creates a Pd patch named
 @code{filename.pd} from the Faust XML description in @code{filename.dsp.xml}.
 
+@menu
+* JSON Support:: 
+* faust2pd Options:: 
+
+@end menu
+
+@node JSON Support,faust2pd Options,,Wrapping DSPs with faust2pd
+@anchor{faust2pd json-support}@anchor{d}
+@section JSON Support
+
+
+As of version 2.10, faust2pd also fully supports Faust's new JSON-based
+description format, which is generated with the -json option. In this case the
+filename extension is @code{.dsp.json}, so faust2pd is invoked as @code{faust2pd
+filename.dsp.json} instead. This format is only supported in the latest Faust
+versions (Faust 0.9.70 and later, or Faust 2.0.a30 and later if you are
+running the Faust2 development version). At the time of this writing, these
+are only available in the Faust git repository.
+
+Instead of generating a JSON file with the Faust compiler, you can also read
+the JSON description straight from a running dsp instance via the httpd
+interface. This works with both stand-alone Faust applications which have the
+httpd interface enabled (e.g., created with @code{faust2jaqt -httpd mydsp.dsp})
+and instances running in Grame's FaustLive application. To these ends, you
+just specify the URL of the running dsp instance instead of the JSON
+filename. For instance, assuming that there's a Faust dsp running locally at
+port 5510, you can run faust2pd as follows to create a GUI patch for it:
+@code{faust2pd http://localhost:5510}. You can find out about the port a Faust
+dsp runs on by inspecting the terminal output of a stand-alone Faust
+application. In FaustLive, use the @code{Window / View QRcode} menu option to
+retrieve the IP under which the httpd interface of a dsp window can be
+accessed. If FaustLive is running locally on its default port (7777), then you
+can also retrieve a list of dsp instances currently running in FaustLive using
+@code{faust2pd http://localhost:7777/availableInterfaces}. This prints the dsp
+names along with their URLs on stdout.
+
+@node faust2pd Options,,JSON Support,Wrapping DSPs with faust2pd
+@anchor{faust2pd faust2pd-options}@anchor{e}
+@section faust2pd Options
+
+
 The faust2pd program understands a number of options which affect the layout
 of the GUI elements and the contents of the generated patch. Here is a brief
 list of the available options:
@@ -577,22 +622,21 @@ control surfaces and interfaces to be used on stage you'll probably have to
 edit the generated GUI layouts by hand.)
 
 For convenience, all the content-related command line options mentioned above
-can also be specified in the Faust source, as special tags in the label of the
-toplevel group of the dsp. These take the form @code{[pd:option]} or
-@code{[pd:option=value]} where @code{option} is any of the (long) options understood
-by faust2pd. For instance:
+can also be specified as global meta data in the Faust source. For instance:
 
 @example
-process = vgroup("mysynth [pd:nvoices=8] [pd:slider-nums]", ...);
+declare faust2pd "--nvoices=8 --slider-nums";
 @end example
 
 @noindent
 
-Source options carrying arguments, like @code{nvoices} in the above example, can
-also be overridden with corresponding command line options.
+Note that source options carrying arguments, like @code{--nvoices} in the above
+example, can still be overridden with corresponding command line options. Also
+note that all this works with the JSON format only, as custom global meta data
+in the Faust source isn't recorded in the XML format.
 
 @node Conclusion,Appendix faustxml,Wrapping DSPs with faust2pd,Top
-@anchor{faust2pd conclusion}@anchor{d}
+@anchor{faust2pd conclusion}@anchor{f}
 @chapter Conclusion
 
 
@@ -612,7 +656,7 @@ with ease.
 @end menu
 
 @node Acknowledgements,,,Conclusion
-@anchor{faust2pd acknowledgements}@anchor{e}
+@anchor{faust2pd acknowledgements}@anchor{10}
 @section Acknowledgements
 
 
@@ -629,16 +673,16 @@ DSP algorithms so easy and fun.
 
 
 The faustxml module is provided along with faust2pd to retrieve the
-description of a Faust DSP from its XML file as a data structure which
-is ready to be processed by Pure programs. It may also be useful in other
-Pure applications which need to inspect descriptions of Faust DSPs.
+description of a Faust DSP from its XML or JSON file as a data structure
+which is ready to be processed by Pure programs. It may also be useful in
+other Pure applications which need to inspect descriptions of Faust DSPs.
 
-The main entry point is the @pxref{f,,info} function which takes the name of a
-Faust-generated XML file as argument and returns a tuple @code{(name, descr,
-version, in, out, controls)} with the name, description, version, number
-of inputs and outputs and the toplevel group with the descriptions of the
-controls of the dsp. A couple of other convenience functions are provided
-to deal with the control descriptions.
+The main entry point is the @pxref{11,,info} function which takes the name of a
+Faust-generated XML or JSON file as argument and returns a tuple @code{(name,
+descr, version, in, out, controls, options)} with the name, description,
+version, number of inputs and outputs, control descriptions and faust2pd
+options (from the global meta data of the dsp module). A couple of other
+convenience functions are provided to deal with the control descriptions.
 
 @menu
 * Usage:: 
@@ -648,7 +692,7 @@ to deal with the control descriptions.
 @end menu
 
 @node Usage,Data Structure,,Appendix faustxml
-@anchor{faust2pd usage}@anchor{10}
+@anchor{faust2pd usage}@anchor{12}
 @section Usage
 
 
@@ -670,7 +714,7 @@ using namespace faustxml;
 @noindent
 
 @node Data Structure,Operations,Usage,Appendix faustxml
-@anchor{faust2pd data-structure}@anchor{11}
+@anchor{faust2pd data-structure}@anchor{13}
 @section Data Structure
 
 
@@ -679,9 +723,9 @@ DSPs:
 
 @geindex faustxml;;button (constructor)
 @geindex faustxml;;checkbox (constructor)
-@anchor{faust2pd faustxml button}@anchor{12}
+@anchor{faust2pd faustxml button}@anchor{14}
 @deffn {Pure Constructor} faustxml::button label
-@anchor{faust2pd faustxml checkbox}@anchor{13}
+@anchor{faust2pd faustxml checkbox}@anchor{15}
 @deffnx {Pure Constructor} faustxml::checkbox label
 
 A button or checkbox with the given label.
@@ -690,11 +734,11 @@ A button or checkbox with the given label.
 @geindex faustxml;;nentry (constructor)
 @geindex faustxml;;vslider (constructor)
 @geindex faustxml;;hslider (constructor)
-@anchor{faust2pd faustxml nentry}@anchor{14}
+@anchor{faust2pd faustxml nentry}@anchor{16}
 @deffn {Pure Constructor} faustxml::nentry (label,init,min,max,step)
-@anchor{faust2pd faustxml vslider}@anchor{15}
+@anchor{faust2pd faustxml vslider}@anchor{17}
 @deffnx {Pure Constructor} faustxml::vslider (label,init,min,max,step)
-@anchor{faust2pd faustxml hslider}@anchor{16}
+@anchor{faust2pd faustxml hslider}@anchor{18}
 @deffnx {Pure Constructor} faustxml::hslider (label,init,min,max,step)
 
 A numeric input control with the given label, initial value, range and
@@ -703,9 +747,9 @@ stepwidth.
 
 @geindex faustxml;;vbargraph (constructor)
 @geindex faustxml;;hbargraph (constructor)
-@anchor{faust2pd faustxml vbargraph}@anchor{17}
+@anchor{faust2pd faustxml vbargraph}@anchor{19}
 @deffn {Pure Constructor} faustxml::vbargraph (label,min,max)
-@anchor{faust2pd faustxml hbargraph}@anchor{18}
+@anchor{faust2pd faustxml hbargraph}@anchor{1a}
 @deffnx {Pure Constructor} faustxml::hbargraph (label,min,max)
 
 A numeric output control with the given label and range.
@@ -714,11 +758,11 @@ A numeric output control with the given label and range.
 @geindex faustxml;;vgroup (constructor)
 @geindex faustxml;;hgroup (constructor)
 @geindex faustxml;;tgroup (constructor)
-@anchor{faust2pd faustxml vgroup}@anchor{19}
+@anchor{faust2pd faustxml vgroup}@anchor{1b}
 @deffn {Pure Constructor} faustxml::vgroup (label,controls)
-@anchor{faust2pd faustxml hgroup}@anchor{1a}
+@anchor{faust2pd faustxml hgroup}@anchor{1c}
 @deffnx {Pure Constructor} faustxml::hgroup (label,controls)
-@anchor{faust2pd faustxml tgroup}@anchor{1b}
+@anchor{faust2pd faustxml tgroup}@anchor{1d}
 @deffnx {Pure Constructor} faustxml::tgroup (label,controls)
 
 A group with the given label and list of controls in the group.
@@ -726,12 +770,12 @@ A group with the given label and list of controls in the group.
 
 
 @node Operations,,Data Structure,Appendix faustxml
-@anchor{faust2pd operations}@anchor{1c}
+@anchor{faust2pd operations}@anchor{1e}
 @section Operations
 
 
 @geindex faustxml;;controlp (function)
-@anchor{faust2pd faustxml controlp}@anchor{1d}
+@anchor{faust2pd faustxml controlp}@anchor{1f}
 @deffn {Pure Function} faustxml::controlp x
 
 Check for control description values.
@@ -740,32 +784,32 @@ Check for control description values.
 @geindex faustxml;;control_type (function)
 @geindex faustxml;;control_label (function)
 @geindex faustxml;;control_args (function)
-@anchor{faust2pd faustxml control_type}@anchor{1e}
+@anchor{faust2pd faustxml control_type}@anchor{20}
 @deffn {Pure Function} faustxml::control_type x
-@anchor{faust2pd faustxml control_label}@anchor{1f}
+@anchor{faust2pd faustxml control_label}@anchor{21}
 @deffnx {Pure Function} faustxml::control_label x
-@anchor{faust2pd faustxml control_args}@anchor{20}
+@anchor{faust2pd faustxml control_args}@anchor{22}
 @deffnx {Pure Function} faustxml::control_args x
 
 Access functions for the various components of a control description.
 @end deffn
 
 @geindex faustxml;;controls (function)
-@anchor{faust2pd faustxml controls}@anchor{21}
+@anchor{faust2pd faustxml controls}@anchor{23}
 @deffn {Pure Function} faustxml::controls x
 
 This function returns a flat representation of a control group @code{x} as
 a list of basic control descriptions, which provides a quick way to
 access all the control values of a Faust DSP. The grouping controls
 themselves are omitted. You can pass the last component of the return
-value of the @pxref{f,,info} function to this function.
+value of the @pxref{11,,info} function to this function.
 @end deffn
 
 @geindex faustxml;;pcontrols (function)
-@anchor{faust2pd faustxml pcontrols}@anchor{22}
+@anchor{faust2pd faustxml pcontrols}@anchor{24}
 @deffn {Pure Function} faustxml::pcontrols x
 
-Works like the @pxref{21,,controls} function above, but also replaces the label of
+Works like the @pxref{23,,controls} function above, but also replaces the label of
 each basic control with a fully qualified path consisting of all control
 labels leading up to the given control. Thus, e.g., the label of a
 slider @code{"gain"} inside a group @code{"voice#0"} inside the main
@@ -774,21 +818,23 @@ slider @code{"gain"} inside a group @code{"voice#0"} inside the main
 @end deffn
 
 @geindex faustxml;;info (function)
-@anchor{faust2pd faustxml info}@anchor{f}
+@anchor{faust2pd faustxml info}@anchor{11}
 @deffn {Pure Function} faustxml::info fname
 
-Extract the description of a Faust DSP from its XML file. This is the
-main entry point. Returns a tuple with the name, description and version
-of the DSP, as well as the number of inputs and outputs and the toplevel
-group with all the control descriptions. Raises an exception if the XML
-file doesn't exist or contains invalid contents.
+Extract the description of a Faust DSP from its XML or JSON file. This
+is the main entry point. Returns a tuple with the name, description and
+version of the DSP, as well as the number of inputs and outputs, the
+toplevel group with all the control descriptions, and additional
+faust2pd-specific options specified in the global meta data. Raises an
+exception if the XML/JSON file doesn't exist or contains invalid
+contents.
 @end deffn
 
 Example:
 
 @example
 > using faustxml;
-> let name,descr,version,in,out,group =
+> let name,descr,version,in,out,group,opts =
 >   faustxml::info "examples/basic/freeverb.dsp.xml";
 > name,descr,version,in,out;
 "freeverb","freeverb -- a Schroeder reverb","1.0",2,2
@@ -800,6 +846,33 @@ faustxml::hslider ("freeverb/wet",0.3333,0.0,1.0,0.025)
 @end example
 
 @noindent
+
+Note: As of faust2pd 2.10, the @pxref{11,,info} function can also process
+descriptions in JSON format (as obtained with @code{faust -json} in recent
+Faust versions). Moreover, instead of a JSON file you may also specify the
+URL of a running Faust dsp instance (typically something like
+@code{http://localhost:5510}). This works with stand-alone Faust applications
+which have httpd support enabled (created with, e.g., @code{faust2jaqt
+-httpd}), as well as dsp instances running in Grame's FaustLive
+application. You also need to have the @code{curl} program installed to make
+this work.
+
+The latter currently has some minor limitations. Specifically, the
+httpd/JSON interface only provides the name of a running dsp; the
+description, version and other global meta data is not available. In the
+current implementation, we therefore set the description to the name of the
+dsp, and the version and auxiliary faust2pd options to empty strings in
+this case.
+
+Furthermore, the @pxref{11,,info} function can also be invoked with a special
+URL of the form @code{http://localhost:7777/availableInterfaces} to retrieve
+the list of dsp instances running in a (local or remote) FaustLive
+instance. (Replace @code{localhost} with the hostname or IP address and
+@code{7777} with the actual port number as necessary. FaustLive's default port
+is usually @code{7777}, but you should check the actual IP address with
+FaustLive's @code{Window / View QRcode} option.) The result is a list of hash
+pairs of names and URLs of dsp instances which can be queried for their
+JSON data.
 
 @node Module Index,Index,Appendix faustxml,Top
 @unnumbered Module Index
