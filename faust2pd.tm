@@ -35,7 +35,7 @@
     size of the GUI elements.
 
     <item>Most command line options can now also be specified using special
-    <verbatim|[pd:...]> tags in the Faust source.
+    meta data in the Faust source.
   </itemize>
 
   Also note that you can now run the script on 64 bit systems (Q never worked
