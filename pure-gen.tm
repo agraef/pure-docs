@@ -10,7 +10,7 @@
 
   <section*|pure-gen: Pure interface generator<label|pure-gen-pure-interface-generator>>
 
-  Version 0.19, November 03, 2014
+  Version 0.20, November 25, 2014
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -833,5 +833,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Nov
-  03, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  25, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
