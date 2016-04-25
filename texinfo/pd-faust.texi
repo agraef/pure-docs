@@ -708,9 +708,10 @@ pan = hslider("pan [osc:/pan]", 0, -1, 1, 0.01);
 @cartouche
 @quotation Note 
 In contrast to some other architectures included in the Faust
-distribution, pd-faust only allows literal OSC addresses here. That is,
-glob-style OSC patterns are not supported as values for the @code{osc}
-attribute.
+distribution, at present pd-faust only allows literal OSC addresses (no
+glob-style patterns), and there is no way to specify an OSC value range (so
+the value ranges of the controls of an external OSC device must match the
+ranges of the corresponding controls in the Faust program).
 @end quotation
 @end cartouche
 
@@ -726,7 +727,7 @@ for your local network setup; at least you'll probably have to change the
 network addresses in the abstraction so that it works with the OSC device or
 application that you use.
 
-Another useful abstraction is the @code{mdnsbrowser} object available in the
+Another useful abstraction is the @code{oscbrowser} object available in the
 author's separate pd-mdnsbrowser@footnote{https://bitbucket.org/agraef/pd-mdnsbrowser} package. It lets you discover and publish
 Zeroconf (Avahi/Bonjour) services in the local network, so that your Pd
 patches can establish OSC connections in an automatic fashion.
@@ -866,6 +867,13 @@ MIDI interface right now, so you'll have to use ordinary MIDI controllers
 for these parameters instead. Coarse/fine pairs of MIDI controllers aren't
 directly supported either, so you'll have to implement these yourself as two
 separate Faust controls.
+
+@item 
+There's no translation of OSC values. pd-faust thus always assumes that the
+controls of an external OSC device have the ranges specified in the Faust
+program. If this isn't the case then you'll have to adjust either the OSC
+controller setup or the control ranges in the Faust program, or use an
+external tool like OSCulator@footnote{http://www.osculator.net/} to translate the messages.
 @end itemize
 
 Also, please check the TODO file included in the distribution for other issues
