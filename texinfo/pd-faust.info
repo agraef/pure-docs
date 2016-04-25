@@ -219,12 +219,15 @@ The ‘fdsp~’ object is invoked as follows:
    * ‘dspname’ denotes the name of the Faust dsp (usually this is just
      the name of the .dsp file with the extension stripped off).  Please
      note that the Faust dsp must be provided in a form which can be
-     loaded in _Pure_ (not Pd!), so the ‘pure.cpp’ architecture included
-     in recent Faust versions must be used to compile the dsp to a
-     shared library.  (If you’re already running Faust2(1), you can also
-     compile to an LLVM bitcode file instead; Pure has built-in support
-     for loading these.)  The Makefiles included in the pd-faust
-     distribution show how to do this.
+     loaded in _Pure_ (not Pd!), so the ‘pure.cpp’ architecture
+     (included in the Faust distribution) must be used to compile the
+     dsp to a shared library.  (If you’re already running Faust2(1), you
+     can also compile to an LLVM bitcode file instead; Pure has built-in
+     support for loading these.)  There’s a GNU Makefile in the
+     examples/dsp subdirectory which shows how to do this.  This
+     Makefile is self-contained, so you can just drop it into any
+     directory with Faust dsp sources and run ‘make’ there to compile
+     the modules to a format which is ready to be loaded with pd-faust.
 
    * ‘instname’ denotes the name of the instance of the Faust unit.
      Multiple instances of the same Faust dsp can be used in a Pd patch,
@@ -873,47 +876,47 @@ Ref: 66516
 Node: The fdsp~ and fsynth~ Objects8056
 Ref: pd-faust the-fdsp-and-fsynth-objects8155
 Ref: 88155
-Ref: The fdsp~ and fsynth~ Objects-Footnote-113979
-Node: The faust~ Object14040
-Ref: pd-faust the-faust-object14162
-Ref: a14162
-Ref: The faust~ Object-Footnote-116900
-Ref: The faust~ Object-Footnote-216947
-Node: GUI Subpatches16994
-Ref: pd-faust gui-subpatches17095
-Ref: b17095
-Node: Examples19391
-Ref: pd-faust examples19496
-Ref: 519496
-Node: Operating the Patches20910
-Ref: pd-faust operating-the-patches21034
-Ref: 721034
-Ref: Operating the Patches-Footnote-129043
-Ref: Operating the Patches-Footnote-229101
-Node: External MIDI and OSC Controllers29151
-Ref: pd-faust external-midi-and-osc-controllers29290
-Ref: 929290
-Ref: pd-faust pd-lv2plugin29290
-Ref: d29290
-Ref: External MIDI and OSC Controllers-Footnote-133273
-Ref: External MIDI and OSC Controllers-Footnote-233330
-Ref: External MIDI and OSC Controllers-Footnote-333381
-Node: Tweaking the GUI Layout33433
-Ref: pd-faust pd-mdnsbrowser33565
-Ref: e33565
-Ref: pd-faust tweaking-the-gui-layout33565
-Ref: c33565
-Node: Remote Control36729
-Ref: pd-faust remote-control36819
-Ref: f36819
-Ref: Remote Control-Footnote-137497
-Node: Caveats and Bugs37548
-Ref: pd-faust faust-mode37634
-Ref: 1037634
-Ref: pd-faust caveats-and-bugs37634
-Ref: 1137634
-Ref: Caveats and Bugs-Footnote-139314
-Node: Index39348
+Ref: The fdsp~ and fsynth~ Objects-Footnote-114213
+Node: The faust~ Object14274
+Ref: pd-faust the-faust-object14396
+Ref: a14396
+Ref: The faust~ Object-Footnote-117134
+Ref: The faust~ Object-Footnote-217181
+Node: GUI Subpatches17228
+Ref: pd-faust gui-subpatches17329
+Ref: b17329
+Node: Examples19625
+Ref: pd-faust examples19730
+Ref: 519730
+Node: Operating the Patches21144
+Ref: pd-faust operating-the-patches21268
+Ref: 721268
+Ref: Operating the Patches-Footnote-129277
+Ref: Operating the Patches-Footnote-229335
+Node: External MIDI and OSC Controllers29385
+Ref: pd-faust external-midi-and-osc-controllers29524
+Ref: 929524
+Ref: pd-faust pd-lv2plugin29524
+Ref: d29524
+Ref: External MIDI and OSC Controllers-Footnote-133507
+Ref: External MIDI and OSC Controllers-Footnote-233564
+Ref: External MIDI and OSC Controllers-Footnote-333615
+Node: Tweaking the GUI Layout33667
+Ref: pd-faust pd-mdnsbrowser33799
+Ref: e33799
+Ref: pd-faust tweaking-the-gui-layout33799
+Ref: c33799
+Node: Remote Control36963
+Ref: pd-faust remote-control37053
+Ref: f37053
+Ref: Remote Control-Footnote-137731
+Node: Caveats and Bugs37782
+Ref: pd-faust faust-mode37868
+Ref: 1037868
+Ref: pd-faust caveats-and-bugs37868
+Ref: 1137868
+Ref: Caveats and Bugs-Footnote-139548
+Node: Index39582
 
 End Tag Table
 

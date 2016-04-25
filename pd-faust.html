@@ -176,11 +176,14 @@ this search, just use absolute pathnames (or pathnames relative to the
 <li><tt class="docutils literal"><span class="pre">dspname</span></tt> denotes the name of the Faust dsp (usually this is just the name
 of the .dsp file with the extension stripped off). Please note that the
 Faust dsp must be provided in a form which can be loaded in <em>Pure</em> (not
-Pd!), so the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture included in recent Faust versions
+Pd!), so the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture (included in the Faust distribution)
 must be used to compile the dsp to a shared library. (If you&#8217;re already
 running <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a>, you can also compile to an LLVM bitcode file instead; Pure
-has built-in support for loading these.) The Makefiles included in the
-pd-faust distribution show how to do this.</li>
+has built-in support for loading these.) There&#8217;s a GNU Makefile in the
+examples/dsp subdirectory which shows how to do this. This Makefile is
+self-contained, so you can just drop it into any directory with Faust dsp
+sources and run <tt class="docutils literal"><span class="pre">make</span></tt> there to compile the modules to a format which is
+ready to be loaded with pd-faust.</li>
 <li><tt class="docutils literal"><span class="pre">instname</span></tt> denotes the name of the instance of the Faust unit. Multiple
 instances of the same Faust dsp can be used in a Pd patch, which must all
 have different instance names. In addition, the instance name is also used

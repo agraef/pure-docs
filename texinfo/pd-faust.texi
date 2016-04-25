@@ -234,11 +234,14 @@ fdsp~ dspname instname channel
 @code{dspname} denotes the name of the Faust dsp (usually this is just the name
 of the .dsp file with the extension stripped off). Please note that the
 Faust dsp must be provided in a form which can be loaded in @emph{Pure} (not
-Pd!), so the @code{pure.cpp} architecture included in recent Faust versions
+Pd!), so the @code{pure.cpp} architecture (included in the Faust distribution)
 must be used to compile the dsp to a shared library. (If you're already
 running Faust2@footnote{https://bitbucket.org/purelang/pure-lang/wiki/Faust2}, you can also compile to an LLVM bitcode file instead; Pure
-has built-in support for loading these.) The Makefiles included in the
-pd-faust distribution show how to do this.
+has built-in support for loading these.) There's a GNU Makefile in the
+examples/dsp subdirectory which shows how to do this. This Makefile is
+self-contained, so you can just drop it into any directory with Faust dsp
+sources and run @code{make} there to compile the modules to a format which is
+ready to be loaded with pd-faust.
 
 @item 
 @code{instname} denotes the name of the instance of the Faust unit. Multiple
