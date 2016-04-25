@@ -1,11 +1,11 @@
-This is pure-gen.info, produced by makeinfo version 5.2 from
+This is pure-gen.info, produced by makeinfo version 6.1 from
 pure-gen.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-gen.info,  Node: Top,  Next: Name,  Up: (dir)
 pure-gen
 ********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.20, November 25, 2014
+  Version 0.20, April 25, 2016
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -71,6 +71,7 @@ File: pure-gen.info,  Node: Synopsis,  Next: Options,  Prev: Name,  Up: Top
 **********
 
      pure-gen [options ...] input-file
+
 
 
 File: pure-gen.info,  Node: Options,  Next: Description,  Prev: Synopsis,  Up: Top
@@ -263,6 +264,7 @@ For instance, the command
 
      pure-gen foo.h
 
+
   creates a Pure module foo.pure with ‘extern’ declarations for the
 constants (‘#define’s and enums) and C routines declared in the given C
 header file and (recursively) its includes.
@@ -281,6 +283,7 @@ options) before generating output.  A particularly useful example is
      pure-gen -ne foo.h \
        | awk '$1=="#" && $2~/^[0-9]+$/ && $3!~/^"<.*>"$/  { print $3 }' \
        | sort | uniq
+
 
   which prints on standard output all headers which are included in the
 source.  This helps to decide which headers you want to be included in
@@ -326,6 +329,7 @@ and none of the other headers included in foo.h, you can invoke pure-gen
 as follows:
 
      pure-gen -s foo.h:: foo.h
+
 
   Note that even in this case all included headers will be parsed so
 that ‘#define’d constants and enum values can be resolved, but the
@@ -429,6 +433,7 @@ C wrapper and the corresponding Pure module:
 
      pure-gen -fc foo.h
 
+
   This creates foo.pure and foo.c, with an import clause for ‘"lib:foo"’
 at the beginning of the Pure module.  (You can also change the name of
 the Pure and C output files using the *note -o: 36. and *note -c: 20.
@@ -439,6 +444,7 @@ compiled to a shared object (dll on Windows) as usual.  E.g., using gcc
 on Linux:
 
      gcc -shared -o foo.so foo.c -lfoo
+
 
   That’s all.  You should now be able to use the foo module by just
 putting the declaration ‘using foo;’ into your programs.  The same
@@ -457,6 +463,7 @@ your own template file, which has the following format:
      {
        return %n(%a);
      }
+
 
   Note that the code up to the symbol ‘%%’ on a line by itself denotes
 "frontmatter" which gets inserted at the beginning of the C file.  (The
@@ -495,6 +502,7 @@ file foo.templ and invoke pure-gen on the foo.h header file as follows:
 
      pure-gen -fc -t foo.templ foo.h
 
+
   Then in foo.c you’d get C output code like the following:
 
      /* frontmatter here */
@@ -512,6 +520,7 @@ file foo.templ and invoke pure-gen on the foo.h header file as follows:
        return bar(arg0);
      }
 
+
   As indicated, the wrapper function names are usually stropped with the
 ‘Pure_’ prefix.  You can change this with the *note -P: 25. option.
 
@@ -525,6 +534,7 @@ this purpose the following template will do the trick:
      {
        /* Enter code of %n here. */
      }
+
 
 
 File: pure-gen.info,  Node: Dealing with C Structs,  Next: Notes,  Prev: Generating C Code,  Up: Top
@@ -545,6 +555,7 @@ which indicates that the given function could not be wrapped:
 
      Warning: foo: struct argument or return type, try -fc-auto
 
+
   What Pure _does_ know is how to pass and return _pointers_ to C
 structs in its C interface.  This makes it possible to deal with struct
 arguments and return values in the C wrapper.  To make this work, you
@@ -562,6 +573,7 @@ the header as follows:
      typedef struct { double x, y; } point;
      extern double foo(point p);
 
+
   Then the generated wrapper code becomes:
 
      double Pure_foo(point* arg0)
@@ -569,14 +581,17 @@ the header as follows:
        return foo(*arg0);
      }
 
+
   Which is declared in the Pure interface as:
 
      extern double Pure_foo(point*) = foo;
+
 
   Struct return values are handled by returning a pointer to a static
 variable holding the return value.  E.g.,
 
      extern point bar(double x, double y);
+
 
   becomes:
 
@@ -586,9 +601,11 @@ variable holding the return value.  E.g.,
        ret = bar(arg0, arg1); return &ret;
      }
 
+
   Which is declared in the Pure interface as:
 
      extern point* Pure_bar(double, double) = bar;
+
 
   (Note that the generated code in this case comes from an alternate
 template.  It’s possible to configure the alternate template just like
@@ -600,6 +617,7 @@ code templates.)
 
      > foo (bar 0.0 1.0);
 
+
   Note, however, that the pointer returned by ‘bar’ points to static
 storage which will be overwritten each time you invoke the ‘bar’
 function.  Thus in the following example _both_ ‘u’ and ‘v’ will point
@@ -607,6 +625,7 @@ to the same ‘point’ struct, namely that defined by the latter call to
 ‘bar’:
 
      > let u = bar 1.0 0.0; let v = bar 0.0 1.0;
+
 
   Which most likely is _not_ what you want.  To avoid this, you’ll have
 to take dynamic copies of returned structs.  It’s possible to do this
@@ -618,6 +637,7 @@ module:
      > let point_t = struct_t (double_t, double_t);
      > let u = copy_struct point_t (bar 1.0 0.0);
      > let v = copy_struct point_t (bar 0.0 1.0);
+
 
   Now ‘u’ and ‘v’ point to different, malloc’d structs which even take
 care of freeing themselves when they are no longer needed.  Moreover,
@@ -691,9 +711,11 @@ mygsl.pure, with the accompanying C module in mygsl.c:
        pure-gen $DEFS -N -fc-auto -s "$x::" $x -o mygsl.pure -c mygsl.c
      done
 
+
   The C module can then be compiled with:
 
      gcc $DEFS -shared -o mygsl.so mygsl.c -lgsl
+
 
   Note that the ‘GSL_DISABLE_DEPRECATED’ symbol must be defined here to
 avoid some botches with constants being defined in incompatible ways in
@@ -811,155 +833,155 @@ Index
 
 
 Tag Table:
-Node: Top383
-Ref: pure-gen doc574
-Ref: 0574
-Node: Name871
-Ref: pure-gen pure-gen-pure-interface-generator946
-Ref: 1946
-Ref: pure-gen name946
-Ref: 2946
-Node: Synopsis1466
-Ref: pure-gen synopsis1545
-Ref: 31545
-Node: Options1608
-Ref: pure-gen options1694
-Ref: 41694
-Node: General Options1815
-Ref: pure-gen general-options1905
-Ref: 51905
-Ref: pure-gen cmdoption-pure-gen-h1946
-Ref: 61946
-Ref: pure-gen cmdoption-pure-gen--help1961
-Ref: 71961
-Ref: pure-gen cmdoption-pure-gen-V2024
-Ref: 82024
-Ref: pure-gen cmdoption-pure-gen--version2039
-Ref: 92039
-Ref: pure-gen cmdoption-pure-gen-e2099
-Ref: a2099
-Ref: pure-gen cmdoption-pure-gen--echo2114
-Ref: b2114
-Ref: pure-gen cmdoption-pure-gen-v2239
-Ref: c2239
-Ref: pure-gen cmdoption-pure-gen--verbose2254
-Ref: d2254
-Ref: pure-gen cmdoption-pure-gen-w2386
-Ref: e2386
-Ref: pure-gen cmdoption-pure-gen--warnings2408
-Ref: f2408
-Node: Preprocessor Options2624
-Ref: pure-gen preprocessor-options2740
-Ref: 102740
-Ref: pure-gen cmdoption-pure-gen-I2791
-Ref: 112791
-Ref: pure-gen cmdoption-pure-gen--include2811
-Ref: 122811
-Ref: pure-gen cmdoption-pure-gen-D2894
-Ref: 132894
-Ref: pure-gen cmdoption-pure-gen--define2922
-Ref: 142922
-Ref: pure-gen cmdoption-pure-gen-U3009
-Ref: 153009
-Ref: pure-gen cmdoption-pure-gen--undefine3029
-Ref: 163029
-Ref: pure-gen cmdoption-pure-gen-C3112
-Ref: 173112
-Ref: pure-gen cmdoption-pure-gen--cpp3134
-Ref: 183134
-Node: Generator Options3221
-Ref: pure-gen generator-options3336
-Ref: 193336
-Ref: pure-gen cmdoption-pure-gen-f3381
-Ref: 1a3381
-Ref: pure-gen cmdoption-pure-gen--interface3402
-Ref: 1b3402
-Ref: pure-gen cmdoption-pure-gen-l4073
-Ref: 1e4073
-Ref: pure-gen cmdoption-pure-gen--lib-name4092
-Ref: 1f4092
-Ref: pure-gen cmdoption-pure-gen-m4380
-Ref: 214380
-Ref: pure-gen cmdoption-pure-gen--namespace4400
-Ref: 224400
-Ref: pure-gen cmdoption-pure-gen-p4490
-Ref: 234490
-Ref: pure-gen cmdoption-pure-gen--prefix4512
-Ref: 244512
-Ref: pure-gen cmdoption-pure-gen-P4596
-Ref: 254596
-Ref: pure-gen cmdoption-pure-gen--wrap4618
-Ref: 264618
-Ref: pure-gen cmdoption-pure-gen-a4749
-Ref: 274749
-Ref: pure-gen cmdoption-pure-gen--all4764
-Ref: 284764
-Ref: pure-gen cmdoption-pure-gen-s4956
-Ref: 294956
-Ref: pure-gen cmdoption-pure-gen--select4979
-Ref: 2a4979
-Ref: pure-gen cmdoption-pure-gen-x5431
-Ref: 2b5431
-Ref: pure-gen cmdoption-pure-gen--exclude5454
-Ref: 2c5454
-Ref: pure-gen cmdoption-pure-gen-t5573
-Ref: 2d5573
-Ref: pure-gen cmdoption-pure-gen--template5593
-Ref: 2e5593
-Ref: pure-gen cmdoption-pure-gen-T5756
-Ref: 2f5756
-Ref: pure-gen cmdoption-pure-gen--alt-template5776
-Ref: 305776
-Node: Output Options5954
-Ref: pure-gen output-options6040
-Ref: 316040
-Ref: pure-gen cmdoption-pure-gen-n6079
-Ref: 326079
-Ref: pure-gen cmdoption-pure-gen--dry-run6094
-Ref: 336094
-Ref: pure-gen cmdoption-pure-gen-N6165
-Ref: 346165
-Ref: pure-gen cmdoption-pure-gen--noclobber6180
-Ref: 356180
-Ref: pure-gen cmdoption-pure-gen-o6244
-Ref: 366244
-Ref: pure-gen cmdoption-pure-gen--output6264
-Ref: 376264
-Ref: pure-gen cmdoption-pure-gen-c6387
-Ref: 206387
-Ref: pure-gen cmdoption-pure-gen--c-output6407
-Ref: 386407
-Node: Description6536
-Ref: pure-gen description6623
-Ref: 396623
-Node: Filtering8804
-Ref: pure-gen filtering8897
-Ref: 3a8897
-Node: Name Mangling12216
-Ref: pure-gen name-mangling12315
-Ref: 3b12315
-Node: Generating C Code13081
-Ref: pure-gen generating-c-code13193
-Ref: 1c13193
-Node: Dealing with C Structs17890
-Ref: pure-gen dealing-with-c-structs17994
-Ref: 1d17994
-Node: Notes21723
-Ref: pure-gen notes21817
-Ref: 3c21817
-Node: Example24278
-Ref: pure-gen example24357
-Ref: 3d24357
-Node: License25263
-Ref: pure-gen license25344
-Ref: 3e25344
-Node: Authors25426
-Ref: pure-gen authors25508
-Ref: 3f25508
-Node: See Also25650
-Ref: pure-gen see-also25730
-Ref: 4025730
-Node: Index25978
+Node: Top380
+Ref: pure-gen doc568
+Ref: 0568
+Node: Name862
+Ref: pure-gen pure-gen-pure-interface-generator937
+Ref: 1937
+Ref: pure-gen name937
+Ref: 2937
+Node: Synopsis1457
+Ref: pure-gen synopsis1536
+Ref: 31536
+Node: Options1600
+Ref: pure-gen options1686
+Ref: 41686
+Node: General Options1807
+Ref: pure-gen general-options1897
+Ref: 51897
+Ref: pure-gen cmdoption-pure-gen-h1938
+Ref: 61938
+Ref: pure-gen cmdoption-pure-gen--help1953
+Ref: 71953
+Ref: pure-gen cmdoption-pure-gen-V2016
+Ref: 82016
+Ref: pure-gen cmdoption-pure-gen--version2031
+Ref: 92031
+Ref: pure-gen cmdoption-pure-gen-e2091
+Ref: a2091
+Ref: pure-gen cmdoption-pure-gen--echo2106
+Ref: b2106
+Ref: pure-gen cmdoption-pure-gen-v2231
+Ref: c2231
+Ref: pure-gen cmdoption-pure-gen--verbose2246
+Ref: d2246
+Ref: pure-gen cmdoption-pure-gen-w2378
+Ref: e2378
+Ref: pure-gen cmdoption-pure-gen--warnings2400
+Ref: f2400
+Node: Preprocessor Options2616
+Ref: pure-gen preprocessor-options2732
+Ref: 102732
+Ref: pure-gen cmdoption-pure-gen-I2783
+Ref: 112783
+Ref: pure-gen cmdoption-pure-gen--include2803
+Ref: 122803
+Ref: pure-gen cmdoption-pure-gen-D2886
+Ref: 132886
+Ref: pure-gen cmdoption-pure-gen--define2914
+Ref: 142914
+Ref: pure-gen cmdoption-pure-gen-U3001
+Ref: 153001
+Ref: pure-gen cmdoption-pure-gen--undefine3021
+Ref: 163021
+Ref: pure-gen cmdoption-pure-gen-C3104
+Ref: 173104
+Ref: pure-gen cmdoption-pure-gen--cpp3126
+Ref: 183126
+Node: Generator Options3213
+Ref: pure-gen generator-options3328
+Ref: 193328
+Ref: pure-gen cmdoption-pure-gen-f3373
+Ref: 1a3373
+Ref: pure-gen cmdoption-pure-gen--interface3394
+Ref: 1b3394
+Ref: pure-gen cmdoption-pure-gen-l4065
+Ref: 1e4065
+Ref: pure-gen cmdoption-pure-gen--lib-name4084
+Ref: 1f4084
+Ref: pure-gen cmdoption-pure-gen-m4372
+Ref: 214372
+Ref: pure-gen cmdoption-pure-gen--namespace4392
+Ref: 224392
+Ref: pure-gen cmdoption-pure-gen-p4482
+Ref: 234482
+Ref: pure-gen cmdoption-pure-gen--prefix4504
+Ref: 244504
+Ref: pure-gen cmdoption-pure-gen-P4588
+Ref: 254588
+Ref: pure-gen cmdoption-pure-gen--wrap4610
+Ref: 264610
+Ref: pure-gen cmdoption-pure-gen-a4741
+Ref: 274741
+Ref: pure-gen cmdoption-pure-gen--all4756
+Ref: 284756
+Ref: pure-gen cmdoption-pure-gen-s4948
+Ref: 294948
+Ref: pure-gen cmdoption-pure-gen--select4971
+Ref: 2a4971
+Ref: pure-gen cmdoption-pure-gen-x5423
+Ref: 2b5423
+Ref: pure-gen cmdoption-pure-gen--exclude5446
+Ref: 2c5446
+Ref: pure-gen cmdoption-pure-gen-t5565
+Ref: 2d5565
+Ref: pure-gen cmdoption-pure-gen--template5585
+Ref: 2e5585
+Ref: pure-gen cmdoption-pure-gen-T5748
+Ref: 2f5748
+Ref: pure-gen cmdoption-pure-gen--alt-template5768
+Ref: 305768
+Node: Output Options5946
+Ref: pure-gen output-options6032
+Ref: 316032
+Ref: pure-gen cmdoption-pure-gen-n6071
+Ref: 326071
+Ref: pure-gen cmdoption-pure-gen--dry-run6086
+Ref: 336086
+Ref: pure-gen cmdoption-pure-gen-N6157
+Ref: 346157
+Ref: pure-gen cmdoption-pure-gen--noclobber6172
+Ref: 356172
+Ref: pure-gen cmdoption-pure-gen-o6236
+Ref: 366236
+Ref: pure-gen cmdoption-pure-gen--output6256
+Ref: 376256
+Ref: pure-gen cmdoption-pure-gen-c6379
+Ref: 206379
+Ref: pure-gen cmdoption-pure-gen--c-output6399
+Ref: 386399
+Node: Description6528
+Ref: pure-gen description6615
+Ref: 396615
+Node: Filtering8798
+Ref: pure-gen filtering8891
+Ref: 3a8891
+Node: Name Mangling12211
+Ref: pure-gen name-mangling12310
+Ref: 3b12310
+Node: Generating C Code13076
+Ref: pure-gen generating-c-code13188
+Ref: 1c13188
+Node: Dealing with C Structs17891
+Ref: pure-gen dealing-with-c-structs17995
+Ref: 1d17995
+Node: Notes21734
+Ref: pure-gen notes21828
+Ref: 3c21828
+Node: Example24289
+Ref: pure-gen example24368
+Ref: 3d24368
+Node: License25276
+Ref: pure-gen license25357
+Ref: 3e25357
+Node: Authors25439
+Ref: pure-gen authors25521
+Ref: 3f25521
+Node: See Also25663
+Ref: pure-gen see-also25743
+Ref: 4025743
+Node: Index25991
 
 End Tag Table
 

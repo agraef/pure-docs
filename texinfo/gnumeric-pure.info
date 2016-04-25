@@ -1,11 +1,11 @@
-This is gnumeric-pure.info, produced by makeinfo version 5.2 from
+This is gnumeric-pure.info, produced by makeinfo version 6.1 from
 gnumeric-pure.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: gnumeric-pure.info,  Node: Top,  Next: Introduction,  Up: (dir)
 gnumeric-pure
 *************
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.14, October 28, 2014
+  Version 0.15, April 25, 2016
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -160,17 +160,17 @@ File: gnumeric-pure.info,  Node: Installation,  Next: Setup,  Prev: Copying,  Up
 **************
 
 Obviously, you need to have both Pure and Gnumeric installed.  Pure 0.36
-and Gnumeric 1.9.13 or later are known to work.  The current version of
-this module (0.13, currently only available in Pure’s Mercurial
-repository) will work with the latest, GTK3-based versions of Gnumeric
-(Gnumeric 1.11 and later, 1.12 has been tested).  To obtain this
-version, clone the Pure repository or download it as a zip file at
-‘https://bitbucket.org/purelang/pure-lang’; the module can be found in
-the gnumeric-pure subdirectory of the repository.
+and Gnumeric 1.9.13 or later are known to work.  The current release of
+this module will work with the latest, GTK3-based versions of Gnumeric
+(Gnumeric 1.11 and later, 1.12.23 has been tested).
 
-  Unfortunately, the Gnumeric plugin interface changed in recent
-releases, so if you are still running Gnumeric 1.10 or earlier then you
-should use version 0.12 of the module instead:
+  Please note that the Gnumeric plugin interface is a moving target,
+which means that from time to time the gnumeric-pure module sources are
+updated to accommodate the latest changes in Gnumeric.  Thus, depending
+on which Gnumeric version you are running, you may have to go with an
+older version of gnumeric-pure.  In particular, if you are still running
+Gnumeric 1.10 or earlier then you should use version 0.12 of the module
+instead:
 
      ‘https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz’
 
@@ -216,6 +216,7 @@ the Makefile variables ‘prefix’ and ‘gnmversion’, respectively.  For
 instance:
 
      $ make prefix=/usr gnmversion=1.12.4
+
 
   In either case, ‘make install’ also installs the ‘pure-gnm’ helper
 script under the Pure installation prefix.  (This is a little
@@ -279,6 +280,7 @@ these options, then your ‘pure-ui.xml’ file should look as follows:
        </toolbar>
      </ui>
 
+
 
 File: gnumeric-pure.info,  Node: Basic Usage,  Next: Interactive Pure Shell,  Prev: Setup,  Up: Top
 
@@ -298,6 +300,7 @@ be able to read the friendly greeting returned by the function.
 into a cell as usual.  Click on a cell, then enter the following:
 
      =pure_hello(getenv("USER"))
+
 
   The greeting should now be displayed with your login name in it.
 
@@ -358,6 +361,7 @@ the Pure shell:
      > scanl (+) 0 (1..20)
        [0,1,3,6,10,15,21,28,36,45,55,66,78,91,105,120,136,153,171,190,210]
 
+
   Note that here and in the following the prompt ‘>’ indicates a Pure
 expression to be evaluated in _Gnumeric_ (rather than the standalone
 Pure interpreter), which is followed by another line indicating the
@@ -379,6 +383,7 @@ declarations, so you can type:
      > using system; puts "Hello, world!";
        14
 
+
   This prints the string ‘"Hello, world!"’ on standard output, visible
 in the terminal window where you launched Gnumeric.  Here is another
 example, showing how you can invoke any function from the C library, by
@@ -386,6 +391,7 @@ declaring it as a Pure ‘extern’ function:
 
      > extern int rand(); [rand | i = 1..5];
        [1810821799,2106746672,1436605662,1363610028,695042099]
+
 
   All functions in the Pure prelude are readily available in the
 Gnumeric Pure shell, as well as the functions defined in
@@ -396,11 +402,13 @@ can retrieve a cell value from the current sheet:
      > get_cell "A1"
        "Gnumeric/Pure Examples"
 
+
   Using ‘call’ (see *note Calling Gnumeric from Pure: b.), you can also
 invoke any Gnumeric function:
 
      > call "product" (1..10)
        3628800.0
+
 
 
 File: gnumeric-pure.info,  Node: Defining Your Own Functions,  Next: Gnumeric/Pure Interface,  Prev: Interactive Pure Shell,  Up: Top
@@ -431,6 +439,7 @@ function can be implemented as follows:
 
      factorial [x] = foldl (*) 1 (1..x);
 
+
   Note the list bracket around the argument ‘x’.  You wouldn’t normally
 pass a single numeric argument that way in Pure, but this is needed here
 since by default Gnumeric passes arguments as a list to a Pure function.
@@ -453,6 +462,7 @@ needed information.  In our case, this might look as follows:
      #! C: Pure
      #! D: My Pure functions.
      #! F: factorial
+
 
   You can add this comment block anywhere in your plugin script, but
 usually it is placed near the beginning.  The different fields have the
@@ -493,10 +503,12 @@ identifier) if necessary.
 
      factorial [x] = foldl (*) 1 (1..x);
 
+
   Once you’ve added the comment block, you can generate the ‘plugin.xml’
 file for the plugin simply as follows:
 
      $ pure-gnm myplugin.pure > plugin.xml
+
 
   Note that by default ‘pure-gnm’ writes the ‘plugin.xml’ file to
 standard output which is useful if you want to check the generated file
@@ -517,6 +529,7 @@ or description of the plugin).  It’s easy to automate this step using
 
      clean:
              rm -f plugin.xml
+
 
   Now you can just run ‘make’ in the plugin directory and it will
 rebuild the ‘plugin.xml’ file as needed.
@@ -548,6 +561,7 @@ The ‘plugin.xml’ file resulting from the previous step looks like this:
          </service>
        </services>
      </plugin>
+
 
   You can also edit this file by hand if you know what you’re doing; in
 that case, please check the Gnumeric documentation for details about the
@@ -585,6 +599,7 @@ this with ‘pure-gnm’, you can just invoke it with an absolute path name,
 e.g.:
 
      $ pure-gnm $PWD/myplugin.pure > plugin.xml
+
 
   Now you can move the ‘plugin.xml’ file whereever you like and still
 have Gnumeric find the script file in its prescribed location.  Again,
@@ -643,6 +658,7 @@ under *note Creating a Simple Plugin: c.
      uninstall:
              rm -rf $(plugindir)
 
+
   Now you can just run ‘make install’ to make the plugin known to
 Gnumeric.  Note that we also added a rule that allows you to uninstall
 the plugin if it isn’t needed any more.
@@ -655,6 +671,7 @@ just like any other Gnumeric function.  For instance, type this into a
 cell to have the factorial of 10 computed:
 
      =factorial(10)
+
 
   Also try saving the spreadsheet and loading it again after restarting
 Gnumeric.  The plugin will now be loaded automatically and the
@@ -729,6 +746,7 @@ Makefile in the Gnumeric/Pure distribution):
      using pure_func; // for the gnm_help function
      gnm_info "factorial" = "f", gnm_help "factorial:factorial of a number"
       ["x:number"] "Computes the factorial of @{x}." [] ["=factorial(10)"] [];
+
 
   Fire up Gnumeric again, press the "f(x)" button and select ‘factorial’
 under the ‘Pure’ category.  The "f(x)" dialog should now display the
@@ -824,6 +842,7 @@ the Gnumeric sources:
      A : area            array, range (as above), or scalar
      ? : anything        any value (scalars, non-scalars, errors, whatever)
 
+
   The keys used in the function description may be any of the following,
 along with sample text for each type of field:
 
@@ -834,11 +853,13 @@ along with sample text for each type of field:
      GNM_FUNC_HELP_EXAMPLES     => "=sample_formula()"
      GNM_FUNC_HELP_SEEALSO      => "foo,bar,..."
 
+
   The following keys are only supported in the latest Gnumeric versions:
 
      GNM_FUNC_HELP_EXTREF       => "wiki:en:Trigonometric_functions"
      GNM_FUNC_HELP_EXCEL        => "Excel compatibility information."
      GNM_FUNC_HELP_ODF          => "OpenOffice compatibility information."
+
 
   Note that inside the descriptions, the notation ‘@{arg}’ (‘@arg’ in
 older Gnumeric versions) can be used to refer to a parameter value.  For
@@ -853,6 +874,7 @@ includes a help text:
       "Computes the maximum of two numbers @{x} and @{y}.",
       GNM_FUNC_HELP_EXAMPLES => "=pure_max(17,22)"];
 
+
   As you can see, the function descriptions are a bit unwieldy, so it’s
 convenient to construct them using this little helper function defined
 in ‘pure_func.pure’:
@@ -866,6 +888,7 @@ in ‘pure_func.pure’:
        (if null see_also then [] else
         [GNM_FUNC_HELP_SEEALSO     => join "," see_also]);
 
+
   Now the description can be written simply as follows:
 
      gnm_info "pure_max" = "ff", gnm_help "pure_max:maximum of two numbers"
@@ -873,11 +896,13 @@ in ‘pure_func.pure’:
        "Computes the maximum of two numbers @{x} and @{y}."
        [] ["=pure_max(17,22)"] [];
 
+
   Since this function only has fixed arguments, it will be called in
 curried form, i.e., as ‘pure_max x y’.  For instance, the actual
 definition of ‘pure_max’ may look as follows:
 
      pure_max x y = max x y;
+
 
   Conversely, if no signature is given, then the function accepts any
 number of parameters of any type, which are passed as a list.  For
@@ -886,6 +911,7 @@ instance:
      gnm_info "pure_sum" = gnm_help "pure_sum:sum of a collection of numbers"
        [] "Computes the sum of a collection of numbers."
        [] ["=pure_sum(1,2,3,4,5,6)"] ["pure_sums"];
+
 
   Here the function will be called as ‘pure_sum [x1,x2,...]’, where
 ‘x1’, ‘x2’, etc.  are the arguments the function is invoked with.  Note
@@ -900,15 +926,18 @@ parameter list to a list holding all denoted values:
 
      ranges xs = cat [ case x of _::matrix = list x; _ = [x] end | x = xs ];
 
+
   E.g., the ‘pure_sum’ function can now be defined as follows:
 
      pure_sum xs = foldl (+) 0 (ranges xs);
+
 
   A function may also have both fixed and optional arguments (note that
 in what follows we’re going to omit the detailed function descriptions
 for brevity):
 
      gnm_info "foo" = "ff|ff";
+
 
   In this case the fixed arguments are passed in curried form as usual,
 while the optional parameters are passed as a list.  That is, ‘foo’ may
@@ -1017,11 +1046,13 @@ and the parameters as the second (list) argument.  For instance:
      gnm_info "gnm_bitand" = "ff";
      gnm_bitand x y = call "bitand" [x,y];
 
+
   Note that ‘call’ is an external C function provided by Gnumeric/Pure.
 If you want to use it, it must be declared in your Pure script as
 follows:
 
      extern expr* pure_gnmcall(char* name, expr* args) = call;
+
 
   However, ‘pure_func.pure’ already contains the above declaration, so
 you don’t have to do this yourself if you import ‘pure_func.pure’ in
@@ -1053,6 +1084,7 @@ the contents of spreadsheet cells and ranges of such cells:
      extern expr* pure_set_range_text(char* s, expr *x) = set_range_text;
      extern expr* pure_set_range_format(char* s, expr *x) = set_range_format;
 
+
   For instance, here’s how you use these functions to write and then
 read some cell values (try this in the *note interactive Pure shell:
 9.):
@@ -1074,6 +1106,7 @@ read some cell values (try this in the *note interactive Pure shell:
      > get_range_text "A14:G14"
        {"=sum(B14:G14)","1","2","6","24","120","720"}
 
+
   Note that while the ‘set_cell’ function sets the given cell to a
 constant value, ‘set_cell_text’ also allows you to store a formula in a
 cell which will then be evaluated as usual.  Similarly, ‘get_cell’
@@ -1094,6 +1127,7 @@ entering the first expression):
      > get_range_format "A14:C14"
        {"[Blue]0.00","General","General"}
 
+
   There are also functions to get the position of the "current" cell
 (i.e., the cell from which a Pure function was called), and to translate
 between cell ranges in Gnumeric syntax and the corresponding internal
@@ -1104,6 +1138,7 @@ or range coordinates:
      extern expr* pure_parse_range(char* s) = parse_range;
      extern expr* pure_make_range(expr* x) = make_range;
 
+
   Examples:
 
      > this_cell
@@ -1112,6 +1147,7 @@ or range coordinates:
        #<pointer 0x875220>,1,3
      > make_range (NULL,0,0,10,10)
        "Sheet2!A1:K11"
+
 
 
 File: gnumeric-pure.info,  Node: Asynchronous Data Sources,  Next: Triggers,  Prev: Accessing Spreadsheet Cells,  Up: Advanced Features
@@ -1133,6 +1169,7 @@ Gnumeric/Pure, which is declared in ‘pure_func.pure’ as follows:
 
      extern expr* pure_datasource(expr* x) = datasource;
 
+
   The argument to ‘datasource’ is typically a thunk or stream (lazy
 list) which is to be evaluated in the background.  The call to
 ‘datasource’ initially returns a ‘#N/A’ value (‘gnm_error "#N/A"’) while
@@ -1147,6 +1184,7 @@ a background task:
      pure_frob x = datasource (lengthy_calculation x&);
      lengthy_calculation x = sleep 3 $$ foldl (*) 1 (1..x);
 
+
   Note that a cell value may draw values from as many independent data
 sources as you want, so the definition of a cell may also involve
 multiple invocations of ‘datasource’:
@@ -1154,6 +1192,7 @@ multiple invocations of ‘datasource’:
      gnm_info "pure_frob2" = "ff";
      pure_frob2 x y = datasource (lengthy_calculation x&),
        datasource (lengthy_calculation y&);
+
 
   Special treatment is given to (lazy) lists, in this case ‘datasource’
 returns a new value each time a list element becomes available.  For
@@ -1163,12 +1202,14 @@ the seconds starting from a given initial value:
      gnm_info "pure_counter" = "f";
      pure_counter x = datasource [sleep (i>x) $$ i | i = x..inf];
 
+
   You can also try this interactively in the Pure shell:
 
      > datasource [sleep (i>0) $$ i | i = 0..inf]
        0
        1
        ...
+
 
   Here’s another example for the Pure shell which prints the prime
 numbers:
@@ -1179,6 +1220,7 @@ numbers:
        3
        5
        ...
+
 
   Note that when processing a lazy list, the cell containing the call
 will keep changing as long as new values are produced (i.e., forever in
@@ -1218,9 +1260,11 @@ creation of some widget (see the next section):
      extern expr* pure_trigger(int timeout, expr* cond, expr *val, expr *data)
        = trigger;
 
+
   Thus a typical invocation of the function looks as follows:
 
      trigger timeout condition value data
+
 
   The ‘condition’ and ‘value’ arguments are callback functions which get
 invoked by ‘trigger’, passing them the given ‘data’ argument.  The
@@ -1251,6 +1295,7 @@ modifies another cell value accordingly:
 
      > trigger 0 (\_->get_cell "A14"==="Hello") (\_->set_cell "A15" "World") ()
 
+
   Now, as soon as you type ‘Hello’ in the cell A14, the trigger will
 print ‘World’ in cell A15.  Note that the ‘data’ argument isn’t used
 here.  A more useful example will be discussed in the following section.
@@ -1273,11 +1318,13 @@ about the special objects in a spreadsheet:
 
      extern expr* pure_sheet_objects() = sheet_objects;
 
+
   For instance, with one button object in your spreadsheet, the output
 of ‘sheet_objects’ might look like this:
 
      > sheet_objects
        [("Sheet1","button","Push Me!","A11",[#<pointer 0x2a1dcd0>])]
+
 
   Each object is described by a tuple which lists the name of the sheet
 on which the object is located, the type of object, the object’s content
@@ -1312,6 +1359,7 @@ wrapper around ‘sheet_objects’ which does this:
        (\_->matrix$map list sheet_objects) ()
      with realized (_,_,_,_,w) = ~listp w || ~null w && ~any null w end;
 
+
   See the ‘widgets.gnumeric’ spreadsheet in the distribution for an
 example.
 
@@ -1337,6 +1385,7 @@ Gnumeric frame with the OpenGL rendering capability:
                                  expr *setup_cb, expr *config_cb,
                                  expr *display_cb, expr *timer_cb,
                                  expr *user_data) = gl_window;
+
 
   The meaning of the parameters is as follows:
 
@@ -1396,12 +1445,14 @@ realized:
 
      extern bool pure_check_window(char *name) = check_window;
 
+
   This function returns ‘true’ as soon as the named frame widget is
 ready to go, at wich time ‘gl_windows’ can be called on the widget.  So
 your call to ‘gl_windows’ should usually be wrapped up like this:
 
      trigger 0 check_window
      (\frame->gl_window frame timeout setup config display timer user_data) frame
+
 
   Here’s an example from ‘pure_glfunc.pure’ which shows how these
 functions are to be used:
@@ -1451,6 +1502,7 @@ functions are to be used:
        scale step x = (x/100*step);
      end;
 
+
   Have a look at the ‘gl-example.gnumeric’ spreadsheet included in the
 distribution to see this example in action.  (You first need to enable
 the "Pure OpenGL functions" in the Plugin Manager to make this work.)
@@ -1469,84 +1521,84 @@ Index
 
 
 Tag Table:
-Node: Top410
-Ref: gnumeric-pure doc624
-Ref: 0624
-Ref: Top-Footnote-11355
-Ref: Top-Footnote-21388
-Node: Introduction1427
-Ref: gnumeric-pure introduction1514
-Ref: 11514
-Ref: gnumeric-pure gnumeric-pure-a-pure-plugin-for-gnumeric1514
-Ref: 21514
-Ref: Introduction-Footnote-14326
-Ref: Introduction-Footnote-24359
-Ref: Introduction-Footnote-34398
-Ref: Introduction-Footnote-44432
-Ref: Introduction-Footnote-54463
-Ref: Introduction-Footnote-64494
-Node: Copying4525
-Ref: gnumeric-pure copying4621
-Ref: 34621
-Node: Installation5310
-Ref: gnumeric-pure installation5399
-Ref: 45399
-Ref: Installation-Footnote-19055
-Node: Setup9095
-Ref: gnumeric-pure setup9188
-Ref: 69188
-Node: Basic Usage11061
-Ref: gnumeric-pure basic-usage11164
-Ref: 811164
-Node: Interactive Pure Shell14157
-Ref: gnumeric-pure interactive-pure-shell14282
-Ref: 914282
-Node: Defining Your Own Functions16739
-Ref: gnumeric-pure defining-your-own-functions16876
-Ref: 516876
-Node: Creating a Simple Plugin17299
-Ref: gnumeric-pure creating-a-simple-plugin17422
-Ref: c17422
-Node: The plugin xml File21395
-Ref: gnumeric-pure the-plugin-xml-file21545
-Ref: e21545
-Node: Loading the Plugin24594
-Ref: gnumeric-pure loading-the-plugin24733
-Ref: f24733
-Node: Spicing It Up30280
-Ref: gnumeric-pure spicing-it-up30391
-Ref: 1030391
-Node: Gnumeric/Pure Interface32569
-Ref: gnumeric-pure gnumeric-pure-interface32701
-Ref: d32701
-Node: Function Descriptions33752
-Ref: gnumeric-pure function-descriptions33893
-Ref: 1133893
-Node: Conversions Between Pure and Gnumeric Values40442
-Ref: gnumeric-pure conversions-between-pure-and-gnumeric-values40583
-Ref: 1240583
-Node: Advanced Features43800
-Ref: gnumeric-pure advanced-features43910
-Ref: a43910
-Node: Calling Gnumeric from Pure44367
-Ref: gnumeric-pure calling-gnumeric-from-pure44490
-Ref: b44490
-Node: Accessing Spreadsheet Cells45405
-Ref: gnumeric-pure accessing-spreadsheet-cells45562
-Ref: 1345562
-Node: Asynchronous Data Sources48715
-Ref: gnumeric-pure asynchronous-data-sources48854
-Ref: 1448854
-Node: Triggers52832
-Ref: gnumeric-pure triggers52957
-Ref: 1552957
-Node: Sheet Objects55455
-Ref: gnumeric-pure sheet-objects55571
-Ref: 1655571
-Node: OpenGL Interface58503
-Ref: gnumeric-pure opengl-interface58602
-Ref: 758602
-Node: Index64390
+Node: Top407
+Ref: gnumeric-pure doc618
+Ref: 0618
+Ref: Top-Footnote-11347
+Ref: Top-Footnote-21380
+Node: Introduction1419
+Ref: gnumeric-pure introduction1506
+Ref: 11506
+Ref: gnumeric-pure gnumeric-pure-a-pure-plugin-for-gnumeric1506
+Ref: 21506
+Ref: Introduction-Footnote-14318
+Ref: Introduction-Footnote-24351
+Ref: Introduction-Footnote-34390
+Ref: Introduction-Footnote-44424
+Ref: Introduction-Footnote-54455
+Ref: Introduction-Footnote-64486
+Node: Copying4517
+Ref: gnumeric-pure copying4613
+Ref: 34613
+Node: Installation5302
+Ref: gnumeric-pure installation5391
+Ref: 45391
+Ref: Installation-Footnote-19030
+Node: Setup9070
+Ref: gnumeric-pure setup9163
+Ref: 69163
+Node: Basic Usage11037
+Ref: gnumeric-pure basic-usage11140
+Ref: 811140
+Node: Interactive Pure Shell14134
+Ref: gnumeric-pure interactive-pure-shell14259
+Ref: 914259
+Node: Defining Your Own Functions16721
+Ref: gnumeric-pure defining-your-own-functions16858
+Ref: 516858
+Node: Creating a Simple Plugin17281
+Ref: gnumeric-pure creating-a-simple-plugin17404
+Ref: c17404
+Node: The plugin xml File21382
+Ref: gnumeric-pure the-plugin-xml-file21532
+Ref: e21532
+Node: Loading the Plugin24583
+Ref: gnumeric-pure loading-the-plugin24722
+Ref: f24722
+Node: Spicing It Up30271
+Ref: gnumeric-pure spicing-it-up30382
+Ref: 1030382
+Node: Gnumeric/Pure Interface32561
+Ref: gnumeric-pure gnumeric-pure-interface32693
+Ref: d32693
+Node: Function Descriptions33744
+Ref: gnumeric-pure function-descriptions33885
+Ref: 1133885
+Node: Conversions Between Pure and Gnumeric Values40445
+Ref: gnumeric-pure conversions-between-pure-and-gnumeric-values40586
+Ref: 1240586
+Node: Advanced Features43803
+Ref: gnumeric-pure advanced-features43913
+Ref: a43913
+Node: Calling Gnumeric from Pure44370
+Ref: gnumeric-pure calling-gnumeric-from-pure44493
+Ref: b44493
+Node: Accessing Spreadsheet Cells45410
+Ref: gnumeric-pure accessing-spreadsheet-cells45567
+Ref: 1345567
+Node: Asynchronous Data Sources48725
+Ref: gnumeric-pure asynchronous-data-sources48864
+Ref: 1448864
+Node: Triggers52848
+Ref: gnumeric-pure triggers52973
+Ref: 1552973
+Node: Sheet Objects55474
+Ref: gnumeric-pure sheet-objects55590
+Ref: 1655590
+Node: OpenGL Interface58525
+Ref: gnumeric-pure opengl-interface58624
+Ref: 758624
+Node: Index64416
 
 End Tag Table
 

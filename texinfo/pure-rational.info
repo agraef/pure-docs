@@ -1,11 +1,11 @@
-This is pure-rational.info, produced by makeinfo version 5.2 from
+This is pure-rational.info, produced by makeinfo version 6.1 from
 pure-rational.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-rational.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-rational
 *************
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.1, October 28, 2014
+  Version 0.1, April 25, 2016
 
      Rob Hubbard 
      Albert Graef <<aggraef@gmail.com>> 
@@ -53,6 +53,7 @@ as follows:
 
      using rational, rat_interval;
      using namespace rational, interval;
+
 
   Also note that *note rational: 1. always pulls in the ‘math’ module,
 so you don’t have to import the latter explicitly if you are using *note
@@ -272,10 +273,12 @@ function.  These are both defined in math.pure.
      > 44%14;
      22L%7L
 
+
   *Example 2* Converting from an integer:
 
      > rational 3;
      3L%1L
+
 
 
 File: pure-rational.info,  Node: 'Deconstructors',  Next: Type and Value Tests,  Prev: Constructors,  Up: The Rational Type
@@ -320,6 +323,7 @@ number itself.
      3L,1L
      > num_den (-3);
      -3L,1L
+
 
   Together, ‘num’ and ‘den’ are a pair of ’decomposition’ operators, and
 *note num_den: 17. is also a decomposition operator.  There are others
@@ -391,6 +395,7 @@ with ‘exactp’.
      > map (\x -> (exactp x && intvalp x)) l; // "has exact integer value"
      [1,1,0,0,0,0,0,0]
 
+
   See *note Rational Complex Numbers: a. for details about rational
 complex numbers, and *note Rational Complex Type and Value Tests: 20.
 for details of their type and value tests.
@@ -455,6 +460,7 @@ a double value (as always).
      > pow 3 (-5);
      1L%243L
 
+
   (See the function *note str_mixed: 23.)
 
   Beware that (/) on integers will not produce a rational result.
@@ -467,6 +473,7 @@ a double value (as always).
      22L%7L
      > str_mixed ans;
      "3L+1L/7L"
+
 
   (See the function *note str_mixed: 23.)
 
@@ -493,6 +500,7 @@ There is a rational-aware divide operator on the numeric types:
      > str_mixed ans;
      "2L+3L/8L"
 
+
   (See the function *note str_mixed: 23.)
 
  -- Pure Function: rational::reciprocal n
@@ -503,6 +511,7 @@ There is a rational-aware divide operator on the numeric types:
 
      > reciprocal (22%7);
      7L%22L
+
 
   The following division functions are parameterised by a rounding mode
 ‘roundfun’.  The available rounding modes are described in *note
@@ -556,6 +565,7 @@ be rational, integer or double.
      > 3%8 < 1%3;
      0
 
+
 
 File: pure-rational.info,  Node: Comparison Function,  Prev: Relations — Equality and Inequality Tests,  Up: Arithmetic
 
@@ -572,6 +582,7 @@ File: pure-rational.info,  Node: Comparison Function,  Prev: Relations — Equal
 
      > cmp (3%8) (1%3);
      1
+
 
 
 File: pure-rational.info,  Node: Mathematical Functions,  Next: Special Rational Functions,  Prev: Arithmetic,  Up: Top
@@ -646,6 +657,7 @@ mixtures of integer and rational.
      > b % f;
      9L%1L
 
+
   *Example 12* With a rational and an integer:
 
      > let f = gcd (6%5) 4;
@@ -656,12 +668,14 @@ mixtures of integer and rational.
      > 4 % f;
      10L%1L
 
+
   *Example 13* With integral rationals and with integers:
 
      > gcd (rational 18) (rational 24);
      6L%1L
      > gcd 18 24;
      6
+
 
   *Example 14* The behaviour with negative numbers:
 
@@ -671,6 +685,7 @@ mixtures of integer and rational.
      6L%1L
      > gcd (rational (-18)) (rational (-24));
      6L%1L
+
 
  -- Pure Function: lcm n1 n2
 
@@ -691,6 +706,7 @@ mixtures of integer and rational.
      > m % b;
      8L%1L
 
+
   *Example 16* With a rational and an integer:
 
      > let m = lcm (6%5) 4;
@@ -698,6 +714,7 @@ mixtures of integer and rational.
      12L%1L
      > m % (6%5);
      10L%1L
+
 
   *Example 17* The behaviour with negative numbers:
 
@@ -707,6 +724,7 @@ mixtures of integer and rational.
      72L%1L
      > lcm (rational (-18)) (rational (-24));
      72L%1L
+
 
   Together, the GCD and LCM have the following property when applied to
 two numbers: (gcd q1 q2) * (lcm q1 q2) = |q1 * q2|.
@@ -723,6 +741,7 @@ The standard ‘min’ and ‘max’ functions work with rational values.
 
      > max (3%8) (1%3);
      3L%8L
+
 
 
 File: pure-rational.info,  Node: Special Rational Functions,  Next: Q -> Z — Rounding,  Prev: Mathematical Functions,  Up: Top
@@ -794,6 +813,7 @@ File: pure-rational.info,  Node: Complexity Relations,  Next: Complexity Compari
      > (3%3) eq_cplx (1%3); // LHS is not in simplest form
      0
 
+
  -- Pure Function: n1 rational::not_eq_cplx n2
 
      "not equally complex" — returns 0 if n1 and n2 are equally complex;
@@ -813,6 +833,7 @@ File: pure-rational.info,  Node: Complexity Relations,  Next: Complexity Compari
      1
      > (3%3) less_cplx (1%3); // LHS is not in simplest form
      1
+
 
  -- Pure Function: n1 rational::less_eq_cplx n2
 
@@ -854,6 +875,7 @@ File: pure-rational.info,  Node: Complexity Comparison Function,  Next: Complexi
      > cmp_complexity (3%3) (1%3); // LHS is not in simplest form
      -1
 
+
 
 File: pure-rational.info,  Node: Complexity Extrema,  Next: Other Complexity Functions,  Prev: Complexity Comparison Function,  Up: Complexity
 
@@ -873,6 +895,7 @@ File: pure-rational.info,  Node: Complexity Extrema,  Next: Other Complexity Fun
      1L%4L
      > least_cplx (1%3) (3%3); // second argument not in simplest form
      1L%1L
+
 
  -- Pure Function: rational::most_cplx n1 n2
 
@@ -899,6 +922,7 @@ File: pure-rational.info,  Node: Other Complexity Functions,  Prev: Complexity E
      1
      > complexity_rel (1%4) (>) (1%5);
      0
+
 
  -- Pure Function: rational::_complexity_rel op n1 n2
 
@@ -951,6 +975,7 @@ File: pure-rational.info,  Node: Mediants and Farey Sequences,  Next: Rational T
      > mediant (-10) (-1%10);
      (-1L)%1L
 
+
  -- Pure Function: rational::farey k
 
      for an integer k, farey returns the ordered list containing the
@@ -963,6 +988,7 @@ File: pure-rational.info,  Node: Mediants and Farey Sequences,  Next: Rational T
      > map str_mixed (farey 6);
      ["0L","1L/6L","1L/5L","1L/4L","1L/3L","2L/5L","1L/2L","3L/5L","2L/3L",
      "3L/4L","4L/5L","5L/6L","1L"]
+
 
   (See the function *note str_mixed: 23.)
 
@@ -987,6 +1013,7 @@ File: pure-rational.info,  Node: Rational Type Simplification,  Prev: Mediants a
      [9,9L%1L,9L%2L,4.5,9L%1L+:1,9L%2L+:1]
      > map rat_simplify l;
      [9,9,9L%2L,4.5,9+:1,9L%2L+:1]
+
 
   See *note Rational Complex Numbers: a. for details about rational
 complex numbers, and *note Rational Complex Type Simplification: 4d. for
@@ -1062,6 +1089,7 @@ the standard functions.
      > map round_unbiased l;
      [-3L,-2L,-2L,-2L,-1L,0L,0L,0L,1L,2L,2L,2L,3L]
 
+
   (See the function ‘double’.)
 
 
@@ -1087,6 +1115,7 @@ modes:
      -3L,(-1L)%7L
      > integer_and_fraction round nc;
      -3L,(-1L)%7L
+
 
   It is always the case that z and f have the property that q = z + f.
 However, the remaining properties depend upon the choice of ‘roundfun’.
@@ -1124,6 +1153,7 @@ round_zero_bias: 53. or ‘roundfun’ = *note round_unbiased: 27. then |f|
      -3
      > frac nc;
      (-1L)%7L
+
 
 
 File: pure-rational.info,  Node: Rounding to Multiples,  Next: Q -> R — Conversion / Casting,  Prev: Q -> Z — Rounding,  Up: Top
@@ -1187,6 +1217,7 @@ File: pure-rational.info,  Node: Rounding to Multiples,  Next: Q -> R — Conver
      > map (round_multiple_unbiased 10) l;
      [30.0,40L,40L,40.0,40.0]
 
+
   (See the function ‘double’.)
 
   The round multiple functions may be used to find a fixed denominator
@@ -1206,12 +1237,14 @@ instead (see *note Best Approximation with Bounded Denominator: 60.).
      > 1000 * ans;
      368L%1L
 
+
   *Example 32* Finding the nearest q = n/d value to 1/φ ≈ 0.618 where d
 = 3^5 = 243 (actually, where d|243):
 
      > let co_Phi = (sqrt 5 - 1) / 2;
      > round_multiple (1%243) (rational co_Phi);
      50L%81L
+
 
   Other methods for obtaining a rational approximation of a number are
 described in *note R -> Q — Approximation: 61.
@@ -1297,6 +1330,7 @@ Intervals are constructed with the function interval.
      > v;
      interval::Ivl 3 8
 
+
  -- Pure Function: interval::lower v
 
      returns the infimum (roughly, minimum) of v.
@@ -1319,6 +1353,7 @@ Intervals are constructed with the function interval.
      8
      > lo_up v;
      3,8
+
 
 
 File: pure-rational.info,  Node: Interval Type Tests,  Next: Interval Arithmetic Operators and Relations,  Prev: Interval Constructors and 'Deconstructors',  Up: Intervals
@@ -1366,6 +1401,7 @@ File: pure-rational.info,  Node: Interval Type Tests,  Next: Interval Arithmetic
      > map intinterval_valp l;
      [1,1,0,0]
 
+
 
 File: pure-rational.info,  Node: Interval Arithmetic Operators and Relations,  Next: Interval Maths,  Prev: Interval Type Tests,  Up: Intervals
 
@@ -1381,6 +1417,7 @@ produce a result if the right operand is an interval containing 0.
      > let b = interval (16, 24);
      > let c = interval (21, 29);
      > let d = interval (23, 27);
+
 
   *Example 37* Interval arithmetic:
 
@@ -1412,6 +1449,7 @@ produce a result if the right operand is an interval containing 0.
      interval::Ivl (11L%24L) (19L%16L)
      > a % a; // notice that the intervals are mutually independent here
      interval::Ivl (11L%19L) (19L%11L)
+
 
   There are also some relations defined for intervals.  The standard
 relations (==) and (~=) are overloaded.
@@ -1495,6 +1533,7 @@ properties at the end-points.
      > a within a;
      1
 
+
   (The symbols a through d were defined in *note Example 36: 70.)
 
   These may also be used with a simple (real) value, and in particular
@@ -1523,6 +1562,7 @@ to test membership.
      > (12%1) strictly_within a;
      1
 
+
   (The symbol a was defined in *note Example 36: 70.)
 
 
@@ -1548,6 +1588,7 @@ are provided.
      > abs (interval (-5, -1));
      interval::Ivl 1 5
 
+
  -- Pure Function: sgn v
 
      returns the interval representing the range of sgn(x) as x varies
@@ -1561,6 +1602,7 @@ are provided.
 
      > #d;
      4
+
 
   (The symbol d was defined in *note Example 36: 70.)
 
@@ -1592,6 +1634,7 @@ File: pure-rational.info,  Node: Least Complex Approximation within Epsilon,  Ne
      > abs (ans - phi);
      0.000386929926365465
 
+
  -- Pure Function: rational::rational_approxs_epsilon ε r
 
      Produce a list of ever better rational approximations to r (usually
@@ -1603,12 +1646,14 @@ File: pure-rational.info,  Node: Least Complex Approximation within Epsilon,  Ne
      [3L%1L,25L%8L,47L%15L,69L%22L,91L%29L,113L%36L,135L%43L,157L%50L,179L%57L,
      201L%64L,223L%71L,245L%78L,267L%85L,289L%92L,311L%99L,333L%106L]
 
+
   *Example 45* Rational approximations to the golden ratio φ; these
 approximations are always reverse consecutive Fibonacci numbers (from
 f1: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...):
 
      > rational_approxs_epsilon .0001 phi;
      [1L%1L,3L%2L,8L%5L,21L%13L,55L%34L,144L%89L]
+
 
   (The symbol phi was defined in *note Example 43: 7f.)
 
@@ -1629,6 +1674,7 @@ f1: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...):
      3.14159265358979
      3.14285714285714
 
+
   (The functions lower and upper are described in *note Interval
 Constructors and ’Deconstructors’: 65.)
 
@@ -1638,6 +1684,7 @@ Constructors and ’Deconstructors’: 65.)
      interval::Ivl (55L%34L) (89L%55L)
      > #ans;
      1L%1870L
+
 
   (The symbol phi was defined in *note Example 43: 7f.  The function ‘#’
 is described in *note Interval Maths: 7b.)
@@ -1658,10 +1705,12 @@ File: pure-rational.info,  Node: Best Approximation with Bounded Denominator,  P
      > rational_approx_max_den 10 pi;
      22L%7L
 
+
   *Example 49* Rational approximation to the golden ratio φ:
 
      > rational_approx_max_den 1000 phi;
      1597L%987L
+
 
   (The symbol phi was defined in *note Example 43: 7f.)
 
@@ -1676,10 +1725,12 @@ File: pure-rational.info,  Node: Best Approximation with Bounded Denominator,  P
      [3L%1L,25L%8L,47L%15L,69L%22L,91L%29L,113L%36L,135L%43L,157L%50L,179L%57L,
      201L%64L,223L%71L,245L%78L,267L%85L,289L%92L,311L%99L]
 
+
   *Example 51* Rational approximations to the golden ratio φ:
 
      > rational_approxs_max_den 100 phi;
      [1L%1L,3L%2L,8L%5L,21L%13L,55L%34L,144L%89L]
+
 
   (The symbol phi was defined in *note Example 43: 7f.)
 
@@ -1698,10 +1749,12 @@ File: pure-rational.info,  Node: Best Approximation with Bounded Denominator,  P
      3.14159265358979
      3.14285714285714
 
+
   *Example 53* Rational interval surrounding the golden ratio φ:
 
      > rational_interval_max_den 1000 phi;
      interval::Ivl (987L%610L) (1597L%987L)
+
 
   (The symbol phi was defined in *note Example 43: 7f.)
 
@@ -1779,6 +1832,7 @@ File: pure-rational.info,  Node: Exact,  Next: Inexact,  Up: Generating Continue
      > evaluate_continued_fraction ans;
      1234L%1001L
 
+
 
 File: pure-rational.info,  Node: Inexact,  Prev: Exact,  Up: Generating Continued Fractions
 
@@ -1800,6 +1854,7 @@ ratio φ:
      > evaluate_continued_fraction ans;
      1.61803398874989
 
+
   (The symbol phi was defined in *note Example 43: 7f.)
 
  -- Pure Function: rational::continued_fraction_epsilon ε r
@@ -1814,6 +1869,7 @@ ratio φ:
      [1.0,2.0,2.0,2.0,2.0,2.41421356237241]
      > map double (convergents ans);
      [1.0,1.5,1.4,1.41666666666667,1.41379310344828,1.41421356237309]
+
 
 
 File: pure-rational.info,  Node: Evaluating Continued Fractions,  Prev: Generating Continued Fractions,  Up: Continued Fractions
@@ -1839,6 +1895,7 @@ form [4, 3, 2, 1]:
      > continued_fraction ans;
      [4L,3L,3L]
 
+
 * Menu:
 
 * Convergents:: 
@@ -1861,6 +1918,7 @@ value √2:
      [1.0,2.0,2.0,2.0,2.0,2.41421356237241]
      > convergents ans;
      [1.0,1.5,1.4,1.41666666666667,1.41379310344828,1.41421356237309]
+
 
 
 File: pure-rational.info,  Node: Rational Complex Numbers,  Next: String Formatting and Evaluation,  Prev: Continued Fractions,  Up: Top
@@ -1900,6 +1958,7 @@ Complex numbers can have rational parts.
      > ans * ans;
      3L%4L+:1L%1L
 
+
   And rational numbers can be given complex parts.
 
   *Example 60* Complex rationals and complicated rationals:
@@ -1918,6 +1977,7 @@ Complex numbers can have rational parts.
      0L%1L+:4L%1L
      > ((4%1) * (0 +: 1)) / (1 + (1%2) * (0 +: 1));
      1.6+:3.2
+
 
   The various parts of a complex rational may be deconstructed using
 combinations of num and den and the standard functions re and im.
@@ -2026,6 +2086,7 @@ and either |d[y]| < d[x] or d[y] = d[x] > 0.
      > (im . den) cq; //always <= (re.den)
      3L
 
+
 
 File: pure-rational.info,  Node: Rational Complex Type and Value Tests,  Next: Rational Complex Arithmetic Operators and Relations,  Prev: Rational Complex Constructors and 'Deconstructors',  Up: Rational Complex Numbers
 
@@ -2086,6 +2147,7 @@ may be combined with ‘exactp’.
 
      See `Type and Value Tests`_ for some details of rational type and value tests.
 
+
 
 File: pure-rational.info,  Node: Rational Complex Arithmetic Operators and Relations,  Next: Rational Complex Maths,  Prev: Rational Complex Type and Value Tests,  Up: Rational Complex Numbers
 
@@ -2114,6 +2176,7 @@ unordered.
      > w == w;
      1
 
+
 
 File: pure-rational.info,  Node: Rational Complex Maths,  Next: Rational Complex Type Simplification,  Prev: Rational Complex Arithmetic Operators and Relations,  Up: Rational Complex Numbers
 
@@ -2134,6 +2197,7 @@ complex numbers, but the results are inexact.
      2.5
      > arg (-1%1);
      3.14159265358979
+
 
   There are some additional useful functions for calculating with
 rational complex numbers and more general mathematical values.
@@ -2221,6 +2285,7 @@ rational complex numbers and more general mathematical values.
      > a * 25 + b * 15;
      5
 
+
 
 File: pure-rational.info,  Node: Rational Complex Type Simplification,  Prev: Rational Complex Maths,  Up: Rational Complex Numbers
 
@@ -2248,6 +2313,7 @@ File: pure-rational.info,  Node: Rational Complex Type Simplification,  Prev: Ra
 
      See `Rational Type Simplification`_ for some details of rational type
      simplification.
+
 
 
 File: pure-rational.info,  Node: String Formatting and Evaluation,  Next: Q <-> Fraction String “i + n/d”,  Prev: Rational Complex Numbers,  Up: Top
@@ -2425,6 +2491,7 @@ will have no effect if the integer group separator is the empty string.
      public format_uk;
      const format_uk = create_format options_uk;
 
+
   The exponent string need not depend on the radix, as the numerals for
 the number radix in that radix are always "10".
 
@@ -2476,6 +2543,7 @@ next digit would be as a fraction of the radix.
      > strs_real_approx_sf 10 ceil 3 (234567%100000);
      "+","2","35",(-433L)%1000L
 
+
   (See the function *note strs_real_approx_sf: aa.)
 
   In strings, only the sign of the error term is given.  A “+” should be
@@ -2487,6 +2555,7 @@ read as “and a bit more”; “-” as “but a bit less”.
      "2.34(+)"
      > str_real_approx_sf format_uk 10 0 0 ceil 3 (234567%100000);
      "2.35(-)"
+
 
   (See the function *note str_real_approx_sf: ab.)
 
@@ -2548,6 +2617,7 @@ File: pure-rational.info,  Node: Formatting to Fraction Strings,  Next: Evaluati
      > map str_mixed l;
      ["-(1L+1L/2L)","-1L","-1L/2L","0L","1L/2L","1L","1L+1L/2L"]
 
+
   These might be compared to the behaviour of the standard function
 ‘str’.
 
@@ -2559,6 +2629,7 @@ File: pure-rational.info,  Node: Formatting to Fraction Strings,  Next: Evaluati
 
      > map str l;
      ["(-3L)%2L","(-1L)%1L","(-1L)%2L","0L%1L","1L%2L","1L%1L","3L%2L"]
+
 
 
 File: pure-rational.info,  Node: Evaluation of Fraction Strings,  Prev: Formatting to Fraction Strings,  Up: Q <-> Fraction String “i + n/d”
@@ -2593,6 +2664,7 @@ File: pure-rational.info,  Node: Evaluation of Fraction Strings,  Prev: Formatti
      > val_mixed "1L+5L/6L";
      11L%6L
 
+
   These might be compared to the behaviour of the standard function
 eval.
 
@@ -2606,6 +2678,7 @@ eval.
      11L%6L
      > eval "1L+5L/6L";
      1.83333333333333
+
 
 
 File: pure-rational.info,  Node: Q <-> Recurring Numeral Expansion String “I FR”,  Next: Q <-> Numeral Expansion String “I F × 10E”,  Prev: Q <-> Fraction String “i + n/d”,  Up: Top
@@ -2665,6 +2738,7 @@ representations:
      > str_real_recur format_uk 10 0 (70057%350); // 1%7 + 10001%50;
      "200.16[285714...]"
 
+
   The function allows expansion to different radices (bases).
 
   *Example 74* The recurring radix expansion in decimal and hexadecimal:
@@ -2674,10 +2748,12 @@ representations:
      > str_real_recur format_uk 16 0 (1%100);
      "0.0[28F5C...]"
 
+
   *Example 75* The recurring radix expansion in duodecimal:
 
      > str_real_recur format_uk 12 0 (1%100);
      "0.0[15343A0B62A68781B059...]"
+
 
   Note that this bracket notation is not standard in the literature.
 Usually the recurring numerals are indicated by a single dot over the
@@ -2706,6 +2782,7 @@ the recurring part.  For example 1/70 = 0.0˙14285˙7 = 0.0142857 and 1/3
      "-","","00","142857"
      > strs_real_recur 10 (70057%350);
      "+","200","16","285714"
+
 
   This function may be used to also, e.g.  format the integer part with
 comma-separated groupings.
@@ -2751,6 +2828,7 @@ representations:
      1L%3L
      > val_real_recur format_uk 10 ".[9...]";
      1L%1L
+
 
  -- Pure Function: rational::sval_real_recur radix sign iStr fracStr
           recurPartStr
@@ -2837,6 +2915,7 @@ File: pure-rational.info,  Node: Functions for Fixed Decimal Places,  Next: Func
      > str_real_approx_dp format_uk 10 3 3 ceil 2 (22%7);
      "3.15(-)"
 
+
  -- Pure Function: rational::strs_real_approx_dp radix roundfun do q
 
      returns a tuple of strings
@@ -2859,6 +2938,7 @@ File: pure-rational.info,  Node: Functions for Fixed Decimal Places,  Next: Func
      "+","3","14",2L%7L
      > strs_real_approx_dp 10 ceil 2 (22%7);
      "+","3","15",(-5L)%7L
+
 
  -- Pure Function: rational::join_str_real_approx fmt intGroup fracGroup
           sign i frac err
@@ -2890,6 +2970,7 @@ be positive.)
      "3.1(+)"
      > str_real_approx_sf format_uk 10 3 3 floor 2 ((-22)%7);
      "-3.2(+)"
+
 
  -- Pure Function: rational::strs_real_approx_sf radix roundfun sf q
 
@@ -2967,6 +3048,7 @@ File: pure-rational.info,  Node: Functions for Scientific Notation and Engineeri
      > str_real_approx_eng format_uk 3 10 3 3 round 4 999950;
      "1.000*10^6(-)"
 
+
  -- Pure Function: rational::strs_real_approx_eng expStep radix roundfun
           sf q
 
@@ -2994,6 +3076,7 @@ File: pure-rational.info,  Node: Functions for Scientific Notation and Engineeri
      "+","999","9500","+","3",0L%1L
      > strs_real_approx_eng 3 10 round 4 999950;
      "+","1","000","+","6",(-1L)%20L
+
 
  -- Pure Function: rational::join_str_real_eng fmt intGroup fracGroup
           mantSign mantI mantF rac expSign expI err
@@ -3031,6 +3114,7 @@ representations:
      (-2469L)%200L
      > val_real_eng format_uk 10 "-12.345*10^2";
      (-2469L)%2L
+
 
  -- Pure Function: rational::sval_real_eng radix signStr mantIStr mantF
           racStr expSignStr expStr
@@ -3120,6 +3204,7 @@ information about formatting structures.
      > double q;
      1.23456789876543e+029
 
+
  -- Pure Function: rational::val_eng_interval_epsilon fmt radix epsilon
           strg
 
@@ -3172,6 +3257,7 @@ information about formatting structures.
      interval::Ivl 9999999980000000199999998000000L%81L
      3456790116543209945679011654321L%28L
 
+
 
 File: pure-rational.info,  Node: Module Index,  Next: Index,  Prev: Numeral String -> Q — Approximation,  Up: Top
 
@@ -3192,7 +3278,7 @@ Index
  [index ]
 * Menu:
 
-* # (prefix function):                   Interval Maths.      (line  28)
+* # (prefix function):                   Interval Maths.      (line  29)
 * % (infix function):                    Constructors.        (line  10)
 * % (infix function) <1>:                More on Division.    (line   8)
 * abs (function):                        Absolute Value and Sign.
@@ -3205,63 +3291,63 @@ Index
                                                               (line  14)
 * den (function):                        'Deconstructors'.    (line  18)
 * den (function) <1>:                    Rational Complex Constructors and 'Deconstructors'.
-                                                              (line 102)
-* div (infix function):                  More on Division.    (line  60)
+                                                              (line 104)
+* div (infix function):                  More on Division.    (line  62)
 * double (function):                     Q -> R — Conversion / Casting.
                                                               (line   6)
 * eval (function):                       Evaluation of Fraction Strings.
-                                                              (line  36)
+                                                              (line  37)
 * exactp (function):                     Type and Value Tests.
                                                               (line  29)
 * exactp (function) <1>:                 Interval Type Tests. (line   6)
 * floor (function):                      Rounding to Integer. (line  10)
 * frac (function):                       Integer and Fraction Parts.
-                                                              (line  48)
+                                                              (line  49)
 * gcd (function):                        Greatest Common Divisor GCD and Least Common Multiple LCM.
                                                               (line   9)
 * inexactp (function):                   Type and Value Tests.
                                                               (line  33)
 * inexactp (function) <1>:               Interval Type Tests. (line  10)
 * int (function):                        Integer and Fraction Parts.
-                                                              (line  43)
+                                                              (line  44)
 * interval;;after (infix function):      Interval Arithmetic Operators and Relations.
-                                                              (line  63)
+                                                              (line  65)
 * interval;;before (infix function):     Interval Arithmetic Operators and Relations.
-                                                              (line  55)
+                                                              (line  57)
 * interval;;disjoint (infix function):   Interval Arithmetic Operators and Relations.
-                                                              (line  92)
+                                                              (line  94)
 * interval;;interval (function):         Interval Constructors and 'Deconstructors'.
                                                               (line   8)
 * interval;;intervalp (function):        Interval Type Tests. (line  14)
 * interval;;interval_valp (function):    Interval Type Tests. (line  18)
 * interval;;intinterval_valp (function): Interval Type Tests. (line  26)
 * interval;;lower (function):            Interval Constructors and 'Deconstructors'.
-                                                              (line  19)
+                                                              (line  20)
 * interval;;lo_up (function):            Interval Constructors and 'Deconstructors'.
-                                                              (line  27)
+                                                              (line  28)
 * interval;;ratinterval_valp (function): Interval Type Tests. (line  22)
 * interval;;strictly_after (infix function): Interval Arithmetic Operators and Relations.
-                                                              (line  67)
+                                                              (line  69)
 * interval;;strictly_before (infix function): Interval Arithmetic Operators and Relations.
-                                                              (line  59)
+                                                              (line  61)
 * interval;;strictly_disjoint (infix function): Interval Arithmetic Operators and Relations.
-                                                              (line  96)
+                                                              (line  98)
 * interval;;strictly_within (infix function): Interval Arithmetic Operators and Relations.
-                                                              (line  76)
+                                                              (line  78)
 * interval;;strictly_without (infix function): Interval Arithmetic Operators and Relations.
-                                                              (line  87)
+                                                              (line  89)
 * interval;;upper (function):            Interval Constructors and 'Deconstructors'.
-                                                              (line  23)
+                                                              (line  24)
 * interval;;within (infix function):     Interval Arithmetic Operators and Relations.
-                                                              (line  71)
+                                                              (line  73)
 * interval;;without (infix function):    Interval Arithmetic Operators and Relations.
-                                                              (line  81)
+                                                              (line  83)
 * lcm (function):                        Greatest Common Divisor GCD and Least Common Multiple LCM.
-                                                              (line  56)
-* mod (infix function):                  More on Division.    (line  65)
+                                                              (line  60)
+* mod (infix function):                  More on Division.    (line  67)
 * num (function):                        'Deconstructors'.    (line  13)
 * num (function) <1>:                    Rational Complex Constructors and 'Deconstructors'.
-                                                              (line  97)
+                                                              (line  99)
 * rational (function):                   Constructors.        (line  16)
 * rational (module):                     The Rational Module. (line   6)
 * rational;;ceil_multiple (function):    Rounding to Multiples.
@@ -3274,90 +3360,90 @@ Index
 * rational;;comp_simplify (function):    Rational Complex Type Simplification.
                                                               (line   6)
 * rational;;continued_fraction (function): Exact.             (line   6)
-* rational;;continued_fraction_epsilon (function): Inexact.   (line  23)
+* rational;;continued_fraction_epsilon (function): Inexact.   (line  24)
 * rational;;continued_fraction_max_terms (function): Inexact. (line   6)
 * rational;;convergents (function):      Convergents.         (line   6)
 * rational;;create_format (function):    Internationalisation and Format Structures.
                                                               (line 104)
-* rational;;divide (function):           More on Division.    (line  38)
+* rational;;divide (function):           More on Division.    (line  40)
 * rational;;div_mod_gauss (function):    Rational Complex Maths.
-                                                              (line  30)
+                                                              (line  31)
 * rational;;eq_cplx (infix function):    Complexity Relations.
                                                               (line   6)
 * rational;;euclid_alg (function):       Rational Complex Maths.
-                                                              (line  59)
+                                                              (line  60)
 * rational;;euclid_gcd (function):       Rational Complex Maths.
-                                                              (line  52)
+                                                              (line  53)
 * rational;;evaluate_continued_fraction (function): Evaluating Continued Fractions.
                                                               (line   6)
 * rational;;farey (function):            Mediants and Farey Sequences.
-                                                              (line  46)
+                                                              (line  47)
 * rational;;floor_multiple (function):   Rounding to Multiples.
                                                               (line  17)
 * rational;;fraction (function):         Integer and Fraction Parts.
-                                                              (line  33)
+                                                              (line  34)
 * rational;;gcd_gauss (function):        Rational Complex Maths.
-                                                              (line  47)
+                                                              (line  48)
 * rational;;intcompvalp (function):      Rational Complex Type and Value Tests.
                                                               (line  23)
 * rational;;integer_and_fraction (function): Integer and Fraction Parts.
                                                               (line   6)
 * rational;;join_str_real_approx (function): Functions for Fixed Decimal Places.
-                                                              (line  46)
+                                                              (line  48)
 * rational;;join_str_real_approx (function) <1>: Functions for Significant Figures.
-                                                              (line  37)
+                                                              (line  38)
 * rational;;join_str_real_eng (function): Functions for Scientific Notation and Engineering Notation.
-                                                              (line  86)
-* rational;;join_str_real_recur (function): Formatting to Recurring Expansion Strings.
                                                               (line  88)
+* rational;;join_str_real_recur (function): Formatting to Recurring Expansion Strings.
+                                                              (line  92)
 * rational;;least_cplx (function):       Complexity Extrema.  (line   6)
 * rational;;less_cplx (infix function):  Complexity Relations.
-                                                              (line  28)
+                                                              (line  29)
 * rational;;less_eq_cplx (infix function): Complexity Relations.
-                                                              (line  43)
+                                                              (line  45)
 * rational;;mediant (function):          Mediants and Farey Sequences.
                                                               (line   6)
-* rational;;modulus (function):          More on Division.    (line  55)
+* rational;;modulus (function):          More on Division.    (line  57)
 * rational;;more_cplx (infix function):  Complexity Relations.
-                                                              (line  49)
+                                                              (line  51)
 * rational;;more_eq_cplx (infix function): Complexity Relations.
-                                                              (line  55)
-* rational;;most_cplx (function):        Complexity Extrema.  (line  20)
+                                                              (line  57)
+* rational;;most_cplx (function):        Complexity Extrema.  (line  21)
 * rational;;norm_gauss (function):       Rational Complex Maths.
-                                                              (line  24)
+                                                              (line  25)
 * rational;;not_eq_cplx (infix function): Complexity Relations.
-                                                              (line  23)
+                                                              (line  24)
 * rational;;num_den (function):          'Deconstructors'.    (line  23)
 * rational;;num_den (function) <1>:      Rational Complex Constructors and 'Deconstructors'.
-                                                              (line  90)
+                                                              (line  92)
 * rational;;num_den_gauss (function):    Rational Complex Constructors and 'Deconstructors'.
-                                                              (line  78)
+                                                              (line  80)
 * rational;;num_den_nat (function):      Rational Complex Constructors and 'Deconstructors'.
-                                                              (line  66)
+                                                              (line  68)
 * rational;;n_div_gauss (function):      Rational Complex Maths.
-                                                              (line  37)
+                                                              (line  38)
 * rational;;n_mod_gauss (function):      Rational Complex Maths.
-                                                              (line  42)
-* rational;;quotient (function):         More on Division.    (line  50)
+                                                              (line  43)
+* rational;;quotient (function):         More on Division.    (line  52)
 * rational;;ratcompvalp (function):      Rational Complex Type and Value Tests.
                                                               (line  19)
 * rational;;ratcomp_simplify (function): Rational Complex Type Simplification.
                                                               (line  10)
 * rational;;rational_approxs_epsilon (function): Least Complex Approximation within Epsilon.
-                                                              (line  28)
+                                                              (line  29)
 * rational;;rational_approxs_max_den (function): Best Approximation with Bounded Denominator.
-                                                              (line  23)
+                                                              (line  25)
 * rational;;rational_approx_epsilon (function): Least Complex Approximation within Epsilon.
                                                               (line   6)
 * rational;;rational_approx_max_den (function): Best Approximation with Bounded Denominator.
                                                               (line   6)
 * rational;;rational_interval_epsilon (function): Least Complex Approximation within Epsilon.
-                                                              (line  48)
+                                                              (line  51)
 * rational;;rational_interval_max_den (function): Best Approximation with Bounded Denominator.
-                                                              (line  41)
+                                                              (line  45)
 * rational;;rat_simplify (function):     Rational Type Simplification.
                                                               (line   6)
-* rational;;reciprocal (function):       More on Division.    (line  25)
+* rational;;reciprocal (function):       More on Division.    (line  26)
 * rational;;round_multiple (function):   Rounding to Multiples.
                                                               (line  29)
 * rational;;round_multiple_unbiased (function): Rounding to Multiples.
@@ -3369,19 +3455,19 @@ Index
 * rational;;round_unbiased (function):   Rounding to Integer. (line  36)
 * rational;;round_zero_bias (function):  Rounding to Integer. (line  31)
 * rational;;split_str_real_eng (function): Evaluation of Expansion Strings.
-                                                              (line  44)
+                                                              (line  45)
 * rational;;split_str_real_recur (function): Evaluation of Recurring Expansion Strings.
-                                                              (line  48)
+                                                              (line  49)
 * rational;;strs_real_approx_dp (function): Functions for Fixed Decimal Places.
-                                                              (line  23)
+                                                              (line  24)
 * rational;;strs_real_approx_eng (function): Functions for Scientific Notation and Engineering Notation.
-                                                              (line  58)
+                                                              (line  59)
 * rational;;strs_real_approx_sci (function): Functions for Scientific Notation and Engineering Notation.
                                                               (line  18)
 * rational;;strs_real_approx_sf (function): Functions for Significant Figures.
-                                                              (line  23)
+                                                              (line  24)
 * rational;;strs_real_recur (function):  Formatting to Recurring Expansion Strings.
-                                                              (line  63)
+                                                              (line  66)
 * rational;;str_mixed (function):        Formatting to Fraction Strings.
                                                               (line  22)
 * rational;;str_real_approx_dp (function): Functions for Fixed Decimal Places.
@@ -3399,19 +3485,19 @@ Index
 * rational;;str_vulgar_or_int (function): Formatting to Fraction Strings.
                                                               (line  13)
 * rational;;sval_real_eng (function):    Evaluation of Expansion Strings.
-                                                              (line  29)
+                                                              (line  30)
 * rational;;sval_real_recur (function):  Evaluation of Recurring Expansion Strings.
-                                                              (line  35)
+                                                              (line  36)
 * rational;;trunc_multiple (function):   Rounding to Multiples.
                                                               (line  25)
 * rational;;val_eng_approx_epsilon (function): Numeral String -> Q — Approximation.
                                                               (line  16)
 * rational;;val_eng_approx_max_den (function): Numeral String -> Q — Approximation.
-                                                              (line  60)
+                                                              (line  61)
 * rational;;val_eng_interval_epsilon (function): Numeral String -> Q — Approximation.
-                                                              (line  47)
+                                                              (line  48)
 * rational;;val_eng_interval_max_den (function): Numeral String -> Q — Approximation.
-                                                              (line  72)
+                                                              (line  73)
 * rational;;val_mixed (function):        Evaluation of Fraction Strings.
                                                               (line  14)
 * rational;;val_real_eng (function):     Evaluation of Expansion Strings.
@@ -3421,7 +3507,7 @@ Index
 * rational;;val_vulgar (function):       Evaluation of Fraction Strings.
                                                               (line   6)
 * rational;;_complexity_rel (prefix function): Other Complexity Functions.
-                                                              (line  21)
+                                                              (line  22)
 * rationalp (function):                  Type and Value Tests.
                                                               (line  37)
 * ratvalp (function):                    Type and Value Tests.
@@ -3430,515 +3516,515 @@ Index
 * round (function):                      Rounding to Integer. (line  25)
 * sgn (function):                        Absolute Value and Sign.
                                                               (line  13)
-* sgn (function) <1>:                    Interval Maths.      (line  23)
+* sgn (function) <1>:                    Interval Maths.      (line  24)
 * str (function):                        Formatting to Fraction Strings.
-                                                              (line  50)
+                                                              (line  51)
 * trunc (function):                      Rounding to Integer. (line  20)
 
 
 
 Tag Table:
-Node: Top408
-Ref: pure-rational doc617
-Ref: 2617
-Ref: Top-Footnote-13305
-Ref: Top-Footnote-23355
-Node: Copying3425
-Ref: pure-rational pure-rational-rational-number-library-for-the-pure-programming-language3512
-Ref: 33512
-Ref: pure-rational copying3512
-Ref: 43512
-Node: Installation4338
-Ref: pure-rational installation4434
-Ref: 54434
-Node: Introduction4967
-Ref: pure-rational introduction5073
-Ref: 65073
-Node: The Rational Module5192
-Ref: pure-rational the-rational-module5309
-Ref: 75309
-Ref: pure-rational module-rational5309
-Ref: 15309
-Node: The Files and the Default Prelude5554
-Ref: pure-rational the-files-and-the-default-prelude5688
-Ref: 85688
-Node: math pure and Other Files6009
-Ref: pure-rational math-pure-and-other-files6133
-Ref: 96133
-Node: rational pure6875
-Ref: pure-rational rational-pure7025
-Ref: b7025
-Node: rat_interval pure7439
-Ref: pure-rational rat-interval-pure7555
-Ref: c7555
-Node: Notation7830
-Ref: pure-rational notation7936
-Ref: e7936
-Node: The Rational Type8569
-Ref: pure-rational the-rational-type8673
-Ref: f8673
-Node: Constructors8790
-Ref: pure-rational constructors8888
-Ref: 108888
-Ref: pure-rational %/rational9121
-Ref: 119121
-Ref: pure-rational rational/rational9308
-Ref: 139308
-Node: 'Deconstructors'9535
-Ref: pure-rational deconstructors9662
-Ref: 149662
-Ref: pure-rational num/rational10069
-Ref: 1510069
-Ref: pure-rational den/rational10233
-Ref: 1610233
-Ref: pure-rational rational num_den10403
-Ref: 1710403
-Node: Type and Value Tests11354
-Ref: pure-rational type-and-value-tests11460
-Ref: 1b11460
-Ref: pure-rational exactp/rational12725
-Ref: 1c12725
-Ref: pure-rational inexactp/rational12798
-Ref: 1d12798
-Ref: pure-rational rationalp/rational12875
-Ref: 1e12875
-Ref: pure-rational ratvalp/rational12952
-Ref: 1f12952
-Node: Arithmetic13748
-Ref: pure-rational arithmetic13862
-Ref: 2113862
-Node: Operators14010
-Ref: pure-rational operators14098
-Ref: 2214098
-Node: More on Division15777
-Ref: pure-rational more-on-division15917
-Ref: 1215917
+Node: Top405
+Ref: pure-rational doc611
+Ref: 2611
+Ref: Top-Footnote-13298
+Ref: Top-Footnote-23348
+Node: Copying3418
+Ref: pure-rational pure-rational-rational-number-library-for-the-pure-programming-language3505
+Ref: 33505
+Ref: pure-rational copying3505
+Ref: 43505
+Node: Installation4331
+Ref: pure-rational installation4427
+Ref: 54427
+Node: Introduction4960
+Ref: pure-rational introduction5066
+Ref: 65066
+Node: The Rational Module5185
+Ref: pure-rational the-rational-module5302
+Ref: 75302
+Ref: pure-rational module-rational5302
+Ref: 15302
+Node: The Files and the Default Prelude5547
+Ref: pure-rational the-files-and-the-default-prelude5681
+Ref: 85681
+Node: math pure and Other Files6002
+Ref: pure-rational math-pure-and-other-files6126
+Ref: 96126
+Node: rational pure6868
+Ref: pure-rational rational-pure7018
+Ref: b7018
+Node: rat_interval pure7432
+Ref: pure-rational rat-interval-pure7548
+Ref: c7548
+Node: Notation7823
+Ref: pure-rational notation7929
+Ref: e7929
+Node: The Rational Type8562
+Ref: pure-rational the-rational-type8666
+Ref: f8666
+Node: Constructors8783
+Ref: pure-rational constructors8881
+Ref: 108881
+Ref: pure-rational %/rational9114
+Ref: 119114
+Ref: pure-rational rational/rational9301
+Ref: 139301
+Node: 'Deconstructors'9530
+Ref: pure-rational deconstructors9657
+Ref: 149657
+Ref: pure-rational num/rational10064
+Ref: 1510064
+Ref: pure-rational den/rational10228
+Ref: 1610228
+Ref: pure-rational rational num_den10398
+Ref: 1710398
+Node: Type and Value Tests11350
+Ref: pure-rational type-and-value-tests11456
+Ref: 1b11456
+Ref: pure-rational exactp/rational12721
+Ref: 1c12721
+Ref: pure-rational inexactp/rational12794
+Ref: 1d12794
+Ref: pure-rational rationalp/rational12871
+Ref: 1e12871
+Ref: pure-rational ratvalp/rational12948
+Ref: 1f12948
+Node: Arithmetic13745
+Ref: pure-rational arithmetic13859
+Ref: 2113859
+Node: Operators14007
+Ref: pure-rational operators14095
+Ref: 2214095
+Node: More on Division15776
+Ref: pure-rational more-on-division15916
+Ref: 1215916
 Ref: pure-rational rational reciprocal16424
 Ref: 2416424
-Ref: pure-rational rational divide16740
-Ref: 2616740
-Ref: pure-rational rational quotient17446
-Ref: 2817446
-Ref: pure-rational rational modulus17583
-Ref: 2917583
-Ref: pure-rational div/rational17719
-Ref: 2a17719
-Ref: pure-rational mod/rational17850
-Ref: 2b17850
-Node: Relations — Equality and Inequality Tests18093
-Ref: pure-rational relations-equality-and-inequality-tests18243
-Ref: 2c18243
-Node: Comparison Function18568
-Ref: pure-rational comparison-function18693
-Ref: 2d18693
-Ref: pure-rational rational cmp18742
-Ref: 2e18742
-Node: Mathematical Functions19007
-Ref: pure-rational mathematical-functions19130
-Ref: 2f19130
-Node: Absolute Value and Sign19854
-Ref: pure-rational absolute-value-and-sign20009
-Ref: 3020009
-Ref: pure-rational abs/rational20144
-Ref: 3120144
-Ref: pure-rational sgn/rational20267
-Ref: 3220267
-Node: Greatest Common Divisor GCD and Least Common Multiple LCM20616
-Ref: pure-rational greatest-common-divisor-gcd-and-least-common-multiple-lcm20805
-Ref: 3320805
-Ref: pure-rational gcd/rational21054
-Ref: 3421054
-Ref: pure-rational lcm/rational22163
-Ref: 3522163
-Node: Extrema Minima and Maxima23121
-Ref: pure-rational extrema-minima-and-maxima23278
-Ref: 3623278
-Node: Special Rational Functions23479
-Ref: pure-rational special-rational-functions23611
-Ref: 3723611
-Node: Complexity23895
-Ref: pure-rational complexity24012
-Ref: 3824012
-Node: Complexity Relations24856
-Ref: pure-rational complexity-relations24969
-Ref: 3924969
-Ref: pure-rational rational eq_cplx25024
-Ref: 3a25024
-Ref: pure-rational rational not_eq_cplx25552
-Ref: 3b25552
-Ref: pure-rational rational less_cplx25702
-Ref: 3c25702
-Ref: pure-rational rational less_eq_cplx26122
-Ref: 3d26122
-Ref: pure-rational rational more_cplx26380
-Ref: 3e26380
-Ref: pure-rational rational more_eq_cplx26596
-Ref: 3f26596
-Node: Complexity Comparison Function26854
-Ref: pure-rational complexity-comparison-function26994
-Ref: 4026994
-Ref: pure-rational rational cmp_complexity27069
-Ref: 4127069
-Node: Complexity Extrema27599
-Ref: pure-rational complexity-extrema27745
-Ref: 4227745
-Ref: pure-rational rational least_cplx27796
-Ref: 4327796
-Ref: pure-rational rational most_cplx28149
-Ref: 4428149
-Node: Other Complexity Functions28291
-Ref: pure-rational other-complexity-functions28398
-Ref: 4528398
-Ref: pure-rational rational complexity_rel28465
-Ref: 4628465
-Ref: pure-rational rational _complexity_rel28892
-Ref: 4728892
-Node: Mediants and Farey Sequences29050
-Ref: pure-rational mediants-and-farey-sequences29204
-Ref: 4829204
-Ref: pure-rational rational mediant29271
-Ref: 4929271
-Ref: pure-rational rational farey30915
-Ref: 4a30915
-Node: Rational Type Simplification31679
-Ref: pure-rational rational-type-simplification31814
-Ref: 4b31814
-Ref: pure-rational rational rat_simplify31881
-Ref: 4c31881
-Node: Q -> Z — Rounding32378
-Ref: pure-rational q-z-rounding32509
-Ref: 4e32509
-Node: Rounding to Integer32627
-Ref: pure-rational rounding-to-integer32744
-Ref: 2532744
-Ref: pure-rational floor/rational32956
-Ref: 4f32956
-Ref: pure-rational ceil/rational33111
-Ref: 5033111
-Ref: pure-rational trunc/rational33261
-Ref: 5133261
-Ref: pure-rational round/rational33393
-Ref: 5233393
-Ref: pure-rational rational round_zero_bias33625
-Ref: 5333625
-Ref: pure-rational rational round_unbiased33817
-Ref: 2733817
-Node: Integer and Fraction Parts34732
-Ref: pure-rational integer-and-fraction-parts34849
-Ref: 1934849
-Ref: pure-rational rational integer_and_fraction34912
-Ref: 5434912
-Ref: pure-rational rational fraction36060
-Ref: 5536060
-Ref: pure-rational int/rational36635
-Ref: 5636635
-Ref: pure-rational frac/rational36769
-Ref: 5736769
-Node: Rounding to Multiples37036
-Ref: pure-rational rounding-to-multiples37172
-Ref: 5837172
-Ref: pure-rational rational round_to_multiple37221
-Ref: 5937221
-Ref: pure-rational rational floor_multiple37796
-Ref: 5a37796
-Ref: pure-rational rational ceil_multiple37917
-Ref: 5b37917
-Ref: pure-rational rational trunc_multiple38036
-Ref: 5c38036
-Ref: pure-rational rational round_multiple38161
-Ref: 5d38161
-Ref: pure-rational rational round_multiple_zero_bias38341
-Ref: 5e38341
-Ref: pure-rational rational round_multiple_unbiased38529
-Ref: 5f38529
-Node: Q -> R — Conversion / Casting40294
-Ref: pure-rational q-r-conversion-casting40435
-Ref: 6240435
-Ref: pure-rational double/rational40512
-Ref: 6340512
-Node: R -> Q — Approximation40868
-Ref: pure-rational r-q-approximation41001
-Ref: 6141001
-Node: Intervals41673
-Ref: pure-rational module-rat_interval41801
-Ref: 041801
-Ref: pure-rational intervals41801
-Ref: d41801
-Node: Interval Constructors and 'Deconstructors'42582
-Ref: pure-rational interval-constructors-and-deconstructors42705
-Ref: 6542705
-Ref: pure-rational interval interval42865
-Ref: 6642865
-Ref: pure-rational interval lower43139
-Ref: 6743139
-Ref: pure-rational interval upper43228
-Ref: 6843228
-Ref: pure-rational interval lo_up43318
-Ref: 6943318
-Node: Interval Type Tests43633
-Ref: pure-rational interval-type-tests43808
-Ref: 6a43808
-Ref: pure-rational interval intervalp44039
-Ref: 6b44039
-Ref: pure-rational interval interval_valp44126
-Ref: 6c44126
-Ref: pure-rational interval ratinterval_valp44219
-Ref: 6d44219
-Ref: pure-rational interval intinterval_valp44337
-Ref: 6e44337
-Node: Interval Arithmetic Operators and Relations44825
-Ref: pure-rational interval-arithmetic-operators-and-relations44972
-Ref: 6f44972
-Ref: pure-rational example-3645275
-Ref: 7045275
-Ref: pure-rational interval before46565
-Ref: 7146565
-Ref: pure-rational interval strictly_before46656
-Ref: 7246656
-Ref: pure-rational interval after46765
-Ref: 7346765
-Ref: pure-rational interval strictly_after46854
-Ref: 7446854
-Ref: pure-rational interval within46961
-Ref: 7546961
-Ref: pure-rational interval strictly_within47096
-Ref: 7647096
-Ref: pure-rational interval without47256
-Ref: 7747256
-Ref: pure-rational interval strictly_without47456
-Ref: 7847456
-Ref: pure-rational interval disjoint47618
-Ref: 7947618
-Ref: pure-rational interval strictly_disjoint47718
-Ref: 7a47718
-Node: Interval Maths48785
-Ref: pure-rational interval-maths48904
-Ref: 7b48904
-Ref: pure-rational #/rational49454
-Ref: 7c49454
-Node: Least Complex Approximation within Epsilon49628
-Ref: pure-rational least-complex-approximation-within-epsilon49808
-Ref: 7d49808
-Ref: pure-rational rational rational_approx_epsilon49905
-Ref: 7e49905
-Ref: pure-rational example-4350382
-Ref: 7f50382
-Ref: pure-rational rational rational_approxs_epsilon50584
-Ref: 8050584
-Ref: pure-rational rational rational_interval_epsilon51352
-Ref: 8151352
-Node: Best Approximation with Bounded Denominator52378
-Ref: pure-rational best-approximation-with-bounded-denominator52540
-Ref: 6052540
-Ref: pure-rational rational rational_approx_max_den52639
-Ref: 8252639
-Ref: pure-rational rational rational_approxs_max_den53114
-Ref: 8353114
-Ref: pure-rational rational rational_interval_max_den53765
-Ref: 8453765
-Node: Decomposition54608
-Ref: pure-rational decomposition54729
-Ref: 1854729
-Node: Continued Fractions55098
-Ref: pure-rational continued-fractions55219
-Ref: 8555219
-Node: Introduction<2>55382
-Ref: pure-rational id155499
-Ref: 8655499
-Node: Generating Continued Fractions56088
-Ref: pure-rational generating-continued-fractions56244
-Ref: 8756244
-Node: Exact56351
-Ref: pure-rational exact56446
-Ref: 8856446
-Ref: pure-rational rational continued_fraction56473
-Ref: 8956473
-Node: Inexact56800
-Ref: pure-rational inexact56895
-Ref: 8a56895
-Ref: pure-rational rational continued_fraction_max_terms56926
-Ref: 8b56926
-Ref: pure-rational rational continued_fraction_epsilon57521
-Ref: 8c57521
-Node: Evaluating Continued Fractions57992
-Ref: pure-rational evaluating-continued-fractions58124
-Ref: 8d58124
-Ref: pure-rational rational evaluate_continued_fraction58197
-Ref: 8e58197
-Node: Convergents58793
-Ref: pure-rational convergents58878
-Ref: 8f58878
-Ref: pure-rational rational convergents58917
-Ref: 9058917
-Node: Rational Complex Numbers59362
-Ref: pure-rational rational-complex-numbers59502
-Ref: a59502
-Node: Rational Complex Constructors and 'Deconstructors'60201
-Ref: pure-rational rational-complex-constructors-and-deconstructors60365
-Ref: 9160365
-Ref: pure-rational rational num_den_nat62380
-Ref: 9262380
-Ref: pure-rational rational num_den_gauss62929
-Ref: 1a62929
-Node: Rational Complex Type and Value Tests64759
-Ref: pure-rational rational-complex-type-and-value-tests64983
-Ref: 2064983
-Ref: pure-rational complexp/rational65253
-Ref: 9365253
-Ref: pure-rational compvalp/rational65347
-Ref: 9465347
-Ref: pure-rational rational ratcompvalp65466
-Ref: 9565466
-Ref: pure-rational rational intcompvalp65577
-Ref: 9665577
-Node: Rational Complex Arithmetic Operators and Relations66768
-Ref: pure-rational rational-complex-arithmetic-operators-and-relations66964
-Ref: 9766964
-Node: Rational Complex Maths67602
-Ref: pure-rational rational-complex-maths67797
-Ref: 9867797
-Ref: pure-rational rational norm_gauss68447
-Ref: 9968447
-Ref: pure-rational rational div_mod_gauss68654
-Ref: 9a68654
-Ref: pure-rational rational n_div_gauss68943
-Ref: 9b68943
-Ref: pure-rational rational n_mod_gauss69087
-Ref: 9c69087
-Ref: pure-rational rational gcd_gauss69232
-Ref: 9d69232
-Ref: pure-rational rational euclid_gcd69432
-Ref: 9e69432
-Ref: pure-rational rational euclid_alg69726
-Ref: 9f69726
-Node: Rational Complex Type Simplification71029
-Ref: pure-rational rational-complex-type-simplification71164
-Ref: 4d71164
-Ref: pure-rational rational comp_simplify71249
-Ref: a071249
-Ref: pure-rational rational ratcomp_simplify71366
-Ref: a171366
-Node: String Formatting and Evaluation72002
-Ref: pure-rational string-formatting-and-evaluation72158
-Ref: a272158
-Node: The Naming of the String Conversion Functions72390
-Ref: pure-rational the-naming-of-the-string-conversion-functions72562
-Ref: a372562
-Node: Internationalisation and Format Structures73932
-Ref: pure-rational internationalisation-and-format-structures74127
-Ref: a474127
-Ref: pure-rational rational create_format77232
-Ref: a677232
-Node: Digit Grouping78734
-Ref: pure-rational digit-grouping78891
-Ref: a778891
-Node: Radices79014
-Ref: pure-rational radices79140
-Ref: a879140
-Node: Error Terms79657
-Ref: pure-rational error-terms79760
-Ref: a979760
-Node: Q <-> Fraction String “i + n/d”80681
-Ref: pure-rational q-fraction-string-i-n-d80864
-Ref: ac80864
-Node: Formatting to Fraction Strings81029
-Ref: pure-rational formatting-to-fraction-strings81177
-Ref: ad81177
-Ref: pure-rational rational str_vulgar81250
-Ref: ae81250
-Ref: pure-rational rational str_vulgar_or_int81400
-Ref: af81400
-Ref: pure-rational rational str_mixed81589
-Ref: 2381589
-Ref: pure-rational str/rational82347
-Ref: b082347
-Node: Evaluation of Fraction Strings82556
-Ref: pure-rational evaluation-of-fraction-strings82704
-Ref: b182704
-Ref: pure-rational rational val_vulgar82777
-Ref: b282777
-Ref: pure-rational rational val_mixed82990
-Ref: b382990
-Ref: pure-rational eval/rational83449
-Ref: b483449
-Node: Q <-> Recurring Numeral Expansion String “I FR”83630
-Ref: pure-rational q-recurring-numeral-expansion-string-i-fr83828
-Ref: b583828
-Node: Formatting to Recurring Expansion Strings84196
-Ref: pure-rational formatting-to-recurring-expansion-strings84382
-Ref: b684382
-Ref: pure-rational rational str_real_recur84477
-Ref: b784477
-Ref: pure-rational rational strs_real_recur86467
-Ref: b886467
-Ref: pure-rational rational join_str_real_recur87128
-Ref: b987128
-Node: Evaluation of Recurring Expansion Strings87380
-Ref: pure-rational evaluation-of-recurring-expansion-strings87566
-Ref: ba87566
-Ref: pure-rational rational val_real_recur88016
-Ref: bb88016
-Ref: pure-rational rational sval_real_recur88663
-Ref: bc88663
-Ref: pure-rational rational split_str_real_recur88918
-Ref: bd88918
-Node: Q <-> Numeral Expansion String “I F × 10E”89235
-Ref: pure-rational q-numeral-expansion-string-i-f-10e89435
-Ref: be89435
-Node: Formatting to Expansion Strings90079
-Ref: pure-rational formatting-to-expansion-strings90241
-Ref: bf90241
-Node: Functions for Fixed Decimal Places90469
-Ref: pure-rational functions-for-fixed-decimal-places90620
-Ref: c090620
-Ref: pure-rational rational str_real_approx_dp90705
-Ref: a590705
-Ref: pure-rational rational strs_real_approx_dp91369
-Ref: c191369
-Ref: pure-rational rational join_str_real_approx91902
-Ref: c291902
-Node: Functions for Significant Figures92235
-Ref: pure-rational functions-for-significant-figures92453
-Ref: c392453
-Ref: pure-rational rational str_real_approx_sf92536
-Ref: ab92536
-Ref: pure-rational rational strs_real_approx_sf93105
-Ref: aa93105
-Node: Functions for Scientific Notation and Engineering Notation93544
-Ref: pure-rational functions-for-scientific-notation-and-engineering-notation93719
-Ref: c493719
-Ref: pure-rational rational str_real_approx_sci93852
-Ref: c593852
-Ref: pure-rational rational strs_real_approx_sci94392
-Ref: c794392
-Ref: pure-rational rational str_real_approx_eng94855
-Ref: c694855
-Ref: pure-rational rational strs_real_approx_eng95620
-Ref: c895620
-Ref: pure-rational rational join_str_real_eng96345
-Ref: c996345
-Node: Evaluation of Expansion Strings96689
-Ref: pure-rational evaluation-of-expansion-strings96851
-Ref: ca96851
-Ref: pure-rational rational val_real_eng97281
-Ref: cb97281
-Ref: pure-rational rational sval_real_eng97739
-Ref: cc97739
-Ref: pure-rational rational split_str_real_eng98038
-Ref: cd98038
-Node: Numeral String -> Q — Approximation98571
-Ref: pure-rational numeral-string-q-approximation98732
-Ref: 6498732
-Ref: pure-rational rational val_eng_approx_epsilon99341
-Ref: ce99341
-Ref: pure-rational rational val_eng_interval_epsilon100391
-Ref: cf100391
-Ref: pure-rational rational val_eng_approx_max_den100734
-Ref: d0100734
-Ref: pure-rational rational val_eng_interval_max_den101105
-Ref: d1101105
-Node: Module Index102065
-Node: Index102257
+Ref: pure-rational rational divide16741
+Ref: 2616741
+Ref: pure-rational rational quotient17447
+Ref: 2817447
+Ref: pure-rational rational modulus17584
+Ref: 2917584
+Ref: pure-rational div/rational17720
+Ref: 2a17720
+Ref: pure-rational mod/rational17851
+Ref: 2b17851
+Node: Relations — Equality and Inequality Tests18094
+Ref: pure-rational relations-equality-and-inequality-tests18244
+Ref: 2c18244
+Node: Comparison Function18570
+Ref: pure-rational comparison-function18695
+Ref: 2d18695
+Ref: pure-rational rational cmp18744
+Ref: 2e18744
+Node: Mathematical Functions19010
+Ref: pure-rational mathematical-functions19133
+Ref: 2f19133
+Node: Absolute Value and Sign19857
+Ref: pure-rational absolute-value-and-sign20012
+Ref: 3020012
+Ref: pure-rational abs/rational20147
+Ref: 3120147
+Ref: pure-rational sgn/rational20270
+Ref: 3220270
+Node: Greatest Common Divisor GCD and Least Common Multiple LCM20619
+Ref: pure-rational greatest-common-divisor-gcd-and-least-common-multiple-lcm20808
+Ref: 3320808
+Ref: pure-rational gcd/rational21057
+Ref: 3421057
+Ref: pure-rational lcm/rational22170
+Ref: 3522170
+Node: Extrema Minima and Maxima23131
+Ref: pure-rational extrema-minima-and-maxima23288
+Ref: 3623288
+Node: Special Rational Functions23490
+Ref: pure-rational special-rational-functions23622
+Ref: 3723622
+Node: Complexity23906
+Ref: pure-rational complexity24023
+Ref: 3824023
+Node: Complexity Relations24867
+Ref: pure-rational complexity-relations24980
+Ref: 3924980
+Ref: pure-rational rational eq_cplx25035
+Ref: 3a25035
+Ref: pure-rational rational not_eq_cplx25564
+Ref: 3b25564
+Ref: pure-rational rational less_cplx25714
+Ref: 3c25714
+Ref: pure-rational rational less_eq_cplx26135
+Ref: 3d26135
+Ref: pure-rational rational more_cplx26393
+Ref: 3e26393
+Ref: pure-rational rational more_eq_cplx26609
+Ref: 3f26609
+Node: Complexity Comparison Function26867
+Ref: pure-rational complexity-comparison-function27007
+Ref: 4027007
+Ref: pure-rational rational cmp_complexity27082
+Ref: 4127082
+Node: Complexity Extrema27613
+Ref: pure-rational complexity-extrema27759
+Ref: 4227759
+Ref: pure-rational rational least_cplx27810
+Ref: 4327810
+Ref: pure-rational rational most_cplx28164
+Ref: 4428164
+Node: Other Complexity Functions28306
+Ref: pure-rational other-complexity-functions28413
+Ref: 4528413
+Ref: pure-rational rational complexity_rel28480
+Ref: 4628480
+Ref: pure-rational rational _complexity_rel28908
+Ref: 4728908
+Node: Mediants and Farey Sequences29066
+Ref: pure-rational mediants-and-farey-sequences29220
+Ref: 4829220
+Ref: pure-rational rational mediant29287
+Ref: 4929287
+Ref: pure-rational rational farey30932
+Ref: 4a30932
+Node: Rational Type Simplification31697
+Ref: pure-rational rational-type-simplification31832
+Ref: 4b31832
+Ref: pure-rational rational rat_simplify31899
+Ref: 4c31899
+Node: Q -> Z — Rounding32397
+Ref: pure-rational q-z-rounding32528
+Ref: 4e32528
+Node: Rounding to Integer32646
+Ref: pure-rational rounding-to-integer32763
+Ref: 2532763
+Ref: pure-rational floor/rational32975
+Ref: 4f32975
+Ref: pure-rational ceil/rational33130
+Ref: 5033130
+Ref: pure-rational trunc/rational33280
+Ref: 5133280
+Ref: pure-rational round/rational33412
+Ref: 5233412
+Ref: pure-rational rational round_zero_bias33644
+Ref: 5333644
+Ref: pure-rational rational round_unbiased33836
+Ref: 2733836
+Node: Integer and Fraction Parts34752
+Ref: pure-rational integer-and-fraction-parts34869
+Ref: 1934869
+Ref: pure-rational rational integer_and_fraction34932
+Ref: 5434932
+Ref: pure-rational rational fraction36081
+Ref: 5536081
+Ref: pure-rational int/rational36656
+Ref: 5636656
+Ref: pure-rational frac/rational36790
+Ref: 5736790
+Node: Rounding to Multiples37058
+Ref: pure-rational rounding-to-multiples37194
+Ref: 5837194
+Ref: pure-rational rational round_to_multiple37243
+Ref: 5937243
+Ref: pure-rational rational floor_multiple37818
+Ref: 5a37818
+Ref: pure-rational rational ceil_multiple37939
+Ref: 5b37939
+Ref: pure-rational rational trunc_multiple38058
+Ref: 5c38058
+Ref: pure-rational rational round_multiple38183
+Ref: 5d38183
+Ref: pure-rational rational round_multiple_zero_bias38363
+Ref: 5e38363
+Ref: pure-rational rational round_multiple_unbiased38551
+Ref: 5f38551
+Node: Q -> R — Conversion / Casting40319
+Ref: pure-rational q-r-conversion-casting40460
+Ref: 6240460
+Ref: pure-rational double/rational40537
+Ref: 6340537
+Node: R -> Q — Approximation40893
+Ref: pure-rational r-q-approximation41026
+Ref: 6141026
+Node: Intervals41698
+Ref: pure-rational module-rat_interval41826
+Ref: 041826
+Ref: pure-rational intervals41826
+Ref: d41826
+Node: Interval Constructors and 'Deconstructors'42607
+Ref: pure-rational interval-constructors-and-deconstructors42730
+Ref: 6542730
+Ref: pure-rational interval interval42890
+Ref: 6642890
+Ref: pure-rational interval lower43165
+Ref: 6743165
+Ref: pure-rational interval upper43254
+Ref: 6843254
+Ref: pure-rational interval lo_up43344
+Ref: 6943344
+Node: Interval Type Tests43660
+Ref: pure-rational interval-type-tests43835
+Ref: 6a43835
+Ref: pure-rational interval intervalp44066
+Ref: 6b44066
+Ref: pure-rational interval interval_valp44153
+Ref: 6c44153
+Ref: pure-rational interval ratinterval_valp44246
+Ref: 6d44246
+Ref: pure-rational interval intinterval_valp44364
+Ref: 6e44364
+Node: Interval Arithmetic Operators and Relations44853
+Ref: pure-rational interval-arithmetic-operators-and-relations45000
+Ref: 6f45000
+Ref: pure-rational example-3645303
+Ref: 7045303
+Ref: pure-rational interval before46595
+Ref: 7146595
+Ref: pure-rational interval strictly_before46686
+Ref: 7246686
+Ref: pure-rational interval after46795
+Ref: 7346795
+Ref: pure-rational interval strictly_after46884
+Ref: 7446884
+Ref: pure-rational interval within46991
+Ref: 7546991
+Ref: pure-rational interval strictly_within47126
+Ref: 7647126
+Ref: pure-rational interval without47286
+Ref: 7747286
+Ref: pure-rational interval strictly_without47486
+Ref: 7847486
+Ref: pure-rational interval disjoint47648
+Ref: 7947648
+Ref: pure-rational interval strictly_disjoint47748
+Ref: 7a47748
+Node: Interval Maths48817
+Ref: pure-rational interval-maths48936
+Ref: 7b48936
+Ref: pure-rational #/rational49487
+Ref: 7c49487
+Node: Least Complex Approximation within Epsilon49662
+Ref: pure-rational least-complex-approximation-within-epsilon49842
+Ref: 7d49842
+Ref: pure-rational rational rational_approx_epsilon49939
+Ref: 7e49939
+Ref: pure-rational example-4350416
+Ref: 7f50416
+Ref: pure-rational rational rational_approxs_epsilon50619
+Ref: 8050619
+Ref: pure-rational rational rational_interval_epsilon51389
+Ref: 8151389
+Node: Best Approximation with Bounded Denominator52417
+Ref: pure-rational best-approximation-with-bounded-denominator52579
+Ref: 6052579
+Ref: pure-rational rational rational_approx_max_den52678
+Ref: 8252678
+Ref: pure-rational rational rational_approxs_max_den53155
+Ref: 8353155
+Ref: pure-rational rational rational_interval_max_den53808
+Ref: 8453808
+Node: Decomposition54653
+Ref: pure-rational decomposition54774
+Ref: 1854774
+Node: Continued Fractions55143
+Ref: pure-rational continued-fractions55264
+Ref: 8555264
+Node: Introduction<2>55427
+Ref: pure-rational id155544
+Ref: 8655544
+Node: Generating Continued Fractions56133
+Ref: pure-rational generating-continued-fractions56289
+Ref: 8756289
+Node: Exact56396
+Ref: pure-rational exact56491
+Ref: 8856491
+Ref: pure-rational rational continued_fraction56518
+Ref: 8956518
+Node: Inexact56846
+Ref: pure-rational inexact56941
+Ref: 8a56941
+Ref: pure-rational rational continued_fraction_max_terms56972
+Ref: 8b56972
+Ref: pure-rational rational continued_fraction_epsilon57568
+Ref: 8c57568
+Node: Evaluating Continued Fractions58040
+Ref: pure-rational evaluating-continued-fractions58172
+Ref: 8d58172
+Ref: pure-rational rational evaluate_continued_fraction58245
+Ref: 8e58245
+Node: Convergents58842
+Ref: pure-rational convergents58927
+Ref: 8f58927
+Ref: pure-rational rational convergents58966
+Ref: 9058966
+Node: Rational Complex Numbers59412
+Ref: pure-rational rational-complex-numbers59552
+Ref: a59552
+Node: Rational Complex Constructors and 'Deconstructors'60251
+Ref: pure-rational rational-complex-constructors-and-deconstructors60415
+Ref: 9160415
+Ref: pure-rational rational num_den_nat62432
+Ref: 9262432
+Ref: pure-rational rational num_den_gauss62981
+Ref: 1a62981
+Node: Rational Complex Type and Value Tests64812
+Ref: pure-rational rational-complex-type-and-value-tests65036
+Ref: 2065036
+Ref: pure-rational complexp/rational65306
+Ref: 9365306
+Ref: pure-rational compvalp/rational65400
+Ref: 9465400
+Ref: pure-rational rational ratcompvalp65519
+Ref: 9565519
+Ref: pure-rational rational intcompvalp65630
+Ref: 9665630
+Node: Rational Complex Arithmetic Operators and Relations66822
+Ref: pure-rational rational-complex-arithmetic-operators-and-relations67018
+Ref: 9767018
+Node: Rational Complex Maths67657
+Ref: pure-rational rational-complex-maths67852
+Ref: 9867852
+Ref: pure-rational rational norm_gauss68503
+Ref: 9968503
+Ref: pure-rational rational div_mod_gauss68710
+Ref: 9a68710
+Ref: pure-rational rational n_div_gauss68999
+Ref: 9b68999
+Ref: pure-rational rational n_mod_gauss69143
+Ref: 9c69143
+Ref: pure-rational rational gcd_gauss69288
+Ref: 9d69288
+Ref: pure-rational rational euclid_gcd69488
+Ref: 9e69488
+Ref: pure-rational rational euclid_alg69782
+Ref: 9f69782
+Node: Rational Complex Type Simplification71086
+Ref: pure-rational rational-complex-type-simplification71221
+Ref: 4d71221
+Ref: pure-rational rational comp_simplify71306
+Ref: a071306
+Ref: pure-rational rational ratcomp_simplify71423
+Ref: a171423
+Node: String Formatting and Evaluation72060
+Ref: pure-rational string-formatting-and-evaluation72216
+Ref: a272216
+Node: The Naming of the String Conversion Functions72448
+Ref: pure-rational the-naming-of-the-string-conversion-functions72620
+Ref: a372620
+Node: Internationalisation and Format Structures73990
+Ref: pure-rational internationalisation-and-format-structures74185
+Ref: a474185
+Ref: pure-rational rational create_format77290
+Ref: a677290
+Node: Digit Grouping78793
+Ref: pure-rational digit-grouping78950
+Ref: a778950
+Node: Radices79073
+Ref: pure-rational radices79199
+Ref: a879199
+Node: Error Terms79716
+Ref: pure-rational error-terms79819
+Ref: a979819
+Node: Q <-> Fraction String “i + n/d”80742
+Ref: pure-rational q-fraction-string-i-n-d80925
+Ref: ac80925
+Node: Formatting to Fraction Strings81090
+Ref: pure-rational formatting-to-fraction-strings81238
+Ref: ad81238
+Ref: pure-rational rational str_vulgar81311
+Ref: ae81311
+Ref: pure-rational rational str_vulgar_or_int81461
+Ref: af81461
+Ref: pure-rational rational str_mixed81650
+Ref: 2381650
+Ref: pure-rational str/rational82409
+Ref: b082409
+Node: Evaluation of Fraction Strings82619
+Ref: pure-rational evaluation-of-fraction-strings82767
+Ref: b182767
+Ref: pure-rational rational val_vulgar82840
+Ref: b282840
+Ref: pure-rational rational val_mixed83053
+Ref: b383053
+Ref: pure-rational eval/rational83513
+Ref: b483513
+Node: Q <-> Recurring Numeral Expansion String “I FR”83695
+Ref: pure-rational q-recurring-numeral-expansion-string-i-fr83893
+Ref: b583893
+Node: Formatting to Recurring Expansion Strings84261
+Ref: pure-rational formatting-to-recurring-expansion-strings84447
+Ref: b684447
+Ref: pure-rational rational str_real_recur84542
+Ref: b784542
+Ref: pure-rational rational strs_real_recur86535
+Ref: b886535
+Ref: pure-rational rational join_str_real_recur87197
+Ref: b987197
+Node: Evaluation of Recurring Expansion Strings87449
+Ref: pure-rational evaluation-of-recurring-expansion-strings87635
+Ref: ba87635
+Ref: pure-rational rational val_real_recur88085
+Ref: bb88085
+Ref: pure-rational rational sval_real_recur88733
+Ref: bc88733
+Ref: pure-rational rational split_str_real_recur88988
+Ref: bd88988
+Node: Q <-> Numeral Expansion String “I F × 10E”89305
+Ref: pure-rational q-numeral-expansion-string-i-f-10e89505
+Ref: be89505
+Node: Formatting to Expansion Strings90149
+Ref: pure-rational formatting-to-expansion-strings90311
+Ref: bf90311
+Node: Functions for Fixed Decimal Places90539
+Ref: pure-rational functions-for-fixed-decimal-places90690
+Ref: c090690
+Ref: pure-rational rational str_real_approx_dp90775
+Ref: a590775
+Ref: pure-rational rational strs_real_approx_dp91440
+Ref: c191440
+Ref: pure-rational rational join_str_real_approx91974
+Ref: c291974
+Node: Functions for Significant Figures92307
+Ref: pure-rational functions-for-significant-figures92525
+Ref: c392525
+Ref: pure-rational rational str_real_approx_sf92608
+Ref: ab92608
+Ref: pure-rational rational strs_real_approx_sf93178
+Ref: aa93178
+Node: Functions for Scientific Notation and Engineering Notation93617
+Ref: pure-rational functions-for-scientific-notation-and-engineering-notation93792
+Ref: c493792
+Ref: pure-rational rational str_real_approx_sci93925
+Ref: c593925
+Ref: pure-rational rational strs_real_approx_sci94465
+Ref: c794465
+Ref: pure-rational rational str_real_approx_eng94928
+Ref: c694928
+Ref: pure-rational rational strs_real_approx_eng95694
+Ref: c895694
+Ref: pure-rational rational join_str_real_eng96420
+Ref: c996420
+Node: Evaluation of Expansion Strings96764
+Ref: pure-rational evaluation-of-expansion-strings96926
+Ref: ca96926
+Ref: pure-rational rational val_real_eng97356
+Ref: cb97356
+Ref: pure-rational rational sval_real_eng97815
+Ref: cc97815
+Ref: pure-rational rational split_str_real_eng98114
+Ref: cd98114
+Node: Numeral String -> Q — Approximation98647
+Ref: pure-rational numeral-string-q-approximation98808
+Ref: 6498808
+Ref: pure-rational rational val_eng_approx_epsilon99417
+Ref: ce99417
+Ref: pure-rational rational val_eng_interval_epsilon100468
+Ref: cf100468
+Ref: pure-rational rational val_eng_approx_max_den100811
+Ref: d0100811
+Ref: pure-rational rational val_eng_interval_max_den101182
+Ref: d1101182
+Node: Module Index102143
+Node: Index102335
 
 End Tag Table
 

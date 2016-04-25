@@ -1,11 +1,11 @@
-This is pure-stldict.info, produced by makeinfo version 5.2 from
+This is pure-stldict.info, produced by makeinfo version 6.1 from
 pure-stldict.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-stldict.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-stldict
 ************
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.8, October 28, 2014
+  Version 0.8, April 25, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -116,15 +116,18 @@ placing the following import declaration in your Pure programs:
 
      using stldict;
 
+
   This imports the whole shebang.  If you only need either the hashed or
 the ordered dictionaries, you can also import the corresponding modules
 separately, i.e.:
 
      using hashdict;
 
+
   or:
 
      using orddict;
+
 
 
 File: pure-stldict.info,  Node: Types,  Next: Operations,  Prev: Usage,  Up: Top
@@ -459,6 +462,7 @@ be done with the following little helper function:
 
      same_dict x y = pointer_cast "void*" x === pointer_cast "void*" y;
 
+
 
 File: pure-stldict.info,  Node: Set-Like Operations,  Next: List-Like Operations,  Prev: Comparisons,  Up: Operations
 
@@ -664,6 +668,7 @@ in a format similar to Pure’s list syntax.  For instance:
      > orddict (1..5);
      {$1,2,3,4,5$}
 
+
   See ‘orddict_examp.pure’ included in the distribution for a complete
 example which also discusses how to make such a custom print
 representation reparsable.
@@ -690,6 +695,7 @@ Some basic examples showing *note hashdict: a. in action:
      > member m foo, member m bar;
      1,1
 
+
   Hashed multidicts (*note hashmdict: b.):
 
      > let m = hashmdict [foo=>99,baz=>1..5,baz=>bar 4711L]; m;
@@ -698,6 +704,7 @@ Some basic examples showing *note hashdict: a. in action:
      [[1,2,3,4,5],bar 4711L]
      > m!foo;
      [99]
+
 
   The following example illustrates how to employ ordered dictionaries
 (*note orddict: c.) as a set data structure:
@@ -718,6 +725,7 @@ Some basic examples showing *note hashdict: a. in action:
      > m1 < m1+m2, m2 < m1+m2;
      1,1
 
+
   Of course, the same works with ordered multidicts (*note ordmdict:
 d.):
 
@@ -737,6 +745,7 @@ d.):
      > m1 < m1+m2, m2 < m1+m2;
      1,1
 
+
   In fact, the binary operations (comparisons as well as the set
 operations ‘+’, ‘-’ and ‘*’) work with any combination of dictionary
 operands:
@@ -745,6 +754,7 @@ operands:
      > let m2 = ordmdict (3..7);
      > m1+m2;
      hashmdict [1,2,3,3,4,4,5,5,6,7]
+
 
   Note that the operands are always promoted to the more general operand
 type, where hashed beats ordered and multi-valued beats single-valued
@@ -756,11 +766,13 @@ desired conversions explicitly:
      > orddict m1+m2;
      ordmdict [1,2,3,3,4,4,5,5,6,7]
 
+
   Also note that the "set" operations not only work with proper sets,
 but also with general dictionaries:
 
      > hashdict [i=>i+1|i=1..4]+hashdict [i=>i-1|i=3..5];
      hashdict [1=>2,2=>3,3=>2,4=>3,5=>4]
+
 
   All dictionary containers can be used as generators in list and matrix
 comprehensions:
@@ -770,6 +782,7 @@ comprehensions:
      [foo 99,baz [1,2,3,4,5],baz (bar 4711L)]
      > {{x;y} | x=>y = m};
      {foo,baz,baz;99,[1,2,3,4,5],bar 4711L}
+
 
   Note that in the current implementation this always computes the full
 member list of the dictionary as an intermediate value, which will need
@@ -795,6 +808,7 @@ execution speed might be worth considering.  For instance:
      > #[y | x=>y = stream m; gcd y 767~=1];
      925
      0.15s, 10979 cells
+
 
 
 File: pure-stldict.info,  Node: Module Index,  Next: Index,  Prev: Examples,  Up: Top
@@ -886,188 +900,188 @@ Index
 
 
 Tag Table:
-Node: Top377
-Ref: pure-stldict doc583
-Ref: 3583
-Ref: pure-stldict module-hashdict583
-Ref: 0583
-Ref: pure-stldict module-orddict583
-Ref: 1583
-Ref: Top-Footnote-11372
-Ref: Top-Footnote-21413
-Node: Copying1450
-Ref: pure-stldict standard-template-library1536
-Ref: 41536
-Ref: pure-stldict module-stldict1536
-Ref: 21536
-Ref: pure-stldict pure-stldict1536
-Ref: 51536
-Ref: pure-stldict copying1536
-Ref: 61536
-Node: Installation2239
-Ref: pure-stldict installation2327
-Ref: 72327
-Node: Usage3318
-Ref: pure-stldict usage3404
-Ref: 83404
-Node: Types3787
-Ref: pure-stldict types3871
-Ref: 93871
-Ref: pure-stldict hashdict/type4050
-Ref: a4050
-Ref: pure-stldict hashmdict/type4074
-Ref: b4074
-Ref: pure-stldict orddict/type4346
-Ref: c4346
-Ref: pure-stldict ordmdict/type4369
-Ref: d4369
-Ref: pure-stldict hashxdict/type5107
-Ref: e5107
-Ref: pure-stldict ordxdict/type5132
-Ref: f5132
-Ref: pure-stldict stldict/type5227
-Ref: 105227
-Ref: pure-stldict stlmdict/type5250
-Ref: 115250
-Ref: pure-stldict stlxdict/type5363
-Ref: 125363
-Node: Operations6587
-Ref: pure-stldict operations6674
-Ref: 146674
-Node: Basic Operations10525
-Ref: pure-stldict basic-operations10614
-Ref: 1510614
-Ref: pure-stldict hashdict10657
-Ref: 1f10657
-Ref: pure-stldict hashmdict10688
-Ref: 2010688
-Ref: pure-stldict orddict10720
-Ref: 2110720
-Ref: pure-stldict ordmdict10750
-Ref: 2210750
-Ref: pure-stldict mkhashdict11576
-Ref: 2311576
-Ref: pure-stldict mkhashmdict11611
-Ref: 2411611
-Ref: pure-stldict mkorddict11647
-Ref: 2511647
-Ref: pure-stldict mkordmdict11681
-Ref: 2611681
-Ref: pure-stldict copy/stldict11879
-Ref: 1b11879
-Ref: pure-stldict hashdictp12623
-Ref: 2912623
-Ref: pure-stldict hashmdictp12654
-Ref: 2a12654
-Ref: pure-stldict orddictp12686
-Ref: 2b12686
-Ref: pure-stldict ordmdictp12716
-Ref: 2c12716
-Ref: pure-stldict hashxdictp12829
-Ref: 2d12829
-Ref: pure-stldict ordxdictp12861
-Ref: 2e12861
-Ref: pure-stldict stldictp12892
-Ref: 2f12892
-Ref: pure-stldict stlmdictp12922
-Ref: 3012922
-Ref: pure-stldict stlxdictp12953
-Ref: 3112953
-Ref: pure-stldict #/stldict13071
-Ref: 3213071
-Ref: pure-stldict !/stldict13163
-Ref: 3313163
-Ref: pure-stldict null/stldict13590
-Ref: 3413590
-Ref: pure-stldict member/stldict13678
-Ref: 3513678
-Ref: pure-stldict members/stldict13772
-Ref: 1c13772
-Ref: pure-stldict list/stldict13801
-Ref: 3613801
-Ref: pure-stldict stream/stldict14134
-Ref: 3714134
-Ref: pure-stldict tuple/stldict14389
-Ref: 3814389
-Ref: pure-stldict vector/stldict14416
-Ref: 3914416
-Ref: pure-stldict keys/stldict14492
-Ref: 1d14492
-Ref: pure-stldict vals/stldict14568
-Ref: 1e14568
-Ref: pure-stldict insert/stldict15009
-Ref: 2715009
-Ref: pure-stldict insert/stldict215039
-Ref: 3a15039
-Ref: pure-stldict update/stldict15074
-Ref: 3b15074
-Ref: pure-stldict delete/stldict15497
-Ref: 2815497
-Ref: pure-stldict delete/stldict215527
-Ref: 3c15527
-Ref: pure-stldict clear/stldict15825
-Ref: 3d15825
-Node: Comparisons15951
-Ref: pure-stldict comparisons16068
-Ref: 1616068
-Node: Set-Like Operations17877
-Ref: pure-stldict set-like-operations17998
-Ref: 1717998
-Ref: pure-stldict +/stldict18294
-Ref: 3e18294
-Ref: pure-stldict -/stldict18387
-Ref: 3f18387
-Ref: pure-stldict */stldict18492
-Ref: 4018492
-Node: List-Like Operations18605
-Ref: pure-stldict list-like-operations18724
-Ref: 1818724
-Node: Iterators19467
-Ref: pure-stldict iterators19587
-Ref: 1919587
-Ref: pure-stldict stldict begin20554
-Ref: 4220554
-Ref: pure-stldict stldict end20590
-Ref: 4320590
-Ref: pure-stldict stldict find20852
-Ref: 4420852
-Ref: pure-stldict stldict dict22127
-Ref: 4622127
-Ref: pure-stldict stldict endp22217
-Ref: 4722217
-Ref: pure-stldict stldict next22365
-Ref: 4822365
-Ref: pure-stldict stldict get22752
-Ref: 4922752
-Ref: pure-stldict stldict put22988
-Ref: 4a22988
-Ref: pure-stldict stldict erase23336
-Ref: 4523336
-Ref: pure-stldict ==/stldict_iterator23569
-Ref: 4b23569
-Ref: pure-stldict ~=/stldict_iterator23595
-Ref: 4c23595
-Ref: Iterators-Footnote-124086
-Node: Low-Level Operations24127
-Ref: pure-stldict low-level-operations24242
-Ref: 1a24242
-Ref: Low-Level Operations-Footnote-124898
-Node: Pretty-Printing24939
-Ref: pure-stldict pretty-printing25036
-Ref: 1325036
-Ref: pure-stldict hashdict_symbol25529
-Ref: 4d25529
-Ref: pure-stldict hashmdict_symbol25566
-Ref: 4e25566
-Ref: pure-stldict orddict_symbol25604
-Ref: 4f25604
-Ref: pure-stldict ordmdict_symbol25640
-Ref: 5025640
-Node: Examples26396
-Ref: pure-stldict examples26490
-Ref: 4126490
-Node: Module Index30014
-Node: Index30186
+Node: Top374
+Ref: pure-stldict doc577
+Ref: 3577
+Ref: pure-stldict module-hashdict577
+Ref: 0577
+Ref: pure-stldict module-orddict577
+Ref: 1577
+Ref: Top-Footnote-11364
+Ref: Top-Footnote-21405
+Node: Copying1442
+Ref: pure-stldict standard-template-library1528
+Ref: 41528
+Ref: pure-stldict module-stldict1528
+Ref: 21528
+Ref: pure-stldict pure-stldict1528
+Ref: 51528
+Ref: pure-stldict copying1528
+Ref: 61528
+Node: Installation2231
+Ref: pure-stldict installation2319
+Ref: 72319
+Node: Usage3310
+Ref: pure-stldict usage3396
+Ref: 83396
+Node: Types3782
+Ref: pure-stldict types3866
+Ref: 93866
+Ref: pure-stldict hashdict/type4045
+Ref: a4045
+Ref: pure-stldict hashmdict/type4069
+Ref: b4069
+Ref: pure-stldict orddict/type4341
+Ref: c4341
+Ref: pure-stldict ordmdict/type4364
+Ref: d4364
+Ref: pure-stldict hashxdict/type5102
+Ref: e5102
+Ref: pure-stldict ordxdict/type5127
+Ref: f5127
+Ref: pure-stldict stldict/type5222
+Ref: 105222
+Ref: pure-stldict stlmdict/type5245
+Ref: 115245
+Ref: pure-stldict stlxdict/type5358
+Ref: 125358
+Node: Operations6582
+Ref: pure-stldict operations6669
+Ref: 146669
+Node: Basic Operations10520
+Ref: pure-stldict basic-operations10609
+Ref: 1510609
+Ref: pure-stldict hashdict10652
+Ref: 1f10652
+Ref: pure-stldict hashmdict10683
+Ref: 2010683
+Ref: pure-stldict orddict10715
+Ref: 2110715
+Ref: pure-stldict ordmdict10745
+Ref: 2210745
+Ref: pure-stldict mkhashdict11571
+Ref: 2311571
+Ref: pure-stldict mkhashmdict11606
+Ref: 2411606
+Ref: pure-stldict mkorddict11642
+Ref: 2511642
+Ref: pure-stldict mkordmdict11676
+Ref: 2611676
+Ref: pure-stldict copy/stldict11874
+Ref: 1b11874
+Ref: pure-stldict hashdictp12618
+Ref: 2912618
+Ref: pure-stldict hashmdictp12649
+Ref: 2a12649
+Ref: pure-stldict orddictp12681
+Ref: 2b12681
+Ref: pure-stldict ordmdictp12711
+Ref: 2c12711
+Ref: pure-stldict hashxdictp12824
+Ref: 2d12824
+Ref: pure-stldict ordxdictp12856
+Ref: 2e12856
+Ref: pure-stldict stldictp12887
+Ref: 2f12887
+Ref: pure-stldict stlmdictp12917
+Ref: 3012917
+Ref: pure-stldict stlxdictp12948
+Ref: 3112948
+Ref: pure-stldict #/stldict13066
+Ref: 3213066
+Ref: pure-stldict !/stldict13158
+Ref: 3313158
+Ref: pure-stldict null/stldict13585
+Ref: 3413585
+Ref: pure-stldict member/stldict13673
+Ref: 3513673
+Ref: pure-stldict members/stldict13767
+Ref: 1c13767
+Ref: pure-stldict list/stldict13796
+Ref: 3613796
+Ref: pure-stldict stream/stldict14129
+Ref: 3714129
+Ref: pure-stldict tuple/stldict14384
+Ref: 3814384
+Ref: pure-stldict vector/stldict14411
+Ref: 3914411
+Ref: pure-stldict keys/stldict14487
+Ref: 1d14487
+Ref: pure-stldict vals/stldict14563
+Ref: 1e14563
+Ref: pure-stldict insert/stldict15004
+Ref: 2715004
+Ref: pure-stldict insert/stldict215034
+Ref: 3a15034
+Ref: pure-stldict update/stldict15069
+Ref: 3b15069
+Ref: pure-stldict delete/stldict15492
+Ref: 2815492
+Ref: pure-stldict delete/stldict215522
+Ref: 3c15522
+Ref: pure-stldict clear/stldict15820
+Ref: 3d15820
+Node: Comparisons15946
+Ref: pure-stldict comparisons16063
+Ref: 1616063
+Node: Set-Like Operations17873
+Ref: pure-stldict set-like-operations17994
+Ref: 1717994
+Ref: pure-stldict +/stldict18290
+Ref: 3e18290
+Ref: pure-stldict -/stldict18383
+Ref: 3f18383
+Ref: pure-stldict */stldict18488
+Ref: 4018488
+Node: List-Like Operations18601
+Ref: pure-stldict list-like-operations18720
+Ref: 1818720
+Node: Iterators19463
+Ref: pure-stldict iterators19583
+Ref: 1919583
+Ref: pure-stldict stldict begin20550
+Ref: 4220550
+Ref: pure-stldict stldict end20586
+Ref: 4320586
+Ref: pure-stldict stldict find20848
+Ref: 4420848
+Ref: pure-stldict stldict dict22123
+Ref: 4622123
+Ref: pure-stldict stldict endp22213
+Ref: 4722213
+Ref: pure-stldict stldict next22361
+Ref: 4822361
+Ref: pure-stldict stldict get22748
+Ref: 4922748
+Ref: pure-stldict stldict put22984
+Ref: 4a22984
+Ref: pure-stldict stldict erase23332
+Ref: 4523332
+Ref: pure-stldict ==/stldict_iterator23565
+Ref: 4b23565
+Ref: pure-stldict ~=/stldict_iterator23591
+Ref: 4c23591
+Ref: Iterators-Footnote-124082
+Node: Low-Level Operations24123
+Ref: pure-stldict low-level-operations24238
+Ref: 1a24238
+Ref: Low-Level Operations-Footnote-124894
+Node: Pretty-Printing24935
+Ref: pure-stldict pretty-printing25032
+Ref: 1325032
+Ref: pure-stldict hashdict_symbol25525
+Ref: 4d25525
+Ref: pure-stldict hashmdict_symbol25562
+Ref: 4e25562
+Ref: pure-stldict orddict_symbol25600
+Ref: 4f25600
+Ref: pure-stldict ordmdict_symbol25636
+Ref: 5025636
+Node: Examples26393
+Ref: pure-stldict examples26487
+Ref: 4126487
+Node: Module Index30020
+Node: Index30192
 
 End Tag Table
 

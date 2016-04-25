@@ -1,11 +1,11 @@
-This is purelib.info, produced by makeinfo version 5.2 from
+This is purelib.info, produced by makeinfo version 6.1 from
 purelib.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: purelib.info,  Node: Top,  Next: Prelude,  Up: (dir)
 Pure Library Manual
 *******************
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.64, October 28, 2014
+  Version 0.64, April 25, 2016
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -270,6 +270,7 @@ corresponding binary operator.
      prefix  2900   ' ;                 // quote
      postfix 3000   & ;                 // thunk
 
+
 
 File: purelib.info,  Node: Prelude Types,  Next: Basic Combinators,  Prev: Constants and Operators,  Up: Prelude
 
@@ -421,6 +422,7 @@ The prelude implements the following important function combinators.
           > (foo.bar) 99;
           foo (bar 99)
 
+
  -- Pure Function: id x
  -- Pure Function: cst x y
 
@@ -431,6 +433,7 @@ The prelude implements the following important function combinators.
           [1,2,3,4,5]
           > map (cst 0) (1..5);
           [0,0,0,0,0]
+
 
  -- Pure Function: void x
 
@@ -450,6 +453,7 @@ The prelude implements the following important function combinators.
           424238335
           ()
 
+
      Note that the above list comprehension is actually implemented
      using *note do: 3b. (instead of *note map: 3c, which would normally
      be the case), so that the intermediate list value of the
@@ -466,11 +470,13 @@ adopted from Haskell:
           > map (flip (/) 2) (1..3);
           [0.5,1.0,1.5]
 
+
      This combinator is also used by the compiler to implement right
      operator sections, which allows you to write the above simply as:
 
           > map (/2) (1..3);
           [0.5,1.0,1.5]
+
 
  -- Pure Function: curry f
 
@@ -484,6 +490,7 @@ adopted from Haskell:
           2: 3.14
           ()
 
+
  -- Pure Function: uncurry f
 
      The inverse of *note curry: 3e.  Turns a curried function ‘f’
@@ -492,6 +499,7 @@ adopted from Haskell:
 
           > map (uncurry (*)) [(2,3),(4,5),(6,7)];
           [6,20,42]
+
 
  -- Pure Function: curry3 f
  -- Pure Function: uncurry3 f
@@ -509,6 +517,7 @@ adopted from Haskell:
           > map fact (1..5);
           [1,2,6,24,120]
 
+
      See Fixed point combinator(1) at Wikipedia for an explanation of
      how this magic works.  Just like in Haskell, *note fix: 42. can be
      used to produce least fixed points of arbitrary functions.  For
@@ -521,6 +530,7 @@ adopted from Haskell:
           1:#<thunk 0x7fe537fe2f90>
           > xs!!(0..10);
           [1,1,1,1,1,1,1,1,1,1,1]
+
 
    ---------- Footnotes ----------
 
@@ -559,6 +569,7 @@ arguments, i.e., they are fully polymorphic:
      > [1,2,3]+[u,v,w]+[3.14];
      [1,2,3,u,v,w,3.14]
 
+
   Lists are *eager* in Pure by default, but they can also be made *lazy*
 (in the latter case they are also called *streams*).  This is
 accomplished by turning the tail of a list into a "thunk" (a.k.a.
@@ -570,6 +581,7 @@ produce a list with a thunked tail:
      > 1:3..inf;
      1:#<thunk 0x7f696cd2dbd8>
 
+
   Pure also distinguishes *proper* and *improper* lists.  The former are
 always terminated by an empty list in the final tail and can thus be
 written using the conventional ‘[x1,x2,...,xn]’ syntax:
@@ -577,11 +589,13 @@ written using the conventional ‘[x1,x2,...,xn]’ syntax:
      > 1:2:3:[];
      [1,2,3]
 
+
   In contrast, improper lists are terminated with a non-list value and
 can only be represented using the ’*note ;: 45.’ operator:
 
      > 1:2:3;
      1:2:3
+
 
   These aren’t of much use as ordinary list values, but are frequently
 encountered as patterns on the left-hand side of an equation, where the
@@ -606,6 +620,7 @@ already does this:
      > (a,b,c),();
      a,b,c
 
+
   This also implies that tuples are always flat in Pure and can’t be
 nested; if you need this, you should use lists instead.  Also, tuples
 are always eager in Pure.
@@ -620,6 +635,7 @@ are always eager in Pure.
           > [1,2,3]+[u,v,w];
           [1,2,3,u,v,w]
 
+
      Note that this operation in fact just recurses into ‘x’ and
      replaces the empty list marking the "end" of ‘x’ with ‘y’, as if
      defined by the following equations (however, the prelude actually
@@ -627,6 +643,7 @@ are always eager in Pure.
 
           [] + ys = ys;
           (x:xs) + ys = x : xs+ys;
+
 
      To make this work, both operands should be proper lists, otherwise
      you may get somewhat surprising (but correct) improper list results
@@ -636,6 +653,7 @@ are always eager in Pure.
           1:2:3:99
           > (1:2:3)+33;
           1:2:36
+
 
      This happens because Pure is dynamically typed and places no limits
      on ad hoc polymorphism.  Note that the latter result is due to the
@@ -659,6 +677,7 @@ are always eager in Pure.
           > (a,b,c) == ();
           0
 
+
  -- Pure Function: # x
 
      List and tuple size.  This operation counts the number of elements
@@ -668,6 +687,7 @@ are always eager in Pure.
           3
           > #(a,b,c);
           3
+
 
      Please note that for obvious reasons this operation is inherently
      eager, so trying to compute the size of an infinite list will take
@@ -685,6 +705,7 @@ are always eager in Pure.
           <stdin>, line 34: unhandled exception 'out_of_bounds' while evaluating
           '[1,2,3]!4'
 
+
  -- Pure Function: x !! is
 
      The slicing operation takes a list or tuple and a list of indices
@@ -697,6 +718,7 @@ are always eager in Pure.
           > (1,2,3,4,5)!!(3..10);
           4,5
 
+
      The case of contiguous index ranges, as shown above, is optimized
      so that it always works in linear time, see *note Slicing: 4f.
      below for details.  But indices can actually be specified in any
@@ -705,6 +727,7 @@ are always eager in Pure.
 
           > (1..5)!![2,4,4,1];
           [3,5,5,2]
+
 
      This is less efficient than the case of contiguous index ranges,
      because it requires repeated traversals of the list for each index.
@@ -723,6 +746,7 @@ are always eager in Pure.
           > 1:3..11;
           [1,3,5,7,9,11]
 
+
      To prevent unwanted artifacts due to rounding errors, the upper
      bound in a floating point sequence is always rounded to the nearest
      grid point:
@@ -732,6 +756,7 @@ are always eager in Pure.
           > 0.0:0.1..0.31;
           [0.0,0.1,0.2,0.3]
 
+
      Last but not least, you can specify infinite sequences with an
      infinite upper bound (‘inf’ or ‘-inf’):
 
@@ -739,6 +764,7 @@ are always eager in Pure.
           1:#<thunk 0x7f696cd2dbd8>
           > -1:-3..-inf;
           -1:#<thunk 0x7f696cd2fde8>
+
 
      The lower bounds of an arithmetic sequence must always be finite.
 
@@ -751,6 +777,7 @@ are always eager in Pure.
           > null (a,b,c);
           0
 
+
  -- Pure Function: reverse x
 
      Reverse a list or tuple.
@@ -759,6 +786,7 @@ are always eager in Pure.
           [5,4,3,2,1]
           > reverse (a,b,c);
           (c,b,a)
+
 
   In addition, the prelude provides the following conversion operations.
 
@@ -772,17 +800,20 @@ are always eager in Pure.
           > list (a,b,c);
           [a,b,c]
 
+
      The ‘list’ function can be used to turn a finite lazy list into an
      eager one:
 
           > list $ take 10 (-1:-3..-inf);
           [-1,-3,-5,-7,-9,-11,-13,-15,-17,-19]
 
+
      You can also achieve the same effect somewhat more conveniently by
      slicing a finite part from a stream:
 
           > (-1:-3..-inf)!!(0..9);
           [-1,-3,-5,-7,-9,-11,-13,-15,-17,-19]
+
 
   Conversely, it is also possible to convert an (eager) list to a lazy
 one (a stream).
@@ -793,6 +824,7 @@ one (a stream).
 
           > stream (1..10);
           1:#<thunk 0x7fe537fe2b58>
+
 
   This might appear a bit useless at first sight, since all elements of
 the stream are in fact already known.  However, this operation then
@@ -854,6 +886,7 @@ slicing operator against *note slice: 58.:
      199991
      0.14s, 399984 cells
 
+
   Even more drastic improvements in both running time and memory usage
 can be seen in the case of matrix slices:
 
@@ -864,6 +897,7 @@ can be seen in the case of matrix slices:
      > #x!!(100000..299990);
      199991
      0s, 10 cells
+
 
 
 File: purelib.info,  Node: Hash Pairs,  Next: List Functions,  Prev: Slicing,  Up: Prelude
@@ -889,6 +923,7 @@ the components) and the functions *note key: 5b. and *note val: 5c.:
           > ("foo"=>99) == ("bar"=>99);
           0
 
+
  -- Pure Function: key (x=>y)
  -- Pure Function: val (x=>y)
 
@@ -896,6 +931,7 @@ the components) and the functions *note key: 5b. and *note val: 5c.:
 
           > key ("foo"=>99), val ("foo"=>99);
           "foo",99
+
 
   Note that in difference to the tuple operator ’*note ,: 46.’, the hash
 rocket ’*note =>: 5d.’ is non-associative, so nested applications _must_
@@ -1056,6 +1092,7 @@ File: purelib.info,  Node: Common List Functions,  Next: List Generators,  Up: L
           > sort (<) ans;
           [1,2,3,4,5,6,7,8,9,10]
 
+
  -- Pure Function: tail xs
 
      return all but the first element of ‘xs’; ‘xs’ must be nonempty
@@ -1203,6 +1240,7 @@ File: purelib.info,  Node: Basic String Functions,  Next: Low-Level Operations, 
           > s!!(20..24);
           "jumps"
 
+
  -- Pure Function: null s
  -- Pure Function: # s
 
@@ -1215,6 +1253,7 @@ File: purelib.info,  Node: Basic String Functions,  Next: Low-Level Operations, 
           0
           > #s;
           44
+
 
  -- Pure Function: s == t
  -- Pure Function: s ~= t
@@ -1232,6 +1271,7 @@ File: purelib.info,  Node: Basic String Functions,  Next: Low-Level Operations, 
           1
           > "foo"=="bar";
           0
+
 
   You can search for the location of a substring in a string, and
 extract a substring of a given length:
@@ -1254,6 +1294,7 @@ extract a substring of a given length:
      20
      > substr s 20 10;
      "jumps over"
+
 
   Note that Pure doesn’t have a separate type for individual characters.
 Instead, these are represented as strings ‘c’ containing exactly one
@@ -1281,6 +1322,7 @@ following:
      "U"
      > "a".."k";
      ["a","b","c","d","e","f","g","h","i","j","k"]
+
 
   For convenience, the prelude provides the following functions to
 convert between strings and lists (or other aggregates) of characters.
@@ -1314,6 +1356,7 @@ convert between strings and lists (or other aggregates) of characters.
      > string ("a".."z");
      "abcdefghijklmnopqrstuvwxyz"
 
+
   The following functions are provided to deal with strings of "tokens"
 separated by a given delimiter string.
 
@@ -1333,6 +1376,7 @@ separated by a given delimiter string.
      > join ":" xs;
      "The:quick:brown:fox:jumps:over:the:lazy:dog."
 
+
   We mention in passing here that more elaborate string matching,
 splitting and replacement operations based on regular expressions are
 provided by the system module, see *note Regex Matching: a5.
@@ -1350,10 +1394,12 @@ instance:
      > string $ map pred "ibm";
      "hal"
 
+
   List comprehensions can draw values from strings, too:
 
      > string [x+1 | x="HAL"];
      "IBM"
+
 
 
 File: purelib.info,  Node: Low-Level Operations,  Prev: Basic String Functions,  Up: String Functions
@@ -1447,6 +1493,7 @@ example.  First enter these definitions:
      optind = get_int $ addr "optind";
      optarg = cstring_dup $ get_pointer $ addr "optarg";
 
+
   Now let’s run ‘getopt’ on a byte string vector constructed from an
 argument vector (which includes the "program name" in the first
 element):
@@ -1459,6 +1506,7 @@ element):
      > getopt 5 args "nt:", optarg;
      -1,#<pointer 0x0>
 
+
   Note that 110 and 116 are the character codes of the option characters
 ‘n’ and ‘t’, where the latter option takes an argument, as returned by
 ‘optarg’.  Finally, ‘getopt’ returns -1 to indicate that there are no
@@ -1468,6 +1516,7 @@ processed, as follows:
 
      > optind, cstring_vector 5 args;
      3,{"progname","-n","-tfoo","boo","bar"}
+
 
   It is now an easy exercise to design your own high-level wrapper
 around ‘getopt’ to process command line arguments in Pure.  However,
@@ -1496,6 +1545,7 @@ use in numeric computations.
           > dim x;
           2,3
 
+
  -- Pure Function: null
 
      Check for empty matrices.  Note that there are various kinds of
@@ -1509,6 +1559,7 @@ use in numeric computations.
 
           > x == transpose x;
           0
+
 
  -- Pure Function: x ! i
  -- Pure Function: x !! is
@@ -1524,10 +1575,12 @@ index (in row-major oder):
      > x!3;
      4
 
+
   Or you can specify a pair of row and column index:
 
      > x!(1,0);
      4
+
 
   Slicing works accordingly.  You can either specify a list of (one- or
 two-dimensional) indices, in which case the result is always a row
@@ -1536,10 +1589,12 @@ vector:
      > x!!(2..5);
      {3,4,5,6}
 
+
   Or you can specify a pair of row and column index lists:
 
      > x!!(0..1,1..2);
      {2,3;5,6}
+
 
   The following abbreviations are provided to grab a slice from a row or
 column:
@@ -1548,6 +1603,7 @@ column:
      {5,6}
      > x!!(0..1,1);
      {2;5}
+
 
   As in the case of lists, matrix slices are optimized to handle cases
 with contiguous index ranges in an efficient manner, see *note Slicing:
@@ -1563,6 +1619,7 @@ map: 3c. and *note zipwith: 86. work as expected:
      {2,3,4;5,6,7}
      > zipwith (+) {1,2,3;4,5,6} {1,0,1;0,2,0};
      {2,2,4;4,7,6}
+
 
   The matrix module also provides a bunch of other specialized matrix
 operations, including all the necessary operations for matrix
@@ -1599,6 +1656,7 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
           > matrix [[1,2,3],[4,5,6]];
           {1,2,3;4,5,6}
 
+
  -- Pure Function: rowvector xs
  -- Pure Function: colvector xs
  -- Pure Function: vector xs
@@ -1620,6 +1678,7 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
           > vector [rowvector [1,2,3],colvector [4,5,6]];
           {{1,2,3},{4;5;6}}
 
+
      Note that for convenience, there’s also an alternative syntax for
      entering nested vectors more easily, see the description of the
      *note non-splicing vector brackets: c6. below for details.
@@ -1640,12 +1699,14 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
           > vectorseq 0.0 0.9 0.1;
           {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9}
 
+
      The prelude also contains some optimization rules which translate
      calls to *note vector: c5. et al on arithmetic sequences to the
      corresponding calls to *note vectorseq: c9. et al, such as:
 
           def vector (n1:n2..m) = vectorseq n1 m (n2-n1);
           def vector (n..m) = vectorseq n m 1;
+
 
      Example:
 
@@ -1657,6 +1718,7 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
           > foo; bar;
           {1,2,3,4,5,6,7,8,9,10}
           {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9}
+
 
      Please note that these optimization rules assume that basic
      arithmetic works with the involved elements, which may give you
@@ -1680,6 +1742,7 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
           > dmatrix {1,2,3;4,5,6};
           {1.0,2.0,3.0;4.0,5.0,6.0}
 
+
      In addition, these functions can also be invoked with either an int
      ‘n’ or a pair ‘(n,m)’ of ints as argument, in which case they
      construct a zero rowvector or matrix with the corresponding
@@ -1689,6 +1752,7 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
           {0,0,0}
           > imatrix (2,3);
           {0,0,0;0,0,0}
+
 
  -- Pure Function: list x
  -- Pure Function: list2 x
@@ -1710,7 +1774,7 @@ File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix In
   In addition, the following special syntax is provided as a shorthand
 notation for nested vector structures:
 
- -- Pure Macro: { | x, y, z, ... |}
+ -- Pure Macro: {| x, y, z, ... |}
 
      Non-splicing vector brackets.  These work like ‘{x,y,z,...}’, but
      unlike these they will _not_ splice submatrices in the arguments
@@ -1729,6 +1793,7 @@ matrix, while the non-splicing brackets in the second example create a
      > {|{1;2;3},{4;5;6}|};
      {{1;2;3},{4;5;6}}
 
+
   The second example works like a quoted matrix expression such as
 ‘'{{1;2;3},{4;5;6}}’, but the non-splicing brackets also evaluate their
 arguments:
@@ -1738,6 +1803,7 @@ arguments:
      > {|vector (1..3),vector (4..6)|};
      {{1,2,3},{4,5,6}}
 
+
   The ‘{| |}’ brackets can be nested.  Examples:
 
      > {|1,{|vector (1..5),2*3|},{}|};
@@ -1745,11 +1811,13 @@ arguments:
      > {|{|{1,2}|},{|{3,4}|}|};
      {{{1,2}},{{3,4}}}
 
+
   Also note that the ‘{| |}’ brackets only produce row vectors, but you
 can just transpose the result if you need a column vector instead:
 
      > transpose {|{1;2;3},{4;5;6}|};
      {{1;2;3};{4;5;6}}
+
 
   Finally, note that the notation ‘{| |}’ without any arguments is not
 supported, simply write ‘{}’ for the empty vector instead.
@@ -1918,6 +1986,7 @@ File: purelib.info,  Node: Matrix Inspection and Manipulation,  Next: Pointers a
           > sort (<) {10,9;8,7;6,5};
           {5,6;7,8;9,10}
 
+
      If you’d like to sort the individual rows instead, you can do that
      as follows:
 
@@ -1925,11 +1994,13 @@ File: purelib.info,  Node: Matrix Inspection and Manipulation,  Next: Pointers a
           > sort_rows (<) {10,9;8,7;6,5};
           {9,10;7,8;5,6}
 
+
      Likewise, to sort the columns of a matrix:
 
           > sort_cols p = colcat . map (sort p) . cols;
           > sort_cols (<) {10,9;8,7;6,5};
           {6,5;8,7;10,9}
+
 
      Also note that the pure-gsl module provides an interface to the GSL
      routines for sorting numeric (int and double) vectors using the
@@ -1943,6 +2014,7 @@ File: purelib.info,  Node: Matrix Inspection and Manipulation,  Next: Pointers a
 
           > transpose {1,2,3;4,5,6};
           {1,4;2,5;3,6}
+
 
  -- Pure Function: rowrev x
  -- Pure Function: colrev x
@@ -2143,6 +2215,7 @@ for a given key.
      {x=>7,y=>12}
      > record (x=>5, x=>7, y=>12); // ... or a tuple
      {x=>7,y=>12}
+
 
   More examples can be found in the _Record Data_ section in the Pure
 Manual.
@@ -2588,6 +2661,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           > ans/2;
           0.166666666666667
 
+
  -- Pure Function: __func__
 
      Returns the (lexically) innermost function at the point of the
@@ -2606,6 +2680,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           > (\x->x+": "+str __func__) "test";
           "test: #<closure 0x7f4a2411db30>"
 
+
      If you want, you can add a default rule for *note __func__: 177.
      which specifies the behaviour when *note __func__: 177. gets called
      at the global level.  E.g.:
@@ -2614,6 +2689,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           > __func__;
           <stdin>, line 5: unhandled exception '"__func__ called at global level"' while
           evaluating '__func__'
+
 
  -- Pure Macro: __namespace__
 
@@ -2628,6 +2704,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           foo::foo = "foo";
           > foo::foo;
           "foo"
+
 
  -- Pure Macro: __dir__
  -- Pure Macro: __file__
@@ -2651,12 +2728,14 @@ primitives discussed below, see *note Eval and Friends: 8c.
           foo = __file__,__dir__;
           bar = eval "__file__,__dir__";
 
+
      Then running this script interactively you’ll get the following:
 
           > foo;
           "/home/user/test.pure","/home/user/"
           > bar;
           "",""
+
 
  -- Pure Macro: __list__
 
@@ -2671,6 +2750,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           > def (:x:) = __list__ x;
           > (:(1,2),(3,4):);
           [(1,2),(3,4)]
+
 
      Note that this macro uses internal information from the parser not
      available to Pure programs.  Thus there’s no way to actually define
@@ -2689,6 +2769,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           > ((::)) $ (1,2),(3,4);
           [(1,2),(3,4)]
 
+
      Note that the first expression is really equivalent to
      ‘(:((1,2),(3,4)):)’, _not_ ‘(:(1,2),(3,4):)’ which can be specified
      in prefix form using *note $: 36. as shown in the second
@@ -2702,6 +2783,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           > __list__ $ (1,2),(3,4);
           [(1,2),(3,4)]
 
+
  -- Pure Macro: __locals__
 
      Built-in macro which expands to a list with the local function
@@ -2714,6 +2796,7 @@ primitives discussed below, see *note Eval and Friends: 8c.
           [x=>a+b,foo=>foo]
           > f 99 when _=>f = ans!1 end;
           100
+
 
   The *note __locals__: 17e. macro is useful for debugging purposes, as
 well as to implement dynamic environments.  It is also used internally
@@ -2742,6 +2825,7 @@ this macro:
 
           def __mylocals__ = [val (str __func__)=>__func__]+__locals__;
 
+
      You can then use ‘__mylocals__’ instead of ‘__locals__’ whenever
      you want the calling function to be included in the computed
      environment.
@@ -2758,6 +2842,7 @@ this macro:
           > public foo;
           > __locals__ with foo x = x+1 end;
           [foo::foo=>foo]
+
 
      This behaviour may be a bit surprising at first sight, but is
      consistent with the way the interpreter performs its symbol lookup,
@@ -2933,6 +3018,7 @@ actually takes _three_ arguments:
      > map (5 oops 8) (1..5);
      [13,18,23,28,33]
 
+
 
 File: purelib.info,  Node: Eval and Friends,  Next: Expression Serialization,  Prev: Inspection,  Up: Primitives
 
@@ -3052,6 +3138,7 @@ which provide a more compact binary serialization format.)
      [("<stdin>, line 1: syntax error, unexpected ')', expecting '=' or '|'",
      "<stdin>",0,3,0,4)]
 
+
   In addition to *note str: 178, the prelude also provides the following
 function for pretty-printing the internal representation used to denote
 quoted specials.  This is commonly used in conjunction with the
@@ -3066,6 +3153,7 @@ for details.
 
      > __str__ ('__lambda__ [x __type__ int] (x+1));
      "\\x::int -> x+1"
+
 
   The *note evalcmd: 180. function is commonly used to invoke the ‘show’
 and ‘clear’ commands for metaprogramming purposes.  The prelude provides
@@ -3100,6 +3188,7 @@ the following two convenience functions to make this easy:
      []
      > x,y;
      x,y
+
 
   The following functions are useful for doing symbolic expression
 simplification.
@@ -3141,6 +3230,7 @@ for the laws of distributivity:
      expand ((a+b)*2); // yields a*2+b*2
      factor (a*2+b*2); // yields (a+b)*2
 
+
   Note that instances of locally bound functions are substituted back in
 the computed result, thus the instances of ‘*’ and ‘+’ in the results
 ‘a*2+b*2’ and ‘(a+b)*2’ shown above denote the corresponding globals,
@@ -3156,6 +3246,7 @@ _not_ evaluated in the result:
      > expand ('((a+1)*2));
      a*2+1*2
 
+
   Note that *note reduce: 17f. only takes into account local _function_
 bindings from ‘with’ clauses, local _variable_ bindings do not affect
 its operation in any way:
@@ -3164,11 +3255,13 @@ its operation in any way:
      > reduce y when x = u+v end;
      [x,x^2,x^3]
 
+
   However, in such cases you can perform the desired substitution by
 turning the ‘when’ into a ‘with’ clause:
 
      > reduce y with x = u+v end;
      [u+v,(u+v)^2,(u+v)^3]
+
 
   Or you can just invoke the underlying *note reduce_with: 1a2. builtin
 directly, with the desired substitutions given as hash pairs in the
@@ -3176,6 +3269,7 @@ first argument:
 
      > reduce_with [x=>u+v] y;
      [u+v,(u+v)^2,(u+v)^3]
+
 
   It is always a good idea to confine calls to *note reduce: 17f. to
 global functions if possible, since this gives you better control over
@@ -3240,6 +3334,7 @@ that it’s readable plain text in Pure syntax.)
      3249898239L
      > val b;
      {"Hello, world!",0.333333333333333,4711,#<pointer 0x0>}
+
 
   Please note that the current implementation has some limitations:
 
@@ -3389,6 +3484,7 @@ function).  Example:
      > clear ans
      I'm done for!
 
+
   Note that setting a finalizer on a global symbol won’t usually be of
 much use since such values are cached by the interpreter.  (However, the
 sentry _will_ be invoked if the symbol gets recompiled because its
@@ -3420,6 +3516,7 @@ needed.
      free
      > clear p
 
+
   Besides their use as finalizers, sentries can also be handy in other
 circumstances, when you need to associate an expression with another,
 "invisible" value.  In this case the sentry is usually some kind of data
@@ -3438,16 +3535,19 @@ function values:
                           end;
                   end;
 
+
   E.g., consider the naive recursive definition of the Fibonacci
 function:
 
      fib n::int = if n<=1 then 1 else fib (n-1)+fib (n-2);
+
 
   A hashed version of the Fibonacci function can be defined as follows:
 
      let hfib = hashed f with
        f n::int = if n<=1 then 1 else hfib (n-1)+hfib (n-2)
      end;
+
 
   This turns the naive definition of the Fibonacci function (which has
 exponential time complexity) into a linear time operation:
@@ -3460,6 +3560,7 @@ exponential time complexity) into a linear time operation:
      14930352
      0.25s
 
+
   Finally, note that there can be only one sentry per expression but,
 building on the operations provided here, it’s easy to design a scheme
 where sentries are chained.  For instance:
@@ -3467,6 +3568,7 @@ where sentries are chained.  For instance:
      chain_sentry f x = sentry (h (get_sentry x)) x with
        h g x = g x $$ f x;
      end;
+
 
   This invokes the original sentry before the chained one:
 
@@ -3477,6 +3579,7 @@ where sentries are chained.  For instance:
      sentry#1
      sentry#2
 
+
   You can chain any number of sentries that way.  This scheme should
 work in most cases in which sentries are used just as finalizers.
 However, there are other uses, like the "hashed function" example above,
@@ -3486,6 +3589,7 @@ rather than the expression itself:
 
      attach_sentry f x = sentry (sentry f (get_sentry x)) x;
 
+
   This requires that the sentry will actually be garbage-collected when
 its hosting expression gets freed, so it will _not_ work if the original
 sentry is a global:
@@ -3494,6 +3598,7 @@ sentry is a global:
      > clear p
      sentry#1
 
+
   However, the attached sentry will work ok if you can ensure that the
 original sentry is a (partial or constructor) application.  E.g.:
 
@@ -3501,6 +3606,7 @@ original sentry is a (partial or constructor) application.  E.g.:
      > clear p
      sentry#1
      sentry#2
+
 
 
 File: purelib.info,  Node: Tagged Pointers,  Next: Expression References,  Prev: Sentries,  Up: Primitives
@@ -3553,6 +3659,7 @@ and set, get or verify the tag of a pointer value.
      > check_ptrtag 0 p;
      0
 
+
   Note that in the case of a non-*note NULL: ad. pointer, *note
 check_ptrtag: 1d1. just tests the tags for equality.  On the other hand,
 a generic *note NULL: ad. pointer, like in C, is considered compatible
@@ -3566,6 +3673,7 @@ with all pointer types:
      1
      > get_ptrtag NULL;
      0
+
 
   The operations above are provided so that you can design your own,
 more elaborate type systems for pointer values if the need arises.
@@ -3617,6 +3725,7 @@ The following high-level operations provide these capabilities.
      ["void*","char*","void**","char**","short*","short**","int*","int**",
      "float*","float**","double*","double**"]
 
+
   (The last command shows a quick and dirty way to retrieve the
 currently defined type tags in the interpreter.  This won’t work in
 batch-compiled scripts, however, since in this case the range of type
@@ -3630,6 +3739,7 @@ instead:
      > let ty = pointer_tag "long*";
      > pointer_cast ty p, pointer_cast ty q;
 
+
   Note that you have to be careful when casting a cooked pointer,
 because *note pointer_cast: 1d5. may have to create a copy of the
 original pointer value in order not to clobber the original type tag.
@@ -3641,6 +3751,7 @@ the pointer gets passed to an external function, e.g.:
      > extern char *gets(char*);
      > let p = cooked $ malloc 1000;
      > gets (pointer_cast "char*" p);
+
 
   Such usage is always safe.  If this approach isn’t possible, you might
 want to use the lowlevel *note ptrtag: 1cf. operation instead.  (This
@@ -3704,6 +3815,7 @@ by Pure’s reference-counting garbage collector.  For instance:
      > put x (sentry done 1,y);
      1,#<pointer 0x3036400>
 
+
   At this point ‘x’ points to ‘y’ and vice versa.  If you now purge the
 ‘x’ and ‘y’ variables then Pure won’t be able to reclaim the cycle,
 resulting in a memory leak (you can verify this by noting that the
@@ -3715,6 +3827,7 @@ the cycle first:
      3
      > clear x y
      done 1
+
 
   Note that, in a way, sentries work similar to expression references
 and thus the same caveats apply there.  Having a limited amount of
@@ -3734,6 +3847,7 @@ in the prelude, so to use these operations, you have to add the
 following import declaration to your program:
 
      using pointers;
+
 
   The module overloads the comparison and some of the arithmetic
 operators (cf.  *note Arithmetic: 125.) so that they can be used to
@@ -3806,6 +3920,7 @@ To use the operations of this module, add the following import
 declaration to your program:
 
      using math;
+
 
 
 File: purelib.info,  Node: Basic Math Functions,  Next: Complex Numbers,  Prev: Imports,  Up: Mathematical Functions
@@ -3991,12 +4106,14 @@ the complex input was.
      > polar z;
      1.0<:-1.5707963267949
 
+
   Please note that, as the *note +;: 202. and *note <;: 203.
 constructors bind weaker than the other arithmetic operators, complex
 numbers _must_ be parenthesized accordingly, e.g.:
 
      > (1+:2)*(3+:4);
      -5+:10
+
 
 
 File: purelib.info,  Node: Rational Numbers,  Next: Semantic Number Predicates and Types,  Prev: Complex Numbers,  Up: Mathematical Functions
@@ -4066,6 +4183,7 @@ reasonably fast.
      > rational (3/4);
      3L%4L
 
+
   Note that doubles can’t represent most rationals exactly, so
 conversion from double to rational _will_ yield funny results in many
 cases (which are still accurate up to rounding errors).  For instance:
@@ -4076,6 +4194,7 @@ cases (which are still accurate up to rounding errors).  For instance:
      0.0588235294117647
      > double (1%17);
      0.0588235294117647
+
 
 
 File: purelib.info,  Node: Semantic Number Predicates and Types,  Prev: Rational Numbers,  Up: Mathematical Functions
@@ -4143,6 +4262,7 @@ access to its operations:
 
      using enum;
 
+
   The following operations are provided:
 
  -- Pure Function: enum sym
@@ -4185,15 +4305,18 @@ access to its operations:
      nonfix sun mon tue wed thu fri sat;
      type day sun | day mon | day tue | day wed | day thu | day fri | day sat;
 
+
   Once the type is defined, we can turn it into an enumeration simply as
 follows:
 
      enum day;
 
+
   There’s also a convenience function *note defenum: 21e. which defines
 the type and makes it enumerable in one go:
 
      defenum day [sun,mon,tue,wed,thu,fri,sat];
+
 
   In particular, this sets up the functions ‘day’ and ‘ord’ so that you
 can convert between members of the ‘day’ type and the corresponding
@@ -4204,6 +4327,7 @@ ordinals:
      > day (ans+3);
      wed
 
+
   You can also retrieve the type of an enumerated type member (or rather
 its enumeration function) with *note enumof: 21f.:
 
@@ -4211,6 +4335,7 @@ its enumeration function) with *note enumof: 21f.:
      day
      > ans 5;
      fri
+
 
   Basic arithmetic, comparisons and arithmetic sequences also work as
 usual, provided that the involved members are all from the same
@@ -4233,16 +4358,19 @@ enumeration:
      > sat:fri..mon;
      [sat,fri,thu,wed,tue,mon]
 
+
   Note that given one member of the enumeration, you can use *note
 enumof: 21f. to quickly enumerate _all_ members of the type starting at
 the given member.  Here’s a little helper function which does this:
 
      enumerate x::enum = iterwhile (typep ty) succ x when ty = enumof x end;
 
+
   For instance:
 
      > enumerate sun;
      [sun,mon,tue,wed,thu,fri,sat]
+
 
   Also note that *note enum: 21d. silently skips elements which are
 already enumerated type members (no matter whether of the same or
@@ -4257,6 +4385,7 @@ accordingly:
      ()
      > succ sat;
      doomsday
+
 
 
 File: purelib.info,  Node: Container Types,  Next: System Interface,  Prev: Enumerated Types,  Up: Top
@@ -4280,6 +4409,7 @@ Manual), as given in the description of each type, which can be used to
 match values of the type, e.g.:
 
      shift a::array = rmfirst a;
+
 
   All container types implement the equality predicates *note ==: 4b.
 and *note ~=: 130. by recursively comparing their members.  In addition,
@@ -4349,6 +4479,7 @@ To use the operations of this module, add the following import
 declaration to your program:
 
      using array;
+
 
 
 File: purelib.info,  Node: Operations,  Next: Examples,  Prev: Imports<2>,  Up: Arrays
@@ -4442,12 +4573,14 @@ Import the module:
 
      > using array;
 
+
   A one-dimensional array:
 
      > let a::array = array (0.0:0.1..1.0);
      > #a; members a;
      11
      [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+
 
   Indexing an array works in the usual way, using Pure’s *note !: 4d.
 operator.  By virtue of the prelude, slicing an array with *note !!: 4e.
@@ -4458,11 +4591,13 @@ also works as expected:
      > a!!(3..7);
      [0.3,0.4,0.5,0.6,0.7]
 
+
   Updating a member of an array produces a new array:
 
      > let b::array = update a 1 2.0;
      > members b;
      [0.0,2.0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+
 
   Two-dimensional arrays can be created with *note array2: 229. from a
 list of lists:
@@ -4477,6 +4612,7 @@ list of lists:
      > a2!!(0..1,1..2);
      [[(1,v),(1,w)],[(2,v),(2,w)]]
 
+
   Here’s how to convert an array to a Pure matrix:
 
      > matrix $ members a;
@@ -4484,11 +4620,13 @@ list of lists:
      > matrix $ members2 a2;
      {(1,u),(1,v),(1,w);(2,u),(2,v),(2,w)}
 
+
   Converting back from a matrix to an array:
 
      > let b2::array = array2 $ list2 {(1,u),(1,v),(1,w);(2,u),(2,v),(2,w)};
      > members2 b2;
      [[(1,u),(1,v),(1,w)],[(2,u),(2,v),(2,w)]]
+
 
 
 File: purelib.info,  Node: Heaps,  Next: Dictionaries,  Prev: Arrays,  Up: Container Types
@@ -4527,6 +4665,7 @@ To use the operations of this module, add the following import
 declaration to your program:
 
      using heap;
+
 
 
 File: purelib.info,  Node: Operations<2>,  Next: Examples<2>,  Prev: Imports<3>,  Up: Heaps
@@ -4584,6 +4723,7 @@ File: purelib.info,  Node: Examples<2>,  Prev: Operations<2>,  Up: Heaps
      1
      > members $ rmfirst h;
      [3,3,5,11]
+
 
 
 File: purelib.info,  Node: Dictionaries,  Next: Sets and Bags,  Prev: Heaps,  Up: Container Types
@@ -4672,6 +4812,7 @@ To use the operations of this module, add the following import
 declaration to your program:
 
      using dict;
+
 
 
 File: purelib.info,  Node: Operations<3>,  Next: Examples<3>,  Prev: Imports<4>,  Up: Dictionaries
@@ -4832,6 +4973,7 @@ A normal (ordered) dictionary:
      [99.1,77]
      ["bar"=>99.1,"foo"=>77]
 
+
   Indexing a dictionary works in the usual way, using Pure’s *note !:
 4d. operator.  An *note out_of_bounds: 1a. exception is thrown if the
 key is not in the dictionary:
@@ -4842,11 +4984,13 @@ key is not in the dictionary:
      <stdin>, line 5: unhandled exception 'out_of_bounds' while evaluating
      'd!"baz"'
 
+
   By virtue of the prelude, slicing a dictionary with *note !!: 4e. also
 works as expected:
 
      > d!!["foo","bar","baz"];
      [77,99.1]
+
 
   A hashed dictionary can be used with any key values, which are stored
 in a seemingly random order:
@@ -4861,6 +5005,7 @@ in a seemingly random order:
      > h!!keys h;
      [99.1,77]
 
+
   Multidicts work in pretty much the same fashion, but allow more than
 one value for a given key to be stored in the dictionary.  In this case,
 the indexing operation returns a list of all values for the given key,
@@ -4872,15 +5017,18 @@ throwing an *note out_of_bounds: 1a. exception):
      [77,99]
      []
 
+
   Slicing thus returns a list of lists of values here:
 
      > d!!["foo","bar","baz"];
      [[77,99],[99.1],[]]
 
+
   To obtain a flat list you can just concatenate the results:
 
      > cat $ d!!["foo","bar","baz"];
      [77,99,99.1]
+
 
   Hashed multidicts provide both key hashing and multiple values per
 key:
@@ -4892,6 +5040,7 @@ key:
      [42=>99.1,42=>77,foo=>77]
      > h!42;
      [99.1,77]
+
 
   There are also some set-like operations which allow you to add/remove
 the members (‘key=>val’ pairs) of one dictionary to/from another
@@ -4907,6 +5056,7 @@ instance:
      > members (h1*h2);
      [b=>2]
 
+
   It’s possible to mix dictionaries of different types in these
 operations.  The necessary conversions are handled automatically:
 
@@ -4915,6 +5065,7 @@ operations.  The necessary conversions are handled automatically:
      > members (h1+h2);
      [a=>1,c=>4,b=>2,b=>3]
 
+
   Note that the result will always be promoted to the most general
 operand type in such cases (a hashed multidict in the above example).
 If this is not what you want, you’ll have to apply the necessary
@@ -4922,6 +5073,7 @@ conversions manually:
 
      > members (hdict h1+h2);
      [a=>1,c=>4,b=>3]
+
 
 
 File: purelib.info,  Node: Sets and Bags,  Prev: Dictionaries,  Up: Container Types
@@ -4990,6 +5142,7 @@ To use the operations of this module, add the following import
 declaration to your program:
 
      using set;
+
 
 
 File: purelib.info,  Node: Operations<4>,  Next: Examples<4>,  Prev: Imports<5>,  Up: Sets and Bags
@@ -5095,6 +5248,7 @@ File: purelib.info,  Node: Operations<4>,  Next: Examples<4>,  Prev: Imports<5>,
 
           union m1 m2 = m1+(m2-m1);
 
+
 
 File: purelib.info,  Node: Examples<4>,  Prev: Operations<4>,  Up: Sets and Bags
 
@@ -5115,6 +5269,7 @@ Some basic set operations:
      > members $ m*set (3..6);
      [3,5]
 
+
   The bag operations work in a similar fashion, but multiple instances
 are permitted in this case, and each instance counts as a separate
 member:
@@ -5133,6 +5288,7 @@ member:
      > members $ m*bag (3..6);
      [3,5]
 
+
   As already mentioned, operands of different types can be mixed with
 the infix operators; the necessary conversions are handled
 automatically.  E.g., here’s how you add a set to a bag:
@@ -5142,6 +5298,7 @@ automatically.  E.g., here’s how you add a set to a bag:
      > members (m1+m2);
      [1,3,3,3,4,5,5,6,11]
 
+
   Note that the result will always be promoted to the most general
 operand type in such cases (a bag in the above example).  If this is not
 what you want, you’ll have to apply the necessary conversions manually:
@@ -5149,12 +5306,14 @@ what you want, you’ll have to apply the necessary conversions manually:
      > members (set m1+m2);
      [1,3,4,5,6,11]
 
+
   If set members aren’t ordered then you’ll get an exception when trying
 to create an ordered set or bag from them:
 
      > set [a,b,c];
      <stdin>, line 5: unhandled exception 'failed_cond' while evaluating
      'set [a,b,c]'
+
 
   In such a case hashed sets and bags must be used instead.  These work
 analogously to the ordered sets and bags, but distinct members are
@@ -5164,6 +5323,7 @@ stored in an apparently random order:
      [c]
      > members $ hbag [a,b,c] + hbag [c,d,e];
      [a,c,c,b,d,e]
+
 
 
 File: purelib.info,  Node: System Interface,  Next: Module Index,  Prev: Container Types,  Up: Top
@@ -5207,6 +5367,7 @@ declaration to your program:
 
      using system;
 
+
   Some functions of the system interface are provided in separate
 modules; see *note Regex Matching: a5, *note Additional POSIX Functions:
 29d. and *note Option Parsing: b4.
@@ -5234,6 +5395,7 @@ File: purelib.info,  Node: Errno and Friends,  Next: POSIX Locale,  Prev: Import
      > fopen "junk" "r", perror "junk";
      junk: No such file or directory
      fopen "junk" "r"
+
 
 
 File: purelib.info,  Node: POSIX Locale,  Next: Signal Handling,  Prev: Errno and Friends,  Up: System Interface
@@ -5272,6 +5434,7 @@ always be safe.
 
      > setlocale LC_ALL NULL;
      "en_US.UTF-8"
+
 
 
 File: purelib.info,  Node: Signal Handling,  Next: Time Functions,  Prev: POSIX Locale,  Up: System Interface
@@ -5352,16 +5515,19 @@ function.
      > gettimeofday,nanosleep 0.1,gettimeofday;
      1270241709.06338,0.0,1270241709.16341
 
+
   Here’s a little macro which lets you time evaluations:
 
      def timex x = y,(t2-t1)/CLOCKS_PER_SEC when
        t1 = clock; y = x; t2 = clock;
      end;
 
+
   Example:
 
      > timex (foldl (+) 0 (1..100000));
      705082704,0.07
+
 
  -- Pure Function: tzset
 
@@ -5387,6 +5553,7 @@ the timezone.  Example:
      ["CET","CEST"],-3600,1
      > tzname!daylight;
      "CEST"
+
 
   The following functions deal with date/time values in string and
 "broken-down" time format.  See the ctime(3), gmtime(3), localtime(3),
@@ -5445,6 +5612,7 @@ details.
      > strptime ans "%c" tm, int_matrix 9 tm;
      "CEST",{10,23,22,2,3,110,5,91,1}
 
+
   In the above example, *note strptime: 2b7. was given a static pointer
 to a ‘tm’ struct returned by *note localtime: 2b3.  This always works,
 but in some situations it may be preferable to allocate dynamic storage
@@ -5462,6 +5630,7 @@ for the *note strptime: 2b7. function is as follows:
      > strptime "4/2/10" "%D" tm, int_matrix 9 tm;
      "",{0,0,0,2,3,110,5,91,0}
 
+
   Instead of explicitly allocating dynamic storage and converting it to
 a Pure matrix later, you can also invoke *note strptime: 2b7. directly
 with an int matrix of sufficient size:
@@ -5469,6 +5638,7 @@ with an int matrix of sufficient size:
      > let tm = imatrix (SIZEOF_TM div SIZEOF_INT + 1);
      > strptime "4/2/10" "%D" tm, take 9 tm;
      "",{0,0,0,2,3,110,5,91,0}
+
 
   Last but not least, to make calling *note strptime: 2b7. more
 convenient, you can supply your own little wrapper function which takes
@@ -5481,6 +5651,7 @@ care of allocating the storage, e.g.:
 
      > mystrptime "4/2/10" "%D";
      "",{0,0,0,2,3,110,5,91,0}
+
 
   Here is a list of some common format specifiers which can be used with
 the *note strftime: 2b5. and *note strptime: 2b7. routines.  These are
@@ -5598,6 +5769,7 @@ Other Special Primitives: 1a9.
      > spawnv P_WAIT "/bin/sh" ["/bin/sh","-c","pwd"];
      /home/ag/svn/pure-lang/trunk/pure/lib
      0
+
 
 
 File: purelib.info,  Node: Basic I/O Interface,  Next: Stat and Friends,  Prev: Process Functions,  Up: System Interface
@@ -5720,6 +5892,7 @@ Pure wrappers, rather than just providing the raw C library routines.
 
           setvbuf fp buf (if null buf then _IONBF else _IOFBF) BUFSIZ
 
+
      Please see the setbuf(3) manual page for details.
 
   Examples:
@@ -5747,6 +5920,7 @@ Pure wrappers, rather than just providing the raw C library routines.
      ["array.pure","dict.pure","getopt.pure","heap.pure","math.pure",
      "matrices.pure","prelude.pure","primitives.pure","quasiquote.pure",
      "set.pure","strings.pure","system.pure",""]
+
 
   C-style formatted I/O is provided through the following wrappers for
 the C ‘printf’ and ‘scanf’ functions.  These wrapper functions take or
@@ -5812,6 +5986,7 @@ the examples below.)
      > sscanf "foo 5 22" "%s %d %g";
      "foo",5,22.0
 
+
   As mentioned above, special argument formats are provided for bigints
 and multiprecision floats:
 
@@ -5826,6 +6001,7 @@ and multiprecision floats:
      > printf "pi = %0.30Rg\n" (4*atan (mpfr 1));
      pi = 3.14159265358979323846264338328
      37
+
 
   There are a number of other options for these conversions, please
 check the GMP(3) and MPFR(4) documentation for details.
@@ -5913,6 +6089,7 @@ appropriate time functions like *note ctime: 2b1. or *note strftime:
      > stat "/etc"!2 and S_IFMT == S_IFDIR;        // this is a directory
      1
 
+
 
 File: purelib.info,  Node: Reading Directories,  Next: Shell Globbing,  Prev: Stat and Friends,  Up: System Interface
 
@@ -5928,6 +6105,7 @@ File: purelib.info,  Node: Reading Directories,  Next: Shell Globbing,  Prev: St
 
      > readdir "/home";
      ["ag",".",".."]
+
 
 
 File: purelib.info,  Node: Shell Globbing,  Next: Regex Matching,  Prev: Reading Directories,  Up: System Interface
@@ -5958,6 +6136,7 @@ meaning of these.
      "matrices.pure","prelude.pure","primitives.pure","set.pure",
      "strings.pure","system.pure"]
 
+
 
 File: purelib.info,  Node: Regex Matching,  Next: Additional POSIX Functions,  Prev: Shell Globbing,  Up: System Interface
 
@@ -5971,6 +6150,7 @@ module.  To use the operations of this module, add the following import
 declaration to your program:
 
      using regex;
+
 
   Since the POSIX regex functions (‘regcomp’ and ‘regexec’) have a
 somewhat difficult calling sequence, this module provides a couple of
@@ -6140,26 +6320,31 @@ Let’s have a look at some simple examples:
      > let pat = "[[:alpha:]][[:alnum:]]*";
      > let s = "1var foo 99 BAR $%&";
 
+
   Simple match:
 
      > regex pat 0 s 0;
      1,1,"var"
+
 
   Same without match info:
 
      > regex pat REG_NOSUB s 0;
      1
 
+
   Global match, return the list of all matches:
 
      > regexg id pat 0 s 0;
      [(1,"var"),(5,"foo"),(12,"BAR")]
+
 
   Same with overlapping matches:
 
      > regexgg id pat 0 s 0;
      [(1,"var"),(2,"ar"),(3,"r"),(5,"foo"),(6,"oo"),(7,"o"),(12,"BAR"),
      (13,"AR"),(14,"R")]
+
 
   Note that *note id: 38. (the identity function) in the examples above
 can be replaced with an arbitrary function which processes the matches.
@@ -6169,6 +6354,7 @@ match info:
      > regexg (!1) pat 0 s 0;
      ["var","foo","BAR"]
 
+
   Lazy versions of both *note regexg: 2f5. and *note regexgg: 2f6. are
 provided which return the result as a stream instead.  These can be
 processed in a "call by need" fashion:
@@ -6177,6 +6363,7 @@ processed in a "call by need" fashion:
      (1,"var"):#<thunk 0x7fb1b7976750>
      > last ans;
      12,"BAR"
+
 
   Let’s verify that the processing is really done lazily:
 
@@ -6190,6 +6377,7 @@ processed in a "call by need" fashion:
      > last xs;
      got: 12,"BAR"
      12,"BAR"
+
 
   As you can see, the first match is produced immediately, while the
 remaining matches are processed as the result stream is traversed.  This
@@ -6207,6 +6395,7 @@ following:
      7977
      0.12s, 20 cells
 
+
 
 File: purelib.info,  Node: Regex Substitutions and Splitting,  Next: Empty Matches,  Prev: Basic Examples,  Up: Regex Matching
 
@@ -6218,6 +6407,7 @@ We can also perform substitutions on matches:
      > regsub (sprintf "<%d:%s>") pat 0 s 0;
      "1<1:var> <5:foo> 99 <12:BAR> $%&"
 
+
   Or split a string using a delimiter pattern (this uses an egrep
 pattern):
 
@@ -6227,12 +6417,14 @@ pattern):
      > regsplit delim REG_EXTENDED "The   quick brown    fox" 0;
      ["The","quick","brown","fox"]
 
+
   The *note regsplit: 2f8. operation also has a lazy variation:
 
      > regsplits "[[:space:]]+" REG_EXTENDED "The   quick brown    fox" 0;
      "The":#<thunk 0x7fb1b79775b0>
      > last ans;
      "fox"
+
 
 
 File: purelib.info,  Node: Empty Matches,  Next: Submatches,  Prev: Regex Substitutions and Splitting,  Up: Regex Matching
@@ -6252,6 +6444,7 @@ matches.  For instance:
      > regexgg id "o*" REG_EXTENDED "foo" 0;
      [(0,""),(1,"oo"),(2,"o"),(3,"")]
 
+
   This also works when substituting or splitting:
 
      > regsub (cst " ") "" REG_EXTENDED "some text" 0;
@@ -6262,6 +6455,7 @@ matches.  For instance:
      ["","s","o","m","e"," ","t","e","x","t",""]
      > regsplit " ?" REG_EXTENDED "some text" 0;
      ["","s","o","m","e","","t","e","x","t",""]
+
 
 
 File: purelib.info,  Node: Submatches,  Next: Perl Regex Compatibility,  Prev: Empty Matches,  Up: Regex Matching
@@ -6280,6 +6474,7 @@ These can be dissected using the following regex:
      > regex env_pat env_flags "SHELL=/bin/sh" 0;
      1,0,"SHELL=/bin/sh",0,"SHELL",6,"/bin/sh"
 
+
   Note that we again used an extended regex here, and we also added the
 ‘REG_NEWLINE’ flag so that we properly deal with multiline input.  The
 desired information is in the 4th and 6th element of the submatch info,
@@ -6288,6 +6483,7 @@ we can retrieve that as follows:
      > parse_env s = regexg (\info -> info!3 => info!5) env_pat env_flags s 0;
      > parse_env "SHELL=/bin/sh\nHOME=/home/bar\n";
      ["SHELL"=>"/bin/sh","HOME"=>"/home/bar"]
+
 
   We can get hold of the real process environment as follows:
 
@@ -6298,12 +6494,14 @@ we can retrieve that as follows:
      > head env;
      "BASH"=>"/usr/bin/sh"
 
+
   Just for the fun of it, let’s convert this to a record, providing easy
 random access to the environment variables:
 
      > let env = record env;
      > env!!["SHELL","HOME"];
      {"/bin/bash","/home/ag"}
+
 
 
 File: purelib.info,  Node: Perl Regex Compatibility,  Prev: Submatches,  Up: Regex Matching
@@ -6325,6 +6523,7 @@ more limited) POSIX syntax.  For instance, you can now write:
      > using regex;
      > regex "(?:Bob says: (\\w+))" 0 "Bob says: Go" 0;
      1,0,"Bob says: Go",10,"Go"
+
 
   Note that in Perl-style regexes the ‘(?:...)’ construct indicates a
 non-capturing group, so that the above invocation returns just a single
@@ -6370,6 +6569,7 @@ declaration to your program:
 
      using posix;
 
+
   The following operations are provided.  Please see the appropriate
 POSIX manual pages for a closer description of these functions.
 
@@ -6413,6 +6613,7 @@ ported from the Q library.  To use the operations of this module, add
 the following import declaration to your program:
 
      using getopt;
+
 
   The following operation is provided:
 
@@ -6470,6 +6671,7 @@ an empty option string for the ‘short_opt’ field.
      > getopt opts [foo, "-h", bar];
      ["--help"=>()],[foo,bar]
 
+
   As the last example shows, non-option arguments (as well as option
 values specified as separate arguments) can actually be any values which
 are just copied to the result lists as is.
@@ -6503,22 +6705,22 @@ Index
  [index ]
 * Menu:
 
-* ! (infix function):                    Lists and Tuples.    (line 147)
+* ! (infix function):                    Lists and Tuples.    (line 157)
 * ! (infix function) <1>:                Basic String Functions.
                                                               (line   6)
-* ! (infix function) <2>:                Matrix Functions.    (line  35)
+* ! (infix function) <2>:                Matrix Functions.    (line  37)
 * ! (infix function) <3>:                Record Functions.    (line  62)
 * ! (infix function) <4>:                Operations.          (line  34)
 * ! (infix function) <5>:                Operations.          (line  38)
 * ! (infix function) <6>:                Operations<3>.       (line  53)
-* !! (infix function):                   Lists and Tuples.    (line 159)
+* !! (infix function):                   Lists and Tuples.    (line 170)
 * !! (infix function) <1>:               Basic String Functions.
                                                               (line   6)
-* !! (infix function) <2>:               Matrix Functions.    (line  35)
+* !! (infix function) <2>:               Matrix Functions.    (line  37)
 * !! (infix function) <3>:               Record Functions.    (line  67)
-* # (prefix function):                   Lists and Tuples.    (line 133)
+* # (prefix function):                   Lists and Tuples.    (line 142)
 * # (prefix function) <1>:               Basic String Functions.
-                                                              (line  21)
+                                                              (line  22)
 * # (prefix function) <2>:               Matrix Functions.    (line  10)
 * # (prefix function) <3>:               Record Functions.    (line  52)
 * # (prefix function) <4>:               Expression Serialization.
@@ -6534,77 +6736,77 @@ Index
 * * (infix function):                    Arithmetic.          (line  86)
 * * (infix function) <1>:                Operations<3>.       (line  45)
 * * (infix function) <2>:                Operations<4>.       (line  37)
-* + (infix function):                    Lists and Tuples.    (line  86)
+* + (infix function):                    Lists and Tuples.    (line  91)
 * + (infix function) <1>:                Basic String Functions.
                                                               (line   6)
 * + (infix function) <2>:                Arithmetic.          (line  86)
-* + (infix function) <3>:                Pointer Arithmetic.  (line  30)
+* + (infix function) <3>:                Pointer Arithmetic.  (line  31)
 * + (infix function) <4>:                Operations<3>.       (line  37)
 * + (infix function) <5>:                Operations<4>.       (line  29)
 * +; (infix function):                   Complex Numbers.     (line   6)
 * , (infix constructor):                 Lists and Tuples.    (line  16)
 * - (infix function):                    Arithmetic.          (line  86)
-* - (infix function) <1>:                Pointer Arithmetic.  (line  30)
-* - (infix function) <2>:                Pointer Arithmetic.  (line  30)
+* - (infix function) <1>:                Pointer Arithmetic.  (line  31)
+* - (infix function) <2>:                Pointer Arithmetic.  (line  31)
 * - (infix function) <3>:                Operations<3>.       (line  41)
 * - (infix function) <4>:                Operations<4>.       (line  33)
 * - (prefix function):                   Arithmetic.          (line  95)
 * . (infix function):                    Basic Combinators.   (line   8)
-* .. (infix function):                   Lists and Tuples.    (line 185)
+* .. (infix function):                   Lists and Tuples.    (line 198)
 * / (infix function):                    Arithmetic.          (line  86)
 * ; (infix constructor):                 Lists and Tuples.    (line  16)
 * < (infix function):                    Basic String Functions.
-                                                              (line  34)
+                                                              (line  36)
 * < (infix function) <1>:                Arithmetic.          (line 110)
-* < (infix function) <2>:                Pointer Arithmetic.  (line  48)
+* < (infix function) <2>:                Pointer Arithmetic.  (line  49)
 * <; (infix function):                   Complex Numbers.     (line   6)
 * << (infix function):                   Arithmetic.          (line 133)
 * <= (infix function):                   Basic String Functions.
-                                                              (line  34)
+                                                              (line  36)
 * <= (infix function) <1>:               Arithmetic.          (line 110)
-* <= (infix function) <2>:               Pointer Arithmetic.  (line  48)
-* == (infix function):                   Lists and Tuples.    (line 118)
+* <= (infix function) <2>:               Pointer Arithmetic.  (line  49)
+* == (infix function):                   Lists and Tuples.    (line 126)
 * == (infix function) <1>:               Hash Pairs.          (line  16)
 * == (infix function) <2>:               Basic String Functions.
-                                                              (line  34)
-* == (infix function) <3>:               Matrix Functions.    (line  26)
+                                                              (line  36)
+* == (infix function) <3>:               Matrix Functions.    (line  27)
 * == (infix function) <4>:               Arithmetic.          (line 105)
-* == (infix function) <5>:               Pointer Arithmetic.  (line  42)
+* == (infix function) <5>:               Pointer Arithmetic.  (line  43)
 * === (infix function):                  Predicates.          (line  11)
 * => (infix constructor):                Hash Pairs.          (line  12)
 * > (infix function):                    Basic String Functions.
-                                                              (line  34)
+                                                              (line  36)
 * > (infix function) <1>:                Arithmetic.          (line 110)
-* > (infix function) <2>:                Pointer Arithmetic.  (line  48)
+* > (infix function) <2>:                Pointer Arithmetic.  (line  49)
 * >= (infix function):                   Basic String Functions.
-                                                              (line  34)
+                                                              (line  36)
 * >= (infix function) <1>:               Arithmetic.          (line 110)
-* >= (infix function) <2>:               Pointer Arithmetic.  (line  48)
+* >= (infix function) <2>:               Pointer Arithmetic.  (line  49)
 * >> (infix function):                   Arithmetic.          (line 133)
 * [] (constructor):                      Lists and Tuples.    (line  11)
 * ^ (infix function):                    Arithmetic.          (line  86)
 * __break__ (function):                  Other Special Primitives.
                                                               (line  14)
-* __dir__ (macro):                       Inspection.          (line  66)
-* __file__ (macro):                      Inspection.          (line  66)
-* __func__ (function):                   Inspection.          (line  25)
-* __list__ (macro):                      Inspection.          (line  95)
-* __locals__ (macro):                    Inspection.          (line 139)
-* __namespace__ (macro):                 Inspection.          (line  52)
-* __str__ (function):                    Eval and Friends.    (line 125)
+* __dir__ (macro):                       Inspection.          (line  70)
+* __file__ (macro):                      Inspection.          (line  70)
+* __func__ (function):                   Inspection.          (line  26)
+* __list__ (macro):                      Inspection.          (line 101)
+* __locals__ (macro):                    Inspection.          (line 148)
+* __namespace__ (macro):                 Inspection.          (line  55)
+* __str__ (function):                    Eval and Friends.    (line 126)
 * __trace__ (function):                  Other Special Primitives.
                                                               (line  14)
 * {| |} (outfix macro):                  Matrix Construction and Conversions.
-                                                              (line 132)
+                                                              (line 139)
 * || (infix function):                   Arithmetic.          (line 117)
 * ~ (prefix function):                   Arithmetic.          (line 117)
-* ~= (infix function):                   Lists and Tuples.    (line 118)
+* ~= (infix function):                   Lists and Tuples.    (line 126)
 * ~= (infix function) <1>:               Hash Pairs.          (line  16)
 * ~= (infix function) <2>:               Basic String Functions.
-                                                              (line  34)
-* ~= (infix function) <3>:               Matrix Functions.    (line  26)
+                                                              (line  36)
+* ~= (infix function) <3>:               Matrix Functions.    (line  27)
 * ~= (infix function) <4>:               Arithmetic.          (line 105)
-* ~= (infix function) <5>:               Pointer Arithmetic.  (line  42)
+* ~= (infix function) <5>:               Pointer Arithmetic.  (line  43)
 * ~== (infix function):                  Predicates.          (line  11)
 * abs (function):                        Arithmetic.          (line 152)
 * abs (function) <1>:                    Complex Numbers.     (line  60)
@@ -6613,16 +6815,16 @@ Index
 * acosh (function):                      Basic Math Functions.
                                                               (line  86)
 * addr (function):                       Pointer Operations.  (line  11)
-* add_constdef (function):               Inspection.          (line 272)
-* add_fundef (function):                 Inspection.          (line 242)
-* add_fundef_at (function):              Inspection.          (line 250)
-* add_interface (function):              Inspection.          (line 260)
-* add_interface_at (function):           Inspection.          (line 266)
-* add_macdef (function):                 Inspection.          (line 242)
-* add_macdef_at (function):              Inspection.          (line 250)
-* add_typedef (function):                Inspection.          (line 242)
-* add_typedef_at (function):             Inspection.          (line 250)
-* add_vardef (function):                 Inspection.          (line 272)
+* add_constdef (function):               Inspection.          (line 284)
+* add_fundef (function):                 Inspection.          (line 254)
+* add_fundef_at (function):              Inspection.          (line 262)
+* add_interface (function):              Inspection.          (line 272)
+* add_interface_at (function):           Inspection.          (line 278)
+* add_macdef (function):                 Inspection.          (line 254)
+* add_macdef_at (function):              Inspection.          (line 262)
+* add_typedef (function):                Inspection.          (line 254)
+* add_typedef_at (function):             Inspection.          (line 262)
+* add_vardef (function):                 Inspection.          (line 284)
 * all (function):                        Common List Functions.
                                                               (line  10)
 * and (infix function):                  Arithmetic.          (line 126)
@@ -6633,13 +6835,13 @@ Index
 * appl (type):                           Prelude Types.       (line  80)
 * applp (function):                      Predicates.          (line  73)
 * arg (function):                        Complex Numbers.     (line  60)
-* arity (function):                      Inspection.          (line 315)
+* arity (function):                      Inspection.          (line 327)
 * array (function):                      Operations.          (line  10)
-* array (module):                        Container Types.     (line  27)
+* array (module):                        Container Types.     (line  28)
 * array (type):                          Arrays.              (line  11)
 * array2 (function):                     Operations.          (line  14)
 * arrayp (function):                     Operations.          (line  26)
-* asctime (function):                    Time Functions.      (line 114)
+* asctime (function):                    Time Functions.      (line 118)
 * asin (function):                       Basic Math Functions.
                                                               (line  69)
 * asinh (function):                      Basic Math Functions.
@@ -6662,7 +6864,7 @@ Index
 * bag (type):                            Sets and Bags.       (line  17)
 * bagp (function):                       Operations<4>.       (line  22)
 * bigint (function):                     Conversions.         (line  16)
-* bigint (function) <1>:                 Pointer Arithmetic.  (line  19)
+* bigint (function) <1>:                 Pointer Arithmetic.  (line  20)
 * bigintp (function):                    Predicates.          (line  31)
 * bigintval (type):                      Semantic Number Predicates and Types.
                                                               (line  36)
@@ -6699,22 +6901,22 @@ Index
 * ceil (function):                       Conversions.         (line  53)
 * char (type):                           Prelude Types.       (line  47)
 * character arithmetic:                  Basic String Functions.
-                                                              (line  89)
+                                                              (line  93)
 * charp (function):                      Predicates.          (line  44)
 * chars (function):                      Basic String Functions.
-                                                              (line 103)
+                                                              (line 108)
 * check_ptrtag (function):               Tagged Pointers.     (line  25)
 * chr (function):                        Basic String Functions.
-                                                              (line  84)
+                                                              (line  88)
 * cis (function):                        Complex Numbers.     (line  55)
 * clearerr (function):                   Basic I/O Interface. (line  49)
-* clearsym (function):                   Eval and Friends.    (line 147)
+* clearsym (function):                   Eval and Friends.    (line 149)
 * clear_sentry (function):               Sentries.            (line  19)
 * clock (function):                      Time Functions.      (line  27)
 * closure (type):                        Prelude Types.       (line 104)
 * closurep (function):                   Predicates.          (line  86)
 * cmatrix (function):                    Matrix Construction and Conversions.
-                                                              (line  86)
+                                                              (line  91)
 * cmatrix (type):                        Matrix Inspection and Manipulation.
                                                               (line   6)
 * cmatrixp (function):                   Matrix Inspection and Manipulation.
@@ -6728,15 +6930,15 @@ Index
 * colmap (function):                     Matrix Inspection and Manipulation.
                                                               (line  98)
 * colrev (function):                     Matrix Inspection and Manipulation.
-                                                              (line 190)
+                                                              (line 194)
 * cols (function):                       Matrix Inspection and Manipulation.
                                                               (line  55)
 * colvector (function):                  Matrix Construction and Conversions.
-                                                              (line  21)
+                                                              (line  22)
 * colvectorp (function):                 Matrix Inspection and Manipulation.
                                                               (line  28)
 * colvectorseq (function):               Matrix Construction and Conversions.
-                                                              (line  46)
+                                                              (line  48)
 * combinators:                           Basic Combinators.   (line   6)
 * complex (function):                    Complex Numbers.     (line  46)
 * complex (type):                        Prelude Types.       (line   9)
@@ -6758,13 +6960,13 @@ Index
 * conj (function):                       Matrix Inspection and Manipulation.
                                                               (line 119)
 * conj (function) <1>:                   Complex Numbers.     (line  72)
-* cooked (function):                     Sentries.            (line  52)
-* cookedp (function):                    Sentries.            (line  48)
+* cooked (function):                     Sentries.            (line  53)
+* cookedp (function):                    Sentries.            (line  49)
 * cos (function):                        Basic Math Functions.
                                                               (line  63)
 * cosh (function):                       Basic Math Functions.
                                                               (line  80)
-* cst (function):                        Basic Combinators.   (line  20)
+* cst (function):                        Basic Combinators.   (line  21)
 * cstring (function):                    Low-Level Operations.
                                                               (line  15)
 * cstring_dup (function):                Low-Level Operations.
@@ -6773,38 +6975,38 @@ Index
                                                               (line  61)
 * cstring_vector (function):             Low-Level Operations.
                                                               (line  66)
-* ctime (function):                      Time Functions.      (line  95)
-* curry (function):                      Basic Combinators.   (line  71)
-* curry3 (function):                     Basic Combinators.   (line  92)
+* ctime (function):                      Time Functions.      (line  99)
+* curry (function):                      Basic Combinators.   (line  76)
+* curry3 (function):                     Basic Combinators.   (line  99)
 * cycle (function):                      List Generators.     (line  11)
 * cyclen (function):                     List Generators.     (line  15)
-* daylight (variable):                   Time Functions.      (line  69)
-* defenum (function):                    Enumerated Types.    (line  35)
+* daylight (variable):                   Time Functions.      (line  72)
+* defenum (function):                    Enumerated Types.    (line  36)
 * delete (function):                     Record Functions.    (line  80)
 * delete (function) <1>:                 Operations<3>.       (line 100)
 * delete (function) <2>:                 Operations<4>.       (line  74)
 * delete_all (function):                 Operations<3>.       (line 111)
 * delete_all (function) <1>:             Operations<4>.       (line  79)
 * delete_val (function):                 Operations<3>.       (line 105)
-* del_constdef (function):               Inspection.          (line 296)
-* del_fundef (function):                 Inspection.          (line 282)
-* del_interface (function):              Inspection.          (line 291)
-* del_macdef (function):                 Inspection.          (line 282)
-* del_typedef (function):                Inspection.          (line 282)
-* del_vardef (function):                 Inspection.          (line 296)
+* del_constdef (function):               Inspection.          (line 308)
+* del_fundef (function):                 Inspection.          (line 294)
+* del_interface (function):              Inspection.          (line 303)
+* del_macdef (function):                 Inspection.          (line 294)
+* del_typedef (function):                Inspection.          (line 294)
+* del_vardef (function):                 Inspection.          (line 308)
 * den (function):                        Rational Numbers.    (line  47)
 * diag (function):                       Matrix Inspection and Manipulation.
                                                               (line  60)
 * diagmat (function):                    Matrix Inspection and Manipulation.
                                                               (line 107)
 * dict (function):                       Operations<3>.       (line  13)
-* dict (module):                         Examples<2>.         (line  13)
+* dict (module):                         Examples<2>.         (line  14)
 * dict (type):                           Dictionaries.        (line  11)
 * dictp (function):                      Operations<3>.       (line  23)
 * dim (function):                        Matrix Functions.    (line  10)
 * div (infix function):                  Arithmetic.          (line 100)
 * dmatrix (function):                    Matrix Construction and Conversions.
-                                                              (line  86)
+                                                              (line  91)
 * dmatrix (type):                        Matrix Inspection and Manipulation.
                                                               (line   6)
 * dmatrixp (function):                   Matrix Inspection and Manipulation.
@@ -6837,12 +7039,12 @@ Index
 * emptyhset (function):                  Operations<4>.       (line   6)
 * emptymdict (function):                 Operations<3>.       (line   6)
 * emptyset (function):                   Operations<4>.       (line   6)
-* enum (function):                       Enumerated Types.    (line  22)
+* enum (function):                       Enumerated Types.    (line  23)
 * enum (module):                         Semantic Number Predicates and Types.
                                                               (line  44)
-* enum (type):                           Enumerated Types.    (line  47)
-* enumof (function):                     Enumerated Types.    (line  41)
-* enump (function):                      Enumerated Types.    (line  53)
+* enum (type):                           Enumerated Types.    (line  48)
+* enumof (function):                     Enumerated Types.    (line  42)
+* enump (function):                      Enumerated Types.    (line  54)
 * errno (function):                      Errno and Friends.   (line   6)
 * eval (function):                       Eval and Friends.    (line  31)
 * evalcmd (function):                    Eval and Friends.    (line  53)
@@ -6874,9 +7076,9 @@ Index
 * first (function) <1>:                  Operations<2>.       (line  31)
 * first (function) <2>:                  Operations<3>.       (line  81)
 * first (function) <3>:                  Operations<4>.       (line  59)
-* fix (function):                        Basic Combinators.   (line  98)
-* fixity (function):                     Inspection.          (line 321)
-* flip (function):                       Basic Combinators.   (line  58)
+* fix (function):                        Basic Combinators.   (line 105)
+* fixity (function):                     Inspection.          (line 333)
+* flip (function):                       Basic Combinators.   (line  61)
 * float_matrix (function):               Pointers and Matrices.
                                                               (line  41)
 * float_pointer (function):              Pointers and Matrices.
@@ -6895,14 +7097,14 @@ Index
 * force (function):                      Other Special Primitives.
                                                               (line  23)
 * fork (function):                       Additional POSIX Functions.
-                                                              (line  20)
-* fprintf (function):                    Basic I/O Interface. (line 160)
+                                                              (line  21)
+* fprintf (function):                    Basic I/O Interface. (line 162)
 * fputs (function):                      Basic I/O Interface. (line  76)
 * frac (function):                       Conversions.         (line  63)
 * fread (function):                      Basic I/O Interface. (line  84)
 * free (function):                       Pointer Operations.  (line  20)
 * freopen (function):                    Basic I/O Interface. (line  32)
-* fscanf (function):                     Basic I/O Interface. (line 182)
+* fscanf (function):                     Basic I/O Interface. (line 184)
 * fseek (function):                      Basic I/O Interface. (line  90)
 * fstat (function):                      Stat and Friends.    (line  24)
 * ftell (function):                      Basic I/O Interface. (line  90)
@@ -6914,36 +7116,36 @@ Index
 * gcd (function):                        Arithmetic.          (line 168)
 * get (function):                        Expression References.
                                                               (line  27)
-* getopt (function):                     Option Parsing.      (line  14)
+* getopt (function):                     Option Parsing.      (line  15)
 * getopt (module):                       Additional POSIX Functions.
-                                                              (line  47)
+                                                              (line  48)
 * getpid (function):                     Additional POSIX Functions.
-                                                              (line  24)
+                                                              (line  25)
 * getppid (function):                    Additional POSIX Functions.
-                                                              (line  24)
+                                                              (line  25)
 * gets (function):                       Basic I/O Interface. (line  65)
 * gettimeofday (function):               Time Functions.      (line  17)
 * get_byte (function):                   Pointer Operations.  (line  37)
-* get_constdef (function):               Inspection.          (line 231)
+* get_constdef (function):               Inspection.          (line 243)
 * get_double (function):                 Pointer Operations.  (line  37)
 * get_float (function):                  Pointer Operations.  (line  37)
-* get_fundef (function):                 Inspection.          (line 208)
+* get_fundef (function):                 Inspection.          (line 220)
 * get_int (function):                    Pointer Operations.  (line  37)
 * get_int64 (function):                  Pointer Operations.  (line  37)
-* get_interface (function):              Inspection.          (line 216)
-* get_interface_typedef (function):      Inspection.          (line 216)
+* get_interface (function):              Inspection.          (line 228)
+* get_interface_typedef (function):      Inspection.          (line 228)
 * get_long (function):                   Pointer Operations.  (line  37)
-* get_macdef (function):                 Inspection.          (line 208)
+* get_macdef (function):                 Inspection.          (line 220)
 * get_pointer (function):                Pointer Operations.  (line  37)
 * get_ptrtag (function):                 Tagged Pointers.     (line  21)
 * get_sentry (function):                 Sentries.            (line  23)
 * get_short (function):                  Pointer Operations.  (line  37)
 * get_string (function):                 Pointer Operations.  (line  37)
-* get_typedef (function):                Inspection.          (line 208)
-* get_vardef (function):                 Inspection.          (line 231)
+* get_typedef (function):                Inspection.          (line 220)
+* get_vardef (function):                 Inspection.          (line 243)
 * glob (function):                       Shell Globbing.      (line  11)
-* globsym (function):                    Eval and Friends.    (line 138)
-* gmtime (function):                     Time Functions.      (line 100)
+* globsym (function):                    Eval and Friends.    (line 140)
+* gmtime (function):                     Time Functions.      (line 104)
 * hash (function):                       Conversions.         (line   8)
 * hash pair:                             Hash Pairs.          (line   6)
 * hash rocket:                           Hash Pairs.          (line   6)
@@ -6956,7 +7158,7 @@ Index
 * head (function):                       Common List Functions.
                                                               (line  65)
 * heap (function):                       Operations<2>.       (line  10)
-* heap (module):                         Examples.            (line  57)
+* heap (module):                         Examples.            (line  64)
 * heap (type):                           Heaps.               (line  17)
 * heapp (function):                      Operations<2>.       (line  14)
 * hmdict (function):                     Operations<3>.       (line  13)
@@ -6966,12 +7168,12 @@ Index
 * hset (type):                           Sets and Bags.       (line  23)
 * hsetp (function):                      Operations<4>.       (line  22)
 * i (constant):                          Complex Numbers.     (line  11)
-* id (function):                         Basic Combinators.   (line  20)
+* id (function):                         Basic Combinators.   (line  21)
 * im (function):                         Matrix Inspection and Manipulation.
                                                               (line 119)
 * im (function) <1>:                     Complex Numbers.     (line  67)
 * imatrix (function):                    Matrix Construction and Conversions.
-                                                              (line  86)
+                                                              (line  91)
 * imatrix (type):                        Matrix Inspection and Manipulation.
                                                               (line   6)
 * imatrixp (function):                   Matrix Inspection and Manipulation.
@@ -6979,7 +7181,7 @@ Index
 * index (function):                      Common List Functions.
                                                               (line  69)
 * index (function) <1>:                  Basic String Functions.
-                                                              (line  54)
+                                                              (line  57)
 * inexactp (function):                   Predicates.          (line  58)
 * inf (constant):                        Special Constants.   (line   6)
 * infp (function):                       Predicates.          (line  64)
@@ -6991,7 +7193,7 @@ Index
 * insert (function) <3>:                 Operations<3>.       (line  91)
 * insert (function) <4>:                 Operations<4>.       (line  69)
 * int (function):                        Conversions.         (line  16)
-* int (function) <1>:                    Pointer Arithmetic.  (line  19)
+* int (function) <1>:                    Pointer Arithmetic.  (line  20)
 * int64_matrix (function):               Pointers and Matrices.
                                                               (line  41)
 * int64_pointer (function):              Pointers and Matrices.
@@ -7013,12 +7215,12 @@ Index
 * iteraten (function):                   List Generators.     (line  25)
 * iterwhile (function):                  List Generators.     (line  30)
 * join (function):                       Basic String Functions.
-                                                              (line 139)
-* key (function):                        Hash Pairs.          (line  24)
+                                                              (line 145)
+* key (function):                        Hash Pairs.          (line  25)
 * keys (function):                       Record Functions.    (line  86)
 * keys (function) <1>:                   Operations<3>.       (line  73)
 * kill (function):                       Additional POSIX Functions.
-                                                              (line  37)
+                                                              (line  38)
 * lambda (type):                         Prelude Types.       (line 100)
 * lambdap (function):                    Predicates.          (line  86)
 * last (function):                       Common List Functions.
@@ -7029,32 +7231,32 @@ Index
 * lasterr (function):                    Eval and Friends.    (line  63)
 * lasterrpos (function):                 Eval and Friends.    (line  72)
 * lcd (function):                        Arithmetic.          (line 168)
-* list (function):                       Lists and Tuples.    (line 236)
+* list (function):                       Lists and Tuples.    (line 254)
 * list (function) <1>:                   Basic String Functions.
-                                                              (line 103)
+                                                              (line 108)
 * list (function) <2>:                   Matrix Construction and Conversions.
-                                                              (line 112)
+                                                              (line 119)
 * list (function) <3>:                   Operations.          (line  46)
 * list (function) <4>:                   Operations<2>.       (line  26)
 * list (function) <5>:                   Operations<3>.       (line  67)
 * list (function) <6>:                   Operations<4>.       (line  53)
 * list (type):                           Prelude Types.       (line  54)
 * list2 (function):                      Matrix Construction and Conversions.
-                                                              (line 112)
+                                                              (line 119)
 * list2 (function) <1>:                  Operations.          (line  51)
-* list; arithmetic sequence:             Lists and Tuples.    (line 185)
-* list; concatenation:                   Lists and Tuples.    (line  86)
-* list; equality:                        Lists and Tuples.    (line 118)
-* list; indexing:                        Lists and Tuples.    (line 147)
-* list; size:                            Lists and Tuples.    (line 133)
-* list; slicing:                         Lists and Tuples.    (line 159)
+* list; arithmetic sequence:             Lists and Tuples.    (line 198)
+* list; concatenation:                   Lists and Tuples.    (line  91)
+* list; equality:                        Lists and Tuples.    (line 126)
+* list; indexing:                        Lists and Tuples.    (line 157)
+* list; size:                            Lists and Tuples.    (line 142)
+* list; slicing:                         Lists and Tuples.    (line 170)
 * listmap (function):                    Common List Functions.
                                                               (line  86)
 * listp (function):                      Predicates.          (line  73)
 * lists:                                 Lists and Tuples.    (line   6)
 * ln (function):                         Basic Math Functions.
                                                               (line  57)
-* localtime (function):                  Time Functions.      (line 100)
+* localtime (function):                  Time Functions.      (line 104)
 * log (function):                        Basic Math Functions.
                                                               (line  57)
 * lstat (function):                      Stat and Friends.    (line  18)
@@ -7069,7 +7271,7 @@ Index
 * math (module):                         Mathematical Functions.
                                                               (line   6)
 * matrix (function):                     Basic String Functions.
-                                                              (line 108)
+                                                              (line 113)
 * matrix (function) <1>:                 Matrix Construction and Conversions.
                                                               (line   6)
 * matrix; dimensions:                    Matrix Functions.    (line  10)
@@ -7094,22 +7296,22 @@ Index
 * mkhdict (function):                    Operations<3>.       (line  30)
 * mkhmdict (function):                   Operations<3>.       (line  30)
 * mkmdict (function):                    Operations<3>.       (line  30)
-* mktime (function):                     Time Functions.      (line 109)
+* mktime (function):                     Time Functions.      (line 113)
 * mod (infix function):                  Arithmetic.          (line 100)
 * nan (constant):                        Special Constants.   (line   6)
 * nanosleep (function):                  Time Functions.      (line  34)
 * nanp (function):                       Predicates.          (line  64)
-* nargs (function):                      Inspection.          (line 309)
+* nargs (function):                      Inspection.          (line 321)
 * nmatrix (type):                        Matrix Inspection and Manipulation.
                                                               (line   6)
 * nmatrixp (function):                   Matrix Inspection and Manipulation.
                                                               (line  20)
 * not (prefix function):                 Arithmetic.          (line 126)
 * NULL (constant):                       Special Constants.   (line  13)
-* null (function):                       Lists and Tuples.    (line 216)
+* null (function):                       Lists and Tuples.    (line 232)
 * null (function) <1>:                   Basic String Functions.
-                                                              (line  21)
-* null (function) <2>:                   Matrix Functions.    (line  21)
+                                                              (line  22)
+* null (function) <2>:                   Matrix Functions.    (line  22)
 * null (function) <3>:                   Predicates.          (line  69)
 * null (function) <4>:                   Operations.          (line  42)
 * null (function) <5>:                   Operations<2>.       (line  22)
@@ -7122,7 +7324,7 @@ Index
                                                               (line  42)
 * or (infix function):                   Arithmetic.          (line 126)
 * ord (function):                        Basic String Functions.
-                                                              (line  79)
+                                                              (line  83)
 * out_of_bounds (constructor):           Constants and Operators.
                                                               (line  37)
 * pack (function):                       Matrix Inspection and Manipulation.
@@ -7130,7 +7332,7 @@ Index
 * packed (function):                     Matrix Inspection and Manipulation.
                                                               (line 126)
 * pause (function):                      Additional POSIX Functions.
-                                                              (line  45)
+                                                              (line  46)
 * pclose (function):                     Basic I/O Interface. (line  38)
 * perror (function):                     Errno and Friends.   (line   6)
 * pi (constant):                         Basic Math Functions.
@@ -7140,17 +7342,17 @@ Index
 * pointer (function) <1>:                Conversions.         (line  22)
 * pointerp (function):                   Predicates.          (line  31)
 * pointers (module):                     Expression References.
-                                                              (line  73)
-* pointer_cast (function):               Tagged Pointers.     (line  93)
-* pointer_tag (function):                Tagged Pointers.     (line  72)
-* pointer_type (function):               Tagged Pointers.     (line  83)
+                                                              (line  75)
+* pointer_cast (function):               Tagged Pointers.     (line  95)
+* pointer_tag (function):                Tagged Pointers.     (line  74)
+* pointer_type (function):               Tagged Pointers.     (line  85)
 * polar (function):                      Complex Numbers.     (line  50)
 * popen (function):                      Basic I/O Interface. (line  18)
 * posix (module):                        Additional POSIX Functions.
                                                               (line   8)
 * pow (function):                        Arithmetic.          (line 175)
 * pred (function):                       Arithmetic.          (line 163)
-* printf (function):                     Basic I/O Interface. (line 160)
+* printf (function):                     Basic I/O Interface. (line 162)
 * ptrtag (function):                     Tagged Pointers.     (line  16)
 * put (function):                        Expression References.
                                                               (line  23)
@@ -7165,7 +7367,7 @@ Index
 * put_short (function):                  Pointer Operations.  (line  50)
 * put_string (function):                 Pointer Operations.  (line  50)
 * raise (function):                      Additional POSIX Functions.
-                                                              (line  41)
+                                                              (line  42)
 * random (function):                     Basic Math Functions.
                                                               (line  28)
 * random31 (function):                   Basic Math Functions.
@@ -7196,32 +7398,32 @@ Index
 * rect (function):                       Complex Numbers.     (line  50)
 * redim (function):                      Matrix Inspection and Manipulation.
                                                               (line 139)
-* reduce (macro):                        Eval and Friends.    (line 171)
-* reduce_with (function):                Eval and Friends.    (line 181)
+* reduce (macro):                        Eval and Friends.    (line 174)
+* reduce_with (function):                Eval and Friends.    (line 184)
 * ref (function):                        Expression References.
                                                               (line  19)
 * ref (type):                            Expression References.
                                                               (line  14)
 * refp (function):                       Expression References.
                                                               (line  37)
-* reg (function):                        Regex Matching.      (line 109)
-* regex (function):                      Regex Matching.      (line  24)
+* reg (function):                        Regex Matching.      (line 110)
+* regex (function):                      Regex Matching.      (line  25)
 * regex (module):                        Regex Matching.      (line   6)
-* regexg (function):                     Regex Matching.      (line 123)
-* regexgg (function):                    Regex Matching.      (line 131)
-* regexggs (function):                   Regex Matching.      (line 155)
-* regexgs (function):                    Regex Matching.      (line 155)
-* regs (function):                       Regex Matching.      (line 114)
-* regsplit (function):                   Regex Matching.      (line 145)
-* regsplits (function):                  Regex Matching.      (line 155)
-* regsub (function):                     Regex Matching.      (line 135)
-* reg_info (function):                   Regex Matching.      (line 105)
-* reg_result (function):                 Regex Matching.      (line  99)
+* regexg (function):                     Regex Matching.      (line 124)
+* regexgg (function):                    Regex Matching.      (line 132)
+* regexggs (function):                   Regex Matching.      (line 156)
+* regexgs (function):                    Regex Matching.      (line 156)
+* regs (function):                       Regex Matching.      (line 115)
+* regsplit (function):                   Regex Matching.      (line 146)
+* regsplits (function):                  Regex Matching.      (line 156)
+* regsub (function):                     Regex Matching.      (line 136)
+* reg_info (function):                   Regex Matching.      (line 106)
+* reg_result (function):                 Regex Matching.      (line 100)
 * repeat (function):                     List Generators.     (line  36)
 * repeatn (function):                    List Generators.     (line  40)
-* reverse (function):                    Lists and Tuples.    (line 225)
+* reverse (function):                    Lists and Tuples.    (line 242)
 * reverse (function) <1>:                Matrix Inspection and Manipulation.
-                                                              (line 190)
+                                                              (line 194)
 * rewind (function):                     Basic I/O Interface. (line  90)
 * rlist (type):                          Prelude Types.       (line  54)
 * rlistp (function):                     Predicates.          (line  73)
@@ -7242,17 +7444,17 @@ Index
 * rowmap (function):                     Matrix Inspection and Manipulation.
                                                               (line  98)
 * rowrev (function):                     Matrix Inspection and Manipulation.
-                                                              (line 190)
+                                                              (line 194)
 * rows (function):                       Matrix Inspection and Manipulation.
                                                               (line  55)
 * rowvector (function):                  Matrix Construction and Conversions.
-                                                              (line  21)
+                                                              (line  22)
 * rowvectorp (function):                 Matrix Inspection and Manipulation.
                                                               (line  28)
 * rowvectorseq (function):               Matrix Construction and Conversions.
-                                                              (line  46)
+                                                              (line  48)
 * same (function):                       Predicates.          (line  11)
-* scanf (function):                      Basic I/O Interface. (line 182)
+* scanf (function):                      Basic I/O Interface. (line 184)
 * scanl (function):                      Common List Functions.
                                                               (line  97)
 * scanl1 (function):                     Common List Functions.
@@ -7263,7 +7465,7 @@ Index
                                                               (line 113)
 * sentry (function):                     Sentries.            (line  14)
 * set (function):                        Operations<4>.       (line  13)
-* set (module):                          Examples<3>.         (line 105)
+* set (module):                          Examples<3>.         (line 116)
 * set (type):                            Sets and Bags.       (line  17)
 * setbuf (function):                     Basic I/O Interface. (line 101)
 * setlocale (function):                  POSIX Locale.        (line   6)
@@ -7282,7 +7484,7 @@ Index
 * sleep (function):                      Time Functions.      (line  34)
 * slice (function):                      Slicing.             (line  37)
 * smatrix (function):                    Matrix Construction and Conversions.
-                                                              (line  86)
+                                                              (line  91)
 * smatrix (type):                        Matrix Inspection and Manipulation.
                                                               (line   6)
 * smatrixp (function):                   Matrix Inspection and Manipulation.
@@ -7295,13 +7497,13 @@ Index
 * spawnve (function):                    Process Functions.   (line  33)
 * spawnvp (function):                    Process Functions.   (line  33)
 * split (function):                      Basic String Functions.
-                                                              (line 135)
-* sprintf (function):                    Basic I/O Interface. (line 172)
+                                                              (line 141)
+* sprintf (function):                    Basic I/O Interface. (line 174)
 * sqrt (function):                       Basic Math Functions.
                                                               (line  53)
 * srandom (function):                    Basic Math Functions.
                                                               (line  42)
-* sscanf (function):                     Basic I/O Interface. (line 199)
+* sscanf (function):                     Basic I/O Interface. (line 201)
 * stack_fault (constructor):             Constants and Operators.
                                                               (line  17)
 * stat (function):                       Stat and Friends.    (line   6)
@@ -7310,24 +7512,24 @@ Index
 * stdout (variable):                     Basic I/O Interface. (line  12)
 * str (function):                        Eval and Friends.    (line  17)
 * strcat (function):                     Basic String Functions.
-                                                              (line 114)
-* stream (function):                     Lists and Tuples.    (line 261)
+                                                              (line 119)
+* stream (function):                     Lists and Tuples.    (line 282)
 * strerror (function):                   Errno and Friends.   (line   6)
-* strftime (function):                   Time Functions.      (line 114)
+* strftime (function):                   Time Functions.      (line 118)
 * stride (function):                     Matrix Inspection and Manipulation.
                                                               (line  35)
 * string (function):                     Basic String Functions.
-                                                              (line 119)
+                                                              (line 124)
 * string (function) <1>:                 Low-Level Operations.
                                                               (line  15)
 * string; comparisons:                   Basic String Functions.
-                                                              (line  34)
+                                                              (line  36)
 * string; concatenation:                 Basic String Functions.
                                                               (line   6)
 * string; indexing:                      Basic String Functions.
                                                               (line   6)
 * string; size:                          Basic String Functions.
-                                                              (line  21)
+                                                              (line  22)
 * string; slicing:                       Basic String Functions.
                                                               (line   6)
 * stringp (function):                    Predicates.          (line  31)
@@ -7338,7 +7540,7 @@ Index
                                                               (line  61)
 * string_vector (function):              Low-Level Operations.
                                                               (line  66)
-* strptime (function):                   Time Functions.      (line 121)
+* strptime (function):                   Time Functions.      (line 125)
 * subdiag (function):                    Matrix Inspection and Manipulation.
                                                               (line  60)
 * subdiagmat (function):                 Matrix Inspection and Manipulation.
@@ -7351,7 +7553,7 @@ Index
 * subseq2 (function):                    Matrix Inspection and Manipulation.
                                                               (line  42)
 * substr (function):                     Basic String Functions.
-                                                              (line  59)
+                                                              (line  62)
 * succ (function):                       Arithmetic.          (line 163)
 * supdiag (function):                    Matrix Inspection and Manipulation.
                                                               (line  60)
@@ -7360,13 +7562,13 @@ Index
 * symbol (type):                         Prelude Types.       (line 121)
 * symbolp (function):                    Predicates.          (line 102)
 * system (function):                     Process Functions.   (line  11)
-* system (module):                       Examples<4>.         (line  69)
+* system (module):                       Examples<4>.         (line  75)
 * tail (function):                       Common List Functions.
-                                                              (line 133)
+                                                              (line 134)
 * take (function):                       Common List Functions.
-                                                              (line 137)
+                                                              (line 138)
 * takewhile (function):                  Common List Functions.
-                                                              (line 141)
+                                                              (line 142)
 * tan (function):                        Basic Math Functions.
                                                               (line  63)
 * tanh (function):                       Basic Math Functions.
@@ -7376,35 +7578,35 @@ Index
 * thunk (type):                          Prelude Types.       (line 109)
 * thunkp (function):                     Predicates.          (line  86)
 * time (function):                       Time Functions.      (line  11)
-* timezone (variable):                   Time Functions.      (line  69)
+* timezone (variable):                   Time Functions.      (line  72)
 * tmpfile (function):                    Basic I/O Interface. (line  43)
 * transpose (function):                  Matrix Inspection and Manipulation.
-                                                              (line 183)
+                                                              (line 186)
 * trap (function):                       Signal Handling.     (line   6)
 * true (constant):                       Constants and Operators.
                                                               (line   9)
 * trunc (function):                      Conversions.         (line  58)
-* tuple (function):                      Lists and Tuples.    (line 236)
+* tuple (function):                      Lists and Tuples.    (line 254)
 * tuple (function) <1>:                  Basic String Functions.
-                                                              (line 108)
+                                                              (line 113)
 * tuple (function) <2>:                  Matrix Construction and Conversions.
-                                                              (line 112)
+                                                              (line 119)
 * tuple (type):                          Prelude Types.       (line  68)
-* tuple; equality:                       Lists and Tuples.    (line 118)
-* tuple; indexing:                       Lists and Tuples.    (line 147)
-* tuple; size:                           Lists and Tuples.    (line 133)
-* tuple; slicing:                        Lists and Tuples.    (line 159)
+* tuple; equality:                       Lists and Tuples.    (line 126)
+* tuple; indexing:                       Lists and Tuples.    (line 157)
+* tuple; size:                           Lists and Tuples.    (line 142)
+* tuple; slicing:                        Lists and Tuples.    (line 170)
 * tuplep (function):                     Predicates.          (line  73)
 * tuples:                                Lists and Tuples.    (line   6)
 * typep (function):                      Predicates.          (line  23)
-* tzname (variable):                     Time Functions.      (line  69)
-* tzset (function):                      Time Functions.      (line  65)
+* tzname (variable):                     Time Functions.      (line  72)
+* tzset (function):                      Time Functions.      (line  68)
 * ubyte (function):                      Conversions.         (line  31)
 * uint (function):                       Conversions.         (line  31)
 * uint64 (function):                     Conversions.         (line  31)
 * ulong (function):                      Conversions.         (line  31)
-* uncurry (function):                    Basic Combinators.   (line  83)
-* uncurry3 (function):                   Basic Combinators.   (line  92)
+* uncurry (function):                    Basic Combinators.   (line  89)
+* uncurry3 (function):                   Basic Combinators.   (line  99)
 * unref (function):                      Expression References.
                                                               (line  31)
 * unzip (function):                      Zip and Friends.     (line   6)
@@ -7414,7 +7616,7 @@ Index
 * update (function) <2>:                 Operations<3>.       (line  91)
 * update2 (function):                    Operations.          (line  78)
 * ushort (function):                     Conversions.         (line  31)
-* val (function):                        Hash Pairs.          (line  24)
+* val (function):                        Hash Pairs.          (line  25)
 * val (function) <1>:                    Eval and Friends.    (line  22)
 * val (function) <2>:                    Expression Serialization.
                                                               (line  23)
@@ -7423,16 +7625,16 @@ Index
 * var (type):                            Prelude Types.       (line 115)
 * varp (function):                       Predicates.          (line 102)
 * vector (function):                     Matrix Construction and Conversions.
-                                                              (line  21)
+                                                              (line  22)
 * vectorp (function):                    Matrix Inspection and Manipulation.
                                                               (line  28)
 * vectorseq (function):                  Matrix Construction and Conversions.
-                                                              (line  46)
-* void (function):                       Basic Combinators.   (line  31)
+                                                              (line  48)
+* void (function):                       Basic Combinators.   (line  33)
 * wait (function):                       Additional POSIX Functions.
-                                                              (line  30)
+                                                              (line  31)
 * waitpid (function):                    Additional POSIX Functions.
-                                                              (line  30)
+                                                              (line  31)
 * xdict (type):                          Dictionaries.        (line  31)
 * xset (type):                           Sets and Bags.       (line  30)
 * zip (function):                        Zip and Friends.     (line  14)
@@ -7443,1633 +7645,1633 @@ Index
 
 
 Tag Table:
-Node: Top364
-Ref: purelib doc579
-Ref: b579
-Ref: Top-Footnote-13112
-Node: Prelude3157
-Ref: purelib prelude3248
-Ref: c3248
-Ref: purelib pure-library-manual3248
-Ref: d3248
-Ref: purelib id13248
-Ref: e3248
-Node: Constants and Operators4247
-Ref: purelib constants-and-operators4337
-Ref: f4337
-Ref: purelib true4541
-Ref: 104541
-Ref: purelib false4564
-Ref: 114564
-Ref: purelib failed_cond4793
-Ref: 124793
-Ref: purelib failed_match4827
-Ref: 134827
-Ref: purelib stack_fault4862
-Ref: 144862
-Ref: purelib malloc_error4896
-Ref: 154896
-Ref: purelib bad_list_value5305
-Ref: 165305
-Ref: purelib bad_tuple_value5344
-Ref: 175344
-Ref: purelib bad_string_value5384
-Ref: 185384
-Ref: purelib bad_matrix_value5425
-Ref: 195425
-Ref: purelib out_of_bounds5648
-Ref: 1a5648
-Ref: purelib operators5802
-Ref: 1b5802
-Node: Prelude Types7408
-Ref: purelib prelude-types7524
-Ref: 1c7524
-Ref: purelib id27524
-Ref: 1d7524
-Ref: purelib number/type7707
-Ref: 1e7707
-Ref: purelib complex/type7729
-Ref: 1f7729
-Ref: purelib real/type7752
-Ref: 207752
-Ref: purelib rational/type7772
-Ref: 217772
-Ref: purelib integer/type7796
-Ref: 227796
-Ref: purelib bool/type7819
-Ref: 237819
-Ref: purelib char/type9404
-Ref: 259404
-Ref: purelib list/type9579
-Ref: 279579
-Ref: purelib rlist/type9599
-Ref: 289599
-Ref: purelib tuple/type10309
-Ref: 2910309
-Ref: purelib appl/type10904
-Ref: 2a10904
-Ref: purelib function/type11117
-Ref: 2b11117
-Ref: purelib fun/type11488
-Ref: 2c11488
-Ref: purelib lambda/type11602
-Ref: 2d11602
-Ref: purelib closure/type11663
-Ref: 2e11663
-Ref: purelib thunk/type11824
-Ref: 2f11824
-Ref: purelib var/type12010
-Ref: 3012010
-Ref: purelib symbol/type12180
-Ref: 3112180
-Node: Basic Combinators12534
-Ref: purelib basic-combinators12643
-Ref: 3512643
-Ref: purelib $12758
-Ref: 3612758
-Ref: purelib12783
-Ref: 3712783
-Ref: purelib id13116
-Ref: 3813116
-Ref: purelib cst13140
-Ref: 3913140
-Ref: purelib void13374
-Ref: 3a13374
-Ref: purelib flip14399
-Ref: 3d14399
-Ref: purelib curry14741
-Ref: 3e14741
-Ref: purelib uncurry15038
-Ref: 3f15038
+Node: Top361
+Ref: purelib doc573
+Ref: b573
+Ref: Top-Footnote-13104
+Node: Prelude3149
+Ref: purelib prelude3240
+Ref: c3240
+Ref: purelib pure-library-manual3240
+Ref: d3240
+Ref: purelib id13240
+Ref: e3240
+Node: Constants and Operators4239
+Ref: purelib constants-and-operators4329
+Ref: f4329
+Ref: purelib true4533
+Ref: 104533
+Ref: purelib false4556
+Ref: 114556
+Ref: purelib failed_cond4785
+Ref: 124785
+Ref: purelib failed_match4819
+Ref: 134819
+Ref: purelib stack_fault4854
+Ref: 144854
+Ref: purelib malloc_error4888
+Ref: 154888
+Ref: purelib bad_list_value5297
+Ref: 165297
+Ref: purelib bad_tuple_value5336
+Ref: 175336
+Ref: purelib bad_string_value5376
+Ref: 185376
+Ref: purelib bad_matrix_value5417
+Ref: 195417
+Ref: purelib out_of_bounds5640
+Ref: 1a5640
+Ref: purelib operators5794
+Ref: 1b5794
+Node: Prelude Types7401
+Ref: purelib prelude-types7517
+Ref: 1c7517
+Ref: purelib id27517
+Ref: 1d7517
+Ref: purelib number/type7700
+Ref: 1e7700
+Ref: purelib complex/type7722
+Ref: 1f7722
+Ref: purelib real/type7745
+Ref: 207745
+Ref: purelib rational/type7765
+Ref: 217765
+Ref: purelib integer/type7789
+Ref: 227789
+Ref: purelib bool/type7812
+Ref: 237812
+Ref: purelib char/type9397
+Ref: 259397
+Ref: purelib list/type9572
+Ref: 279572
+Ref: purelib rlist/type9592
+Ref: 289592
+Ref: purelib tuple/type10302
+Ref: 2910302
+Ref: purelib appl/type10897
+Ref: 2a10897
+Ref: purelib function/type11110
+Ref: 2b11110
+Ref: purelib fun/type11481
+Ref: 2c11481
+Ref: purelib lambda/type11595
+Ref: 2d11595
+Ref: purelib closure/type11656
+Ref: 2e11656
+Ref: purelib thunk/type11817
+Ref: 2f11817
+Ref: purelib var/type12003
+Ref: 3012003
+Ref: purelib symbol/type12173
+Ref: 3112173
+Node: Basic Combinators12527
+Ref: purelib basic-combinators12636
+Ref: 3512636
+Ref: purelib $12751
+Ref: 3612751
+Ref: purelib12776
+Ref: 3712776
+Ref: purelib id13110
+Ref: 3813110
+Ref: purelib cst13134
+Ref: 3913134
+Ref: purelib void13369
+Ref: 3a13369
+Ref: purelib flip14395
+Ref: 3d14395
+Ref: purelib curry14739
+Ref: 3e14739
+Ref: purelib uncurry15037
+Ref: 3f15037
 Ref: purelib curry315297
 Ref: 4015297
 Ref: purelib uncurry315325
 Ref: 4115325
 Ref: purelib fix15485
 Ref: 4215485
-Ref: Basic Combinators-Footnote-116299
-Node: Lists and Tuples16359
-Ref: purelib lists-and-tuples16462
-Ref: 2616462
-Ref: purelib []16728
-Ref: 4316728
-Ref: 4416753
-Ref: 4516807
-Ref: 4616835
-Ref: purelib +/list19596
-Ref: 4719596
-Ref: purelib ==/list20792
-Ref: 4920792
-Ref: purelib ~=/list20818
-Ref: 4a20818
-Ref: purelib #21324
-Ref: 4c21324
-Ref: purelib !21673
-Ref: 4d21673
-Ref: purelib !!22038
-Ref: 4e22038
-Ref: 5023007
-Ref: purelib null23951
-Ref: 5123951
-Ref: purelib reverse24091
-Ref: 5224091
-Ref: purelib list24324
-Ref: 5324324
-Ref: purelib tuple24350
-Ref: 5424350
-Ref: purelib stream24987
-Ref: 5524987
-Node: Slicing25347
-Ref: purelib slicing25443
-Ref: 4f25443
-Ref: purelib subseq26650
-Ref: 5726650
-Ref: purelib slice27076
-Ref: 5827076
-Node: Hash Pairs27860
-Ref: purelib id327954
-Ref: 5927954
-Ref: purelib hash-pairs27954
-Ref: 5a27954
-Ref: purelib =>28343
-Ref: 5d28343
-Ref: purelib ==/hashpair28439
-Ref: 5e28439
-Ref: purelib ~=/hashpair28465
-Ref: 5f28465
-Ref: purelib key28590
-Ref: 5b28590
-Ref: purelib val28620
-Ref: 5c28620
-Node: List Functions29287
-Ref: purelib list-functions29390
-Ref: 6029390
-Node: Common List Functions29792
-Ref: purelib common-list-functions29889
-Ref: 6129889
-Ref: purelib any29946
-Ref: 6229946
-Ref: purelib all30057
-Ref: 6330057
-Ref: purelib cat30168
-Ref: 6430168
-Ref: purelib catmap30229
-Ref: 5630229
-Ref: purelib do30394
-Ref: 3b30394
-Ref: purelib drop30555
-Ref: 6530555
-Ref: purelib dropwhile30642
-Ref: 6630642
-Ref: purelib filter30772
-Ref: 6730772
-Ref: purelib foldl30886
-Ref: 6830886
-Ref: purelib foldl131099
-Ref: 6931099
-Ref: purelib foldr31336
-Ref: 6a31336
-Ref: purelib foldr131549
-Ref: 6b31549
-Ref: purelib head31786
-Ref: 6c31786
-Ref: purelib index31884
-Ref: 6d31884
-Ref: purelib init32244
-Ref: 6e32244
-Ref: purelib last32349
-Ref: 6f32349
-Ref: purelib listmap32446
-Ref: 7032446
-Ref: purelib map32706
-Ref: 3c32706
-Ref: purelib scanl32782
-Ref: 7132782
-Ref: purelib scanl132966
-Ref: 7232966
-Ref: purelib scanr33155
-Ref: 7333155
-Ref: purelib scanr133339
-Ref: 7433339
-Ref: purelib sort33528
-Ref: 7533528
-Ref: purelib tail34079
-Ref: 7634079
-Ref: purelib take34185
-Ref: 7734185
-Ref: purelib takewhile34270
-Ref: 7834270
-Node: List Generators34398
-Ref: purelib list-generators34519
-Ref: 7934519
-Ref: purelib cycle34808
-Ref: 7a34808
-Ref: purelib cyclen34915
-Ref: 7b34915
-Ref: purelib iterate35045
-Ref: 7c35045
-Ref: purelib iteraten35172
-Ref: 7d35172
-Ref: purelib iterwhile35310
-Ref: 7e35310
-Ref: purelib repeat35513
-Ref: 7f35513
-Ref: purelib repeatn35587
-Ref: 8035587
-Node: Zip and Friends35697
-Ref: purelib zip-and-friends35788
-Ref: 8135788
-Ref: purelib unzip35833
-Ref: 8235833
-Ref: purelib unzip335936
-Ref: 8335936
-Ref: purelib zip36004
-Ref: 8436004
-Ref: purelib zip336203
-Ref: 8536203
-Ref: purelib zipwith36302
-Ref: 8636302
-Ref: purelib zipwith336434
-Ref: 8736434
-Ref: purelib dowith36846
-Ref: 8836846
-Ref: purelib dowith336994
-Ref: 8936994
-Node: String Functions37157
-Ref: purelib id437266
-Ref: 8a37266
-Ref: purelib string-functions37266
-Ref: 8b37266
-Node: Basic String Functions37874
-Ref: purelib basic-string-functions37979
-Ref: 8d37979
-Ref: purelib +/string38038
-Ref: 8e38038
-Ref: purelib !/string38063
-Ref: 8f38063
-Ref: purelib !!/string38088
-Ref: 9038088
-Ref: purelib null/string38385
-Ref: 9138385
-Ref: purelib #/string38411
-Ref: 9238411
-Ref: purelib ==/string38629
-Ref: 9338629
-Ref: purelib ~=/string38655
-Ref: 9438655
-Ref: purelib <=/string38681
-Ref: 9538681
-Ref: purelib >=/string38707
-Ref: 9638707
-Ref: purelib </string38733
-Ref: 9738733
-Ref: purelib >/string38758
-Ref: 9838758
-Ref: purelib index/string39134
-Ref: 9939134
-Ref: purelib substr39309
-Ref: 9a39309
-Ref: purelib ord39981
-Ref: 9b39981
-Ref: purelib chr40139
-Ref: 9c40139
-Ref: purelib chars40657
-Ref: 9d40657
-Ref: purelib list/string40684
-Ref: 9e40684
-Ref: purelib tuple/string40767
-Ref: 9f40767
-Ref: purelib matrix/string40794
-Ref: a040794
-Ref: purelib strcat40920
-Ref: a140920
-Ref: purelib string41070
-Ref: a241070
-Ref: purelib split41530
-Ref: a341530
-Ref: purelib join41637
-Ref: a441637
-Node: Low-Level Operations42790
-Ref: purelib low-level-operations42895
-Ref: a642895
-Ref: purelib string/pointer43528
-Ref: a843528
-Ref: purelib cstring43556
-Ref: a743556
-Ref: purelib string_dup43896
-Ref: a943896
-Ref: purelib cstring_dup43928
-Ref: aa43928
-Ref: purelib byte_string44235
-Ref: ab44235
-Ref: purelib byte_cstring44268
-Ref: ac44268
-Ref: purelib byte_string_pointer45379
-Ref: ae45379
-Ref: purelib byte_cstring_pointer45421
-Ref: af45421
-Ref: purelib string_list45533
-Ref: b045533
-Ref: purelib cstring_list45568
-Ref: b145568
-Ref: purelib string_vector45663
-Ref: b245663
-Ref: purelib cstring_vector45700
-Ref: b345700
-Node: Matrix Functions48117
-Ref: purelib id548228
-Ref: b648228
-Ref: purelib matrix-functions48228
-Ref: b748228
-Ref: purelib #/matrix48446
-Ref: b848446
-Ref: purelib dim48469
-Ref: b948469
-Ref: purelib null/matrix48692
-Ref: ba48692
-Ref: purelib ==/matrix48851
-Ref: bb48851
-Ref: purelib ~=/matrix48877
-Ref: bc48877
-Ref: purelib !/matrix49056
-Ref: bd49056
-Ref: purelib !!/matrix49081
-Ref: be49081
-Node: Matrix Construction and Conversions51170
-Ref: purelib matrix-construction-and-conversions51302
-Ref: c151302
-Ref: purelib matrix51387
-Ref: c251387
-Ref: purelib rowvector51963
-Ref: c351963
-Ref: purelib colvector51995
-Ref: c451995
-Ref: purelib vector52027
-Ref: c552027
-Ref: purelib rowvectorseq53043
-Ref: c753043
-Ref: purelib colvectorseq53084
-Ref: c853084
-Ref: purelib vectorseq53125
-Ref: c953125
-Ref: purelib dmatrix54606
-Ref: ca54606
-Ref: purelib cmatrix54636
-Ref: cb54636
-Ref: purelib imatrix54666
-Ref: cc54666
-Ref: purelib smatrix54696
-Ref: cd54696
-Ref: purelib list/matrix55527
-Ref: ce55527
-Ref: purelib list2/matrix55553
-Ref: cf55553
-Ref: purelib tuple/matrix55580
-Ref: d055580
-Ref: purelib non-splicing56002
-Ref: c656002
-Ref: purelib {|56113
-Ref: d156113
-Node: Matrix Inspection and Manipulation57762
-Ref: purelib matrix-inspection-and-manipulation57924
-Ref: 3357924
-Ref: purelib nmatrix58102
-Ref: d258102
-Ref: purelib dmatrixp58374
-Ref: d358374
-Ref: purelib cmatrixp58404
-Ref: d458404
-Ref: purelib imatrixp58434
-Ref: d558434
-Ref: purelib smatrixp58464
-Ref: d658464
-Ref: purelib nmatrixp58494
-Ref: d758494
-Ref: purelib vectorp58598
-Ref: d858598
-Ref: purelib rowvectorp58627
-Ref: d958627
-Ref: purelib colvectorp58659
-Ref: da58659
-Ref: purelib stride58790
-Ref: db58790
-Ref: purelib subseq/matrix59085
-Ref: bf59085
-Ref: purelib subseq2/matrix59117
-Ref: c059117
-Ref: purelib row59407
-Ref: dd59407
-Ref: purelib col59434
-Ref: de59434
-Ref: purelib rows59517
-Ref: df59517
-Ref: purelib cols59543
-Ref: e059543
-Ref: purelib diag59628
-Ref: e159628
-Ref: purelib subdiag59654
-Ref: e259654
-Ref: purelib supdiag59685
-Ref: e359685
-Ref: purelib submat60034
-Ref: e460034
-Ref: purelib rowcat60304
-Ref: e560304
-Ref: purelib colcat60333
-Ref: e660333
-Ref: purelib matcat60816
-Ref: e760816
-Ref: purelib rowcatmap61309
-Ref: e861309
-Ref: purelib colcatmap61343
-Ref: e961343
-Ref: purelib rowmap61377
-Ref: ea61377
-Ref: purelib colmap61408
-Ref: eb61408
-Ref: purelib diagmat61607
-Ref: ec61607
-Ref: purelib subdiagmat61636
-Ref: ed61636
-Ref: purelib supdiagmat61670
-Ref: ee61670
-Ref: purelib re/matrix62166
-Ref: ef62166
-Ref: purelib im/matrix62190
-Ref: f062190
-Ref: purelib conj/matrix62214
-Ref: f162214
-Ref: purelib pack62336
-Ref: dc62336
-Ref: purelib packed62362
-Ref: f262362
-Ref: purelib redim63014
-Ref: f363014
-Ref: purelib sort/matrix63470
-Ref: f463470
-Ref: purelib transpose/matrix64875
-Ref: f564875
-Ref: purelib rowrev65005
-Ref: f665005
-Ref: purelib colrev65033
-Ref: f765033
-Ref: purelib reverse/matrix65061
-Ref: f865061
-Node: Pointers and Matrices65225
-Ref: purelib pointers-and-matrices65343
-Ref: f965343
-Ref: purelib pointer/matrix65821
-Ref: fa65821
-Ref: purelib double_pointer66232
-Ref: fb66232
-Ref: purelib float_pointer66270
-Ref: fc66270
-Ref: purelib complex_pointer66307
-Ref: fd66307
-Ref: purelib complex_float_pointer66346
-Ref: fe66346
-Ref: purelib int64_pointer66391
-Ref: ff66391
-Ref: purelib int_pointer66428
-Ref: 10066428
-Ref: purelib short_pointer66463
-Ref: 10166463
-Ref: purelib byte_pointer66500
-Ref: 10266500
-Ref: purelib double_matrix67172
-Ref: 10367172
-Ref: purelib float_matrix67213
-Ref: 10467213
-Ref: purelib complex_matrix67253
-Ref: 10567253
-Ref: purelib complex_float_matrix67295
-Ref: 10667295
-Ref: purelib int64_matrix67343
-Ref: 10767343
-Ref: purelib int_matrix67383
-Ref: 10867383
-Ref: purelib short_matrix67421
-Ref: 10967421
-Ref: purelib byte_matrix67461
-Ref: 10a67461
-Ref: purelib double_matrix_view68205
-Ref: 10b68205
-Ref: purelib complex_matrix_view68251
-Ref: 10c68251
-Ref: purelib int_matrix_view68298
-Ref: 10d68298
-Node: Record Functions68759
-Ref: purelib id668864
-Ref: 10e68864
-Ref: purelib record-functions68864
-Ref: 3468864
-Ref: purelib record/type70397
-Ref: 11370397
-Ref: purelib recordp70575
-Ref: 11470575
-Ref: purelib record70636
-Ref: 11570636
-Ref: purelib #/record71108
-Ref: 11771108
-Ref: purelib member/record71294
-Ref: 10f71294
-Ref: purelib !/record71379
-Ref: 11871379
-Ref: purelib !!/record71551
-Ref: 11971551
-Ref: purelib insert/record71708
-Ref: 11071708
-Ref: purelib update/record71743
-Ref: 11a71743
-Ref: purelib delete/record72085
-Ref: 11b72085
-Ref: purelib keys/record72286
-Ref: 11c72286
-Ref: purelib vals/record72312
-Ref: 11d72312
-Node: Primitives73597
-Ref: purelib primitives73677
-Ref: 11e73677
-Node: Special Constants74554
-Ref: purelib special-constants74638
-Ref: 11f74638
-Ref: purelib inf74689
-Ref: 12074689
-Ref: purelib nan74707
-Ref: 12174707
-Ref: purelib NULL74900
-Ref: ad74900
-Node: Arithmetic75112
-Ref: purelib arithmetic75216
-Ref: 12575216
-Ref: purelib +79342
-Ref: 4879342
-Ref: purelib -79367
-Ref: 12979367
-Ref: purelib *79392
-Ref: 12a79392
-Ref: purelib /79417
-Ref: 12b79417
-Ref: purelib ^79442
-Ref: 12c79442
-Ref: purelib -/unary79605
-Ref: 12d79605
-Ref: purelib div79720
-Ref: 12e79720
-Ref: purelib mod79747
-Ref: 12f79747
-Ref: purelib ==79824
-Ref: 4b79824
-Ref: purelib ~=79850
-Ref: 13079850
-Ref: purelib <=79908
-Ref: 13179908
-Ref: purelib >=79934
-Ref: 13279934
-Ref: purelib >79960
-Ref: 13379960
-Ref: purelib <79985
-Ref: 13479985
-Ref: purelib ~80030
-Ref: 13580030
-Ref: purelib &&80053
-Ref: 13680053
-Ref: purelib ||80079
-Ref: 13780079
-Ref: purelib not80375
-Ref: 13880375
-Ref: purelib and80400
-Ref: 13980400
-Ref: purelib or80427
-Ref: 13a80427
-Ref: purelib <<80560
-Ref: 13b80560
-Ref: purelib >>80586
-Ref: 13c80586
-Ref: purelib abs81416
-Ref: 13d81416
-Ref: purelib sgn81441
-Ref: 13e81441
-Ref: purelib min81510
-Ref: 13f81510
-Ref: purelib max81537
-Ref: 14081537
-Ref: purelib succ81698
-Ref: 14181698
-Ref: purelib pred81724
-Ref: 14281724
-Ref: purelib gcd81816
-Ref: 14381816
-Ref: purelib lcd81843
-Ref: 14481843
-Ref: purelib pow82067
-Ref: 14582067
-Node: Conversions82364
-Ref: purelib conversions82461
-Ref: 14682461
-Ref: purelib hash82564
-Ref: 14782564
-Ref: purelib bool82646
-Ref: 14882646
-Ref: purelib int82755
-Ref: 14982755
-Ref: purelib bigint82780
-Ref: 14a82780
-Ref: purelib double82808
-Ref: 14b82808
-Ref: purelib pointer82892
-Ref: 14c82892
-Ref: purelib ubyte83310
-Ref: 14d83310
-Ref: purelib ushort83337
-Ref: 14e83337
-Ref: purelib uint83365
-Ref: 14f83365
-Ref: purelib uint6483391
-Ref: 15083391
-Ref: purelib ulong83419
-Ref: 15183419
-Ref: purelib rounding-functions84320
-Ref: 15284320
-Ref: purelib floor84373
-Ref: 15384373
-Ref: purelib ceil84400
-Ref: 15484400
-Ref: purelib round84449
-Ref: 15584449
-Ref: purelib trunc84476
-Ref: 15684476
-Ref: purelib frac84543
-Ref: 15784543
-Node: Predicates84798
-Ref: purelib predicates84895
-Ref: 3284895
-Ref: purelib same85178
-Ref: 15885178
-Ref: purelib ===85206
-Ref: 11685206
-Ref: purelib ~==85233
-Ref: 15985233
-Ref: purelib typep85699
-Ref: 15a85699
-Ref: purelib intp86094
-Ref: 15b86094
-Ref: purelib bigintp86120
-Ref: 15c86120
-Ref: purelib doublep86149
-Ref: 15d86149
-Ref: purelib stringp86178
-Ref: 15e86178
-Ref: purelib pointerp86207
-Ref: 15f86207
-Ref: purelib matrixp86237
-Ref: 16086237
-Ref: purelib boolp86317
-Ref: 16186317
-Ref: purelib charp86421
-Ref: 16286421
-Ref: purelib numberp86504
-Ref: 16386504
-Ref: purelib complexp86533
-Ref: 16486533
-Ref: purelib realp86563
-Ref: 16586563
-Ref: purelib rationalp86590
-Ref: 16686590
-Ref: purelib integerp86621
-Ref: 16786621
-Ref: purelib exactp86840
-Ref: 16886840
-Ref: purelib inexactp86868
-Ref: 16986868
-Ref: purelib infp86991
-Ref: 12286991
-Ref: purelib nanp87017
-Ref: 12387017
-Ref: purelib null/pointer87104
-Ref: 12487104
-Ref: purelib applp87162
-Ref: 16a87162
-Ref: purelib listp87189
-Ref: 16b87189
-Ref: purelib rlistp87216
-Ref: 16c87216
-Ref: purelib tuplep87244
-Ref: 16d87244
-Ref: purelib funp87759
-Ref: 16e87759
-Ref: purelib lambdap87785
-Ref: 16f87785
-Ref: purelib thunkp87814
-Ref: 17087814
-Ref: purelib closurep87842
-Ref: 17187842
-Ref: purelib functionp88096
-Ref: 17288096
-Ref: purelib symbolp88321
-Ref: 17388321
-Ref: purelib varp88350
-Ref: 17488350
-Node: Inspection88815
-Ref: purelib inspection88917
-Ref: 17588917
-Ref: purelib ans89229
-Ref: 17689229
-Ref: purelib __func__89743
-Ref: 17789743
-Ref: purelib __namespace__91014
-Ref: 17991014
-Ref: purelib __dir__91427
-Ref: 17a91427
-Ref: purelib __file__91451
-Ref: 17b91451
-Ref: purelib __list__92640
-Ref: 17d92640
-Ref: purelib __locals__94469
-Ref: 17e94469
-Ref: purelib get_fundef97936
-Ref: 18197936
-Ref: purelib get_typedef97970
-Ref: 18297970
-Ref: purelib get_macdef98005
-Ref: 18398005
-Ref: purelib get_interface98201
-Ref: 18498201
-Ref: purelib get_interface_typedef98238
-Ref: 18598238
-Ref: purelib get_vardef99055
-Ref: 18699055
-Ref: purelib get_constdef99089
-Ref: 18799089
-Ref: purelib add_fundef99473
-Ref: 18999473
-Ref: purelib add_typedef99509
-Ref: 18a99509
-Ref: purelib add_macdef99546
-Ref: 18b99546
-Ref: purelib add_fundef_at99789
-Ref: 18c99789
-Ref: purelib add_typedef_at99830
-Ref: 18d99830
-Ref: purelib add_macdef_at99872
-Ref: 18e99872
-Ref: purelib add_interface100229
-Ref: 18f100229
-Ref: purelib add_interface_at100432
-Ref: 190100432
-Ref: purelib add_vardef100689
-Ref: 191100689
-Ref: purelib add_constdef100725
-Ref: 192100725
-Ref: purelib del_fundef101088
-Ref: 193101088
-Ref: purelib del_typedef101123
-Ref: 194101123
-Ref: purelib del_macdef101159
-Ref: 195101159
-Ref: purelib del_interface101453
-Ref: 196101453
-Ref: purelib del_vardef101616
-Ref: 197101616
-Ref: purelib del_constdef101650
-Ref: 198101650
-Ref: purelib nargs102175
-Ref: 199102175
-Ref: purelib arity102410
-Ref: 19a102410
-Ref: purelib fixity102654
-Ref: 19b102654
-Node: Eval and Friends105099
-Ref: purelib eval-and-friends105215
-Ref: 8c105215
-Ref: purelib str105954
-Ref: 178105954
-Ref: purelib val/string106069
-Ref: 19d106069
-Ref: purelib eval106478
-Ref: 17c106478
-Ref: purelib evalcmd107660
-Ref: 180107660
-Ref: purelib lasterr108178
-Ref: 188108178
-Ref: purelib lasterrpos108620
-Ref: 19e108620
-Ref: purelib __str__110951
-Ref: 19f110951
-Ref: purelib globsym111325
-Ref: 1a0111325
-Ref: purelib clearsym111797
-Ref: 1a1111797
-Ref: purelib reduce112413
-Ref: 17f112413
-Ref: purelib reduce_with112928
-Ref: 1a2112928
-Node: Expression Serialization115494
-Ref: purelib expression-serialization115624
-Ref: 19c115624
-Ref: purelib blob116374
-Ref: 1a3116374
-Ref: purelib val/blob116561
-Ref: 1a4116561
-Ref: purelib blobp116710
-Ref: 1a5116710
-Ref: purelib #/blob117100
-Ref: 1a6117100
-Ref: purelib blob_size117123
-Ref: 1a7117123
-Ref: purelib blob_crc117154
-Ref: 1a8117154
-Node: Other Special Primitives118835
-Ref: purelib other-special-primitives118967
-Ref: 1a9118967
-Ref: purelib exit119032
-Ref: 1aa119032
-Ref: purelib throw119120
-Ref: 1ab119120
-Ref: purelib __break__119201
-Ref: 1ac119201
-Ref: purelib __trace__119230
-Ref: 1ad119230
-Ref: purelib force119583
-Ref: 1ae119583
-Node: Pointer Operations119743
-Ref: purelib pointer-operations119859
-Ref: 1af119859
-Ref: purelib addr120193
-Ref: 1b0120193
-Ref: purelib calloc120602
-Ref: 1b1120602
-Ref: purelib malloc120642
-Ref: 1b2120642
-Ref: purelib realloc120673
-Ref: 1b3120673
-Ref: purelib free120709
-Ref: 1b4120709
-Ref: purelib get_byte121333
-Ref: 1b5121333
-Ref: purelib get_short121365
-Ref: 1b6121365
-Ref: purelib get_int121398
-Ref: 1b7121398
-Ref: purelib get_int64121429
-Ref: 1b8121429
-Ref: purelib get_long121462
-Ref: 1b9121462
-Ref: purelib get_float121494
-Ref: 1ba121494
-Ref: purelib get_double121527
-Ref: 1bb121527
-Ref: purelib get_string121561
-Ref: 1bc121561
-Ref: purelib get_pointer121595
-Ref: 1bd121595
-Ref: purelib put_byte121757
-Ref: 1be121757
-Ref: purelib put_short121791
-Ref: 1bf121791
-Ref: purelib put_int121826
-Ref: 1c0121826
-Ref: purelib put_int64121859
-Ref: 1c1121859
-Ref: purelib put_long121894
-Ref: 1c2121894
-Ref: purelib put_float121928
-Ref: 1c3121928
-Ref: purelib put_double121963
-Ref: 1c4121963
-Ref: purelib put_string121999
-Ref: 1c5121999
-Ref: purelib put_pointer122035
-Ref: 1c6122035
-Node: Sentries122226
-Ref: purelib sentries122333
-Ref: 1c7122333
-Ref: purelib sentry122857
-Ref: 1c8122857
-Ref: purelib clear_sentry122985
-Ref: 1c9122985
-Ref: purelib get_sentry123073
-Ref: 1ca123073
-Ref: purelib cookedp124031
-Ref: 1cb124031
-Ref: purelib cooked124120
-Ref: 1cc124120
-Node: Tagged Pointers127273
-Ref: purelib id7127383
-Ref: 1cd127383
-Ref: purelib tagged-pointers127383
-Ref: 1ce127383
-Ref: purelib ptrtag128045
-Ref: 1cf128045
-Ref: purelib get_ptrtag128213
-Ref: 1d0128213
-Ref: purelib check_ptrtag128295
-Ref: 1d1128295
-Ref: purelib make_ptrtag128548
-Ref: 1d2128548
-Ref: purelib pointer_tag129690
-Ref: 1d3129690
-Ref: purelib pointer_type130178
-Ref: 1d4130178
-Ref: purelib pointer_cast130585
-Ref: 1d5130585
-Node: Expression References132674
-Ref: purelib expression-references132794
-Ref: 112132794
-Ref: purelib id8132794
-Ref: 1d6132794
-Ref: purelib ref/type133346
-Ref: 1d7133346
-Ref: purelib ref133458
-Ref: 1d8133458
-Ref: purelib put133540
-Ref: 1d9133540
-Ref: purelib get133622
-Ref: 1da133622
-Ref: purelib unref133700
-Ref: 1db133700
-Ref: purelib refp133914
-Ref: 1dc133914
-Ref: purelib module-pointers135340
-Ref: 6135340
-Node: Pointer Arithmetic135342
-Ref: purelib pointer-arithmetic135438
-Ref: 127135438
-Ref: purelib int/pointer136051
-Ref: 1dd136051
-Ref: purelib bigint/pointer136076
-Ref: 1de136076
-Ref: purelib +/pointer136564
-Ref: 1df136564
-Ref: purelib -/pointer136589
-Ref: 1e0136589
-Ref: purelib -/pointerdiff136614
-Ref: 1e1136614
-Ref: purelib ==/pointer137141
-Ref: 1e2137141
-Ref: purelib ~=/pointer137167
-Ref: 1e3137167
-Ref: purelib <=/pointer137299
-Ref: 1e4137299
-Ref: purelib >=/pointer137325
-Ref: 1e5137325
-Ref: purelib >/pointer137351
-Ref: 1e6137351
-Ref: purelib </pointer137376
-Ref: 1e7137376
-Node: Mathematical Functions137610
-Ref: purelib module-math137714
-Ref: 5137714
-Ref: purelib mathematical-functions137714
-Ref: 128137714
-Node: Imports138007
-Ref: purelib imports138103
-Ref: 1e8138103
-Node: Basic Math Functions138239
-Ref: purelib basic-math-functions138359
-Ref: 1e9138359
-Ref: purelib e138467
-Ref: 1ea138467
-Ref: purelib pi138521
-Ref: 1eb138521
-Ref: purelib random139196
-Ref: 1ef139196
-Ref: purelib random31139311
-Ref: 1ec139311
-Ref: purelib random53139413
-Ref: 1ed139413
-Ref: purelib srandom139532
-Ref: 1ee139532
-Ref: purelib sqrt139972
-Ref: 1f0139972
-Ref: purelib exp140031
-Ref: 1f1140031
-Ref: purelib ln140056
-Ref: 1f2140056
-Ref: purelib log140080
-Ref: 1f3140080
-Ref: purelib sin140166
-Ref: 1f4140166
-Ref: purelib cos140191
-Ref: 1f5140191
-Ref: purelib tan140216
-Ref: 1f6140216
-Ref: purelib asin140273
-Ref: 1f7140273
-Ref: purelib acos140299
-Ref: 1f8140299
-Ref: purelib atan140325
-Ref: 1f9140325
-Ref: purelib atan2140391
-Ref: 1fa140391
-Ref: purelib sinh140551
-Ref: 1fb140551
-Ref: purelib cosh140577
-Ref: 1fc140577
-Ref: purelib tanh140603
-Ref: 1fd140603
-Ref: purelib asinh140672
-Ref: 1fe140672
-Ref: purelib acosh140699
-Ref: 1ff140699
-Ref: purelib atanh140726
-Ref: 200140726
-Ref: Basic Math Functions-Footnote-1140840
-Node: Complex Numbers140905
-Ref: purelib complex-numbers141034
-Ref: 201141034
-Ref: 202141075
-Ref: 203141101
-Ref: purelib i141163
-Ref: 204141163
-Ref: purelib complex142868
-Ref: 205142868
-Ref: purelib polar142951
-Ref: 206142951
-Ref: purelib rect142978
-Ref: 207142978
-Ref: purelib cis143066
-Ref: 208143066
-Ref: purelib abs/complex143225
-Ref: 209143225
-Ref: purelib arg143250
-Ref: 20a143250
-Ref: purelib re143436
-Ref: 20b143436
-Ref: purelib im143460
-Ref: 20c143460
-Ref: purelib conj143516
-Ref: 20d143516
-Node: Rational Numbers144023
-Ref: purelib rational-numbers144168
-Ref: 126144168
-Ref: purelib %144211
-Ref: 20e144211
-Ref: purelib rational145649
-Ref: 20f145649
-Ref: purelib num146226
-Ref: 210146226
-Ref: purelib den146251
-Ref: 211146251
-Node: Semantic Number Predicates and Types146949
-Ref: purelib semantic-number-predicates-and-types147070
-Ref: 24147070
-Ref: purelib compvalp147533
-Ref: 212147533
-Ref: purelib realvalp147638
-Ref: 213147638
-Ref: purelib ratvalp147714
-Ref: 214147714
-Ref: purelib bigintvalp147867
-Ref: 215147867
-Ref: purelib intvalp147980
-Ref: 216147980
-Ref: purelib compval148097
-Ref: 217148097
-Ref: purelib realval148120
-Ref: 218148120
-Ref: purelib ratval148143
-Ref: 219148143
-Ref: purelib bigintval148165
-Ref: 21a148165
-Ref: purelib intval148190
-Ref: 21b148190
-Ref: purelib module-enum148426
-Ref: 2148426
-Node: Enumerated Types148427
-Ref: purelib enumerated-types148539
-Ref: 21c148539
-Ref: purelib enum149235
-Ref: 21d149235
-Ref: purelib defenum149956
-Ref: 21e149956
-Ref: purelib enumof150165
-Ref: 21f150165
-Ref: purelib enum/type150406
-Ref: 220150406
-Ref: purelib enump150614
-Ref: 221150614
-Node: Container Types152678
-Ref: purelib container-types152784
-Ref: 222152784
-Ref: purelib module-array154012
-Ref: 0154012
-Node: Arrays154426
-Ref: purelib arrays154499
-Ref: 223154499
-Ref: purelib array/type154795
-Ref: 224154795
-Node: Imports<2>154908
-Ref: purelib id9154981
-Ref: 225154981
-Node: Operations155122
-Ref: purelib operations155212
-Ref: 226155212
-Ref: purelib emptyarray155247
-Ref: 227155247
-Ref: purelib array155307
-Ref: 228155307
-Ref: purelib array2155379
-Ref: 229155379
-Ref: purelib mkarray155467
-Ref: 22a155467
-Ref: purelib mkarray2155555
-Ref: 22b155555
-Ref: purelib arrayp155654
-Ref: 22c155654
-Ref: purelib #/array155723
-Ref: 22d155723
-Ref: purelib !/array155769
-Ref: 22e155769
-Ref: purelib null/array155902
-Ref: 22f155902
-Ref: purelib members/array155975
-Ref: 230155975
-Ref: purelib list/array156004
-Ref: 231156004
-Ref: purelib members2/array156070
-Ref: 232156070
-Ref: purelib list2/array156100
-Ref: 233156100
-Ref: purelib first/array156177
-Ref: 234156177
-Ref: purelib last/array156204
-Ref: 235156204
-Ref: purelib rmfirst/array156270
-Ref: 236156270
-Ref: purelib rmlast/array156299
-Ref: 237156299
-Ref: purelib insert/array156376
-Ref: 238156376
-Ref: purelib append/array156456
-Ref: 239156456
-Ref: purelib update/array156530
-Ref: 23a156530
-Ref: purelib update2/array156620
-Ref: 23b156620
-Node: Examples156693
-Ref: purelib examples156764
-Ref: 23c156764
-Ref: purelib module-heap158135
-Ref: 4158135
-Node: Heaps158135
-Ref: purelib heaps158229
-Ref: 23d158229
-Ref: purelib heap/type158820
-Ref: 23f158820
-Node: Imports<3>158957
-Ref: purelib id10159032
-Ref: 240159032
-Node: Operations<2>159172
-Ref: purelib id11159267
-Ref: 241159267
-Ref: purelib emptyheap159302
-Ref: 242159302
-Ref: purelib heap159360
-Ref: 243159360
-Ref: purelib heapp159429
-Ref: 244159429
-Ref: purelib #/heap159495
-Ref: 245159495
-Ref: purelib null/heap159540
-Ref: 246159540
-Ref: purelib members/heap159612
-Ref: 247159612
-Ref: purelib list/heap159641
-Ref: 248159641
-Ref: purelib first/heap159721
-Ref: 249159721
-Ref: purelib rmfirst/heap159800
-Ref: 24a159800
-Ref: purelib insert/heap159890
-Ref: 24b159890
-Node: Examples<2>159955
-Ref: purelib id12160031
-Ref: 24c160031
-Ref: purelib module-dict160206
-Ref: 1160206
-Node: Dictionaries160206
-Ref: purelib dictionaries160307
-Ref: 111160307
-Ref: purelib dict/type160613
-Ref: 24d160613
-Ref: purelib hdict/type160766
-Ref: 24e160766
-Ref: purelib mdict/type160913
-Ref: 24f160913
-Ref: purelib hmdict/type161056
-Ref: 250161056
-Ref: purelib xdict/type161184
-Ref: 251161184
-Node: Imports<4>163333
-Ref: purelib id13163415
-Ref: 258163415
-Node: Operations<3>163555
-Ref: purelib id14163657
-Ref: 259163657
-Ref: purelib emptydict163692
-Ref: 25a163692
-Ref: purelib emptyhdict163721
-Ref: 25b163721
-Ref: purelib emptymdict163751
-Ref: 25c163751
-Ref: purelib emptyhmdict163781
-Ref: 25d163781
-Ref: purelib dict163846
-Ref: 25e163846
-Ref: purelib hdict163873
-Ref: 25f163873
-Ref: purelib mdict163901
-Ref: 260163901
-Ref: purelib hmdict163929
-Ref: 261163929
-Ref: purelib dictp164219
-Ref: 262164219
-Ref: purelib hdictp164246
-Ref: 263164246
-Ref: purelib mdictp164274
-Ref: 264164274
-Ref: purelib hmdictp164302
-Ref: 265164302
-Ref: purelib mkdict164402
-Ref: 266164402
-Ref: purelib mkhdict164433
-Ref: 267164433
-Ref: purelib mkmdict164465
-Ref: 268164465
-Ref: purelib mkhmdict164497
-Ref: 269164497
-Ref: purelib +/dict164598
-Ref: 26a164598
-Ref: purelib -/dict164690
-Ref: 26b164690
-Ref: purelib */dict164794
-Ref: 26c164794
-Ref: purelib #/dict164906
-Ref: 26d164906
-Ref: purelib !/dict164993
-Ref: 26e164993
-Ref: purelib null/dict165202
-Ref: 26f165202
-Ref: purelib member/dict165279
-Ref: 270165279
-Ref: purelib members/dict165372
-Ref: 252165372
-Ref: purelib list/dict165401
-Ref: 271165401
-Ref: purelib keys/dict165513
-Ref: 253165513
-Ref: purelib vals/dict165617
-Ref: 254165617
-Ref: purelib first/dict165677
-Ref: 272165677
-Ref: purelib last/dict165704
-Ref: 273165704
-Ref: purelib rmfirst/dict165799
-Ref: 255165799
-Ref: purelib rmlast/dict165828
-Ref: 256165828
-Ref: purelib insert/dict165927
-Ref: 274165927
-Ref: purelib update/dict165962
-Ref: 275165962
-Ref: purelib delete/dict166305
-Ref: 257166305
-Ref: purelib delete_val/dict166471
-Ref: 276166471
-Ref: purelib delete_all/dict166727
-Ref: 277166727
-Node: Examples<3>168455
-Ref: purelib id15168538
-Ref: 278168538
-Ref: purelib module-set171397
-Ref: 9171397
-Node: Sets and Bags171397
-Ref: purelib sets-and-bags171484
-Ref: 23e171484
-Ref: purelib set/type172106
-Ref: 279172106
-Ref: purelib bag/type172125
-Ref: 27a172125
-Ref: purelib hset/type172287
-Ref: 27b172287
-Ref: purelib hbag/type172307
-Ref: 27c172307
-Ref: purelib xset/type172488
-Ref: 27d172488
-Node: Imports<5>173700
-Ref: purelib id16173783
-Ref: 27e173783
-Node: Operations<4>173922
-Ref: purelib id17174025
-Ref: 27f174025
-Ref: purelib emptyset174060
-Ref: 280174060
-Ref: purelib emptybag174088
-Ref: 281174088
-Ref: purelib emptyhset174116
-Ref: 282174116
-Ref: purelib emptyhbag174145
-Ref: 283174145
-Ref: purelib set174208
-Ref: 284174208
-Ref: purelib bag174234
-Ref: 285174234
-Ref: purelib hset174260
-Ref: 286174260
-Ref: purelib hbag174287
-Ref: 287174287
-Ref: purelib setp174509
-Ref: 288174509
-Ref: purelib bagp174535
-Ref: 289174535
-Ref: purelib hsetp174561
-Ref: 28a174561
-Ref: purelib hbagp174588
-Ref: 28b174588
-Ref: purelib +/set174686
-Ref: 28c174686
-Ref: purelib -/set174784
-Ref: 28d174784
-Ref: purelib */set174888
-Ref: 28e174888
-Ref: purelib #/set175000
-Ref: 28f175000
-Ref: purelib null/set175059
-Ref: 290175059
-Ref: purelib member/set175136
-Ref: 291175136
-Ref: purelib members/set175211
-Ref: 292175211
-Ref: purelib list/set175240
-Ref: 293175240
-Ref: purelib first/set175353
-Ref: 294175353
-Ref: purelib last/set175380
-Ref: 295175380
-Ref: purelib rmfirst/set175475
-Ref: 296175475
-Ref: purelib rmlast/set175504
-Ref: 297175504
-Ref: purelib insert/set175603
-Ref: 298175603
-Ref: purelib delete/set175725
-Ref: 299175725
-Ref: purelib delete_all/set175860
-Ref: 29a175860
-Node: Examples<4>177162
-Ref: purelib id18177246
-Ref: 29b177246
-Ref: purelib module-system179130
-Ref: a179130
-Node: System Interface179130
-Ref: purelib system-interface179232
-Ref: b5179232
-Node: Imports<6>180121
-Ref: purelib id19180211
-Ref: 29c180211
-Node: Errno and Friends180524
-Ref: purelib errno-and-friends180635
-Ref: 29e180635
-Ref: purelib errno180680
-Ref: 29f180680
-Ref: purelib set_errno180705
-Ref: 2a0180705
-Ref: purelib perror180736
-Ref: 2a1180736
-Ref: purelib strerror180766
-Ref: 2a2180766
-Node: POSIX Locale181238
-Ref: purelib posix-locale181354
-Ref: 2a3181354
-Ref: purelib setlocale181389
-Ref: 2a4181389
-Node: Signal Handling182842
-Ref: purelib signal-handling182955
-Ref: 2a5182955
-Ref: purelib trap182996
-Ref: 2a6182996
-Node: Time Functions183875
-Ref: purelib time-functions183993
-Ref: 2a7183993
-Ref: purelib time184254
-Ref: 2a8184254
-Ref: purelib gettimeofday184486
-Ref: 2a9184486
-Ref: purelib clock184970
-Ref: 2aa184970
-Ref: purelib sleep185270
-Ref: 2ab185270
-Ref: purelib nanosleep185297
-Ref: 2ac185297
-Ref: purelib tzset186339
-Ref: 2ad186339
-Ref: purelib tzname186404
-Ref: 2ae186404
-Ref: purelib timezone186425
-Ref: 2af186425
-Ref: purelib daylight186448
-Ref: 2b0186448
-Ref: purelib ctime187277
-Ref: 2b1187277
-Ref: purelib gmtime187409
-Ref: 2b2187409
-Ref: purelib localtime187437
-Ref: 2b3187437
-Ref: purelib mktime187823
-Ref: 2b6187823
-Ref: purelib asctime187990
-Ref: 2b4187990
-Ref: purelib strftime188020
-Ref: 2b5188020
-Ref: purelib strptime188248
-Ref: 2b7188248
-Node: Process Functions192807
-Ref: purelib process-functions192929
-Ref: 2b8192929
-Ref: purelib system193253
-Ref: 2bd193253
-Ref: purelib execv193315
-Ref: 2be193315
-Ref: purelib execvp193350
-Ref: 2bf193350
-Ref: purelib execve193386
-Ref: 2c0193386
-Ref: purelib spawnv194314
-Ref: 2c1194314
-Ref: purelib spawnvp194355
-Ref: 2c2194355
-Ref: purelib spawnve194397
-Ref: 2c3194397
-Node: Basic I/O Interface195806
-Ref: purelib basic-i-o-interface195930
-Ref: 2c4195930
-Ref: purelib stdin196335
-Ref: 2c5196335
-Ref: purelib stdout196355
-Ref: 2c6196355
-Ref: purelib stderr196376
-Ref: 2c7196376
-Ref: purelib fopen196430
-Ref: 2c8196430
-Ref: purelib popen196465
-Ref: 2c9196465
-Ref: purelib fdopen196784
-Ref: 2ca196784
-Ref: purelib freopen197015
-Ref: 2cb197015
-Ref: purelib fclose197248
-Ref: 2cc197248
-Ref: purelib pclose197277
-Ref: 2cd197277
-Ref: purelib tmpfile197337
-Ref: 2ce197337
-Ref: purelib feof197536
-Ref: 2cf197536
-Ref: purelib ferror197563
-Ref: 2d0197563
-Ref: purelib clearerr197592
-Ref: 2d1197592
-Ref: purelib fileno197717
-Ref: 2d2197717
-Ref: purelib fflush197813
-Ref: 2d3197813
-Ref: purelib fgets197929
-Ref: 2d4197929
-Ref: purelib gets197957
-Ref: 2d5197957
-Ref: purelib fget198106
-Ref: 2d6198106
-Ref: purelib fputs198223
-Ref: 2d7198223
-Ref: purelib puts198253
-Ref: 2d8198253
-Ref: purelib fread198509
-Ref: 2d9198509
-Ref: purelib fwrite198552
-Ref: 2da198552
-Ref: purelib fseek198729
-Ref: 2db198729
-Ref: purelib ftell198771
-Ref: 2dc198771
-Ref: purelib rewind198799
-Ref: 2dd198799
-Ref: purelib setbuf199219
-Ref: 2de199219
-Ref: purelib setvbuf199252
-Ref: 2df199252
-Ref: purelib printf201684
-Ref: 2e0201684
-Ref: purelib fprintf201722
-Ref: 2e1201722
-Ref: purelib sprintf202272
-Ref: 2e2202272
-Ref: purelib scanf202750
-Ref: 2e3202750
-Ref: purelib fscanf202782
-Ref: 2e4202782
-Ref: purelib sscanf203710
-Ref: 2e5203710
-Ref: Basic I/O Interface-Footnote-1205130
-Ref: Basic I/O Interface-Footnote-2205156
-Ref: Basic I/O Interface-Footnote-3205184
-Ref: Basic I/O Interface-Footnote-4205210
-Ref: Basic I/O Interface-Footnote-5205238
-Node: Stat and Friends205266
-Ref: purelib stat-and-friends205392
-Ref: 2e6205392
-Ref: purelib stat205435
-Ref: 2e7205435
-Ref: purelib lstat206092
-Ref: 2e8206092
-Ref: purelib fstat206343
-Ref: 2e9206343
-Node: Reading Directories208247
-Ref: purelib reading-directories208368
-Ref: 2ea208368
-Ref: purelib readdir208417
-Ref: 2eb208417
-Node: Shell Globbing208611
-Ref: purelib shell-globbing208730
-Ref: 2ec208730
-Ref: purelib fnmatch208771
-Ref: 2ed208771
-Ref: purelib glob208950
-Ref: 2ee208950
-Node: Regex Matching209582
-Ref: purelib regex-matching209708
-Ref: a5209708
-Ref: purelib module-regex209708
-Ref: 8209708
-Ref: purelib regex210655
-Ref: 2ef210655
-Ref: purelib reg_result214419
-Ref: 2f1214419
-Ref: purelib reg_info214633
-Ref: 2f2214633
-Ref: purelib reg214737
-Ref: 2f3214737
-Ref: purelib regs214901
-Ref: 2f4214901
-Ref: purelib regexg215252
-Ref: 2f5215252
-Ref: purelib regexgg215664
-Ref: 2f6215664
-Ref: purelib regsub215787
-Ref: 2f7215787
-Ref: purelib regsplit216337
-Ref: 2f8216337
-Ref: purelib regexgs216740
-Ref: 2f9216740
-Ref: purelib regexggs216789
-Ref: 2fa216789
-Ref: purelib regsplits216839
-Ref: 2fb216839
-Node: Basic Examples217239
-Ref: purelib basic-examples217347
-Ref: 2fc217347
-Node: Regex Substitutions and Splitting219317
-Ref: purelib regex-substitutions-and-splitting219447
-Ref: 2fd219447
-Node: Empty Matches220157
-Ref: purelib empty-matches220283
-Ref: 2fe220283
-Node: Submatches221207
-Ref: purelib submatches221324
-Ref: 2ff221324
-Node: Perl Regex Compatibility222730
-Ref: purelib perl-regex-compatibility222825
-Ref: 2f0222825
-Node: Additional POSIX Functions225090
-Ref: purelib module-posix225216
-Ref: 7225216
-Ref: purelib additional-posix-functions225216
-Ref: 29d225216
-Ref: purelib fork225822
-Ref: 2b9225822
-Ref: purelib getpid225873
-Ref: 300225873
-Ref: purelib getppid225899
-Ref: 301225899
-Ref: purelib wait226018
-Ref: 2bb226018
-Ref: purelib waitpid226049
-Ref: 2bc226049
-Ref: purelib kill226283
-Ref: 2ba226283
-Ref: purelib raise226366
-Ref: 302226366
-Ref: purelib pause226449
-Ref: 303226449
-Ref: purelib module-getopt226512
-Ref: 3226512
-Node: Option Parsing226513
-Ref: purelib option-parsing226616
-Ref: b4226616
-Ref: purelib getopt226906
-Ref: 304226906
-Node: Module Index230196
-Node: Index230467
+Ref: Basic Combinators-Footnote-116301
+Node: Lists and Tuples16361
+Ref: purelib lists-and-tuples16464
+Ref: 2616464
+Ref: purelib []16730
+Ref: 4316730
+Ref: 4416755
+Ref: 4516809
+Ref: 4616837
+Ref: purelib +/list19603
+Ref: 4719603
+Ref: purelib ==/list20802
+Ref: 4920802
+Ref: purelib ~=/list20828
+Ref: 4a20828
+Ref: purelib #21335
+Ref: 4c21335
+Ref: purelib !21685
+Ref: 4d21685
+Ref: purelib !!22051
+Ref: 4e22051
+Ref: 5023022
+Ref: purelib null23969
+Ref: 5123969
+Ref: purelib reverse24110
+Ref: 5224110
+Ref: purelib list24344
+Ref: 5324344
+Ref: purelib tuple24370
+Ref: 5424370
+Ref: purelib stream25010
+Ref: 5525010
+Node: Slicing25371
+Ref: purelib slicing25467
+Ref: 4f25467
+Ref: purelib subseq26674
+Ref: 5726674
+Ref: purelib slice27100
+Ref: 5827100
+Node: Hash Pairs27886
+Ref: purelib id327980
+Ref: 5927980
+Ref: purelib hash-pairs27980
+Ref: 5a27980
+Ref: purelib =>28369
+Ref: 5d28369
+Ref: purelib ==/hashpair28465
+Ref: 5e28465
+Ref: purelib ~=/hashpair28491
+Ref: 5f28491
+Ref: purelib key28617
+Ref: 5b28617
+Ref: purelib val28647
+Ref: 5c28647
+Node: List Functions29315
+Ref: purelib list-functions29418
+Ref: 6029418
+Node: Common List Functions29820
+Ref: purelib common-list-functions29917
+Ref: 6129917
+Ref: purelib any29974
+Ref: 6229974
+Ref: purelib all30085
+Ref: 6330085
+Ref: purelib cat30196
+Ref: 6430196
+Ref: purelib catmap30257
+Ref: 5630257
+Ref: purelib do30422
+Ref: 3b30422
+Ref: purelib drop30583
+Ref: 6530583
+Ref: purelib dropwhile30670
+Ref: 6630670
+Ref: purelib filter30800
+Ref: 6730800
+Ref: purelib foldl30914
+Ref: 6830914
+Ref: purelib foldl131127
+Ref: 6931127
+Ref: purelib foldr31364
+Ref: 6a31364
+Ref: purelib foldr131577
+Ref: 6b31577
+Ref: purelib head31814
+Ref: 6c31814
+Ref: purelib index31912
+Ref: 6d31912
+Ref: purelib init32272
+Ref: 6e32272
+Ref: purelib last32377
+Ref: 6f32377
+Ref: purelib listmap32474
+Ref: 7032474
+Ref: purelib map32734
+Ref: 3c32734
+Ref: purelib scanl32810
+Ref: 7132810
+Ref: purelib scanl132994
+Ref: 7232994
+Ref: purelib scanr33183
+Ref: 7333183
+Ref: purelib scanr133367
+Ref: 7433367
+Ref: purelib sort33556
+Ref: 7533556
+Ref: purelib tail34108
+Ref: 7634108
+Ref: purelib take34214
+Ref: 7734214
+Ref: purelib takewhile34299
+Ref: 7834299
+Node: List Generators34427
+Ref: purelib list-generators34548
+Ref: 7934548
+Ref: purelib cycle34837
+Ref: 7a34837
+Ref: purelib cyclen34944
+Ref: 7b34944
+Ref: purelib iterate35074
+Ref: 7c35074
+Ref: purelib iteraten35201
+Ref: 7d35201
+Ref: purelib iterwhile35339
+Ref: 7e35339
+Ref: purelib repeat35542
+Ref: 7f35542
+Ref: purelib repeatn35616
+Ref: 8035616
+Node: Zip and Friends35726
+Ref: purelib zip-and-friends35817
+Ref: 8135817
+Ref: purelib unzip35862
+Ref: 8235862
+Ref: purelib unzip335965
+Ref: 8335965
+Ref: purelib zip36033
+Ref: 8436033
+Ref: purelib zip336232
+Ref: 8536232
+Ref: purelib zipwith36331
+Ref: 8636331
+Ref: purelib zipwith336463
+Ref: 8736463
+Ref: purelib dowith36875
+Ref: 8836875
+Ref: purelib dowith337023
+Ref: 8937023
+Node: String Functions37186
+Ref: purelib id437295
+Ref: 8a37295
+Ref: purelib string-functions37295
+Ref: 8b37295
+Node: Basic String Functions37903
+Ref: purelib basic-string-functions38008
+Ref: 8d38008
+Ref: purelib +/string38067
+Ref: 8e38067
+Ref: purelib !/string38092
+Ref: 8f38092
+Ref: purelib !!/string38117
+Ref: 9038117
+Ref: purelib null/string38415
+Ref: 9138415
+Ref: purelib #/string38441
+Ref: 9238441
+Ref: purelib ==/string38660
+Ref: 9338660
+Ref: purelib ~=/string38686
+Ref: 9438686
+Ref: purelib <=/string38712
+Ref: 9538712
+Ref: purelib >=/string38738
+Ref: 9638738
+Ref: purelib </string38764
+Ref: 9738764
+Ref: purelib >/string38789
+Ref: 9838789
+Ref: purelib index/string39166
+Ref: 9939166
+Ref: purelib substr39341
+Ref: 9a39341
+Ref: purelib ord40014
+Ref: 9b40014
+Ref: purelib chr40172
+Ref: 9c40172
+Ref: purelib chars40691
+Ref: 9d40691
+Ref: purelib list/string40718
+Ref: 9e40718
+Ref: purelib tuple/string40801
+Ref: 9f40801
+Ref: purelib matrix/string40828
+Ref: a040828
+Ref: purelib strcat40954
+Ref: a140954
+Ref: purelib string41104
+Ref: a241104
+Ref: purelib split41565
+Ref: a341565
+Ref: purelib join41672
+Ref: a441672
+Node: Low-Level Operations42828
+Ref: purelib low-level-operations42933
+Ref: a642933
+Ref: purelib string/pointer43566
+Ref: a843566
+Ref: purelib cstring43594
+Ref: a743594
+Ref: purelib string_dup43934
+Ref: a943934
+Ref: purelib cstring_dup43966
+Ref: aa43966
+Ref: purelib byte_string44273
+Ref: ab44273
+Ref: purelib byte_cstring44306
+Ref: ac44306
+Ref: purelib byte_string_pointer45417
+Ref: ae45417
+Ref: purelib byte_cstring_pointer45459
+Ref: af45459
+Ref: purelib string_list45571
+Ref: b045571
+Ref: purelib cstring_list45606
+Ref: b145606
+Ref: purelib string_vector45701
+Ref: b245701
+Ref: purelib cstring_vector45738
+Ref: b345738
+Node: Matrix Functions48158
+Ref: purelib id548269
+Ref: b648269
+Ref: purelib matrix-functions48269
+Ref: b748269
+Ref: purelib #/matrix48487
+Ref: b848487
+Ref: purelib dim48510
+Ref: b948510
+Ref: purelib null/matrix48734
+Ref: ba48734
+Ref: purelib ==/matrix48893
+Ref: bb48893
+Ref: purelib ~=/matrix48919
+Ref: bc48919
+Ref: purelib !/matrix49099
+Ref: bd49099
+Ref: purelib !!/matrix49124
+Ref: be49124
+Node: Matrix Construction and Conversions51219
+Ref: purelib matrix-construction-and-conversions51351
+Ref: c151351
+Ref: purelib matrix51436
+Ref: c251436
+Ref: purelib rowvector52013
+Ref: c352013
+Ref: purelib colvector52045
+Ref: c452045
+Ref: purelib vector52077
+Ref: c552077
+Ref: purelib rowvectorseq53094
+Ref: c753094
+Ref: purelib colvectorseq53135
+Ref: c853135
+Ref: purelib vectorseq53176
+Ref: c953176
+Ref: purelib dmatrix54660
+Ref: ca54660
+Ref: purelib cmatrix54690
+Ref: cb54690
+Ref: purelib imatrix54720
+Ref: cc54720
+Ref: purelib smatrix54750
+Ref: cd54750
+Ref: purelib list/matrix55583
+Ref: ce55583
+Ref: purelib list2/matrix55609
+Ref: cf55609
+Ref: purelib tuple/matrix55636
+Ref: d055636
+Ref: purelib non-splicing56058
+Ref: c656058
+Ref: purelib {|56169
+Ref: d156169
+Node: Matrix Inspection and Manipulation57821
+Ref: purelib matrix-inspection-and-manipulation57983
+Ref: 3357983
+Ref: purelib nmatrix58161
+Ref: d258161
+Ref: purelib dmatrixp58433
+Ref: d358433
+Ref: purelib cmatrixp58463
+Ref: d458463
+Ref: purelib imatrixp58493
+Ref: d558493
+Ref: purelib smatrixp58523
+Ref: d658523
+Ref: purelib nmatrixp58553
+Ref: d758553
+Ref: purelib vectorp58657
+Ref: d858657
+Ref: purelib rowvectorp58686
+Ref: d958686
+Ref: purelib colvectorp58718
+Ref: da58718
+Ref: purelib stride58849
+Ref: db58849
+Ref: purelib subseq/matrix59144
+Ref: bf59144
+Ref: purelib subseq2/matrix59176
+Ref: c059176
+Ref: purelib row59466
+Ref: dd59466
+Ref: purelib col59493
+Ref: de59493
+Ref: purelib rows59576
+Ref: df59576
+Ref: purelib cols59602
+Ref: e059602
+Ref: purelib diag59687
+Ref: e159687
+Ref: purelib subdiag59713
+Ref: e259713
+Ref: purelib supdiag59744
+Ref: e359744
+Ref: purelib submat60093
+Ref: e460093
+Ref: purelib rowcat60363
+Ref: e560363
+Ref: purelib colcat60392
+Ref: e660392
+Ref: purelib matcat60875
+Ref: e760875
+Ref: purelib rowcatmap61368
+Ref: e861368
+Ref: purelib colcatmap61402
+Ref: e961402
+Ref: purelib rowmap61436
+Ref: ea61436
+Ref: purelib colmap61467
+Ref: eb61467
+Ref: purelib diagmat61666
+Ref: ec61666
+Ref: purelib subdiagmat61695
+Ref: ed61695
+Ref: purelib supdiagmat61729
+Ref: ee61729
+Ref: purelib re/matrix62225
+Ref: ef62225
+Ref: purelib im/matrix62249
+Ref: f062249
+Ref: purelib conj/matrix62273
+Ref: f162273
+Ref: purelib pack62395
+Ref: dc62395
+Ref: purelib packed62421
+Ref: f262421
+Ref: purelib redim63073
+Ref: f363073
+Ref: purelib sort/matrix63529
+Ref: f463529
+Ref: purelib transpose/matrix64937
+Ref: f564937
+Ref: purelib rowrev65068
+Ref: f665068
+Ref: purelib colrev65096
+Ref: f765096
+Ref: purelib reverse/matrix65124
+Ref: f865124
+Node: Pointers and Matrices65288
+Ref: purelib pointers-and-matrices65406
+Ref: f965406
+Ref: purelib pointer/matrix65884
+Ref: fa65884
+Ref: purelib double_pointer66295
+Ref: fb66295
+Ref: purelib float_pointer66333
+Ref: fc66333
+Ref: purelib complex_pointer66370
+Ref: fd66370
+Ref: purelib complex_float_pointer66409
+Ref: fe66409
+Ref: purelib int64_pointer66454
+Ref: ff66454
+Ref: purelib int_pointer66491
+Ref: 10066491
+Ref: purelib short_pointer66526
+Ref: 10166526
+Ref: purelib byte_pointer66563
+Ref: 10266563
+Ref: purelib double_matrix67235
+Ref: 10367235
+Ref: purelib float_matrix67276
+Ref: 10467276
+Ref: purelib complex_matrix67316
+Ref: 10567316
+Ref: purelib complex_float_matrix67358
+Ref: 10667358
+Ref: purelib int64_matrix67406
+Ref: 10767406
+Ref: purelib int_matrix67446
+Ref: 10867446
+Ref: purelib short_matrix67484
+Ref: 10967484
+Ref: purelib byte_matrix67524
+Ref: 10a67524
+Ref: purelib double_matrix_view68268
+Ref: 10b68268
+Ref: purelib complex_matrix_view68314
+Ref: 10c68314
+Ref: purelib int_matrix_view68361
+Ref: 10d68361
+Node: Record Functions68822
+Ref: purelib id668927
+Ref: 10e68927
+Ref: purelib record-functions68927
+Ref: 3468927
+Ref: purelib record/type70460
+Ref: 11370460
+Ref: purelib recordp70638
+Ref: 11470638
+Ref: purelib record70699
+Ref: 11570699
+Ref: purelib #/record71171
+Ref: 11771171
+Ref: purelib member/record71357
+Ref: 10f71357
+Ref: purelib !/record71442
+Ref: 11871442
+Ref: purelib !!/record71614
+Ref: 11971614
+Ref: purelib insert/record71771
+Ref: 11071771
+Ref: purelib update/record71806
+Ref: 11a71806
+Ref: purelib delete/record72148
+Ref: 11b72148
+Ref: purelib keys/record72349
+Ref: 11c72349
+Ref: purelib vals/record72375
+Ref: 11d72375
+Node: Primitives73661
+Ref: purelib primitives73741
+Ref: 11e73741
+Node: Special Constants74618
+Ref: purelib special-constants74702
+Ref: 11f74702
+Ref: purelib inf74753
+Ref: 12074753
+Ref: purelib nan74771
+Ref: 12174771
+Ref: purelib NULL74964
+Ref: ad74964
+Node: Arithmetic75176
+Ref: purelib arithmetic75280
+Ref: 12575280
+Ref: purelib +79406
+Ref: 4879406
+Ref: purelib -79431
+Ref: 12979431
+Ref: purelib *79456
+Ref: 12a79456
+Ref: purelib /79481
+Ref: 12b79481
+Ref: purelib ^79506
+Ref: 12c79506
+Ref: purelib -/unary79669
+Ref: 12d79669
+Ref: purelib div79784
+Ref: 12e79784
+Ref: purelib mod79811
+Ref: 12f79811
+Ref: purelib ==79888
+Ref: 4b79888
+Ref: purelib ~=79914
+Ref: 13079914
+Ref: purelib <=79972
+Ref: 13179972
+Ref: purelib >=79998
+Ref: 13279998
+Ref: purelib >80024
+Ref: 13380024
+Ref: purelib <80049
+Ref: 13480049
+Ref: purelib ~80094
+Ref: 13580094
+Ref: purelib &&80117
+Ref: 13680117
+Ref: purelib ||80143
+Ref: 13780143
+Ref: purelib not80439
+Ref: 13880439
+Ref: purelib and80464
+Ref: 13980464
+Ref: purelib or80491
+Ref: 13a80491
+Ref: purelib <<80624
+Ref: 13b80624
+Ref: purelib >>80650
+Ref: 13c80650
+Ref: purelib abs81480
+Ref: 13d81480
+Ref: purelib sgn81505
+Ref: 13e81505
+Ref: purelib min81574
+Ref: 13f81574
+Ref: purelib max81601
+Ref: 14081601
+Ref: purelib succ81762
+Ref: 14181762
+Ref: purelib pred81788
+Ref: 14281788
+Ref: purelib gcd81880
+Ref: 14381880
+Ref: purelib lcd81907
+Ref: 14481907
+Ref: purelib pow82131
+Ref: 14582131
+Node: Conversions82428
+Ref: purelib conversions82525
+Ref: 14682525
+Ref: purelib hash82628
+Ref: 14782628
+Ref: purelib bool82710
+Ref: 14882710
+Ref: purelib int82819
+Ref: 14982819
+Ref: purelib bigint82844
+Ref: 14a82844
+Ref: purelib double82872
+Ref: 14b82872
+Ref: purelib pointer82956
+Ref: 14c82956
+Ref: purelib ubyte83374
+Ref: 14d83374
+Ref: purelib ushort83401
+Ref: 14e83401
+Ref: purelib uint83429
+Ref: 14f83429
+Ref: purelib uint6483455
+Ref: 15083455
+Ref: purelib ulong83483
+Ref: 15183483
+Ref: purelib rounding-functions84384
+Ref: 15284384
+Ref: purelib floor84437
+Ref: 15384437
+Ref: purelib ceil84464
+Ref: 15484464
+Ref: purelib round84513
+Ref: 15584513
+Ref: purelib trunc84540
+Ref: 15684540
+Ref: purelib frac84607
+Ref: 15784607
+Node: Predicates84862
+Ref: purelib predicates84959
+Ref: 3284959
+Ref: purelib same85242
+Ref: 15885242
+Ref: purelib ===85270
+Ref: 11685270
+Ref: purelib ~==85297
+Ref: 15985297
+Ref: purelib typep85763
+Ref: 15a85763
+Ref: purelib intp86158
+Ref: 15b86158
+Ref: purelib bigintp86184
+Ref: 15c86184
+Ref: purelib doublep86213
+Ref: 15d86213
+Ref: purelib stringp86242
+Ref: 15e86242
+Ref: purelib pointerp86271
+Ref: 15f86271
+Ref: purelib matrixp86301
+Ref: 16086301
+Ref: purelib boolp86381
+Ref: 16186381
+Ref: purelib charp86485
+Ref: 16286485
+Ref: purelib numberp86568
+Ref: 16386568
+Ref: purelib complexp86597
+Ref: 16486597
+Ref: purelib realp86627
+Ref: 16586627
+Ref: purelib rationalp86654
+Ref: 16686654
+Ref: purelib integerp86685
+Ref: 16786685
+Ref: purelib exactp86904
+Ref: 16886904
+Ref: purelib inexactp86932
+Ref: 16986932
+Ref: purelib infp87055
+Ref: 12287055
+Ref: purelib nanp87081
+Ref: 12387081
+Ref: purelib null/pointer87168
+Ref: 12487168
+Ref: purelib applp87226
+Ref: 16a87226
+Ref: purelib listp87253
+Ref: 16b87253
+Ref: purelib rlistp87280
+Ref: 16c87280
+Ref: purelib tuplep87308
+Ref: 16d87308
+Ref: purelib funp87823
+Ref: 16e87823
+Ref: purelib lambdap87849
+Ref: 16f87849
+Ref: purelib thunkp87878
+Ref: 17087878
+Ref: purelib closurep87906
+Ref: 17187906
+Ref: purelib functionp88160
+Ref: 17288160
+Ref: purelib symbolp88385
+Ref: 17388385
+Ref: purelib varp88414
+Ref: 17488414
+Node: Inspection88879
+Ref: purelib inspection88981
+Ref: 17588981
+Ref: purelib ans89293
+Ref: 17689293
+Ref: purelib __func__89808
+Ref: 17789808
+Ref: purelib __namespace__91081
+Ref: 17991081
+Ref: purelib __dir__91495
+Ref: 17a91495
+Ref: purelib __file__91519
+Ref: 17b91519
+Ref: purelib __list__92710
+Ref: 17d92710
+Ref: purelib __locals__94542
+Ref: 17e94542
+Ref: purelib get_fundef98012
+Ref: 18198012
+Ref: purelib get_typedef98046
+Ref: 18298046
+Ref: purelib get_macdef98081
+Ref: 18398081
+Ref: purelib get_interface98277
+Ref: 18498277
+Ref: purelib get_interface_typedef98314
+Ref: 18598314
+Ref: purelib get_vardef99131
+Ref: 18699131
+Ref: purelib get_constdef99165
+Ref: 18799165
+Ref: purelib add_fundef99549
+Ref: 18999549
+Ref: purelib add_typedef99585
+Ref: 18a99585
+Ref: purelib add_macdef99622
+Ref: 18b99622
+Ref: purelib add_fundef_at99865
+Ref: 18c99865
+Ref: purelib add_typedef_at99906
+Ref: 18d99906
+Ref: purelib add_macdef_at99948
+Ref: 18e99948
+Ref: purelib add_interface100305
+Ref: 18f100305
+Ref: purelib add_interface_at100508
+Ref: 190100508
+Ref: purelib add_vardef100765
+Ref: 191100765
+Ref: purelib add_constdef100801
+Ref: 192100801
+Ref: purelib del_fundef101164
+Ref: 193101164
+Ref: purelib del_typedef101199
+Ref: 194101199
+Ref: purelib del_macdef101235
+Ref: 195101235
+Ref: purelib del_interface101529
+Ref: 196101529
+Ref: purelib del_vardef101692
+Ref: 197101692
+Ref: purelib del_constdef101726
+Ref: 198101726
+Ref: purelib nargs102251
+Ref: 199102251
+Ref: purelib arity102486
+Ref: 19a102486
+Ref: purelib fixity102730
+Ref: 19b102730
+Node: Eval and Friends105176
+Ref: purelib eval-and-friends105292
+Ref: 8c105292
+Ref: purelib str106031
+Ref: 178106031
+Ref: purelib val/string106146
+Ref: 19d106146
+Ref: purelib eval106555
+Ref: 17c106555
+Ref: purelib evalcmd107737
+Ref: 180107737
+Ref: purelib lasterr108255
+Ref: 188108255
+Ref: purelib lasterrpos108697
+Ref: 19e108697
+Ref: purelib __str__111029
+Ref: 19f111029
+Ref: purelib globsym111404
+Ref: 1a0111404
+Ref: purelib clearsym111876
+Ref: 1a1111876
+Ref: purelib reduce112493
+Ref: 17f112493
+Ref: purelib reduce_with113008
+Ref: 1a2113008
+Node: Expression Serialization115579
+Ref: purelib expression-serialization115709
+Ref: 19c115709
+Ref: purelib blob116459
+Ref: 1a3116459
+Ref: purelib val/blob116646
+Ref: 1a4116646
+Ref: purelib blobp116795
+Ref: 1a5116795
+Ref: purelib #/blob117185
+Ref: 1a6117185
+Ref: purelib blob_size117208
+Ref: 1a7117208
+Ref: purelib blob_crc117239
+Ref: 1a8117239
+Node: Other Special Primitives118921
+Ref: purelib other-special-primitives119053
+Ref: 1a9119053
+Ref: purelib exit119118
+Ref: 1aa119118
+Ref: purelib throw119206
+Ref: 1ab119206
+Ref: purelib __break__119287
+Ref: 1ac119287
+Ref: purelib __trace__119316
+Ref: 1ad119316
+Ref: purelib force119669
+Ref: 1ae119669
+Node: Pointer Operations119829
+Ref: purelib pointer-operations119945
+Ref: 1af119945
+Ref: purelib addr120279
+Ref: 1b0120279
+Ref: purelib calloc120688
+Ref: 1b1120688
+Ref: purelib malloc120728
+Ref: 1b2120728
+Ref: purelib realloc120759
+Ref: 1b3120759
+Ref: purelib free120795
+Ref: 1b4120795
+Ref: purelib get_byte121419
+Ref: 1b5121419
+Ref: purelib get_short121451
+Ref: 1b6121451
+Ref: purelib get_int121484
+Ref: 1b7121484
+Ref: purelib get_int64121515
+Ref: 1b8121515
+Ref: purelib get_long121548
+Ref: 1b9121548
+Ref: purelib get_float121580
+Ref: 1ba121580
+Ref: purelib get_double121613
+Ref: 1bb121613
+Ref: purelib get_string121647
+Ref: 1bc121647
+Ref: purelib get_pointer121681
+Ref: 1bd121681
+Ref: purelib put_byte121843
+Ref: 1be121843
+Ref: purelib put_short121877
+Ref: 1bf121877
+Ref: purelib put_int121912
+Ref: 1c0121912
+Ref: purelib put_int64121945
+Ref: 1c1121945
+Ref: purelib put_long121980
+Ref: 1c2121980
+Ref: purelib put_float122014
+Ref: 1c3122014
+Ref: purelib put_double122049
+Ref: 1c4122049
+Ref: purelib put_string122085
+Ref: 1c5122085
+Ref: purelib put_pointer122121
+Ref: 1c6122121
+Node: Sentries122312
+Ref: purelib sentries122419
+Ref: 1c7122419
+Ref: purelib sentry122943
+Ref: 1c8122943
+Ref: purelib clear_sentry123071
+Ref: 1c9123071
+Ref: purelib get_sentry123159
+Ref: 1ca123159
+Ref: purelib cookedp124118
+Ref: 1cb124118
+Ref: purelib cooked124207
+Ref: 1cc124207
+Node: Tagged Pointers127370
+Ref: purelib id7127480
+Ref: 1cd127480
+Ref: purelib tagged-pointers127480
+Ref: 1ce127480
+Ref: purelib ptrtag128142
+Ref: 1cf128142
+Ref: purelib get_ptrtag128310
+Ref: 1d0128310
+Ref: purelib check_ptrtag128392
+Ref: 1d1128392
+Ref: purelib make_ptrtag128645
+Ref: 1d2128645
+Ref: purelib pointer_tag129789
+Ref: 1d3129789
+Ref: purelib pointer_type130277
+Ref: 1d4130277
+Ref: purelib pointer_cast130684
+Ref: 1d5130684
+Node: Expression References132776
+Ref: purelib expression-references132896
+Ref: 112132896
+Ref: purelib id8132896
+Ref: 1d6132896
+Ref: purelib ref/type133448
+Ref: 1d7133448
+Ref: purelib ref133560
+Ref: 1d8133560
+Ref: purelib put133642
+Ref: 1d9133642
+Ref: purelib get133724
+Ref: 1da133724
+Ref: purelib unref133802
+Ref: 1db133802
+Ref: purelib refp134016
+Ref: 1dc134016
+Ref: purelib module-pointers135444
+Ref: 6135444
+Node: Pointer Arithmetic135446
+Ref: purelib pointer-arithmetic135542
+Ref: 127135542
+Ref: purelib int/pointer136156
+Ref: 1dd136156
+Ref: purelib bigint/pointer136181
+Ref: 1de136181
+Ref: purelib +/pointer136669
+Ref: 1df136669
+Ref: purelib -/pointer136694
+Ref: 1e0136694
+Ref: purelib -/pointerdiff136719
+Ref: 1e1136719
+Ref: purelib ==/pointer137246
+Ref: 1e2137246
+Ref: purelib ~=/pointer137272
+Ref: 1e3137272
+Ref: purelib <=/pointer137404
+Ref: 1e4137404
+Ref: purelib >=/pointer137430
+Ref: 1e5137430
+Ref: purelib >/pointer137456
+Ref: 1e6137456
+Ref: purelib </pointer137481
+Ref: 1e7137481
+Node: Mathematical Functions137715
+Ref: purelib module-math137819
+Ref: 5137819
+Ref: purelib mathematical-functions137819
+Ref: 128137819
+Node: Imports138112
+Ref: purelib imports138208
+Ref: 1e8138208
+Node: Basic Math Functions138345
+Ref: purelib basic-math-functions138465
+Ref: 1e9138465
+Ref: purelib e138573
+Ref: 1ea138573
+Ref: purelib pi138627
+Ref: 1eb138627
+Ref: purelib random139302
+Ref: 1ef139302
+Ref: purelib random31139417
+Ref: 1ec139417
+Ref: purelib random53139519
+Ref: 1ed139519
+Ref: purelib srandom139638
+Ref: 1ee139638
+Ref: purelib sqrt140078
+Ref: 1f0140078
+Ref: purelib exp140137
+Ref: 1f1140137
+Ref: purelib ln140162
+Ref: 1f2140162
+Ref: purelib log140186
+Ref: 1f3140186
+Ref: purelib sin140272
+Ref: 1f4140272
+Ref: purelib cos140297
+Ref: 1f5140297
+Ref: purelib tan140322
+Ref: 1f6140322
+Ref: purelib asin140379
+Ref: 1f7140379
+Ref: purelib acos140405
+Ref: 1f8140405
+Ref: purelib atan140431
+Ref: 1f9140431
+Ref: purelib atan2140497
+Ref: 1fa140497
+Ref: purelib sinh140657
+Ref: 1fb140657
+Ref: purelib cosh140683
+Ref: 1fc140683
+Ref: purelib tanh140709
+Ref: 1fd140709
+Ref: purelib asinh140778
+Ref: 1fe140778
+Ref: purelib acosh140805
+Ref: 1ff140805
+Ref: purelib atanh140832
+Ref: 200140832
+Ref: Basic Math Functions-Footnote-1140946
+Node: Complex Numbers141011
+Ref: purelib complex-numbers141140
+Ref: 201141140
+Ref: 202141181
+Ref: 203141207
+Ref: purelib i141269
+Ref: 204141269
+Ref: purelib complex142974
+Ref: 205142974
+Ref: purelib polar143057
+Ref: 206143057
+Ref: purelib rect143084
+Ref: 207143084
+Ref: purelib cis143172
+Ref: 208143172
+Ref: purelib abs/complex143331
+Ref: 209143331
+Ref: purelib arg143356
+Ref: 20a143356
+Ref: purelib re143542
+Ref: 20b143542
+Ref: purelib im143566
+Ref: 20c143566
+Ref: purelib conj143622
+Ref: 20d143622
+Node: Rational Numbers144131
+Ref: purelib rational-numbers144276
+Ref: 126144276
+Ref: purelib %144319
+Ref: 20e144319
+Ref: purelib rational145757
+Ref: 20f145757
+Ref: purelib num146334
+Ref: 210146334
+Ref: purelib den146359
+Ref: 211146359
+Node: Semantic Number Predicates and Types147059
+Ref: purelib semantic-number-predicates-and-types147180
+Ref: 24147180
+Ref: purelib compvalp147643
+Ref: 212147643
+Ref: purelib realvalp147748
+Ref: 213147748
+Ref: purelib ratvalp147824
+Ref: 214147824
+Ref: purelib bigintvalp147977
+Ref: 215147977
+Ref: purelib intvalp148090
+Ref: 216148090
+Ref: purelib compval148207
+Ref: 217148207
+Ref: purelib realval148230
+Ref: 218148230
+Ref: purelib ratval148253
+Ref: 219148253
+Ref: purelib bigintval148275
+Ref: 21a148275
+Ref: purelib intval148300
+Ref: 21b148300
+Ref: purelib module-enum148536
+Ref: 2148536
+Node: Enumerated Types148537
+Ref: purelib enumerated-types148649
+Ref: 21c148649
+Ref: purelib enum149346
+Ref: 21d149346
+Ref: purelib defenum150067
+Ref: 21e150067
+Ref: purelib enumof150276
+Ref: 21f150276
+Ref: purelib enum/type150517
+Ref: 220150517
+Ref: purelib enump150725
+Ref: 221150725
+Node: Container Types152798
+Ref: purelib container-types152904
+Ref: 222152904
+Ref: purelib module-array154133
+Ref: 0154133
+Node: Arrays154547
+Ref: purelib arrays154620
+Ref: 223154620
+Ref: purelib array/type154916
+Ref: 224154916
+Node: Imports<2>155029
+Ref: purelib id9155102
+Ref: 225155102
+Node: Operations155244
+Ref: purelib operations155334
+Ref: 226155334
+Ref: purelib emptyarray155369
+Ref: 227155369
+Ref: purelib array155429
+Ref: 228155429
+Ref: purelib array2155501
+Ref: 229155501
+Ref: purelib mkarray155589
+Ref: 22a155589
+Ref: purelib mkarray2155677
+Ref: 22b155677
+Ref: purelib arrayp155776
+Ref: 22c155776
+Ref: purelib #/array155845
+Ref: 22d155845
+Ref: purelib !/array155891
+Ref: 22e155891
+Ref: purelib null/array156024
+Ref: 22f156024
+Ref: purelib members/array156097
+Ref: 230156097
+Ref: purelib list/array156126
+Ref: 231156126
+Ref: purelib members2/array156192
+Ref: 232156192
+Ref: purelib list2/array156222
+Ref: 233156222
+Ref: purelib first/array156299
+Ref: 234156299
+Ref: purelib last/array156326
+Ref: 235156326
+Ref: purelib rmfirst/array156392
+Ref: 236156392
+Ref: purelib rmlast/array156421
+Ref: 237156421
+Ref: purelib insert/array156498
+Ref: 238156498
+Ref: purelib append/array156578
+Ref: 239156578
+Ref: purelib update/array156652
+Ref: 23a156652
+Ref: purelib update2/array156742
+Ref: 23b156742
+Node: Examples156815
+Ref: purelib examples156886
+Ref: 23c156886
+Ref: purelib module-heap158263
+Ref: 4158263
+Node: Heaps158264
+Ref: purelib heaps158358
+Ref: 23d158358
+Ref: purelib heap/type158949
+Ref: 23f158949
+Node: Imports<3>159086
+Ref: purelib id10159161
+Ref: 240159161
+Node: Operations<2>159302
+Ref: purelib id11159397
+Ref: 241159397
+Ref: purelib emptyheap159432
+Ref: 242159432
+Ref: purelib heap159490
+Ref: 243159490
+Ref: purelib heapp159559
+Ref: 244159559
+Ref: purelib #/heap159625
+Ref: 245159625
+Ref: purelib null/heap159670
+Ref: 246159670
+Ref: purelib members/heap159742
+Ref: 247159742
+Ref: purelib list/heap159771
+Ref: 248159771
+Ref: purelib first/heap159851
+Ref: 249159851
+Ref: purelib rmfirst/heap159930
+Ref: 24a159930
+Ref: purelib insert/heap160020
+Ref: 24b160020
+Node: Examples<2>160085
+Ref: purelib id12160161
+Ref: 24c160161
+Ref: purelib module-dict160336
+Ref: 1160336
+Node: Dictionaries160337
+Ref: purelib dictionaries160438
+Ref: 111160438
+Ref: purelib dict/type160744
+Ref: 24d160744
+Ref: purelib hdict/type160897
+Ref: 24e160897
+Ref: purelib mdict/type161044
+Ref: 24f161044
+Ref: purelib hmdict/type161187
+Ref: 250161187
+Ref: purelib xdict/type161315
+Ref: 251161315
+Node: Imports<4>163464
+Ref: purelib id13163546
+Ref: 258163546
+Node: Operations<3>163687
+Ref: purelib id14163789
+Ref: 259163789
+Ref: purelib emptydict163824
+Ref: 25a163824
+Ref: purelib emptyhdict163853
+Ref: 25b163853
+Ref: purelib emptymdict163883
+Ref: 25c163883
+Ref: purelib emptyhmdict163913
+Ref: 25d163913
+Ref: purelib dict163978
+Ref: 25e163978
+Ref: purelib hdict164005
+Ref: 25f164005
+Ref: purelib mdict164033
+Ref: 260164033
+Ref: purelib hmdict164061
+Ref: 261164061
+Ref: purelib dictp164351
+Ref: 262164351
+Ref: purelib hdictp164378
+Ref: 263164378
+Ref: purelib mdictp164406
+Ref: 264164406
+Ref: purelib hmdictp164434
+Ref: 265164434
+Ref: purelib mkdict164534
+Ref: 266164534
+Ref: purelib mkhdict164565
+Ref: 267164565
+Ref: purelib mkmdict164597
+Ref: 268164597
+Ref: purelib mkhmdict164629
+Ref: 269164629
+Ref: purelib +/dict164730
+Ref: 26a164730
+Ref: purelib -/dict164822
+Ref: 26b164822
+Ref: purelib */dict164926
+Ref: 26c164926
+Ref: purelib #/dict165038
+Ref: 26d165038
+Ref: purelib !/dict165125
+Ref: 26e165125
+Ref: purelib null/dict165334
+Ref: 26f165334
+Ref: purelib member/dict165411
+Ref: 270165411
+Ref: purelib members/dict165504
+Ref: 252165504
+Ref: purelib list/dict165533
+Ref: 271165533
+Ref: purelib keys/dict165645
+Ref: 253165645
+Ref: purelib vals/dict165749
+Ref: 254165749
+Ref: purelib first/dict165809
+Ref: 272165809
+Ref: purelib last/dict165836
+Ref: 273165836
+Ref: purelib rmfirst/dict165931
+Ref: 255165931
+Ref: purelib rmlast/dict165960
+Ref: 256165960
+Ref: purelib insert/dict166059
+Ref: 274166059
+Ref: purelib update/dict166094
+Ref: 275166094
+Ref: purelib delete/dict166437
+Ref: 257166437
+Ref: purelib delete_val/dict166603
+Ref: 276166603
+Ref: purelib delete_all/dict166859
+Ref: 277166859
+Node: Examples<3>168587
+Ref: purelib id15168670
+Ref: 278168670
+Ref: purelib module-set171539
+Ref: 9171539
+Node: Sets and Bags171540
+Ref: purelib sets-and-bags171627
+Ref: 23e171627
+Ref: purelib set/type172249
+Ref: 279172249
+Ref: purelib bag/type172268
+Ref: 27a172268
+Ref: purelib hset/type172430
+Ref: 27b172430
+Ref: purelib hbag/type172450
+Ref: 27c172450
+Ref: purelib xset/type172631
+Ref: 27d172631
+Node: Imports<5>173843
+Ref: purelib id16173926
+Ref: 27e173926
+Node: Operations<4>174066
+Ref: purelib id17174169
+Ref: 27f174169
+Ref: purelib emptyset174204
+Ref: 280174204
+Ref: purelib emptybag174232
+Ref: 281174232
+Ref: purelib emptyhset174260
+Ref: 282174260
+Ref: purelib emptyhbag174289
+Ref: 283174289
+Ref: purelib set174352
+Ref: 284174352
+Ref: purelib bag174378
+Ref: 285174378
+Ref: purelib hset174404
+Ref: 286174404
+Ref: purelib hbag174431
+Ref: 287174431
+Ref: purelib setp174653
+Ref: 288174653
+Ref: purelib bagp174679
+Ref: 289174679
+Ref: purelib hsetp174705
+Ref: 28a174705
+Ref: purelib hbagp174732
+Ref: 28b174732
+Ref: purelib +/set174830
+Ref: 28c174830
+Ref: purelib -/set174928
+Ref: 28d174928
+Ref: purelib */set175032
+Ref: 28e175032
+Ref: purelib #/set175144
+Ref: 28f175144
+Ref: purelib null/set175203
+Ref: 290175203
+Ref: purelib member/set175280
+Ref: 291175280
+Ref: purelib members/set175355
+Ref: 292175355
+Ref: purelib list/set175384
+Ref: 293175384
+Ref: purelib first/set175497
+Ref: 294175497
+Ref: purelib last/set175524
+Ref: 295175524
+Ref: purelib rmfirst/set175619
+Ref: 296175619
+Ref: purelib rmlast/set175648
+Ref: 297175648
+Ref: purelib insert/set175747
+Ref: 298175747
+Ref: purelib delete/set175869
+Ref: 299175869
+Ref: purelib delete_all/set176004
+Ref: 29a176004
+Node: Examples<4>177307
+Ref: purelib id18177391
+Ref: 29b177391
+Ref: purelib module-system179280
+Ref: a179280
+Node: System Interface179281
+Ref: purelib system-interface179383
+Ref: b5179383
+Node: Imports<6>180272
+Ref: purelib id19180362
+Ref: 29c180362
+Node: Errno and Friends180676
+Ref: purelib errno-and-friends180787
+Ref: 29e180787
+Ref: purelib errno180832
+Ref: 29f180832
+Ref: purelib set_errno180857
+Ref: 2a0180857
+Ref: purelib perror180888
+Ref: 2a1180888
+Ref: purelib strerror180918
+Ref: 2a2180918
+Node: POSIX Locale181391
+Ref: purelib posix-locale181507
+Ref: 2a3181507
+Ref: purelib setlocale181542
+Ref: 2a4181542
+Node: Signal Handling182996
+Ref: purelib signal-handling183109
+Ref: 2a5183109
+Ref: purelib trap183150
+Ref: 2a6183150
+Node: Time Functions184029
+Ref: purelib time-functions184147
+Ref: 2a7184147
+Ref: purelib time184408
+Ref: 2a8184408
+Ref: purelib gettimeofday184640
+Ref: 2a9184640
+Ref: purelib clock185124
+Ref: 2aa185124
+Ref: purelib sleep185424
+Ref: 2ab185424
+Ref: purelib nanosleep185451
+Ref: 2ac185451
+Ref: purelib tzset186496
+Ref: 2ad186496
+Ref: purelib tzname186561
+Ref: 2ae186561
+Ref: purelib timezone186582
+Ref: 2af186582
+Ref: purelib daylight186605
+Ref: 2b0186605
+Ref: purelib ctime187435
+Ref: 2b1187435
+Ref: purelib gmtime187567
+Ref: 2b2187567
+Ref: purelib localtime187595
+Ref: 2b3187595
+Ref: purelib mktime187981
+Ref: 2b6187981
+Ref: purelib asctime188148
+Ref: 2b4188148
+Ref: purelib strftime188178
+Ref: 2b5188178
+Ref: purelib strptime188406
+Ref: 2b7188406
+Node: Process Functions192969
+Ref: purelib process-functions193091
+Ref: 2b8193091
+Ref: purelib system193415
+Ref: 2bd193415
+Ref: purelib execv193477
+Ref: 2be193477
+Ref: purelib execvp193512
+Ref: 2bf193512
+Ref: purelib execve193548
+Ref: 2c0193548
+Ref: purelib spawnv194476
+Ref: 2c1194476
+Ref: purelib spawnvp194517
+Ref: 2c2194517
+Ref: purelib spawnve194559
+Ref: 2c3194559
+Node: Basic I/O Interface195969
+Ref: purelib basic-i-o-interface196093
+Ref: 2c4196093
+Ref: purelib stdin196498
+Ref: 2c5196498
+Ref: purelib stdout196518
+Ref: 2c6196518
+Ref: purelib stderr196539
+Ref: 2c7196539
+Ref: purelib fopen196593
+Ref: 2c8196593
+Ref: purelib popen196628
+Ref: 2c9196628
+Ref: purelib fdopen196947
+Ref: 2ca196947
+Ref: purelib freopen197178
+Ref: 2cb197178
+Ref: purelib fclose197411
+Ref: 2cc197411
+Ref: purelib pclose197440
+Ref: 2cd197440
+Ref: purelib tmpfile197500
+Ref: 2ce197500
+Ref: purelib feof197699
+Ref: 2cf197699
+Ref: purelib ferror197726
+Ref: 2d0197726
+Ref: purelib clearerr197755
+Ref: 2d1197755
+Ref: purelib fileno197880
+Ref: 2d2197880
+Ref: purelib fflush197976
+Ref: 2d3197976
+Ref: purelib fgets198092
+Ref: 2d4198092
+Ref: purelib gets198120
+Ref: 2d5198120
+Ref: purelib fget198269
+Ref: 2d6198269
+Ref: purelib fputs198386
+Ref: 2d7198386
+Ref: purelib puts198416
+Ref: 2d8198416
+Ref: purelib fread198672
+Ref: 2d9198672
+Ref: purelib fwrite198715
+Ref: 2da198715
+Ref: purelib fseek198892
+Ref: 2db198892
+Ref: purelib ftell198934
+Ref: 2dc198934
+Ref: purelib rewind198962
+Ref: 2dd198962
+Ref: purelib setbuf199382
+Ref: 2de199382
+Ref: purelib setvbuf199415
+Ref: 2df199415
+Ref: purelib printf201849
+Ref: 2e0201849
+Ref: purelib fprintf201887
+Ref: 2e1201887
+Ref: purelib sprintf202437
+Ref: 2e2202437
+Ref: purelib scanf202915
+Ref: 2e3202915
+Ref: purelib fscanf202947
+Ref: 2e4202947
+Ref: purelib sscanf203875
+Ref: 2e5203875
+Ref: Basic I/O Interface-Footnote-1205297
+Ref: Basic I/O Interface-Footnote-2205323
+Ref: Basic I/O Interface-Footnote-3205351
+Ref: Basic I/O Interface-Footnote-4205377
+Ref: Basic I/O Interface-Footnote-5205405
+Node: Stat and Friends205433
+Ref: purelib stat-and-friends205559
+Ref: 2e6205559
+Ref: purelib stat205602
+Ref: 2e7205602
+Ref: purelib lstat206259
+Ref: 2e8206259
+Ref: purelib fstat206510
+Ref: 2e9206510
+Node: Reading Directories208415
+Ref: purelib reading-directories208536
+Ref: 2ea208536
+Ref: purelib readdir208585
+Ref: 2eb208585
+Node: Shell Globbing208780
+Ref: purelib shell-globbing208899
+Ref: 2ec208899
+Ref: purelib fnmatch208940
+Ref: 2ed208940
+Ref: purelib glob209119
+Ref: 2ee209119
+Node: Regex Matching209752
+Ref: purelib regex-matching209878
+Ref: a5209878
+Ref: purelib module-regex209878
+Ref: 8209878
+Ref: purelib regex210826
+Ref: 2ef210826
+Ref: purelib reg_result214590
+Ref: 2f1214590
+Ref: purelib reg_info214804
+Ref: 2f2214804
+Ref: purelib reg214908
+Ref: 2f3214908
+Ref: purelib regs215072
+Ref: 2f4215072
+Ref: purelib regexg215423
+Ref: 2f5215423
+Ref: purelib regexgg215835
+Ref: 2f6215835
+Ref: purelib regsub215958
+Ref: 2f7215958
+Ref: purelib regsplit216508
+Ref: 2f8216508
+Ref: purelib regexgs216911
+Ref: 2f9216911
+Ref: purelib regexggs216960
+Ref: 2fa216960
+Ref: purelib regsplits217010
+Ref: 2fb217010
+Node: Basic Examples217410
+Ref: purelib basic-examples217518
+Ref: 2fc217518
+Node: Regex Substitutions and Splitting219497
+Ref: purelib regex-substitutions-and-splitting219627
+Ref: 2fd219627
+Node: Empty Matches220340
+Ref: purelib empty-matches220466
+Ref: 2fe220466
+Node: Submatches221392
+Ref: purelib submatches221509
+Ref: 2ff221509
+Node: Perl Regex Compatibility222919
+Ref: purelib perl-regex-compatibility223014
+Ref: 2f0223014
+Node: Additional POSIX Functions225280
+Ref: purelib module-posix225406
+Ref: 7225406
+Ref: purelib additional-posix-functions225406
+Ref: 29d225406
+Ref: purelib fork226013
+Ref: 2b9226013
+Ref: purelib getpid226064
+Ref: 300226064
+Ref: purelib getppid226090
+Ref: 301226090
+Ref: purelib wait226209
+Ref: 2bb226209
+Ref: purelib waitpid226240
+Ref: 2bc226240
+Ref: purelib kill226474
+Ref: 2ba226474
+Ref: purelib raise226557
+Ref: 302226557
+Ref: purelib pause226640
+Ref: 303226640
+Ref: purelib module-getopt226703
+Ref: 3226703
+Node: Option Parsing226704
+Ref: purelib option-parsing226807
+Ref: b4226807
+Ref: purelib getopt227098
+Ref: 304227098
+Node: Module Index230389
+Node: Index230660
 
 End Tag Table
 

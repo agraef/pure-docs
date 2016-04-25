@@ -1,11 +1,11 @@
-This is pure-stlmap.info, produced by makeinfo version 5.2 from
+This is pure-stlmap.info, produced by makeinfo version 6.1 from
 pure-stlmap.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-stlmap.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-stlmap
 ***********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.4, October 28, 2014
+  Version 0.4, April 25, 2016
 
      Peter Summerland <<p.summerland@gmail.com>> 
 
@@ -177,6 +177,7 @@ the expected output.  E.g.,
      catch id $ sm1!"0";
      //- out_of_bounds
 
+
   You might consider pasting parts of these scripts into a temporary
 file that you can play with if you are curious about how something
 works.
@@ -228,6 +229,7 @@ prompt.
      > let shs = stlhset ["a","b","c","d","e"];
      > let sms = stlmset ["a","b","c","c","d"];
 
+
   The ‘using’ statement imports the three modules provided by
 pure-stlmap: *note stlmap: 1. provides the interface for the stlmap and
 stlset containers, *note stlmmap: 2. provides the interface the stlmmap
@@ -253,6 +255,7 @@ functions.
 
      > let sm1 = emptystlmap;   // uses (<) to order keys
 
+
   You can construct a pure-stlmap container and fill it with elements
 all in one go using the *note stlmap: 18, *note stlset: 19, *note
 stlmmap: 1a, *note stlmset: 1b, *note stlhmap: 1c. and *note stlhset:
@@ -266,12 +269,14 @@ stlmmap: 1a, *note stlmset: 1b, *note stlhmap: 1c. and *note stlhset:
      > smh1!"b";
      2
 
+
   As opposed to the hashed containers (stlhmap and stlhset), the ordered
 containers (stlmap, stlset, stlmmap and stlmset) keep their elements
 ordered by key.
 
      > let sm1 = stlmap ["a"=>1,"b"=>2,"c"=>3]; members sm1;
      ["a"=>1,"b"=>2,"c"=>3]
+
 
 
 File: pure-stlmap.info,  Node: Ranges,  Next: Inserting and Replacing Elements,  Prev: Constructors,  Up: Quick Start
@@ -300,6 +305,7 @@ elements.
      > members shm;              // works on a unordered set (with no range keys)
      ["c"=>3,"d"=>4,"e"=>5,"a"=>1,"b"=>2]
 
+
   Two special keys, *note stl;;smbeg: 1f. and *note stl;;smend: 20. are
 reserved for use in ranges to designate the first element in a container
 and the imaginary "past-end" element.
@@ -309,6 +315,7 @@ and the imaginary "past-end" element.
 
      > members (sm,"b",smend);
      ["b"=>2,"c"=>3,"d"=>4,"e"=>5]
+
 
   Perhaps it should go without saying, but you cannot use either of
 these symbols as the keys of elements stored in a pure-stlmap container.
@@ -351,6 +358,7 @@ inserted are specified as (key=>value) hash-pairs.
      ["e"=>25]
      >
 
+
   The *note insert: 22. and *note insert_or_replace: 24. functions are
 overloaded to insert or replace elements specified in a list, vector,
 stlvec or another pure-stlmap container (of the same type).  E.g.,
@@ -372,6 +380,7 @@ stlvec or another pure-stlmap container (of the same type).  E.g.,
      > members sm2;
      ["a"=>11,"b"=>2,"c"=>3,"d"=>4,"e"=>15]
 
+
 
 File: pure-stlmap.info,  Node: Access,  Next: Erasing Elements,  Prev: Inserting and Replacing Elements,  Up: Quick Start
 
@@ -388,6 +397,7 @@ k.)
 
      > member sm "a";  // ("a"=>1) is an element with key equivalent to "a"
      1
+
 
   The value (or values for a multi-key container) associated with a key
 can be accessed using the (!)  function.
@@ -407,11 +417,13 @@ can be accessed using the (!)  function.
      > sms!"c";  // with multisets, return a list of keys
      ["c","c"]
 
+
   If the key is not stored in the container, (!)  throws an
 ‘out_of_bounds’ exception.
 
      > catch id $ sm!"x"; // "x" is not stored as a key in sm
      out_of_bounds
+
 
   Please note that all access is strictly by keys.  For example you
 cannot use the *note member: 26. function to determine if ("a"=>1) is an
@@ -459,6 +471,7 @@ container.
      > members smm1;
      ["a"=>1,"b"=>2,"d"=>4,"e"=>5]
 
+
 
 File: pure-stlmap.info,  Node: Conversions,  Next: Functional Programming,  Prev: Erasing Elements,  Up: Quick Start
 
@@ -492,6 +505,7 @@ and stlmset) the list, vector or stlvec can be built from a range.
      > members $ stlvec sm;
      ["a"=>1,"b"=>2,"c"=>3,"d"=>4,"e"=>5]
 
+
   You can convert the contents of an ordered container (stlmap, stlset,
 stlmmap or stlmset) or a range defined on one to a stream using the
 *note stream: 2d. function.
@@ -506,6 +520,7 @@ stlmmap or stlmset) or a range defined on one to a stream using the
      > list xx;
      [704782707,704882705,704982704,705082704]
      0s, 17 cells
+
 
 
 File: pure-stlmap.info,  Node: Functional Programming,  Prev: Conversions,  Up: Quick Start
@@ -527,6 +542,7 @@ can be applied to any of pure-stlmap’s associative containers.  E.g.,
      "b"=>2
      ()
 
+
   List comprehensions also work.
 
      > [k-32=>v+100 | (k=>v) = smm; k>"a" && k<"e"];
@@ -534,6 +550,7 @@ can be applied to any of pure-stlmap’s associative containers.  E.g.,
 
      > {k-32=>v+100 | (k=>v) = (smm,"b","e")};
      {"B"=>102,"C"=>131,"C"=>132,"D"=>104}
+
 
   It is highly recommended that you use the functional programming
 operations, as opposed to recursive loops, whenever possible.
@@ -636,12 +653,14 @@ equal to l.  Note that f and l do not have to be stored in oc.
      > members (sm,"c1",smend);
      ["d"=>4,"e"=>5]
 
+
   When a range is passed to a function provided by pure-stlmap, the keys
 can be dropped, in which case the range consists of all of the
 container’s elements.
 
      > members sm;
      ["a"=>1,"b"=>2,"c"=>3,"d"=>4,"e"=>5]
+
 
   Please note that support for ranges is not provided for the unordered
 containers (stlhmap and stlhset).  Most pure-stlmap functions that act
@@ -688,6 +707,7 @@ value pair is an element of a stlmap.
      > catch id $ member sm (a=>1);
      bad_argument
 
+
   In the last line of code, *note member: 26. treats (a=>1) as a key.
 Because (a=>1) cannot be compared to a string using ‘(<)’, the ersatz
 key is treated as a bad argument.
@@ -711,6 +731,7 @@ rather than, say, the first elment with the given key.
 
      > replace smm "c" []; members smm;
      ["a"=>1,"b"=>2,"d"=>4,"e"=>5]
+
 
   If selecting and replacing lists of elements with the same key is not
 convenient, you can always use iterators to track down and modify any
@@ -768,6 +789,7 @@ as two important symbols, *note stl;;smbeg: 1f. and *note stl;;smend:
      > members (sm,"c",smend);
      ["c"=>3,"d"=>4,"e"=>5]
 
+
 * Menu:
 
 * The stlhmap Module:: 
@@ -792,6 +814,7 @@ provides functions for dealing with them.  You can import it by adding
 the following ‘using’ statement to your code.
 
      > using stlhmap;
+
 
   The *note stlhmap: 0. module defines types two types:
 
@@ -818,6 +841,7 @@ stl;;map_intersection: 3a, etc).
 statement to your code.
 
      > using stlmap;
+
 
   Importing the stlmap module introduces types to describe stlmap and
 stlset, their iterators and ranges defined on them.
@@ -852,6 +876,7 @@ to using iterators when working with them.
 using statement to your code.
 
      > using stlmmap;
+
 
   Importing the stlmmap module introduces types to describe stlmmap and
 stlmset, along with their iterators and ranges defined on them.
@@ -1017,6 +1042,7 @@ first example.
      > bounds (sm,"a1","e");
      "b","e"
 
+
  -- Pure Function: stl::container_info acon
 
      If ‘acon’ is a stlmap or stlmmap, returns (0, klt, dflt, vlt, veq)
@@ -1059,6 +1085,7 @@ and keys that are already inserted.  E.g.,
      > catch id $ insert ss 1;   // e.g., 1<"a" is not defined
      bad_argument
 
+
   Currently there is no similar restriction for stlhmaps and stlhsets
 because (a) they do not have a key-less-than function and (b) the
 function they do use for testing equality, the key-equal function is
@@ -1071,6 +1098,7 @@ always (===), a function that can compare any two objects.
      1
      > members shs;
      ["c",1,"d","e","a","b"]
+
 
   Elements can be inserted into a pure-stlmap container individually or
 en masse from a list, vector, stlvec or another container of the same
@@ -1142,6 +1170,7 @@ you wan to insert you can use the *note insert_or_replace: 24. function.
      > members smm1;
      ["a"=>1,"b"=>2,"d"=>4,"e"=>5]
 
+
  -- Pure Function: replace_with fun map (k=>v)
 
      ‘map’ must be a stlmap.  The effect of this function is as follows:
@@ -1164,6 +1193,7 @@ converted to a stlmap.
      > members sm1;
      ["a"=>[1],"b"=>[2],"c"=>[32,31],"d"=>[4],"e"=>[5]]
 
+
   Here is another example in which items are counted.
 
      > let sm1 = mkstlmap ( (<), 0 );
@@ -1176,6 +1206,7 @@ converted to a stlmap.
 
      > members sm1;
      ["a"=>1,"b"=>1,"c"=>2,"d"=>1]
+
 
   You can remove all the elements in a container, remove all the
 elements equivalent to a given key or a remove a range of elements using
@@ -1215,6 +1246,7 @@ the *note erase: 28. function.
 
      > members smm;;
      ["a"=>1,"e"=>5]
+
 
  -- Pure Function: stl::swap acon1 acon2
 
@@ -1263,6 +1295,7 @@ functions.
      > smm!"f";              // stlmmap returns null list if key is not stored
      []
 
+
   You can access a sequence of elements in an ordered container (stlmap,
 stlset, stlmmap or stlmset) without resorting to iterators using the
 next_key and prev_key functions.
@@ -1287,6 +1320,7 @@ container and key.  E.g.,
      > bump_wc sm w = if member sm w then replace sm w (sm!w + 1)
                       else insert sm (w=>1);
 
+
   In general, this function would require two lookups to add a new word
 and three lookups to bump the count for an existing word.  For the
 ordered containers, lookups have O(log N) complexity which can be
@@ -1303,6 +1337,7 @@ pointer equality, not Pure’s (===) or (==) functions).  For example, the
 following will result in two O(log N) lookups.
 
      > if member sm "a" then sm!"a" else insert sm ("a"=>10);
+
 
   Here each "a" is a distinct Pure object.  The two "a"s satisfy (==)
 and even (===) but they are not the same internally and the caching
@@ -1348,6 +1383,7 @@ function that shows caching in action.
      > members sm;
      ["a"=>10,"b"=>2,"c"=>30,"d"=>4,"e"=>5]
 
+
   These examples show that caching can be effective wnen visiting
 elements of a stlmap or stlset in order using ‘next_key’ or ‘prev_key’.
 
@@ -1382,6 +1418,7 @@ and *note vals: 60. functions.
      > vals (sm,"b","e");
      [2,3,4]
 
+
  -- Pure Function: stl::vector rng
 
      Return a vector containing the elments of in the range, rng.
@@ -1407,6 +1444,7 @@ stlmset) into a stream of elements.
 
      > list ans;
      ["a"=>1,"b"=>2,"c"=>31]
+
 
 
 File: pure-stlmap.info,  Node: Functional Programming<2>,  Next: Comparison,  Prev: Conversions<2>,  Up: Container Operations
@@ -1445,6 +1483,7 @@ operations, implemented to act on ranges as if they were lists.
      > filter (\(k=>v)->v mod 2) sm;
      ["a"=>1,"c"=>3,"e"=>5]
 
+
  -- Pure Function: listmap fun rng
  -- Pure Function: catmap fun rng
  -- Pure Function: rowmap fun rng
@@ -1468,6 +1507,7 @@ matrix comprehensions over pure-stlmap’s containers.  E.g.,
      > { {k;v} |  (k=>v) = sm; v mod 2};
      {"a","c","e";1,3,5}
 
+
   The functional programming operations work directly on the underlying
 data structure.
 
@@ -1477,6 +1517,7 @@ data structure.
      > filter (==99) ints;
      [99]
      0s, 6 cells
+
 
 
 File: pure-stlmap.info,  Node: Comparison,  Next: Set Algorithms,  Prev: Functional Programming<2>,  Up: Container Operations
@@ -1512,6 +1553,7 @@ value-equal function).
      > (xx,"a","c") == (ss,"a","c");  // oops!
      0
 
+
   The second comparison was intended to compare identical ranges and
 return true.  It failed to do so because (==) is defined in the Prelude
 to compare tuples element by element, long before it is defined in the
@@ -1523,6 +1565,7 @@ function.
 
      > map_equal (xx,"a","c") (ss,"a","c");
      1
+
 
   The other comparison operators ‘(<)’, ‘(<=)’, ‘(>)’ and ‘(>=)’ are
 provided only for the ordered containers (stlmap, stlset, stlmmap and
@@ -1560,6 +1603,7 @@ values are not necessarily ordered by values.
 
      > smm == smm2; // probably not what you want
      0
+
 
   These operations do not make much sense for a stlmmap unless elements
 with equivalent keys are stored by value, in the order enforced by the
@@ -1629,6 +1673,7 @@ operations to a pair of stlmaps or stlmmaps.  E.g.,
 
      > members $ map_intersection sm1 sm2; // "c"=>31 from sm1
      ["c"=>31]
+
 
 
 File: pure-stlmap.info,  Node: Direct C Calls,  Prev: Set Algorithms,  Up: Container Operations
@@ -1720,6 +1765,7 @@ points to.
      > members sm1;
      ["a"=>1,"b"=>20,"c"=>3,"d"=>4,"e"=>5]
 
+
   Please note that you can never modify an element’s key, only its
 value.  If you want to change both key and value, you have to erase the
 element and insert a new element.
@@ -1729,6 +1775,7 @@ element and insert a new element.
 
      > members sm1;
      ["a"=>1,"b1"=>21,"c"=>3,"d"=>4,"e"=>5]
+
 
   Given two iterators, i and j, pointing into a ordered container oc,
 the range (i,j), denotes oc’s elements starting with "oc[i]", the
@@ -1745,6 +1792,7 @@ this range is denoted by the tuple (i,j).
      > members (i,j);             // get the elements in the range
      ["b"=>2,"c"=>3,"d"=>4]
 
+
   Perhaps it is worth mentioning that functions that act on ranges do
 not care if the range is specified by a pair of iterators or by keys.
 
@@ -1758,6 +1806,7 @@ not care if the range is specified by a pair of iterators or by keys.
      > let j = pastend ss;
      > map (+21) (i,j);
      ["x","y","z"]
+
 
 
 File: pure-stlmap.info,  Node: Exceptions,  Next: Functions,  Prev: Concepts<2>,  Up: Iterators<2>
@@ -1795,6 +1844,7 @@ Here are some examples of iterator errors.
 
      > catch id $ get_elm i; // bad iterator exception
      bad_argument
+
 
 
 File: pure-stlmap.info,  Node: Functions,  Next: Examples<2>,  Prev: Exceptions,  Up: Iterators<2>
@@ -1872,6 +1922,7 @@ supports interators (stlmap, stlset, stlmmap and stlmset).
 
      > ok, smx === sm1, stl::members (f,l);
      1,1,["b"=>2,"c"=>3,"d"=>4]
+
 
  -- Pure Function: stl::inc i
  -- Pure Function: stl::dec i
@@ -1975,6 +2026,7 @@ Here are some examples using iterators.
      > inc j $$ endp j;
      1
 
+
 
 File: pure-stlmap.info,  Node: Backward Compatibilty,  Next: Module Index,  Prev: Iterators<2>,  Up: Top
 
@@ -2027,19 +2079,19 @@ Index
 
 * ! (infix function):                    Accessing Elements.  (line  15)
 * # (prefix function):                   Information.         (line  12)
-* < (infix function):                    Comparison.          (line  53)
-* <= (infix function):                   Comparison.          (line  61)
+* < (infix function):                    Comparison.          (line  55)
+* <= (infix function):                   Comparison.          (line  63)
 * == (infix function):                   Comparison.          (line  15)
-* == (infix function) <1>:               Functions.           (line 118)
-* > (infix function):                    Comparison.          (line  61)
-* >= (infix function):                   Comparison.          (line  61)
+* == (infix function) <1>:               Functions.           (line 119)
+* > (infix function):                    Comparison.          (line  63)
+* >= (infix function):                   Comparison.          (line  63)
 * ~= (infix function):                   Comparison.          (line  15)
 * catmap (function):                     Functional Programming<2>.
-                                                              (line  37)
+                                                              (line  38)
 * colcatmap (function):                  Functional Programming<2>.
-                                                              (line  37)
+                                                              (line  38)
 * colmap (function):                     Functional Programming<2>.
-                                                              (line  37)
+                                                              (line  38)
 * do (function):                         Functional Programming<2>.
                                                               (line   9)
 * emptystlhmap (function):               Container Construction.
@@ -2054,8 +2106,8 @@ Index
                                                               (line  35)
 * emptystlset (function):                Container Construction.
                                                               (line  35)
-* erase (function):                      Modification.        (line 145)
-* erase (function) <1>:                  Functions.           (line 123)
+* erase (function):                      Modification.        (line 150)
+* erase (function) <1>:                  Functions.           (line 124)
 * filter (function):                     Functional Programming<2>.
                                                               (line   9)
 * foldl (function):                      Functional Programming<2>.
@@ -2066,11 +2118,11 @@ Index
                                                               (line   9)
 * foldr1 (function):                     Functional Programming<2>.
                                                               (line   9)
-* insert (function):                     Modification.        (line  41)
-* insert_or_replace (function):          Modification.        (line  60)
+* insert (function):                     Modification.        (line  43)
+* insert_or_replace (function):          Modification.        (line  62)
 * keys (function):                       Conversions<2>.      (line  14)
 * listmap (function):                    Functional Programming<2>.
-                                                              (line  37)
+                                                              (line  38)
 * map (function):                        Functional Programming<2>.
                                                               (line   9)
 * member (function):                     Accessing Elements.  (line  10)
@@ -2083,29 +2135,29 @@ Index
                                                               (line  21)
 * mkstlset (function):                   Container Construction.
                                                               (line  21)
-* replace (function):                    Modification.        (line  68)
-* replace_with (function):               Modification.        (line 106)
+* replace (function):                    Modification.        (line  70)
+* replace_with (function):               Modification.        (line 109)
 * rowcatmap (function):                  Functional Programming<2>.
-                                                              (line  37)
+                                                              (line  38)
 * rowmap (function):                     Functional Programming<2>.
-                                                              (line  37)
+                                                              (line  38)
 * stl;;begin (function):                 Functions.           (line  13)
-* stl;;beginp (function):                Functions.           (line 103)
+* stl;;beginp (function):                Functions.           (line 104)
 * stl;;bounds (function):                Information.         (line  31)
-* stl;;bucket_size (function):           Information.         (line  63)
-* stl;;container_info (function):        Information.         (line  53)
+* stl;;bucket_size (function):           Information.         (line  64)
+* stl;;container_info (function):        Information.         (line  54)
 * stl;;count (function):                 Information.         (line  26)
-* stl;;dec (function):                   Functions.           (line  77)
+* stl;;dec (function):                   Functions.           (line  78)
 * stl;;distance (function):              Information.         (line  20)
 * stl;;empty (function):                 Information.         (line  16)
 * stl;;find (function):                  Functions.           (line  18)
 * stl;;find_with_default (function):     Functions.           (line  24)
-* stl;;get_elm (function):               Functions.           (line  88)
-* stl;;get_info (function):              Functions.           (line 109)
-* stl;;get_key (function):               Functions.           (line  88)
-* stl;;get_val (function):               Functions.           (line  88)
-* stl;;hmap_reserve (function):          Information.         (line  68)
-* stl;;inc (function):                   Functions.           (line  77)
+* stl;;get_elm (function):               Functions.           (line  89)
+* stl;;get_info (function):              Functions.           (line 110)
+* stl;;get_key (function):               Functions.           (line  89)
+* stl;;get_val (function):               Functions.           (line  89)
+* stl;;hmap_reserve (function):          Information.         (line  69)
+* stl;;inc (function):                   Functions.           (line  78)
 * stl;;insert_elm (function):            Functions.           (line  32)
 * stl;;insert_elm (function) <1>:        Functions.           (line  46)
 * stl;;iterator (function):              Functions.           (line   9)
@@ -2118,12 +2170,12 @@ Index
 * stl;;map_merge (function):             Set Algorithms.      (line  15)
 * stl;;map_symmetric_difference (function): Set Algorithms.   (line  21)
 * stl;;map_union (function):             Set Algorithms.      (line  21)
-* stl;;move (function):                  Functions.           (line  77)
-* stl;;next_key (function):              Accessing Elements.  (line  45)
+* stl;;move (function):                  Functions.           (line  78)
+* stl;;next_key (function):              Accessing Elements.  (line  46)
 * stl;;pastend (function):               Functions.           (line  13)
-* stl;;pastendp (function):              Functions.           (line 103)
-* stl;;prev_key (function):              Accessing Elements.  (line  45)
-* stl;;put_val (function):               Functions.           (line  97)
+* stl;;pastendp (function):              Functions.           (line 104)
+* stl;;prev_key (function):              Accessing Elements.  (line  46)
+* stl;;put_val (function):               Functions.           (line  98)
 * stl;;shm_get (function):               Direct C Calls.      (line  26)
 * stl;;shm_member (function):            Direct C Calls.      (line  26)
 * stl;;shm_put (function):               Direct C Calls.      (line  26)
@@ -2135,400 +2187,400 @@ Index
 * stl;;sm_get (function):                Direct C Calls.      (line  16)
 * stl;;sm_member (function):             Direct C Calls.      (line  16)
 * stl;;sm_put (function):                Direct C Calls.      (line  16)
-* stl;;swap (function):                  Modification.        (line 180)
+* stl;;swap (function):                  Modification.        (line 186)
 * stl;;u_bound (function):               Functions.           (line  60)
-* stl;;vector (function):                Conversions<2>.      (line  31)
+* stl;;vector (function):                Conversions<2>.      (line  32)
 * stlhmap (function):                    Container Construction.
                                                               (line  54)
 * stlhmap (module):                      Top.                 (line  12)
-* stlhmap (type):                        The stlhmap Module.  (line  21)
+* stlhmap (type):                        The stlhmap Module.  (line  22)
 * stlhset (function):                    Container Construction.
                                                               (line  54)
-* stlhset (type):                        The stlhmap Module.  (line  21)
+* stlhset (type):                        The stlhmap Module.  (line  22)
 * stlmap (function):                     Container Construction.
                                                               (line  54)
 * stlmap (module):                       Top.                 (line  12)
-* stlmap (type):                         The stlmap Module.   (line  20)
-* stlmap_iter (type):                    The stlmap Module.   (line  23)
-* stlmap_rng (type):                     The stlmap Module.   (line  25)
+* stlmap (type):                         The stlmap Module.   (line  21)
+* stlmap_iter (type):                    The stlmap Module.   (line  24)
+* stlmap_rng (type):                     The stlmap Module.   (line  26)
 * stlmmap (function):                    Container Construction.
                                                               (line  54)
 * stlmmap (module):                      Top.                 (line  12)
-* stlmmap (type):                        The stlmmap Module.  (line  21)
-* stlmmap_iter (type):                   The stlmmap Module.  (line  24)
-* stlmmap_rng (type):                    The stlmmap Module.  (line  26)
+* stlmmap (type):                        The stlmmap Module.  (line  22)
+* stlmmap_iter (type):                   The stlmmap Module.  (line  25)
+* stlmmap_rng (type):                    The stlmmap Module.  (line  27)
 * stlmset (function):                    Container Construction.
                                                               (line  54)
-* stlmset (type):                        The stlmmap Module.  (line  21)
+* stlmset (type):                        The stlmmap Module.  (line  22)
 * stlset (function):                     Container Construction.
                                                               (line  54)
-* stlset (type):                         The stlmap Module.   (line  20)
-* stlvec (function):                     Conversions<2>.      (line  35)
-* stream (function):                     Conversions<2>.      (line  42)
+* stlset (type):                         The stlmap Module.   (line  21)
+* stlvec (function):                     Conversions<2>.      (line  36)
+* stream (function):                     Conversions<2>.      (line  43)
 * vals (function):                       Conversions<2>.      (line  14)
 
 
 
 Tag Table:
-Node: Top372
-Ref: pure-stlmap doc575
-Ref: 3575
-Ref: pure-stlmap module-stlmmap575
-Ref: 2575
-Ref: pure-stlmap module-stlhmap575
-Ref: 0575
-Ref: Top-Footnote-11094
-Ref: Top-Footnote-21132
-Node: Copying1173
-Ref: pure-stlmap pure-stlmap1258
-Ref: 41258
-Ref: pure-stlmap module-stlmap1258
-Ref: 11258
-Ref: pure-stlmap copying1258
-Ref: 51258
-Node: Introduction1650
-Ref: pure-stlmap introduction1744
-Ref: 61744
-Node: Supported Containers2049
-Ref: pure-stlmap supported-containers2141
-Ref: 72141
-Node: Interface2747
-Ref: pure-stlmap interface2839
-Ref: 82839
-Node: Installation4794
-Ref: pure-stlmap installation4889
-Ref: d4889
-Node: Examples5201
-Ref: pure-stlmap examples5295
-Ref: e5295
-Node: Quick Start6004
-Ref: pure-stlmap quick-start6094
-Ref: f6094
-Node: Example Containers6562
-Ref: pure-stlmap example-containers6654
-Ref: 106654
-Node: Constructors7944
-Ref: pure-stlmap constructors8051
-Ref: 118051
-Node: Ranges8957
-Ref: pure-stlmap ranges9078
-Ref: 1e9078
-Node: Inserting and Replacing Elements10505
-Ref: pure-stlmap inserting-and-replacing-elements10620
-Ref: 2110620
-Node: Access12168
-Ref: pure-stlmap access12293
-Ref: 2512293
-Node: Erasing Elements13534
-Ref: pure-stlmap erasing-elements13638
-Ref: 2713638
-Node: Conversions14848
-Ref: pure-stlmap conversions14968
-Ref: 2914968
-Node: Functional Programming16245
-Ref: pure-stlmap functional-programming16340
-Ref: 2e16340
-Node: Concepts17113
-Ref: pure-stlmap concepts17202
-Ref: 3117202
-Node: Containers and Elements17775
-Ref: pure-stlmap containers-and-elements17866
-Ref: 3217866
-Node: Ranges<2>20871
-Ref: pure-stlmap id120980
-Ref: 3320980
-Node: Iterators22252
-Ref: pure-stlmap iterators22367
-Ref: 3422367
-Node: Selecting Elements Using Keys22950
-Ref: pure-stlmap selecting-elements-using-keys23074
-Ref: 3523074
-Node: C++ Implementation24634
-Ref: pure-stlmap c-implementation24740
-Ref: 3624740
-Ref: C++ Implementation-Footnote-125546
-Node: Modules25587
-Ref: pure-stlmap c-standard-library-documentation25685
-Ref: 3725685
-Ref: pure-stlmap modules25685
-Ref: 3825685
-Ref: pure-stlmap stl smbeg/stlmap25954
-Ref: 1f25954
-Ref: pure-stlmap stl smend/stlmap25987
-Ref: 2025987
-Node: The stlhmap Module26555
-Ref: pure-stlmap the-stlhmap-module26648
-Ref: 3926648
-Ref: pure-stlmap stlhmap/type27344
-Ref: 3b27344
-Ref: pure-stlmap stlhset/type27367
-Ref: 3c27367
-Node: The stlmap Module27560
-Ref: pure-stlmap the-stlmap-module27680
-Ref: 3d27680
-Ref: pure-stlmap stlmap/type28272
-Ref: 3f28272
-Ref: pure-stlmap stlset/type28294
-Ref: 4028294
-Ref: pure-stlmap stlmap_iter/type28317
-Ref: 4128317
-Ref: pure-stlmap stlmap_rng/type28345
-Ref: 4228345
-Node: The stlmmap Module28672
-Ref: pure-stlmap the-stlmmap-module28765
-Ref: 4328765
-Ref: pure-stlmap stlmmap/type29466
-Ref: 4429466
-Ref: pure-stlmap stlmset/type29489
-Ref: 4529489
-Ref: pure-stlmap stlmmap_iter/type29513
-Ref: 4629513
-Ref: pure-stlmap stlmmap_rng/type29542
-Ref: 4729542
-Node: Container Operations29876
-Ref: pure-stlmap container-operations29978
-Ref: 4829978
-Node: Container Construction30633
-Ref: pure-stlmap container-construction30737
-Ref: 4930737
-Ref: pure-stlmap mkstlmap/stlmap31026
-Ref: 4a31026
-Ref: pure-stlmap mkstlmmap/stlmap31073
-Ref: 4b31073
-Ref: pure-stlmap mkstlset/stlmap31503
-Ref: 4c31503
-Ref: pure-stlmap mkstlmset/stlmap31535
-Ref: 4d31535
-Ref: pure-stlmap emptystlmap/stlmap32063
-Ref: 1232063
-Ref: pure-stlmap emptystlmmap/stlmap32094
-Ref: 1432094
-Ref: pure-stlmap emptystlset/stlmap32126
-Ref: 1332126
-Ref: pure-stlmap emptystlmset/stlmap32157
-Ref: 1532157
-Ref: pure-stlmap emptystlhmap/stlmap32320
-Ref: 1632320
-Ref: pure-stlmap emptystlhset/stlmap32352
-Ref: 1732352
-Ref: pure-stlmap stlmap/stlmap32769
-Ref: 1832769
-Ref: pure-stlmap stlmmap/stlmap32799
-Ref: 1a32799
-Ref: pure-stlmap stlset/stlmap32830
-Ref: 1932830
-Ref: pure-stlmap stlmset/stlmap32860
-Ref: 1b32860
-Ref: pure-stlmap stlhmap/stlmap32891
-Ref: 1c32891
-Ref: pure-stlmap stlhset/stlmap32922
-Ref: 1d32922
-Node: Information33516
-Ref: pure-stlmap information33641
-Ref: 4e33641
-Ref: pure-stlmap #/stlmap34015
-Ref: 4f34015
-Ref: pure-stlmap stl empty/stlmap34093
-Ref: 5034093
-Ref: pure-stlmap stl distance/stlmap34183
-Ref: 5134183
-Ref: pure-stlmap stl count/stlmap34380
-Ref: 5234380
-Ref: pure-stlmap stl bounds/stlmap34542
-Ref: 5334542
-Ref: pure-stlmap stl container_info/stlmap35269
-Ref: 5435269
-Ref: pure-stlmap stl bucket_size/stlmap35788
-Ref: 5535788
-Ref: pure-stlmap stl hmap_reserve/stlmap35961
-Ref: 5635961
-Node: Modification36208
-Ref: pure-stlmap modification36329
-Ref: 5736329
-Ref: pure-stlmap insert/stlmap37728
-Ref: 2237728
-Ref: pure-stlmap insert_or_replace/stlmap38860
-Ref: 2438860
-Ref: pure-stlmap replace/stlmap39256
-Ref: 2339256
-Ref: pure-stlmap replace_with/stlmap40498
-Ref: 5840498
-Ref: pure-stlmap erase/stlmap41657
-Ref: 2841657
-Ref: pure-stlmap stl swap/stlmap42624
-Ref: 5942624
-Node: Accessing Elements42864
-Ref: pure-stlmap accessing-elements42988
-Ref: 5a42988
-Ref: pure-stlmap member/stlmap43182
-Ref: 2643182
-Ref: pure-stlmap !/stlmap43360
-Ref: 5b43360
-Ref: pure-stlmap stl next_key/stlmap44352
-Ref: 5c44352
-Ref: pure-stlmap stl prev_key/stlmap44392
-Ref: 5d44392
-Node: Conversions<2>47662
-Ref: pure-stlmap id247799
-Ref: 5e47799
-Ref: pure-stlmap members/stlmap48027
-Ref: 2a48027
-Ref: pure-stlmap keys/stlmap48120
-Ref: 5f48120
-Ref: pure-stlmap vals/stlmap48148
-Ref: 6048148
-Ref: pure-stlmap stl vector/stlmap48596
-Ref: 2b48596
-Ref: pure-stlmap stlvec/stlmap48699
-Ref: 2c48699
-Ref: pure-stlmap stream/stlmap48907
-Ref: 2d48907
-Node: Functional Programming<2>49243
-Ref: pure-stlmap id349372
-Ref: 6149372
-Ref: pure-stlmap do/stlmap49559
-Ref: c49559
-Ref: pure-stlmap map/stlmap49589
-Ref: 949589
-Ref: pure-stlmap filter/stlmap49620
-Ref: b49620
-Ref: pure-stlmap foldl/stlmap49655
-Ref: a49655
-Ref: pure-stlmap foldl1/stlmap49690
-Ref: 3049690
-Ref: pure-stlmap foldr/stlmap49724
-Ref: 6249724
-Ref: pure-stlmap foldr1/stlmap49759
-Ref: 6349759
-Ref: pure-stlmap listmap/stlmap50411
-Ref: 6450411
-Ref: pure-stlmap catmap/stlmap50446
-Ref: 2f50446
-Ref: pure-stlmap rowmap/stlmap50480
-Ref: 6550480
-Ref: pure-stlmap rowcatmap/stlmap50514
-Ref: 6650514
-Ref: pure-stlmap colmap/stlmap50551
-Ref: 6750551
-Ref: pure-stlmap colcatmap/stlmap50585
-Ref: 6850585
-Node: Comparison51358
-Ref: pure-stlmap comparison51487
-Ref: 6951487
-Ref: pure-stlmap stl map_equal/stlmap51897
-Ref: 6a51897
-Ref: pure-stlmap ==/stlmap51942
-Ref: 6b51942
-Ref: pure-stlmap ~=/stlmap51974
-Ref: 6c51974
-Ref: pure-stlmap </stlmap53369
-Ref: 6d53369
-Ref: pure-stlmap >/stlmap53737
-Ref: 6e53737
-Ref: pure-stlmap <=/stlmap53768
-Ref: 6f53768
-Ref: pure-stlmap >=/stlmap53800
-Ref: 7053800
-Node: Set Algorithms54820
-Ref: pure-stlmap set-algorithms54938
-Ref: 7154938
-Ref: pure-stlmap stl map_merge/stlmap55485
-Ref: 7255485
-Ref: pure-stlmap stl map_union/stlmap55759
-Ref: 3e55759
-Ref: pure-stlmap stl map_difference/stlmap55803
-Ref: 7355803
-Ref: pure-stlmap stl map_intersection/stlmap55852
-Ref: 3a55852
-Ref: pure-stlmap stl map_symmetric_difference/stlmap55903
-Ref: 7455903
-Ref: pure-stlmap stl map_includes/stlmap55962
-Ref: 7555962
-Node: Direct C Calls57706
-Ref: pure-stlmap direct-c-calls57805
-Ref: 7657805
-Ref: pure-stlmap stl sm_member/stlmap58450
-Ref: 7758450
-Ref: pure-stlmap stl sm_get/stlmap58491
-Ref: 7858491
-Ref: pure-stlmap stl sm_put/stlmap58529
-Ref: 7958529
-Ref: pure-stlmap stl shm_member/stlmap58960
-Ref: 7a58960
-Ref: pure-stlmap stl shm_get/stlmap59003
-Ref: 7b59003
-Ref: pure-stlmap stl shm_put/stlmap59043
-Ref: 7c59043
-Ref: pure-stlmap stl smm_member/stlmap59490
-Ref: 7d59490
-Ref: pure-stlmap stl smm_get/stlmap59533
-Ref: 7e59533
-Ref: pure-stlmap stl smm_put/stlmap59573
-Ref: 7f59573
-Node: Iterators<2>60038
-Ref: pure-stlmap id460154
-Ref: 8060154
-Node: Concepts<2>60359
-Ref: pure-stlmap id560443
-Ref: 8160443
-Node: Exceptions62000
-Ref: pure-stlmap exceptions62102
-Ref: 8262102
-Node: Functions63101
-Ref: pure-stlmap functions63203
-Ref: 8363203
-Ref: pure-stlmap stl iterator/stlmap63357
-Ref: 8463357
-Ref: pure-stlmap stl begin/stlmap63466
-Ref: 8563466
-Ref: pure-stlmap stl pastend/stlmap63501
-Ref: 8663501
-Ref: pure-stlmap stl find/stlmap63596
-Ref: 8763596
-Ref: pure-stlmap stl find_with_default/stlmap63815
-Ref: 8863815
-Ref: pure-stlmap stl insert_elm/stlmap64203
-Ref: 8964203
-Ref: pure-stlmap stl l_bound/stlmap65415
-Ref: 8a65415
-Ref: pure-stlmap stl u_bound/stlmap65662
-Ref: 8b65662
-Ref: pure-stlmap stl lu_bounds/stlmap65908
-Ref: 8c65908
-Ref: pure-stlmap stl inc/stlmap66173
-Ref: 8d66173
-Ref: pure-stlmap stl dec/stlmap66203
-Ref: 8e66203
-Ref: pure-stlmap stl move/stlmap66233
-Ref: 8f66233
-Ref: pure-stlmap stl get_elm/stlmap66714
-Ref: 9066714
-Ref: pure-stlmap stl get_key/stlmap66748
-Ref: 9166748
-Ref: pure-stlmap stl get_val/stlmap66782
-Ref: 9266782
-Ref: pure-stlmap stl put_val67090
-Ref: 9367090
-Ref: pure-stlmap stl beginp/stlmap67327
-Ref: 9467327
-Ref: pure-stlmap stl pastendp/stlmap67360
-Ref: 9567360
-Ref: pure-stlmap stl get_info/stlmap67521
-Ref: 9667521
-Node: Examples<2>68344
-Ref: pure-stlmap id668427
-Ref: 9768427
-Node: Backward Compatibilty69209
-Ref: pure-stlmap backward-compatibilty69317
-Ref: 9869317
-Node: pure-stlmap-0 269500
-Ref: pure-stlmap pure-stlmap-0-269602
-Ref: 9969602
-Node: pure-stlmap-0 369695
-Ref: pure-stlmap pure-stlmap-0-369797
-Ref: 9a69797
-Node: Module Index69882
-Node: Index70064
+Node: Top369
+Ref: pure-stlmap doc569
+Ref: 3569
+Ref: pure-stlmap module-stlmmap569
+Ref: 2569
+Ref: pure-stlmap module-stlhmap569
+Ref: 0569
+Ref: Top-Footnote-11086
+Ref: Top-Footnote-21124
+Node: Copying1165
+Ref: pure-stlmap pure-stlmap1250
+Ref: 41250
+Ref: pure-stlmap module-stlmap1250
+Ref: 11250
+Ref: pure-stlmap copying1250
+Ref: 51250
+Node: Introduction1642
+Ref: pure-stlmap introduction1736
+Ref: 61736
+Node: Supported Containers2041
+Ref: pure-stlmap supported-containers2133
+Ref: 72133
+Node: Interface2739
+Ref: pure-stlmap interface2831
+Ref: 82831
+Node: Installation4786
+Ref: pure-stlmap installation4881
+Ref: d4881
+Node: Examples5193
+Ref: pure-stlmap examples5287
+Ref: e5287
+Node: Quick Start5997
+Ref: pure-stlmap quick-start6087
+Ref: f6087
+Node: Example Containers6555
+Ref: pure-stlmap example-containers6647
+Ref: 106647
+Node: Constructors7938
+Ref: pure-stlmap constructors8045
+Ref: 118045
+Node: Ranges8954
+Ref: pure-stlmap ranges9075
+Ref: 1e9075
+Node: Inserting and Replacing Elements10504
+Ref: pure-stlmap inserting-and-replacing-elements10619
+Ref: 2110619
+Node: Access12169
+Ref: pure-stlmap access12294
+Ref: 2512294
+Node: Erasing Elements13538
+Ref: pure-stlmap erasing-elements13642
+Ref: 2713642
+Node: Conversions14853
+Ref: pure-stlmap conversions14973
+Ref: 2914973
+Node: Functional Programming16252
+Ref: pure-stlmap functional-programming16347
+Ref: 2e16347
+Node: Concepts17122
+Ref: pure-stlmap concepts17211
+Ref: 3117211
+Node: Containers and Elements17784
+Ref: pure-stlmap containers-and-elements17875
+Ref: 3217875
+Node: Ranges<2>20880
+Ref: pure-stlmap id120989
+Ref: 3320989
+Node: Iterators22263
+Ref: pure-stlmap iterators22378
+Ref: 3422378
+Node: Selecting Elements Using Keys22961
+Ref: pure-stlmap selecting-elements-using-keys23085
+Ref: 3523085
+Node: C++ Implementation24647
+Ref: pure-stlmap c-implementation24753
+Ref: 3624753
+Ref: C++ Implementation-Footnote-125559
+Node: Modules25600
+Ref: pure-stlmap c-standard-library-documentation25698
+Ref: 3725698
+Ref: pure-stlmap modules25698
+Ref: 3825698
+Ref: pure-stlmap stl smbeg/stlmap25967
+Ref: 1f25967
+Ref: pure-stlmap stl smend/stlmap26000
+Ref: 2026000
+Node: The stlhmap Module26569
+Ref: pure-stlmap the-stlhmap-module26662
+Ref: 3926662
+Ref: pure-stlmap stlhmap/type27359
+Ref: 3b27359
+Ref: pure-stlmap stlhset/type27382
+Ref: 3c27382
+Node: The stlmap Module27575
+Ref: pure-stlmap the-stlmap-module27695
+Ref: 3d27695
+Ref: pure-stlmap stlmap/type28288
+Ref: 3f28288
+Ref: pure-stlmap stlset/type28310
+Ref: 4028310
+Ref: pure-stlmap stlmap_iter/type28333
+Ref: 4128333
+Ref: pure-stlmap stlmap_rng/type28361
+Ref: 4228361
+Node: The stlmmap Module28688
+Ref: pure-stlmap the-stlmmap-module28781
+Ref: 4328781
+Ref: pure-stlmap stlmmap/type29483
+Ref: 4429483
+Ref: pure-stlmap stlmset/type29506
+Ref: 4529506
+Ref: pure-stlmap stlmmap_iter/type29530
+Ref: 4629530
+Ref: pure-stlmap stlmmap_rng/type29559
+Ref: 4729559
+Node: Container Operations29893
+Ref: pure-stlmap container-operations29995
+Ref: 4829995
+Node: Container Construction30650
+Ref: pure-stlmap container-construction30754
+Ref: 4930754
+Ref: pure-stlmap mkstlmap/stlmap31043
+Ref: 4a31043
+Ref: pure-stlmap mkstlmmap/stlmap31090
+Ref: 4b31090
+Ref: pure-stlmap mkstlset/stlmap31520
+Ref: 4c31520
+Ref: pure-stlmap mkstlmset/stlmap31552
+Ref: 4d31552
+Ref: pure-stlmap emptystlmap/stlmap32080
+Ref: 1232080
+Ref: pure-stlmap emptystlmmap/stlmap32111
+Ref: 1432111
+Ref: pure-stlmap emptystlset/stlmap32143
+Ref: 1332143
+Ref: pure-stlmap emptystlmset/stlmap32174
+Ref: 1532174
+Ref: pure-stlmap emptystlhmap/stlmap32337
+Ref: 1632337
+Ref: pure-stlmap emptystlhset/stlmap32369
+Ref: 1732369
+Ref: pure-stlmap stlmap/stlmap32786
+Ref: 1832786
+Ref: pure-stlmap stlmmap/stlmap32816
+Ref: 1a32816
+Ref: pure-stlmap stlset/stlmap32847
+Ref: 1932847
+Ref: pure-stlmap stlmset/stlmap32877
+Ref: 1b32877
+Ref: pure-stlmap stlhmap/stlmap32908
+Ref: 1c32908
+Ref: pure-stlmap stlhset/stlmap32939
+Ref: 1d32939
+Node: Information33533
+Ref: pure-stlmap information33658
+Ref: 4e33658
+Ref: pure-stlmap #/stlmap34032
+Ref: 4f34032
+Ref: pure-stlmap stl empty/stlmap34110
+Ref: 5034110
+Ref: pure-stlmap stl distance/stlmap34200
+Ref: 5134200
+Ref: pure-stlmap stl count/stlmap34397
+Ref: 5234397
+Ref: pure-stlmap stl bounds/stlmap34559
+Ref: 5334559
+Ref: pure-stlmap stl container_info/stlmap35287
+Ref: 5435287
+Ref: pure-stlmap stl bucket_size/stlmap35806
+Ref: 5535806
+Ref: pure-stlmap stl hmap_reserve/stlmap35979
+Ref: 5635979
+Node: Modification36226
+Ref: pure-stlmap modification36347
+Ref: 5736347
+Ref: pure-stlmap insert/stlmap37748
+Ref: 2237748
+Ref: pure-stlmap insert_or_replace/stlmap38880
+Ref: 2438880
+Ref: pure-stlmap replace/stlmap39276
+Ref: 2339276
+Ref: pure-stlmap replace_with/stlmap40519
+Ref: 5840519
+Ref: pure-stlmap erase/stlmap41680
+Ref: 2841680
+Ref: pure-stlmap stl swap/stlmap42648
+Ref: 5942648
+Node: Accessing Elements42888
+Ref: pure-stlmap accessing-elements43012
+Ref: 5a43012
+Ref: pure-stlmap member/stlmap43206
+Ref: 2643206
+Ref: pure-stlmap !/stlmap43384
+Ref: 5b43384
+Ref: pure-stlmap stl next_key/stlmap44377
+Ref: 5c44377
+Ref: pure-stlmap stl prev_key/stlmap44417
+Ref: 5d44417
+Node: Conversions<2>47690
+Ref: pure-stlmap id247827
+Ref: 5e47827
+Ref: pure-stlmap members/stlmap48055
+Ref: 2a48055
+Ref: pure-stlmap keys/stlmap48148
+Ref: 5f48148
+Ref: pure-stlmap vals/stlmap48176
+Ref: 6048176
+Ref: pure-stlmap stl vector/stlmap48625
+Ref: 2b48625
+Ref: pure-stlmap stlvec/stlmap48728
+Ref: 2c48728
+Ref: pure-stlmap stream/stlmap48936
+Ref: 2d48936
+Node: Functional Programming<2>49273
+Ref: pure-stlmap id349402
+Ref: 6149402
+Ref: pure-stlmap do/stlmap49589
+Ref: c49589
+Ref: pure-stlmap map/stlmap49619
+Ref: 949619
+Ref: pure-stlmap filter/stlmap49650
+Ref: b49650
+Ref: pure-stlmap foldl/stlmap49685
+Ref: a49685
+Ref: pure-stlmap foldl1/stlmap49720
+Ref: 3049720
+Ref: pure-stlmap foldr/stlmap49754
+Ref: 6249754
+Ref: pure-stlmap foldr1/stlmap49789
+Ref: 6349789
+Ref: pure-stlmap listmap/stlmap50442
+Ref: 6450442
+Ref: pure-stlmap catmap/stlmap50477
+Ref: 2f50477
+Ref: pure-stlmap rowmap/stlmap50511
+Ref: 6550511
+Ref: pure-stlmap rowcatmap/stlmap50545
+Ref: 6650545
+Ref: pure-stlmap colmap/stlmap50582
+Ref: 6750582
+Ref: pure-stlmap colcatmap/stlmap50616
+Ref: 6850616
+Node: Comparison51391
+Ref: pure-stlmap comparison51520
+Ref: 6951520
+Ref: pure-stlmap stl map_equal/stlmap51930
+Ref: 6a51930
+Ref: pure-stlmap ==/stlmap51975
+Ref: 6b51975
+Ref: pure-stlmap ~=/stlmap52007
+Ref: 6c52007
+Ref: pure-stlmap </stlmap53404
+Ref: 6d53404
+Ref: pure-stlmap >/stlmap53772
+Ref: 6e53772
+Ref: pure-stlmap <=/stlmap53803
+Ref: 6f53803
+Ref: pure-stlmap >=/stlmap53835
+Ref: 7053835
+Node: Set Algorithms54856
+Ref: pure-stlmap set-algorithms54974
+Ref: 7154974
+Ref: pure-stlmap stl map_merge/stlmap55521
+Ref: 7255521
+Ref: pure-stlmap stl map_union/stlmap55795
+Ref: 3e55795
+Ref: pure-stlmap stl map_difference/stlmap55839
+Ref: 7355839
+Ref: pure-stlmap stl map_intersection/stlmap55888
+Ref: 3a55888
+Ref: pure-stlmap stl map_symmetric_difference/stlmap55939
+Ref: 7455939
+Ref: pure-stlmap stl map_includes/stlmap55998
+Ref: 7555998
+Node: Direct C Calls57743
+Ref: pure-stlmap direct-c-calls57842
+Ref: 7657842
+Ref: pure-stlmap stl sm_member/stlmap58487
+Ref: 7758487
+Ref: pure-stlmap stl sm_get/stlmap58528
+Ref: 7858528
+Ref: pure-stlmap stl sm_put/stlmap58566
+Ref: 7958566
+Ref: pure-stlmap stl shm_member/stlmap58997
+Ref: 7a58997
+Ref: pure-stlmap stl shm_get/stlmap59040
+Ref: 7b59040
+Ref: pure-stlmap stl shm_put/stlmap59080
+Ref: 7c59080
+Ref: pure-stlmap stl smm_member/stlmap59527
+Ref: 7d59527
+Ref: pure-stlmap stl smm_get/stlmap59570
+Ref: 7e59570
+Ref: pure-stlmap stl smm_put/stlmap59610
+Ref: 7f59610
+Node: Iterators<2>60075
+Ref: pure-stlmap id460191
+Ref: 8060191
+Node: Concepts<2>60396
+Ref: pure-stlmap id560480
+Ref: 8160480
+Node: Exceptions62041
+Ref: pure-stlmap exceptions62143
+Ref: 8262143
+Node: Functions63143
+Ref: pure-stlmap functions63245
+Ref: 8363245
+Ref: pure-stlmap stl iterator/stlmap63399
+Ref: 8463399
+Ref: pure-stlmap stl begin/stlmap63508
+Ref: 8563508
+Ref: pure-stlmap stl pastend/stlmap63543
+Ref: 8663543
+Ref: pure-stlmap stl find/stlmap63638
+Ref: 8763638
+Ref: pure-stlmap stl find_with_default/stlmap63857
+Ref: 8863857
+Ref: pure-stlmap stl insert_elm/stlmap64245
+Ref: 8964245
+Ref: pure-stlmap stl l_bound/stlmap65457
+Ref: 8a65457
+Ref: pure-stlmap stl u_bound/stlmap65704
+Ref: 8b65704
+Ref: pure-stlmap stl lu_bounds/stlmap65950
+Ref: 8c65950
+Ref: pure-stlmap stl inc/stlmap66216
+Ref: 8d66216
+Ref: pure-stlmap stl dec/stlmap66246
+Ref: 8e66246
+Ref: pure-stlmap stl move/stlmap66276
+Ref: 8f66276
+Ref: pure-stlmap stl get_elm/stlmap66757
+Ref: 9066757
+Ref: pure-stlmap stl get_key/stlmap66791
+Ref: 9166791
+Ref: pure-stlmap stl get_val/stlmap66825
+Ref: 9266825
+Ref: pure-stlmap stl put_val67133
+Ref: 9367133
+Ref: pure-stlmap stl beginp/stlmap67370
+Ref: 9467370
+Ref: pure-stlmap stl pastendp/stlmap67403
+Ref: 9567403
+Ref: pure-stlmap stl get_info/stlmap67564
+Ref: 9667564
+Node: Examples<2>68387
+Ref: pure-stlmap id668470
+Ref: 9768470
+Node: Backward Compatibilty69253
+Ref: pure-stlmap backward-compatibilty69361
+Ref: 9869361
+Node: pure-stlmap-0 269544
+Ref: pure-stlmap pure-stlmap-0-269646
+Ref: 9969646
+Node: pure-stlmap-0 369739
+Ref: pure-stlmap pure-stlmap-0-369841
+Ref: 9a69841
+Node: Module Index69926
+Node: Index70108
 
 End Tag Table
 

@@ -1,11 +1,11 @@
-This is pure-reduce.info, produced by makeinfo version 5.2 from
+This is pure-reduce.info, produced by makeinfo version 6.1 from
 pure-reduce.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-reduce.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-reduce
 ***********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.4, October 28, 2014
+  Version 0.4, April 25, 2016
 
      Albert Graef <<aggraef@gmail.com>> 
      Kurt Pagani <<kp@scios.ch>> 
@@ -160,6 +160,7 @@ the repository with the following command:
 
      svn co svn://svn.code.sf.net/p/reduce-algebra/code/trunk reduce-algebra
 
+
   This pulls down many hundreds of megabytes, so this may take a while.
 Once the checkout is finished, you’ll end up with a reduce-algebra
 directory which you can drop into the pure-reduce source directory and
@@ -209,6 +210,7 @@ After installing the module, it can be imported in your Pure scripts as
 follows:
 
      using reduce;
+
 
   This starts up Reduce and makes the following variables and functions
 available in Pure.
@@ -463,6 +465,7 @@ calculations:
      > simplify $ solve (x^2+7) x;
      [x==sqrt 7*i,x==-sqrt 7*i]
 
+
   Note that the result returned by *note simplify: 14. is always a
 quoted expression.  If the expression can be further reduced on the Pure
 side, you’ll have to use Pure’s ‘eval’ function to force its evaluation:
@@ -471,11 +474,13 @@ side, you’ll have to use Pure’s ‘eval’ function to force its evaluation:
      > eval ans;
      [x==0.0+:2.64575131106459,x==0.0+:-2.64575131106459]
 
+
   The following example shows how you can do a simple plot using
 Reduce’s gnuplot(1) module:
 
      > simplify $ plot [sin x/x, x=='(-20..20), terminal=="wxt"];
      0
+
 
   This pops up a wxWidgets window (‘terminal=="wxt"’) with a plot of the
 given function in it, see the *note screenshot: 1d. below.  The
@@ -492,6 +497,7 @@ Figure: Reduce gnuplot example.
      > simplify $ plot [sin x/x, x=='(-20..20), terminal=="postscript", output=="sinc.ps"];
      0
 
+
   The *note lisp: 16. function can be used to execute Lisp code in the
 CSL interpreter hosting the Reduce system.  Here are some basic
 examples.  Note that, to be on the safe side, we just always quote the
@@ -505,6 +511,7 @@ side.
      > lisp ('cdr [a,b,[c,d],e]);
      [b,[c,d],e]
 
+
   Lisp’s truth values are ‘t’ and ‘nil’; the latter is just the empty
 list, so that’s what you get if a Lisp predicate evaluates to "false":
 
@@ -512,6 +519,7 @@ list, so that’s what you get if a Lisp predicate evaluates to "false":
      []
      > lisp ('greaterp 5 3);
      t
+
 
   Most simple kinds of Lisp calls should be doable that way, but don’t
 expect any miracles; the *note lisp: 16. function is provided to access
@@ -529,6 +537,7 @@ operator symbol and change or query its properties:
      > simplify (myop (-x));
      -myop x
 
+
   If you find it awkward to evaluate Lisp forms in Pure, you can also
 achieve the same with the *note declare: 19. function which covers most
 of the common Reduce declarations that might be needed:
@@ -539,6 +548,7 @@ of the common Reduce declarations that might be needed:
      []
      > simplify (myop (-x));
      -myop x
+
 
   For basic Pure-based usage of Reduce, it’s convenient to have a simple
 read-eval-print loop which lets you type some declarations and
@@ -571,6 +581,7 @@ script which does that:
        end;
      end;
 
+
   Now you can run ‘red’ at the Pure prompt and start typing the stuff
 you want to evaluate, one expression or declaration per line.  Enter an
 empty line or ‘Ctrl-D’ when you’re done to return to the Pure command
@@ -595,6 +606,7 @@ prompt.
      0
      > ^D
      ()
+
 
   Note that we barely scratched the surface here; Reduce is a very
 complex system with lots of capabilities.  The following section
@@ -671,10 +683,12 @@ z^4}{\partial x^2 \partial y^3 \partial z^4}:
      > simplify $ df (x^2*y^3*z^4) x 2 y 3 z 4 ;
      288
 
+
   The derivative of \log \sin (x)^2:
 
      > simplify $ df (log(sin x)^2) x;
      2*cos x*log (sin x)/sin x
+
 
   Note the parentheses.
 
@@ -687,6 +701,7 @@ z^4}{\partial x^2 \partial y^3 \partial z^4}:
      cos z*df z (cos x)
      > simplify (df (z^2) x);
      2*df z x*z
+
 
   Note how to declare dependencies.
 
@@ -714,6 +729,7 @@ with the ‘int’ conversion function.
      > simplify $ intg (1/(a*x+b)) x;
      log (a*x+b)/a
 
+
   Example 2:
 
      I(a,b,n) = \int x^2 (a x + b)^n dx
@@ -730,12 +746,14 @@ with the ‘int’ conversion function.
      > I a 0 k;
      x^k*a^k*x^3/(k+3)
 
+
   Example 3:
 
      \int \frac{\sqrt{x+\sqrt{x^2+1}}}{x} dx
 
      > simplify $ intg (sqrt(x+sqrt(x^2+1))/x) x ;
      intg (sqrt (sqrt (x^2+1)+x)/x) x
+
 
   Apparently no solution was found.  There is a package ‘ALGINT’ in
 REDUCE which specifically deals with algebraic functions.  The REDUCE
@@ -752,6 +770,7 @@ User’s Manual *note [REDUM]: 1f. says:
      atan ((sqrt (sqrt (x^2+1)+x)*sqrt (x^2+1)-sqrt (sqrt (x^2+1)+x)*x-sqrt
      (sqrt (x^2+1)+x))/2)+2*sqrt (sqrt (x^2+1)+x)+log (sqrt (sqrt
      (x^2+1)+x)-1)-log (sqrt (sqrt (x^2+1)+x)+1)
+
 
   Note how to load packages.
 
@@ -786,6 +805,7 @@ an algebraic expression.
      > simplify $ 'map log  [x^n,x^m,sin x];
      [log (x^n),log (x^m),log (sin x)]
 
+
   Note that ‘map’ must be quoted if we want to evaluate it in REDUCE,
 since it’s also a function in Pure.  In this case, we might as well do
 the calculation using Pure’s ‘map’; the result is exactly the same.
@@ -794,6 +814,7 @@ the calculation using Pure’s ‘map’; the result is exactly the same.
      [1,2^(1/2),3^(1/2)]
      > simplify $ map log  [x^n,x^m,sin x];
      [log (x^n),log (x^m),log (sin x)]
+
 
   If the function to be applied in calls to ‘MAP’ or ‘SELECT’ is a
 compound expression, it must either contain a single free variable
@@ -811,6 +832,7 @@ substituted for the free variable when the function is applied.
      > simplify $ select (w=>evenp (deg w y)) ((x+y)^5);
      x^5+10*x^3*y^2+5*x*y^4
 
+
   Contrast this with Pure where the function argument to ‘map’ is often
 specified as a lambda:
 
@@ -819,16 +841,19 @@ specified as a lambda:
      > simplify $ map (\y->intg y x) [x^n,x^m,sin x];
      [x^n*x/(n+1),x^m*x/(m+1),-cos x]
 
+
   In principle, the same correspondences also hold between REDUCE’s
 ‘select’ and Pure’s ‘filter’.  For instance, consider:
 
      > simplify $ select (w=>evenp (deg w x)) [2*x^2,3*x^3,4*x^4];
      [2*x^2,4*x^4]
 
+
   The equivalent Pure ‘filter’ is:
 
      > filter (\w->simplify $ evenp (deg w x)) [2*x^2,3*x^3,4*x^4];
      [2*x^2,4*x^4]
+
 
   Note that REDUCE is now being called inside the predicate function,
 the rest of the processing is done in Pure.
@@ -848,10 +873,12 @@ way in which ‘MAP’ and ‘SELECT’ decompose an expression:
        _ = [x] otherwise;
      end;
 
+
   For instance, consider:
 
      > simplify $ 'map (w=>w+1) (df ((x+y)^3) x);
      3*x^2+6*x*y+3*y^2+3
+
 
   With the help of ‘terms’ we can also do this using Pure’s ‘map’ as
 follows:
@@ -860,6 +887,7 @@ follows:
      [3*x^2+1,6*x*y+1,3*y^2+1]
      > simplify $ foldl (+) 0 ans;
      3*x^2+6*x*y+3*y^2+3
+
 
   While the REDUCE version is shorter and only involves a single call to
 *note simplify: 14, with a little bit of programming the Pure solution
@@ -888,6 +916,7 @@ partial fraction decomposition.
      > simplify $ pf f x;
      [2/(x+2),(-2)/(x+1),2/(x^2+2*x+1)]
 
+
   This means:
 
      f(x) = \frac{2}{x+2} + \frac{-2}{x+1} + \frac{2}{x^2+2x+1}
@@ -899,6 +928,7 @@ switch ‘off exp’:
      0
      > simplify $ pf f x;
      [2/(x+2),(-2)/(x+1),2/(x+1)^2]
+
 
   Note how the value of a Reduce switch is changed in Pure.
 
@@ -926,16 +956,19 @@ equation.
      > let eqn1 = log(sin (x+3))^5 == 8 ;
      > let sol1 = simplify $ solve eqn1 x;
 
+
   The variable ‘sol1’ now contains an entire list of solutions.  How
 many are there?
 
      > #sol1 ;
      10
 
+
   The first one is:
 
      > sol1!0;
      x==2*arbint 5*pi+asin (e^(2^(3/5)*cos (2*pi/5))/e^(2^(3/5)*sin (2*pi/5)*i))-3
+
 
      x= 2\cdot n \cdot \pi +{\tt asin} (\frac{e^{2^{\frac{3}{ 5}}\cdot \cos (\frac{2\cdot \pi }{ 5} ) }}{ e^{2^{\frac{3}{ 5}}\cdot \sin (\frac{2\cdot \pi }{ 5} ) \cdot i}} ) -3
 
@@ -947,6 +980,7 @@ the list via REDUCE commands:
 
      > simplify $ rhs $ first $ solve eqn1 x;
      2*arbint 10*pi+asin (e^(2^(3/5)*cos (2*pi/5))/e^(2^(3/5)*sin (2*pi/5)*i))-3
+
 
   where ‘first’ gets the first solution in the list and ‘rhs’ obtains
 the right-hand side.  Hence there is a wealth of possibilities to
@@ -961,10 +995,12 @@ process the solution list.
      > simplify $ solve [X^2+1==0] X;
      [X==i,X==-i]
 
+
      (x+3\,y = 7) \wedge (y-x = 1)
 
      > simplify $ solve [x+3*y==7,y-x==1] [x,y] ;
      [[x==1,y==2]]
+
 
   To get the multiplicities, turn on the switch ‘multiplicities’:
 
@@ -974,6 +1010,7 @@ process the solution list.
      0
      > simplify $ solve [x^2==2*x-1] x;
      [x==1,x==1]
+
 
   For details consult the REDUCE user manual.
 
@@ -1002,6 +1039,7 @@ the declarations ‘EVEN’ and ‘ODD’ respectively.
      > simplify $ f1 (-a) (-b);
      -f1 a (-b)
 
+
 
 File: pure-reduce.info,  Node: Linear Operators,  Next: Non-commuting Operators,  Prev: Even and Odd Operators,  Up: Examples by Topic
 
@@ -1020,10 +1058,12 @@ powers of its second argument.
      > simplify $ L (a*x^5+b*x+c) x ;
      L (x^5) x*a+L x x*b+L 1 x*c
 
+
      L(a+b+c+d,y) = L(1,y)\cdot (a+b+c+d)
 
      > simplify $ L (a+b+c+d) y;
      L 1 y*a+L 1 y*b+L 1 y*c+L 1 y*d
+
 
   Note that ‘L x y’ binds stronger than ‘(*)’ in Pure.
 
@@ -1044,6 +1084,7 @@ by the declaration ‘NONCOM’.
      []
      > simplify (u(x)*u(y)-u(y)*u(x));
      u x*u y-u y*u x
+
 
 
 File: pure-reduce.info,  Node: Symmetric and Antisymmetric Operators,  Next: Creating/Removing Variable Dependencies,  Prev: Non-commuting Operators,  Up: Examples by Topic
@@ -1074,6 +1115,7 @@ arguments by the declaration ‘SYMMETRIC’.  Similarly, the declaration
      > simplify $ A y x ;
      -A x y
 
+
 
 File: pure-reduce.info,  Node: Creating/Removing Variable Dependencies,  Next: Internal Order of Variables,  Prev: Symmetric and Antisymmetric Operators,  Up: Examples by Topic
 
@@ -1093,11 +1135,13 @@ expressed by the command ‘DEPEND’.
      > simplify $ df D a;
      0
 
+
   ‘D’ does not depend on ‘a’, thus differentiating with respect to ‘a’
 yields 0, but
 
      > simplify $ df D x;
      df D x
+
 
   because ‘D’ is declared to depend on ‘x’.  If we also let ‘a’ depend
 on ‘x’, then:
@@ -1107,6 +1151,7 @@ on ‘x’, then:
      > simplify $ df (D*a) x;
      df D x*a+df a x*D
 
+
   *Note:* Dependencies remain active until they are explicitly removed:
 
      > declare nodepend [a,x];
@@ -1114,6 +1159,7 @@ on ‘x’, then:
      0
      > simplify $ df (D*a) x;
      df D x*a
+
 
 
 File: pure-reduce.info,  Node: Internal Order of Variables,  Next: Parts of Algebraic Expressions,  Prev: Creating/Removing Variable Dependencies,  Up: Examples by Topic
@@ -1136,6 +1182,7 @@ effect on computation time.
      x+y+z
      > simplify $ x+y+z;
      z+y+x
+
 
 
 File: pure-reduce.info,  Node: Parts of Algebraic Expressions,  Next: Polynomials and Rationals,  Prev: Internal Order of Variables,  Up: Examples by Topic
@@ -1169,6 +1216,7 @@ expression, or even change such a part to another expression.
      > simplify $ part (a+b) 0 ;
      (+)
 
+
   ‘PART’ may also be used to substitute a given part of an expression.
 In this case, the ‘PART’ construct appears on the left-hand side of an
 assignment statement (cf.  *note Assignment: 2d.), and the expression to
@@ -1180,6 +1228,7 @@ replace the given part on the right-hand side.
      c
      >  simplify $ xx;
      a+c
+
 
 
 File: pure-reduce.info,  Node: Polynomials and Rationals,  Next: Substitution,  Prev: Parts of Algebraic Expressions,  Up: Examples by Topic
@@ -1206,6 +1255,7 @@ described in *note [SYMSAC81]: 2f.
      [[2,2],[3,1],[x+1,1],[x-1,1]]
      > reduce::switch "ifactor" 0;
      0
+
 
   The following operators should be well known:
 
@@ -1255,6 +1305,7 @@ described in *note [SYMSAC81]: 2f.
      > simplify $ lcm (2*x^2-2*y^2) (4*x+4*y) ;
      4*x^2-4*y^2
 
+
   REMAINDER/RESULTANT
 
      > simplify $ remainder ((x+y)*(x+2*y)) (x+3*y) ;
@@ -1265,6 +1316,7 @@ described in *note [SYMSAC81]: 2f.
      > simplify $ resultant (x/r*u+y) (u*y) u ;
      -y^2
 
+
   DECOMPOSE
 
      > simplify $ decompose (x^8-88*x^7+2924*x^6-43912*x^5+263431*x^4-
@@ -1273,6 +1325,7 @@ described in *note [SYMSAC81]: 2f.
 
      > simplify $ decompose (u^2+v^2+2*u*v+1) ;
      [w^2+1,w==u+v]
+
 
   DEG/DEN
 
@@ -1283,6 +1336,7 @@ described in *note [SYMSAC81]: 2f.
 
      > simplify $ den (x/y^2) ;
      y^2
+
 
   LCOF/LPOWER/LTERM
 
@@ -1307,6 +1361,7 @@ described in *note [SYMSAC81]: 2f.
      > simplify $ lterm ((a+b)*(c+2*d)) x ;
      a*c+2*a*d+b*c+2*b*d
 
+
   MAINVAR/NUM/REDUCT
 
      > simplify $ mainvar ((a+b)*(c+2*d)^2) ;
@@ -1328,6 +1383,7 @@ described in *note [SYMSAC81]: 2f.
      > simplify $ reduct ((a+b)*(c+2*d)) x ;
      0
 
+
 
 File: pure-reduce.info,  Node: Substitution,  Next: Assignment,  Prev: Polynomials and Rationals,  Up: Examples by Topic
 
@@ -1345,6 +1401,7 @@ expressions.  One such operation is the prefix operator ‘SUB’.
 
      > simplify $ sub [a==sin x, b==sin y] (a^2+b^2) ;
      sin x^2+sin y^2
+
 
   Note that simple substitutions of this kind can also be done directly
 in Pure, using the ‘reduce’ macro.
@@ -1375,6 +1432,7 @@ evaluated, contrary to the ‘:=’ version in REDUCE.
      > simplify $ set Q (a*x^n + b* x^m + c) ;
      x^m*b+x^n*a+c
 
+
 
 File: pure-reduce.info,  Node: Matrix Calculations,  Next: Limits,  Prev: Assignment,  Up: Examples by Topic
 
@@ -1396,6 +1454,7 @@ examples using the well known *Pauli matrices*.  See, e.g.,
      let s2 = {0,-i;i,0};
      let s3 = {1,0;0,-1};
 
+
   Check the identities
 
      \sigma_1^2=\sigma_2^2=\sigma_3^2= -i \sigma_1 \, \sigma_2 \, \sigma_3 = \sigma_0
@@ -1415,10 +1474,12 @@ examples using the well known *Pauli matrices*.  See, e.g.,
      > let r5 = all (==s0) [r1,r2,r3,r4] ; r5;
      1
 
+
   Check: \det \sigma_i = -1, \forall i \in \{1,2,3\}.
 
      > map (simplify . det) [s1,s2,s3] ;
      [-1,-1,-1]
+
 
   Calculate the eigenvalues/-vectors of \sigma_2:
 
@@ -1434,30 +1495,36 @@ examples using the well known *Pauli matrices*.  See, e.g.,
      > let r10 = map last r7 ; r10; // eigenvectors
      [{-c1*i;c2},{c3*i;c4}]
 
+
   Transpose (operator ‘tp’):
 
      > map (simplify.tp) [s1,s2,s3] ; // -> [s1',s2',s3']
      [{0,1;1,0},{0,i;-i,0},{1,0;0,-1}]
+
 
   Trace (operator ‘trace’):
 
      > map (simplify.trace) [s1,s2,s3] ;
      [0,0,0]
 
+
   Cofactor (trivial here):
 
      > simplify $ cofactor s2 1 1 ;
      0
+
 
   Nullspace of \sigma_2 + {0,i;0,0}:
 
      > simplify $ nullspace (s2+{0,i;0,0}) ;
      [{0;1}]
 
+
   Rank:
 
      > map (simplify . rank) [s0,s1,s2,s3] ;
      [2,2,2,2]
+
 
   Inverse (simply \frac{1}{matrix}):
 
@@ -1467,12 +1534,14 @@ examples using the well known *Pauli matrices*.  See, e.g.,
      > simplify $ s2*r15 ;
      {1,0;0,1}
 
+
   Solving without ‘solve’:
 
      a_{11}\, x_1 + a_{12}\,x_2 = y_1 \\ a_{21}\, x_1 + a_{22}\,x_2 = y_2
 
      > simplify $ (1/{a11,a12;a21,a22}*{y1;y2}) ; // A^-1 * y' ;
      {(-a12*y2+a22*y1)/(a11*a22-a12*a21);(a11*y2-a21*y1)/(a11*a22-a12*a21)}
+
 
 
 File: pure-reduce.info,  Node: Limits,  Next: Ordinary differential equations solver,  Prev: Matrix Calculations,  Up: Examples by Topic
@@ -1497,6 +1566,7 @@ LIMIT operator, called with the syntax:
      > simplify $ limit (1/x) x 0 ;
      inf
 
+
   Notes: This package loads automatically.  Author: Stanley L. Kameny.
 
 
@@ -1517,6 +1587,7 @@ The ‘ODESOLVE’ package is a solver for ordinary differential equations.
      > simplify $ odesolve [df y x == x^2+exp(x)] [y] x ;
      [y==(3*C+3*e^x+x^3)/3]
 
+
   Problem 2:
 
      \frac{d^2\,y}{dx^2} = y(x) \,\,\, \wedge \,\,\, y(0) = A \,\,\, \wedge \,\,\, y(1) = B
@@ -1524,10 +1595,12 @@ The ‘ODESOLVE’ package is a solver for ordinary differential equations.
      > simplify $ odesolve [(df y x 2) == y] [y] x [[x==0,y==A],[x==1,y==B]] ;
      [y==(-e^(2*x)*A+e^(2*x)*B*e+A*e^2-B*e)/(e^x*e^2-e^x)]
 
+
   Remember to remove dependencies:
 
      > declare nodepend [y,x];
      []
+
 
 
 File: pure-reduce.info,  Node: Series Summation and Products,  Next: Taylor Series,  Prev: Ordinary differential equations solver,  Up: Examples by Topic
@@ -1560,6 +1633,7 @@ automatically.  Author: Fujio Kako.
 
      > simplify $ prod (k/(k+2)) k 1 N ;
      2/(N^2+3*N+2)
+
 
 
 File: pure-reduce.info,  Node: Taylor Series,  Next: Boolean Expressions,  Prev: Series Summation and Products,  Up: Examples by Topic
@@ -1596,6 +1670,7 @@ distribution.
      > simplify $ inverse_taylor (exp(x)-1) x y 0 8;
      (-105*y^8+120*y^7-140*y^6+168*y^5-210*y^4+280*y^3-420*y^2+840*y)/840
 
+
   Note that the "big O" residual terms are omitted in the results
 returned by ‘simplify’, although REDUCE will print them.
 
@@ -1620,6 +1695,7 @@ circumstances.
      > lisp (fixp 200) ;
      t
 
+
   where ‘fixp’ tests for integers.
 
   The following example shows a pitfall.  Since there is a ‘numberp’
@@ -1635,6 +1711,7 @@ make the expression go through to REDUCE:
      []
      > lisp ('numberp 111) ;
      t
+
 
   In the first case ‘numberp x’ evaluates to zero in Pure, so the ‘lisp’
 function gets ‘0’ and returns ‘0’.  In the second case (quoted) the
@@ -1665,6 +1742,7 @@ environments.
      > simplify $ freeof (x^n*y^m) (y^m) ;
      0
 
+
 
 File: pure-reduce.info,  Node: Mathematical Functions,  Next: Definite Integrals,  Prev: Boolean Expressions,  Up: Examples by Topic
 
@@ -1693,6 +1771,7 @@ For instance:
      > simplify $ cos 4.3;
      (-21601483)/53896027
 
+
   Some examples:
 
      > simplify $ cos (-x) ;
@@ -1707,6 +1786,7 @@ For instance:
      1
      > simplify $ erf (-a);
      -erf a
+
 
   The special functions are in two separate packages ‘SPECFN’ and
 ‘SPECFN2’:
@@ -1790,25 +1870,30 @@ integration formula.
      > simplify $ intg (exp(-x)) x 0 infinity ;
      1
 
+
      \int_0^\infty x^2\,\cos(x)\,e^{-2\,x} \, dx
 
      > simplify $ intg (x^2*cos(x)*exp(-2*x)) x 0 infinity ;
      4/125
+
 
      \int_0^1 x\,e^{-\frac{1}{2}\,x} \, dx
 
      > simplify $ intg (x*exp(-1/2*x)) x 0 1 ;
      2*sqrt e*(2*sqrt e-3)/e
 
+
      \int_0^1 x\, \log(1+x) \, dx
 
      > simplify $ intg (x*log(1+x)) x 0 1 ;
      1/4
 
+
      \int_y^{2\,y} \cos(2\,x)\, dx
 
      > simplify $ intg (cos(2*x)) x y (2*y);
      (sin (4*y)-sin (2*y))/2
+
 
   Various transformations:
 
@@ -1839,6 +1924,7 @@ integration formula.
      > simplify $ fourier_cos (exp(-a*x)) x ;
      a/(a^2+s^2)
 
+
 
 File: pure-reduce.info,  Node: Declarations Switches and Loading,  Next: Plotting,  Prev: Definite Integrals,  Up: Examples by Topic
 
@@ -1854,6 +1940,7 @@ that).  E.g.:
      > lisp ('prop myop); // => [odd:t,simpfn:simpiden]
      > simplify (myop (-x)); // => -myop x
 
+
   For the most common kinds of declarations, the *note reduce: 0. module
 provides the *note declare: 19. function which takes care of the
 necessary Lisp magic and is safe to use.  The above example can also be
@@ -1863,6 +1950,7 @@ done as follows:
      > declare odd myop;
      > simplify (myop (-x));
      -myop x
+
 
   Please see the description of *note declare: 19. for a list of
 supported declarations.
@@ -1886,16 +1974,19 @@ maintenance functions which are done with special commands in REDUCE:
      > reduce::switch "exp" 0 ;
      0
 
+
   Packages can be loaded with the *note reduce;;load: 11. command:
 
      > reduce::load "defint" ;
      0
+
 
   REDUCE source files can be read in with the *note reduce;;in: 12.
 command:
 
      > reduce::in "myreduce.red" ;
      0
+
 
   Last but not least, REDUCE terminal input and output can also be
 redirected to string buffers using the *note reduce;;feed: 10. and *note
@@ -1914,6 +2005,7 @@ with the *note reduce;;output: f. function:
      "(a b c d)\n"
      > reduce::capture 0; // stop capturing output
      0
+
 
 
 File: pure-reduce.info,  Node: Plotting,  Next: References,  Prev: Declarations Switches and Loading,  Up: Examples by Topic
@@ -1939,6 +2031,7 @@ the Pure side):
 
      // Output options.
      > simplify $ plot (sin x) [x=='(0..10),terminal==postscript,output=="sin.ps"];
+
 
    ---------- Footnotes ----------
 
@@ -2018,177 +2111,177 @@ Index
 
 
 Tag Table:
-Node: Top413
-Ref: pure-reduce doc616
-Ref: 1616
-Ref: Top-Footnote-13117
-Ref: Top-Footnote-23164
-Ref: Top-Footnote-33203
-Ref: Top-Footnote-43253
-Ref: Top-Footnote-53309
-Node: Copying3397
-Ref: pure-reduce computer-algebra-with-pure-a-reduce-interface3482
-Ref: 53482
-Ref: pure-reduce module-reduce3482
-Ref: 03482
-Ref: pure-reduce copying3482
-Ref: 63482
-Ref: Copying-Footnote-13701
-Node: Installation3751
-Ref: pure-reduce installation3852
-Ref: 23852
-Ref: Installation-Footnote-17164
-Node: Low-Level Interface7220
-Ref: pure-reduce low-level-interface7334
-Ref: 37334
-Ref: Low-Level Interface-Footnote-17966
-Ref: Low-Level Interface-Footnote-28076
-Node: High-Level Interface8112
-Ref: pure-reduce high-level-interface8228
-Ref: 48228
-Node: Starting and Stopping Reduce8691
-Ref: pure-reduce starting-and-stopping-reduce8812
-Ref: 78812
-Ref: pure-reduce REDUCE_PATH8879
-Ref: 88879
-Ref: pure-reduce reduce start9131
-Ref: 99131
-Ref: pure-reduce reduce finish9859
-Ref: a9859
-Node: Maintenance Operations10186
-Ref: pure-reduce maintenance-operations10326
-Ref: b10326
-Ref: pure-reduce reduce verbosity10381
-Ref: c10381
-Ref: pure-reduce reduce switch10789
-Ref: d10789
-Ref: pure-reduce reduce capture11016
-Ref: e11016
-Ref: pure-reduce reduce output11061
-Ref: f11061
-Ref: pure-reduce reduce feed11463
-Ref: 1011463
-Ref: pure-reduce reduce load11653
-Ref: 1111653
-Ref: pure-reduce reduce in11840
-Ref: 1211840
-Node: Evaluation12046
-Ref: pure-reduce evaluation12149
-Ref: 1312149
-Ref: pure-reduce simplify12253
-Ref: 1412253
-Ref: pure-reduce simplifyd12581
-Ref: 1512581
-Ref: pure-reduce lisp13111
-Ref: 1613111
-Ref: pure-reduce lispval13843
-Ref: 1713843
-Ref: pure-reduce lispsym14622
-Ref: 1814622
-Ref: pure-reduce declare15149
-Ref: 1915149
-Ref: pure-reduce precision16283
-Ref: 1a16283
-Ref: pure-reduce plotreset16720
-Ref: 1b16720
-Ref: Evaluation-Footnote-119078
-Ref: Evaluation-Footnote-219109
-Node: Basic Examples19142
-Ref: pure-reduce basic-examples19256
-Ref: 1c19256
-Ref: pure-reduce screenshot20444
-Ref: 1d20444
-Ref: Basic Examples-Footnote-124362
-Node: Examples by Topic24395
-Ref: pure-reduce examples-by-topic24501
-Ref: 1e24501
-Node: Differentiation26050
-Ref: pure-reduce differentiation26144
-Ref: 2026144
-Node: Integration27152
-Ref: pure-reduce integration27276
-Ref: 2127276
-Node: Length Map and Select29027
-Ref: pure-reduce length-map-and-select29153
-Ref: 2329153
-Node: Partial Fractions33227
-Ref: pure-reduce partial-fractions33349
-Ref: 2433349
-Node: Solving34107
-Ref: pure-reduce solving34230
-Ref: 2534230
-Node: Even and Odd Operators36173
-Ref: pure-reduce even-and-odd-operators36295
-Ref: 2636295
-Node: Linear Operators36708
-Ref: pure-reduce linear-operators36846
-Ref: 2736846
-Node: Non-commuting Operators37381
-Ref: pure-reduce non-commuting-operators37534
-Ref: 2837534
-Node: Symmetric and Antisymmetric Operators37879
-Ref: pure-reduce symmetric-and-antisymmetric-operators38055
-Ref: 2938055
-Node: Creating/Removing Variable Dependencies38612
-Ref: pure-reduce creating-removing-variable-dependencies38792
-Ref: 2a38792
-Node: Internal Order of Variables39757
-Ref: pure-reduce internal-order-of-variables39930
-Ref: 2b39930
-Node: Parts of Algebraic Expressions40447
-Ref: pure-reduce parts-of-algebraic-expressions40606
-Ref: 2c40606
-Node: Polynomials and Rationals41593
-Ref: pure-reduce polynomials-and-rationals41737
-Ref: 2e41737
-Node: Substitution45300
-Ref: pure-reduce substitution45424
-Ref: 3045424
-Node: Assignment45985
-Ref: pure-reduce assignment46103
-Ref: 2d46103
-Node: Matrix Calculations46902
-Ref: pure-reduce matrix-calculations47014
-Ref: 3147014
-Node: Limits49550
-Ref: pure-reduce limits49690
-Ref: 3249690
-Node: Ordinary differential equations solver50317
-Ref: pure-reduce ordinary-differential-equations-solver50467
-Ref: 3350467
-Node: Series Summation and Products51154
-Ref: pure-reduce series-summation-and-products51311
-Ref: 3451311
-Node: Taylor Series52235
-Ref: pure-reduce taylor-series52373
-Ref: 3552373
-Node: Boolean Expressions53468
-Ref: pure-reduce boolean-expressions53599
-Ref: 3653599
-Node: Mathematical Functions55192
-Ref: pure-reduce mathematical-functions55328
-Ref: 3755328
-Node: Definite Integrals58037
-Ref: pure-reduce definite-integrals58187
-Ref: 3858187
-Node: Declarations Switches and Loading59994
-Ref: pure-reduce declarations-switches-and-loading60130
-Ref: 3960130
-Node: Plotting62375
-Ref: pure-reduce plotting62503
-Ref: 3a62503
-Ref: Plotting-Footnote-163306
-Node: References63339
-Ref: pure-reduce references63425
-Ref: 3b63425
-Ref: pure-reduce redum63458
-Ref: 1f63458
-Ref: pure-reduce lncs10263557
-Ref: 2263557
-Ref: pure-reduce symsac8163657
-Ref: 2f63657
-Node: Module Index63830
-Node: Index63978
+Node: Top410
+Ref: pure-reduce doc610
+Ref: 1610
+Ref: Top-Footnote-13109
+Ref: Top-Footnote-23156
+Ref: Top-Footnote-33195
+Ref: Top-Footnote-43245
+Ref: Top-Footnote-53301
+Node: Copying3389
+Ref: pure-reduce computer-algebra-with-pure-a-reduce-interface3474
+Ref: 53474
+Ref: pure-reduce module-reduce3474
+Ref: 03474
+Ref: pure-reduce copying3474
+Ref: 63474
+Ref: Copying-Footnote-13693
+Node: Installation3743
+Ref: pure-reduce installation3844
+Ref: 23844
+Ref: Installation-Footnote-17157
+Node: Low-Level Interface7213
+Ref: pure-reduce low-level-interface7327
+Ref: 37327
+Ref: Low-Level Interface-Footnote-17959
+Ref: Low-Level Interface-Footnote-28069
+Node: High-Level Interface8105
+Ref: pure-reduce high-level-interface8221
+Ref: 48221
+Node: Starting and Stopping Reduce8685
+Ref: pure-reduce starting-and-stopping-reduce8806
+Ref: 78806
+Ref: pure-reduce REDUCE_PATH8873
+Ref: 88873
+Ref: pure-reduce reduce start9125
+Ref: 99125
+Ref: pure-reduce reduce finish9853
+Ref: a9853
+Node: Maintenance Operations10180
+Ref: pure-reduce maintenance-operations10320
+Ref: b10320
+Ref: pure-reduce reduce verbosity10375
+Ref: c10375
+Ref: pure-reduce reduce switch10783
+Ref: d10783
+Ref: pure-reduce reduce capture11010
+Ref: e11010
+Ref: pure-reduce reduce output11055
+Ref: f11055
+Ref: pure-reduce reduce feed11457
+Ref: 1011457
+Ref: pure-reduce reduce load11647
+Ref: 1111647
+Ref: pure-reduce reduce in11834
+Ref: 1211834
+Node: Evaluation12040
+Ref: pure-reduce evaluation12143
+Ref: 1312143
+Ref: pure-reduce simplify12247
+Ref: 1412247
+Ref: pure-reduce simplifyd12575
+Ref: 1512575
+Ref: pure-reduce lisp13105
+Ref: 1613105
+Ref: pure-reduce lispval13837
+Ref: 1713837
+Ref: pure-reduce lispsym14616
+Ref: 1814616
+Ref: pure-reduce declare15143
+Ref: 1915143
+Ref: pure-reduce precision16277
+Ref: 1a16277
+Ref: pure-reduce plotreset16714
+Ref: 1b16714
+Ref: Evaluation-Footnote-119072
+Ref: Evaluation-Footnote-219103
+Node: Basic Examples19136
+Ref: pure-reduce basic-examples19250
+Ref: 1c19250
+Ref: pure-reduce screenshot20441
+Ref: 1d20441
+Ref: Basic Examples-Footnote-124366
+Node: Examples by Topic24399
+Ref: pure-reduce examples-by-topic24505
+Ref: 1e24505
+Node: Differentiation26054
+Ref: pure-reduce differentiation26148
+Ref: 2026148
+Node: Integration27159
+Ref: pure-reduce integration27283
+Ref: 2127283
+Node: Length Map and Select29038
+Ref: pure-reduce length-map-and-select29164
+Ref: 2329164
+Node: Partial Fractions33247
+Ref: pure-reduce partial-fractions33369
+Ref: 2433369
+Node: Solving34129
+Ref: pure-reduce solving34252
+Ref: 2534252
+Node: Even and Odd Operators36202
+Ref: pure-reduce even-and-odd-operators36324
+Ref: 2636324
+Node: Linear Operators36738
+Ref: pure-reduce linear-operators36876
+Ref: 2736876
+Node: Non-commuting Operators37413
+Ref: pure-reduce non-commuting-operators37566
+Ref: 2837566
+Node: Symmetric and Antisymmetric Operators37912
+Ref: pure-reduce symmetric-and-antisymmetric-operators38088
+Ref: 2938088
+Node: Creating/Removing Variable Dependencies38646
+Ref: pure-reduce creating-removing-variable-dependencies38826
+Ref: 2a38826
+Node: Internal Order of Variables39795
+Ref: pure-reduce internal-order-of-variables39968
+Ref: 2b39968
+Node: Parts of Algebraic Expressions40486
+Ref: pure-reduce parts-of-algebraic-expressions40645
+Ref: 2c40645
+Node: Polynomials and Rationals41634
+Ref: pure-reduce polynomials-and-rationals41778
+Ref: 2e41778
+Node: Substitution45348
+Ref: pure-reduce substitution45472
+Ref: 3045472
+Node: Assignment46034
+Ref: pure-reduce assignment46152
+Ref: 2d46152
+Node: Matrix Calculations46952
+Ref: pure-reduce matrix-calculations47064
+Ref: 3147064
+Node: Limits49611
+Ref: pure-reduce limits49751
+Ref: 3249751
+Node: Ordinary differential equations solver50379
+Ref: pure-reduce ordinary-differential-equations-solver50529
+Ref: 3350529
+Node: Series Summation and Products51219
+Ref: pure-reduce series-summation-and-products51376
+Ref: 3451376
+Node: Taylor Series52301
+Ref: pure-reduce taylor-series52439
+Ref: 3552439
+Node: Boolean Expressions53535
+Ref: pure-reduce boolean-expressions53666
+Ref: 3653666
+Node: Mathematical Functions55262
+Ref: pure-reduce mathematical-functions55398
+Ref: 3755398
+Node: Definite Integrals58109
+Ref: pure-reduce definite-integrals58259
+Ref: 3858259
+Node: Declarations Switches and Loading60072
+Ref: pure-reduce declarations-switches-and-loading60208
+Ref: 3960208
+Node: Plotting62459
+Ref: pure-reduce plotting62587
+Ref: 3a62587
+Ref: Plotting-Footnote-163391
+Node: References63424
+Ref: pure-reduce references63510
+Ref: 3b63510
+Ref: pure-reduce redum63543
+Ref: 1f63543
+Ref: pure-reduce lncs10263642
+Ref: 2263642
+Ref: pure-reduce symsac8163742
+Ref: 2f63742
+Node: Module Index63915
+Node: Index64063
 
 End Tag Table
 

@@ -1,11 +1,11 @@
-This is pure-sockets.info, produced by makeinfo version 5.2 from
+This is pure-sockets.info, produced by makeinfo version 6.1 from
 pure-sockets.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-sockets.info,  Node: Top,  Next: Installation,  Up: (dir)
 pure-sockets
 ************
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.7, October 28, 2014
+  Version 0.7, April 25, 2016
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -77,6 +77,7 @@ To use the operations of this module, put the following in your Pure
 script:
 
      using sockets;
+
 
   With the *note sockets: 0. module loaded, all the standard socket
 functions are available and work pretty much like in C. The only real
@@ -317,6 +318,7 @@ the examples directory in the sources.
        end;
      end;
 
+
   To use this example, run the ‘server’ function in one instance of the
 Pure interpreter and the ‘client’ function in another.  Enter a line
 when the client prompts you for input; it will be printed by the server.
@@ -342,6 +344,7 @@ like:
      server> quit
      server is exiting
      ()
+
 
   Note that while the server processes requests sequentially, it accepts
 connections from a new client after each request, so that you can run as
@@ -417,89 +420,89 @@ Index
 
 
 Tag Table:
-Node: Top401
-Ref: pure-sockets doc612
-Ref: 1612
-Node: Installation1051
-Ref: pure-sockets pure-sockets-pure-sockets-interface1135
-Ref: 21135
-Ref: pure-sockets module-sockets1135
-Ref: 01135
-Ref: pure-sockets installation1135
-Ref: 31135
-Node: Usage2016
-Ref: pure-sockets usage2104
-Ref: 42104
-Node: Creating and Inspecting Socket Addresses3309
-Ref: pure-sockets creating-and-inspecting-socket-addresses3434
-Ref: 53434
-Ref: pure-sockets sockaddr3665
-Ref: 63665
-Ref: pure-sockets sockaddrs4843
-Ref: a4843
-Ref: pure-sockets sockaddr_family5082
-Ref: b5082
-Ref: pure-sockets sockaddr_path5178
-Ref: c5178
-Ref: pure-sockets sockaddr_hostname5273
-Ref: d5273
-Ref: pure-sockets sockaddr_ip5383
-Ref: e5383
-Ref: pure-sockets sockaddr_service5450
-Ref: f5450
-Ref: pure-sockets sockaddr_port5539
-Ref: 105539
-Ref: pure-sockets sockaddr_info5609
-Ref: 115609
-Node: Creating and Closing Sockets5849
-Ref: pure-sockets creating-and-closing-sockets6007
-Ref: 126007
-Ref: pure-sockets socket6074
-Ref: 136074
-Ref: pure-sockets socketpair6777
-Ref: 146777
-Ref: pure-sockets shutdown6959
-Ref: 156959
-Ref: pure-sockets closesocket7124
-Ref: 167124
-Node: Establishing Connections7258
-Ref: pure-sockets establishing-connections7386
-Ref: 177386
-Ref: pure-sockets accept7445
-Ref: 77445
-Ref: pure-sockets bind7484
-Ref: 187484
-Ref: pure-sockets connect7521
-Ref: 197521
-Ref: pure-sockets listen7561
-Ref: 1a7561
-Node: Socket I/O7603
-Ref: pure-sockets socket-i-o7721
-Ref: 1b7721
-Ref: pure-sockets recv7752
-Ref: 1c7752
-Ref: pure-sockets send7794
-Ref: 1d7794
-Ref: pure-sockets recvfrom7836
-Ref: 97836
-Ref: pure-sockets sendto7887
-Ref: 1e7887
-Node: Socket Information8292
-Ref: pure-sockets socket-information8377
-Ref: 1f8377
-Ref: pure-sockets getsockname8424
-Ref: 88424
-Ref: pure-sockets getpeername8464
-Ref: 208464
-Ref: pure-sockets getsockopt8504
-Ref: 218504
-Ref: pure-sockets setsockopt8557
-Ref: 228557
-Node: Example9038
-Ref: pure-sockets example9126
-Ref: 239126
-Node: Module Index11933
-Node: Index12073
+Node: Top398
+Ref: pure-sockets doc606
+Ref: 1606
+Node: Installation1043
+Ref: pure-sockets pure-sockets-pure-sockets-interface1127
+Ref: 21127
+Ref: pure-sockets module-sockets1127
+Ref: 01127
+Ref: pure-sockets installation1127
+Ref: 31127
+Node: Usage2008
+Ref: pure-sockets usage2096
+Ref: 42096
+Node: Creating and Inspecting Socket Addresses3302
+Ref: pure-sockets creating-and-inspecting-socket-addresses3427
+Ref: 53427
+Ref: pure-sockets sockaddr3658
+Ref: 63658
+Ref: pure-sockets sockaddrs4836
+Ref: a4836
+Ref: pure-sockets sockaddr_family5075
+Ref: b5075
+Ref: pure-sockets sockaddr_path5171
+Ref: c5171
+Ref: pure-sockets sockaddr_hostname5266
+Ref: d5266
+Ref: pure-sockets sockaddr_ip5376
+Ref: e5376
+Ref: pure-sockets sockaddr_service5443
+Ref: f5443
+Ref: pure-sockets sockaddr_port5532
+Ref: 105532
+Ref: pure-sockets sockaddr_info5602
+Ref: 115602
+Node: Creating and Closing Sockets5842
+Ref: pure-sockets creating-and-closing-sockets6000
+Ref: 126000
+Ref: pure-sockets socket6067
+Ref: 136067
+Ref: pure-sockets socketpair6770
+Ref: 146770
+Ref: pure-sockets shutdown6952
+Ref: 156952
+Ref: pure-sockets closesocket7117
+Ref: 167117
+Node: Establishing Connections7251
+Ref: pure-sockets establishing-connections7379
+Ref: 177379
+Ref: pure-sockets accept7438
+Ref: 77438
+Ref: pure-sockets bind7477
+Ref: 187477
+Ref: pure-sockets connect7514
+Ref: 197514
+Ref: pure-sockets listen7554
+Ref: 1a7554
+Node: Socket I/O7596
+Ref: pure-sockets socket-i-o7714
+Ref: 1b7714
+Ref: pure-sockets recv7745
+Ref: 1c7745
+Ref: pure-sockets send7787
+Ref: 1d7787
+Ref: pure-sockets recvfrom7829
+Ref: 97829
+Ref: pure-sockets sendto7880
+Ref: 1e7880
+Node: Socket Information8285
+Ref: pure-sockets socket-information8370
+Ref: 1f8370
+Ref: pure-sockets getsockname8417
+Ref: 88417
+Ref: pure-sockets getpeername8457
+Ref: 208457
+Ref: pure-sockets getsockopt8497
+Ref: 218497
+Ref: pure-sockets setsockopt8550
+Ref: 228550
+Node: Example9031
+Ref: pure-sockets example9119
+Ref: 239119
+Node: Module Index11928
+Node: Index12068
 
 End Tag Table
 

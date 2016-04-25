@@ -1,11 +1,11 @@
-This is pure-tk.info, produced by makeinfo version 5.2 from
+This is pure-tk.info, produced by makeinfo version 6.1 from
 pure-tk.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-tk.info,  Node: Top,  Next: Introduction,  Up: (dir)
 pure-tk
 *******
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.5, October 28, 2014
+  Version 0.5, April 25, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -174,6 +174,7 @@ commands.
 
      tk "tk_dialog .warning \"Warning\" \"Are you sure?\" warning 0 Yes No Cancel";
 
+
   Other kinds of common dialogs are available; see the Tcl/Tk manual for
 information.
 
@@ -194,6 +195,7 @@ invoked from Tcl as follows:
 
      pure function args ...
 
+
   It calls the Pure function named by the first argument, passing any
 remaining (string) arguments to the callback.  If the Pure callback
 returns a (nonempty) string, that value becomes the return value of the
@@ -208,6 +210,7 @@ follows:
      using tk, system;
      tk "button .b -text {Hello, world!} -command {pure hello}; pack .b";
      hello = puts "Hello, world!";
+
 
 
 File: pure-tk.info,  Node: The Main Loop,  Next: Accessing Tcl Variables,  Prev: Callbacks,  Up: Top
@@ -228,6 +231,7 @@ minimalistic Tcl/Tk application coded in Pure may look as follows:
      using tk;
      tk "button .b -text {Hello, world!} -command {pure tk_quit}; pack .b";
      tk_main;
+
 
   The main loop terminates as soon as the Tcl interpreter is exited,
 which can happen, e.g., in response to a callback which invokes the
@@ -262,6 +266,7 @@ values from the application.  For instance:
      > tk_get "entry_val";
      tk_get "entry_val"
 
+
   Note that *note tk_set: f. returns the assigned value, so it is
 possible to chain such calls if several variables have to be set to the
 same value:
@@ -270,6 +275,7 @@ same value:
      "yes"
      > map tk_get ["foo","bar"];
      ["yes","yes"]
+
 
 
 File: pure-tk.info,  Node: Conversions Between Pure and Tcl Values,  Next: Tips and Tricks,  Prev: Accessing Tcl Variables,  Up: Top
@@ -299,6 +305,7 @@ lists to corresponding Tcl lists and vice versa:
      > tk_split ans;
      ["0","1.0","Hello, world!"]
 
+
   The *note tk_str: 15. and *note tk_val: 16. operations work in a
 similar fashion, but they also do automatic conversions for numeric
 values (ints, bigints and doubles):
@@ -313,12 +320,14 @@ values (ints, bigints and doubles):
      > tk_val ans;
      [0,1.0,"Hello, world!"]
 
+
   In addition, these operations also convert single atomic values:
 
      > tk_str 1.0;
      "1.0"
      > tk_val ans;
      1.0
+
 
 
 File: pure-tk.info,  Node: Tips and Tricks,  Next: Module Index,  Prev: Conversions Between Pure and Tcl Values,  Up: Top
@@ -335,6 +344,7 @@ with pure-tk.
      implementation of ‘tk_error’ throws an exception:
 
           tk_error msg = throw msg;
+
 
      If no definition for this function is provided, then errors cause a
      literal ‘tk_error msg’ expression to be returned as the result of
@@ -355,6 +365,7 @@ with pure-tk.
 
           main = do_something $$ main if tk_ready;
                = () otherwise;
+
 
      Note that the ‘tk_ready’ function checks whether the Tcl
      interpreter is still up and running, after processing any pending
@@ -377,6 +388,7 @@ with pure-tk.
 
           tk "source myapp.tcl";
 
+
      However, this always requires the script to be available at
      runtime.  Another method is to read the script into a string which
      is assigned to a Pure constant, and then invoke the *note tk: 9.
@@ -385,6 +397,7 @@ with pure-tk.
           using system;
           const ui = fget $ fopen "myapp.tcl" "r";
           tk ui;
+
 
      This still reads the script at runtime if the Pure program is
      executed using the Pure interpreter.  However, you can now compile
@@ -396,6 +409,7 @@ with pure-tk.
           $ pure -c myapp.pure -o myapp
           $ ./myapp
 
+
      This is also the method to use for running existing Tk
      applications, e.g., if you create the interface using some
      interface builder like vtcl(1).
@@ -405,6 +419,7 @@ with pure-tk.
 
           tk "package require Gnocl";
 
+
      This loads Peter G. Baum’s Gnocl(2) extension which turns Tcl into
      a frontend for GTK+(3) and Gnome(4).  In fact, pure-tk includes a
      special module to handle the nitty-gritty details of creating a
@@ -413,6 +428,7 @@ with pure-tk.
      the gnocl.pure module into your Pure scripts:
 
           using gnocl;
+
 
      Note that the Glade interface requires that you have a fairly
      recent version of Gnocl installed (Gnocl 0.9.94g has been tested).
@@ -430,16 +446,19 @@ with pure-tk.
 
           tk "proc exit { {returnCode 0} } { pure tk_quit }";
 
+
      If you want to do something with the exit code provided by ‘exit’,
      you will have to provide an appropriate callback function, e.g.:
 
           tk "proc exit { {returnCode 0} } { pure quit_cb $returnCode }";
+
 
      A suitable implementation of ‘quit_cb’ might look as follows:
 
           quit_cb 0 = puts "Application exited normally." $$ tk_quit;
           quit_cb n = printf "Application exited with exit code %d.\n" n $$
                       tk_quit otherwise;
+
 
    * If you need dialogs beyond the standard kinds of message boxes and
      common dialogs, you will have to do these yourself using a
@@ -492,84 +511,84 @@ Index
 * tk_split (function):                   Conversions Between Pure and Tcl Values.
                                                                (line 18)
 * tk_str (function):                     Conversions Between Pure and Tcl Values.
-                                                               (line 32)
+                                                               (line 33)
 * tk_unset (function):                   Accessing Tcl Variables.
                                                                (line  6)
 * tk_val (function):                     Conversions Between Pure and Tcl Values.
-                                                               (line 32)
+                                                               (line 33)
 
 
 
 Tag Table:
-Node: Top352
-Ref: pure-tk doc548
-Ref: 1548
-Ref: Top-Footnote-1922
-Node: Introduction948
-Ref: pure-tk introduction1029
-Ref: 21029
-Ref: pure-tk module-tk1029
-Ref: 01029
-Ref: pure-tk pure-tk1029
-Ref: 31029
-Ref: Introduction-Footnote-12870
-Ref: Introduction-Footnote-22900
-Ref: Introduction-Footnote-32928
-Ref: Introduction-Footnote-42958
-Ref: Introduction-Footnote-52990
-Node: Copying3018
-Ref: pure-tk vtk3108
-Ref: 53108
-Ref: pure-tk copying3108
-Ref: 63108
-Node: Installation3272
-Ref: pure-tk installation3361
-Ref: 73361
-Node: Basic Usage4728
-Ref: pure-tk basic-usage4819
-Ref: 84819
-Ref: pure-tk tk4848
-Ref: 94848
-Ref: pure-tk tk_quit5341
-Ref: a5341
-Node: Callbacks6140
-Ref: pure-tk callbacks6232
-Ref: b6232
-Node: The Main Loop7114
-Ref: pure-tk the-main-loop7218
-Ref: c7218
-Ref: pure-tk tk_main7251
-Ref: d7251
-Node: Accessing Tcl Variables8095
-Ref: pure-tk accessing-tcl-variables8229
-Ref: e8229
-Ref: pure-tk tk_set8282
-Ref: f8282
-Ref: pure-tk tk_unset8316
-Ref: 108316
-Ref: pure-tk tk_get8348
-Ref: 118348
-Node: Conversions Between Pure and Tcl Values9192
-Ref: pure-tk conversions-between-pure-and-tcl-values9328
-Ref: 129328
-Ref: pure-tk tk_join10080
-Ref: 1310080
-Ref: pure-tk tk_split10110
-Ref: 1410110
-Ref: pure-tk tk_str10482
-Ref: 1510482
-Ref: pure-tk tk_val10511
-Ref: 1610511
-Node: Tips and Tricks10851
-Ref: pure-tk tips-and-tricks10976
-Ref: 410976
-Ref: Tips and Tricks-Footnote-116940
-Ref: Tips and Tricks-Footnote-216976
-Ref: Tips and Tricks-Footnote-317006
-Ref: Tips and Tricks-Footnote-417034
-Ref: Tips and Tricks-Footnote-517064
-Node: Module Index17096
-Node: Index17234
+Node: Top349
+Ref: pure-tk doc542
+Ref: 1542
+Ref: Top-Footnote-1914
+Node: Introduction940
+Ref: pure-tk introduction1021
+Ref: 21021
+Ref: pure-tk module-tk1021
+Ref: 01021
+Ref: pure-tk pure-tk1021
+Ref: 31021
+Ref: Introduction-Footnote-12862
+Ref: Introduction-Footnote-22892
+Ref: Introduction-Footnote-32920
+Ref: Introduction-Footnote-42950
+Ref: Introduction-Footnote-52982
+Node: Copying3010
+Ref: pure-tk vtk3100
+Ref: 53100
+Ref: pure-tk copying3100
+Ref: 63100
+Node: Installation3264
+Ref: pure-tk installation3353
+Ref: 73353
+Node: Basic Usage4720
+Ref: pure-tk basic-usage4811
+Ref: 84811
+Ref: pure-tk tk4840
+Ref: 94840
+Ref: pure-tk tk_quit5333
+Ref: a5333
+Node: Callbacks6133
+Ref: pure-tk callbacks6225
+Ref: b6225
+Node: The Main Loop7109
+Ref: pure-tk the-main-loop7213
+Ref: c7213
+Ref: pure-tk tk_main7246
+Ref: d7246
+Node: Accessing Tcl Variables8091
+Ref: pure-tk accessing-tcl-variables8225
+Ref: e8225
+Ref: pure-tk tk_set8278
+Ref: f8278
+Ref: pure-tk tk_unset8312
+Ref: 108312
+Ref: pure-tk tk_get8344
+Ref: 118344
+Node: Conversions Between Pure and Tcl Values9190
+Ref: pure-tk conversions-between-pure-and-tcl-values9326
+Ref: 129326
+Ref: pure-tk tk_join10078
+Ref: 1310078
+Ref: pure-tk tk_split10108
+Ref: 1410108
+Ref: pure-tk tk_str10481
+Ref: 1510481
+Ref: pure-tk tk_val10510
+Ref: 1610510
+Node: Tips and Tricks10852
+Ref: pure-tk tips-and-tricks10977
+Ref: 410977
+Ref: Tips and Tricks-Footnote-116951
+Ref: Tips and Tricks-Footnote-216987
+Ref: Tips and Tricks-Footnote-317017
+Ref: Tips and Tricks-Footnote-417045
+Ref: Tips and Tricks-Footnote-517075
+Node: Module Index17107
+Node: Index17245
 
 End Tag Table
 

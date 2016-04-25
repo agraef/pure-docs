@@ -1,11 +1,11 @@
-This is pure-faust.info, produced by makeinfo version 5.2 from
+This is pure-faust.info, produced by makeinfo version 6.1 from
 pure-faust.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-faust.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-faust
 **********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.11, October 28, 2014
+  Version 0.11, April 25, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -139,6 +139,7 @@ pure-faust as follows:
      $ faust -a pure.cpp -o mydsp.cpp mydsp.dsp
      $ g++ -shared -o mydsp.so mydsp.cpp
 
+
   Note that, by default, Faust generates code which does all internal
 computations with single precision.  You can add the ‘-double’ flag to
 the Faust command in order to use double precision instead.  (In either
@@ -157,6 +158,7 @@ interpreter and load the dsp as follows:
      > let dsp = faust_init "mydsp" 48000;
      > dsp;
      #<pointer 0xf09220>
+
 
   The ‘faust_init’ function loads the ‘"mydsp.so"’ module (the ‘.so’
 suffix is supplied automatically) and returns a pointer to the Faust dsp
@@ -180,6 +182,7 @@ with the ‘faust_reinit’ function:
 
      > faust_reinit dsp 44100;
 
+
   It is also possible to create copies of an existing dsp with the
 ‘faust_clone’ function, which is quite handy if multiple copies of the
 same dsp are needed (a case which commonly arises when implementing
@@ -187,11 +190,13 @@ polyphonic synthesizers):
 
      > let dsp2 = faust_clone dsp;
 
+
   When you’re done with a dsp, you can invoke the ‘faust_exit’ function
 to unload it (this also happens automatically when a dsp object is
 garbage-collected):
 
      > faust_exit dsp2;
+
 
   Note that after invoking this operation the dsp pointer becomes
 invalid and must not be used any more.
@@ -206,11 +211,13 @@ running example:
      gain = nentry("gain", 1.0, 0, 10, 0.01);
      process = *(gain);
 
+
   The ‘faust_info’ function can be used to determine the number of
 input/output channels as well as the "UI" (a data structure describing
 the available control variables) of the loaded dsp:
 
      > let n,m,ui = faust_info dsp;
+
 
   Global metadata of the dsp is available as a list of ‘key=>val’ string
 pairs with the ‘faust_meta’ function.  For instance:
@@ -218,12 +225,14 @@ pairs with the ‘faust_meta’ function.  For instance:
      > faust_meta dsp;
      ["descr"=>"amplifier","author"=>"Albert Graef","version"=>"1.0"]
 
+
   To actually run the dsp, you’ll need two buffers capable of holding
 the required number of audio samples for input and output.  For
 convenience, the ‘faust_compute’ routine lets you specify these as Pure
 double matrices.  ‘faust_compute’ is invoked as follows:
 
      > faust_compute dsp in out;
+
 
   Here, ‘in’ and ‘out’ must be double matrices which have at least ‘n’
 or ‘m’ rows, respectively (corresponding to the number of input and
@@ -240,6 +249,7 @@ just specify an empty ‘in’ or ‘out’ matrix, respectively.  For instance:
 
      > faust_compute dsp {} out;
 
+
   Most DSPs take additional control input.  The control variables are
 listed in the "UI" component of the ‘faust_info’ return value.  For
 instance, suppose that there’s a ‘gain’ parameter listed there, it might
@@ -247,6 +257,7 @@ look as follows:
 
      > controls ui!0;
      hslider #<pointer 0x12780a4> [] ("gain",1.0,0.0,10.0,0.1)
+
 
   The constructor itself denotes the type of control, which matches the
 name of the Faust builtin used to create the control (see the Faust
@@ -268,6 +279,7 @@ invocations of ‘faust_compute’.  Example:
      ()
      > faust_compute dsp in out;
 
+
   Output controls such as ‘hbargraph’ and ‘vbargraph’ are handled in a
 similar fashion, only that the Faust dsp updates these values for each
 call to ‘faust_compute’ and Pure scripts can then read the values with
@@ -283,10 +295,12 @@ controller assignment might look as follows in the Faust source:
 
      gain = nentry("gain[midi:ctrl 7]", 1.0, 0, 10, 0.01);
 
+
   In Pure this information will then be available as:
 
      > control_meta (controls ui!0);
      ["midi"=>"ctrl 7"]
+
 
   Let’s finally have a closer look at the contents of the UI data
 structure.  You will find that it is actually a tree, similar to the
@@ -295,6 +309,7 @@ of the controls in the Faust program.  For instance:
 
      > ui;
      vgroup [] ("mydsp",[nentry #<pointer 0x12780a4> [] ("gain",1.0,0.0,10.0,0.01)])
+
 
   The leaves of the tree are the actual controls, while its interior
 nodes are so-called "control groups", starting from a root node which
@@ -309,12 +324,14 @@ controls in the UI tree as a list, omitting the group nodes of the tree:
      > controls ui;
      [hslider #<pointer 0x12780a4> [] ("gain",1.0,0.0,10.0,0.1)]
 
+
   We’ve already employed this function above to extract the ‘gain’
 control of our example dsp.  There’s a variation of this function which
 yields the full "pathnames" of controls in the UI tree:
 
      > pcontrols ui;
      [hslider #<pointer 0x12780a4> [] ("mydsp/gain",1.0,0.0,10.0,0.1)]
+
 
   This is sometimes necessary to distinguish controls with identical
 names in different control groups.  There are two additional convenience
@@ -326,6 +343,7 @@ structure:
      {"mydsp/gain"=>#<pointer 0x12780a4>}
      > control_metamap ctrls;
      {"mydsp/gain"=>[]}
+
 
   The results are Pure records which provide convenient access to the
 pointers and metadata of the controls by their name.
@@ -348,6 +366,7 @@ interface, using the same operations as described under *note Usage: 7.
 above.  This module is invoked with the following import clause:
 
      using faust2;
+
 
   To instantiate a Faust dsp using the *note faust2: 1. interface,
 you’ll have to compile the Faust program to LLVM bitcode format.  The
@@ -401,39 +420,39 @@ Index
 
 
 Tag Table:
-Node: Top403
-Ref: pure-faust doc603
-Ref: 2603
-Ref: Top-Footnote-11870
-Ref: Top-Footnote-21909
-Ref: Top-Footnote-31940
-Ref: Top-Footnote-41969
-Node: Copying2030
-Ref: pure-faust copying2114
-Ref: 32114
-Ref: pure-faust pure-faust2114
-Ref: 42114
-Ref: pure-faust module-faust2114
-Ref: 02114
-Ref: pure-faust pure2114
-Ref: 52114
-Node: Installation2974
-Ref: pure-faust installation3060
-Ref: 63060
-Node: Usage4665
-Ref: pure-faust usage4764
-Ref: 74764
-Node: Faust2 Compatibility13853
-Ref: pure-faust module-faust213956
-Ref: 113956
-Ref: pure-faust faust2-compatibility13956
-Ref: 813956
-Ref: Faust2 Compatibility-Footnote-115107
-Node: Acknowledgements15168
-Ref: pure-faust acknowledgements15278
-Ref: 915278
-Node: Module Index15387
-Node: Index15546
+Node: Top400
+Ref: pure-faust doc597
+Ref: 2597
+Ref: Top-Footnote-11862
+Ref: Top-Footnote-21901
+Ref: Top-Footnote-31932
+Ref: Top-Footnote-41961
+Node: Copying2022
+Ref: pure-faust copying2106
+Ref: 32106
+Ref: pure-faust pure-faust2106
+Ref: 42106
+Ref: pure-faust module-faust2106
+Ref: 02106
+Ref: pure-faust pure2106
+Ref: 52106
+Node: Installation2966
+Ref: pure-faust installation3052
+Ref: 63052
+Node: Usage4657
+Ref: pure-faust usage4756
+Ref: 74756
+Node: Faust2 Compatibility13863
+Ref: pure-faust module-faust213966
+Ref: 113966
+Ref: pure-faust faust2-compatibility13966
+Ref: 813966
+Ref: Faust2 Compatibility-Footnote-115118
+Node: Acknowledgements15179
+Ref: pure-faust acknowledgements15289
+Ref: 915289
+Node: Module Index15398
+Node: Index15557
 
 End Tag Table
 

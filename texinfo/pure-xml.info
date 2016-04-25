@@ -1,11 +1,11 @@
-This is pure-xml.info, produced by makeinfo version 5.2 from
+This is pure-xml.info, produced by makeinfo version 6.1 from
 pure-xml.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-xml.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-xml
 ********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.7, October 28, 2014
+  Version 0.7, April 25, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -106,11 +106,13 @@ available in your programs:
 
      using xml;
 
+
   The module defines two namespaces ‘xml’ and ‘xslt’ for the XML and the
 XSLT operations, respectively.  For convenience, you can open these in
 your program as follows:
 
      using namespace xml, xslt;
+
 
   A number of complete examples illustrating the use of this module can
 be found in the examples directory in the source distribution.
@@ -466,6 +468,7 @@ blank nodes) and retrieve the document info:
      > xml::doc_info sample;
      "1.0","","sample.xml",0,-2
 
+
    ---------- Footnotes ----------
 
    (1) http://www.w3.org/TR/REC-xml/#sec-rmd
@@ -540,6 +543,7 @@ retrieve the ‘i’th child of ‘node’.
      5
      > xml::node_info (r!0);
      xml::cdata "<greeting>Hello, world!</greeting>"
+
 
 
 File: pure-xml.info,  Node: Node Information,  Next: Node Manipulation,  Prev: Traversing Documents,  Up: Operations
@@ -628,6 +632,7 @@ with the following operations:
      > xml::node_info r;
      xml::element "story" [] []
 
+
   The ‘select’ function is _very_ powerful, and probably the single most
 important operation of this module if you want to extract information
 from an existing XML document without traversing the entire structure.
@@ -636,11 +641,13 @@ Here is a very simple example of its use:
      > [xml::node_content n, xml::node_path n | n = xml::select sample "//author"];
      [("John Fleck","/story/storyinfo/author")]
 
+
   Note that if the XPath expression contains qualified names, the
 corresponding namespace prefixes and their URIs must be given in the
 second argument along with the XPath, as follows:
 
      xml::select doc ("//foo:bar", ["foo"=>"http://www.foo.org"]);
+
 
    ---------- Footnotes ----------
 
@@ -690,12 +697,14 @@ info: c.), and by removing (unlinking) existing nodes from the tree.
      > xml::node_info (r!0);
      xml::text "bla bla"
 
+
   Delete that node:
 
      > xml::unlink (r!0);
      ()
      > xml::node_info (r!0);
      xml::comment "This is a sample document for testing the xml interface."
+
 
 
 File: pure-xml.info,  Node: Transformations,  Prev: Node Manipulation,  Up: Operations
@@ -761,12 +770,14 @@ distributed with the sources:
      > let recipes = xml::load_file "recipes.xml" xml::DTDVALID;
      > let style = xslt::load_stylesheet "recipes.xsl";
 
+
   Apply the stylesheet to the document and save the result in a html
 file:
 
      > let res = xslt::apply_stylesheet style recipes [];
      > xslt::save_result_file "recipes.html" res style 0;
      ()
+
 
   That’s all.  You can now have a look at recipes.html in your favourite
 web browser.
@@ -896,231 +907,231 @@ Index
 
 
 Tag Table:
-Node: Top378
-Ref: pure-xml doc572
-Ref: 1572
-Ref: Top-Footnote-11562
-Ref: Top-Footnote-21595
-Node: Copying1629
-Ref: pure-xml pure-xml-xml-xslt-interface1711
-Ref: 21711
-Ref: pure-xml copying1711
-Ref: 31711
-Ref: pure-xml module-xml1711
-Ref: 01711
-Node: Installation2428
-Ref: pure-xml installation2512
-Ref: 42512
-Node: Usage2778
-Ref: pure-xml usage2869
-Ref: 52869
-Node: Data Structure3347
-Ref: pure-xml data-structure3436
-Ref: 63436
-Ref: pure-xml xml docp4146
-Ref: 84146
-Ref: pure-xml xml nodep4235
-Ref: 94235
-Ref: pure-xml xslt stylesheetp4340
-Ref: a4340
-Node: The Document Tree4493
-Ref: pure-xml the-document-tree4586
-Ref: b4586
-Ref: pure-xml node-info4925
-Ref: c4925
-Ref: pure-xml xml element4925
-Ref: d4925
-Ref: pure-xml xml element_text5673
-Ref: e5673
-Ref: pure-xml xml attr5969
-Ref: f5969
-Ref: pure-xml xml text6165
-Ref: 106165
-Ref: pure-xml xml cdata6259
-Ref: 116259
-Ref: pure-xml xml comment6371
-Ref: 126371
-Ref: pure-xml xml entity_ref6432
-Ref: 136432
-Ref: pure-xml xml pi6518
-Ref: 146518
-Node: Document Types6690
-Ref: pure-xml document-types6783
-Ref: 156783
-Ref: pure-xml dtd6822
-Ref: 166822
-Ref: pure-xml xml doctype7247
-Ref: 177247
-Ref: pure-xml element-declaration7861
-Ref: 187861
-Ref: pure-xml xml undefined_element8149
-Ref: 1a8149
-Ref: pure-xml xml empty_element8334
-Ref: 1b8334
-Ref: pure-xml xml any_element8419
-Ref: 1c8419
-Ref: pure-xml xml mixed_element8508
-Ref: 1d8508
-Ref: pure-xml xml std_element8721
-Ref: 1e8721
-Ref: pure-xml attribute-declaration8886
-Ref: 1f8886
-Ref: pure-xml xml cdata_attr9337
-Ref: 219337
-Ref: pure-xml xml id_attr9399
-Ref: 229399
-Ref: pure-xml xml idref_attr9458
-Ref: 239458
-Ref: pure-xml xml idrefs_attr9520
-Ref: 249520
-Ref: pure-xml xml entity_attr9583
-Ref: 259583
-Ref: pure-xml xml entities_attr9646
-Ref: 269646
-Ref: pure-xml xml nmtoken_attr9711
-Ref: 279711
-Ref: pure-xml xml nmtokens_attr9775
-Ref: 289775
-Ref: pure-xml xml enum_attr9840
-Ref: 299840
-Ref: pure-xml xml notation_attr9906
-Ref: 2a9906
-Ref: pure-xml entity-declaration9976
-Ref: 2b9976
-Ref: pure-xml xml int_entity10227
-Ref: 2c10227
-Ref: pure-xml xml int_param_entity10279
-Ref: 2d10279
-Ref: pure-xml xml ext_entity10337
-Ref: 2e10337
-Ref: pure-xml xml ext_param_entity10395
-Ref: 2f10395
-Ref: pure-xml element-content10459
-Ref: 1910459
-Ref: pure-xml xml pcdata10660
-Ref: 3010660
-Ref: pure-xml xml sequence10727
-Ref: 3110727
-Ref: pure-xml xml union10801
-Ref: 3210801
-Ref: pure-xml xml opt10871
-Ref: 3310871
-Ref: pure-xml xml mult10939
-Ref: 3410939
-Ref: pure-xml xml plus11008
-Ref: 3511008
-Ref: pure-xml attribute-defaults11090
-Ref: 2011090
-Ref: pure-xml xml required11240
-Ref: 3611240
-Ref: pure-xml xml implied11338
-Ref: 3711338
-Ref: pure-xml xml default11447
-Ref: 3811447
-Ref: pure-xml xml fixed11545
-Ref: 3911545
-Ref: Document Types-Footnote-111675
-Ref: Document Types-Footnote-211724
-Ref: Document Types-Footnote-311773
-Node: Operations11822
-Ref: pure-xml operations11918
-Ref: 3a11918
-Node: Document Operations12288
-Ref: pure-xml document-operations12385
-Ref: 3b12385
-Ref: pure-xml xml new_doc12599
-Ref: 3c12599
-Ref: pure-xml xml load_file13454
-Ref: 3d13454
-Ref: pure-xml xml load_string13499
-Ref: 3e13499
-Ref: pure-xml xml save_file14107
-Ref: 3f14107
-Ref: pure-xml xml save_string14171
-Ref: 4014171
-Ref: pure-xml xml doc_info14591
-Ref: 4114591
-Ref: pure-xml xml int_subset15538
-Ref: 4215538
-Ref: pure-xml xml ext_subset15577
-Ref: 4315577
-Ref: Document Operations-Footnote-116069
-Node: Traversing Documents16115
-Ref: pure-xml traversing-documents16237
-Ref: 4416237
-Ref: pure-xml xml root16702
-Ref: 4816702
-Ref: pure-xml xml doc16769
-Ref: 4516769
-Ref: pure-xml xml parent16844
-Ref: 4916844
-Ref: pure-xml xml first16912
-Ref: 4a16912
-Ref: pure-xml xml last16947
-Ref: 4b16947
-Ref: pure-xml xml next17014
-Ref: 4c17014
-Ref: pure-xml xml prev17048
-Ref: 4d17048
-Ref: pure-xml xml first_attr17115
-Ref: 4e17115
-Ref: pure-xml xml last_attr17155
-Ref: 4f17155
-Ref: pure-xml xml children17483
-Ref: 5017483
-Ref: pure-xml xml attrs17578
-Ref: 5117578
-Node: Node Information18104
-Ref: pure-xml node-information18224
-Ref: 4618224
-Ref: pure-xml xml select18342
-Ref: 5218342
-Ref: pure-xml xml node_info19729
-Ref: 5319729
-Ref: pure-xml xml is_blank_node19982
-Ref: 5419982
-Ref: pure-xml xml node_base20126
-Ref: 5520126
-Ref: pure-xml xml node_path20212
-Ref: 5620212
-Ref: pure-xml xml node_content20347
-Ref: 5720347
-Ref: pure-xml xml node_attr20578
-Ref: 5820578
-Ref: pure-xml xml set_node_attr20726
-Ref: 5920726
-Ref: pure-xml xml unset_node_attr20780
-Ref: 5a20780
-Ref: Node Information-Footnote-121871
-Node: Node Manipulation21906
-Ref: pure-xml node-manipulation22021
-Ref: 4722021
-Ref: pure-xml xml replace22277
-Ref: 5b22277
-Ref: pure-xml xml add_first22411
-Ref: 5c22411
-Ref: pure-xml xml add_last22455
-Ref: 5d22455
-Ref: pure-xml xml add_next22583
-Ref: 5e22583
-Ref: pure-xml xml add_prev22626
-Ref: 5f22626
-Ref: pure-xml xml unlink22832
-Ref: 6022832
-Node: Transformations23398
-Ref: pure-xml transformations23488
-Ref: 723488
-Ref: pure-xml xslt load_stylesheet25033
-Ref: 6125033
-Ref: pure-xml xslt apply_stylesheet25205
-Ref: 6225205
-Ref: pure-xml xslt save_result_file25537
-Ref: 6325537
-Ref: pure-xml xslt save_result_string25606
-Ref: 6425606
-Ref: Transformations-Footnote-126494
-Node: Module Index26528
-Node: Index26663
+Node: Top375
+Ref: pure-xml doc566
+Ref: 1566
+Ref: Top-Footnote-11554
+Ref: Top-Footnote-21587
+Node: Copying1621
+Ref: pure-xml pure-xml-xml-xslt-interface1703
+Ref: 21703
+Ref: pure-xml copying1703
+Ref: 31703
+Ref: pure-xml module-xml1703
+Ref: 01703
+Node: Installation2420
+Ref: pure-xml installation2504
+Ref: 42504
+Node: Usage2770
+Ref: pure-xml usage2861
+Ref: 52861
+Node: Data Structure3341
+Ref: pure-xml data-structure3430
+Ref: 63430
+Ref: pure-xml xml docp4140
+Ref: 84140
+Ref: pure-xml xml nodep4229
+Ref: 94229
+Ref: pure-xml xslt stylesheetp4334
+Ref: a4334
+Node: The Document Tree4487
+Ref: pure-xml the-document-tree4580
+Ref: b4580
+Ref: pure-xml node-info4919
+Ref: c4919
+Ref: pure-xml xml element4919
+Ref: d4919
+Ref: pure-xml xml element_text5667
+Ref: e5667
+Ref: pure-xml xml attr5963
+Ref: f5963
+Ref: pure-xml xml text6159
+Ref: 106159
+Ref: pure-xml xml cdata6253
+Ref: 116253
+Ref: pure-xml xml comment6365
+Ref: 126365
+Ref: pure-xml xml entity_ref6426
+Ref: 136426
+Ref: pure-xml xml pi6512
+Ref: 146512
+Node: Document Types6684
+Ref: pure-xml document-types6777
+Ref: 156777
+Ref: pure-xml dtd6816
+Ref: 166816
+Ref: pure-xml xml doctype7241
+Ref: 177241
+Ref: pure-xml element-declaration7855
+Ref: 187855
+Ref: pure-xml xml undefined_element8143
+Ref: 1a8143
+Ref: pure-xml xml empty_element8328
+Ref: 1b8328
+Ref: pure-xml xml any_element8413
+Ref: 1c8413
+Ref: pure-xml xml mixed_element8502
+Ref: 1d8502
+Ref: pure-xml xml std_element8715
+Ref: 1e8715
+Ref: pure-xml attribute-declaration8880
+Ref: 1f8880
+Ref: pure-xml xml cdata_attr9331
+Ref: 219331
+Ref: pure-xml xml id_attr9393
+Ref: 229393
+Ref: pure-xml xml idref_attr9452
+Ref: 239452
+Ref: pure-xml xml idrefs_attr9514
+Ref: 249514
+Ref: pure-xml xml entity_attr9577
+Ref: 259577
+Ref: pure-xml xml entities_attr9640
+Ref: 269640
+Ref: pure-xml xml nmtoken_attr9705
+Ref: 279705
+Ref: pure-xml xml nmtokens_attr9769
+Ref: 289769
+Ref: pure-xml xml enum_attr9834
+Ref: 299834
+Ref: pure-xml xml notation_attr9900
+Ref: 2a9900
+Ref: pure-xml entity-declaration9970
+Ref: 2b9970
+Ref: pure-xml xml int_entity10221
+Ref: 2c10221
+Ref: pure-xml xml int_param_entity10273
+Ref: 2d10273
+Ref: pure-xml xml ext_entity10331
+Ref: 2e10331
+Ref: pure-xml xml ext_param_entity10389
+Ref: 2f10389
+Ref: pure-xml element-content10453
+Ref: 1910453
+Ref: pure-xml xml pcdata10654
+Ref: 3010654
+Ref: pure-xml xml sequence10721
+Ref: 3110721
+Ref: pure-xml xml union10795
+Ref: 3210795
+Ref: pure-xml xml opt10865
+Ref: 3310865
+Ref: pure-xml xml mult10933
+Ref: 3410933
+Ref: pure-xml xml plus11002
+Ref: 3511002
+Ref: pure-xml attribute-defaults11084
+Ref: 2011084
+Ref: pure-xml xml required11234
+Ref: 3611234
+Ref: pure-xml xml implied11332
+Ref: 3711332
+Ref: pure-xml xml default11441
+Ref: 3811441
+Ref: pure-xml xml fixed11539
+Ref: 3911539
+Ref: Document Types-Footnote-111669
+Ref: Document Types-Footnote-211718
+Ref: Document Types-Footnote-311767
+Node: Operations11816
+Ref: pure-xml operations11912
+Ref: 3a11912
+Node: Document Operations12282
+Ref: pure-xml document-operations12379
+Ref: 3b12379
+Ref: pure-xml xml new_doc12593
+Ref: 3c12593
+Ref: pure-xml xml load_file13448
+Ref: 3d13448
+Ref: pure-xml xml load_string13493
+Ref: 3e13493
+Ref: pure-xml xml save_file14101
+Ref: 3f14101
+Ref: pure-xml xml save_string14165
+Ref: 4014165
+Ref: pure-xml xml doc_info14585
+Ref: 4114585
+Ref: pure-xml xml int_subset15532
+Ref: 4215532
+Ref: pure-xml xml ext_subset15571
+Ref: 4315571
+Ref: Document Operations-Footnote-116064
+Node: Traversing Documents16110
+Ref: pure-xml traversing-documents16232
+Ref: 4416232
+Ref: pure-xml xml root16697
+Ref: 4816697
+Ref: pure-xml xml doc16764
+Ref: 4516764
+Ref: pure-xml xml parent16839
+Ref: 4916839
+Ref: pure-xml xml first16907
+Ref: 4a16907
+Ref: pure-xml xml last16942
+Ref: 4b16942
+Ref: pure-xml xml next17009
+Ref: 4c17009
+Ref: pure-xml xml prev17043
+Ref: 4d17043
+Ref: pure-xml xml first_attr17110
+Ref: 4e17110
+Ref: pure-xml xml last_attr17150
+Ref: 4f17150
+Ref: pure-xml xml children17478
+Ref: 5017478
+Ref: pure-xml xml attrs17573
+Ref: 5117573
+Node: Node Information18100
+Ref: pure-xml node-information18220
+Ref: 4618220
+Ref: pure-xml xml select18338
+Ref: 5218338
+Ref: pure-xml xml node_info19725
+Ref: 5319725
+Ref: pure-xml xml is_blank_node19978
+Ref: 5419978
+Ref: pure-xml xml node_base20122
+Ref: 5520122
+Ref: pure-xml xml node_path20208
+Ref: 5620208
+Ref: pure-xml xml node_content20343
+Ref: 5720343
+Ref: pure-xml xml node_attr20574
+Ref: 5820574
+Ref: pure-xml xml set_node_attr20722
+Ref: 5920722
+Ref: pure-xml xml unset_node_attr20776
+Ref: 5a20776
+Ref: Node Information-Footnote-121870
+Node: Node Manipulation21905
+Ref: pure-xml node-manipulation22020
+Ref: 4722020
+Ref: pure-xml xml replace22276
+Ref: 5b22276
+Ref: pure-xml xml add_first22410
+Ref: 5c22410
+Ref: pure-xml xml add_last22454
+Ref: 5d22454
+Ref: pure-xml xml add_next22582
+Ref: 5e22582
+Ref: pure-xml xml add_prev22625
+Ref: 5f22625
+Ref: pure-xml xml unlink22831
+Ref: 6022831
+Node: Transformations23399
+Ref: pure-xml transformations23489
+Ref: 723489
+Ref: pure-xml xslt load_stylesheet25034
+Ref: 6125034
+Ref: pure-xml xslt apply_stylesheet25206
+Ref: 6225206
+Ref: pure-xml xslt save_result_file25538
+Ref: 6325538
+Ref: pure-xml xslt save_result_string25607
+Ref: 6425607
+Ref: Transformations-Footnote-126497
+Node: Module Index26531
+Node: Index26666
 
 End Tag Table
 

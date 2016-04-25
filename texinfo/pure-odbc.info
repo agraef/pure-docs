@@ -1,11 +1,11 @@
-This is pure-odbc.info, produced by makeinfo version 5.2 from
+This is pure-odbc.info, produced by makeinfo version 6.1 from
 pure-odbc.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-odbc.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-odbc
 *********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.10, October 28, 2014
+  Version 0.10, April 25, 2016
 
      Albert Graef <<aggraef@gmail.com>> 
      Jiri Spitz <<jiri.spitz@bluetone.cz>> 
@@ -133,6 +133,7 @@ it shows the following:
      > odbc::sources;
      [("myodbc","MySQL ODBC 2.50"),("psqlodbc","PostgreSQL ODBC")]
 
+
   The first component in each entry of the list is the name of the data
 source, which can be used as the value of the ‘DSN’ option in the
 connect string, the second component provides a short description of the
@@ -154,6 +155,7 @@ follows:
 
      > let db = odbc::connect "DSN=myodbc";
 
+
   The ‘odbc::connect’ function returns a pointer to an ‘ODBCHandle’
 object which is used to refer to the database connection in the other
 routines provided by this module.  An ‘ODBCHandle’ object is closed
@@ -161,6 +163,7 @@ automatically when it is no longer accessible.  You can also close it
 explicitly with a call to the ‘odbc::disconnect’ function:
 
      > odbc::disconnect db;
+
 
   After ‘odbc::disconnect’ has been invoked on a handle, any further
 operations on it will fail.
@@ -171,6 +174,7 @@ specify a username and password; note that the different attributes are
 separated with a semicolon:
 
      > let db = odbc::connect "DSN=myodbc;UID=root;PWD=guess";
+
 
   The precise set of attributes in the connect string depends on your
 ODBC driver, but at least the following options should be available on
@@ -201,11 +205,13 @@ source described in a .dsn file on Windows, as follows:
 
      > odbc::connect "FILEDSN=test.dsn";
 
+
   Usually it is also possible to directly connect to a driver and name a
 database file as the data source.  For instance, using the MS Access
 ODBC driver you can connect to a database file test.mdb as follows:
 
      > odbc::connect "DRIVER=Microsoft Access Driver (*.mdb);DBQ=test.mdb";
+
 
   SQLite (‘http://www.sqlite.org’) provides another way to get a
 database up and running quickly.  For that you need the SQLite library
@@ -215,6 +221,7 @@ database as follows (the database file is named with the ‘DATABASE’
 attribute and is created automatically if it doesn’t exist):
 
      > odbc::connect "DRIVER=SQLite3;Database=test.db";
+
 
   SQLite generally performs very well if you avoid some pitfalls (in
 particular, big batches of updates/inserts should be done within a
@@ -256,6 +263,7 @@ function in the ODBC API reference for more information):
      > odbc::info db;
      "myodbc","test","MySQL","5.0.18","myodbc3.dll","03.51.12","03.51","03.52"
 
+
   The odbc module also provides a number of operations to retrieve a
 bunch of additional meta information about the given database
 connection.  In particular, the ‘odbc::getinfo’ function provides a
@@ -270,11 +278,13 @@ instance:
      > cstring_dup $ odbc::getinfo db odbc::SQL_IDENTIFIER_QUOTE_CHAR;
      "`"
 
+
   Information about supported SQL data types is available with the
 ‘odbc::typeinfo’ routine (this returns a lot of data, see odbc.pure for
 an explanation):
 
      > odbc::typeinfo db odbc::SQL_ALL_TYPES;
+
 
   Moreover, information about the tables in the current database, as
 well as the structure of the tables and their primary and foreign keys
@@ -294,6 +304,7 @@ can be retrieved with the ‘odbc::tables’, ‘odbc::columns’,
 
      > odbc::foreign_keys db "event";
      [("name","pet","name")]
+
 
   This often provides a convenient and portable means to retrieve basic
 information about table structures, at least on RDBMS which properly
@@ -327,6 +338,7 @@ your default database.)
      > odbc::sql db "select name,species from pet where owner='Harold'" [];
      [["name","species"],["Fluffy","cat"],["Buffy","dog"]]
 
+
   Often the third parameter of ‘sql’, as above, is just the empty list,
 indicating a parameterless query.  Queries involving marked input
 parameters can be executed by specifying the parameter values in the
@@ -335,11 +347,13 @@ third argument of the ‘sql’ call.  For instance:
      > odbc::sql db "select name,species from pet where owner=?" ["Harold"];
      [["name","species"],["Fluffy","cat"],["Buffy","dog"]]
 
+
   Multiple parameters are specified as a list:
 
      > odbc::sql db "select name,species from pet where owner=? and species=?"
      > ["Harold","cat"];
      [["name","species"],["Fluffy","cat"]]
+
 
   Parameterized queries are particularly useful for the purpose of
 inserting data into a table:
@@ -348,12 +362,14 @@ inserting data into a table:
      > ["Puffball","Diane","hamster","f","1999-03-30",odbc::SQLNULL];
      1
 
+
   In this case we could also have hard-coded the data to be inserted
 right into the SQL statement, but a parameterized query like the one
 above can easily be applied to a whole collection of data rows, e.g., as
 follows:
 
      > do (odbc::sql db "insert into pet values (?,?,?,?,?,?)") data;
+
 
   Parameterized queries also let you insert data which cannot be
 specified easily inside an SQL query, such as long strings or binary
@@ -409,6 +425,7 @@ of the query.
 
      > odbc::msql db "select * from pet; select * from event" [];
 
+
   This will return a list with two result sets, one for each query.
 
 
@@ -444,12 +461,14 @@ processed, ‘sql_more’ fails.
      > odbc::sql_more db; // no more result sets
      odbc::sql_more #<pointer 0x24753e0>
 
+
   Moreover, the ‘sql_close’ function can be called at any time to
 terminate an SQL query, after which subsequent calls to ‘sql_fetch’ and
 ‘sql_more’ will fail:
 
      > odbc::sql_close db; // terminate query
      ()
+
 
   This is not strictly necessary (it will be done automatically as soon
 as the next SQL query is invoked), but it is useful in order to release
@@ -498,6 +517,7 @@ rows in the case of ‘lmsql’).  For instance:
      > odbc::lsql db "select * from pet" [];
      ["name","owner","species","sex","birth","death"]:#<thunk 0x7ffbb9aa2eb8>
 
+
   Note that the tail of the result list is "thunked" and will only be
 produced on demand, as you traverse the list.  As a simple example,
 suppose that we just want to print the ‘name’ field of each data row:
@@ -514,6 +534,7 @@ suppose that we just want to print the ‘name’ field of each data row:
      Slim
      ()
 
+
   Here only one row is in memory at any time while the ‘do’ function is
 in progress.  This keeps memory requirements much lower than when using
 the ‘odbc::sql’ function which first loads the entire result set into
@@ -527,6 +548,7 @@ remaining rows are never fetched from the database:
      > head [row | row@(name:_) = tail $ odbc::lsql db "select * from pet" [];
      >             name == "Claws"];
      ["Claws","Gwen","cat","m","1994-03-17",odbc::SQLNULL]
+
 
   On the other hand, ‘lsql’/‘lmsql’ will usually be somewhat slower than
 ‘sql’/‘msql’ if the entire result set is being processed.  So you should
@@ -559,11 +581,13 @@ non-existent table will cause a report like the following:
      > odbc::sql db "select * from pets" [];
      odbc::error "[TCX][MyODBC]Table 'test.pets' doesn't exist" "S1000"
 
+
   You can check for such return values and take some appropriate action.
 By redefining odbc::error accordingly, you can also have it generate
 exceptions or print an error message.  For instance:
 
      odbc::error msg state = fprintf stderr "%s (%s)\n" (msg,state) $$ ();
+
 
      Note: When redefining ‘odbc::error’ in this manner, you should be
      aware that the return value of ‘odbc::error’ is what will be
@@ -629,45 +653,45 @@ Index
 
 
 Tag Table:
-Node: Top379
-Ref: pure-odbc doc576
-Ref: 1576
-Node: Copying2521
-Ref: pure-odbc module-odbc2604
-Ref: 02604
-Ref: pure-odbc pure-odbc-odbc-interface-for-the-pure-programming-language2604
-Ref: 22604
-Ref: pure-odbc copying2604
-Ref: 32604
-Node: Installation3396
-Ref: pure-odbc installation3509
-Ref: 43509
-Node: Opening and Closing a Data Source4388
-Ref: pure-odbc opening-and-closing-a-data-source4533
-Ref: 54533
-Node: Getting Information about a Data Source8808
-Ref: pure-odbc getting-information-about-a-data-source8962
-Ref: 68962
-Node: Executing SQL Queries11731
-Ref: pure-odbc executing-sql-queries11872
-Ref: 711872
-Node: Low-Level Operations16796
-Ref: pure-odbc low-level-operations16913
-Ref: 816913
-Node: Lazy Processing20073
-Ref: pure-odbc lazy-processing20183
-Ref: 920183
-Node: Error Handling23054
-Ref: pure-odbc error-handling23160
-Ref: a23160
-Node: Caveats and Bugs24660
-Ref: pure-odbc caveats-and-bugs24783
-Ref: b24783
-Node: Further Information and Examples25565
-Ref: pure-odbc further-information-and-examples25686
-Ref: c25686
-Node: Module Index25950
-Node: Index26109
+Node: Top376
+Ref: pure-odbc doc570
+Ref: 1570
+Node: Copying2513
+Ref: pure-odbc module-odbc2596
+Ref: 02596
+Ref: pure-odbc pure-odbc-odbc-interface-for-the-pure-programming-language2596
+Ref: 22596
+Ref: pure-odbc copying2596
+Ref: 32596
+Node: Installation3388
+Ref: pure-odbc installation3501
+Ref: 43501
+Node: Opening and Closing a Data Source4380
+Ref: pure-odbc opening-and-closing-a-data-source4525
+Ref: 54525
+Node: Getting Information about a Data Source8807
+Ref: pure-odbc getting-information-about-a-data-source8961
+Ref: 68961
+Node: Executing SQL Queries11734
+Ref: pure-odbc executing-sql-queries11875
+Ref: 711875
+Node: Low-Level Operations16805
+Ref: pure-odbc low-level-operations16922
+Ref: 816922
+Node: Lazy Processing20084
+Ref: pure-odbc lazy-processing20194
+Ref: 920194
+Node: Error Handling23068
+Ref: pure-odbc error-handling23174
+Ref: a23174
+Node: Caveats and Bugs24676
+Ref: pure-odbc caveats-and-bugs24799
+Ref: b24799
+Node: Further Information and Examples25581
+Ref: pure-odbc further-information-and-examples25702
+Ref: c25702
+Node: Module Index25966
+Node: Index26125
 
 End Tag Table
 

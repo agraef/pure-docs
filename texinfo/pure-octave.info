@@ -1,11 +1,11 @@
-This is pure-octave.info, produced by makeinfo version 5.2 from
+This is pure-octave.info, produced by makeinfo version 6.1 from
 pure-octave.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-octave.info,  Node: Top,  Next: Introduction,  Up: (dir)
 pure-octave
 ***********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.6, October 28, 2014
+  Version 0.7, April 25, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -92,7 +92,7 @@ File: pure-octave.info,  Node: Installation,  Next: Basic Usage,  Prev: Copying,
 **************
 
 Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.6.tar.gz’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.7.tar.gz’.
 
   Run ‘make’ to compile the module and ‘make install’ (as root) to
 install it in the Pure library directory.  This requires GNU make, and
@@ -119,6 +119,7 @@ Import this module into your Pure scripts as follows:
 
      using octave;
 
+
   This will add an embedded instance of the Octave interpreter to your
 program.  (You can import this module as often as you want, but there’s
 always only one instance of Octave in each process.)
@@ -135,12 +136,14 @@ always only one instance of Octave in each process.)
 
      0
 
+
   This prints the result on stdout and returns a result code (zero if
 everything went fine).  To suppress the printing of the result, simply
 terminate the Octave statement with a semicolon:
 
      > octave_eval "eig([1 2;3 4]);";
      0
+
 
  -- Pure Function: octave_set var val
  -- Pure Function: octave_get var
@@ -155,6 +158,7 @@ globals:
      > octave_eval "global x y ans";
      0
 
+
   Now you can use *note octave_set: 9. and *note octave_get: a. to
 transfer values between Pure and Octave as follows:
 
@@ -165,6 +169,7 @@ transfer values between Pure and Octave as follows:
      > octave_get "ans";
      {-0.372281323269014;5.37228132326901}
 
+
   Note that the most recent result can always be accessed through
 Octave’s ‘ans’ variable.  You can also use an explicit variable
 definition as follows:
@@ -173,6 +178,7 @@ definition as follows:
      0
      > octave_get "y";
      {-0.372281323269014;5.37228132326901}
+
 
 
 File: pure-octave.info,  Node: Direct Function Calls,  Next: Data Conversions,  Prev: Basic Usage,  Up: Top
@@ -190,6 +196,7 @@ File: pure-octave.info,  Node: Direct Function Calls,  Next: Data Conversions,  
      > octave_call "eig" 1 x;
      {-0.372281323269014;5.37228132326901}
 
+
   Note the second argument, which denotes the desired number of _return_
 values.  This will usually be 1 (or 0 if you don’t care about the
 result), but some Octave functions may return a variable number of
@@ -200,12 +207,14 @@ as tuples in Pure:
      {-0.824564840132394,-0.415973557919284;0.565767464968992,-0.909376709132124},
      {-0.372281323269014,0.0;0.0,5.37228132326901}
 
+
   Multiple _arguments_ are also specified as a tuple:
 
      > octave_call "norm" 1 (x, 2);
      5.46498570421904
      > octave_call "norm" 1 (x, 1);
      6.0
+
 
   Instead of a function name, you can also specify the function to be
 called using a special kind of Octave object, a function value.  These
@@ -240,6 +249,7 @@ octave_call: c, such as an operator.  Examples:
      > let add = octave_func ("x+y","x","y");
      > octave_call add 1 (x,x);
      {2.0,4.0;6.0,8.0}
+
 
 
 File: pure-octave.info,  Node: Data Conversions,  Next: Calling Back Into Pure,  Prev: Direct Function Calls,  Up: Top
@@ -293,6 +303,7 @@ octave_valuep: 11. predicate:
      #<pointer 0x230dba0>
      1
 
+
   Such Octave value pointers can be used freely whereever an Octave
 value is needed (i.e., in invocations of *note octave_set: 9. and *note
 octave_call: c.).
@@ -332,6 +343,7 @@ octave_call: c.).
           > octave_get "ans";
           {0,0;1,1}
 
+
    * Octave strings are mapped to Pure strings, and character matrices
      with more than one row are mapped to (symbolic) column vectors of
      Pure strings.  Example:
@@ -351,6 +363,7 @@ octave_call: c.).
           > octave_get "ans";
           {"Hello, world!";"abc          "}
 
+
    * With the default converters, Octave numeric and cell arrays are
      represented as symbolic Pure matrices, structs as Pure records.
      This is still experimental and minor details of the Pure data
@@ -369,6 +382,7 @@ octave_call: c.).
           > octave_call (octave_func ("x.age","x")) 1 ans;
           23.0
 
+
      Nested cell arrays and structs are set off with the special ‘cell’
      and ‘struct’ constructors:
 
@@ -377,12 +391,14 @@ octave_call: c.).
           > octave_get "x";
           {{1.0,2.0,3.0},cell {1.0,2.0,3.0},struct {"name"=>"Peter","age"=>23.0}}
 
+
      Struct arrays are also supported:
 
           > octave_eval "y = struct('name', {'Peter','Hannah'}, 'age', {23, 16});";
           0
           > octave_get "y";
           {{"name"=>"Peter","age"=>23.0},{"name"=>"Hannah","age"=>16.0}}
+
 
      There’s also a little convenience function to factor a struct array
      into a more condensed form (this format can also be used to denote
@@ -397,6 +413,7 @@ octave_call: c.).
               name
               age
           ()
+
 
 
 File: pure-octave.info,  Node: Calling Back Into Pure,  Next: Gnuplot Interface,  Prev: Data Conversions,  Up: Top
@@ -416,6 +433,7 @@ the executing Pure script from Octave.  For instance:
 
      0
 
+
   Here’s the description of the ‘pure_call’ function, as it is printed
 with Octave’s ‘help’ command:
 
@@ -427,6 +445,7 @@ with Octave’s ‘help’ command:
        Execute the Pure function named NAME (a string) with the given arguments.
        The Pure function may return multiple results as a tuple. Example:
        pure_call('succ', 99) => 100.
+
 
 
 File: pure-octave.info,  Node: Gnuplot Interface,  Next: Caveats and Notes,  Prev: Calling Back Into Pure,  Up: Top
@@ -451,6 +470,7 @@ commands:
      popdn();    // hide the plot window
      print "plot.eps"; // print the plot to an encapsulated PostScript file
 
+
   Note that most of the operations are in their own ‘gnuplot’ namespace,
 so we used a ‘using namespace’ declaration for convenience here.  The
 following example does the "sombrero" plot again, but shows some of the
@@ -462,6 +482,7 @@ explicit plotting commands and helper functions to generate the data:
      let z = {sin r/r | r = {sqrt (x^2+y^2)+eps() | x,y = zip x y}};
      mesh (u, u, z);
      popup();
+
 
   Note the commands that are needed to actually show the plot window and
 update its contents after doing each plot.  Octave normally handles this
@@ -517,75 +538,75 @@ Index
 * octave_call (function):                Direct Function Calls.
                                                                (line  6)
 * octave_converters (function):          Data Conversions.     (line 27)
-* octave_eval (function):                Basic Usage.          (line 14)
+* octave_eval (function):                Basic Usage.          (line 15)
 * octave_func (function):                Direct Function Calls.
-                                                               (line 40)
+                                                               (line 43)
 * octave_func (function) <1>:            Direct Function Calls.
-                                                               (line 45)
-* octave_get (function):                 Basic Usage.          (line 33)
-* octave_set (function):                 Basic Usage.          (line 33)
+                                                               (line 48)
+* octave_get (function):                 Basic Usage.          (line 36)
+* octave_set (function):                 Basic Usage.          (line 36)
 * octave_valuep (function):              Data Conversions.     (line 43)
 
 
 
 Tag Table:
-Node: Top372
-Ref: pure-octave doc580
-Ref: 1580
-Ref: Top-Footnote-1953
-Node: Introduction983
-Ref: pure-octave pure-octave1068
-Ref: 21068
-Ref: pure-octave introduction1068
-Ref: 31068
-Ref: pure-octave module-octave1068
-Ref: 01068
-Ref: Introduction-Footnote-11377
-Node: Copying1431
-Ref: pure-octave octave-embed1525
-Ref: 41525
-Ref: pure-octave copying1525
-Ref: 51525
-Node: Installation2115
-Ref: pure-octave installation2208
-Ref: 62208
-Node: Basic Usage3106
-Ref: pure-octave basic-usage3213
-Ref: 73213
-Ref: pure-octave octave_eval3516
-Ref: 83516
-Ref: pure-octave octave_set3915
-Ref: 93915
-Ref: pure-octave octave_get3953
-Ref: a3953
-Node: Direct Function Calls4869
-Ref: pure-octave direct-function-calls4980
-Ref: b4980
-Ref: pure-octave octave_call5029
-Ref: c5029
-Ref: pure-octave octave_func/name6376
-Ref: d6376
-Ref: pure-octave octave_func/expr6525
-Ref: e6525
-Node: Data Conversions7483
-Ref: pure-octave data-conversions7605
-Ref: f7605
-Ref: pure-octave octave_converters8958
-Ref: 108958
-Ref: pure-octave octave_valuep9747
-Ref: 119747
-Node: Calling Back Into Pure13289
-Ref: pure-octave calling-back-into-pure13407
-Ref: 1213407
-Node: Gnuplot Interface14245
-Ref: pure-octave gnuplot-interface14364
-Ref: 1314364
-Node: Caveats and Notes16190
-Ref: pure-octave caveats-and-notes16299
-Ref: 1416299
-Ref: Caveats and Notes-Footnote-116984
-Node: Module Index17012
-Node: Index17160
+Node: Top369
+Ref: pure-octave doc574
+Ref: 1574
+Ref: Top-Footnote-1945
+Node: Introduction975
+Ref: pure-octave pure-octave1060
+Ref: 21060
+Ref: pure-octave introduction1060
+Ref: 31060
+Ref: pure-octave module-octave1060
+Ref: 01060
+Ref: Introduction-Footnote-11369
+Node: Copying1423
+Ref: pure-octave octave-embed1517
+Ref: 41517
+Ref: pure-octave copying1517
+Ref: 51517
+Node: Installation2107
+Ref: pure-octave installation2200
+Ref: 62200
+Node: Basic Usage3098
+Ref: pure-octave basic-usage3205
+Ref: 73205
+Ref: pure-octave octave_eval3509
+Ref: 83509
+Ref: pure-octave octave_set3910
+Ref: 93910
+Ref: pure-octave octave_get3948
+Ref: a3948
+Node: Direct Function Calls4867
+Ref: pure-octave direct-function-calls4978
+Ref: b4978
+Ref: pure-octave octave_call5027
+Ref: c5027
+Ref: pure-octave octave_func/name6377
+Ref: d6377
+Ref: pure-octave octave_func/expr6526
+Ref: e6526
+Node: Data Conversions7485
+Ref: pure-octave data-conversions7607
+Ref: f7607
+Ref: pure-octave octave_converters8960
+Ref: 108960
+Ref: pure-octave octave_valuep9749
+Ref: 119749
+Node: Calling Back Into Pure13298
+Ref: pure-octave calling-back-into-pure13416
+Ref: 1213416
+Node: Gnuplot Interface14256
+Ref: pure-octave gnuplot-interface14375
+Ref: 1314375
+Node: Caveats and Notes16203
+Ref: pure-octave caveats-and-notes16312
+Ref: 1416312
+Ref: Caveats and Notes-Footnote-116997
+Node: Module Index17025
+Node: Index17173
 
 End Tag Table
 

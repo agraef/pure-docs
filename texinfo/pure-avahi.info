@@ -1,11 +1,11 @@
-This is pure-avahi.info, produced by makeinfo version 5.2 from
+This is pure-avahi.info, produced by makeinfo version 6.1 from
 pure-avahi.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-avahi.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-avahi
 **********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.3, October 28, 2014
+  Version 0.3, April 25, 2016
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -142,11 +142,13 @@ module in your Pure script:
 
      using avahi;
 
+
   All operations are in the ‘avahi’ namespace, so you might want to add
 the following declaration to access the functions using their
 unqualified identifiers:
 
      using namespace avahi;
+
 
 
 File: pure-avahi.info,  Node: Publishing Services,  Next: Discovering Services,  Prev: Usage,  Up: Top
@@ -251,6 +253,7 @@ as hexler’s TouchOSC:
      let s = publish "OSC Server" "_osc._udp" 8000;
      check s;
 
+
   The last line checks for the result of the operation and returns the
 actual service name, type and port number if all went well.  A TouchOSC
 instance running on the local network will then offer you to connect to
@@ -263,6 +266,7 @@ services currently available on your local network:
      avail t;
      get t;
 
+
   If you’re running TouchOSC somewhere on your local network, it will be
 listed there, along with our own service which we published above.  The
 call in the second line can be used to check whether any new information
@@ -270,6 +274,7 @@ is available.  Applications typically invoke these two from time to time
 to update their service list, using code like the following:
 
      avail t && get t;
+
 
 
 File: pure-avahi.info,  Node: Module Index,  Next: Index,  Prev: Example,  Up: Top
@@ -300,46 +305,46 @@ Index
 
 
 Tag Table:
-Node: Top389
-Ref: pure-avahi doc589
-Ref: 1589
-Ref: Top-Footnote-12640
-Ref: Top-Footnote-22666
-Ref: Top-Footnote-32733
-Node: Copying2777
-Ref: pure-avahi module-avahi2861
-Ref: 02861
-Ref: pure-avahi pure-avahi-pure-avahi-interface2861
-Ref: 22861
-Ref: pure-avahi copying2861
-Ref: 32861
-Node: Installation3560
-Ref: pure-avahi installation3646
-Ref: 43646
-Node: Usage4444
-Ref: pure-avahi usage4542
-Ref: 54542
-Node: Publishing Services5140
-Ref: pure-avahi publishing-services5246
-Ref: 65246
-Ref: pure-avahi avahi publish6011
-Ref: 76011
-Ref: pure-avahi avahi check6732
-Ref: 86732
-Node: Discovering Services7343
-Ref: pure-avahi discovering-services7451
-Ref: 97451
-Ref: pure-avahi avahi browse7769
-Ref: a7769
-Ref: pure-avahi avahi avail8491
-Ref: b8491
-Ref: pure-avahi avahi get8767
-Ref: c8767
-Node: Example9580
-Ref: pure-avahi example9681
-Ref: d9681
-Node: Module Index10776
-Node: Index10912
+Node: Top386
+Ref: pure-avahi doc583
+Ref: 1583
+Ref: Top-Footnote-12632
+Ref: Top-Footnote-22658
+Ref: Top-Footnote-32725
+Node: Copying2769
+Ref: pure-avahi module-avahi2853
+Ref: 02853
+Ref: pure-avahi pure-avahi-pure-avahi-interface2853
+Ref: 22853
+Ref: pure-avahi copying2853
+Ref: 32853
+Node: Installation3552
+Ref: pure-avahi installation3638
+Ref: 43638
+Node: Usage4436
+Ref: pure-avahi usage4534
+Ref: 54534
+Node: Publishing Services5134
+Ref: pure-avahi publishing-services5240
+Ref: 65240
+Ref: pure-avahi avahi publish6005
+Ref: 76005
+Ref: pure-avahi avahi check6726
+Ref: 86726
+Node: Discovering Services7337
+Ref: pure-avahi discovering-services7445
+Ref: 97445
+Ref: pure-avahi avahi browse7763
+Ref: a7763
+Ref: pure-avahi avahi avail8485
+Ref: b8485
+Ref: pure-avahi avahi get8761
+Ref: c8761
+Node: Example9574
+Ref: pure-avahi example9675
+Ref: d9675
+Node: Module Index10773
+Node: Index10909
 
 End Tag Table
 

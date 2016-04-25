@@ -57,7 +57,7 @@
             
   <div class="section" id="gnumeric-pure-a-pure-plugin-for-gnumeric">
 <h1>Gnumeric/Pure: A Pure Plugin for Gnumeric<a class="headerlink" href="#gnumeric-pure-a-pure-plugin-for-gnumeric" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.14, October 28, 2014</p>
+<p>Version 0.15, April 25, 2016</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Gnumeric/Pure is a <a class="reference external" href="http://www.gnumeric.org/">Gnumeric</a> extension which lets you use <a class="reference external" href="http://purelang.bitbucket.org/">Pure</a> functions in
 Gnumeric, the Gnome spreadsheet. It offers better execution speed than the
@@ -160,15 +160,15 @@ this program.  If not, see &lt;<a class="reference external" href="http://www.gn
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Obviously, you need to have both Pure and Gnumeric installed. Pure 0.36 and
-Gnumeric 1.9.13 or later are known to work. The current version of this module
-(0.13, currently only available in Pure&#8217;s Mercurial repository) will work with
-the latest, GTK3-based versions of Gnumeric (Gnumeric 1.11 and later, 1.12 has
-been tested). To obtain this version, clone the Pure repository or download it
-as a zip file at <a class="reference external" href="https://bitbucket.org/purelang/pure-lang">https://bitbucket.org/purelang/pure-lang</a>; the module can be
-found in the gnumeric-pure subdirectory of the repository.</p>
-<p>Unfortunately, the Gnumeric plugin interface changed in recent releases, so if
-you are still running Gnumeric 1.10 or earlier then you should use version
-0.12 of the module instead:</p>
+Gnumeric 1.9.13 or later are known to work. The current release of this module
+will work with the latest, GTK3-based versions of Gnumeric (Gnumeric 1.11 and
+later, 1.12.23 has been tested).</p>
+<p>Please note that the Gnumeric plugin interface is a moving target, which means
+that from time to time the gnumeric-pure module sources are updated to
+accommodate the latest changes in Gnumeric. Thus, depending on which Gnumeric
+version you are running, you may have to go with an older version of
+gnumeric-pure. In particular, if you are still running Gnumeric 1.10 or
+earlier then you should use version 0.12 of the module instead:</p>
 <blockquote>
 <div><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz</a></div></blockquote>
 <p>In the 0.12 version of the module, the Makefile is set up to build
@@ -1349,8 +1349,8 @@ screenshot below shows how the example looks like in Gnumeric.</p>
       </ul>
     </div>
     <div class="footer">
-    &copy; Copyright 2009-2014, Albert Gräf et al.
-    Last updated on Oct 28, 2014.
+    &copy; Copyright 2009-2016, Albert Gräf et al.
+    Last updated on Apr 25, 2016.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

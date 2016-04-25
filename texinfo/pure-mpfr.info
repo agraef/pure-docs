@@ -1,11 +1,11 @@
-This is pure-mpfr.info, produced by makeinfo version 5.2 from
+This is pure-mpfr.info, produced by makeinfo version 6.1 from
 pure-mpfr.texi.
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-mpfr.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-mpfr
 *********
 
-     Pure 0.64, November 25, 2014
+     Pure 0.64, April 25, 2016
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2014, Albert Gräf et al
+     Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.5, October 28, 2014
+  Version 0.5, April 25, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -127,6 +127,7 @@ After installation, you can use the operations of this module by placing
 the following import declaration in your Pure programs:
 
      using mpfr;
+
 
      Note: This also pulls in the ‘math’ standard library module, whose
      operations are overloaded by the ‘mpfr’ module in order to provide
@@ -383,6 +384,7 @@ Import the module and set the default precision:
      > mpfr_set_default_prec 64; // extended precision (long double on x86)
      ()
 
+
   Calculate pi with the current precision.  Note that mixed arithmetic
 works with any combination of real and mpfr numbers.
 
@@ -398,6 +400,7 @@ works with any combination of real and mpfr numbers.
      3.14159265358979323851
      1
 
+
   You can also query the precision of a number and change it on the fly:
 
      > Pi; mpfr_get_prec Pi;
@@ -406,6 +409,7 @@ works with any combination of real and mpfr numbers.
      > let Pi1 = mpfr (Pi,53); Pi1; mpfr_get_prec Pi1;
      3.1415926535897931
      53
+
 
   Complex ‘mpfr’ numbers work, too:
 
@@ -417,6 +421,7 @@ works with any combination of real and mpfr numbers.
      1.0,-1.57079632679489661926
      > polar z;
      1.0<:-1.57079632679489661926
+
 
 
 File: pure-mpfr.info,  Node: Module Index,  Next: Index,  Prev: Examples,  Up: Top
@@ -525,173 +530,173 @@ Index
 
 
 Tag Table:
-Node: Top362
-Ref: pure-mpfr doc559
-Ref: 1559
-Ref: Top-Footnote-12367
-Ref: Top-Footnote-22396
-Node: Copying2422
-Ref: pure-mpfr module-mpfr2505
-Ref: 02505
-Ref: pure-mpfr copying2505
-Ref: 22505
-Ref: pure-mpfr pure-mpfr2505
-Ref: 32505
-Node: Installation3202
-Ref: pure-mpfr installation3287
-Ref: 43287
-Node: Usage3979
-Ref: pure-mpfr usage4065
-Ref: 54065
-Node: Precision and Rounding5028
-Ref: pure-mpfr precision-and-rounding5116
-Ref: 65116
-Ref: pure-mpfr mpfr_get_default_prec5307
-Ref: 75307
-Ref: pure-mpfr mpfr_set_default_prec5348
-Ref: 85348
-Ref: pure-mpfr mpfr_get_prec5656
-Ref: 95656
-Ref: pure-mpfr mpfr_get_default_rounding_mode6008
-Ref: b6008
-Ref: pure-mpfr mpfr_set_default_rounding_mode6058
-Ref: c6058
-Ref: pure-mpfr MPFR_RNDN6362
-Ref: d6362
-Ref: pure-mpfr MPFR_RNDZ6425
-Ref: e6425
-Ref: pure-mpfr MPFR_RNDU6470
-Ref: f6470
-Ref: pure-mpfr MPFR_RNDD6515
-Ref: 106515
-Ref: pure-mpfr MPFR_RNDA6560
-Ref: 116560
-Ref: pure-mpfr mpfr_get_print_prec6924
-Ref: 126924
-Ref: pure-mpfr mpfr_set_print_prec6963
-Ref: 136963
-Node: MPFR Numbers7116
-Ref: pure-mpfr mpfr-numbers7224
-Ref: 147224
-Ref: pure-mpfr mpfr/type7387
-Ref: 157387
-Ref: pure-mpfr mpfrp7790
-Ref: 167790
-Node: Conversions7871
-Ref: pure-mpfr conversions7967
-Ref: 177967
-Ref: pure-mpfr mpfr8120
-Ref: a8120
-Ref: pure-mpfr mpfr/28146
-Ref: 188146
-Ref: pure-mpfr mpfr/38179
-Ref: 198179
-Ref: pure-mpfr int/mpfr9084
-Ref: 1a9084
-Ref: pure-mpfr bigint/mpfr9109
-Ref: 1b9109
-Ref: pure-mpfr double/mpfr9137
-Ref: 1c9137
-Ref: pure-mpfr str/mpfr9550
-Ref: 1d9550
-Ref: pure-mpfr floor/mpfr9828
-Ref: 1e9828
-Ref: pure-mpfr ceil/mpfr9855
-Ref: 1f9855
-Ref: pure-mpfr round/mpfr9881
-Ref: 209881
-Ref: pure-mpfr trunc/mpfr9908
-Ref: 219908
-Ref: pure-mpfr frac/mpfr9935
-Ref: 229935
-Node: Arithmetic10152
-Ref: pure-mpfr arithmetic10250
-Ref: 2310250
-Ref: pure-mpfr -/mpfr10460
-Ref: 2410460
-Ref: pure-mpfr +/mpfr10483
-Ref: 2510483
-Ref: pure-mpfr */mpfr10534
-Ref: 2610534
-Ref: pure-mpfr //mpfr10559
-Ref: 2710559
-Ref: pure-mpfr ^/mpfr10584
-Ref: 2810584
-Ref: pure-mpfr ==/mpfr10639
-Ref: 2910639
-Ref: pure-mpfr ~=/mpfr10665
-Ref: 2a10665
-Ref: pure-mpfr <=/mpfr10691
-Ref: 2b10691
-Ref: pure-mpfr >=/mpfr10717
-Ref: 2c10717
-Ref: pure-mpfr </mpfr10743
-Ref: 2d10743
-Ref: pure-mpfr >/mpfr10768
-Ref: 2e10768
-Node: Math Functions10813
-Ref: pure-mpfr math-functions10922
-Ref: 2f10922
-Ref: pure-mpfr abs/mpfr11385
-Ref: 3011385
-Ref: pure-mpfr sqrt/mpfr11530
-Ref: 3111530
-Ref: pure-mpfr exp/mpfr11556
-Ref: 3211556
-Ref: pure-mpfr ln/mpfr11581
-Ref: 3311581
-Ref: pure-mpfr log/mpfr11605
-Ref: 3411605
-Ref: pure-mpfr sin/mpfr11678
-Ref: 3511678
-Ref: pure-mpfr cos/mpfr11703
-Ref: 3611703
-Ref: pure-mpfr tan/mpfr11728
-Ref: 3711728
-Ref: pure-mpfr asin/mpfr11753
-Ref: 3811753
-Ref: pure-mpfr acos/mpfr11779
-Ref: 3911779
-Ref: pure-mpfr atan/mpfr11805
-Ref: 3a11805
-Ref: pure-mpfr atan2/mpfr11831
-Ref: 3b11831
-Ref: pure-mpfr sinh/mpfr11892
-Ref: 3c11892
-Ref: pure-mpfr cosh/mpfr11918
-Ref: 3d11918
-Ref: pure-mpfr tanh/mpfr11944
-Ref: 3e11944
-Ref: pure-mpfr asinh/mpfr11970
-Ref: 3f11970
-Ref: pure-mpfr acosh/mpfr11997
-Ref: 4011997
-Ref: pure-mpfr atanh/mpfr12024
-Ref: 4112024
-Node: Complex Number Support12094
-Ref: pure-mpfr complex-number-support12184
-Ref: 4212184
-Ref: pure-mpfr complex/mpfr12374
-Ref: 4312374
-Ref: pure-mpfr polar/mpfr12403
-Ref: 4412403
-Ref: pure-mpfr rect/mpfr12430
-Ref: 4512430
-Ref: pure-mpfr cis/mpfr12456
-Ref: 4612456
-Ref: pure-mpfr arg/mpfr12481
-Ref: 4712481
-Ref: pure-mpfr re/mpfr12506
-Ref: 4812506
-Ref: pure-mpfr im/mpfr12530
-Ref: 4912530
-Ref: pure-mpfr conj/mpfr12554
-Ref: 4a12554
-Node: Examples12581
-Ref: pure-mpfr examples12667
-Ref: 4b12667
-Node: Module Index13749
-Node: Index13884
+Node: Top359
+Ref: pure-mpfr doc553
+Ref: 1553
+Ref: Top-Footnote-12359
+Ref: Top-Footnote-22388
+Node: Copying2414
+Ref: pure-mpfr module-mpfr2497
+Ref: 02497
+Ref: pure-mpfr copying2497
+Ref: 22497
+Ref: pure-mpfr pure-mpfr2497
+Ref: 32497
+Node: Installation3194
+Ref: pure-mpfr installation3279
+Ref: 43279
+Node: Usage3971
+Ref: pure-mpfr usage4057
+Ref: 54057
+Node: Precision and Rounding5021
+Ref: pure-mpfr precision-and-rounding5109
+Ref: 65109
+Ref: pure-mpfr mpfr_get_default_prec5300
+Ref: 75300
+Ref: pure-mpfr mpfr_set_default_prec5341
+Ref: 85341
+Ref: pure-mpfr mpfr_get_prec5649
+Ref: 95649
+Ref: pure-mpfr mpfr_get_default_rounding_mode6001
+Ref: b6001
+Ref: pure-mpfr mpfr_set_default_rounding_mode6051
+Ref: c6051
+Ref: pure-mpfr MPFR_RNDN6355
+Ref: d6355
+Ref: pure-mpfr MPFR_RNDZ6418
+Ref: e6418
+Ref: pure-mpfr MPFR_RNDU6463
+Ref: f6463
+Ref: pure-mpfr MPFR_RNDD6508
+Ref: 106508
+Ref: pure-mpfr MPFR_RNDA6553
+Ref: 116553
+Ref: pure-mpfr mpfr_get_print_prec6917
+Ref: 126917
+Ref: pure-mpfr mpfr_set_print_prec6956
+Ref: 136956
+Node: MPFR Numbers7109
+Ref: pure-mpfr mpfr-numbers7217
+Ref: 147217
+Ref: pure-mpfr mpfr/type7380
+Ref: 157380
+Ref: pure-mpfr mpfrp7783
+Ref: 167783
+Node: Conversions7864
+Ref: pure-mpfr conversions7960
+Ref: 177960
+Ref: pure-mpfr mpfr8113
+Ref: a8113
+Ref: pure-mpfr mpfr/28139
+Ref: 188139
+Ref: pure-mpfr mpfr/38172
+Ref: 198172
+Ref: pure-mpfr int/mpfr9077
+Ref: 1a9077
+Ref: pure-mpfr bigint/mpfr9102
+Ref: 1b9102
+Ref: pure-mpfr double/mpfr9130
+Ref: 1c9130
+Ref: pure-mpfr str/mpfr9543
+Ref: 1d9543
+Ref: pure-mpfr floor/mpfr9821
+Ref: 1e9821
+Ref: pure-mpfr ceil/mpfr9848
+Ref: 1f9848
+Ref: pure-mpfr round/mpfr9874
+Ref: 209874
+Ref: pure-mpfr trunc/mpfr9901
+Ref: 219901
+Ref: pure-mpfr frac/mpfr9928
+Ref: 229928
+Node: Arithmetic10145
+Ref: pure-mpfr arithmetic10243
+Ref: 2310243
+Ref: pure-mpfr -/mpfr10453
+Ref: 2410453
+Ref: pure-mpfr +/mpfr10476
+Ref: 2510476
+Ref: pure-mpfr */mpfr10527
+Ref: 2610527
+Ref: pure-mpfr //mpfr10552
+Ref: 2710552
+Ref: pure-mpfr ^/mpfr10577
+Ref: 2810577
+Ref: pure-mpfr ==/mpfr10632
+Ref: 2910632
+Ref: pure-mpfr ~=/mpfr10658
+Ref: 2a10658
+Ref: pure-mpfr <=/mpfr10684
+Ref: 2b10684
+Ref: pure-mpfr >=/mpfr10710
+Ref: 2c10710
+Ref: pure-mpfr </mpfr10736
+Ref: 2d10736
+Ref: pure-mpfr >/mpfr10761
+Ref: 2e10761
+Node: Math Functions10806
+Ref: pure-mpfr math-functions10915
+Ref: 2f10915
+Ref: pure-mpfr abs/mpfr11378
+Ref: 3011378
+Ref: pure-mpfr sqrt/mpfr11523
+Ref: 3111523
+Ref: pure-mpfr exp/mpfr11549
+Ref: 3211549
+Ref: pure-mpfr ln/mpfr11574
+Ref: 3311574
+Ref: pure-mpfr log/mpfr11598
+Ref: 3411598
+Ref: pure-mpfr sin/mpfr11671
+Ref: 3511671
+Ref: pure-mpfr cos/mpfr11696
+Ref: 3611696
+Ref: pure-mpfr tan/mpfr11721
+Ref: 3711721
+Ref: pure-mpfr asin/mpfr11746
+Ref: 3811746
+Ref: pure-mpfr acos/mpfr11772
+Ref: 3911772
+Ref: pure-mpfr atan/mpfr11798
+Ref: 3a11798
+Ref: pure-mpfr atan2/mpfr11824
+Ref: 3b11824
+Ref: pure-mpfr sinh/mpfr11885
+Ref: 3c11885
+Ref: pure-mpfr cosh/mpfr11911
+Ref: 3d11911
+Ref: pure-mpfr tanh/mpfr11937
+Ref: 3e11937
+Ref: pure-mpfr asinh/mpfr11963
+Ref: 3f11963
+Ref: pure-mpfr acosh/mpfr11990
+Ref: 4011990
+Ref: pure-mpfr atanh/mpfr12017
+Ref: 4112017
+Node: Complex Number Support12087
+Ref: pure-mpfr complex-number-support12177
+Ref: 4212177
+Ref: pure-mpfr complex/mpfr12367
+Ref: 4312367
+Ref: pure-mpfr polar/mpfr12396
+Ref: 4412396
+Ref: pure-mpfr rect/mpfr12423
+Ref: 4512423
+Ref: pure-mpfr cis/mpfr12449
+Ref: 4612449
+Ref: pure-mpfr arg/mpfr12474
+Ref: 4712474
+Ref: pure-mpfr re/mpfr12499
+Ref: 4812499
+Ref: pure-mpfr im/mpfr12523
+Ref: 4912523
+Ref: pure-mpfr conj/mpfr12547
+Ref: 4a12547
+Node: Examples12574
+Ref: pure-mpfr examples12660
+Ref: 4b12660
+Node: Module Index13746
+Node: Index13881
 
 End Tag Table
 
