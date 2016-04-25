@@ -103,11 +103,23 @@ the following packages (minimum required versions are given in parentheses):
 <p>Finally, gcc and GNU make (or compatible) are required to compile the helper
 dsps and the example instruments; please check the Makefile for details.</p>
 <p>For a basic installation run <tt class="docutils literal"><span class="pre">make</span></tt>, then <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt>. This will
-install the pd-faust objects in your lib/pd/extra/faust folder. Add this
-directory to your Pd library search path (<tt class="docutils literal"><span class="pre">-path</span></tt> option or
-<tt class="docutils literal"><span class="pre">Preferences/Path</span></tt> in Pd) and you should be set. The <tt class="docutils literal"><span class="pre">make</span></tt> command also
-compiles the Faust dsps included in the distribution, so that the provided
-examples will be ready to run afterwards as well (see <a class="reference internal" href="#examples">Examples</a> below).</p>
+install the pd-faust objects in your lib/pd/extra/faust folder as a Pd object
+library which can be loaded with Pd&#8217;s <tt class="docutils literal"><span class="pre">-lib</span></tt> option. To complete the
+installation, you still have to make sure that the library is loaded
+automatically at startup. This is done most conveniently by adding
+<tt class="docutils literal"><span class="pre">faust/pdfaust</span></tt> to your preloaded library modules in Pd&#8217;s
+<tt class="docutils literal"><span class="pre">Preferences/Startup</span></tt> dialog.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The <tt class="docutils literal"><span class="pre">faust/pdfaust</span></tt> module must come <em>after</em> the <tt class="docutils literal"><span class="pre">pure</span></tt> entry
+which loads pd-pure, otherwise you&#8217;ll get an error message. In any case the
+pd-pure loader will be required to run these objects, so it should be
+configured accordingly; please check the <a class="reference internal" href="pd-pure.html"><em>pd-pure</em></a>
+documentation for details.</p>
+</div>
+<p>The <tt class="docutils literal"><span class="pre">make</span></tt> command also compiles the Faust dsps included in the
+distribution, so that the provided examples will be ready to run afterwards
+well (see <a class="reference internal" href="#examples">Examples</a> below).</p>
 <p>The Makefile tries to guess the installation prefix under which Pd is
 installed. If it guesses wrong, you can tell it the right prefix with <tt class="docutils literal"><span class="pre">make</span>
 <span class="pre">prefix=/some/path</span></tt>. Or you can specify the exact path of the lib/pd directory
@@ -117,22 +129,6 @@ with <tt class="docutils literal"><span class="pre">make</span> <span class="pre
 installing the module, by adding a definition like <tt class="docutils literal"><span class="pre">PD=pd-extended</span></tt> to the
 <tt class="docutils literal"><span class="pre">make</span></tt> command line. This is known to work with <a class="reference external" href="http://puredata.info/downloads/pd-extended">pd-extended</a> and <a class="reference external" href="http://l2ork.music.vt.edu/main/?page_id=56">pd-l2ork</a>,
 two popular alternative Pd distributions available on the web.</p>
-<p>The pd-faust objects are installed both in source form (so you can customize
-them for your own purposes) and in binary form as a Pd object library which
-can be loaded with Pd&#8217;s <tt class="docutils literal"><span class="pre">-lib</span></tt> option. The latter substantially reduces
-startup times and is thus the recommended way to run pd-faust if you don&#8217;t
-need to customize the pd-faust objects on the fly. To these ends, after
-completing installation and setting up <tt class="docutils literal"><span class="pre">Preferences/Path</span></tt> in Pd, simply add
-<tt class="docutils literal"><span class="pre">pdfaust</span></tt> to your preloaded library modules in Pd&#8217;s <tt class="docutils literal"><span class="pre">Preferences/Startup</span></tt>
-dialog.</p>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The <tt class="docutils literal"><span class="pre">pdfaust</span></tt> module must come <em>after</em> the <tt class="docutils literal"><span class="pre">pure</span></tt> entry which
-loads pd-pure, otherwise you&#8217;ll get an error message. In any case the
-pd-pure loader will be required to run these objects, so it should be
-configured accordingly; please check the <a class="reference internal" href="pd-pure.html"><em>pd-pure</em></a>
-documentation for details.</p>
-</div>
 <p>Some further build options are described in the Makefile. In particular, it is
 possible to compile the Faust dsps to LLVM bitcode which can be loaded
 directly by the Pure interpreter, but for that you&#8217;ll need a special Faust

@@ -125,11 +125,26 @@ Finally, gcc and GNU make (or compatible) are required to compile the helper
 dsps and the example instruments; please check the Makefile for details.
 
 For a basic installation run @code{make}, then @code{sudo make install}. This will
-install the pd-faust objects in your lib/pd/extra/faust folder. Add this
-directory to your Pd library search path (@code{-path} option or
-@code{Preferences/Path} in Pd) and you should be set. The @code{make} command also
-compiles the Faust dsps included in the distribution, so that the provided
-examples will be ready to run afterwards as well (see @pxref{5,,Examples} below).
+install the pd-faust objects in your lib/pd/extra/faust folder as a Pd object
+library which can be loaded with Pd's @code{-lib} option. To complete the
+installation, you still have to make sure that the library is loaded
+automatically at startup. This is done most conveniently by adding
+@code{faust/pdfaust} to your preloaded library modules in Pd's
+@code{Preferences/Startup} dialog.
+
+@cartouche
+@quotation Note 
+The @code{faust/pdfaust} module must come @emph{after} the @code{pure} entry
+which loads pd-pure, otherwise you'll get an error message. In any case the
+pd-pure loader will be required to run these objects, so it should be
+configured accordingly; please check the @code{pd-pure}
+documentation for details.
+@end quotation
+@end cartouche
+
+The @code{make} command also compiles the Faust dsps included in the
+distribution, so that the provided examples will be ready to run afterwards
+well (see @pxref{5,,Examples} below).
 
 The Makefile tries to guess the installation prefix under which Pd is
 installed. If it guesses wrong, you can tell it the right prefix with @code{make
@@ -141,25 +156,6 @@ It is also possible to specify an alternative flavour of Pd when building and
 installing the module, by adding a definition like @code{PD=pd-extended} to the
 @code{make} command line. This is known to work with pd-extended@footnote{http://puredata.info/downloads/pd-extended} and pd-l2ork@footnote{http://l2ork.music.vt.edu/main/?page_id=56},
 two popular alternative Pd distributions available on the web.
-
-The pd-faust objects are installed both in source form (so you can customize
-them for your own purposes) and in binary form as a Pd object library which
-can be loaded with Pd's @code{-lib} option. The latter substantially reduces
-startup times and is thus the recommended way to run pd-faust if you don't
-need to customize the pd-faust objects on the fly. To these ends, after
-completing installation and setting up @code{Preferences/Path} in Pd, simply add
-@code{pdfaust} to your preloaded library modules in Pd's @code{Preferences/Startup}
-dialog.
-
-@cartouche
-@quotation Note 
-The @code{pdfaust} module must come @emph{after} the @code{pure} entry which
-loads pd-pure, otherwise you'll get an error message. In any case the
-pd-pure loader will be required to run these objects, so it should be
-configured accordingly; please check the @code{pd-pure}
-documentation for details.
-@end quotation
-@end cartouche
 
 Some further build options are described in the Makefile. In particular, it is
 possible to compile the Faust dsps to LLVM bitcode which can be loaded
