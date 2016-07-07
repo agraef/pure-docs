@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.64, April 25, 2016</p>
+<p>Version 0.64, July 07, 2016</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -212,8 +212,9 @@ need or want to install the dependencies from source:</p>
 <li>GNU Emacs: <a class="reference external" href="http://www.gnu.org/software/emacs">http://www.gnu.org/software/emacs</a></li>
 <li>GNU TeXmacs: <a class="reference external" href="http://savannah.gnu.org/projects/texmacs">http://savannah.gnu.org/projects/texmacs</a></li>
 <li>GNU ltdl (part of the libtool software): <a class="reference external" href="http://www.gnu.org/software/libtool">http://www.gnu.org/software/libtool</a></li>
-<li>Mercurial: <a class="reference external" href="http://mercurial.selenic.com">http://mercurial.selenic.com</a> (There&#8217;s also a very nice Windows
-frontend, TortoiseHg, see <a class="reference external" href="http://tortoisehg.bitbucket.org">http://tortoisehg.bitbucket.org</a>.)</li>
+<li>Git: <a class="reference external" href="https://git-scm.com/">https://git-scm.com/</a> (A number of graphical frontends can be found
+there as well. Windows users may also want to check TortoiseGit, see
+<a class="reference external" href="https://tortoisegit.org/">https://tortoisegit.org/</a>.)</li>
 </ul>
 <p>The GNU multiprecision library or some compatible replacement is required for
 Pure&#8217;s bigint support. Instead of GMP it&#8217;s also possible to use MPIR. You can
@@ -669,7 +670,7 @@ compiler to generate LLVM bitcode from the command line.)</p>
 </div>
 <div class="section" id="installing-from-development-sources">
 <h2>Installing From Development Sources<a class="headerlink" href="#installing-from-development-sources" title="Permalink to this headline">¶</a></h2>
-<p>The latest development version of Pure is available in its Mercurial (Hg)
+<p>The latest development version of Pure is available in its Git
 source code repository. You can browse the repository at:</p>
 <p><a class="reference external" href="https://bitbucket.org/purelang/pure-lang">https://bitbucket.org/purelang/pure-lang</a></p>
 <p>(You&#8217;ll notice that the repository also contains various addon modules. See
@@ -679,14 +680,13 @@ fairly recent versions of autoconf, flex and bison (autoconf 2.63, flex 2.5.31
 and bison 2.3 should be ok).</p>
 <p>To compile from the development sources, replace steps 4 and 5 above with:</p>
 <p><strong>Step 4&#8217;.</strong> Fetch the latest sources from the repository:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hg clone https://bitbucket.org/purelang/pure-lang
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://bitbucket.org/purelang/pure-lang
 </pre></div>
 </div>
 <p>This clones the repository and puts it into the pure-lang subdirectory in the
-current directory. (Project members please use https: instead of http: if
-you&#8217;re planning to push any changes back to the server.) This step needs to be
-done only once; once you&#8217;ve cloned the repository, you can update it to the
-latest revision at any time by running <tt class="docutils literal"><span class="pre">hg</span> <span class="pre">pull</span> <span class="pre">-u</span></tt>.</p>
+current directory. This step needs to be done only once; once you&#8217;ve cloned
+the repository, you can update it to the latest revision at any time by
+running <tt class="docutils literal"><span class="pre">git</span> <span class="pre">pull</span></tt>.</p>
 <p><strong>Step 5&#8217;.</strong> Configure, build and install Pure.</p>
 <p>This is pretty much the same as with the distribution tarball, except that you
 need to run &#8216;autoreconf&#8217; once to generate the configure script which isn&#8217;t
@@ -707,8 +707,8 @@ this at <a class="reference external" href="http://sphinx.pocoo.org/">http://sph
 pure-lang/sphinx subdirectory or type <tt class="docutils literal"><span class="pre">make</span> <span class="pre">help</span></tt> there for instructions.</p>
 <p>Alternatively, a ready-made recent snapshot of the documentation in html and
 pdf formats is also available in its own repository, which can be cloned as
-follows (the documentation is in the docs subdirectory):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> hg clone https://bitbucket.org/purelang/purelang.bitbucket.org
+follows:</p>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://bitbucket.org/puredocs/puredocs.bitbucket.org.git
 </pre></div>
 </div>
 </div>
@@ -1199,7 +1199,7 @@ unzip these into some convenient location on your harddrive and set up
     </div>
     <div class="footer">
     &copy; Copyright 2009-2016, Albert Gräf et al.
-    Last updated on Apr 25, 2016.
+    Last updated on Jul 07, 2016.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
