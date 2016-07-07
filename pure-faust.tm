@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-audio.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-faust<label|module-faust>>
+  <section*|pure-faust><label|module-faust>
 
-  Version 0.11, October 28, 2014
+  Version 0.11, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -34,7 +34,7 @@
   description of the <hlink|<with|font-family|tt|faust2>|#module-faust2>
   module below for details.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Unless explicitly stated otherwise, this software is Copyright (c)
   2009-2012 by Albert Graef. Please also see the source for the copyright and
@@ -53,7 +53,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz>.
 
@@ -84,16 +84,20 @@
   <verbatim|/usr/local/lib/faust> or similar) or the directory holding the
   Faust sources to be compiled, and you should be set.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   Once Faust and this module have been installed as described above, you
   should be able to compile a Faust dsp to a shared module loadable by
   pure-faust as follows:
 
   <\verbatim>
+    \;
+
     $ faust -a pure.cpp -o mydsp.cpp mydsp.dsp
 
     $ g++ -shared -o mydsp.so mydsp.cpp
+
+    \;
   </verbatim>
 
   Note that, by default, Faust generates code which does all internal
@@ -112,6 +116,8 @@
   load the dsp as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> using faust;
 
     \<gtr\> let dsp = faust_init "mydsp" 48000;
@@ -119,6 +125,8 @@
     \<gtr\> dsp;
 
     #\<less\>pointer 0xf09220\<gtr\>
+
+    \;
   </verbatim>
 
   The <verbatim|faust_init> function loads the <verbatim|"mydsp.so"> module
@@ -142,7 +150,11 @@
   with the <verbatim|faust_reinit> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> faust_reinit dsp 44100;
+
+    \;
   </verbatim>
 
   It is also possible to create copies of an existing dsp with the
@@ -151,7 +163,11 @@
   polyphonic synthesizers):
 
   <\verbatim>
+    \;
+
     \<gtr\> let dsp2 = faust_clone dsp;
+
+    \;
   </verbatim>
 
   When you're done with a dsp, you can invoke the <verbatim|faust_exit>
@@ -159,7 +175,11 @@
   garbage-collected):
 
   <\verbatim>
+    \;
+
     \<gtr\> faust_exit dsp2;
+
+    \;
   </verbatim>
 
   Note that after invoking this operation the dsp pointer becomes invalid and
@@ -169,6 +189,8 @@
   example:
 
   <\verbatim>
+    \;
+
     declare descr "amplifier";
 
     declare author "Albert Graef";
@@ -180,24 +202,34 @@
     gain = nentry("gain", 1.0, 0, 10, 0.01);
 
     process = *(gain);
+
+    \;
   </verbatim>
 
   The <verbatim|faust_info> function can be used to determine the number of
-  input/output channels as well as the ``UI'' (a data structure describing
+  input/output channels as well as the \PUI\Q (a data structure describing
   the available control variables) of the loaded dsp:
 
   <\verbatim>
+    \;
+
     \<gtr\> let n,m,ui = faust_info dsp;
+
+    \;
   </verbatim>
 
   Global metadata of the dsp is available as a list of <verbatim|key=\>val>
   string pairs with the <verbatim|faust_meta> function. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> faust_meta dsp;
 
     ["descr"=\<gtr\>"amplifier","author"=\<gtr\>"Albert
     Graef","version"=\<gtr\>"1.0"]
+
+    \;
   </verbatim>
 
   To actually run the dsp, you'll need two buffers capable of holding the
@@ -206,7 +238,11 @@
   matrices. <verbatim|faust_compute> is invoked as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> faust_compute dsp in out;
+
+    \;
   </verbatim>
 
   Here, <verbatim|in> and <verbatim|out> must be double matrices which have
@@ -223,18 +259,26 @@
   empty <verbatim|in> or <verbatim|out> matrix, respectively. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> faust_compute dsp {} out;
+
+    \;
   </verbatim>
 
   Most DSPs take additional control input. The control variables are listed
-  in the ``UI'' component of the <verbatim|faust_info> return value. For
+  in the \PUI\Q component of the <verbatim|faust_info> return value. For
   instance, suppose that there's a <verbatim|gain> parameter listed there, it
   might look as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> controls ui!0;
 
     hslider #\<less\>pointer 0x12780a4\<gtr\> [] ("gain",1.0,0.0,10.0,0.1)
+
+    \;
   </verbatim>
 
   The constructor itself denotes the type of control, which matches the name
@@ -252,6 +296,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let gain = control_ref (controls ui!0);
 
     \<gtr\> get_double gain;
@@ -263,6 +309,8 @@
     ()
 
     \<gtr\> faust_compute dsp in out;
+
+    \;
   </verbatim>
 
   Output controls such as <verbatim|hbargraph> and <verbatim|vbargraph> are
@@ -279,15 +327,23 @@
   assignment might look as follows in the Faust source:
 
   <\verbatim>
+    \;
+
     gain = nentry("gain[midi:ctrl 7]", 1.0, 0, 10, 0.01);
+
+    \;
   </verbatim>
 
   In Pure this information will then be available as:
 
   <\verbatim>
+    \;
+
     \<gtr\> control_meta (controls ui!0);
 
     ["midi"=\<gtr\>"ctrl 7"]
+
+    \;
   </verbatim>
 
   Let's finally have a closer look at the contents of the UI data structure.
@@ -296,14 +352,18 @@
   the Faust program. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> ui;
 
     vgroup [] ("mydsp",[nentry #\<less\>pointer 0x12780a4\<gtr\> []
     ("gain",1.0,0.0,10.0,0.01)])
+
+    \;
   </verbatim>
 
   The leaves of the tree are the actual controls, while its interior nodes
-  are so-called ``control groups'', starting from a root node which
+  are so-called \Pcontrol groups\Q, starting from a root node which
   represents the entire dsp. There are different kinds of control groups such
   as <verbatim|vgroup> and <verbatim|hgroup>; please check the Faust
   documentation for details. Control groups have a name and metadata just
@@ -314,20 +374,28 @@
   group nodes of the tree:
 
   <\verbatim>
+    \;
+
     \<gtr\> controls ui;
 
     [hslider #\<less\>pointer 0x12780a4\<gtr\> [] ("gain",1.0,0.0,10.0,0.1)]
+
+    \;
   </verbatim>
 
   We've already employed this function above to extract the <verbatim|gain>
   control of our example dsp. There's a variation of this function which
-  yields the full ``pathnames'' of controls in the UI tree:
+  yields the full \Ppathnames\Q of controls in the UI tree:
 
   <\verbatim>
+    \;
+
     \<gtr\> pcontrols ui;
 
     [hslider #\<less\>pointer 0x12780a4\<gtr\> []
     ("mydsp/gain",1.0,0.0,10.0,0.1)]
+
+    \;
   </verbatim>
 
   This is sometimes necessary to distinguish controls with identical names in
@@ -335,6 +403,8 @@
   which work with this flat representation of the UI data structure:
 
   <\verbatim>
+    \;
+
     \<gtr\> let ctrls = ans;
 
     \<gtr\> control_map ctrls;
@@ -344,6 +414,8 @@
     \<gtr\> control_metamap ctrls;
 
     {"mydsp/gain"=\<gtr\>[]}
+
+    \;
   </verbatim>
 
   The results are Pure records which provide convenient access to the
@@ -356,7 +428,7 @@
 
   Further examples can be found in the examples subdirectory.
 
-  <subsection|Faust2 Compatibility<label|module-faust2>>
+  <subsection|Faust2 Compatibility><label|module-faust2>
 
   As of version 0.5, pure-faust includes a Faust2 compatibility module which
   lets you use the pure-faust API on top of Pure's new Faust bitcode
@@ -365,7 +437,11 @@
   import clause:
 
   <\verbatim>
+    \;
+
     using faust2;
+
+    \;
   </verbatim>
 
   To instantiate a Faust dsp using the <hlink|<with|font-family|tt|faust2>|#module-faust2>
@@ -385,11 +461,11 @@
   Faust2 and the mainline Faust version and doesn't rely on the Faust bitcode
   loader (only the <verbatim|pure.cpp> architecture is needed).
 
-  <subsection|Acknowledgements<label|acknowledgements>>
+  <subsection|Acknowledgements><label|acknowledgements>
 
   Many thanks to Yann Orlarey at Grame, the principal author of Faust!
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-faust-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-faust-toc>
 
   <\itemize>
     <item><hlink|pure-faust|#>
@@ -420,6 +496,6 @@
   <hlink|previous|pure-audio.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

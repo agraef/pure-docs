@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-g2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Pure OpenGL Bindings<label|pure-opengl-bindings>>
+  <section*|Pure OpenGL Bindings><label|pure-opengl-bindings>
 
-  Version 0.9, October 28, 2014
+  Version 0.9, July 07, 2016
 
   Scott Dillard
 
@@ -32,7 +32,7 @@
   included (except pure-gen, which is a separate package available from the
   Pure website), so that you can regenerate the bindings if necessary.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009, Scott E Dillard
 
@@ -43,7 +43,7 @@
   pure-gl is distributed under a 3-clause BSD-style license, please see the
   accompanying COPYING file for details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gl-0.9.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gl-0.9.tar.gz>.
 
@@ -57,15 +57,19 @@
   system's header files but not in the distributed bindings, with some effort
   you can fix that yourself by regenerating the bindings, see below.
 
-  <subsection|Using the GL Bindings<label|module-GL>>
+  <subsection|Using the GL Bindings><label|module-GL><label|module-GLU><label|module-GLUT><label|module-GL-ARB><label|module-GL-EXT><label|module-GL-NV><label|module-GL-ATI><label|module-GL>
 
-  <label|module-GLU><label|module-GLUT><label|module-GL-ARB><label|module-GL-EXT><label|module-GL-NV><label|module-GL-ATI>The
-  bindings mainly consist of 3 Pure files: GL.pure, GLU.pure and GLUT.pure.
+  The bindings mainly consist of 3 Pure files: GL.pure, GLU.pure and
+  GLUT.pure.
 
   In your Pure program, write something like:
 
   <\verbatim>
+    \;
+
     using GL, GLU, GLUT;
+
+    \;
   </verbatim>
 
   GL.pure covers OpenGL up through version 2.1. To get access to extensions,
@@ -82,13 +86,21 @@
   are in curried form, i.e.:
 
   <\verbatim>
+    \;
+
     GL::Vertex3d 1.0 2.0 3.0;
+
+    \;
   </verbatim>
 
   GL enumerants are in uppercase, as in C:
 
   <\verbatim>
+    \;
+
     GL::Begin GL::LINE_STRIP;
+
+    \;
   </verbatim>
 
   Currently, if the GLU or GLUT bindings reference a function that your DLL
@@ -104,7 +116,7 @@
   back and enjoy. There's also an interactive version of the demo available
   in flexi-line.pure.
 
-  <subsection|Regenerating the Bindings<label|regenerating-the-bindings>>
+  <subsection|Regenerating the Bindings><label|regenerating-the-bindings>
 
   You need to have pure-gen installed to do this.
 
@@ -121,18 +133,22 @@
   glut.h, and any other OpenGL headers that get #included in those) into the
   GL subdirectory of the pure-gl sources, by copying them over or creating
   symbolic links to them. This is particularly useful for maintainers, who
-  may want to use a ``staged'' header set which is different from the
-  installed OpenGL headers. The ''.'' directory will always be searched
+  may want to use a \Pstaged\Q header set which is different from the
+  installed OpenGL headers. The \Q.\Q directory will always be searched
   first, so you can also just put the vendor-specific headers there. For
   instance, if you're like Scott and you use Ubuntu with an Nvidia GPU, then
   you can do this:
 
   <\verbatim>
+    \;
+
     cd pure-gl/GL
 
     ln -s /usr/share/doc/nvidia-glx-new-dev/include/GL/gl.h
 
     ln -s /usr/share/doc/nvidia-glx-new-dev/include/GL/glext.h
+
+    \;
   </verbatim>
 
   Finally, the Makefile also assumes that you have freeglut (an improved GLUT
@@ -146,14 +162,22 @@
   by running make as follows:
 
   <\verbatim>
+    \;
+
     make generate
+
+    \;
   </verbatim>
 
   If you need a custom path to the OpenGL headers as described above (say,
   /usr/local/include) then do this instead:
 
   <\verbatim>
+    \;
+
     make generate glpath=/usr/local/include
+
+    \;
   </verbatim>
 
   If you're lucky, this will regenerate all the GL*.pure and GL*.c files, and
@@ -164,11 +188,11 @@
   If you're not so lucky, save a complete build log with all the error
   messages and ask on the pure-lang mailing list for help.
 
-  See the ``Generator stuff'' section in the Makefile for further options.
+  See the \PGenerator stuff\Q section in the Makefile for further options.
   Adding a rule for other extensions should be easy, just have a look at an
   existing one (e.g., GL_EXT.c) and modify it accordingly.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gl-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-gl-toc>
 
   <\itemize>
     <item><hlink|Pure OpenGL Bindings|#>
@@ -197,6 +221,6 @@
   <hlink|previous|pure-g2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,10 +8,9 @@
   <hlink|previous|pd-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-audio<label|module-audio>>
+  <section*|pure-audio><label|module-audio><label|module-fftw><label|module-sndfile><label|module-samplerate><label|module-realtime><label|module-audio>
 
-  <label|module-fftw><label|module-sndfile><label|module-samplerate><label|module-realtime>Version
-  0.6, October 28, 2014
+  Version 0.6, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -25,8 +24,8 @@
     see <hlink|http://www.portaudio.com/|http://www.portaudio.com/>.
 
     <item>fftw.pure: Compute real-valued FFTs of audio signals using Matteo
-    Frigo's and Steven G. Johnson's portable and fast FFTW library (``Fastest
-    Fourier Transform in the West'').
+    Frigo's and Steven G. Johnson's portable and fast FFTW library (\PFastest
+    Fourier Transform in the West\Q).
 
     <item>sndfile.pure: Reading and writing audio files in various formats.
     This is a fairly straightforward wrapper for Erik de Castro Lopo's
@@ -45,7 +44,7 @@
   the source modules listed above and have a look at the examples provided in
   the distribution.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-audio-0.6.tar.gz>.
 
@@ -69,7 +68,7 @@
   If you're not so lucky, you can get help on the Pure mailing list, see
   <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>.
 
-  <subsection|License<label|license>>
+  <subsection|License><label|license>
 
   pure-audio is Copyright (c) 2010 by Albert Graef, licensed under the
   3-clause BSD license, see the COPYING file for details.
@@ -78,7 +77,7 @@
   license terms of the PortAudio, libsamplerate and libsndfile libraries they
   are based on, see the corresponding sources and websites for details.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-audio-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-audio-toc>
 
   <\itemize>
     <item><hlink|pure-audio|#>
@@ -103,6 +102,6 @@
   <hlink|previous|pd-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

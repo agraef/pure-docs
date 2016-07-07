@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|Pure-CSV - Comma Separated Value Interface for the Pure
-  Programming Language<label|pure-csv-comma-separated-value-interface-for-the-pure-programming-language>>
+  Programming Language><label|pure-csv-comma-separated-value-interface-for-the-pure-programming-language>
 
-  Version 1.6, October 28, 2014
+  Version 1.6, July 07, 2016
 
   Eddie Rucker \<less\><hlink|erucker@bmc.edu|mailto:erucker@bmc.edu>\<gtr\>
 
@@ -19,7 +19,7 @@
   separated value files. The module is very loosely based on Python's CSV
   module (<hlink|http://docs.python.org/lib/module-csv.html|http://docs.python.org/lib/module-csv.html>).
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-csv-1.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-csv-1.6.tar.gz>.
 
@@ -35,7 +35,7 @@
   <verbatim|PIC=-fPIC> or some similar flag might be needed for compilation
   on 64 bit systems. Please see the Makefile for details.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   Data records are represented as vectors or lists of any Pure values. Values
   are converted as necessary and written as a group of strings, integers, or
@@ -46,7 +46,7 @@
   (<hlink|http://www.ietf.org/rfc/rfc4180.txt|http://www.ietf.org/rfc/rfc4180.txt>)
   for more details about the RFC4180 standard.
 
-  <subsubsection|Handling Errors<label|handling-errors>>
+  <subsubsection|Handling Errors><label|handling-errors>
 
   <\description>
     <item*|<with|font-family|tt|error> <with|font-family|tt|msg><label|error>>is
@@ -58,7 +58,7 @@
     (e.g., provide a default value, or raise an exception).
   </description>
 
-  <subsubsection|Creating Dialects<label|creating-dialects>>
+  <subsubsection|Creating Dialects><label|creating-dialects>
 
   <\description>
     <item*|<with|font-family|tt|dialect> <with|font-family|tt|record><label|dialect>>creates
@@ -214,9 +214,13 @@
     reading tab delimited files without quoted strings.
   </description>
 
-  <label|example-dialect>Example
+  <label|example-dialect>
+
+  Example
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -225,9 +229,11 @@
     quote_flag=\<gtr\>STRING};
 
     \<gtr\>
+
+    \;
   </verbatim>
 
-  <subsubsection|Opening CSV Files<label|opening-csv-files>>
+  <subsubsection|Opening CSV Files><label|opening-csv-files>
 
   <\description>
     <item*|<with|font-family|tt|open> <with|font-family|tt|name::string><label|open>>opens
@@ -269,9 +275,13 @@
     </enumerate>
   </description>
 
-  <label|examples-open>Examples
+  <label|examples-open>
+
+  Examples
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -295,11 +305,15 @@
     {"hello","123","","3+:4","world"}
 
     \<gtr\>
+
+    \;
   </verbatim>
 
-  Suppose our file ``test.csv'' is as presented below.
+  Suppose our file \Ptest.csv\Q is as presented below.
 
   <\verbatim>
+    \;
+
     ir$ more test.csv
 
     NAME,TEST1,TEST2
@@ -309,12 +323,16 @@
     "JONES, SALLY",88,72
 
     "RED, FEEFEE",45,52
+
+    \;
   </verbatim>
 
   Notice how the <verbatim|LIST> option affects the return of <verbatim|getr>
   and how the <verbatim|HEADER> option may be used to index records.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -344,9 +362,11 @@
     ["HOPE, BOB",90]
 
     \<gtr\>
+
+    \;
   </verbatim>
 
-  <subsubsection|File Reading Functions<label|file-reading-functions>>
+  <subsubsection|File Reading Functions><label|file-reading-functions>
 
   <\description>
     <item*|<with|font-family|tt|header> <with|font-family|tt|csv_file::pointer><label|header>>returns
@@ -373,7 +393,7 @@
     <with|font-family|tt|csv_file::pointer>>Lazy version of <verbatim|fgetr>.
   </description>
 
-  <subsubsection|File Writing Functions<label|file-writing-functions>>
+  <subsubsection|File Writing Functions><label|file-writing-functions>
 
   When modifying CSV files that will be imported into Microsoft Excel, fields
   with significant leading 0s should be written using a
@@ -395,11 +415,13 @@
     opened for reading invokes the <verbatim|error> <verbatim|msg> rule.
   </description>
 
-  <subsubsection|Examples<label|examples>>
+  <subsubsection|Examples><label|examples>
 
   The first example shows how to write and read a default CSV file.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -423,12 +445,16 @@
     \<gtr\> close f;
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   The second example illustrates how to write and read a CSV file using
   automatic conversions.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -460,12 +486,16 @@
     ()
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   Records containing quotes, delimiters, and line breaks are also properly
   handled.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -493,6 +523,8 @@
     ()
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   Consider the following hand written CSV file. According to RFC4180, this is
@@ -500,12 +532,18 @@
   <verbatim|space_around_quoted_field>, the file can still be read.
 
   <\verbatim>
+    \;
+
     erucker:$ more test.csv
 
     \ \ "this", \ \ "is", \ "not", "valid"
+
+    \;
   </verbatim>
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -525,6 +563,8 @@
     {"this","is","not","valid"}
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   The <verbatim|trim_space> flag should be used with caution. A field with
@@ -532,14 +572,20 @@
   the following file.
 
   <\verbatim>
+    \;
+
     erucker:$ more test.csv
 
     " \ this \ \ ", 45 ,23, \ hello
+
+    \;
   </verbatim>
 
   Now observe the differences for the two dialects below.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -562,11 +608,15 @@
     {"this",45,23,"hello"}
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   The <verbatim|trim_space> flag also affects writing.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -590,6 +640,8 @@
     erucker:$ more test.csv
 
     "this","45"
+
+    \;
   </verbatim>
 
   For the last example a tab delimiter is used, automatic conversions is on,
@@ -597,6 +649,8 @@
   the script is finished.
 
   <\verbatim>
+    \;
+
     \<gtr\> using csv;
 
     \<gtr\> using namespace csv;
@@ -621,9 +675,11 @@
     [["a","b",-4.5,""],["c","d",2.3,"-"]]
 
     \<gtr\> quit
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-csv-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-csv-toc>
 
   <\itemize>
     <item><hlink|Pure-CSV - Comma Separated Value Interface for the Pure
@@ -663,6 +719,6 @@
   <hlink|previous|pure-reduce.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

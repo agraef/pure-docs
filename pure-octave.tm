@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,22 +8,22 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-octave<label|module-octave>>
+  <section*|pure-octave><label|module-octave>
 
-  Version 0.6, October 28, 2014
+  Version 0.7, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   A Pure interface to <hlink|GNU Octave|http://www.octave.org>.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
   This is an Octave module for the Pure programming language, based on Paul
   Kienzle's <hlink|octave_embed|http://wiki.octave.org/wiki.pl?OctaveEmbedded>
   which allows Octave to be embedded in other languages. It allows you to
   execute arbitrary Octave commands and Octave functions from Pure.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   pure-octave is free software: you can redistribute it and/or modify it
   under the terms of the GNU General Public License as published by the Free
@@ -37,9 +37,9 @@
   Please see the accompanying COPYING file for the precise license terms. The
   GPL can also be read online at <hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.6.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.7.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.7.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -57,12 +57,16 @@
   3.8.0. Older versions might require some fiddling with the sources to get
   the embedded Octave interface working.
 
-  <subsection|Basic Usage<label|basic-usage>>
+  <subsection|Basic Usage><label|basic-usage>
 
   Import this module into your Pure scripts as follows:
 
   <\verbatim>
+    \;
+
     using octave;
+
+    \;
   </verbatim>
 
   This will add an embedded instance of the Octave interpreter to your
@@ -74,6 +78,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_eval "eig([1 2;3 4])";
 
     ans =
@@ -87,6 +93,8 @@
     \;
 
     0
+
+    \;
   </verbatim>
 
   This prints the result on stdout and returns a result code (zero if
@@ -94,9 +102,13 @@
   terminate the Octave statement with a semicolon:
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_eval "eig([1 2;3 4]);";
 
     0
+
+    \;
   </verbatim>
 
   <\description>
@@ -111,9 +123,13 @@
   accessed in Octave, you must explicitly declare them as globals:
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_eval "global x y ans";
 
     0
+
+    \;
   </verbatim>
 
   Now you can use <hlink|<with|font-family|tt|octave_set>|#octave-set> and
@@ -121,6 +137,8 @@
   between Pure and Octave as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_set "x" {1.0,2.0;3.0,4.0};
 
     {1.0,2.0;3.0,4.0}
@@ -132,6 +150,8 @@
     \<gtr\> octave_get "ans";
 
     {-0.372281323269014;5.37228132326901}
+
+    \;
   </verbatim>
 
   Note that the most recent result can always be accessed through Octave's
@@ -139,6 +159,8 @@
   as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_eval "y = eig(x);";
 
     0
@@ -146,9 +168,11 @@
     \<gtr\> octave_get "y";
 
     {-0.372281323269014;5.37228132326901}
+
+    \;
   </verbatim>
 
-  <subsection|Direct Function Calls<label|direct-function-calls>>
+  <subsection|Direct Function Calls><label|direct-function-calls>
 
   <\description>
     <item*|octave_call fun n args<label|octave-call>>Call an octave function
@@ -158,11 +182,15 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = {1.0,2.0;3.0,4.0};
 
     \<gtr\> octave_call "eig" 1 x;
 
     {-0.372281323269014;5.37228132326901}
+
+    \;
   </verbatim>
 
   Note the second argument, which denotes the desired number of <em|return>
@@ -172,16 +200,22 @@
   Pure:
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_call "eig" 2 x;
 
     {-0.824564840132394,-0.415973557919284;0.565767464968992,-0.909376709132124},
 
     {-0.372281323269014,0.0;0.0,5.37228132326901}
+
+    \;
   </verbatim>
 
   Multiple <em|arguments> are also specified as a tuple:
 
   <\verbatim>
+    \;
+
     \<gtr\> octave_call "norm" 1 (x, 2);
 
     5.46498570421904
@@ -189,6 +223,8 @@
     \<gtr\> octave_call "norm" 1 (x, 1);
 
     6.0
+
+    \;
   </verbatim>
 
   Instead of a function name, you can also specify the function to be called
@@ -205,7 +241,7 @@
   </description>
 
   <\description>
-    <item*|octave_func expr<label|octave-func/expr>>Returns an ``inline''
+    <item*|octave_func expr<label|octave-func/expr>>Returns an \Pinline\Q
     function, where <verbatim|expr> is an Octave expression (as a string)
     describing the function value. This works like Octave's <verbatim|inline>
     builtin. Instead of just an Octave expression, you can also specify a
@@ -221,6 +257,8 @@
   operator. Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> let eig = octave_func "eig";
 
     \<gtr\> let mul = octave_func "x*y";
@@ -234,9 +272,11 @@
     \<gtr\> octave_call add 1 (x,x);
 
     {2.0,4.0;6.0,8.0}
+
+    \;
   </verbatim>
 
-  <subsection|Data Conversions<label|data-conversions>>
+  <subsection|Data Conversions><label|data-conversions>
 
   As shown above, the <hlink|<with|font-family|tt|octave_set>|#octave-set>,
   <hlink|<with|font-family|tt|octave_get>|#octave-get> and
@@ -284,6 +324,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> let eig = octave_func "eig";
 
     \<gtr\> eig; octave_valuep eig;
@@ -291,6 +333,8 @@
     #\<less\>pointer 0x230dba0\<gtr\>
 
     1
+
+    \;
   </verbatim>
 
   Such Octave value pointers can be used freely whereever an Octave value is
@@ -310,6 +354,8 @@
     For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> octave_set "a" {1,2;3,4};
 
       {1,2;3,4}
@@ -355,6 +401,8 @@
       \<gtr\> octave_get "ans";
 
       {0,0;1,1}
+
+      \;
     </verbatim>
 
     <item>Octave strings are mapped to Pure strings, and character matrices
@@ -362,6 +410,8 @@
     strings. Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> octave_set "a" "Hello, world!";
 
       "Hello, world!"
@@ -389,6 +439,8 @@
       \<gtr\> octave_get "ans";
 
       {"Hello, world!";"abc \ \ \ \ \ \ \ \ \ "}
+
+      \;
     </verbatim>
 
     <item>With the default converters, Octave numeric and cell arrays are
@@ -398,6 +450,8 @@
     are some examples:
 
     <\verbatim>
+      \;
+
       \<gtr\> octave_call "rand" 1 (1,2,3);
 
       {{0.775409654288678,0.946392719372485,0.351919625087157},
@@ -420,12 +474,16 @@
       \<gtr\> octave_call (octave_func ("x.age","x")) 1 ans;
 
       23.0
+
+      \;
     </verbatim>
 
     Nested cell arrays and structs are set off with the special
     <verbatim|cell> and <verbatim|struct> constructors:
 
     <\verbatim>
+      \;
+
       \<gtr\> octave_eval "x = {[1,2,3], {1,2,3}}; x{3}.name = 'Peter';
       x{3}.age = 23;";
 
@@ -435,11 +493,15 @@
 
       {{1.0,2.0,3.0},cell {1.0,2.0,3.0},struct
       {"name"=\<gtr\>"Peter","age"=\<gtr\>23.0}}
+
+      \;
     </verbatim>
 
     Struct arrays are also supported:
 
     <\verbatim>
+      \;
+
       \<gtr\> octave_eval "y = struct('name', {'Peter','Hannah'}, 'age', {23,
       16});";
 
@@ -448,6 +510,8 @@
       \<gtr\> octave_get "y";
 
       {{"name"=\<gtr\>"Peter","age"=\<gtr\>23.0},{"name"=\<gtr\>"Hannah","age"=\<gtr\>16.0}}
+
+      \;
     </verbatim>
 
     There's also a little convenience function to factor a struct array into
@@ -455,6 +519,8 @@
     array in Pure):
 
     <\verbatim>
+      \;
+
       \<gtr\> struct_array ans;
 
       {"name"=\<gtr\>{"Peter","Hannah"},"age"=\<gtr\>{23.0,16.0}}
@@ -472,16 +538,20 @@
       \ \ \ \ age
 
       ()
+
+      \;
     </verbatim>
   </itemize>
 
-  <subsection|Calling Back Into Pure<label|calling-back-into-pure>>
+  <subsection|Calling Back Into Pure><label|calling-back-into-pure>
 
   The embedded Octave interpreter provides one special builtin, the
   <verbatim|pure_call> function which can be used to call any function
   defined in the executing Pure script from Octave. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> even m::matrix = {~(int x mod 2) \| x=m};
 
     \<gtr\> octave_eval "pure_call('even', 1:12)";
@@ -495,12 +565,16 @@
     \;
 
     0
+
+    \;
   </verbatim>
 
   Here's the description of the <verbatim|pure_call> function, as it is
   printed with Octave's <verbatim|help> command:
 
   <\verbatim>
+    \;
+
     `pure_call' is a built-in function
 
     \;
@@ -517,9 +591,11 @@
     \ \ The Pure function may return multiple results as a tuple. Example:
 
     \ \ pure_call('succ', 99) =\<gtr\> 100.
+
+    \;
   </verbatim>
 
-  <subsection|Gnuplot Interface<label|gnuplot-interface>>
+  <subsection|Gnuplot Interface><label|gnuplot-interface>
 
   Octave has a comprehensive plotting interface based on Gnuplot. To make the
   plotting capabilities available in a convenient form in Pure, the
@@ -529,6 +605,8 @@
   commands:
 
   <\verbatim>
+    \;
+
     using gnuplot;
 
     using namespace gnuplot;
@@ -546,15 +624,19 @@
     popdn(); \ \ \ // hide the plot window
 
     print "plot.eps"; // print the plot to an encapsulated PostScript file
+
+    \;
   </verbatim>
 
   Note that most of the operations are in their own <verbatim|gnuplot>
   namespace, so we used a <verbatim|using> <verbatim|namespace> declaration
-  for convenience here. The following example does the ``sombrero'' plot
+  for convenience here. The following example does the \Psombrero\Q plot
   again, but shows some of the explicit plotting commands and helper
   functions to generate the data:
 
   <\verbatim>
+    \;
+
     using math;
 
     let u = linspace (-8, 8, 41);
@@ -566,6 +648,8 @@
     mesh (u, u, z);
 
     popup();
+
+    \;
   </verbatim>
 
   Note the commands that are needed to actually show the plot window and
@@ -579,7 +663,7 @@
   then you'll have to set the <verbatim|GNUTERM> environment variable as
   described in the gnuplot manual page.
 
-  <subsection|Caveats and Notes<label|caveats-and-notes>>
+  <subsection|Caveats and Notes><label|caveats-and-notes>
 
   Directly embedding Octave in Pure programs is convenient because it allows
   easy exchange of data between Pure and Octave, and you can also call Octave
@@ -591,7 +675,7 @@
   <hlink|VTK|http://www.vtk.org/>, if used in the same program as Octave.
   (These seem to be fixed in the latest Octave and VTK versions, however.)
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-octave-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-octave-toc>
 
   <\itemize>
     <item><hlink|pure-octave|#>
@@ -631,6 +715,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

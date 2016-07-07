@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-gl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Pure GTK+ Bindings<label|pure-gtk-bindings>>
+  <section*|Pure GTK+ Bindings><label|pure-gtk-bindings>
 
-  Version 0.13, October 28, 2014
+  Version 0.13, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -26,7 +26,7 @@
   that happen. :) So please let me know if you'd like to give a helping hand
   in improving pure-gtk.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2008-2011 by Albert Graef.
 
@@ -43,7 +43,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   You can get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.13.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-gtk-0.13.tar.gz>.
 
@@ -63,10 +63,9 @@
   bindings; for this you also need to have pure-gen installed. (If you
   already have pure-gen then it's a good idea to do this anyway.)
 
-  <subsection|Usage<label|module-atk>>
+  <subsection|Usage><label|module-atk><label|module-cairo><label|module-glib><label|module-gtk><label|module-pango><label|module-atk>
 
-  <label|module-cairo><label|module-glib><label|module-gtk><label|module-pango>See
-  examples/hello.pure for a basic example. The files uiexample.pure and
+  See examples/hello.pure for a basic example. The files uiexample.pure and
   uiexample.glade show how to run a GUI created with the Glade-3 interface
   builder. This needs a recent version of the GtkBuilder API to work. (If
   you're still running Glade-2 and an older GTK+ version, you might want to
@@ -79,7 +78,7 @@
   pure-gtk can be discussed on the Pure mailing list at:
   <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gtk-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-gtk-toc>
 
   <\itemize>
     <item><hlink|Pure GTK+ Bindings|#>
@@ -106,6 +105,6 @@
   <hlink|previous|pure-gl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

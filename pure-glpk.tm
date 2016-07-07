@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|Pure-GLPK - GLPK interface for the Pure programming
-  language<label|pure-glpk-glpk-interface-for-the-pure-programming-language>>
+  language><label|pure-glpk-glpk-interface-for-the-pure-programming-language>
 
-  Version 0.5, October 28, 2014
+  Version 0.5, July 07, 2016
 
   Jiri Spitz \<less\><hlink|jiri.spitz@bluetone.cz|mailto:jiri.spitz@bluetone.cz>\<gtr\>
 
@@ -34,7 +34,7 @@
   To make this module work, you must have a GLPK installation on your system,
   the version 4.42 or higher is required.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz>.
 
@@ -81,7 +81,7 @@
   library to be linked with. The default value is <verbatim|ODBCLIB=-lodbc>.
   Please see the Makefile for details.
 
-  <subsection|Error Handling<label|error-handling>>
+  <subsection|Error Handling><label|error-handling>
 
   When an error condition occurs, the GLPK library itself prints an error
   mesage and terminates the application. This behaviour is not pleasant when
@@ -121,13 +121,13 @@
   <verbatim|glp::error> function, otherwise the errors might remain
   unnoticed.
 
-  <subsection|Further Information and Examples<label|further-information-and-examples>>
+  <subsection|Further Information and Examples><label|further-information-and-examples>
 
   For further details about the operations provided by this module please see
   the GLPK Reference Manual. Sample scripts illustrating the usage of the
   module can be found in the examples directory.
 
-  <subsection|Interface description<label|interface-description>>
+  <subsection|Interface description><label|interface-description>
 
   Most GLPK functions and symbols live in the namespace <verbatim|glp>. There
   are a few functions and symbols in the namespace <verbatim|lpx>. These
@@ -140,19 +140,23 @@
   <verbatim|lpx_> and <verbatim|lpx::>. The symbolic constants are converted
   into lower case in this module, again obeying the same prefix rules.
 
-  <subsection|Descriptions of interface functions<label|descriptions-of-interface-functions>>
+  <subsection|Descriptions of interface functions><label|descriptions-of-interface-functions>
 
-  <subsubsection|Basic API routines<label|basic-api-routines>>
+  <subsubsection|Basic API routines><label|basic-api-routines>
 
   <paragraph|Problem creating and modifying
-  routines<label|problem-creating-and-modifying-routines>>
+  routines><label|problem-creating-and-modifying-routines>
 
-  <paragraph|Create the GLPK problem object<label|create-the-glpk-problem-object>>
+  <paragraph|Create the GLPK problem object><label|create-the-glpk-problem-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::create_prob
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -170,19 +174,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let lp = glp::create_prob;
 
     \<gtr\> lp;
 
     #\<less\>pointer 0x9de7168\<gtr\>
+
+    \;
   </verbatim>
 
-  <paragraph|Set the problem name<label|set-the-problem-name>>
+  <paragraph|Set the problem name><label|set-the-problem-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_prob_name lp name
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -200,17 +212,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_prob_name lp "Testing problem";
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Set objective name<label|set-objective-name>>
+  <paragraph|Set objective name><label|set-objective-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_obj_name lp name
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -228,17 +248,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_obj_name lp "Total costs";
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Set the objective direction<label|set-the-objective-direction>>
+  <paragraph|Set the objective direction><label|set-the-objective-direction>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_obj_dir lp direction
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -260,17 +288,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_obj_dir lp glp::min;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Add new rows to the problem<label|add-new-rows-to-the-problem>>
+  <paragraph|Add new rows to the problem><label|add-new-rows-to-the-problem>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::add_rows lp count
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -288,19 +324,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let first_added_row = glp_add_rows lp 3;
 
     \<gtr\> first_added_row;
 
     6
+
+    \;
   </verbatim>
 
-  <paragraph|Add new columns to the problem<label|add-new-columns-to-the-problem>>
+  <paragraph|Add new columns to the problem><label|add-new-columns-to-the-problem>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::add_cols lp count
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -318,19 +362,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let first_added_col = glp_add_cols lp 3;
 
     \<gtr\> first_added_col;
 
     5
+
+    \;
   </verbatim>
 
-  <paragraph|Set the row name<label|set-the-row-name>>
+  <paragraph|Set the row name><label|set-the-row-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_row_name lp (rowindex, rowname)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -349,17 +401,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_row_name lp (3, "The third row");
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Set the column name<label|set-the-column-name>>
+  <paragraph|Set the column name><label|set-the-column-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_col_name lp (colindex, colname)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -378,17 +438,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_col_name lp (3, "The third column");
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Set (change) row bounds<label|set-change-row-bounds>>
+  <paragraph|Set (change) row bounds><label|set-change-row-bounds>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_row_bnds lp (rowindex, rowtype, lowerbound, upperbound)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -417,12 +485,16 @@
     <verbatim|150.0);>
   </description>
 
-  <paragraph|Set (change) column bounds<label|set-change-column-bounds>>
+  <paragraph|Set (change) column bounds><label|set-change-column-bounds>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_col_bnds lp (colindex, coltype, lowerbound, upperbound)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -452,18 +524,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_col_bnds lp (3, glp::db, 100.0, 150.0);
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Set (change) objective coefficient or constant
-  term<label|set-change-objective-coefficient-or-constant-term>>
+  term><label|set-change-objective-coefficient-or-constant-term>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_obj_coef lp (colindex, coefficient)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -482,26 +562,34 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_obj_coef lp (3, 15.8);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Load or replace matrix row<label|load-or-replace-matrix-row>>
+  <paragraph|Load or replace matrix row><label|load-or-replace-matrix-row>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_mat_row lp (rowindex, rowvector)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object rowindex: row index rowvector:
-    list of tuples (colindex, coefficient); only non-zero coefficients have
-    to be specified, the order of column indices is not important, duplicates
-    are <with|font-series|bold|not> allowed
+    lp: pointer to the LP problem object rowindex: row index rowvector: list
+    of tuples (colindex, coefficient); only non-zero coefficients have to be
+    specified, the order of column indices is not important, duplicates are
+    <with|font-series|bold|not> allowed
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -513,17 +601,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_mat_row lp (3, [(1, 3.0), (4, 5.2)]);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Load or replace matrix column<label|load-or-replace-matrix-column>>
+  <paragraph|Load or replace matrix column><label|load-or-replace-matrix-column>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_mat_col lp (colindex, colvector)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -544,18 +640,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_mat_col lp (2, [(4, 2.0), (2, 1.5)]);
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Load or replace the whole problem
-  matrix<label|load-or-replace-the-whole-problem-matrix>>
+  matrix><label|load-or-replace-the-whole-problem-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::load_matrix lp matrix
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -576,19 +680,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::load_matrix lp [(1, 3, 5.0), (2, 2, 3.5), (3, 1, -2.0), (3,
     2, 1.0)];
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Check for duplicate elements in sparse
-  matrix<label|check-for-duplicate-elements-in-sparse-matrix>>
+  matrix><label|check-for-duplicate-elements-in-sparse-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::check_dup numrows numcols indices
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -609,30 +721,36 @@
     element in indices is duplicate>
   </quote-env>
 
-  <\with|font-series|bold>
-    Remark:
-  </with>
+  <with|font-series|bold|Remark:>
 
   <\quote-env>
-    Notice, that <verbatim|k> counts from 1, whereas list members are
-    counted from 0.
+    Notice, that <verbatim|k> counts from 1, whereas list members are counted
+    from 0.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::check_dup 3 3 \ [(1, 3), (2, 2), (3, 1), (2, 2)];
 
     4
+
+    \;
   </verbatim>
 
   <paragraph|Sort elements of the constraint
-  matrix<label|sort-elements-of-the-constraint-matrix>>
+  matrix><label|sort-elements-of-the-constraint-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::sort_matrix lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -650,24 +768,32 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::sort_matrix lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Delete rows from the matrix<label|delete-rows-from-the-matrix>>
+  <paragraph|Delete rows from the matrix><label|delete-rows-from-the-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::del_rows lp rows
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object rows: list of indices of rows to
-    be deleted; the order of indices is not important, duplicates are
+    lp: pointer to the LP problem object rows: list of indices of rows to be
+    deleted; the order of indices is not important, duplicates are
     <with|font-series|bold|not> allowed
   </quote-env>
 
@@ -677,9 +803,7 @@
     <verbatim|()>
   </quote-env>
 
-  <\with|font-series|bold>
-    Remark:
-  </with>
+  <with|font-series|bold|Remark:>
 
   <\quote-env>
     Deleting rows involves changing ordinal numbers of other rows remaining
@@ -691,24 +815,32 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::del_rows lp [3, 4, 7];
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Delete columns from the matrix<label|delete-columns-from-the-matrix>>
+  <paragraph|Delete columns from the matrix><label|delete-columns-from-the-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::del_cols lp cols
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object cols: list of indices of columns
-    to be deleted; the order of indices is not important, duplicates are
+    lp: pointer to the LP problem object cols: list of indices of columns to
+    be deleted; the order of indices is not important, duplicates are
     <with|font-series|bold|not> allowed
   </quote-env>
 
@@ -718,9 +850,7 @@
     <verbatim|()>
   </quote-env>
 
-  <\with|font-series|bold>
-    Remark:
-  </with>
+  <with|font-series|bold|Remark:>
 
   <\quote-env>
     Deleting columns involves changing ordinal numbers of other columns
@@ -732,18 +862,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::del_cols lp [6, 4, 5];
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Copy the whole content of the GLPK problem object to another
-  one<label|copy-the-whole-content-of-the-glpk-problem-object-to-another-one>>
+  one><label|copy-the-whole-content-of-the-glpk-problem-object-to-another-one>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::copy_prob destination source names
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -769,18 +907,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::copy_prob lp_dest lp_src glp::on;
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Erase all data from the GLPK problem
-  object<label|erase-all-data-from-the-glpk-problem-object>>
+  object><label|erase-all-data-from-the-glpk-problem-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::erase_prob lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -799,24 +945,32 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::erase_prob lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Delete the GLPK problem object<label|delete-the-glpk-problem-object>>
+  <paragraph|Delete the GLPK problem object><label|delete-the-glpk-problem-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::delete_prob lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object, it is not valid any more after
-    the function call
+    lp: pointer to the LP problem object, it is not valid any more after the
+    function call
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -828,19 +982,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::delete_prob lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Problem retrieving routines<label|problem-retrieving-routines>>
+  <paragraph|Problem retrieving routines><label|problem-retrieving-routines>
 
-  <paragraph|Get the problem name<label|get-the-problem-name>>
+  <paragraph|Get the problem name><label|get-the-problem-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_prob_name lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -858,17 +1020,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_prob_name lp;
 
     "Testing problem"
+
+    \;
   </verbatim>
 
-  <paragraph|Get the objective name<label|get-the-objective-name>>
+  <paragraph|Get the objective name><label|get-the-objective-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_obj_name lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -886,17 +1056,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_obj_name lp;
 
     "Total costs"
+
+    \;
   </verbatim>
 
-  <paragraph|Get the objective direction<label|get-the-objective-direction>>
+  <paragraph|Get the objective direction><label|get-the-objective-direction>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_obj_dir lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -916,17 +1094,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_obj_dir lp;
 
     glp::min
+
+    \;
   </verbatim>
 
-  <paragraph|Get number of rows<label|get-number-of-rows>>
+  <paragraph|Get number of rows><label|get-number-of-rows>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_num_rows lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -944,17 +1130,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_num_rows lp;
 
     58
+
+    \;
   </verbatim>
 
-  <paragraph|Get number of columns<label|get-number-of-columns>>
+  <paragraph|Get number of columns><label|get-number-of-columns>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_num_cols lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -972,17 +1166,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_num_cols lp;
 
     65
+
+    \;
   </verbatim>
 
-  <paragraph|Get name of a row<label|get-name-of-a-row>>
+  <paragraph|Get name of a row><label|get-name-of-a-row>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_name lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1000,17 +1202,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_name lp 3;
 
     "The third row"
+
+    \;
   </verbatim>
 
-  <paragraph|Get name of a column<label|get-name-of-a-column>>
+  <paragraph|Get name of a column><label|get-name-of-a-column>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_name lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1028,17 +1238,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_name lp 2;
 
     "The second column"
+
+    \;
   </verbatim>
 
-  <paragraph|Get row type<label|get-row-type>>
+  <paragraph|Get row type><label|get-row-type>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_type lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1060,17 +1278,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_type lp 3;
 
     glp::db
+
+    \;
   </verbatim>
 
-  <paragraph|Get row lower bound<label|get-row-lower-bound>>
+  <paragraph|Get row lower bound><label|get-row-lower-bound>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_lb lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1089,17 +1315,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_lb lp 3;
 
     50.0
+
+    \;
   </verbatim>
 
-  <paragraph|Get row upper bound<label|get-row-upper-bound>>
+  <paragraph|Get row upper bound><label|get-row-upper-bound>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_ub lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1118,17 +1352,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_ub lp 3;
 
     150.0
+
+    \;
   </verbatim>
 
-  <paragraph|Get column type<label|get-column-type>>
+  <paragraph|Get column type><label|get-column-type>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_type lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1150,17 +1392,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_type lp 2;
 
     glp::up
+
+    \;
   </verbatim>
 
-  <paragraph|Get column lower bound<label|get-column-lower-bound>>
+  <paragraph|Get column lower bound><label|get-column-lower-bound>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_lb lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1172,24 +1422,32 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    the column lower bound; if the column has no lower bound then it
-    returns the smallest double number
+    the column lower bound; if the column has no lower bound then it returns
+    the smallest double number
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_lb lp 3;
 
     -1.79769313486232e+308
+
+    \;
   </verbatim>
 
-  <paragraph|Get column upper bound<label|get-column-upper-bound>>
+  <paragraph|Get column upper bound><label|get-column-upper-bound>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_ub lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1201,24 +1459,32 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    the column upper bound; if the column has no upper bound then it
-    returns the biggest double number
+    the column upper bound; if the column has no upper bound then it returns
+    the biggest double number
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_lb lp 3;
 
     150.0
+
+    \;
   </verbatim>
 
-  <paragraph|Get objective coefficient<label|get-objective-coefficient>>
+  <paragraph|Get objective coefficient><label|get-objective-coefficient>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_obj_coef lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1237,17 +1503,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_obj_coef lp 3;
 
     5.8
+
+    \;
   </verbatim>
 
-  <paragraph|Get number of nonzero coefficients<label|get-number-of-nonzero-coefficients>>
+  <paragraph|Get number of nonzero coefficients><label|get-number-of-nonzero-coefficients>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_num_nz lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1265,18 +1539,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_num_nz lp;
 
     158
+
+    \;
   </verbatim>
 
   <paragraph|Retrive a row from the problem
-  matrix<label|retrive-a-row-from-the-problem-matrix>>
+  matrix><label|retrive-a-row-from-the-problem-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_mat_row lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1295,18 +1577,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> get_mat_row lp 3;
 
     [(3,6.0),(2,2.0),(1,2.0)]
+
+    \;
   </verbatim>
 
   <paragraph|Retrive a column from the problem
-  matrix<label|retrive-a-column-from-the-problem-matrix>>
+  matrix><label|retrive-a-column-from-the-problem-matrix>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_mat_col lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1325,20 +1615,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> get_mat_col lp 2;
 
     [(3,2.0),(2,4.0),(1,1.0)]
+
+    \;
   </verbatim>
 
-  <paragraph|Row and column searching routines<label|row-and-column-searching-routines>>
+  <paragraph|Row and column searching routines><label|row-and-column-searching-routines>
 
   <paragraph|Create index for searching rows and columns by their
-  names<label|create-index-for-searching-rows-and-columns-by-their-names>>
+  names><label|create-index-for-searching-rows-and-columns-by-their-names>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::create_index lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1356,17 +1654,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::create_index lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Find a row number by name<label|find-a-row-number-by-name>>
+  <paragraph|Find a row number by name><label|find-a-row-number-by-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::find_row lp rowname
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1384,24 +1690,31 @@
   <with|font-series|bold|Remark>:
 
   <\quote-env>
-    The search index is automatically created if it does not already
-    exists.
+    The search index is automatically created if it does not already exists.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::find_row lp "The third row";
 
     3
+
+    \;
   </verbatim>
 
-  <paragraph|Find a column number by name<label|find-a-column-number-by-name>>
+  <paragraph|Find a column number by name><label|find-a-column-number-by-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::find_col lp colname
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1419,25 +1732,32 @@
   <with|font-series|bold|Remark>:
 
   <\quote-env>
-    The search index is automatically created if it does not already
-    exists.
+    The search index is automatically created if it does not already exists.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::find_col lp "The second row";
 
     2
+
+    \;
   </verbatim>
 
   <paragraph|Delete index for searching rows and columns by their
-  names<label|delete-index-for-searching-rows-and-columns-by-their-names>>
+  names><label|delete-index-for-searching-rows-and-columns-by-their-names>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::delete_index lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1455,19 +1775,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::delete:index lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Problem scaling routines<label|problem-scaling-routines>>
+  <paragraph|Problem scaling routines><label|problem-scaling-routines>
 
-  <paragraph|Set the row scale factor<label|set-the-row-scale-factor>>
+  <paragraph|Set the row scale factor><label|set-the-row-scale-factor>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_rii lp (rowindex, coefficient)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1486,24 +1814,32 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_rii lp (3, 258.6);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Set the column scale factor<label|set-the-column-scale-factor>>
+  <paragraph|Set the column scale factor><label|set-the-column-scale-factor>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_sjj lp (colindex, coefficient)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object colindex: column index
-    coefficient: scaling coefficient
+    lp: pointer to the LP problem object colindex: column index coefficient:
+    scaling coefficient
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -1515,17 +1851,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_sjj lp (2, 12.8);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve the row scale factor<label|retrieve-the-row-scale-factor>>
+  <paragraph|Retrieve the row scale factor><label|retrieve-the-row-scale-factor>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_rii lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1543,17 +1887,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_rii lp 3;
 
     258.6
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve the column scale factor<label|retrieve-the-column-scale-factor>>
+  <paragraph|Retrieve the column scale factor><label|retrieve-the-column-scale-factor>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_sjj lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1571,18 +1923,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_sjj lp 2;
 
     12.8
+
+    \;
   </verbatim>
 
   <paragraph|Scale the problem data according to supplied
-  flags<label|scale-the-problem-data-according-to-supplied-flags>>
+  flags><label|scale-the-problem-data-according-to-supplied-flags>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::scale_prob lp flags
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1608,17 +1968,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::scale_prob lp (glp::sf_gm \|\| glp::sf_2n);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Unscale the problem data<label|unscale-the-problem-data>>
+  <paragraph|Unscale the problem data><label|unscale-the-problem-data>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::unscale_prob lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1636,19 +2004,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::unscale_prob lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|LP basis constructing routines<label|lp-basis-constructing-routines>>
+  <paragraph|LP basis constructing routines><label|lp-basis-constructing-routines>
 
-  <paragraph|Set the row status<label|set-the-row-status>>
+  <paragraph|Set the row status><label|set-the-row-status>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_row_stat lp (rowindex, status)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1677,17 +2053,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_row_stat lp (3, glp::nu);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Set the column status<label|set-the-column-status>>
+  <paragraph|Set the column status><label|set-the-column-status>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_col_stat lp (colindex, status)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1716,17 +2100,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_col_stat lp (2, glp::bs);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Construct standard problem basis<label|construct-standard-problem-basis>>
+  <paragraph|Construct standard problem basis><label|construct-standard-problem-basis>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::std_basis lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1744,17 +2136,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::std_basis lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Construct advanced problem basis<label|construct-advanced-problem-basis>>
+  <paragraph|Construct advanced problem basis><label|construct-advanced-problem-basis>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::adv_basis lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1772,17 +2172,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::adv_basis lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Construct Bixby's problem basis<label|construct-bixby-s-problem-basis>>
+  <paragraph|Construct Bixby's problem basis><label|construct-bixby-s-problem-basis>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::cpx_basis lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1800,20 +2208,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::cpx_basis lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Simplex method routines<label|simplex-method-routines>>
+  <paragraph|Simplex method routines><label|simplex-method-routines>
 
   <paragraph|Solve the LP problem using simplex
-  method<label|solve-the-lp-problem-using-simplex-method>>
+  method><label|solve-the-lp-problem-using-simplex-method>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::simplex lp options
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -1928,13 +2344,14 @@
   <with|font-series|bold|Remark>:
 
   <\quote-env>
-    Options not mentioned in the option list are set to their default
-    values.
+    Options not mentioned in the option list are set to their default values.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::simplex lp [(glp::presolve, glp::on), (glp::msg_lev,
     glp::msg_all)];
 
@@ -1960,15 +2377,21 @@
     OPTIMAL SOLUTION FOUND
 
     glp::ok
+
+    \;
   </verbatim>
 
   <paragraph|Solve the LP problem using simplex method in exact
-  arithmetics<label|solve-the-lp-problem-using-simplex-method-in-exact-arithmetics>>
+  arithmetics><label|solve-the-lp-problem-using-simplex-method-in-exact-arithmetics>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::exact lp options
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2009,13 +2432,14 @@
   <with|font-series|bold|Remark>:
 
   <\quote-env>
-    Options not mentioned in the option list are set to their default
-    values.
+    Options not mentioned in the option list are set to their default values.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::exact lp [];
 
     glp_exact: 3 rows, 3 columns, 9 non-zeros
@@ -2030,15 +2454,21 @@
     OPTIMAL SOLUTION FOUND
 
     glp::ok
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve generic status of basic
-  solution<label|retrieve-generic-status-of-basic-solution>>
+  solution><label|retrieve-generic-status-of-basic-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_status lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2060,18 +2490,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_status lp;
 
     glp::opt
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve generic status of primal
-  solution<label|retrieve-generic-status-of-primal-solution>>
+  solution><label|retrieve-generic-status-of-primal-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_prim_stat lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2093,18 +2531,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_prim_stat lp;
 
     glp::feas
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve generic status of dual
-  solution<label|retrieve-generic-status-of-dual-solution>>
+  solution><label|retrieve-generic-status-of-dual-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_dual_stat lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2126,18 +2572,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_dual_stat lp;
 
     glp::feas
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve value of the objective
-  function<label|retrieve-value-of-the-objective-function>>
+  function><label|retrieve-value-of-the-objective-function>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_obj_val lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2155,18 +2609,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_obj_val lp
 
     733.333333333333
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve generic status of a row
-  variable<label|retrieve-generic-status-of-a-row-variable>>
+  variable><label|retrieve-generic-status-of-a-row-variable>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_stat lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2188,12 +2650,16 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_stat lp 3;
 
     glp::bs
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve row primal value<label|retrieve-row-primal-value>>
+  <paragraph|Retrieve row primal value><label|retrieve-row-primal-value>
 
   <\description>
     <item*|<with|font-series|bold|Synopsis>::>glp::get_row_prim lp rowindex
@@ -2214,17 +2680,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_prim lp 3;
 
     200.0
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve row dual value<label|retrieve-row-dual-value>>
+  <paragraph|Retrieve row dual value><label|retrieve-row-dual-value>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_dual lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2242,18 +2716,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_dual lp 3;
 
     0.0
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve generic status of a column
-  variable<label|retrieve-generic-status-of-a-column-variable>>
+  variable><label|retrieve-generic-status-of-a-column-variable>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_stat lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2275,17 +2757,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_stat lp 2;
 
     glp::bs
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve column primal value<label|retrieve-column-primal-value>>
+  <paragraph|Retrieve column primal value><label|retrieve-column-primal-value>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_prim lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2303,17 +2793,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_prim lp 2;
 
     66.6666666666667
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve column dual value<label|retrieve-column-dual-value>>
+  <paragraph|Retrieve column dual value><label|retrieve-column-dual-value>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_dual lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2331,17 +2829,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_dual lp 2;
 
     0.0
+
+    \;
   </verbatim>
 
-  <paragraph|Determine variable causing unboundedness<label|determine-variable-causing-unboundedness>>
+  <paragraph|Determine variable causing unboundedness><label|determine-variable-causing-unboundedness>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_unbnd_ray lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2376,20 +2882,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_unbnd_ray lp;
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Interior-point method routines<label|interior-point-method-routines>>
+  <paragraph|Interior-point method routines><label|interior-point-method-routines>
 
   <paragraph|Solve the LP problem using interior-point
-  method<label|solve-the-lp-problem-using-interior-point-method>>
+  method><label|solve-the-lp-problem-using-interior-point-method>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::interior lp options
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2442,6 +2956,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::interior lp [(glp::ord_alg, glp::ord_amd)];
 
     Original LP has 3 row(s), 3 column(s), and 9 non-zero(s)
@@ -2498,15 +3014,21 @@
     OPTIMAL SOLUTION FOUND
 
     glp::ok
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve status of interior-point
-  solution<label|retrieve-status-of-interior-point-solution>>
+  solution><label|retrieve-status-of-interior-point-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ipt_status lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2528,18 +3050,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ipt_status lp;
 
     glp::opt
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve the objective function value of interior-point
-  solution<label|retrieve-the-objective-function-value-of-interior-point-solution>>
+  solution><label|retrieve-the-objective-function-value-of-interior-point-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ipt_obj_val lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2557,18 +3087,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ipt_obj_val lp;
 
     733.333332295849
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve row primal value of interior-point
-  solution<label|retrieve-row-primal-value-of-interior-point-solution>>
+  solution><label|retrieve-row-primal-value-of-interior-point-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ipt_row_prim lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2586,18 +3124,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ipt_row_prim lp 3;
 
     200.000000920688
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve row dual value of interior-point
-  solution<label|retrieve-row-dual-value-of-interior-point-solution>>
+  solution><label|retrieve-row-dual-value-of-interior-point-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ipt_row_dual lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2615,18 +3161,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ipt_row_dual lp 3;
 
     2.50607466186742e-008
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve column primal value of interior-point
-  solution<label|retrieve-column-primal-value-of-interior-point-solution>>
+  solution><label|retrieve-column-primal-value-of-interior-point-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ipt_col_prim lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2644,18 +3198,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ipt_col_prim lp 2;
 
     66.666666406779
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve column dual value of interior-point
-  solution<label|retrieve-column-dual-value-of-interior-point-solution>>
+  solution><label|retrieve-column-dual-value-of-interior-point-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ipt_col_dual lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2673,19 +3235,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ipt_col_dual lp 2;
 
     2.00019467655466e-009
+
+    \;
   </verbatim>
 
-  <paragraph|Mixed integer programming routines<label|mixed-integer-programming-routines>>
+  <paragraph|Mixed integer programming routines><label|mixed-integer-programming-routines>
 
-  <paragraph|Set column kind<label|set-column-kind>>
+  <paragraph|Set column kind><label|set-column-kind>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_col_kind lp (colindex, colkind)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2710,17 +3280,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_col_kind lp (1, glp::iv);
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve column kind<label|retrieve-column-kind>>
+  <paragraph|Retrieve column kind><label|retrieve-column-kind>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_kind lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2741,17 +3319,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_kind lp 1;
 
     glp::iv
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve number of integer columns<label|retrieve-number-of-integer-columns>>
+  <paragraph|Retrieve number of integer columns><label|retrieve-number-of-integer-columns>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_num_int lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2769,17 +3355,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp_get_num_int lp;
 
     1
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve number of binary columns<label|retrieve-number-of-binary-columns>>
+  <paragraph|Retrieve number of binary columns><label|retrieve-number-of-binary-columns>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_num_bin lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2797,18 +3391,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_num_bin lp
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Solve the MIP problem using branch-and-cut
-  method<label|solve-the-mip-problem-using-branch-and-cut-method>>
+  method><label|solve-the-mip-problem-using-branch-and-cut-method>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::intopt lp options
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -2991,13 +3593,14 @@
   <with|font-series|bold|Remark>:
 
   <\quote-env>
-    Options not mentioned in the option list are set to their default
-    values.
+    Options not mentioned in the option list are set to their default values.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::intopt lp [(glp::presolve, glp::on)];
 
     ipp_basic_tech: \ 0 row(s) and 0 column(s) removed
@@ -3045,14 +3648,20 @@
     INTEGER OPTIMAL SOLUTION FOUND
 
     glp::ok
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve status of mip solution<label|retrieve-status-of-mip-solution>>
+  <paragraph|Retrieve status of mip solution><label|retrieve-status-of-mip-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mip_status lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3076,18 +3685,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mip_status lp;
 
     glp::opt
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve the objective function value of mip
-  solution<label|retrieve-the-objective-function-value-of-mip-solution>>
+  solution><label|retrieve-the-objective-function-value-of-mip-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mip_obj_val lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3105,17 +3722,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mip_obj_val lp;
 
     732.0
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve row value of mip solution<label|retrieve-row-value-of-mip-solution>>
+  <paragraph|Retrieve row value of mip solution><label|retrieve-row-value-of-mip-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mip_row_val lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3133,18 +3758,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mip_row_val lp 3;
 
     200.0
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve column value of mip
-  solution<label|retrieve-column-value-of-mip-solution>>
+  solution><label|retrieve-column-value-of-mip-solution>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mip_col_val lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3162,19 +3795,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mip_col_val lp 2;
 
     67.0
+
+    \;
   </verbatim>
 
-  <paragraph|Additional routines<label|additional-routines>>
+  <paragraph|Additional routines><label|additional-routines>
 
-  <paragraph|Check Karush-Kuhn-Tucker conditions<label|check-karush-kuhn-tucker-conditions>>
+  <paragraph|Check Karush-Kuhn-Tucker conditions><label|check-karush-kuhn-tucker-conditions>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::check_kkt lp solution condition
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3210,6 +3851,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::check_kkt lp glp::sol glp::kkt_pe;
 
     0.0,0,0.0,0
@@ -3219,20 +3862,26 @@
     2.23517417907715e-008,1,7.50126764193079e-016,34169
 
     \<gtr\>
+
+    \;
   </verbatim>
 
-  <subsubsection|Utility API routines<label|utility-api-routines>>
+  <subsubsection|Utility API routines><label|utility-api-routines>
 
   <paragraph|Problem data reading/writing
-  routines<label|problem-data-reading-writing-routines>>
+  routines><label|problem-data-reading-writing-routines>
 
   <paragraph|Read LP problem data from a MPS
-  file<label|read-lp-problem-data-from-a-mps-file>>
+  file><label|read-lp-problem-data-from-a-mps-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_mps lp format filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3258,6 +3907,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_mps lp glp::mps_deck "examples/plan.mps";
 
     Reading problem data from `examples/plan.mps'...
@@ -3271,15 +3922,21 @@
     63 records were read
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write LP problem data into a MPS
-  file<label|write-lp-problem-data-into-a-mps-file>>
+  file><label|write-lp-problem-data-into-a-mps-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_mps lp format filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3306,6 +3963,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_mps lp glp::mps_file "examples/plan1.mps";
 
     Writing problem data to `examples/plan1.mps'...
@@ -3313,15 +3972,21 @@
     63 records were written
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Read LP problem data from a CPLEX
-  file<label|read-lp-problem-data-from-a-cplex-file>>
+  file><label|read-lp-problem-data-from-a-cplex-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_lp lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3343,6 +4008,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_lp lp "examples/plan.lp";
 
     reading problem data from `examples/plan.lp'...
@@ -3352,15 +4019,21 @@
     39 lines were read
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write LP problem data into a CPLEX
-  file<label|write-lp-problem-data-into-a-cplex-file>>
+  file><label|write-lp-problem-data-into-a-cplex-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_lp lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3382,6 +4055,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_lp lp "examples/plan1.lp";
 
     writing problem data to `examples/plan1.lp'...
@@ -3389,15 +4064,21 @@
     29 lines were written
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Read LP problem data in GLPK
-  format<label|read-lp-problem-data-in-glpk-format>>
+  format><label|read-lp-problem-data-in-glpk-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_prob lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3419,6 +4100,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_prob lp "examples/plan.glpk";
 
     reading problem data from `examples/plan.glpk'...
@@ -3428,15 +4111,21 @@
     86 lines were read
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write LP problem data in GLPK
-  format<label|write-lp-problem-data-in-glpk-format>>
+  format><label|write-lp-problem-data-in-glpk-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_prob lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3458,6 +4147,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_prob lp "examples/plan1.glpk";
 
     writing problem data to `examples/plan1.glpk'...
@@ -3465,17 +4156,23 @@
     86 lines were written
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Routines for MathProg models<label|routines-for-mathprog-models>>
+  <paragraph|Routines for MathProg models><label|routines-for-mathprog-models>
 
   <paragraph|Create the MathProg translator
-  object<label|create-the-mathprog-translator-object>>
+  object><label|create-the-mathprog-translator-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_alloc_wksp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3493,28 +4190,35 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let mpt = glp::mpl_alloc_wksp;
 
     \<gtr\> mpt;
 
     #\<less\>pointer 0xa0d0180\<gtr\>
+
+    \;
   </verbatim>
 
-  <paragraph|Read and translate model section<label|read-and-translate-model-section>>
+  <paragraph|Read and translate model section><label|read-and-translate-model-section>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_read_model tranobject filename skip
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tranobject: pointer to the MathProg translator object filename: file
-    name skip: if <with|font-series|bold|0> then the data section from the
-    model file is read; if non-zero, the data section in the data model is
-    skipped
+    tranobject: pointer to the MathProg translator object filename: file name
+    skip: if <with|font-series|bold|0> then the data section from the model
+    file is read; if non-zero, the data section in the data model is skipped
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -3527,6 +4231,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> mpl_read_model mpt "examples/sudoku.mod" 1;
 
     Reading model section from examples/sudoku.mod...
@@ -3536,21 +4242,26 @@
     69 lines were read
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Read and translate data section<label|read-and-translate-data-section>>
+  <paragraph|Read and translate data section><label|read-and-translate-data-section>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_read_data tranobject filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tranobject: pointer to the MathProg translator object filename: file
-    name
+    tranobject: pointer to the MathProg translator object filename: file name
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -3563,6 +4274,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mpl_read_data mpt "examples/sudoku.dat";
 
     Reading data section from examples/sudoku.dat...
@@ -3570,21 +4283,26 @@
     16 lines were read
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Generate the model<label|generate-the-model>>
+  <paragraph|Generate the model><label|generate-the-model>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_generate tranobject filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tranobject: pointer to the MathProg translator object filename: file
-    name
+    tranobject: pointer to the MathProg translator object filename: file name
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -3597,6 +4315,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mpl_generate mpt "examples/sudoku.lst";
 
     Generating fa...
@@ -3612,22 +4332,28 @@
     Model has been successfully generated
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Build problem instance from the
-  model<label|build-problem-instance-from-the-model>>
+  model><label|build-problem-instance-from-the-model>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_build_prob tranobject lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tranobject: pointer to the MathProg translator object lp: pointer to
-    the LP problem object
+    tranobject: pointer to the MathProg translator object lp: pointer to the
+    LP problem object
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -3639,17 +4365,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mpl_build_prob mpt lp;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Postsolve the model<label|postsolve-the-model>>
+  <paragraph|Postsolve the model><label|postsolve-the-model>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_postsolve tran lp solution
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3675,20 +4409,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mpl_postsolve mpt lp glp::sol;
 
     Model has been successfully processed
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Delete the MathProg translator
-  object<label|delete-the-mathprog-translator-object>>
+  object><label|delete-the-mathprog-translator-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mpl_free_wksp tranobject
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3706,21 +4448,29 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mpl_free_wksp mpt;
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Problem solution reading/writing
-  routines<label|problem-solution-reading-writing-routines>>
+  routines><label|problem-solution-reading-writing-routines>
 
   <paragraph|Write basic solution in printable
-  format<label|write-basic-solution-in-printable-format>>
+  format><label|write-basic-solution-in-printable-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::print_sol lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3739,20 +4489,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::print_sol lp "examples/test.txt";
 
     Writing basic solution to `examples/test.txt'...
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Read basic solution from a text
-  file<label|read-basic-solution-from-a-text-file>>
+  file><label|read-basic-solution-from-a-text-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_sol lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3771,6 +4529,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_sol lp "examples/test.txt";
 
     Reading basic solution from `examples/test.txt'...
@@ -3778,15 +4538,21 @@
     1235 lines were read
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write basic solution into a text
-  file<label|write-basic-solution-into-a-text-file>>
+  file><label|write-basic-solution-into-a-text-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_sol lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3805,6 +4571,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_sol lp "examples/test.txt";
 
     Writing basic solution to `examples/test.txt'...
@@ -3812,14 +4580,20 @@
     1235 lines were written
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Print sensitivity analysis report<label|print-sensitivity-analysis-report>>
+  <paragraph|Print sensitivity analysis report><label|print-sensitivity-analysis-report>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::print_ranges lp indices filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3843,20 +4617,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::print_ranges lp [] "sensitivity.rpt";
 
     Write sensitivity analysis report to `sensitivity.rpt'...
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write interior-point solution in printable
-  format<label|write-interior-point-solution-in-printable-format>>
+  format><label|write-interior-point-solution-in-printable-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::print_ipt lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3875,20 +4657,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::print_ipt lp "examples/test.txt";
 
     Writing interior-point solution to `examples/test.txt'...
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Read interior-point solution from a text
-  file<label|read-interior-point-solution-from-a-text-file>>
+  file><label|read-interior-point-solution-from-a-text-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_ipt lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3907,6 +4697,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_ipt lp "examples/test.txt";
 
     Reading interior-point solution from `examples/test.txt'...
@@ -3914,15 +4706,21 @@
     1235 lines were read
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write interior-point solution into a text
-  file<label|write-interior-point-solution-into-a-text-file>>
+  file><label|write-interior-point-solution-into-a-text-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_ipt lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3941,6 +4739,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_ipt lp "examples/test.txt";
 
     Writing interior-point solution to `examples/test.txt'...
@@ -3948,15 +4748,21 @@
     1235 lines were written
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write MIP solution in printable
-  format<label|write-mip-solution-in-printable-format>>
+  format><label|write-mip-solution-in-printable-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::print_mip lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -3975,20 +4781,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::print_mip lp "examples/test.txt";
 
     Writing MIP solution to `examples/test.txt'...
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Read MIP solution from a text
-  file<label|read-mip-solution-from-a-text-file>>
+  file><label|read-mip-solution-from-a-text-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_mip lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4007,6 +4821,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_mip lp "examples/test.txt";
 
     Reading MIP solution from `examples/test.txt'...
@@ -4014,15 +4830,21 @@
     1235 lines were read
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write MIP solution into a text
-  file<label|write-mip-solution-into-a-text-file>>
+  file><label|write-mip-solution-into-a-text-file>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_mip lp filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4041,6 +4863,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_mip lp "examples/test.txt";
 
     Writing MIP solution to `examples/test.txt'...
@@ -4048,19 +4872,25 @@
     1235 lines were written
 
     0
+
+    \;
   </verbatim>
 
-  <subsubsection|Advanced API routines<label|advanced-api-routines>>
+  <subsubsection|Advanced API routines><label|advanced-api-routines>
 
-  <paragraph|LP basis routines<label|lp-basis-routines>>
+  <paragraph|LP basis routines><label|lp-basis-routines>
 
   <paragraph|Check whether basis factorization
-  exists<label|check-whether-basis-factorization-exists>>
+  exists><label|check-whether-basis-factorization-exists>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::bf_exists lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4072,24 +4902,32 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    non-zero: the basis factorization exists and can be used for
-    calculations 0: the basis factorization does not exist
+    non-zero: the basis factorization exists and can be used for calculations
+    0: the basis factorization does not exist
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::bf:exists lp;
 
     1
+
+    \;
   </verbatim>
 
-  <paragraph|Compute the basis factorization<label|compute-the-basis-factorization>>
+  <paragraph|Compute the basis factorization><label|compute-the-basis-factorization>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::factorize lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4114,18 +4952,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::factorize lp;
 
     glp::ok
+
+    \;
   </verbatim>
 
   <paragraph|Check whether basis factorization has been
-  updated<label|check-whether-basis-factorization-has-been-updated>>
+  updated><label|check-whether-basis-factorization-has-been-updated>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::bf_updated lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4144,17 +4990,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::bf_updated lp;
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Get basis factorization parameters<label|get-basis-factorization-parameters>>
+  <paragraph|Get basis factorization parameters><label|get-basis-factorization-parameters>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_bfcp lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4217,6 +5071,8 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_bfcp lp;
 
     [(glp::fact_type,glp::bf_ft),(glp::lu_size,0),(glp::piv_tol,0.1),
@@ -4226,14 +5082,20 @@
     (glp::max_gro,10000000000.0),(glp::nfs_max,50),(glp::upd_tol,1e-06),
 
     (glp::nrs_max,50),(glp::rs_size,0)]
+
+    \;
   </verbatim>
 
-  <paragraph|Change basis factorization parameters<label|change-basis-factorization-parameters>>
+  <paragraph|Change basis factorization parameters><label|change-basis-factorization-parameters>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_bfcp lp options
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4312,18 +5174,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp_set_bfcp lp [(glp::fact_type, glp::bf_ft), (glp::piv_tol,
     0.15)];
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Retrieve the basis header information<label|retrieve-the-basis-header-information>>
+  <paragraph|Retrieve the basis header information><label|retrieve-the-basis-header-information>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_bhead lp k
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4346,18 +5216,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_bhead lp 3;
 
     5
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve row index in the basis
-  header<label|retrieve-row-index-in-the-basis-header>>
+  header><label|retrieve-row-index-in-the-basis-header>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_row_bind lp rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4380,18 +5258,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_row_bind lp 3;
 
     1
+
+    \;
   </verbatim>
 
   <paragraph|Retrieve column index in the basis
-  header<label|retrieve-column-index-in-the-basis-header>>
+  header><label|retrieve-column-index-in-the-basis-header>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::get_col_bind lp colindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4415,25 +5301,33 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::get_col_bind lp 2;
 
     3
+
+    \;
   </verbatim>
 
-  <paragraph|Perform forward transformation<label|perform-forward-transformation>>
+  <paragraph|Perform forward transformation><label|perform-forward-transformation>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ftran lp vector
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object vector: vector to be transformed -
-    a dense vector in a form of a list of double numbers has to be supplied
-    and the number of its members must exactly correspond to the number of LP
+    lp: pointer to the LP problem object vector: vector to be transformed - a
+    dense vector in a form of a list of double numbers has to be supplied and
+    the number of its members must exactly correspond to the number of LP
     problem constraints
   </quote-env>
 
@@ -4446,25 +5340,33 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ftran lp [1.5, 3.2, 4.8];
 
     [1.8,0.466666666666667,-1.96666666666667]
+
+    \;
   </verbatim>
 
-  <paragraph|Perform backward transformation<label|perform-backward-transformation>>
+  <paragraph|Perform backward transformation><label|perform-backward-transformation>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::btran lp vector
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object vector: vector to be transformed -
-    a dense vector in a form of a list of double numbers has to be supplied
-    and the number of its members must exactly correspond to the number of LP
+    lp: pointer to the LP problem object vector: vector to be transformed - a
+    dense vector in a form of a list of double numbers has to be supplied and
+    the number of its members must exactly correspond to the number of LP
     problem constraints
   </quote-env>
 
@@ -4477,17 +5379,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::btran lp [1.5, 3.2, 4.8];
 
     [-8.86666666666667,0.266666666666667,1.5]
+
+    \;
   </verbatim>
 
-  <paragraph|Warm up LP basis<label|warm-up-lp-basis>>
+  <paragraph|Warm up LP basis><label|warm-up-lp-basis>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::warm_up lp
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4511,19 +5421,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::warm_up lp;
 
     glp::e_ok
+
+    \;
   </verbatim>
 
-  <paragraph|Simplex tableau routines<label|simplex-tableau-routines>>
+  <paragraph|Simplex tableau routines><label|simplex-tableau-routines>
 
-  <paragraph|Compute row of the tableau<label|compute-row-of-the-tableau>>
+  <paragraph|Compute row of the tableau><label|compute-row-of-the-tableau>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::eval_tab_row lp k
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4541,24 +5459,32 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    simplex tableau row in a sparse form as a list of tuples (index,
-    value), where index has the same meaning as k in parameters
+    simplex tableau row in a sparse form as a list of tuples (index, value),
+    where index has the same meaning as k in parameters
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::eval_tab_row lp 3;
 
     [(1,2.0),(6,4.0)]
+
+    \;
   </verbatim>
 
-  <paragraph|Compute column of the tableau<label|compute-column-of-the-tableau>>
+  <paragraph|Compute column of the tableau><label|compute-column-of-the-tableau>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::eval_tab_col lp k
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4583,18 +5509,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::eval_tab_col lp 1;
 
     [(3,2.0),(4,-0.666666666666667),(5,1.66666666666667)]
+
+    \;
   </verbatim>
 
   <paragraph|Transform explicitly specified
-  row<label|transform-explicitly-specified-row>>
+  row><label|transform-explicitly-specified-row>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::transform_row lp rowvector
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4612,25 +5546,33 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    the transformed row in a sparse form as a list of tuples (index,
-    value), where index has the same meaning as k in parameters
+    the transformed row in a sparse form as a list of tuples (index, value),
+    where index has the same meaning as k in parameters
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::transform_row lp [(1, 3.0), (2, 3.5)];
 
     [(1,3.83333333333333),(2,-0.0833333333333333),(6,-3.41666666666667)]
+
+    \;
   </verbatim>
 
   <paragraph|Transform explicitly specified
-  column<label|transform-explicitly-specified-column>>
+  column><label|transform-explicitly-specified-column>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::transform_col lp colvector
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4655,24 +5597,32 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::transform_col lp [(2, 1.0), (3, 2.3)];
 
     [(3,2.3),(4,-0.166666666666667),(5,0.166666666666667)]
+
+    \;
   </verbatim>
 
-  <paragraph|Perform primal ratio test<label|perform-primal-ratio-test>>
+  <paragraph|Perform primal ratio test><label|perform-primal-ratio-test>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::prim_rtest lp colvector dir eps
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object colvector: simplex tableau column
-    in a sparse form as a list of tuples (k, value): if 1 <math|\<leq\>> k
+    lp: pointer to the LP problem object colvector: simplex tableau column in
+    a sparse form as a list of tuples (k, value): if 1 <math|\<leq\>> k
     <math|\<leq\>> m, the basic variable is k-th auxiliary variable, and if m
     + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the basic variable is (k -
     m)-th structural variable, where m is the number of rows and n is the
@@ -4686,8 +5636,8 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    The routine returns the index, piv, in the colvector corresponding to
-    the pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If the
+    The routine returns the index, piv, in the colvector corresponding to the
+    pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If the
     adjacent basic solution is primal unbounded, and therefore the choice
     cannot be made, the routine returns zero.
   </quote-env>
@@ -4695,24 +5645,32 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::prim_rtest lp [(3, 2.5), (5, 7.0)] 1 1.0e-5;
 
     3
+
+    \;
   </verbatim>
 
-  <paragraph|Perform dual ratio test<label|perform-dual-ratio-test>>
+  <paragraph|Perform dual ratio test><label|perform-dual-ratio-test>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::dual_rtest lp rowvector dir eps
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    lp: pointer to the LP problem object rowvector: simplex tableau row in
-    a sparse form as a list of tuples (k, value): if 1 <math|\<leq\>> k
+    lp: pointer to the LP problem object rowvector: simplex tableau row in a
+    sparse form as a list of tuples (k, value): if 1 <math|\<leq\>> k
     <math|\<leq\>> m, the non-basic variable is k-th auxiliary variable, and
     if m + 1 <math|\<leq\>> k <math|\<leq\>> m + n, the non-basic variable is
     (k - m)-th structural variable, where m is the number of rows and n is
@@ -4726,8 +5684,8 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    The routine returns the index, piv, in the rowvector corresponding to
-    the pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If the
+    The routine returns the index, piv, in the rowvector corresponding to the
+    pivot element chosen, 1 <math|\<leq\>> piv <math|\<leq\>> len. If the
     adjacent basic solution is dual unbounded, and therefore the choice
     cannot be made, the routine returns zero.
   </quote-env>
@@ -4735,18 +5693,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::dual_rtest lp [(1, 1.5), (6, 4.0)] 1 1.0e-5;
 
     6
+
+    \;
   </verbatim>
 
   <paragraph|Analyze active bound of non-basic
-  variable<label|analyze-active-bound-of-non-basic-variable>>
+  variable><label|analyze-active-bound-of-non-basic-variable>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::analyze_bound lp k
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4782,18 +5748,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> analyze_bound lp 2;
 
     1995.06864446899,12,2014.03478832467,4
+
+    \;
   </verbatim>
 
   <paragraph|Analyze objective coefficient at basic
-  variable<label|analyze-objective-coefficient-at-basic-variable>>
+  variable><label|analyze-objective-coefficient-at-basic-variable>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::analyze_coef lp k
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4845,27 +5819,35 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> analyze_coef lp 1;
 
     -1.0,3,306.771624713959,1.79769313486232e+308,0,296.216606498195
+
+    \;
   </verbatim>
 
-  <subsubsection|Branch-and-cut API routines<label|branch-and-cut-api-routines>>
+  <subsubsection|Branch-and-cut API routines><label|branch-and-cut-api-routines>
 
   <\quote-env>
     All branch-and-cut API routines are supposed to be called from the
     callback routine. They cannot be called directly.
   </quote-env>
 
-  <paragraph|Basic routines<label|basic-routines>>
+  <paragraph|Basic routines><label|basic-routines>
 
   <paragraph|Determine reason for calling the callback
-  routine<label|determine-reason-for-calling-the-callback-routine>>
+  routine><label|determine-reason-for-calling-the-callback-routine>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_reason tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4889,15 +5871,23 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     glp::ios:reason tree;
+
+    \;
   </verbatim>
 
-  <paragraph|Access the problem object<label|access-the-problem-object>>
+  <paragraph|Access the problem object><label|access-the-problem-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_get_prob tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4916,15 +5906,23 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     glp::ios_get_prob tree;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine additional row attributes<label|determine-additional-row-attributes>>
+  <paragraph|Determine additional row attributes><label|determine-additional-row-attributes>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_row_attr tree rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4956,15 +5954,23 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     glp::ios_row_attr tree 3;
+
+    \;
   </verbatim>
 
-  <paragraph|Compute relative MIP gap<label|compute-relative-mip-gap>>
+  <paragraph|Compute relative MIP gap><label|compute-relative-mip-gap>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_mip_gap tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -4982,15 +5988,23 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_mip_gap tree;
+
+    \;
   </verbatim>
 
-  <paragraph|Access application-specific data<label|access-application-specific-data>>
+  <paragraph|Access application-specific data><label|access-application-specific-data>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_node_data tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5011,23 +6025,31 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_node_data tree 23;
+
+    \;
   </verbatim>
 
   <paragraph|Select subproblem to continue the
-  search<label|select-subproblem-to-continue-the-search>>
+  search><label|select-subproblem-to-continue-the-search>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_select_node tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree node: reference number
-    of the subproblem from which the search will continue
+    tree: pointer to the branch-and-cut search tree node: reference number of
+    the subproblem from which the search will continue
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5039,26 +6061,34 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_select_node tree 23;
+
+    \;
   </verbatim>
 
-  <paragraph|Provide solution found by heuristic<label|provide-solution-found-by-heuristic>>
+  <paragraph|Provide solution found by heuristic><label|provide-solution-found-by-heuristic>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_heur_sol tree colvector
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree colvector: solution
-    found by a primal heuristic. Primal values of all variables (columns)
-    found by the heuristic should be placed in the list, i. e. the list must
-    contain n numbers where n is the number of columns in the original
-    problem object. Note that the routine does not check primal feasibility
-    of the solution provided.
+    tree: pointer to the branch-and-cut search tree colvector: solution found
+    by a primal heuristic. Primal values of all variables (columns) found by
+    the heuristic should be placed in the list, i. e. the list must contain n
+    numbers where n is the number of columns in the original problem object.
+    Note that the routine does not check primal feasibility of the solution
+    provided.
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5072,16 +6102,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_heur_sol tree [15.7, (-3.1), 2.2];
+
+    \;
   </verbatim>
 
   <paragraph|Check whether can branch upon specified
-  variable<label|check-whether-can-branch-upon-specified-variable>>
+  variable><label|check-whether-can-branch-upon-specified-variable>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_can_branch tree j
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5094,22 +6132,30 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    The function returns non-zero if j-th variable can be used for
-    branching. Otherwise, it returns zero.
+    The function returns non-zero if j-th variable can be used for branching.
+    Otherwise, it returns zero.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_can_branch tree 23;
+
+    \;
   </verbatim>
 
-  <paragraph|Choose variable to branch upon<label|choose-variable-to-branch-upon>>
+  <paragraph|Choose variable to branch upon><label|choose-variable-to-branch-upon>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_branch_upon tree j selection
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5134,15 +6180,23 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_branch_upon tree 23 glp::up_brnch;
+
+    \;
   </verbatim>
 
-  <paragraph|Terminate the solution process<label|terminate-the-solution-process>>
+  <paragraph|Terminate the solution process><label|terminate-the-solution-process>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_terminate tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5160,17 +6214,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_terminate tree;
+
+    \;
   </verbatim>
 
-  <paragraph|The search tree exploring routines<label|the-search-tree-exploring-routines>>
+  <paragraph|The search tree exploring routines><label|the-search-tree-exploring-routines>
 
-  <paragraph|Determine the search tree size<label|determine-the-search-tree-size>>
+  <paragraph|Determine the search tree size><label|determine-the-search-tree-size>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_tree_size tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5193,15 +6255,23 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_tree_size tree;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine current active subproblem<label|determine-current-active-subproblem>>
+  <paragraph|Determine current active subproblem><label|determine-current-active-subproblem>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_curr_node tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5221,22 +6291,30 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_curr_node tree;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine next active subproblem<label|determine-next-active-subproblem>>
+  <paragraph|Determine next active subproblem><label|determine-next-active-subproblem>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_next_node tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree node: reference number
-    of an active subproblem or zero
+    tree: pointer to the branch-and-cut search tree node: reference number of
+    an active subproblem or zero
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5255,22 +6333,30 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_next_node tree 23;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine previous active subproblem<label|determine-previous-active-subproblem>>
+  <paragraph|Determine previous active subproblem><label|determine-previous-active-subproblem>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_prev_node tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree node: reference number
-    of an active subproblem or zero
+    tree: pointer to the branch-and-cut search tree node: reference number of
+    an active subproblem or zero
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5289,51 +6375,66 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_prev_node tree 23;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine parent active subproblem<label|determine-parent-active-subproblem>>
+  <paragraph|Determine parent active subproblem><label|determine-parent-active-subproblem>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_up_node tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree node: reference number
-    of an active or inactive subproblem
+    tree: pointer to the branch-and-cut search tree node: reference number of
+    an active or inactive subproblem
   </quote-env>
 
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    The routine returns the reference number of its parent subproblem. If
-    the specified subproblem is the root of the tree, the routine returns
-    zero.
+    The routine returns the reference number of its parent subproblem. If the
+    specified subproblem is the root of the tree, the routine returns zero.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_up_node tree 23;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine subproblem level<label|determine-subproblem-level>>
+  <paragraph|Determine subproblem level><label|determine-subproblem-level>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_node_level tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree node: reference number
-    of an active or inactive subproblem
+    tree: pointer to the branch-and-cut search tree node: reference number of
+    an active or inactive subproblem
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5346,22 +6447,30 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_node_level tree 23;
+
+    \;
   </verbatim>
 
-  <paragraph|Determine subproblem local bound<label|determine-subproblem-local-bound>>
+  <paragraph|Determine subproblem local bound><label|determine-subproblem-local-bound>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_node_bound tree node
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree node: reference number
-    of an active or inactive subproblem
+    tree: pointer to the branch-and-cut search tree node: reference number of
+    an active or inactive subproblem
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5373,16 +6482,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_node_bound tree 23;
+
+    \;
   </verbatim>
 
   <paragraph|Find active subproblem with the best local
-  bound<label|find-active-subproblem-with-the-best-local-bound>>
+  bound><label|find-active-subproblem-with-the-best-local-bound>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_best_node tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5394,27 +6511,34 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    The routine returns the reference number of the active subproblem,
-    whose local bound is best (i.e. smallest in case of minimization or
-    largest in case of maximization). If the tree is empty, the routine
-    returns zero.
+    The routine returns the reference number of the active subproblem, whose
+    local bound is best (i.e. smallest in case of minimization or largest in
+    case of maximization). If the tree is empty, the routine returns zero.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_best_node tree;
+
+    \;
   </verbatim>
 
-  <paragraph|The cut pool routines<label|the-cut-pool-routines>>
+  <paragraph|The cut pool routines><label|the-cut-pool-routines>
 
   <paragraph|Determine current size of the cut
-  pool<label|determine-current-size-of-the-cut-pool>>
+  pool><label|determine-current-size-of-the-cut-pool>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_pool_size tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5426,22 +6550,30 @@
   <with|font-series|bold|Returns>:
 
   <\quote-env>
-    The routine returns the current size of the cut pool, that is, the
-    number of cutting plane constraints currently added to it.
+    The routine returns the current size of the cut pool, that is, the number
+    of cutting plane constraints currently added to it.
   </quote-env>
 
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_pool_size tree;
+
+    \;
   </verbatim>
 
-  <paragraph|Add constraint to the cut pool<label|add-constraint-to-the-cut-pool>>
+  <paragraph|Add constraint to the cut pool><label|add-constraint-to-the-cut-pool>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_add_row tree (name, klass, flags, row, rowtype, rhs)
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5477,26 +6609,34 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_add_row tree ("new_constraint", 101, 0,
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ [(3, 15.0), (4, 6.7),
     (8, 1.25)], glp::up, 152.7);
+
+    \;
   </verbatim>
 
   <paragraph|Remove constraint from the cut
-  pool<label|remove-constraint-from-the-cut-pool>>
+  pool><label|remove-constraint-from-the-cut-pool>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_del_row tree rowindex
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    tree: pointer to the branch-and-cut search tree rowindex: index of row
-    to be deleted from the cut pool
+    tree: pointer to the branch-and-cut search tree rowindex: index of row to
+    be deleted from the cut pool
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5517,16 +6657,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_del_row tree 5;
+
+    \;
   </verbatim>
 
   <paragraph|Remove all constraints from the cut
-  pool<label|remove-all-constraints-from-the-cut-pool>>
+  pool><label|remove-all-constraints-from-the-cut-pool>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::ios_clear_pool tree
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5544,19 +6692,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::ios_clear_pool tree;
+
+    \;
   </verbatim>
 
-  <subsubsection|Graph and network API routines<label|graph-and-network-api-routines>>
+  <subsubsection|Graph and network API routines><label|graph-and-network-api-routines>
 
-  <paragraph|Basic graph routines<label|basic-graph-routines>>
+  <paragraph|Basic graph routines><label|basic-graph-routines>
 
-  <paragraph|Create the GLPK graph object<label|create-the-glpk-graph-object>>
+  <paragraph|Create the GLPK graph object><label|create-the-glpk-graph-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::create_graph v_size a_size
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5576,26 +6732,34 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let g = glp::create_graph 32 64;
 
     \<gtr\> g;
 
     #\<less\>pointer 0x9de7168\<gtr\>
+
+    \;
   </verbatim>
 
-  <paragraph|Set the graph name<label|set-the-graph-name>>
+  <paragraph|Set the graph name><label|set-the-graph-name>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::set_graph_name graph name
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    graph: pointer to the graph object name: the graph name, an empty
-    string erases the current name
+    graph: pointer to the graph object name: the graph name, an empty string
+    erases the current name
   </quote-env>
 
   <with|font-series|bold|Returns>:
@@ -5607,17 +6771,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::set_graph_name graph "MyGraph";
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Add vertices to a graph<label|add-vertices-to-a-graph>>
+  <paragraph|Add vertices to a graph><label|add-vertices-to-a-graph>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::add_vertices graph count
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5636,17 +6808,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::add_vertices graph 5;
 
     18
+
+    \;
   </verbatim>
 
-  <paragraph|Add arc to a graph<label|add-arc-to-a-graph>>
+  <paragraph|Add arc to a graph><label|add-arc-to-a-graph>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::add_arc graph i j
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5665,25 +6845,33 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::add_arc graph 7 12;
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Erase content of the GLPK graph
-  object<label|erase-content-of-the-glpk-graph-object>>
+  object><label|erase-content-of-the-glpk-graph-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::erase_graph graph v_size a_size
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    graph: pointer to the graph object v_size: size of vertex data blocks,
-    in bytes, 0 <math|\<leq\>> v size <math|\<leq\>> 256 a_size: size of arc
+    graph: pointer to the graph object v_size: size of vertex data blocks, in
+    bytes, 0 <math|\<leq\>> v size <math|\<leq\>> 256 a_size: size of arc
     data blocks, in bytes, 0 <math|\<leq\>> a size <math|\<leq\>> 256.
   </quote-env>
 
@@ -5703,17 +6891,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::erase_graph graph 16 34;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Delete the GLPK graph object<label|delete-the-glpk-graph-object>>
+  <paragraph|Delete the GLPK graph object><label|delete-the-glpk-graph-object>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::delete_graph graph
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5739,17 +6935,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::delete_graph graph
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Read graph in a plain text format<label|read-graph-in-a-plain-text-format>>
+  <paragraph|Read graph in a plain text format><label|read-graph-in-a-plain-text-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_graph graph filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5768,17 +6972,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_graph graph "graph_data.txt";
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Write graph in a plain text format<label|write-graph-in-a-plain-text-format>>
+  <paragraph|Write graph in a plain text format><label|write-graph-in-a-plain-text-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_graph graph filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5797,27 +7009,35 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_graph graph "graph_data.txt";
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Graph analysis routines<label|graph-analysis-routines>>
+  <paragraph|Graph analysis routines><label|graph-analysis-routines>
 
   <paragraph|Find all weakly connected components of a
-  graph<label|find-all-weakly-connected-components-of-a-graph>>
+  graph><label|find-all-weakly-connected-components-of-a-graph>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::weak_comp graph v_num
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    graph: pointer to the graph object v_num: offset of the field of type
-    int in the vertex data block, to which the routine stores the number of a
+    graph: pointer to the graph object v_num: offset of the field of type int
+    in the vertex data block, to which the routine stores the number of a
     weakly connected component containing that vertex - if v_num \<less\> 0,
     no component numbers are stored
   </quote-env>
@@ -5831,25 +7051,33 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::weak_comp graph 16;
 
     3
+
+    \;
   </verbatim>
 
   <paragraph|Find all strongly connected components of a
-  graph<label|find-all-strongly-connected-components-of-a-graph>>
+  graph><label|find-all-strongly-connected-components-of-a-graph>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::strong_comp graph v_num
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
 
   <\quote-env>
-    graph: pointer to the graph object v_num: offset of the field of type
-    int in the vertex data block, to which the routine stores the number of a
+    graph: pointer to the graph object v_num: offset of the field of type int
+    in the vertex data block, to which the routine stores the number of a
     strongly connected component containing that vertex - if v_num \<less\>
     0, no component numbers are stored
   </quote-env>
@@ -5861,20 +7089,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::strong_comp graph 16;
 
     4
+
+    \;
   </verbatim>
 
-  <paragraph|Minimum cost flow problem<label|minimum-cost-flow-problem>>
+  <paragraph|Minimum cost flow problem><label|minimum-cost-flow-problem>
 
   <paragraph|Read minimum cost flow problem data in DIMACS
-  format<label|read-minimum-cost-flow-problem-data-in-dimacs-format>>
+  format><label|read-minimum-cost-flow-problem-data-in-dimacs-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_mincost graph v_rhs a_low a_cap a_cost filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5906,18 +7142,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::read_mincost graph 0 8 16 24 "graphdata.txt";
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Write minimum cost flow problem data in DIMACS
-  format<label|write-minimum-cost-flow-problem-data-in-dimacs-format>>
+  format><label|write-minimum-cost-flow-problem-data-in-dimacs-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_mincost graph v_rhs a_low a_cap a_cost fname
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -5949,18 +7193,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::write_mincost graph 0 8 16 24 "graphdata.txt";
 
     0
+
+    \;
   </verbatim>
 
   <paragraph|Convert minimum cost flow problem to
-  LP<label|convert-minimum-cost-flow-problem-to-lp>>
+  LP><label|convert-minimum-cost-flow-problem-to-lp>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mincost_lp lp graph names v_rhs a_low a_cap a_cost
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6001,18 +7253,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mincost_lp lp graph glp::on 0 8 16 24;
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Solve minimum cost flow problem with out-of-kilter
-  algorithm<label|solve-minimum-cost-flow-problem-with-out-of-kilter-algorithm>>
+  algorithm><label|solve-minimum-cost-flow-problem-with-out-of-kilter-algorithm>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mincost_okalg graph v_rhs a_low a_cap a_cost a_x v_pi
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6066,17 +7326,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mincost_okalg graph 0 8 16 24 32 40;
 
     (glp::ok, 15)
+
+    \;
   </verbatim>
 
-  <paragraph|Klingman's network problem generator<label|klingman-s-network-problem-generator>>
+  <paragraph|Klingman's network problem generator><label|klingman-s-network-problem-generator>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::netgen graph v_rhs a_cap a_cost parameters
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6123,20 +7391,28 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::netgen graph 0 8 16 (12345678, 87654321, 20, 12, 8,
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 25, 5, 20, 300,
     6, 5, 15, 100, 1, 30);
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Grid-like network problem generator<label|grid-like-network-problem-generator>>
+  <paragraph|Grid-like network problem generator><label|grid-like-network-problem-generator>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::gridgen graph v_rhs a_cap a_cost parameters
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6209,21 +7485,29 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::gridgen graph 0 8 16 (1, 123, 20, 4, 7, 5, 3, 300, 1, 1, 5,
     1, 5, 30);
 
     0
+
+    \;
   </verbatim>
 
-  <paragraph|Maximum flow problem<label|maximum-flow-problem>>
+  <paragraph|Maximum flow problem><label|maximum-flow-problem>
 
   <paragraph|Read maximum cost flow problem data in DIMACS
-  format<label|read-maximum-cost-flow-problem-data-in-dimacs-format>>
+  format><label|read-maximum-cost-flow-problem-data-in-dimacs-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::read_maxflow graph a_cap filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6237,16 +7521,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\>
+
+    \;
   </verbatim>
 
   <paragraph|Write maximum cost flow problem data in DIMACS
-  format<label|write-maximum-cost-flow-problem-data-in-dimacs-format>>
+  format><label|write-maximum-cost-flow-problem-data-in-dimacs-format>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::write_maxflow graph s t a_cap filename
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6260,16 +7552,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\>
+
+    \;
   </verbatim>
 
   <paragraph|Convert maximum flow problem to
-  LP<label|convert-maximum-flow-problem-to-lp>>
+  LP><label|convert-maximum-flow-problem-to-lp>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::maxflow_lp lp graph names s t a_cap
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6283,16 +7583,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\>
+
+    \;
   </verbatim>
 
   <paragraph|Solve maximum flow problem with Ford-Fulkerson
-  algorithm<label|solve-maximum-flow-problem-with-ford-fulkerson-algorithm>>
+  algorithm><label|solve-maximum-flow-problem-with-ford-fulkerson-algorithm>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::maxflow_ffalg graph s t a_cap a_x v_cut
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6306,16 +7614,24 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\>
+
+    \;
   </verbatim>
 
   <paragraph|Goldfarb's maximum flow problem
-  generator<label|goldfarb-s-maximum-flow-problem-generator>>
+  generator><label|goldfarb-s-maximum-flow-problem-generator>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::rmfgen graph a_cap parameters
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6329,19 +7645,27 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\>
+
+    \;
   </verbatim>
 
-  <subsubsection|Miscellaneous routines<label|miscellaneous-routines>>
+  <subsubsection|Miscellaneous routines><label|miscellaneous-routines>
 
-  <paragraph|Library environment routines<label|library-environment-routines>>
+  <paragraph|Library environment routines><label|library-environment-routines>
 
-  <paragraph|Determine library version<label|determine-library-version>>
+  <paragraph|Determine library version><label|determine-library-version>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     `glp::version
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6359,17 +7683,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::version;
 
     "4.38"
+
+    \;
   </verbatim>
 
-  <paragraph|Enable/disable terminal output<label|enable-disable-terminal-output>>
+  <paragraph|Enable/disable terminal output><label|enable-disable-terminal-output>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::term_out switch
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6390,18 +7722,26 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::term_out glp:off;
 
     ()
+
+    \;
   </verbatim>
 
   <paragraph|Enable/disable the terminal hook
-  routine<label|enable-disable-the-terminal-hook-routine>>
+  routine><label|enable-disable-the-terminal-hook-routine>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::term_hook switch info
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6423,17 +7763,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::term_hook glp::on NULL;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Get memory usage information<label|get-memory-usage-information>>
+  <paragraph|Get memory usage information><label|get-memory-usage-information>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mem_usage
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6467,17 +7815,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mem_usage;
 
     7,84,10172L,45304L
+
+    \;
   </verbatim>
 
-  <paragraph|Set memory usage limit<label|set-memory-usage-limit>>
+  <paragraph|Set memory usage limit><label|set-memory-usage-limit>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::mem_limit limit
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6495,17 +7851,25 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp::mem_limit 200;
 
     ()
+
+    \;
   </verbatim>
 
-  <paragraph|Free GLPK library environment<label|free-glpk-library-environment>>
+  <paragraph|Free GLPK library environment><label|free-glpk-library-environment>
 
   <with|font-series|bold|Synopsis>:
 
   <\verbatim>
+    \;
+
     glp::free_env
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Parameters>:
@@ -6523,12 +7887,16 @@
   <with|font-series|bold|Example>:
 
   <\verbatim>
+    \;
+
     \<gtr\> glp_free_env;
 
     ()
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-glpk-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-glpk-toc>
 
   <\itemize>
     <item><hlink|Pure-GLPK - GLPK interface for the Pure programming
@@ -7175,6 +8543,6 @@
   <hlink|previous|gnumeric-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

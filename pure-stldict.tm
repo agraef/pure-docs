@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-sockets.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-stldict<label|module-stldict>>
+  <section*|pure-stldict><label|module-stldict><label|module-hashdict><label|module-orddict><label|module-stldict>
 
-  <label|module-hashdict><label|module-orddict>Version 0.8, October 28, 2014
+  Version 0.8, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -24,9 +24,9 @@
   standard library documentation|http://en.cppreference.com/w/cpp> for
   details. They were originally based on the <hlink|Standard Template
   Library|http://www.sgi.com/tech/stl/>, so they are also sometimes referred
-  to as ``STL containers''; hence the name of this package.
+  to as \PSTL containers\Q; hence the name of this package.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2011 by Albert Graef.
 
@@ -43,7 +43,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.8.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-stldict-0.8.tar.gz>.
 
@@ -63,13 +63,17 @@
   compilation options. Pre C++0x library versions surely require considerably
   more work, especially in the hashdict module.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   After installation, you can use the operations of this package by placing
   the following import declaration in your Pure programs:
 
   <\verbatim>
+    \;
+
     using stldict;
+
+    \;
   </verbatim>
 
   This imports the whole shebang. If you only need either the hashed or the
@@ -77,16 +81,24 @@
   separately, i.e.:
 
   <\verbatim>
+    \;
+
     using hashdict;
+
+    \;
   </verbatim>
 
   or:
 
   <\verbatim>
+    \;
+
     using orddict;
+
+    \;
   </verbatim>
 
-  <subsection|Types<label|types>>
+  <subsection|Types><label|types>
 
   In Pure land, the C++ <verbatim|map> and <verbatim|unordered_map>
   containers and their <verbatim|multimap> variants are made available as a
@@ -114,7 +126,7 @@
   Note that <hlink|<with|font-family|tt|hashdict>|#hashdict/type> and
   <hlink|<with|font-family|tt|hashmdict>|#hashmdict/type> differ in that the
   former has exactly one key-value association for each key in the
-  dictionary, while the latter is a ``multidict'' which allows multiple
+  dictionary, while the latter is a \Pmultidict\Q which allows multiple
   values to be associated with a key. The same applies to the
   <hlink|<with|font-family|tt|orddict>|#orddict/type> and
   <hlink|<with|font-family|tt|ordmdict>|#ordmdict/type> types.
@@ -167,7 +179,7 @@
   it is possible to take copies of the containers in situations where it's
   necessary to preserve value semantics.)
 
-  <subsection|Operations<label|operations>>
+  <subsection|Operations><label|operations>
 
   All types of dictionaries are simply pointers to the corresponding C++
   containers which hold key-value associations where both keys and values may
@@ -236,7 +248,7 @@
     <verbatim|(x,y)> instead.
   </itemize>
 
-  <subsubsection|Basic Operations<label|basic-operations>>
+  <subsubsection|Basic Operations><label|basic-operations>
 
   <\description>
     <item*|hashdict xs<label|hashdict>>
@@ -411,13 +423,13 @@
     making <verbatim|m> an empty dictionary. Returns <verbatim|()>.
   </description>
 
-  <subsubsection|Comparisons<label|comparisons>>
+  <subsubsection|Comparisons><label|comparisons>
 
   The usual comparison predicates (<hlink|<with|font-family|tt|==>|purelib.tm#==>,
   <hlink|<with|font-family|tt|<math|\<sim\>>=>|purelib.tm#-tilde=>,
   <hlink|<with|font-family|tt|\<less\>=>|purelib.tm#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<> etc.) are defined on
-  all dictionary types, where two dictionaries are considered ``equal''
+  all dictionary types, where two dictionaries are considered \Pequal\Q
   (<verbatim|m1==m2>) if they both contain the same <verbatim|key=\>value>
   pairs, and <verbatim|m1\<=m2> means that <verbatim|m1> is a sub-dictionary
   of <verbatim|m2>, i.e., all <verbatim|key=\>value> pairs of <verbatim|m1>
@@ -433,7 +445,7 @@
   The module also defines syntactic equality on all dictionary types, so that
   two dictionaries of the same type are considered syntactically equal iff
   they contain the same (syntactically equal) members in the same order. This
-  is always guaranteed if two dictionaries are ``identical'' (the same C++
+  is always guaranteed if two dictionaries are \Pidentical\Q (the same C++
   pointer), but generally the member order will depend on how the dictionary
   was constructed. Thus if you need to check that two dictionaries contain
   the same members irrespective of the order in which the members are listed,
@@ -448,10 +460,14 @@
   following little helper function:
 
   <\verbatim>
+    \;
+
     same_dict x y = pointer_cast "void*" x === pointer_cast "void*" y;
+
+    \;
   </verbatim>
 
-  <subsubsection|Set-Like Operations<label|set-like-operations>>
+  <subsubsection|Set-Like Operations><label|set-like-operations>
 
   These operations work with mixed operand types, promoting less general
   types to more general ones (i.e., ordered to hashed, and single-valued to
@@ -473,7 +489,7 @@
     the members <em|not> in <verbatim|m2> from <verbatim|m1>.
   </description>
 
-  <subsubsection|List-Like Operations<label|list-like-operations>>
+  <subsubsection|List-Like Operations><label|list-like-operations>
 
   The following operations are all overloaded so that they work like their
   list counterparts, treating their dictionary argument as if it was the
@@ -509,7 +525,7 @@
   dictionaries can be used as generators in list and matrix comprehensions as
   usual (see below for some <hlink|examples|#examples>).
 
-  <subsubsection|Iterators<label|iterators>>
+  <subsubsection|Iterators><label|iterators>
 
   These operations give direct access to C++ iterators on dictionaries which
   let you query the elements and do basic manipulations of the container. The
@@ -625,7 +641,7 @@
     object.)
   </description>
 
-  <subsubsection|Low-Level Operations<label|low-level-operations>>
+  <subsubsection|Low-Level Operations><label|low-level-operations>
 
   The <hlink|<with|font-family|tt|hashdict>|#module-hashdict> module also
   provides a few specialized low-level operations dealing with the layouts of
@@ -638,7 +654,7 @@
   the <verbatim|hashdict.pure> module and the <hlink|C++ standard library
   documentation|http://en.cppreference.com/w/cpp> for further details.
 
-  <subsubsection|Pretty-Printing<label|pretty-printing>>
+  <subsubsection|Pretty-Printing><label|pretty-printing>
 
   By default, dictionaries are pretty-printed in the format
   <verbatim|somedict> <verbatim|xs>, where <verbatim|somedict> is the actual
@@ -666,6 +682,8 @@
   container in a format similar to Pure's list syntax. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> using stldict;
 
     \<gtr\> outfix {$ $};
@@ -677,18 +695,22 @@
     \<gtr\> orddict (1..5);
 
     {$1,2,3,4,5$}
+
+    \;
   </verbatim>
 
   See <verbatim|orddict_examp.pure> included in the distribution for a
   complete example which also discusses how to make such a custom print
   representation reparsable.
 
-  <subsection|Examples<label|examples>>
+  <subsection|Examples><label|examples>
 
   Some basic examples showing <hlink|<with|font-family|tt|hashdict>|#hashdict/type>
   in action:
 
   <\verbatim>
+    \;
+
     \<gtr\> using stldict;
 
     \<gtr\> let m = hashdict [foo=\<gtr\>99, bar=\<gtr\>bar 4711L,
@@ -715,11 +737,15 @@
     \<gtr\> member m foo, member m bar;
 
     1,1
+
+    \;
   </verbatim>
 
   Hashed multidicts (<hlink|<with|font-family|tt|hashmdict>|#hashmdict/type>):
 
   <\verbatim>
+    \;
+
     \<gtr\> let m = hashmdict [foo=\<gtr\>99,baz=\<gtr\>1..5,baz=\<gtr\>bar
     4711L]; m;
 
@@ -732,6 +758,8 @@
     \<gtr\> m!foo;
 
     [99]
+
+    \;
   </verbatim>
 
   The following example illustrates how to employ ordered dictionaries
@@ -739,6 +767,8 @@
   structure:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m1 = orddict [5,1,3,11,3];
 
     \<gtr\> let m2 = orddict (3..6);
@@ -768,12 +798,16 @@
     \<gtr\> m1 \<less\> m1+m2, m2 \<less\> m1+m2;
 
     1,1
+
+    \;
   </verbatim>
 
   Of course, the same works with ordered multidicts
   (<hlink|<with|font-family|tt|ordmdict>|#ordmdict/type>):
 
   <\verbatim>
+    \;
+
     \<gtr\> let m1 = ordmdict [5,1,3,11,3];
 
     \<gtr\> let m2 = ordmdict (3..6);
@@ -803,6 +837,8 @@
     \<gtr\> m1 \<less\> m1+m2, m2 \<less\> m1+m2;
 
     1,1
+
+    \;
   </verbatim>
 
   In fact, the binary operations (comparisons as well as the set operations
@@ -810,6 +846,8 @@
   dictionary operands:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m1 = hashdict (1..5);
 
     \<gtr\> let m2 = ordmdict (3..7);
@@ -817,6 +855,8 @@
     \<gtr\> m1+m2;
 
     hashmdict [1,2,3,3,4,4,5,5,6,7]
+
+    \;
   </verbatim>
 
   Note that the operands are always promoted to the more general operand
@@ -825,6 +865,8 @@
   desired conversions explicitly:
 
   <\verbatim>
+    \;
+
     \<gtr\> m1+orddict m2;
 
     hashdict [1,2,3,4,5,6,7]
@@ -832,21 +874,29 @@
     \<gtr\> orddict m1+m2;
 
     ordmdict [1,2,3,3,4,4,5,5,6,7]
+
+    \;
   </verbatim>
 
-  Also note that the ``set'' operations not only work with proper sets, but
+  Also note that the \Pset\Q operations not only work with proper sets, but
   also with general dictionaries:
 
   <\verbatim>
+    \;
+
     \<gtr\> hashdict [i=\<gtr\>i+1\|i=1..4]+hashdict [i=\<gtr\>i-1\|i=3..5];
 
     hashdict [1=\<gtr\>2,2=\<gtr\>3,3=\<gtr\>2,4=\<gtr\>3,5=\<gtr\>4]
+
+    \;
   </verbatim>
 
   All dictionary containers can be used as generators in list and matrix
   comprehensions:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m = hashmdict [foo=\<gtr\>99,baz=\<gtr\>1..5,baz=\<gtr\>bar
     4711L];
 
@@ -857,6 +907,8 @@
     \<gtr\> {{x;y} \| x=\<gtr\>y = m};
 
     {foo,baz,baz;99,[1,2,3,4,5],bar 4711L}
+
+    \;
   </verbatim>
 
   Note that in the current implementation this always computes the full
@@ -868,6 +920,8 @@
   usage and execution speed might be worth considering. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m = hashdict [foo i =\<gtr\> i \| i = 1..10000];
 
     \<gtr\> stream m;
@@ -899,9 +953,11 @@
     925
 
     0.15s, 10979 cells
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stldict-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-stldict-toc>
 
   <\itemize>
     <item><hlink|pure-stldict|#>
@@ -950,6 +1006,6 @@
   <hlink|previous|pure-sockets.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-stlmap.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-stlvec<label|module-stlvec>>
+  <section*|pure-stlvec><label|module-stlvec><label|module-stlvec::algorithms><label|module-stlvec>
 
-  <label|module-stlvec::algorithms>Version 0.4, October 28, 2014
+  Version 0.4, July 07, 2016
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -18,7 +18,7 @@
   Pure expressions, and the C++ Standard Template Library algorithms that act
   on them.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2011 by Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>.
 
@@ -31,27 +31,27 @@
   pure-stlvec is distributed under a BSD-style license, see the COPYING file
   for details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
-  pure-stlvec-0.4 is included in the ``umbrella'' addon,
+  pure-stlvec-0.4 is included in the \Pumbrella\Q addon,
   <hlink|<em|pure-stllib>|pure-stllib.tm>, which is available at
   <hlink|https://bitbucket.org/purelang/pure-lang/downloads|https://bitbucket.org/purelang/pure-lang/downloads>.
   After you have downloaded and installed
   <hlink|<em|pure-stllib>|pure-stllib.tm>, you will be able to use
   pure-stlvec (and <hlink|<em|pure-stlmap>|pure-stlmap.tm>, as well).
 
-  <subsection|Overview<label|overview>>
+  <subsection|Overview><label|overview>
 
-  The C++ Standard Template Library (``STL'') is a library of generic
+  The C++ Standard Template Library (\PSTL\Q) is a library of generic
   containers (data structures designed for storing other objects) and a rich
   set of generic algorithms that operate on them. pure-stlvec provides an
-  interface to one of its most useful containers, ``vector'', adopted to hold
+  interface to one of its most useful containers, \Pvector\Q, adopted to hold
   pointers to Pure expressions. The interface provides Pure programmers with
-  a mutable container ``stlvec'', that, like the STL's vector, holds a
+  a mutable container \Pstlvec\Q, that, like the STL's vector, holds a
   sequence of objects that can be accessed in constant time according to
   their position in the sequence.
 
-  <subsubsection|Modules<label|modules>>
+  <subsubsection|Modules><label|modules>
 
   The usual operations for creating, accessing and modifying stlvecs are
   provided by the stlvec module. Most of the operations are similar in name
@@ -69,18 +69,20 @@
   that found at http://www.cplusplus.com/reference/algorithm/. This web page
   contains a table that summarizes of all of the algorithms in one place.
 
-  pure-stlvec provides an ``umbrella'' module,
+  pure-stlvec provides an \Pumbrella\Q module,
   <hlink|<with|font-family|tt|stlvec::algorithms>|#module-stlvec::algorithms>,
   that pulls in all of the STL algorithm interface modules in one go. The STL
   algorithm wrapper functions reside in the stl namespace and have the same
   names as their counterparts in the STL.
 
-  <subsubsection|Simple Examples<label|simple-examples>>
+  <subsubsection|Simple Examples><label|simple-examples>
 
   Here are some examples that use the basic operations provided by the stlvec
   module.
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlvec;
 
     \;
@@ -180,11 +182,15 @@
     \<gtr\> {x+10 \| x = (sv1,2,6); x mod 2};
 
     {13,15}
+
+    \;
   </verbatim>
 
   Here are some examples that use STL algorithms.
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlvec::algorithms;
 
     \;
@@ -240,32 +246,34 @@
     -1
 
     [1,2,0,4,5,7,6,3]
+
+    \;
   </verbatim>
 
   Many more examples can be found in the pure-stlvec/ut directory.
 
   <subsubsection|Members and Sequences of
-  Members<label|members-and-sequences-of-members>>
+  Members><label|members-and-sequences-of-members>
 
   Throughout the documentation for pure-stlvec, the member of a stlvec that
   is at the nth position in the sequence of expressions stored in the stlvec
   is referred to as its nth member or nth element. The nth member of a
   stlvec, sv, is sometimes denoted by sv!n. The sequence of members of sv
   starting at position i up to but not including j is denoted by sv[i,j).
-  There is a ``past-the-end'' symbol, stl::svend, that denotes the position
+  There is a \Ppast-the-end\Q symbol, stl::svend, that denotes the position
   after that occupied by the last member contained by a stlvec.
 
-  For example, if sv contains the sequence ``a'', ``b'', ``c'' ``d'' and
-  ``e'', sv!0 is ``a'', sv[1,3) is the sequence consisting of ``b'' followed
-  by ``c'' and v[3,stl::svend) denotes the sequence consisting of ``d''
-  followed by ``e''.
+  For example, if sv contains the sequence \Pa\Q, \Pb\Q, \Pc\Q \Pd\Q and
+  \Pe\Q, sv!0 is \Pa\Q, sv[1,3) is the sequence consisting of \Pb\Q followed
+  by \Pc\Q and v[3,stl::svend) denotes the sequence consisting of \Pd\Q
+  followed by \Pe\Q.
 
-  <subsubsection|STL Iterators and Value Semantics<label|stl-iterators-and-value-semantics>>
+  <subsubsection|STL Iterators and Value Semantics><label|stl-iterators-and-value-semantics>
 
   In C++ a programmer accesses a STL container's elements by means of
-  ``iterators'', which can be thought of as pointers to the container's
+  \Piterators\Q, which can be thought of as pointers to the container's
   elements. A single iterator can be used to access a specific element, and a
-  pair of iterators can be used to access a ``range'' of elements. By
+  pair of iterators can be used to access a \Prange\Q of elements. By
   convention, such a range includes the member pointed to by the first
   iterator and all succeeding members up to but not including the member
   pointed to by the second iterator. Each container has a past-the-end
@@ -278,28 +286,28 @@
   stlvec's members in a way that makes it relatively easy to see how
   pure-stlvec's functions are acting on the stlvec's underlying STL vector by
   referencing the STL's documentation. Thus, if sv is a stlvec, and j is an
-  int, ``replace sv j x'' uses the STL to replace the element pointed to by
+  int, \Preplace sv j x\Q uses the STL to replace the element pointed to by
   the iterator for position j of sv's underlying STL vector. If, in addition,
   k is an int, stl::sort (sv,j,k) (\<less\>) uses the STL to sort the
-  elements in the range designated by the ``jth'' and ``kth'' iterators for
+  elements in the range designated by the \Pjth\Q and \Pkth\Q iterators for
   sv's underlying STL vector. This range, written as sv[j,k), is the
   subsequence of sv that begins with the element at position j and ends with
   the element at position (k-1).
 
-  Besides iterators, another cornerstone of the STL is its ``value
-  semantics'', i.e., all of the STL containers are mutable and if a container
+  Besides iterators, another cornerstone of the STL is its \Pvalue
+  semantics\Q, i.e., all of the STL containers are mutable and if a container
   is copied, all of its elements are copied. pure-stlvec deals with the STL's
   value semantics by introducing mutable and nonmutable stlvecs, and by
   storing smart pointers to objects (which have cheap copies) rather than the
   actual objects.
 
-  <subsubsection|Iterator Tuples<label|iterator-tuples>>
+  <subsubsection|Iterator Tuples><label|iterator-tuples>
 
   As mentioned in the previous section, in C++ ranges are specified by a pair
   of STL iterators.
 
-  In pure-stlvec ranges of elements in a stlvec are specified by ``iterator
-  tuples'' rather than, say, actual pointers to STL iterators. Iterator
+  In pure-stlvec ranges of elements in a stlvec are specified by \Piterator
+  tuples\Q rather than, say, actual pointers to STL iterators. Iterator
   tuples consist of the name of a stlvec followed by one of more ints that
   indicate positions (starting from zero) of the stlvec's elements.
 
@@ -308,8 +316,8 @@
   imposed by comp. Its C++ signature looks like this:
 
   <\quote-env>
-    void stable_sort ( RandomAccessIterator first, RandomAccessIterator
-    last, Compare comp )
+    void stable_sort ( RandomAccessIterator first, RandomAccessIterator last,
+    Compare comp )
   </quote-env>
 
   The corresponding pure-stlvec function, from the stlvec::sort module, looks
@@ -337,12 +345,11 @@
   It should be noted that often the STL library provides a default version of
   its functions, which like stable_sort, use a comparator or other callback
   function provided by the caller. E.g., the C++ stable_sort has a default
-  version that assumes the ``\<less\>'' operator can be used on the elements
+  version that assumes the \P\<less\>\Q operator can be used on the elements
   held by the container in question:
 
   <\quote-env>
-    void stable_sort ( RandomAccessIterator first, RandomAccessIterator
-    last)
+    void stable_sort ( RandomAccessIterator first, RandomAccessIterator last)
   </quote-env>
 
   The corresponding functions provided by the pure-stlvec modules rarely, if
@@ -359,7 +366,7 @@
   functions, but is consistent with the STL calling conventions.
 
   <subsubsection|Predefined Iterator Tuple
-  Indexes<label|predefined-iterator-tuple-indexes>>
+  Indexes><label|predefined-iterator-tuple-indexes>
 
   The following integer constants are defined in the stl namespace for use in
   iterator tuples.
@@ -377,9 +384,9 @@
   ranges that include the last element of an stlvec. I.e., the iterator tuple
   (sv,stl::svbeg,stl::svend) would specify sv[0,n), where n is the number of
   elements in sv. In order to understand the purpose of <verbatim|svback>, it
-  is necessary to understand a bit about STL's ``back insert iterators.''
+  is necessary to understand a bit about STL's \Pback insert iterators.\Q
 
-  <subsubsection|Back Insert Iterators<label|back-insert-iterators>>
+  <subsubsection|Back Insert Iterators><label|back-insert-iterators>
 
   Many of the STL algorithms insert members into a target range designated by
   an iterator that points to the first member of the target range. Consistent
@@ -387,6 +394,8 @@
   stlvec. E.g.,:
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlvec::modifying;
 
     \;
@@ -402,6 +411,8 @@
     \<gtr\> stl::copy v1 (v2,2) $$ members v2;
 
     ["a","b",0,1,2,"f","g"]
+
+    \;
   </verbatim>
 
   This is great for C++ programmers, but for Pure programmers it is almost
@@ -410,16 +421,20 @@
   using stl::svback. E.g.,:
 
   <\verbatim>
+    \;
+
     \<gtr\> stl::copy v1 (v2,stl::svback) $$ members v2;
 
     ["a","b",0,1,2,"f","g",0,1,2]
+
+    \;
   </verbatim>
 
-  In short, when a pure-stlvec function detects ``stl::svback'' in a target
-  iterator tuple, it constructs a STL ``back inserter iterator'' and passes
+  In short, when a pure-stlvec function detects \Pstl::svback\Q in a target
+  iterator tuple, it constructs a STL \Pback inserter iterator\Q and passes
   it on to the corresponding wrapped STL function.
 
-  <subsubsection|Data Structure<label|data-structure>>
+  <subsubsection|Data Structure><label|data-structure>
 
   Currently, stlvecs are of the form (STLVEC x) or (CONST_STLVEC x), where
   STLVEC AND CONST_STLVEC are defined as nonfix symbols in the global
@@ -436,6 +451,8 @@
   mutable.
 
   <\verbatim>
+    \;
+
     \<gtr\> let v = const_stlvec $ stlvec (0..3); v2;
 
     CONST_STLVEC #\<less\>pointer 0x8c1dbf0\<gtr\>
@@ -445,9 +462,11 @@
     \<gtr\> replace v 0 100; // fails
 
     replace (CONST_STLVEC #\<less\>pointer 0x9f07690\<gtr\> 0 100
+
+    \;
   </verbatim>
 
-  <subsubsection|Types<label|types>>
+  <subsubsection|Types><label|types>
 
   pure-stlvec introduces six type tags, all of which are in the global
   namespace:
@@ -482,7 +501,7 @@
     The underlying stlvec can be mutable or immutable.
   </description>
 
-  <subsubsection|Copy-On-Write Semantics<label|copy-on-write-semantics>>
+  <subsubsection|Copy-On-Write Semantics><label|copy-on-write-semantics>
 
   The pure-stlvec module functions do not implement automatic copy-on-write
   semantics. Functions that modify stlvec parameters will simply fail if they
@@ -494,15 +513,17 @@
   a mutable stlvec to an immutable stlvec without changing the underlying STL
   vector.
 
-  Typically, a ``pure'' function that ``modifies'' a stlvec passed to it as
+  Typically, a \Ppure\Q function that \Pmodifies\Q a stlvec passed to it as
   an argument will first copy the input stlvec to a new locally scoped
   (mutable) stlvec using the stlvec function. It will then modify the new
   stlvec and use const_stlvec to make the new stlvec immutable before it is
   returned. It should be noted that several of the STL algorithms have
-  ``copy'' versions which place their results directly into a new stlvec,
+  \Pcopy\Q versions which place their results directly into a new stlvec,
   which can eliminate the need to copy the input stlvec. E.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> let sv1 = stlvec ("a".."e");
 
     \;
@@ -514,6 +535,8 @@
     \<gtr\> stl::reverse_copy sv1 (sv2,stl::svback) $$ members sv2;
 
     ["e","d","c","b","a"]
+
+    \;
   </verbatim>
 
   Without reverse_copy, one would have had to copy sv1 into sv2 and then
@@ -523,12 +546,16 @@
   copy-on-write semantics. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> my_replace csv::const_stlvec i x = my_replace (stlvec csv) i x;
 
     \<gtr\> my_replace sv::stlvec i x = replace sv i x;
+
+    \;
   </verbatim>
 
-  <subsubsection|Documentation<label|documentation>>
+  <subsubsection|Documentation><label|documentation>
 
   The pure-stllib/doc directory includes a rudimentary cheatsheet,
   pure-stllib-cheatsheet.pdf, that shows the signatures of all of the
@@ -543,14 +570,14 @@
   provided by the STL, and the STL is extremely well documented. Furthermore,
   using the Pure interpreter, it is very easy to simply play around with with
   any of the pure-stlvec functions if there are doubts, especially with
-  respect to ``corner cases.'' Often this leads to a deeper understanding
+  respect to \Pcorner cases.\Q Often this leads to a deeper understanding
   compared to reading a precise technical description.
 
   A good book on the STL is STL Tutorial and Reference Guide, Second Edition,
   by David R. Musser, Gillmer J. Derge and Atul Saini. A summary of all of
   the STL algorithms can be found at <hlink|http://www.cplusplus.com/reference/stl/|http://www.cplusplus.com/reference/stl/>.
 
-  <subsubsection|Parameter Names<label|parameter-names>>
+  <subsubsection|Parameter Names><label|parameter-names>
 
   In the descriptions of functions that follow, parameter names used in
   function descriptions represent specific types of Pure objects:
@@ -572,7 +599,7 @@
     <item*|i,j>whole numbers used to designate indexes into a stlvec
 
     <item*|f,m,l>whole numbers (or stl::beg or stl::svend) designating the
-    ``first'', ``middle'' or ``last'' iterators in a stlvec iterator tuple
+    \Pfirst\Q, \Pmiddle\Q or \Plast\Q iterators in a stlvec iterator tuple
 
     <item*|p>a whole number (or other iterator constant such as stl::svend or
     stl::svback) used in a two element iterator tuple (e.g., (sv,p))
@@ -609,14 +636,14 @@
   </description>
 
   For readability, and to correspond with the STL documentation, the words
-  ``first'', ``middle'', and ``last'', or variants such as ``first1'' are
+  \Pfirst\Q, \Pmiddle\Q, and \Plast\Q, or variants such as \Pfirst1\Q are
   often used instead of f,m,l.
 
-  <subsection|Error Handling<label|error-handling>>
+  <subsection|Error Handling><label|error-handling>
 
   The functions provided this module handle errors by throwing exceptions.
 
-  <subsubsection|Exception Symbols<label|exception-symbols>>
+  <subsubsection|Exception Symbols><label|exception-symbols>
 
   <\description>
     <item*|<em|constructor> bad_argument<label|bad-argument/stlvec>>This
@@ -659,9 +686,11 @@
   pure-stlvec function will be caught and be rethrown by the pure-stlvec
   function.
 
-  <subsubsection|Examples<label|examples>>
+  <subsubsection|Examples><label|examples>
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlvec, stlvec::modifying;
 
     \;
@@ -726,10 +755,12 @@
     exception
 
     \<less\>stdin\<gtr\>, line 34: unhandled exception 'DOA' ...
+
+    \;
   </verbatim>
 
   <subsection|Operations Included in the stlvec
-  Module<label|operations-included-in-the-stlvec-module>>
+  Module><label|operations-included-in-the-stlvec-module>
 
   The stlvec module provides functions for creating, accessing and modifying
   stlvecs. In general, operations that have the same name as a corresponding
@@ -737,28 +768,32 @@
   remaining functions, which are usually specific to stlvecs, are in the stl
   namespace.
 
-  Please note that ``stlvec to stlvec'' functions are provided by the
+  Please note that \Pstlvec to stlvec\Q functions are provided by the
   pure-stl algorithm modules. Thus, for example, the stlvec module does not
   provide a function that maps one stlvec onto a new stlvec. That
   functionality, and more, is provided by stl::transform, which can be found
   in the stlvec::modifying module.
 
-  <subsubsection|Imports<label|imports>>
+  <subsubsection|Imports><label|imports>
 
   To use the operations of this module, add the following import declaration
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec;
+
+    \;
   </verbatim>
 
   <subsubsection|Operations in the Global
-  Namespace<label|operations-in-the-global-namespace>>
+  Namespace><label|operations-in-the-global-namespace>
 
   When reading the function descriptions that follow, please bear in mind
   that whenever a function is passed an iterator tuple of the form (sv,first,
   last), first and last can be dropped, leaving (sv), or simply sv. The
-  function will treat the ``unary'' iterator tuple (sv) as (sv, stl::svbeg,
+  function will treat the \Punary\Q iterator tuple (sv) as (sv, stl::svbeg,
   stl::svend).
 
   <\description>
@@ -925,7 +960,7 @@
     <item*|colcatmap unary_fun (sv, first, last)<label|colcatmap/stlvec>>
   </description>
 
-  <subsubsection|Operations in the stl Namespace<label|operations-in-the-stl-namespace>>
+  <subsubsection|Operations in the stl Namespace><label|operations-in-the-stl-namespace>
 
   <\description>
     <item*|stl::empty sv<label|stl::empty/stlvec>>test whether sv is empty
@@ -968,7 +1003,7 @@
   See ut_stlvec.pure and ut_global_stlvec.pure in the pure-stlvec/ut
   directory.
 
-  <subsection|STL Nonmodifying Algorithms<label|stl-nonmodifying-algorithms>>
+  <subsection|STL Nonmodifying Algorithms><label|stl-nonmodifying-algorithms>
 
   The stlvec::nonmodifying module provides an interface to the STL's
   non-modifying sequence operations.
@@ -979,12 +1014,16 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::nonmodifying;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
 
-  <subsubsection|Operations<label|operations>>
+  <subsubsection|Operations><label|operations>
 
   <\description>
     <item*|stl::for_each (sv, first, last)
@@ -1077,7 +1116,7 @@
 
   See ut_nonmodifying.pure in the pure-stlvec/ut directory.
 
-  <subsection|STL Modifying Algorithms<label|stl-modifying-algorithms>>
+  <subsection|STL Modifying Algorithms><label|stl-modifying-algorithms>
 
   The stlvec::modifying module provides an interface to the STL's modifying
   algorithms.
@@ -1088,7 +1127,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::modifying;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
@@ -1168,6 +1211,8 @@
     gen_fun (), e.g.,
 
     <\verbatim>
+      \;
+
       \<gtr\> let count = ref 0;
 
       \;
@@ -1183,6 +1228,8 @@
       \<gtr\> stl::generate sv g $$ members sv;
 
       [1,2,3,4,5,6,7,8,9,10]
+
+      \;
     </verbatim>
   </description>
 
@@ -1291,7 +1338,7 @@
 
   See ut_modifying.pure in the pure-stlvec/ut directory.
 
-  <subsection|STL Sort Algorithms<label|stl-sort-algorithms>>
+  <subsection|STL Sort Algorithms><label|stl-sort-algorithms>
 
   The stlvec::sort module provides an interface to the STL's sorting and
   binary search algorithms.
@@ -1302,7 +1349,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::sort;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
@@ -1385,7 +1436,7 @@
 
   See ut_sort.pure in the pure-stlvec/ut directory.
 
-  <subsection|STL Merge Algorithms<label|stl-merge-algorithms>>
+  <subsection|STL Merge Algorithms><label|stl-merge-algorithms>
 
   The stlvec::merge module provides an interface to the STL's merge
   algorithms. These algorithms operate on sorted ranges.
@@ -1396,7 +1447,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::merge;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
@@ -1471,7 +1526,7 @@
 
   See ut_merge.pure in the pure-stlvec/ut directory.
 
-  <subsection|STL Heap Algorithms<label|stl-heap-algorithms>>
+  <subsection|STL Heap Algorithms><label|stl-heap-algorithms>
 
   The stlvec::heap module provides an interface to the STL's heap operations.
 
@@ -1481,7 +1536,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::heap;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
@@ -1521,7 +1580,7 @@
 
   See ut_heap.pure in the pure-stlvec/ut directory.
 
-  <subsection|Min/Max STL Algorithms<label|min-max-stl-algorithms>>
+  <subsection|Min/Max STL Algorithms><label|min-max-stl-algorithms>
 
   The stlvec::minmax module provides an interface to a few additional STL
   algorithms.
@@ -1532,7 +1591,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::minmax;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
@@ -1585,7 +1648,7 @@
 
   See ut_minmax.pure in the pure-stlvec/ut directory.
 
-  <subsection|STL Numeric Algorithms<label|stl-numeric-algorithms>>
+  <subsection|STL Numeric Algorithms><label|stl-numeric-algorithms>
 
   The stlvec::numeric module provides an interface to the STL's numeric
   algorithms.
@@ -1596,7 +1659,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using stlvec::numeric;
+
+    \;
   </verbatim>
 
   All of the functions are in the stl namespace.
@@ -1638,7 +1705,7 @@
 
   See ut_numeric.pure in the pure-stlvec/ut directory.
 
-  <subsection|Reference Counting<label|reference-counting>>
+  <subsection|Reference Counting><label|reference-counting>
 
   The following function, also in the stl namespace, is available if you want
   to observe how pure-stlvec maintains reference counts for items in its
@@ -1649,16 +1716,16 @@
     count (maintained by the Pure runtime for garbage collection purposes)
   </description>
 
-  <subsection|Backward Compatibilty<label|backward-compatibilty>>
+  <subsection|Backward Compatibilty><label|backward-compatibilty>
 
   This section documents changes in pure-stlvec that might have introduced
   backward compatiblity issues.
 
-  <subsubsection|pure-stlvec-0.2<label|pure-stlvec-0-2>>
+  <subsubsection|pure-stlvec-0.2><label|pure-stlvec-0-2>
 
   Bug fixes.
 
-  <subsubsection|pure-stlvec-0.3<label|pure-stlvec-0-3>>
+  <subsubsection|pure-stlvec-0.3><label|pure-stlvec-0-3>
 
   Version 0.3 reflects some changes made to make <hlink|<em|pure-stlvec>|>
   consistent with its sister package, <hlink|<em|pure-stlmap>|pure-stlmap.tm>.
@@ -1670,13 +1737,13 @@
   The <hlink|<with|font-family|tt|replace>|#replace/stlvec> function was
   added to the stlvec module. This function is the same as
   <hlink|<with|font-family|tt|update>|#update/stlvec> except that
-  ``<hlink|<with|font-family|tt|replace>|#replace/stlvec> sv i x'' returns x
+  \P<hlink|<with|font-family|tt|replace>|#replace/stlvec> sv i x\Q returns x
   instead of sv.
 
   The <verbatim|stl::replace> function was removed from the stlvec/modifying
-  module. You can use ``<hlink|<with|font-family|tt|stl::replace_if>|#stl::replace-if/stlvec>
-  (sv,first,last) (x==) y'' instead of ``<verbatim|stl::replace>
-  (sv,first,last) x y'' to replace all instances of x in the specified range.
+  module. You can use \P<hlink|<with|font-family|tt|stl::replace_if>|#stl::replace-if/stlvec>
+  (sv,first,last) (x==) y\Q instead of \P<verbatim|stl::replace>
+  (sv,first,last) x y\Q to replace all instances of x in the specified range.
 
   The function <verbatim|null> was removed and
   <hlink|<with|font-family|tt|stl::empty>|#stl::empty/stlvec> was added to
@@ -1690,12 +1757,12 @@
 
   All of the tracing functions were removed.
 
-  <subsubsection|pure-stlvec-0.4<label|pure-stlvec-0-4>>
+  <subsubsection|pure-stlvec-0.4><label|pure-stlvec-0-4>
 
   Fixed (\<gtr\>) predicate operating on plain old data when passed to STL
   algorithms.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stlvec-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-stlvec-toc>
 
   <\itemize>
     <item><hlink|pure-stlvec|#>
@@ -1856,6 +1923,6 @@
   <hlink|previous|pure-stlmap.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

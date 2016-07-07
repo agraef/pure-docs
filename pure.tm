@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|The Pure Manual<label|the-pure-manual>>
+  <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.64, October 28, 2014
+  Version 0.64, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -35,15 +35,17 @@
     <item>Pure mailing list: <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
   </itemize>
 
-  <label|installation>Information about how to install Pure can be found in
-  the document <hlink|<em|Installing Pure (and LLVM)>|install.tm>.
+  <label|installation>
 
-  <subsection|Introduction<label|introduction>>
+  Information about how to install Pure can be found in the document
+  <hlink|<em|Installing Pure (and LLVM)>|install.tm>.
+
+  <subsection|Introduction><label|introduction>
 
   Pure is a functional programming language based on term rewriting. This
   means that all your programs are essentially just collections of symbolic
   equations which the interpreter uses to reduce expressions to their
-  simplest (``normal'') form. This makes for a rather powerful and flexible
+  simplest (\Pnormal\Q) form. This makes for a rather powerful and flexible
   programming model featuring dynamic typing and general polymorphism. In
   addition, Pure programs are compiled to efficient native code on the fly,
   using the <hlink|LLVM|#llvm> compiler framework, so programs are executed
@@ -60,18 +62,20 @@
   the Pure interpreter provides an interactive environment in which you can
   type definitions and expressions, which are executed as you type them at
   the interpreter's command prompt. However, despite its name the Pure
-  interpreter never really ``interprets'' any Pure code. Rather, it acts as a
+  interpreter never really \Pinterprets\Q any Pure code. Rather, it acts as a
   frontend to the <with|font-series|bold|Pure compiler>, which takes care of
   incrementally compiling Pure code to native (machine) code. This has the
   benefit that the compiled code runs much faster than the usual kinds of
-  ``bytecode'' that you find in traditional programming language
+  \Pbytecode\Q that you find in traditional programming language
   interpreters.
 
   You can use the interpreter interactively as a sophisticated kind of
-  ``desktop calculator'' program. Simply run the program from the shell as
+  \Pdesktop calculator\Q program. Simply run the program from the shell as
   follows:
 
   <\verbatim>
+    \;
+
     $ pure
 
     \;
@@ -93,13 +97,17 @@
     \;
 
     \<gtr\>
+
+    \;
   </verbatim>
 
-  The interpreter prints its sign-on message and leaves you at its ``\<gtr\>
-  '' command prompt, where you can start typing definitions and expressions
+  The interpreter prints its sign-on message and leaves you at its \P\<gtr\>
+  \Q command prompt, where you can start typing definitions and expressions
   to be evaluated:
 
   <\verbatim>
+    \;
+
     \<gtr\> 17/12+23;
 
     24.4166666666667
@@ -109,6 +117,8 @@
     \<gtr\> map fact (1..10);
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   Typing the <verbatim|quit> command or the end-of-file character
@@ -120,7 +130,7 @@
   fashion as shown above, you can also put the same code in an (ASCII or
   UTF-8) text file called a <with|font-series|bold|Pure program> or
   <with|font-series|bold|script> which can then be executed by the
-  interpreter in ``batch mode'', or compiled to a standalone executable which
+  interpreter in \Pbatch mode\Q, or compiled to a standalone executable which
   can be run directly from the command line. As an aid for writing script
   files, a bunch of syntax highlighting files and programming modes for
   various popular text editors are included in the Pure sources.
@@ -139,7 +149,7 @@
   manual concludes with some authorship and licensing information and
   pointers to related software.
 
-  <subsubsection|Further Reading<label|further-reading>>
+  <subsubsection|Further Reading><label|further-reading>
 
   This manual is not intended as a general introduction to functional
   programming, so at least some familiarity with this programming style is
@@ -160,36 +170,48 @@
   introduction to the theory of the term rewriting calculus and its
   applications is the book by <hlink|Baader and Nipkow|#baader-and-nipkow>.
 
-  <subsubsection|Typographical Conventions<label|typographical-conventions>>
+  <subsubsection|Typographical Conventions><label|typographical-conventions>
 
   Program examples are always set in typewriter font. Here's how a typical
   code sample may look like:
 
   <\verbatim>
+    \;
+
     fact n = if n\<gtr\>0 then n*fact(n-1) else 1;
+
+    \;
   </verbatim>
 
   These can either be saved to a file and then loaded into the interpreter,
   or you can also just type them directly in the interpreter. If some lines
-  start with the interpreter prompt ``\<gtr\> '', this indicates an example
+  start with the interpreter prompt \P\<gtr\> \Q, this indicates an example
   interaction with the interpreter. Everything following the prompt
-  (excluding the ``\<gtr\> '' itself) is meant to be typed exactly as
-  written. Lines lacking the ``\<gtr\> '' prefix show results printed by the
+  (excluding the \P\<gtr\> \Q itself) is meant to be typed exactly as
+  written. Lines lacking the \P\<gtr\> \Q prefix show results printed by the
   interpreter. Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n = if n\<gtr\>0 then n*fact(n-1) else 1;
 
     \<gtr\> map fact (1..10);
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
-  Similarly, lines starting with the ``$ '' prompt indicate shell
+  Similarly, lines starting with the \P$ \Q prompt indicate shell
   interactions. For instance,
 
   <\verbatim>
+    \;
+
     $ pure
+
+    \;
   </verbatim>
 
   indicates that you should type the command <verbatim|pure> on your system's
@@ -199,9 +221,13 @@
   (Backus-Naur form), which looks as follows:
 
   <\verbatim>
+    \;
+
     expression ::= \ "{" expr_list (";" expr_list)* [";"] "}"
 
     expr_list \ ::= \ expression (',' expression)*
+
+    \;
   </verbatim>
 
   Parentheses are used to group syntactical elements, while brackets denote
@@ -217,15 +243,19 @@
   whereas the latter deal with larger syntactical structures where whitespace
   between tokens is generally insignificant.
 
-  <subsection|Invoking Pure<label|invoking-pure>>
+  <subsection|Invoking Pure><label|invoking-pure>
 
   The Pure interpreter can be invoked from the shell in one of two different
   ways:
 
   <\verbatim>
+    \;
+
     pure [options ...] [-x] script [args ...]
 
     pure [options ...] [-b\|-c\|-i] [script ...] [-- args ...]
+
+    \;
   </verbatim>
 
   Use <verbatim|pure> <verbatim|-h> to get help about the command line
@@ -331,7 +361,7 @@
   features such as syntax highlighting, automatic indentation, online help
   and different ways to interact with the Pure interpreter.
 
-  <subsubsection|Options<label|options>>
+  <subsubsection|Options><label|options>
 
   The interpreter accepts various options which are described in more detail
   below.
@@ -451,8 +481,8 @@
 
   <\description>
     <item*|-T filename<label|cmdoption-pure-T>>Tags file to be written by
-    <hlink|<em|--ctags>|#cmdoption-pure--ctags> or
-    <hlink|<em|--etags>|#cmdoption-pure--etags>.
+    <hlink|<em|\Uctags>|#cmdoption-pure--ctags> or
+    <hlink|<em|\Uetags>|#cmdoption-pure--etags>.
   </description>
 
   <\description>
@@ -495,7 +525,7 @@
   <with|font-series|bold|Note:> Option parsing follows the usual (Unix)
   conventions, but is somewhat more rigid than the GNU getopt conventions. In
   particular, it is <em|not> possible to combine short options, and there are
-  no abbreviations for ``long'' options. Mixing options and other command
+  no abbreviations for \Plong\Q options. Mixing options and other command
   line parameters is generally possible, but note that all option processing
   stops right after <verbatim|-x> and <verbatim|--> (or the first non-option
   parameter in script mode), passing the remaining parameters to the
@@ -510,7 +540,7 @@
   in this case the argument, if present, <em|must> be written directly behind
   the option.
 
-  <subsubsection|Overview of Operation<label|overview-of-operation>>
+  <subsubsection|Overview of Operation><label|overview-of-operation>
 
   If any source scripts are specified on the command line, they are loaded
   and executed, after which the interpreter exits. Otherwise the interpreter
@@ -521,12 +551,12 @@
 
   Options and source files are processed in the order in which they are given
   on the command line. Processing of options and source files ends when
-  either the <hlink|<em|-->|#cmdoption-pure--> or the
+  either the <hlink|<em|\U>|#cmdoption-pure--> or the
   <hlink|<em|-x>|#cmdoption-pure-x> option is encountered, or after the first
   script (non-option) argument in <with|font-series|bold|script mode> (i.e.,
   if none of the options <hlink|<em|-b>|#cmdoption-pure-b>,
-  <hlink|<em|-i>|#cmdoption-pure-i>, <hlink|<em|--ctags>|#cmdoption-pure--ctags>
-  and <hlink|<em|--etags>|#cmdoption-pure--etags> is present). In either
+  <hlink|<em|-i>|#cmdoption-pure-i>, <hlink|<em|\Uctags>|#cmdoption-pure--ctags>
+  and <hlink|<em|\Uetags>|#cmdoption-pure--etags> is present). In either
   case, any remaining parameters are passed to the executing script by means
   of the global <hlink|<with|font-family|tt|argc>|#argc> and
   <hlink|<with|font-family|tt|argv>|#argv> variables, denoting the number of
@@ -534,11 +564,15 @@
   script mode this also includes the script name as <verbatim|argv!0>.
 
   Script mode is useful, in particular, to turn Pure scripts into executable
-  programs by including a ``shebang'' like the following as the first line in
+  programs by including a \Pshebang\Q like the following as the first line in
   your main script. (This trick only works with Unix shells, though.)
 
   <\verbatim>
+    \;
+
     #!/usr/local/bin/pure
+
+    \;
   </verbatim>
 
   The following variables are always predefined by the interpreter:
@@ -572,7 +606,7 @@
 
   If available, the prelude script prelude.pure is loaded by the interpreter
   prior to any other definitions, unless the
-  <hlink|<em|-n>|#cmdoption-pure-n> or <hlink|<em|--noprelude>|#cmdoption-pure--noprelude>
+  <hlink|<em|-n>|#cmdoption-pure-n> or <hlink|<em|\Unoprelude>|#cmdoption-pure--noprelude>
   option is specified. The prelude is searched for in the directory specified
   with the<label|index-0><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
   environment variable. If the<label|index-1><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>
@@ -587,24 +621,24 @@
   <hlink|Declarations|#declarations> and <hlink|C Interface|#c-interface>
   sections for details.
 
-  <subsubsection|Compiling Scripts<label|compiling-scripts>>
+  <subsubsection|Compiling Scripts><label|compiling-scripts>
 
   The interpreter compiles scripts, as well as definitions that you enter
   interactively, automatically. This is done in an incremental fashion, as
   the code is needed, and is therefore known as JIT
   (<with|font-series|bold|just in time>) compilation. Thus the interpreter
-  never really ``interprets'' the source program or some intermediate
+  never really \Pinterprets\Q the source program or some intermediate
   representation, it just acts as a frontend to the compiler, taking care of
   compiling source code to native machine code before it gets executed.
 
-  Pure's LLVM backend does ``lazy JIT compilation'' by default, meaning that
+  Pure's LLVM backend does \Plazy JIT compilation\Q by default, meaning that
   each function (global or local) is compiled no sooner than it is run for
-  the first time. With the <hlink|<em|--eager-jit>|#cmdoption-pure--eager-jit>
+  the first time. With the <hlink|<em|\Ueager-jit>|#cmdoption-pure--eager-jit>
   option, however, it will also compile all other (global or local) functions
   that may be called by the compiled function.
   (The<label|index-2><hlink|<with|font-family|tt|PURE_EAGER_JIT>|#envvar-PURE-EAGER-JIT>
   environment variable, when set to any value, has the same effect, so that
-  you do not have to specify the <hlink|<em|--eager-jit>|#cmdoption-pure--eager-jit>
+  you do not have to specify the <hlink|<em|\Ueager-jit>|#cmdoption-pure--eager-jit>
   option each time you run the interpreter.) Eager JIT compilation may be
   more efficient in some cases (since bigger chunks of compilation work can
   be done in one go) and less efficient in others (e.g., eager JITing may
@@ -679,19 +713,19 @@
   have to be linked in to create a working executable), to which you only
   have to add the options describing the desired output file.
 
-  <subsubsection|Tagging Scripts<label|tagging-scripts>>
+  <subsubsection|Tagging Scripts><label|tagging-scripts>
 
   Pure programs often have declarations and definitions of global symbols
   scattered out over many different source files. The
-  <hlink|<em|--ctags>|#cmdoption-pure--ctags> and
-  <hlink|<em|--etags>|#cmdoption-pure--etags> options let you create a
+  <hlink|<em|\Uctags>|#cmdoption-pure--ctags> and
+  <hlink|<em|\Uetags>|#cmdoption-pure--etags> options let you create a
   <hlink|tags|http://en.wikipedia.org/wiki/Ctags> file which allows you to
   quickly locate these items in text editors such as
   <with|font-series|bold|vi> and <with|font-series|bold|emacs> which support
   this feature.
 
-  If <hlink|<em|--ctags>|#cmdoption-pure--ctags> or
-  <hlink|<em|--etags>|#cmdoption-pure--etags> is specified, the interpreter
+  If <hlink|<em|\Uctags>|#cmdoption-pure--ctags> or
+  <hlink|<em|\Uetags>|#cmdoption-pure--etags> is specified, the interpreter
   enters a special variation of batch mode in which it only parses source
   files without executing them and collects information about the locations
   of global symbol declarations and definitions. The collected information is
@@ -699,8 +733,8 @@
   <with|font-series|bold|vi> and <with|font-series|bold|emacs>, respectively.
   The desired name of the tags file can be specified with the
   <hlink|<em|-T>|#cmdoption-pure-T> option; it defaults to tags for
-  <hlink|<em|--ctags>|#cmdoption-pure--ctags> and TAGS for
-  <hlink|<em|--etags>|#cmdoption-pure--etags> (which matches the default tags
+  <hlink|<em|\Uctags>|#cmdoption-pure--ctags> and TAGS for
+  <hlink|<em|\Uetags>|#cmdoption-pure--etags> (which matches the default tags
   file names used by <with|font-series|bold|vi> and
   <with|font-series|bold|emacs>, respectively).
 
@@ -715,7 +749,7 @@
   an entire directory together with its tags file and have the tags
   information still work in the new location.
 
-  <subsubsection|Running Interactively<label|running-interactively>>
+  <subsubsection|Running Interactively><label|running-interactively>
 
   If the interpreter runs in interactive mode, it repeatedly prompts you for
   input (which may be any legal Pure code or some special interpreter
@@ -728,7 +762,7 @@
 
   The interpreter may also source a few additional interactive startup files
   immediately before entering the interactive loop, unless the
-  <hlink|<em|--norc>|#cmdoption-pure--norc> option is specified. First
+  <hlink|<em|\Unorc>|#cmdoption-pure--norc> option is specified. First
   .purerc in the user's home directory is read, then .purerc in the current
   working directory. These are ordinary Pure scripts which can be used to
   provide additional definitions for interactive usage. Finally, a .pure file
@@ -736,7 +770,7 @@
   interactive session) is loaded if it is present.
 
   When the interpreter is in interactive mode and reads from a tty, unless
-  the <hlink|<em|--noediting>|#cmdoption-pure--noediting> option is
+  the <hlink|<em|\Unoediting>|#cmdoption-pure--noediting> option is
   specified, commands are usually read using <with|font-series|bold|readline>
   or some compatible replacement, providing completion for all commands
   listed under <hlink|Interactive Usage|#interactive-usage>, as well as for
@@ -751,7 +785,7 @@
   <em|much> slower, so you should only use this option if you want to run the
   debugger.
 
-  <subsubsection|Verbosity and Debugging Options<label|verbosity-and-debugging-options>>
+  <subsubsection|Verbosity and Debugging Options><label|verbosity-and-debugging-options>
 
   The <hlink|<em|-v>|#cmdoption-pure-v> option is useful for debugging the
   interpreter, or if you are interested in the code your program gets
@@ -772,7 +806,7 @@
     left-hand sides of equations (you probably want to see this only when
     working on the guts of the interpreter).
 
-    <item*|8 (0x8, 010)>dumps the ``real'' output code (LLVM assembler, which
+    <item*|8 (0x8, 010)>dumps the \Preal\Q output code (LLVM assembler, which
     is as close to the native machine code for your program as it gets; you
     definitely don't want to see this unless you have to inspect the
     generated code for bugs or performance issues).
@@ -805,13 +839,13 @@
   (see the <hlink|Interactive Usage|#interactive-usage> section) to list
   definitions along with additional debugging information.
 
-  <subsubsection|Compilation Options<label|compilation-options>>
+  <subsubsection|Compilation Options><label|compilation-options>
 
   Besides the options listed above, the interpreter also understands some
   additional command line switches and corresponding environment variables to
   control various compilation options.
 
-  <paragraph|Code Generation Options<label|code-generation-options>>
+  <paragraph|Code Generation Options><label|code-generation-options>
 
   These options take the form <verbatim|--opt> and <verbatim|--noopt>,
   respectively, where <verbatim|opt> denotes the option name (see below for a
@@ -836,7 +870,11 @@
   <verbatim|--nochecks> as an example):
 
   <\verbatim>
+    \;
+
     #! --nochecks // line-oriented comment may go here
+
+    \;
   </verbatim>
 
   Currently, the following code generation options are recognized:
@@ -853,7 +891,7 @@
     so we recommend to leave this enabled. However, these checks also make
     programs run a little slower (typically some 5%, YMMV). If performance is
     critical then you can disable the checks with the
-    <hlink|<em|--nochecks>|#cmdoption-pure--nochecks> option. (Even then, a
+    <hlink|<em|\Unochecks>|#cmdoption-pure--nochecks> option. (Even then, a
     minimal amount of checking will be done, usually on entry to every global
     function.)
   </description>
@@ -868,7 +906,7 @@
     definitions are precomputed at compile time (if possible) and then stored
     in the generated executable. This usually yields faster startup times but
     bigger executables. You can disable this option with
-    <hlink|<em|--noconst>|#cmdoption-pure--noconst> to get smaller
+    <hlink|<em|\Unoconst>|#cmdoption-pure--noconst> to get smaller
     executables at the expense of slower startup times. Please see the
     <hlink|Batch Compilation|#batch-compilation> section for an example.
   </description>
@@ -884,17 +922,23 @@
     when generating machine code.) For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> foo x = 2*3*x;
 
       \<gtr\> show foo
 
       foo x = 6*x;
+
+      \;
     </verbatim>
 
     Disabling constant folding in the frontend causes constant expressions to
     be shown as you entered them:
 
     <\verbatim>
+      \;
+
       \<gtr\> #! --nofold
 
       \<gtr\> bar x = 2*3*x;
@@ -902,6 +946,8 @@
       \<gtr\> show bar
 
       bar x = 2*3*x;
+
+      \;
     </verbatim>
 
     The same option also determines the handling of type aliases at compile
@@ -918,34 +964,42 @@
     Expression Evaluation|#definitions-and-expression-evaluation>. This means
     that it is <em|not> normally an error if there is no equation which
     applies to the given function application to be evaluated; rather, the
-    unevaluated function becomes a ``constructor symbol'' which is applied to
-    the provided arguments to form a literal (``normal form'') term which
+    unevaluated function becomes a \Pconstructor symbol\Q which is applied to
+    the provided arguments to form a literal (\Pnormal form\Q) term which
     stands for itself. E.g., here's what you get if you try to add an
     (undefined) symbol and a number:
 
     <\verbatim>
+      \;
+
       \<gtr\> a+1;
 
       a+1
+
+      \;
     </verbatim>
 
-    The <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> option changes
+    The <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> option changes
     this behaviour so that if a global function has <em|any> defining
     equations, then an attempt to invoke the function on a combination of
     arguments for which there is no applicable equation, raises an exception.
     So if the interpreter is invoked with
-    <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> then you'll see
+    <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> then you'll see
     this instead:
 
     <\verbatim>
+      \;
+
       \<gtr\> a+1;
 
       \<less\>stdin\<gtr\>, line 1: unhandled exception 'failed_match' while
       evaluating 'a+1'
+
+      \;
     </verbatim>
 
     This behaviour is more in line with traditional languages where it is an
-    error if a ``defined function'' cannot be evaluated in case of argument
+    error if a \Pdefined function\Q cannot be evaluated in case of argument
     mismatch. It makes it easier to spot argument mismatch errors which might
     well go unnoticed if a program is executed in Pure's default symbolic
     mode. However, it also makes it impossible to perform symbolic expression
@@ -955,13 +1009,13 @@
     Much of Pure's library and many programming examples assume Pure's
     default mode of symbolic evaluation, so that it is generally not
     advisable to run the interpreter with a global
-    <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> option, except
+    <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> option, except
     maybe for debugging purposes. More commonly
-    <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> is used as a pragma
+    <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> is used as a pragma
     in source code where it only applies to a specific collection of function
-    definitions. In addition, there's a <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-    pragma which enables you to mark individual functions as ``defined
-    functions'', see below.
+    definitions. In addition, there's a <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
+    pragma which enables you to mark individual functions as \Pdefined
+    functions\Q, see below.
   </description>
 
   <\description>
@@ -971,7 +1025,7 @@
     optimization (TCO). TCO is needed to make tail-recursive functions
     execute in constant stack space, so we recommend to leave this enabled.
     However, at the time of this writing LLVM's TCO support is still
-    bug-ridden on some platforms, so the <hlink|<em|--notc>|#cmdoption-pure--notc>
+    bug-ridden on some platforms, so the <hlink|<em|\Unotc>|#cmdoption-pure--notc>
     option allows you to disable it. (Note that TCO can also be disabled when
     compiling the Pure interpreter, in which case these options have no
     effect; see the <hlink|<em|installation instructions>|install.tm> for
@@ -979,12 +1033,12 @@
   </description>
 
   <with|font-series|bold|Note:> All of the options above also have a
-  corresponding ``option symbol'' so that they can be queried and set using
+  corresponding \Poption symbol\Q so that they can be queried and set using
   the facilities described under <hlink|Conditional
   Compilation|#conditional-compilation> below. (The symbol is just the name
   of the option, e.g., <verbatim|checks> for the
-  <hlink|<em|--checks>|#cmdoption-pure--checks>,
-  <hlink|<em|--nochecks>|#cmdoption-pure--nochecks> option and pragma.)
+  <hlink|<em|\Uchecks>|#cmdoption-pure--checks>,
+  <hlink|<em|\Unochecks>|#cmdoption-pure--nochecks> option and pragma.)
 
   Besides these, there are the following special pragmas affecting the
   evaluation of some global function or macro, which is specified in the
@@ -1007,7 +1061,7 @@
     when a function is compiled on the fly if it is run for the first time,
     which is particularly useful for functions which are to be run in
     realtime (typically in multimedia applications). Please note that, in
-    difference to the <em|--eager-jit> option, this feature is available for
+    difference to the <em|\Ueager-jit> option, this feature is available for
     all LLVM versions (it doesn't require LLVM 2.7 or later).
   </description>
 
@@ -1017,7 +1071,7 @@
     the given function symbol <verbatim|fun> should never be stripped from
     the program. This is useful, e.g., if a function is never called
     explicitly but only through <hlink|<with|font-family|tt|eval>|purelib.tm#eval>.
-    Adding a <hlink|<em|--required>|#cmdoption-pure-pragma--required> pragma
+    Adding a <hlink|<em|\Urequired>|#cmdoption-pure-pragma--required> pragma
     for the function then makes sure that the function is always linked into
     the program. Please see the <hlink|Batch Compilation|#batch-compilation>
     section for an example.
@@ -1028,40 +1082,48 @@
 
     <item*|--nodefined fun<label|cmdoption-pure-pragma--nodefined>>These
     pragmas change the behaviour of global functions defined in a Pure
-    program. The <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-    pragma marks the given function or operator symbol as a ``defined
-    function'' so that an exception is raised if the function is applied to a
+    program. The <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
+    pragma marks the given function or operator symbol as a \Pdefined
+    function\Q so that an exception is raised if the function is applied to a
     combination of arguments for which there is no applicable equation. This
-    works similarly to the <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic>
+    works similarly to the <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic>
     pragma (see above), but allows you to mark individual functions as
-    ``defined''. For instance:
+    \Pdefined\Q. For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> #! --defined +
 
       \<gtr\> a+1;
 
       \<less\>stdin\<gtr\>, line 2: unhandled exception 'failed_match' while
       evaluating 'a+1'
+
+      \;
     </verbatim>
 
-    The <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> status of a
+    The <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined> status of a
     function can be changed at any time (causing the function to be
     recompiled on the fly if necessary), and the
-    <hlink|<em|--nodefined>|#cmdoption-pure-pragma--nodefined> pragma
+    <hlink|<em|\Unodefined>|#cmdoption-pure-pragma--nodefined> pragma
     restores the default behaviour of returning a normal form upon failure:
 
     <\verbatim>
+      \;
+
       \<gtr\> #! --nodefined +
 
       \<gtr\> a+1;
 
       a+1
+
+      \;
     </verbatim>
 
     More information and examples for common uses of the
-    <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> and
-    <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> pragmas can be
+    <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined> and
+    <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> pragmas can be
     found under <hlink|Defined Functions|#defined-functions> in the
     <hlink|Caveats and Notes|#caveats-and-notes> section.
   </description>
@@ -1074,7 +1136,7 @@
     Special Expressions|#built-in-macros-and-special-expressions> section.
   </description>
 
-  <paragraph|Conditional Compilation<label|conditional-compilation>>
+  <paragraph|Conditional Compilation><label|conditional-compilation>
 
   As of version 0.49, Pure also provides a rudimentary facility for denoting
   optional and alternative code paths. This is supposed to cover the most
@@ -1089,8 +1151,8 @@
   compilation <with|font-series|bold|options>. By default, all options are
   <em|undefined> and <em|enabled>. An option becomes <em|defined> as soon as
   it is set explicitly, either with an environment variable or one of the
-  <hlink|<em|--enable>|#cmdoption-pure-pragma--enable> and
-  <hlink|<em|--disable>|#cmdoption-pure-pragma--disable> pragmas, see below.
+  <hlink|<em|\Uenable>|#cmdoption-pure-pragma--enable> and
+  <hlink|<em|\Udisable>|#cmdoption-pure-pragma--disable> pragmas, see below.
 
   You can define the value of an option by setting a corresponding
   environment variable <verbatim|PURE_OPTION_OPT>, where <verbatim|OPT> is
@@ -1135,10 +1197,10 @@
   <\description>
     <item*|--else<label|cmdoption-pure-pragma--else>>Begins an alternative
     code section which is included in the program if the corresponding
-    <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
-    <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef>,
-    <hlink|<em|--if>|#cmdoption-pure-pragma--if> or
-    <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> section was excluded,
+    <hlink|<em|\Uifdef>|#cmdoption-pure-pragma--ifdef>,
+    <hlink|<em|\Uifndef>|#cmdoption-pure-pragma--ifndef>,
+    <hlink|<em|\Uif>|#cmdoption-pure-pragma--if> or
+    <hlink|<em|\Uifnot>|#cmdoption-pure-pragma--ifnot> section was excluded,
     and vice versa.
   </description>
 
@@ -1148,35 +1210,39 @@
   </description>
 
   Conditional code sections may be nested to an arbitrary depth. Each
-  <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
-  <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef>,
-  <hlink|<em|--if>|#cmdoption-pure-pragma--if> or
-  <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> pragma must be followed
-  by a matching <hlink|<em|--endif>|#cmdoption-pure-pragma--endif>. The
-  <hlink|<em|--else>|#cmdoption-pure-pragma--else> section is optional; if
-  present, it applies to the most recent <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef>,
-  <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef>,
-  <hlink|<em|--if>|#cmdoption-pure-pragma--if> or
-  <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> section not terminated
-  by a matching <hlink|<em|--endif>|#cmdoption-pure-pragma--endif>. Unmatched
+  <hlink|<em|\Uifdef>|#cmdoption-pure-pragma--ifdef>,
+  <hlink|<em|\Uifndef>|#cmdoption-pure-pragma--ifndef>,
+  <hlink|<em|\Uif>|#cmdoption-pure-pragma--if> or
+  <hlink|<em|\Uifnot>|#cmdoption-pure-pragma--ifnot> pragma must be followed
+  by a matching <hlink|<em|\Uendif>|#cmdoption-pure-pragma--endif>. The
+  <hlink|<em|\Uelse>|#cmdoption-pure-pragma--else> section is optional; if
+  present, it applies to the most recent <hlink|<em|\Uifdef>|#cmdoption-pure-pragma--ifdef>,
+  <hlink|<em|\Uifndef>|#cmdoption-pure-pragma--ifndef>,
+  <hlink|<em|\Uif>|#cmdoption-pure-pragma--if> or
+  <hlink|<em|\Uifnot>|#cmdoption-pure-pragma--ifnot> section not terminated
+  by a matching <hlink|<em|\Uendif>|#cmdoption-pure-pragma--endif>. Unmatched
   conditional pragmas warrant an error message by the compiler.
 
   Conditional code is handled at the level of the lexical analyzer. Excluded
   code sections are treated like comments, i.e., the parser never gets to see
   them.
 
-  The <hlink|<em|--ifdef>|#cmdoption-pure-pragma--ifdef> and
-  <hlink|<em|--ifndef>|#cmdoption-pure-pragma--ifndef> pragmas are typically
+  The <hlink|<em|\Uifdef>|#cmdoption-pure-pragma--ifdef> and
+  <hlink|<em|\Uifndef>|#cmdoption-pure-pragma--ifndef> pragmas are typically
   used to change the default of an option without clobbering defaults set by
   the user through an environment variable or a command line option. For
   instance:
 
   <\verbatim>
+    \;
+
     #! --ifndef opt
 
     #! --disable opt
 
     #! --endif
+
+    \;
   </verbatim>
 
   Here's a (rather contrived) example which shows all these pragmas in
@@ -1185,6 +1251,8 @@
   indicated:
 
   <\verbatim>
+    \;
+
     // disable the 'bar' option
 
     #! --disable bar
@@ -1242,18 +1310,22 @@
     baz x = 2*x; // excluded
 
     #! --endif // not foo
+
+    \;
   </verbatim>
 
-  A few options are always predefined as ``builtins'' by the interpreter.
+  A few options are always predefined as \Pbuiltins\Q by the interpreter.
   This includes all of the options described under <hlink|Code Generation
   Options|#code-generation-options> and <hlink|Warning
   Options|#warning-options>, so that these can also be queried with
-  <hlink|<em|--if>|#cmdoption-pure-pragma--if>,
-  <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> and set with
-  <hlink|<em|--enable>|#cmdoption-pure-pragma--enable>,
-  <hlink|<em|--disable>|#cmdoption-pure-pragma--disable>. For instance:
+  <hlink|<em|\Uif>|#cmdoption-pure-pragma--if>,
+  <hlink|<em|\Uifnot>|#cmdoption-pure-pragma--ifnot> and set with
+  <hlink|<em|\Uenable>|#cmdoption-pure-pragma--enable>,
+  <hlink|<em|\Udisable>|#cmdoption-pure-pragma--disable>. For instance:
 
   <\verbatim>
+    \;
+
     #! --ifnot checks
 
     puts "This program uses deep recursion, so we enable stack checks here!";
@@ -1271,6 +1343,8 @@
     puts "I have only proved it correct, not tried it.";
 
     #! --endif // warn
+
+    \;
   </verbatim>
 
   Moreover, the following options are provided as additional builtins which
@@ -1289,10 +1363,12 @@
     (<hlink|<em|-i>|#cmdoption-pure-i>) and/or debugging
     (<hlink|<em|-g>|#cmdoption-pure-g>) mode, respectively. These options are
     read-only; they cannot be changed with
-    <hlink|<em|--enable>|#cmdoption-pure-pragma--enable>,
-    <hlink|<em|--disable>|#cmdoption-pure-pragma--disable>. Example:
+    <hlink|<em|\Uenable>|#cmdoption-pure-pragma--enable>,
+    <hlink|<em|\Udisable>|#cmdoption-pure-pragma--disable>. Example:
 
     <\verbatim>
+      \;
+
       #! --if interactive
 
       puts "Usage: run 'main filename'";
@@ -1302,6 +1378,8 @@
       main (argv!1);
 
       #! --endif
+
+      \;
     </verbatim>
 
     <item>The <verbatim|version-x.y> option indicates a check against the
@@ -1313,6 +1391,8 @@
     test to check for anything later or earlier than a given version:
 
     <\verbatim>
+      \;
+
       #! --if version-0.36+
 
       #! --if version-0.48-
@@ -1330,6 +1410,8 @@
       // code to be executed for Pure versions \<gtr\> 0.48
 
       #! --endif
+
+      \;
     </verbatim>
 
     <item>Last but not least, the interpreter always defines the target
@@ -1338,32 +1420,40 @@
     for a specific system like this:
 
     <\verbatim>
+      \;
+
       #! --if x86_64-unknown-linux-gnu
 
       // 64 bit Linux-specific code goes here
 
       #! --endif
+
+      \;
     </verbatim>
 
     It goes without saying that this method isn't very practical if you want
     to check for a wide range of systems. As a remedy, the
-    <hlink|<em|--if>|#cmdoption-pure-pragma--if> and
-    <hlink|<em|--ifnot>|#cmdoption-pure-pragma--ifnot> pragmas treat shell
+    <hlink|<em|\Uif>|#cmdoption-pure-pragma--if> and
+    <hlink|<em|\Uifnot>|#cmdoption-pure-pragma--ifnot> pragmas treat shell
     glob patterns in tests for option symbols in a special way, by matching
     the pattern against the host triplet to see whether the condition holds.
     This allows you to write a generic test, e.g., for Windows systems like
     this:
 
     <\verbatim>
+      \;
+
       #! --if *-mingw32
 
       // Windows-specific code goes here
 
       #! --endif
+
+      \;
     </verbatim>
   </itemize>
 
-  <paragraph|Warning Options<label|warning-options>>
+  <paragraph|Warning Options><label|warning-options>
 
   The <hlink|<em|-w>|#cmdoption-pure-w> option enables some additional
   warnings which are useful to check your scripts for possible errors. In
@@ -1393,19 +1483,23 @@
   code and reset it to the default afterwards:
 
   <\verbatim>
+    \;
+
     #! --warn
 
     // Code with warnings goes here.
 
     #! --rewarn
+
+    \;
   </verbatim>
 
   (The same could also be achieved with conditional compilation, but only
-  much more clumsily. However, note that <hlink|<em|--rewarn>|#cmdoption-pure-pragma--rewarn>
-  only provides a single level of ``backup'', so nesting such sections is not
+  much more clumsily. However, note that <hlink|<em|\Urewarn>|#cmdoption-pure-pragma--rewarn>
+  only provides a single level of \Pbackup\Q, so nesting such sections is not
   supported.)
 
-  <subsubsection|Startup Files<label|startup-files>>
+  <subsubsection|Startup Files><label|startup-files>
 
   The interpreter may source various files during its startup. These are:
 
@@ -1424,7 +1518,7 @@
     was specified.
   </description>
 
-  <subsubsection|Environment<label|environment>>
+  <subsubsection|Environment><label|environment>
 
   Various aspects of the interpreter can be configured through the following
   shell environment variables:
@@ -1454,14 +1548,14 @@
 
   <\description>
     <item*|PURE_EAGER_JIT<label|envvar-PURE-EAGER-JIT>>Enable eager JIT
-    compilation (same as <hlink|<em|--eager-jit>|#cmdoption-pure--eager-jit>),
+    compilation (same as <hlink|<em|\Ueager-jit>|#cmdoption-pure--eager-jit>),
     see <hlink|Compiling Scripts|#compiling-scripts> for details.
   </description>
 
   <\description>
     <item*|PURE_ESCAPE<label|envvar-PURE-ESCAPE>>If set, interactive commands
     are prefixed with the first character in the value of this variable (same
-    as <hlink|<em|--escape>|#cmdoption-pure--escape>), see <hlink|Interactive
+    as <hlink|<em|\Uescape>|#cmdoption-pure--escape>), see <hlink|Interactive
     Usage|#interactive-usage> for details.
   </description>
 
@@ -1490,7 +1584,7 @@
 
   <\description>
     <item*|PURE_PS<label|envvar-PURE-PS>>Command prompt used in the
-    interactive command loop (``\<gtr\> '' by default).
+    interactive command loop (\P\<gtr\> \Q by default).
   </description>
 
   <\description>
@@ -1508,7 +1602,7 @@
   invoke different LLVM compilers on inline code (see <hlink|Inline
   Code|#inline-code>).
 
-  <subsection|Pure Overview<label|pure-overview>>
+  <subsection|Pure Overview><label|pure-overview>
 
   Pure is a fairly simple yet powerful language. Programs are basically
   collections of term rewriting rules, which are used to reduce expressions
@@ -1540,11 +1634,11 @@
   and also cover the more advanced language elements which we only gloss over
   here.
 
-  <subsubsection|Lexical Matters<label|lexical-matters>>
+  <subsubsection|Lexical Matters><label|lexical-matters>
 
   Pure is a <with|font-series|bold|free-format> language, i.e., whitespace is
   insignificant (unless it is used to delimit other symbols). Thus, in
-  contrast to ``layout-based'' languages like Haskell, you <em|must> use the
+  contrast to \Playout-based\Q languages like Haskell, you <em|must> use the
   proper delimiters (<verbatim|;>) and keywords
   (<hlink|<with|font-family|tt|end>|#end>) to terminate definitions and block
   structures. In particular, definitions and expressions at the toplevel have
@@ -1555,18 +1649,20 @@
   and <verbatim|/*> <verbatim|...> <verbatim|*/> for multiline comments. The
   latter must not be nested. Lines beginning with <verbatim|#!> are treated
   as comments, too; as already discussed above, on Unix-like systems this
-  allows you to add a ``shebang'' to your main script in order to turn it
+  allows you to add a \Pshebang\Q to your main script in order to turn it
   into an executable program.
 
   A few ASCII symbols are reserved for special uses, namely the semicolon,
-  the ``at'' symbol <verbatim|@>, the equals sign <verbatim|=>, the backslash
+  the \Pat\Q symbol <verbatim|@>, the equals sign <verbatim|=>, the backslash
   <verbatim|<>>, the Unix pipe symbol <verbatim|\|>, parentheses
   <verbatim|()>, brackets <verbatim|[]> and curly braces <verbatim|{}>.
-  (Among these, only the semicolon is a ``hard delimiter'' which is always a
+  (Among these, only the semicolon is a \Phard delimiter\Q which is always a
   lexeme by itself; the other symbols can be used inside operator symbols.)
   Moreover, there are some keywords which cannot be used as identifiers:
 
   <\verbatim>
+    \;
+
     case \ \ const \ \ \ \ \ def \ \ \ \ else \ \ \ \ \ \ end \ \ \ \ extern
     \ \ \ \ if
 
@@ -1577,6 +1673,8 @@
     \ \ \ public
 
     then \ \ type \ \ \ \ \ \ using \ \ when \ \ \ \ \ \ with
+
+    \;
   </verbatim>
 
   Pure fully supports the <with|font-series|bold|Unicode> character set or,
@@ -1594,6 +1692,8 @@
   grammar rules in EBNF format:
 
   <\verbatim>
+    \;
+
     symbol \ \ \ \ ::= \ identifier \| special
 
     identifier ::= \ letter (letter \| digit)*
@@ -1605,10 +1705,12 @@
     digit \ \ \ \ \ ::= \ "0"\|...\|"9"
 
     punct \ \ \ \ \ ::= \ "!"\|"#"\|"$"\|"%"\|"&"\|...
+
+    \;
   </verbatim>
 
-  Pure uses the following rules to distinguish ``punctuation'' (which may
-  only occur in declared operator symbols) and ``letters'' (identifier
+  Pure uses the following rules to distinguish \Ppunctuation\Q (which may
+  only occur in declared operator symbols) and \Pletters\Q (identifier
   constituents). In addition to the punctuation symbols in the 7 bit ASCII
   range, the following code points in the Unicode repertoire are considered
   as punctuation: U+00A1 through U+00BF, U+00D7, U+00F7, and U+20D0 through
@@ -1621,7 +1723,7 @@
   Miscellaneous Mathematical Symbols B, Supplemental Mathematical Operators,
   and Miscellaneous Symbols and Arrows. This should cover almost everything
   you'd ever want to use in an operator symbol. All other extended Unicode
-  characters are effectively treated as ``letters'' which can be used as
+  characters are effectively treated as \Pletters\Q which can be used as
   identifier constituents. (Charts of all Unicode symbols can be found at the
   <hlink|Code Charts|http://www.unicode.org/charts/> page of the
   <hlink|Unicode Consortium|http://www.unicode.org/>.)
@@ -1640,12 +1742,16 @@
   permitted between the namespace prefix and the symbol):
 
   <\verbatim>
+    \;
+
     qualified_symbol \ \ \ \ ::= \ [qualifier] symbol
 
     qualified_identifier ::= \ [qualifier] identifier
 
     qualifier \ \ \ \ \ \ \ \ \ \ \ ::= \ [identifier] "::" (identifier
     "::")*
+
+    \;
   </verbatim>
 
   Example: <verbatim|foo::bar>.
@@ -1657,6 +1763,8 @@
   while floating point numbers are always denoted in decimal.
 
   <\verbatim>
+    \;
+
     number \ \ \ ::= \ integer \| integer "L" \| float
 
     integer \ \ ::= \ digit+
@@ -1678,6 +1786,8 @@
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| digit* "." digit+ [exponent]
 
     exponent \ ::= \ ("E"\|"e") ["+"\|"-"] digit+
+
+    \;
   </verbatim>
 
   Examples: <verbatim|4711>, <verbatim|4711L>, <verbatim|1.2e-3>. Numbers in
@@ -1688,7 +1798,11 @@
   quotes, such as <verbatim|"Hello,> <verbatim|world!">.
 
   <\verbatim>
+    \;
+
     string ::= \ '"' char* '"'
+
+    \;
   </verbatim>
 
   Special escape sequences may be used to denote double quotes and
@@ -1708,19 +1822,27 @@
   newline in a string). For instance,
 
   <\verbatim>
+    \;
+
     "Hello, \\
 
     world.\\n"
+
+    \;
   </verbatim>
 
   denotes the same string literal as
 
   <\verbatim>
+    \;
+
     "Hello, world.\\n"
+
+    \;
   </verbatim>
 
   <subsubsection|Definitions and Expression
-  Evaluation<label|definitions-and-expression-evaluation>>
+  Evaluation><label|definitions-and-expression-evaluation>
 
   The real meat of a Pure program is in its definitions. In Pure these
   generally take the form of equations which tell the interpreter how
@@ -1729,16 +1851,20 @@
   integer <verbatim|n>, the factorial of <verbatim|n>:
 
   <\verbatim>
+    \;
+
     fact 0 = 1;
 
     fact n::int = n*fact (n-1) if n\<gtr\>0;
+
+    \;
   </verbatim>
 
   The first equation covers the case that <verbatim|n> is zero, in which case
   the result is <verbatim|1>. The second equation handles the case of a
   positive integer. Note the <verbatim|n::int> construct on the left-hand
   side, which means that the equation is restricted to (machine) integers
-  <verbatim|n>. This construct is also called a ``type tag'' in Pure
+  <verbatim|n>. This construct is also called a \Ptype tag\Q in Pure
   parlance. In addition, the <verbatim|n\>0> in the condition part of the
   second equation ensures that <verbatim|n> is positive. If these conditions
   are met, the equation becomes applicable and we recursively compute
@@ -1751,6 +1877,8 @@
   of the interpreter as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 0 = 1;
 
     \<gtr\> fact n::int = n*fact (n-1) if n\<gtr\>0;
@@ -1758,6 +1886,8 @@
     \<gtr\> fact 10;
 
     3628800
+
+    \;
   </verbatim>
 
   On the surface, Pure is quite similar to other modern functional languages
@@ -1769,6 +1899,8 @@
   the <verbatim|fact> function work with floating point numbers, too:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 0.0 = 1.0;
 
     \<gtr\> fact n::double = n*fact (n-1) if n\<gtr\>0;
@@ -1776,6 +1908,8 @@
     \<gtr\> fact 10.0;
 
     3628800.0
+
+    \;
   </verbatim>
 
   Here we employed the constant <verbatim|0.0> and the <verbatim|double> type
@@ -1785,9 +1919,13 @@
   well:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 10;
 
     3628800
+
+    \;
   </verbatim>
 
   In FP parlance, we say that a function like <verbatim|fact> is
@@ -1803,11 +1941,15 @@
   <verbatim|fact> in a completely generic way:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear fact
 
     \<gtr\> fact n = 1 if n==0;
 
     \<gtr\> fact n = n*fact (n-1) if n\<gtr\>0;
+
+    \;
   </verbatim>
 
   (Note that before we can enter the new definition, we first need to scratch
@@ -1820,6 +1962,8 @@
   will thus work with any type of numbers:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 10; // int
 
     3628800
@@ -1831,6 +1975,8 @@
     \<gtr\> fact 50L; // bigint
 
     30414093201713378043612608166064768844377641568960512000000000000L
+
+    \;
   </verbatim>
 
   Let's now take a look at how the equations are actually applied in the
@@ -1856,10 +2002,10 @@
   At this point, we have to decide which of the several subterms we should
   reduce first. This is also called the <with|font-series|bold|reduction
   strategy> and there are different ways to go about it. For instance, we
-  might follow the customary ``call-by-value'' strategy where the arguments
+  might follow the customary \Pcall-by-value\Q strategy where the arguments
   of a function application are evaluated recursively before the function
   gets applied to it, and this is also what Pure normally does. More
-  precisely, expressions are evaluated using the ``leftmost-innermost''
+  precisely, expressions are evaluated using the \Pleftmost-innermost\Q
   reduction strategy where the arguments are considered from left to right.
 
   So this means that on the right-hand side of the second equation, first
@@ -1871,15 +2017,19 @@
   (abbreviating reductions for the built-in arithmetic operations):
 
   <\verbatim>
+    \;
+
     fact 3 =\<gtr\> 3*fact 2 =\<gtr\> 3*2*fact 1 =\<gtr\> 3*2*1*fact 0
     =\<gtr\> 3*2*1*1 =\<gtr\> 6.
+
+    \;
   </verbatim>
 
-  We mention in passing here that Pure also has a few built-in ``special
-  forms'' which take some or all of their arguments unevaluated, using ``call
-  by name'' argument passing. This is needed to handle some constructs such
+  We mention in passing here that Pure also has a few built-in \Pspecial
+  forms\Q which take some or all of their arguments unevaluated, using \Pcall
+  by name\Q argument passing. This is needed to handle some constructs such
   as logical operations and conditionals in an efficient manner, and it also
-  provides a way to implement ``lazy'' data structures. We'll learn about
+  provides a way to implement \Plazy\Q data structures. We'll learn about
   these later.
 
   One of the convenient aspects of the rewriting model of computation is that
@@ -1888,25 +2038,33 @@
   list as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> sum [] = 0;
 
     \<gtr\> sum (x:xs) = x+sum xs;
+
+    \;
   </verbatim>
 
   This discriminates over the different cases for the argument value which
   might either be the empty list <verbatim|[]> or a non-empty list of the
   from <verbatim|x:xs> where the variables <verbatim|x> and <verbatim|xs>
   refer to the head element and the rest of the list, respectively. (The
-  `<verbatim|:>` infix operator is Pure's way of writing Lisp's ``cons'';
+  `<verbatim|:>` infix operator is Pure's way of writing Lisp's \Pcons\Q;
   this works the same as in other modern FPLs and is discussed in much more
   detail later.)
 
   Let's give it a try:
 
   <\verbatim>
+    \;
+
     \<gtr\> sum (1..10);
 
     55
+
+    \;
   </verbatim>
 
   Note that <verbatim|1..10> denotes the list of all positive integers up to
@@ -1916,9 +2074,11 @@
 
   Due to its term rewriting semantics, Pure actually goes beyond most other
   functional languages in that it can do symbolic evaluations just as well as
-  ``normal'' computations:
+  \Pnormal\Q computations:
 
   <\verbatim>
+    \;
+
     \<gtr\> square x = x*x;
 
     \<gtr\> square 4;
@@ -1928,6 +2088,8 @@
     \<gtr\> square (a+b);
 
     (a+b)*(a+b)
+
+    \;
   </verbatim>
 
   In fact, leaving aside the built-in support for some common data structures
@@ -1935,15 +2097,17 @@
   evaluate expressions in a symbolic fashion, rewriting expressions using the
   equations supplied by the programmer, until no more equations are
   applicable. The result of this process is called a
-  <with|font-series|bold|normal form> which represents the ``value'' of the
-  original expression. Moreover, there's no distinction between ``defined''
-  and ``constructor'' function symbols in Pure, so <em|any> function symbol
+  <with|font-series|bold|normal form> which represents the \Pvalue\Q of the
+  original expression. Moreover, there's no distinction between \Pdefined\Q
+  and \Pconstructor\Q function symbols in Pure, so <em|any> function symbol
   or operator can be used <em|anywhere> on the left-hand side of an equation,
   and may act as a constructor symbol if it happens to occur in a normal form
   term. This enables you to work with algebraic rules like associativity and
   distributivity in a direct fashion:
 
   <\verbatim>
+    \;
+
     \<gtr\> (x+y)*z = x*z+y*z; x*(y+z) = x*y+x*z;
 
     \<gtr\> x*(y*z) = (x*y)*z; x+(y+z) = (x+y)+z;
@@ -1951,10 +2115,12 @@
     \<gtr\> square (a+b);
 
     a*a+a*b+b*a+b*b
+
+    \;
   </verbatim>
 
   The above isn't possible in languages like Haskell and ML which always
-  enforce that only ``pure'' constructor symbols (without any defining
+  enforce that only \Ppure\Q constructor symbols (without any defining
   equations) may occur as a subterm on the left-hand side of a definition;
   this is also known as the <with|font-series|bold|constructor discipline>.
   Thus equational definitions like the above are forbidden in these
@@ -1966,11 +2132,15 @@
   equation makes lists automatically stay sorted:
 
   <\verbatim>
+    \;
+
     \<gtr\> x:y:xs = y:x:xs if x\<gtr\>y;
 
     \<gtr\> [13,7,9,7,1]+[1,9,7,5];
 
     [1,1,5,7,7,7,9,9,13]
+
+    \;
   </verbatim>
 
   This isn't possible in Haskell and ML either because it violates the
@@ -1983,8 +2153,8 @@
   flexible model of computation and is one of Pure's most distinguishing
   features. In some cases, however, the unevaluated normal forms may also
   become a nuisance since they may obscure possible programming errors.
-  Therefore Pure provides special <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic>
-  and <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> pragmas (cf.
+  Therefore Pure provides special <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic>
+  and <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined> pragmas (cf.
   <hlink|Code Generation Options|#code-generation-options>) which force
   functions to be treated as defined functions, so that they become more like
   functions in traditional untyped languages such as Lisp and Python which
@@ -1992,10 +2162,10 @@
   under <hlink|Defined Functions|#defined-functions> in the <hlink|Caveats
   and Notes|#caveats-and-notes> section.
 
-  <paragraph|Variables in Equations<label|variables-in-equations>>
+  <paragraph|Variables in Equations><label|variables-in-equations>
 
   Taking another look at the examples above, you might wonder how the Pure
-  interpreter figures out what the parameters (a.k.a. ``variables'') in an
+  interpreter figures out what the parameters (a.k.a. \Pvariables\Q) in an
   equation are. This is quite obvious in rules involving just variables and
   special operator symbols, such as <verbatim|(x+y)*z> <verbatim|=>
   <verbatim|x*z+y*z>. However, what about an equation like <verbatim|foo>
@@ -2013,8 +2183,8 @@
   <verbatim|(+)> <verbatim|x> <verbatim|y> which has the atomic subterms
   <verbatim|(+)>, <verbatim|x> and <verbatim|y> at its leaves.)
 
-  Now the interpreter divides the leaves of the expression tree into ``head''
-  (or ``function'') and ``parameter'' (or ``variable'') positions based on
+  Now the interpreter divides the leaves of the expression tree into \Phead\Q
+  (or \Pfunction\Q) and \Pparameter\Q (or \Pvariable\Q) positions based on
   which leaves are leftmost in a function application or not. Thus, in an
   expression like <verbatim|f> <verbatim|x> <verbatim|y> <verbatim|z>,
   <verbatim|f> is in the head or function position, while <verbatim|x>,
@@ -2029,13 +2199,13 @@
   <with|font-series|bold|head = function rule>. It is quite intuitive and
   lets us get away without declaring the variables in equations. (There are
   some corner cases not covered here, however. In particular, Pure allows you
-  to declare special ``nonfix'' symbols, if you need a symbol to be
+  to declare special \Pnonfix\Q symbols, if you need a symbol to be
   recognized as a literal even if it occurs in a variable position. This is
   done by means of a <hlink|<with|font-family|tt|nonfix>|#nonfix>
   declaration, see <hlink|Symbol Declarations|#symbol-declarations> for
   details.)
 
-  <subsubsection|Expression Syntax<label|expression-syntax>>
+  <subsubsection|Expression Syntax><label|expression-syntax>
 
   Like in other functional languages, expressions are the central ingredient
   of all Pure programs. All computation performed by a Pure program consists
@@ -2088,6 +2258,8 @@
   <hlink|Rule Syntax|#rule-syntax> section.)
 
   <\verbatim>
+    \;
+
     expr \ \ \ \ \ \ \ \ ::= \ "\\" prim_expr+ "-\<gtr\>" expr
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| "case" expr "of" rules "end"
@@ -2149,9 +2321,11 @@
     rules \ \ \ \ \ \ \ ::= \ rule (";" rule)* [";"]
 
     simple_rules ::= \ simple_rule (";" simple_rule)* [";"]
+
+    \;
   </verbatim>
 
-  <paragraph|Primary Expressions<label|primary-expressions>>
+  <paragraph|Primary Expressions><label|primary-expressions>
 
   The Pure language provides built-in support for machine integers (32 bit),
   bigints (implemented using <hlink|GMP|#gmp>), floating point values (double
@@ -2170,7 +2344,7 @@
 
   Together, these atomic types of expressions make up most of Pure's
   <with|font-series|bold|primary expression> syntax. Pure also provides
-  built-in support for some types of ``compound primaries'' (lists, tuples
+  built-in support for some types of \Pcompound primaries\Q (lists, tuples
   and matrices). We also list these here since they are typically denoted in
   some kind of bracketed form, even though some related non-primary
   expression types such as <verbatim|x:y> or <verbatim|x,y> really belong to
@@ -2223,8 +2397,8 @@
     or less like ordinary identifiers, but the
     <hlink|<with|font-family|tt|nonfix>|#nonfix> attribute tells the compiler
     that when such a symbol occurs on the left-hand side of an equation, it
-    is always to be interpreted as a literal, cf. <hlink|The ``Head =
-    Function'' Rule|#the-head-function-rule>.)
+    is always to be interpreted as a literal, cf. <hlink|The \PHead =
+    Function\Q Rule|#the-head-function-rule>.)
 
     Operator (and nonfix) symbols may take the form of an identifier or a
     sequence of punctuation characters, which may optionally be qualified
@@ -2244,8 +2418,8 @@
     <verbatim|x:y:z> is the same as <verbatim|x:(y:z)>. The usual syntactic
     sugar for list values in brackets is also provided, thus
     <verbatim|[x,y,z]> is exactly the same as <verbatim|x:y:z:[]>. (This kind
-    of list value is also called a ``proper'' list. Pure also permits
-    ``improper'' list values such as <verbatim|1:2:3> with a non-list value
+    of list value is also called a \Pproper\Q list. Pure also permits
+    \Pimproper\Q list values such as <verbatim|1:2:3> with a non-list value
     in the tail. These aren't of much use as ordinary list values, but are
     frequently used in patterns or symbolic expressions such as
     <verbatim|x:y> where the tail usually is a variable.)
@@ -2274,14 +2448,14 @@
     <item*|Tuples: (x,y,z)>Pure's tuples are a flat variant of lists which
     are often used as aggregate function arguments and results when no
     elaborate hierarchical structure is needed. They are constructed using
-    the infix ``pairing'' operator `<hlink|<with|font-family|tt|,>|purelib.tm#,>`,
+    the infix \Ppairing\Q operator `<hlink|<with|font-family|tt|,>|purelib.tm#,>`,
     for which the empty tuple <hlink|<with|font-family|tt|()>|purelib.tm#()>
     acts as a neutral element (i.e., <verbatim|(),x> is just <verbatim|x>, as
     is <verbatim|x,()>). Pairs always associate to the right, meaning that
     <verbatim|x,y,z> <verbatim|=> <verbatim|x,(y,z)> <verbatim|=>
     <verbatim|(x,y),z>, where <verbatim|x,(y,z)> is the normalized
     representation. These rules imply that tuples can't be nested and that
-    there are no ``true'' 1-tuples distinct from their single members; if you
+    there are no \Ptrue\Q 1-tuples distinct from their single members; if you
     need this then you should use lists instead (cf. <hlink|Splicing Tuples
     and Matrices|#splicing-tuples-and-matrices>).
 
@@ -2310,11 +2484,11 @@
     built-in data structure which provides efficient storage and element
     access. These work more or less like their Octave/MATLAB equivalents, but
     using curly braces instead of brackets. Component values may either be
-    individual elements (``scalars'') or submatrices which are combined to
+    individual elements (\Pscalars\Q) or submatrices which are combined to
     form a larger matrix, provided that all dimensions match up. Here, a
     scalar is any expression which doesn't yield a matrix; these are
     considered to be 1x1 submatrices for the purpose of matrix construction.
-    (Note that this ``splicing'' behaviour pertains to matrix construction
+    (Note that this \Psplicing\Q behaviour pertains to matrix construction
     only; nested matrix <hlink|patterns|#patterns> are always matched
     literally.)
 
@@ -2348,8 +2522,8 @@
   <\description>
     <item*|Comprehensions: [x,y \| x=1..n; y=1..m; x\<less\>y], {f x \|
     x=1..n}>Pure provides both list and matrix comprehensions as a convenient
-    means to construct list and matrix values from a ``template'' expression
-    and one or more ``generator'' and ``filter'' clauses. The former bind a
+    means to construct list and matrix values from a \Ptemplate\Q expression
+    and one or more \Pgenerator\Q and \Pfilter\Q clauses. The former bind a
     pattern to values drawn from a list or matrix, the latter are just
     predicates determining which generated elements should actually be added
     to the result. Comprehensions are in fact just syntactic sugar for a
@@ -2375,7 +2549,7 @@
     Vectors|#matrices-and-vectors>.
   </description>
 
-  <paragraph|Simple Expressions<label|simple-expressions>>
+  <paragraph|Simple Expressions><label|simple-expressions>
 
   The rest of Pure's expression syntax mostly revolves around the notion of
   function applications. For convenience, Pure also allows you to declare
@@ -2387,7 +2561,7 @@
   the data elements which are manipulated by Pure programs.
 
   As in other modern FPLs, function applications are written simply as
-  juxtaposition (i.e., in ``curried'' form) and associate to the left. This
+  juxtaposition (i.e., in \Pcurried\Q form) and associate to the left. This
   means that in fact all functions only take a single argument.
   Multi-argument functions are represented as chains of single-argument
   functions. For instance, in <verbatim|f> <verbatim|x> <verbatim|y>
@@ -2447,7 +2621,7 @@
   whereas the bitwise connectives receive their arguments using
   call-by-value, just like the other arithmetic operations.
 
-  <paragraph|Special Expressions<label|special-expressions>>
+  <paragraph|Special Expressions><label|special-expressions>
 
   Some special notations are provided for conditional expressions as well as
   anonymous functions (lambdas) and local function and variable definitions.
@@ -2458,7 +2632,7 @@
   programming languages. Please check <hlink|Scoping Rules|#scoping-rules>
   below for more information about this.
 
-  The constructs described here are called ``special'' because, in contrast
+  The constructs described here are called \Pspecial\Q because, in contrast
   to the other forms of expressions, they cannot occur in normal form terms
   as first-class values (at least not literally; there is an alternative
   quoted representation of special expressions, however, which <em|can> be
@@ -2468,7 +2642,7 @@
   <\description>
     <item*|Conditional expressions: if x then y else z>Evaluates to
     <verbatim|y> or <verbatim|z> depending on whether <verbatim|x> is
-    ``true'' (i.e., a nonzero integer). A
+    \Ptrue\Q (i.e., a nonzero integer). A
     <hlink|<with|font-family|tt|failed_cond>|purelib.tm#failed-cond>
     exception is raised if the condition is not an integer.
   </description>
@@ -2516,7 +2690,7 @@
     <verbatim|when> clause may contain multiple definitions, which are
     processed from left to right, so that later definitions may refer to the
     variables in earlier ones. (This is exactly the same as several nested
-    single definitions, with the first binding being the ``outermost'' one.)
+    single definitions, with the first binding being the \Poutermost\Q one.)
   </description>
 
   <\description>
@@ -2547,6 +2721,8 @@
   local functions or local function applications:
 
   <\verbatim>
+    \;
+
     \\x1 ... xn -\<gtr\> y
 
     == f with f x1 ... xn = y; f _ ... _ = throw failed_match end
@@ -2568,6 +2744,8 @@
     x when y1 = z1; ...; yn = zn end
 
     == x when yn = zn end ... when y1 = z1 end
+
+    \;
   </verbatim>
 
   Note that by convention these constructs report a
@@ -2581,7 +2759,7 @@
   rewriting system which should be treated accordingly, in order to allow for
   symbolic evaluation.
 
-  <subsubsection|Special Forms<label|special-forms>>
+  <subsubsection|Special Forms><label|special-forms>
 
   As already mentioned, some operations are actually implemented as special
   forms which process some or all of their arguments using call-by-name.
@@ -2607,14 +2785,18 @@
     is indeed passed by name):
 
     <\verbatim>
+      \;
+
       x::int && y = if x then y else x;
 
       x::int \|\| y = if x then x else y;
+
+      \;
     </verbatim>
 
     Note that this isn't quite the same as in C, as the results of these
     operations are <em|not> normalized, i.e., they may return nonzero values
-    other than 1 to denote ``true''. (This has the advantage that these
+    other than 1 to denote \Ptrue\Q. (This has the advantage that these
     operations can be implemented tail-recursively, see <hlink|Stack Size and
     Tail Recursion|#stack-size-and-tail-recursion>.) Thus, if you need a
     normalized truth value then you'll have to make sure that either both
@@ -2639,6 +2821,8 @@
     prompt-input interaction:
 
     <\verbatim>
+      \;
+
       \<gtr\> using system;
 
       \<gtr\> puts "Enter a number:" $$ scanf "%g";
@@ -2648,6 +2832,8 @@
       21
 
       21.0
+
+      \;
     </verbatim>
 
     We mention in passing here that the same effect can be achieved with a
@@ -2656,6 +2842,8 @@
     value:
 
     <\verbatim>
+      \;
+
       \<gtr\> scanf "%g" when puts "Enter a number:" end;
 
       Enter a number:
@@ -2663,6 +2851,8 @@
       21
 
       21.0
+
+      \;
     </verbatim>
   </description>
 
@@ -2698,6 +2888,8 @@
     be used to evaluate a quoted expression at a later time. For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> let x = '(2*42+2^12); x;
 
       2*42+2^12
@@ -2705,6 +2897,8 @@
       \<gtr\> eval x;
 
       4180.0
+
+      \;
     </verbatim>
 
     This enables some powerful metaprogramming techniques, which should be
@@ -2713,13 +2907,15 @@
     the <hlink|Examples|#examples> section for details and more examples.
   </description>
 
-  <subsubsection|Toplevel<label|toplevel>>
+  <subsubsection|Toplevel><label|toplevel>
 
   At the toplevel, a Pure program basically consists of rewriting rules
   (which are used to define functions, macros and types), constant and
   variable definitions, and expressions to be evaluated:
 
   <\verbatim>
+    \;
+
     script ::= \ item*
 
     item \ \ ::= \ "let" simple_rule ";"
@@ -2733,6 +2929,8 @@
     \ \ \ \ \ \ \ \ \ \ \ \ \| rule ";"
 
     \ \ \ \ \ \ \ \ \ \ \ \ \| expr ";"
+
+    \;
   </verbatim>
 
   These elements are discussed in more detail in the <hlink|Rule
@@ -2753,7 +2951,7 @@
     expression which determines whether the rule is applicable. Moreover, the
     keyword <hlink|<with|font-family|tt|otherwise>|#otherwise> may be used to
     denote an empty guard which is always true (this is syntactic sugar to
-    point out the ``default'' case of a definition; the interpreter just
+    point out the \Pdefault\Q case of a definition; the interpreter just
     treats this as a comment). Pure also provides some abbreviations for
     factoring out common left-hand or right-hand sides in collections of
     rules; see the <hlink|Rule Syntax|#rule-syntax> section for details.
@@ -2808,7 +3006,7 @@
     to be printed, when running in interactive mode).
   </description>
 
-  <subsubsection|Scoping Rules<label|scoping-rules>>
+  <subsubsection|Scoping Rules><label|scoping-rules>
 
   A few remarks about the scope of identifiers and other symbols are in order
   here. <hlink|Special expressions|#special-expressions> introduce
@@ -2867,6 +3065,8 @@
   returns another function which adds <verbatim|x> to its argument:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x = bar with bar y = x+y end;
 
     \<gtr\> let f = foo 99; f;
@@ -2876,15 +3076,21 @@
     \<gtr\> f 10, f 20;
 
     109,119
+
+    \;
   </verbatim>
 
   This works the same no matter what other bindings of <verbatim|x> may be in
   effect when the closure is invoked:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = 77; f 10, (f 20 when x = 88 end);
 
     109,119
+
+    \;
   </verbatim>
 
   In contrast to local bindings, Pure's toplevel environment binds global
@@ -2902,6 +3108,8 @@
   context:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear x
 
     \<gtr\> bar y = x+y;
@@ -2921,6 +3129,8 @@
     \<gtr\> bar 10, bar 20;
 
     87,97
+
+    \;
   </verbatim>
 
   Observe how changing the value of the global <verbatim|x> variable
@@ -2937,6 +3147,8 @@
   as needed. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 0 = 1;
 
     \<gtr\> fact n::int = n*fact (n-1) if n\<gtr\>0;
@@ -2960,6 +3172,8 @@
     \<gtr\> fact 10;
 
     3628800
+
+    \;
   </verbatim>
 
   In interactive mode, it is even possible to completely erase a function
@@ -2982,7 +3196,7 @@
   Pure interactively most of the time, and so tailoring the design to
   interactive usage seems justifiable in this case.
 
-  <subsection|Rule Syntax<label|rule-syntax>>
+  <subsection|Rule Syntax><label|rule-syntax>
 
   Basically, the same rule syntax is used in all kinds of global and local
   definitions. However, some constructs (specifically,
@@ -2996,6 +3210,8 @@
   rules:
 
   <\verbatim>
+    \;
+
     rule \ \ \ \ \ \ \ ::= \ pattern ("\|" pattern)* "=" expr [guard]
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (";" "=" expr [guard])*
@@ -3015,6 +3231,8 @@
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| guard "when" simple_rules "end"
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| guard "with" rules "end"
+
+    \;
   </verbatim>
 
   When matching against a function or macro call, or the subject term in a
@@ -3024,7 +3242,7 @@
   (Again, the <hlink|<with|font-family|tt|when>|#when> construct is treated
   differently, because each rule is actually a separate definition.)
 
-  <subsubsection|Patterns<label|patterns>>
+  <subsubsection|Patterns><label|patterns>
 
   The left-hand side of a rule is a special kind of simple expression, called
   a <with|font-series|bold|pattern>. The variables in a pattern serve as
@@ -3044,41 +3262,57 @@
   and <verbatim|y> to the first two elements of the resulting list and
   <verbatim|xs> to the list of remaining elements, respectively. We can then
   place <verbatim|x> and <verbatim|y> at the end of the list, thereby
-  performing a kind of ``rotation'' of the first two list members:
+  performing a kind of \Protation\Q of the first two list members:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x:y:xs = 1..10;
 
     \<gtr\> xs+[x,y];
 
     [3,4,5,6,7,8,9,10,1,2]
+
+    \;
   </verbatim>
 
   The same works with a local variable definition:
 
   <\verbatim>
+    \;
+
     \<gtr\> xs+[x,y] when x:y:xs = 1..10 end;
 
     [3,4,5,6,7,8,9,10,1,2]
+
+    \;
   </verbatim>
 
   Or with a <hlink|<with|font-family|tt|case>|#case> expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> case 1..10 of x:y:xs = xs+[x,y] end;
 
     [3,4,5,6,7,8,9,10,1,2]
+
+    \;
   </verbatim>
 
   The arguments of functions (and macros) are handled in the same fashion,
   too:
 
   <\verbatim>
+    \;
+
     \<gtr\> rot2 (x:y:xs) = xs+[x,y];
 
     \<gtr\> rot2 (1..10);
 
     [3,4,5,6,7,8,9,10,1,2]
+
+    \;
   </verbatim>
 
   However, there is a big difference here. For global and local variable
@@ -3086,22 +3320,30 @@
   expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x:y:xs = [1];
 
     \<less\>stdin\<gtr\>, line 7: failed match while evaluating 'let x:y:xs =
     [1]'
+
+    \;
   </verbatim>
 
   The same holds if the target expression doesn't match any of the left-hand
   side patterns in a <hlink|<with|font-family|tt|case>|#case> expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> case [1] of x:y:xs = xs+[x,y] end;
 
     \<less\>stdin\<gtr\>, line 8: unhandled exception 'failed_match' while
     evaluating
 
     'case [1] of x:y:xs = xs+[x,y] end'
+
+    \;
   </verbatim>
 
   (The error message is slightly different in this case, but the reported
@@ -3114,9 +3356,13 @@
   expression becomes a normal form which is simply returned as is:
 
   <\verbatim>
+    \;
+
     \<gtr\> rot2 [1];
 
     rot2 [1]
+
+    \;
   </verbatim>
 
   This may come as a surprise (other functional languages will give you an
@@ -3129,20 +3375,24 @@
   explicit rule which raises an exception (cf. <hlink|Exception
   Handling|#exception-handling>). But this can make it difficult or even
   impossible to add more rules to the function later, as discussed below.
-  Instead, you may want to use the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
+  Instead, you may want to use the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
   pragma as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --defined rot2
 
     \<gtr\> rot2 [1];
 
     \<less\>stdin\<gtr\>, line 13: unhandled exception 'failed_match' while
     evaluating 'rot2 [1]'
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> This pragma tells the compiler that
-  <verbatim|rot2> is supposed to be a ``defined'' function, which means that
+  <verbatim|rot2> is supposed to be a \Pdefined\Q function, which means that
   it should be an error if no rule applies to it; please see <hlink|Defined
   Functions|#defined-functions> in the <hlink|Caveats and
   Notes|#caveats-and-notes> section for details. Also note that exceptions
@@ -3159,17 +3409,21 @@
   function also work with tuples:
 
   <\verbatim>
+    \;
+
     \<gtr\> rot2 (x,y,xs) = xs,x,y;
 
     \<gtr\> rot2 (1,2,3,4,5);
 
     3,4,5,1,2
+
+    \;
   </verbatim>
 
   This is also known as <with|font-series|bold|ad-hoc polymorphism>. By these
   means, you can make a function apply to as many different kinds of
   arguments as you want, and the pattern matching handles the necessary
-  ``dispatching'' so that the right rule gets invoked for the provided
+  \Pdispatching\Q so that the right rule gets invoked for the provided
   arguments.
 
   Pattern matching is not limited to the predefined aggregates such as lists,
@@ -3178,16 +3432,22 @@
   write something like:
 
   <\verbatim>
+    \;
+
     \<gtr\> rot2 (point x y z) = point z x y;
 
     \<gtr\> rot2 (point 1 2 3);
 
     point 3 1 2
+
+    \;
   </verbatim>
 
   Or even:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo (foo x) = foo x;
 
     \<gtr\> bar (foo x) = foo (bar x);
@@ -3195,6 +3455,8 @@
     \<gtr\> foo (bar (foo 99));
 
     foo (bar 99)
+
+    \;
   </verbatim>
 
   Note that symbolic rules like in the latter example (which in this case
@@ -3209,7 +3471,7 @@
   <hlink|Macros|#macros> section for details.) A few other special elements
   in patterns are discussed below.
 
-  <paragraph|The ``Head = Function'' Rule<label|the-head-function-rule>>
+  <paragraph|The \PHead = Function\Q Rule><label|the-head-function-rule>
 
   A central ingredient of all patterns are of course the variables which get
   bound in the pattern matching process. Pure is a rather terse language and
@@ -3218,8 +3480,8 @@
   rule already explained in <hlink|Variables in
   Equations|#variables-in-equations>.
 
-  Recall that the variables in a pattern are the identifiers in ``variable
-  positions''. The <with|font-series|bold|head = function> rule tells us that
+  Recall that the variables in a pattern are the identifiers in \Pvariable
+  positions\Q. The <with|font-series|bold|head = function> rule tells us that
   a variable position is any leaf (atomic subexpression) of the expression
   tree which is <em|not> the head symbol of a function application. Thus a
   pattern like <verbatim|f> <verbatim|(g> <verbatim|x)> <verbatim|y> contains
@@ -3232,7 +3494,7 @@
   <verbatim|x>, <verbatim|y> and <verbatim|z> and the literal function
   symbols <verbatim|(+)> and <verbatim|(*)>.
 
-  There are some exceptions to the ``head = function'' rule. Specifically, it
+  There are some exceptions to the \Phead = function\Q rule. Specifically, it
   is possible to declare an identifier as a
   <hlink|<with|font-family|tt|nonfix>|#nonfix> symbol so that it will be
   interpreted as a literal function symbol even if it occurs in a variable
@@ -3240,9 +3502,13 @@
   For instance:
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     foo nil = 0;
+
+    \;
   </verbatim>
 
   Note that since <verbatim|nil> is declared as a
@@ -3264,11 +3530,15 @@
   <verbatim|[1,2,3]>. In either case the result is <verbatim|[0,1,2,3]>:
 
   <\verbatim>
+    \;
+
     let x = [1,2,3]; 0:x;
 
     0:x when x = [1,2,3] end;
 
     case [1,2,3] of x = 0:x end;
+
+    \;
   </verbatim>
 
   In contrast, a single identifier is always interpreted as a literal if it
@@ -3276,7 +3546,11 @@
   following rule defines a parameterless function <verbatim|y>:
 
   <\verbatim>
+    \;
+
     y = [1,2,3]; 0:y;
+
+    \;
   </verbatim>
 
   (While they yield the same values here, there are some notable differences
@@ -3284,17 +3558,21 @@
   <verbatim|x> defined above; see <hlink|Defining
   Functions|#defining-functions> for details.)
 
-  Please also check <hlink|``Head = Function''
+  Please also check <hlink|\PHead = Function\Q
   Pitfalls|#head-function-pitfalls> in the <hlink|Caveats and
   Notes|#caveats-and-notes> section which has some some further interesting
-  details and workarounds concerning the ``head = function'' rule.
+  details and workarounds concerning the \Phead = function\Q rule.
 
-  <paragraph|Constant Patterns<label|constant-patterns>>
+  <paragraph|Constant Patterns><label|constant-patterns>
 
   Constants in patterns must be matched literally. For instance:
 
   <\verbatim>
+    \;
+
     foo 0 = 1;
+
+    \;
   </verbatim>
 
   This will only match an application of <verbatim|foo> to the machine
@@ -3302,7 +3580,7 @@
   these compare equal to <verbatim|0> using the
   `<hlink|<with|font-family|tt|==>|purelib.tm#==>` operator).
 
-  <paragraph|The Anonymous Variable<label|the-anonymous-variable>>
+  <paragraph|The Anonymous Variable><label|the-anonymous-variable>
 
   The `<verbatim|_>` symbol is special in patterns; it denotes the
   <with|font-series|bold|anonymous variable> which matches an arbitrary value
@@ -3313,14 +3591,18 @@
   For instance:
 
   <\verbatim>
+    \;
+
     foo _ _ = 0;
+
+    \;
   </verbatim>
 
   This will match the application of <verbatim|foo> to any combination of two
   arguments (and just ignore the values of these arguments).
 
   <paragraph|Non-Linear Patterns and Syntactic
-  Equality<label|non-linear-patterns-and-syntactic-equality>>
+  Equality><label|non-linear-patterns-and-syntactic-equality>
 
   In contrast to Haskell, patterns may contain repeated variables (other than
   the anonymous variable), i.e., they may be
@@ -3329,6 +3611,8 @@
   in the left-hand side pattern are matched to the same value:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x x = x;
 
     \<gtr\> foo 1 1;
@@ -3338,20 +3622,26 @@
     \<gtr\> foo 1 2;
 
     foo 1 2
+
+    \;
   </verbatim>
 
   Non-linear patterns are particularly useful for computer algebra where you
   will frequently encounter rules such as the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> x*y+x*z = x*(y+z);
 
     \<gtr\> a*(3*4)+a*5;
 
     a*17
+
+    \;
   </verbatim>
 
-  The notion of ``sameness'' employed here is that of syntactical identity,
+  The notion of \Psameness\Q employed here is that of syntactical identity,
   which means that the matched subterms must be identical in structure and
   content. The prelude provides syntactic equality as a function
   <hlink|<with|font-family|tt|same>|purelib.tm#same> and a comparison
@@ -3359,12 +3649,16 @@
   above definition of <verbatim|foo> is roughly equivalent to the following:
 
   <\verbatim>
+    \;
+
     foo x y = x if same x y;
+
+    \;
   </verbatim>
 
   It is important to note the differences between syntactic equality embodied
   by <hlink|<with|font-family|tt|same>|purelib.tm#same> and
-  `<hlink|<with|font-family|tt|===>|purelib.tm#===>`, and the ``semantic''
+  `<hlink|<with|font-family|tt|===>|purelib.tm#===>`, and the \Psemantic\Q
   equality operator `<hlink|<with|font-family|tt|==>|purelib.tm#==>`. The
   former are always defined on all terms, whereas
   `<hlink|<with|font-family|tt|==>|purelib.tm#==>` is only available on data
@@ -3374,6 +3668,8 @@
   different. Consider, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> 0==0.0;
 
     1
@@ -3381,6 +3677,8 @@
     \<gtr\> 0===0.0;
 
     0
+
+    \;
   </verbatim>
 
   This distinction is actually quite useful. It gives the programmer the
@@ -3412,6 +3710,8 @@
   equality which may be surprising at first sight. For instance, consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x = case x of bar y = x===bar y end;
 
     \<gtr\> bar x y = x+y;
@@ -3427,6 +3727,8 @@
     \<gtr\> foo (bar 99) with bar x y = x*y end;
 
     0
+
+    \;
   </verbatim>
 
   Note that the argument term <verbatim|bar> <verbatim|99> matches the
@@ -3437,13 +3739,13 @@
   quoted (cf. <hlink|The Quote|#the-quote>) or bound to a local closure of
   the same name, respectively.
 
-  <paragraph|Special Patterns<label|special-patterns>>
+  <paragraph|Special Patterns><label|special-patterns>
 
   Last but not least, patterns may also contain the following special
   elements which are not permitted in right-hand side expressions:
 
   <\itemize>
-    <item>A Haskell-style <with|font-series|bold|``as'' pattern> of the form
+    <item>A Haskell-style <with|font-series|bold|\Pas\Q pattern> of the form
     <em|variable> <verbatim|@> <em|pattern> binds the given variable to the
     expression matched by the subpattern <em|pattern> (in addition to the
     variables bound by <em|pattern> itself). This is convenient if the value
@@ -3466,27 +3768,39 @@
   on the left-hand side of a rule):
 
   <\verbatim>
+    \;
+
     prim_expr ::= \ qualified_identifier
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ("::" qualified_identifier \| "@"
     prim_expr)
+
+    \;
   </verbatim>
 
-  As shown, both ``as'' patterns and type tags are primary expressions, and
-  the subpattern of an ``as'' pattern is a primary expression, too. Thus, if
+  As shown, both \Pas\Q patterns and type tags are primary expressions, and
+  the subpattern of an \Pas\Q pattern is a primary expression, too. Thus, if
   a compound expression is to be used as the subpattern, it <em|must> be
   parenthesized. For instance, the following function duplicates the head
   element of a list:
 
   <\verbatim>
+    \;
+
     foo xs@(x:_) = x:xs;
+
+    \;
   </verbatim>
 
   Note that if you accidentally forget the parentheses around the subpattern
   <verbatim|x:_>, you still get a syntactically correct definition:
 
   <\verbatim>
+    \;
+
     foo xs@x:_ = x:xs;
+
+    \;
   </verbatim>
 
   But this gets parsed as <verbatim|(foo> <verbatim|xs@x):_> <verbatim|=>
@@ -3495,7 +3809,7 @@
   to prevent such glitches.
 
   <with|font-series|bold|Note:> Another pitfall is that the notation
-  <verbatim|foo::bar> is also used to denote ``qualified symbols'' in Pure,
+  <verbatim|foo::bar> is also used to denote \Pqualified symbols\Q in Pure,
   cf. <hlink|Namespaces|#namespaces>. Usually this will be resolved
   correctly, but if <verbatim|foo> happens to also be a valid namespace then
   most likely you'll get an error message about an undeclared symbol. You can
@@ -3506,10 +3820,10 @@
   qualified identifier; in this case they should always be separated by
   whitespace.
 
-  <subsubsection|Type Tags<label|type-tags>>
+  <subsubsection|Type Tags><label|type-tags>
 
   Like Lisp, Pure is essentially a typeless language and doesn't really have
-  a built-in notion of ``data types''. Rather, all data belongs to the same
+  a built-in notion of \Pdata types\Q. Rather, all data belongs to the same
   universe of terms. However, for convenience it is possible to describe data
   domains by means of (unary) type <em|predicates> which may denote arbitrary
   sets of terms. The names of these type predicates can then be used as
@@ -3520,17 +3834,17 @@
   with static typing. Type tags are merely used at runtime to restrict the
   kind of data that can be matched by a rule (and by the compiler to generate
   better code in some cases). But they will never cause the compiler to
-  impose a static typing discipline and spit out corresponding ``type
-  errors''. (This wouldn't make any sense in Pure anyway, as failure to match
+  impose a static typing discipline and spit out corresponding \Ptype
+  errors\Q. (This wouldn't make any sense in Pure anyway, as failure to match
   any of the rules given in the definition of a function simply means that a
   function application is in normal form.)
 
   Some basic types are built into the language. The corresponding tags enable
   you to match the built-in types of terms for which there is no way to spell
-  out all ``constructors'', as there are infinitely many (or none, as in the
+  out all \Pconstructors\Q, as there are infinitely many (or none, as in the
   case of <hlink|<with|font-family|tt|pointer>|#pointer/type> values which
   are constructed and inspected using special primitives, but are otherwise
-  ``opaque'' at the Pure level). Specifically, the following data types are
+  \Popaque\Q at the Pure level). Specifically, the following data types are
   built-in (in fact, the pattern matcher has special knowledge about these so
   that they can be matched very efficiently):
 
@@ -3574,7 +3888,11 @@
   define the <verbatim|point> data type as follows:
 
   <\verbatim>
+    \;
+
     type point (Point x y);
+
+    \;
   </verbatim>
 
   This introduces the type symbol <verbatim|point> and specifies that this
@@ -3585,6 +3903,8 @@
   operation <verbatim|move> to change the coordinates to the given values:
 
   <\verbatim>
+    \;
+
     point x y = Point x y;
 
     xcoord (Point x y) = x;
@@ -3592,6 +3912,8 @@
     ycoord (Point x y) = y;
 
     move (Point _ _) x y = Point x y;
+
+    \;
   </verbatim>
 
   Next we might define a function <verbatim|translate> which shifts the
@@ -3599,7 +3921,11 @@
   follows:
 
   <\verbatim>
+    \;
+
     translate x y p::point = move p (xcoord p+x) (ycoord p+y);
+
+    \;
   </verbatim>
 
   Note the use of <verbatim|point> as a type tag on the <verbatim|p>
@@ -3614,6 +3940,8 @@
   The <verbatim|translate> function can be invoked as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p::point = point 3 3;
 
     \<gtr\> p; translate 1 2 p;
@@ -3621,6 +3949,8 @@
     Point 3 3
 
     Point 4 5
+
+    \;
   </verbatim>
 
   One important point to note here is that <verbatim|translate> can be
@@ -3639,7 +3969,7 @@
   capabilities which enable you to write functions to inspect and manipulate
   terms in a completely generic fashion. Thus the internal structure of term
   data is never truly opaque in Pure and it is always possible to break the
-  ``abstraction barrier'' provided by an ADT. But if the user of an ADT plays
+  \Pabstraction barrier\Q provided by an ADT. But if the user of an ADT plays
   such dirty tricks to wreak havoc on the internal representation of an ADT,
   he gets what he deserves.
 
@@ -3650,6 +3980,8 @@
   merely lists the supported operations as follows:
 
   <\verbatim>
+    \;
+
     interface point with
 
     \ \ xcoord p::point;
@@ -3659,11 +3991,15 @@
     \ \ move p::point x y;
 
     end;
+
+    \;
   </verbatim>
 
   We can implement this type the same way as before:
 
   <\verbatim>
+    \;
+
     point x y = Point x y;
 
     xcoord (Point x y) = x;
@@ -3671,12 +4007,18 @@
     ycoord (Point x y) = y;
 
     move (Point _ _) x y = Point x y;
+
+    \;
   </verbatim>
 
   The definition of the <verbatim|translate> function is also unchanged:
 
   <\verbatim>
+    \;
+
     translate x y p::point = move p (xcoord p+x) (ycoord p+y);
+
+    \;
   </verbatim>
 
   The difference is that now the structure of members of the type is not made
@@ -3686,9 +4028,13 @@
   <verbatim|show> <verbatim|interface> command:
 
   <\verbatim>
+    \;
+
     \<gtr\> show interface point
 
     type point (Point x y);
+
+    \;
   </verbatim>
 
   As you can see, the compiler derived our previous definition of the type.
@@ -3701,6 +4047,8 @@
   operations:
 
   <\verbatim>
+    \;
+
     vpoint x y = {x,y};
 
     xcoord {x,y} = x;
@@ -3708,12 +4056,16 @@
     ycoord {x,y} = y;
 
     move {_,_} x y = {x,y};
+
+    \;
   </verbatim>
 
   After these definitions the new data representation works just fine with
   existing <verbatim|point> operations such as <verbatim|translate>:
 
   <\verbatim>
+    \;
+
     \<gtr\> show interface point
 
     type point (Point x y);
@@ -3727,6 +4079,8 @@
     {3,3}
 
     {4,5}
+
+    \;
   </verbatim>
 
   This separation of interface and implementation of a data structure is an
@@ -3735,7 +4089,7 @@
   types can be found in the <hlink|Type Rules|#type-rules> and
   <hlink|Interface Types|#interface-types> sections.
 
-  <subsubsection|General Rules<label|general-rules>>
+  <subsubsection|General Rules><label|general-rules>
 
   The most general type of rule, used in function definitions and
   <hlink|<with|font-family|tt|case>|#case> expressions, consists of a
@@ -3746,6 +4100,8 @@
   conditions:
 
   <\verbatim>
+    \;
+
     lhs \ \ \ \ \ \ = rhs if guard;
 
     \ \ \ \ \ \ \ \ \ \ = rhs if guard;
@@ -3753,49 +4109,69 @@
     \ \ \ \ \ \ \ \ \ \ ...
 
     \ \ \ \ \ \ \ \ \ \ = rhs otherwise;
+
+    \;
   </verbatim>
 
   For instance:
 
   <\verbatim>
+    \;
+
     fact n \ = n*fact (n-1) if n\<gtr\>0;
 
     \ \ \ \ \ \ \ \ = 1 otherwise;
+
+    \;
   </verbatim>
 
   This expands to:
 
   <\verbatim>
+    \;
+
     fact n \ = n*fact (n-1) if n\<gtr\>0;
 
     fact n \ = 1 otherwise;
+
+    \;
   </verbatim>
 
   Pure also allows a collection of rules with different left-hand sides but
   the same right-hand side(s) to be abbreviated as follows:
 
   <\verbatim>
+    \;
+
     lhs \ \ \ \ \ \ \|
 
     \ \ \ \ \ \ \ \ \ \ ...
 
     lhs \ \ \ \ \ \ = rhs;
+
+    \;
   </verbatim>
 
   This is useful, e.g., if you specialize a rule to different type tags on
   the left-hand side variables. For instance:
 
   <\verbatim>
+    \;
+
     fact n::int \ \ \ \|
 
     fact n::double = n*fact(n-1) if n\<gtr\>0;
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 1 otherwise;
+
+    \;
   </verbatim>
 
   This expands to:
 
   <\verbatim>
+    \;
+
     fact n::int \ \ \ = n*fact(n-1) if n\<gtr\>0;
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 1 otherwise;
@@ -3803,24 +4179,34 @@
     fact n::double = n*fact(n-1) if n\<gtr\>0;
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 1 otherwise;
+
+    \;
   </verbatim>
 
   In fact, the left-hand sides don't have to be related at all, so you can
   also write something like:
 
   <\verbatim>
+    \;
+
     foo x \| bar y = x*y;
+
+    \;
   </verbatim>
 
   Which expands to:
 
   <\verbatim>
+    \;
+
     foo x = x*y;
 
     bar y = x*y;
+
+    \;
   </verbatim>
 
-  But more often you'll have an ``as'' pattern which binds a common variable
+  But more often you'll have an \Pas\Q pattern which binds a common variable
   to a parameter value after checking that it matches one of several possible
   argument patterns (which is slightly more efficient than using an
   equivalent type-checking guard). E.g., the following definition binds the
@@ -3828,7 +4214,11 @@
   either the empty list or a list starting with an integer:
 
   <\verbatim>
+    \;
+
     foo xs@[] \| foo xs@(_::int:_) = bar xs;
+
+    \;
   </verbatim>
 
   The <verbatim|\|> notation also works in
@@ -3836,7 +4226,11 @@
   if different cases should be mapped to the same value, e.g.:
 
   <\verbatim>
+    \;
+
     case ans of "y" \| "Y" = 1; _ = 0; end;
+
+    \;
   </verbatim>
 
   Sometimes it is useful if local definitions
@@ -3849,7 +4243,11 @@
   <hlink|<with|font-family|tt|with>|#with> clauses behind the guard):
 
   <\verbatim>
+    \;
+
     lhs = rhs if guard when defns end;
+
+    \;
   </verbatim>
 
   Note that this is different from the following, which indicates that the
@@ -3857,7 +4255,11 @@
   rule:
 
   <\verbatim>
+    \;
+
     lhs = rhs if (guard when defns end);
+
+    \;
   </verbatim>
 
   Conversely, definitions placed <em|before> the guard only apply to the
@@ -3865,7 +4267,11 @@
   case):
 
   <\verbatim>
+    \;
+
     lhs = rhs when defns end if guard;
+
+    \;
   </verbatim>
 
   An example showing the use of a local variable binding spanning both the
@@ -3875,6 +4281,8 @@
   <verbatim|d> <verbatim|=> <verbatim|p^2/4-q> is nonnegative:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math;
 
     \<gtr\> solve p q = -p/2+sqrt d,-p/2-sqrt d if d\<gtr\>=0 when d =
@@ -3885,12 +4293,14 @@
     -0.585786437626905,-3.41421356237309
 
     solve 2 4
+
+    \;
   </verbatim>
 
   Note that the above definition leaves the case of a negative discriminant
   undefined.
 
-  <subsubsection|Simple Rules<label|simple-rules>>
+  <subsubsection|Simple Rules><label|simple-rules>
 
   As already mentioned, <hlink|<with|font-family|tt|when>|#when>,
   <hlink|<with|font-family|tt|let>|#let> and
@@ -3910,6 +4320,8 @@
   which also prints the discriminant after it has been computed:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math, system;
 
     \<gtr\> solve p q = -p/2+sqrt d,-p/2-sqrt d if d\<gtr\>=0
@@ -3927,6 +4339,8 @@
     The discriminant is: -3
 
     solve 2 4
+
+    \;
   </verbatim>
 
   Note that simple rules of the same form <verbatim|lhs> <verbatim|=>
@@ -3936,7 +4350,7 @@
   real rewriting rule, not a pattern binding, hence the left-hand side is
   mandatory in these rules.
 
-  <subsubsection|Type Rules<label|type-rules>>
+  <subsubsection|Type Rules><label|type-rules>
 
   In Pure the definition of a type takes a somewhat unusual form, since it is
   not a static declaration of the structure of the type's members, but rather
@@ -3979,7 +4393,11 @@
   as the set of all tuples with exactly three elements:
 
   <\verbatim>
+    \;
+
     type triple (x,y,z) = ~tuplep z;
+
+    \;
   </verbatim>
 
   Note that the type check consists of two parts here: The left-hand side
@@ -4006,7 +4424,11 @@
   rule:
 
   <\verbatim>
+    \;
+
     type triple [x,y,z] = true;
+
+    \;
   </verbatim>
 
   This makes it possible to define a type in a piecemeal fashion. Each
@@ -4014,7 +4436,11 @@
   definition like:
 
   <\verbatim>
+    \;
+
     type pair x = tuplep x && #x==2;
+
+    \;
   </verbatim>
 
   In this case the type rule applies to all values <verbatim|x> and thus the
@@ -4028,7 +4454,11 @@
   type <verbatim|nat> which denotes the type of positive (machine) integers:
 
   <\verbatim>
+    \;
+
     type nat x::int = x\<gtr\>0;
+
+    \;
   </verbatim>
 
   This definition is complete for the case of machine integers, but allows
@@ -4037,7 +4467,11 @@
   follows:
 
   <\verbatim>
+    \;
+
     fact n::nat = if n==1 then 1 else n * fact (n-1);
+
+    \;
   </verbatim>
 
   Note that this definition would loop on zero or negative values if we
@@ -4046,6 +4480,8 @@
   definition is safe:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 0;
 
     fact 0
@@ -4053,15 +4489,21 @@
     \<gtr\> map fact (1..10);
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   The way we defined <verbatim|fact>, it works on positive machine integers,
   but nothing else:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 10L;
 
     fact 10L
+
+    \;
   </verbatim>
 
   If we later decide that positive bigints should be considered as members of
@@ -4069,16 +4511,24 @@
   <verbatim|nat> type:
 
   <\verbatim>
+    \;
+
     type nat x::bigint = x\<gtr\>0;
+
+    \;
   </verbatim>
 
   Et voila, our <verbatim|fact> routine now magically works with bigints,
   too:
 
   <\verbatim>
+    \;
+
     \<gtr\> map fact (0L..10L);
 
     [fact 0L,1,2L,6L,24L,120L,720L,5040L,40320L,362880L,3628800L]
+
+    \;
   </verbatim>
 
   Note that we did all this without ever touching our original definition of
@@ -4092,6 +4542,8 @@
   Peano arithmetic:
 
   <\verbatim>
+    \;
+
     type nat (s x) = true;
 
     \;
@@ -4127,15 +4579,21 @@
     s x == 0 = false;
 
     s x == 1 = x == 0;
+
+    \;
   </verbatim>
 
   This implements just the bare bones, but that should be enough to make
   <verbatim|fact> work. Let's give it a try:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact (s (s (s 0)));
 
     s (s (s (s (s (s 0)))))
+
+    \;
   </verbatim>
 
   So, counting the <verbatim|s>`s, the factorial of 3 is 6. Works! (It goes
@@ -4152,16 +4610,24 @@
   <hlink|<with|font-family|tt|true>|purelib.tm#true>. For instance, the rule
 
   <\verbatim>
+    \;
+
     type nat (s x) = true;
+
+    \;
   </verbatim>
 
   from above can also be written simply as:
 
   <\verbatim>
+    \;
+
     type nat (s x);
+
+    \;
   </verbatim>
 
-  This kind of notation is particularly convenient for ``algebraic types''
+  This kind of notation is particularly convenient for \Palgebraic types\Q
   which are usually given by a collection of constructors with different
   arities. For instance, a binary tree data type might be defined as follows
   (here we employ the <verbatim|\|> symbol to separate the different
@@ -4169,9 +4635,13 @@
   go):
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     type bintree nil \| bintree (bin x left right);
+
+    \;
   </verbatim>
 
   This method is also useful if you define your own abstract data types. In
@@ -4182,12 +4652,16 @@
   Tags|#type-tags> above, as well as by the container data types in the
   standard library.
 
-  The same notation can also be used to quickly make one type a ``subtype''
+  The same notation can also be used to quickly make one type a \Psubtype\Q
   of another, or to create a type which is the union of several existing
   types. The following example can be found in the standard library:
 
   <\verbatim>
+    \;
+
     type integer x::int \| integer x::bigint;
+
+    \;
   </verbatim>
 
   A type rule can also take the form of a function definition without
@@ -4199,9 +4673,13 @@
   quantities:
 
   <\verbatim>
+    \;
+
     type speed = double;
 
     type size = int;
+
+    \;
   </verbatim>
 
   Note that the definition of a type alias is always complete; there's no way
@@ -4210,21 +4688,29 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> half x::speed = x/2;
 
     \<gtr\> show half
 
     half x::double = x/2;
+
+    \;
   </verbatim>
 
-  (If necessary, this ``type folding'' can also be disabled with the
-  <hlink|<em|--nofold>|#cmdoption-pure--nofold> pragma.)
+  (If necessary, this \Ptype folding\Q can also be disabled with the
+  <hlink|<em|\Unofold>|#cmdoption-pure--nofold> pragma.)
 
   Finally, it's also possible to just specify the type name, without giving
   the right-hand side:
 
   <\verbatim>
+    \;
+
     type thing;
+
+    \;
   </verbatim>
 
   This doesn't have any effect other than just declaring the type symbol, so
@@ -4233,12 +4719,16 @@
   predicate or an alias).
 
   Type aliases can also be used to quickly turn an existing predicate into a
-  ``convenience'' type which can be used as a tag on the left-hand side of
+  \Pconvenience\Q type which can be used as a tag on the left-hand side of
   equations. The prelude defines a number of these, see <hlink|<em|Prelude
   Types>|purelib.tm#prelude-types>. For instance:
 
   <\verbatim>
+    \;
+
     type closure = closurep;
+
+    \;
   </verbatim>
 
   Conversely, you can turn any type tag into an ordinary predicate which can
@@ -4248,6 +4738,8 @@
   arguments. For instance:
 
   <\verbatim>
+    \;
+
     type odd x::int = x mod 2;
 
     type even x::int = ~odd x;
@@ -4257,11 +4749,15 @@
     odd x = typep odd x;
 
     even x = typep even x;
+
+    \;
   </verbatim>
 
   With those definitions you get:
 
   <\verbatim>
+    \;
+
     \<gtr\> map odd (0..10);
 
     [0,1,0,1,0,1,0,1,0,1,0]
@@ -4269,6 +4765,8 @@
     \<gtr\> map even (0..10);
 
     [1,0,1,0,1,0,1,0,1,0,1]
+
+    \;
   </verbatim>
 
   There's one caveat here. As the type symbol passed to
@@ -4277,10 +4775,12 @@
   parameterless function or a variable; in such a case you'll have to quote
   the symbol, as described in section <hlink|The Quote|#the-quote>. For
   instance, we might rewrite the above definitions as follows, giving
-  ``pointless'' definitions of the <verbatim|odd> and <verbatim|even>
+  \Ppointless\Q definitions of the <verbatim|odd> and <verbatim|even>
   predicates in terms of <hlink|<with|font-family|tt|typep>|purelib.tm#typep>:
 
   <\verbatim>
+    \;
+
     type odd x::int = x mod 2;
 
     type even x::int = ~odd x;
@@ -4290,6 +4790,8 @@
     odd = typep ('odd);
 
     even = typep ('even);
+
+    \;
   </verbatim>
 
   Note that the quotes on <verbatim|odd> and <verbatim|even> are really
@@ -4299,7 +4801,11 @@
   fashion:
 
   <\verbatim>
+    \;
+
     def typep ty::symbol = typep ('ty);
+
+    \;
   </verbatim>
 
   (However, this gets in the way if you want to check for computed type
@@ -4317,16 +4823,20 @@
   above. Both are subtypes of the <verbatim|int> type (assuming our original
   definition of <verbatim|nat> as the positive <verbatim|int> values), but
   neither is a subtype of the other. It's sometimes useful to define the
-  ``intersection type'' of two such types, which can be done in a
+  \Pintersection type\Q of two such types, which can be done in a
   straightforward way using the logical conjunction of the two type
   predicates:
 
   <\verbatim>
+    \;
+
     type nat x::int = x\<gtr\>0;
 
     type odd x::int = x mod 2;
 
     type odd_nat x \ = typep nat x && typep odd x;
+
+    \;
   </verbatim>
 
   Similarly, a variation of the <verbatim|integer> union type from above
@@ -4336,7 +4846,11 @@
   the prelude):
 
   <\verbatim>
+    \;
+
     type myinteger x = intp x \|\| bigintp x;
+
+    \;
   </verbatim>
 
   (Note that this isn't quite the same as the previous definition, which uses
@@ -4358,7 +4872,7 @@
   such as doing I/O (except maybe for debugging purposes), modifying
   references or external data structures via C pointers, etc.
 
-  <subsection|Examples<label|examples>>
+  <subsection|Examples><label|examples>
 
   This section assumes that you've read the <hlink|Pure
   Overview|#pure-overview> and <hlink|Rule Syntax|#rule-syntax> sections, so
@@ -4372,14 +4886,18 @@
   programs and understand the more advanced features discussed in subsequent
   sections.
 
-  <subsubsection|Hello, World<label|hello-world>>
+  <subsubsection|Hello, World><label|hello-world>
 
-  The notorious ``hello world'' program can be written in Pure as follows:
+  The notorious \Phello world\Q program can be written in Pure as follows:
 
   <\verbatim>
+    \;
+
     using system;
 
     puts "Hello, world!";
+
+    \;
   </verbatim>
 
   This employs the <hlink|<with|font-family|tt|puts>|purelib.tm#puts>
@@ -4389,13 +4907,17 @@
   as follows:
 
   <\verbatim>
+    \;
+
     $ pure hello.pure
 
     Hello, world!
+
+    \;
   </verbatim>
 
   You may notice a slight delay when executing the script, before the
-  ``<verbatim|Hello,> <verbatim|world!>'' message appears. That's because the
+  \P<verbatim|Hello,> <verbatim|world!>\Q message appears. That's because the
   interpreter first has to compile the definitions in your script as well as
   the prelude and other imported modules before the <verbatim|puts>
   <verbatim|"Hello,> <verbatim|world!"> expression can be evaluated. The
@@ -4403,30 +4925,38 @@
   to native executables, see <hlink|Compiled Scripts|#compiled-scripts>
   below.
 
-  <paragraph|Passing Parameters<label|passing-parameters>>
+  <paragraph|Passing Parameters><label|passing-parameters>
 
   Sometimes you may want to pass parameters to a script from the command
   line. To these ends, just follow the script name with the required
   parameters. The interpreter makes the command line parameters (including
   the script name) available as a list of strings in the
   <hlink|<with|font-family|tt|argv>|#argv> variable. For instance, here is a
-  version of the ``hello world'' program which uses
+  version of the \Phello world\Q program which uses
   <hlink|<with|font-family|tt|printf>|purelib.tm#printf> to print the line
   <verbatim|Hello,> <verbatim|foo!> where <verbatim|foo> is whatever was
   specified as the first command line parameter:
 
   <\verbatim>
+    \;
+
     using system;
 
     printf "Hello, %s!\\n" (argv!1);
+
+    \;
   </verbatim>
 
   This script is invoked as:
 
   <\verbatim>
+    \;
+
     $ pure hello.pure foo
 
     Hello, foo!
+
+    \;
   </verbatim>
 
   Of course, many real-world programs will require more elaborate processing
@@ -4435,7 +4965,7 @@
   <hlink|<with|font-family|tt|getopt>|purelib.tm#module-getopt> module which
   provides that kind of functionality in a convenient package.
 
-  <paragraph|Executable Scripts<label|executable-scripts>>
+  <paragraph|Executable Scripts><label|executable-scripts>
 
   It is often convenient if you can turn a script into a standalone
   executable which can be invoked by just typing its name on the command
@@ -4450,22 +4980,30 @@
   executable like this:
 
   <\verbatim>
+    \;
+
     $ chmod a+x hello.pure
+
+    \;
   </verbatim>
 
   However, we also have to tell the shell about the command interpreter which
   should be invoked to run the script. (Otherwise the shell itself may try to
   execute the script, which won't work because it's not a shell script.) As
   already mentioned in <hlink|Overview of Operation|#overview-of-operation>,
-  this is done by adding a special kind of comment, a ``shebang'', to the
+  this is done by adding a special kind of comment, a \Pshebang\Q, to the
   beginning of the script, so that it looks like:
 
   <\verbatim>
+    \;
+
     #!/usr/local/bin/pure
 
     using system;
 
     puts "Hello, world!";
+
+    \;
   </verbatim>
 
   Note that you <em|must> give the full path to the Pure interpreter in the
@@ -4477,18 +5015,26 @@
   the interpreter lives by typing the following command in the shell:
 
   <\verbatim>
+    \;
+
     $ which pure
 
     /usr/local/bin/pure
+
+    \;
   </verbatim>
 
   If you get anything else on your system then you'll have to fix the shebang
   accordingly. You should then be able to run the script as follows:
 
   <\verbatim>
+    \;
+
     $ ./hello.pure
 
     Hello, world!
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> Many modern Unix-like systems provide the
@@ -4496,7 +5042,11 @@
   interpreter executable, so that you can also use a shebang like:
 
   <\verbatim>
+    \;
+
     #!/usr/bin/env pure
+
+    \;
   </verbatim>
 
   This has the advantage that you don't have to hardcode the path to the Pure
@@ -4504,10 +5054,10 @@
   locate the interpreter for you, provided that it is installed somewhere on
   the system<label|index-10><verbatim|PATH>.
 
-  <paragraph|Compiled Scripts<label|compiled-scripts>>
+  <paragraph|Compiled Scripts><label|compiled-scripts>
 
   Last but not least, you can also turn a Pure script into an executable by
-  ``batch-compiling'' it. This works on all supported systems (provided that
+  \Pbatch-compiling\Q it. This works on all supported systems (provided that
   you have the necessary LLVM tools and 3rd party compilers installed, see
   the <hlink|<em|installation instructions>|install.tm> for details). The
   result is a real native executable which can then be run directly just like
@@ -4517,6 +5067,8 @@
   which specifies the desired name of the executable. For instance:
 
   <\verbatim>
+    \;
+
     $ pure -c hello.pure -o hello
 
     Hello, world!
@@ -4524,6 +5076,8 @@
     $ ./hello
 
     Hello, world!
+
+    \;
   </verbatim>
 
   You'll notice that the compilation command in the first line above
@@ -4536,11 +5090,15 @@
   follows:
 
   <\verbatim>
+    \;
+
     using system;
 
     main = puts "Hello, world!";
 
     compiling \|\| main;
+
+    \;
   </verbatim>
 
   Note that here we turned the code to be executed into a separate
@@ -4552,17 +5110,21 @@
   of our program so that it gets executed.)
 
   The last line now reads <verbatim|compiling> <verbatim|\|\|>
-  <verbatim|main> which is a shorthand for ``if the <verbatim|compiling>
+  <verbatim|main> which is a shorthand for \Pif the <verbatim|compiling>
   variable is nonzero then do nothing, otherwise evaluate the <verbatim|main>
-  function''. In a batch compilation the interpreter sets this variable to a
+  function\Q. In a batch compilation the interpreter sets this variable to a
   nonzero value so that the evaluation of <verbatim|main> is skipped:
 
   <\verbatim>
+    \;
+
     $ pure -c hello.pure -o hello
 
     $ ./hello
 
     Hello, world!
+
+    \;
   </verbatim>
 
   We should mention here that batch-compiled scripts have some limitations
@@ -4573,13 +5135,15 @@
   scripts like the one above. More information about this can be found in the
   <hlink|Batch Compilation|#batch-compilation> section.
 
-  <subsubsection|Running the Interpreter<label|running-the-interpreter>>
+  <subsubsection|Running the Interpreter><label|running-the-interpreter>
 
   While Pure scripts can be run as standalone programs directly from the
   shell, most of the time you'll probably use the Pure interpreter in an
   interactive way. You then simply run it like this:
 
   <\verbatim>
+    \;
+
     $ pure
 
     \;
@@ -4601,6 +5165,8 @@
     \;
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   The interpreter prints its sign-on message and leaves you at its command
@@ -4612,11 +5178,15 @@
   evaluated. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n = if n\<less\>=0 then 1 else n*fact (n-1);
 
     \<gtr\> map fact (1..10);
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   Note that Pure is a free-format language, and thus definitions and
@@ -4627,6 +5197,8 @@
   lines:
 
   <\verbatim>
+    \;
+
     \<gtr\> 6*7; 16.3805*5.0;
 
     42
@@ -4638,6 +5210,8 @@
     \<gtr\> * 991726534256718265234;
 
     16614809890429729930396098173389730L
+
+    \;
   </verbatim>
 
   If the interpreter appears to just eat away expressions without printing
@@ -4646,9 +5220,13 @@
   itself:
 
   <\verbatim>
+    \;
+
     \<gtr\> 6*7
 
     \<gtr\> ;
+
+    \;
   </verbatim>
 
   (This won't do any harm even if it's not needed, because an empty item is
@@ -4657,10 +5235,14 @@
   The interpreter also reports syntax errors if you mistype an expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> 16.3805*(5;
 
     \<less\>stdin\<gtr\>, line 8: syntax error, unexpected ';', expecting
     when or with or ')'
+
+    \;
   </verbatim>
 
   In such a case, just correct the error and resubmit the offending input.
@@ -4673,10 +5255,14 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1 div 0;
 
     \<less\>stdin\<gtr\>, line 9: unhandled exception 'signal 8' while
     evaluating '1 div 0'
+
+    \;
   </verbatim>
 
   Besides integer division by zero (flagged as `<verbatim|signal>
@@ -4693,17 +5279,23 @@
   get an unevaluated normal form:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo 5;
 
     foo 5
+
+    \;
   </verbatim>
 
   Therefore, we recommend invoking the interpreter with the
   <hlink|<em|-w>|#cmdoption-pure-w> option so that it at least warns you
   about unknown symbols. You can also enter this option interactively or in a
-  script using the <em|--warn> pragma:
+  script using the <em|\Uwarn> pragma:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --warn
 
     \<gtr\> bar 5;
@@ -4711,12 +5303,16 @@
     \<less\>stdin\<gtr\>, line 12: warning: implicit declaration of 'bar'
 
     bar 5
+
+    \;
   </verbatim>
 
   The interpreter has a global variable environment in which you can store
   intermediate results:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = 16.3805*5;
 
     \<gtr\> x; x/2; 1/x;
@@ -4730,6 +5326,8 @@
     \<gtr\> let y = 2*x; y;
 
     163.805
+
+    \;
   </verbatim>
 
   Another handy feature is the special built-in function
@@ -4737,6 +5335,8 @@
   recent result printed by the interpreter:
 
   <\verbatim>
+    \;
+
     \<gtr\> 16.3805*5;
 
     81.9025
@@ -4744,6 +5344,8 @@
     \<gtr\> ans*2;
 
     163.805
+
+    \;
   </verbatim>
 
   The interpreter recognizes a few other special commands which, like
@@ -4753,11 +5355,15 @@
   constants, functions and macros):
 
   <\verbatim>
+    \;
+
     \<gtr\> clear x
 
     \<gtr\> x;
 
     x
+
+    \;
   </verbatim>
 
   Another useful command is <verbatim|show> which prints the definition of
@@ -4765,9 +5371,13 @@
   functions. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> show fact
 
     fact n = if n\<less\>=0 then 1 else n*fact (n-1);
+
+    \;
   </verbatim>
 
   You can also just type <verbatim|show> to print all definitions done
@@ -4775,18 +5385,26 @@
   accomplishments so far:
 
   <\verbatim>
+    \;
+
     \<gtr\> show
 
     fact n = if n\<less\>=0 then 1 else n*fact (n-1);
 
     let y = 163.805;
+
+    \;
   </verbatim>
 
   The <verbatim|dump> command saves these definitions in a file for later
   use:
 
   <\verbatim>
+    \;
+
     \<gtr\> dump
+
+    \;
   </verbatim>
 
   This command doesn't print anything, but you can have a look at the written
@@ -4798,6 +5416,8 @@
   that `<verbatim|!>` executes a shell command):
 
   <\verbatim>
+    \;
+
     \<gtr\> !cat .pure
 
     // dump written Wed Sep \ 5 10:00:15 2012
@@ -4805,24 +5425,34 @@
     fact n = if n\<less\>=0 then 1 else n*fact (n-1);
 
     let y = 163.805;
+
+    \;
   </verbatim>
 
   If we mess up badly, it's often convenient to just rerun the interpreter
   from scratch so that we can try again in a clean environment:
 
   <\verbatim>
+    \;
+
     \<gtr\> run
+
+    \;
   </verbatim>
 
   As we've saved our scribblings with <verbatim|dump> previously, those
   definitions will be reloaded automatically:
 
   <\verbatim>
+    \;
+
     \<gtr\> show
 
     fact n = if n\<less\>=0 then 1 else n*fact (n-1);
 
     let y = 163.805;
+
+    \;
   </verbatim>
 
   If you don't want this then you can just remove the <verbatim|.pure> file
@@ -4833,14 +5463,22 @@
   web browser that you use; see <hlink|Online Help|#online-help>):
 
   <\verbatim>
+    \;
+
     \<gtr\> help help
+
+    \;
   </verbatim>
 
   Last but not least, you can use the following command to exit the
   interpreter and return to the command shell:
 
   <\verbatim>
+    \;
+
     \<gtr\> quit
+
+    \;
   </verbatim>
 
   Typing just an end-of-file character (usually <verbatim|Ctrl-d> on
@@ -4853,7 +5491,7 @@
   Usage|#interactive-usage> for a detailed explanation of the command syntax
   and the available commands.
 
-  <subsubsection|Basic Examples<label|basic-examples>>
+  <subsubsection|Basic Examples><label|basic-examples>
 
   Pure has a few built-in data types, namely numbers (machine integers,
   bigints and double precision floating point numbers), strings, matrices,
@@ -4865,7 +5503,7 @@
   rewriting>, so all computations performed in Pure consist of the rewriting
   of terms. Some terms may reduce to other terms, others simply stand for
   themselves; the latter are also called <with|font-series|bold|normal forms>
-  and are what constitutes a ``value'' in the Pure language.
+  and are what constitutes a \Pvalue\Q in the Pure language.
 
   When the Pure interpreter starts up, it normally loads a collection of Pure
   scripts collectively called the <with|font-series|bold|prelude>. The
@@ -4876,6 +5514,8 @@
   numbers:
 
   <\verbatim>
+    \;
+
     \<gtr\> 6*7;
 
     42
@@ -4887,6 +5527,8 @@
     \<gtr\> 16753418726345 * 991726534256718265234;
 
     16614809890429729930396098173389730L
+
+    \;
   </verbatim>
 
   Note that the integer constants in the last example exceeded the 32 bit
@@ -4896,15 +5538,21 @@
   <verbatim|L> suffix:
 
   <\verbatim>
+    \;
+
     \<gtr\> 6L*7L;
 
     42L
+
+    \;
   </verbatim>
 
   Arithmetic with mixed operands will generally return the most general type
   capable of holding the result:
 
   <\verbatim>
+    \;
+
     \<gtr\> 6*7L;
 
     42L
@@ -4916,18 +5564,24 @@
     \<gtr\> 16.3805*5L;
 
     81.9025
+
+    \;
   </verbatim>
 
   But note that most operations involving only machine integers will produce
   another machine integer; the result is <em|never> promoted to a bigint
-  automatically, even in case of ``overflow'' (i.e., wrap-around). So the
+  automatically, even in case of \Poverflow\Q (i.e., wrap-around). So the
   following will yield the same kind of signed 32 bit result as you'd get in
   C:
 
   <\verbatim>
+    \;
+
     \<gtr\> 2147483647 + 1;
 
     -2147483648
+
+    \;
   </verbatim>
 
   This has the advantage that you always know the type of the result of each
@@ -4938,9 +5592,13 @@
   you'll have to convert at least one of the operands to a bigint beforehand:
 
   <\verbatim>
+    \;
+
     \<gtr\> 2147483647L + 1;
 
     2147483648L
+
+    \;
   </verbatim>
 
   Also note that, in contrast to C or Fortran, the result of the
@@ -4950,6 +5608,8 @@
   integers:
 
   <\verbatim>
+    \;
+
     \<gtr\> 14/12;
 
     1.16666666666667
@@ -4957,6 +5617,8 @@
     \<gtr\> 2L^60L;
 
     1.15292150460685e+18
+
+    \;
   </verbatim>
 
   Integer division and modulo are done with the
@@ -4966,6 +5628,8 @@
   <hlink|<with|font-family|tt|pow>|purelib.tm#pow> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> 14 div 12; 14 mod 12;
 
     1
@@ -4975,6 +5639,8 @@
     \<gtr\> pow 2 60;
 
     1152921504606846976L
+
+    \;
   </verbatim>
 
   Also note that many of the standard math functions are available in a
@@ -4984,11 +5650,15 @@
   of Pure's module system). For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math;
 
     \<gtr\> sqrt (16.3805*5)/.05;
 
     181.0
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|math>|purelib.tm#module-math> module also
@@ -5002,9 +5672,13 @@
   function application is simply denoted by juxtaposition:
 
   <\verbatim>
+    \;
+
     \<gtr\> sqrt 2;
 
     1.4142135623731
+
+    \;
   </verbatim>
 
   In this case, you may also write <verbatim|sqrt(2)> instead, but multiple
@@ -5020,9 +5694,13 @@
   prelude takes two separate arguments, so it is invoked as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> max 4 7;
 
     7
+
+    \;
   </verbatim>
 
   Function application associates to the left, so the above is parsed as
@@ -5038,18 +5716,26 @@
   application in a function argument must be parenthesized as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> sqrt (sqrt 2);
 
     1.18920711500272
+
+    \;
   </verbatim>
 
   The same is true for any kind of expression involving operators, since
   function application binds stronger than any of these:
 
   <\verbatim>
+    \;
+
     \<gtr\> sqrt (2*3);
 
     2.44948974278318
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|map>|purelib.tm#map> function lets us apply
@@ -5057,9 +5743,13 @@
   tabulating function values:
 
   <\verbatim>
+    \;
+
     \<gtr\> map sqrt (0..2);
 
     [0.0,1.0,1.4142135623731]
+
+    \;
   </verbatim>
 
   Here, the list argument is specified as an
@@ -5070,9 +5760,13 @@
   function as the function argument:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (max 0) (-3..3);
 
     [0,0,0,0,1,2,3]
+
+    \;
   </verbatim>
 
   Note that when the <verbatim|max> <verbatim|0> function gets applied, say,
@@ -5080,11 +5774,11 @@
   <verbatim|max> <verbatim|0> <verbatim|(-3)> which now has all the arguments
   that it needs; we also say that <verbatim|max> <verbatim|0> <verbatim|(-3)>
   is a <with|font-series|bold|saturated> application, which means that it's
-  ``ready to go''. Evaluating <verbatim|max> <verbatim|0> <verbatim|(-3)>
+  \Pready to go\Q. Evaluating <verbatim|max> <verbatim|0> <verbatim|(-3)>
   gives <verbatim|0> which becomes the first member of the result list
   returned by <verbatim|map>. The other list members are calculated in an
   analogous fashion. It is easy to see that <verbatim|max> <verbatim|0> thus
-  computes what mathematicians call the ``positive part'' of its argument
+  computes what mathematicians call the \Ppositive part\Q of its argument
   <verbatim|x>, which is <verbatim|x> itself if it is greater than
   <verbatim|0> and <verbatim|0> otherwise.
 
@@ -5097,28 +5791,38 @@
   interpreter:
 
   <\verbatim>
+    \;
+
     \<gtr\> (+) x 1;
 
     x+1
+
+    \;
   </verbatim>
 
   You can also have partial applications of operators like <verbatim|(*)>
   <verbatim|2> which denotes a function which doubles its argument:
 
   <\verbatim>
+    \;
+
     \<gtr\> map ((*) 2) [1,2,3,4,5];
 
     [2,4,6,8,10]
+
+    \;
   </verbatim>
 
   Moreover, Pure offers some convenient syntactic sugar to denote so-called
   <with|font-series|bold|operator sections> which specify a binary operator
   with only either its left or right operand. So the doubling function above
   may also be denoted as <verbatim|(2*)> or <verbatim|(*2)>. Similarly,
-  <verbatim|(+1)> denotes the ``increment by 1'' and <verbatim|(1/)> the
+  <verbatim|(+1)> denotes the \Pincrement by 1\Q and <verbatim|(1/)> the
   reciprocal function:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (+1) (1..5);
 
     [2,3,4,5,6]
@@ -5126,6 +5830,8 @@
     \<gtr\> map (1/) (1..5);
 
     [1.0,0.5,0.333333333333333,0.25,0.2]
+
+    \;
   </verbatim>
 
   Note that the latter kind of section (also called a
@@ -5133,9 +5839,13 @@
   partial application:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1/);
 
     (/) 1
+
+    \;
   </verbatim>
 
   The former kind (a <with|font-series|bold|right section>) can't be handled
@@ -5145,15 +5855,23 @@
   <hlink|<with|font-family|tt|flip>|purelib.tm#flip> function,
 
   <\verbatim>
+    \;
+
     \<gtr\> (+1);
 
     flip (+) 1
+
+    \;
   </verbatim>
 
   which is defined in the prelude as follows:
 
   <\verbatim>
+    \;
+
     flip f x y = f y x;
+
+    \;
   </verbatim>
 
   Note that <verbatim|flip> <verbatim|(+)> <verbatim|1> thus denotes a
@@ -5164,17 +5882,25 @@
   `<hlink|<with|font-family|tt|^>|purelib.tm#?5E>` operator:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (^3) (1..5);
 
     [1.0,8.0,27.0,64.0,125.0]
+
+    \;
   </verbatim>
 
   Note that this is exactly the same as:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (flip (^) 3) (1..5);
 
     [1.0,8.0,27.0,64.0,125.0]
+
+    \;
   </verbatim>
 
   Such explicit applications of <hlink|<with|font-family|tt|flip>|purelib.tm#flip>
@@ -5183,9 +5909,13 @@
   write:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (flip pow 3) (1..5);
 
     [1L,8L,27L,64L,125L]
+
+    \;
   </verbatim>
 
   Note the difference between <verbatim|flip> <verbatim|pow> <verbatim|3>
@@ -5199,9 +5929,13 @@
   <verbatim|x>, so you can write, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> map ($1) [(+2),(*2),(/2)];
 
     [3,2,0.5]
+
+    \;
   </verbatim>
 
   Recall that <verbatim|($1)> is a right section which, when applied to an
@@ -5224,6 +5958,8 @@
   evaluates to <verbatim|f> <verbatim|(g> <verbatim|x)>. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> g x = 2*x-1;
 
     \<gtr\> map g (-3..3);
@@ -5233,6 +5969,8 @@
     \<gtr\> map (max 0 . g) (-3..3);
 
     [0,0,0,0,1,3,5]
+
+    \;
   </verbatim>
 
   Operations like `<hlink|<with|font-family|tt|.>|purelib.tm#.>`, which take
@@ -5247,32 +5985,44 @@
   with <hlink|<with|font-family|tt|let>|#let>. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = 16.3805*5;
 
     \<gtr\> x;
 
     81.9025
+
+    \;
   </verbatim>
 
   As we've explained above, functions are first-class citizens and can thus
   be assigned to variables as well:
 
   <\verbatim>
+    \;
+
     \<gtr\> let f = sqrt;
 
     \<gtr\> f x/0.05;
 
     181.0
+
+    \;
   </verbatim>
 
   The value of a global variable can be changed at any time. So we can type:
 
   <\verbatim>
+    \;
+
     \<gtr\> let f = sin;
 
     \<gtr\> f x/0.05;
 
     4.38588407225469
+
+    \;
   </verbatim>
 
   You can also bind several variables at once by using an expression
@@ -5281,20 +6031,26 @@
   value such as a list:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x1:x2:xs = map (^3) (1..5);
 
     \<gtr\> x1,x2,xs;
 
     1.0,8.0,[27.0,64.0,125.0]
+
+    \;
   </verbatim>
 
-  Pure also provides a kind of ``read-only'' variables a.k.a.
+  Pure also provides a kind of \Pread-only\Q variables a.k.a.
   <with|font-series|bold|constants>. They are defined pretty much like global
   variables (using the <hlink|<with|font-family|tt|const>|#const> keyword in
   lieu of <hlink|<with|font-family|tt|let>|#let>), but work more like a
   parameterless function whose value is precomputed at compile time:
 
   <\verbatim>
+    \;
+
     \<gtr\> const \\ensuremath{\\pi} = 4*atan 1.0;
 
     \<gtr\> show \\ensuremath{\\pi}
@@ -5310,6 +6066,8 @@
     \<gtr\> map h [-1/4,-1/8,0,1/8,1/4];
 
     [-1.0,-0.707106781186547,0.0,0.707106781186547,1.0]
+
+    \;
   </verbatim>
 
   Note that the compiler normally computes constant subexpressions at compile
@@ -5324,7 +6082,7 @@
   nowadays provide you with an applet that lets you enter foreign language
   characters and other special symbols with ease.
 
-  <subsubsection|Defining Functions<label|defining-functions>>
+  <subsubsection|Defining Functions><label|defining-functions>
 
   Now that we've learned how to run the interpreter and evaluate some
   expressions, it's time to embark on some real programming. Like in other
@@ -5339,7 +6097,11 @@
   specify the function name along with some argument names. For instance:
 
   <\verbatim>
+    \;
+
     square x = x*x;
+
+    \;
   </verbatim>
 
   Now, if we evaluate an expression like <verbatim|square> <verbatim|7>, it
@@ -5348,11 +6110,15 @@
   definition in the interpreter:
 
   <\verbatim>
+    \;
+
     \<gtr\> square x = x*x;
 
     \<gtr\> square 7;
 
     49
+
+    \;
   </verbatim>
 
   In fact, the above definition is completely generic; since <verbatim|x> is
@@ -5360,6 +6126,8 @@
   <verbatim|x> and have it evaluate to <verbatim|x*x>:
 
   <\verbatim>
+    \;
+
     \<gtr\> square 7.0;
 
     49.0
@@ -5371,6 +6139,8 @@
     \<gtr\> square (a+b);
 
     (a+b)*(a+b)
+
+    \;
   </verbatim>
 
   As the last example shows, this will even work if the supplied argument is
@@ -5384,11 +6154,15 @@
   <verbatim|square> function from above as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> sumsquares x y = square x + square y;
 
     \<gtr\> sumsquares 3 4;
 
     25
+
+    \;
   </verbatim>
 
   The interpreter keeps track of the number of arguments of each defined
@@ -5396,10 +6170,14 @@
   three arguments later then we'll get an error message:
 
   <\verbatim>
+    \;
+
     \<gtr\> sumsquares x y z = square x + square y + square z;
 
     \<less\>stdin\<gtr\>, line 8: function 'sumsquares' was previously
     defined with 2 args
+
+    \;
   </verbatim>
 
   This actually makes perfect sense if you think about the way curried
@@ -5420,14 +6198,18 @@
   as follows:
 
   <\verbatim>
+    \;
+
     incr (x,y) = x+y;
 
     incr x = x+1 otherwise;
+
+    \;
   </verbatim>
 
   These equations <em|must> be in the indicated order. Pure considers
   different equations for the same function in the order in which they are
-  written. Therefore ``special case'' rules, like the one for <verbatim|incr>
+  written. Therefore \Pspecial case\Q rules, like the one for <verbatim|incr>
   <verbatim|(x,y)> in this example, must be listed first. (Note that if the
   second equation came first, <verbatim|incr> <verbatim|(5,2)> would reduce
   to <verbatim|(5,2)+1> rather than <verbatim|5+2>, because <verbatim|x> also
@@ -5442,9 +6224,13 @@
   above definition of <verbatim|incr> we may write:
 
   <\verbatim>
+    \;
+
     \<gtr\> map incr [(5,1),(5,2),(6,3),(7,5)];
 
     [6,7,9,12]
+
+    \;
   </verbatim>
 
   To make this work with curried functions, the prelude provides a function
@@ -5453,9 +6239,13 @@
   single tuple argument:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (uncurry (+)) [(5,1),(5,2),(6,3),(7,5)];
 
     [6,7,9,12]
+
+    \;
   </verbatim>
 
   On the other hand, some generic list processing functions such as
@@ -5464,9 +6254,13 @@
   <hlink|<with|font-family|tt|curry>|purelib.tm#curry> is also provided:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldl (curry incr) 0 (1..10);
 
     55
+
+    \;
   </verbatim>
 
   In fact, the definitions of <verbatim|curry> and <verbatim|uncurry> don't
@@ -5474,32 +6268,48 @@
   ones and vice versa. From the horse's mouth:
 
   <\verbatim>
+    \;
+
     \<gtr\> show curry uncurry
 
     curry f x y = f (x,y);
 
     uncurry f (x,y) = f x y;
+
+    \;
   </verbatim>
 
   A function can also have zero arguments, i.e., you can define parameterless
   functions such as:
 
   <\verbatim>
+    \;
+
     foo = 1..3;
+
+    \;
   </verbatim>
 
   The function is then simply invoked without any arguments:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo;
 
     [1,2,3]
+
+    \;
   </verbatim>
 
   It is worth noting the difference between this and the variable definition:
 
   <\verbatim>
+    \;
+
     let bar = 1..3;
+
+    \;
   </verbatim>
 
   While <verbatim|bar> and <verbatim|foo> yield the same result
@@ -5522,11 +6332,15 @@
   which computes a new pseudo random number each time it is called:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math;
 
     \<gtr\> random, random, random;
 
     -795755684,581869302,-404620562
+
+    \;
   </verbatim>
 
   Many functions also involve conditionals which let them take different
@@ -5535,22 +6349,30 @@
   instance, we may compute the sign of a number as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> sign x = if x\<gtr\>0 then 1 else if x\<less\>0 then -1 else 0;
 
     \<gtr\> map sign (-3..3);
 
     [-1,-1,-1,0,1,1,1]
+
+    \;
   </verbatim>
 
   Alternatively, you can also use a collection of
   <with|font-series|bold|conditional rules> instead:
 
   <\verbatim>
+    \;
+
     sign x = \ 1 if x\<gtr\>0;
 
     \ \ \ \ \ \ \ = -1 if x\<less\>0;
 
     \ \ \ \ \ \ \ = \ 0 otherwise;
+
+    \;
   </verbatim>
 
   Note that here we omitted the left-hand side in the second and third
@@ -5571,17 +6393,21 @@
   is a definition of the Ackerman function using conditional rules:
 
   <\verbatim>
+    \;
+
     ack x y = y+1 if x == 0;
 
     \ \ \ \ \ \ \ \ = ack (x-1) 1 if y == 0;
 
     \ \ \ \ \ \ \ \ = ack (x-1) (ack x (y-1)) otherwise;
+
+    \;
   </verbatim>
 
   We will have more to say about recursive functions later; see
   <hlink|Recursion|#recursion> below.
 
-  <subsubsection|Pattern Matching<label|pattern-matching>>
+  <subsubsection|Pattern Matching><label|pattern-matching>
 
   So far we have only seen function definitions involving just unqualified
   variables as parameters. In general it is possible to specify arbitrary
@@ -5595,11 +6421,15 @@
   match. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> square x::int = x*x;
 
     \<gtr\> square 7;
 
     49
+
+    \;
   </verbatim>
 
   Note that in contrast to our previous generic definition of the
@@ -5608,9 +6438,13 @@
   case of an <verbatim|int> argument:
 
   <\verbatim>
+    \;
+
     \<gtr\> square 7.0;
 
     square 7.0
+
+    \;
   </verbatim>
 
   Polymorphic definitions can be made by giving separate equations for the
@@ -5618,6 +6452,8 @@
   the <verbatim|double> case:
 
   <\verbatim>
+    \;
+
     \<gtr\> square x::double = x*x;
 
     \<gtr\> show square
@@ -5631,6 +6467,8 @@
     49
 
     49.0
+
+    \;
   </verbatim>
 
   Here the right-hand sides of both rules are the same. Pure has a convenient
@@ -5638,30 +6476,42 @@
   right-hand side using the `<verbatim|\|>` delimiter as follows:
 
   <\verbatim>
+    \;
+
     square x::int \| square x::double = x*x;
+
+    \;
   </verbatim>
 
   The compiler expands this to the same two rules as above:
 
   <\verbatim>
+    \;
+
     square x::int = x*x;
 
     square x::double = x*x;
+
+    \;
   </verbatim>
 
   Let's compare this to our earlier generic definition of <verbatim|square>:
 
   <\verbatim>
+    \;
+
     square x = x*x;
+
+    \;
   </verbatim>
 
   There are two different kinds of polymorphism at work here. The latter,
   generic definition is an example of <with|font-series|bold|parametric
   polymorphism>; it applies to <em|any> type of argument <verbatim|x>
   whatsoever (at least if it makes sense to multiply a member of the type
-  with itself). Also note that this definition is ``closed''; because
+  with itself). Also note that this definition is \Pclosed\Q; because
   equations are considered in the order in which they are written, there's no
-  way you could add another ``special case'' rule to this definition later.
+  way you could add another \Pspecial case\Q rule to this definition later.
 
   In contrast, the former definition leaves any application of
   <verbatim|square> to a value other than <verbatim|int> or <verbatim|double>
@@ -5673,7 +6523,11 @@
   need to square 2x2 matrices, we might add a rule like:
 
   <\verbatim>
+    \;
+
     square {a,b;c,d} = {a*a+b*c,a*b+b*d;c*a+d*c,c*b+d*d};
+
+    \;
   </verbatim>
 
   Pure places no restriction on the number of equations used to define a
@@ -5684,7 +6538,7 @@
   to note that in contrast to overloaded functions in statically typed
   languages such as C++, there's really only <em|one> <verbatim|square>
   function here which handles all the different argument types. The necessary
-  ``dispatching'' to select the proper rewriting rule for the argument values
+  \Pdispatching\Q to select the proper rewriting rule for the argument values
   at hand is done at runtime by pattern matching.
 
   Parametric polymorphism has the advantage that it lets you define
@@ -5696,9 +6550,13 @@
   have to list the special case rules before the generic ones. For instance:
 
   <\verbatim>
+    \;
+
     square x::int \| square x::double \|
 
     square x = x*x;
+
+    \;
   </verbatim>
 
   (Note that the first two rules are just specialization of the last rule to
@@ -5715,20 +6573,24 @@
   instead of conditional rules:
 
   <\verbatim>
+    \;
+
     ack 0 y = y+1;
 
     ack x 0 = ack (x-1) 1;
 
     ack x y = ack (x-1) (ack x (y-1)) otherwise;
+
+    \;
   </verbatim>
 
-  The first two rules take care of the ``base cases'' <verbatim|x==0> and
+  The first two rules take care of the \Pbase cases\Q <verbatim|x==0> and
   <verbatim|y==0>. Note that these rules <em|must> be given in the indicated
   order to make them work. Specifically, the left-hand side <verbatim|ack>
   <verbatim|x> <verbatim|y> of the last equation also matches, in particular,
   terms like <verbatim|ack> <verbatim|0> <verbatim|y> and <verbatim|ack>
   <verbatim|x> <verbatim|0>, so placing the last equation before the first
-  two will ``shadow'' those rules and cause non-termination, resulting in a
+  two will \Pshadow\Q those rules and cause non-termination, resulting in a
   stack overflow. Similarly, placing the second equation before the first one
   will cause the definition to loop on <verbatim|ack> <verbatim|0>
   <verbatim|0>.
@@ -5744,12 +6606,14 @@
   work with double and bigint values, you'd have to add corresponding rules
   for the <verbatim|0.0> and <verbatim|0L> cases.
 
-  Last but not least, patterns are also used to ``deconstruct'' structured
+  Last but not least, patterns are also used to \Pdeconstruct\Q structured
   values like lists, tuples and matrices, binding variables to the component
   values. For instance, to compute the sum of a list of values, you may
   write:
 
   <\verbatim>
+    \;
+
     \<gtr\> sum [] = 0;
 
     \<gtr\> sum (x:xs) = x+sum xs;
@@ -5757,6 +6621,8 @@
     \<gtr\> sum (1..100);
 
     5050
+
+    \;
   </verbatim>
 
   This definition works in a straightforward recursive manner. The first rule
@@ -5778,7 +6644,11 @@
   expression:
 
   <\verbatim>
+    \;
+
     sum xs = case xs of [] = 0; x:xs = x+sum xs end;
+
+    \;
   </verbatim>
 
   This works a bit different, though, since a
@@ -5786,17 +6656,25 @@
   the target expression is not matched (cf. <hlink|Patterns|#patterns>):
 
   <\verbatim>
+    \;
+
     \<gtr\> sum (1:2:xs);
 
     \<less\>stdin\<gtr\>, line 2: unhandled exception 'failed_match' while
     evaluating 'sum (1:2:xs)'
+
+    \;
   </verbatim>
 
   To avoid that, you may want to add a type tag, which ensures that the
   argument of <verbatim|sum> is of the proper type:
 
   <\verbatim>
+    \;
+
     sum xs::list = case xs of [] = 0; x:xs = x+sum xs end;
+
+    \;
   </verbatim>
 
   Now the case of an improper list is handled a bit more gracefully, yielding
@@ -5804,19 +6682,27 @@
   <verbatim|sum> above:
 
   <\verbatim>
+    \;
+
     \<gtr\> sum (1:2:xs);
 
     1+(2+sum xs)
+
+    \;
   </verbatim>
 
   Pure also allows to define <verbatim|sum> in a more traditional way which
   will be familiar to Lisp programmers (note that
   <hlink|<with|font-family|tt|head>|purelib.tm#head> and
   <hlink|<with|font-family|tt|tail>|purelib.tm#tail> correspond to Lisp's
-  ``car'' and ``cdr''):
+  \Pcar\Q and \Pcdr\Q):
 
   <\verbatim>
+    \;
+
     sum xs::list = if null xs then 0 else head xs + sum (tail xs);
+
+    \;
   </verbatim>
 
   Choosing one or the other is again a question of style. However, if you're
@@ -5829,6 +6715,8 @@
   useful for sorting and searching:
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     \;
@@ -5839,16 +6727,20 @@
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = bin x L (insert R y)
     otherwise;
+
+    \;
   </verbatim>
 
   Note that <verbatim|nil> needs to be declared as a
   <hlink|<with|font-family|tt|nonfix>|#nonfix> symbol here, so that the
-  compiler doesn't mistake it for a variable; see <hlink|The ``Head =
-  Function'' Rule|#the-head-function-rule> for details. The following example
+  compiler doesn't mistake it for a variable; see <hlink|The \PHead =
+  Function\Q Rule|#the-head-function-rule> for details. The following example
   illustrates how the above definition may be used to obtain a binary tree
   data structure from a list:
 
   <\verbatim>
+    \;
+
     \<gtr\> tree [] = nil;
 
     \<gtr\> tree (x:xs) = insert (tree xs) x;
@@ -5856,12 +6748,16 @@
     \<gtr\> tree [7,12,9,5];
 
     bin 5 nil (bin 9 (bin 7 nil nil) (bin 12 nil nil))
+
+    \;
   </verbatim>
 
   Conversely, it's also easy to convert such a tree structure back to a list.
   We can then combine these operations to sort a list in ascending order:
 
   <\verbatim>
+    \;
+
     \<gtr\> list nil = [];
 
     \<gtr\> list (bin x L R) = list L + (x:list R);
@@ -5869,9 +6765,11 @@
     \<gtr\> list (tree [7,12,9,5]);
 
     [5,7,9,12]
+
+    \;
   </verbatim>
 
-  <subsubsection|Local Functions and Variables<label|local-functions-and-variables>>
+  <subsubsection|Local Functions and Variables><label|local-functions-and-variables>
 
   Up to this point our examples only involved global functions and variables.
   When the problems to be solved become more difficult, it will be necessary
@@ -5892,7 +6790,7 @@
 
     <item>The right-hand sides of local definitions have full access to other
     local functions and variables in their parent environments, which
-    eliminates the ``plumbing'' which would otherwise be needed to pass these
+    eliminates the \Pplumbing\Q which would otherwise be needed to pass these
     values around. For instance, a local function nested in another function
     can freely access the parent function's arguments and other local
     variables in its scope.
@@ -5906,9 +6804,13 @@
   tacked on to any expression, and they can also be nested. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> f 5 with f x = y+y when y = x*x end end;
 
     50
+
+    \;
   </verbatim>
 
   Note that the local function <verbatim|f> there computes twice the square
@@ -5923,12 +6825,14 @@
   as a local function <verbatim|f> <verbatim|with> <verbatim|f> <verbatim|x>
   <verbatim|=> <verbatim|x*x> <verbatim|end> except that the function remains
   nameless. This notation is pretty convenient for making up little
-  ``one-off'' functions which are to be applied on the spot or passed as
+  \Pone-off\Q functions which are to be applied on the spot or passed as
   function arguments or results to other functions. For instance, here's how
   you can compute the first ten squares, first with an ordinary (named) local
   function, and then with an equivalent lambda:
 
   <\verbatim>
+    \;
+
     \<gtr\> map f (1..10) with f x = x*x end;
 
     [1,4,9,16,25,36,49,64,81,100]
@@ -5936,6 +6840,8 @@
     \<gtr\> map (\\x -\<gtr\> x*x) (1..10);
 
     [1,4,9,16,25,36,49,64,81,100]
+
+    \;
   </verbatim>
 
   For obvious reasons lambdas work best for non-recursive functions. While
@@ -5950,6 +6856,8 @@
   <hlink|<with|font-family|tt|case>|#case> expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> swap (1,2) with swap (x,y) = y,x end;
 
     2,1
@@ -5965,16 +6873,20 @@
     \<gtr\> case 1,2 of x,y = y,x end;
 
     2,1
+
+    \;
   </verbatim>
 
   You'll also frequently find code like the following, where a global
-  ``wrapper'' function just sets up some initial parameter values and then
-  invokes a local ``worker'' function which does all the real work. The
+  \Pwrapper\Q function just sets up some initial parameter values and then
+  invokes a local \Pworker\Q function which does all the real work. The
   following function calculates the sum of the positive integers up to
-  <verbatim|n> (the ``accumulating parameters'' technique used in this
+  <verbatim|n> (the \Paccumulating parameters\Q technique used in this
   example will be explained later, cf. <hlink|Recursion|#recursion>).
 
   <\verbatim>
+    \;
+
     sum n = sum 0 n with
 
     \ \ sum s n = s if n \<less\> 0;
@@ -5982,6 +6894,8 @@
     \ \ \ \ \ \ \ \ \ \ = sum (s+n) (n-1) otherwise;
 
     end;
+
+    \;
   </verbatim>
 
   Note that there are actually <em|two> separate functions named
@@ -6002,6 +6916,8 @@
   local variable environment it was created in. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> adder x = add with add y = x+y end;
 
     \<gtr\> let g = adder 5; g; map g (1..5);
@@ -6009,6 +6925,8 @@
     add
 
     [6,7,8,9,10]
+
+    \;
   </verbatim>
 
   Note that here the local function <verbatim|add> refers to the argument
@@ -6028,6 +6946,8 @@
   reminiscent of object-oriented programming. For instance:
 
   <\verbatim>
+    \;
+
     nonfix coords;
 
     \;
@@ -6039,14 +6959,18 @@
     \ \ move (dx,dy) = point (x+dx,y+dy);
 
     end;
+
+    \;
   </verbatim>
 
   The anonymous function returned by <verbatim|point> in fact works like an
-  ``object'' which can be queried for its coordinates and moved by a given
-  offset through corresponding ``messages'' passed as arguments to the
+  \Pobject\Q which can be queried for its coordinates and moved by a given
+  offset through corresponding \Pmessages\Q passed as arguments to the
   object:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = point (1,2); p;
 
     #\<less\>closure 0x7f420660e658\<gtr\>
@@ -6056,6 +6980,8 @@
     1,2
 
     3,5
+
+    \;
   </verbatim>
 
   Note that this still lacks some typical features of object-oriented
@@ -6067,6 +6993,8 @@
   cells which can hold arbitrary expression values:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = ref 99; get x;
 
     99
@@ -6078,12 +7006,16 @@
     \<gtr\> get x;
 
     2
+
+    \;
   </verbatim>
 
   Using these we can rewrite our definition of the <verbatim|point> object as
   follows:
 
   <\verbatim>
+    \;
+
     nonfix coords;
 
     \;
@@ -6099,6 +7031,8 @@
     \ \ x,y = ref x,ref y;
 
     end;
+
+    \;
   </verbatim>
 
   Note that the coordinates are kept in corresponding expression references
@@ -6108,6 +7042,8 @@
   <verbatim|point> object in-place:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = point (1,2); p coords;
 
     1,2
@@ -6117,17 +7053,19 @@
     3,5
 
     3,5
+
+    \;
   </verbatim>
 
   It goes without saying that this style isn't preferred in functional
   programs, but it certainly has its uses, especially when interfacing to
   imperative code written in other languages such as C.
 
-  <subsubsection|Data Types<label|data-types>>
+  <subsubsection|Data Types><label|data-types>
 
   Before we consider the more advanced uses of functions in Pure, a few
   remarks about data types are in order. Like Lisp, Pure is basically a
-  ``typeless'' language. That doesn't mean that there are no data types; in
+  \Ptypeless\Q language. That doesn't mean that there are no data types; in
   fact, they're a dime a dozen in Pure. But Pure lets you make up your own
   data structures as you go, without even formally defining a data type. Data
   types <em|can> be defined and associated with a name pretty much in the
@@ -6142,17 +7080,21 @@
   some rewriting rules for it, then an application of that function to some
   arguments may evaluate to something else. But if it doesn't, then Pure is
   perfectly happy with that; it just means that the function application is
-  in normal form and thus becomes a ``value''. For instance:
+  in normal form and thus becomes a \Pvalue\Q. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> cons 3 (cons 5 nil);
 
     cons 3 (cons 5 nil)
+
+    \;
   </verbatim>
 
   There's nothing mysterious about this; the <verbatim|cons> and
   <verbatim|nil> symbols being used here aren't defined anywhere, and thus
-  any terms constructed with these symbols are just ``data'', no questions
+  any terms constructed with these symbols are just \Pdata\Q, no questions
   asked. We also call such symbols <with|font-series|bold|constructors>.
   (Note that these are different from constructors in object-oriented
   programming; constructor applications in term rewriting and functional
@@ -6165,6 +7107,8 @@
   Matching|#pattern-matching>.)
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     \;
@@ -6184,6 +7128,8 @@
     nil + ys = ys;
 
     cons x xs + ys = cons x (xs + ys);
+
+    \;
   </verbatim>
 
   Et voilà, we've just created our own list data structure! It's admittedly
@@ -6202,7 +7148,11 @@
   syntax):
 
   <\verbatim>
+    \;
+
     type mylist nil \| mylist (cons x xs);
+
+    \;
   </verbatim>
 
   This definition lets us use the <verbatim|mylist> type as a tag on the
@@ -6220,12 +7170,16 @@
 
   Pure differs from most functional languages in that symbols may act as
   <em|both> constructors and defined functions, depending on the arguments.
-  Thus Pure allows you to have ``constructors with equations''. For instance:
+  Thus Pure allows you to have \Pconstructors with equations\Q. For instance:
 
   <\verbatim>
+    \;
+
     cons nil ys = ys;
 
     cons (cons x xs) ys = cons x (cons xs ys);
+
+    \;
   </verbatim>
 
   Now <verbatim|cons> has become a (partially) defined function. Note that
@@ -6235,9 +7189,13 @@
   flat now:
 
   <\verbatim>
+    \;
+
     \<gtr\> cons (cons 1 (cons 2 nil)) (cons 3 nil);
 
     cons 1 (cons 2 (cons 3 nil))
+
+    \;
   </verbatim>
 
   Examples of such constructor equations can be found in the standard library
@@ -6252,12 +7210,16 @@
   such cases (cf. <hlink|Exception Handling|#exception-handling>):
 
   <\verbatim>
+    \;
+
     \<gtr\> cons x y = throw (bad_mylist y) if ~typep mylist y;
 
     \<gtr\> cons 1 2;
 
     \<less\>stdin\<gtr\>, line 18: unhandled exception 'bad_mylist 2' while
     evaluating 'cons 1 2'
+
+    \;
   </verbatim>
 
   A specific kind of algebraic data types which are useful in many
@@ -6266,10 +7228,14 @@
   the elements of the type. For instance:
 
   <\verbatim>
+    \;
+
     nonfix sun mon tue wed thu fri sat;
 
     type day sun \| day mon \| day tue \| day wed \| day thu \| day fri \|
     day sat;
+
+    \;
   </verbatim>
 
   However, to make this type actually work as an enumerated type, we may want
@@ -6284,9 +7250,13 @@
   we're set:
 
   <\verbatim>
+    \;
+
     using enum;
 
     enum day;
+
+    \;
   </verbatim>
 
   It's also possible to define the type and make it enumerable in one go
@@ -6294,7 +7264,11 @@
   function:
 
   <\verbatim>
+    \;
+
     defenum day [sun,mon,tue,wed,thu,fri,sat];
+
+    \;
   </verbatim>
 
   In either case, we can now perform calculations with the members of the
@@ -6302,6 +7276,8 @@
   characters:
 
   <\verbatim>
+    \;
+
     \<gtr\> ord sun;
 
     0
@@ -6337,6 +7313,8 @@
     \<gtr\> sat:fri..mon;
 
     [sat,fri,thu,wed,tue,mon]
+
+    \;
   </verbatim>
 
   A more abstract way to define algebraic types are the <hlink|interface
@@ -6348,6 +7326,8 @@
   supports. For instance, we may write:
 
   <\verbatim>
+    \;
+
     interface list_alike with
 
     \ \ #x::list_alike;
@@ -6355,6 +7335,8 @@
     \ \ x::list_alike + y;
 
     end;
+
+    \;
   </verbatim>
 
   This defines a generic type consisting of all terms which may be passed as
@@ -6362,6 +7344,8 @@
   interpreter about the patterns actually matched by the type as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> show interface list_alike
 
     type list_alike s::string;
@@ -6373,6 +7357,8 @@
     type list_alike nil;
 
     type list_alike (cons x xs);
+
+    \;
   </verbatim>
 
   Note that the <verbatim|list_alike> type not only includes our own list
@@ -6388,7 +7374,7 @@
   Types|#interface-types> in the <hlink|Declarations|#declarations> section
   for more information and examples.
 
-  <subsubsection|Recursion<label|recursion>>
+  <subsubsection|Recursion><label|recursion>
 
   Recursion means that a function calls itself, either directly or
   indirectly. It is one of the most fundamental techniques in functional
@@ -6405,15 +7391,23 @@
   which does this:
 
   <\verbatim>
+    \;
+
     fact n = if n\<gtr\>0 then n*fact (n-1) else 1;
+
+    \;
   </verbatim>
 
   If you prefer conditional rules instead, you can also write:
 
   <\verbatim>
+    \;
+
     fact n = n*fact (n-1) if n\<gtr\>0;
 
     \ \ \ \ \ \ \ = 1 otherwise;
+
+    \;
   </verbatim>
 
   It's not hard to see how this definition operates. The first rule only
@@ -6428,9 +7422,13 @@
   <verbatim|n>, giving <verbatim|n*(n-1)*...*1>. Let's check that this works:
 
   <\verbatim>
+    \;
+
     \<gtr\> map fact (1..10);
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   Note that these numbers grow fairly quickly; they outgrow the 32 bit range
@@ -6439,6 +7437,8 @@
   point values if you don't mind the limited precision.
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 13;
 
     1932053504
@@ -6454,6 +7454,8 @@
     \<gtr\> fact 30.0;
 
     2.65252859812191e+32
+
+    \;
   </verbatim>
 
   However, you'll run into another, more serious obstacle if you want to
@@ -6461,15 +7463,19 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 200000L;
 
     \<less\>stdin\<gtr\>, line 7: unhandled exception 'stack_fault' while
     evaluating 'fact 200000L'
+
+    \;
   </verbatim>
 
   Oops. What happened there? Well, each recursive invocation of
   <verbatim|fact> needs some small amount of memory on the execution stack, a
-  so-called ``stack frame''. Thus, when <verbatim|n> becomes big enough then
+  so-called \Pstack frame\Q. Thus, when <verbatim|n> becomes big enough then
   our definition is in danger of running out of stack space. (This is also
   why you keep hearing in most CS 101 courses that you should try to avoid
   recursion. If you've forgotten how subroutine calls are executed by keeping
@@ -6480,6 +7486,8 @@
   be using a specialized loop construct instead of recursion, e.g.:
 
   <\verbatim>
+    \;
+
     int fact(int n)
 
     {
@@ -6491,6 +7499,8 @@
     \ \ return p;
 
     }
+
+    \;
   </verbatim>
 
   Pure doesn't have a <verbatim|while> loop, but we can rewrite the
@@ -6501,12 +7511,14 @@
 
   The trick of the trade to turn a recursive function into a tail-recursive
   one is the <with|font-series|bold|accumulating parameter> technique. The
-  idea here is to have a separate ``worker'' function which carries around an
+  idea here is to have a separate \Pworker\Q function which carries around an
   extra argument representing the intermediate result for the current
   iteration. The final value of that parameter is then returned as the
   result. In the case of the factorial this can be done as follows:
 
   <\verbatim>
+    \;
+
     fact n = loop n 1 with
 
     \ \ loop n p = loop (n-1) (n*p) if n\<gtr\>0;
@@ -6514,17 +7526,19 @@
     \ \ \ \ \ \ \ \ \ \ \ = p otherwise;
 
     end;
+
+    \;
   </verbatim>
 
-  Note that <verbatim|fact> has now become a simple ``wrapper'' which
+  Note that <verbatim|fact> has now become a simple \Pwrapper\Q which
   supplies the initial value of the accumulating parameter (<verbatim|p> in
-  this case) for the ``worker'' function <verbatim|loop> which does all the
+  this case) for the \Pworker\Q function <verbatim|loop> which does all the
   hard work. This kind of design is fairly common in functional programs.
 
   Our worker function is tail-recursive since the recursive call to
   <verbatim|loop> is indeed the final call on the right-hand side of the
   first equation defining <verbatim|loop>. The Pure compiler generates code
-  which optimizes such ``tail calls'' so that they reuse the stack frame of
+  which optimizes such \Ptail calls\Q so that they reuse the stack frame of
   the calling function. Thus a tail-recursive function like <verbatim|loop>
   will execute in constant stack space; in fact it will be just as efficient
   as the <verbatim|while> loop in our little C snippet above (up to constant
@@ -6534,9 +7548,13 @@
   result has 973351 digits):
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 200000L;
 
     14202253454703144049669463336823059760899... // lots of digits follow
+
+    \;
   </verbatim>
 
   The accumulating parameter technique isn't fully general, but it covers all
@@ -6549,15 +7567,23 @@
   following naive recursive definition:
 
   <\verbatim>
+    \;
+
     fib n = if n\<less\>=1 then n else fib (n-2) + fib (n-1);
+
+    \;
   </verbatim>
 
   Here are some members of this famous sequence:
 
   <\verbatim>
+    \;
+
     \<gtr\> map fib (0..20);
 
     [0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765]
+
+    \;
   </verbatim>
 
   Note that the right-hand side of the definition above involves <em|two>
@@ -6574,9 +7600,11 @@
   sequence is simply the sum of the two preceding members. If we keep track
   of the last two members of the sequence then we can compute the next member
   with a single addition. This yields the following tail-recursive
-  implementation which uses the same kind of ``wrapper-worker'' design:
+  implementation which uses the same kind of \Pwrapper-worker\Q design:
 
   <\verbatim>
+    \;
+
     fib n = loop n 0L 1L with
 
     \ \ loop n a b = loop (n-1) b (a+b) if n\<gtr\>0;
@@ -6584,6 +7612,8 @@
     \ \ \ \ \ \ \ \ \ \ \ \ \ = a otherwise;
 
     end;
+
+    \;
   </verbatim>
 
   Note that as a matter of prudence we primed the iteration with the bigints
@@ -6591,9 +7621,13 @@
   numbers without suffering wrap-around. For instance, try the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> fib 1000000;
 
     1953282128707757731632014947596256332443... // lots of digits follow
+
+    \;
   </verbatim>
 
   Recursion also naturally occurs when traversing recursive data structures.
@@ -6601,6 +7635,8 @@
   structure:
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     \;
@@ -6611,6 +7647,8 @@
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = bin x L (insert R y)
     otherwise;
+
+    \;
   </verbatim>
 
   The <verbatim|insert> function implements a binary tree insertion algorithm
@@ -6629,9 +7667,13 @@
   traversal is also implemented recursively, e.g., as follows:
 
   <\verbatim>
+    \;
+
     list nil = [];
 
     list (bin x L R) = list L + (x:list R);
+
+    \;
   </verbatim>
 
   Note that these functions can't be made tail-recursive using the
@@ -6646,15 +7688,21 @@
   our earlier definition of the <verbatim|sum> function:
 
   <\verbatim>
+    \;
+
     sum [] = 0;
 
     sum (x:xs) = x+sum xs;
+
+    \;
   </verbatim>
 
   This definition isn't tail-recursive, but we can easily massage it into
   this form using the accumulating parameter technique:
 
   <\verbatim>
+    \;
+
     sum xs::list = loop 0 xs with
 
     \ \ loop s [] = s;
@@ -6662,6 +7710,8 @@
     \ \ loop s (x:xs) = loop (s+x) xs;
 
     end;
+
+    \;
   </verbatim>
 
   Functions can also be <with|font-series|bold|mutually recursive>, in which
@@ -6673,6 +7723,8 @@
   other:
 
   <\verbatim>
+    \;
+
     \<gtr\> pick [] = []; pick (x:xs) = x:skip xs;
 
     \<gtr\> skip [] = []; skip (x:xs) = pick xs;
@@ -6684,9 +7736,11 @@
     \<gtr\> skip (1..10);
 
     [2,4,6,8,10]
+
+    \;
   </verbatim>
 
-  <paragraph|A Numeric Root Finder<label|a-numeric-root-finder>>
+  <paragraph|A Numeric Root Finder><label|a-numeric-root-finder>
 
   Let's now see how we can apply the techniques explained above in the
   context of a somewhat more practical example: a numeric root finder. That
@@ -6702,9 +7756,13 @@
   at the given point, which we do using a second function <verbatim|derive>:
 
   <\verbatim>
+    \;
+
     improve f x = x - f x / derive f x;
 
     derive f x = (f (x+dx) - f x) / dx;
+
+    \;
   </verbatim>
 
   If you still remember your calculus then these should look familiar. Note
@@ -6722,6 +7780,8 @@
   <verbatim|2>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let dx = 1e-8;
 
     \<gtr\> improve f x = x - f x / derive f x;
@@ -6745,12 +7805,14 @@
     \<gtr\> improve f ans;
 
     1.41421356237468
+
+    \;
   </verbatim>
 
   It should be apparent by now that this converges to the square root of 2
   rather quickly. To automate this process, we need another little helper
   function which iterates <verbatim|improve> until the current candidate
-  solution is ``good enough''. A suitable termination criterion is that the
+  solution is \Pgood enough\Q. A suitable termination criterion is that the
   improvement drops below a certain threshold (i.e., <verbatim|abs>
   <verbatim|(x-f> <verbatim|x)> <verbatim|\<=> <verbatim|dy> for some
   reasonably small <verbatim|dy>). For extra safety, we'll also bail out of
@@ -6759,15 +7821,21 @@
   follows:
 
   <\verbatim>
+    \;
+
     loop n f x = x if n \<less\>= 0;
 
     \ \ = if abs (x-y) \<less\> dy then y else loop (n-1) f y when y = f x
     end;
+
+    \;
   </verbatim>
 
   Let's give it a try:
 
   <\verbatim>
+    \;
+
     \<gtr\> let dy = 1e-12;
 
     \<gtr\> loop n f x = x if n \<less\>= 0;
@@ -6782,6 +7850,8 @@
     \<gtr\> ans*ans;
 
     2.0
+
+    \;
   </verbatim>
 
   Looks good. So let's finally wrap this up in a main entry point
@@ -6796,6 +7866,8 @@
   <verbatim|solve> <verbatim|f> <verbatim|x>.
 
   <\verbatim>
+    \;
+
     let dx = 1e-8; \ // delta value for the approximation of the derivative
 
     let dy = 1e-12; // delta value for testing convergence
@@ -6816,6 +7888,8 @@
     \ \ derive f x = (f (x+dx) - f x) / dx;
 
     end;
+
+    \;
   </verbatim>
 
   Here are some examples showing how the <verbatim|solve> function is used.
@@ -6825,6 +7899,8 @@
   <verbatim|t> equals the cube root of <verbatim|x>.
 
   <\verbatim>
+    \;
+
     \<gtr\> sqrt x = solve (\\t -\<gtr\> t*t-x) x;
 
     \<gtr\> sqrt 2; sqrt 5;
@@ -6838,6 +7914,8 @@
     \<gtr\> cubrt 8;
 
     2.0
+
+    \;
   </verbatim>
 
   Our little root finder isn't perfect. It needs a fairly well-behaved target
@@ -6845,9 +7923,13 @@
   consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> solve (\\t -\<gtr\> 1/t-2) 1;
 
     0.00205230175365927
+
+    \;
   </verbatim>
 
   Here <verbatim|solve> didn't find the real root at 0.5 at all. In fact, if
@@ -6857,11 +7939,15 @@
   this:
 
   <\verbatim>
+    \;
+
     \<gtr\> let nmax = 50;
 
     \<gtr\> solve (\\t -\<gtr\> 1/t-2) 1;
 
     0.5
+
+    \;
   </verbatim>
 
   There are other pathological cases where the algorithm performs even more
@@ -6870,7 +7956,7 @@
   teeth on these algorithms by translating them to Pure in the way we've
   shown here.
 
-  <paragraph|The Same-Fringe Problem<label|the-same-fringe-problem>>
+  <paragraph|The Same-Fringe Problem><label|the-same-fringe-problem>
 
   This is one of the classical problems in functional programming which has a
   straightforward recursive solution, but needs some thought if we want to
@@ -6879,21 +7965,29 @@
   structures as nested lists, e.g.:
 
   <\verbatim>
+    \;
+
     let t1 = [[a,b],c,[[d]],e,[f,[[g,h]]]];
 
     let t2 = [a,b,c,[[d],[],e],[f,[g,[h]]]];
 
     let t3 = [[a,b],d,[[c]],e,[f,[[g,h]]]];
+
+    \;
   </verbatim>
 
   Thus each inner node of the tree is represented as a list containing its
-  (zero or more) subtrees, and the leaves are the ``atomic'' (non-list)
+  (zero or more) subtrees, and the leaves are the \Patomic\Q (non-list)
   elements. The <with|font-series|bold|fringe> of such a structure is the
   list of all leaves in left-to-right order, which can be computed as
   follows:
 
   <\verbatim>
+    \;
+
     fringe t = if listp t then catmap fringe t else [t];
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|listp>|purelib.tm#listp> is a
@@ -6902,11 +7996,13 @@
   applies the given function to a list, like
   <hlink|<with|font-family|tt|map>|purelib.tm#map>, and concatenates all the
   resulting lists, like <hlink|<with|font-family|tt|cat>|purelib.tm#cat>.
-  Thus, if the argument <verbatim|t> is an ``atom'' (leaf) then
+  Thus, if the argument <verbatim|t> is an \Patom\Q (leaf) then
   <verbatim|fringe> simply returns <verbatim|[t]>, otherwise it recursively
   applies itself to all the subtrees and concatenates the results:
 
   <\verbatim>
+    \;
+
     \<gtr\> fringe t1;
 
     [a,b,c,d,e,f,g,h]
@@ -6918,6 +8014,8 @@
     \<gtr\> fringe t3;
 
     [a,b,d,c,e,f,g,h]
+
+    \;
   </verbatim>
 
   Note that <verbatim|t1> and <verbatim|t2> differ in structure but have the
@@ -6931,6 +8029,8 @@
   isn't normally defined):
 
   <\verbatim>
+    \;
+
     \<gtr\> fringe t1 === fringe t2;
 
     1
@@ -6938,6 +8038,8 @@
     \<gtr\> fringe t3 === fringe t2;
 
     0
+
+    \;
   </verbatim>
 
   However, this is rather inefficient since we always have to fully construct
@@ -6961,12 +8063,14 @@
   discussed. It never constructs any part of the fringes explicitly and also
   works in constant stack space. The algorithm can be implemented in Pure as
   follows. (This is a slightly modified transliteration of a Lisp program
-  given in Henry Baker's article ``Iterators: Signs of Weakness in
-  Object-Oriented Languages'', ACM OOPS Messenger 4(3), 1993, pp. 18-25,
+  given in Henry Baker's article \PIterators: Signs of Weakness in
+  Object-Oriented Languages\Q, ACM OOPS Messenger 4(3), 1993, pp. 18-25,
   which is also available from <hlink|Henry Baker's Archive of Research
   Papers|http://home.pipeline.com/-tildehbaker1/>.)
 
   <\verbatim>
+    \;
+
     samefringe t1 t2 =
 
     samefringe (\\c -\<gtr\> genfringe t1 c done) (\\c -\<gtr\> genfringe t2
@@ -6986,18 +8090,22 @@
     \ \ genfringe x c g = c x g;
 
     end;
+
+    \;
   </verbatim>
 
-  As Baker admits himself, this style of programming isn't ``particularly
-  perspicuous'', so we'll explain the algorithm in a moment. But first let us
+  As Baker admits himself, this style of programming isn't \Pparticularly
+  perspicuous\Q, so we'll explain the algorithm in a moment. But first let us
   verify that the program indeed works as advertized. It's helpful to print
   out the actual comparisons performed in the innermost lambda in the
   definition of the local <verbatim|samefringe> function, which can be done
   by adding a little debugging statement as follows (this also needs an
-  import clause ``<verbatim|using> <verbatim|system;>'' to make the
+  import clause \P<verbatim|using> <verbatim|system;>\Q to make the
   <hlink|<with|font-family|tt|printf>|purelib.tm#printf> function available):
 
   <\verbatim>
+    \;
+
     samefringe g1 g2 =
 
     \ \ g1 (\\x1 g1 -\<gtr\> g2 (\\x2 g2 -\<gtr\> printf "%s === %s?\\n" (str
@@ -7005,11 +8113,15 @@
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x1===x2 &&
     (x1===[] \|\| samefringe g1 g2)));
+
+    \;
   </verbatim>
 
   With this we get:
 
   <\verbatim>
+    \;
+
     \<gtr\> samefringe t1 t2;
 
     a === a?
@@ -7031,6 +8143,8 @@
     [] === []?
 
     1
+
+    \;
   </verbatim>
 
   So in this case we do a complete traversal of both trees which is the best
@@ -7040,6 +8154,8 @@
   corner case that one fringe is a prefix of the other. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let t4 = [[a,b],c,[[d]],e,[f,[[g,h,i]]]];
 
     \<gtr\> samefringe t4 t2;
@@ -7063,6 +8179,8 @@
     i === []?
 
     0
+
+    \;
   </verbatim>
 
   Things go a bit differently, however, when comparing <verbatim|t3> and
@@ -7071,6 +8189,8 @@
   different:
 
   <\verbatim>
+    \;
+
     \<gtr\> samefringe t3 t2;
 
     a === a?
@@ -7080,27 +8200,33 @@
     d === c?
 
     0
+
+    \;
   </verbatim>
 
   Let's take a closer look at the various parts of the algorithm now. First,
   the <verbatim|genfringe> function:
 
   <\verbatim>
+    \;
+
     genfringe [] c g = g c;
 
     genfringe (x:t) c g = genfringe x c (\\c -\<gtr\> genfringe t c g);
 
     genfringe x c g = c x g;
+
+    \;
   </verbatim>
 
   This routine generates the fringe of a tree, given as the first argument,
-  on the fly. The second argument <verbatim|c> (the ``consumer'') is a
+  on the fly. The second argument <verbatim|c> (the \Pconsumer\Q) is a
   function which gets invoked on the current leaf, to do any required
   processing. (As we'll see later, it may also get invoked with the special
-  ``sentinel'' value <verbatim|[]> to indicate the end of the fringe.)
+  \Psentinel\Q value <verbatim|[]> to indicate the end of the fringe.)
 
-  The third argument <verbatim|g> (the ``generator'') is a
-  <with|font-series|bold|continuation>, a kind of ``callback function'' to be
+  The third argument <verbatim|g> (the \Pgenerator\Q) is a
+  <with|font-series|bold|continuation>, a kind of \Pcallback function\Q to be
   invoked <em|after> the current subtree has been traversed, in order to
   process the remainder of the tree. It takes the consumer function
   <verbatim|c> as its sole argument. Consequently, <verbatim|genfringe>
@@ -7131,7 +8257,11 @@
   started. This is provided by the <verbatim|done> function:
 
   <\verbatim>
+    \;
+
     done c = c [] done;
+
+    \;
   </verbatim>
 
   As we've defined it, <verbatim|done> invokes the consumer <verbatim|c> on
@@ -7145,6 +8275,8 @@
   consumer function, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> done c = c [] done;
 
     \<gtr\> genfringe [] c g = g c;
@@ -7159,6 +8291,8 @@
     \<gtr\> genfringe t1 c done;
 
     a... b... c... d... e... f... g... h... done
+
+    \;
   </verbatim>
 
   In the case of <verbatim|samefringe>, we use the local
@@ -7168,10 +8302,14 @@
   same time:
 
   <\verbatim>
+    \;
+
     samefringe g1 g2 =
 
     \ \ g1 (\\x1 g1 -\<gtr\> g2 (\\x2 g2 -\<gtr\> x1===x2 && (x1===[] \|\|
     samefringe g1 g2)));
+
+    \;
   </verbatim>
 
   Note that the outer lambda <verbatim|(\\x1> <verbatim|g1> <verbatim|-\>>
@@ -7188,7 +8326,7 @@
   in their second operand (cf. <hlink|Stack Size and Tail
   Recursion|#stack-size-and-tail-recursion>).
 
-  <subsubsection|Higher-Order Functions<label|higher-order-functions>>
+  <subsubsection|Higher-Order Functions><label|higher-order-functions>
 
   As we have seen, functions are first-class citizens in Pure which can be
   created on the fly (using partial applications as well as lambdas and local
@@ -7214,9 +8352,13 @@
   as follows:
 
   <\verbatim>
+    \;
+
     map f [] = [];
 
     map f (x:xs) = f x : map f xs;
+
+    \;
   </verbatim>
 
   (Note that this isn't the actual definition from the prelude, which goes to
@@ -7230,9 +8372,13 @@
   returned as is. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (*2) (0..10);
 
     [0,2,4,6,8,10,12,14,16,18,20]
+
+    \;
   </verbatim>
 
   The prelude includes an entire collection of such generic list functions
@@ -7245,7 +8391,11 @@
   function <verbatim|f> at a given point <verbatim|x>:
 
   <\verbatim>
+    \;
+
     derive f x = (f (x+dx) - f x) / dx;
+
+    \;
   </verbatim>
 
   This example is also interesting because we can turn <verbatim|derive> into
@@ -7253,11 +8403,15 @@
   to the target function. So we may write:
 
   <\verbatim>
+    \;
+
     \<gtr\> let dx = 1e-8;
 
     \<gtr\> map (derive square) (1..4) with square x = x*x end;
 
     [1.99999998784506,3.99999997569012,5.99999996353517,7.99999995138023]
+
+    \;
   </verbatim>
 
   This illustrates an easy way to create new functions from existing ones:
@@ -7269,7 +8423,11 @@
   as:
 
   <\verbatim>
+    \;
+
     (f.g) x = f (g x);
+
+    \;
   </verbatim>
 
   The partial application <verbatim|f.g> thus applies two given functions
@@ -7278,25 +8436,33 @@
   combining existing ones, are also known as
   <with|font-series|bold|combinators>. For instance, using
   `<hlink|<with|font-family|tt|.>|purelib.tm#.>` we can easily create a
-  function which ``clamps'' its argument between given bounds by just
+  function which \Pclamps\Q its argument between given bounds by just
   combining the <hlink|<with|font-family|tt|min>|purelib.tm#min> and
   <hlink|<with|font-family|tt|max>|purelib.tm#max> functions from the prelude
   as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> clamp a b = max a . min b;
 
     \<gtr\> map (clamp (-3) 3) (-5..5);
 
     [-3,-3,-3,-2,-1,0,1,2,3,3,3]
+
+    \;
   </verbatim>
 
   Note that partial application works with constructor symbols, too:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (0:) [1..3,4..6,7..9];
 
     [[0,1,2,3],[0,4,5,6],[0,7,8,9]]
+
+    \;
   </verbatim>
 
   Another more direct way to define combinators is to make them return a
@@ -7306,9 +8472,13 @@
   operations:
 
   <\verbatim>
+    \;
+
     f + g = \\x -\<gtr\> f x + g x if nargs f \<gtr\> 0 && nargs g \<gtr\> 0;
 
     f - g = \\x -\<gtr\> f x - g x if nargs f \<gtr\> 0 && nargs g \<gtr\> 0;
+
+    \;
   </verbatim>
 
   This employs the <hlink|<with|font-family|tt|nargs>|purelib.tm#nargs>
@@ -7319,32 +8489,44 @@
   their sum and difference, respectively. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (f+g-h) (1..10) with f x = 2*x+1; g x = x*x; h x = 3 end;
 
     [1,6,13,22,33,46,61,78,97,118]
+
+    \;
   </verbatim>
 
   These rules also handle functions taking multiple arguments, so that you
   can write, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> (max-min) 2 5;
 
     3
+
+    \;
   </verbatim>
 
   Constructors can be extended in exactly the same way:
 
   <\verbatim>
+    \;
+
     \<gtr\> f,g = \\x -\<gtr\> f x, g x if nargs f \<gtr\> 0 && nargs g
     \<gtr\> 0;
 
     \<gtr\> (max,min,max-min) 2 5;
 
     5,2,3
+
+    \;
   </verbatim>
 
-  <subsubsection|List Processing<label|list-processing>>
+  <subsubsection|List Processing><label|list-processing>
 
   Pure's list data structure provides you with a convenient way to represent
   sequences of arbitrary values. This is one of the few compound data
@@ -7360,9 +8542,13 @@
   interpreter normally uses to print list values:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1:2:3:[];
 
     [1,2,3]
+
+    \;
   </verbatim>
 
   Note that the bracketed notation is just syntactic sugar; internally all
@@ -7372,18 +8558,26 @@
   <verbatim|x:xs>:
 
   <\verbatim>
+    \;
+
     \<gtr\> case [1,2,3] of x:xs = x,xs end;
 
     1,[2,3]
+
+    \;
   </verbatim>
 
   Lists can contain any combination of elements (also from different types)
   and they may also be nested:
 
   <\verbatim>
+    \;
+
     \<gtr\> [1,2.0,[x,y],"a string"];
 
     [1,2.0,[x,y],"a string"]
+
+    \;
   </verbatim>
 
   List concatenation is denoted <hlink|<with|font-family|tt|+>|purelib.tm#+/list>,
@@ -7394,6 +8588,8 @@
   using zero-based indexing:
 
   <\verbatim>
+    \;
+
     \<gtr\> [a,b,c]+[x,y,z];
 
     [a,b,c,x,y,z]
@@ -7401,6 +8597,8 @@
     \<gtr\> #ans, ans!5, ans!![2,3];
 
     6,z,[c,x]
+
+    \;
   </verbatim>
 
   Note that lists are immutable in Pure (just like most of Pure's built-in
@@ -7409,9 +8607,13 @@
   by the following rules:
 
   <\verbatim>
+    \;
+
     []+ys = ys;
 
     (x:xs) + ys = x : (xs+ys);
+
+    \;
   </verbatim>
 
   So a new list is created which replaces the empty list in the last
@@ -7420,9 +8622,13 @@
   is produced:
 
   <\verbatim>
+    \;
+
     \<gtr\> [a,b,c]+y;
 
     a:b:c:y
+
+    \;
   </verbatim>
 
   These can be useful, e.g., to represent symbolic list values. Note that a
@@ -7435,9 +8641,13 @@
   just fine:
 
   <\verbatim>
+    \;
+
     \<gtr\> map f (x:y:z);
 
     f x:f y:map f z
+
+    \;
   </verbatim>
 
   Lists can also be compared using the <hlink|<with|font-family|tt|==>|purelib.tm#==/list>
@@ -7445,15 +8655,21 @@
   operators:
 
   <\verbatim>
+    \;
+
     \<gtr\> [1,2,3] == [1,2,4];
 
     0
+
+    \;
   </verbatim>
 
   Arithmetic sequences are denoted with the
   <hlink|<with|font-family|tt|..>|purelib.tm#..> operator:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1..10; 10:9..1; 0.0:0.1..1.0;
 
     [1,2,3,4,5,6,7,8,9,10]
@@ -7461,15 +8677,21 @@
     [10,9,8,7,6,5,4,3,2,1]
 
     [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+
+    \;
   </verbatim>
 
   List comprehensions provide another way to construct (proper) list values
   using a convenient math-like notation:
 
   <\verbatim>
+    \;
+
     \<gtr\> [2^x \| x = 1..10];
 
     [2.0,4.0,8.0,16.0,32.0,64.0,128.0,256.0,512.0,1024.0]
+
+    \;
   </verbatim>
 
   We'll discuss this construct in more detail later, see <hlink|List
@@ -7481,9 +8703,13 @@
   <hlink|<with|font-family|tt|map>|purelib.tm#map> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (\\x-\<gtr\>2*x-1) (1..10);
 
     [1,3,5,7,9,11,13,15,17,19]
+
+    \;
   </verbatim>
 
   There's also a function <hlink|<with|font-family|tt|do>|purelib.tm#do>
@@ -7500,6 +8726,8 @@
   terminal, followed by a newline).
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> do (puts.str) (1..3);
@@ -7511,6 +8739,8 @@
     3
 
     ()
+
+    \;
   </verbatim>
 
   Another useful list function is <hlink|<with|font-family|tt|filter>|purelib.tm#filter>
@@ -7518,6 +8748,8 @@
   elements which satisfy the predicate:
 
   <\verbatim>
+    \;
+
     \<gtr\> odd x = x mod 2; even x = ~odd x;
 
     \<gtr\> filter odd (1..20);
@@ -7527,6 +8759,8 @@
     \<gtr\> filter even (1..20);
 
     [2,4,6,8,10,12,14,16,18,20]
+
+    \;
   </verbatim>
 
   In addition, the <hlink|<with|font-family|tt|all>|purelib.tm#all> and
@@ -7534,6 +8768,8 @@
   check whether all or any list elements satisfy a given predicate:
 
   <\verbatim>
+    \;
+
     \<gtr\> any even (1:3..20);
 
     0
@@ -7541,6 +8777,8 @@
     \<gtr\> all odd (1:3..20);
 
     1
+
+    \;
   </verbatim>
 
   There's also a family of functions such as
@@ -7551,15 +8789,21 @@
   result. It's defined as follows:
 
   <\verbatim>
+    \;
+
     foldl f a [] = a;
 
     foldl f a (x:xs) = foldl f (f a x) xs;
+
+    \;
   </verbatim>
 
   For instance, we can use <verbatim|foldl> to compute list sums and
   products:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldl (+) 0 (1..10);
 
     55
@@ -7567,13 +8811,15 @@
     \<gtr\> foldl (*) 1 (1..10);
 
     3628800
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|foldl>|purelib.tm#foldl>
-  (``fold-left'') accumulates results from left to right, so the result
+  (\Pfold-left\Q) accumulates results from left to right, so the result
   accumulated so far is passed as the <em|left> argument to the function
   <verbatim|f>. There's a <hlink|<with|font-family|tt|foldr>|purelib.tm#foldr>
-  (``fold-right'') function which works analogously but collects results from
+  (\Pfold-right\Q) function which works analogously but collects results from
   right to left, and accordingly passes the accumulated result in the
   <em|right> argument. Usually this won't make a difference if the iterated
   function is associative, but <verbatim|foldl> and <verbatim|foldr> have
@@ -7581,9 +8827,13 @@
   use <verbatim|foldl> to reverse a list as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldl (flip (:)) [] (1..10);
 
     [10,9,8,7,6,5,4,3,2,1]
+
+    \;
   </verbatim>
 
   Note that we have to flip the arguments of the `<verbatim|:>` constructor
@@ -7592,9 +8842,13 @@
   that:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldr (:) [] (1..10);
 
     [1,2,3,4,5,6,7,8,9,10]
+
+    \;
   </verbatim>
 
   This just returns the list unchanged. So the order in which we accumulate
@@ -7605,6 +8859,8 @@
   For instance, recall our binary tree example:
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     insert nil y \ \ \ \ \ \ \ \ = bin y nil nil;
@@ -7613,15 +8869,21 @@
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = bin x L (insert R y)
     otherwise;
+
+    \;
   </verbatim>
 
   We can then use <verbatim|foldl> <verbatim|insert> to construct a binary
   tree from its member list as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldl insert nil [7,12,9,5];
 
     bin 7 (bin 5 nil nil) (bin 12 (bin 9 nil nil) nil)
+
+    \;
   </verbatim>
 
   Sometimes we'd like to know not just the final result of an aggregate
@@ -7630,17 +8892,25 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> scanl (+) 0 (1..10);
 
     [0,1,3,6,10,15,21,28,36,45,55]
+
+    \;
   </verbatim>
 
   Note that this computes the same list of partial sums as:
 
   <\verbatim>
+    \;
+
     \<gtr\> [foldl (+) 0 (1..n) \| n = 0..10];
 
     [0,1,3,6,10,15,21,28,36,45,55]
+
+    \;
   </verbatim>
 
   However, the former is more efficient since it does all the partial sums in
@@ -7651,9 +8921,13 @@
   from right to left, starting at the end of the list:
 
   <\verbatim>
+    \;
+
     \<gtr\> scanr (+) 0 (1..10);
 
     [55,54,52,49,45,40,34,27,19,10,0]
+
+    \;
   </verbatim>
 
   Another useful list generation function is
@@ -7663,17 +8937,25 @@
   odd numbers up to 20 is:
 
   <\verbatim>
+    \;
+
     \<gtr\> iterwhile (\<less\>=20) (+2) 1;
 
     [1,3,5,7,9,11,13,15,17,19]
+
+    \;
   </verbatim>
 
   Or we might collect all powers of 2 which fall into the 16 bit range:
 
   <\verbatim>
+    \;
+
     \<gtr\> iterwhile (\<less\>0x10000) (*2) 1;
 
     [1,2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768]
+
+    \;
   </verbatim>
 
   There are also various functions to partition a list into different parts
@@ -7682,6 +8964,8 @@
   <hlink|<with|font-family|tt|tail>|purelib.tm#tail> functions:
 
   <\verbatim>
+    \;
+
     \<gtr\> let xs = 1..10;
 
     \<gtr\> head xs; tail xs;
@@ -7689,6 +8973,8 @@
     1
 
     [2,3,4,5,6,7,8,9,10]
+
+    \;
   </verbatim>
 
   Conversely, the <hlink|<with|font-family|tt|last>|purelib.tm#last> and
@@ -7696,11 +8982,15 @@
   last element of a list, and all but the last element, respectively:
 
   <\verbatim>
+    \;
+
     \<gtr\> last xs; init xs;
 
     10
 
     [1,2,3,4,5,6,7,8,9]
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|take>|purelib.tm#take> and
@@ -7711,6 +9001,8 @@
   initial elements while a given predicate is satisfied:
 
   <\verbatim>
+    \;
+
     \<gtr\> take 4 xs; drop 4 xs;
 
     [1,2,3,4]
@@ -7722,12 +9014,16 @@
     [1,2,3,4]
 
     [5,6,7,8,9,10]
+
+    \;
   </verbatim>
 
   Lists can be reversed with <hlink|<with|font-family|tt|reverse>|purelib.tm#reverse>
   and sorted using <hlink|<with|font-family|tt|sort>|purelib.tm#sort>:
 
   <\verbatim>
+    \;
+
     \<gtr\> reverse xs;
 
     [10,9,8,7,6,5,4,3,2,1]
@@ -7735,15 +9031,21 @@
     \<gtr\> sort (\<less\>) (xs + ans);
 
     [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10]
+
+    \;
   </verbatim>
 
   You can also concatenate a list of lists with the
   <hlink|<with|font-family|tt|cat>|purelib.tm#cat> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> cat [1..n \| n = 1..5];
 
     [1,1,2,1,2,3,1,2,3,4,1,2,3,4,5]
+
+    \;
   </verbatim>
 
   Last but not least, there is the <verbatim|zip> family of functions which
@@ -7752,9 +9054,13 @@
   pairs of corresponding elements in two input lists:
 
   <\verbatim>
+    \;
+
     \<gtr\> zip (1..5) ("a".."e");
 
     [(1,"a"),(2,"b"),(3,"c"),(4,"d"),(5,"e")]
+
+    \;
   </verbatim>
 
   The effect of <hlink|<with|font-family|tt|zip>|purelib.tm#zip> can be
@@ -7762,9 +9068,13 @@
   returns a pair of lists:
 
   <\verbatim>
+    \;
+
     \<gtr\> unzip ans;
 
     [1,2,3,4,5],["a","b","c","d","e"]
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|zipwith>|purelib.tm#zipwith> function is a
@@ -7773,9 +9083,13 @@
   <verbatim|f>:
 
   <\verbatim>
+    \;
+
     \<gtr\> zipwith (*) (1..10) (1..10);
 
     [1,4,9,16,25,36,49,64,81,100]
+
+    \;
   </verbatim>
 
   You might also consider <verbatim|zipwith> a variant of <verbatim|map>
@@ -7790,9 +9104,13 @@
   <verbatim|(,)>:
 
   <\verbatim>
+    \;
+
     \<gtr\> zipwith (,) (1..5) ("a".."e");
 
     [(1,"a"),(2,"b"),(3,"c"),(4,"d"),(5,"e")]
+
+    \;
   </verbatim>
 
   Also note that since tuples are formed by just applying the `<verbatim|,>`
@@ -7800,9 +9118,13 @@
   together tuples of any length:
 
   <\verbatim>
+    \;
+
     \<gtr\> zip (1..3) (zip ("a".."c") [a,b,c]);
 
     [(1,"a",a),(2,"b",b),(3,"c",c)]
+
+    \;
   </verbatim>
 
   This can be achieved even more easily by folding <verbatim|zip> over a list
@@ -7811,9 +9133,13 @@
   initial value from the beginning of the list.
 
   <\verbatim>
+    \;
+
     \<gtr\> foldr1 zip [1..3,"a".."c",[a,b,c]];
 
     [(1,"a",a),(2,"b",b),(3,"c",c)]
+
+    \;
   </verbatim>
 
   Note that this method easily scales up to as many element lists as you
@@ -7821,15 +9147,21 @@
   it can be done using this little helper function:
 
   <\verbatim>
+    \;
+
     unzipn n xs = xs if n\<less\>=1;
 
     \ \ \ \ \ \ \ \ \ \ \ \ = xs,unzipn (n-1) ys when xs,ys = unzip xs end
     otherwise;
+
+    \;
   </verbatim>
 
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldr1 zip [1..3,"a".."c",[a,b,c]];
 
     [(1,"a",a),(2,"b",b),(3,"c",c)]
@@ -7837,15 +9169,21 @@
     \<gtr\> unzipn 3 ans;
 
     [1,2,3],["a","b","c"],[a,b,c]
+
+    \;
   </verbatim>
 
   Also, the elements to be zipped don't have to be singletons, they can
   themselves be tuples of any size:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldr1 zip [[1,2,3],[a,(),c],[x,y,(z,t)]];
 
     [(1,a,x),(2,y),(3,c,z,t)]
+
+    \;
   </verbatim>
 
   But note that in this case you loose the information which elements came
@@ -7857,7 +9195,7 @@
   it at that for now. Please check the <hlink|<em|Pure Library
   Manual>|purelib.tm> for a full account of the available operations.
 
-  <subsubsection|String Processing<label|string-processing>>
+  <subsubsection|String Processing><label|string-processing>
 
   Let's take a short break from lists and look at strings. We postponed that
   until now since strings are in many ways just like lists of characters. In
@@ -7870,6 +9208,8 @@
   their length, and index, slice and compare them as usual:
 
   <\verbatim>
+    \;
+
     \<gtr\> "abc"+"xyz";
 
     "abcxyz"
@@ -7881,11 +9221,15 @@
     \<gtr\> "abc"=="abd";
 
     0
+
+    \;
   </verbatim>
 
   In addition, strings can also be ordered lexicographically:
 
   <\verbatim>
+    \;
+
     \<gtr\> "abd"\<less\>"abcd";
 
     0
@@ -7897,12 +9241,16 @@
     \<gtr\> sort (\<less\>) ["the","little","brown","fox"];
 
     ["brown","fox","little","the"]
+
+    \;
   </verbatim>
 
   Where it makes sense, list operations on strings return again a string
   result:
 
   <\verbatim>
+    \;
+
     \<gtr\> head "abc"; tail "abc";
 
     "a"
@@ -7914,6 +9262,8 @@
     "abcd"
 
     "efg"
+
+    \;
   </verbatim>
 
   A slight complication arises with the <hlink|<with|font-family|tt|map>|purelib.tm#map>
@@ -7921,9 +9271,13 @@
   in all cases. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> map ord "HAL";
 
     [72,65,76]
+
+    \;
   </verbatim>
 
   To have <verbatim|map> work consistently, it will thus yield a list even in
@@ -7932,6 +9286,8 @@
   using the <hlink|<with|font-family|tt|string>|purelib.tm#string> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (+1) "HAL";
 
     ["I","B","M"]
@@ -7939,6 +9295,8 @@
     \<gtr\> string ans;
 
     "IBM"
+
+    \;
   </verbatim>
 
   Conversely, you can also convert a string to a list of its characters using
@@ -7947,9 +9305,13 @@
   function:
 
   <\verbatim>
+    \;
+
     \<gtr\> list ans;
 
     ["I","B","M"]
+
+    \;
   </verbatim>
 
   As in the case of <hlink|<with|font-family|tt|map>|purelib.tm#map>, this
@@ -7958,9 +9320,13 @@
   draws values from a string:
 
   <\verbatim>
+    \;
+
     \<gtr\> [x-1 \| x = "IBM"];
 
     ["H","A","L"]
+
+    \;
   </verbatim>
 
   Talking about characters, these are simply single character strings, so
@@ -7969,6 +9335,8 @@
   character strings which can be used in pattern matching:
 
   <\verbatim>
+    \;
+
     \<gtr\> isupper x::char = "A"\<less\>=x && x\<less\>= "Z";
 
     \<gtr\> filter isupper "The Little Brown Fox";
@@ -7978,6 +9346,8 @@
     \<gtr\> any isupper "The Little Brown Fox";
 
     1
+
+    \;
   </verbatim>
 
   Maybe you wondered how that <verbatim|"HAL"> <verbatim|=\>>
@@ -7985,6 +9355,8 @@
   defines basic arithmetic on characters:
 
   <\verbatim>
+    \;
+
     \<gtr\> "a"+1, "a"+2, "z"-1;
 
     "b","c","y"
@@ -7992,6 +9364,8 @@
     \<gtr\> "z"-"a";
 
     25
+
+    \;
   </verbatim>
 
   This considers characters as an enumerated data type where each character
@@ -8003,6 +9377,8 @@
   So here's the rot13 encoding in Pure:
 
   <\verbatim>
+    \;
+
     rot13 x::string = string (map rot13 x) with
 
     \ \ rot13 c = c+13 if "a" \<less\>= lower c && lower c \<less\>= "m";
@@ -8017,11 +9393,15 @@
     \ \ \ \ \ \ \ \ \ \ = c otherwise;
 
     end;
+
+    \;
   </verbatim>
 
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> rot13 "The quick brown fox";
 
     "Gur dhvpx oebja sbk"
@@ -8029,12 +9409,16 @@
     \<gtr\> rot13 ans;
 
     "The quick brown fox"
+
+    \;
   </verbatim>
 
   Character arithmetic also makes arithmetic sequences of characters work as
   expected:
 
   <\verbatim>
+    \;
+
     \<gtr\> "a".."k"; "k":"j".."a";
 
     ["a","b","c","d","e","f","g","h","i","j","k"]
@@ -8044,6 +9428,8 @@
     \<gtr\> string ("a":"c".."z");
 
     "acegikmoqsuwy"
+
+    \;
   </verbatim>
 
   You can also convert between characters and their ordinal numbers using the
@@ -8051,6 +9437,8 @@
   <hlink|<with|font-family|tt|chr>|purelib.tm#chr> functions:
 
   <\verbatim>
+    \;
+
     \<gtr\> ord "a";
 
     97
@@ -8058,15 +9446,21 @@
     \<gtr\> chr (ans+1);
 
     "b"
+
+    \;
   </verbatim>
 
   Thus using Horner's rule we might convert a string of decimal digits to its
   numeric representation as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> foldl (\\x c -\<gtr\> 10*x+ord c-ord "0") 0 "123456";
 
     123456
+
+    \;
   </verbatim>
 
   However, there are much easier and more general ways to convert between
@@ -8076,20 +9470,28 @@
   between any Pure value and its string representation:
 
   <\verbatim>
+    \;
+
     \<gtr\> val "2*(3+4)"; str ans;
 
     2*(3+4)
 
     "2*(3+4)"
+
+    \;
   </verbatim>
 
   If you also want to evaluate the string representation of a Pure expression
   then <hlink|<with|font-family|tt|eval>|purelib.tm#eval> is your friend:
 
   <\verbatim>
+    \;
+
     \<gtr\> eval "2*(3+4)";
 
     14
+
+    \;
   </verbatim>
 
   Two other convenient functions are <hlink|<with|font-family|tt|split>|purelib.tm#split>
@@ -8099,6 +9501,8 @@
   elements:
 
   <\verbatim>
+    \;
+
     \<gtr\> split " " "The quick brown fox";
 
     ["The","quick","brown","fox"]
@@ -8106,15 +9510,21 @@
     \<gtr\> join ":" ans;
 
     "The:quick:brown:fox"
+
+    \;
   </verbatim>
 
   If you don't need the intervening delimiters then you can also concatenate
   string lists simply with <hlink|<with|font-family|tt|strcat>|purelib.tm#strcat>:
 
   <\verbatim>
+    \;
+
     \<gtr\> strcat ["The","quick","brown","fox"];
 
     "Thequickbrownfox"
+
+    \;
   </verbatim>
 
   These operations are all implemented in an efficient way so that they run
@@ -8134,7 +9544,7 @@
   string. These are all explained in detail in the <hlink|<em|Pure Library
   Manual>|purelib.tm>.
 
-  <subsubsection|List Comprehensions<label|list-comprehensions>>
+  <subsubsection|List Comprehensions><label|list-comprehensions>
 
   List comprehensions are Pure's main workhorse for generating and processing
   all kinds of list values. You can think of them as a combination of
@@ -8150,13 +9560,17 @@
   <hlink|<with|font-family|tt|map>|purelib.tm#map> with lambdas:
 
   <\verbatim>
+    \;
+
     \<gtr\> [2*x-1 \| x = 1..10];
 
     [1,3,5,7,9,11,13,15,17,19]
+
+    \;
   </verbatim>
 
-  This can be read aloud as ``the list of all <verbatim|2*x-1> for which
-  <verbatim|x> runs through the list <verbatim|1..10>''. The part
+  This can be read aloud as \Pthe list of all <verbatim|2*x-1> for which
+  <verbatim|x> runs through the list <verbatim|1..10>\Q. The part
   <verbatim|x> <verbatim|=> <verbatim|1..10> is called a
   <with|font-series|bold|generator clause>. The comprehension binds
   <verbatim|x> to each member of the list <verbatim|1..10> in turn and
@@ -8164,9 +9578,13 @@
   binding. This is equivalent to the following <verbatim|map> expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (\\x-\<gtr\>2*x-1) (1..10);
 
     [1,3,5,7,9,11,13,15,17,19]
+
+    \;
   </verbatim>
 
   List comprehensions may also involve <with|font-series|bold|filter
@@ -8174,26 +9592,36 @@
   in the result list.
 
   <\verbatim>
+    \;
+
     \<gtr\> [2*x-1 \| x = 1..10; x mod 3];
 
     [1,3,7,9,13,15,19]
+
+    \;
   </verbatim>
 
-  This can be read as ``the list of all <verbatim|2*x-1> for which
+  This can be read as \Pthe list of all <verbatim|2*x-1> for which
   <verbatim|x> runs through <verbatim|1..10> and for which <verbatim|x>
-  <verbatim|mod> <verbatim|3> is non-zero'' (which means that <verbatim|x> is
+  <verbatim|mod> <verbatim|3> is non-zero\Q (which means that <verbatim|x> is
   not a multiple of <verbatim|3>). It is roughly equivalent to:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (\\x-\<gtr\>2*x-1) (filter (\\x-\<gtr\>x mod 3) (1..10));
 
     [1,3,7,9,13,15,19]
+
+    \;
   </verbatim>
 
   List comprehensions can also draw values from other kinds of aggregates
   such as strings and matrices, but the result is always a list:
 
   <\verbatim>
+    \;
+
     \<gtr\> [x-1 \| x = "IBM"];
 
     ["H","A","L"]
@@ -8201,6 +9629,8 @@
     \<gtr\> [1/x \| x = {1,2,3;4,5,6}; ~x mod 2];
 
     [0.5,0.25,0.166666666666667]
+
+    \;
   </verbatim>
 
   List comprehensions can have as many generator and filter clauses as you
@@ -8210,9 +9640,13 @@
   with <verbatim|1\<=i\<=j\<=5> such that <verbatim|i+j> is even:
 
   <\verbatim>
+    \;
+
     \<gtr\> [i,j \| i = 1..5; j = i..5; ~(i+j) mod 2];
 
     [(1,1),(1,3),(1,5),(2,2),(2,4),(3,3),(3,5),(4,4),(5,5)]
+
+    \;
   </verbatim>
 
   The left-hand side of a generator clause can be an arbitary pattern, which
@@ -8221,28 +9655,40 @@
   number pairs are in fact all even:
 
   <\verbatim>
+    \;
+
     \<gtr\> [i+j \| i,j = ans];
 
     [2,4,6,4,6,6,8,8,10]
+
+    \;
   </verbatim>
 
   Generator clauses involving patterns also act as filters; unmatched
   elements are filtered out automatically:
 
   <\verbatim>
+    \;
+
     \<gtr\> [i+j \| i,j = ["to be ignored",(1,1),(2,2),3]];
 
     [2,4]
+
+    \;
   </verbatim>
 
   List comprehensions can also be nested to an arbitrary depth. For instance,
-  we may rewrite the ``even sums'' comprehension from above as follows, in
+  we may rewrite the \Peven sums\Q comprehension from above as follows, in
   order to group the pairs into sublists for each value of <verbatim|i>:
 
   <\verbatim>
+    \;
+
     \<gtr\> [[i,j \| j = i..5; ~(i+j) mod 2] \| i = 1..5];
 
     [[(1,1),(1,3),(1,5)],[(2,2),(2,4)],[(3,3),(3,5)],[(4,4)],[(5,5)]]
+
+    \;
   </verbatim>
 
   A notorious example is the following recursive algorithm which implements a
@@ -8251,6 +9697,8 @@
   concerned with that here.)
 
   <\verbatim>
+    \;
+
     primes n \ \ \ \ \ \ \ = sieve (2..n) with
 
     \ \ sieve [] \ \ \ \ \ = [];
@@ -8258,6 +9706,8 @@
     \ \ sieve (p:qs) \ = p : sieve [q \| q = qs; q mod p];
 
     end;
+
+    \;
   </verbatim>
 
   Note that the sieve recursively filters out the multiples of the current
@@ -8266,9 +9716,13 @@
   primes up to <verbatim|n>:
 
   <\verbatim>
+    \;
+
     \<gtr\> primes 100;
 
     [2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97]
+
+    \;
   </verbatim>
 
   List comprehensions are also a useful device to organize backtracking
@@ -8279,6 +9733,8 @@
   no two queens hold each other in check:
 
   <\verbatim>
+    \;
+
     queens n \ \ \ \ \ \ = search n 1 [] with
 
     \ \ search n i p = [reverse p] if i\<gtr\>n;
@@ -8294,11 +9750,13 @@
     i1-j1==i2-j2;
 
     end;
+
+    \;
   </verbatim>
 
-  <subsubsection|Lazy Evaluation and Streams<label|lazy-evaluation-and-streams>>
+  <subsubsection|Lazy Evaluation and Streams><label|lazy-evaluation-and-streams>
 
-  As already mentioned, lists can also be evaluated in a ``lazy'' fashion, by
+  As already mentioned, lists can also be evaluated in a \Plazy\Q fashion, by
   just turning the tail of a list into a future. This special kind of list is
   also called a <with|font-series|bold|stream>. Streams enable you to work
   with infinite lists (or finite lists which are so huge that you would never
@@ -8306,11 +9764,15 @@
   define the infinite stream of all Fibonacci numbers:
 
   <\verbatim>
+    \;
+
     \<gtr\> let fibs = fibs 0L 1L with fibs a b = a : fibs b (a+b) & end;
 
     \<gtr\> fibs;
 
     0L:#\<less\>thunk 0xb5d54320\<gtr\>
+
+    \;
   </verbatim>
 
   Note the <hlink|<with|font-family|tt|&>|#-amp> on the tail of the list in
@@ -8321,19 +9783,23 @@
   integers the values would soon start wrapping around to negative integers.
 
   Streams like these can be worked with in pretty much the same way as with
-  lists. Of course, care must be taken not to invoke ``eager'' operations
+  lists. Of course, care must be taken not to invoke \Peager\Q operations
   such as <hlink|<with|font-family|tt|#>|purelib.tm##> (which computes the
   size of a list) on infinite streams, to prevent infinite recursion.
   However, many list operations work with infinite streams just fine, and
   return the appropriate stream results. E.g., the
   <hlink|<with|font-family|tt|take>|purelib.tm#take> function (which
   retrieves a given number of elements from the front of a list) works with
-  streams just as well as with ``eager'' lists:
+  streams just as well as with \Peager\Q lists:
 
   <\verbatim>
+    \;
+
     \<gtr\> take 10 fibs;
 
     0L:#\<less\>thunk 0xb5d54350\<gtr\>
+
+    \;
   </verbatim>
 
   Hmm, not much progress there, but that's just how streams work (or rather
@@ -8342,17 +9808,25 @@
   and we can readily convert it to an ordinary list, forcing its evaluation:
 
   <\verbatim>
+    \;
+
     \<gtr\> list (take 10 fibs);
 
     [0L,1L,1L,2L,3L,5L,8L,13L,21L,34L]
+
+    \;
   </verbatim>
 
-  An alternative way to achieve this is to cut a ``slice'' from the stream:
+  An alternative way to achieve this is to cut a \Pslice\Q from the stream:
 
   <\verbatim>
+    \;
+
     \<gtr\> fibs!!(0..10);
 
     [0L,1L,1L,2L,3L,5L,8L,13L,21L,34L,55L]
+
+    \;
   </verbatim>
 
   Note that since we bound the stream to a variable, the already computed
@@ -8362,9 +9836,13 @@
   for execution speed:
 
   <\verbatim>
+    \;
+
     \<gtr\> fibs;
 
     0L:1L:1L:2L:3L:5L:8L:13L:21L:34L:55L:#\<less\>thunk 0xb5d54590\<gtr\>
+
+    \;
   </verbatim>
 
   The prelude also provides some convenience operations for generating stream
@@ -8373,6 +9851,8 @@
   sequence, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> let u = 1..inf; let v = -1.0:-1.2..-inf;
 
     \<gtr\> u!!(0..10); v!!(0..10);
@@ -8380,6 +9860,8 @@
     [1,2,3,4,5,6,7,8,9,10,11]
 
     [-1.0,-1.2,-1.4,-1.6,-1.8,-2.0,-2.2,-2.4,-2.6,-2.8,-3.0]
+
+    \;
   </verbatim>
 
   Other useful stream generator functions are
@@ -8390,6 +9872,8 @@
   which cycles through the elements of the given list:
 
   <\verbatim>
+    \;
+
     \<gtr\> iterate (*2) 1!!(0..10);
 
     [1,2,4,8,16,32,64,128,256,512,1024]
@@ -8401,12 +9885,16 @@
     \<gtr\> cycle [0,1]!!(0..10);
 
     [0,1,0,1,0,1,0,1,0,1,0]
+
+    \;
   </verbatim>
 
   Moreover, list comprehensions can draw values from streams and return the
   appropriate stream result:
 
   <\verbatim>
+    \;
+
     \<gtr\> let rats = [m,n-m \| n=2..inf; m=1..n-1; gcd m (n-m) == 1]; rats;
 
     (1,1):#\<less\>thunk 0xb5d54950\<gtr\>
@@ -8414,23 +9902,31 @@
     \<gtr\> rats!!(0..10);
 
     [(1,1),(1,2),(2,1),(1,3),(3,1),(1,4),(2,3),(3,2),(4,1),(1,5),(5,1)]
+
+    \;
   </verbatim>
 
   We can also rewrite our prime sieve so that it generates the infinite
   stream of <em|all> prime numbers:
 
   <\verbatim>
+    \;
+
     all_primes \ \ \ \ \ = sieve (2..inf) with
 
     \ \ sieve (p:qs) \ = p : sieve [q \| q = qs; q mod p] &;
 
     end;
+
+    \;
   </verbatim>
 
   Note that we can omit the empty list case of <verbatim|sieve> here, since
   the sieve now never becomes empty. Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let P = all_primes;
 
     \<gtr\> P!!(0..20);
@@ -8440,6 +9936,8 @@
     \<gtr\> P!299;
 
     1987
+
+    \;
   </verbatim>
 
   You can also just print the entire stream. Note that this sieve algorithm
@@ -8448,6 +9946,8 @@
   <verbatim|Ctrl-c> when you get bored:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> do (printf "%d\\n") all_primes;
@@ -8459,14 +9959,20 @@
     5
 
     \ \ ...
+
+    \;
   </verbatim>
 
   It's also possible to convert an ordinary list to a stream:
 
   <\verbatim>
+    \;
+
     \<gtr\> stream (1..10);
 
     1:#\<less\>thunk 0x7f2692a0f138\<gtr\>
+
+    \;
   </verbatim>
 
   This may seem like a silly thing to do, because the original list is
@@ -8480,7 +9986,11 @@
   lazy fashion:
 
   <\verbatim>
+    \;
+
     lazyfringe t = if listp t then catmap lazyfringe (stream t) else [t];
+
+    \;
   </verbatim>
 
   Recall that the fringe of a tree is the list of its leaves in left-to-right
@@ -8490,6 +10000,8 @@
   produced on demand:
 
   <\verbatim>
+    \;
+
     \<gtr\> lazyfringe [[a,b],c,[[d]],e,[f,[[g,h]]]];
 
     a:#\<less\>thunk 0x7f127fc1f090\<gtr\>
@@ -8497,6 +10009,8 @@
     \<gtr\> list ans;
 
     [a,b,c,d,e,f,g,h]
+
+    \;
   </verbatim>
 
   Hence a simple syntactic equality check now suffices to solve the
@@ -8505,27 +10019,37 @@
   Problem|#the-same-fringe-problem>:
 
   <\verbatim>
+    \;
+
     let t1 = [[a,b],c,[[d]],e,[f,[[g,h]]]];
 
     let t2 = [a,b,c,[[d],[],e],[f,[g,[h]]]];
 
     let t3 = [[a,b],d,[[c]],e,[f,[[g,h]]]];
+
+    \;
   </verbatim>
 
   Let's also bind the fringes to some variables so that we can check which
   parts actually get evaluated:
 
   <\verbatim>
+    \;
+
     let l1 = lazyfringe t1;
 
     let l2 = lazyfringe t2;
 
     let l3 = lazyfringe t3;
+
+    \;
   </verbatim>
 
   Now comparing <verbatim|l3> and <verbatim|l2> we get:
 
   <\verbatim>
+    \;
+
     \<gtr\> l3 === l2; l3; l2;
 
     0
@@ -8533,6 +10057,8 @@
     a:b:d:#\<less\>thunk 0x7fd308116178\<gtr\>
 
     a:b:c:#\<less\>thunk 0x7fd308116060\<gtr\>
+
+    \;
   </verbatim>
 
   As you can see, the two fringes were only constructed as far as needed to
@@ -8541,6 +10067,8 @@
   find that they're equal:
 
   <\verbatim>
+    \;
+
     \<gtr\> l1 === l2; l1; l2;
 
     1
@@ -8548,13 +10076,19 @@
     [a,b,c,d,e,f,g,h]
 
     [a,b,c,d,e,f,g,h]
+
+    \;
   </verbatim>
 
   But this doesn't really matter if we construct the fringes as temporary
   values, as in:
 
   <\verbatim>
+    \;
+
     \<gtr\> fringe t1 === fringe t2;
+
+    \;
   </verbatim>
 
   Now only the parts of the fringes are in memory which are currently under
@@ -8569,7 +10103,7 @@
   it works without actually constructing the fringes at all. But the solution
   using lazy evaluation is certainly much simpler.
 
-  <subsubsection|Matrices and Vectors<label|matrices-and-vectors>>
+  <subsubsection|Matrices and Vectors><label|matrices-and-vectors>
 
   Pure has a versatile matrix data structure offering compact storage and
   efficient random access to its members. Pure matrices work pretty much like
@@ -8593,9 +10127,13 @@
   Matrices are denoted using curly braces in Pure:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = {1,2,3;4,5,6}; x;
 
     {1,2,3;4,5,6}
+
+    \;
   </verbatim>
 
   Note that the semicolon is used to separate different rows, while the
@@ -8606,32 +10144,44 @@
   number of elements:
 
   <\verbatim>
+    \;
+
     \<gtr\> dim x; #x;
 
     2,3
 
     6
+
+    \;
   </verbatim>
 
   There's no separate data type for vectors; row and column vectors are
   simply represented as 1 x n and n x 1 matrices, respectively:
 
   <\verbatim>
+    \;
+
     \<gtr\> dim {1,2,3}; dim {1;2;3};
 
     1,3
 
     3,1
+
+    \;
   </verbatim>
 
   Singleton and empty matrices can be denoted as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> dim {1}; dim {};
 
     1,1
 
     0,0
+
+    \;
   </verbatim>
 
   The <verbatim|transpose> function turns columns into rows and vice versa;
@@ -8639,6 +10189,8 @@
   vectors:
 
   <\verbatim>
+    \;
+
     \<gtr\> transpose x;
 
     {1,4;2,5;3,6}
@@ -8648,6 +10200,8 @@
     {1;2;3}
 
     {1,2,3}
+
+    \;
   </verbatim>
 
   Note that matrices are immutable in Pure, so matrix functions like
@@ -8661,9 +10215,13 @@
   <verbatim|x> into a row vector as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> redim (1,6) x;
 
     {1,2,3,4,5,6}
+
+    \;
   </verbatim>
 
   Again, this doesn't change the original matrix, but returns a new matrix
@@ -8673,6 +10231,8 @@
   that either the number of rows or columns is still zero. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> redim (3,0) {};
 
     {}
@@ -8680,6 +10240,8 @@
     \<gtr\> dim ans;
 
     3,0
+
+    \;
   </verbatim>
 
   Another way to do this is to just construct a zero matrix with zero rows or
@@ -8696,6 +10258,8 @@
   diagonal of a matrix:
 
   <\verbatim>
+    \;
+
     \<gtr\> rowvector x;
 
     {1,2,3,4,5,6}
@@ -8707,17 +10271,23 @@
     \<gtr\> diag x;
 
     {1,5}
+
+    \;
   </verbatim>
 
   You can also extract the rows and columns of a matrix, which yields a list
   of the corresponding row and column vectors, respectively:
 
   <\verbatim>
+    \;
+
     \<gtr\> rows x; cols x;
 
     [{1,2,3},{4,5,6}]
 
     [{1;4},{2;5},{3;6}]
+
+    \;
   </verbatim>
 
   There are a number of other operations which convert between matrices and
@@ -8731,6 +10301,8 @@
   vector in row-major order:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!(0,2);
 
     3
@@ -8738,6 +10310,8 @@
     \<gtr\> x!3;
 
     4
+
+    \;
   </verbatim>
 
   Slicing is done with the `<hlink|<with|font-family|tt|!!>|purelib.tm#!!/matrix>`
@@ -8746,26 +10320,36 @@
   matrix:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!!(0..1,1..2);
 
     {2,3;5,6}
+
+    \;
   </verbatim>
 
   Second, a pair of a list and a row or column index cuts slices from
   individual rows or columns:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!!(0,1..2); x!!(0..1,2);
 
     {2,3}
 
     {3;6}
+
+    \;
   </verbatim>
 
   Third, a list of pairs of row and column indices, or a list of element
   indices gives a row vector with all the corresponding elements:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!![(0,2),(1,2)];
 
     {3,6}
@@ -8773,6 +10357,8 @@
     \<gtr\> x!!(2..3);
 
     {3,4}
+
+    \;
   </verbatim>
 
   While most of the slices above are contiguous (a case which the prelude
@@ -8781,9 +10367,13 @@
   and/or copy rows and columns of a matrix along the way:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!!([1,0,1],0..2);
 
     {4,5,6;1,2,3;4,5,6}
+
+    \;
   </verbatim>
 
   Matrices can also be constructed from submatrices by arranging the
@@ -8792,6 +10382,8 @@
   up:
 
   <\verbatim>
+    \;
+
     \<gtr\> {1,{2,3};{4,5},6};
 
     {1,2,3;4,5,6}
@@ -8803,22 +10395,28 @@
     \<gtr\> {{1;2;3},{4;5;6}};
 
     {1,4;2,5;3,6}
+
+    \;
   </verbatim>
 
   The end result <em|must> be a rectangular matrix, however, otherwise you'll
   get an exception indicating a submatrix whose dimensions don't match:
 
   <\verbatim>
+    \;
+
     \<gtr\> {1,{2,3};{4,5}};
 
     \<less\>stdin\<gtr\>, line 24: unhandled exception 'bad_matrix_value
     {4,5}'
 
     while evaluating '{1,{2,3};{4,5}}'
+
+    \;
   </verbatim>
 
-  This ``splicing'' of submatrices is especially useful when doing linear
-  algebra, where matrices are often composed from smaller ``block matrices''
+  This \Psplicing\Q of submatrices is especially useful when doing linear
+  algebra, where matrices are often composed from smaller \Pblock matrices\Q
   or vectors; we'll see an example of this later. (Sometimes this behaviour
   also gets in the way, and thus there are ways to disable it; see
   <hlink|Symbolic Matrices|#symbolic-matrices> below.)
@@ -8844,6 +10442,8 @@
   convert between the different kinds of numeric matrices. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> dmatrix {1,2,3;4,5,6};
 
     {1.0,2.0,3.0;4.0,5.0,6.0}
@@ -8859,6 +10459,8 @@
     \<gtr\> dmatrix ans;
 
     {1.0,0.0,2.0,0.0,3.0,0.0;4.0,0.0,5.0,0.0,6.0,0.0}
+
+    \;
   </verbatim>
 
   (Note that the latter conversion turns a complex into a double matrix,
@@ -8868,6 +10470,8 @@
   dimensions:
 
   <\verbatim>
+    \;
+
     \<gtr\> imatrix (2,3);
 
     {0,0,0;0,0,0}
@@ -8879,17 +10483,23 @@
     \<gtr\> cmatrix (1,1);
 
     {0.0+:0.0}
+
+    \;
   </verbatim>
 
   As already mentioned, this also gives you a direct way to create empty
   matrices with different dimensions. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> imatrix (0,3); dim ans;
 
     {}
 
     0,3
+
+    \;
   </verbatim>
 
   The prelude offers matrix versions of the common list operations like
@@ -8901,6 +10511,8 @@
   <verbatim|(a*)> to x, which can be done as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> type scalar x = ~matrixp x;
 
     \<gtr\> a::scalar * x::matrix = map (a*) x;
@@ -8908,6 +10520,8 @@
     \<gtr\> 2*{1,2,3;4,5,6};
 
     {2,4,6;8,10,12}
+
+    \;
   </verbatim>
 
   Note that the <hlink|<with|font-family|tt|matrix>|#matrix/type> type tag or
@@ -8924,11 +10538,15 @@
   corresponding elements of two matrices using a given binary function:
 
   <\verbatim>
+    \;
+
     \<gtr\> x::matrix + y::matrix = zipwith (+) x y if dim x == dim y;
 
     \<gtr\> {1,2,3;4,5,6}+{1,2,1;3,2,3};
 
     {2,4,4;7,7,9}
+
+    \;
   </verbatim>
 
   Another way to define matrix functions in Pure is to employ a
@@ -8938,21 +10556,29 @@
   vectors, you may write something like:
 
   <\verbatim>
+    \;
+
     \<gtr\> {x1,y1}*{x2,y2} = x1*x2+y1*y2;
 
     \<gtr\> {2,3}*{1,4};
 
     14
+
+    \;
   </verbatim>
 
   Or, to compute the determinant of a 2x2 matrix:
 
   <\verbatim>
+    \;
+
     \<gtr\> det {a,b;c,d} = a*d-b*c;
 
     \<gtr\> det {1,2;3,4};
 
     -2
+
+    \;
   </verbatim>
 
   These patterns are convenient if the dimensions of the involved matrices
@@ -8973,11 +10599,15 @@
   for the Kronecker symbol):
 
   <\verbatim>
+    \;
+
     \<gtr\> eye n = {i==j \| i = 1..n; j = 1..n};
 
     \<gtr\> eye 3;
 
     {1,0,0;0,1,0;0,0,1}
+
+    \;
   </verbatim>
 
   Of course, matrix comprehensions can also draw values from other matrices
@@ -8985,9 +10615,13 @@
   is preserved. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> {x,y \| x = {1,2}; y = {a,b;c,d}};
 
     {(1,a),(1,b),(2,a),(2,b);(1,c),(1,d),(2,c),(2,d)}
+
+    \;
   </verbatim>
 
   Note that a matrix comprehension involving filters may fail because the
@@ -9001,11 +10635,15 @@
   definition of matrix multiplication in Pure:
 
   <\verbatim>
+    \;
+
     x::matrix * y::matrix = {dot u v \| u = rows x; v = cols y} with
 
     \ \ dot u v = foldl (+) 0 $ zipwith (*) u (rowvector v);
 
     end if m==n when _,m = dim x; n,_ = dim y end;
+
+    \;
   </verbatim>
 
   The basic building block in this example is the dot product of two vectors,
@@ -9016,6 +10654,8 @@
   condition in the guard of the rule. Let's give it a try:
 
   <\verbatim>
+    \;
+
     \<gtr\> {1,0;0,1}*{1,2;3,4};
 
     {1,2;3,4}
@@ -9031,11 +10671,13 @@
     \<gtr\> {1,2;3,4}*{1;1};
 
     {3;7}
+
+    \;
   </verbatim>
 
   Well, that was easy. So let's take a look at a more challenging example,
   Gaussian elimination, which can be used to solve systems of linear
-  equations. The algorithm brings a matrix into ``row echelon'' form, a
+  equations. The algorithm brings a matrix into \Prow echelon\Q form, a
   generalization of triangular matrices. The resulting system can then be
   solved quite easily using back substitution.
 
@@ -9049,6 +10691,8 @@
   permutation <verbatim|p>.
 
   <\verbatim>
+    \;
+
     gauss_elimination x::matrix = p,x
 
     when n,m = dim x; p,_,x = foldl step (0..n-1,0,x) (0..m-1) end;
@@ -9092,6 +10736,8 @@
     \ \ max (i,x) (j,y) = if x\<less\>y then j,y else i,x;
 
     end;
+
+    \;
   </verbatim>
 
   Please refer to any good textbook on numerical mathematics for a closer
@@ -9114,11 +10760,15 @@
   list):
 
   <\verbatim>
+    \;
+
     swap x i j = x!!(transp i j (0..n-1),0..m-1) when n,m = dim x end;
 
     transp i j p = [p!tr k \| k=0..#p-1]
 
     with tr k = if k==i then j else if k==j then i else k end;
+
+    \;
   </verbatim>
 
   Finally, let us define a convenient print representation of double matrices
@@ -9127,6 +10777,8 @@
   <hlink|Pretty-Printing|#pretty-printing>):
 
   <\verbatim>
+    \;
+
     using system;
 
     __show__ x::matrix
@@ -9136,11 +10788,15 @@
     with printd 0 = sprintf "\\n%10.5f"; printd _ = sprintf "%10.5f" end
 
     when n,m = dim x end if dmatrixp x;
+
+    \;
   </verbatim>
 
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = dmatrix {2,1,-1,8; -3,-1,2,-11; -2,1,2,-3};
 
     \<gtr\> x; gauss_elimination x;
@@ -9158,27 +10814,37 @@
     \ \ \ 0.00000 \ \ 1.00000 \ \ 0.40000 \ \ 2.60000
 
     \ \ \ 0.00000 \ \ 0.00000 \ \ 1.00000 \ -1.00000
+
+    \;
   </verbatim>
 
-  <subsubsection|Symbolic Matrices<label|symbolic-matrices>>
+  <subsubsection|Symbolic Matrices><label|symbolic-matrices>
 
   As already mentioned, matrices may contain not just numbers but any kind of
   Pure values, in which case they become <em|symbolic> matrices. For
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> {1,2.0,3L;a,b,c};
 
     {1,2.0,3L;a,b,c}
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|smatrixp>|purelib.tm#smatrixp> predicate
   gives you a quick way to check whether a matrix is a symbolic one:
 
   <\verbatim>
+    \;
+
     \<gtr\> smatrixp ans;
 
     1
+
+    \;
   </verbatim>
 
   Note that this may not always be obvious. For instance, you can use the
@@ -9186,24 +10852,34 @@
   explicitly convert a numeric matrix:
 
   <\verbatim>
+    \;
+
     \<gtr\> smatrix {1,2;3,4};
 
     {1,2;3,4}
+
+    \;
   </verbatim>
 
   This still looks the same as the original matrix, but <verbatim|smatrixp>
   reveals that it's in fact a symbolic matrix:
 
   <\verbatim>
+    \;
+
     \<gtr\> smatrixp ans;
 
     1
+
+    \;
   </verbatim>
 
   Also note that the empty matrix is by default a symbolic matrix, as are
   matrices containing bigints:
 
   <\verbatim>
+    \;
+
     \<gtr\> smatrixp {};
 
     1
@@ -9211,14 +10887,20 @@
     \<gtr\> smatrixp {1L,2L;3L,4L};
 
     1
+
+    \;
   </verbatim>
 
   However, you can easily convert these to a numeric type if needed, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> dmatrix {1L,2L;3L,4L};
 
     {1.0,2.0;3.0,4.0}
+
+    \;
   </verbatim>
 
   Symbolic matrices are a convenient data structure for storing arbitrary
@@ -9230,18 +10912,26 @@
   matrices. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> {{1,2},{3,4}};
 
     {1,2,3,4}
+
+    \;
   </verbatim>
 
   One way to inhibit this splicing of the submatrices in a larger matrix is
   to use the quote operator (cf. <hlink|The Quote|#the-quote>):
 
   <\verbatim>
+    \;
+
     \<gtr\> '{{1,2},{3,4}};
 
     {{1,2},{3,4}}
+
+    \;
   </verbatim>
 
   Note that this result is really different from <verbatim|{1,2;3,4}>. The
@@ -9250,19 +10940,27 @@
   double index will be required to access the subvector elements:
 
   <\verbatim>
+    \;
+
     \<gtr\> ans!0!1;
 
     2
+
+    \;
   </verbatim>
 
   You can also match these values with a nested matrix pattern, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> let {{a,b},{c,d}} = '{{1,2},{3,4}};
 
     \<gtr\> a,b,c,d;
 
     1,2,3,4
+
+    \;
   </verbatim>
 
   Unfortunately, the quote operator in fact inhibits evaluation of <em|all>
@@ -9274,25 +10972,35 @@
   elements as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> vector [{1,2},{3,4}];
 
     {{1,2},{3,4}}
+
+    \;
   </verbatim>
 
   Calls to the <hlink|<with|font-family|tt|vector>|purelib.tm#vector>
   function can be nested to an arbitrary depth to obtain higher-dimensional
-  ``arrays'':
+  \Parrays\Q:
 
   <\verbatim>
+    \;
+
     \<gtr\> vector [vector [{1,2}],vector [{3,4}]];
 
     {{{1,2}},{{3,4}}}
+
+    \;
   </verbatim>
 
   This obviously becomes a bit unwieldy for higher dimensions, but Pure 0.56
   and later provide the following shorthand notation:
 
   <\verbatim>
+    \;
+
     \<gtr\> {\|{1,2},{3,4}\|};
 
     {{1,2},{3,4}}
@@ -9300,6 +11008,8 @@
     \<gtr\> {\|{\|{1,2}\|},{\|{3,4}\|}\|};
 
     {{{1,2}},{{3,4}}}
+
+    \;
   </verbatim>
 
   This makes it much more convenient to denote nested vector values. Note
@@ -9309,10 +11019,10 @@
   <hlink|<em|non-splicing vector brackets>|purelib.tm#non-splicing> in the
   <hlink|<em|Pure Library Manual>|purelib.tm>.
 
-  <subsubsection|Record Data<label|record-data>>
+  <subsubsection|Record Data><label|record-data>
 
   Symbolic matrices also provide a means to represent simple record-like
-  data, by encoding records as symbolic vectors consisting of ``hash pairs''
+  data, by encoding records as symbolic vectors consisting of \Phash pairs\Q
   of the form <verbatim|key> <verbatim|=\>> <verbatim|value>. This kind of
   data structure is very convenient to represent aggregates with lots of
   different components. Since the components of records can be accessed by
@@ -9331,6 +11041,8 @@
   with them:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = {x=\<gtr\>5, y=\<gtr\>12};
 
     \<gtr\> recordp r, member r x;
@@ -9354,19 +11066,25 @@
     \<gtr\> delete ans z;
 
     {x=\<gtr\>99,y=\<gtr\>12}
+
+    \;
   </verbatim>
 
   Records can also be nested:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = {a =\<gtr\> {b=\<gtr\>1,c=\<gtr\>2}, b =\<gtr\> 2};
 
     \<gtr\> r!a, r!b, r!a!b;
 
     {b=\<gtr\>1,c=\<gtr\>2},2,1
+
+    \;
   </verbatim>
 
-  Note the use of the ``hash rocket'' <hlink|<with|font-family|tt|=\<gtr\>>|purelib.tm#=\>>
+  Note the use of the \Phash rocket\Q <hlink|<with|font-family|tt|=\<gtr\>>|purelib.tm#=\>>
   which denotes the <verbatim|key=\>value> associations in a record. The hash
   rocket is a constructor declared as an infix operator in the prelude, see
   the <hlink|<em|Hash Pairs>|purelib.tm#hash-pairs> section in the
@@ -9377,17 +11095,23 @@
   bound to a global or local variable or parameterless function:
 
   <\verbatim>
+    \;
+
     \<gtr\> let u = 99;
 
     \<gtr\> {u=\<gtr\>u};
 
     {99=\<gtr\>99}
+
+    \;
   </verbatim>
 
   In the case of global variables and function symbols, you might protect the
   symbol with a quote (see <hlink|The Quote|#the-quote>):
 
   <\verbatim>
+    \;
+
     \<gtr\> {'u=\<gtr\>u};
 
     {u=\<gtr\>99}
@@ -9395,14 +11119,20 @@
     \<gtr\> ans!'u;
 
     99
+
+    \;
   </verbatim>
 
   However, even the quote doesn't save you from local variable substitution:
 
   <\verbatim>
+    \;
+
     \<gtr\> {'u=\<gtr\>u} when u = 99 end;
 
     {99=\<gtr\>99}
+
+    \;
   </verbatim>
 
   In such cases you'll either have to rename the local variable, or use the
@@ -9410,6 +11140,8 @@
   the symbol:
 
   <\verbatim>
+    \;
+
     \<gtr\> {'u=\<gtr\>v} when v = 99 end;
 
     {u=\<gtr\>99}
@@ -9417,12 +11149,16 @@
     \<gtr\> {val "u"=\<gtr\>u} when u = 99 end;
 
     {u=\<gtr\>99}
+
+    \;
   </verbatim>
 
   It's also possible to directly use strings as keys instead, which may
   actually be more convenient in some cases:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = {"x"=\<gtr\>5, "y"=\<gtr\>12};
 
     \<gtr\> keys r; vals r;
@@ -9434,6 +11170,8 @@
     \<gtr\> update r "y" (r!"y"+1);
 
     {"x"=\<gtr\>5,"y"=\<gtr\>13}
+
+    \;
   </verbatim>
 
   You can also mix strings and symbols as keys in the same record (but note
@@ -9441,9 +11179,13 @@
   <verbatim|"y"> are really two different keys here):
 
   <\verbatim>
+    \;
+
     \<gtr\> insert r (y=\<gtr\>99);
 
     {"x"=\<gtr\>5,"y"=\<gtr\>12,y=\<gtr\>99}
+
+    \;
   </verbatim>
 
   As records are in fact just special kinds of matrices, the standard matrix
@@ -9452,6 +11194,8 @@
   collection of new <verbatim|key=\>value> associations:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = {x=\<gtr\>5, y=\<gtr\>12};
 
     \<gtr\> let r = {r, x=\<gtr\>7, z=\<gtr\>3}; r;
@@ -9469,6 +11213,8 @@
     \<gtr\> ans!x;
 
     5
+
+    \;
   </verbatim>
 
   As the example shows, this may produce duplicate keys, but these are
@@ -9478,9 +11224,13 @@
   last association for each key:
 
   <\verbatim>
+    \;
+
     \<gtr\> record r;
 
     {x=\<gtr\>7,y=\<gtr\>12,z=\<gtr\>3}
+
+    \;
   </verbatim>
 
   In fact, the <hlink|<with|font-family|tt|record>|purelib.tm#record>
@@ -9490,10 +11240,14 @@
   ordering of the fields. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> record {x=\<gtr\>5, y=\<gtr\>12} === record {y=\<gtr\>12,
     x=\<gtr\>5};
 
     1
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|record>|purelib.tm#record> function can
@@ -9501,9 +11255,13 @@
   of hash pairs:
 
   <\verbatim>
+    \;
+
     \<gtr\> record [x=\<gtr\>5, x=\<gtr\>7, y=\<gtr\>12];
 
     {x=\<gtr\>7,y=\<gtr\>12}
+
+    \;
   </verbatim>
 
   Other matrix operations such as <hlink|<with|font-family|tt|map>|purelib.tm#map>,
@@ -9514,11 +11272,15 @@
   applies a function to all values stored in a record:
 
   <\verbatim>
+    \;
+
     \<gtr\> maprec f = map (\\(u=\<gtr\>v) -\<gtr\> u=\<gtr\>f v);
 
     \<gtr\> maprec (*2) {x=\<gtr\>5,y=\<gtr\>12};
 
     {x=\<gtr\>10,y=\<gtr\>24}
+
+    \;
   </verbatim>
 
   Another example: The following <verbatim|ziprec> function collects pairs of
@@ -9526,6 +11288,8 @@
   result here so that duplicate keys are always removed):
 
   <\verbatim>
+    \;
+
     \<gtr\> ziprec x y = record {u=\<gtr\>(x!u,y!u) \| u = keys x; member y
     u};
 
@@ -9533,6 +11297,8 @@
     {x=\<gtr\>10,y=\<gtr\>24,z=\<gtr\>7};
 
     {x=\<gtr\>(5,10),y=\<gtr\>(12,24)}
+
+    \;
   </verbatim>
 
   Thus the full power of generic matrix operations is available for records,
@@ -9546,6 +11312,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = {x=\<gtr\>ref 1,y=\<gtr\>ref 2}; maprec get r;
 
     {x=\<gtr\>1,y=\<gtr\>2}
@@ -9555,10 +11323,12 @@
     99
 
     {x=\<gtr\>99,y=\<gtr\>2}
+
+    \;
   </verbatim>
 
-  Another interesting application of records are the ``virtual method
-  tables'' used in object-oriented programming. Pure has a built-in
+  Another interesting application of records are the \Pvirtual method
+  tables\Q used in object-oriented programming. Pure has a built-in
   <hlink|<with|font-family|tt|__locals__>|purelib.tm#--locals--> macro which
   captures the environment of local functions at the point of the call and
   returns it as a list of hash pairs of function symbols and the
@@ -9566,6 +11336,8 @@
   structure which can be used as a virtual method table. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> record __locals__ with f x = x+1 end;
 
     {f=\<gtr\>f}
@@ -9573,6 +11345,8 @@
     \<gtr\> (ans!f) 99;
 
     100
+
+    \;
   </verbatim>
 
   Here is a little helper macro that we can use to turn the virtual method
@@ -9580,11 +11354,15 @@
   the appropriate closure:
 
   <\verbatim>
+    \;
+
     def obj = (\\x -\<gtr\> vt!x) when
 
     \ \ vt = record __locals__;
 
     end;
+
+    \;
   </verbatim>
 
   Continuing our example from <hlink|Local Functions and
@@ -9592,6 +11370,8 @@
   <verbatim|point> object as follows:
 
   <\verbatim>
+    \;
+
     point (x,y) = obj with
 
     \ \ coords () = get x,get y;
@@ -9603,6 +11383,8 @@
     \ \ x,y = ref x,ref y;
 
     end;
+
+    \;
   </verbatim>
 
   Note that <verbatim|obj> really needs to be implemented as a macro so that
@@ -9610,7 +11392,7 @@
   <verbatim|_locals__> call is executed in the context of the local function
   environment there. (A macro is like a function which gets evaluated at
   compile time; see the <hlink|Macros|#macros> section for details.) Also
-  note that we changed the <verbatim|coords> ``method'' so that it takes a
+  note that we changed the <verbatim|coords> \Pmethod\Q so that it takes a
   dummy parameter <verbatim|()> now; this prevents premature evaluation of
   the closure. If <verbatim|coords> was a parameterless function then its
   value would be fixed at the time we construct the virtual method table,
@@ -9619,6 +11401,8 @@
   Now we can write:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = point (1,2);
 
     \<gtr\> p coords ();
@@ -9632,6 +11416,8 @@
     \<gtr\> p coords ();
 
     3,5
+
+    \;
   </verbatim>
 
   This provides us with an interesting way to represent stateful objects
@@ -9641,7 +11427,7 @@
   operations we've already discussed above; we leave this as an exercise for
   the interested reader.
 
-  <subsubsection|The Quote<label|the-quote>>
+  <subsubsection|The Quote><label|the-quote>
 
   We've already seen some uses of the quote in previous examples, so let's
   have a closer look at it now. As described in <hlink|Special
@@ -9652,6 +11438,8 @@
   obtain its value. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = '(2*42+2^12); x;
 
     2*42+2^12
@@ -9659,6 +11447,8 @@
     \<gtr\> eval x;
 
     4180.0
+
+    \;
   </verbatim>
 
   Lisp programmers will be well familiar with this operation which enables
@@ -9668,6 +11458,8 @@
   global variables, <em|local> variables are substituted as usual:
 
   <\verbatim>
+    \;
+
     \<gtr\> (\\x -\<gtr\> '(2*x+1)) 99;
 
     2*99+1
@@ -9687,31 +11479,41 @@
     \<gtr\> '(2*42+2^n) when n = 12 end;
 
     2*42+2^12
+
+    \;
   </verbatim>
 
   Local parameterless functions are treated in the same fashion:
 
   <\verbatim>
+    \;
+
     \<gtr\> '(2*42+2^n) with n = 12 end;
 
     2*42+2^12
+
+    \;
   </verbatim>
 
   Note that, in contrast, for global variables (and functions) we have:
 
   <\verbatim>
+    \;
+
     \<gtr\> let n = 12;
 
     \<gtr\> '(2*42+2^n);
 
     2*42+2^n
+
+    \;
   </verbatim>
 
   This discrepancy may come as a surprise (or even annoyance) to real Lisp
   weenies, but it does have its advantages. As illustrated in the examples
   above, local variable substitution makes it easy to fill in the variable
-  parts in a quoted ``template'' expression, without any need for an arguably
-  complex tool like Lisp's ``quasiquote''. (But note that it is quite easy to
+  parts in a quoted \Ptemplate\Q expression, without any need for an arguably
+  complex tool like Lisp's \Pquasiquote\Q. (But note that it is quite easy to
   define the quasiquote in Pure if you want it. See the <hlink|Recursive
   Macros|#recursive-macros> section for a simplified version; a full
   implementation can be found in the Pure library.)
@@ -9722,9 +11524,13 @@
   <hlink|<with|font-family|tt|val>|purelib.tm#val>:
 
   <\verbatim>
+    \;
+
     \<gtr\> val "x"+x when x = 99 end;
 
     x+99
+
+    \;
   </verbatim>
 
   Also note that while local functions are always substituted in a quoted
@@ -9732,6 +11538,8 @@
   quoted:
 
   <\verbatim>
+    \;
+
     \<gtr\> 'foo 99 with foo x = 2*x+1 end;
 
     foo 99
@@ -9739,12 +11547,16 @@
     \<gtr\> eval ans;
 
     199
+
+    \;
   </verbatim>
 
   The quote also inhibits evaluation inside matrix expressions, including the
-  ``splicing'' of embedded submatrices:
+  \Psplicing\Q of embedded submatrices:
 
   <\verbatim>
+    \;
+
     \<gtr\> '{1,2+3,2*3};
 
     {1,2+3,2*3}
@@ -9752,6 +11564,8 @@
     \<gtr\> '{1,{2,3},4};
 
     {1,{2,3},4}
+
+    \;
   </verbatim>
 
   <hlink|Special expressions|#special-expressions> (conditionals, lambda and
@@ -9759,9 +11573,11 @@
   <hlink|<with|font-family|tt|when>|#when> and
   <hlink|<with|font-family|tt|with>|#with> constructs) can be quoted as well.
   But since these constructs cannot be directly represented at runtime, the
-  quote actually produces some ordinary ``placeholder'' terms for these:
+  quote actually produces some ordinary \Pplaceholder\Q terms for these:
 
   <\verbatim>
+    \;
+
     \<gtr\> '(x+1 when x = '(2*3) end);
 
     x+1 __when__ [x--\<gtr\>'(2*3)]
@@ -9777,17 +11593,21 @@
     \<gtr\> eval ans;
 
     4180.0
+
+    \;
   </verbatim>
 
   Note that these placeholders are in fact special built-in macros which
   reconstruct the special expression when evaluated. Moreover, special
   expressions are implicitly quoted when they occur on the left-hand side of
-  an equation or as an argument of a ``<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>''
+  an equation or as an argument of a \P<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>\Q
   macro call. This is often used to implement macros which manipulate these
   constructs as literals. For instance, the following macro swaps the
   arguments in a lambda:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --quoteargs bar
 
     \<gtr\> def bar (\\x y -\<gtr\> z) = __eval__ ('(\\y x -\<gtr\> z));
@@ -9805,12 +11625,14 @@
     \<gtr\> baz 2 3;
 
     1
+
+    \;
   </verbatim>
 
   The <hlink|Macros|#macros> section explains in detail how this meta
   programming works.
 
-  <subsection|Declarations<label|declarations>>
+  <subsection|Declarations><label|declarations>
 
   Pure is a very terse language by design. Usually you don't declare much
   stuff, you just define it and be done with it. However, there are a few
@@ -9818,7 +11640,7 @@
   programs consisting of several source modules:
 
   <\itemize>
-    <item>symbol declarations determine ``scope'' and ``fixity'' of a symbol;
+    <item>symbol declarations determine \Pscope\Q and \Pfixity\Q of a symbol;
 
     <item><hlink|<with|font-family|tt|interface>|#interface> declarations
     specify abstract data types;
@@ -9837,22 +11659,28 @@
   These are toplevel elements (cf. <hlink|Toplevel|#toplevel>):
 
   <\verbatim>
+    \;
+
     item ::= \ symbol_decl \| interface_decl \| extern_decl
 
     \ \ \ \ \ \ \ \ \ \ \| using_decl \| namespace_decl
+
+    \;
   </verbatim>
 
   We defer the discussion of <hlink|<with|font-family|tt|extern>|#extern>
   declarations to the <hlink|C Interface|#c-interface> section. The other
   kinds of declarations are described in the following subsections.
 
-  <subsubsection|Symbol Declarations<label|symbol-declarations>>
+  <subsubsection|Symbol Declarations><label|symbol-declarations>
 
   Symbol declarations declare special attributes of a symbol, such as their
-  scope (whether they are ``public'' or ``private'') and their fixity (for
+  scope (whether they are \Ppublic\Q or \Pprivate\Q) and their fixity (for
   operator symbols). The syntax of these declarations is as follows:
 
   <\verbatim>
+    \;
+
     symbol_decl ::= \ scope qualified_symbol+ ";"
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| [scope] fixity qualified_symbol+ ";"
@@ -9865,6 +11693,8 @@
     precedence
 
     precedence \ ::= \ integer \| "(" op ")"
+
+    \;
   </verbatim>
 
   Scope declarations take the following form:
@@ -9908,7 +11738,7 @@
   specify the scope of the declared symbols (if the scope prefix is omitted,
   it defaults to <hlink|<with|font-family|tt|public>|#public>).
 
-  The following ``fixity'' declarations are available for introducing special
+  The following \Pfixity\Q declarations are available for introducing special
   operator symbols. This changes the way that these symbols are parsed and
   thus provides you with a limited means to extend the Pure language at the
   lexical and syntactical level.
@@ -9932,8 +11762,8 @@
   require that precedence numbers can be encoded as 24 bit unsigned machine
   integers, giving you a range from 0 to 16777215, but this should be large
   enough to incur no real limitations on applications. Also, the operator
-  declarations in the prelude have been set up to leave enough ``space''
-  between the ``standard'' levels so that you can easily sneak in new
+  declarations in the prelude have been set up to leave enough \Pspace\Q
+  between the \Pstandard\Q levels so that you can easily sneak in new
   operator symbols at low, high or intermediate precedences.)
 
   On each precedence level, you can declare (in order of increasing
@@ -9947,6 +11777,8 @@
   section of the <hlink|<em|Pure Library Manual>|purelib.tm>):
 
   <\verbatim>
+    \;
+
     infix \ 1800 \<less\> \<gtr\> \<less\>= \<gtr\>= == ~= ;
 
     infixl 2200 + - ;
@@ -9956,6 +11788,8 @@
     infixr 2500 ^ ;
 
     prefix 2600 # ;
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> Unary minus plays a special role in the
@@ -9976,7 +11810,11 @@
   as <verbatim|+>:
 
   <\verbatim>
+    \;
+
     infixl (+) ++ ;
+
+    \;
   </verbatim>
 
   The given symbol may be of a different fixity than the declaration, but it
@@ -9986,7 +11824,11 @@
   postfix operator:
 
   <\verbatim>
+    \;
+
     postfix (^) ^^ ;
+
+    \;
   </verbatim>
 
   Pure also provides unary outfix operators, which work like in Wm Leler's
@@ -10002,7 +11844,11 @@
   distinct). For instance:
 
   <\verbatim>
+    \;
+
     outfix \|: :\| BEGIN END;
+
+    \;
   </verbatim>
 
   After this declaration you can write bracketed expressions like
@@ -10013,8 +11859,8 @@
   them in parentheses, but you have to specify the symbols in matching pairs,
   such as <verbatim|(BEGIN> <verbatim|END)>.
 
-  Pure also has a notation for ``nullary'' operators, that is, ``operators
-  without operands''. These are used to denote special literals which simply
+  Pure also has a notation for \Pnullary\Q operators, that is, \Poperators
+  without operands\Q. These are used to denote special literals which simply
   stand for themselves. They are introduced using a
   <hlink|<with|font-family|tt|nonfix>|#nonfix> declaration:
 
@@ -10025,10 +11871,14 @@
   For instance:
 
   <\verbatim>
+    \;
+
     nonfix red green blue;
+
+    \;
   </verbatim>
 
-  Semantically, nonfix symbols are a kind of ``symbolic constants''. However,
+  Semantically, nonfix symbols are a kind of \Psymbolic constants\Q. However,
   it is important to note the difference to <em|defined> constants, which are
   symbols bound to a constant value by means of a
   <hlink|<with|font-family|tt|const>|#const> definition. In fact, there are
@@ -10038,7 +11888,7 @@
 
   Syntactically, nonfix symbols work just like ordinary identifiers, so they
   may stand whereever an identifier is allowed (no parentheses are required
-  to ``escape'' them). However, just like other kinds of operators, they may
+  to \Pescape\Q them). However, just like other kinds of operators, they may
   also consist of punctuation (which isn't allowed in ordinary identifiers).
   The other difference to ordinary identifiers is that nonfix symbols are
   always interpreted as literals, even if they occur in a variable position
@@ -10046,24 +11896,32 @@
   write something like:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x = case x of red = green; green = blue; blue = red end;
 
     \<gtr\> map foo [red,green,blue];
 
     [green,blue,red]
+
+    \;
   </verbatim>
 
   Thus nonfix symbols are pretty much like nullary constructor symbols in
   languages like Haskell. Non-fixity is just a syntactic attribute, however.
   Pure doesn't enforce that such values are irreducible, so you can still
-  write a ``constructor equation'' like the following:
+  write a \Pconstructor equation\Q like the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> red = blue;
 
     \<gtr\> map foo [red,green,blue];
 
     [blue,blue,blue]
+
+    \;
   </verbatim>
 
   Examples for all types of symbol declarations can be found in the
@@ -10074,9 +11932,9 @@
   <hlink|<with|font-family|tt|false>|purelib.tm#false>, as well as different
   kinds of exceptions).
 
-  <subsubsection|Interface Types<label|interface-types>>
+  <subsubsection|Interface Types><label|interface-types>
 
-  Besides the ``concrete'' types already described in the <hlink|Type
+  Besides the \Pconcrete\Q types already described in the <hlink|Type
   Rules|#type-rules> section, Pure provides another, more abstract way to
   characterize a type through the collection of operations it supports. These
   <with|font-series|bold|interface types> work pretty much like in Google's
@@ -10090,6 +11948,8 @@
   the manifest operations of the type:
 
   <\verbatim>
+    \;
+
     interface_decl ::= \ "interface" qualified_identifier
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "with" interface_item* "end" ";"
@@ -10098,6 +11958,8 @@
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| "interface"
     qualified_identifier ";"
+
+    \;
   </verbatim>
 
   Interfaces thus consist of two kinds of items:
@@ -10122,7 +11984,7 @@
     <item>The patterns are matched against the left-hand sides of ordinary
     function definitions. If a left-hand side matches, any argument pattern
     substituted for a variable tagged with the interface type becomes a
-    ``candidate pattern'' of the type.
+    \Pcandidate pattern\Q of the type.
 
     <item>The type consists of all candidate patterns which can be matched by
     some candidate pattern of <em|each> interface function. That is,
@@ -10137,7 +11999,11 @@
   Interface patterns often take a simple form like the following,
 
   <\verbatim>
+    \;
+
     interface foo with foo x::foo y z; end;
+
+    \;
   </verbatim>
 
   specifying the number of arguments of the interface function along with the
@@ -10148,21 +12014,33 @@
   the left-hand sides of equations. Thus,
 
   <\verbatim>
+    \;
+
     interface foo with foo x::foo y::int; end;
+
+    \;
   </verbatim>
 
   matches any rule of the form
 
   <\verbatim>
+    \;
+
     foo x y::int = ...;
+
+    \;
   </verbatim>
 
   but <em|not>:
 
   <\verbatim>
+    \;
+
     foo x 0 = ...;
 
     foo x y::bar = ...;
+
+    \;
   </verbatim>
 
   (unless <verbatim|bar> happens to be an alias of the <verbatim|int> type,
@@ -10172,12 +12050,14 @@
   Interface patterns may contain the interface type tag any number of times,
   yielding candidate patterns for each occurrence of the interface type tag
   in the pattern. For instance, here is a quick way to determine the type of
-  all ``addable'' data structures in the prelude (this uses the interactive
+  all \Paddable\Q data structures in the prelude (this uses the interactive
   <verbatim|show> <verbatim|interface> command to list the patterns actually
   matched by an interface type, cf. <hlink|The show
   Command|#the-show-command>):
 
   <\verbatim>
+    \;
+
     \<gtr\> interface addable with x::addable + y::addable; end;
 
     \<gtr\> show interface addable
@@ -10193,18 +12073,24 @@
     type addable [];
 
     type addable xs@(_:_);
+
+    \;
   </verbatim>
 
-  On the other hand, interfaces may also contain ``static'' patterns which do
+  On the other hand, interfaces may also contain \Pstatic\Q patterns which do
   not include the interface type as a tag at all, such as:
 
   <\verbatim>
+    \;
+
     interface foo with bar x::bar y; end;
+
+    \;
   </verbatim>
 
   These do not contribute anything to the candidate patterns of the type, but
   do restrict the type just like the other patterns, in that the type will be
-  empty unless the static patterns are all ``implemented''. In the example
+  empty unless the static patterns are all \Pimplemented\Q. In the example
   above, this means that the <verbatim|foo> type will be empty unless the
   <verbatim|bar> function is defined and takes an element of the
   <verbatim|bar> type as its first argument.
@@ -10213,28 +12099,44 @@
   Thus,
 
   <\verbatim>
+    \;
+
     interface any with end;
+
+    \;
   </verbatim>
 
   is just a fancy way to define the type:
 
   <\verbatim>
+    \;
+
     type any _;
+
+    \;
   </verbatim>
 
   Interfaces can be composed in a piecemeal fashion, by adding more interface
   patterns. Thus,
 
   <\verbatim>
+    \;
+
     interface foo with foo x::foo; end;
 
     interface foo with bar x::foo; end;
+
+    \;
   </verbatim>
 
   is equivalent to:
 
   <\verbatim>
+    \;
+
     interface foo with foo x::foo; bar x::foo; end;
+
+    \;
   </verbatim>
 
   It is also possible to include one interface in another, which effectively
@@ -10242,6 +12144,8 @@
   define the <verbatim|foo> interface above:
 
   <\verbatim>
+    \;
+
     interface bar with
 
     \ \ bar x::bar;
@@ -10257,6 +12161,8 @@
     \ \ interface bar;
 
     end;
+
+    \;
   </verbatim>
 
   This has the effect of including the signature of <verbatim|bar> in
@@ -10264,6 +12170,8 @@
   <verbatim|bar> signature accordingly):
 
   <\verbatim>
+    \;
+
     \<gtr\> show foo
 
     interface foo with
@@ -10273,6 +12181,8 @@
     \ \ bar x::foo;
 
     end;
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> Including interfaces is a static operation.
@@ -10287,6 +12197,8 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> show bar foo
 
     interface bar with
@@ -10320,6 +12232,8 @@
     \ \ bar x::baz;
 
     end;
+
+    \;
   </verbatim>
 
   Also note that, despite the obvious similarities between interfaces and
@@ -10333,6 +12247,8 @@
   this all works in practice:
 
   <\verbatim>
+    \;
+
     interface stack with
 
     \ \ push s::stack x;
@@ -10342,6 +12258,8 @@
     \ \ top s::stack;
 
     end;
+
+    \;
   </verbatim>
 
   Note the use of the type tag <verbatim|stack> in the operation patterns,
@@ -10365,27 +12283,39 @@
   instance, to implement stacks as lists, we might define:
 
   <\verbatim>
+    \;
+
     push xs@[] x \| push xs@(_:_) x = x:xs;
 
     pop (x:xs) = xs;
 
     top (x:xs) = x;
+
+    \;
   </verbatim>
 
-  This is also known as ``instantiating'' the type. In addition, we will need
+  This is also known as \Pinstantiating\Q the type. In addition, we will need
   an operation to create an initial stack value. The following will do for
   our purposes:
 
   <\verbatim>
+    \;
+
     stack xs::list = xs;
+
+    \;
   </verbatim>
 
   This yields a stack with the given initial contents. Let's give it a go:
 
   <\verbatim>
+    \;
+
     \<gtr\> top (push (stack []) 99);
 
     99
+
+    \;
   </verbatim>
 
   Looks good so far. We can also check the actual definition of the type in
@@ -10393,9 +12323,13 @@
   <verbatim|show> <verbatim|interface> command:
 
   <\verbatim>
+    \;
+
     \<gtr\> show interface stack
 
     type stack xs@(_:_);
+
+    \;
   </verbatim>
 
   Wait, something seems to be wrong there. The empty list pattern of the
@@ -10404,6 +12338,8 @@
   retype the above definitions. The compiler then tells us:
 
   <\verbatim>
+    \;
+
     \<gtr\> show interface stack
 
     warning: interface 'stack' may be incomplete
@@ -10413,15 +12349,19 @@
     warning: function 'top' might lack a rule for 'xs@[]'
 
     type stack xs@(_:_);
+
+    \;
   </verbatim>
 
   See? A pattern is only considered part of the type if it is supported by
   <em|all> the interface operations. Since the <verbatim|pop> and
   <verbatim|top> operations don't have any rules for empty list arguments,
   empty lists are excluded from the type. We can fix this quite easily by
-  adding the following ``error rules'' which handle this case:
+  adding the following \Perror rules\Q which handle this case:
 
   <\verbatim>
+    \;
+
     \<gtr\> pop [] = throw "empty stack";
 
     \<gtr\> top [] = throw "empty stack";
@@ -10431,6 +12371,8 @@
     type stack xs@[];
 
     type stack xs@(_:_);
+
+    \;
   </verbatim>
 
   This looks fine now, so let's see how we can put our new stack data
@@ -10438,9 +12380,11 @@
   employing <verbatim|stack> as a type tag for stack arguments so that we can
   be sure that the <verbatim|push>, <verbatim|pop> and <verbatim|top>
   operations are all supported. For instance, let's implement a little RPN
-  (``Reverse Polish Notation'') calculator:
+  (\PReverse Polish Notation\Q) calculator:
 
   <\verbatim>
+    \;
+
     rpn xs::stack ops::list = foldl (call []) xs ops with
 
     \ \ call ys xs op = push xs (foldl ($) op ys) if nargs op\<less\>=#ys;
@@ -10448,6 +12392,8 @@
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = call (top xs:ys) (pop xs) op otherwise;
 
     end;
+
+    \;
   </verbatim>
 
   This takes an initial stack <verbatim|xs> and a list <verbatim|ops> of
@@ -10455,6 +12401,8 @@
   processing <verbatim|ops>. Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> rpn (stack []) [10,4,3,(+),2,(*),(-)];
 
     [-4]
@@ -10475,6 +12423,8 @@
     evaluating
 
     'rpn (stack []) [2,(*)]'
+
+    \;
   </verbatim>
 
   Ok, this is all very nice, but it seems that so far we haven't done much
@@ -10492,10 +12442,12 @@
   don't need to know how the interface operations are implemented, and in
   fact functions coded against the interface will work with <em|any>
   implementation of the interface. For instance, suppose that we'd like to
-  provide a ``bounded stacks'' data structure, i.e., stacks which don't grow
+  provide a \Pbounded stacks\Q data structure, i.e., stacks which don't grow
   beyond a certain limit. These can be implemented as follows:
 
   <\verbatim>
+    \;
+
     push (n,xs@[]) x \| push (n,xs@(_:_)) x =
 
     \ \ if n\<gtr\>0 then (n-1,x:xs) else throw "full stack";
@@ -10507,21 +12459,29 @@
     pop (n,[]) = throw "empty stack";
 
     top (n,[]) = throw "empty stack";
+
+    \;
   </verbatim>
 
   Note that we represent a bounded stack by a pair <verbatim|(n,xs)> here,
-  where <verbatim|xs> is the list of elements and <verbatim|n> is the ``free
-  space'' (number of elements we still allow to be pushed). We also add a
+  where <verbatim|xs> is the list of elements and <verbatim|n> is the \Pfree
+  space\Q (number of elements we still allow to be pushed). We also add a
   function to construct such values:
 
   <\verbatim>
+    \;
+
     bstack n::int xs::list = (n-#xs,xs);
+
+    \;
   </verbatim>
 
   Without any further ado, our little RPN calculator works just fine with the
   new variation of the data structure:
 
   <\verbatim>
+    \;
+
     \<gtr\> rpn (bstack 3 []) [10,4,3,(+),2,(*),(-)];
 
     2,[-4]
@@ -10532,6 +12492,8 @@
     evaluating
 
     'rpn (bstack 2 []) [10,4,3,(+),2,(*),(-)]'
+
+    \;
   </verbatim>
 
   While they're quite useful in general, Pure's interface types also have
@@ -10543,16 +12505,20 @@
   under <hlink|Interfaces|#interfaces> in the <hlink|Caveats and
   Notes|#caveats-and-notes> section.
 
-  <subsubsection|Modules and Imports<label|modules-and-imports>>
+  <subsubsection|Modules and Imports><label|modules-and-imports>
 
   Pure doesn't offer separate compilation, but the following type of
   declaration provides a simple but effective way to assemble a Pure program
   from several source modules.
 
   <\verbatim>
+    \;
+
     using_decl ::= \ "using" name ("," name)* ";"
 
     name \ \ \ \ \ \ ::= \ qualified_identifier \| string
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|using>|#using> declaration takes the
@@ -10583,20 +12549,32 @@
   the standard library to be included in your program:
 
   <\verbatim>
+    \;
+
     using math;
+
+    \;
   </verbatim>
 
   You can also import multiple scripts in one go:
 
   <\verbatim>
+    \;
+
     using array, dict, set;
+
+    \;
   </verbatim>
 
   Moreover, Pure provides a notation for qualified module names which can be
   used to denote scripts located in specific package directories, e.g.:
 
   <\verbatim>
+    \;
+
     using examples::libor::bits;
+
+    \;
   </verbatim>
 
   In fact this is equivalent to the following
@@ -10605,7 +12583,11 @@
   can also be omitted in which case it is added automatically):
 
   <\verbatim>
+    \;
+
     using "examples/libor/bits.pure";
+
+    \;
   </verbatim>
 
   Both notations can be used interchangeably; the former is usually more
@@ -10654,7 +12636,7 @@
   The directory of the current script (the first item above) can be skipped
   by specifying the script to be loaded as a filename in double quotes,
   prefixed with the special <verbatim|sys:> tag. The search then starts with
-  the ``system'' directories (<hlink|<em|-I>|#cmdoption-pure-I>,<label|index-14><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
+  the \Psystem\Q directories (<hlink|<em|-I>|#cmdoption-pure-I>,<label|index-14><hlink|<with|font-family|tt|PURE_INCLUDE>|#envvar-PURE-INCLUDE>
   and<label|index-15><hlink|<with|font-family|tt|PURELIB>|#envvar-PURELIB>)
   instead. This is useful, e.g., if you want to provide your own custom
   version of a standard library script which in turn imports that library
@@ -10663,11 +12645,15 @@
   math.pure script from the Pure library:
 
   <\verbatim>
+    \;
+
     using "sys:math";
 
     // custom definitions go here
 
     log2 x = ln x/ln 2;
+
+    \;
   </verbatim>
 
   The interpreter compares script names (to determine whether two scripts are
@@ -10686,7 +12672,7 @@
     <item>the directory part of the pathname is normalized to the form
     returned by the <verbatim|getcwd> system call;
 
-    <item>the ''.pure'' suffix is added if needed;
+    <item>the \Q.pure\Q suffix is added if needed;
 
     <item>if the resulting script name is actually a symbolic link, the
     interpreter follows that link to its destination, albeit only one level.
@@ -10703,7 +12689,7 @@
   there. This is the recommended practice for installing standalone Pure
   applications in source form which are to be run directly from the shell.
 
-  <subsubsection|Namespaces<label|namespaces>>
+  <subsubsection|Namespaces><label|namespaces>
 
   To facilitate modular development, Pure also provides namespaces as a means
   to avoid name clashes between symbols, and to keep the global namespace
@@ -10732,6 +12718,8 @@
   rules:
 
   <\verbatim>
+    \;
+
     namespace_decl ::= \ "namespace" [name] [brackets] ";"
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \| "namespace" name [brackets]
@@ -10743,20 +12731,26 @@
     brackets \ \ \ \ \ \ ::= \ "(" left_op right_op ")"
 
     name_spec \ \ \ \ \ ::= \ name ["(" qualified_symbol+ ")"]
+
+    \;
   </verbatim>
 
   The basic form of the <hlink|<with|font-family|tt|namespace>|#namespace>
-  declaration looks as follows (there's also a ``scoped'' form of the
+  declaration looks as follows (there's also a \Pscoped\Q form of the
   <hlink|<with|font-family|tt|namespace>|#namespace> declaration which will
   be discussed in <hlink|Scoped Namespaces|#scoped-namespaces> at the end of
   this section):
 
   <\verbatim>
+    \;
+
     namespace name;
 
     // declarations and definitions in namespace 'name'
 
     namespace;
+
+    \;
   </verbatim>
 
   The second form switches back to the default namespace. For instance, in
@@ -10764,6 +12758,8 @@
   different namespaces <verbatim|foo> and <verbatim|bar>, you can write:
 
   <\verbatim>
+    \;
+
     namespace foo;
 
     foo x = x+1;
@@ -10773,6 +12769,8 @@
     foo x = x-1;
 
     namespace;
+
+    \;
   </verbatim>
 
   We can now refer to the symbols we just defined using
@@ -10780,6 +12778,8 @@
   <verbatim|namespace::symbol>:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo::foo 99;
 
     100
@@ -10787,13 +12787,15 @@
     \<gtr\> bar::foo 99;
 
     98
+
+    \;
   </verbatim>
 
   This avoids any potential name clashes, since the qualified identifier
   notation always makes it clear which namespace the given identifier belongs
   to.
 
-  A namespace can be ``reopened'' at any time to add new symbols and
+  A namespace can be \Preopened\Q at any time to add new symbols and
   definitions to it. This allows namespaces to be created that span several
   source modules. You can also create several different namespaces in the
   same module.
@@ -10804,16 +12806,24 @@
   following two declarations are equivalent:
 
   <\verbatim>
+    \;
+
     namespace foo;
 
     namespace "foo";
+
+    \;
   </verbatim>
 
   The latter form also allows more descriptive labels which aren't
   identifiers, e.g.:
 
   <\verbatim>
+    \;
+
     namespace "Private stuff, keep out!";
+
+    \;
   </verbatim>
 
   Note that the namespace prefix in a qualified identifier must be a legal
@@ -10825,21 +12835,25 @@
   declaration (for the latter see <hlink|Using Namespaces|#using-namespaces>
   below).
 
-  <paragraph|Using Namespaces<label|using-namespaces>>
+  <paragraph|Using Namespaces><label|using-namespaces>
 
   Since it is rather inconvenient if you always have to write identifiers in
-  their qualified form outside of their ``home'' namespace, Pure allows you
+  their qualified form outside of their \Phome\Q namespace, Pure allows you
   to specify a list of <em|search> namespaces which are used to look up
   symbols not in the default or the current namespace. This is done with the
   <hlink|<with|font-family|tt|using> <with|font-family|tt|namespace>|#using-namespace>
   declaration, which takes the following form:
 
   <\verbatim>
+    \;
+
     using namespace name1, name2, ...;
 
     // ...
 
     using namespace;
+
+    \;
   </verbatim>
 
   As with <hlink|<with|font-family|tt|namespace>|#namespace> declarations,
@@ -10849,6 +12863,8 @@
   For instance, consider this example:
 
   <\verbatim>
+    \;
+
     namespace foo;
 
     foo x = x+1;
@@ -10860,11 +12876,15 @@
     bar x = x+1;
 
     namespace;
+
+    \;
   </verbatim>
 
   The symbols in these namespaces can be accessed unqualified as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> using namespace foo;
 
     \<gtr\> foo 99;
@@ -10880,39 +12900,53 @@
     \<gtr\> bar 99;
 
     100
+
+    \;
   </verbatim>
 
   This method is often to be preferred over opening a namespace with the
   <hlink|<with|font-family|tt|namespace>|#namespace> declaration, since
   <hlink|<with|font-family|tt|using> <with|font-family|tt|namespace>|#using-namespace>
-  only gives you ``read access'' to the imported symbols, so you can't
+  only gives you \Pread access\Q to the imported symbols, so you can't
   accidentally mess up the definitions of the namespace you're using. Another
   advantage is that the <hlink|<with|font-family|tt|using>
   <with|font-family|tt|namespace>|#using-namespace> declaration also lets you
   search multiple namespaces at once:
 
   <\verbatim>
+    \;
+
     using namespace foo, bar;
+
+    \;
   </verbatim>
 
   Be warned, however, that this brings up the very same issue of name clashes
   again:
 
   <\verbatim>
+    \;
+
     \<gtr\> using namespace foo, bar;
 
     \<gtr\> foo 99;
 
     \<less\>stdin\<gtr\>, line 15: symbol 'foo' is ambiguous here
+
+    \;
   </verbatim>
 
   In such a case you'll have to resort to using namespace qualifiers again,
   in order to resolve the name clash:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo::foo 99;
 
     100
+
+    \;
   </verbatim>
 
   To avoid this kind of mishap, you can also selectively import just a few
@@ -10920,7 +12954,11 @@
   the following form:
 
   <\verbatim>
+    \;
+
     using namespace name1 ( sym1 sym2 ... ), name2 ... ;
+
+    \;
   </verbatim>
 
   As indicated, the symbols to be imported can optionally be placed as a
@@ -10930,6 +12968,8 @@
   here.) For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> using namespace foo, bar (bar);
 
     \<gtr\> foo 99;
@@ -10943,6 +12983,8 @@
     \<gtr\> bar::foo 99;
 
     98
+
+    \;
   </verbatim>
 
   Note that now we have no clash on the <verbatim|foo> symbol any more,
@@ -10950,12 +12992,12 @@
   <verbatim|bar> symbol, so that <verbatim|bar::foo> has to be denoted with a
   qualified symbol now.
 
-  <paragraph|Symbol Lookup and Creation<label|symbol-lookup-and-creation>>
+  <paragraph|Symbol Lookup and Creation><label|symbol-lookup-and-creation>
 
   Pure's rules for looking up and creating symbols are fairly straightforward
   and akin to those in other languages featuring namespaces. However, there
   are some intricacies involved, because the rewriting rule format of
-  definitions allows ``referential'' use of symbols not only in the ``body''
+  definitions allows \Preferential\Q use of symbols not only in the \Pbody\Q
   (right-hand side) of a definition, but also in the left-hand side patterns.
   We discuss this in detail below.
 
@@ -10985,6 +13027,8 @@
   the contents of other namespaces. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace foo;
 
     \<gtr\> namespace;
@@ -10992,6 +13036,8 @@
     \<gtr\> foo::bar x = 1/x;
 
     \<less\>stdin\<gtr\>, line 3: undeclared symbol 'foo::bar'
+
+    \;
   </verbatim>
 
   To make these errors go away it's enough to just declare the symbols in
@@ -11008,6 +13054,8 @@
   such potential errors:
 
   <\verbatim>
+    \;
+
     $ pure -w
 
     \<gtr\> puts "bla"; // missing import of system module
@@ -11015,6 +13063,8 @@
     \<less\>stdin\<gtr\>, line 1: warning: implicit declaration of 'puts'
 
     puts "bla"
+
+    \;
   </verbatim>
 
   For legitimate uses (such as forward uses of a symbol which is defined
@@ -11022,11 +13072,11 @@
   using it.
 
   New symbols are also created if a global unqualified (and yet undeclared)
-  symbol is being ``defined'' in a rewriting rule or
+  symbol is being \Pdefined\Q in a rewriting rule or
   <hlink|<with|font-family|tt|let>|#let>/<hlink|<with|font-family|tt|const>|#const>
   definition, even if a symbol with the same print name from another
   namespace is already visible in the current scope. To distinguish
-  ``defining'' from ``referring'' uses of a global symbol, Pure uses the
+  \Pdefining\Q from \Preferring\Q uses of a global symbol, Pure uses the
   following (purely syntactic) notions:
 
   <\itemize>
@@ -11037,7 +13087,7 @@
 
     <item>A <with|font-series|bold|defining occurrence> of a global
     <em|variable> or <em|constant symbol> is any occurrence of the symbol in
-    a <em|variable position> (as given by the ``head = function'' rule, cf.
+    a <em|variable position> (as given by the \Phead = function\Q rule, cf.
     <hlink|Variables in Equations|#variables-in-equations>) on the left-hand
     side of a <hlink|<with|font-family|tt|let>|#let> or
     <hlink|<with|font-family|tt|const>|#const> definition.
@@ -11052,6 +13102,8 @@
   The following example illustrates these notions:
 
   <\verbatim>
+    \;
+
     namespace foo;
 
     bar (bar x) = bar x;
@@ -11059,6 +13111,8 @@
     let x,y = 1,2;
 
     namespace;
+
+    \;
   </verbatim>
 
   Here, the first occurrence of <verbatim|bar> on the left-hand side
@@ -11083,6 +13137,8 @@
   the (function) symbol <verbatim|foo::bar> is visible at this point:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace bar;
 
     \<gtr\> type bar;
@@ -11098,6 +13154,8 @@
     \<gtr\> show foo::foo
 
     foo::foo x :: bar::bar = foo::bar x;
+
+    \;
   </verbatim>
 
   Note that special operator (and nonfix) symbols <em|always> require an
@@ -11108,6 +13166,8 @@
   operands rather than adding them:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace my;
 
     \<gtr\> infixl 2200 +;
@@ -11117,6 +13177,8 @@
     \<gtr\> 5+7;
 
     35
+
+    \;
   </verbatim>
 
   Note that the new <verbatim|+> operation really belongs to the namespace we
@@ -11125,6 +13187,8 @@
   you need:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace;
 
     \<gtr\> 5+7;
@@ -11138,18 +13202,24 @@
     \<gtr\> 5 my::+ 7;
 
     35
+
+    \;
   </verbatim>
 
   Here's what you get if you happen to forget the declaration of the
   <verbatim|+> operator:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace my;
 
     \<gtr\> x+y = x*y;
 
     \<less\>stdin\<gtr\>, line 2: infixl symbol '+' was not declared in this
     namespace
+
+    \;
   </verbatim>
 
   Thus the compiler will never create a new instance of an operator symbol on
@@ -11161,6 +13231,8 @@
   follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace my;
 
     \<gtr\> x ::+ y = x*y;
@@ -11168,16 +13240,20 @@
     \<gtr\> a+b;
 
     a*b
+
+    \;
   </verbatim>
 
   This should rarely be necessary (in the above example you might just as
   well enter this rule while in the global namespace), but it can be useful
-  in some circumstances. Specifically, you might want to ``overload'' a
+  in some circumstances. Specifically, you might want to \Poverload\Q a
   global function or operator with a definition that makes use of private
   symbols of a namespace (which are only visible inside that namespace; see
   <hlink|Private Symbols|#private-symbols> below). For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace my;
 
     \<gtr\> private bar;
@@ -11189,23 +13265,27 @@
     \<gtr\> a+b;
 
     a*b
+
+    \;
   </verbatim>
 
   (The above is a rather contrived example, since the very same functionality
   can be accomplished much easier, but there are some situations where this
   method is needed.)
 
-  <paragraph|Private Symbols<label|private-symbols>>
+  <paragraph|Private Symbols><label|private-symbols>
 
   Pure also allows you to have private symbols, as a means to hide away
   internal operations which shouldn't be accessed directly outside the
   namespace in which they are declared. The scope of a private symbol is
   confined to its namespace, i.e., the symbol is only visible when its
-  ``home'' namespace is current. Symbols are declared private by using the
+  \Phome\Q namespace is current. Symbols are declared private by using the
   <hlink|<with|font-family|tt|private>|#private> keyword in the symbol
   declaration:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace secret;
 
     \<gtr\> private baz;
@@ -11221,12 +13301,16 @@
     198
 
     \<gtr\> namespace;
+
+    \;
   </verbatim>
 
   Note that, at this point, <verbatim|secret::baz> is now invisible, even if
   you have <verbatim|secret> in the search namespace list:
 
   <\verbatim>
+    \;
+
     \<gtr\> using namespace secret;
 
     \<gtr\> // this actually creates a 'baz' symbol in the default namespace:
@@ -11238,12 +13322,16 @@
     \<gtr\> secret::baz 99;
 
     \<less\>stdin\<gtr\>, line 27: symbol 'secret::baz' is private here
+
+    \;
   </verbatim>
 
   The only way to bring the symbol back into scope is to make the
   <verbatim|secret> namespace current again:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace secret;
 
     \<gtr\> baz 99;
@@ -11253,9 +13341,11 @@
     \<gtr\> secret::baz 99;
 
     198
+
+    \;
   </verbatim>
 
-  <paragraph|Namespace Brackets<label|namespace-brackets>>
+  <paragraph|Namespace Brackets><label|namespace-brackets>
 
   All the namespace-related constructs we discussed so far only provide a
   means to switch namespaces on a per-rule basis. Sometimes it is convenient
@@ -11277,6 +13367,8 @@
   as namespace brackets must have been declared beforehand. For instance:
 
   <\verbatim>
+    \;
+
     outfix \<less\>\<less\> \<gtr\>\<gtr\>;
 
     namespace foo (\<less\>\<less\> \<gtr\>\<gtr\>);
@@ -11286,6 +13378,8 @@
     x^y = 2*x+y;
 
     namespace;
+
+    \;
   </verbatim>
 
   The code above introduces a <verbatim|foo> namespace which defines a
@@ -11294,6 +13388,8 @@
   write:
 
   <\verbatim>
+    \;
+
     \<gtr\> (a+b)^c+10;
 
     (a+b)^c+10
@@ -11301,6 +13397,8 @@
     \<gtr\> \<less\>\<less\>(a+b)^c\<gtr\>\<gtr\>+10;
 
     2*(a+b)+c+10
+
+    \;
   </verbatim>
 
   Note the use of the namespace brackets in the second input line. This
@@ -11326,6 +13424,8 @@
   example above as follows:
 
   <\verbatim>
+    \;
+
     outfix \<less\>\<less\> \<gtr\>\<gtr\>;
 
     namespace foo (\<less\>\<less\> \<gtr\>\<gtr\>);
@@ -11337,13 +13437,19 @@
     \;
 
     \<less\>\<less\>x^y\<gtr\>\<gtr\> = 2*x+y;
+
+    \;
   </verbatim>
 
   Note the use of the namespace brackets on the last line. This rule actually
   expands to:
 
   <\verbatim>
+    \;
+
     x foo::^ y \ = 2*x+y;
+
+    \;
   </verbatim>
 
   The special meaning of namespace brackets can be turned off and back on
@@ -11351,6 +13457,8 @@
   declaration. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace (\<less\>\<less\> \<gtr\>\<gtr\>); // turn off the
     special meaning of \<less\>\<less\> \<gtr\>\<gtr\>
 
@@ -11366,6 +13474,8 @@
     \<gtr\> \<less\>\<less\>(a+b)^c\<gtr\>\<gtr\>+10;
 
     2*(a+b)+c+10
+
+    \;
   </verbatim>
 
   (Note that as a side effect these declarations also change the current
@@ -11379,6 +13489,8 @@
   follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> outfix \<less\>\<less\>: :\<gtr\>\<gtr\>;
 
     \<gtr\> namespace "" (\<less\>\<less\>: :\<gtr\>\<gtr\>);
@@ -11386,6 +13498,8 @@
     \<gtr\> \<less\>\<less\>(a+b)^\<less\>\<less\>:x^y:\<gtr\>\<gtr\>\<gtr\>\<gtr\>;
 
     2*(a+b)+x^y
+
+    \;
   </verbatim>
 
   As this example illustrates, namespace brackets can also be nested, which
@@ -11395,14 +13509,16 @@
   the <verbatim|\<\<> <verbatim|\>\>>-bracketed expression which is parsed in
   the <verbatim|foo> namespace.
 
-  <paragraph|Hierarchical Namespaces<label|hierarchical-namespaces>>
+  <paragraph|Hierarchical Namespaces><label|hierarchical-namespaces>
 
   Namespace identifiers can themselves be qualified identifiers in Pure,
   which enables you to introduce a hierarchy of namespaces. This is useful,
-  e.g., to group related namespaces together under a common ``umbrella''
+  e.g., to group related namespaces together under a common \Pumbrella\Q
   namespace:
 
   <\verbatim>
+    \;
+
     namespace my;
 
     namespace my::old;
@@ -11412,6 +13528,8 @@
     namespace my::new;
 
     foo x = x-1;
+
+    \;
   </verbatim>
 
   Note that the namespace <verbatim|my>, which serves as the parent
@@ -11422,6 +13540,8 @@
   will be considered in name lookup accordingly, so that you can write:
 
   <\verbatim>
+    \;
+
     \<gtr\> using namespace my;
 
     \<gtr\> old::foo 99;
@@ -11431,6 +13551,8 @@
     \<gtr\> new::foo 99;
 
     98
+
+    \;
   </verbatim>
 
   This works pretty much like a hierarchy of directories and files, where the
@@ -11447,11 +13569,15 @@
   namespace:
 
   <\verbatim>
+    \;
+
     namespace old;
 
     foo x = 2*x;
 
     namespace;
+
+    \;
   </verbatim>
 
   Now, if we want to access that function, with <verbatim|my> still active as
@@ -11465,6 +13591,8 @@
   otherwise):
 
   <\verbatim>
+    \;
+
     \<gtr\> old::foo 99;
 
     100
@@ -11472,13 +13600,15 @@
     \<gtr\> ::old::foo 99;
 
     198
+
+    \;
   </verbatim>
 
   Also note that, as a special case of the absolute qualifier notation,
   <verbatim|::foo> always denotes the symbol <verbatim|foo> in the default
   namespace.
 
-  <paragraph|Scoped Namespaces<label|scoped-namespaces>>
+  <paragraph|Scoped Namespaces><label|scoped-namespaces>
 
   Pure also provides an alternative scoped
   <hlink|<with|font-family|tt|namespace>|#namespace> construct which makes
@@ -11486,7 +13616,11 @@
   following form:
 
   <\verbatim>
+    \;
+
     namespace name with ... end;
+
+    \;
   </verbatim>
 
   The part between <hlink|<with|font-family|tt|with>|#with> and
@@ -11495,17 +13629,23 @@
   in the context of the given namespace, as if you had written:
 
   <\verbatim>
+    \;
+
     namespace name;
 
     ...
 
     namespace;
+
+    \;
   </verbatim>
 
   However, the scoped namespace construct always returns you to the namespace
   which was active before, and thus these declarations may be nested:
 
   <\verbatim>
+    \;
+
     namespace foo with
 
     \ \ // declarations and definitions in namespace foo
@@ -11519,6 +13659,8 @@
     \ \ // more declarations and definitions in namespace foo
 
     end;
+
+    \;
   </verbatim>
 
   Note that this kind of nesting does not necessarily imply a namespace
@@ -11527,6 +13669,8 @@
   using the appropriate qualified namespace names:
 
   <\verbatim>
+    \;
+
     namespace foo with
 
     \ \ // ...
@@ -11540,6 +13684,8 @@
     \ \ // ...
 
     end;
+
+    \;
   </verbatim>
 
   Another special feature of the scoped namespace construct is that
@@ -11549,6 +13695,8 @@
   at the end of each scope:
 
   <\verbatim>
+    \;
+
     using namespace foo;
 
     namespace foo with
@@ -11574,6 +13722,8 @@
     end;
 
     // back to using namespace foo at toplevel
+
+    \;
   </verbatim>
 
   Finally, here's a more concrete example which shows how scoped namespaces
@@ -11581,6 +13731,8 @@
   functions and operators:
 
   <\verbatim>
+    \;
+
     namespace foo with
 
     \ \ infixr (::^) ^;
@@ -11624,10 +13776,12 @@
     bar x;
 
     \<less\>: x,y :\<gtr\>;
+
+    \;
   </verbatim>
 
-  Pure's namespaces can thus be used pretty much like ``packages'' or
-  ``modules'' in languages like Ada or Modula-2. They provide a structured
+  Pure's namespaces can thus be used pretty much like \Ppackages\Q or
+  \Pmodules\Q in languages like Ada or Modula-2. They provide a structured
   way to describe program components offering collections of related data and
   operations, which can be brought into scope in a controlled way by making
   judicious use of <hlink|<with|font-family|tt|using>
@@ -11641,10 +13795,10 @@
   should be useful if your programs grow beyond a small collection of simple
   source modules, and enable you to manage most Pure projects with ease.
 
-  <subsection|Macros<label|macros>>
+  <subsection|Macros><label|macros>
 
   Macros are a special type of functions to be executed as a kind of
-  ``preprocessing stage'' at compile time. In Pure these are typically used
+  \Ppreprocessing stage\Q at compile time. In Pure these are typically used
   to define custom special forms and to perform inlining of function calls
   and other kinds of source-level optimizations.
 
@@ -11679,7 +13833,7 @@
   discusses some more advanced features of Pure's macro system intended for
   power users.
 
-  <subsubsection|Optimization Rules<label|optimization-rules>>
+  <subsubsection|Optimization Rules><label|optimization-rules>
 
   Let's begin with a simple example of an optimization rule from the prelude,
   which eliminates saturated instances of the right-associative function
@@ -11687,21 +13841,29 @@
   prelude.pure):
 
   <\verbatim>
+    \;
+
     def f $ x = f x;
+
+    \;
   </verbatim>
 
   Like in Haskell, `<hlink|<with|font-family|tt|$>|purelib.tm#-dollar>` in
   fact just denotes function application, but it is a low-priority operator
   which is handy to write cascading function calls. With the above macro
-  rule, these will be ``inlined'' as ordinary function applications
+  rule, these will be \Pinlined\Q as ordinary function applications
   automatically. Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x = bar $ bar $ 2*x;
 
     \<gtr\> show foo
 
     foo x = bar (bar (2*x));
+
+    \;
   </verbatim>
 
   Note that a macro may have the same name as an ordinary Pure function,
@@ -11712,7 +13874,7 @@
 
   When running interactively, you can follow the reduction steps the compiler
   performs during macro evaluation. To these ends, you have to set
-  ``tracepoints'' on the relevant macros, using the <verbatim|trace> command
+  \Ptracepoints\Q on the relevant macros, using the <verbatim|trace> command
   with the <verbatim|-m> option; see <hlink|Interactive
   Commands|#interactive-commands>. (This works even if the interpreter is run
   in non-debugging mode.) Note that since macro expansion is performed at
@@ -11722,6 +13884,8 @@
   gets expanded. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> trace -m $
 
     \<gtr\> bar $ bar $ 2*x;
@@ -11731,6 +13895,8 @@
     -- macro ($): bar$bar (2*x) --\<gtr\> bar (bar (2*x))
 
     bar (bar (2*x))
+
+    \;
   </verbatim>
 
   Now let's see how we can add our own optimization rules. Suppose we'd like
@@ -11739,6 +13905,8 @@
   single argument. We can inline such calls as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> def succ (x+y) = x+(y+1);
 
     \<gtr\> def succ x = x+1;
@@ -11748,11 +13916,15 @@
     \<gtr\> show foo
 
     foo x = x+3;
+
+    \;
   </verbatim>
 
   Again, let's see exactly what's going on there:
 
   <\verbatim>
+    \;
+
     \<gtr\> trace -m succ
 
     \<gtr\> succ (succ (succ x));
@@ -11764,11 +13936,13 @@
     -- macro succ: succ (x+(1+1)) --\<gtr\> x+(1+1+1)
 
     x+3
+
+    \;
   </verbatim>
 
   Note that the contraction of the subterm <verbatim|1+1+1> to the integer
   constant <verbatim|3> is actually done by the compiler after macro
-  expansion has been performed. This is also called ``constant folding'', see
+  expansion has been performed. This is also called \Pconstant folding\Q, see
   <hlink|Constant Definitions|#constant-definitions> in the <hlink|Caveats
   and Notes|#caveats-and-notes> section for details. It is also the reason
   that we added the first rule for <verbatim|succ>. This rule may seem
@@ -11782,7 +13956,7 @@
   lambdas. After that we'll return to the subject of optimization rules in
   <hlink|Advanced Optimization|#advanced-optimization> below.
 
-  <subsubsection|Recursive Macros<label|recursive-macros>>
+  <subsubsection|Recursive Macros><label|recursive-macros>
 
   Macros can also be recursive, in which case they usually consist of
   multiple rules and make use of pattern-matching just like ordinary function
@@ -11799,9 +13973,13 @@
   constants:
 
   <\verbatim>
+    \;
+
     def #[] = 0;
 
     def #(x:xs) = #xs+1;
+
+    \;
   </verbatim>
 
   As you can see, the definition is pretty straightforward; exactly the same
@@ -11811,11 +13989,15 @@
   actually works:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo = #[1,2,3,4];
 
     \<gtr\> show foo
 
     foo = 4;
+
+    \;
   </verbatim>
 
   Note that the result of macro expansion is actually <verbatim|0+1+1+1+1>
@@ -11825,12 +14007,14 @@
 
   This was rather easy. So let's implement a more elaborate example: a basic
   Pure version of Lisp's quasiquote which allows you to create a quoted
-  expression from a ``template'' while substituting variable parts of the
+  expression from a \Ptemplate\Q while substituting variable parts of the
   template. (For the sake of brevity, we present a somewhat abridged version
   here which does not cover all corner cases. The full version of this macro
   can be found as lib/quasiquote.pure in the Pure distribution.)
 
   <\verbatim>
+    \;
+
     def quasiquote (unquote x) \ \ \ \ \ = x;
 
     def quasiquote (f@_ (splice x)) = foldl ($) (quasiquote f) x;
@@ -11838,19 +14022,21 @@
     def quasiquote (f@_ x) \ \ \ \ \ \ \ \ \ = quasiquote f (quasiquote x);
 
     def quasiquote x \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = quote x;
+
+    \;
   </verbatim>
 
-  (Note the <verbatim|f@_>, which is an anonymous ``as'' pattern forcing the
+  (Note the <verbatim|f@_>, which is an anonymous \Pas\Q pattern forcing the
   compiler to recognize <verbatim|f> as a function variable, rather than a
-  literal function symbol. See <hlink|``As'' Patterns|#as-patterns> in the
+  literal function symbol. See <hlink|\PAs\Q Patterns|#as-patterns> in the
   <hlink|Caveats and Notes|#caveats-and-notes> section for an explanation of
   this trick.)
 
-  The first rule above takes care of ``unquoting'' embedded subterms. The
-  second rule ``splices'' an argument list into an enclosing function
+  The first rule above takes care of \Punquoting\Q embedded subterms. The
+  second rule \Psplices\Q an argument list into an enclosing function
   application. The third rule recurses into subterms of a function
   application, and the fourth and last rule takes care of quoting the
-  ``atomic'' subterms. Note that <verbatim|unquote> and <verbatim|splice>
+  \Patomic\Q subterms. Note that <verbatim|unquote> and <verbatim|splice>
   themselves are just passive constructor symbols, the real work is done by
   <verbatim|quasiquote>, using <hlink|<with|font-family|tt|foldl>|purelib.tm#foldl>
   at runtime to actually perform the splicing. (Putting off the splicing
@@ -11862,14 +14048,20 @@
   instead.)
 
   <\verbatim>
+    \;
+
     prefix 9 ` ,$ ,@ ;
 
     def `x = quasiquote x; def ,$x = unquote x; def ,@x = splice x;
+
+    \;
   </verbatim>
 
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> `(2*42+2^12);
 
     2*42+2^12
@@ -11885,9 +14077,11 @@
     \<gtr\> `foo 1 2 (,@args) (5/6) when args = '[2/3,3/4] end;
 
     foo 1 2 (2/3) (3/4) (5/6)
+
+    \;
   </verbatim>
 
-  <subsubsection|User-Defined Special Forms<label|user-defined-special-forms>>
+  <subsubsection|User-Defined Special Forms><label|user-defined-special-forms>
 
   The <verbatim|quasiquote> macro in the preceding subsection also provides
   an example of how you can use macros to define your own special forms. This
@@ -11905,6 +14099,8 @@
   with the computed result:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> def timex x = (clock-t0)/CLOCKS_PER_SEC,y when t0 = clock; y = x
@@ -11915,6 +14111,8 @@
     \<gtr\> timex $ sum (1L..100000L);
 
     0.43,5000050000L
+
+    \;
   </verbatim>
 
   Note that the above definition of <verbatim|timex> wouldn't work as an
@@ -11923,7 +14121,7 @@
   already before it is passed to <verbatim|timex>, making <verbatim|timex>
   always return a zero time value. Try it!
 
-  <subsubsection|Macro Hygiene<label|macro-hygiene>>
+  <subsubsection|Macro Hygiene><label|macro-hygiene>
 
   Pure macros are lexically scoped, i.e., the binding of symbols in the
   right-hand-side of a macro definition is determined statically by the text
@@ -11932,7 +14130,7 @@
   <hlink|<with|font-family|tt|when>|#when> clauses, in the right-hand side of
   the definition. Macro facilities with these pleasant properties are also
   known as <with|font-series|bold|hygienic macros>. They are not susceptible
-  to so-called ``name capture,'' which makes macros in less sophisticated
+  to so-called \Pname capture,\Q which makes macros in less sophisticated
   languages bug-ridden and hard to use.
 
   Macro hygiene is a somewhat esoteric topic for most programmers, so let us
@@ -11952,11 +14150,15 @@
   first form of name capture:
 
   <\verbatim>
+    \;
+
     \<gtr\> def G x = x+y;
 
     \<gtr\> G 10 when y = 99 end;
 
     10+y
+
+    \;
   </verbatim>
 
   Note that the expansion of the <verbatim|G> macro correctly uses the global
@@ -11972,11 +14174,15 @@
   is therefore more dangerous. Consider the following example:
 
   <\verbatim>
+    \;
+
     \<gtr\> def F x = x+y when y = x+1 end;
 
     \<gtr\> F y;
 
     y+(y+1)
+
+    \;
   </verbatim>
 
   Pure again gives the correct result here. You'd have to be worried if you
@@ -11987,7 +14193,11 @@
   In fact, that's exactly what you get with C macros:
 
   <\verbatim>
+    \;
+
     #define F(x) { int y = x+1; return x+y; }
+
+    \;
   </verbatim>
 
   Here <verbatim|F(y)> expands to <verbatim|{> <verbatim|int> <verbatim|y>
@@ -12002,13 +14212,13 @@
   special forms and give you access to Pure's reflection capabilities.
 
   <subsubsection|Built-in Macros and Special
-  Expressions<label|built-in-macros-and-special-expressions>>
+  Expressions><label|built-in-macros-and-special-expressions>
 
   As already mentioned in <hlink|The Quote|#the-quote>, <hlink|special
   expressions|#special-expressions> such as conditionals and lambdas cannot
   be directly represented as runtime data in Pure. But they can be
-  <em|quoted> in which case they are replaced by corresponding ``placeholder
-  terms''. These placeholder terms are in fact implemented as built-in macros
+  <em|quoted> in which case they are replaced by corresponding \Pplaceholder
+  terms\Q. These placeholder terms are in fact implemented as built-in macros
   which, when evaluated, construct the corresponding specials.
 
   <\description>
@@ -12029,7 +14239,7 @@
     expression <verbatim|case> <verbatim|x> <verbatim|of> <verbatim|x1>
     <verbatim|=> <verbatim|y1;> <verbatim|...;> <verbatim|xn> <verbatim|=>
     <verbatim|yn> <verbatim|end>. Note that the
-    <hlink|<with|font-family|tt|--\<gtr\>>|#--\>> symbol is used to separate
+    <hlink|<with|font-family|tt|\U\<gtr\>>|#--\>> symbol is used to separate
     the left-hand side and the right-hand side of each rule (see below).
   </description>
 
@@ -12075,11 +14285,11 @@
 
   In addition, patterns on the left-hand side of equations or in lambda
   arguments may be decorated with the following constructor terms to indicate
-  ``as'' patterns and type tags (these are infix operators with a very high
+  \Pas\Q patterns and type tags (these are infix operators with a very high
   priority):
 
   <\description>
-    <item*|<em|constructor> x __as__ y<label|--as-->>Denotes an ``as''
+    <item*|<em|constructor> x __as__ y<label|--as-->>Denotes an \Pas\Q
     pattern <verbatim|x> <verbatim|@> <verbatim|y>.
   </description>
 
@@ -12097,6 +14307,8 @@
   quoted expression in the interpreter:
 
   <\verbatim>
+    \;
+
     \<gtr\> '(\\x-\<gtr\>x+1);
 
     __lambda__ [x] (x+1)
@@ -12104,12 +14316,14 @@
     \<gtr\> '(f with f x = y when y = x+1 end end);
 
     f __with__ [f x--\<gtr\>y __when__ [y--\<gtr\>x+1]]
+
+    \;
   </verbatim>
 
   List and matrix comprehensions can also be quoted. These are basically
   syntactic sugar for lambda applications, cf. <hlink|Primary
   Expressions|#primary-expressions>. The compiler expands them to their
-  ``unsugared'' form already before macro substitution, so no special kinds
+  \Punsugared\Q form already before macro substitution, so no special kinds
   of built-in macros are needed to represent them. When quoted,
   comprehensions are thus denoted in their unsugared form, which consists of
   a pile of lambda expressions and list or matrix construction functions for
@@ -12117,14 +14331,20 @@
   clauses of the comprehension. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> '[2*x \| x = 1..3];
 
     listmap (__lambda__ [x] (2*x)) (1..3)
+
+    \;
   </verbatim>
 
-  Here's how type tags and ``as'' patterns in quoted specials look like:
+  Here's how type tags and \Pas\Q patterns in quoted specials look like:
 
   <\verbatim>
+    \;
+
     \<gtr\> '(\\x::int-\<gtr\>x+1);
 
     __lambda__ [x __type__ int] (x+1)
@@ -12132,6 +14352,8 @@
     \<gtr\> '(dup (1..3) with dup xs@(x:_) = x:xs end);
 
     dup (1..3) __with__ [dup (xs __as__ (x:_))--\<gtr\>x:xs]
+
+    \;
   </verbatim>
 
   Note that the placeholder terms for the specials are quoted here, and hence
@@ -12140,6 +14362,8 @@
   placeholder terms executes the corresponding specials:
 
   <\verbatim>
+    \;
+
     \<gtr\> '(dup (1..3) with dup xs@(x:_) = x:xs end);
 
     dup (1..3) __with__ [dup (xs __as__ (x:_))--\<gtr\>x:xs]
@@ -12147,12 +14371,16 @@
     \<gtr\> eval ans;
 
     [1,1,2,3]
+
+    \;
   </verbatim>
 
   Of course, you can also just enter the macros directly (without quoting) to
   have them evaluated:
 
   <\verbatim>
+    \;
+
     \<gtr\> dup (1..3) __with__ [dup (xs __as__ (x:_))--\<gtr\>x:xs];
 
     [1,1,2,3]
@@ -12164,12 +14392,16 @@
     \<gtr\> ans 99;
 
     100
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|__str__>|purelib.tm#--str--> function can
   be used to pretty-print quoted specials:
 
   <\verbatim>
+    \;
+
     \<gtr\> __str__ ('__lambda__ [x __type__ int] (x+1));
 
     "\\\\x::int -\<gtr\> x+1"
@@ -12178,6 +14410,8 @@
     (x:_))--\<gtr\>x:xs]));
 
     "dup (1..3) with dup xs@(x:_) = x:xs end"
+
+    \;
   </verbatim>
 
   This is useful to see which expression a quoted special will expand to.
@@ -12193,6 +14427,8 @@
   arguments:
 
   <\verbatim>
+    \;
+
     \<gtr\> swap (__lambda__ [x,y] z) = '(__lambda__ [y,x] z);
 
     \<gtr\> swap ('(\\a b-\<gtr\>a-b));
@@ -12202,6 +14438,8 @@
     \<gtr\> eval ans 2 3; // same as (\\b a-\<gtr\>a-b) 2 3
 
     1
+
+    \;
   </verbatim>
 
   For convenience, a literal special expression can also be used on the
@@ -12212,6 +14450,8 @@
   Commands|#interactive-commands>):
 
   <\verbatim>
+    \;
+
     \<gtr\> clear swap
 
     \<gtr\> swap (\\x y -\<gtr\> z) = '(\\y x -\<gtr\> z);
@@ -12219,23 +14459,27 @@
     \<gtr\> swap ('(\\a b-\<gtr\>a-b));
 
     __lambda__ [b,a] (a-b)
+
+    \;
   </verbatim>
 
   This is usually easier to write and improves readability. However, there
   are cases in which you want to work with the built-in macros in a direct
   fashion. In particular, this becomes necessary when writing more generic
   rules which deal, e.g., with lambdas involving a variable number of
-  arguments, or if you need real (i.e., unquoted) type tags or ``as''
+  arguments, or if you need real (i.e., unquoted) type tags or \Pas\Q
   patterns in a placeholder pattern. We'll see examples of these later.
 
   Quoted specials can be manipulated with macros just as well as with
   functions. In fact, this is quite common and thus the macro evaluator has
   some special support to make this more convenient. Specifically, it is
   possible to make a macro quote its arguments in an automatic fashion, by
-  means of the <hlink|<em|--quoteargs>|#cmdoption-pure-pragma--quoteargs>
+  means of the <hlink|<em|\Uquoteargs>|#cmdoption-pure-pragma--quoteargs>
   pragma. To illustrate this, let's redefine <verbatim|swap> as a macro:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear swap
 
     \<gtr\> #! --quoteargs swap
@@ -12245,9 +14489,11 @@
     \<gtr\> swap (\\a b-\<gtr\>a-b);
 
     __lambda__ [b,a] (a-b)
+
+    \;
   </verbatim>
 
-  The <hlink|<em|--quoteargs>|#cmdoption-pure-pragma--quoteargs> pragma makes
+  The <hlink|<em|\Uquoteargs>|#cmdoption-pure-pragma--quoteargs> pragma makes
   the <verbatim|swap> macro receive its argument unevaluated, as if it was
   quoted (but without a literal quote around it). Therefore the quote on the
   lambda argument of <verbatim|swap> can now be omitted. However, the result
@@ -12256,6 +14502,8 @@
   lambda instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear swap
 
     \<gtr\> def swap (\\x y -\<gtr\> z) = \\y x -\<gtr\> z;
@@ -12267,12 +14515,16 @@
     \<gtr\> ans 2 3;
 
     a-b
+
+    \;
   </verbatim>
 
   We got a closure all right, but apparently it's not the right one. Let's
   use <verbatim|trace> <verbatim|-m> to figure out what went wrong:
 
   <\verbatim>
+    \;
+
     \<gtr\> trace -m swap
 
     \<gtr\> swap (\\a b-\<gtr\>a-b);
@@ -12280,6 +14532,8 @@
     -- macro swap: swap (\\a b -\<gtr\> a-b) --\<gtr\> \\y x -\<gtr\> a-b
 
     #\<less\>closure 0x7f1934157248\<gtr\>
+
+    \;
   </verbatim>
 
   Ok, so the result is the lambda <verbatim|<y>> <verbatim|x> <verbatim|-\>>
@@ -12295,6 +14549,8 @@
   <verbatim|__lambda__> macro in a direct way, as we've seen before:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear swap
 
     \<gtr\> def swap (__lambda__ [x,y] z) = __lambda__ [y,x] z;
@@ -12310,6 +14566,8 @@
     \<gtr\> ans 2 3;
 
     1
+
+    \;
   </verbatim>
 
   This works, but doesn't look very nice. Often it's more convenient to first
@@ -12328,6 +14586,8 @@
   the <verbatim|swap> macro as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear swap
 
     \<gtr\> def swap (\\x y -\<gtr\> z) = __eval__ ('(\\y x -\<gtr\> z));
@@ -12347,6 +14607,8 @@
     \<gtr\> ans 2 3;
 
     1
+
+    \;
   </verbatim>
 
   Lisp programmers should note the difference. In Lisp, macros usually yield
@@ -12390,6 +14652,8 @@
   <hlink|<with|font-family|tt|__lambda__>|#--lambda--> macro.
 
   <\verbatim>
+    \;
+
     \<gtr\> def foo x = bar __gensym__ x;
 
     \<gtr\> def bar x y = __lambda__ [x] (x+y);
@@ -12412,6 +14676,8 @@
     \<gtr\> ans 77;
 
     77+a*b
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|__gensym__>|#--gensym--> macro returns a
@@ -12421,6 +14687,8 @@
   might itself create):
 
   <\verbatim>
+    \;
+
     \<gtr\> foo (a*__x2__);
 
     -- macro foo: foo (a*__x2__) --\<gtr\> bar __gensym__ (a*__x2__)
@@ -12438,14 +14706,16 @@
     \<gtr\> ans 77;
 
     77+a*__x2__
+
+    \;
   </verbatim>
 
-  <subsubsection|Advanced Optimization<label|advanced-optimization>>
+  <subsubsection|Advanced Optimization><label|advanced-optimization>
 
   We are now in a position to have a look at some of the trickier
   optimization macros defined in the prelude. The following <verbatim|__do__>
   macro can be found near the end of the prelude.pure module; it is used to
-  optimize the case of ``throwaway'' list and matrix comprehensions. This is
+  optimize the case of \Pthrowaway\Q list and matrix comprehensions. This is
   useful if a comprehension is evaluated solely for its side effects. To keep
   things simple, we discuss a slightly abridged version of the
   <verbatim|__do__> macro which only deals with list comprehensions and
@@ -12458,6 +14728,8 @@
   avoid conflicts with the prelude.
 
   <\verbatim>
+    \;
+
     namespace my;
 
     \;
@@ -12511,6 +14783,8 @@
     // Any remaining instances reduce to a plain 'do' (this must come last).
 
     def __do__ f = do f;
+
+    \;
   </verbatim>
 
   First, note that the <hlink|<with|font-family|tt|void>|purelib.tm#void>
@@ -12557,10 +14831,12 @@
   values from aggregates other than lists, such as matrices).
 
   Now let's see how the rules above transform a list comprehension if we
-  ``void'' it. (Remember to switch to the <verbatim|my> namespace when trying
+  \Pvoid\Q it. (Remember to switch to the <verbatim|my> namespace when trying
   the following examples.)
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> using namespace my;
@@ -12576,6 +14852,8 @@
 
     g = do (\\x -\<gtr\> if x mod 2 then printf "%g\\n" (2^x+1) else ())
     (1..5);
+
+    \;
   </verbatim>
 
   As you can see, the <hlink|<with|font-family|tt|catmap>|purelib.tm#catmap>
@@ -12587,6 +14865,8 @@
   <verbatim|g> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> g;
 
     3
@@ -12596,17 +14876,23 @@
     33
 
     ()
+
+    \;
   </verbatim>
 
   It's also instructive to have a look at how the above macro rules work in
-  concert to rewrite a ``voided'' comprehension. To these ends, you can rerun
+  concert to rewrite a \Pvoided\Q comprehension. To these ends, you can rerun
   the right-hand side of <verbatim|g> with some tracing enabled, as follows
   (we omit the tracing output here for brevity):
 
   <\verbatim>
+    \;
+
     \<gtr\> trace -m my::void
 
     \<gtr\> void [printf "%g\\n" (2^x+1) \| x=1..5; x mod 2];
+
+    \;
   </verbatim>
 
   The above optimization rules also take care of nested list comprehensions,
@@ -12614,11 +14900,15 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> h = void [puts $ str (x,y) \| x=1..2; y=1..3];
 
     \<gtr\> show h
 
     h = do (\\x -\<gtr\> do (\\y -\<gtr\> puts (str (x,y))) (1..3)) (1..2);
+
+    \;
   </verbatim>
 
   Again, you should run this with macro tracing enabled to see how the
@@ -12626,13 +14916,17 @@
   comprehension. Here's the rule which actually does this:
 
   <\verbatim>
+    \;
+
     def __do__ (__lambda__ [x] y@(catmap _ _)) =
 
     \ \ \ \ __do__ $ (__lambda__ [x] (void y));
+
+    \;
   </verbatim>
 
   Note that in order to make this work, <verbatim|__do__> is implemented as a
-  ``<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>'' macro so that
+  \P<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>\Q macro so that
   it can inspect and recurse into the lambda terms in its argument. Also note
   the <hlink|<with|font-family|tt|$>|purelib.tm#-dollar> on the right-hand
   side of this rule; this is also implemented as a macro in the prelude. Here
@@ -12651,6 +14945,8 @@
   clauses. For instance, consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> let c = 2;
 
     \<gtr\> k = void [printf "%g\\n" (2^x+1) \| c\<gtr\>0; x=1..3];
@@ -12659,21 +14955,23 @@
 
     k = my::void (if c\<gtr\>0 then listmap (\\x -\<gtr\> printf "%g\\n"
     (2^x+1)) (1..3) else []);
+
+    \;
   </verbatim>
 
   It's possible to handle this case as well, but we have to go to some
   lengths to achieve that. The complication here is that we don't want to
   mess with calls to <verbatim|void> in ordinary user code, so
-  <verbatim|void> itself cannot be a ``<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>''
+  <verbatim|void> itself cannot be a \P<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>\Q
   macro. But the quoted form of <verbatim|void>`s argument is needed to
-  detect the ``outermost filter clause'' situation. The interested reader may
+  detect the \Poutermost filter clause\Q situation. The interested reader may
   refer to the prelude code to see how the prelude implementation of
   <verbatim|__do__> uses some helper macros to make this work. Another detail
   of the full version of <verbatim|__do__> is the handling of patterns on the
   left-hand side of generator clauses, which requires some special magic to
   filter out unmatched list elements; we also omitted this here for brevity.
 
-  <subsubsection|Reflection<label|reflection>>
+  <subsubsection|Reflection><label|reflection>
 
   The meta representation of specials discussed in <hlink|Built-in Macros and
   Special Expressions|#built-in-macros-and-special-expressions> is also
@@ -12694,6 +14992,8 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n = 1 if n\<less\>=1;
 
     \<gtr\> \ \ \ \ \ \ \ = n*fact (n-1) otherwise;
@@ -12701,6 +15001,8 @@
     \<gtr\> get_fundef fact;
 
     [(fact n--\<gtr\>1 __if__ n\<less\>=1),(fact n--\<gtr\>n*fact (n-1))]
+
+    \;
   </verbatim>
 
   Defining a new function or extending an existing function definition can be
@@ -12708,6 +15010,8 @@
   function:
 
   <\verbatim>
+    \;
+
     \<gtr\> add_fundef $ '[(fib n--\<gtr\>1 __if__ n\<less\>=1),(fib
     n--\<gtr\>fib (n-2)+fib (n-1))];
 
@@ -12722,6 +15026,8 @@
     \<gtr\> map fib (0..10);
 
     [1,1,2,3,5,8,13,21,34,55,89]
+
+    \;
   </verbatim>
 
   Note that, to be on the safe side, we quoted the rule list passed to
@@ -12739,6 +15045,8 @@
   equations with <hlink|<with|font-family|tt|del_fundef>|purelib.tm#del-fundef>:
 
   <\verbatim>
+    \;
+
     \<gtr\> del_fundef $ '(fib n--\<gtr\>fib (n-2)+fib (n-1));
 
     ()
@@ -12746,12 +15054,16 @@
     \<gtr\> show fib
 
     fib n = 1 if n\<less\>=1;
+
+    \;
   </verbatim>
 
   Moreover, the <hlink|<with|font-family|tt|clearsym>|purelib.tm#clearsym>
   function allows you to completely get rid of an existing function:
 
   <\verbatim>
+    \;
+
     \<gtr\> clearsym fib 0;
 
     ()
@@ -12761,6 +15073,8 @@
     \<gtr\> fib 9;
 
     fib 9
+
+    \;
   </verbatim>
 
   There's also a companion function, <hlink|<with|font-family|tt|globsym>|purelib.tm#globsym>,
@@ -12768,6 +15082,8 @@
   pattern:
 
   <\verbatim>
+    \;
+
     \<gtr\> globsym "fact" 0;
 
     [fact]
@@ -12779,6 +15095,8 @@
     \<gtr\> #globsym "*" 0;
 
     304
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|globsym>|purelib.tm#globsym> also
@@ -12788,9 +15106,13 @@
   with an empty rule list:
 
   <\verbatim>
+    \;
+
     \<gtr\> #[sym \| sym = globsym "*" 0; ~null (get_fundef sym)];
 
     253
+
+    \;
   </verbatim>
 
   Pure also provides the operations <hlink|<with|font-family|tt|get_typedef>|purelib.tm#get-typedef>,
@@ -12810,6 +15132,8 @@
   <hlink|Recursive Types|#recursive-types>):
 
   <\verbatim>
+    \;
+
     \<gtr\> get_macdef ($);
 
     [f$x--\<gtr\>f x]
@@ -12817,16 +15141,22 @@
     \<gtr\> get_typedef list;
 
     [(list []--\<gtr\>1),(list (_:_)--\<gtr\>1)]
+
+    \;
   </verbatim>
 
   Or let's lists all global variables along with their values:
 
   <\verbatim>
+    \;
+
     \<gtr\> catmap get_vardef (globsym "*" 0);
 
     [(argc--\<gtr\>0),(argv--\<gtr\>[]),(compiling--\<gtr\>0),
 
     (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.64")]
+
+    \;
   </verbatim>
 
   The counterparts of <hlink|<with|font-family|tt|add_fundef>|purelib.tm#add-fundef>
@@ -12837,6 +15167,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> add_vardef ['x--\<gtr\>3*33];
 
     ()
@@ -12850,6 +15182,8 @@
     ()
 
     \<gtr\> show x
+
+    \;
   </verbatim>
 
   The above facilities should cover most metaprogramming needs. For even more
@@ -12869,7 +15203,7 @@
   provided by these operations will work in batch-compiled programs, please
   check the <hlink|Batch Compilation|#batch-compilation> section for details.
 
-  <subsection|Exception Handling<label|exception-handling>>
+  <subsection|Exception Handling><label|exception-handling>
 
   Pure also offers a useful exception handling facility. To raise an
   exception, you just invoke the built-in function
@@ -12888,9 +15222,13 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> catch error (throw hello_world);
 
     error hello_world
+
+    \;
   </verbatim>
 
   Exceptions are also generated by the runtime system if the program runs out
@@ -12908,6 +15246,8 @@
   kinds of exceptions just like any other. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n = if n\<gtr\>0 then n*fact(n-1) else 1;
 
     \<gtr\> catch error (fact foo);
@@ -12917,16 +15257,22 @@
     \<gtr\> catch error (fact 1000000);
 
     error stack_fault
+
+    \;
   </verbatim>
 
   Unhandled exceptions are reported by the interpreter with a corresponding
   error message:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact foo;
 
     \<less\>stdin\<gtr\>, line 2: unhandled exception 'failed_cond' while
     evaluating 'fact foo'
+
+    \;
   </verbatim>
 
   Note that since the right-hand side of a type definition (cf. <hlink|Type
@@ -12937,6 +15283,8 @@
   <hlink|<with|font-family|tt|catch>|#catch> clause:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x = throw foo; // dummy predicate which always throws an
     exception
 
@@ -12956,6 +15304,8 @@
     \<gtr\> test_baz ();
 
     test_baz ()
+
+    \;
   </verbatim>
 
   Exceptions also provide a way to handle asynchronous signals. Pure's system
@@ -12965,9 +15315,13 @@
   following lets you handle the <verbatim|SIGQUIT> signal:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> trap SIG_TRAP SIGQUIT;
+
+    \;
   </verbatim>
 
   You can also use <hlink|<with|font-family|tt|trap>|purelib.tm#trap> to just
@@ -12976,9 +15330,13 @@
   details):
 
   <\verbatim>
+    \;
+
     \<gtr\> trap SIG_IGN SIGQUIT; // signal is ignored
 
     \<gtr\> trap SIG_DFL SIGQUIT; // reinstalls the default signal handler
+
+    \;
   </verbatim>
 
   Note that when the interpreter runs interactively, for convenience most
@@ -13003,6 +15361,8 @@
   no solution.
 
   <\verbatim>
+    \;
+
     queens n \ \ \ \ \ \ = catch reverse (search n 1 []) with
 
     \ \ search n i p = throw p if i\<gtr\>n;
@@ -13018,17 +15378,23 @@
     i1-j1==i2-j2;
 
     end;
+
+    \;
   </verbatim>
 
   E.g., let's compute a solution for a standard 8x8 board:
 
   <\verbatim>
+    \;
+
     \<gtr\> queens 8;
 
     [(1,1),(2,5),(3,8),(4,6),(5,3),(6,7),(7,2),(8,4)]
+
+    \;
   </verbatim>
 
-  <subsection|Standard Library<label|standard-library>>
+  <subsection|Standard Library><label|standard-library>
 
   Pure comes with a collection of Pure library modules, which includes the
   standard prelude (loaded automatically at startup time) and some other
@@ -13065,7 +15431,7 @@
   <\description>
     <item*|x,y>This is the pair constructor, used to create tuples of
     arbitrary sizes. Tuples provide an alternative way to represent aggregate
-    values in Pure. In contrast to lists, tuples are always ``flat'', so that
+    values in Pure. In contrast to lists, tuples are always \Pflat\Q, so that
     <verbatim|(x,y),z> and <verbatim|x,(y,z)> denote the same triple
     <verbatim|x,y,z>. (This is explained in more detail in the <hlink|Primary
     Expressions|#primary-expressions> section.)
@@ -13086,7 +15452,7 @@
   </description>
 
   <\description>
-    <item*|x!!ys>This is the ``slicing'' operation, which returns the list,
+    <item*|x!!ys>This is the \Pslicing\Q operation, which returns the list,
     tuple, matrix or string of all <verbatim|x!y> while <verbatim|y> runs
     through the elements of the list or matrix <verbatim|ys>. Thus, e.g.,
     <verbatim|x!!(i..j)> returns all the elements between <verbatim|i> and
@@ -13134,7 +15500,7 @@
   including <hlink|<with|font-family|tt|printf>|purelib.tm#printf> and
   <hlink|<with|font-family|tt|scanf>|purelib.tm#scanf>.
 
-  <subsection|C Interface<label|c-interface>>
+  <subsection|C Interface><label|c-interface>
 
   Pure makes it very easy to call C functions (as well as functions in a
   number of other languages supported by the GNU compiler collection). To
@@ -13160,7 +15526,7 @@
   Functions|#external-c-functions> in the <hlink|Caveats and
   Notes|#caveats-and-notes> section for details.
 
-  <subsubsection|Extern Declarations<label|extern-declarations>>
+  <subsubsection|Extern Declarations><label|extern-declarations>
 
   To access an existing C function in Pure, you need an
   <hlink|<with|font-family|tt|extern>|#extern> declaration of the function,
@@ -13168,6 +15534,8 @@
   is described by the following grammar rules:
 
   <\verbatim>
+    \;
+
     extern_decl ::= \ [scope] "extern" prototype ("," prototype) ";"
 
     prototype \ \ ::= \ c_type identifier "(" [parameters \| "..."] ")" ["="
@@ -13178,6 +15546,8 @@
     parameter \ \ ::= \ c_type [identifier]
 
     c_type \ \ \ \ \ ::= \ identifier "*"*
+
+    \;
   </verbatim>
 
   Extern functions can be called in Pure just like any other. For instance,
@@ -13187,11 +15557,15 @@
   declaration into a script):
 
   <\verbatim>
+    \;
+
     \<gtr\> extern double sin(double);
 
     \<gtr\> sin 0.3;
 
     0.29552020666134
+
+    \;
   </verbatim>
 
   An <hlink|<with|font-family|tt|extern>|#extern> declaration can also be
@@ -13199,7 +15573,11 @@
   scope specifier:
 
   <\verbatim>
+    \;
+
     private extern double sin(double);
+
+    \;
   </verbatim>
 
   Multiple prototypes can be given in one
@@ -13207,7 +15585,11 @@
   with commas:
 
   <\verbatim>
+    \;
+
     extern double sin(double), double cos(double), double tan(double);
+
+    \;
   </verbatim>
 
   For clarity, the parameter types can also be annotated with parameter names
@@ -13215,18 +15597,26 @@
   are effectively treated as comments by the compiler):
 
   <\verbatim>
+    \;
+
     extern double sin(double x);
+
+    \;
   </verbatim>
 
   Pointer types are indicated by following the name of the element type with
   one or more asterisks, as in C. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern char* strchr(char *s, int c);
 
     \<gtr\> strchr "foo bar" (ord "b");
 
     "bar"
+
+    \;
   </verbatim>
 
   As you can see in the previous example, some pointer types get special
@@ -13238,6 +15628,8 @@
   then by default the call is treated as a normal form expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern double sin(double);
 
     \<gtr\> sin 0.3;
@@ -13247,6 +15639,8 @@
     \<gtr\> sin 0;
 
     sin 0
+
+    \;
   </verbatim>
 
   This gives you the opportunity to augment the external function with your
@@ -13256,11 +15650,15 @@
   function with a rule to handle integers:
 
   <\verbatim>
+    \;
+
     \<gtr\> sin x::int = sin (double x);
 
     \<gtr\> sin 0;
 
     0.0
+
+    \;
   </verbatim>
 
   Sometimes it is preferable to replace a C function with a wrapper function
@@ -13271,6 +15669,8 @@
   a clause of the form <verbatim|=> <verbatim|alias>. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern double sin(double) = c_sin;
 
     \<gtr\> sin x::double = c_sin x;
@@ -13282,6 +15682,8 @@
     0.29552020666134
 
     0.0
+
+    \;
   </verbatim>
 
   Aliases are just one way to declare a <with|font-series|bold|synonym> of an
@@ -13290,6 +15692,8 @@
   <hlink|Declarations|#declarations> section):
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace c;
 
     \<gtr\> extern double sin(double);
@@ -13297,6 +15701,8 @@
     \<gtr\> c::sin 0.3;
 
     0.29552020666134
+
+    \;
   </verbatim>
 
   Note that the namespace qualification only affects the Pure side; the
@@ -13309,6 +15715,8 @@
   possible to combine a namespace qualifier with an alias:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace c;
 
     \<gtr\> extern double sin(double) = mysin;
@@ -13316,6 +15724,8 @@
     \<gtr\> c::mysin 0.3;
 
     0.29552020666134
+
+    \;
   </verbatim>
 
   In either case, different synonyms of the same external function can be
@@ -13327,6 +15737,8 @@
   character pointers). For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern char *strchr(char *s, int c) = foo;
 
     \<gtr\> extern void *strchr(void *s, int c) = bar;
@@ -13336,6 +15748,8 @@
     "bar"
 
     #\<less\>pointer 0x12c2f24\<gtr\>
+
+    \;
   </verbatim>
 
   Also note that, as far as Pure is concerned, different synonyms of an
@@ -13343,6 +15757,8 @@
   each have their own set of augmenting Pure equations. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern double sin(double);
 
     \<gtr\> extern double sin(double) = mysin;
@@ -13368,14 +15784,18 @@
     0.841470984807897
 
     mysin 1
+
+    \;
   </verbatim>
 
-  <subsubsection|Variadic C Functions<label|variadic-c-functions>>
+  <subsubsection|Variadic C Functions><label|variadic-c-functions>
 
   Variadic C functions are declared as usual by terminating the parameter
   list with an ellipsis (<verbatim|...>):
 
   <\verbatim>
+    \;
+
     \<gtr\> extern int printf(char*, ...);
 
     \<gtr\> printf "Hello, world\\n";
@@ -13383,6 +15803,8 @@
     Hello, world
 
     13
+
+    \;
   </verbatim>
 
   Note that the variadic prototype is mandatory here, since the compiler
@@ -13399,6 +15821,8 @@
   only checks the non-variadic parameters for conformance. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern int printf(char*, char*) = printf_s;
 
     \<gtr\> printf_s "Hello, %s\\n" "world";
@@ -13414,16 +15838,18 @@
     Hello, 99
 
     10
+
+    \;
   </verbatim>
 
-  <subsubsection|C Types<label|c-types>>
+  <subsubsection|C Types><label|c-types>
 
   As indicated in the previous section, the data types in
   <hlink|<with|font-family|tt|extern>|#extern> declarations are either C type
   names or pointer types derived from these. The special <verbatim|expr*>
   pointer type is simply passed through; this provides a means to deal with
   Pure data in C functions in a direct fashion. For all other C types, Pure
-  values are ``marshalled'' (converted) from Pure to C when passed as
+  values are \Pmarshalled\Q (converted) from Pure to C when passed as
   arguments to C functions, and the result returned by the C function is then
   converted back from C to Pure. All of this is handled by the runtime system
   in a transparent way, of course.
@@ -13438,7 +15864,7 @@
   Functions|#external-c-functions> in the <hlink|Caveats and
   Notes|#caveats-and-notes> section for details.
 
-  <paragraph|Basic C Types<label|basic-c-types>>
+  <paragraph|Basic C Types><label|basic-c-types>
 
   Pure supports the usual range of basic C types: <verbatim|void>,
   <verbatim|bool>, <verbatim|char>, <verbatim|short>, <verbatim|int>,
@@ -13468,7 +15894,7 @@
 
   All integer parameters take both Pure ints and bigints as actual arguments;
   truncation or sign extension is performed as needed, so that the C
-  interface behaves as if the argument was ``cast'' to the C target type.
+  interface behaves as if the argument was \Pcast\Q to the C target type.
   Returned integers use the smallest Pure type capable of holding the result,
   i.e., int for the C <verbatim|char>, <verbatim|short> and <verbatim|int>
   types, bigint for <verbatim|int64>.
@@ -13477,7 +15903,7 @@
   pass unsigned integers as well (if necessary, you can use a bigint to pass
   positive values which are too big to fit into a machine int). Also note
   that when an unsigned integer is returned by a C routine, which is too big
-  to fit into the corresponding signed integer type, it will ``wrap around''
+  to fit into the corresponding signed integer type, it will \Pwrap around\Q
   and become negative. In this case, depending on the target type, you can
   use the <hlink|<with|font-family|tt|ubyte>|purelib.tm#ubyte>,
   <hlink|<with|font-family|tt|ushort>|purelib.tm#ushort>,
@@ -13486,7 +15912,7 @@
   <hlink|<with|font-family|tt|uint64>|purelib.tm#uint64> functions provided
   by the prelude to convert the result back to an unsigned quantity.
 
-  <paragraph|Pointer Types<label|pointer-types>>
+  <paragraph|Pointer Types><label|pointer-types>
 
   The use of pointer types is also fairly straightforward, but Pure has some
   special rules for the conversion of certain pointer types which make it
@@ -13546,7 +15972,7 @@
   Pointers>|purelib.tm#tagged-pointers> section in the <hlink|<em|Pure
   Library Manual>|purelib.tm> for details.
 
-  <paragraph|Pointers and Matrices<label|pointers-and-matrices>>
+  <paragraph|Pointers and Matrices><label|pointers-and-matrices>
 
   The following additional pointer conversions are provided to deal with Pure
   matrix values in arguments of C functions, i.e., on the input side. These
@@ -13600,19 +16026,19 @@
   </itemize>
 
   Note that in the numeric pointer conversions, the matrix data is passed
-  ``per reference'' to C routines, i.e., the C function may modify the data
-  ``in place''. This is true even for target data types such as
+  \Pper reference\Q to C routines, i.e., the C function may modify the data
+  \Pin place\Q. This is true even for target data types such as
   <verbatim|short*> or <verbatim|float**> which involve automatic conversions
   and hence need temporary storage. In this case the data from the temporary
   storage is written back to the original matrix when the function returns,
   to maintain the illusion of in-place modification. Temporary storage is
   also needed when the GSL matrix has the data in non-contiguous storage. You
   may want to avoid this if performance is critical, by always using
-  ``packed'' matrices (see <hlink|<with|font-family|tt|pack>|purelib.tm#pack>
+  \Ppacked\Q matrices (see <hlink|<with|font-family|tt|pack>|purelib.tm#pack>
   in <hlink|<em|Matrix Functions>|purelib.tm#matrix-functions>) of the
   appropriate types.
 
-  <paragraph|Pointer Examples<label|pointer-examples>>
+  <paragraph|Pointer Examples><label|pointer-examples>
 
   Let's finally have a look at some instructive examples to explain some of
   the trickier pointer types.
@@ -13636,6 +16062,8 @@
   double matrix addition function in a way that preserves value semantics:
 
   <\verbatim>
+    \;
+
     \<gtr\> using "lib:gsl";
 
     \<gtr\> extern int gsl_matrix_add(dmatrix*, dmatrix*);
@@ -13650,6 +16078,8 @@
     {2.0,3.0,2.0}
 
     {3.0,5.0,5.0}
+
+    \;
   </verbatim>
 
   Most GSL matrix routines can be wrapped in this fashion quite easily. A
@@ -13667,6 +16097,8 @@
   <verbatim|"Hello,> <verbatim|world!"> as byte values (ASCII codes):
 
   <\verbatim>
+    \;
+
     \<gtr\> extern int puts(char*);
 
     \<gtr\> puts {72,101,108,108,111,44,32,119,111,114,108,100,33,0};
@@ -13674,6 +16106,8 @@
     Hello, world!
 
     14
+
+    \;
   </verbatim>
 
   Pure 0.45 and later also support <verbatim|char**>, <verbatim|short**>,
@@ -13686,6 +16120,8 @@
   instance, here's how to do matrix multiplication (the naive algorithm):
 
   <\verbatim>
+    \;
+
     void matmult(int n, int l, int m, double **x, double **y, double **z)
 
     {
@@ -13705,6 +16141,8 @@
     \ \ \ \ }
 
     }
+
+    \;
   </verbatim>
 
   As you can see, this multiplies a <verbatim|n> times <verbatim|l> matrix
@@ -13713,6 +16151,8 @@
   <verbatim|z>:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern void matmult(int, int, int, double**, double**, double**);
 
     \<gtr\> let x = {0.11,0.12,0.13;0.21,0.22,0.23};
@@ -13724,6 +16164,8 @@
     \<gtr\> matmult 2 3 2 x y z $$ z;
 
     {367.76,368.12;674.06,674.72}
+
+    \;
   </verbatim>
 
   Also new in Pure 0.45 is the support for passing <verbatim|argv>-style
@@ -13733,6 +16175,8 @@
   error-checking, but you get the idea.)
 
   <\verbatim>
+    \;
+
     extern int fork();
 
     extern int execvp(char *path, char **argv);
@@ -13762,9 +16206,11 @@
     system "ls -l *.pure";
 
     system "exit 1";
+
+    \;
   </verbatim>
 
-  <subsubsection|Importing Dynamic Libraries<label|importing-dynamic-libraries>>
+  <subsubsection|Importing Dynamic Libraries><label|importing-dynamic-libraries>
 
   By default, external C functions are resolved by the LLVM runtime, which
   first looks for the symbol in the C library and Pure's runtime library (or
@@ -13772,18 +16218,26 @@
   all C library and Pure runtime functions are readily available in Pure
   programs. Other functions can be provided by adding them to the runtime, or
   by linking them into the runtime or the interpreter executable. Better yet,
-  you can just ``dlopen'' shared libraries at runtime with a special form of
+  you can just \Pdlopen\Q shared libraries at runtime with a special form of
   the <hlink|<with|font-family|tt|using>|#using> clause:
 
   <\verbatim>
+    \;
+
     using "lib:libname[.ext]";
+
+    \;
   </verbatim>
 
   For instance, if you want to call the functions from library libxyz
   directly from Pure:
 
   <\verbatim>
+    \;
+
     using "lib:libxyz";
+
+    \;
   </verbatim>
 
   After this declaration the functions from the given library will be ready
@@ -13807,11 +16261,11 @@
   declaration names a function symbol which cannot be resolved, an
   appropriate error message is printed.
 
-  <subsubsection|Importing LLVM Bitcode<label|importing-llvm-bitcode>>
+  <subsubsection|Importing LLVM Bitcode><label|importing-llvm-bitcode>
 
   As of Pure 0.44, the interpreter also provides a direct way to import LLVM
   bitcode modules in Pure scripts. The main advantage of this method over the
-  ``plain'' C interface explained above is that the bitcode loader knows all
+  \Pplain\Q C interface explained above is that the bitcode loader knows all
   the call interfaces and generates the necessary
   <hlink|<with|font-family|tt|extern>|#extern> declarations automatically.
   This is more than just a convenience, as it also eliminates at least some
@@ -13838,7 +16292,11 @@
   of the <hlink|<with|font-family|tt|using>|#using> clause:
 
   <\verbatim>
+    \;
+
     using "bc:modname[.bc]";
+
+    \;
   </verbatim>
 
   (Here the <verbatim|bc> tag indicates a bitcode file, and the default
@@ -13862,7 +16320,11 @@
   name. For instance:
 
   <\verbatim>
+    \;
+
     using private "bc:modname";
+
+    \;
   </verbatim>
 
   You can also import the same bitcode module several times, possibly in
@@ -13870,6 +16332,8 @@
   create synonyms for the external functions in different namespaces:
 
   <\verbatim>
+    \;
+
     namespace foo;
 
     using "bc:modname";
@@ -13877,6 +16341,8 @@
     namespace bar;
 
     using private "bc:modname";
+
+    \;
   </verbatim>
 
   You can load any number of bitcode modules along with shared libraries in a
@@ -13895,6 +16361,8 @@
   the greatest common divisor of two (machine) integers:
 
   <\verbatim>
+    \;
+
     int mygcd(int x, int y)
 
     {
@@ -13908,13 +16376,19 @@
     \ \ \ \ return mygcd(y, x%y);
 
     }
+
+    \;
   </verbatim>
 
   Let's say that this code is in the file <verbatim|mygcd.c>, then you'd
   compile it to a bitcode module using <hlink|clang|#clang> as follows:
 
   <\verbatim>
+    \;
+
     clang -emit-llvm -c mygcd.c -o mygcd.bc
+
+    \;
   </verbatim>
 
   Note that the <verbatim|-emit-llvm> <verbatim|-c> options instruct clang to
@@ -13927,9 +16401,13 @@
   llvm-as program as follows:
 
   <\verbatim>
+    \;
+
     gcc -fplugin=dragonegg -flto -S mygcd.c -o mygcd.ll
 
     llvm-as mygcd.ll -o mygcd.bc
+
+    \;
   </verbatim>
 
   (Note that the <verbatim|-fplugin> option instructs gcc to use the
@@ -13941,11 +16419,15 @@
   <verbatim|mygcd> function in the Pure interpreter simply as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> using "bc:mygcd";
 
     \<gtr\> mygcd 75 105;
 
     15
+
+    \;
   </verbatim>
 
   To actually see the generated <hlink|<with|font-family|tt|extern>|#extern>
@@ -13953,9 +16435,13 @@
   <verbatim|show> command:
 
   <\verbatim>
+    \;
+
     \<gtr\> show mygcd
 
     extern int mygcd(int, int);
+
+    \;
   </verbatim>
 
   Some more examples showing how to use the bitcode interface can be found in
@@ -13983,6 +16469,8 @@
     Declarations|#extern-declarations> above). For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> using "bc:foo";
 
       \<gtr\> show foo
@@ -13994,6 +16482,8 @@
       \<gtr\> show myfoo
 
       extern void* foo(void*) = myfoo;
+
+      \;
     </verbatim>
 
     <item>The bitcode interface is limited to the same range of C types as
@@ -14008,7 +16498,7 @@
     from Pure.
   </itemize>
 
-  <subsubsection|Inline Code<label|inline-code>>
+  <subsubsection|Inline Code><label|inline-code>
 
   Instead of manually compiling source files to bitcode modules, you can also
   just place the source code into a Pure script, enclosing it in
@@ -14023,6 +16513,8 @@
   <verbatim|mygcd> function from the previous subsection:
 
   <\verbatim>
+    \;
+
     %\<less\>
 
     int mygcd(int x, int y)
@@ -14044,6 +16536,8 @@
     \;
 
     mygcd 75 105;
+
+    \;
   </verbatim>
 
   The interpreter automatically compiles the inlined code to LLVM bitcode
@@ -14067,6 +16561,8 @@
   For instance:
 
   <\verbatim>
+    \;
+
     %\<less\> -*- Fortran90 -*-
 
     function fact(n) result(p)
@@ -14090,6 +16586,8 @@
     fact n::int = fact_ {n};
 
     map fact (1..10);
+
+    \;
   </verbatim>
 
   As indicated, the language tag takes the form <verbatim|-*->
@@ -14137,13 +16635,17 @@
   instance:
 
   <\verbatim>
+    \;
+
     PURE_CC="gcc -fplugin=dragonegg -O3"
+
+    \;
   </verbatim>
 
   Some further details on the bitcode support for specific target languages
   can be found in the subsections below.
 
-  <subsubsection|Interfacing to C++<label|interfacing-to-c>>
+  <subsubsection|Interfacing to C++><label|interfacing-to-c>
 
   Interfacing to C++ code requires additional preparations because of the
   name mangling performed by C++ compilers. Usually, you won't be able to
@@ -14153,6 +16655,8 @@
   STL maps from Pure.
 
   <\verbatim>
+    \;
+
     %\<less\> -*- C++ -*-
 
     \;
@@ -14306,9 +16810,11 @@
     map_keys m; // =\<gtr\> ["bar","baz"]
 
     map (map_get m) (map_keys m); // =\<gtr\> [bar 4711L,[1,2,3,4,5]]
+
+    \;
   </verbatim>
 
-  <subsubsection|Interfacing to ATS<label|interfacing-to-ats>>
+  <subsubsection|Interfacing to ATS><label|interfacing-to-ats>
 
   <hlink|ATS|#ats> is a statically typed functional programming language
   somewhat similar to ML, which also offers imperative and concurrent
@@ -14323,6 +16829,8 @@
   in ATS and call that function from Pure:
 
   <\verbatim>
+    \;
+
     %\<less\> -*- ATS -*-
 
     \;
@@ -14412,6 +16920,8 @@
     \;
 
     map ifact (0..9);
+
+    \;
   </verbatim>
 
   To make this work in Pure, you need to have ATS2 (the current version of
@@ -14428,7 +16938,7 @@
   ATS compiler can be found on the <hlink|ATS
   website|http://www.ats-lang.org/>.
 
-  <subsubsection|Interfacing to Faust<label|interfacing-to-faust>>
+  <subsubsection|Interfacing to Faust><label|interfacing-to-faust>
 
   <hlink|Faust|#faust> is a functional dsp (digital signal processing)
   programming language developed at Grame, which is tailored to the task of
@@ -14443,7 +16953,7 @@
   Pure's LLVM bitcode loader has some special knowledge about Faust built
   into it, which makes interfacing to Faust programs simple and efficient. At
   present, you'll need a special LLVM-capable version of Faust to make this
-  work, which is available under the ``faust2'' branch in Faust's git
+  work, which is available under the \Pfaust2\Q branch in Faust's git
   repository. Some information on how to get this up and running can be found
   on the <hlink|LLVM backend for Faust|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
   website.
@@ -14466,7 +16976,11 @@
   in the source file example.dsp as follows:
 
   <\verbatim>
+    \;
+
     faust -double -lang llvm example.dsp -o example.bc
+
+    \;
   </verbatim>
 
   The <verbatim|-double> option isn't strictly necessary, but it makes
@@ -14483,9 +16997,13 @@
   needs to be linked against additional C/C++ code. For instance:
 
   <\verbatim>
+    \;
+
     faust -double -a pure.c -lang c example.dsp -o example.c
 
     clang -emit-llvm -O3 -c example.c -o example.bc
+
+    \;
   </verbatim>
 
   A third possibility is to just inline Faust code in a Pure script, as
@@ -14497,7 +17015,11 @@
   Faust compiler with some special options, e.g.:
 
   <\verbatim>
+    \;
+
     PURE_FAUST="faust -single -vec"
+
+    \;
   </verbatim>
 
   (Note that you do not have to include the <verbatim|-lang> <verbatim|llvm>
@@ -14510,7 +17032,11 @@
   optimizations performed on the Faust-generated code:
 
   <\verbatim>
+    \;
+
     FAUST_OPT="\| opt -O3"
+
+    \;
   </verbatim>
 
   After loading or inlining the Faust module, the Pure compiler makes the
@@ -14535,15 +17061,21 @@
   control variable:
 
   <\verbatim>
+    \;
+
     gain = nentry("gain", 0.3, 0, 10, 0.01);
 
     process = + : *(gain);
+
+    \;
   </verbatim>
 
   The interface routines of this Faust module look as follows on the Pure
   side:
 
   <\verbatim>
+    \;
+
     \<gtr\> show -g example::*
 
     extern void buildUserInterface(struct_dsp_example*, struct_UIGlue*) =
@@ -14578,6 +17110,8 @@
     extern struct_dsp_example* new() = example::new;
 
     extern struct_dsp_example* newinit(int) = example::newinit;
+
+    \;
   </verbatim>
 
   The most important interface routines are <verbatim|new>, <verbatim|init>
@@ -14624,7 +17158,11 @@
   You can then load the module in Pure as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> using "dsp:example";
+
+    \;
   </verbatim>
 
   Note that the .bc bitcode extension is supplied automatically. Also note
@@ -14636,6 +17174,8 @@
   the example above, the inline code section looks as follows:
 
   <\verbatim>
+    \;
+
     %\<less\> -*- dsp:example -*-
 
     gain = nentry("gain", 0.3, 0, 10, 0.01);
@@ -14643,6 +17183,8 @@
     process = + : *(gain);
 
     %\<gtr\>
+
+    \;
   </verbatim>
 
   You can either add this code to a Pure script, or just type it directly in
@@ -14658,7 +17200,11 @@
   Pure variable as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> let dsp = example::newinit 44100;
+
+    \;
   </verbatim>
 
   Note that the constant 44100 denotes the desired sample rate in Hz. This
@@ -14674,20 +17220,26 @@
   function, and be assigned to some Pure variables as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> let k,l,ui = example::info dsp;
+
+    \;
   </verbatim>
 
   (We'll have a closer look at the contents of the <verbatim|ui> variable
   below.)
 
   In a similar fashion, the <verbatim|meta> function provides some
-  ``metadata'' about the Faust dsp, as a list of <verbatim|key=\>val> string
+  \Pmetadata\Q about the Faust dsp, as a list of <verbatim|key=\>val> string
   pairs. This is static data which doesn't belong to any particular dsp
   instance, so it can be extracted without actually creating an instance. In
   our case the metadata will be empty, since we didn't supply any in the
   Faust program. If needed, we can add some metadata as follows:
 
   <\verbatim>
+    \;
+
     declare descr \ \ "Faust Hello World";
 
     declare author \ "Faust Guru";
@@ -14697,15 +17249,21 @@
     gain = nentry("gain", 0.3, 0, 10, 0.01);
 
     process = + : *(gain);
+
+    \;
   </verbatim>
 
   If we now reload the Faust dsp, we'll get:
 
   <\verbatim>
+    \;
+
     \<gtr\> test::meta;
 
     ["descr"=\<gtr\>"Faust Hello World","author"=\<gtr\>"Faust
     Guru","version"=\<gtr\>"1.0"]
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Step 3: Prepare input and output buffers.> Pure's
@@ -14719,16 +17277,22 @@
   and the <verbatim|dmatrix> function available in the standard library:
 
   <\verbatim>
+    \;
+
     \<gtr\> let n = 10; // the block size
 
     \<gtr\> let in \ = {i*10.0+j \| i = 1..k; j = 1..n};
 
     \<gtr\> let out = dmatrix (l,n);
+
+    \;
   </verbatim>
 
   In our example, k=2 and l=1, thus we obtain the following matrices:
 
   <\verbatim>
+    \;
+
     \<gtr\> in;
 
     {11.0,12.0,13.0,14.0,15.0,16.0,17.0,18.0,19.0,20.0;
@@ -14738,6 +17302,8 @@
     \<gtr\> out;
 
     {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0}
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Step 4: Apply the dsp to compute some samples.> With
@@ -14745,7 +17311,11 @@
   apply the dsp by invoking its <verbatim|compute> routine:
 
   <\verbatim>
+    \;
+
     \<gtr\> example::compute dsp n in out;
+
+    \;
   </verbatim>
 
   This takes the input samples specified in the <verbatim|in> matrix and
@@ -14753,9 +17323,13 @@
   now looks as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> out;
 
     {9.6,10.2,10.8,11.4,12.0,12.6,13.2,13.8,14.4,15.0}
+
+    \;
   </verbatim>
 
   Note that the <verbatim|compute> routine also modifies the internal state
@@ -14774,10 +17348,14 @@
   <verbatim|ui> variable, let's have a look at it now:
 
   <\verbatim>
+    \;
+
     \<gtr\> ui;
 
     vgroup [] ("test",[nentry #\<less\>pointer 0x1611f00\<gtr\> []
     ("gain",0.3,0.0,10.0,0.01)])
+
+    \;
   </verbatim>
 
   In general, this data structure takes the form of a tree which corresponds
@@ -14792,11 +17370,15 @@
   control variable names to the corresponding double pointers as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> using faustui;
 
     \<gtr\> let ui = control_map $ controls ui; ui;
 
     {"gain"=\<gtr\>#\<less\>pointer 0xd81820\<gtr\>}
+
+    \;
   </verbatim>
 
   The result is a record value indexed by control names, thus the pointer
@@ -14805,6 +17387,8 @@
   functions to inspect a control and change its value:
 
   <\verbatim>
+    \;
+
     \<gtr\> let gain = ui!"gain";
 
     \<gtr\> get_control gain;
@@ -14818,17 +17402,23 @@
     \<gtr\> get_control gain;
 
     1.0
+
+    \;
   </verbatim>
 
   Let's rerun <verbatim|compute> to get another block of samples from the
   same input data, using the new <verbatim|gain> value:
 
   <\verbatim>
+    \;
+
     \<gtr\> example::compute dsp n in out;
 
     \<gtr\> out;
 
     {32.0,34.0,36.0,38.0,40.0,42.0,44.0,46.0,48.0,50.0}
+
+    \;
   </verbatim>
 
   Faust also allows metadata to be attached to individual controls and
@@ -14838,20 +17428,24 @@
   information about a control to specific applications. It's completely up to
   the application how to interpret this metadata. Typical examples are style
   hints about GUI renderings of a control, or the assignment of external
-  ``MIDI'' controllers. (<with|font-series|bold|MIDI> is the ``Musical
-  Instruments Digital Interface'', a standardized hardware and software
+  \PMIDI\Q controllers. (<with|font-series|bold|MIDI> is the \PMusical
+  Instruments Digital Interface\Q, a standardized hardware and software
   interface for electronic music instruments and other digital multimedia
   equipment.)
 
   In our example these metadata lists are all empty. Control metadata is
   specified in a Faust program in the labels of the controls using the syntax
   <verbatim|[key:val]>, please see the Faust documentation for details. For
-  instance, if we'd like to assign MIDI controller 7 (usually the ``volume
-  controller'' on MIDI keyboards) to our <verbatim|gain> control, this might
+  instance, if we'd like to assign MIDI controller 7 (usually the \Pvolume
+  controller\Q on MIDI keyboards) to our <verbatim|gain> control, this might
   be done as follows:
 
   <\verbatim>
+    \;
+
     gain = nentry("gain [midi:ctrl 7]", 0.3, 0, 10, 0.01);
+
+    \;
   </verbatim>
 
   After reloading the dsp and creating a new instance, this metadata is
@@ -14859,6 +17453,8 @@
   <verbatim|control_meta> function of the faustui module as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> let dsp = test::newinit SR;
 
     \<gtr\> let k,l,ui = example::info dsp;
@@ -14871,6 +17467,8 @@
     \<gtr\> control_meta ans;
 
     ["midi"=\<gtr\>"ctrl 7"]
+
+    \;
   </verbatim>
 
   As you can see, all these steps are rather straightforward. Of course, in a
@@ -14889,7 +17487,7 @@
   <hlink|<em|pd-faust>|pd-faust.tm> packages to see how these facilities can
   be used in Pd modules written in Pure.
 
-  <subsection|Interactive Usage<label|interactive-usage>>
+  <subsection|Interactive Usage><label|interactive-usage>
 
   In interactive mode, the interpreter reads definitions and expressions and
   processes them as usual. You can use the <hlink|<em|-i>|#cmdoption-pure-i>
@@ -14904,10 +17502,12 @@
   individual definitions and expressions must be terminated with a semicolon
   before they are processed. For instance, here is a simple interaction which
   defines the factorial and then uses that definition in some evaluations.
-  Input lines begin with ``\<gtr\> '', which is the interpreter's default
+  Input lines begin with \P\<gtr\> \Q, which is the interpreter's default
   command prompt:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 1 = 1;
 
     \<gtr\> fact n = n*fact (n-1) if n\<gtr\>1;
@@ -14919,6 +17519,8 @@
     \<gtr\> map fact (1..10);
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   As indicated, in interactive mode the normal forms of toplevel expressions
@@ -14926,7 +17528,7 @@
   as the <with|font-series|bold|read-eval-print loop>. Normal form
   expressions are usually printed in the same form as you'd enter them.
   However, there are a few special kinds of objects like anonymous closures,
-  thunks (``lazy'' values to be evaluated when needed) and pointers which
+  thunks (\Plazy\Q values to be evaluated when needed) and pointers which
   don't have a textual representation in the Pure syntax and will be printed
   in the format <verbatim|#\<><em|object description><verbatim|\>> by
   default. It is also possible to override the print representation of any
@@ -14936,7 +17538,7 @@
   A number of other special features of Pure's command line interface are
   discussed in the following subsections.
 
-  <subsubsection|Command Syntax<label|command-syntax>>
+  <subsubsection|Command Syntax><label|command-syntax>
 
   Besides Pure definitions and expressions, the interpreter also understands
   a number of special interactive commands for performing basic maintenance
@@ -14953,8 +17555,8 @@
   section below.
 
   In fact, as of Pure 0.56 the interpreter actually provides two slightly
-  different command syntaxes, which we'll refer to as ``default'' and
-  ``escape mode''. The manual assumes that you're running the interpreter in
+  different command syntaxes, which we'll refer to as \Pdefault\Q and
+  \Pescape mode\Q. The manual assumes that you're running the interpreter in
   its traditional <with|font-series|bold|default mode> where interactive
   commands are typed simply as they are shown in the following subsections,
   with the command word at the very beginning of the line. However, this mode
@@ -14973,7 +17575,7 @@
   the very beginning of the line. The command itself must follow the prefix
   character, without any intervening whitespace. Any line not prefixed with
   the prefix character will then be considered normal Pure code. This mode
-  can be enabled with the <hlink|<em|--escape>|#cmdoption-pure--escape>
+  can be enabled with the <hlink|<em|\Uescape>|#cmdoption-pure--escape>
   option, which takes the desired prefix character as an argument, or you can
   just set the<label|index-32><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   variable in your environment to enable escape mode by default.
@@ -14982,20 +17584,28 @@
   the interpreter as follows:
 
   <\verbatim>
+    \;
+
     $ pure --escape=':'
+
+    \;
   </verbatim>
 
   Alternatively, you could also set the<label|index-33><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   environment variable like this (using Bourne shell syntax):
 
   <\verbatim>
+    \;
+
     $ export PURE_ESCAPE=':'
+
+    \;
   </verbatim>
 
   Note that specifying the prefix character with the
-  <hlink|<em|--escape>|#cmdoption-pure--escape> option overrides the value of
+  <hlink|<em|\Uescape>|#cmdoption-pure--escape> option overrides the value of
   the environment variable, and only the initial character in the value of
-  <hlink|<em|--escape>|#cmdoption-pure--escape>
+  <hlink|<em|\Uescape>|#cmdoption-pure--escape>
   or<label|index-34><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   will be used. If the specified value is empty, the interpreter reverts to
   the default mode. The following prefix characters can be used:
@@ -15015,20 +17625,32 @@
   following command,
 
   <\verbatim>
+    \;
+
     \<gtr\> show foldl
+
+    \;
   </verbatim>
 
   and you are using `<verbatim|:>` as the command prefix, then you will have
   to type this in escape mode instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> :show foldl
+
+    \;
   </verbatim>
 
   Note that in this case `<verbatim|!>` continues to serve as a shell escape:
 
   <\verbatim>
+    \;
+
     \<gtr\> ! find . '*.pure'
+
+    \;
   </verbatim>
 
   This will not work, however, if you use `<verbatim|!>` as your command
@@ -15037,7 +17659,11 @@
   debugger, cf. <hlink|Debugging|#debugging>):
 
   <\verbatim>
+    \;
+
     \<gtr\> !! find . '*.pure'
+
+    \;
   </verbatim>
 
   This should be rather straightforward, so in the following we just use the
@@ -15050,7 +17676,7 @@
   specified without the escape character prefix no matter which mode the
   interpreter is running in.
 
-  <subsubsection|Online Help<label|online-help>>
+  <subsubsection|Online Help><label|online-help>
 
   Online help is available in the interpreter with the interactive
   <verbatim|help> command, which gives you access to all the available
@@ -15069,7 +17695,11 @@
   links to the provided manuals:
 
   <\verbatim>
+    \;
+
     \<gtr\> help
+
+    \;
   </verbatim>
 
   (If the interpreter gives you an error message when you do this then you
@@ -15081,7 +17711,11 @@
   a search term which is looked up in the global index, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> help foldl
+
+    \;
   </verbatim>
 
   Besides Pure functions, macros, variables and constants described in the
@@ -15089,11 +17723,15 @@
   e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> help -x
 
     \<gtr\> help pure-gen -x
 
     \<gtr\> help PURE_STACK
+
+    \;
   </verbatim>
 
   (Note that you can specify the program name to disambiguate between options
@@ -15108,7 +17746,11 @@
   the present section in this manual you'd have to type:
 
   <\verbatim>
+    \;
+
     \<gtr\> help online-help
+
+    \;
   </verbatim>
 
   The help files are in html format and located in the docs subdirectory of
@@ -15117,7 +17759,11 @@
   following:
 
   <\verbatim>
+    \;
+
     \<gtr\> help pure-gsl#matrices
+
+    \;
   </verbatim>
 
   Here <verbatim|pure-gsl> is the basename of the help file (library path and
@@ -15126,7 +17772,11 @@
   specifying a target, type the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> help pure-gsl#
+
+    \;
   </verbatim>
 
   (Note that just <verbatim|help> <verbatim|pure-gsl> won't work, since it
@@ -15137,12 +17787,16 @@
   provided that your browser program can handle these. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> help file:mydoc.html#foo
 
     \<gtr\> help http://purelang.bitbucket.org
+
+    \;
   </verbatim>
 
-  <subsubsection|Interactive Commands<label|interactive-commands>>
+  <subsubsection|Interactive Commands><label|interactive-commands>
 
   The following built-in commands are always understood by the interpreter.
   (In addition, you can define your own commands for frequently-used
@@ -15183,7 +17837,7 @@
     the <hlink|<with|font-family|tt|ans>|purelib.tm#ans> value (see
     <hlink|Last Result|#last-result> below). When invoked without any
     arguments, <verbatim|clear> purges all definitions at the current
-    interactive ``level'' (after confirmation) and returns you to the
+    interactive \Plevel\Q (after confirmation) and returns you to the
     previous level, if any. (It might be a good idea to first check your
     current definitions with <verbatim|show> or back them up with
     <verbatim|dump> before you do that.) The desired level can be specified
@@ -15263,8 +17917,8 @@
   </description>
 
   <\description>
-    <item*|override><label|index-47>Enter ``override'' mode. This allows you
-    to add equations ``above'' existing definitions in the source script,
+    <item*|override><label|index-47>Enter \Poverride\Q mode. This allows you
+    to add equations \Pabove\Q existing definitions in the source script,
     possibly overriding existing equations. See <hlink|Definition
     Levels|#definition-levels> below for details.
   </description>
@@ -15280,7 +17934,7 @@
 
   <\description>
     <item*|run [-g\|script]><label|index-50>When invoked without arguments or
-    with the <verbatim|-g> option, <verbatim|run> does a ``cold'' restart of
+    with the <verbatim|-g> option, <verbatim|run> does a \Pcold\Q restart of
     the interpreter, with the scripts and options given on the interpreter's
     original command line. If just <verbatim|-g> is specified as the
     argument, the interpreter is run with debugging enabled. Otherwise the
@@ -15325,7 +17979,7 @@
 
   <\description>
     <item*|stats [-m] [on\|off]><label|index-53>Enables (default) or disables
-    ``stats'' mode, in which some statistics are printed after an expression
+    \Pstats\Q mode, in which some statistics are printed after an expression
     has been evaluated. Invoking just <verbatim|stats> or <verbatim|stats>
     <verbatim|on> only prints the cpu time in seconds for each evaluation. If
     the <verbatim|-m> option is specified, memory usage is printed along with
@@ -15372,9 +18026,9 @@
   </description>
 
   <\description>
-    <item*|underride><label|index-55>Exits ``override'' mode. This returns
+    <item*|underride><label|index-55>Exits \Poverride\Q mode. This returns
     you to the normal mode of operation, where new equations are added
-    ``below'' previous rules of an existing function. See <hlink|Definition
+    \Pbelow\Q previous rules of an existing function. See <hlink|Definition
     Levels|#definition-levels> below for details.
   </description>
 
@@ -15397,7 +18051,7 @@
   user, although they may sometimes be useful to implement custom
   functionality, see <hlink|User-Defined Commands|#user-defined-commands>.
 
-  <subsubsection|Specifying Symbol Selections<label|specifying-symbol-selections>>
+  <subsubsection|Specifying Symbol Selections><label|specifying-symbol-selections>
 
   The <verbatim|clear>, <verbatim|dump> and <verbatim|show> commands all
   accept the following options for specifying a subset of symbols and
@@ -15421,10 +18075,10 @@
   otherwise (<em|flag> is zero) select only public symbols. If this option is
   omitted then both private and public symbols are selected.
 
-  -tlevel Select symbols and definitions at the given ``level'' of
+  -tlevel Select symbols and definitions at the given \Plevel\Q of
   definitions and above. This is described in more detail below. Briefly, the
   executing program and all imported modules (including the prelude) are at
-  level 0, while ``temporary'' definitions made interactively in the
+  level 0, while \Ptemporary\Q definitions made interactively in the
   interpreter are at level 1 and above. Thus a level of 1 restricts the
   selection to all temporary definitions, whereas 0 indicates all definitions
   (i.e., everything, including the prelude). If <em|level> is omitted, it
@@ -15468,7 +18122,7 @@
   destructively). See <hlink|Definition Levels|#definition-levels> below for
   some examples.
 
-  <subsubsection|The show Command<label|the-show-command>>
+  <subsubsection|The show Command><label|the-show-command>
 
   The <verbatim|show> command can be used to obtain information about defined
   symbols in various formats. Besides the common selection options discussed
@@ -15501,13 +18155,19 @@
   session, simply say:
 
   <\verbatim>
+    \;
+
     \<gtr\> show
+
+    \;
   </verbatim>
 
   You can also list a specific symbol, no matter whether it comes from the
   interactive command line, the executing script or the prelude:
 
   <\verbatim>
+    \;
+
     \<gtr\> show foldl
 
     foldl f a x::matrix = foldl f a (list x);
@@ -15517,12 +18177,16 @@
     foldl f a [] = a;
 
     foldl f a (x:xs) = foldl f (f a x) xs;
+
+    \;
   </verbatim>
 
   Wildcards can be used with the <verbatim|-g> option, which is useful if you
   want to print an entire family of related functions, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> show -g foldl*
 
     foldl f a x::matrix = foldl f a (list x);
@@ -15538,24 +18202,32 @@
     foldl1 f s::string = foldl1 f (chars s);
 
     foldl1 f (x:xs) = foldl f x xs;
+
+    \;
   </verbatim>
 
   Or you can just specify multiple symbols as follows (this also works with
   multiple glob patterns when you add the <verbatim|-g> option):
 
   <\verbatim>
+    \;
+
     \<gtr\> show min max
 
     max x y = if x\<gtr\>=y then x else y;
 
     min x y = if x\<less\>=y then x else y;
+
+    \;
   </verbatim>
 
   You can also select symbols by category. E.g., the following command shows
   summary information about all the variable symbols along with their current
-  values (using the ``long'' format):
+  values (using the \Plong\Q format):
 
   <\verbatim>
+    \;
+
     \<gtr\> show -lvg *
 
     argc \ \ \ \ \ \ var \ argc = 0;
@@ -15569,13 +18241,19 @@
     version \ \ \ var \ version = "0.64";
 
     5 variables
+
+    \;
   </verbatim>
 
   Or you can list just private symbols of the namespace <verbatim|foo>, as
   follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> show -pg foo::*
+
+    \;
   </verbatim>
 
   The following command will list each and every symbol that's currently
@@ -15583,7 +18261,11 @@
   <verbatim|-t0> option):
 
   <\verbatim>
+    \;
+
     \<gtr\> show -g *
+
+    \;
   </verbatim>
 
   This usually produces a lot of output and is rarely needed, unless you'd
@@ -15604,6 +18286,8 @@
     For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> interface stack with
 
       \<gtr\> \ \ push xs::stack x;
@@ -15635,6 +18319,8 @@
       type stack xs@[];
 
       type stack xs@(_:_);
+
+      \;
     </verbatim>
 
     <item><verbatim|show> <verbatim|namespace> lists the current and search
@@ -15644,6 +18330,8 @@
     in your program. For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> show namespace
 
       \<gtr\> show namespaces
@@ -15661,10 +18349,12 @@
       namespace my;
 
       using namespace C;
+
+      \;
     </verbatim>
   </itemize>
 
-  <subsubsection|Definition Levels<label|definition-levels>>
+  <subsubsection|Definition Levels><label|definition-levels>
 
   To help with incremental development, the interpreter offers some commands
   to manipulate the current set of definitions interactively. To these ends,
@@ -15673,10 +18363,10 @@
   as other source programs specified when invoking the interpreter, are
   always at level 0, while the interactive environment starts at level 1.
   Each <verbatim|save> command introduces a new temporary level, and each
-  subsequent <verbatim|clear> command (without any arguments) ``pops'' the
+  subsequent <verbatim|clear> command (without any arguments) \Ppops\Q the
   definitions on the current level and returns you to the previous one (if
-  any). This gives you a ``stack'' of temporary environments which enables
-  you to ``plug and play'' in a (more or less) safe fashion, without
+  any). This gives you a \Pstack\Q of temporary environments which enables
+  you to \Pplug and play\Q in a (more or less) safe fashion, without
   affecting the rest of your program.
 
   For all practical purposes, this stack is unlimited, so that you can create
@@ -15698,6 +18388,8 @@
   entered interactively:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo (x:xs) = x+foo xs;
 
     \<gtr\> foo [] = 0;
@@ -15723,6 +18415,8 @@
     \<gtr\> foo (1..10);
 
     foo [1,2,3,4,5,6,7,8,9,10]
+
+    \;
   </verbatim>
 
   We've seen already that normally, if you enter a sequence of equations,
@@ -15731,6 +18425,8 @@
   <verbatim|override> command:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo (x:xs) = x+foo xs;
 
     \<gtr\> foo [] = 0;
@@ -15766,13 +18462,15 @@
     warning: rule never reduced: foo (x:xs) = x+foo xs;
 
     0
+
+    \;
   </verbatim>
 
   Note that the equation <verbatim|foo> <verbatim|(x:xs)> <verbatim|=>
   <verbatim|x*foo> <verbatim|xs> was inserted before the previous rule
   <verbatim|foo> <verbatim|(x:xs)> <verbatim|=> <verbatim|x+foo>
   <verbatim|xs>, which is at level #1. (The latter equation is now
-  ``shadowed'' by the rule we just entered, hence the compiler warns us that
+  \Pshadowed\Q by the rule we just entered, hence the compiler warns us that
   this rule can't be reduced any more.)
 
   Even in override mode, new definitions will be added after other
@@ -15780,6 +18478,8 @@
   adding more high-priority definitions overriding lower-priority ones:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo [] = 1;
 
     \<gtr\> show
@@ -15799,6 +18499,8 @@
     warning: rule never reduced: foo [] = 0;
 
     3628800
+
+    \;
   </verbatim>
 
   Again, the new equation was inserted above the existing lower-priority
@@ -15810,6 +18512,8 @@
   definition:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear
 
     This will clear all temporary definitions at level #2.
@@ -15829,6 +18533,8 @@
     \<gtr\> foo (1..10);
 
     55
+
+    \;
   </verbatim>
 
   Note that <verbatim|clear> reminded us that override mode is still enabled
@@ -15838,7 +18544,11 @@
   below existing ones:
 
   <\verbatim>
+    \;
+
     \<gtr\> underride
+
+    \;
   </verbatim>
 
   It's also possible to use <verbatim|clear> to back out multiple levels at
@@ -15846,6 +18556,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> save
 
     save: now at temporary definitions level #2
@@ -15873,6 +18585,8 @@
     \<gtr\> show
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   The facilities described above are also available to Pure programs, as the
@@ -15883,7 +18597,7 @@
   custom command definitions; see the <hlink|<em|Pure Library
   Manual>|purelib.tm> for details.
 
-  <subsubsection|Debugging<label|debugging>>
+  <subsubsection|Debugging><label|debugging>
 
   The interpreter provides a simple but reasonably convenient symbolic
   debugging facility when running interactively. To make this work, you have
@@ -15898,13 +18612,15 @@
   <hlink|<em|-g>|#cmdoption-pure-g> option should only be used if you
   actually need the debugger.
 
-  One common use of the debugger is ``post mortem'' debugging after an
+  One common use of the debugger is \Ppost mortem\Q debugging after an
   evaluation ended with an unhandled exception. In such a case, the
   <verbatim|bt> command of the interpreter prints a backtrace of the call
   sequence which caused the exception. Note that this only works if debugging
   mode was enabled. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> [1,2]!3;
 
     \<less\>stdin\<gtr\>, line 2: unhandled exception 'out_of_bounds' while
@@ -15927,6 +18643,8 @@
     \<gtr\>\<gtr\> [4] throw: extern void pure_throw(expr*) = throw;
 
     \ \ \ \ \ x1 = out_of_bounds
+
+    \;
   </verbatim>
 
   The last call, which is also marked with the <verbatim|\>\>> symbol, is the
@@ -15944,6 +18662,8 @@
   executed. Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n::int = if n\<gtr\>0 then n*fact (n-1) else 1;
 
     \<gtr\> break fact
@@ -15989,6 +18709,8 @@
     \ \ \ \ \ --\<gtr\> 1
 
     1
+
+    \;
   </verbatim>
 
   Lines beginning with <verbatim|**> indicate that the evaluation was
@@ -16020,6 +18742,8 @@
   to print the following list:
 
   <\verbatim>
+    \;
+
     : h
 
     Debugger commands:
@@ -16053,10 +18777,12 @@
     \<less\>cr\<gtr\> \ \ \ single step (same as 's')
 
     \<less\>eof\<gtr\> \ \ step through program, run unattended (same as 'a')
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> If you specified an
-  <hlink|<em|--escape>|#cmdoption-pure--escape> prefix other than
+  <hlink|<em|\Uescape>|#cmdoption-pure--escape> prefix other than
   `<verbatim|!>` (cf. <hlink|Command Syntax|#command-syntax>), that prefix
   will be used to execute interpreter commands instead, see below. The help
   message will tell you which command prefix is in effect.
@@ -16082,7 +18808,7 @@
     <item>You can type <verbatim|r> to run the rest of the evaluation without
     the debugger.
 
-    <item>The <verbatim|a> (``auto'') command single-steps through the rest
+    <item>The <verbatim|a> (\Pauto\Q) command single-steps through the rest
     of the evaluation, running unattended. This command can also be entered
     by just hitting the end-of-file key (<verbatim|Ctrl-d> on Unix systems)
     at the debugger prompt.
@@ -16092,11 +18818,15 @@
   </itemize>
 
   In addition, you can use the <verbatim|!> command (or whatever command
-  prefix has been set with the <hlink|<em|--escape>|#cmdoption-pure--escape>
+  prefix has been set with the <hlink|<em|\Uescape>|#cmdoption-pure--escape>
   option) to run any interpreter command while in the debugger. For instance:
 
   <\verbatim>
+    \;
+
     : !ls
+
+    \;
   </verbatim>
 
   This is particularly useful to invoke the <verbatim|break> and
@@ -16109,12 +18839,12 @@
 
   The interpreter's shell escape can also be used from the debugger. In
   default mode or when using <verbatim|!> as the
-  <hlink|<em|--escape>|#cmdoption-pure--escape> prefix, you'll have to escape
+  <hlink|<em|\Uescape>|#cmdoption-pure--escape> prefix, you'll have to escape
   shell commands with <verbatim|!!>, otherwise a single <verbatim|!>
   suffices.
 
-  At the debugger prompt, you can use the <verbatim|u> (``up''), <verbatim|d>
-  (``down''), <verbatim|t> (``top'') and <verbatim|b> (``bottom'') commands
+  At the debugger prompt, you can use the <verbatim|u> (\Pup\Q), <verbatim|d>
+  (\Pdown\Q), <verbatim|t> (\Ptop\Q) and <verbatim|b> (\Pbottom\Q) commands
   to move around on the current call stack. The <verbatim|p> command prints a
   range of the call stack centered around the currently selected stack frame,
   which is indicated with the <verbatim|\>\>> tag, whereas <verbatim|**>
@@ -16126,6 +18856,8 @@
   with the stack navigation commands. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 3;
 
     ** [1] fact: fact n::int = if n\<gtr\>0 then n*fact (n-1) else 1;
@@ -16202,17 +18934,23 @@
     \ \ \ \ \ x = 3; y = 2
 
     :
+
+    \;
   </verbatim>
 
   If you ever get lost, you can reprint the current rule with the
   `<verbatim|.>` command:
 
   <\verbatim>
+    \;
+
     : .
 
     ** [2] (*): x::int*y::int = x*y;
 
     \ \ \ \ \ x = 3; y = 2
+
+    \;
   </verbatim>
 
   Another useful feature is the <verbatim|?> command which lets you evaluate
@@ -16223,6 +18961,8 @@
   semicolon is optional. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact 3;
 
     ** [1] fact: fact n::int = if n\<gtr\>0 then n*fact (n-1) else 1;
@@ -16249,17 +18989,21 @@
     : n\<gtr\>0, fact n
 
     1,1
+
+    \;
   </verbatim>
 
   A third use of the debugger is to trace function calls. For that the
   interpreter provides the <verbatim|trace> command which works similarly to
-  <verbatim|break>, but sets so-called ``tracepoints'' which only print rule
+  <verbatim|break>, but sets so-called \Ptracepoints\Q which only print rule
   invocations and reductions instead of actually interrupting the evaluation.
   For instance, assuming the same example as above, let's first remove the
   breakpoint on <verbatim|fact> (using the <verbatim|del> command) and then
   set it as a tracepoint instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> del fact
 
     \<gtr\> trace fact
@@ -16297,6 +19041,8 @@
     \ \ \ \ \ --\<gtr\> 1
 
     1
+
+    \;
   </verbatim>
 
   The <verbatim|break> and <verbatim|trace> commands can also be used in
@@ -16317,6 +19063,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> trace -s
 
     \<gtr\> fact 1;
@@ -16342,6 +19090,8 @@
     \ \ \ \ \ --\<gtr\> 1
 
     1
+
+    \;
   </verbatim>
 
   Moreover, the <verbatim|trace> command can also be invoked with the
@@ -16357,7 +19107,7 @@
   Please see <hlink|Interactive Commands|#interactive-commands> above for
   details. Also note that these are really interpreter commands, so to invoke
   them in the debugger you have to escape them with the <verbatim|!> command
-  (or whatever other <hlink|<em|--escape>|#cmdoption-pure--escape> prefix you
+  (or whatever other <hlink|<em|\Uescape>|#cmdoption-pure--escape> prefix you
   specified).
 
   The debugger can also be triggered programmatically with the built-in
@@ -16374,6 +19124,8 @@
   called or a reduction is completed). For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n::int = if n\<gtr\>0 then __break__ $$ n*fact (n-1) else 1;
 
     \<gtr\> fact 10;
@@ -16388,6 +19140,8 @@
     \ \ \ \ \ n = 9
 
     :
+
+    \;
   </verbatim>
 
   Here the debugger is invoked right after the call to
@@ -16401,12 +19155,14 @@
   until the current stack frame is exited. One major advantage of this method
   is that it is possible to invoke <hlink|<with|font-family|tt|__break__>|purelib.tm#--break-->
   or <hlink|<with|font-family|tt|__trace__>|purelib.tm#--trace--> only under
-  certain conditions, so that you can focus on interesting ``events'' during
+  certain conditions, so that you can focus on interesting \Pevents\Q during
   evaluation, which can make debugging much less tedious. In our example, in
   order to stop when <verbatim|n> becomes <verbatim|1>, we might invoke
   <hlink|<with|font-family|tt|__break__>|purelib.tm#--break--> as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n::int = if n\<gtr\>0 then n\<gtr\>1\|\|__break__ $$ n*fact
     (n-1) else 1;
 
@@ -16444,15 +19200,19 @@
     \ \ \ \ \ n = 0
 
     :
+
+    \;
   </verbatim>
 
-  <subsubsection|Last Result<label|last-result>>
+  <subsubsection|Last Result><label|last-result>
 
   Another convenience for interactive usage is the
   <hlink|<with|font-family|tt|ans>|purelib.tm#ans> function, which retrieves
   the most recent result printed in interactive mode. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> fact n = if n\<less\>=1 then 1 else n*fact (n-1);
 
     \<gtr\> map fact (1..10);
@@ -16462,6 +19222,8 @@
     \<gtr\> scanl (+) 0 ans;
 
     [0,1,3,9,33,153,873,5913,46233,409113,4037913]
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|ans>|purelib.tm#ans> is just an
@@ -16471,16 +19233,20 @@
   you want to erase from memory before starting the next computation.
 
   <\verbatim>
+    \;
+
     \<gtr\> clear ans
 
     \<gtr\> ans;
 
     ans
+
+    \;
   </verbatim>
 
-  <subsubsection|Pretty-Printing<label|pretty-printing>>
+  <subsubsection|Pretty-Printing><label|pretty-printing>
 
-  The interpreter provides the following ``hook'' to override the print
+  The interpreter provides the following \Phook\Q to override the print
   representations of expressions. This works in a fashion similar to
   Haskell's <verbatim|show> function.
 
@@ -16504,6 +19270,8 @@
   is to change the format of numeric values. Here are some examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> __show__ x::double = sprintf "%0.6f" x;
@@ -16525,6 +19293,8 @@
     \<gtr\> cis (-pi/2);
 
     0.000000+-1.000000i
+
+    \;
   </verbatim>
 
   The prelude function <hlink|<with|font-family|tt|str>|purelib.tm#str>,
@@ -16532,9 +19302,13 @@
   <hlink|<with|font-family|tt|__show__>|#--show--> as well:
 
   <\verbatim>
+    \;
+
     \<gtr\> str (1/7);
 
     "0.142857"
+
+    \;
   </verbatim>
 
   Conversely, you can call the <hlink|<with|font-family|tt|str>|purelib.tm#str>
@@ -16545,6 +19319,8 @@
   following rule removes the <verbatim|L> suffixes from bigint values:
 
   <\verbatim>
+    \;
+
     \<gtr\> __show__ x::bigint = init (str x);
 
     \<gtr\> fact n = foldl (*) 1L (1..n);
@@ -16552,6 +19328,8 @@
     \<gtr\> fact 30;
 
     265252859812191058636308480000000
+
+    \;
   </verbatim>
 
   Of course, your definition of <hlink|<with|font-family|tt|__show__>|#--show-->
@@ -16566,6 +19344,8 @@
   other kinds of objects, such as lists. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> nonfix ...;
 
     \<gtr\> __show__ (x:xs) = str (x:...) if thunkp xs;
@@ -16573,6 +19353,8 @@
     \<gtr\> 1:2:(3..inf);
 
     1:2:3:...
+
+    \;
   </verbatim>
 
   Another case which needs special consideration are numeric matrices. For
@@ -16583,6 +19365,8 @@
   perfect, but you get the idea):
 
   <\verbatim>
+    \;
+
     \<gtr\> __show__ x::matrix =
 
     \<gtr\> \ \ strcat [printd j (x!(i,j))\|i=0..n-1; j=0..m-1] + "\\n"
@@ -16597,6 +19381,8 @@
     \ \ \ 1.00000 \ \ 0.50000
 
     \ \ \ 0.33333 \ \ 4.00000
+
+    \;
   </verbatim>
 
   Finally, by just purging the definition of the
@@ -16604,6 +19390,8 @@
   back to the standard print syntax:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear __show__
 
     \<gtr\> 1/7; 1786; cis (-pi/2);
@@ -16613,6 +19401,8 @@
     1786
 
     6.12303176911189e-17+:-1.0
+
+    \;
   </verbatim>
 
   Note that if you have a set of definitions for the
@@ -16621,7 +19411,7 @@
   interactive startup files, see <hlink|Interactive
   Startup|#interactive-startup> below.
 
-  <subsubsection|User-Defined Commands<label|user-defined-commands>>
+  <subsubsection|User-Defined Commands><label|user-defined-commands>
 
   It is possible to extend the interpreter with your own interactive
   commands. To these ends, all you have to do is provide some corresponding
@@ -16638,6 +19428,8 @@
   its arguments as is can be implemented as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace __cmd__;
 
     \<gtr\> echo s = s;
@@ -16645,6 +19437,8 @@
     \<gtr\> echo Hello, world!
 
     Hello, world!
+
+    \;
   </verbatim>
 
   You can split arguments and do any required processing of the arguments
@@ -16653,6 +19447,8 @@
   on a line of its own:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear __cmd__::echo
 
     \<gtr\> echo s = join "\\n" args when
@@ -16666,6 +19462,8 @@
     Hello,
 
     world!
+
+    \;
   </verbatim>
 
   A command function may in fact return any kind of value. However, only
@@ -16674,6 +19472,8 @@
   fashion, using the C <verbatim|puts> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear __cmd__::echo
 
     \<gtr\> private extern int puts(char*);
@@ -16683,6 +19483,8 @@
     \<gtr\> echo Hello, world!
 
     Hello, world!
+
+    \;
   </verbatim>
 
   Note that we declared <verbatim|puts> as a private symbol here. In general,
@@ -16693,6 +19495,8 @@
   implementation of the <verbatim|echo> command:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear __cmd__::echo
 
     \<gtr\> extern int puts(char*) = echo;
@@ -16702,6 +19506,8 @@
     \<gtr\> echo Hello, world!
 
     Hello, world!
+
+    \;
   </verbatim>
 
   Instead of returning a result, a command function may also throw an
@@ -16710,11 +19516,15 @@
   commands:
 
   <\verbatim>
+    \;
+
     \<gtr\> error s = throw s;
 
     \<gtr\> error Hello, world!
 
     error: Hello, world!
+
+    \;
   </verbatim>
 
   You can also override a built-in command in order to provide custom
@@ -16727,6 +19537,8 @@
   command as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> ls examples/*.c
 
     examples/poor.c \ examples/sort.c
@@ -16738,13 +19550,15 @@
     -rw-r--r-- 1 ag users 1883 2011-01-07 16:35 examples/poor.c
 
     -rw-r--r-- 1 ag users 3885 2011-01-07 16:35 examples/sort.c
+
+    \;
   </verbatim>
 
   (Note that since we entered the definition of the <verbatim|ls> function
   interactively, we need to escape the second input line above with leading
   whitespace, so that it's not mistaken for an invocation of the built-in
   <verbatim|ls> command. This isn't necessary if you're using the alternative
-  ``escape'' command syntax described in <hlink|Command
+  \Pescape\Q command syntax described in <hlink|Command
   Syntax|#command-syntax>.)
 
   To do more interesting things, you should take a look at the reflection
@@ -16755,6 +19569,8 @@
   specific rule rather than an entire function definition:
 
   <\verbatim>
+    \;
+
     namespace __cmd__;
 
     \;
@@ -16766,6 +19582,8 @@
     \ \ _ = throw "bad rule syntax";
 
     end;
+
+    \;
   </verbatim>
 
   Note that we employ a little trick here to have
@@ -16776,6 +19594,8 @@
   following example shows our <verbatim|clr> command in action:
 
   <\verbatim>
+    \;
+
     \<gtr\> namespace;
 
     \<gtr\> fact n = 1 if n\<less\>=0;
@@ -16793,6 +19613,8 @@
     \<gtr\> show fact
 
     fact n = n*fact (n-1);
+
+    \;
   </verbatim>
 
   Here's another useful command <verbatim|apropos> which quickly summarizes
@@ -16800,6 +19622,8 @@
   <verbatim|show> and <verbatim|help_index> commands):
 
   <\verbatim>
+    \;
+
     namespace __cmd__;
 
     \;
@@ -16833,11 +19657,15 @@
     \ \ end;
 
     end;
+
+    \;
   </verbatim>
 
   This command can be used as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> apropos foldl
 
     foldl is a function. Type 'show foldl' for more information.
@@ -16859,12 +19687,14 @@
     \<gtr\> apropos y
 
     apropos: undefined symbol 'y'
+
+    \;
   </verbatim>
 
   More examples can be found in the sample.purerc file distributed with the
   Pure interpreter.
 
-  <subsubsection|Interactive Startup<label|interactive-startup>>
+  <subsubsection|Interactive Startup><label|interactive-startup>
 
   In interactive mode, the interpreter runs some additional scripts at
   startup, after loading the prelude and the scripts specified on the command
@@ -16887,16 +19717,16 @@
   The interpreter processes all these files in the same way as with the
   <verbatim|run> command (see <hlink|Interactive
   Commands|#interactive-commands> above). When invoking the interpreter, you
-  can specify the <hlink|<em|--norc>|#cmdoption-pure--norc> option on the
+  can specify the <hlink|<em|\Unorc>|#cmdoption-pure--norc> option on the
   command line if you wish to skip these initializations.
 
-  <subsection|Batch Compilation<label|batch-compilation>>
+  <subsection|Batch Compilation><label|batch-compilation>
 
   The interpreter's <hlink|<em|-c>|#cmdoption-pure-c> option provides a means
   to turn Pure scripts into standalone executables. This feature is still a
   bit experimental. In particular, note that the compiled executable is
   essentially a <em|static snapshot> of your program which is executed on the
-  ``bare metal'', without a hosting interpreter. Only a minimal runtime
+  \Pbare metal\Q, without a hosting interpreter. Only a minimal runtime
   system is provided. This considerably reduces startup times, but also
   implies some quirks and limitations as detailed below.
 
@@ -16909,11 +19739,15 @@
   Therefore you should avoid code like the following:
 
   <\verbatim>
+    \;
+
     let x = foo 99;
 
     foo x = x+1;
 
     let y = foo 99;
+
+    \;
   </verbatim>
 
   Note that if you run this through the interpreter, <verbatim|x> and
@@ -16933,7 +19767,7 @@
   Plain toplevel expressions won't be of much use in a batch-compiled
   program, unless, of course, they are evaluated for their side-effects. Your
   program will have to include at least one of these to play the role of the
-  ``main program'' in your script. In most cases these expressions are best
+  \Pmain program\Q in your script. In most cases these expressions are best
   placed after all the function and variable definitions, at the end of your
   program.
 
@@ -16953,7 +19787,7 @@
   usual. The <hlink|<with|font-family|tt|compiling>|#compiling> variable can
   be used to check whether the script is being batch-compiled, so you can
   adjust to that by selectively enabling or disabling parts of the code. For
-  instance, you will usually want to skip execution of the ``main program''
+  instance, you will usually want to skip execution of the \Pmain program\Q
   during batch compilation.
 
   Last but not least, note that some parts of Pure's metaprogramming
@@ -16967,7 +19801,7 @@
     <hlink|<with|font-family|tt|when>|#when> clauses inside an expression,
     but you can't use <hlink|<with|font-family|tt|eval>|purelib.tm#eval> to
     define new global variables and functions. In other words, anything which
-    changes the executing program is ``verboten''. Moreover, the
+    changes the executing program is \Pverboten\Q. Moreover, the
     introspective capabilities provided by
     <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> and similar
     operations (discussed under <hlink|Reflection|#reflection> in the
@@ -16982,7 +19816,7 @@
     that only functions which are actually called somewhere in the static
     program text are available to <hlink|<with|font-family|tt|eval>|purelib.tm#eval>.
     (The <hlink|<em|-u>|#cmdoption-pure-u> option and the
-    <hlink|<em|--required>|#cmdoption-pure-pragma--required> pragma can be
+    <hlink|<em|\Urequired>|#cmdoption-pure-pragma--required> pragma can be
     used to avoid this, see <hlink|Options Affecting Code
     Size|#options-affecting-code-size> below.)
 
@@ -16993,7 +19827,7 @@
     namely if a constant value contains run time data such as pointers and
     local functions which requires an initialization at run time, then the
     batch compiler will generate code for that. (The same happens if the
-    <hlink|<em|--noconst>|#cmdoption-pure--noconst> option is used to force
+    <hlink|<em|\Unoconst>|#cmdoption-pure--noconst> option is used to force
     computation of constant values at run time, see <hlink|Options Affecting
     Code Size|#options-affecting-code-size>.)
   </itemize>
@@ -17011,15 +19845,17 @@
   actually need the full dynamic capabilities of Pure you'll just have to run
   the script with the interpreter. This isn't a big deal either, only the
   startup will be somewhat slower because the script is compiled on the fly.
-  Once the JIT has done its thing the ``interpreted'' script will run every
-  bit as fast as the ``compiled'' one, since in fact <em|both> are compiled
+  Once the JIT has done its thing the \Pinterpreted\Q script will run every
+  bit as fast as the \Pcompiled\Q one, since in fact <em|both> are compiled
   (only at different times) to exactly the same code!
 
-  <subsubsection|Example<label|example>>
+  <subsubsection|Example><label|example>
 
   For the sake of a concrete example, consider the following little script:
 
   <\verbatim>
+    \;
+
     using system;
 
     \;
@@ -17033,6 +19869,8 @@
     \;
 
     if argc\<less\>=1 then () else main (sscanf (argv!1) "%d");
+
+    \;
   </verbatim>
 
   When invoked from the command line, with the number <verbatim|n> as the
@@ -17040,11 +19878,15 @@
   <verbatim|world!"> and the list of the first <verbatim|n> factorials:
 
   <\verbatim>
+    \;
+
     $ pure hello.pure 10
 
     Hello, world!
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   Note the condition on <verbatim|argc> in the last line of the script. This
@@ -17053,6 +19895,8 @@
   interactively:
 
   <\verbatim>
+    \;
+
     $ pure -i -q hello.pure
 
     \<gtr\> main 10;
@@ -17064,6 +19908,8 @@
     ()
 
     \<gtr\> quit
+
+    \;
   </verbatim>
 
   To turn the script into an executable, we just invoke the Pure interpreter
@@ -17072,6 +19918,8 @@
   name:
 
   <\verbatim>
+    \;
+
     $ pure -c hello.pure -o hello
 
     $ ./hello 10
@@ -17079,6 +19927,8 @@
     Hello, world!
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   Next suppose that we'd like to supply the value <verbatim|n> at
@@ -17087,7 +19937,11 @@
   can be done as follows:
 
   <\verbatim>
+    \;
+
     const n = if argc\<gtr\>1 then sscanf (argv!1) "%d" else 10;
+
+    \;
   </verbatim>
 
   (Note that we provide <verbatim|10> as a default if <verbatim|n> isn't
@@ -17101,12 +19955,18 @@
   the evaluation of <verbatim|main> becomes:
 
   <\verbatim>
+    \;
+
     if compiling then () else main n;
+
+    \;
   </verbatim>
 
   Our program now looks as follows:
 
   <\verbatim>
+    \;
+
     using system;
 
     \;
@@ -17122,13 +19982,17 @@
     const n = if argc\<gtr\>1 then sscanf (argv!1) "%d" else 10;
 
     if compiling then () else main n;
+
+    \;
   </verbatim>
 
-  This script ``specializes'' <verbatim|n> to the first (compile time)
+  This script \Pspecializes\Q <verbatim|n> to the first (compile time)
   parameter when being batch-compiled, and it still works as before when we
   run it through the interpreter in both batch and interactive mode, too:
 
   <\verbatim>
+    \;
+
     $ pure -i -q hello.pure
 
     Hello, world!
@@ -17164,6 +20028,8 @@
     Hello, world!
 
     [1,2,6,24,120,720,5040]
+
+    \;
   </verbatim>
 
   In addition, there's also a <em|compile time> check analogous to the
@@ -17174,6 +20040,8 @@
   this:
 
   <\verbatim>
+    \;
+
     #! --if compiled
 
     if compiling then () else main n;
@@ -17184,6 +20052,8 @@
     number.";
 
     #! --endif
+
+    \;
   </verbatim>
 
   The code in the <verbatim|--if> <verbatim|compiled> section, which is the
@@ -17199,6 +20069,8 @@
   compiled and installed as a native executable.
 
   <\verbatim>
+    \;
+
     $ pure -i -q hello.pure
 
     Try 'main n' where n is a number.
@@ -17232,13 +20104,15 @@
     Hello, world!
 
     [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+    \;
   </verbatim>
 
   You'll rarely need an elaborate setup like this, most of the time something
   like our simple first example will do the trick. But, as you've seen, Pure
   can easily do it.
 
-  <subsubsection|Options Affecting Code Size<label|options-affecting-code-size>>
+  <subsubsection|Options Affecting Code Size><label|options-affecting-code-size>
 
   By default, the batch compiler strips unused functions from the output
   code, to keep the code size small. You can disable this with the
@@ -17251,6 +20125,8 @@
   our hello.pure example is about thrice as large:
 
   <\verbatim>
+    \;
+
     $ pure -o hello -c -x hello.pure 7 && ls -l hello
 
     -rwxr-xr-x 1 ag users 178484 2010-01-12 06:21 hello
@@ -17258,6 +20134,8 @@
     $ pure -o hello -c -u -x hello.pure 7 && ls -l hello
 
     -rwxr-xr-x 1 ag users 541941 2010-01-12 06:21 hello
+
+    \;
   </verbatim>
 
   (Note that even the stripped executable is fairly large when compared to
@@ -17280,31 +20158,37 @@
   If this is a problem then you can either use the
   <hlink|<em|-u>|#cmdoption-pure-u> option to produce an unstripped
   executable, or you can force specific functions to be included in the
-  stripped executable with the <hlink|<em|--required>|#cmdoption-pure-pragma--required>
+  stripped executable with the <hlink|<em|\Urequired>|#cmdoption-pure-pragma--required>
   pragma (cf. <hlink|Code Generation Options|#code-generation-options>). For
   instance:
 
   <\verbatim>
+    \;
+
     #! --required foo
 
     foo x = bar (x-1);
 
     eval "foo 99";
+
+    \;
   </verbatim>
 
   There is another code generation option which may have a substantial effect
-  on code size, namely the <hlink|<em|--noconst>|#cmdoption-pure--noconst>
+  on code size, namely the <hlink|<em|\Unoconst>|#cmdoption-pure--noconst>
   option. Normally, constant values defined in a
   <hlink|<with|font-family|tt|const>|#const> definition are precomputed at
   compile time and then stored in the generated executable; this reduces
   startup times but may increase the code size considerably if your program
   contains big constant values such as lists. If you prefer smaller
-  executables then you can use the <hlink|<em|--noconst>|#cmdoption-pure--noconst>
+  executables then you can use the <hlink|<em|\Unoconst>|#cmdoption-pure--noconst>
   option to force the value of the constant to be recomputed at run time
   (which effectively turns the constant into a kind of read-only variable).
   For instance:
 
   <\verbatim>
+    \;
+
     #! --noconst
 
     const xs = 1L..100000L;
@@ -17316,10 +20200,12 @@
     using system;
 
     puts $ str $ sum xs;
+
+    \;
   </verbatim>
 
   On my 64 bit Linux system this produces a 187115 bytes executable. Without
-  <hlink|<em|--noconst>|#cmdoption-pure--noconst> the code becomes almost an
+  <hlink|<em|\Unoconst>|#cmdoption-pure--noconst> the code becomes almost an
   order of magnitude larger in this case (1788699 bytes). On the other hand,
   the smaller executable also takes a little longer to run since it must
   first recompute the value of the list constant at startup. So you have to
@@ -17330,14 +20216,18 @@
   better off with the default behaviour of precomputing the value at compile
   time.
 
-  <subsubsection|Other Output Code Formats<label|other-output-code-formats>>
+  <subsubsection|Other Output Code Formats><label|other-output-code-formats>
 
   Note that while the batch compiler generates native executables by default,
   it can just as well create object files which can be linked into other
   C/C++ programs and libraries:
 
   <\verbatim>
+    \;
+
     $ pure -o hello.o -c -x hello.pure 7
+
+    \;
   </verbatim>
 
   The .o extension tells the compiler that you want an object file. When
@@ -17347,7 +20237,11 @@
   follows:
 
   <\verbatim>
+    \;
+
     extern "C" void __pure_main__(int argc, char** argv);
+
+    \;
   </verbatim>
 
   As indicated, <verbatim|__pure_main__> is to be invoked with two
@@ -17357,13 +20251,15 @@
   arguments if you don't need to supply command line parameters.) The purpose
   of <verbatim|__pure_main__> is to initialize a shell instance of the Pure
   interpreter which provides the minimal runtime support necessary to execute
-  the Pure program, and to invoke all ``initialization code'' (variable
+  the Pure program, and to invoke all \Pinitialization code\Q (variable
   definitions and toplevel expressions) of the program itself.
 
   A minimal C <verbatim|main> function which does the job of initializing the
   Pure module looks as follows:
 
   <\verbatim>
+    \;
+
     extern void __pure_main__(int argc, char** argv);
 
     \;
@@ -17377,6 +20273,8 @@
     \ \ return 0;
 
     }
+
+    \;
   </verbatim>
 
   If you link the <verbatim|main> routine with the Pure module, don't forget
@@ -17384,6 +20282,8 @@
   in pure_main.c:
 
   <\verbatim>
+    \;
+
     $ gcc -c pure_main.c -o pure_main.o
 
     $ g++ -o hello hello.o pure_main.o -lpure
@@ -17393,6 +20293,8 @@
     Hello, world!
 
     [1,2,6,24,120,720,5040]
+
+    \;
   </verbatim>
 
   (The C++ compiler is used as the linker here so that the standard C++
@@ -17411,6 +20313,8 @@
   commands which are invoked in the compilation process):
 
   <\verbatim>
+    \;
+
     $ pure -v0100 -c hello.pure -o hello.o
 
     opt -f -std-compile-opts hello.o.bc \| llc -f -o hello.o.s
@@ -17418,12 +20322,16 @@
     gcc -c hello.o.s -o hello.o
 
     Link with: g++ hello.o -lpure
+
+    \;
   </verbatim>
 
   Well, we already knew that, so let's consider a slightly more interesting
   example from Pure's ODBC module:
 
   <\verbatim>
+    \;
+
     $ pure -v0100 -c pure-odbc/examples/menagerie.pure -o menagerie.o
 
     opt -f -std-compile-opts menagerie.o.bc \| llc -f -o menagerie.o.s
@@ -17434,6 +20342,8 @@
 
     $ g++ -shared -o menagerie.so menagerie.o /usr/local/lib/pure/odbc.so
     -lpure
+
+    \;
   </verbatim>
 
   Note that the listed link options are necessary but might not be
@@ -17448,7 +20358,11 @@
   batch-compiling the module, so that position-independent code is generated:
 
   <\verbatim>
+    \;
+
     $ pure -c -fPIC pure-odbc/examples/menagerie.pure -o menagerie.o
+
+    \;
   </verbatim>
 
   Note that even when building a shared module, you'll have to supply an
@@ -17462,17 +20376,21 @@
   library, because you'll get many name clashes for routines present in
   different modules (including the <verbatim|__pure_main__> entry point). To
   prevent this, the batch compiler can be invoked with the
-  <hlink|<em|--main>|#cmdoption-pure--main> option to explicitly set a name
+  <hlink|<em|\Umain>|#cmdoption-pure--main> option to explicitly set a name
   for the main entry point. For instance:
 
   <\verbatim>
+    \;
+
     $ pure -c hello.pure -o hello.o --main __hello_main__
+
+    \;
   </verbatim>
 
   This has two effects. First, the main entry point will be called whatever
-  you specified with <hlink|<em|--main>|#cmdoption-pure--main>, so you have
+  you specified with <hlink|<em|\Umain>|#cmdoption-pure--main>, so you have
   to call this function instead of <verbatim|__pure_main__> to initialize the
-  module. Second, if <hlink|<em|--main>|#cmdoption-pure--main> is specified,
+  module. Second, if <hlink|<em|\Umain>|#cmdoption-pure--main> is specified,
   then all Pure functions in the module will be changed to internal linkage
   (like <verbatim|static> functions in C) to prevent any possible name
   clashes between different modules. (Alas, this also makes it impossible to
@@ -17488,7 +20406,11 @@
   desired target architecture and cpu type. For instance:
 
   <\verbatim>
+    \;
+
     $ pure -march=x86-64 -mcpu=generic -c hello.pure -o hello
+
+    \;
   </verbatim>
 
   This is useful, in particular, in cross compilation and if you need to
@@ -17502,14 +20424,22 @@
   code:
 
   <\verbatim>
+    \;
+
     pure -c hello.pure -o hello.ll
+
+    \;
   </verbatim>
 
   Note the .ll extension; this tells the compiler that you want an LLVM
   assembler file. An LLVM bitcode file can be created just as easily:
 
   <\verbatim>
+    \;
+
     pure -c hello.pure -o hello.bc
+
+    \;
   </verbatim>
 
   In these cases you'll have to have to handle the rest of the compilation
@@ -17519,7 +20449,7 @@
   particular, the description of the opt and llc programs) for details.
 
   <subsubsection|Calling Pure Functions From
-  C<label|calling-pure-functions-from-c>>
+  C><label|calling-pure-functions-from-c>
 
   Another point worth mentioning here is that you can't just call Pure
   functions in a batch-compiled module directly. That's because in order to
@@ -17533,6 +20463,8 @@
   from the Pure program:
 
   <\verbatim>
+    \;
+
     #include \<less\>stdio.h\<gtr\>
 
     #include \<less\>pure/runtime.h\<gtr\>
@@ -17560,11 +20492,15 @@
     \ \ return 0;
 
     }
+
+    \;
   </verbatim>
 
   And here's how you can compile, link and run this program:
 
   <\verbatim>
+    \;
+
     $ pure -o hello.o -c -x hello.pure 7
 
     $ gcc -o pure_main.o -c pure_main.c
@@ -17578,20 +20514,22 @@
     [1,2,6,24,120,720,5040]
 
     fact 10 = 3628800
+
+    \;
   </verbatim>
 
   Note that the first two lines are output from the Pure program; the last
   line is what gets printed by the <verbatim|main> routine in pure_main.c.
 
-  <subsection|Caveats and Notes<label|caveats-and-notes>>
+  <subsection|Caveats and Notes><label|caveats-and-notes>
 
   This section is a grab bag of casual remarks, useful tips and tricks, and
   information on common pitfalls, quirks and limitations of the current
   implementation and how to deal with them.
 
-  <subsubsection|Etymology<label|etymology>>
+  <subsubsection|Etymology><label|etymology>
 
-  People keep asking me what's so ``pure'' about Pure. The long and
+  People keep asking me what's so \Ppure\Q about Pure. The long and
   apologetic answer is that Pure tries to stay as close as possible to the
   spirit of term rewriting without sacrificing practicality. Pure's term
   rewriting core is in fact purely functional. It's thus possible and in fact
@@ -17602,11 +20540,11 @@
   in a Pure program.
 
   The short answer is that I simply liked the name, and there wasn't any
-  programming language named ``Pure'' yet (quite a feat nowadays), so there's
-  one now. If you insist on a (recursive) backronym, just take ``Pure'' to
-  stand for the ``Pure universal rewriting engine''.
+  programming language named \PPure\Q yet (quite a feat nowadays), so there's
+  one now. If you insist on a (recursive) backronym, just take \PPure\Q to
+  stand for the \PPure universal rewriting engine\Q.
 
-  <subsubsection|Backward Compatibility<label|backward-compatibility>>
+  <subsubsection|Backward Compatibility><label|backward-compatibility>
 
   Pure is based on the author's earlier <hlink|Q|#q> language, but it offers
   many new and powerful features and programs run much faster than their Q
@@ -17745,13 +20683,13 @@
     details. To these ends, a new keyword
     <hlink|<with|font-family|tt|type>|#type> was added (if you used this as
     an ordinary identifier, you will have to rename these). Note that the
-    old-style type tags, which were just a syntactic shortcut for ``as''
+    old-style type tags, which were just a syntactic shortcut for \Pas\Q
     patterns involving unary constructor symbols, aren't supported any more,
     so you'll have to fix up your old scripts accordingly. To assist with
     this, the Pure interpreter can be run with the
     <hlink|<em|-w>|#cmdoption-pure-w> option in order to identify occurrences
     of undefined (presumably old-style) type tags. You should either change
-    these to the corresponding ``as'' pattern (i.e., <verbatim|x::foo> to
+    these to the corresponding \Pas\Q pattern (i.e., <verbatim|x::foo> to
     <verbatim|x@(foo> <verbatim|_)>), or just add a proper type definition
     for the tag (like <verbatim|type> <verbatim|foo> <verbatim|(foo>
     <verbatim|_);>).
@@ -17761,8 +20699,8 @@
   <hlink|<with|font-family|tt|pointers>|purelib.tm#module-pointers> and
   <hlink|<with|font-family|tt|regex>|purelib.tm#module-regex> modules, so you
   now have to import these modules if you need this functionality. It also
-  introduced the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  pragma which lets you have ``defined'' functions in Pure which throw an
+  introduced the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
+  pragma which lets you have \Pdefined\Q functions in Pure which throw an
   exception if they can't be applied, e.g., because they are invoked with the
   wrong arguments.
 
@@ -17806,12 +20744,12 @@
   execute multiple script files in batch mode then you now have to explicitly
   indicate this with the new <hlink|<em|-b>|#cmdoption-pure-b> option; please
   see <hlink|Invoking Pure|#invoking-pure> for details. Pure 0.58 also adds
-  two new code generation options <hlink|<em|--symbolic>|#cmdoption-pure--symbolic>
-  and <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> to set the
+  two new code generation options <hlink|<em|\Usymbolic>|#cmdoption-pure--symbolic>
+  and <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> to set the
   default evaluation mode of global functions; these are discussed in
   <hlink|Defined Functions|#defined-functions> below.
 
-  <subsubsection|Error Recovery<label|error-recovery>>
+  <subsubsection|Error Recovery><label|error-recovery>
 
   The parser uses a fairly simplistic panic mode error recovery which tries
   to catch syntax errors at the toplevel only. This seems to work reasonably
@@ -17823,13 +20761,15 @@
   should break the spell, putting you back at the toplevel where you can
   start typing the definition again.
 
-  <subsubsection|Splicing Tuples and Matrices<label|splicing-tuples-and-matrices>>
+  <subsubsection|Splicing Tuples and Matrices><label|splicing-tuples-and-matrices>
 
-  The ``splicing'' of tuples and matrices is probably one of Pure's most
+  The \Psplicing\Q of tuples and matrices is probably one of Pure's most
   controversial features. By this we mean that tuples and matrices get
   flattened out when they are combined. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1,2,3),4,(5,6);
 
     1,2,3,4,5,6
@@ -17841,6 +20781,8 @@
     \<gtr\> {{a,b;c,d},{x;y}}
 
     {a,b,x;c,d,y}
+
+    \;
   </verbatim>
 
   This kind of behaviour is also known from Perl and MATLAB/Octave. Users
@@ -17853,6 +20795,8 @@
   multi-dimensional indexable collections in Pure. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> {\|{1,2,3},4,{5,6}\|};
 
     {{1,2,3},4,{5,6}}
@@ -17864,6 +20808,8 @@
     \<gtr\> ans!0!(1,1);
 
     d
+
+    \;
   </verbatim>
 
   Nothing like this is available for tuples, though, so you'll have to use
@@ -17882,7 +20828,7 @@
   list-like data structures, one which nests, and one which doesn't but has
   other interesting properties.
 
-  <subsubsection|With and when<label|with-and-when>>
+  <subsubsection|With and when><label|with-and-when>
 
   Another common source of confusion is that Pure provides two different
   constructs to bind local function and variable symbols, respectively. This
@@ -17903,14 +20849,14 @@
   clause are executed in order. This works in exactly the same fashion as
   <verbatim|letrec> and <verbatim|let> in Scheme. (As a mnemonic, consider
   that <hlink|<with|font-family|tt|when>|#when> conveys a sense of time, so
-  its parts are ``executed in sequence''.)
+  its parts are \Pexecuted in sequence\Q.)
 
   The sequential execution aspect of <hlink|<with|font-family|tt|when>|#when>
   is rather important in Pure, because it enables you to do a series of
-  ``actions'' (variable bindings and expression evaluations) in sequence by
+  \Pactions\Q (variable bindings and expression evaluations) in sequence by
   simply enclosing it in a <hlink|<with|font-family|tt|when>|#when> clause.
   This provides the Pure programmer with a useful and familiar bit of
-  imperative ``look and feel'' (even though the
+  imperative \Plook and feel\Q (even though the
   <hlink|<with|font-family|tt|when>|#when> clause itself works in a purely
   functional way). For instance, suppose that we'd like to define a function
   which opens a file, checks that the file was opened successfully and throws
@@ -17919,6 +20865,8 @@
   easiest way to do this in Pure is as follows:
 
   <\verbatim>
+    \;
+
     using system;
 
     \;
@@ -17934,6 +20882,8 @@
     \ \ s = fget fp;
 
     end;
+
+    \;
   </verbatim>
 
   Another bit of syntax that may take getting used to is that
@@ -17948,9 +20898,11 @@
   apply to. Pure doesn't offer any special syntax for this, but note that you
   can always write a <hlink|<with|font-family|tt|when>|#when> or
   <hlink|<with|font-family|tt|with>|#with> clause in the following style
-  which places the ``body'' at the bottom:
+  which places the \Pbody\Q at the bottom:
 
   <\verbatim>
+    \;
+
     result when
 
     \ \ y = foo (x+1);
@@ -17960,6 +20912,8 @@
     \ \ result = baz z;
 
     end;
+
+    \;
   </verbatim>
 
   This can be read and written more or less like a <verbatim|let> expression
@@ -17974,16 +20928,20 @@
   another section with local variables needed by those functions, etc. When
   looking at such a complicated series of definitions, it sometimes helps to
   read the <hlink|<with|font-family|tt|with>|#with> and
-  <hlink|<with|font-family|tt|when>|#when> blocks ``in reverse'', i.e., from
+  <hlink|<with|font-family|tt|when>|#when> blocks \Pin reverse\Q, i.e., from
   bottom to top, which is the order in which they will actually be executed.
 
-  <subsubsection|Non-Linear Patterns<label|non-linear-patterns>>
+  <subsubsection|Non-Linear Patterns><label|non-linear-patterns>
 
   As explained in section <hlink|Patterns|#patterns>, Pure allows multiple
   occurrences of the same variable in a pattern (so-called non-linearities):
 
   <\verbatim>
+    \;
+
     foo x x = x;
+
+    \;
   </verbatim>
 
   This rule will only be matched if both occurrences of <verbatim|x> are
@@ -17997,39 +20955,47 @@
   as in <verbatim|foo> <verbatim|(1..inf)> <verbatim|(1..inf)>. So you have
   to be careful to avoid such uses.
 
-  When using non-linearities in conjunction with ``as'' patterns, you also
-  have to make sure that the ``as'' variable does not occur inside the
+  When using non-linearities in conjunction with \Pas\Q patterns, you also
+  have to make sure that the \Pas\Q variable does not occur inside the
   corresponding subpattern. Thus a definition like the following is illegal:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo xs@(x:xs) = x;
 
     \<less\>stdin\<gtr\>, line 1: error in pattern (recursive variable 'xs')
+
+    \;
   </verbatim>
 
   The explanation is that such a pattern couldn't possibly be matched by a
   finite list anyway. Indeed, the only match for <verbatim|xs@(x:xs)> would
   be an infinite list of <verbatim|x>`s, and there's no way that this
   condition could be verified in a finite amount of time. Therefore the
-  interpreter reports a ``recursive variable'' error in such situations.
+  interpreter reports a \Precursive variable\Q error in such situations.
 
-  <subsubsection|``As'' Patterns<label|as-patterns>>
+  <subsubsection|\PAs\Q Patterns><label|as-patterns>
 
-  In the current implementation, ``as'' patterns cannot be placed on the
-  ``spine'' of a function definition. Thus rules like the following, which
+  In the current implementation, \Pas\Q patterns cannot be placed on the
+  \Pspine\Q of a function definition. Thus rules like the following, which
   have the pattern somewhere in the head of the left-hand side, will all
   provoke an error message from the compiler:
 
   <\verbatim>
+    \;
+
     a@foo x y \ \ = a,x,y;
 
     a@(foo x) y = a,x,y;
 
     a@(foo x y) = a,x,y;
+
+    \;
   </verbatim>
 
   This is because the spine of a function application is not available when
-  the function is called at runtime. ``As'' patterns in pattern bindings
+  the function is called at runtime. \PAs\Q patterns in pattern bindings
   (<hlink|<with|font-family|tt|let>|#let>,
   <hlink|<with|font-family|tt|const>|#const>,
   <hlink|<with|font-family|tt|case>|#case>,
@@ -18038,49 +21004,61 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> case bar 99 of y@(bar x) = y,x+1; end;
 
     bar 99,100
+
+    \;
   </verbatim>
 
-  <subsubsection|``Head = Function'' Pitfalls<label|head-function-pitfalls>>
+  <subsubsection|\PHead = Function\Q Pitfalls><label|head-function-pitfalls>
 
-  <hlink|The ``head = function'' rule|#the-head-function-rule> stipulates
+  <hlink|The \Phead = function\Q rule|#the-head-function-rule> stipulates
   that the head symbol <verbatim|f> of an application <verbatim|f>
   <verbatim|x1> <verbatim|...> <verbatim|xn> occurring on (or inside) the
   left-hand side of an equation, variable binding, or pattern-matching lambda
   expression, is always interpreted as a literal function symbol (not a
-  variable). This implies that you cannot match the ``function'' component of
+  variable). This implies that you cannot match the \Pfunction\Q component of
   an application against a variable, at least not directly. An anonymous
-  ``as'' pattern like <verbatim|f@_> does the trick, however, since the
+  \Pas\Q pattern like <verbatim|f@_> does the trick, however, since the
   anonymous variable is always recognized, even if it occurs as the head
   symbol of a function application. Here's a little example which
   demonstrates how you can convert a function application to a list
   containing the function and all arguments:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x = a [] x with a xs (x@_ y) = a (y:xs) x; a xs x = x:xs end;
 
     \<gtr\> foo (a b c d);
 
     [a,b,c,d]
+
+    \;
   </verbatim>
 
-  This may seem a little awkward, but as a matter of fact the ``head =
-  function'' rule is quite convenient, since it covers the common cases
+  This may seem a little awkward, but as a matter of fact the \Phead =
+  function\Q rule is quite convenient, since it covers the common cases
   without forcing the programmer to declare variable or constructor symbols
   (other than nonfix symbols). On the other hand, generic rules operating on
   arbitrary function applications are not all that common, so having to
-  ``escape'' a variable using the anonymous ``as'' pattern trick is a small
+  \Pescape\Q a variable using the anonymous \Pas\Q pattern trick is a small
   price to pay for that convenience.
 
   Sometimes you may also run into the complementary problem, i.e., to match a
   function argument against a given function. Consider this code fragment:
 
   <\verbatim>
+    \;
+
     foo x = x+1;
 
     foop f = case f of foo = 1; _ = 0 end;
+
+    \;
   </verbatim>
 
   You might expect <verbatim|foop> to return true for <verbatim|foo>, and
@@ -18090,14 +21068,18 @@
   at all:
 
   <\verbatim>
+    \;
+
     \<gtr\> foop 99;
 
     warning: rule never reduced: _ = 0;
 
     1
+
+    \;
   </verbatim>
 
-  This is again due to the ``head = function'' rule; <verbatim|foo> is
+  This is again due to the \Phead = function\Q rule; <verbatim|foo> is
   neither the head symbol of a function application nor a
   <hlink|<with|font-family|tt|nonfix>|#nonfix> symbol here, so it is
   considered a variable, even though it is defined as a global function
@@ -18107,11 +21089,15 @@
   <verbatim|x> <verbatim|=> <verbatim|x-1> somewhere else in your program,
   which certainly isn't desirable.)
 
-  A possible workaround is to ``escape'' the function symbol using an empty
+  A possible workaround is to \Pescape\Q the function symbol using an empty
   namespace qualifier:
 
   <\verbatim>
+    \;
+
     foop f = case f of ::foo = 1; _ = 0 end;
+
+    \;
   </verbatim>
 
   This trick works in <hlink|<with|font-family|tt|case>|#case> expressions
@@ -18123,25 +21109,29 @@
   predicate as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> foop f = f===foo;
 
     \<gtr\> foop foo, foop 99;
 
     1,0
+
+    \;
   </verbatim>
 
   Another way to deal with the situation would be to just declare
   <verbatim|foo> as a nonfix symbol. However, this makes the <verbatim|foo>
-  symbol ``precious'', i.e., after such a declaration it cannot be used as a
+  symbol \Pprecious\Q, i.e., after such a declaration it cannot be used as a
   local variable anymore. It's usually a good idea to avoid that kind of
   thing, at least for generic symbols, so the above solution is preferred in
   this case.
 
-  <subsubsection|Defined Functions<label|defined-functions>>
+  <subsubsection|Defined Functions><label|defined-functions>
 
   As explained in <hlink|Definitions and Expression
   Evaluation|#definitions-and-expression-evaluation>, Pure doesn't really
-  distinguish ``constructors'' from ``defined functions'' and thus allows any
+  distinguish \Pconstructors\Q from \Pdefined functions\Q and thus allows any
   function symbol to become part of a normal form expression yielded by an
   evaluation. This behaviour follows the usual semantics of (typeless) term
   rewriting and is essential if you also want to evaluate expressions
@@ -18153,11 +21143,15 @@
   functions involving side effects:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> puts 99;
 
     puts 99
+
+    \;
   </verbatim>
 
   Here we accidentally specified a number (rather than a string) as the
@@ -18166,20 +21160,24 @@
   invoked interactively, but it may well go unnoticed if the call is buried
   deeply in a big program which runs unattended (in batch mode).
 
-  As a remedy, Pure 0.48 introduces the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
+  As a remedy, Pure 0.48 introduces the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
   pragma (cf. <hlink|Code Generation Options|#code-generation-options>) which
-  allows you to explicitly declare a function symbol as a ``defined''
+  allows you to explicitly declare a function symbol as a \Pdefined\Q
   function, so that it will raise a proper exception when the defining
   equations (or, as it were, the external definition) of the function are not
   applicable to the subject expression:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --defined puts
 
     \<gtr\> puts 99;
 
     \<less\>stdin\<gtr\>, line 4: unhandled exception 'failed_match' while
     evaluating 'puts 99'
+
+    \;
   </verbatim>
 
   This is the same kind of <hlink|<with|font-family|tt|failed_match>|purelib.tm#failed-match>
@@ -18187,7 +21185,7 @@
   patterns in a <hlink|<with|font-family|tt|case>|#case> construct, cf.
   <hlink|Exception Handling|#exception-handling>.
 
-  Note that the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> pragma
+  Note that the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined> pragma
   only has an effect on global functions; local functions in a
   <hlink|<with|font-family|tt|with>|#with> expression will always be
   evaluated in Pure's default symbolic mode. Thus, if you need the above
@@ -18195,59 +21193,73 @@
   exception handling yourself or turn the local function into a global one.
 
   Also note that an exception will only be generated if the symbol actually
-  has any defining equations, so a ``pure constructor'' (i.e., a symbol
+  has any defining equations, so a \Ppure constructor\Q (i.e., a symbol
   without defining equations) will still return a normal form even if it is
-  also declared <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>:
+  also declared <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --defined foo
 
     \<gtr\> foo bar;
 
     foo bar
+
+    \;
   </verbatim>
 
-  Nevertheless, the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
+  Nevertheless, the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
   pragma will be recorded and take effect as soon as you add an equation for
   the function:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo x::int = x+1;
 
     \<gtr\> foo bar;
 
     \<less\>stdin\<gtr\>, line 4: unhandled exception 'failed_match' while
     evaluating 'foo bar'
+
+    \;
   </verbatim>
 
-  There's also a <hlink|<em|--nodefined>|#cmdoption-pure-pragma--nodefined>
+  There's also a <hlink|<em|\Unodefined>|#cmdoption-pure-pragma--nodefined>
   pragma which reverts the function to the default behaviour of returning
   normal forms:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --nodefined foo
 
     \<gtr\> foo bar;
 
     foo bar
+
+    \;
   </verbatim>
 
-  As indicated, the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  and <hlink|<em|--nodefined>|#cmdoption-pure-pragma--nodefined> pragmas can
+  As indicated, the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
+  and <hlink|<em|\Unodefined>|#cmdoption-pure-pragma--nodefined> pragmas can
   be invoked freely at any time, and the interpreter takes care that the
   affected function is recompiled automatically as needed.
 
-  Pure 0.58 and later also provide a <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic>
+  Pure 0.58 and later also provide a <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic>
   compilation option which lets you switch the interpreter to the
   non-symbolic mode of operation, so that <em|every> global function with
   equations becomes a defined function. This option is most commonly used as
   a pragma to delineate code sections with defined functions, so that you
-  don't have to write out the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  pragmas for each function. The <hlink|<em|--symbolic>|#cmdoption-pure--symbolic>
+  don't have to write out the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
+  pragmas for each function. The <hlink|<em|\Usymbolic>|#cmdoption-pure--symbolic>
   pragma is then used to switch back to the default symbolic mode. For
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> run
 
     \<gtr\> #! --nosymbolic
@@ -18273,14 +21285,18 @@
     \<gtr\> bar foo;
 
     bar foo
+
+    \;
   </verbatim>
 
   Note that these pragmas only adjust the default behaviour of functions. It
   is still possible to change the status of individual functions with the
-  <hlink|<em|--defined>|#cmdoption-pure-pragma--defined> and
-  <hlink|<em|--nodefined>|#cmdoption-pure-pragma--nodefined> pragmas:
+  <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined> and
+  <hlink|<em|\Unodefined>|#cmdoption-pure-pragma--nodefined> pragmas:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --nodefined foo
 
     \<gtr\> foo bar;
@@ -18293,20 +21309,22 @@
 
     \<less\>stdin\<gtr\>, line 12: unhandled exception 'failed_match' while
     evaluating 'bar foo'
+
+    \;
   </verbatim>
 
   You can even invoke the interpreter with the
-  <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> command line option
+  <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> command line option
   so that the non-symbolic mode becomes the global default. However, this
   affects <em|all> functions in a program, including the library functions
   used by your program. It isn't really advisable to do this, because at the
   time of this writing many library modules still assume Pure's default mode
   of symbolic evaluation, and so a global switch to
-  <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> may well break some
+  <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> may well break some
   of these functions.
 
-  At this time, the <hlink|<em|--defined>|#cmdoption-pure-pragma--defined>
-  and <hlink|<em|--nosymbolic>|#cmdoption-pure--nosymbolic> pragmas are still
+  At this time, the <hlink|<em|\Udefined>|#cmdoption-pure-pragma--defined>
+  and <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> pragmas are still
   considered experimental. They interfere with Pure's symbolic evaluation
   capabilities, so they aren't currently used in the standard library and we
   recommend that programmers shouldn't use them in a careless fashion either.
@@ -18316,7 +21334,7 @@
   mostly in batch mode. Future versions of the interpreter might also make
   good use of these pragmas for static checks and optimization purposes.
 
-  <subsubsection|Stack Size and Tail Recursion<label|stack-size-and-tail-recursion>>
+  <subsubsection|Stack Size and Tail Recursion><label|stack-size-and-tail-recursion>
 
   Pure programs may need a considerable amount of stack space to handle
   recursive function and macro calls, and the interpreter itself also takes
@@ -18349,7 +21367,11 @@
   forever if your platform supports the required optimizations:
 
   <\verbatim>
+    \;
+
     loop with loop = loop end;
+
+    \;
   </verbatim>
 
   This also works if your definition involves function parameters, guards and
@@ -18373,7 +21395,7 @@
   does deep tail recursion.
 
   <subsubsection|Handling of Asynchronous
-  Signals<label|handling-of-asynchronous-signals>>
+  Signals><label|handling-of-asynchronous-signals>
 
   As described in section <hlink|Exception Handling|#exception-handling>,
   signals delivered to the process can be caught and handled with Pure's
@@ -18393,6 +21415,8 @@
   tail-recursive function. This can be done with code like the following:
 
   <\verbatim>
+    \;
+
     using system;
 
     \;
@@ -18408,6 +21432,8 @@
     with handler (signal k) = printf "Hey, I got signal %d.\\n" k end;
 
     process = sleep 1; // do something
+
+    \;
   </verbatim>
 
   Running the above <verbatim|loop> function enters an endless loop reporting
@@ -18421,14 +21447,18 @@
   next iteration. This can be implemented as follows:
 
   <\verbatim>
+    \;
+
     loop x = loop (catch handler (process x))
 
     with handler (signal k) = printf "Hey, I got signal %d.\\n" k $$ 0 end;
 
     process x = printf "counting: %d\\n" x $$ sleep 1 $$ x+1;
+
+    \;
   </verbatim>
 
-  <subsubsection|Recursive Types<label|recursive-types>>
+  <subsubsection|Recursive Types><label|recursive-types>
 
   Using the facilities described in <hlink|Type Rules|#type-rules>, type tags
   can easily be defined in a recursive fashion. In simple cases, the compiler
@@ -18441,11 +21471,15 @@
 
   For instance, the following <hlink|<with|font-family|tt|rlist>|purelib.tm#rlist/type>
   type from the prelude is defined in such a way that it only matches
-  ``proper'' lists which have list values in all their tails (and are thus
+  \Pproper\Q lists which have list values in all their tails (and are thus
   terminated by the empty list).
 
   <\verbatim>
+    \;
+
     type rlist [] \| rlist (x : xs::rlist);
+
+    \;
   </verbatim>
 
   Note that this type definition recurses in the <em|last>
@@ -18457,9 +21491,13 @@
   deep. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> typep rlist (1..10000000);
 
     1
+
+    \;
   </verbatim>
 
   The precise rules for tail-recursive type definitions are as follows:
@@ -18481,9 +21519,13 @@
   binary tree type:
 
   <\verbatim>
+    \;
+
     nonfix nil;
 
     type tree nil \| tree (bin x l::tree r::tree);
+
+    \;
   </verbatim>
 
   This is a perfectly legal type definition, and the recursion in the last
@@ -18493,6 +21535,8 @@
   tree. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> mktree xs = foldr (\\x t-\<gtr\>bin x t nil) nil xs;
 
     \<gtr\> mktree [];
@@ -18517,6 +21561,8 @@
     evaluating
 
     'typep tree (mktree (1..10000))'
+
+    \;
   </verbatim>
 
   To avoid deep recursion in such cases it is necessary to implement the type
@@ -18533,7 +21579,11 @@
   <verbatim|sum> function:
 
   <\verbatim>
+    \;
+
     sum xs::rlist = if null xs then 0 else head xs+sum (tail xs);
+
+    \;
   </verbatim>
 
   As this function repeatedly checks its entire argument, the total time it
@@ -18541,19 +21591,23 @@
   <puredoc-image|_images/math/225cf199c9568a1a204e4c364ebed6a991b6a00d.png|66%|66%||>.
   To see how slow this function is, just try it on successively larger lists
   <verbatim|1..1000>, <verbatim|1..2000>, etc. One way to work around this is
-  to write a ``wrapper'' function which simply checks the type of its
-  argument in advance and then invokes a ``worker'' function to do the actual
+  to write a \Pwrapper\Q function which simply checks the type of its
+  argument in advance and then invokes a \Pworker\Q function to do the actual
   computation:
 
   <\verbatim>
+    \;
+
     sum xs::rlist = sum xs with
 
     \ \ sum xs = if null xs then 0 else head xs+sum (tail xs);
 
     end;
+
+    \;
   </verbatim>
 
-  This ``wrapper-worker'' design is quite common and useful in many
+  This \Pwrapper-worker\Q design is quite common and useful in many
   situations, but it is a bit cumbersome in this specific case. An easier way
   is to just do the type checking in a piecemeal fashion, as the list is
   being traversed. To these ends, the prelude also provides a basic
@@ -18561,7 +21615,11 @@
   defined as follows:
 
   <\verbatim>
+    \;
+
     type list [] \| list (x:xs);
+
+    \;
   </verbatim>
 
   Note that the recursion is missing here and thus this type can always be
@@ -18575,17 +21633,23 @@
   For instance, consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> sum xs::list = if null xs then 0 else head xs+sum (tail xs);
 
     \<gtr\> sum (1:2:3);
 
     1+(2+sum 3)
+
+    \;
   </verbatim>
 
   In contrast, our wrapper-worker definition of <verbatim|sum> from above
   returns a somewhat prettier normal form instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear sum
 
     \<gtr\> sum xs::rlist = sum xs with
@@ -18597,13 +21661,15 @@
     \<gtr\> sum (1:2:3);
 
     sum (1:2:3)
+
+    \;
   </verbatim>
 
   Thus the wrapper-worker approach also has its merits, and whether to use
   one or the other depends on the situation. Similar techniques and tradeoffs
   also apply to other recursive types such as trees.
 
-  <subsubsection|Interfaces<label|interfaces>>
+  <subsubsection|Interfaces><label|interfaces>
 
   Pure's implementation of <hlink|interface types|#interface-types> has some
   notable differences to interfaces in a statically typed language like
@@ -18616,8 +21682,8 @@
     not their result types, so return types are irrelevant to Pure's
     interface types anyway.
 
-    <item>Pure interfaces aren't based on the notion of ``methods'' and
-    therefore don't provide any kind of ``method dispatch''. Interface
+    <item>Pure interfaces aren't based on the notion of \Pmethods\Q and
+    therefore don't provide any kind of \Pmethod dispatch\Q. Interface
     operations are just ordinary Pure functions which rely on Pure's usual
     pattern-matching mechanism to do the dynamic dispatch.
 
@@ -18641,6 +21707,8 @@
     Types|#interface-types> section as follows:
 
     <\verbatim>
+      \;
+
       interface stack with
 
       \ \ push s::stack x;
@@ -18662,6 +21730,8 @@
       pop (x:xs) = xs;
 
       top (x:xs) = x;
+
+      \;
     </verbatim>
   </itemize>
 
@@ -18682,7 +21752,11 @@
   type in multiple arguments. A typical example are operators:
 
   <\verbatim>
+    \;
+
     interface addable with x::addable + y::addable; end;
+
+    \;
   </verbatim>
 
   In the present implementation, the pattern set will be the <em|union> of
@@ -18690,7 +21764,11 @@
   equivalent to:
 
   <\verbatim>
+    \;
+
     interface addable with x::addable + y; x + y::addable; end;
+
+    \;
   </verbatim>
 
   This makes sense in many situations, but of course this depends on the
@@ -18698,7 +21776,7 @@
   argument you want to place the interface type tag, or even have different
   types for each possible argument position.
 
-  <subsubsection|Numeric Calculations<label|numeric-calculations>>
+  <subsubsection|Numeric Calculations><label|numeric-calculations>
 
   If possible, you should decorate numeric variables on the left-hand sides
   of function definitions with the appropriate type tags, like <verbatim|int>
@@ -18711,18 +21789,22 @@
   integers:
 
   <\verbatim>
+    \;
+
     fact n::int \ \ \ \|
 
     fact n \ \ \ \ \ \ \ \ = n*fact(n-1) if n\<gtr\>0;
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ = 1 otherwise;
+
+    \;
   </verbatim>
 
   (This obviously becomes unwieldy if you have to deal with several numeric
   arguments of different types, however, so in this case it is usually better
   to just use a polymorphic rule.)
 
-  Also note that int (the machine integers), bigint (the GMP ``big''
+  Also note that int (the machine integers), bigint (the GMP \Pbig\Q
   integers) and double (floating point numbers) are all different kinds of
   objects. While they can be used in mixed operations (such as multiplying an
   int with a bigint which produces a bigint, or a bigint with a double which
@@ -18734,17 +21816,19 @@
   that you need (or a polymorphic rule which catches them all). This also
   applies to equations matching against constant values of these types. In
   particular, a small integer constant like <verbatim|0> only matches machine
-  integers, not bigints; for the latter you'll have to use the ``big L''
+  integers, not bigints; for the latter you'll have to use the \Pbig L\Q
   notation <verbatim|0L>. Similarly, the constant <verbatim|0.0> only matches
   doubles, but not ints or bigints.
 
-  <subsubsection|Constant Definitions<label|constant-definitions>>
+  <subsubsection|Constant Definitions><label|constant-definitions>
 
   Constants differ from variables in that they cannot be redefined (that's
   their main purpose after all) so that their values, once defined, can be
   substituted into other definitions which use them. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> const c = 2;
 
     \<gtr\> foo x = c*x;
@@ -18756,15 +21840,21 @@
     \<gtr\> foo 99;
 
     198
+
+    \;
   </verbatim>
 
   While a variable can be rebound to a new value at any time, you will get an
   error message if you try to do this with a constant:
 
   <\verbatim>
+    \;
+
     \<gtr\> const c = 3;
 
     \<less\>stdin\<gtr\>, line 5: symbol 'c' is already defined as a constant
+
+    \;
   </verbatim>
 
   Note that in interactive mode you can work around this by purging the old
@@ -18772,6 +21862,8 @@
   any earlier uses of the symbol:
 
   <\verbatim>
+    \;
+
     \<gtr\> clear c
 
     \<gtr\> const c = 3;
@@ -18783,6 +21875,8 @@
     bar x = 3*x;
 
     foo x = 2*x;
+
+    \;
   </verbatim>
 
   (You'll also have to purge any existing definition of a variable if you
@@ -18800,6 +21894,8 @@
   just <verbatim|1> and <verbatim|0>), so that you can write, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> check false = "no"; check true = "yes";
 
     \<gtr\> show check
@@ -18811,6 +21907,8 @@
     \<gtr\> check (5\<gtr\>0);
 
     "yes"
+
+    \;
   </verbatim>
 
   Note that if <hlink|<with|font-family|tt|true>|purelib.tm#true> and
@@ -18840,11 +21938,13 @@
   precomputes simple constant expressions involving only (machine) integer
   and double values. (The latter is called <with|font-series|bold|constant
   folding> and can also be disabled, see the description of the
-  <hlink|<em|--fold>|#cmdoption-pure--fold> and
-  <hlink|<em|--nofold>|#cmdoption-pure--nofold> pragmas for details.)
+  <hlink|<em|\Ufold>|#cmdoption-pure--fold> and
+  <hlink|<em|\Unofold>|#cmdoption-pure--nofold> pragmas for details.)
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern double atan(double);
 
     \<gtr\> const pi = 4*atan 1.0;
@@ -18858,22 +21958,32 @@
     \<gtr\> show foo
 
     foo x = 6.28318530717959*x;
+
+    \;
   </verbatim>
 
   Constant folding also works with conditional expressions. E.g., consider:
 
   <\verbatim>
+    \;
+
     const win = index sysinfo "mingw32" \<gtr\>= 0;
 
     check boy = if win then bad boy else good boy;
+
+    \;
   </verbatim>
 
   On a Linux system, this gives:
 
   <\verbatim>
+    \;
+
     \<gtr\> show check
 
     check boy = good boy;
+
+    \;
   </verbatim>
 
   By these means, you can employ a constant to configure your code for
@@ -18884,9 +21994,13 @@
   follows:
 
   <\verbatim>
+    \;
+
     check boy = bad boy if win;
 
     \ \ \ \ \ \ \ \ \ \ = good boy otherwise;
+
+    \;
   </verbatim>
 
   In this case the code for one of the branches of <verbatim|check> will be
@@ -18909,9 +22023,13 @@
   side effects:
 
   <\verbatim>
+    \;
+
     const table = [foo x \| x = 1..1000000];
 
     process table;
+
+    \;
   </verbatim>
 
   Note that this only works with <hlink|<with|font-family|tt|const>|#const>
@@ -18922,9 +22040,13 @@
   consider:
 
   <\verbatim>
+    \;
+
     const p = malloc 100;
 
     foo p;
+
+    \;
   </verbatim>
 
   Here, the value of the pointer <verbatim|p> of course critically depends on
@@ -18933,12 +22055,12 @@
   initialization, so the compiler generates the appropriate run time
   initialization code in this case. For all practical purposes, this turns
   the constant into a read-only variable. (There's also a code generation
-  option to force this behaviour even for ``normal'' constants for which it's
+  option to force this behaviour even for \Pnormal\Q constants for which it's
   not strictly necessary, in order to create smaller executables; see
   <hlink|Options Affecting Code Size|#options-affecting-code-size> for
   details.)
 
-  <subsubsection|External C Functions<label|external-c-functions>>
+  <subsubsection|External C Functions><label|external-c-functions>
 
   The interpreter always takes your <hlink|<with|font-family|tt|extern>|#extern>
   declarations of C routines at face value. It will not go and read any C
@@ -18971,7 +22093,7 @@
   and functions declared in the header. Please refer to <hlink|<em|pure-gen:
   Pure interface generator>|pure-gen.tm> for details.
 
-  <subsubsection|Calling Special Forms<label|calling-special-forms>>
+  <subsubsection|Calling Special Forms><label|calling-special-forms>
 
   Special forms are recognized at compile time only. Thus the
   <hlink|<with|font-family|tt|catch>|#catch> function, as well as
@@ -18984,11 +22106,11 @@
   function values or in partial applications, but in this case they lose all
   their special call-by-name argument processing.
 
-  <subsubsection|Laziness<label|laziness>>
+  <subsubsection|Laziness><label|laziness>
 
   Pure does lazy evaluation in the same way as <hlink|Alice ML|#alice-ml>,
   providing an explicit operation (<hlink|<with|font-family|tt|&>|#-amp>) to
-  defer evaluation and create a ``future'' which is called by need. However,
+  defer evaluation and create a \Pfuture\Q which is called by need. However,
   note that like any language with a basically eager evaluation strategy,
   Pure cannot really support lazy evaluation in a fully automatic way. That
   is, coding an operation so that it works with infinite data structures
@@ -19050,9 +22172,13 @@
     create a stream of random numbers:
 
     <\verbatim>
+      \;
+
       \<gtr\> using math;
 
       \<gtr\> let xs = [random \| _ = 1..inf];
+
+      \;
     </verbatim>
 
     This works as expected if only a single stream created with
@@ -19077,21 +22203,23 @@
     example.
   </itemize>
 
-  <subsubsection|Name Capture<label|name-capture>>
+  <subsubsection|Name Capture><label|name-capture>
 
   As explained in the <hlink|Macro Hygiene|#macro-hygiene> section, Pure
-  macros are lexically scoped and thus ``hygienic''. So in principle Pure
+  macros are lexically scoped and thus \Phygienic\Q. So in principle Pure
   macros are not susceptible to name capture. However, this principle only
-  applies to ``real'' block constructs, not their quoted ``placeholder''
+  applies to \Preal\Q block constructs, not their quoted \Pplaceholder\Q
   representations described in <hlink|Built-in Macros and Special
   Expressions|#built-in-macros-and-special-expressions>. One (rather obscure)
   case which deserves special attention is the case of macros involving free
   variables which are being called inside quoted block constructs. Note that
-  this corresponds to the ``mild'' first form of name capture described in
+  this corresponds to the \Pmild\Q first form of name capture described in
   the <hlink|Macro Hygiene|#macro-hygiene> section. For instance, consider
   the following example:
 
   <\verbatim>
+    \;
+
     \<gtr\> def G x = x+y;
 
     \<gtr\> '(G 10 when y = 99 end);
@@ -19101,6 +22229,8 @@
     \<gtr\> eval ans;
 
     109
+
+    \;
   </verbatim>
 
   Here the free <verbatim|y> variable of the macro <verbatim|G> got captured
@@ -19110,7 +22240,7 @@
   <hlink|<with|font-family|tt|__when__>|#--when--> macro. So the behaviour of
   the macro evaluator in this case is in fact correct; the only remedy here
   is to avoid macros involving free variables inside a quoted block
-  construct. The same applies to ``<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>''
+  construct. The same applies to \P<hlink|<em|quoteargs>|#cmdoption-pure-pragma--quoteargs>\Q
   macros which quote their arguments automatically, as described in
   <hlink|Built-in Macros and Special Expressions|#built-in-macros-and-special-expressions>.
   On the other hand, the described behaviour might even be useful at times,
@@ -19118,6 +22248,8 @@
   illustrates this trick:
 
   <\verbatim>
+    \;
+
     \<gtr\> #! --quoteargs invoke
 
     \<gtr\> def invoke x = x;
@@ -19131,6 +22263,8 @@
     \<gtr\> foo;
 
     109
+
+    \;
   </verbatim>
 
   Besides the above form of real name capture in quoted specials, there's
@@ -19141,6 +22275,8 @@
   expression. For instance, consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> def F x = x+y when y = x+1 end;
 
     \<gtr\> foo y = F y;
@@ -19148,6 +22284,8 @@
     \<gtr\> show foo
 
     foo y = y+y when y = y+1 end;
+
+    \;
   </verbatim>
 
   This <em|looks> as if <verbatim|y> got captured, but in fact it's not, it's
@@ -19157,15 +22295,19 @@
   that the actual bindings are all right anyway:
 
   <\verbatim>
+    \;
+
     \<gtr\> show -e foo
 
     foo y/*0:1*/ = y/*1:1*/+y/*0:*/ when y/*0:*/ = y/*0:1*/+1 end;
+
+    \;
   </verbatim>
 
   Note that the number before the colon is the actual deBruijn index, the
   sequence of bits behind it is the subterm path. Thus the first instance of
   <verbatim|y> in <verbatim|y+y> (which has a deBruijn index of 1, indicating
-  ``one environment up'') actually refers to the <verbatim|y> in the
+  \Pone environment up\Q) actually refers to the <verbatim|y> in the
   left-hand side <verbatim|foo> <verbatim|y>, while the second instance
   refers to the local binding <verbatim|y> <verbatim|=> <verbatim|y+1> in the
   <hlink|<with|font-family|tt|when>|#when> clause.
@@ -19177,12 +22319,12 @@
   hopefully be fixed some time. But for the time being you will have to
   correct such glitches manually.
 
-  <subsection|Author<label|author>>
+  <subsection|Author><label|author>
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>,
   Dept. of Computer Music, Johannes Gutenberg University of Mainz, Germany.
 
-  <subsection|Acknowledgements<label|acknowledgements>>
+  <subsection|Acknowledgements><label|acknowledgements>
 
   Pure wouldn't be what it is without its users and other people interested
   in the language. In particular, I'd like to thank Scott E. Dillard, Rooslan
@@ -19204,7 +22346,7 @@
   code generation and concentrate on the design and implementation of the
   programming language at hand.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   (The following explanations are not legal advice. Please read the full text
   of the licenses and consult qualified professional counsel for an
@@ -19262,7 +22404,7 @@
   COPYING.LLVM included in the distribution for the exact licensing terms.
   You can also find the LLVM license at the <hlink|LLVM|#llvm> website.
 
-  <subsection|References and Links<label|references-and-links>>
+  <subsection|References and Links><label|references-and-links>
 
   <\description>
     <item*|Aardappel<label|aardappel>>Wouter van Oortmerssen's functional
@@ -19277,7 +22419,7 @@
   </description>
 
   <\description>
-    <item*|ATS<label|ats>>``Applied Type System'', a statically typed,
+    <item*|ATS<label|ats>>\PApplied Type System\Q, a statically typed,
     ML-like programming language which unifies implementation with formal
     specification, <hlink|http://www.ats-lang.org/|http://www.ats-lang.org/>.
   </description>
@@ -19383,7 +22525,7 @@
     <hlink|http://www.texmacs.org|http://www.texmacs.org>.
   </description>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-toc>
 
   <\itemize>
     <item><hlink|The Pure Manual|#>
@@ -19463,7 +22605,7 @@
         <item><hlink|Patterns|#patterns>
 
         <\itemize>
-          <item><hlink|The ``Head = Function'' Rule|#the-head-function-rule>
+          <item><hlink|The \PHead = Function\Q Rule|#the-head-function-rule>
 
           <item><hlink|Constant Patterns|#constant-patterns>
 
@@ -19672,9 +22814,9 @@
 
         <item><hlink|Non-Linear Patterns|#non-linear-patterns>
 
-        <item><hlink|``As'' Patterns|#as-patterns>
+        <item><hlink|\PAs\Q Patterns|#as-patterns>
 
-        <item><hlink|``Head = Function'' Pitfalls|#head-function-pitfalls>
+        <item><hlink|\PHead = Function\Q Pitfalls|#head-function-pitfalls>
 
         <item><hlink|Defined Functions|#defined-functions>
 
@@ -19723,6 +22865,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

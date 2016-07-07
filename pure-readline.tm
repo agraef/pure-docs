@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-gen.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <label|module-readline><section*|pure-readline<label|pure-readline>>
+  <label|module-readline><section*|pure-readline><label|pure-readline><label|pure-readline>
 
-  Version 0.3, October 28, 2014
+  Version 0.3, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -81,6 +81,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> using readline;
 
     \<gtr\> readline "input\<gtr\> ";
@@ -108,6 +110,8 @@
     \<gtr\> read_history "history"; // read the history
 
     0
+
+    \;
   </verbatim>
 
   Previous topic
@@ -123,6 +127,6 @@
   <hlink|previous|pure-gen.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

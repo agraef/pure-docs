@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|Pure-Rational - Rational number library for the Pure programming
-  language<label|pure-rational-rational-number-library-for-the-pure-programming-language>>
+  language><label|pure-rational-rational-number-library-for-the-pure-programming-language>
 
-  Version 0.1, October 28, 2014
+  Version 0.1, July 07, 2016
 
   Rob Hubbard
 
@@ -40,9 +40,13 @@
   import the modules as follows:
 
   <\verbatim>
+    \;
+
     using rational, rat_interval;
 
     using namespace rational, interval;
+
+    \;
   </verbatim>
 
   Also note that <hlink|<with|font-family|tt|rational>|#module-rational>
@@ -58,7 +62,7 @@
   a bit funny but is correct since Pure rationals always carry their sign in
   the numerator.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2006 - 2010 by Rob Hubbard.
 
@@ -80,7 +84,7 @@
   You should have received a copy of the GNU Public License along with this
   program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-rational-0.1.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-rational-0.1.tar.gz>.
 
@@ -93,21 +97,21 @@
   <verbatim|install> <verbatim|prefix=/usr> which sets the installation
   prefix. Please see the Makefile for details.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
-  <subsubsection|The Rational Module<label|module-rational>>
+  <subsubsection|The Rational Module><label|module-rational>
 
   This module provides additional operations on the rational number type
   provided by the <verbatim|math.pure> module in the standard library. The
   module is compatible with Pure version 0.43 (onwards).
 
   <subsubsection|The Files and the Default
-  Prelude<label|the-files-and-the-default-prelude>>
+  Prelude><label|the-files-and-the-default-prelude>
 
   The implementation of the rational type and associated utilities is
   distributed across various files.
 
-  <paragraph|math.pure and Other Files<label|math-pure-and-other-files>>
+  <paragraph|math.pure and Other Files><label|math-pure-and-other-files>
 
   The file <verbatim|math.pure> defines the type, its constructors and
   `deconstructors' and basic arithmetical and mathematical operators and
@@ -122,7 +126,7 @@
   <verbatim|math.pure> module. This is discussed further in <hlink|Rational
   Complex Numbers|#rational-complex-numbers>.
 
-  <paragraph|rational.pure<label|rational-pure>>
+  <paragraph|rational.pure><label|rational-pure>
 
   Additional `rational utilities', not included in the <verbatim|math.pure>
   module, are defined in <verbatim|rational.pure>. The functions include
@@ -132,14 +136,14 @@
 
   The rational utilities include some `rational complex number' functions.
 
-  <paragraph|rat_interval.pure<label|rat-interval-pure>>
+  <paragraph|rat_interval.pure><label|rat-interval-pure>
 
   Amongst the rational utilities are some functions that return a rational
   interval. The file <verbatim|rat_interval.pure> is a partial implementation
   of interval arithmetic. Intervals are discussed further in
   <hlink|Intervals|#intervals>.
 
-  <subsubsection|Notation<label|notation>>
+  <subsubsection|Notation><label|notation>
 
   Throughout this document, the parameters q, q0, q1, ... usually denote
   rationals (<math|\<in\>> <with|font-series|bold|Q>), parameters z, ...
@@ -155,9 +159,9 @@
   <with|font-series|bold|Q> <math|\<supset\>> <with|font-series|bold|Z>, or
   an expression of type rational or integer.
 
-  <subsection|The Rational Type<label|the-rational-type>>
+  <subsection|The Rational Type><label|the-rational-type>
 
-  <subsubsection|Constructors<label|constructors>>
+  <subsubsection|Constructors><label|constructors>
 
   Rationals are constructed with the <verbatim|%> exact division operator,
   and other kinds of numbers can be converted to rationals with the
@@ -177,20 +181,28 @@
   <with|font-series|bold|Example 1> Constructing a fraction:
 
   <\verbatim>
+    \;
+
     \<gtr\> 44%14;
 
     22L%7L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 2> Converting from an integer:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational 3;
 
     3L%1L
+
+    \;
   </verbatim>
 
-  <subsubsection|`Deconstructors'<label|deconstructors>>
+  <subsubsection|`Deconstructors'><label|deconstructors>
 
   A rational number is in simplest form if the numerator and denominator are
   coprime (i.e. do not have a factor in common) and the denominator is
@@ -222,6 +234,8 @@
   in simplest form:
 
   <\verbatim>
+    \;
+
     \<gtr\> let q = (44%(-14));
 
     \<gtr\> num q;
@@ -243,6 +257,8 @@
     \<gtr\> num_den (-3);
 
     -3L,1L
+
+    \;
   </verbatim>
 
   Together, <hlink|<with|font-family|tt|num>|purelib.tm#num> and
@@ -254,7 +270,7 @@
   used in conjunction with <hlink|<with|font-family|tt|num_den_gauss>|#rational::num-den-gauss>
   to decompose a rational into integer, numerator and denominator parts.
 
-  <subsubsection|Type and Value Tests<label|type-and-value-tests>>
+  <subsubsection|Type and Value Tests><label|type-and-value-tests>
 
   The functions <hlink|<with|font-family|tt|rationalp>|purelib.tm#rationalp>
   and <hlink|<with|font-family|tt|ratvalp>|purelib.tm#ratvalp> and other
@@ -305,6 +321,8 @@
   <with|font-series|bold|Example 4> Rational value tests:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = [9, 9%1, 9%2, 4.5, sqrt 2, 1+i, inf, nan];
 
     \<gtr\> map exactp l;
@@ -336,6 +354,8 @@
     integer value"
 
     [1,1,0,0,0,0,0,0]
+
+    \;
   </verbatim>
 
   See <hlink|Rational Complex Numbers|#rational-complex-numbers> for details
@@ -343,9 +363,9 @@
   Tests|#rational-complex-type-and-value-tests> for details of their type and
   value tests.
 
-  <subsection|Arithmetic<label|arithmetic>>
+  <subsection|Arithmetic><label|arithmetic>
 
-  <subsubsection|Operators<label|operators>>
+  <subsubsection|Operators><label|operators>
 
   The standard arithmetic operators (+), (-) and (*) are overloaded to have
   at least one rational operand. If both operands are rational then the
@@ -371,6 +391,8 @@
   <with|font-series|bold|Example 5> Arithmetic:
 
   <\verbatim>
+    \;
+
     \<gtr\> 5%7 + 2%3;
 
     29L%21L
@@ -406,6 +428,8 @@
     \<gtr\> pow 3 (-5);
 
     1L%243L
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|str_mixed>|#rational::str-mixed>.)
@@ -415,6 +439,8 @@
   <with|font-series|bold|Example 6> Division:
 
   <\verbatim>
+    \;
+
     \<gtr\> 44/14;
 
     3.14285714285714
@@ -426,11 +452,13 @@
     \<gtr\> str_mixed ans;
 
     "3L+1L/7L"
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|str_mixed>|#rational::str-mixed>.)
 
-  <subsubsection|More on Division<label|more-on-division>>
+  <subsubsection|More on Division><label|more-on-division>
 
   There is a rational-aware divide operator on the numeric types:
 
@@ -444,6 +472,8 @@
   <with|font-series|bold|Example 7> Using % like a constructor:
 
   <\verbatim>
+    \;
+
     \<gtr\> 44 % 14;
 
     22L%7L
@@ -455,6 +485,8 @@
     \<gtr\> str_mixed ans;
 
     "2L+3L/8L"
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|str_mixed>|#rational::str-mixed>.)
@@ -467,9 +499,13 @@
   <with|font-series|bold|Example 8> Reciprocal:
 
   <\verbatim>
+    \;
+
     \<gtr\> reciprocal (22%7);
 
     7L%22L
+
+    \;
   </verbatim>
 
   The following division functions are parameterised by a rounding mode
@@ -521,7 +557,7 @@
   </description>
 
   <subsubsection|Relations \V Equality and Inequality
-  Tests<label|relations-equality-and-inequality-tests>>
+  Tests><label|relations-equality-and-inequality-tests>
 
   The standard arithmetic operators (==), (<math|\<sim\>>=), (\<less\>),
   (\<less\>=), (\<gtr\>), (\<gtr\>=) are overloaded to have at least one
@@ -530,12 +566,16 @@
   <with|font-series|bold|Example 9> Inequality:
 
   <\verbatim>
+    \;
+
     \<gtr\> 3%8 \<less\> 1%3;
 
     0
+
+    \;
   </verbatim>
 
-  <subsubsection|Comparison Function<label|comparison-function>>
+  <subsubsection|Comparison Function><label|comparison-function>
 
   <\description>
     <item*|rational::cmp n1 n2<label|rational::cmp>>is the `comparison' (or
@@ -546,12 +586,16 @@
   <with|font-series|bold|Example 10> Compare:
 
   <\verbatim>
+    \;
+
     \<gtr\> cmp (3%8) (1%3);
 
     1
+
+    \;
   </verbatim>
 
-  <subsection|Mathematical Functions<label|mathematical-functions>>
+  <subsection|Mathematical Functions><label|mathematical-functions>
 
   Most mathematical functions, including the elementary functions (sin,
   sin<rsup|-1>, sinh, sinh<rsup|-1>, cos, ... , exp, ln, ... ), are not
@@ -561,7 +605,7 @@
   To apply these functions, first apply a cast to double, or compose the
   function with a cast.
 
-  <subsubsection|Absolute Value and Sign<label|absolute-value-and-sign>>
+  <subsubsection|Absolute Value and Sign><label|absolute-value-and-sign>
 
   The standard <verbatim|abs> and <verbatim|sgn> functions are overloaded for
   rationals.
@@ -583,7 +627,7 @@
   <hlink|Decomposition|#decomposition>).
 
   <subsubsection|Greatest Common Divisor (GCD) and Least Common Multiple
-  (LCM)<label|greatest-common-divisor-gcd-and-least-common-multiple-lcm>>
+  (LCM)><label|greatest-common-divisor-gcd-and-least-common-multiple-lcm>
 
   The standard functions <verbatim|gcd> and <verbatim|lcm> are overloaded for
   rationals, and mixtures of integer and rational.
@@ -600,6 +644,8 @@
   <with|font-series|bold|Example 11> With two rationals:
 
   <\verbatim>
+    \;
+
     \<gtr\> let a = 7%12;
 
     \<gtr\> let b = 21%32;
@@ -617,11 +663,15 @@
     \<gtr\> b % f;
 
     9L%1L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 12> With a rational and an integer:
 
   <\verbatim>
+    \;
+
     \<gtr\> let f = gcd (6%5) 4;
 
     \<gtr\> f;
@@ -635,12 +685,16 @@
     \<gtr\> 4 % f;
 
     10L%1L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 13> With integral rationals and with
   integers:
 
   <\verbatim>
+    \;
+
     \<gtr\> gcd (rational 18) (rational 24);
 
     6L%1L
@@ -648,11 +702,15 @@
     \<gtr\> gcd 18 24;
 
     6
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 14> The behaviour with negative numbers:
 
   <\verbatim>
+    \;
+
     \<gtr\> gcd (rational (-18)) (rational 24);
 
     6L%1L
@@ -664,6 +722,8 @@
     \<gtr\> gcd (rational (-18)) (rational (-24));
 
     6L%1L
+
+    \;
   </verbatim>
 
   <\description>
@@ -677,6 +737,8 @@
   <with|font-series|bold|Example 15> With two rationals:
 
   <\verbatim>
+    \;
+
     \<gtr\> let a = 7%12;
 
     \<gtr\> let bB = 21%32;
@@ -694,11 +756,15 @@
     \<gtr\> m % b;
 
     8L%1L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 16> With a rational and an integer:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m = lcm (6%5) 4;
 
     \<gtr\> m;
@@ -708,11 +774,15 @@
     \<gtr\> m % (6%5);
 
     10L%1L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 17> The behaviour with negative numbers:
 
   <\verbatim>
+    \;
+
     \<gtr\> lcm (rational (-18)) (rational 24);
 
     72L%1L
@@ -724,12 +794,14 @@
     \<gtr\> lcm (rational (-18)) (rational (-24));
 
     72L%1L
+
+    \;
   </verbatim>
 
   Together, the GCD and LCM have the following property when applied to two
   numbers: (gcd q1 q2) * (lcm q1 q2) = \|q1 * q2\|.
 
-  <subsubsection|Extrema (Minima and Maxima)<label|extrema-minima-and-maxima>>
+  <subsubsection|Extrema (Minima and Maxima)><label|extrema-minima-and-maxima>
 
   The standard <verbatim|min> and <verbatim|max> functions work with rational
   values.
@@ -737,14 +809,18 @@
   <with|font-series|bold|Example 18> Maximum:
 
   <\verbatim>
+    \;
+
     \<gtr\> max (3%8) (1%3);
 
     3L%8L
+
+    \;
   </verbatim>
 
-  <subsection|Special Rational Functions<label|special-rational-functions>>
+  <subsection|Special Rational Functions><label|special-rational-functions>
 
-  <subsubsection|Complexity<label|complexity>>
+  <subsubsection|Complexity><label|complexity>
 
   The `complexity' (or `complicatedness') of a rational is a measure of the
   greatness of its simplest (positive) denominator.
@@ -760,11 +836,11 @@
   concerning `complex numbers' (see <hlink|Rational Complex
   Numbers|#rational-complex-numbers>) are named with `comp'.
 
-  <paragraph|Complexity Relations<label|complexity-relations>>
+  <paragraph|Complexity Relations><label|complexity-relations>
 
   <\description>
-    <item*|n1 rational::eq_cplx n2<label|rational::eq-cplx>>``[is] equally
-    complex [to]'' \V returns 1 if n1 and n2 are equally complex; returns 0
+    <item*|n1 rational::eq_cplx n2<label|rational::eq-cplx>>\P[is] equally
+    complex [to]\Q \V returns 1 if n1 and n2 are equally complex; returns 0
     otherwise. Equal complexity is not the same a equality; n1 and n2 are
     equally complex if their simplest denominators are equal. Equal
     complexity forms an equivalence relation on rationals.
@@ -773,6 +849,8 @@
   <with|font-series|bold|Example 19> Complexity equality test:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1%3) eq_cplx (100%3);
 
     1
@@ -784,17 +862,19 @@
     \<gtr\> (3%3) eq_cplx (1%3); // LHS is not in simplest form
 
     0
+
+    \;
   </verbatim>
 
   <\description>
-    <item*|n1 rational::not_eq_cplx n2<label|rational::not-eq-cplx>>``not
-    equally complex'' \V returns 0 if n1 and n2 are equally complex; returns
+    <item*|n1 rational::not_eq_cplx n2<label|rational::not-eq-cplx>>\Pnot
+    equally complex\Q \V returns 0 if n1 and n2 are equally complex; returns
     1 otherwise.
   </description>
 
   <\description>
-    <item*|n1 rational::less_cplx n2<label|rational::less-cplx>>``[is] less
-    complex [than]'' (or ``simpler'') \V returns 1 if n1 is strictly less
+    <item*|n1 rational::less_cplx n2<label|rational::less-cplx>>\P[is] less
+    complex [than]\Q (or \Psimpler\Q) \V returns 1 if n1 is strictly less
     complex than n2; returns 0 otherwise. This forms a partial strict
     ordering on rationals.
   </description>
@@ -802,6 +882,8 @@
   <with|font-series|bold|Example 20> Complexity inequality test:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1%3) less_cplx (100%3);
 
     0
@@ -813,29 +895,31 @@
     \<gtr\> (3%3) less_cplx (1%3); // LHS is not in simplest form
 
     1
+
+    \;
   </verbatim>
 
   <\description>
-    <item*|n1 rational::less_eq_cplx n2<label|rational::less-eq-cplx>>``less
-    or equally complex'' (or ``not more complex'') \V returns 1 if n1 is less
+    <item*|n1 rational::less_eq_cplx n2<label|rational::less-eq-cplx>>\Pless
+    or equally complex\Q (or \Pnot more complex\Q) \V returns 1 if n1 is less
     complex than or equally complex to n2; returns 0 otherwise. This forms a
     partial non-strict ordering on rationals.
   </description>
 
   <\description>
-    <item*|n1 rational::more_cplx n2<label|rational::more-cplx>>``[is] more
-    complex [than]'' \V returns 1 if n1 is strictly more complex than n2;
+    <item*|n1 rational::more_cplx n2<label|rational::more-cplx>>\P[is] more
+    complex [than]\Q \V returns 1 if n1 is strictly more complex than n2;
     returns 0 otherwise. This forms a partial strict ordering on rationals.
   </description>
 
   <\description>
-    <item*|n1 rational::more_eq_cplx n2<label|rational::more-eq-cplx>>``more
-    or equally complex'' (or ``not less complex'') \V returns 1 if n1 is more
+    <item*|n1 rational::more_eq_cplx n2<label|rational::more-eq-cplx>>\Pmore
+    or equally complex\Q (or \Pnot less complex\Q) \V returns 1 if n1 is more
     complex than or equally complex to n2; returns 0 otherwise. This forms a
     partial non-strict ordering on rationals.
   </description>
 
-  <paragraph|Complexity Comparison Function<label|complexity-comparison-function>>
+  <paragraph|Complexity Comparison Function><label|complexity-comparison-function>
 
   <\description>
     <item*|rational::cmp_complexity n1 n2<label|rational::cmp-complexity>>is
@@ -848,6 +932,8 @@
   <with|font-series|bold|Example 21> Complexity comparison:
 
   <\verbatim>
+    \;
+
     \<gtr\> cmp_complexity (1%3) (100%3);
 
     0
@@ -859,9 +945,11 @@
     \<gtr\> cmp_complexity (3%3) (1%3); // LHS is not in simplest form
 
     -1
+
+    \;
   </verbatim>
 
-  <paragraph|Complexity Extrema<label|complexity-extrema>>
+  <paragraph|Complexity Extrema><label|complexity-extrema>
 
   <\description>
     <item*|rational::least_cplx n1 n2<label|rational::least-cplx>>returns the
@@ -871,6 +959,8 @@
   <with|font-series|bold|Example 22> Complexity selection:
 
   <\verbatim>
+    \;
+
     \<gtr\> least_cplx (100%3) (1%3);
 
     100L%3L
@@ -882,6 +972,8 @@
     \<gtr\> least_cplx (1%3) (3%3); // second argument not in simplest form
 
     1L%1L
+
+    \;
   </verbatim>
 
   <\description>
@@ -889,18 +981,20 @@
     most complex of n1 and n2; if they're equally complex, n1 is returned.
   </description>
 
-  <paragraph|Other Complexity Functions<label|other-complexity-functions>>
+  <paragraph|Other Complexity Functions><label|other-complexity-functions>
 
   <\description>
     <item*|rational::complexity_rel n1 op
-    n2<label|rational::complexity-rel>>returns ``complexity-of n1'' compared
-    by operator op to the ``complexity-of n2''. This is equivalent to prefix
+    n2<label|rational::complexity-rel>>returns \Pcomplexity-of n1\Q compared
+    by operator op to the \Pcomplexity-of n2\Q. This is equivalent to prefix
     complexity rel op n1 n2 (below), but is the more readable form.
   </description>
 
   <with|font-series|bold|Example 23> Complexity relations:
 
   <\verbatim>
+    \;
+
     \<gtr\> complexity_rel (1%3) (==) (100%3);
 
     1
@@ -912,6 +1006,8 @@
     \<gtr\> complexity_rel (1%4) (\<gtr\>) (1%5);
 
     0
+
+    \;
   </verbatim>
 
   <\description>
@@ -920,7 +1016,7 @@
     op n2, but this form is more convenient for currying.
   </description>
 
-  <subsubsection|Mediants and Farey Sequences<label|mediants-and-farey-sequences>>
+  <subsubsection|Mediants and Farey Sequences><label|mediants-and-farey-sequences>
 
   <\description>
     <item*|rational::mediant q1 q2<label|rational::mediant>>returns the
@@ -934,8 +1030,8 @@
     representation, and therefore is well-defined as a function on pairs of
     rationals.
 
-    By the phrase ``the mediant'' (as opposed to just ``a mediant'') we
-    always mean ``the canonical mediant''.
+    By the phrase \Pthe mediant\Q (as opposed to just \Pa mediant\Q) we
+    always mean \Pthe canonical mediant\Q.
 
     If q1 \<less\> q2, then any mediant q is always such that q1 \<less\> q
     \<less\> q2.
@@ -951,6 +1047,8 @@
   <with|font-series|bold|Example 24> Mediants:
 
   <\verbatim>
+    \;
+
     \<gtr\> mediant (1%4) (3%10);
 
     2L%7L
@@ -974,6 +1072,8 @@
     \<gtr\> mediant (-10) (-1%10);
 
     (-1L)%1L
+
+    \;
   </verbatim>
 
   <\description>
@@ -986,11 +1086,15 @@
   <with|font-series|bold|Example 25> A Farey sequence:
 
   <\verbatim>
+    \;
+
     \<gtr\> map str_mixed (farey 6);
 
     ["0L","1L/6L","1L/5L","1L/4L","1L/3L","2L/5L","1L/2L","3L/5L","2L/3L",
 
     "3L/4L","4L/5L","5L/6L","1L"]
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|str_mixed>|#rational::str-mixed>.)
@@ -1000,7 +1104,7 @@
   only if q2 is the mediant of q1 and q3. If rationals q1 = n1/d1 \<less\> q2
   = n2/d2 are consecutive members of a Farey sequence, then n2d1 - n1d2 = 1.
 
-  <subsubsection|Rational Type Simplification<label|rational-type-simplification>>
+  <subsubsection|Rational Type Simplification><label|rational-type-simplification>
 
   <\description>
     <item*|rational::rat_simplify q<label|rational::rat-simplify>>returns q
@@ -1010,6 +1114,8 @@
   <with|font-series|bold|Example 26> Rational type simplification:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = [9, 9%1, 9%2, 4.5, 9%1+i, 9%2+i]; l;
 
     [9,9L%1L,9L%2L,4.5,9L%1L+:1,9L%2L+:1]
@@ -1017,6 +1123,8 @@
     \<gtr\> map rat_simplify l;
 
     [9,9,9L%2L,4.5,9+:1,9L%2L+:1]
+
+    \;
   </verbatim>
 
   See <hlink|Rational Complex Numbers|#rational-complex-numbers> for details
@@ -1024,9 +1132,9 @@
   Simplification|#rational-complex-type-simplification> for details of their
   type simplification.
 
-  <subsection|Q -\<gtr\> Z \V Rounding<label|q-z-rounding>>
+  <subsection|Q -\<gtr\> Z \V Rounding><label|q-z-rounding>
 
-  <subsubsection|Rounding to Integer<label|rounding-to-integer>>
+  <subsubsection|Rounding to Integer><label|rounding-to-integer>
 
   Some of these are new functions, and some are overloads of standard
   functions. The behaviour of the overloads is consistent with that of the
@@ -1072,6 +1180,8 @@
   modes:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = iterwhile (\<less\>= 3) (+(1%2)) (- rational 3);
 
     \<gtr\> map double l; // (just to show the values in a familiar format)
@@ -1101,11 +1211,13 @@
     \<gtr\> map round_unbiased l;
 
     [-3L,-2L,-2L,-2L,-1L,0L,0L,0L,1L,2L,2L,2L,3L]
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|double>|purelib.tm#double>.)
 
-  <subsubsection|Integer and Fraction Parts<label|integer-and-fraction-parts>>
+  <subsubsection|Integer and Fraction Parts><label|integer-and-fraction-parts>
 
   <\description>
     <item*|rational::integer_and_fraction roundfun
@@ -1120,6 +1232,8 @@
   different rounding modes:
 
   <\verbatim>
+    \;
+
     \<gtr\> let nc = -22%7;
 
     \<gtr\> integer_and_fraction floor nc;
@@ -1133,6 +1247,8 @@
     \<gtr\> integer_and_fraction round nc;
 
     -3L,(-1L)%7L
+
+    \;
   </verbatim>
 
   It is always the case that z and f have the property that q = z + f.
@@ -1176,6 +1292,8 @@
   <with|font-series|bold|Example 29> Standard integer and fraction parts:
 
   <\verbatim>
+    \;
+
     \<gtr\> let nc = -22%7;
 
     \<gtr\> int nc;
@@ -1185,9 +1303,11 @@
     \<gtr\> frac nc;
 
     (-1L)%7L
+
+    \;
   </verbatim>
 
-  <subsection|Rounding to Multiples<label|rounding-to-multiples>>
+  <subsection|Rounding to Multiples><label|rounding-to-multiples>
 
   <\description>
     <item*|rational::round_to_multiple roundfun multOf
@@ -1243,6 +1363,8 @@
   <with|font-series|bold|Example 30> Round to multiple:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = [34.9, 35, 35%1, 35.0, 35.1];
 
     \<gtr\> map double l; // (just to show the values in a familiar format)
@@ -1272,6 +1394,8 @@
     \<gtr\> map (round_multiple_unbiased 10) l;
 
     [30.0,40L,40L,40.0,40.0]
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|double>|purelib.tm#double>.)
@@ -1286,6 +1410,8 @@
   <math|\<approx\>> 0.368 where d = 1000 (actually, where d\|1000):
 
   <\verbatim>
+    \;
+
     \<gtr\> let co_E = exp (-1);
 
     co_E;
@@ -1299,6 +1425,8 @@
     \<gtr\> 1000 * ans;
 
     368L%1L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 32> Finding the nearest q = n/d value to
@@ -1306,18 +1434,22 @@
   (actually, where d\|243):
 
   <\verbatim>
+    \;
+
     \<gtr\> let co_Phi = (sqrt 5 - 1) / 2;
 
     \<gtr\> round_multiple (1%243) (rational co_Phi);
 
     50L%81L
+
+    \;
   </verbatim>
 
   Other methods for obtaining a rational approximation of a number are
   described in <hlink|R -\<gtr\> Q \V Approximation|#r-q-approximation>.
 
   <subsection|Q -\<gtr\> R \V Conversion /
-  Casting<label|q-r-conversion-casting>>
+  Casting><label|q-r-conversion-casting>
 
   <\description>
     <item*|double q<label|double/rational>>(overload of built-in) returns a
@@ -1327,7 +1459,7 @@
     rationals can not be represented exactly as a double.)
   </description>
 
-  <subsection|R -\<gtr\> Q \V Approximation<label|r-q-approximation>>
+  <subsection|R -\<gtr\> Q \V Approximation><label|r-q-approximation>
 
   This section describes functions that approximate a number (usually a
   double) by a rational. See <hlink|Rounding to
@@ -1336,7 +1468,7 @@
   Approximation|#numeral-string-q-approximation> for approximation by a
   rational of a string representation of a real number.
 
-  <subsubsection|Intervals<label|module-rat-interval>>
+  <subsubsection|Intervals><label|module-rat-interval>
 
   Some of the approximation functions return an
   <with|font-series|bold|interval>. The file <verbatim|rat_interval.pure> is
@@ -1348,7 +1480,7 @@
   functions to be used are simply the `deconstructors'; see <hlink|Interval
   Constructors and `Deconstructors'|#interval-constructors-and-deconstructors>.
 
-  <paragraph|Interval Constructors and `Deconstructors'<label|interval-constructors-and-deconstructors>>
+  <paragraph|Interval Constructors and `Deconstructors'><label|interval-constructors-and-deconstructors>
 
   Intervals are constructed with the function interval.
 
@@ -1361,11 +1493,15 @@
   <with|font-series|bold|Example 33> Constructing an interval:
 
   <\verbatim>
+    \;
+
     \<gtr\> let v = interval (3, 8);
 
     \<gtr\> v;
 
     interval::Ivl 3 8
+
+    \;
   </verbatim>
 
   <\description>
@@ -1387,6 +1523,8 @@
   <with|font-series|bold|Example 34> Deconstructing an interval:
 
   <\verbatim>
+    \;
+
     \<gtr\> lower v;
 
     3
@@ -1398,9 +1536,11 @@
     \<gtr\> lo_up v;
 
     3,8
+
+    \;
   </verbatim>
 
-  <paragraph|Interval Type Tests<label|interval-type-tests>>
+  <paragraph|Interval Type Tests><label|interval-type-tests>
 
   <\description>
     <item*|exactp v>returns whether an interval v has exact extrema.
@@ -1433,6 +1573,8 @@
   <with|font-series|bold|Example 35> Interval value tests:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = [interval(0,1), interval(0,1%1), interval(0,3%2),
     interval(0,1.5)];
 
@@ -1459,10 +1601,12 @@
     \<gtr\> map intinterval_valp l;
 
     [1,1,0,0]
+
+    \;
   </verbatim>
 
   <paragraph|Interval Arithmetic Operators and
-  Relations<label|interval-arithmetic-operators-and-relations>>
+  Relations><label|interval-arithmetic-operators-and-relations>
 
   The standard arithmetic operators (+), (-), (*), (/) and (%) are overloaded
   for intervals. The divide operators (/) and (%) do not produce a result if
@@ -1471,6 +1615,8 @@
   <label|example-36><with|font-series|bold|Example 36> Some intervals:
 
   <\verbatim>
+    \;
+
     \<gtr\> let a = interval (11, 19);
 
     \<gtr\> let b = interval (16, 24);
@@ -1478,11 +1624,15 @@
     \<gtr\> let c = interval (21, 29);
 
     \<gtr\> let d = interval (23, 27);
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 37> Interval arithmetic:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = interval (0, 1);
 
     \<gtr\> let s = interval (-1, 1);
@@ -1538,6 +1688,8 @@
     \<gtr\> a % a; // notice that the intervals are mutually independent here
 
     interval::Ivl (11L%19L) (19L%11L)
+
+    \;
   </verbatim>
 
   There are also some relations defined for intervals. The standard relations
@@ -1605,6 +1757,8 @@
   <with|font-series|bold|Example 38> Interval relations:
 
   <\verbatim>
+    \;
+
     \<gtr\> a == b;
 
     0
@@ -1656,6 +1810,8 @@
     \<gtr\> a within a;
 
     1
+
+    \;
   </verbatim>
 
   (The symbols a through d were defined in <hlink|Example 36|#example-36>.)
@@ -1666,6 +1822,8 @@
   <with|font-series|bold|Example 39> Membership:
 
   <\verbatim>
+    \;
+
     \<gtr\> 10 within a;
 
     0
@@ -1705,11 +1863,13 @@
     \<gtr\> (12%1) strictly_within a;
 
     1
+
+    \;
   </verbatim>
 
   (The symbol a was defined in <hlink|Example 36|#example-36>.)
 
-  <paragraph|Interval Maths<label|interval-maths>>
+  <paragraph|Interval Maths><label|interval-maths>
 
   Some standard functions are overloaded for intervals; some new functions
   are provided.
@@ -1722,6 +1882,8 @@
   <with|font-series|bold|Example 40> Absolute interval:
 
   <\verbatim>
+    \;
+
     \<gtr\> abs (interval (1, 5));
 
     interval::Ivl 1 5
@@ -1733,6 +1895,8 @@
     \<gtr\> abs (interval (-5, -1));
 
     interval::Ivl 1 5
+
+    \;
   </verbatim>
 
   <\description>
@@ -1747,15 +1911,19 @@
   <with|font-series|bold|Example 41> Absolute interval:
 
   <\verbatim>
+    \;
+
     \<gtr\> #d;
 
     4
+
+    \;
   </verbatim>
 
   (The symbol d was defined in <hlink|Example 36|#example-36>.)
 
   <subsubsection|Least Complex Approximation within
-  Epsilon<label|least-complex-approximation-within-epsilon>>
+  Epsilon><label|least-complex-approximation-within-epsilon>
 
   <\description>
     <item*|rational::rational_approx_epsilon <math|\<varepsilon\>>
@@ -1771,6 +1939,8 @@
   <math|\<approx\>> 3.142 <math|\<approx\>> 22/7:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approx_epsilon .01 pi;
 
     22L%7L
@@ -1778,12 +1948,16 @@
     \<gtr\> abs (ans - pi);
 
     0.00126448926734968
+
+    \;
   </verbatim>
 
   <label|example-43><with|font-series|bold|Example 43> The golden ratio
   <math|\<phi\>> = (1 + <math|<sqrt|>>5) / 2 <math|\<approx\>> 1.618:
 
   <\verbatim>
+    \;
+
     \<gtr\> let phi = (1 + sqrt 5) / 2;
 
     \<gtr\> rational_approx_epsilon .001 phi;
@@ -1793,6 +1967,8 @@
     \<gtr\> abs (ans - phi);
 
     0.000386929926365465
+
+    \;
   </verbatim>
 
   <\description>
@@ -1806,11 +1982,15 @@
   <math|\<pi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approxs_epsilon .0001 pi;
 
     [3L%1L,25L%8L,47L%15L,69L%22L,91L%29L,113L%36L,135L%43L,157L%50L,179L%57L,
 
     201L%64L,223L%71L,245L%78L,267L%85L,289L%92L,311L%99L,333L%106L]
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 45> Rational approximations to the golden
@@ -1818,9 +1998,13 @@
   Fibonacci numbers (from f1: 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...):
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approxs_epsilon .0001 phi;
 
     [1L%1L,3L%2L,8L%5L,21L%13L,55L%34L,144L%89L]
+
+    \;
   </verbatim>
 
   (The symbol phi was defined in <hlink|Example 43|#example-43>.)
@@ -1840,6 +2024,8 @@
   <math|\<pi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let i_Pi = rational_interval_epsilon .01 pi;
 
     \<gtr\> i_Pi;
@@ -1853,6 +2039,8 @@
     3.14159265358979
 
     3.14285714285714
+
+    \;
   </verbatim>
 
   (The functions lower and upper are described in <hlink|Interval
@@ -1862,6 +2050,8 @@
   ratio <math|\<phi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_interval_epsilon .001 phi;
 
     interval::Ivl (55L%34L) (89L%55L)
@@ -1869,13 +2059,15 @@
     \<gtr\> #ans;
 
     1L%1870L
+
+    \;
   </verbatim>
 
   (The symbol phi was defined in <hlink|Example 43|#example-43>. The function
   <verbatim|#> is described in <hlink|Interval Maths|#interval-maths>.)
 
   <subsubsection|Best Approximation with Bounded
-  Denominator<label|best-approximation-with-bounded-denominator>>
+  Denominator><label|best-approximation-with-bounded-denominator>
 
   <\description>
     <item*|rational::rational_approx_max_den maxDen
@@ -1887,18 +2079,26 @@
   <with|font-series|bold|Example 48> Rational approximation to <math|\<pi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approx_max_den 10 pi;
 
     22L%7L
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 49> Rational approximation to the golden
   ratio <math|\<phi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approx_max_den 1000 phi;
 
     1597L%987L
+
+    \;
   </verbatim>
 
   (The symbol phi was defined in <hlink|Example 43|#example-43>.)
@@ -1914,20 +2114,28 @@
   <math|\<pi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approxs_max_den 100 pi;
 
     [3L%1L,25L%8L,47L%15L,69L%22L,91L%29L,113L%36L,135L%43L,157L%50L,179L%57L,
 
     201L%64L,223L%71L,245L%78L,267L%85L,289L%92L,311L%99L]
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 51> Rational approximations to the golden
   ratio <math|\<phi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_approxs_max_den 100 phi;
 
     [1L%1L,3L%2L,8L%5L,21L%13L,55L%34L,144L%89L]
+
+    \;
   </verbatim>
 
   (The symbol phi was defined in <hlink|Example 43|#example-43>.)
@@ -1943,6 +2151,8 @@
   <math|\<pi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let i_Pi = rational_interval_max_den 100 pi ; i_Pi;
 
     interval::Ivl (311L%99L) (22L%7L)
@@ -1954,15 +2164,21 @@
     3.14159265358979
 
     3.14285714285714
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 53> Rational interval surrounding the golden
   ratio <math|\<phi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> rational_interval_max_den 1000 phi;
 
     interval::Ivl (987L%610L) (1597L%987L)
+
+    \;
   </verbatim>
 
   (The symbol phi was defined in <hlink|Example 43|#example-43>.)
@@ -1971,7 +2187,7 @@
   round to multiple instead (see <hlink|Rounding to
   Multiples|#rounding-to-multiples>).
 
-  <subsection|Decomposition<label|decomposition>>
+  <subsection|Decomposition><label|decomposition>
 
   There is more than one way to `decompose' a rational number into its
   `components'. It might be split into an integer and a fraction part \V see
@@ -1980,11 +2196,11 @@
   Sign|#absolute-value-and-sign>; or numerator and denominator \V see
   <hlink|`Deconstructors'|#deconstructors>.
 
-  <subsection|Continued Fractions<label|continued-fractions>>
+  <subsection|Continued Fractions><label|continued-fractions>
 
   <subsubsection|Introduction>
 
-  In ``pure-rational'', a continued fraction a<textsubscr|0> + (1 /
+  In \Ppure-rational\Q, a continued fraction a<textsubscr|0> + (1 /
   (a<textsubscr|1> + (1 / (a<textsubscr|2> + <math|\<cdots\>> + 1 /
   a<textsubscr|n>)))) where <math|\<forall\>>i \<gtr\> 0 <math|\<bullet\>>
   a<textsubscr|i> <math|\<neq\>> 0, is represented by [a<textsubscr|0>,
@@ -2001,9 +2217,9 @@
   to these as the `non-standard' and `standard' forms, respectively. The
   following functions return the standard form.
 
-  <subsubsection|Generating Continued Fractions<label|generating-continued-fractions>>
+  <subsubsection|Generating Continued Fractions><label|generating-continued-fractions>
 
-  <paragraph|Exact<label|exact>>
+  <paragraph|Exact><label|exact>
 
   <\description>
     <item*|rational::continued_fraction q<label|rational::continued-fraction>>Find
@@ -2014,6 +2230,8 @@
   <with|font-series|bold|Example 54> The rational 1234/1001:
 
   <\verbatim>
+    \;
+
     \<gtr\> continued_fraction (1234%1001);
 
     [1L,4L,3L,2L,1L,1L,1L,8L]
@@ -2021,9 +2239,11 @@
     \<gtr\> evaluate_continued_fraction ans;
 
     1234L%1001L
+
+    \;
   </verbatim>
 
-  <paragraph|Inexact<label|inexact>>
+  <paragraph|Inexact><label|inexact>
 
   <\description>
     <item*|rational::continued_fraction_max_terms n
@@ -2037,6 +2257,8 @@
   for the golden ratio <math|\<phi\>>:
 
   <\verbatim>
+    \;
+
     \<gtr\> continued_fraction_max_terms 5 phi;
 
     \ \ [1.0,1.0,1.0,1.0,1.0,1.61803398874989]
@@ -2044,6 +2266,8 @@
     \<gtr\> evaluate_continued_fraction ans;
 
     1.61803398874989
+
+    \;
   </verbatim>
 
   (The symbol phi was defined in <hlink|Example 43|#example-43>.)
@@ -2059,6 +2283,8 @@
   <math|<sqrt|>>2:
 
   <\verbatim>
+    \;
+
     \<gtr\> continued_fraction_epsilon .001 (sqrt 2);
 
     [1.0,2.0,2.0,2.0,2.0,2.41421356237241]
@@ -2066,9 +2292,11 @@
     \<gtr\> map double (convergents ans);
 
     [1.0,1.5,1.4,1.41666666666667,1.41379310344828,1.41421356237309]
+
+    \;
   </verbatim>
 
-  <subsubsection|Evaluating Continued Fractions<label|evaluating-continued-fractions>>
+  <subsubsection|Evaluating Continued Fractions><label|evaluating-continued-fractions>
 
   <\description>
     <item*|rational::evaluate_continued_fraction
@@ -2082,6 +2310,8 @@
   the non-standard form [4, 3, 2, 1]:
 
   <\verbatim>
+    \;
+
     \<gtr\> evaluate_continued_fraction [1,2,3,4];
 
     43L%30L
@@ -2097,9 +2327,11 @@
     \<gtr\> continued_fraction ans;
 
     [4L,3L,3L]
+
+    \;
   </verbatim>
 
-  <paragraph|Convergents<label|convergents>>
+  <paragraph|Convergents><label|convergents>
 
   <\description>
     <item*|rational::convergents aa<label|rational::convergents>>Calculate
@@ -2111,6 +2343,8 @@
   approximation of the value <math|<sqrt|>>2:
 
   <\verbatim>
+    \;
+
     \<gtr\> continued_fraction_max_terms 5 (sqrt 2);
 
     [1.0,2.0,2.0,2.0,2.0,2.41421356237241]
@@ -2118,9 +2352,11 @@
     \<gtr\> convergents ans;
 
     [1.0,1.5,1.4,1.41666666666667,1.41379310344828,1.41421356237309]
+
+    \;
   </verbatim>
 
-  <subsection|Rational Complex Numbers<label|rational-complex-numbers>>
+  <subsection|Rational Complex Numbers><label|rational-complex-numbers>
 
   Pure together with <verbatim|rational.pure> provide various types of
   number, including integers (<with|font-series|bold|Z>), doubles
@@ -2134,13 +2370,15 @@
   named with `cplx'.
 
   <subsubsection|Rational Complex Constructors and
-  `Deconstructors'<label|rational-complex-constructors-and-deconstructors>>
+  `Deconstructors'><label|rational-complex-constructors-and-deconstructors>
 
   Complex numbers can have rational parts.
 
   <with|font-series|bold|Example 59> Forming a rational complex:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1 +: 1 * (1%2);
 
     1+:1L%2L
@@ -2148,6 +2386,8 @@
     \<gtr\> ans * ans;
 
     3L%4L+:1L%1L
+
+    \;
   </verbatim>
 
   And rational numbers can be given complex parts.
@@ -2156,6 +2396,8 @@
   rationals:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1 +: 2) % (3 +: 4);
 
     11L%25L+:2L%25L
@@ -2183,6 +2425,8 @@
     \<gtr\> ((4%1) * (0 +: 1)) / (1 + (1%2) * (0 +: 1));
 
     1.6+:3.2
+
+    \;
   </verbatim>
 
   The various parts of a complex rational may be deconstructed using
@@ -2266,6 +2510,8 @@
   <with|font-series|bold|Example 61> Rational complex number deconstruction:
 
   <\verbatim>
+    \;
+
     \<gtr\> let cq = (1+2*i)%(3+3*i); cq;
 
     1L%2L+:1L%6L
@@ -2335,10 +2581,12 @@
     \<gtr\> (im . den) cq; //always \<less\>= (re.den)
 
     3L
+
+    \;
   </verbatim>
 
   <subsubsection|Rational Complex Type and Value
-  Tests<label|rational-complex-type-and-value-tests>>
+  Tests><label|rational-complex-type-and-value-tests>
 
   Beware that <verbatim|intcompvalp> and <verbatim|ratcompvapl> may return 1
   even if the value is of complex type with double parts. However, these
@@ -2370,6 +2618,8 @@
   <with|font-series|bold|Example 62> Rational complex number value tests:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = [9, 9%1, 9%2, 4.5, sqrt 2, 1+:1, 1%2+:1, 0.5+:1, inf,
     nan];
 
@@ -2430,10 +2680,12 @@
 
     See `Type and Value Tests`_ for some details of rational type and value
     tests.
+
+    \;
   </verbatim>
 
   <subsubsection|Rational Complex Arithmetic Operators and
-  Relations<label|rational-complex-arithmetic-operators-and-relations>>
+  Relations><label|rational-complex-arithmetic-operators-and-relations>
 
   The standard arithmetic operators (+), (-), (*), (/), (%), (), (==) and
   (<math|\<sim\>>=) are overloaded to have at least one complex and/or
@@ -2443,6 +2695,8 @@
   <with|font-series|bold|Example 63> Rational complex arithmetic:
 
   <\verbatim>
+    \;
+
     \<gtr\> let w = 1%2 +: 3%4;
 
     \<gtr\> let z = 5%6 +: 7%8;
@@ -2470,9 +2724,11 @@
     \<gtr\> w == w;
 
     1
+
+    \;
   </verbatim>
 
-  <subsubsection|Rational Complex Maths<label|rational-complex-maths>>
+  <subsubsection|Rational Complex Maths><label|rational-complex-maths>
 
   The standard functions <verbatim|re> and <verbatim|im> work with rational
   complex numbers (see <hlink|Rational Complex Constructors and
@@ -2484,6 +2740,8 @@
   <with|font-series|bold|Example 64> Rational complex maths:
 
   <\verbatim>
+    \;
+
     \<gtr\> polar (1%2+:1%2);
 
     0.707106781186548\<less\>:0.785398163397448
@@ -2495,6 +2753,8 @@
     \<gtr\> arg (-1%1);
 
     3.14159265358979
+
+    \;
   </verbatim>
 
   There are some additional useful functions for calculating with rational
@@ -2555,6 +2815,8 @@
   <with|font-series|bold|Example 65> More rational complex and other maths:
 
   <\verbatim>
+    \;
+
     \<gtr\> norm_gauss (1 +: 3);
 
     10
@@ -2629,9 +2891,11 @@
     \<gtr\> a * 25 + b * 15;
 
     5
+
+    \;
   </verbatim>
 
-  <subsubsection|Rational Complex Type Simplification<label|rational-complex-type-simplification>>
+  <subsubsection|Rational Complex Type Simplification><label|rational-complex-type-simplification>
 
   <\description>
     <item*|rational::comp_simplify c<label|rational::comp-simplify>>returns q
@@ -2648,6 +2912,8 @@
   simplification:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = [9+:1, 9%1+:1, 9%2+:1, 4.5+:1, 9%1+:0, 9%2+:0, 4.5+:0.0];
 
     \<gtr\> l;
@@ -2667,12 +2933,14 @@
     See `Rational Type Simplification`_ for some details of rational type
 
     simplification.
+
+    \;
   </verbatim>
 
-  <subsection|String Formatting and Evaluation<label|string-formatting-and-evaluation>>
+  <subsection|String Formatting and Evaluation><label|string-formatting-and-evaluation>
 
   <subsubsection|The Naming of the String Conversion
-  Functions<label|the-naming-of-the-string-conversion-functions>>
+  Functions><label|the-naming-of-the-string-conversion-functions>
 
   There are several families of functions for converting between strings and
   rationals.
@@ -2701,7 +2969,7 @@
   pairs are not quite mutual inverses.
 
   <subsubsection|Internationalisation and Format
-  Structures<label|internationalisation-and-format-structures>>
+  Structures><label|internationalisation-and-format-structures>
 
   Many of the string formatting functions in the following sections are
   parameterised by a `format structure'. Throughout this document, the formal
@@ -2734,12 +3002,12 @@
 
     <item*|<with|font-family|tt|"zi">>a function mapping an integer number
     string to a number string. The input string representing zero integer
-    part is ``'', which should be mapped to the desired representation of
+    part is \P\Q, which should be mapped to the desired representation of
     zero. All other number strings should be returned unaltered.
 
     <item*|<with|font-family|tt|"zf">>a function mapping a fraction-part
     number string to a number string. The input string representing zero
-    fraction part is ``'', which should be mapped to the desired
+    fraction part is \P\Q, which should be mapped to the desired
     representation of zero. All other number strings should be returned
     unaltered.
 
@@ -2787,6 +3055,8 @@
   as follows:
 
   <\verbatim>
+    \;
+
     public options_uk;
 
     const options_uk =
@@ -2828,35 +3098,37 @@
     public format_uk;
 
     const format_uk = create_format options_uk;
+
+    \;
   </verbatim>
 
   The exponent string need not depend on the radix, as the numerals for the
-  number radix in that radix are always ``10''.
+  number radix in that radix are always \P10\Q.
 
-  Beware of using ``e'' or ``E'' as an exponent string as these have the
+  Beware of using \Pe\Q or \PE\Q as an exponent string as these have the
   potential of being treated as digits in, e.g., hexadecimal.
 
   Format structures do not have to be generated via create format; they may
   also be constructed directly.
 
-  <subsubsection|Digit Grouping<label|digit-grouping>>
+  <subsubsection|Digit Grouping><label|digit-grouping>
 
-  Some functions take <verbatim|group> parameters. A value of 0 means ``don't
-  group''.
+  Some functions take <verbatim|group> parameters. A value of 0 means \Pdon't
+  group\Q.
 
-  <subsubsection|Radices<label|radices>>
+  <subsubsection|Radices><label|radices>
 
   The functions that produce a decimal expansion take a Radix argument. The
   fraction parts are expanded in that radix (or `base'), in addition to the
   integer parts. The parameter Radix is not restricted to the usual {2, 8,
   10, 16}, but may be any integer from 2 to 36; the numerals (`digits') are
-  chosen from [``0'', ... , ``9'', ``A'', ... , ``Z'']. The letter-digits are
+  chosen from [\P0\Q, ... , \P9\Q, \PA\Q, ... , \PZ\Q]. The letter-digits are
   always upper case.
 
-  The functions do not attach a prefix (such as ``0x'' for hexadecimal) to
+  The functions do not attach a prefix (such as \P0x\Q for hexadecimal) to
   the resulting string.
 
-  <subsubsection|Error Terms<label|error-terms>>
+  <subsubsection|Error Terms><label|error-terms>
 
   Some functions return a value including an `error' term (in a tuple) or
   sign (at the end of a string). Such an error is represents what the next
@@ -2866,6 +3138,8 @@
   `fragments':
 
   <\verbatim>
+    \;
+
     \<gtr\> strs_real_approx_sf 10 floor 3 (234567%100000);
 
     "+","2","34",567L%1000L
@@ -2873,16 +3147,20 @@
     \<gtr\> strs_real_approx_sf 10 ceil 3 (234567%100000);
 
     "+","2","35",(-433L)%1000L
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|strs_real_approx_sf>|#rational::strs-real-approx-sf>.)
 
-  In strings, only the sign of the error term is given. A ``+'' should be
-  read as ``and a bit more''; ``-'' as ``but a bit less''.
+  In strings, only the sign of the error term is given. A \P+\Q should be
+  read as \Pand a bit more\Q; \P-\Q as \Pbut a bit less\Q.
 
   <with|font-series|bold|Example 68> Error sign in the string:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_approx_sf format_uk 10 0 0 floor 3 (234567%100000);
 
     "2.34(+)"
@@ -2890,21 +3168,23 @@
     \<gtr\> str_real_approx_sf format_uk 10 0 0 ceil 3 (234567%100000);
 
     "2.35(-)"
+
+    \;
   </verbatim>
 
   (See the function <hlink|<with|font-family|tt|str_real_approx_sf>|#rational::str-real-approx-sf>.)
 
-  <subsection|Q \<less\>-\<gtr\> Fraction String (``i +
-  n/d'')<label|q-fraction-string-i-n-d>>
+  <subsection|Q \<less\>-\<gtr\> Fraction String (\Pi +
+  n/d\Q)><label|q-fraction-string-i-n-d>
 
-  <subsubsection|Formatting to Fraction Strings<label|formatting-to-fraction-strings>>
+  <subsubsection|Formatting to Fraction Strings><label|formatting-to-fraction-strings>
 
   <\description>
     <item*|rational::str_vulgar q<label|rational::str-vulgar>>returns a
     String representing the rational (or integer) q in the form
 
     <\itemize>
-      <item>``[-]n/d''
+      <item>\P[-]n/d\Q
     </itemize>
   </description>
 
@@ -2913,9 +3193,9 @@
     a String representing the rational (or integer) q in one of the forms
 
     <\itemize>
-      <item>``[-]n/d''
+      <item>\P[-]n/d\Q
 
-      <item>``[-]i''
+      <item>\P[-]i\Q
     </itemize>
   </description>
 
@@ -2924,19 +3204,21 @@
     representing the rational (or integer) q in one of the forms
 
     <\itemize>
-      <item>``i + n/d''
+      <item>\Pi + n/d\Q
 
-      <item>``-(i + n/d)''
+      <item>\P-(i + n/d)\Q
 
-      <item>``[-]n/d''
+      <item>\P[-]n/d\Q
 
-      <item>``[-]i''
+      <item>\P[-]i\Q
     </itemize>
   </description>
 
   <with|font-series|bold|Example 69> The fraction string representations:
 
   <\verbatim>
+    \;
+
     \<gtr\> let l = iterwhile (\<less\>= 3%2) (+(1%2)) (-3%2);
 
     \<gtr\> l;
@@ -2954,6 +3236,8 @@
     \<gtr\> map str_mixed l;
 
     ["-(1L+1L/2L)","-1L","-1L/2L","0L","1L/2L","1L","1L+1L/2L"]
+
+    \;
   </verbatim>
 
   These might be compared to the behaviour of the standard function
@@ -2967,19 +3251,23 @@
   <with|font-series|bold|Example 70> The standard function str:
 
   <\verbatim>
+    \;
+
     \<gtr\> map str l;
 
     ["(-3L)%2L","(-1L)%1L","(-1L)%2L","0L%1L","1L%2L","1L%1L","3L%2L"]
+
+    \;
   </verbatim>
 
-  <subsubsection|Evaluation of Fraction Strings<label|evaluation-of-fraction-strings>>
+  <subsubsection|Evaluation of Fraction Strings><label|evaluation-of-fraction-strings>
 
   <\description>
     <item*|rational::val_vulgar strg<label|rational::val-vulgar>>returns a
     rational q represented by the string strg in the form
 
     <\itemize>
-      <item>``[-]n/d''
+      <item>\P[-]n/d\Q
     </itemize>
   </description>
 
@@ -2990,19 +3278,21 @@
     rational q represented by the string strg
 
     <\itemize>
-      <item>``i + n/d''
+      <item>\Pi + n/d\Q
 
-      <item>``-(i + n/d)''
+      <item>\P-(i + n/d)\Q
 
-      <item>``[-]n/d'' \V thus val_mixed strictly extends val_vulgar
+      <item>\P[-]n/d\Q \V thus val_mixed strictly extends val_vulgar
 
-      <item>``[-]i''
+      <item>\P[-]i\Q
     </itemize>
   </description>
 
   <with|font-series|bold|Example 71> Evaluating fraction strings:
 
   <\verbatim>
+    \;
+
     \<gtr\> val_vulgar "-22/7";
 
     (-22L)%7L
@@ -3010,6 +3300,8 @@
     \<gtr\> val_mixed "1L+5L/6L";
 
     11L%6L
+
+    \;
   </verbatim>
 
   These might be compared to the behaviour of the standard function eval.
@@ -3021,6 +3313,8 @@
   <with|font-series|bold|Example 72> The standard function eval:
 
   <\verbatim>
+    \;
+
     \<gtr\> eval "1+5%6";
 
     11L%6L
@@ -3028,10 +3322,12 @@
     \<gtr\> eval "1L+5L/6L";
 
     1.83333333333333
+
+    \;
   </verbatim>
 
   <subsection|Q \<less\>-\<gtr\> Recurring Numeral Expansion String
-  (``I.FR'')<label|q-recurring-numeral-expansion-string-i-fr>>
+  (\PI.FR\Q)><label|q-recurring-numeral-expansion-string-i-fr>
 
   See <hlink|Internationalisation and Format
   Structures|#internationalisation-and-format-structures> for information
@@ -3039,7 +3335,7 @@
   parameter.
 
   <subsubsection|Formatting to Recurring Expansion
-  Strings<label|formatting-to-recurring-expansion-strings>>
+  Strings><label|formatting-to-recurring-expansion-strings>
 
   <\description>
     <item*|rational::str_real_recur fmt radix intGroup
@@ -3047,9 +3343,9 @@
     the rational (or integer) q as base-Radix expansion of one the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.init frac part[smallest recurring frac part ...]''
+      <item>\P[-]int.init frac part[smallest recurring frac part ...]\Q
     </itemize>
   </description>
 
@@ -3063,6 +3359,8 @@
   string representations:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_recur format_uk 10 3 (4000001%4); // grouped with commas
 
     "1,000,000.25"
@@ -3098,6 +3396,8 @@
     \<gtr\> str_real_recur format_uk 10 0 (70057%350); // 1%7 + 10001%50;
 
     "200.16[285714...]"
+
+    \;
   </verbatim>
 
   The function allows expansion to different radices (bases).
@@ -3106,6 +3406,8 @@
   and hexadecimal:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_recur format_uk 10 0 (1%100);
 
     "0.01"
@@ -3113,15 +3415,21 @@
     \<gtr\> str_real_recur format_uk 16 0 (1%100);
 
     "0.0[28F5C...]"
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Example 75> The recurring radix expansion in
   duodecimal:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_recur format_uk 12 0 (1%100);
 
     "0.0[15343A0B62A68781B059...]"
+
+    \;
   </verbatim>
 
   Note that this bracket notation is not standard in the literature. Usually
@@ -3156,6 +3464,8 @@
   \V the fragments:
 
   <\verbatim>
+    \;
+
     \<gtr\> strs_real_recur 10 (100%7);
 
     "+","14","","285714"
@@ -3167,6 +3477,8 @@
     \<gtr\> strs_real_recur 10 (70057%350);
 
     "+","200","16","285714"
+
+    \;
   </verbatim>
 
   This function may be used to also, e.g. format the integer part with
@@ -3180,7 +3492,7 @@
   </description>
 
   <subsubsection|Evaluation of Recurring Expansion
-  Strings<label|evaluation-of-recurring-expansion-strings>>
+  Strings><label|evaluation-of-recurring-expansion-strings>
 
   The <verbatim|str_*> and <verbatim|val_*> functions depend on a `format
   structure' parameter (fmt) such as format uk. Conversions may be performed
@@ -3195,9 +3507,9 @@
     by the base-radix expansion string strg of one the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.init frac part[recurring frac part ...]''
+      <item>\P[-]int.init frac part[recurring frac part ...]\Q
     </itemize>
   </description>
 
@@ -3205,6 +3517,8 @@
   expansion-type string representations:
 
   <\verbatim>
+    \;
+
     \<gtr\> val_real_recur format_uk 10 "-12.345";
 
     (-2469L)%200L
@@ -3224,6 +3538,8 @@
     \<gtr\> val_real_recur format_uk 10 ".[9...]";
 
     1L%1L
+
+    \;
   </verbatim>
 
   <\description>
@@ -3254,25 +3570,25 @@
 
       <item>initial fraction part
 
-      <item>recurring fraction part of one the forms - ``[-]int.frac'' -
-      ``[-]int.init frac part[recurring frac part ...]''
+      <item>recurring fraction part of one the forms - \P[-]int.frac\Q -
+      \P[-]int.init frac part[recurring frac part ...]\Q
     </itemize>
   </description>
 
-  <subsection|Q \<less\>-\<gtr\> Numeral Expansion String (``I.F
-  <math|\<times\>> 10E'')<label|q-numeral-expansion-string-i-f-10e>>
+  <subsection|Q \<less\>-\<gtr\> Numeral Expansion String (\PI.F
+  <math|\<times\>> 10E\Q)><label|q-numeral-expansion-string-i-f-10e>
 
   See <hlink|Internationalisation and Format
   Structures|#internationalisation-and-format-structures> for information
   about the formatting structure to be supplied in the <verbatim|fmt>
   parameter.
 
-  The exponent string ``*10^'' need not depend on the radix, as the numerals
-  for the number radix in that radix are always ``10''.
+  The exponent string \P*10^\Q need not depend on the radix, as the numerals
+  for the number radix in that radix are always \P10\Q.
 
-  <subsubsection|Formatting to Expansion Strings<label|formatting-to-expansion-strings>>
+  <subsubsection|Formatting to Expansion Strings><label|formatting-to-expansion-strings>
 
-  <paragraph|Functions for Fixed Decimal Places<label|functions-for-fixed-decimal-places>>
+  <paragraph|Functions for Fixed Decimal Places><label|functions-for-fixed-decimal-places>
 
   <\description>
     <item*|rational::str_real_approx_dp fmt radix intGroup fracGroup roundfun
@@ -3289,6 +3605,8 @@
   <with|font-series|bold|Example 78> Decimal places:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_approx_dp format_uk 10 3 3 round 2 (22%7);
 
     "3.14(+)"
@@ -3296,6 +3614,8 @@
     \<gtr\> str_real_approx_dp format_uk 10 3 3 ceil 2 (22%7);
 
     "3.15(-)"
+
+    \;
   </verbatim>
 
   <\description>
@@ -3313,7 +3633,7 @@
     representing an expansion to a number of decimal places, together with
 
     <\itemize>
-      <item>the rounding ``error'': a fraction representing the next
+      <item>the rounding \Perror\Q: a fraction representing the next
       numerals.
     </itemize>
   </description>
@@ -3321,6 +3641,8 @@
   <with|font-series|bold|Example 79> Decimal places \V the fragments:
 
   <\verbatim>
+    \;
+
     \<gtr\> strs_real_approx_dp 10 round 2 (22%7);
 
     "+","3","14",2L%7L
@@ -3328,6 +3650,8 @@
     \<gtr\> strs_real_approx_dp 10 ceil 2 (22%7);
 
     "+","3","15",(-5L)%7L
+
+    \;
   </verbatim>
 
   <\description>
@@ -3339,7 +3663,7 @@
     or <hlink|<with|font-family|tt|str_real_approx_sf>|#rational::str-real-approx-sf>.
   </description>
 
-  <paragraph|Functions for Significant Figures<label|functions-for-significant-figures>>
+  <paragraph|Functions for Significant Figures><label|functions-for-significant-figures>
 
   <\description>
     <item*|rational::str_real_approx_sf fmt radix intGroup fracGroup roundfun
@@ -3356,6 +3680,8 @@
   <with|font-series|bold|Example 80> Significant figures:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_approx_sf format_uk 10 3 3 floor 2 (22%7);
 
     "3.1(+)"
@@ -3363,6 +3689,8 @@
     \<gtr\> str_real_approx_sf format_uk 10 3 3 floor 2 ((-22)%7);
 
     "-3.2(+)"
+
+    \;
   </verbatim>
 
   <\description>
@@ -3377,7 +3705,7 @@
       <item>fraction part, representing an expansion to a number of
       significant figures, together with
 
-      <item>the rounding ``error'': a fraction representing the next numerals
+      <item>the rounding \Perror\Q: a fraction representing the next numerals
     </itemize>
   </description>
 
@@ -3387,7 +3715,7 @@
   </description>
 
   <paragraph|Functions for Scientific Notation and Engineering
-  Notation<label|functions-for-scientific-notation-and-engineering-notation>>
+  Notation><label|functions-for-scientific-notation-and-engineering-notation>
 
   <\description>
     <item*|rational::str_real_approx_sci fmt radix intGroup fracGroup
@@ -3424,7 +3752,7 @@
     scientific notation together with
 
     <\itemize>
-      <item>the rounding ``error'': a fraction representing the next
+      <item>the rounding \Perror\Q: a fraction representing the next
       numerals.
     </itemize>
   </description>
@@ -3447,6 +3775,8 @@
   <with|font-series|bold|Example 81> Engineering notation:
 
   <\verbatim>
+    \;
+
     \<gtr\> str_real_approx_eng format_uk 3 10 3 3 round 7 (rational 999950);
 
     "999.950,0*10^3"
@@ -3454,6 +3784,8 @@
     \<gtr\> str_real_approx_eng format_uk 3 10 3 3 round 4 999950;
 
     "1.000*10^6(-)"
+
+    \;
   </verbatim>
 
   <\description>
@@ -3476,7 +3808,7 @@
     engineering notation together with
 
     <\itemize>
-      <item>the rounding ``error'': a fraction representing the next
+      <item>the rounding \Perror\Q: a fraction representing the next
       numerals.
     </itemize>
   </description>
@@ -3484,6 +3816,8 @@
   <with|font-series|bold|Example 82> Engineering notation \V the fragments:
 
   <\verbatim>
+    \;
+
     \<gtr\> strs_real_approx_eng 3 10 round 7 (rational 999950);
 
     "+","999","9500","+","3",0L%1L
@@ -3491,6 +3825,8 @@
     \<gtr\> strs_real_approx_eng 3 10 round 4 999950;
 
     "+","1","000","+","6",(-1L)%20L
+
+    \;
   </verbatim>
 
   <\description>
@@ -3502,7 +3838,7 @@
     or <hlink|<with|font-family|tt|str_real_approx_sci>|#rational::str-real-approx-sci>.
   </description>
 
-  <subsubsection|Evaluation of Expansion Strings<label|evaluation-of-expansion-strings>>
+  <subsubsection|Evaluation of Expansion Strings><label|evaluation-of-expansion-strings>
 
   The <verbatim|str_*> and <verbatim|val_*> functions depend on a `format
   structure' parameter (fmt) such as format uk. Conversions may be performed
@@ -3517,9 +3853,9 @@
     the base-radix expansion string strg of one the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.frace[-]exponent''
+      <item>\P[-]int.frace[-]exponent\Q
     </itemize>
   </description>
 
@@ -3527,6 +3863,8 @@
   expansion-type string representations:
 
   <\verbatim>
+    \;
+
     \<gtr\> val_real_eng format_uk 10 "-12.345";
 
     (-2469L)%200L
@@ -3534,6 +3872,8 @@
     \<gtr\> val_real_eng format_uk 10 "-12.345*10^2";
 
     (-2469L)%2L
+
+    \;
   </verbatim>
 
   <\description>
@@ -3570,15 +3910,15 @@
 
       <item>exponent
 
-      <item>the ``error'' sign
+      <item>the \Perror\Q sign
     </itemize>
 
     of one the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.frac <math|\<times\>>10^[-]exponent''
+      <item>\P[-]int.frac <math|\<times\>>10^[-]exponent\Q
     </itemize>
   </description>
 
@@ -3587,7 +3927,7 @@
   notation.
 
   <subsection|Numeral String -\<gtr\> Q \V
-  Approximation<label|numeral-string-q-approximation>>
+  Approximation><label|numeral-string-q-approximation>
 
   This section describes functions to approximate by a rational a real number
   represented by a string. See <hlink|R -\<gtr\> Q \V
@@ -3608,9 +3948,9 @@
     expansion string str in one of the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.frac <math|\<times\>>10^[-]exponent''
+      <item>\P[-]int.frac <math|\<times\>>10^[-]exponent\Q
     </itemize>
 
     that is <math|\<varepsilon\>>-close. That is find a q such that \|q -
@@ -3620,6 +3960,8 @@
   <with|font-series|bold|Example 84> Rational from a long string:
 
   <\verbatim>
+    \;
+
     \<gtr\> let strg = "123.456,789,876,543,212,345,678,987,654,321*10^27";
 
     \<gtr\> let x = val_real_eng format_uk 10 strg;
@@ -3649,6 +3991,8 @@
     \<gtr\> double q;
 
     1.23456789876543e+029
+
+    \;
   </verbatim>
 
   <\description>
@@ -3658,12 +4002,12 @@
     expansion string strg in one of the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.frac <math|\<times\>>10^[-]exponent''
+      <item>\P[-]int.frac <math|\<times\>>10^[-]exponent\Q
     </itemize>
 
-    that is ``-small.
+    that is \P-small.
   </description>
 
   <\description>
@@ -3673,9 +4017,9 @@
     string strg in one of the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.frac <math|\<times\>>10^[-]exponent''
+      <item>\P[-]int.frac <math|\<times\>>10^[-]exponent\Q
     </itemize>
 
     that has a denominator no greater than maxDen. (maxDen \<gtr\> 0)
@@ -3688,9 +4032,9 @@
     string strg in one of the forms
 
     <\itemize>
-      <item>``[-]int.frac''
+      <item>\P[-]int.frac\Q
 
-      <item>``[-]int.frac <math|\<times\>>10^[-]exponent''
+      <item>\P[-]int.frac <math|\<times\>>10^[-]exponent\Q
     </itemize>
 
     that has endpoints with denominators no greater than maxDen. (maxDen
@@ -3700,6 +4044,8 @@
   <with|font-series|bold|Example 85> Other rationals from a long string:
 
   <\verbatim>
+    \;
+
     \<gtr\> val_eng_approx_epsilon format_uk 10 (1%100) strg;
 
     1975308638024691397530863802469L%16L
@@ -3719,9 +4065,11 @@
     interval::Ivl 9999999980000000199999998000000L%81L
 
     3456790116543209945679011654321L%28L
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-rational-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-rational-toc>
 
   <\itemize>
     <item><hlink|Pure-Rational - Rational number library for the Pure
@@ -3905,7 +4253,7 @@
       </itemize>
 
       <item><hlink|<with|font-series|bold|Q> \<less\>-\<gtr\> Fraction String
-      (``i + n/d'')|#q-fraction-string-i-n-d>
+      (\Pi + n/d\Q)|#q-fraction-string-i-n-d>
 
       <\itemize>
         <item><hlink|Formatting to Fraction
@@ -3916,7 +4264,7 @@
       </itemize>
 
       <item><hlink|<with|font-series|bold|Q> \<less\>-\<gtr\> Recurring
-      Numeral Expansion String (``I.FR'')|#q-recurring-numeral-expansion-string-i-fr>
+      Numeral Expansion String (\PI.FR\Q)|#q-recurring-numeral-expansion-string-i-fr>
 
       <\itemize>
         <item><hlink|Formatting to Recurring Expansion
@@ -3927,8 +4275,8 @@
       </itemize>
 
       <item><hlink|<with|font-series|bold|Q> \<less\>-\<gtr\> Numeral
-      Expansion String (``I.F <math|\<times\>>
-      10E'')|#q-numeral-expansion-string-i-f-10e>
+      Expansion String (\PI.F <math|\<times\>>
+      10E\Q)|#q-numeral-expansion-string-i-f-10e>
 
       <\itemize>
         <item><hlink|Formatting to Expansion
@@ -3967,6 +4315,6 @@
   <hlink|previous|pure-octave.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

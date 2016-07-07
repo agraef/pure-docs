@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,11 +8,11 @@
   <hlink|previous|pure-glpk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Gnuplot bindings<label|gnuplot-bindings>>
+  <section*|Gnuplot bindings><label|gnuplot-bindings>
 
   Kay-Uwe Kirstein
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009, 2010 by Kay-Uwe Kirstein.
 
@@ -21,7 +21,7 @@
   Software Foundation, either version 3 of the License, or (at your option)
   any later version.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
   This module contains a pure binding to gnuplot. Communication to gnuplot is
   performed via pipes. The usual work flow to generate plot via gnuplot is
@@ -35,9 +35,9 @@
     <item>close pipe with <verbatim|close>
   </enumerate>
 
-  <subsection|Function Reference<label|function-reference>>
+  <subsection|Function Reference><label|function-reference>
 
-  <subsubsection|Open / Closing Functions<label|open-closing-functions>>
+  <subsubsection|Open / Closing Functions><label|open-closing-functions>
 
   <\quote-env>
     <verbatim|gplot::open> <verbatim|cmd;>
@@ -70,7 +70,7 @@
 
   closes a gnuplot session, given by the handle <em|gp>.
 
-  <subsubsection|Low-Level Commands<label|low-level-commands>>
+  <subsubsection|Low-Level Commands><label|low-level-commands>
 
   <\quote-env>
     <verbatim|gplot::puts_no_echo> <verbatim|string> <verbatim|gp;>
@@ -87,7 +87,7 @@
 
   is a convenience wrapper to <verbatim|gplot::puts_no_echo>.
 
-  <subsubsection|Plot Commands<label|plot-commands>>
+  <subsubsection|Plot Commands><label|plot-commands>
 
   The main (versatile) function to generate plots is the simple plot command,
   which expects a list of the data to be plotted.
@@ -130,7 +130,7 @@
 
   where the latter form gives additional titles for each y-data set.
 
-  <subsubsection|Plot Options<label|plot-options>>
+  <subsubsection|Plot Options><label|plot-options>
 
   <\quote-env>
     <verbatim|gplot::xtics> <verbatim|gp> <verbatim|list_of_tic_labels;>
@@ -178,11 +178,11 @@
   label for successive plots, e.g., <verbatim|gplot::xlabel> <verbatim|gp>
   <verbatim|"">.
 
-  <subsubsection|Private Functions<label|private-functions>>
+  <subsubsection|Private Functions><label|private-functions>
 
   <\quote-env>
-    <verbatim|gpdata> <verbatim|data>, <verbatim|gpxydata>
-    <verbatim|(xdata,> <verbatim|y1data,> <verbatim|..)>
+    <verbatim|gpdata> <verbatim|data>, <verbatim|gpxydata> <verbatim|(xdata,>
+    <verbatim|y1data,> <verbatim|..)>
   </quote-env>
 
   Internal functions to handle lists of data point (<verbatim|gpdata>) or
@@ -207,7 +207,7 @@
 
   Internal function to generate title information for individual datasets
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gplot-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-gplot-toc>
 
   <\itemize>
     <item><hlink|Gnuplot bindings|#>
@@ -247,6 +247,6 @@
   <hlink|previous|pure-glpk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

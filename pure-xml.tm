@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-sql3.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Pure-XML - XML/XSLT interface<label|module-xml>>
+  <section*|Pure-XML - XML/XSLT interface><label|module-xml>
 
-  Version 0.7, October 28, 2014
+  Version 0.7, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -29,7 +29,7 @@
   (<hlink|http://gnuwin32.sourceforge.net|http://gnuwin32.sourceforge.net>)
   and are already included in the Pure MSI package.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009 by Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>.
 
@@ -46,7 +46,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-xml-0.7.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-xml-0.7.tar.gz>.
 
@@ -54,13 +54,17 @@
   <verbatim|install> to compile and install this module. This requires
   libxml2, libxslt and Pure.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   Use the following declaration to make the operations of this module
   available in your programs:
 
   <\verbatim>
+    \;
+
     using xml;
+
+    \;
   </verbatim>
 
   The module defines two namespaces <verbatim|xml> and <verbatim|xslt> for
@@ -68,13 +72,17 @@
   open these in your program as follows:
 
   <\verbatim>
+    \;
+
     using namespace xml, xslt;
+
+    \;
   </verbatim>
 
   A number of complete examples illustrating the use of this module can be
   found in the examples directory in the source distribution.
 
-  <subsection|Data Structure<label|data-structure>>
+  <subsection|Data Structure><label|data-structure>
 
   This module represents XML documents using pointers to the
   <verbatim|xmlDoc> and <verbatim|xmlNode> structures provided by the libxml2
@@ -82,7 +90,7 @@
   structure from libxslt (cf. <hlink|Transformations|#transformations>). This
   makes it possible to use these objects directly with the operations of the
   libxml2 and libsxslt libraries (via Pure's C interface) if necessary. Note,
-  however, that these are all ``cooked'' pointers which take care of freeing
+  however, that these are all \Pcooked\Q pointers which take care of freeing
   themselves automatically when they are no longer needed, therefore you
   shouldn't free them manually.
 
@@ -104,12 +112,12 @@
     <verbatim|x> is an XSLT stylesheet pointer.
   </description>
 
-  <subsubsection|The Document Tree<label|the-document-tree>>
+  <subsubsection|The Document Tree><label|the-document-tree>
 
   An XML document is a rooted tree which can be created, traversed and
   manipulated using the operations of this module. There are different types
   of nodes in the tree, each carrying their own type of data. In Pure land,
-  the node data is described using the following ``node info'' constructors.
+  the node data is described using the following \Pnode info\Q constructors.
 
   <\description>
     <item*|<em|constructor> xml::element tag ns
@@ -168,16 +176,15 @@
     the text of the processing instructions.
   </description>
 
-  <subsubsection|Document Types<label|document-types>>
+  <subsubsection|Document Types><label|document-types><label|dtd><label|document-types>
 
-  <label|dtd>Besides the node types described above, there are some
-  additional node types used in the <hlink|document type
-  definition|http://www.w3.org/TR/REC-xml/#dt-doctype> (DTD), which can be
-  extracted from a document using the <verbatim|int_subset> and
-  <verbatim|ext_subset> functions. These are for inspection purposes only; it
-  is not possible to change the DTD of a document in-place. (However, you can
-  create a new document and attach a DTD to it, using the <verbatim|new_doc>
-  function.)
+  Besides the node types described above, there are some additional node
+  types used in the <hlink|document type definition|http://www.w3.org/TR/REC-xml/#dt-doctype>
+  (DTD), which can be extracted from a document using the
+  <verbatim|int_subset> and <verbatim|ext_subset> functions. These are for
+  inspection purposes only; it is not possible to change the DTD of a
+  document in-place. (However, you can create a new document and attach a DTD
+  to it, using the <verbatim|new_doc> function.)
 
   <\description>
     <item*|<em|constructor> xml::doctype name extid<label|xml::doctype>>DTDs
@@ -192,10 +199,12 @@
     specification for details).
   </description>
 
-  <label|element-declaration><em|Element declarations:> Here, <verbatim|name>
-  is the element tag and <verbatim|content> the definition of the element
-  structure, see <hlink|element content|#element-content> below. XML supports
-  various kinds of element types, please refer to <hlink|document type
+  <label|element-declaration>
+
+  <em|Element declarations:> Here, <verbatim|name> is the element tag and
+  <verbatim|content> the definition of the element structure, see
+  <hlink|element content|#element-content> below. XML supports various kinds
+  of element types, please refer to <hlink|document type
   definition|http://www.w3.org/TR/REC-xml/#dt-doctype> in the XML
   specification for details.
 
@@ -218,7 +227,7 @@
 
   <\description>
     <item*|<em|constructor> xml::mixed_element name
-    content<label|xml::mixed-element>>A ``mixed'' element which can contain
+    content<label|xml::mixed-element>>A \Pmixed\Q element which can contain
     character data, optionally interspersed with child elements, as given in
     the <verbatim|content> specification.
   </description>
@@ -229,14 +238,16 @@
     of child elements, as given in the <verbatim|content> specification.
   </description>
 
-  <label|attribute-declaration><em|Attribute declarations:> These are used to
-  declare the attributes of an element. <verbatim|elem_name> is the name of
-  an element which describes the attribute type, <verbatim|name> is the name
-  of the attribute itself, and <verbatim|default> specifies the default value
-  of the attribute, see <hlink|attribute defaults|#attribute-defaults> below.
-  XML supports a bunch of different attribute types, please refer to
-  <hlink|document type definition|http://www.w3.org/TR/REC-xml/#dt-doctype>
-  in the XML specification for details.
+  <label|attribute-declaration>
+
+  <em|Attribute declarations:> These are used to declare the attributes of an
+  element. <verbatim|elem_name> is the name of an element which describes the
+  attribute type, <verbatim|name> is the name of the attribute itself, and
+  <verbatim|default> specifies the default value of the attribute, see
+  <hlink|attribute defaults|#attribute-defaults> below. XML supports a bunch
+  of different attribute types, please refer to <hlink|document type
+  definition|http://www.w3.org/TR/REC-xml/#dt-doctype> in the XML
+  specification for details.
 
   <\description>
     <item*|<em|constructor> xml::cdata_attr elem_name name
@@ -288,10 +299,12 @@
     default<label|xml::notation-attr>>
   </description>
 
-  <label|entity-declaration><em|Entity declarations:> These are used for
-  internal and external entity declarations. <verbatim|name> is the entity
-  name and <verbatim|content> its definition. External entities also have an
-  <verbatim|extid> (external identifier/URI pair) identifying the entity.
+  <label|entity-declaration>
+
+  <em|Entity declarations:> These are used for internal and external entity
+  declarations. <verbatim|name> is the entity name and <verbatim|content> its
+  definition. External entities also have an <verbatim|extid> (external
+  identifier/URI pair) identifying the entity.
 
   <\description>
     <item*|<em|constructor> xml::int_entity name
@@ -313,10 +326,11 @@
     content<label|xml::ext-param-entity>>
   </description>
 
-  <label|element-content>The element content type (<verbatim|content>
-  argument of the <hlink|element declaration|#element-declaration> nodes) is
-  a kind of regular expression formed with tags (specified as strings) and
-  the following constructors:
+  <label|element-content>
+
+  The element content type (<verbatim|content> argument of the <hlink|element
+  declaration|#element-declaration> nodes) is a kind of regular expression
+  formed with tags (specified as strings) and the following constructors:
 
   <\description>
     <item*|<em|constructor> xml::pcdata<label|xml::pcdata>>text data
@@ -348,9 +362,11 @@
     repeated element (<verbatim|x+>)
   </description>
 
-  <label|attribute-defaults>Attribute defaults (the <verbatim|default>
-  argument of <hlink|attribute declaration|#attribute-declaration> nodes) are
-  represented using the following constructor symbols:
+  <label|attribute-defaults>
+
+  Attribute defaults (the <verbatim|default> argument of <hlink|attribute
+  declaration|#attribute-declaration> nodes) are represented using the
+  following constructor symbols:
 
   <\description>
     <item*|<em|constructor> xml::required<label|xml::required>>a required
@@ -372,13 +388,13 @@
     with the given fixed value <verbatim|val>
   </description>
 
-  <subsection|Operations<label|operations>>
+  <subsection|Operations><label|operations>
 
   This module provides all operations necessary to create, inspect and
   manipulate XML documents residing either in memory or on disk. Operations
   for formatting XML documents using XSLT stylesheets are also available.
 
-  <subsubsection|Document Operations<label|document-operations>>
+  <subsubsection|Document Operations><label|document-operations>
 
   The following functions allow you to create new XML documents, load them
   from or save them to a file or a string, and provide general information
@@ -446,9 +462,9 @@
     <verbatim|encoding> the external encoding (if any), <verbatim|url> the
     name/location of the document (if any), <verbatim|compression> the level
     of zlib compression, and <verbatim|standalone> is a flag indicating
-    whether the document contains any external markup declarations ``which
+    whether the document contains any external markup declarations \Pwhich
     affect the information passed from the XML processor to the
-    application'', see the section on the <hlink|standalone document
+    application\Q, see the section on the <hlink|standalone document
     declaration|http://www.w3.org/TR/REC-xml/#sec-rmd> in the XML spec for
     details. (Apparently, in libxml2 <verbatim|standalone> is either a truth
     value or one of the special values -1, indicating that there's no XML
@@ -464,14 +480,14 @@
     (fails if there's no corresponding DTD).
   </description>
 
-  <\with|font-series|bold>
-    Example
-  </with>
+  <with|font-series|bold|Example>
 
   Read the sample.xml document distributed with the sources (ignoring blank
   nodes) and retrieve the document info:
 
   <\verbatim>
+    \;
+
     \<gtr\> using xml;
 
     \<gtr\> let sample = xml::load_file "sample.xml" xml::NOBLANKS;
@@ -479,9 +495,11 @@
     \<gtr\> xml::doc_info sample;
 
     "1.0","","sample.xml",0,-2
+
+    \;
   </verbatim>
 
-  <subsubsection|Traversing Documents<label|traversing-documents>>
+  <subsubsection|Traversing Documents><label|traversing-documents>
 
   These operations are used to traverse the document tree, i.e., the nodes of
   the document. They take either a document pointer <verbatim|doc> or a node
@@ -542,13 +560,13 @@
   Moreover, given a node pointer <verbatim|node>, <verbatim|node!i> can be
   used to retrieve the <verbatim|i>th child of <verbatim|node>.
 
-  <\with|font-series|bold>
-    Example
-  </with>
+  <with|font-series|bold|Example>
 
   Peek at the root node of the sample document and its children:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = xml::root sample; r;
 
     #\<less\>pointer 0xe15e10\<gtr\>
@@ -564,9 +582,11 @@
     \<gtr\> xml::node_info (r!0);
 
     xml::cdata "\<less\>greeting\<gtr\>Hello, world!\<less\>/greeting\<gtr\>"
+
+    \;
   </verbatim>
 
-  <subsubsection|Node Information<label|node-information>>
+  <subsubsection|Node Information><label|node-information>
 
   These operations retrieve information about the nodes of an XML document.
 
@@ -639,13 +659,13 @@
     unsets an attribute value.
   </description>
 
-  <\with|font-series|bold>
-    Examples
-  </with>
+  <with|font-series|bold|Examples>
 
   Set and unset a node attribute:
 
   <\verbatim>
+    \;
+
     \<gtr\> xml::set_node_attr r "foo" "4711";
 
     ()
@@ -665,6 +685,8 @@
     \<gtr\> xml::node_info r;
 
     xml::element "story" [] []
+
+    \;
   </verbatim>
 
   The <verbatim|select> function is <em|very> powerful, and probably the
@@ -673,10 +695,14 @@
   structure. Here is a very simple example of its use:
 
   <\verbatim>
+    \;
+
     \<gtr\> [xml::node_content n, xml::node_path n \| n = xml::select sample
     "//author"];
 
     [("John Fleck","/story/storyinfo/author")]
+
+    \;
   </verbatim>
 
   Note that if the XPath expression contains qualified names, the
@@ -684,10 +710,14 @@
   argument along with the XPath, as follows:
 
   <\verbatim>
+    \;
+
     xml::select doc ("//foo:bar", ["foo"=\<gtr\>"http://www.foo.org"]);
+
+    \;
   </verbatim>
 
-  <subsubsection|Node Manipulation<label|node-manipulation>>
+  <subsubsection|Node Manipulation><label|node-manipulation>
 
   These operations enable you to manipulate the document structure by adding
   a new node to the document tree (specified through its <hlink|node
@@ -720,13 +750,13 @@
     the document tree. Returns <verbatim|()>.
   </description>
 
-  <\with|font-series|bold>
-    Examples
-  </with>
+  <with|font-series|bold|Examples>
 
   Replace the first child of the root node in the sample document:
 
   <\verbatim>
+    \;
+
     \<gtr\> xml::node_info (r!0);
 
     xml::cdata "\<less\>greeting\<gtr\>Hello, world!\<less\>/greeting\<gtr\>"
@@ -738,11 +768,15 @@
     \<gtr\> xml::node_info (r!0);
 
     xml::text "bla bla"
+
+    \;
   </verbatim>
 
   Delete that node:
 
   <\verbatim>
+    \;
+
     \<gtr\> xml::unlink (r!0);
 
     ()
@@ -750,9 +784,11 @@
     \<gtr\> xml::node_info (r!0);
 
     xml::comment "This is a sample document for testing the xml interface."
+
+    \;
   </verbatim>
 
-  <subsubsection|Transformations<label|transformations>>
+  <subsubsection|Transformations><label|transformations>
 
   The following operations provide basic XSLT support. As already mentioned,
   stylesheets are represented as pointers to the xsltStylesheet structure
@@ -816,33 +852,39 @@
     some output-related information contained in the stylesheet.
   </description>
 
-  <\with|font-series|bold>
-    Example
-  </with>
+  <with|font-series|bold|Example>
 
   Load the recipes.xml document and the recipes.xsl stylesheet distributed
   with the sources:
 
   <\verbatim>
+    \;
+
     \<gtr\> let recipes = xml::load_file "recipes.xml" xml::DTDVALID;
 
     \<gtr\> let style = xslt::load_stylesheet "recipes.xsl";
+
+    \;
   </verbatim>
 
   Apply the stylesheet to the document and save the result in a html file:
 
   <\verbatim>
+    \;
+
     \<gtr\> let res = xslt::apply_stylesheet style recipes [];
 
     \<gtr\> xslt::save_result_file "recipes.html" res style 0;
 
     ()
+
+    \;
   </verbatim>
 
   That's all. You can now have a look at recipes.html in your favourite web
   browser.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-xml-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-xml-toc>
 
   <\itemize>
     <item><hlink|Pure-XML - XML/XSLT interface|#>
@@ -891,6 +933,6 @@
   <hlink|previous|pure-sql3.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

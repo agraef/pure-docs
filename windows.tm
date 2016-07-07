@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,7 +8,7 @@
   <hlink|previous|install.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Running Pure on Windows<label|running-pure-on-windows>>
+  <section*|Running Pure on Windows><label|running-pure-on-windows>
 
   This document provides some information pertaining to the Windows version
   of Pure, available from the Pure website in the form of an MSI package.
@@ -60,9 +60,7 @@
     <verbatim|PATH> accordingly.
   </itemize>
 
-  <\with|font-series|bold>
-    Optional Bits and Pieces
-  </with>
+  <with|font-series|bold|Optional Bits and Pieces>
 
   The Windows package contains all that's needed to run Pure programs with
   the interpreter. However, in order to make full use of the batch compiler
@@ -119,6 +117,6 @@
   <hlink|previous|install.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

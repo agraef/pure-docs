@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-lv2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-midi<label|module-midi>>
+  <section*|pure-midi><label|module-midi><label|module-midifile><label|module-midi>
 
-  <label|module-midifile>Version 0.6, October 28, 2014
+  Version 0.6, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -32,7 +32,7 @@
   the source modules listed above and have a look at the examples provided in
   the distribution.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.6.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-midi-0.6.tar.gz>.
 
@@ -55,7 +55,7 @@
   particular, pure-audio also provides realtime.pure, a little utility module
   which gives Pure programs access to realtime scheduling.
 
-  <subsection|License<label|license>>
+  <subsection|License><label|license>
 
   pure-midi is Copyright (c) 2010 by Albert Graef, licensed under the
   3-clause BSD license, see the COPYING file for details.
@@ -68,8 +68,8 @@
   Copyright (c) 1999-2000 Ross Bencina and Phil Burk Copyright (c) 2001-2006
   Roger B. Dannenberg
 
-  midifile.c and midifile.h in the midifile subdirectory are from ``Div's
-  midi utilities'' (<hlink|http://public.sreal.com:8000/<math|\<sim\>>div/midi-utilities/|http://public.sreal.com:8000/-tildediv/midi-utilities/>)
+  midifile.c and midifile.h in the midifile subdirectory are from \PDiv's
+  midi utilities\Q (<hlink|http://public.sreal.com:8000/<math|\<sim\>>div/midi-utilities/|http://public.sreal.com:8000/-tildediv/midi-utilities/>)
   which is
 
   Copyright (c) 2003-2006 David G. Slomin
@@ -77,7 +77,7 @@
   Please see portmidi.h and midifile.h for the pertaining copyrights and
   license conditions.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-midi-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-midi-toc>
 
   <\itemize>
     <item><hlink|pure-midi|#>
@@ -102,6 +102,6 @@
   <hlink|previous|pure-lv2.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,7 +8,7 @@
   <hlink|previous|windows.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Using PurePad<label|using-purepad>>
+  <section*|Using PurePad><label|using-purepad>
 
   The following information is available:
 
@@ -38,7 +38,7 @@
   that at present only a subset of all available addon modules is included in
   the Windows distribution.)
 
-  <subsection|Getting Started<label|getting-started>>
+  <subsection|Getting Started><label|getting-started>
 
   PurePad is a standard Windows application, with the menus, toolbar and
   status line you are familiar with (see figure below). Like the standard
@@ -74,7 +74,11 @@
   the factorial function:
 
   <\verbatim>
+    \;
+
     fact n = if n\<gtr\>0 then n*fact (n-1) else 1;
+
+    \;
   </verbatim>
 
   Enter this equation into the source editor pane, save the script as
@@ -84,7 +88,11 @@
   prompt will appear. You can now type an expression like
 
   <\verbatim>
+    \;
+
     map fact (1.. 10);
+
+    \;
   </verbatim>
 
   and see what happens.
@@ -98,7 +106,7 @@
   <verbatim|Fixedsys>, which is also the default. Tab stops are set to 8 by
   default.)
 
-  <subsection|Editing Scripts<label|editing-scripts>>
+  <subsection|Editing Scripts><label|editing-scripts>
 
   The <em|File> menu contains the usual set of operations which let you
   create new script files, open existing files, save a file that has been
@@ -112,7 +120,7 @@
   the line number you specify). Many of these operations can also be accessed
   by means of the familiar accelerator keys or the toolbar.
 
-  <subsection|Running Scripts<label|running-scripts>>
+  <subsection|Running Scripts><label|running-scripts>
 
   Once you have entered your script and saved it in a file, you can run the
   script using the Pure interpreter. The relevant commands can be found in
@@ -124,7 +132,7 @@
     already running, it is terminated first.
 
     <item><em|Debug> invokes the interpreter with the built-in debugger. This
-    allows you to trace the calculations (``reductions'' in Pure parlance)
+    allows you to trace the calculations (\Preductions\Q in Pure parlance)
     performed by your script. Note that to actually debug a function, you
     must first set a breakpoint using the interpreter's <verbatim|break>
     command; please see <hlink|<em|The Pure Manual>|pure.tm> for details.
@@ -167,7 +175,7 @@
     <item><em|Open> reopens the previously started script (the one whose name
     is shown inside brackets in the title bar) in the upper source pane. This
     operation is useful when you have opened other source files and now want
-    to quickly reload your ``main'' script.
+    to quickly reload your \Pmain\Q script.
 
     <item>The <em|Prompt> option allows you to change the interpreter's
     prompt (this only becomes effective when the interpreter is started the
@@ -182,7 +190,7 @@
     time a new script is run.
   </itemize>
 
-  <subsection|Using the Log<label|using-the-log>>
+  <subsection|Using the Log><label|using-the-log>
 
   The log, the lower pane of the PurePad main window, is an edit control
   which logs both your input to the interpreter and the interpreter's output.
@@ -220,7 +228,7 @@
   when PurePad is exited. You can switch to another history file using the
   <em|History File> command in the <em|Script> menu.
 
-  <subsection|Locating Source Lines<label|locating-source-lines>>
+  <subsection|Locating Source Lines><label|locating-source-lines>
 
   To quickly locate the source line of an error message shown in the log
   pane, PurePad provides some keyboard commands and toolbar buttons which can
@@ -260,7 +268,7 @@
   (<verbatim|Esc>) which quickly returns you to the input (i.e., last) line
   in the log pane.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|purepad-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|purepad-toc>
 
   <\itemize>
     <item><hlink|Using PurePad|#>
@@ -291,6 +299,6 @@
   <hlink|previous|windows.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

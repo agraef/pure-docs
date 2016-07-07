@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -7,7 +7,7 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|previous|purepad.tm> \|
   <hlink|Pure Language and Library Documentation|index.tm>
 
-  <section*|Reporting Bugs<label|reporting-bugs>>
+  <section*|Reporting Bugs><label|reporting-bugs>
 
   Pure is still under development, but the language and its standard library
   are fairly stable and mature. If you find a bug or other deficiency in
@@ -30,8 +30,11 @@
   Some issues are best discussed interactively. For these purposes we also
   have an IRC chat at Freenode (archived <hlink|here|https://yanovich.net/pure-lang/>):
 
-  <surround|| Previous topic|<quote-env|<hlink|irc://irc.freenode.net/pure-lang|irc://irc.freenode.net/pure-lang>
-  >>
+  <\quote-env>
+    <hlink|irc://irc.freenode.net/pure-lang|irc://irc.freenode.net/pure-lang>
+  </quote-env>
+
+  Previous topic
 
   <hlink|Using PurePad|purepad.tm>
 
@@ -39,6 +42,6 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|previous|purepad.tm> \|
   <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

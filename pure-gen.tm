@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,13 +8,13 @@
   <hlink|previous|pure-ffi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-gen: Pure interface generator<label|pure-gen-pure-interface-generator>>
+  <section*|pure-gen: Pure interface generator><label|pure-gen-pure-interface-generator>
 
-  Version 0.20, November 25, 2014
+  Version 0.20, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  <subsection|Name<label|name>>
+  <subsection|Name><label|name>
 
   pure-gen \U Pure interface generator
 
@@ -26,15 +26,19 @@
   create a C wrapper module which allows you to create interfaces to pretty
   much any code which can be called via C.
 
-  <subsection|Synopsis<label|synopsis>>
+  <subsection|Synopsis><label|synopsis>
 
   <\verbatim>
+    \;
+
     pure-gen [options ...] input-file
+
+    \;
   </verbatim>
 
-  <subsection|Options<label|options>>
+  <subsection|Options><label|options>
 
-  <subsubsection|General Options<label|general-options>>
+  <subsubsection|General Options><label|general-options>
 
   <\description>
     <item*|-h<label|cmdoption-pure-gen-h>>
@@ -74,7 +78,7 @@
     debugging purposes).
   </description>
 
-  <subsubsection|Preprocessor Options<label|preprocessor-options>>
+  <subsubsection|Preprocessor Options><label|preprocessor-options>
 
   <\description>
     <item*|-I path<label|cmdoption-pure-gen-I>>
@@ -104,7 +108,7 @@
     preprocessor options and arguments.
   </description>
 
-  <subsubsection|Generator Options<label|generator-options>>
+  <subsubsection|Generator Options><label|generator-options>
 
   <\description>
     <item*|-f iface<label|cmdoption-pure-gen-f>>
@@ -158,7 +162,7 @@
   <\description>
     <item*|-a<label|cmdoption-pure-gen-a>>
 
-    <item*|--all<label|cmdoption-pure-gen--all>>Include ``hidden'' symbols in
+    <item*|--all<label|cmdoption-pure-gen--all>>Include \Phidden\Q symbols in
     the output. Built-in preprocessor symbols and symbols starting with an
     underscore are excluded unless this option is specified.
   </description>
@@ -200,7 +204,7 @@
     details.
   </description>
 
-  <subsubsection|Output Options<label|output-options>>
+  <subsubsection|Output Options><label|output-options>
 
   <\description>
     <item*|-n<label|cmdoption-pure-gen-n>>
@@ -232,13 +236,17 @@
     extension .c.
   </description>
 
-  <subsection|Description<label|description>>
+  <subsection|Description><label|description>
 
   pure-gen generates Pure bindings for C functions from a C header file. For
   instance, the command
 
   <\verbatim>
+    \;
+
     pure-gen foo.h
+
+    \;
   </verbatim>
 
   creates a Pure module foo.pure with <verbatim|extern> declarations for the
@@ -259,12 +267,16 @@
   particularly useful example is
 
   <\verbatim>
+    \;
+
     pure-gen -ne foo.h \\
 
     \ \ \| awk '$1=="#" && $2~/^[0-9]+$/ && $3!~/^"\<less\>.*\<gtr\>"$/ \ {
     print $3 }' \\
 
     \ \ \| sort \| uniq
+
+    \;
   </verbatim>
 
   which prints on standard output all headers which are included in the
@@ -293,7 +305,7 @@
   Other options for more advanced uses are explained in the following
   sections.
 
-  <subsection|Filtering<label|filtering>>
+  <subsection|Filtering><label|filtering>
 
   Note that pure-gen always parses the given header file as well as <em|all>
   its includes. If the header file includes system headers, by default you
@@ -311,7 +323,11 @@
   other headers included in foo.h, you can invoke pure-gen as follows:
 
   <\verbatim>
+    \;
+
     pure-gen -s foo.h:: foo.h
+
+    \;
   </verbatim>
 
   Note that even in this case all included headers will be parsed so that
@@ -360,11 +376,11 @@
   have set up your C sources in some local directory then specifying a
   relative pathname is ok.
 
-  <subsection|Name Mangling<label|name-mangling>>
+  <subsection|Name Mangling><label|name-mangling>
 
   The <hlink|<em|-s>|#cmdoption-pure-gen-s> option is often used in
   conjuction with the <hlink|<em|-p>|#cmdoption-pure-gen-p> option, which
-  lets you specify a ``module name prefix'' which should be stripped off from
+  lets you specify a \Pmodule name prefix\Q which should be stripped off from
   C symbols. Case is insignificant and a trailing underscore will be removed
   as well, so <verbatim|-p> <verbatim|foo> turns <verbatim|fooBar> into
   <verbatim|Bar> and <verbatim|FOO_BAR> into <verbatim|BAR>. Moreover, the
@@ -376,7 +392,7 @@
   stripping the prefix from the selected symbols and finally adding a
   <verbatim|foo::> namespace qualifier to them instead.
 
-  <subsection|Generating C Code<label|generating-c-code>>
+  <subsection|Generating C Code><label|generating-c-code>
 
   As already mentioned, pure-gen can be invoked with the <verbatim|-fc> or
   <verbatim|-fc-ffi> option to create a C wrapper module along with the Pure
@@ -414,7 +430,11 @@
   the corresponding Pure module:
 
   <\verbatim>
+    \;
+
     pure-gen -fc foo.h
+
+    \;
   </verbatim>
 
   This creates foo.pure and foo.c, with an import clause for
@@ -427,7 +447,11 @@
   to a shared object (dll on Windows) as usual. E.g., using gcc on Linux:
 
   <\verbatim>
+    \;
+
     gcc -shared -o foo.so foo.c -lfoo
+
+    \;
   </verbatim>
 
   That's all. You should now be able to use the foo module by just putting
@@ -439,6 +463,8 @@
   template file, which has the following format:
 
   <\verbatim>
+    \;
+
     /* frontmatter here */
 
     #include %h
@@ -456,10 +482,12 @@
     \ \ return %n(%a);
 
     }
+
+    \;
   </verbatim>
 
   Note that the code up to the symbol <verbatim|%%> on a line by itself
-  denotes ``frontmatter'' which gets inserted at the beginning of the C file.
+  denotes \Pfrontmatter\Q which gets inserted at the beginning of the C file.
   (The frontmatter section can also be empty or missing altogether if you
   don't need it, but usually it will contain at least an <verbatim|#include>
   for the input header file.)
@@ -488,19 +516,25 @@
   much like the template above, minus the comments). A custom template is
   specified with the <hlink|<em|-t>|#cmdoption-pure-gen-t> option. (There's
   also a <hlink|<em|-T>|#cmdoption-pure-gen-T> option to specify an
-  ``alternate'' template for dealing with routines returning struct values,
+  \Palternate\Q template for dealing with routines returning struct values,
   see <hlink|Dealing with C Structs|#dealing-with-c-structs>.)
 
   For instance, suppose that we place the sample template above into a file
   foo.templ and invoke pure-gen on the foo.h header file as follows:
 
   <\verbatim>
+    \;
+
     pure-gen -fc -t foo.templ foo.h
+
+    \;
   </verbatim>
 
   Then in foo.c you'd get C output code like the following:
 
   <\verbatim>
+    \;
+
     /* frontmatter here */
 
     #include "foo.h"
@@ -528,6 +562,8 @@
     \ \ return bar(arg0);
 
     }
+
+    \;
   </verbatim>
 
   As indicated, the wrapper function names are usually stropped with the
@@ -538,6 +574,8 @@
   purpose the following template will do the trick:
 
   <\verbatim>
+    \;
+
     /* Add #includes etc. here. */
 
     %%
@@ -551,9 +589,11 @@
     \ \ /* Enter code of %n here. */
 
     }
+
+    \;
   </verbatim>
 
-  <subsection|Dealing with C Structs<label|dealing-with-c-structs>>
+  <subsection|Dealing with C Structs><label|dealing-with-c-structs>
 
   Modern C compilers allow you to pass C structs by value or return them as
   results from a C function. This represents a problem, because Pure doesn't
@@ -567,7 +607,11 @@
   indicates that the given function could not be wrapped:
 
   <\verbatim>
+    \;
+
     Warning: foo: struct argument or return type, try -fc-auto
+
+    \;
   </verbatim>
 
   What Pure <em|does> know is how to pass and return <em|pointers> to C
@@ -585,14 +629,20 @@
   follows:
 
   <\verbatim>
+    \;
+
     typedef struct { double x, y; } point;
 
     extern double foo(point p);
+
+    \;
   </verbatim>
 
   Then the generated wrapper code becomes:
 
   <\verbatim>
+    \;
+
     double Pure_foo(point* arg0)
 
     {
@@ -600,24 +650,36 @@
     \ \ return foo(*arg0);
 
     }
+
+    \;
   </verbatim>
 
   Which is declared in the Pure interface as:
 
   <\verbatim>
+    \;
+
     extern double Pure_foo(point*) = foo;
+
+    \;
   </verbatim>
 
   Struct return values are handled by returning a pointer to a static
   variable holding the return value. E.g.,
 
   <\verbatim>
+    \;
+
     extern point bar(double x, double y);
+
+    \;
   </verbatim>
 
   becomes:
 
   <\verbatim>
+    \;
+
     point* Pure_bar(double arg0, double arg1)
 
     {
@@ -627,12 +689,18 @@
     \ \ ret = bar(arg0, arg1); return &ret;
 
     }
+
+    \;
   </verbatim>
 
   Which is declared in the Pure interface as:
 
   <\verbatim>
+    \;
+
     extern point* Pure_bar(double, double) = bar;
+
+    \;
   </verbatim>
 
   (Note that the generated code in this case comes from an alternate
@@ -644,7 +712,11 @@
   In a Pure script you can now call <verbatim|foo> and <verbatim|bar> as:
 
   <\verbatim>
+    \;
+
     \<gtr\> foo (bar 0.0 1.0);
+
+    \;
   </verbatim>
 
   Note, however, that the pointer returned by <verbatim|bar> points to static
@@ -654,7 +726,11 @@
   defined by the latter call to <verbatim|bar>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let u = bar 1.0 0.0; let v = bar 0.0 1.0;
+
+    \;
   </verbatim>
 
   Which most likely is <em|not> what you want. To avoid this, you'll have to
@@ -664,6 +740,8 @@
   ffi module:
 
   <\verbatim>
+    \;
+
     \<gtr\> using ffi;
 
     \<gtr\> let point_t = struct_t (double_t, double_t);
@@ -671,6 +749,8 @@
     \<gtr\> let u = copy_struct point_t (bar 1.0 0.0);
 
     \<gtr\> let v = copy_struct point_t (bar 0.0 1.0);
+
+    \;
   </verbatim>
 
   Now <verbatim|u> and <verbatim|v> point to different, malloc'd structs
@@ -679,7 +759,7 @@
   structs in a direct fashion. Please refer to the
   <hlink|<em|pure-ffi>|pure-ffi.tm> documentation for further details.
 
-  <subsection|Notes<label|notes>>
+  <subsection|Notes><label|notes>
 
   pure-gen currently requires gcc (<verbatim|-E>) as the C preprocessor. It
   also needs a version of gcc which understands the
@@ -704,7 +784,7 @@
   easier to use third-party tools like SWIG for that purpose.
 
   In difference to SWIG and similar tools, pure-gen doesn't require you to
-  write any special ``interface files'', is controlled entirely by command
+  write any special \Pinterface files\Q, is controlled entirely by command
   line options, and the amount of marshalling overhead in C wrappers is
   negligible. This is possible since pure-gen targets only the Pure-C
   interface and Pure has good support for interfacing to C built into the
@@ -721,17 +801,19 @@
   usually possible to just concatenate the various output files produced by
   pure-gen to consolidate them into a single wrapper module. To make this
   easier, pure-gen provides the <hlink|<em|-N>|#cmdoption-pure-gen-N> a.k.a.
-  <hlink|<em|--noclobber>|#cmdoption-pure-gen--noclobber> option which
+  <hlink|<em|\Unoclobber>|#cmdoption-pure-gen--noclobber> option which
   appends the output to existing files instead of overwriting them. See the
   example below.
 
-  <subsection|Example<label|example>>
+  <subsection|Example><label|example>
 
   For the sake of a substantial, real-world example, here is how you can wrap
   the entire GNU Scientific Library in a single Pure module mygsl.pure, with
   the accompanying C module in mygsl.c:
 
   <\verbatim>
+    \;
+
     rm -f mygsl.pure mygsl.c
 
     DEFS=-DGSL_DISABLE_DEPRECATED
@@ -741,12 +823,18 @@
     \ \ pure-gen $DEFS -N -fc-auto -s "$x::" $x -o mygsl.pure -c mygsl.c
 
     done
+
+    \;
   </verbatim>
 
   The C module can then be compiled with:
 
   <\verbatim>
+    \;
+
     gcc $DEFS -shared -o mygsl.so mygsl.c -lgsl
+
+    \;
   </verbatim>
 
   Note that the <verbatim|GSL_DISABLE_DEPRECATED> symbol must be defined here
@@ -756,16 +844,16 @@
   those errors or working around them through some appropriate cpp options
   should be a piece of cake, though.
 
-  <subsection|License<label|license>>
+  <subsection|License><label|license>
 
   BSD-like. See the accompanying COPYING file for details.
 
-  <subsection|Authors<label|authors>>
+  <subsection|Authors><label|authors>
 
   Scott E. Dillard (University of California at Davis), Albert Graef
   (Johannes Gutenberg University at Mainz, Germany).
 
-  <subsection|See Also<label|see-also>>
+  <subsection|See Also><label|see-also>
 
   <\description>
     <item*|Language.C>A C parser written in Haskell by Manuel Chakravarty et
@@ -775,7 +863,7 @@
     <hlink|http://www.swig.org|http://www.swig.org>.
   </description>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gen-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-gen-toc>
 
   <\itemize>
     <item><hlink|pure-gen: Pure interface generator|#>
@@ -832,6 +920,6 @@
   <hlink|previous|pure-ffi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Nov
-  25, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

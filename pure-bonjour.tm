@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-avahi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-bonjour: Pure Bonjour Interface<label|module-bonjour>>
+  <section*|pure-bonjour: Pure Bonjour Interface><label|module-bonjour>
 
-  Version 0.1, October 28, 2014
+  Version 0.1, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -48,7 +48,7 @@
   Bitbucket site, and use the Pure mailing list for general discussion of the
   module.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2014 by Albert Graef.
 
@@ -65,7 +65,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-bonjour-0.1.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-bonjour-0.1.tar.gz>.
 
@@ -83,7 +83,7 @@
   default, so you may want to copy it to the Pure library directory if
   needed.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   To use the operations of this module, you need to have Bonjour (or a
   compatible Zeroconf implementation such as Avahi) installed and the
@@ -95,7 +95,11 @@
   in your Pure script:
 
   <\verbatim>
+    \;
+
     using bonjour;
+
+    \;
   </verbatim>
 
   All operations are in the <verbatim|bonjour> namespace, so you might want
@@ -103,10 +107,14 @@
   unqualified identifiers:
 
   <\verbatim>
+    \;
+
     using namespace bonjour;
+
+    \;
   </verbatim>
 
-  <subsection|Publishing Services<label|publishing-services>>
+  <subsection|Publishing Services><label|publishing-services>
 
   These functions allow you to advertise a network service using Bonjour, so
   that the service can be discovered by other applications participating in
@@ -146,7 +154,7 @@
     resolved automatically by tacking on a suffix to the service name.
   </description>
 
-  <subsection|Discovering Services<label|discovering-services>>
+  <subsection|Discovering Services><label|discovering-services>
 
   These functions let you discover services of a given service type. For each
   (resolvable) service you'll be able to retrieve the corresponding network
@@ -192,13 +200,15 @@
     error.
   </description>
 
-  <subsection|Example<label|example>>
+  <subsection|Example><label|example>
 
   Here's an example showing how to publish an UDP OSC (Open Sound Control)
   service which might be used to connect to mobile OSC applications such as
   hexler's TouchOSC:
 
   <\verbatim>
+    \;
+
     using bonjour;
 
     using namespace bonjour;
@@ -208,6 +218,8 @@
     let s = publish "OSC Server" "_osc._udp" 8000;
 
     check s;
+
+    \;
   </verbatim>
 
   The last line checks for the result of the operation and returns the actual
@@ -218,11 +230,15 @@
   currently available on your local network:
 
   <\verbatim>
+    \;
+
     let t = browse "_osc._udp";
 
     avail t;
 
     get t;
+
+    \;
   </verbatim>
 
   If you're running TouchOSC somewhere on your local network, it will be
@@ -232,10 +248,14 @@
   update their service list, using code like the following:
 
   <\verbatim>
+    \;
+
     avail t && get t;
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-bonjour-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-bonjour-toc>
 
   <\itemize>
     <item><hlink|pure-bonjour: Pure Bonjour Interface|#>
@@ -268,6 +288,6 @@
   <hlink|previous|pure-avahi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

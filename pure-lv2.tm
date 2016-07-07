@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,19 +8,19 @@
   <hlink|previous|pure-lilv.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-lv2<label|module-lv2>>
+  <section*|pure-lv2><label|module-lv2>
 
-  Version 0.2, October 28, 2014
+  Version 0.2, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   pure-lv2 is Copyright (c) 2014 by Albert Gräf. It is distributed under a
   3-clause BSD license, please check the COPYING file included in the
   distribution for details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.2.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lv2-0.2.tar.gz>.
 
@@ -40,7 +40,7 @@
   platform-specific setup. If it gets this wrong, you can set some variables
   manually, please see the Makefile for details.
 
-  <subsection|Description<label|description>>
+  <subsection|Description><label|description>
 
   <hlink|LV2|http://lv2plug.in/> is the new Linux audio plugin standard
   (successor of the venerable <hlink|LADSPA|http://www.ladspa.org/> standard)
@@ -91,7 +91,7 @@
   Please also check the <hlink|Usage|#usage> section below for information on
   how to run the pure2lv2 script.
 
-  <subsection|Requirements and Limitations<label|requirements-and-limitations>>
+  <subsection|Requirements and Limitations><label|requirements-and-limitations>
 
   Our implementation uses LV2's <hlink|dynamic
   manifests|http://lv2plug.in/ns/ext/dynmanifest/>, so that the plugin
@@ -111,7 +111,7 @@
   around this, but hopefully this limitation will go away in the
   not-too-distant future when the Pure runtime becomes thread-safe.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   A summary of the command syntax and options of the pure2lv2 script can be
   printed with <verbatim|purelv2> <verbatim|-h>. Usually the script is
@@ -144,6 +144,8 @@
   which multiplies an incoming audio signal with a volume control:
 
   <\verbatim>
+    \;
+
     using lv2;
 
     \;
@@ -171,6 +173,8 @@
     \ \ lv2::set_port self 2 (map (*vol) wav);
 
     end;
+
+    \;
   </verbatim>
 
   Running <verbatim|pure2lv2> <verbatim|myplugin.pure> turns the plugin
@@ -197,7 +201,7 @@
   the plugin script right inside the bundle, without having to run pure2lv2
   in between; this may be convenient when developing and testing a plugin.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-lv2-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-lv2-toc>
 
   <\itemize>
     <item><hlink|pure-lv2|#>
@@ -228,6 +232,6 @@
   <hlink|previous|pure-lilv.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

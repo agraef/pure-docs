@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,15 +8,15 @@
   <hlink|previous|pure-gtk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-tk<label|module-tk>>
+  <section*|pure-tk><label|module-tk>
 
-  Version 0.5, October 28, 2014
+  Version 0.5, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
   Pure's <hlink|Tcl/Tk|http://www.tcl.tk> interface.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
   This module provides a basic interface between Pure and Tcl/Tk. The
   operations of this module allow you to execute arbitrary commands in the
@@ -52,12 +52,12 @@
   earth.tcl) which shows how you can employ these bindings to write cool
   animated 3D applications using either Tk or Gnocl as the GUI toolkit.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2010 by Albert Gräf, all rights reserved. pure-tk is
   distributed under a BSD-style license, see the COPYING file for details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-tk-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-tk-0.5.tar.gz>.
 
@@ -84,7 +84,7 @@
   though, you can also just run the examples with the Pure interpreter as
   usual.)
 
-  <subsection|Basic Usage<label|basic-usage>>
+  <subsection|Basic Usage><label|basic-usage>
 
   <\description>
     <item*|tk cmd<label|tk>>execute a Tcl command
@@ -112,8 +112,12 @@
   and <verbatim|tk_dialog> functions. For instance:
 
   <\verbatim>
+    \;
+
     tk "tk_dialog .warning \\"Warning\\" \\"Are you sure?\\" warning 0 Yes No
     Cancel";
+
+    \;
   </verbatim>
 
   Other kinds of common dialogs are available; see the Tcl/Tk manual for
@@ -124,14 +128,18 @@
   care of processing events in the Tcl/Tk GUI. We discuss this in the
   following.
 
-  <subsection|Callbacks<label|callbacks>>
+  <subsection|Callbacks><label|callbacks>
 
   pure-tk installs a special Tcl command named <verbatim|pure> in the
   interpreter which can be used to implement callbacks in Pure. This command
   is invoked from Tcl as follows:
 
   <\verbatim>
+    \;
+
     pure function args ...
+
+    \;
   </verbatim>
 
   It calls the Pure function named by the first argument, passing any
@@ -146,14 +154,18 @@
   follows:
 
   <\verbatim>
+    \;
+
     using tk, system;
 
     tk "button .b -text {Hello, world!} -command {pure hello}; pack .b";
 
     hello = puts "Hello, world!";
+
+    \;
   </verbatim>
 
-  <subsection|The Main Loop<label|the-main-loop>>
+  <subsection|The Main Loop><label|the-main-loop>
 
   <\description>
     <item*|tk_main<label|tk-main>>call the Tk main loop
@@ -167,11 +179,15 @@
   application coded in Pure may look as follows:
 
   <\verbatim>
+    \;
+
     using tk;
 
     tk "button .b -text {Hello, world!} -command {pure tk_quit}; pack .b";
 
     tk_main;
+
+    \;
   </verbatim>
 
   The main loop terminates as soon as the Tcl interpreter is exited, which
@@ -181,7 +197,7 @@
   The user can also close the main window from the window manager in order to
   exit the main loop.
 
-  <subsection|Accessing Tcl Variables<label|accessing-tcl-variables>>
+  <subsection|Accessing Tcl Variables><label|accessing-tcl-variables>
 
   <\description>
     <item*|tk_set var val<label|tk-set>>
@@ -199,6 +215,8 @@
   to retrieve the current values from the application. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> tk_set "entry_val" "some string";
 
     "some string"
@@ -214,6 +232,8 @@
     \<gtr\> tk_get "entry_val";
 
     tk_get "entry_val"
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|tk_set>|#tk-set> returns the assigned
@@ -221,6 +241,8 @@
   be set to the same value:
 
   <\verbatim>
+    \;
+
     \<gtr\> tk_set "foo" $ tk_set "bar" "yes";
 
     "yes"
@@ -228,10 +250,12 @@
     \<gtr\> map tk_get ["foo","bar"];
 
     ["yes","yes"]
+
+    \;
   </verbatim>
 
   <subsection|Conversions Between Pure and Tcl
-  Values<label|conversions-between-pure-and-tcl-values>>
+  Values><label|conversions-between-pure-and-tcl-values>
 
   As far as pure-tk is concerned, all Tcl values are strings (in fact, that's
   just what they are at the Tcl language level, although the Tcl interpreter
@@ -253,6 +277,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> tk_join ["0","1.0","Hello, world!"];
 
     "0 1.0 {Hello, world!}"
@@ -260,6 +286,8 @@
     \<gtr\> tk_split ans;
 
     ["0","1.0","Hello, world!"]
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|tk_str>|#tk-str> and
@@ -275,6 +303,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> tk_str [0,1.0,"Hello, world!"];
 
     "0 1.0 {Hello, world!}"
@@ -282,11 +312,15 @@
     \<gtr\> tk_val ans;
 
     [0,1.0,"Hello, world!"]
+
+    \;
   </verbatim>
 
   In addition, these operations also convert single atomic values:
 
   <\verbatim>
+    \;
+
     \<gtr\> tk_str 1.0;
 
     "1.0"
@@ -294,9 +328,11 @@
     \<gtr\> tk_val ans;
 
     1.0
+
+    \;
   </verbatim>
 
-  <subsection|Tips and Tricks<label|tips-and-tricks>>
+  <subsection|Tips and Tricks><label|tips-and-tricks>
 
   Here are a few other things that are worth keeping in mind when working
   with pure-tk.
@@ -308,7 +344,11 @@
     implementation of <verbatim|tk_error> throws an exception:
 
     <\verbatim>
+      \;
+
       tk_error msg = throw msg;
+
+      \;
     </verbatim>
 
     If no definition for this function is provided, then errors cause a
@@ -324,15 +364,19 @@
     <verbatim|"wm> <verbatim|deiconify> <verbatim|."> command. It is also
     common practice to use <verbatim|wm> <verbatim|withdraw> and
     <verbatim|wm> <verbatim|deiconify> while creating the widgets of an
-    application, in order to reduce ``flickering''.
+    application, in order to reduce \Pflickering\Q.
 
     <item>Instead of calling <hlink|<with|font-family|tt|tk_main>|#tk-main>,
     you can also code your own main loop in Pure as follows:
 
     <\verbatim>
+      \;
+
       main = do_something $$ main if tk_ready;
 
       \ \ \ \ \ = () otherwise;
+
+      \;
     </verbatim>
 
     Note that the <verbatim|tk_ready> function checks whether the Tcl
@@ -354,7 +398,11 @@
     use the Tcl <verbatim|source> command, e.g.:
 
     <\verbatim>
+      \;
+
       tk "source myapp.tcl";
+
+      \;
     </verbatim>
 
     However, this always requires the script to be available at runtime.
@@ -363,11 +411,15 @@
     command on this string value:
 
     <\verbatim>
+      \;
+
       using system;
 
       const ui = fget $ fopen "myapp.tcl" "r";
 
       tk ui;
+
+      \;
     </verbatim>
 
     This still reads the script at runtime if the Pure program is executed
@@ -378,9 +430,13 @@
     original Tcl script file available:
 
     <\verbatim>
+      \;
+
       $ pure -c myapp.pure -o myapp
 
       $ ./myapp
+
+      \;
     </verbatim>
 
     This is also the method to use for running existing Tk applications,
@@ -393,7 +449,11 @@
     extensions into the Tcl interpreter at runtime. For instance:
 
     <\verbatim>
+      \;
+
       tk "package require Gnocl";
+
+      \;
     </verbatim>
 
     This loads Peter G. Baum's <hlink|Gnocl|http://www.gnocl.org/> extension
@@ -405,7 +465,11 @@
     the gnocl.pure module into your Pure scripts:
 
     <\verbatim>
+      \;
+
       using gnocl;
+
+      \;
     </verbatim>
 
     Note that the Glade interface requires that you have a fairly recent
@@ -422,7 +486,11 @@
     can redefine the <verbatim|exit> procedure, e.g., as follows:
 
     <\verbatim>
+      \;
+
       tk "proc exit { {returnCode 0} } { pure tk_quit }";
+
+      \;
     </verbatim>
 
     If you want to do something with the exit code provided by
@@ -430,17 +498,25 @@
     function, e.g.:
 
     <\verbatim>
+      \;
+
       tk "proc exit { {returnCode 0} } { pure quit_cb $returnCode }";
+
+      \;
     </verbatim>
 
     A suitable implementation of <verbatim|quit_cb> might look as follows:
 
     <\verbatim>
+      \;
+
       quit_cb 0 = puts "Application exited normally." $$ tk_quit;
 
       quit_cb n = printf "Application exited with exit code %d.\\n" n $$
 
       \ \ \ \ \ \ \ \ \ \ \ \ tk_quit otherwise;
+
+      \;
     </verbatim>
 
     <item>If you need dialogs beyond the standard kinds of message boxes and
@@ -451,7 +527,7 @@
     <verbatim|grab> command.
   </itemize>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-tk-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-tk-toc>
 
   <\itemize>
     <item><hlink|pure-tk|#>
@@ -491,6 +567,6 @@
   <hlink|previous|pure-gtk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Pure Library Manual<label|pure-library-manual>>
+  <section*|Pure Library Manual><label|pure-library-manual>
 
-  Version 0.64, October 28, 2014
+  Version 0.64, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -25,7 +25,7 @@
   which describes the Pure language and the operation of the Pure
   interpreter.
 
-  <subsection|Prelude<label|prelude>>
+  <subsection|Prelude><label|prelude>
 
   The prelude defines the basic operations of the Pure language. This
   includes the basic arithmetic and logical operations, string, list and
@@ -39,7 +39,7 @@
   are normally available in Pure programs without requiring any explicit
   import declarations, unless explicitly noted otherwise.
 
-  <subsubsection|Constants and Operators<label|constants-and-operators>>
+  <subsubsection|Constants and Operators><label|constants-and-operators>
 
   The prelude also declares a signature of commonly used constant and
   operator symbols. This includes the truth values <verbatim|true> and
@@ -90,11 +90,15 @@
     index is out of bounds.
   </description>
 
-  <label|operators>Here's the list of predefined operator symbols. Note that
-  the parser will automagically give unary minus the same precedence level as
-  the corresponding binary operator.
+  <label|operators>
+
+  Here's the list of predefined operator symbols. Note that the parser will
+  automagically give unary minus the same precedence level as the
+  corresponding binary operator.
 
   <\verbatim>
+    \;
+
     infixl \ 1000 \ \ $$ ; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ // sequence operator
 
     infixr \ 1100 \ \ $ ; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //
@@ -150,9 +154,11 @@
     prefix \ 2900 \ \ ' ; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ // quote
 
     postfix 3000 \ \ & ; \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ // thunk
+
+    \;
   </verbatim>
 
-  <subsubsection|Prelude Types<label|prelude-types>>
+  <subsubsection|Prelude Types><label|prelude-types>
 
   Some additional type symbols are provided which can be used as type tags on
   the left-hand side of equations, see <hlink|<em|Type
@@ -223,8 +229,8 @@
   <\description>
     <item*|<em|type> list<label|list/type>>
 
-    <item*|<em|type> rlist<label|rlist/type>>The list and ``proper'' (or
-    ``recursive'') list types. Note that the former comprises both the empty
+    <item*|<em|type> rlist<label|rlist/type>>The list and \Pproper\Q (or
+    \Precursive\Q) list types. Note that the former comprises both the empty
     list <verbatim|[]> and all list nodes of the form <verbatim|x:xs> (no
     matter whether the tail <verbatim|xs> is a proper list value or not),
     whereas the latter only matches proper list values of the form
@@ -242,7 +248,7 @@
     comprises the empty tuple <verbatim|()> and all tuples <verbatim|(x,xs)>
     with at least two members. This is analogous to the
     <hlink|<with|font-family|tt|list>|#list/type> type above, but no
-    ``proper'' tuple type is needed here since any tuple of this form is
+    \Pproper\Q tuple type is needed here since any tuple of this form is
     always a proper tuple.
   </description>
 
@@ -263,8 +269,8 @@
     term which may be called as a function. This may be a closure (global or
     local function, or a lambda function) which takes at least one argument,
     or a partial application of a closure to some arguments which is still
-    ``unsaturated'', i.e., expects some further arguments to be ``ready to
-    go''.
+    \Punsaturated\Q, i.e., expects some further arguments to be \Pready to
+    go\Q.
   </description>
 
   <\description>
@@ -308,10 +314,9 @@
   Manipulation|#matrix-inspection-and-manipulation> and <hlink|Record
   Functions|#record-functions>.
 
-  <subsubsection|Basic Combinators<label|basic-combinators>>
+  <subsubsection|Basic Combinators><label|basic-combinators><label|index-1><label|basic-combinators>
 
-  <label|index-1>The prelude implements the following important function
-  combinators.
+  The prelude implements the following important function combinators.
 
   <\description>
     <item*|f $ g<label|-dollar>>
@@ -321,6 +326,8 @@
     that saturated calls of them are eliminated automatically. Examples:
 
     <\verbatim>
+      \;
+
       \<gtr\> foo $ bar 99;
 
       foo (bar 99)
@@ -328,6 +335,8 @@
       \<gtr\> (foo.bar) 99;
 
       foo (bar 99)
+
+      \;
     </verbatim>
   </description>
 
@@ -338,6 +347,8 @@
     combinators from the combinatorial calculus:
 
     <\verbatim>
+      \;
+
       \<gtr\> map id (1..5);
 
       [1,2,3,4,5]
@@ -345,17 +356,21 @@
       \<gtr\> map (cst 0) (1..5);
 
       [0,0,0,0,0]
+
+      \;
     </verbatim>
   </description>
 
   <\description>
     <item*|void x<label|void>>This combinator is basically equivalent to
     <verbatim|cst> <verbatim|()>, but with the special twist that it is also
-    defined as a macro optimizing the case of ``throwaway'' list and matrix
+    defined as a macro optimizing the case of \Pthrowaway\Q list and matrix
     comprehensions. This is useful if a comprehension is evaluated solely for
     its side effects. E.g.:
 
     <\verbatim>
+      \;
+
       \<gtr\> using system;
 
       \<gtr\> extern int rand();
@@ -375,6 +390,8 @@
       424238335
 
       ()
+
+      \;
     </verbatim>
 
     Note that the above list comprehension is actually implemented using
@@ -394,18 +411,26 @@
     <verbatim|f>, e.g.:
 
     <\verbatim>
+      \;
+
       \<gtr\> map (flip (/) 2) (1..3);
 
       [0.5,1.0,1.5]
+
+      \;
     </verbatim>
 
     This combinator is also used by the compiler to implement right operator
     sections, which allows you to write the above simply as:
 
     <\verbatim>
+      \;
+
       \<gtr\> map (/2) (1..3);
 
       [0.5,1.0,1.5]
+
+      \;
     </verbatim>
   </description>
 
@@ -414,6 +439,8 @@
     pair of values into a curried function of two arguments:
 
     <\verbatim>
+      \;
+
       \<gtr\> using system;
 
       \<gtr\> dowith (curry (printf "%d: %g\\n")) (0..2) [0.0,2.718,3.14];
@@ -425,6 +452,8 @@
       2: 3.14
 
       ()
+
+      \;
     </verbatim>
   </description>
 
@@ -435,9 +464,13 @@
     pair argument:
 
     <\verbatim>
+      \;
+
       \<gtr\> map (uncurry (*)) [(2,3),(4,5),(6,7)];
 
       [6,20,42]
+
+      \;
     </verbatim>
   </description>
 
@@ -456,12 +489,16 @@
     <verbatim|fix> <verbatim|f> itself:
 
     <\verbatim>
+      \;
+
       \<gtr\> let fact = fix (\\f n -\<gtr\> if n\<less\>=0 then 1 else n*f
       (n-1));
 
       \<gtr\> map fact (1..5);
 
       [1,2,6,24,120]
+
+      \;
     </verbatim>
 
     See <hlink|Fixed point combinator|http://en.wikipedia.org/wiki/Fixed-point-combinator>
@@ -470,6 +507,8 @@
     least fixed points of arbitrary functions. For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> fix (cst bar);
 
       bar
@@ -483,15 +522,16 @@
       \<gtr\> xs!!(0..10);
 
       [1,1,1,1,1,1,1,1,1,1,1]
+
+      \;
     </verbatim>
   </description>
 
-  <subsubsection|Lists and Tuples<label|lists-and-tuples>>
+  <subsubsection|Lists and Tuples><label|lists-and-tuples><label|index-3><label|lists-and-tuples>
 
-  <label|index-3>The prelude defines the list and tuple constructors, as well
-  as equality and inequality on these structures. It also provides a number
-  of other useful basic operations on lists and tuples. These are all
-  described below.
+  The prelude defines the list and tuple constructors, as well as equality
+  and inequality on these structures. It also provides a number of other
+  useful basic operations on lists and tuples. These are all described below.
 
   <\description>
     <item*|<em|constructor> []<hlink|]|#{[>}>
@@ -516,6 +556,8 @@
   polymorphic:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1:2:3:[];
 
     [1,2,3]
@@ -523,21 +565,27 @@
     \<gtr\> [1,2,3]+[u,v,w]+[3.14];
 
     [1,2,3,u,v,w,3.14]
+
+    \;
   </verbatim>
 
   Lists are <with|font-series|bold|eager> in Pure by default, but they can
   also be made <with|font-series|bold|lazy> (in the latter case they are also
   called <with|font-series|bold|streams>). This is accomplished by turning
-  the tail of a list into a ``thunk'' (a.k.a. ``future'') which defers
+  the tail of a list into a \Pthunk\Q (a.k.a. \Pfuture\Q) which defers
   evaluation until the list tail is actually needed, see section
   <hlink|<em|Lazy Evaluation and Streams>|pure.tm#lazy-evaluation-and-streams>
   in the Pure Manual. For instance, an infinite arithmetic sequence (see
   below) will always produce a list with a thunked tail:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1:3..inf;
 
     1:#\<less\>thunk 0x7f696cd2dbd8\<gtr\>
+
+    \;
   </verbatim>
 
   Pure also distinguishes <with|font-series|bold|proper> and
@@ -546,9 +594,13 @@
   conventional <verbatim|[x1,x2,...,xn]> syntax:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1:2:3:[];
 
     [1,2,3]
+
+    \;
   </verbatim>
 
   In contrast, improper lists are terminated with a non-list value and can
@@ -556,9 +608,13 @@
   operator:
 
   <\verbatim>
+    \;
+
     \<gtr\> 1:2:3;
 
     1:2:3
+
+    \;
   </verbatim>
 
   These aren't of much use as ordinary list values, but are frequently
@@ -574,13 +630,15 @@
   constructs, so that `<hlink|<with|font-family|tt|,>|#,>` and
   `<hlink|<with|font-family|tt|()>|#()>` define a complete monoid structure.
   Note that this means that `<hlink|<with|font-family|tt|,>|#,>` is actually
-  a ``constructor with equations'' since it obeys the laws <verbatim|(x,y),z>
+  a \Pconstructor with equations\Q since it obeys the laws <verbatim|(x,y),z>
   <verbatim|==> <verbatim|x,(y,z)> and <verbatim|(),x> <verbatim|==>
   <verbatim|x,()> <verbatim|==> <verbatim|x>. Also note that there isn't a
   separate operation for concatenating tuples, since the pairing operator
   already does this:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1,2,3),(10,9,8);
 
     1,2,3,10,9,8
@@ -592,6 +650,8 @@
     \<gtr\> (a,b,c),();
 
     a,b,c
+
+    \;
   </verbatim>
 
   This also implies that tuples are always flat in Pure and can't be nested;
@@ -605,20 +665,28 @@
     non-destructively appends the elements of <verbatim|y> to <verbatim|x>.
 
     <\verbatim>
+      \;
+
       \<gtr\> [1,2,3]+[u,v,w];
 
       [1,2,3,u,v,w]
+
+      \;
     </verbatim>
 
     Note that this operation in fact just recurses into <verbatim|x> and
-    replaces the empty list marking the ``end'' of <verbatim|x> with
+    replaces the empty list marking the \Pend\Q of <verbatim|x> with
     <verbatim|y>, as if defined by the following equations (however, the
     prelude actually defines this operation in a tail-recursive fashion):
 
     <\verbatim>
+      \;
+
       [] + ys = ys;
 
       (x:xs) + ys = x : xs+ys;
+
+      \;
     </verbatim>
 
     To make this work, both operands should be proper lists, otherwise you
@@ -626,6 +694,8 @@
     following:
 
     <\verbatim>
+      \;
+
       \<gtr\> [1,2,3]+99;
 
       1:2:3:99
@@ -633,6 +703,8 @@
       \<gtr\> (1:2:3)+33;
 
       1:2:36
+
+      \;
     </verbatim>
 
     This happens because Pure is dynamically typed and places no limits on ad
@@ -655,6 +727,8 @@
     may take an infinite amount of time.
 
     <\verbatim>
+      \;
+
       \<gtr\> reverse [a,b,c] == [c,b,a];
 
       1
@@ -662,6 +736,8 @@
       \<gtr\> (a,b,c) == ();
 
       0
+
+      \;
     </verbatim>
   </description>
 
@@ -670,6 +746,8 @@
     This operation counts the number of elements in a list or tuple:
 
     <\verbatim>
+      \;
+
       \<gtr\> #[a,b,c];
 
       3
@@ -677,6 +755,8 @@
       \<gtr\> #(a,b,c);
 
       3
+
+      \;
     </verbatim>
 
     Please note that for obvious reasons this operation is inherently eager,
@@ -690,6 +770,8 @@
     bounds:
 
     <\verbatim>
+      \;
+
       \<gtr\> [1,2,3]!2;
 
       3
@@ -700,6 +782,8 @@
       while evaluating
 
       '[1,2,3]!4'
+
+      \;
     </verbatim>
   </description>
 
@@ -710,6 +794,8 @@
     are out of the valid range are silently ignored:
 
     <\verbatim>
+      \;
+
       \<gtr\> (1..5)!!(3..10);
 
       [4,5]
@@ -717,6 +803,8 @@
       \<gtr\> (1,2,3,4,5)!!(3..10);
 
       4,5
+
+      \;
     </verbatim>
 
     The case of contiguous index ranges, as shown above, is optimized so that
@@ -725,9 +813,13 @@
     can retrieve any permutation of the members, also with duplicates. E.g.:
 
     <\verbatim>
+      \;
+
       \<gtr\> (1..5)!![2,4,4,1];
 
       [3,5,5,2]
+
+      \;
     </verbatim>
 
     This is less efficient than the case of contiguous index ranges, because
@@ -743,6 +835,8 @@
     elements as <verbatim|x:y> instead of <verbatim|x,y>.
 
     <\verbatim>
+      \;
+
       \<gtr\> 1..5;
 
       [1,2,3,4,5]
@@ -750,12 +844,16 @@
       \<gtr\> 1:3..11;
 
       [1,3,5,7,9,11]
+
+      \;
     </verbatim>
 
     To prevent unwanted artifacts due to rounding errors, the upper bound in
     a floating point sequence is always rounded to the nearest grid point:
 
     <\verbatim>
+      \;
+
       \<gtr\> 0.0:0.1..0.29;
 
       [0.0,0.1,0.2,0.3]
@@ -763,12 +861,16 @@
       \<gtr\> 0.0:0.1..0.31;
 
       [0.0,0.1,0.2,0.3]
+
+      \;
     </verbatim>
 
     Last but not least, you can specify infinite sequences with an infinite
     upper bound (<verbatim|inf> or <verbatim|-inf>):
 
     <\verbatim>
+      \;
+
       \<gtr\> 1:3..inf;
 
       1:#\<less\>thunk 0x7f696cd2dbd8\<gtr\>
@@ -776,6 +878,8 @@
       \<gtr\> -1:-3..-inf;
 
       -1:#\<less\>thunk 0x7f696cd2fde8\<gtr\>
+
+      \;
     </verbatim>
 
     The lower bounds of an arithmetic sequence must always be finite.
@@ -785,6 +889,8 @@
     <item*|null x<label|null>>Test for the empty list and tuple.
 
     <\verbatim>
+      \;
+
       \<gtr\> null [];
 
       1
@@ -792,6 +898,8 @@
       \<gtr\> null (a,b,c);
 
       0
+
+      \;
     </verbatim>
   </description>
 
@@ -799,6 +907,8 @@
     <item*|reverse x<label|reverse>>Reverse a list or tuple.
 
     <\verbatim>
+      \;
+
       \<gtr\> reverse (1..5);
 
       [5,4,3,2,1]
@@ -806,6 +916,8 @@
       \<gtr\> reverse (a,b,c);
 
       (c,b,a)
+
+      \;
     </verbatim>
   </description>
 
@@ -817,6 +929,8 @@
     <item*|tuple x<label|tuple>>Convert between (finite) lists and tuples.
 
     <\verbatim>
+      \;
+
       \<gtr\> tuple (1..5);
 
       1,2,3,4,5
@@ -824,24 +938,34 @@
       \<gtr\> list (a,b,c);
 
       [a,b,c]
+
+      \;
     </verbatim>
 
     The <verbatim|list> function can be used to turn a finite lazy list into
     an eager one:
 
     <\verbatim>
+      \;
+
       \<gtr\> list $ take 10 (-1:-3..-inf);
 
       [-1,-3,-5,-7,-9,-11,-13,-15,-17,-19]
+
+      \;
     </verbatim>
 
     You can also achieve the same effect somewhat more conveniently by
     slicing a finite part from a stream:
 
     <\verbatim>
+      \;
+
       \<gtr\> (-1:-3..-inf)!!(0..9);
 
       [-1,-3,-5,-7,-9,-11,-13,-15,-17,-19]
+
+      \;
     </verbatim>
   </description>
 
@@ -852,9 +976,13 @@
     <item*|stream x<label|stream>>Convert a list to a stream.
 
     <\verbatim>
+      \;
+
       \<gtr\> stream (1..10);
 
       1:#\<less\>thunk 0x7fe537fe2b58\<gtr\>
+
+      \;
     </verbatim>
   </description>
 
@@ -863,11 +991,11 @@
   to apply other functions to the list and have them evaluated in a lazy
   fashion.
 
-  <subsubsection|Slicing<label|slicing>>
+  <subsubsection|Slicing><label|slicing>
 
   Indexing and slicing are actually fairly general operations in Pure which
   are used not only in the context of lists and tuples, but for any type of
-  container data structure which can be ``indexed'' in some way. Other
+  container data structure which can be \Pindexed\Q in some way. Other
   examples in the standard library are the
   <hlink|<with|font-family|tt|array>|#module-array> and
   <hlink|<with|font-family|tt|dict>|#module-dict> containers.
@@ -910,6 +1038,8 @@
   operator against <hlink|<with|font-family|tt|slice>|#slice>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let xs = 1..1000000;
 
     \<gtr\> stats -m
@@ -925,12 +1055,16 @@
     199991
 
     0.14s, 399984 cells
+
+    \;
   </verbatim>
 
   Even more drastic improvements in both running time and memory usage can be
   seen in the case of matrix slices:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = rowvector xs;
 
     \<gtr\> #slice x (100000..299990);
@@ -944,21 +1078,23 @@
     199991
 
     0s, 10 cells
+
+    \;
   </verbatim>
 
-  <subsubsection|Hash Pairs<label|hash-pairs>>
+  <subsubsection|Hash Pairs><label|hash-pairs><label|index-14><label|hash-pairs>
 
-  <label|index-14>The prelude provides another special kind of pairs called
-  ``hash pairs'', which take the form <verbatim|key=\>value>. These are used
-  in various contexts to denote key-value associations. The only operations
-  on hash pairs provided by the prelude are equality testing (which
-  recursively compares the components) and the functions
+  The prelude provides another special kind of pairs called \Phash pairs\Q,
+  which take the form <verbatim|key=\>value>. These are used in various
+  contexts to denote key-value associations. The only operations on hash
+  pairs provided by the prelude are equality testing (which recursively
+  compares the components) and the functions
   <hlink|<with|font-family|tt|key>|#key> and
   <hlink|<with|font-family|tt|val>|#val>:
 
   <\description>
     <item*|<em|constructor> x =\<gtr\> y<label|=\<gtr\>>>The hash pair
-    constructor, also known as the ``hash rocket''.
+    constructor, also known as the \Phash rocket\Q.
   </description>
 
   <\description>
@@ -968,9 +1104,13 @@
     inequality of hash pairs.
 
     <\verbatim>
+      \;
+
       \<gtr\> ("foo"=\<gtr\>99) == ("bar"=\<gtr\>99);
 
       0
+
+      \;
     </verbatim>
   </description>
 
@@ -980,9 +1120,13 @@
     <item*|val (x=\<gtr\>y)<label|val>>Extract the components of a hash pair.
 
     <\verbatim>
+      \;
+
       \<gtr\> key ("foo"=\<gtr\>99), val ("foo"=\<gtr\>99);
 
       "foo",99
+
+      \;
     </verbatim>
   </description>
 
@@ -997,14 +1141,14 @@
   <verbatim|"foo"=\>(1,2)> (whereas <verbatim|"foo"=\>1,2> denotes a tuple
   whose first element happens to be a hash pair).
 
-  <subsubsection|List Functions<label|list-functions>>
+  <subsubsection|List Functions><label|list-functions>
 
   This mostly comes straight from the Q prelude which in turn was based on
   the first edition of the Bird/Wadler book, and is very similar to what you
   can find in the Haskell prelude. Some functions have slightly different
   names, though, and of course everything is typed dynamically.
 
-  <paragraph|Common List Functions<label|common-list-functions>>
+  <paragraph|Common List Functions><label|common-list-functions>
 
   <\description>
     <item*|any p xs<label|any>>test whether the predicate <verbatim|p> holds
@@ -1145,10 +1289,12 @@
     in ascending order according to the given predicate <verbatim|p>, using
     the C <verbatim|qsort> function. The predicate <verbatim|p> is invoked
     with two arguments and should return a truth value indicating whether the
-    first argument is ``less than'' the second. (An exception is raised if
+    first argument is \Pless than\Q the second. (An exception is raised if
     the result of a comparison is not a machine integer.)
 
     <\verbatim>
+      \;
+
       \<gtr\> sort (\<gtr\>) (1..10);
 
       [10,9,8,7,6,5,4,3,2,1]
@@ -1156,6 +1302,8 @@
       \<gtr\> sort (\<less\>) ans;
 
       [1,2,3,4,5,6,7,8,9,10]
+
+      \;
     </verbatim>
   </description>
 
@@ -1174,7 +1322,7 @@
     <verbatim|xs> while the predicate <verbatim|p> is satisfied
   </description>
 
-  <paragraph|List Generators<label|list-generators>>
+  <paragraph|List Generators><label|list-generators>
 
   Some useful (infinite) list generators, as well as some finite (and eager)
   variations of these. The latter work like a combination of
@@ -1222,7 +1370,7 @@
     <verbatim|n> <verbatim|x>s
   </description>
 
-  <paragraph|Zip and Friends<label|zip-and-friends>>
+  <paragraph|Zip and Friends><label|zip-and-friends>
 
   <\description>
     <item*|unzip xys<label|unzip>>takes a list of pairs to a pair of lists of
@@ -1275,18 +1423,18 @@
     and <verbatim|zs>, return <verbatim|()>
   </description>
 
-  <subsubsection|String Functions<label|string-functions>>
+  <subsubsection|String Functions><label|string-functions><label|index-15><label|string-functions>
 
-  <label|index-15>Pure strings are null-terminated character strings encoded
-  in UTF-8, see the Pure Manual for details. The prelude provides various
-  operations on strings, including a complete set of list-like operations, so
-  that strings can be used mostly as if they were lists, although they are
-  really implemented as C character arrays for reasons of efficiency. Pure
-  also has some powerful operations to convert between Pure expressions and
-  their string representation, see <hlink|Eval and Friends|#eval-and-friends>
-  for those.
+  Pure strings are null-terminated character strings encoded in UTF-8, see
+  the Pure Manual for details. The prelude provides various operations on
+  strings, including a complete set of list-like operations, so that strings
+  can be used mostly as if they were lists, although they are really
+  implemented as C character arrays for reasons of efficiency. Pure also has
+  some powerful operations to convert between Pure expressions and their
+  string representation, see <hlink|Eval and Friends|#eval-and-friends> for
+  those.
 
-  <paragraph|Basic String Functions<label|basic-string-functions>>
+  <paragraph|Basic String Functions><label|basic-string-functions>
 
   <\description>
     <item*|s + t<label|+/string>>
@@ -1297,6 +1445,8 @@
     concatenation, indexing and slicing works just like with lists:
 
     <\verbatim>
+      \;
+
       \<gtr\> "abc"+"xyz";
 
       "abcxyz"
@@ -1310,6 +1460,8 @@
       \<gtr\> s!!(20..24);
 
       "jumps"
+
+      \;
     </verbatim>
   </description>
 
@@ -1320,6 +1472,8 @@
     determining the size of a string also works as expected:
 
     <\verbatim>
+      \;
+
       \<gtr\> null "";
 
       1
@@ -1331,6 +1485,8 @@
       \<gtr\> #s;
 
       44
+
+      \;
     </verbatim>
   </description>
 
@@ -1350,6 +1506,8 @@
     (UTF-8) character codes.
 
     <\verbatim>
+      \;
+
       \<gtr\> "awe"\<gtr\>"awesome";
 
       0
@@ -1361,6 +1519,8 @@
       \<gtr\> "foo"=="bar";
 
       0
+
+      \;
     </verbatim>
   </description>
 
@@ -1383,6 +1543,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> index s "jumps";
 
     20
@@ -1390,6 +1552,8 @@
     \<gtr\> substr s 20 10;
 
     "jumps over"
+
+    \;
   </verbatim>
 
   Note that Pure doesn't have a separate type for individual characters.
@@ -1409,11 +1573,14 @@
     the corresponding code point.
   </description>
 
-  <label|index-21>In addition, the usual character arithmetic works,
-  including arithmetic sequences of characters, so that you can write stuff
-  like the following:
+  <label|index-21>
+
+  In addition, the usual character arithmetic works, including arithmetic
+  sequences of characters, so that you can write stuff like the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> "a"-"A";
 
     32
@@ -1425,6 +1592,8 @@
     \<gtr\> "a".."k";
 
     ["a","b","c","d","e","f","g","h","i","j","k"]
+
+    \;
   </verbatim>
 
   For convenience, the prelude provides the following functions to convert
@@ -1460,6 +1629,8 @@
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> list "abc";
 
     ["a","b","c"]
@@ -1467,9 +1638,11 @@
     \<gtr\> string ("a".."z");
 
     "abcdefghijklmnopqrstuvwxyz"
+
+    \;
   </verbatim>
 
-  The following functions are provided to deal with strings of ``tokens''
+  The following functions are provided to deal with strings of \Ptokens\Q
   separated by a given delimiter string.
 
   <\description>
@@ -1485,6 +1658,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let xs = split " " s; xs;
 
     ["The","quick","brown","fox","jumps","over","the","lazy","dog."]
@@ -1492,6 +1667,8 @@
     \<gtr\> join ":" xs;
 
     "The:quick:brown:fox:jumps:over:the:lazy:dog."
+
+    \;
   </verbatim>
 
   We mention in passing here that more elaborate string matching, splitting
@@ -1507,6 +1684,8 @@
   back to a string.) For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> filter (\<gtr\>="k") s;
 
     "qukrownoxumpsovrtlzyo"
@@ -1514,21 +1693,27 @@
     \<gtr\> string $ map pred "ibm";
 
     "hal"
+
+    \;
   </verbatim>
 
   List comprehensions can draw values from strings, too:
 
   <\verbatim>
+    \;
+
     \<gtr\> string [x+1 \| x="HAL"];
 
     "IBM"
+
+    \;
   </verbatim>
 
-  <paragraph|Low-Level Operations<label|low-level-operations>>
+  <paragraph|Low-Level Operations><label|low-level-operations>
 
   The following routines are provided by the runtime to turn raw C
   <verbatim|char*> pointers (also called <with|font-series|bold|byte strings>
-  in Pure parlance, to distinguish them from Pure's ``cooked'' UTF-8 string
+  in Pure parlance, to distinguish them from Pure's \Pcooked\Q UTF-8 string
   values) into corresponding Pure strings. Normally you don't have to worry
   about this, because the C interface already takes care of the necessary
   marshalling, but in some low-level code these operations are useful. Also
@@ -1621,17 +1806,23 @@
   example. First enter these definitions:
 
   <\verbatim>
+    \;
+
     extern int getopt(int argc, char **argv, char *optstring);
 
     optind = get_int $ addr "optind";
 
     optarg = cstring_dup $ get_pointer $ addr "optarg";
+
+    \;
   </verbatim>
 
   Now let's run <verbatim|getopt> on a byte string vector constructed from an
-  argument vector (which includes the ``program name'' in the first element):
+  argument vector (which includes the \Pprogram name\Q in the first element):
 
   <\verbatim>
+    \;
+
     \<gtr\> let args = byte_cstring_pointer
     {"progname","boo","-n","-tfoo","bar"};
 
@@ -1646,6 +1837,8 @@
     \<gtr\> getopt 5 args "nt:", optarg;
 
     -1,#\<less\>pointer 0x0\<gtr\>
+
+    \;
   </verbatim>
 
   Note that 110 and 116 are the character codes of the option characters
@@ -1656,9 +1849,13 @@
   non-option arguments remain to be processed, as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> optind, cstring_vector 5 args;
 
     3,{"progname","-n","-tfoo","boo","bar"}
+
+    \;
   </verbatim>
 
   It is now an easy exercise to design your own high-level wrapper around
@@ -1668,7 +1865,7 @@
   <hlink|Option Parsing|#option-parsing> in the <hlink|System
   Interface|#system-interface> section.
 
-  <subsubsection|Matrix Functions<label|matrix-functions>>
+  <subsubsection|Matrix Functions><label|matrix-functions>
 
   Matrices are provided as an alternative to the list and tuple aggregates
   which provide contant time access to their members and are tailored for use
@@ -1682,6 +1879,8 @@
     and columns).
 
     <\verbatim>
+      \;
+
       \<gtr\> let x = {1,2,3;4,5,6}; #x;
 
       6
@@ -1689,6 +1888,8 @@
       \<gtr\> dim x;
 
       2,3
+
+      \;
     </verbatim>
   </description>
 
@@ -1706,9 +1907,13 @@
     equality:
 
     <\verbatim>
+      \;
+
       \<gtr\> x == transpose x;
 
       0
+
+      \;
     </verbatim>
   </description>
 
@@ -1726,40 +1931,58 @@
   one-dimensional index (in row-major oder):
 
   <\verbatim>
+    \;
+
     \<gtr\> x!3;
 
     4
+
+    \;
   </verbatim>
 
   Or you can specify a pair of row and column index:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!(1,0);
 
     4
+
+    \;
   </verbatim>
 
   Slicing works accordingly. You can either specify a list of (one- or
   two-dimensional) indices, in which case the result is always a row vector:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!!(2..5);
 
     {3,4,5,6}
+
+    \;
   </verbatim>
 
   Or you can specify a pair of row and column index lists:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!!(0..1,1..2);
 
     {2,3;5,6}
+
+    \;
   </verbatim>
 
   The following abbreviations are provided to grab a slice from a row or
   column:
 
   <\verbatim>
+    \;
+
     \<gtr\> x!!(1,1..2);
 
     {5,6}
@@ -1767,6 +1990,8 @@
     \<gtr\> x!!(0..1,1);
 
     {2;5}
+
+    \;
   </verbatim>
 
   As in the case of lists, matrix slices are optimized to handle cases with
@@ -1782,6 +2007,8 @@
   <hlink|<with|font-family|tt|zipwith>|#zipwith> work as expected:
 
   <\verbatim>
+    \;
+
     \<gtr\> map succ {1,2,3;4,5,6};
 
     {2,3,4;5,6,7}
@@ -1789,6 +2016,8 @@
     \<gtr\> zipwith (+) {1,2,3;4,5,6} {1,0,1;0,2,0};
 
     {2,2,4;4,7,6}
+
+    \;
   </verbatim>
 
   The matrix module also provides a bunch of other specialized matrix
@@ -1800,7 +2029,7 @@
   Functions|#record-functions> section for an implementation of records using
   symbolic vectors.
 
-  <paragraph|Matrix Construction and Conversions<label|matrix-construction-and-conversions>>
+  <paragraph|Matrix Construction and Conversions><label|matrix-construction-and-conversions>
 
   <\description>
     <item*|matrix xs<label|matrix>>This function converts a list or tuple to
@@ -1813,6 +2042,8 @@
     argument.)
 
     <\verbatim>
+      \;
+
       \<gtr\> matrix [1,2,3];
 
       {1,2,3}
@@ -1820,6 +2051,8 @@
       \<gtr\> matrix [[1,2,3],[4,5,6]];
 
       {1,2,3;4,5,6}
+
+      \;
     </verbatim>
   </description>
 
@@ -1843,6 +2076,8 @@
     efficient (constant time) element access.
 
     <\verbatim>
+      \;
+
       \<gtr\> rowvector [1,2,3];
 
       {1,2,3}
@@ -1854,6 +2089,8 @@
       \<gtr\> vector [rowvector [1,2,3],colvector [4,5,6]];
 
       {{1,2,3},{4;5;6}}
+
+      \;
     </verbatim>
 
     Note that for convenience, there's also an alternative syntax for
@@ -1874,6 +2111,8 @@
     These operations are optimized for the case of int and double ranges.
 
     <\verbatim>
+      \;
+
       \<gtr\> rowvectorseq 0 10 1;
 
       {0,1,2,3,4,5,6,7,8,9,10}
@@ -1885,6 +2124,8 @@
       \<gtr\> vectorseq 0.0 0.9 0.1;
 
       {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9}
+
+      \;
     </verbatim>
 
     The prelude also contains some optimization rules which translate calls
@@ -1893,14 +2134,20 @@
     <hlink|<with|font-family|tt|vectorseq>|#vectorseq> et al, such as:
 
     <\verbatim>
+      \;
+
       def vector (n1:n2..m) = vectorseq n1 m (n2-n1);
 
       def vector (n..m) = vectorseq n m 1;
+
+      \;
     </verbatim>
 
     Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> foo = vector (1..10);
 
       \<gtr\> bar = vector (0.0:0.1..0.9);
@@ -1916,6 +2163,8 @@
       {1,2,3,4,5,6,7,8,9,10}
 
       {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9}
+
+      \;
     </verbatim>
 
     Please note that these optimization rules assume that basic arithmetic
@@ -1941,6 +2190,8 @@
     that the elements already are of the appropriate type.
 
     <\verbatim>
+      \;
+
       \<gtr\> imatrix [1,2,3];
 
       {1,2,3}
@@ -1948,6 +2199,8 @@
       \<gtr\> dmatrix {1,2,3;4,5,6};
 
       {1.0,2.0,3.0;4.0,5.0,6.0}
+
+      \;
     </verbatim>
 
     In addition, these functions can also be invoked with either an int
@@ -1956,6 +2209,8 @@
     dimensions.
 
     <\verbatim>
+      \;
+
       \<gtr\> imatrix 3;
 
       {0,0,0}
@@ -1963,6 +2218,8 @@
       \<gtr\> imatrix (2,3);
 
       {0,0,0;0,0,0}
+
+      \;
     </verbatim>
   </description>
 
@@ -1976,6 +2233,8 @@
     of lists (one sublist for each row of the matrix).
 
     <\verbatim>
+      \;
+
       \<gtr\> tuple {1,2,3;4,5,6};
 
       1,2,3,4,5,6
@@ -1991,11 +2250,15 @@
       \<gtr\> list2 {1,2,3};
 
       [[1,2,3]]
+
+      \;
     </verbatim>
   </description>
 
-  <label|non-splicing>In addition, the following special syntax is provided
-  as a shorthand notation for nested vector structures:
+  <label|non-splicing>
+
+  In addition, the following special syntax is provided as a shorthand
+  notation for nested vector structures:
 
   <\description>
     <item*|<em|macro> {\| x, y, z, ... \|}<label|?7B\|>>Non-splicing vector
@@ -2013,6 +2276,8 @@
   the column vectors as members instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> {{1;2;3},{4;5;6}};
 
     {1,4;2,5;3,6}
@@ -2020,6 +2285,8 @@
     \<gtr\> {\|{1;2;3},{4;5;6}\|};
 
     {{1;2;3},{4;5;6}}
+
+    \;
   </verbatim>
 
   The second example works like a quoted matrix expression such as
@@ -2027,6 +2294,8 @@
   their arguments:
 
   <\verbatim>
+    \;
+
     \<gtr\> '{vector (1..3),vector (4..6)};
 
     {vector (1..3),vector (4..6)}
@@ -2034,11 +2303,15 @@
     \<gtr\> {\|vector (1..3),vector (4..6)\|};
 
     {{1,2,3},{4,5,6}}
+
+    \;
   </verbatim>
 
   The <verbatim|{\|> <verbatim|\|}> brackets can be nested. Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> {\|1,{\|vector (1..5),2*3\|},{}\|};
 
     {1,{{1,2,3,4,5},6},{}}
@@ -2046,6 +2319,8 @@
     \<gtr\> {\|{\|{1,2}\|},{\|{3,4}\|}\|};
 
     {{{1,2}},{{3,4}}}
+
+    \;
   </verbatim>
 
   Also note that the <verbatim|{\|> <verbatim|\|}> brackets only produce row
@@ -2053,16 +2328,20 @@
   instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> transpose {\|{1;2;3},{4;5;6}\|};
 
     {{1;2;3};{4;5;6}}
+
+    \;
   </verbatim>
 
   Finally, note that the notation <verbatim|{\|> <verbatim|\|}> without any
   arguments is not supported, simply write <verbatim|{}> for the empty vector
   instead.
 
-  <paragraph|Matrix Inspection and Manipulation<label|matrix-inspection-and-manipulation>>
+  <paragraph|Matrix Inspection and Manipulation><label|matrix-inspection-and-manipulation>
 
   <\description>
     <item*|<em|type> dmatrix>
@@ -2172,7 +2451,7 @@
     <hlink|<with|font-family|tt|rowcat>|#rowcat> and
     <hlink|<with|font-family|tt|colcat>|#colcat>, but draws its input from a
     matrix instead of a list of matrices, and preserves the overall layout of
-    the ``host'' matrix. The net effect is that the host matrix is flattened
+    the \Phost\Q matrix. The net effect is that the host matrix is flattened
     out. If all elements of the input matrix are scalars already, the input
     matrix is returned unchanged.
   </description>
@@ -2253,30 +2532,42 @@
     input matrix. Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> sort (\<less\>) {10,9;8,7;6,5};
 
       {5,6;7,8;9,10}
+
+      \;
     </verbatim>
 
     If you'd like to sort the individual rows instead, you can do that as
     follows:
 
     <\verbatim>
+      \;
+
       \<gtr\> sort_rows p = rowcat . map (sort p) . rows;
 
       \<gtr\> sort_rows (\<less\>) {10,9;8,7;6,5};
 
       {9,10;7,8;5,6}
+
+      \;
     </verbatim>
 
     Likewise, to sort the columns of a matrix:
 
     <\verbatim>
+      \;
+
       \<gtr\> sort_cols p = colcat . map (sort p) . cols;
 
       \<gtr\> sort_cols (\<less\>) {10,9;8,7;6,5};
 
       {6,5;8,7;10,9}
+
+      \;
     </verbatim>
 
     Also note that the pure-gsl module provides an interface to the GSL
@@ -2292,9 +2583,13 @@
     <item*|transpose x<label|transpose/matrix>>Transpose a matrix. Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> transpose {1,2,3;4,5,6};
 
       {1,4;2,5;3,6}
+
+      \;
     </verbatim>
   </description>
 
@@ -2309,7 +2604,7 @@
     <hlink|<with|font-family|tt|reverse>|#reverse> both dimensions.
   </description>
 
-  <paragraph|Pointers and Matrices<label|pointers-and-matrices>>
+  <paragraph|Pointers and Matrices><label|pointers-and-matrices>
 
   Last but not least, the matrix module also offers a bunch of low-level
   operations for converting between matrices and raw pointers. These are
@@ -2398,7 +2693,7 @@
     <verbatim|n> if a row vector view is to be created.
   </description>
 
-  <subsubsection|Record Functions<label|record-functions>>
+  <subsubsection|Record Functions><label|record-functions>
 
   As of Pure 0.41, the prelude also provides a basic record data structure,
   implemented as symbolic vectors of <verbatim|key=\>value> pairs which
@@ -2407,7 +2702,7 @@
   <hlink|<with|font-family|tt|insert>|#insert/record> and indexing. Records
   may be represented as row, column or empty vectors (i.e., the number of
   rows or columns must be zero or one). They must be symbolic matrices
-  consisting only of ``hash pairs'' <verbatim|key=\>value>, where the keys
+  consisting only of \Phash pairs\Q <verbatim|key=\>value>, where the keys
   can be either symbols or strings. The values can be any kind of Pure data;
   in particular, they may themselves be records, so records can be nested.
 
@@ -2498,6 +2793,8 @@
   Here are a few basic examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r = {x=\<gtr\>5, y=\<gtr\>12};
 
     \<gtr\> r!y; r!![y,x]; \ \ \ \ \ \ \ \ \ \ \ \ \ // indexing and slicing
@@ -2554,12 +2851,14 @@
     \<gtr\> record (x=\<gtr\>5, x=\<gtr\>7, y=\<gtr\>12); // ... or a tuple
 
     {x=\<gtr\>7,y=\<gtr\>12}
+
+    \;
   </verbatim>
 
   More examples can be found in the <hlink|<em|Record
   Data>|pure.tm#record-data> section in the Pure Manual.
 
-  <subsubsection|Primitives<label|primitives>>
+  <subsubsection|Primitives><label|primitives>
 
   This prelude module is a collection of various lowlevel operations, which
   are implemented either directly by machine instructions or by C functions
@@ -2567,10 +2866,10 @@
   arithmetic and logic operations on machine integers, bigints and floating
   point numbers, as well as various type checking predicates and conversions
   between different types. Some basic pointer operations are also provided,
-  as well as ``sentries'' (Pure's flavour of object finalizers) and
-  ``references'' (mutable expression pointers).
+  as well as \Psentries\Q (Pure's flavour of object finalizers) and
+  \Preferences\Q (mutable expression pointers).
 
-  <paragraph|Special Constants<label|special-constants>>
+  <paragraph|Special Constants><label|special-constants>
 
   <\description>
     <item*|<em|constant> inf<label|inf>>
@@ -2589,7 +2888,7 @@
     predicate, see <hlink|Predicates|#predicates>.
   </description>
 
-  <paragraph|Arithmetic<label|arithmetic>>
+  <paragraph|Arithmetic><label|arithmetic>
 
   The basic arithmetic and logic operations provided by this module are
   summarized in the following table:
@@ -2768,7 +3067,7 @@
     <verbatim|y\<0> using rational numbers.
   </description>
 
-  <paragraph|Conversions<label|conversions>>
+  <paragraph|Conversions><label|conversions>
 
   These operations convert between various types of Pure values.
 
@@ -2811,7 +3110,7 @@
 
     <item*|ulong x<label|ulong>>Convert signed (8/16/32/64) bit integers to
     the corresponding unsigned quantities. These functions behave as if the
-    value was ``cast'' to the corresponding unsigned C type, and are most
+    value was \Pcast\Q to the corresponding unsigned C type, and are most
     useful for dealing with unsigned integers returned by external C
     routines. The routines always use the smallest Pure int type capable of
     holding the result: <verbatim|int> for
@@ -2853,7 +3152,7 @@
   if you need an integer result then you'll have to apply a suitable
   conversion, as in <verbatim|int> <verbatim|(floor> <verbatim|x)>.
 
-  <paragraph|Predicates<label|predicates>>
+  <paragraph|Predicates><label|predicates>
 
   A syntactic equality test is provided, as well as various type checking
   predicates. Note that type definitions are provided for most of the type
@@ -2921,7 +3220,7 @@
     <item*|rationalp x<label|rationalp>>
 
     <item*|integerp x<label|integerp>>Additional number predicates. Note some
-    further ``semantic'' number predicates are defined in the
+    further \Psemantic\Q number predicates are defined in the
     <hlink|<with|font-family|tt|math>|#module-math> module, see
     <hlink|Semantic Number Predicates and
     Types|#semantic-number-predicates-and-types>.
@@ -2973,12 +3272,12 @@
     <item*|closurep x<label|closurep>>Predicates to check for various kinds
     of function objects (named, anonymous or thunk).
     <hlink|<with|font-family|tt|closurep>|#closurep> checks for any kind of
-    ``normal'' closure (i.e., named functions and lambdas, but not thunks).
+    \Pnormal\Q closure (i.e., named functions and lambdas, but not thunks).
   </description>
 
   <\description>
     <item*|functionp x<label|functionp>>Convenience function to check for
-    ``callable'' functions. This includes any kind of closure with a nonzero
+    \Pcallable\Q functions. This includes any kind of closure with a nonzero
     argument count as well as partial (unsaturated) applications of these.
   </description>
 
@@ -2993,7 +3292,7 @@
     even if the symbol is currently bound to a function, macro or constant.
   </description>
 
-  <paragraph|Inspection<label|inspection>>
+  <paragraph|Inspection><label|inspection>
 
   The following operations let you peek at various internal information that
   the interpreter provides to Pure programs either for convenience or for
@@ -3010,6 +3309,8 @@
     <verbatim|clear> <verbatim|ans>, however.) Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> 1/3;
 
       0.333333333333333
@@ -3017,6 +3318,8 @@
       \<gtr\> ans/2;
 
       0.166666666666667
+
+      \;
     </verbatim>
   </description>
 
@@ -3034,6 +3337,8 @@
     Examples:
 
     <\verbatim>
+      \;
+
       \<gtr\> foo x = if x\<gtr\>0 then x else throw __func__;
 
       \<gtr\> foo (-99);
@@ -3044,6 +3349,8 @@
       \<gtr\> (\\x-\<gtr\>x+": "+str __func__) "test";
 
       "test: #\<less\>closure 0x7f4a2411db30\<gtr\>"
+
+      \;
     </verbatim>
 
     If you want, you can add a default rule for
@@ -3052,6 +3359,8 @@
     called at the global level. E.g.:
 
     <\verbatim>
+      \;
+
       \<gtr\> __func__ = throw "__func__ called at global level";
 
       \<gtr\> __func__;
@@ -3060,6 +3369,8 @@
       global level"' while
 
       evaluating '__func__'
+
+      \;
     </verbatim>
   </description>
 
@@ -3070,6 +3381,8 @@
     default namespace. Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> namespace foo;
 
       \<gtr\> foo = __namespace__;
@@ -3083,6 +3396,8 @@
       \<gtr\> foo::foo;
 
       "foo"
+
+      \;
     </verbatim>
   </description>
 
@@ -3107,14 +3422,20 @@
     /home/user/test.pure:
 
     <\verbatim>
+      \;
+
       foo = __file__,__dir__;
 
       bar = eval "__file__,__dir__";
+
+      \;
     </verbatim>
 
     Then running this script interactively you'll get the following:
 
     <\verbatim>
+      \;
+
       \<gtr\> foo;
 
       "/home/user/test.pure","/home/user/"
@@ -3122,6 +3443,8 @@
       \<gtr\> bar;
 
       "",""
+
+      \;
     </verbatim>
   </description>
 
@@ -3135,6 +3458,8 @@
     matrix brackets. Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> outfix (: :);
 
       \<gtr\> def (:x:) = __list__ x;
@@ -3142,6 +3467,8 @@
       \<gtr\> (:(1,2),(3,4):);
 
       [(1,2),(3,4)]
+
+      \;
     </verbatim>
 
     Note that this macro uses internal information from the parser not
@@ -3155,6 +3482,8 @@
     pass arguments without adding an (undesired) extra level of parentheses:
 
     <\verbatim>
+      \;
+
       \<gtr\> ((::)) ((1,2),(3,4));
 
       [(1,2,3,4)]
@@ -3162,6 +3491,8 @@
       \<gtr\> ((::)) $ (1,2),(3,4);
 
       [(1,2),(3,4)]
+
+      \;
     </verbatim>
 
     Note that the first expression is really equivalent to
@@ -3175,6 +3506,8 @@
     direct fashion:
 
     <\verbatim>
+      \;
+
       \<gtr\> __list__ ((1,2),(3,4));
 
       [(1,2,3,4)]
@@ -3182,6 +3515,8 @@
       \<gtr\> __list__ $ (1,2),(3,4);
 
       [(1,2),(3,4)]
+
+      \;
     </verbatim>
   </description>
 
@@ -3195,6 +3530,8 @@
     value itself. Example:
 
     <\verbatim>
+      \;
+
       \<gtr\> __locals__ with foo x = x+1; x = a+b end;
 
       [x=\<gtr\>a+b,foo=\<gtr\>foo]
@@ -3202,6 +3539,8 @@
       \<gtr\> f 99 when _=\<gtr\>f = ans!1 end;
 
       100
+
+      \;
     </verbatim>
   </description>
 
@@ -3233,7 +3572,11 @@
     primitive from above, we can implement this as a macro:
 
     <\verbatim>
+      \;
+
       def __mylocals__ = [val (str __func__)=\<gtr\>__func__]+__locals__;
+
+      \;
     </verbatim>
 
     You can then use <verbatim|__mylocals__> instead of <verbatim|__locals__>
@@ -3249,6 +3592,8 @@
     declared or defined at the point of the call. For instance:
 
     <\verbatim>
+      \;
+
       \<gtr\> namespace foo;
 
       \<gtr\> public foo;
@@ -3256,6 +3601,8 @@
       \<gtr\> __locals__ with foo x = x+1 end;
 
       [foo::foo=\<gtr\>foo]
+
+      \;
     </verbatim>
 
     This behaviour may be a bit surprising at first sight, but is consistent
@@ -3442,7 +3789,7 @@
   that in Pure a saturated application may also remain unevaluated because
   there is no definition for the given combination of arguments and thus the
   expression is in normal form, or because the application was quoted. If
-  such a normal form application is then applied to some ``extra'' arguments
+  such a normal form application is then applied to some \Pextra\Q arguments
   it becomes over-saturated.)
 
   The value returned by <hlink|<with|font-family|tt|nargs>|#nargs> always
@@ -3455,6 +3802,8 @@
   arguments:
 
   <\verbatim>
+    \;
+
     \<gtr\> infix 0 oops;
 
     \<gtr\> (oops) x y z = x*z+y;
@@ -3474,9 +3823,11 @@
     \<gtr\> map (5 oops 8) (1..5);
 
     [13,18,23,28,33]
+
+    \;
   </verbatim>
 
-  <paragraph|Eval and Friends<label|eval-and-friends>>
+  <paragraph|Eval and Friends><label|eval-and-friends>
 
   Pure provides some rather powerful operations to convert between Pure
   expressions and their string representation, and to evaluate quoted
@@ -3585,6 +3936,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> str (1/3);
 
     "0.333333333333333"
@@ -3620,6 +3973,8 @@
     '=' or '\|'",
 
     "\<less\>stdin\<gtr\>",0,3,0,4)]
+
+    \;
   </verbatim>
 
   In addition to <hlink|<with|font-family|tt|str>|#str>, the prelude also
@@ -3636,9 +3991,13 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> __str__ ('__lambda__ [x __type__ int] (x+1));
 
     "\\\\x::int -\<gtr\> x+1"
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|evalcmd>|#evalcmd> function is commonly
@@ -3667,6 +4026,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x,y = 77,99;
 
     \<gtr\> let syms = globsym "[a-z]" 0; syms;
@@ -3688,6 +4049,8 @@
     \<gtr\> x,y;
 
     x,y
+
+    \;
   </verbatim>
 
   The following functions are useful for doing symbolic expression
@@ -3722,6 +4085,8 @@
   local rules for the laws of distributivity:
 
   <\verbatim>
+    \;
+
     expand = reduce with
 
     \ \ (a+b)*c = a*c+b*c;
@@ -3745,6 +4110,8 @@
     expand ((a+b)*2); // yields a*2+b*2
 
     factor (a*2+b*2); // yields (a+b)*2
+
+    \;
   </verbatim>
 
   Note that instances of locally bound functions are substituted back in the
@@ -3759,6 +4126,8 @@
   back-substituted globals are <em|not> evaluated in the result:
 
   <\verbatim>
+    \;
+
     \<gtr\> expand ((a+1)*2);
 
     a*2+2
@@ -3766,6 +4135,8 @@
     \<gtr\> expand ('((a+1)*2));
 
     a*2+1*2
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|reduce>|#reduce> only takes into
@@ -3774,11 +4145,15 @@
   <em|variable> bindings do not affect its operation in any way:
 
   <\verbatim>
+    \;
+
     \<gtr\> let y = [x,x^2,x^3];
 
     \<gtr\> reduce y when x = u+v end;
 
     [x,x^2,x^3]
+
+    \;
   </verbatim>
 
   However, in such cases you can perform the desired substitution by turning
@@ -3786,9 +4161,13 @@
   <hlink|<with|font-family|tt|with>|pure.tm#with> clause:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce y with x = u+v end;
 
     [u+v,(u+v)^2,(u+v)^3]
+
+    \;
   </verbatim>
 
   Or you can just invoke the underlying <hlink|<with|font-family|tt|reduce_with>|#reduce-with>
@@ -3796,9 +4175,13 @@
   first argument:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce_with [x=\<gtr\>u+v] y;
 
     [u+v,(u+v)^2,(u+v)^3]
+
+    \;
   </verbatim>
 
   It is always a good idea to confine calls to
@@ -3809,7 +4192,7 @@
   filter the resulting list before submitting it to the
   <hlink|<with|font-family|tt|reduce_with>|#reduce-with> function.
 
-  <paragraph|Expression Serialization<label|expression-serialization>>
+  <paragraph|Expression Serialization><label|expression-serialization>
 
   Like <hlink|<with|font-family|tt|str>|#str> and
   <hlink|<with|font-family|tt|eval>|#eval>, the following
@@ -3867,6 +4250,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let b = blob {"Hello, world!", 1/3, 4711, NULL};
 
     \<gtr\> b; #b; uint $ blob_crc b;
@@ -3880,6 +4265,8 @@
     \<gtr\> val b;
 
     {"Hello, world!",0.333333333333333,4711,#\<less\>pointer 0x0\<gtr\>}
+
+    \;
   </verbatim>
 
   Please note that the current implementation has some limitations:
@@ -3906,7 +4293,7 @@
     in the sending and the receiving script match up.
   </itemize>
 
-  <paragraph|Other Special Primitives<label|other-special-primitives>>
+  <paragraph|Other Special Primitives><label|other-special-primitives>
 
   <\description>
     <item*|exit status<label|exit>>Terminate the program with the given
@@ -3935,7 +4322,7 @@
     automagically when the value of a thunk is needed.
   </description>
 
-  <paragraph|Pointer Operations<label|pointer-operations>>
+  <paragraph|Pointer Operations><label|pointer-operations>
 
   The prelude provides a few basic operations on pointers which make it easy
   to interface to external C functions. For more advanced uses, the library
@@ -4015,7 +4402,7 @@
     by <verbatim|ptr> to the given value <verbatim|x>.
   </description>
 
-  <paragraph|Sentries<label|sentries>>
+  <paragraph|Sentries><label|sentries>
 
   Sentries are Pure's flavour of object <with|font-series|bold|finalizers>. A
   sentry is simply an object (usually a function) which gets applied to the
@@ -4023,7 +4410,7 @@
   automatic cleanup actions on objects with internal state, such as files.
   Pure's sentries are <em|much> more useful than finalizers in other
   garbage-collected languages, since it is guaranteed that they are called as
-  soon as an object ``goes out of scope'', i.e., becomes inaccessible.
+  soon as an object \Pgoes out of scope\Q, i.e., becomes inaccessible.
 
   <\description>
     <item*|sentry f x<label|sentry>>Places a sentry <verbatim|f> at an
@@ -4045,6 +4432,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> sentry (\\_-\<gtr\>puts "I'm done for!") (1..3);
@@ -4054,6 +4443,8 @@
     \<gtr\> clear ans
 
     I'm done for!
+
+    \;
   </verbatim>
 
   Note that setting a finalizer on a global symbol won't usually be of much
@@ -4082,6 +4473,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> let p = cooked (malloc 1024);
@@ -4095,16 +4488,20 @@
     free
 
     \<gtr\> clear p
+
+    \;
   </verbatim>
 
   Besides their use as finalizers, sentries can also be handy in other
   circumstances, when you need to associate an expression with another,
-  ``invisible'' value. In this case the sentry is usually some kind of data
+  \Pinvisible\Q value. In this case the sentry is usually some kind of data
   structure instead of a function to be executed at finalization time. For
   instance, here's how we can employ sentries to implement hashing of
   function values:
 
   <\verbatim>
+    \;
+
     using dict;
 
     hashed f x = case get_sentry f of
@@ -4126,28 +4523,40 @@
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ end;
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ end;
+
+    \;
   </verbatim>
 
   E.g., consider the naive recursive definition of the Fibonacci function:
 
   <\verbatim>
+    \;
+
     fib n::int = if n\<less\>=1 then 1 else fib (n-1)+fib (n-2);
+
+    \;
   </verbatim>
 
   A hashed version of the Fibonacci function can be defined as follows:
 
   <\verbatim>
+    \;
+
     let hfib = hashed f with
 
     \ \ f n::int = if n\<less\>=1 then 1 else hfib (n-1)+hfib (n-2)
 
     end;
+
+    \;
   </verbatim>
 
   This turns the naive definition of the Fibonacci function (which has
   exponential time complexity) into a linear time operation:
 
   <\verbatim>
+    \;
+
     \<gtr\> stats
 
     \<gtr\> fib 35;
@@ -4161,6 +4570,8 @@
     14930352
 
     0.25s
+
+    \;
   </verbatim>
 
   Finally, note that there can be only one sentry per expression but,
@@ -4168,16 +4579,22 @@
   where sentries are chained. For instance:
 
   <\verbatim>
+    \;
+
     chain_sentry f x = sentry (h (get_sentry x)) x with
 
     \ \ h g x = g x $$ f x;
 
     end;
+
+    \;
   </verbatim>
 
   This invokes the original sentry before the chained one:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> f _ = puts "sentry#1"; g _ = puts "sentry#2";
@@ -4189,17 +4606,23 @@
     sentry#1
 
     sentry#2
+
+    \;
   </verbatim>
 
   You can chain any number of sentries that way. This scheme should work in
   most cases in which sentries are used just as finalizers. However, there
-  are other uses, like the ``hashed function'' example above, where you'd
+  are other uses, like the \Phashed function\Q example above, where you'd
   like the original sentry to stay intact. This can be achieved by placing
   the new sentry as a sentry on the <em|original sentry> rather than the
   expression itself:
 
   <\verbatim>
+    \;
+
     attach_sentry f x = sentry (sentry f (get_sentry x)) x;
+
+    \;
   </verbatim>
 
   This requires that the sentry will actually be garbage-collected when its
@@ -4207,17 +4630,23 @@
   sentry is a global:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = attach_sentry g $ sentry f $ malloc 10;
 
     \<gtr\> clear p
 
     sentry#1
+
+    \;
   </verbatim>
 
   However, the attached sentry will work ok if you can ensure that the
   original sentry is a (partial or constructor) application. E.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = attach_sentry g $ sentry (f$) $ malloc 10;
 
     \<gtr\> clear p
@@ -4225,9 +4654,11 @@
     sentry#1
 
     sentry#2
+
+    \;
   </verbatim>
 
-  <paragraph|Tagged Pointers<label|tagged-pointers>>
+  <paragraph|Tagged Pointers><label|tagged-pointers>
 
   As of Pure 0.45, the C interface now fully checks pointer parameter types
   at runtime (see the <hlink|<em|C Types>|pure.tm#c-types> section in the
@@ -4266,6 +4697,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = malloc 10;
 
     \<gtr\> get_ptrtag p; // zero by default
@@ -4291,6 +4724,8 @@
     \<gtr\> check_ptrtag 0 p;
 
     0
+
+    \;
   </verbatim>
 
   Note that in the case of a non-<hlink|<with|font-family|tt|NULL>|#NULL>
@@ -4300,6 +4735,8 @@
   compatible with all pointer types:
 
   <\verbatim>
+    \;
+
     \<gtr\> let t1 = make_ptrtag; t1;
 
     13
@@ -4315,13 +4752,15 @@
     \<gtr\> get_ptrtag NULL;
 
     0
+
+    \;
   </verbatim>
 
   The operations above are provided so that you can design your own, more
   elaborate type systems for pointer values if the need arises. However,
   you'll rarely have to deal with pointer tags at this level yourself. For
   most applications, it's enough to inspect the type of a Pure pointer and
-  maybe modify it by ``casting'' it to a new target type. The following
+  maybe modify it by \Pcasting\Q it to a new target type. The following
   high-level operations provide these capabilities.
 
   <\description>
@@ -4344,7 +4783,7 @@
     <item*|pointer_type x>Returns the type name associated with the given int
     value <verbatim|tag> or pointer value <verbatim|x>. Please note that this
     may be <hlink|<with|font-family|tt|NULL>|#NULL> in the case of an
-    ``anonymous'' tag, which may have been created with
+    \Panonymous\Q tag, which may have been created with
     <hlink|<with|font-family|tt|make_ptrtag>|#make-ptrtag> above, or if the
     tag is simply unknown because it hasn't been created yet.
   </description>
@@ -4362,6 +4801,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> let p = malloc 10;
 
     \<gtr\> let q = pointer_cast "char*" p;
@@ -4379,6 +4820,8 @@
     ["void*","char*","void**","char**","short*","short**","int*","int**",
 
     "float*","float**","double*","double**"]
+
+    \;
   </verbatim>
 
   (The last command shows a quick and dirty way to retrieve the currently
@@ -4392,9 +4835,13 @@
   instead:
 
   <\verbatim>
+    \;
+
     \<gtr\> let ty = pointer_tag "long*";
 
     \<gtr\> pointer_cast ty p, pointer_cast ty q;
+
+    \;
   </verbatim>
 
   Note that you have to be careful when casting a cooked pointer, because
@@ -4406,11 +4853,15 @@
   pointer gets passed to an external function, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern char *gets(char*);
 
     \<gtr\> let p = cooked $ malloc 1000;
 
     \<gtr\> gets (pointer_cast "char*" p);
+
+    \;
   </verbatim>
 
   Such usage is always safe. If this approach isn't possible, you might want
@@ -4418,7 +4869,7 @@
   instead. (This will clobber the type tag of the pointer, but you can always
   change it back afterwards.)
 
-  <paragraph|Expression References<label|expression-references>>
+  <paragraph|Expression References><label|expression-references>
 
   Expression references provide a kind of mutable data cells which can hold
   any Pure expression. If you need these, then you're doomed. ;-) However,
@@ -4469,6 +4920,8 @@
   Pure's reference-counting garbage collector. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> done r = printf "done %s\\n" (str r);
@@ -4480,6 +4933,8 @@
     \<gtr\> put x (sentry done 1,y);
 
     1,#\<less\>pointer 0x3036400\<gtr\>
+
+    \;
   </verbatim>
 
   At this point <verbatim|x> points to <verbatim|y> and vice versa. If you
@@ -4489,6 +4944,8 @@
   have to break the cycle first:
 
   <\verbatim>
+    \;
+
     \<gtr\> put y 3;
 
     done 2
@@ -4498,6 +4955,8 @@
     \<gtr\> clear x y
 
     done 1
+
+    \;
   </verbatim>
 
   Note that, in a way, sentries work similar to expression references and
@@ -4507,7 +4966,7 @@
   it's a good idea to avoid such cycles if possible.
 
   <label|module-pointers><paragraph|Pointer
-  Arithmetic<label|pointer-arithmetic>>
+  Arithmetic><label|pointer-arithmetic><label|pointer-arithmetic>
 
   The pointers.pure module provides the usual C-style pointer arithmetic and
   comparisons of pointer values. This module normally is not included in the
@@ -4515,7 +4974,11 @@
   declaration to your program:
 
   <\verbatim>
+    \;
+
     using pointers;
+
+    \;
   </verbatim>
 
   The module overloads the comparison and some of the arithmetic operators
@@ -4565,26 +5028,30 @@
     <item*|p \<gtr\> q<label|\<gtr\>/pointer>>
 
     <item*|p \<less\> q<label|\<less\>/pointer>>Pointer comparisons. One
-    pointer <verbatim|p> is considered to be ``less'' than another pointer
-    <verbatim|q> if it represents a ``lower'' address in memory, i.e., if the
+    pointer <verbatim|p> is considered to be \Pless\Q than another pointer
+    <verbatim|q> if it represents a \Plower\Q address in memory, i.e., if the
     byte offset <verbatim|p-q> is negative.
   </description>
 
-  <subsection|Mathematical Functions<label|module-math>>
+  <subsection|Mathematical Functions><label|module-math>
 
   The math.pure module provides Pure's basic math routines. It also defines
   complex and rational numbers.
 
-  <subsubsection|Imports<label|imports>>
+  <subsubsection|Imports><label|imports>
 
   To use the operations of this module, add the following import declaration
   to your program:
 
   <\verbatim>
+    \;
+
     using math;
+
+    \;
   </verbatim>
 
-  <subsubsection|Basic Math Functions<label|basic-math-functions>>
+  <subsubsection|Basic Math Functions><label|basic-math-functions>
 
   The module defines the following real-valued constants:
 
@@ -4687,7 +5154,7 @@
     <item*|atanh x<label|atanh>>Inverse hyperbolic trigonometric functions.
   </description>
 
-  <subsubsection|Complex Numbers<label|complex-numbers>>
+  <subsubsection|Complex Numbers><label|complex-numbers>
 
   <\description>
     <item*|x +: y<label|+:>>
@@ -4773,6 +5240,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math;
 
     \<gtr\> let z = 2^(1/i); z;
@@ -4790,6 +5259,8 @@
     \<gtr\> polar z;
 
     1.0\<less\>:-1.5707963267949
+
+    \;
   </verbatim>
 
   Please note that, as the <hlink|<with|font-family|tt|+:>|#+:> and
@@ -4798,12 +5269,16 @@
   accordingly, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> (1+:2)*(3+:4);
 
     -5+:10
+
+    \;
   </verbatim>
 
-  <subsubsection|Rational Numbers<label|rational-numbers>>
+  <subsubsection|Rational Numbers><label|rational-numbers>
 
   <\description>
     <item*|x % y<label|%>>Exact division operator and rational number
@@ -4866,6 +5341,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math;
 
     \<gtr\> 5%7 + 2%3;
@@ -4891,6 +5368,8 @@
     \<gtr\> rational (3/4);
 
     3L%4L
+
+    \;
   </verbatim>
 
   Note that doubles can't represent most rationals exactly, so conversion
@@ -4898,6 +5377,8 @@
   are still accurate up to rounding errors). For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let x = rational (1/17); x;
 
     4238682002231055L%72057594037927936L
@@ -4909,10 +5390,12 @@
     \<gtr\> double (1%17);
 
     0.0588235294117647
+
+    \;
   </verbatim>
 
   <subsubsection|Semantic Number Predicates and
-  Types<label|semantic-number-predicates-and-types>>
+  Types><label|semantic-number-predicates-and-types>
 
   In difference to the syntactic predicates in
   <hlink|Primitives|#primitives>, these check whether the given value can be
@@ -4941,12 +5424,12 @@
   </description>
 
   <\description>
-    <item*|bigintvalp x<label|bigintvalp>>Check for ``big'' integer values
+    <item*|bigintvalp x<label|bigintvalp>>Check for \Pbig\Q integer values
     which can be represented as a bigint.
   </description>
 
   <\description>
-    <item*|intvalp x<label|intvalp>>Check for ``small'' integer values which
+    <item*|intvalp x<label|intvalp>>Check for \Psmall\Q integer values which
     can be represented as a machine int.
   </description>
 
@@ -4965,7 +5448,9 @@
     yields <hlink|<with|font-family|tt|true>|#true>.
   </description>
 
-  <label|module-enum><subsection|Enumerated Types<label|enumerated-types>>
+  <label|module-enum>
+
+  <subsection|Enumerated Types><label|enumerated-types>
 
   <with|font-series|bold|Enumerated types>, or
   <with|font-series|bold|enumerations> for short, are algebraic types
@@ -4980,7 +5465,11 @@
   operations:
 
   <\verbatim>
+    \;
+
     using enum;
+
+    \;
   </verbatim>
 
   The following operations are provided:
@@ -5030,24 +5519,36 @@
   For instance, consider:
 
   <\verbatim>
+    \;
+
     nonfix sun mon tue wed thu fri sat;
 
     type day sun \| day mon \| day tue \| day wed \| day thu \| day fri \|
     day sat;
+
+    \;
   </verbatim>
 
   Once the type is defined, we can turn it into an enumeration simply as
   follows:
 
   <\verbatim>
+    \;
+
     enum day;
+
+    \;
   </verbatim>
 
   There's also a convenience function <hlink|<with|font-family|tt|defenum>|#defenum>
   which defines the type and makes it enumerable in one go:
 
   <\verbatim>
+    \;
+
     defenum day [sun,mon,tue,wed,thu,fri,sat];
+
+    \;
   </verbatim>
 
   In particular, this sets up the functions <verbatim|day> and <verbatim|ord>
@@ -5055,6 +5556,8 @@
   corresponding ordinals:
 
   <\verbatim>
+    \;
+
     \<gtr\> ord sun;
 
     0
@@ -5062,12 +5565,16 @@
     \<gtr\> day (ans+3);
 
     wed
+
+    \;
   </verbatim>
 
   You can also retrieve the type of an enumerated type member (or rather its
   enumeration function) with <hlink|<with|font-family|tt|enumof>|#enumof>:
 
   <\verbatim>
+    \;
+
     \<gtr\> enumof sun;
 
     day
@@ -5075,12 +5582,16 @@
     \<gtr\> ans 5;
 
     fri
+
+    \;
   </verbatim>
 
   Basic arithmetic, comparisons and arithmetic sequences also work as usual,
   provided that the involved members are all from the same enumeration:
 
   <\verbatim>
+    \;
+
     \<gtr\> succ mon;
 
     tue
@@ -5112,6 +5623,8 @@
     \<gtr\> sat:fri..mon;
 
     [sat,fri,thu,wed,tue,mon]
+
+    \;
   </verbatim>
 
   Note that given one member of the enumeration, you can use
@@ -5120,15 +5633,23 @@
   function which does this:
 
   <\verbatim>
+    \;
+
     enumerate x::enum = iterwhile (typep ty) succ x when ty = enumof x end;
+
+    \;
   </verbatim>
 
   For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> enumerate sun;
 
     [sun,mon,tue,wed,thu,fri,sat]
+
+    \;
   </verbatim>
 
   Also note that <hlink|<with|font-family|tt|enum>|#enum> silently skips
@@ -5138,6 +5659,8 @@
   again to update the enumeration accordingly:
 
   <\verbatim>
+    \;
+
     \<gtr\> succ sat;
 
     sat+1
@@ -5151,9 +5674,11 @@
     \<gtr\> succ sat;
 
     doomsday
+
+    \;
   </verbatim>
 
-  <subsection|Container Types<label|container-types>>
+  <subsection|Container Types><label|container-types>
 
   The standard library provides a variety of efficient container data
   structures for different purposes. These are all purely functional, i.e.,
@@ -5170,7 +5695,11 @@
   of each type, which can be used to match values of the type, e.g.:
 
   <\verbatim>
+    \;
+
     shift a::array = rmfirst a;
+
+    \;
   </verbatim>
 
   All container types implement the equality predicates
@@ -5182,7 +5711,7 @@
   <hlink|<with|font-family|tt|\<less\>=>|#\<=> etc.) which check whether one
   dictionary, set or bag is contained in another.
 
-  <label|module-array><subsubsection|Arrays<label|arrays>>
+  <label|module-array><subsubsection|Arrays><label|arrays><label|arrays>
 
   The array.pure module implements an efficient functional array data
   structure which allows to access and update individual array members, as
@@ -5199,10 +5728,14 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using array;
+
+    \;
   </verbatim>
 
-  <paragraph|Operations<label|operations>>
+  <paragraph|Operations><label|operations>
 
   <\description>
     <item*|emptyarray<label|emptyarray>>return the empty array
@@ -5295,17 +5828,23 @@
     array
   </description>
 
-  <paragraph|Examples<label|examples>>
+  <paragraph|Examples><label|examples>
 
   Import the module:
 
   <\verbatim>
+    \;
+
     \<gtr\> using array;
+
+    \;
   </verbatim>
 
   A one-dimensional array:
 
   <\verbatim>
+    \;
+
     \<gtr\> let a::array = array (0.0:0.1..1.0);
 
     \<gtr\> #a; members a;
@@ -5313,6 +5852,8 @@
     11
 
     [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+
+    \;
   </verbatim>
 
   Indexing an array works in the usual way, using Pure's
@@ -5321,6 +5862,8 @@
   expected:
 
   <\verbatim>
+    \;
+
     \<gtr\> a!5;
 
     0.5
@@ -5328,22 +5871,30 @@
     \<gtr\> a!!(3..7);
 
     [0.3,0.4,0.5,0.6,0.7]
+
+    \;
   </verbatim>
 
   Updating a member of an array produces a new array:
 
   <\verbatim>
+    \;
+
     \<gtr\> let b::array = update a 1 2.0;
 
     \<gtr\> members b;
 
     [0.0,2.0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0]
+
+    \;
   </verbatim>
 
   Two-dimensional arrays can be created with
   <hlink|<with|font-family|tt|array2>|#array2> from a list of lists:
 
   <\verbatim>
+    \;
+
     \<gtr\> let a2::array = array2 [[i,x \| x = [u,v,w]] \| i = 1..2];
 
     \<gtr\> members2 a2;
@@ -5361,11 +5912,15 @@
     \<gtr\> a2!!(0..1,1..2);
 
     [[(1,v),(1,w)],[(2,v),(2,w)]]
+
+    \;
   </verbatim>
 
   Here's how to convert an array to a Pure matrix:
 
   <\verbatim>
+    \;
+
     \<gtr\> matrix $ members a;
 
     {0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0}
@@ -5373,20 +5928,26 @@
     \<gtr\> matrix $ members2 a2;
 
     {(1,u),(1,v),(1,w);(2,u),(2,v),(2,w)}
+
+    \;
   </verbatim>
 
   Converting back from a matrix to an array:
 
   <\verbatim>
+    \;
+
     \<gtr\> let b2::array = array2 $ list2
     {(1,u),(1,v),(1,w);(2,u),(2,v),(2,w)};
 
     \<gtr\> members2 b2;
 
     [[(1,u),(1,v),(1,w)],[(2,u),(2,v),(2,w)]]
+
+    \;
   </verbatim>
 
-  <label|module-heap><subsubsection|Heaps<label|heaps>>
+  <label|module-heap><subsubsection|Heaps><label|heaps><label|heaps>
 
   Heaps are a kind of priority queue data structure which allows quick
   (constant time) access to the smallest member, and to remove the smallest
@@ -5410,7 +5971,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using heap;
+
+    \;
   </verbatim>
 
   Operations
@@ -5461,6 +6026,8 @@
   Examples
 
   <\verbatim>
+    \;
+
     \<gtr\> let h::heap = heap [5,1,3,11,3];
 
     \<gtr\> members h;
@@ -5474,9 +6041,11 @@
     \<gtr\> members $ rmfirst h;
 
     [3,3,5,11]
+
+    \;
   </verbatim>
 
-  <label|module-dict><subsubsection|Dictionaries<label|dictionaries>>
+  <label|module-dict><subsubsection|Dictionaries><label|dictionaries><label|dictionaries>
 
   The dict.pure module provides Pure's dictionary data types based on AVL
   trees. There are actually four different types to choose from, depending on
@@ -5525,7 +6094,7 @@
   <hlink|<with|font-family|tt|<math|\<sim\>>=>|#-tilde=>,
   <hlink|<with|font-family|tt|\<less\>=>|#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all
-  dictionary types, where two dictionaries are considered ``equal''
+  dictionary types, where two dictionaries are considered \Pequal\Q
   (<verbatim|d1==d2>) if they both contain the same <verbatim|key=\>value>
   pairs, and <verbatim|d1\<=d2> means that <verbatim|d1> is a sub-dictionary
   of <verbatim|d2>, i.e., all <verbatim|key=\>value> pairs of <verbatim|d1>
@@ -5560,7 +6129,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using dict;
+
+    \;
   </verbatim>
 
   Operations
@@ -5743,6 +6316,8 @@
   A normal (ordered) dictionary:
 
   <\verbatim>
+    \;
+
     \<gtr\> using dict;
 
     \<gtr\> let d::dict = dict ["foo"=\<gtr\>77,"bar"=\<gtr\>99.1];
@@ -5754,6 +6329,8 @@
     [99.1,77]
 
     ["bar"=\<gtr\>99.1,"foo"=\<gtr\>77]
+
+    \;
   </verbatim>
 
   Indexing a dictionary works in the usual way, using Pure's
@@ -5762,6 +6339,8 @@
   thrown if the key is not in the dictionary:
 
   <\verbatim>
+    \;
+
     \<gtr\> d!"foo";
 
     77
@@ -5772,21 +6351,29 @@
     evaluating
 
     'd!"baz"'
+
+    \;
   </verbatim>
 
   By virtue of the prelude, slicing a dictionary with
   <hlink|<with|font-family|tt|!!>|#!!> also works as expected:
 
   <\verbatim>
+    \;
+
     \<gtr\> d!!["foo","bar","baz"];
 
     [77,99.1]
+
+    \;
   </verbatim>
 
   A hashed dictionary can be used with any key values, which are stored in a
   seemingly random order:
 
   <\verbatim>
+    \;
+
     \<gtr\> let h::hdict = hdict [foo=\<gtr\>77,42=\<gtr\>99.1];
 
     \<gtr\> keys h; vals h; members h;
@@ -5804,6 +6391,8 @@
     \<gtr\> h!!keys h;
 
     [99.1,77]
+
+    \;
   </verbatim>
 
   Multidicts work in pretty much the same fashion, but allow more than one
@@ -5813,6 +6402,8 @@
   <hlink|<with|font-family|tt|out_of_bounds>|#out-of-bounds> exception):
 
   <\verbatim>
+    \;
+
     \<gtr\> let d::mdict = mdict ["foo"=\<gtr\>77,"bar"=\<gtr\>99.1,"foo"=\<gtr\>99];
 
     \<gtr\> d!"foo"; d!"baz";
@@ -5820,27 +6411,39 @@
     [77,99]
 
     []
+
+    \;
   </verbatim>
 
   Slicing thus returns a list of lists of values here:
 
   <\verbatim>
+    \;
+
     \<gtr\> d!!["foo","bar","baz"];
 
     [[77,99],[99.1],[]]
+
+    \;
   </verbatim>
 
   To obtain a flat list you can just concatenate the results:
 
   <\verbatim>
+    \;
+
     \<gtr\> cat $ d!!["foo","bar","baz"];
 
     [77,99,99.1]
+
+    \;
   </verbatim>
 
   Hashed multidicts provide both key hashing and multiple values per key:
 
   <\verbatim>
+    \;
+
     \<gtr\> let h::hmdict = hmdict [foo=\<gtr\>77,42=\<gtr\>99.1,42=\<gtr\>77];
 
     \<gtr\> keys h; vals h; members h;
@@ -5854,6 +6457,8 @@
     \<gtr\> h!42;
 
     [99.1,77]
+
+    \;
   </verbatim>
 
   There are also some set-like operations which allow you to add/remove the
@@ -5862,6 +6467,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let h1 = hmdict [a=\<gtr\>1,b=\<gtr\>2];
 
     \<gtr\> let h2 = hmdict [b=\<gtr\>2,c=\<gtr\>3];
@@ -5877,12 +6484,16 @@
     \<gtr\> members (h1*h2);
 
     [b=\<gtr\>2]
+
+    \;
   </verbatim>
 
   It's possible to mix dictionaries of different types in these operations.
   The necessary conversions are handled automatically:
 
   <\verbatim>
+    \;
+
     \<gtr\> let h1 = hmdict [a=\<gtr\>1,b=\<gtr\>2];
 
     \<gtr\> let h2 = hdict \ [b=\<gtr\>3,c=\<gtr\>4];
@@ -5890,6 +6501,8 @@
     \<gtr\> members (h1+h2);
 
     [a=\<gtr\>1,c=\<gtr\>4,b=\<gtr\>2,b=\<gtr\>3]
+
+    \;
   </verbatim>
 
   Note that the result will always be promoted to the most general operand
@@ -5897,17 +6510,22 @@
   not what you want, you'll have to apply the necessary conversions manually:
 
   <\verbatim>
+    \;
+
     \<gtr\> members (hdict h1+h2);
 
     [a=\<gtr\>1,c=\<gtr\>4,b=\<gtr\>3]
+
+    \;
   </verbatim>
 
-  <label|module-set><subsubsection|Sets and Bags<label|sets-and-bags>>
+  <label|module-set><subsubsection|Sets and
+  Bags><label|sets-and-bags><label|sets-and-bags>
 
   The set.pure module implements Pure's set data types based on AVL trees.
   These work pretty much like dictionaries (cf.
   <hlink|Dictionaries|#dictionaries>) but only store keys (called
-  ``elements'' or ``members'' here) without any associated data values. Hence
+  \Pelements\Q or \Pmembers\Q here) without any associated data values. Hence
   sets provide membership tests like dictionaries, but no indexing
   operations.
 
@@ -5941,7 +6559,7 @@
   <hlink|<with|font-family|tt|<math|\<sim\>>=>|#-tilde=>,
   <hlink|<with|font-family|tt|\<less\>=>|#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all set and
-  bag types, where two sets or bags are considered ``equal''
+  bag types, where two sets or bags are considered \Pequal\Q
   (<verbatim|m1==m2>) if they both contain the same elements, and
   <verbatim|m1\<=m2> means that <verbatim|m1> is a subset or subbag of
   <verbatim|m2>, i.e., all elements of <verbatim|m1> are also contained in
@@ -5963,7 +6581,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using set;
+
+    \;
   </verbatim>
 
   Operations
@@ -6090,7 +6712,11 @@
   it can easily be defined in terms of multiset sum as follows:
 
   <\verbatim>
+    \;
+
     union m1 m2 = m1+(m2-m1);
+
+    \;
   </verbatim>
 
   Examples
@@ -6098,6 +6724,8 @@
   Some basic set operations:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m::set = set [5,1,3,11,3];
 
     \<gtr\> members m;
@@ -6119,12 +6747,16 @@
     \<gtr\> members $ m*set (3..6);
 
     [3,5]
+
+    \;
   </verbatim>
 
   The bag operations work in a similar fashion, but multiple instances are
   permitted in this case, and each instance counts as a separate member:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m::bag = bag [5,1,3,11,3];
 
     \<gtr\> members m;
@@ -6150,6 +6782,8 @@
     \<gtr\> members $ m*bag (3..6);
 
     [3,5]
+
+    \;
   </verbatim>
 
   As already mentioned, operands of different types can be mixed with the
@@ -6157,6 +6791,8 @@
   here's how you add a set to a bag:
 
   <\verbatim>
+    \;
+
     \<gtr\> let m1::bag = bag [5,1,3,11,3];
 
     \<gtr\> let m2::set = set (3..6);
@@ -6164,6 +6800,8 @@
     \<gtr\> members (m1+m2);
 
     [1,3,3,3,4,5,5,6,11]
+
+    \;
   </verbatim>
 
   Note that the result will always be promoted to the most general operand
@@ -6171,21 +6809,29 @@
   want, you'll have to apply the necessary conversions manually:
 
   <\verbatim>
+    \;
+
     \<gtr\> members (set m1+m2);
 
     [1,3,4,5,6,11]
+
+    \;
   </verbatim>
 
   If set members aren't ordered then you'll get an exception when trying to
   create an ordered set or bag from them:
 
   <\verbatim>
+    \;
+
     \<gtr\> set [a,b,c];
 
     \<less\>stdin\<gtr\>, line 5: unhandled exception 'failed_cond' while
     evaluating
 
     'set [a,b,c]'
+
+    \;
   </verbatim>
 
   In such a case hashed sets and bags must be used instead. These work
@@ -6193,6 +6839,8 @@
   in an apparently random order:
 
   <\verbatim>
+    \;
+
     \<gtr\> members $ hset [a,b,c] * hset [c,d,e];
 
     [c]
@@ -6200,13 +6848,16 @@
     \<gtr\> members $ hbag [a,b,c] + hbag [c,d,e];
 
     [a,c,c,b,d,e]
+
+    \;
   </verbatim>
 
-  <label|module-system><subsection|System Interface<label|system-interface>>
+  <label|module-system><subsection|System
+  Interface><label|system-interface><label|system-interface>
 
   This module offers some useful system routines, straight from the C
   library, as well as some convenience functions for wrapping these up in
-  Pure. Even the ``purest'' program needs to do some basic I/O every once in
+  Pure. Even the \Ppurest\Q program needs to do some basic I/O every once in
   a while, and this module provides the necessary stuff to do just that. The
   operations provided in this module should work (if necessary by a suitable
   emulation) on all supported systems. Most of the following functions are
@@ -6219,7 +6870,11 @@
   to your program:
 
   <\verbatim>
+    \;
+
     using system;
+
+    \;
   </verbatim>
 
   Some functions of the system interface are provided in separate modules;
@@ -6227,7 +6882,7 @@
   Functions|#additional-posix-functions> and <hlink|Option
   Parsing|#option-parsing>.
 
-  <subsubsection|Errno and Friends<label|errno-and-friends>>
+  <subsubsection|Errno and Friends><label|errno-and-friends>
 
   <\description>
     <item*|errno<label|errno>>
@@ -6247,6 +6902,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> fopen "junk" "r", perror "junk";
@@ -6254,9 +6911,11 @@
     junk: No such file or directory
 
     fopen "junk" "r"
+
+    \;
   </verbatim>
 
-  <subsubsection|POSIX Locale<label|posix-locale>>
+  <subsubsection|POSIX Locale><label|posix-locale>
 
   <\description>
     <item*|setlocale category locale<label|setlocale>>Set or retrieve the
@@ -6292,12 +6951,16 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> setlocale LC_ALL NULL;
 
     "en_US.UTF-8"
+
+    \;
   </verbatim>
 
-  <subsubsection|Signal Handling<label|signal-handling>>
+  <subsubsection|Signal Handling><label|signal-handling>
 
   <\description>
     <item*|trap action sig<label|trap>>Establish or remove Pure signal
@@ -6321,7 +6984,7 @@
   See <hlink|<em|Exception Handling>|pure.tm#exception-handling> in the Pure
   Manual for details and examples.
 
-  <subsubsection|Time Functions<label|time-functions>>
+  <subsubsection|Time Functions><label|time-functions>
 
   The usual date/time functions from the C library are all provided. This
   includes some functions to retrieve wallclock and cpu time which usually
@@ -6348,7 +7011,7 @@
   <\description>
     <item*|clock<label|clock>>Returns the current CPU (not wallclock) time
     since an arbitrary point in the past, as a machine int. The number of
-    ``ticks'' per second is given by the <verbatim|CLOCKS_PER_SEC> constant.
+    \Pticks\Q per second is given by the <verbatim|CLOCKS_PER_SEC> constant.
     Note that this value will wrap around approximately every 72 minutes.
   </description>
 
@@ -6370,6 +7033,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> time,sleep 1,time;
 
     1270241703L,0,1270241704L
@@ -6377,24 +7042,34 @@
     \<gtr\> gettimeofday,nanosleep 0.1,gettimeofday;
 
     1270241709.06338,0.0,1270241709.16341
+
+    \;
   </verbatim>
 
   Here's a little macro which lets you time evaluations:
 
   <\verbatim>
+    \;
+
     def timex x = y,(t2-t1)/CLOCKS_PER_SEC when
 
     \ \ t1 = clock; y = x; t2 = clock;
 
     end;
+
+    \;
   </verbatim>
 
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> timex (foldl (+) 0 (1..100000));
 
     705082704,0.07
+
+    \;
   </verbatim>
 
   <\description>
@@ -6420,6 +7095,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> tzset;
 
     ()
@@ -6431,10 +7108,12 @@
     \<gtr\> tzname!daylight;
 
     "CEST"
+
+    \;
   </verbatim>
 
   The following functions deal with date/time values in string and
-  ``broken-down'' time format. See the ctime(3), gmtime(3), localtime(3),
+  \Pbroken-down\Q time format. See the ctime(3), gmtime(3), localtime(3),
   mktime(3), asctime(3), strftime(3) and strptime(3) manual pages for
   details.
 
@@ -6448,7 +7127,7 @@
     <item*|gmtime t<label|gmtime>>
 
     <item*|localtime t<label|localtime>>Convert a time value to UTC or local
-    time in ``broken-down'' form (a static pointer to a <verbatim|tm> struct
+    time in \Pbroken-down\Q form (a static pointer to a <verbatim|tm> struct
     containing a bunch of <verbatim|int> fields) which can then be passed to
     the <hlink|<with|font-family|tt|asctime>|#asctime> and
     <hlink|<with|font-family|tt|strftime>|#strftime> functions, or to
@@ -6485,6 +7164,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> let t = time; t;
 
     1270239790L
@@ -6512,6 +7193,8 @@
     \<gtr\> strptime ans "%c" tm, int_matrix 9 tm;
 
     "CEST",{10,23,22,2,3,110,5,91,1}
+
+    \;
   </verbatim>
 
   In the above example, <hlink|<with|font-family|tt|strptime>|#strptime> was
@@ -6531,11 +7214,15 @@
   is as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> let tm = pointer_cast "int*" $ calloc 1 SIZEOF_TM;
 
     \<gtr\> strptime "4/2/10" "%D" tm, int_matrix 9 tm;
 
     "",{0,0,0,2,3,110,5,91,0}
+
+    \;
   </verbatim>
 
   Instead of explicitly allocating dynamic storage and converting it to a
@@ -6543,11 +7230,15 @@
   directly with an int matrix of sufficient size:
 
   <\verbatim>
+    \;
+
     \<gtr\> let tm = imatrix (SIZEOF_TM div SIZEOF_INT + 1);
 
     \<gtr\> strptime "4/2/10" "%D" tm, take 9 tm;
 
     "",{0,0,0,2,3,110,5,91,0}
+
+    \;
   </verbatim>
 
   Last but not least, to make calling <hlink|<with|font-family|tt|strptime>|#strptime>
@@ -6555,6 +7246,8 @@
   takes care of allocating the storage, e.g.:
 
   <\verbatim>
+    \;
+
     mystrptime s format = s,take 9 tm when
 
     \ \ tm = imatrix (SIZEOF_TM div SIZEOF_INT + 1);
@@ -6568,6 +7261,8 @@
     \<gtr\> mystrptime "4/2/10" "%D";
 
     "",{0,0,0,2,3,110,5,91,0}
+
+    \;
   </verbatim>
 
   Here is a list of some common format specifiers which can be used with the
@@ -6635,7 +7330,7 @@
   isn't natively supported there. A basic emulation is provided by the Pure
   runtime, but at present this only supports the C locale.
 
-  <subsubsection|Process Functions<label|process-functions>>
+  <subsubsection|Process Functions><label|process-functions>
 
   The following process functions are available on all systems. (Some
   additional process-related functions such as
@@ -6704,6 +7399,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> system "pwd";
 
     /home/ag/svn/pure-lang/trunk/pure/lib
@@ -6721,9 +7418,11 @@
     /home/ag/svn/pure-lang/trunk/pure/lib
 
     0
+
+    \;
   </verbatim>
 
-  <subsubsection|Basic I/O Interface<label|basic-i-o-interface>>
+  <subsubsection|Basic I/O Interface><label|basic-i-o-interface>
 
   Note that this module also defines the standard I/O streams
   <hlink|<with|font-family|tt|stdin>|#stdin>,
@@ -6863,7 +7562,11 @@
     return value):
 
     <\verbatim>
+      \;
+
       setvbuf fp buf (if null buf then _IONBF else _IOFBF) BUFSIZ
+
+      \;
     </verbatim>
 
     Please see the setbuf(3) manual page for details.
@@ -6872,6 +7575,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> puts "Hello, world!";
 
     Hello, world!
@@ -6917,6 +7622,8 @@
     "matrices.pure","prelude.pure","primitives.pure","quasiquote.pure",
 
     "set.pure","strings.pure","system.pure",""]
+
+    \;
   </verbatim>
 
   C-style formatted I/O is provided through the following wrappers for the C
@@ -6972,7 +7679,7 @@
     implementation doesn't accept any of the standard length modifiers; in
     particular, floating point values will <em|always> be read in double
     precision and you just specify <verbatim|e>, <verbatim|g> etc. for these.
-    The ``assignment suppression'' flag <verbatim|*> is understood, however;
+    The \Passignment suppression\Q flag <verbatim|*> is understood, however;
     the corresponding items will not be returned.
   </description>
 
@@ -6985,6 +7692,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> do (printf "%s%d\\n") [("foo",5),("catch",22)];
 
     foo5
@@ -6996,12 +7705,16 @@
     \<gtr\> sscanf "foo 5 22" "%s %d %g";
 
     "foo",5,22.0
+
+    \;
   </verbatim>
 
   As mentioned above, special argument formats are provided for bigints and
   multiprecision floats:
 
   <\verbatim>
+    \;
+
     \<gtr\> sscanf "a(5) = 1234" "a(%d) = %Zd";
 
     5,1234L
@@ -7023,6 +7736,8 @@
     pi = 3.14159265358979323846264338328
 
     37
+
+    \;
   </verbatim>
 
   There are a number of other options for these conversions, please check the
@@ -7040,7 +7755,7 @@
   to read the number as a string and then convert it using the
   <hlink|<with|font-family|tt|mpfr>|pure-mpfr.tm#mpfr> function.
 
-  <subsubsection|Stat and Friends<label|stat-and-friends>>
+  <subsubsection|Stat and Friends><label|stat-and-friends>
 
   <\description>
     <item*|stat path<label|stat>>Return information about the given file.
@@ -7095,6 +7810,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> stat "/etc/passwd";
 
     64773L,9726294L,33188,1,0,0,0L,1623L,1250373163L,1242692339L,1242692339L
@@ -7123,9 +7840,11 @@
     directory
 
     1
+
+    \;
   </verbatim>
 
-  <subsubsection|Reading Directories<label|reading-directories>>
+  <subsubsection|Reading Directories><label|reading-directories>
 
   <\description>
     <item*|readdir name<label|readdir>>Read the contents of the given
@@ -7135,12 +7854,16 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> readdir "/home";
 
     ["ag",".",".."]
+
+    \;
   </verbatim>
 
-  <subsubsection|Shell Globbing<label|shell-globbing>>
+  <subsubsection|Shell Globbing><label|shell-globbing>
 
   <\description>
     <item*|fnmatch pat s flags<label|fnmatch>>Returns a simple truth value (1
@@ -7162,6 +7885,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> glob "*.pure" 0;
 
     ["array.pure","dict.pure","getopt.pure","heap.pure","math.pure",
@@ -7169,9 +7894,11 @@
     "matrices.pure","prelude.pure","primitives.pure","set.pure",
 
     "strings.pure","system.pure"]
+
+    \;
   </verbatim>
 
-  <subsubsection|Regex Matching<label|module-regex>>
+  <subsubsection|Regex Matching><label|module-regex>
 
   Please note that, as of Pure 0.48, this part of the system interface is not
   included in the system module any more, but is provided as a separate regex
@@ -7180,7 +7907,11 @@
   program:
 
   <\verbatim>
+    \;
+
     using regex;
+
+    \;
   </verbatim>
 
   Since the POSIX regex functions (<verbatim|regcomp> and <verbatim|regexec>)
@@ -7218,7 +7949,7 @@
 
   Symbolic <verbatim|REG_*> constants are provided for the different flag
   values, see the regcomp(3) manpage for an explanation of these. (Please
-  note that these symbolic ``constants'' aren't really constants, but are
+  note that these symbolic \Pconstants\Q aren't really constants, but are
   actually implemented as variables, since their values may depend on which
   underlying regex library is being used. Please check <hlink|Perl Regex
   Compatibility|#perl-regex-compatibility> below for details.)
@@ -7226,7 +7957,7 @@
   Two particularly important compilation flags (to be included in the
   <verbatim|cflags> argument) are <verbatim|REG_NOSUB>, which prevents
   submatches to be computed, and <verbatim|REG_EXTENDED>, which switches
-  <hlink|<with|font-family|tt|regex>|#regex> from ``basic'' to ``extended''
+  <hlink|<with|font-family|tt|regex>|#regex> from \Pbasic\Q to \Pextended\Q
   regular expressions so that it understands all the regular expression
   elements of egrep(1) in the pattern argument.
 
@@ -7352,51 +8083,71 @@
     <hlink|<with|font-family|tt|regexgg>|#regexgg> and
     <hlink|<with|font-family|tt|regsplit>|#regsplit> above, but return a
     stream result which enables you to process the matches one by one, using
-    ``call by need'' evaluation.
+    \Pcall by need\Q evaluation.
   </description>
 
-  <paragraph|Basic Examples<label|basic-examples>>
+  <paragraph|Basic Examples><label|basic-examples>
 
   Let's have a look at some simple examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> let pat = "[[:alpha:]][[:alnum:]]*";
 
     \<gtr\> let s = "1var foo 99 BAR $%&";
+
+    \;
   </verbatim>
 
   Simple match:
 
   <\verbatim>
+    \;
+
     \<gtr\> regex pat 0 s 0;
 
     1,1,"var"
+
+    \;
   </verbatim>
 
   Same without match info:
 
   <\verbatim>
+    \;
+
     \<gtr\> regex pat REG_NOSUB s 0;
 
     1
+
+    \;
   </verbatim>
 
   Global match, return the list of all matches:
 
   <\verbatim>
+    \;
+
     \<gtr\> regexg id pat 0 s 0;
 
     [(1,"var"),(5,"foo"),(12,"BAR")]
+
+    \;
   </verbatim>
 
   Same with overlapping matches:
 
   <\verbatim>
+    \;
+
     \<gtr\> regexgg id pat 0 s 0;
 
     [(1,"var"),(2,"ar"),(3,"r"),(5,"foo"),(6,"oo"),(7,"o"),(12,"BAR"),
 
     (13,"AR"),(14,"R")]
+
+    \;
   </verbatim>
 
   Note that <hlink|<with|font-family|tt|id>|#id> (the identity function) in
@@ -7405,17 +8156,23 @@
   instead of the full match info:
 
   <\verbatim>
+    \;
+
     \<gtr\> regexg (!1) pat 0 s 0;
 
     ["var","foo","BAR"]
+
+    \;
   </verbatim>
 
   Lazy versions of both <hlink|<with|font-family|tt|regexg>|#regexg> and
   <hlink|<with|font-family|tt|regexgg>|#regexgg> are provided which return
-  the result as a stream instead. These can be processed in a ``call by
-  need'' fashion:
+  the result as a stream instead. These can be processed in a \Pcall by
+  need\Q fashion:
 
   <\verbatim>
+    \;
+
     \<gtr\> regexgs id pat 0 s 0;
 
     (1,"var"):#\<less\>thunk 0x7fb1b7976750\<gtr\>
@@ -7423,11 +8180,15 @@
     \<gtr\> last ans;
 
     12,"BAR"
+
+    \;
   </verbatim>
 
   Let's verify that the processing is really done lazily:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> test x = printf "got: %s\\n" (str x) $$ x;
@@ -7447,6 +8208,8 @@
     got: 12,"BAR"
 
     12,"BAR"
+
+    \;
   </verbatim>
 
   As you can see, the first match is produced immediately, while the
@@ -7456,6 +8219,8 @@
   result list in memory. For instance, compare the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> let s2 = fget $ fopen "system.pure" "r";
 
     \<gtr\> stats -m
@@ -7471,21 +8236,29 @@
     7977
 
     0.12s, 20 cells
+
+    \;
   </verbatim>
 
-  <paragraph|Regex Substitutions and Splitting<label|regex-substitutions-and-splitting>>
+  <paragraph|Regex Substitutions and Splitting><label|regex-substitutions-and-splitting>
 
   We can also perform substitutions on matches:
 
   <\verbatim>
+    \;
+
     \<gtr\> regsub (sprintf "\<less\>%d:%s\<gtr\>") pat 0 s 0;
 
     "1\<less\>1:var\<gtr\> \<less\>5:foo\<gtr\> 99 \<less\>12:BAR\<gtr\> $%&"
+
+    \;
   </verbatim>
 
   Or split a string using a delimiter pattern (this uses an egrep pattern):
 
   <\verbatim>
+    \;
+
     \<gtr\> let delim = "[[:space:]]+";
 
     \<gtr\> regsplit delim REG_EXTENDED s 0;
@@ -7495,12 +8268,16 @@
     \<gtr\> regsplit delim REG_EXTENDED "The \ \ quick brown \ \ \ fox" 0;
 
     ["The","quick","brown","fox"]
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|regsplit>|#regsplit> operation also has a
   lazy variation:
 
   <\verbatim>
+    \;
+
     \<gtr\> regsplits "[[:space:]]+" REG_EXTENDED "The \ \ quick brown
     \ \ \ fox" 0;
 
@@ -7509,9 +8286,11 @@
     \<gtr\> last ans;
 
     "fox"
+
+    \;
   </verbatim>
 
-  <paragraph|Empty Matches<label|empty-matches>>
+  <paragraph|Empty Matches><label|empty-matches>
 
   Empty matches are permitted, too, subject to the constraint that at most
   one match is reported for each position (which also prevents looping). And
@@ -7519,6 +8298,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> regexg id "" REG_EXTENDED "foo" 0;
 
     [(0,""),(1,""),(2,""),(3,"")]
@@ -7530,11 +8311,15 @@
     \<gtr\> regexgg id "o*" REG_EXTENDED "foo" 0;
 
     [(0,""),(1,"oo"),(2,"o"),(3,"")]
+
+    \;
   </verbatim>
 
   This also works when substituting or splitting:
 
   <\verbatim>
+    \;
+
     \<gtr\> regsub (cst " ") "" REG_EXTENDED "some text" 0;
 
     " s o m e \ \ t e x t "
@@ -7550,9 +8335,11 @@
     \<gtr\> regsplit " ?" REG_EXTENDED "some text" 0;
 
     ["","s","o","m","e","","t","e","x","t",""]
+
+    \;
   </verbatim>
 
-  <paragraph|Submatches<label|submatches>>
+  <paragraph|Submatches><label|submatches>
 
   Parenthesized subexpressions in a pattern yield corresponding submatch
   information, which is useful if we need to retrieve the text matched by a
@@ -7561,6 +8348,8 @@
   can be dissected using the following regex:
 
   <\verbatim>
+    \;
+
     \<gtr\> let env_pat = "^([^=]+)=(.*)$";
 
     \<gtr\> let env_flags = REG_EXTENDED or REG_NEWLINE;
@@ -7568,6 +8357,8 @@
     \<gtr\> regex env_pat env_flags "SHELL=/bin/sh" 0;
 
     1,0,"SHELL=/bin/sh",0,"SHELL",6,"/bin/sh"
+
+    \;
   </verbatim>
 
   Note that we again used an extended regex here, and we also added the
@@ -7576,17 +8367,23 @@
   we can retrieve that as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> parse_env s = regexg (\\info -\<gtr\> info!3 =\<gtr\> info!5)
     env_pat env_flags s 0;
 
     \<gtr\> parse_env "SHELL=/bin/sh\\nHOME=/home/bar\\n";
 
     ["SHELL"=\<gtr\>"/bin/sh","HOME"=\<gtr\>"/home/bar"]
+
+    \;
   </verbatim>
 
   We can get hold of the real process environment as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> let env = parse_env $ fget $ popen "set" "r";
@@ -7598,20 +8395,26 @@
     \<gtr\> head env;
 
     "BASH"=\<gtr\>"/usr/bin/sh"
+
+    \;
   </verbatim>
 
   Just for the fun of it, let's convert this to a record, providing easy
   random access to the environment variables:
 
   <\verbatim>
+    \;
+
     \<gtr\> let env = record env;
 
     \<gtr\> env!!["SHELL","HOME"];
 
     {"/bin/bash","/home/ag"}
+
+    \;
   </verbatim>
 
-  <paragraph|Perl Regex Compatibility<label|perl-regex-compatibility>>
+  <paragraph|Perl Regex Compatibility><label|perl-regex-compatibility>
 
   Pure 0.64 and later can be built with support for Perl-style regular
   expressions in the runtime. This is disabled by default, but you can build
@@ -7625,11 +8428,15 @@
   POSIX syntax. For instance, you can now write:
 
   <\verbatim>
+    \;
+
     \<gtr\> using regex;
 
     \<gtr\> regex "(?:Bob says: (\\\\w+))" 0 "Bob says: Go" 0;
 
     1,0,"Bob says: Go",10,"Go"
+
+    \;
   </verbatim>
 
   Note that in Perl-style regexes the <verbatim|(?:...)> construct indicates
@@ -7654,12 +8461,12 @@
   that <verbatim|REG_EXTENDED> is always enabled and the treatment of
   newlines is different in some situations if <verbatim|REG_NEWLINE> is used;
   please check the pcreposix(3) manual page for details. Also, the
-  <verbatim|REG_*> ``constants'' differ between libpcre and the POSIX regex
+  <verbatim|REG_*> \Pconstants\Q differ between libpcre and the POSIX regex
   functions, so you should never hard-code these into batch-compiled scripts
   (simply avoid <hlink|<with|font-family|tt|const>|pure.tm#const> definitions
   involving these values, then you should be fine).
 
-  <subsubsection|Additional POSIX Functions<label|module-posix>>
+  <subsubsection|Additional POSIX Functions><label|module-posix>
 
   <em|Platforms:>Mac, Unix
 
@@ -7670,7 +8477,11 @@
   module, add the following import declaration to your program:
 
   <\verbatim>
+    \;
+
     using posix;
+
+    \;
   </verbatim>
 
   The following operations are provided. Please see the appropriate POSIX
@@ -7710,14 +8521,20 @@
     <item*|pause<label|pause>>Sleep until a signal is caught.
   </description>
 
-  <label|module-getopt><subsubsection|Option Parsing<label|option-parsing>>
+  <label|module-getopt>
+
+  <subsubsection|Option Parsing><label|option-parsing>
 
   This is a quick-and-dirty replacement for the GNU getopt functions, ported
   from the Q library. To use the operations of this module, add the following
   import declaration to your program:
 
   <\verbatim>
+    \;
+
     using getopt;
+
+    \;
   </verbatim>
 
   The following operation is provided:
@@ -7740,7 +8557,7 @@
   missing or extra argument, etc.), <hlink|<with|font-family|tt|getopt>|#getopt>
   throws the offending option string as an exception.
 
-  The <verbatim|opts_return> value is a list of ``hash pairs''
+  The <verbatim|opts_return> value is a list of \Phash pairs\Q
   <verbatim|opt=\>val> where <verbatim|opt> is the (long) option name (as
   given by the <verbatim|long_opt> field given in the <verbatim|opts>
   argument, see below) and <verbatim|val> is the corresponding value
@@ -7772,6 +8589,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> let opts = [("--help", "-h", NOARG), \ \ \ \ \ \ // no argument
 
     \<gtr\> \ \ \ \ \ \ \ \ \ \ \ \ ("--version", "", NOARG), \ \ \ \ \ // no
@@ -7794,13 +8613,15 @@
     \<gtr\> getopt opts [foo, "-h", bar];
 
     ["--help"=\<gtr\>()],[foo,bar]
+
+    \;
   </verbatim>
 
   As the last example shows, non-option arguments (as well as option values
   specified as separate arguments) can actually be any values which are just
   copied to the result lists as is.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|purelib-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|purelib-toc>
 
   <\itemize>
     <item><hlink|Pure Library Manual|#>
@@ -8003,6 +8824,6 @@
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

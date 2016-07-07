@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-odbc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Pure-Sql3<label|module-sql3>>
+  <section*|Pure-Sql3><label|module-sql3>
 
-  Version 0.5, October 28, 2014
+  Version 0.5, July 07, 2016
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -20,7 +20,7 @@
   <hlink|SQLite|http://www.sqlite.org> module for the
   <hlink|Pure|http://purelang.bitbucket.org> programming language.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
   SQLite is a software library that implements an easy to use,
   self-contained, serverless, zero-configuration, transactional SQL database
@@ -33,13 +33,15 @@
   programmers access to almost all of SQLite's features, including many that
   are not available through Pure's generic ODBC interface.
 
-  <subsubsection|Simple Example<label|simple-example>>
+  <subsubsection|Simple Example><label|simple-example>
 
-  Here is a simple example that opens a database file ``readme.db'' (creating
-  it if it does not exist), adds a table ``RM'', populates ``RM'' and
+  Here is a simple example that opens a database file \Preadme.db\Q (creating
+  it if it does not exist), adds a table \PRM\Q, populates \PRM\Q and
   executes a query.
 
   <\verbatim>
+    \;
+
     pure-sql3$\<gtr\> pure -q
 
     \<gtr\>
@@ -82,6 +84,8 @@
     \<gtr\> exec sp2 18;
 
     [["Sam",20],["Fred",22]]
+
+    \;
   </verbatim>
 
   The Sql3 functions, <hlink|<with|font-family|tt|open>|#sql3::open>,
@@ -90,7 +94,7 @@
   functionality of SQLite, and in many cases are all you need to use SQLite
   effectively.
 
-  <subsubsection|More Examples<label|more-examples>>
+  <subsubsection|More Examples><label|more-examples>
 
   The examples subdirectory of pure-Sql3 contains several files that further
   illustrate basic usage as well as some of Sql3's more sophisticated
@@ -99,7 +103,7 @@
   readme.pure into a buffer and execute the examples line by line (pressing
   C-c C-c) (as well as experiment as you go).
 
-  <subsubsection|SQLite Documentation<label|sqlite-documentation>>
+  <subsubsection|SQLite Documentation><label|sqlite-documentation>
 
   SQLite's home page provides excellent documentation regarding its SQL
   dialect as well as its C interface. Comments in this document regarding
@@ -115,7 +119,7 @@
   Interface|http://www.sqlite.org/cintro.html>.
 
   <subsubsection|Sqlite3 - The SQLite Command-Line
-  Utility<label|sqlite3-the-sqlite-command-line-utility>>
+  Utility><label|sqlite3-the-sqlite-command-line-utility>
 
   The SQLite library includes a really nice command-line utility named
   sqlite3 (or sqlite3.exe on Windows) that allows the user to manually enter
@@ -124,10 +128,12 @@
   This tool is an invaluable aid when working with SQLite in general and with
   Sql3 in the Pure interpreter in particular. For example, after entering the
   Pure statements from the Simple Example above, you could start a new
-  terminal, cd to pure-sql3, type ``sqlite3 readme.db'' at the prompt, and
+  terminal, cd to pure-sql3, type \Psqlite3 readme.db\Q at the prompt, and
   see the effect the Pure statements had on the database:
 
   <\verbatim>
+    \;
+
     pure-sql3$\<gtr\> sqlite3 readme.db
 
     SQLite version 3.6.16
@@ -143,12 +149,14 @@
     Sam\|20
 
     Fred\|22
+
+    \;
   </verbatim>
 
   For bottom up REPL development, sqlite3 and Pure are an excellent
   combination.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2010 by Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>.
 
@@ -164,7 +172,7 @@
 
   Please see the COPYING file for the actual license applicable to Sql3.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-sql3-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-sql3-0.5.tar.gz>.
 
@@ -173,17 +181,17 @@
   the pure-sql3 directory, run <verbatim|make>, and then run <verbatim|sudo>
   <verbatim|make> <verbatim|install> (on Linux).
 
-  <subsection|Data Structure<label|data-structure>>
+  <subsection|Data Structure><label|data-structure>
 
   From a client's perspective, the most important of SQLite's data structures
-  are the database connection object ``sqlite3'' and the prepared statement
-  object ``sqlite3_stmt''. These are opaque data structures that are made
+  are the database connection object \Psqlite3\Q and the prepared statement
+  object \Psqlite3_stmt\Q. These are opaque data structures that are made
   available to users of SQLite's C interface via pointers, sqlite3* and
-  sqlite3_stmt*. At appropriate times, Sql3 creates ``cooked'' versions of
+  sqlite3_stmt*. At appropriate times, Sql3 creates \Pcooked\Q versions of
   these pointers that can be used (with care) to call native C functions
   exposed by SQLite's C interface.
 
-  Sql3 introduces two new data types, ``db_ptr'' and ``stmt_ptr'' which refer
+  Sql3 introduces two new data types, \Pdb_ptr\Q and \Pstmt_ptr\Q which refer
   to the cooked versions of sqlite3* and sqlite3_stmt*, respectively. These
   two new data types are defined using <verbatim|type>, and therefore can be
   used as type tags in rule patterns or as the first parameter passed to in
@@ -192,6 +200,8 @@
   introductory example:
 
   <\verbatim>
+    \;
+
     \<gtr\> typep db_ptr dbp, pointer_type dbp;
 
     1, "sqlite3*"
@@ -201,18 +211,20 @@
     \<gtr\> typep stmt_ptr sp1, pointer_type sp1;
 
     1, "sqlite3_stmt*"
+
+    \;
   </verbatim>
 
   The converse, of course, is not true, as SQLite knows nothing about Sql3,
   and db_ptrs and stmt_ptrs carry other information in addtion to the
   underlying pointers provided to them by SQLite.
 
-  <subsection|Core Database Operations<label|core-database-operations>>
+  <subsection|Core Database Operations><label|core-database-operations>
 
   The core database operations are (a) opening and closing database
   connections and (b) preparing, executing and closing prepared statements.
 
-  <subsubsection|Database Connections<label|database-connections>>
+  <subsubsection|Database Connections><label|database-connections>
 
   Generally speaking, the first step in accessing a database is to obtain a
   db_ptr that references a database connection object. Once the db_ptr is
@@ -221,7 +233,7 @@
   database connection (although this is will be done automatically by Sql3
   when the db_ptr goes out of scope).
 
-  <paragraph|Opening a Database Connection<label|opening-a-database-connection>>
+  <paragraph|Opening a Database Connection><label|opening-a-database-connection>
 
   In Sql3 <hlink|<with|font-family|tt|open>|#sql3::open> constructs a
   database connection and returns a db_ptr that refers to the connection.
@@ -236,12 +248,16 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> \ let dbp2 = open "abc.db"; dbp2;
 
     #\<less\>pointer 0x992dff8\<gtr\>
+
+    \;
   </verbatim>
 
-  If the filename is '':memory:'' a private, temporary in-memory database is
+  If the filename is \Q:memory:\Q a private, temporary in-memory database is
   created for the connection.
 
   The basic access modes are:
@@ -274,7 +290,7 @@
   returned db_ptr. (See <hlink|Custom Binding Types for Prepared
   Statements|#custom-binding-types-for-prepared-statements>)
 
-  <paragraph|Failure to Open a Database Connection<label|failure-to-open-a-database-connection>>
+  <paragraph|Failure to Open a Database Connection><label|failure-to-open-a-database-connection>
 
   If SQLite cannot open the connection, it still returns a pointer to a
   database connection object that must be closed. In this case,
@@ -282,16 +298,20 @@
   connection object and then throws an exception. E.g.,:
 
   <\verbatim>
+    \;
+
     \<gtr\> catch error (open ("RM_zyx.db",SQLITE_OPEN_READONLY));
 
     error (sql3::db_error 14 "unable to open database file [open RM_zyx.db]")
+
+    \;
   </verbatim>
 
   Apparently, SQLite does not verify that a file is a valid SQLite database
   when it opens a connection. However, if the file is corrupted SQLite will
   return an error when the connection is used.
 
-  <paragraph|Testing a db_ptr<label|testing-a-db-ptr>>
+  <paragraph|Testing a db_ptr><label|testing-a-db-ptr>
 
   You can test any object to see if it is a db_ptr using (typep db_ptr):
 
@@ -307,7 +327,7 @@
     database connection referenced by dbp is open.
   </description>
 
-  <paragraph|Closing a Database Connection<label|closing-a-database-connection>>
+  <paragraph|Closing a Database Connection><label|closing-a-database-connection>
 
   When a database connection object is no longer needed, it should be closed
   so that SQLite can free the associated resources.
@@ -325,6 +345,8 @@
   statement associated with the closed database connection.
 
   <\verbatim>
+    \;
+
     \<gtr\> let dbp2_sp = prep dbp2 "ci:" "select * from RM";
 
     \;
@@ -342,6 +364,8 @@
     \<gtr\> catch error (exec dbp2_sp);
 
     error (sql3::db_error 0 "Attempt to exec on a closed db_ptr.")
+
+    \;
   </verbatim>
 
   If a db_ptr goes out of scope, Sql3 will automatically call
@@ -353,18 +377,18 @@
   exception.
 
   When debugging, this activity can be observed by editing sql3.pure,
-  changing ``const SHOW_OPEN_CLOSE = 0;'' to ``const SHOW_OPEN_CLOSE = 1;''
+  changing \Pconst SHOW_OPEN_CLOSE = 0;\Q to \Pconst SHOW_OPEN_CLOSE = 1;\Q
   and running sudo make install in the pure-sql3 directory. This will cause a
   message to be printed whenever a db_ptr or stmt_ptr is created or
   finalized.
 
-  N.B. You should never call the native C interface function``sqlite3_close``
+  N.B. You should never call the native C interface function\Psqlite3_close\P
   with a db_ptr. If the referenced database connection is closed by such a
   call, a subsequent call to <hlink|<with|font-family|tt|close>|#sql3::close>
   on this db_ptr (including the call that will automatically occur when the
   db_ptr goes out of scope) will cause a seg fault.
 
-  <subsubsection|Prepared Statements<label|prepared-statements>>
+  <subsubsection|Prepared Statements><label|prepared-statements>
 
   The native SQLite C interface provides five core functions needed to
   execute a SQL statement.
@@ -399,7 +423,7 @@
   <hlink|<with|font-family|tt|lexec>|#sql3::lexec> and
   <hlink|<with|font-family|tt|finalize>|#sql3::finalize>.
 
-  <paragraph|Constructing Prepared Statements<label|constructing-prepared-statements>>
+  <paragraph|Constructing Prepared Statements><label|constructing-prepared-statements>
 
   In Sql3 you can use <hlink|<with|font-family|tt|prep>|#sql3::prep> to
   construct a prepared statement and obtain a stmt_ptr that refers to it.
@@ -419,7 +443,7 @@
   sqlite3_stmt* it receives back from <verbatim|sqlite3_prepare_v2>. SQL
   statements passed to <hlink|<with|font-family|tt|prep>|#sql3::prep> (and
   <verbatim|sqlite3_prepare_v2>) can have argument placeholders, indicated by
-  ''?'', ''?nnn'', '':AAA'', etc, in which case the argument placeholders
+  \Q?\Q, \Q?nnn\Q, \Q:AAA\Q, etc, in which case the argument placeholders
   must be bound to values using <verbatim|sqlite_bind> before the prepared
   statement is passed to <verbatim|sqlite3_step>. Hence the
   <verbatim|binding_string>, which is used by Sql3 to determine how to bind
@@ -428,27 +452,31 @@
   of the basic prepare, bind, step, fetch, finalize cycle dictated by the
   SQlite C interface.
 
-  In the following two examples, the ``c'' and ``i'' in the binding strings
+  In the following two examples, the \Pc\Q and \Pi\Q in the binding strings
   indicate that (a) a string and an int will be used to bind
   <verbatim|sp1>,(b) an int will be used to bind <verbatim|sp2> and (c)
   <verbatim|sp2>, when executed, will return a result set in the form of a
   list of sublists each of which contains a string and an int.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sp1 = prep dbp "ci" "insert into RM values (?,?)";
 
     \;
 
     \<gtr\> let sp2 = prep dbp "ci:i" "select * from RM where age \<gtr\> ?";
+
+    \;
   </verbatim>
 
-  In general, the characters in the type string before the '':'', if any,
-  indicate the types in the result set. Those that occur after the '':'', if
+  In general, the characters in the type string before the \Q:\Q, if any,
+  indicate the types in the result set. Those that occur after the \Q:\Q, if
   any, indicate the types of the arguments used to bind the prepared
-  statement object. If the type string does not contain a '':'', the
+  statement object. If the type string does not contain a \Q:\Q, the
   characters in the type string, if any, are the types of binding arguments.
 
-  Sql3 provides the following set of ``core'' binding types:
+  Sql3 provides the following set of \Pcore\Q binding types:
 
   <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<cwith|1|1|1|-1|cell-bborder|1ln>|<table|<row|<cell|Type>|<cell|Pure
   Argument>|<cell|SQLite Type>>|<row|<cell|b>|<cell|(int,
@@ -456,25 +484,25 @@
   (utf8)>>|<row|<cell|d>|<cell|double>|<cell|float>>|<row|<cell|i>|<cell|int>|<cell|int>>|<row|<cell|k>|<cell|int
   or bigint>|<cell|int64>>|<row|<cell|l>|<cell|bigint>|<cell|blob>>|<row|<cell|n>|<cell|Sql3::SQLNULL>|<cell|NULL>>|<row|<cell|x>|<cell|expression>|<cell|blob>>|<row|<cell|v>|<cell|variant>|<cell|variant>>>>>
 
-  The ``<with|font-series|bold|b>'' or blob type is different from the rest
+  The \P<with|font-series|bold|b>\Q or blob type is different from the rest
   in that the Pure argument is specified as a pair. The first element of the
   pair indicates the length in bytes of the object to be stored and the
   second element indicates its location in memory. The
-  ``<with|font-series|bold|c>'' type stands for string (as in ``char*''),
-  ``<with|font-series|bold|d>'' stands for double and
-  ``<with|font-series|bold|i>'' stands for int. The
-  ``<with|font-series|bold|k>'' type stands for ``key'' and maps Pure ints
+  \P<with|font-series|bold|c>\Q type stands for string (as in \Pchar*\Q),
+  \P<with|font-series|bold|d>\Q stands for double and
+  \P<with|font-series|bold|i>\Q stands for int. The
+  \P<with|font-series|bold|k>\Q type stands for \Pkey\Q and maps Pure ints
   and bigints (within the range of int64) to int64 values in the database.
-  This type is useful when dealing with SQLite's ``integer primary keys'' and
-  ``rowids'' both of which are int64. The ``<with|font-series|bold|l>'' type,
+  This type is useful when dealing with SQLite's \Pinteger primary keys\Q and
+  \Prowids\Q both of which are int64. The \P<with|font-series|bold|l>\Q type,
   in contrast applies to all bigints (and not to ints) and it maps bigints
   onto blobs, which are generally meaningless in SQL math expressions. The
-  ``<with|font-series|bold|n>'' type can only appear on the binding side of a
-  type string. The ``<with|font-series|bold|v>'' type stands for any of
-  ``b'', ``c'', ``d'', ``i'' or ``n'', based on the type of the binding
-  argument. A ``v'' type will be fetched from SQLite according to the native
+  \P<with|font-series|bold|n>\Q type can only appear on the binding side of a
+  type string. The \P<with|font-series|bold|v>\Q type stands for any of
+  \Pb\Q, \Pc\Q, \Pd\Q, \Pi\Q or \Pn\Q, based on the type of the binding
+  argument. A \Pv\Q type will be fetched from SQLite according to the native
   SQLite column type of the corresponding column. The
-  ``<with|font-series|bold|x>'' type is used to store and reconstruct Pure
+  \P<with|font-series|bold|x>\Q type is used to store and reconstruct Pure
   expressions as binary objects, using the
   <hlink|<with|font-family|tt|val>|purelib.tm#val/blob> and
   <hlink|<with|font-family|tt|blob>|purelib.tm#blob> functions provided by
@@ -485,7 +513,7 @@
   used with the custom binding types to construct prepared statements using
   <hlink|<with|font-family|tt|prep>|#sql3::prep>.
 
-  <paragraph|Testing a stmt_ptr<label|testing-a-stmt-ptr>>
+  <paragraph|Testing a stmt_ptr><label|testing-a-stmt-ptr>
 
   You can determine if a given expression is a stmt_ptr using typep.
 
@@ -494,7 +522,7 @@
     <verbatim|x> is a stmt_ptr, otherwise returns 0.
   </description>
 
-  <paragraph|Executing Prepared Statements<label|executing-prepared-statements>>
+  <paragraph|Executing Prepared Statements><label|executing-prepared-statements>
 
   In Sql3, the bind, step, column, step, column ... cycle is encapsulated in
   the <hlink|<with|font-family|tt|exec>|#sql3::exec> and
@@ -515,6 +543,8 @@
   Thus, using sp1 and sp2 defined in the introductory example:
 
   <\verbatim>
+    \;
+
     \<gtr\> exec sp1 ("Tom",30); \ //insert Tom
 
     []
@@ -524,14 +554,20 @@
     \<gtr\> exec sp2 19; \ \ \ \ \ \ \ \ \ //select age \<gtr\> 19
 
     [["Sam",20],["Fred",22],["Tom",30]]
+
+    \;
   </verbatim>
 
   An error is thrown if the args do not correspond to the specified types.
 
   <\verbatim>
+    \;
+
     \<gtr\> catch error (exec sp2 "a");
 
     error (sql3::db_error 0 "\\"a\\" does not have type int")
+
+    \;
   </verbatim>
 
   If a prepared statement does not have any binding parameters, the call to
@@ -539,6 +575,8 @@
   the binding argument.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sp3 = prep dbp "c:" "select name from RM";
 
     \;
@@ -546,6 +584,8 @@
     \<gtr\> exec sp3 ();
 
     [["Sam"],["Fred"],["Tom"]]
+
+    \;
   </verbatim>
 
   Extra care is required when executing prepared statements that take a blob
@@ -555,6 +595,8 @@
   arguments due to the nature of tuples.
 
   <\verbatim>
+    \;
+
     \<gtr\> let blb = (100,ptr);
 
     \;
@@ -568,14 +610,16 @@
     \<gtr\> [a,blb,c];
 
     [a,(100,ptr),c]
+
+    \;
   </verbatim>
 
-  Thus something like ``<verbatim|exec> <verbatim|stpx>
-  <verbatim|[a,blb,c]>'' would work fine, while ``<verbatim|exec>
-  <verbatim|stpx> <verbatim|(a,blb,c)>'' would produce a Sql3 binding
+  Thus something like \P<verbatim|exec> <verbatim|stpx>
+  <verbatim|[a,blb,c]>\Q would work fine, while \P<verbatim|exec>
+  <verbatim|stpx> <verbatim|(a,blb,c)>\Q would produce a Sql3 binding
   exception.
 
-  <paragraph|Executing Lazily<label|executing-lazily>>
+  <paragraph|Executing Lazily><label|executing-lazily>
 
   The <hlink|<with|font-family|tt|exec>|#sql3::exec> function returns result
   sets as eager lists which can sometimes be inefficient or simply not
@@ -592,9 +636,13 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> lexec sp2 19;
 
     ["Sam",20]:#\<less\>thunk 0xb6475ab0\<gtr\>
+
+    \;
   </verbatim>
 
   Note that no changes to <verbatim|sp2> were required. In addition, for most
@@ -602,7 +650,7 @@
   can be processed by the same code that processed the eager list returned by
   <hlink|<with|font-family|tt|exec>|#sql3::exec>.
 
-  <paragraph|Executing Directly on a db_ptr<label|executing-directly-on-a-db-ptr>>
+  <paragraph|Executing Directly on a db_ptr><label|executing-directly-on-a-db-ptr>
 
   For statements that have no parameters and which do not return results,
   <hlink|<with|font-family|tt|exec>|#sql3::exec> can be applied to a db_ptr.
@@ -617,11 +665,15 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> exec dbp "create table if not exists RM (name varchar, age
     integer)";
+
+    \;
   </verbatim>
 
-  <paragraph|Executing Against a Busy Database<label|executing-against-a-busy-database>>
+  <paragraph|Executing Against a Busy Database><label|executing-against-a-busy-database>
 
   SQLite allows multiple processes to concurrently read a single database,
   but when any process wants to write, it locks the entire database file for
@@ -629,7 +681,7 @@
 
   When the native SQLite C interface function <verbatim|sqlite3_step> (used
   by <verbatim|exec>) tries to access a file that is locked by another
-  process, it treats the database as ``busy'' and returns the SQLITE_BUSY
+  process, it treats the database as \Pbusy\Q and returns the SQLITE_BUSY
   error code. If this happens in a call to
   <hlink|<with|font-family|tt|exec>|#sql3::exec> or
   <hlink|<with|font-family|tt|lexec>|#sql3::lexec>, a
@@ -644,15 +696,15 @@
   occurs within a explicit transaction then you should rollback the
   transaction before continuing.
 
-  <paragraph|Grouping Execution with Transactions<label|grouping-execution-with-transactions>>
+  <paragraph|Grouping Execution with Transactions><label|grouping-execution-with-transactions>
 
   No changes can be made to a SQLite database file except within a
   transaction. Transactions can be started manually by executing a BEGIN
-  statement (i.e., exec dbp ``BEGIN''). Manually started transactions persist
+  statement (i.e., exec dbp \PBEGIN\Q). Manually started transactions persist
   until the next COMMIT or ROLLBACK statement is executed. Transactions are
   also ended if an error occurs before the transaction is manually ended
   using a COMMIT or ROLLBACK statement. This behavior provides the means make
-  a series of changes ``atomically.''
+  a series of changes \Patomically.\Q
 
   By default, SQLite operates in autocommit mode. In autocommit mode, any SQL
   statement that changes the database (basically, anything other than SELECT)
@@ -709,7 +761,7 @@
   nested transactions, use <hlink|<with|font-family|tt|savepoint>|#sql3::savepoint>
   and <hlink|<with|font-family|tt|release>|#sql3::release>.
 
-  <paragraph|Finalizing Prepared Statements<label|finalizing-prepared-statements>>
+  <paragraph|Finalizing Prepared Statements><label|finalizing-prepared-statements>
 
   When a prepared statement is no longer needed it should be finalized so
   that SQLite can free the associated resources.
@@ -730,9 +782,13 @@
   goes out of scope, will cause an exception to be thrown.
 
   <\verbatim>
+    \;
+
     \<gtr\> catch error (finalize dbp2_sp);
 
     error (sql3::db_error 0 "finalize: STMT attached to a closed db_ptr.")
+
+    \;
   </verbatim>
 
   Multiple calls to <hlink|<with|font-family|tt|finalize>|#sql3::finalize>
@@ -745,21 +801,23 @@
   with the stmt_ptr (including the call that will automatically occur when
   the stmt_ptr goes out of scope) will cause a seg fault.
 
-  <subsubsection|Exceptions<label|exceptions>>
+  <subsubsection|Exceptions><label|exceptions>
 
   Sql3 throws two types of exceptions, one for outright errors and one for
-  database ``busy'' conditions.
+  database \Pbusy\Q conditions.
 
   <\description>
     <item*|<em|constructor> sql3::db_error ec msg<label|sql3::db-error>>When
     a Sql3 function detects an error it throws an exception of the form
-    ``<verbatim|db_error> <verbatim|ec> <verbatim|msg>'' where ec is an error
+    \P<verbatim|db_error> <verbatim|ec> <verbatim|msg>\Q where ec is an error
     code and msg is the corresponding error message. If ec\<gtr\>0, the error
     was detected by SQLite itself, and ec and msg are those returned by
     SQLite. If ec==0, the error was detected by Sql3 and msg is a Sql3
     specific description of the error. E.g.,
 
     <\verbatim>
+      \;
+
       \<gtr\> db_error_handler (db_error ec msg) = ()
 
       \<gtr\> when
@@ -777,6 +835,8 @@
       \<gtr\> catch db_error_handler (exec dbp "select * from NO_TABLE");
 
       SQLite db_error: ec 1, no such table: NO_TABLE
+
+      \;
     </verbatim>
   </description>
 
@@ -784,17 +844,19 @@
     <item*|<em|constructor> sql3::db_busy dbp<label|sql3::db-busy>>Sql3
     functions <hlink|<with|font-family|tt|exec>|#sql3::exec> and
     <hlink|<with|font-family|tt|lexec>|#sql3::lexec> throw exceptions of the
-    form ``<verbatim|db_busy> <verbatim|dbp>'', where <verbatim|dbp> is a
+    form \P<verbatim|db_busy> <verbatim|dbp>\Q, where <verbatim|dbp> is a
     db_ptr, if they are prevented from executing successfully because the
     database referenced by <verbatim|dbp> is locked (See <hlink|Executing
     Against a Busy Database|#executing-against-a-busy-database>).
   </description>
 
-  <paragraph|SQLite Error Codes<label|sqlite-error-codes>>
+  <paragraph|SQLite Error Codes><label|sqlite-error-codes>
 
   Here is a list, as of January 31, 2011, of SQLite's error codes.
 
   <\verbatim>
+    \;
+
     SQLITE_ERROR \ \ \ \ \ \ \ 1 \ \ /* SQL error or missing database */
 
     SQLITE_INTERNAL \ \ \ \ 2 \ \ /* Internal logic error in SQLite */
@@ -853,17 +915,19 @@
 
     SQLITE_NOTADB \ \ \ \ \ 26 \ \ /* File opened that is not a database file
     */
+
+    \;
   </verbatim>
 
   New error codes may be added in future versions of SQLite. Note that the
   SQLite names of the error codes are not exported by the Sql3 module.
 
-  <subsection|Advanced Features<label|advanced-features>>
+  <subsection|Advanced Features><label|advanced-features>
 
   Sql3's advanced features include the ability to implement SQL functions in
   Pure, convenient access to the SQLite C interface and custom binding types.
 
-  <subsubsection|Custom SQL Functions<label|custom-sql-functions>>
+  <subsubsection|Custom SQL Functions><label|custom-sql-functions>
 
   An extremely powerful (albeit complex) feature of the SQLite C interface is
   the ability to add new SQL scalar or aggregate functions. The new functions
@@ -873,7 +937,7 @@
   This function is used to register both scalar SQL functions and aggregate
   SQL functions with SQlite.
 
-  <paragraph|Scalar SQL Functions<label|scalar-sql-functions>>
+  <paragraph|Scalar SQL Functions><label|scalar-sql-functions>
 
   You can add a custom SQL scalar function to SQLite by passing a single Pure
   function to <hlink|<with|font-family|tt|create_function>|#sql3::create-function>.
@@ -894,10 +958,12 @@
   Functions|#aggregate-sql-functions>).
 
   Here is an example of a scalar function that takes two parameters. Note
-  that any kind of Pure ``function'' can be passed here; local functions,
+  that any kind of Pure \Pfunction\Q can be passed here; local functions,
   global functions, lambdas or partial applications all work.
 
   <\verbatim>
+    \;
+
     \<gtr\> create_function dbp::dbp "p_fn" 2 plus with plus x y = x + y;
     end;
 
@@ -913,32 +979,44 @@
     \<gtr\> exec sp4 ();
 
     [["Hi Sam",20,30],["Hi Fred",22,32]]
+
+    \;
   </verbatim>
 
   Here is an example of a variadic function:
 
   <\verbatim>
+    \;
+
     \<gtr\> create_function dbp "p_qm" (-1) quasimodo with
 
     \<gtr\> \ \ quasimodo xs = "quasimodo: "+join ":" [str x \| x=xs];
 
     \<gtr\> end;
+
+    \;
   </verbatim>
 
   If the SQL function takes no arguments, the corresponding Pure function
   must, for technical reasons in Pure, take a single dummy argument. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> create_function dbp "p_count" 0 counter with
 
     \<gtr\> \ \ counter () = put r (get r+1);
 
     \<gtr\> end when r = ref 0 end;
+
+    \;
   </verbatim>
 
   Here is how <verbatim|count> and <verbatim|quasimodo> might be used:
 
   <\verbatim>
+    \;
+
     \<gtr\> let sp5 = prep dbp "ic:" "select p_count(), p_qm(name,age) from
     RM";
 
@@ -953,6 +1031,8 @@
     \<gtr\> exec sp5 ();
 
     [[3,"quasimodo: \\"Sam\\":20"],[4,"quasimodo: \\"Fred\\":22"]]
+
+    \;
   </verbatim>
 
   Multiple SQL functions can be registered with the same name if they have
@@ -964,7 +1044,7 @@
   database connection nor finalize or reset the prepared statement in which
   the function is running.
 
-  <paragraph|Aggregate SQL Functions<label|aggregate-sql-functions>>
+  <paragraph|Aggregate SQL Functions><label|aggregate-sql-functions>
 
   You can use <hlink|<with|font-family|tt|create_function>|#sql3::create-function>
   to register an aggregate SQL function with SQLite by passing a triple
@@ -984,11 +1064,13 @@
   </description>
 
   Note that for a single-argument step function, this works exactly as if the
-  functions were invoked as ``<verbatim|final> <verbatim|(foldl>
-  <verbatim|step> <verbatim|start> <verbatim|values)>'', where
+  functions were invoked as \P<verbatim|final> <verbatim|(foldl>
+  <verbatim|step> <verbatim|start> <verbatim|values)>\Q, where
   <verbatim|values> is the list of aggregated values from the database.
 
   <\verbatim>
+    \;
+
     \<gtr\> create_function dbp "p_avg" 1 (step,final,(0,0.0)) with
 
     \<gtr\> \ \ step (n,a) x = n+1, a+x;
@@ -1007,10 +1089,12 @@
     \<gtr\> exec sp6 ();
 
     [[2,21.0]]
+
+    \;
   </verbatim>
 
   <subsubsection|Accessing the Rest of SQLite's C
-  Interface<label|accessing-the-rest-of-sqlite-s-c-interface>>
+  Interface><label|accessing-the-rest-of-sqlite-s-c-interface>
 
   The db_ptrs returned by <hlink|<with|font-family|tt|open>|#sql3::open> and
   stmt_ptrs returned by <hlink|<with|font-family|tt|prep>|#sql3::prep> are
@@ -1027,14 +1111,18 @@
   busy database as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern int sqlite3_busy_timeout(sqlite3*, int);
 
     \;
 
     \<gtr\> sqlite3_busy_timeout dbp 10;
+
+    \;
   </verbatim>
 
-  This sets a busy handler that will ``sleep and retry'' multiple times until
+  This sets a busy handler that will \Psleep and retry\Q multiple times until
   at least 10 milliseconds of sleeping have accumulated. Calling this routine
   with an argument less than or equal to zero turns off all busy handlers.
 
@@ -1043,6 +1131,8 @@
   on a given database connection:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern int sqlite3_changes(sqlite3*);
 
     \;
@@ -1054,12 +1144,16 @@
     \<gtr\> sqlite3_changes dbp;
 
     1
+
+    \;
   </verbatim>
 
   As a final example, in this case using a stmt_ptr, you can determine name
   assigned to a column in a result using <verbatim|sqlite3_column_name>:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern char *sqlite3_column_name(sqlite3_stmt*, int);
 
     \;
@@ -1073,6 +1167,8 @@
     \<gtr\> sqlite3_column_name sp2 1;
 
     "age"
+
+    \;
   </verbatim>
 
   In order to call a native C function you must first make it accessible
@@ -1091,12 +1187,12 @@
   for other purposes.
 
   <subsubsection|Custom Binding Types for Prepared
-  Statements<label|custom-binding-types-for-prepared-statements>>
+  Statements><label|custom-binding-types-for-prepared-statements>
 
   You can add your own binding types for preparing and executing prepared
   statements by specifying a third argument to
   <hlink|<with|font-family|tt|open>|#sql3::open>. The third argument must be
-  a list of ``hash rocket pairs'' in which the left side is a character for
+  a list of \Phash rocket pairs\Q in which the left side is a character for
   the custom binding type and the right side is a list with three members.
   The second and third members of the list are functions that map objects
   from the new type to one of the Sql3 core types and back, respectively. The
@@ -1110,6 +1206,8 @@
   snippets show parts of the script that are relevant to this discussion:
 
   <\verbatim>
+    \;
+
     const custom_binds = [
 
     \ \ "t"=\<gtr\>["c",day_to_str,str_to_day],
@@ -1133,12 +1231,16 @@
     stm3a = sql3::prep db "t:" "select t_date from TC";
 
     stm3b = sql3::prep db "c:" "select t_date from TC";
+
+    \;
   </verbatim>
 
   Executing stm3a and stm3b from the interpreter shows that TC's date field
   is stored as a string, but returned to the Pure script as a bigint.
 
   <\verbatim>
+    \;
+
     \<gtr\> sql3::exec stm3a ());
 
     [[14691L]]
@@ -1148,12 +1250,14 @@
     \<gtr\> sql3::exec stm3b ());
 
     [["2010-03-22"]]
+
+    \;
   </verbatim>
 
   The character designating the custom type must not be one of the letters
   used to designate Sql3 core binding types.
 
-  <subsection|Threading Modes<label|threading-modes>>
+  <subsection|Threading Modes><label|threading-modes>
 
   SQLite supports three different threading modes:
 
@@ -1193,7 +1297,7 @@
   New Database Connection|http://www.sqlite.org/c3ref/open.html> and
   <hlink|Test To See If The Library Is Threadsafe|http://www.sqlite.org/c3ref/threadsafe.html>.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-sql3-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-sql3-toc>
 
   <\itemize>
     <item><hlink|Pure-Sql3|#>
@@ -1305,6 +1409,6 @@
   <hlink|previous|pure-odbc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

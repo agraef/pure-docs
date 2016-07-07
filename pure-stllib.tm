@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,13 +8,13 @@
   <hlink|previous|pure-stldict.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-stllib<label|pure-stllib>>
+  <section*|pure-stllib><label|pure-stllib>
 
-  Version 0.6, October 28, 2014
+  Version 0.6, July 07, 2016
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
-  <hlink|<em|pure-stllib>|> is an ``umbrella'' package that contains a pair
+  <hlink|<em|pure-stllib>|> is an \Pumbrella\Q package that contains a pair
   of Pure addons, <hlink|<em|pure-stlvec>|pure-stlvec.tm> and
   <hlink|<em|pure-stlmap>|pure-stlmap.tm>. These addons provide
   <hlink|Pure|http://purelang.bitbucket.org> interfaces to a selection of
@@ -26,7 +26,7 @@
   eight) of C++'s associative containers: map, set, multimap, multiset,
   unordered_map and unordered_set.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2011-2012 by Peter Summerland
   \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>.
@@ -40,7 +40,7 @@
   <hlink|<em|pure-stllib>|> is distributed under a BSD-style license, see the
   COPYING file for details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   pure-stllib-0.6 requires at least Pure 0.50. The latest version of Pure is
   available at <hlink|https://bitbucket.org/purelang/pure-lang/downloads|https://bitbucket.org/purelang/pure-lang/downloads>.
@@ -65,7 +65,7 @@
   <verbatim|prefix=/usr> sets the installation prefix. Please see the
   Makefile for details.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   <hlink|<em|pure-stlvec>|pure-stlvec.tm> provides functions that act on a
   single mutable container, stlvec, which is a wrapper around C++'s vector,
@@ -73,8 +73,8 @@
   correspond to C++'s STL algorithms specialized to act on stlvecs.
 
   <hlink|<em|pure-stlmap>|pure-stlmap.tm> provides functions that act on six
-  mutable containers, ``stlmap'', ``stlset'', ``stlmmap'', ``stlmset'',
-  ``stlhmap'' and ``stlhset'', that are thin wrappers around the
+  mutable containers, \Pstlmap\Q, \Pstlset\Q, \Pstlmmap\Q, \Pstlmset\Q,
+  \Pstlhmap\Q and \Pstlhset\Q, that are thin wrappers around the
   corresponding associative containers provided by C++, map, set, multimap,
   multiset, unordered_map and unordered_set, specialized to hold Pure
   expressions.
@@ -100,7 +100,7 @@
     support for stlhmap and stlhset
   </quote-env>
 
-  <subsection|Documentation<label|documentation>>
+  <subsection|Documentation><label|documentation><label|documentation>
 
   Please see the documentation for <hlink|<em|pure-stlvec>|pure-stlvec.tm>
   and <hlink|<em|pure-stlmap>|pure-stlmap.tm>.
@@ -113,7 +113,7 @@
   are summarized in a rudimentary cheatsheet, pure-stllib-cheatsheet.pdf,
   which can be found in the pure-stllib/doc directory.
 
-  <subsection|Changes<label|changes>>
+  <subsection|Changes><label|changes>
 
   Version 0.1 - Bundle pure-stlvec-0.3 and pure-stlmap-0.1.
 
@@ -121,7 +121,7 @@
 
   Version 0.3 - Bundle pure-stlvec-0.4 and pure-stlmap-0.3.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stllib-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-stllib-toc>
 
   <\itemize>
     <item><hlink|pure-stllib|#>
@@ -152,6 +152,6 @@
   <hlink|previous|pure-stldict.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

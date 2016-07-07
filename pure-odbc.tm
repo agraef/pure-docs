@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|Pure-ODBC - ODBC interface for the Pure programming
-  language<label|module-odbc>>
+  language><label|module-odbc>
 
-  Version 0.10, October 28, 2014
+  Version 0.10, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -19,8 +19,8 @@
 
   This module provides a simple ODBC interface for the Pure programming
   language, which lets you access a large variety of open source and
-  commercial database systems from Pure. ODBC a.k.a. ``Open Database
-  Connectivity'' was originally developed by Microsoft for Windows, but is
+  commercial database systems from Pure. ODBC a.k.a. \POpen Database
+  Connectivity\Q was originally developed by Microsoft for Windows, but is
   now available on many different platforms, and two open source
   implementations exist for Unix-like systems: iODBC
   (<hlink|http://www.iodbc.org|http://www.iodbc.org>) and unixODBC
@@ -44,7 +44,7 @@
   setup tools. More information about the setup process can be found on the
   iODBC and unixODBC websites.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009 by Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>.
 
@@ -63,7 +63,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-odbc-0.10.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-odbc-0.10.tar.gz>.
 
@@ -81,18 +81,22 @@
   library to be linked with. The default value is <verbatim|ODBCLIB=-lodbc>.
   Please see the Makefile for details.
 
-  <subsection|Opening and Closing a Data Source<label|opening-and-closing-a-data-source>>
+  <subsection|Opening and Closing a Data Source><label|opening-and-closing-a-data-source>
 
-  To open an ODBC connection, you have to specify a ``connect string'' which
+  To open an ODBC connection, you have to specify a \Pconnect string\Q which
   names the data source to be used with the <verbatim|odbc::connect>
   function. A list of available data sources can be obtained with the
   <verbatim|odbc::sources> function. For instance, on my Linux system running
   MySQL and PostgreSQL it shows the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sources;
 
     [("myodbc","MySQL ODBC 2.50"),("psqlodbc","PostgreSQL ODBC")]
+
+    \;
   </verbatim>
 
   The first component in each entry of the list is the name of the data
@@ -114,7 +118,11 @@
   follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> let db = odbc::connect "DSN=myodbc";
+
+    \;
   </verbatim>
 
   The <verbatim|odbc::connect> function returns a pointer to an
@@ -125,7 +133,11 @@
   <verbatim|odbc::disconnect> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::disconnect db;
+
+    \;
   </verbatim>
 
   After <verbatim|odbc::disconnect> has been invoked on a handle, any further
@@ -137,7 +149,11 @@
   separated with a semicolon:
 
   <\verbatim>
+    \;
+
     \<gtr\> let db = odbc::connect "DSN=myodbc;UID=root;PWD=guess";
+
+    \;
   </verbatim>
 
   The precise set of attributes in the connect string depends on your ODBC
@@ -172,7 +188,11 @@
   data source described in a .dsn file on Windows, as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::connect "FILEDSN=test.dsn";
+
+    \;
   </verbatim>
 
   Usually it is also possible to directly connect to a driver and name a
@@ -180,8 +200,12 @@
   driver you can connect to a database file test.mdb as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::connect "DRIVER=Microsoft Access Driver
     (*.mdb);DBQ=test.mdb";
+
+    \;
   </verbatim>
 
   SQLite (<hlink|http://www.sqlite.org|http://www.sqlite.org>) provides
@@ -193,7 +217,11 @@
   doesn't exist):
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::connect "DRIVER=SQLite3;Database=test.db";
+
+    \;
   </verbatim>
 
   SQLite generally performs very well if you avoid some pitfalls (in
@@ -205,7 +233,7 @@
   setting up one of the big hulking DBMS.
 
   <subsection|Getting Information about a Data
-  Source<label|getting-information-about-a-data-source>>
+  Source><label|getting-information-about-a-data-source>
 
   You can get general information about an open database connection with the
   <verbatim|odbc::info> function. This function returns a tuple of strings
@@ -233,9 +261,13 @@
   E.g., here is what the connection to MySQL shows on my Linux system:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::info db;
 
     "myodbc","test","MySQL","5.0.18","myodbc3.dll","03.51.12","03.51","03.52"
+
+    \;
   </verbatim>
 
   The odbc module also provides a number of operations to retrieve a bunch of
@@ -247,6 +279,8 @@
   instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> get_short $ odbc::getinfo db odbc::SQL_MAX_TABLES_IN_SELECT;
 
     31
@@ -256,6 +290,8 @@
     \<gtr\> cstring_dup $ odbc::getinfo db odbc::SQL_IDENTIFIER_QUOTE_CHAR;
 
     "`"
+
+    \;
   </verbatim>
 
   Information about supported SQL data types is available with the
@@ -263,7 +299,11 @@
   odbc.pure for an explanation):
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::typeinfo db odbc::SQL_ALL_TYPES;
+
+    \;
   </verbatim>
 
   Moreover, information about the tables in the current database, as well as
@@ -272,6 +312,8 @@
   <verbatim|odbc::primary_keys> and <verbatim|odbc::foreign_keys> functions:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::tables db;
 
     [("event","TABLE"),("pet","TABLE")]
@@ -297,6 +339,8 @@
     \<gtr\> odbc::foreign_keys db "event";
 
     [("name","pet","name")]
+
+    \;
   </verbatim>
 
   This often provides a convenient and portable means to retrieve basic
@@ -305,7 +349,7 @@
   information is also available through special system catalogs in most
   databases, the details of accessing these vary a lot among implementations.
 
-  <subsection|Executing SQL Queries<label|executing-sql-queries>>
+  <subsection|Executing SQL Queries><label|executing-sql-queries>
 
   As soon as a database connection has been opened, you can execute SQL
   queries on it using the <verbatim|sql> function which executes a query and
@@ -318,16 +362,20 @@
   row count in the latter case.
 
   For instance, here is how you can select some entries from a table. (The
-  following examples assume the sample ``menagerie'' tables from the MySQL
+  following examples assume the sample \Pmenagerie\Q tables from the MySQL
   documentation. The <verbatim|initdb> function in the
   examples/menagerie.pure script can be used to create these tables in your
   default database.)
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql db "select name,species from pet where owner='Harold'"
     [];
 
     [["name","species"],["Fluffy","cat"],["Buffy","dog"]]
+
+    \;
   </verbatim>
 
   Often the third parameter of <verbatim|sql>, as above, is just the empty
@@ -336,32 +384,44 @@
   argument of the <verbatim|sql> call. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql db "select name,species from pet where owner=?"
     ["Harold"];
 
     [["name","species"],["Fluffy","cat"],["Buffy","dog"]]
+
+    \;
   </verbatim>
 
   Multiple parameters are specified as a list:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql db "select name,species from pet where owner=? and
     species=?"
 
     \<gtr\> ["Harold","cat"];
 
     [["name","species"],["Fluffy","cat"]]
+
+    \;
   </verbatim>
 
   Parameterized queries are particularly useful for the purpose of inserting
   data into a table:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql db "insert into pet values (?,?,?,?,?,?)"
 
     \<gtr\> ["Puffball","Diane","hamster","f","1999-03-30",odbc::SQLNULL];
 
     1
+
+    \;
   </verbatim>
 
   In this case we could also have hard-coded the data to be inserted right
@@ -369,7 +429,11 @@
   easily be applied to a whole collection of data rows, e.g., as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> do (odbc::sql db "insert into pet values (?,?,?,?,?,?)") data;
+
+    \;
   </verbatim>
 
   Parameterized queries also let you insert data which cannot be specified
@@ -401,7 +465,7 @@
   represented in Pure using its character representation, encoded as a Pure
   string.
 
-  Some databases also allow special types of queries (e.g., ``batch'' queries
+  Some databases also allow special types of queries (e.g., \Pbatch\Q queries
   consisting of multiple SQL statements) which may return multiple result
   sets and/or row counts. The <verbatim|sql> function only returns the first
   result set, which is appropriate in most cases. If you need to determine
@@ -413,12 +477,16 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::msql db "select * from pet; select * from event" [];
+
+    \;
   </verbatim>
 
   This will return a list with two result sets, one for each query.
 
-  <subsection|Low-Level Operations<label|low-level-operations>>
+  <subsection|Low-Level Operations><label|low-level-operations>
 
   The <verbatim|sql> and <verbatim|msql> operations are in fact just ordinary
   Pure functions which are implemented in terms of the low-level operations
@@ -438,6 +506,8 @@
   Example:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql_exec db "select name,species from pet where
     owner='Harold'" [];
 
@@ -458,6 +528,8 @@
     \<gtr\> odbc::sql_more db; // no more result sets
 
     odbc::sql_more #\<less\>pointer 0x24753e0\<gtr\>
+
+    \;
   </verbatim>
 
   Moreover, the <verbatim|sql_close> function can be called at any time to
@@ -465,9 +537,13 @@
   <verbatim|sql_fetch> and <verbatim|sql_more> will fail:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql_close db; // terminate query
 
     ()
+
+    \;
   </verbatim>
 
   This is not strictly necessary (it will be done automatically as soon as
@@ -496,7 +572,7 @@
   <verbatim|sql> or <verbatim|msql> as a start and change them according to
   your needs.
 
-  <subsection|Lazy Processing<label|lazy-processing>>
+  <subsection|Lazy Processing><label|lazy-processing>
 
   As an experimental feature, the odbc module also provides two operations
   <verbatim|odbc::lsql> and <verbatim|odbc::lmsql> which work like
@@ -511,17 +587,23 @@
   of lazy lists of rows in the case of <verbatim|lmsql>). For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::lsql db "select * from pet" [];
 
     ["name","owner","species","sex","birth","death"]:#\<less\>thunk
     0x7ffbb9aa2eb8\<gtr\>
+
+    \;
   </verbatim>
 
-  Note that the tail of the result list is ``thunked'' and will only be
+  Note that the tail of the result list is \Pthunked\Q and will only be
   produced on demand, as you traverse the list. As a simple example, suppose
   that we just want to print the <verbatim|name> field of each data row:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system;
 
     \<gtr\> do (\\(name:_)-\<gtr\>puts name) $ tail $ odbc::lsql db "select *
@@ -544,6 +626,8 @@
     Slim
 
     ()
+
+    \;
   </verbatim>
 
   Here only one row is in memory at any time while the <verbatim|do> function
@@ -557,12 +641,16 @@
   remaining rows are never fetched from the database:
 
   <\verbatim>
+    \;
+
     \<gtr\> head [row \| row@(name:_) = tail $ odbc::lsql db "select * from
     pet" [];
 
     \<gtr\> \ \ \ \ \ \ \ \ \ \ \ \ name == "Claws"];
 
     ["Claws","Gwen","cat","m","1994-03-17",odbc::SQLNULL]
+
+    \;
   </verbatim>
 
   On the other hand, <verbatim|lsql>/<verbatim|lmsql> will usually be
@@ -580,7 +668,7 @@
   possible to do several lazy queries simultaneously if you assign them to
   different database connections.
 
-  <subsection|Error Handling<label|error-handling>>
+  <subsection|Error Handling><label|error-handling>
 
   When one of the above operations fails because the SQL server reports an
   error, an error term of the form <verbatim|odbc::error> <verbatim|msg>
@@ -590,9 +678,13 @@
   reference to a non-existent table will cause a report like the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> odbc::sql db "select * from pets" [];
 
     odbc::error "[TCX][MyODBC]Table 'test.pets' doesn't exist" "S1000"
+
+    \;
   </verbatim>
 
   You can check for such return values and take some appropriate action. By
@@ -600,7 +692,11 @@
   exceptions or print an error message. For instance:
 
   <\verbatim>
+    \;
+
     odbc::error msg state = fprintf stderr "%s (%s)\\n" (msg,state) $$ ();
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> When redefining <verbatim|odbc::error> in
@@ -614,7 +710,7 @@
   tuple or throw an exception, but other types of return values should be
   avoided.
 
-  <subsection|Caveats and Bugs<label|caveats-and-bugs>>
+  <subsection|Caveats and Bugs><label|caveats-and-bugs>
 
   Be warned that multiple result sets are not supported by all databases. I
   also found that some ODBC drivers do not properly implement this feature,
@@ -629,13 +725,13 @@
   query, which can be done using the SQL CAST function, as in
   <verbatim|select> <verbatim|cast(1234.56> <verbatim|as> <verbatim|char)>.
 
-  <subsection|Further Information and Examples<label|further-information-and-examples>>
+  <subsection|Further Information and Examples><label|further-information-and-examples>
 
   For further details about the operations provided by this module please see
   the odbc.pure file. A sample script illustrating the usage of the module
   can be found in the examples directory.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-odbc-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-odbc-toc>
 
   <\itemize>
     <item><hlink|Pure-ODBC - ODBC interface for the Pure programming
@@ -680,6 +776,6 @@
   <hlink|previous|pure-fastcgi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

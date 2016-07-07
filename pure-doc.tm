@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-bonjour.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-doc<label|pure-doc>>
+  <section*|pure-doc><label|pure-doc>
 
-  Version 0.7, October 28, 2014
+  Version 0.7, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -19,7 +19,7 @@
   used with the excellent <hlink|docutils|http://docutils.sourceforge.net>
   tools and the gentle markup format supported by these, called
   <hlink|RST|http://docutils.sourceforge.net/rst.html> a.k.a.
-  ``reStructuredText'', usually pronounced ``rest''.
+  \PreStructuredText\Q, usually pronounced \Prest\Q.
 
   The basic idea is that you just comment your code as usual, but using RST
   markup instead of plain text. In addition, you can also designate literate
@@ -29,7 +29,7 @@
   source can then be processed with the docutils utilities like rst2html.py
   and rst2latex.py to create the documentation in a variety of formats.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009-2010 by Albert Graef.
 
@@ -46,7 +46,7 @@
   You should have received a copy of the GNU General Public License along
   with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-doc-0.7.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-doc-0.7.tar.gz>.
 
@@ -54,7 +54,7 @@
   <verbatim|make> <verbatim|install>. This only needs flex and a
   standards-compliant C++ compiler.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   First, see the description of the <hlink|RST|http://docutils.sourceforge.net/rst.html>
   format. RST is a very simple markup format, almost like plain text (in
@@ -95,6 +95,8 @@
   For instance, here is a sample RST-formatted comment:
 
   <\verbatim>
+    \;
+
     /* :Name: ``rand`` - compute random numbers
 
     \ \ \ :Synopsis: ``rand``
@@ -117,6 +119,8 @@
     \;
 
     \ \ \ :See Also: rand(3) */
+
+    \;
   </verbatim>
 
   This will be rendered as follows:
@@ -131,11 +135,15 @@
     Example: Here is how you can call <verbatim|rand> in Pure:
 
     <\verbatim>
+      \;
+
       \<gtr\> extern int rand();
 
       \<gtr\> rand;
 
       1804289383
+
+      \;
     </verbatim>
 
     See Also: rand(3)
@@ -145,7 +153,11 @@
   as follows:
 
   <\verbatim>
+    \;
+
     pure-doc source-files ...
+
+    \;
   </verbatim>
 
   If no input files are specfied then the source is read from standard input.
@@ -154,13 +166,21 @@
   of the docutils programs:
 
   <\verbatim>
+    \;
+
     pure-doc source-files ... \| rst2html.py
+
+    \;
   </verbatim>
 
   If you prefer to write the output to a file, you can do that as follows:
 
   <\verbatim>
+    \;
+
     pure-doc source-files ... \<gtr\> rst-file
+
+    \;
   </verbatim>
 
   pure-doc also understands the following options. These must come before any
@@ -173,8 +193,8 @@
   -s Generate Sphinx-compatible output (see below).
 
   -twidth Set the tab width to the given number of spaces. There are no other
-  options. By its design pure-doc is just a plain simple ``docstring
-  scraping'' utility with no formatting knowledge of its own. All actual
+  options. By its design pure-doc is just a plain simple \Pdocstring
+  scraping\Q utility with no formatting knowledge of its own. All actual
   formatting is handled by the docutils programs which offer plenty of
   options to change the appearance of the generated output; please refer to
   the <hlink|docutils|http://docutils.sourceforge.net> documentation for
@@ -190,17 +210,19 @@
   generation option, see <hlink|Hyperlink Targets and Index
   Generation|#hyperlink-targets-and-index-generation> below.)
 
-  <subsection|Literate Programming<label|literate-programming>>
+  <subsection|Literate Programming><label|literate-programming>
 
   pure-doc also recognizes literate code delimited by comments which, besides
   the comment delimiters and whitespace, contain nothing but the special
-  start and end ``tags'' <verbatim|\>\>\>> and <verbatim|\<\<\<>. Code
+  start and end \Ptags\Q <verbatim|\>\>\>> and <verbatim|\<\<\<>. Code
   between these delimiters (including all comments) is extracted from the
   source and output as a RST literal code block.
 
   For instance:
 
   <\verbatim>
+    \;
+
     /* ..
 
     \;
@@ -226,6 +248,8 @@
     \;
 
     // \<less\>\<less\>\<less\>
+
+    \;
   </verbatim>
 
   This will be rendered as follows:
@@ -234,6 +258,8 @@
     pure-doc supports literate programming, too.
 
     <\verbatim>
+      \;
+
       // This is a literate comment.
 
       /* .. This too! */
@@ -243,19 +269,25 @@
       extern int rand();
 
       rand;
+
+      \;
     </verbatim>
   </quote-env>
 
-  Try it now! You can scrape all the sample ``documentation'' from this file
+  Try it now! You can scrape all the sample \Pdocumentation\Q from this file
   and format it as html, as follows:
 
   <\verbatim>
+    \;
+
     pure-doc README \| rst2html.py --no-doc-title --no-doc-info \<gtr\>
     test.html
+
+    \;
   </verbatim>
 
   <subsection|Hyperlink Targets and Index
-  Generation<label|hyperlink-targets-and-index-generation>>
+  Generation><label|hyperlink-targets-and-index-generation>
 
   <with|font-series|bold|Note:> This feature is now largely obsolete as Pure
   uses Sphinx for formatting its documentation these days. Thus, as of
@@ -276,7 +308,11 @@
   place where you want the index to appear:
 
   <\verbatim>
+    \;
+
     .. makeindex::
+
+    \;
   </verbatim>
 
   The directive will be replaced with a list of references to all targets
@@ -301,11 +337,11 @@
   documentation files which have been fully converted to Sphinx.
 
   <subsection|Generating and Installing Local
-  Documentation<label|generating-and-installing-local-documentation>>
+  Documentation><label|generating-and-installing-local-documentation>
 
   <with|font-series|bold|Note:> This section only applies to 3rd party
   packages with their own bundled documentation which isn't part of the
-  ``official'' Pure documentation. In this case it is possible to use
+  \Pofficial\Q Pure documentation. In this case it is possible to use
   docutils or some other RST formatting software to generate additional
   documentation files for use with the Pure interpreter. Please note that the
   method sketched out in this section doesn't provide full integration with
@@ -319,6 +355,8 @@
   GNU make and that you're using docutils to format the documentation):
 
   <\verbatim>
+    \;
+
     # The sources. Order matters here. The generated documentation will have
     the
 
@@ -383,6 +421,8 @@
     clean:
 
     \ \ \ \ \ \ \ \ rm -f *.html *.tex *.pdf
+
+    \;
   </verbatim>
 
   You might want to add <verbatim|-i> to the pure-doc command line if you
@@ -405,6 +445,8 @@
   this process. Add this to the Makefile in the previous section:
 
   <\verbatim>
+    \;
+
     # Try to guess the installation prefix (this needs GNU make):
 
     prefix = $(patsubst %/bin/pure,%,$(shell which pure 2\<gtr\>/dev/null))
@@ -431,6 +473,8 @@
     "$(DESTDIR)$(docsdir)"
 
     \ \ \ \ \ \ \ \ cp $(target).html "$(DESTDIR)$(docsdir)"
+
+    \;
   </verbatim>
 
   After a <verbatim|make> <verbatim|install> your documentation should now
@@ -438,7 +482,11 @@
   read it in the Pure interpreter using a command like the following:
 
   <\verbatim>
+    \;
+
     \<gtr\> help foo#
+
+    \;
   </verbatim>
 
   Note the hash character. This tells the <verbatim|help> command that this
@@ -447,13 +495,17 @@
   your manual as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> help foo#section-name
+
+    \;
   </verbatim>
 
   Please also refer to <hlink|<em|The Pure Manual>|pure.tm> for more
   information on how to use the interpreter's online help.
 
-  <subsection|Formatting Tips<label|formatting-tips>>
+  <subsection|Formatting Tips><label|formatting-tips>
 
   If you're generating documentation in pdf format using plain docutils, you
   might have to fiddle with the formatting to get results suitable for
@@ -497,7 +549,7 @@
   versions of rst2latex in various ways. (This isn't necessary for the latest
   rst2latex versions, or if you use Sphinx.)
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-doc-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-doc-toc>
 
   <\itemize>
     <item><hlink|pure-doc|#>
@@ -534,6 +586,6 @@
   <hlink|previous|pure-bonjour.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

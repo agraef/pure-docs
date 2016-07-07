@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,19 +8,19 @@
   <hlink|previous|pure-liblo.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-lilv: Pure Lilv Interface<label|module-lilv>>
+  <section*|pure-lilv: Pure Lilv Interface><label|module-lilv>
 
-  Version 0.4, October 28, 2014
+  Version 0.4, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   pure-lilv is Copyright (c) 2014 by Albert Gräf. It is distributed under a
   3-clause BSD license, please check the COPYING file included in the
   distribution for details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.4.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-lilv-0.4.tar.gz>.
 
@@ -35,7 +35,7 @@
   manually. In particular, <verbatim|make> <verbatim|install>
   <verbatim|prefix=/usr> sets the installation prefix.
 
-  <subsection|Description<label|description>>
+  <subsection|Description><label|description>
 
   This package provides a Pure module for David Robillard's
   <hlink|Lilv|http://drobilla.net/software/lilv/>, a library for LV2 plugin
@@ -73,6 +73,8 @@
   involved in running an LV2 audio plugin with Pure:
 
   <\verbatim>
+    \;
+
     // Import the module.
 
     using lilv;
@@ -141,9 +143,11 @@
     // Compute some more samples.
 
     lilv::run p in out;
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-lilv-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-lilv-toc>
 
   <\itemize>
     <item><hlink|pure-lilv: Pure Lilv Interface|#>
@@ -170,6 +174,6 @@
   <hlink|previous|pure-liblo.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

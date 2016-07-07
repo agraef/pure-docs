@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|Computer Algebra with Pure: A Reduce
-  Interface<label|module-reduce>>
+  Interface><label|module-reduce>
 
-  Version 0.4, October 28, 2014
+  Version 0.4, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -41,7 +41,7 @@
   website, and implementations exist for all major computing platforms. The
   <hlink|<with|font-family|tt|reduce>|#module-reduce> module makes the
   functionality of Reduce available in Pure in a seamless way. It uses an
-  ``embedded'' version of Reduce in the form of a shared library which is
+  \Pembedded\Q version of Reduce in the form of a shared library which is
   easy to build from the Reduce sources; the
   <hlink|Installation|#installation> section below describes how to do this.
   More background information and a discussion of the interface can be found
@@ -57,14 +57,14 @@
   functionality works, and you're welcome to discuss the new interface on the
   mailing list and/or submit bug reports and patches.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   pure-reduce is available under the same 2-clause BSD
   <hlink|license|http://www.reduce-algebra.com/license.htm> as Reduce itself,
   please see the accompanying COPYING file and the reduce.pure file for
   details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-reduce-0.4.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-reduce-0.4.tar.gz>.
 
@@ -114,7 +114,11 @@
   repository with the following command:
 
   <\verbatim>
+    \;
+
     svn co svn://svn.code.sf.net/p/reduce-algebra/code/trunk reduce-algebra
+
+    \;
   </verbatim>
 
   This pulls down many hundreds of megabytes, so this may take a while. Once
@@ -127,10 +131,10 @@
   you run into problems then please consider using our streamlined
   reduce-algebra-csl package instead.
 
-  <subsection|Low-Level Interface<label|low-level-interface>>
+  <subsection|Low-Level Interface><label|low-level-interface>
 
   The low-level interface is a straight wrapper of the C entry points
-  provided by the Reduce library, also known as the ``procedural'' or
+  provided by the Reduce library, also known as the \Pprocedural\Q or
   <hlink|PROC|http://reduce-algebra.svn.sourceforge.net/viewvc/reduce-algebra/trunk/csl/cslbase/proc.h?view=markup>
   interface, for short. It uses an embedded version of Reduce which runs on a
   free and open-source Lisp flavour known as
@@ -140,20 +144,24 @@
   provide a high-level, idiomatic Pure interface which makes calling Reduce
   from Pure much easier, see below.
 
-  <subsection|High-Level Interface<label|high-level-interface>>
+  <subsection|High-Level Interface><label|high-level-interface>
 
   The high-level interface provides a wrapper of the low-level PROC interface
   which makes calling Reduce from Pure easy and convenient. After installing
   the module, it can be imported in your Pure scripts as follows:
 
   <\verbatim>
+    \;
+
     using reduce;
+
+    \;
   </verbatim>
 
   This starts up Reduce and makes the following variables and functions
   available in Pure.
 
-  <subsubsection|Starting and Stopping Reduce<label|starting-and-stopping-reduce>>
+  <subsubsection|Starting and Stopping Reduce><label|starting-and-stopping-reduce>
 
   <\description>
     <item*|<em|variable> REDUCE_PATH<label|REDUCE-PATH>>This variable holds a
@@ -185,7 +193,7 @@
     in this case.)
   </description>
 
-  <subsubsection|Maintenance Operations<label|maintenance-operations>>
+  <subsubsection|Maintenance Operations><label|maintenance-operations>
 
   <\description>
     <item*|reduce::verbosity n<label|reduce::verbosity>>Sets the verbosity
@@ -239,7 +247,7 @@
     see above.
   </description>
 
-  <subsubsection|Evaluation<label|evaluation>>
+  <subsubsection|Evaluation><label|evaluation>
 
   For convenience, the following operations are in the default namespace:
 
@@ -325,7 +333,7 @@
 
       <item><verbatim|depend>, <verbatim|nodepend>, <verbatim|factor>,
       <verbatim|remfac>, <verbatim|order>, <verbatim|korder>: declares kernel
-      dependencies and orders. These take both symbols and ``kernels'' as
+      dependencies and orders. These take both symbols and \Pkernels\Q as
       arguments (the latter are simple prefix expressions which denote
       irreducible subterms such as <verbatim|cos> <verbatim|x>; Reduce treats
       these more or less like variables in algebraic simplifications).
@@ -386,12 +394,14 @@
   arguments, and will most likely crash the Reduce system in such cases. You
   have been warned!
 
-  <subsection|Basic Examples<label|basic-examples>>
+  <subsection|Basic Examples><label|basic-examples>
 
   Here is a simple example showing how to start up Reduce and do some
   calculations:
 
   <\verbatim>
+    \;
+
     \<gtr\> using reduce;
 
     Reduce (Free CSL version), 27-Sep-12 ...
@@ -407,6 +417,8 @@
     \<gtr\> simplify $ solve (x^2+7) x;
 
     [x==sqrt 7*i,x==-sqrt 7*i]
+
+    \;
   </verbatim>
 
   Note that the result returned by <hlink|<with|font-family|tt|simplify>|#simplify>
@@ -416,20 +428,28 @@
   evaluation:
 
   <\verbatim>
+    \;
+
     \<gtr\> using math;
 
     \<gtr\> eval ans;
 
     [x==0.0+:2.64575131106459,x==0.0+:-2.64575131106459]
+
+    \;
   </verbatim>
 
   The following example shows how you can do a simple plot using Reduce's
   <hlink|gnuplot|http://www.gnuplot.info/> module:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ plot [sin x/x, x=='(-20..20), terminal=="wxt"];
 
     0
+
+    \;
   </verbatim>
 
   This pops up a wxWidgets window (<verbatim|terminal=="wxt">) with a plot of
@@ -445,10 +465,14 @@
   The same plot can be written to a PostScript file sinc.ps as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ plot [sin x/x, x=='(-20..20), terminal=="postscript",
     output=="sinc.ps"];
 
     0
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|lisp>|#lisp> function can be used to
@@ -458,6 +482,8 @@
   prevent its evaluation on the Pure side.
 
   <\verbatim>
+    \;
+
     \<gtr\> lisp ('plus 2 3);
 
     5
@@ -469,13 +495,17 @@
     \<gtr\> lisp ('cdr [a,b,[c,d],e]);
 
     [b,[c,d],e]
+
+    \;
   </verbatim>
 
   Lisp's truth values are <verbatim|t> and <verbatim|nil>; the latter is just
   the empty list, so that's what you get if a Lisp predicate evaluates to
-  ``false'':
+  \Pfalse\Q:
 
   <\verbatim>
+    \;
+
     \<gtr\> lisp ('lessp 5 3);
 
     []
@@ -483,17 +513,21 @@
     \<gtr\> lisp ('greaterp 5 3);
 
     t
+
+    \;
   </verbatim>
 
   Most simple kinds of Lisp calls should be doable that way, but don't expect
   any miracles; the <hlink|<with|font-family|tt|lisp>|#lisp> function is
-  provided to access special functionality in the ``symbolic mode'' of the
+  provided to access special functionality in the \Psymbolic mode\Q of the
   Reduce system, not to turn Pure into a full-featured Lisp frontend. The
   following example illustrates how you can use the
   <hlink|<with|font-family|tt|lisp>|#lisp> function to declare an operator
   symbol and change or query its properties:
 
   <\verbatim>
+    \;
+
     \<gtr\> lisp ('operator [myop]);
 
     []
@@ -509,6 +543,8 @@
     \<gtr\> simplify (myop (-x));
 
     -myop x
+
+    \;
   </verbatim>
 
   If you find it awkward to evaluate Lisp forms in Pure, you can also achieve
@@ -516,6 +552,8 @@
   which covers most of the common Reduce declarations that might be needed:
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator myop;
 
     []
@@ -527,6 +565,8 @@
     \<gtr\> simplify (myop (-x));
 
     -myop x
+
+    \;
   </verbatim>
 
   For basic Pure-based usage of Reduce, it's convenient to have a simple
@@ -536,6 +576,8 @@
   little Pure script which does that:
 
   <\verbatim>
+    \;
+
     using math, reduce, system;
 
     \;
@@ -583,6 +625,8 @@
     \ \ end;
 
     end;
+
+    \;
   </verbatim>
 
   Now you can run <verbatim|red> at the Pure prompt and start typing the
@@ -591,6 +635,8 @@
   command prompt.
 
   <\verbatim>
+    \;
+
     \<gtr\> red;
 
     \<gtr\> df ((x+5)^3) x
@@ -628,13 +674,15 @@
     \<gtr\> ^D
 
     ()
+
+    \;
   </verbatim>
 
   Note that we barely scratched the surface here; Reduce is a very complex
   system with lots of capabilities. The following section explores some of
   these areas in more detail.
 
-  <subsection|Examples by Topic<label|examples-by-topic>>
+  <subsection|Examples by Topic><label|examples-by-topic>
 
   This is a small excerpt from the <with|font-series|bold|REDUCE User's
   Manual> <hlink|[REDUM]|#redum>, translated to Pure syntax. For any details
@@ -650,7 +698,7 @@
   other valuable information may be found at:
   <hlink|http://www.reduce-algebra.com/documentation.htm|http://www.reduce-algebra.com/documentation.htm>
 
-  <subsubsection|Differentiation<label|differentiation>>
+  <subsubsection|Differentiation><label|differentiation>
 
   The operator <verbatim|df> is used to represent partial differentiation
   with respect to one or more variables.
@@ -665,17 +713,25 @@
   <puredoc-image|_images/math/38a45ae1b8d8833859b5404bafb5bdbb9d2fdb9e.png|66%|66%||>:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ df (x^2*y^3*z^4) x 2 y 3 z 4 ;
 
     288
+
+    \;
   </verbatim>
 
   The derivative of <puredoc-image|_images/math/4b03686d9ad5334a024240873fb9eeccfc4c1b95.png|66%|66%||>:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ df (log(sin x)^2) x;
 
     2*cos x*log (sin x)/sin x
+
+    \;
   </verbatim>
 
   Note the parentheses.
@@ -686,6 +742,8 @@
   :
 
   <\verbatim>
+    \;
+
     \<gtr\> declare depend [z,cos x,y];
 
     []
@@ -697,6 +755,8 @@
     \<gtr\> simplify (df (z^2) x);
 
     2*df z x*z
+
+    \;
   </verbatim>
 
   Note how to declare dependencies.
@@ -705,7 +765,7 @@
   and <puredoc-image|_images/math/8c5193aefe42abfae1781d7443e0d82fc08bbace.png|66%|66%||>,
   respectively, as expected.
 
-  <subsubsection|Integration<label|integration>>
+  <subsubsection|Integration><label|integration>
 
   <verbatim|INT> is an operator in REDUCE for indefinite integration using a
   combination of the Risch-Norman algorithm and pattern matching.
@@ -725,9 +785,13 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ intg (1/(a*x+b)) x;
 
     log (a*x+b)/a
+
+    \;
   </verbatim>
 
   Example 2:
@@ -737,6 +801,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> I a b n = simplify $ intg (x^2*(a*x+b)^n) x;
 
     \<gtr\> I a b n;
@@ -758,6 +824,8 @@
     \<gtr\> I a 0 k;
 
     x^k*a^k*x^3/(k+3)
+
+    \;
   </verbatim>
 
   Example 3:
@@ -767,9 +835,13 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ intg (sqrt(x+sqrt(x^2+1))/x) x ;
 
     intg (sqrt (sqrt (x^2+1)+x)/x) x
+
+    \;
   </verbatim>
 
   Apparently no solution was found. There is a package <verbatim|ALGINT> in
@@ -784,6 +856,8 @@
   </quote-env>
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::load "algint" ;
 
     0
@@ -795,11 +869,13 @@
     (sqrt (x^2+1)+x))/2)+2*sqrt (sqrt (x^2+1)+x)+log (sqrt (sqrt
 
     (x^2+1)+x)-1)-log (sqrt (sqrt (x^2+1)+x)+1)
+
+    \;
   </verbatim>
 
   Note how to load packages.
 
-  <subsubsection|Length, Map and Select<label|length-map-and-select>>
+  <subsubsection|Length, Map and Select><label|length-map-and-select>
 
   <verbatim|LENGTH> is a generic operator for finding the length of compound
   objects. Besides lists and matrices, this also includes algebraic
@@ -822,6 +898,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ length (a+b);
 
     2
@@ -839,6 +917,8 @@
     \<gtr\> simplify $ 'map log \ [x^n,x^m,sin x];
 
     [log (x^n),log (x^m),log (sin x)]
+
+    \;
   </verbatim>
 
   Note that <verbatim|map> must be quoted if we want to evaluate it in
@@ -847,6 +927,8 @@
   same.
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ map sqrt [1,2,3];
 
     [1,2^(1/2),3^(1/2)]
@@ -854,6 +936,8 @@
     \<gtr\> simplify $ map log \ [x^n,x^m,sin x];
 
     [log (x^n),log (x^m),log (sin x)]
+
+    \;
   </verbatim>
 
   If the function to be applied in calls to <verbatim|MAP> or
@@ -864,6 +948,8 @@
   the free variable when the function is applied.
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ 'map (y=\<gtr\>df y x) \ \ [x^n,x^m,sin x];
 
     [x^n*n/x,x^m*m/x,cos x]
@@ -881,6 +967,8 @@
     \<gtr\> simplify $ select (w=\<gtr\>evenp (deg w y)) ((x+y)^5);
 
     x^5+10*x^3*y^2+5*x*y^4
+
+    \;
   </verbatim>
 
   Contrast this with Pure where the function argument to
@@ -888,6 +976,8 @@
   lambda:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ map (\\y-\<gtr\>df y x) \ \ [x^n,x^m,sin x];
 
     [x^n*n/x,x^m*m/x,cos x]
@@ -895,6 +985,8 @@
     \<gtr\> simplify $ map (\\y-\<gtr\>intg y x) [x^n,x^m,sin x];
 
     [x^n*x/(n+1),x^m*x/(m+1),-cos x]
+
+    \;
   </verbatim>
 
   In principle, the same correspondences also hold between REDUCE's
@@ -902,19 +994,27 @@
   For instance, consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ select (w=\<gtr\>evenp (deg w x)) [2*x^2,3*x^3,4*x^4];
 
     [2*x^2,4*x^4]
+
+    \;
   </verbatim>
 
   The equivalent Pure <hlink|<with|font-family|tt|filter>|purelib.tm#filter>
   is:
 
   <\verbatim>
+    \;
+
     \<gtr\> filter (\\w-\<gtr\>simplify $ evenp (deg w x))
     [2*x^2,3*x^3,4*x^4];
 
     [2*x^2,4*x^4]
+
+    \;
   </verbatim>
 
   Note that REDUCE is now being called inside the predicate function, the
@@ -927,6 +1027,8 @@
   which <verbatim|MAP> and <verbatim|SELECT> decompose an expression:
 
   <\verbatim>
+    \;
+
     terms x = case x of
 
     \ \ f@_ u v = collect f x with
@@ -944,20 +1046,28 @@
     \ \ _ = [x] otherwise;
 
     end;
+
+    \;
   </verbatim>
 
   For instance, consider:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ 'map (w=\<gtr\>w+1) (df ((x+y)^3) x);
 
     3*x^2+6*x*y+3*y^2+3
+
+    \;
   </verbatim>
 
   With the help of <verbatim|terms> we can also do this using Pure's
   <hlink|<with|font-family|tt|map>|purelib.tm#map> as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (+1) $ terms (simplify (df ((x+y)^3) x));
 
     [3*x^2+1,6*x*y+1,3*y^2+1]
@@ -965,6 +1075,8 @@
     \<gtr\> simplify $ foldl (+) 0 ans;
 
     3*x^2+6*x*y+3*y^2+3
+
+    \;
   </verbatim>
 
   While the REDUCE version is shorter and only involves a single call to
@@ -974,7 +1086,7 @@
   makes it possible to apply Pure's full arsenal of generic list functions
   which goes beyond what's available in REDUCE.
 
-  <subsubsection|Partial Fractions<label|partial-fractions>>
+  <subsubsection|Partial Fractions><label|partial-fractions>
 
   The <verbatim|PF> operator transforms an expression into a list of partial
   fractions with respect to the main variable. <verbatim|PF> does a complete
@@ -991,11 +1103,15 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> let f = 2/((x+1)^2*(x+2));
 
     \<gtr\> simplify $ pf f x;
 
     [2/(x+2),(-2)/(x+1),2/(x^2+2*x+1)]
+
+    \;
   </verbatim>
 
   This means:
@@ -1008,6 +1124,8 @@
   <verbatim|off> <verbatim|exp>:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::switch "exp" 0 ;
 
     0
@@ -1015,11 +1133,13 @@
     \<gtr\> simplify $ pf f x;
 
     [2/(x+2),(-2)/(x+1),2/(x+1)^2]
+
+    \;
   </verbatim>
 
   Note how the value of a Reduce switch is changed in Pure.
 
-  <subsubsection|Solving<label|solving>>
+  <subsubsection|Solving><label|solving>
 
   <verbatim|SOLVE> is an operator for solving one or more simultaneous
   algebraic equations. It is used with the syntax:
@@ -1041,27 +1161,39 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> let eqn1 = log(sin (x+3))^5 == 8 ;
 
     \<gtr\> let sol1 = simplify $ solve eqn1 x;
+
+    \;
   </verbatim>
 
   The variable <verbatim|sol1> now contains an entire list of solutions. How
   many are there?
 
   <\verbatim>
+    \;
+
     \<gtr\> #sol1 ;
 
     10
+
+    \;
   </verbatim>
 
   The first one is:
 
   <\verbatim>
+    \;
+
     \<gtr\> sol1!0;
 
     x==2*arbint 5*pi+asin (e^(2^(3/5)*cos (2*pi/5))/e^(2^(3/5)*sin
     (2*pi/5)*i))-3
+
+    \;
   </verbatim>
 
   <\center>
@@ -1075,10 +1207,14 @@
   list via REDUCE commands:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ rhs $ first $ solve eqn1 x;
 
     2*arbint 10*pi+asin (e^(2^(3/5)*cos (2*pi/5))/e^(2^(3/5)*sin
     (2*pi/5)*i))-3
+
+    \;
   </verbatim>
 
   where <verbatim|first> gets the first solution in the list and
@@ -1094,9 +1230,13 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ solve [X^2+1==0] X;
 
     [X==i,X==-i]
+
+    \;
   </verbatim>
 
   <\center>
@@ -1104,14 +1244,20 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ solve [x+3*y==7,y-x==1] [x,y] ;
 
     [[x==1,y==2]]
+
+    \;
   </verbatim>
 
   To get the multiplicities, turn on the switch <verbatim|multiplicities>:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ solve [x^2==2*x-1] x;
 
     [x==1]
@@ -1123,16 +1269,20 @@
     \<gtr\> simplify $ solve [x^2==2*x-1] x;
 
     [x==1,x==1]
+
+    \;
   </verbatim>
 
   For details consult the REDUCE user manual.
 
-  <subsubsection|Even and Odd Operators<label|even-and-odd-operators>>
+  <subsubsection|Even and Odd Operators><label|even-and-odd-operators>
 
   An operator can be declared to be even or odd in its first argument by the
   declarations <verbatim|EVEN> and <verbatim|ODD> respectively.
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator [f1,f2];
 
     []
@@ -1162,9 +1312,11 @@
     \<gtr\> simplify $ f1 (-a) (-b);
 
     -f1 a (-b)
+
+    \;
   </verbatim>
 
-  <subsubsection|Linear Operators<label|linear-operators>>
+  <subsubsection|Linear Operators><label|linear-operators>
 
   An operator can be declared to be linear in its first argument over powers
   of its second argument.
@@ -1174,6 +1326,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator L;
 
     []
@@ -1185,6 +1339,8 @@
     \<gtr\> simplify $ L (a*x^5+b*x+c) x ;
 
     L (x^5) x*a+L x x*b+L 1 x*c
+
+    \;
   </verbatim>
 
   <\center>
@@ -1192,20 +1348,26 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ L (a+b+c+d) y;
 
     L 1 y*a+L 1 y*b+L 1 y*c+L 1 y*d
+
+    \;
   </verbatim>
 
   Note that <verbatim|L> <verbatim|x> <verbatim|y> binds stronger than
   <verbatim|(*)> in Pure.
 
-  <subsubsection|Non-commuting Operators<label|non-commuting-operators>>
+  <subsubsection|Non-commuting Operators><label|non-commuting-operators>
 
   An operator can be declared to be non-commutative under multiplication by
   the declaration <verbatim|NONCOM>.
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator [u,v];
 
     []
@@ -1221,16 +1383,20 @@
     \<gtr\> simplify (u(x)*u(y)-u(y)*u(x));
 
     u x*u y-u y*u x
+
+    \;
   </verbatim>
 
   <subsubsection|Symmetric and Antisymmetric
-  Operators<label|symmetric-and-antisymmetric-operators>>
+  Operators><label|symmetric-and-antisymmetric-operators>
 
   An operator can be declared to be symmetric with respect to its arguments
   by the declaration <verbatim|SYMMETRIC>. Similarly, the declaration
   <verbatim|ANTISYMMETRIC> declares an operator antisymmetric.
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator [A,S];
 
     []
@@ -1266,10 +1432,12 @@
     \<gtr\> simplify $ A y x ;
 
     -A x y
+
+    \;
   </verbatim>
 
   <subsubsection|Creating/Removing Variable
-  Dependencies<label|creating-removing-variable-dependencies>>
+  Dependencies><label|creating-removing-variable-dependencies>
 
   There are several facilities in REDUCE, such as the differentiation
   operator and the linear operator facility, which can utilize knowledge of
@@ -1277,6 +1445,8 @@
   expressed by the command <verbatim|DEPEND>.
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator D ;
 
     []
@@ -1290,21 +1460,29 @@
     \<gtr\> simplify $ df D a;
 
     0
+
+    \;
   </verbatim>
 
   <verbatim|D> does not depend on <verbatim|a>, thus differentiating with
   respect to <verbatim|a> yields 0, but
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ df D x;
 
     df D x
+
+    \;
   </verbatim>
 
   because <verbatim|D> is declared to depend on <verbatim|x>. If we also let
   <verbatim|a> depend on <verbatim|x>, then:
 
   <\verbatim>
+    \;
+
     \<gtr\> declare depend [a,x];
 
     []
@@ -1312,12 +1490,16 @@
     \<gtr\> simplify $ df (D*a) x;
 
     df D x*a+df a x*D
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> Dependencies remain active until they are
   explicitly removed:
 
   <\verbatim>
+    \;
+
     \<gtr\> declare nodepend [a,x];
 
     \<gtr\> simplify $ df a x;
@@ -1327,9 +1509,11 @@
     \<gtr\> simplify $ df (D*a) x;
 
     df D x*a
+
+    \;
   </verbatim>
 
-  <subsubsection|Internal Order of Variables<label|internal-order-of-variables>>
+  <subsubsection|Internal Order of Variables><label|internal-order-of-variables>
 
   It is possible for the user to change the internal order of variables by
   means of the declaration <verbatim|KORDER>. The syntax for this is:
@@ -1343,6 +1527,8 @@
   computation time.
 
   <\verbatim>
+    \;
+
     \<gtr\> declare korder [z,y,x];
 
     []
@@ -1354,9 +1540,11 @@
     \<gtr\> simplify $ x+y+z;
 
     z+y+x
+
+    \;
   </verbatim>
 
-  <subsubsection|Parts of Algebraic Expressions<label|parts-of-algebraic-expressions>>
+  <subsubsection|Parts of Algebraic Expressions><label|parts-of-algebraic-expressions>
 
   The following operators can be used to obtain a specific part of an
   expression, or even change such a part to another expression.
@@ -1372,6 +1560,8 @@
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ coeff ((y^2+z)^3/z) y ;
 
     [z^2,0,3*z,0,3,0,1/z]
@@ -1399,6 +1589,8 @@
     \<gtr\> simplify $ part (a+b) 0 ;
 
     (+)
+
+    \;
   </verbatim>
 
   <verbatim|PART> may also be used to substitute a given part of an
@@ -1408,6 +1600,8 @@
   part on the right-hand side.
 
   <\verbatim>
+    \;
+
     \<gtr\> \ simplify $ xx:=a+b;
 
     a+b
@@ -1419,9 +1613,11 @@
     \<gtr\> \ simplify $ xx;
 
     a+c
+
+    \;
   </verbatim>
 
-  <subsubsection|Polynomials and Rationals<label|polynomials-and-rationals>>
+  <subsubsection|Polynomials and Rationals><label|polynomials-and-rationals>
 
   REDUCE is capable of factorizing univariate and multivariate polynomials
   with integer coefficients, finding all factors with integer coefficients.
@@ -1436,6 +1632,8 @@
   Some examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ factorize (x^105-1) ;
 
     [[x^48+x^47+x^46-x^43-x^42-2*x^41-x^40 ... ]
@@ -1453,6 +1651,8 @@
     \<gtr\> reduce::switch "ifactor" 0;
 
     0
+
+    \;
   </verbatim>
 
   The following operators should be well known:
@@ -1494,6 +1694,8 @@
   GCD/LCM
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ gcd (x^2+2*x+1) (x^2+3*x+2) ;
 
     x+1
@@ -1515,11 +1717,15 @@
     \<gtr\> simplify $ lcm (2*x^2-2*y^2) (4*x+4*y) ;
 
     4*x^2-4*y^2
+
+    \;
   </verbatim>
 
   REMAINDER/RESULTANT
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ remainder ((x+y)*(x+2*y)) (x+3*y) ;
 
     2*y^2
@@ -1533,11 +1739,15 @@
     \<gtr\> simplify $ resultant (x/r*u+y) (u*y) u ;
 
     -y^2
+
+    \;
   </verbatim>
 
   DECOMPOSE
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ decompose (x^8-88*x^7+2924*x^6-43912*x^5+263431*x^4-
 
     \<gtr\> \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 218900*x^3+65690*x^2-7700*x+234)
@@ -1550,11 +1760,15 @@
     \<gtr\> simplify $ decompose (u^2+v^2+2*u*v+1) ;
 
     [w^2+1,w==u+v]
+
+    \;
   </verbatim>
 
   DEG/DEN
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ deg ((a+b)*(c+2*d)^2) d ;
 
     2
@@ -1568,11 +1782,15 @@
     \<gtr\> simplify $ den (x/y^2) ;
 
     y^2
+
+    \;
   </verbatim>
 
   LCOF/LPOWER/LTERM
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ lcof ((a+b)*(c+2*d)^2) a ;
 
     c^2+4*c*d+4*d^2
@@ -1612,11 +1830,15 @@
     \<gtr\> simplify $ lterm ((a+b)*(c+2*d)) x ;
 
     a*c+2*a*d+b*c+2*b*d
+
+    \;
   </verbatim>
 
   MAINVAR/NUM/REDUCT
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ mainvar ((a+b)*(c+2*d)^2) ;
 
     a
@@ -1652,9 +1874,11 @@
     \<gtr\> simplify $ reduct ((a+b)*(c+2*d)) x ;
 
     0
+
+    \;
   </verbatim>
 
-  <subsubsection|Substitution<label|substitution>>
+  <subsubsection|Substitution><label|substitution>
 
   An important class of commands in REDUCE define substitutions for variables
   and expressions to be made during the evaluation of expressions. One such
@@ -1665,6 +1889,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ sub [x==a+y,y==y+1] (x^2+y^2) ;
 
     a^2+2*a*y+2*y^2+2*y+1
@@ -1674,13 +1900,15 @@
     \<gtr\> simplify $ sub [a==sin x, b==sin y] (a^2+b^2) ;
 
     sin x^2+sin y^2
+
+    \;
   </verbatim>
 
   Note that simple substitutions of this kind can also be done directly in
   Pure, using the <hlink|<with|font-family|tt|reduce>|purelib.tm#reduce>
   macro.
 
-  <subsubsection|Assignment<label|assignment>>
+  <subsubsection|Assignment><label|assignment>
 
   One may assign values to variables in the REDUCE environment. Note that in
   Pure the <verbatim|set> operator and <verbatim|:=> are equivalent, i.e.
@@ -1693,6 +1921,8 @@
   </description>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ P := a*x^n + b* x^m + c ; \ \ \ \ \ // P:=a*x^n + b*
     x^m + c;
 
@@ -1718,9 +1948,11 @@
     \<gtr\> simplify $ set Q (a*x^n + b* x^m + c) ;
 
     x^m*b+x^n*a+c
+
+    \;
   </verbatim>
 
-  <subsubsection|Matrix Calculations<label|matrix-calculations>>
+  <subsubsection|Matrix Calculations><label|matrix-calculations>
 
   A very powerful feature of REDUCE is the ease with which matrix
   calculations can be performed. It fits very well into Pure's native matrix
@@ -1736,6 +1968,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     let s0 = {1,0;0,1} ;
 
     let s1 = {0,1;1,0} ;
@@ -1743,6 +1977,8 @@
     let s2 = {0,-i;i,0};
 
     let s3 = {1,0;0,-1};
+
+    \;
   </verbatim>
 
   Check the identities
@@ -1757,6 +1993,8 @@
   Note: Instead of <verbatim|s1*s1> we could also write <verbatim|s1^2> here.
 
   <\verbatim>
+    \;
+
     \<gtr\> let r1 = simplify $ (s1*s1) ; r1;
 
     {1,0;0,1}
@@ -1776,19 +2014,27 @@
     \<gtr\> let r5 = all (==s0) [r1,r2,r3,r4] ; r5;
 
     1
+
+    \;
   </verbatim>
 
   Check: <puredoc-image|_images/math/cd4a6dc4452fe2f8d015170e3e9f54378c498b36.png|66%|66%||>
 
   <\verbatim>
+    \;
+
     \<gtr\> map (simplify . det) [s1,s2,s3] ;
 
     [-1,-1,-1]
+
+    \;
   </verbatim>
 
   Calculate the eigenvalues/-vectors of <puredoc-image|_images/math/c228ed3c88cd90a7dff90a1693e80272b2e39303.png|66%|66%||>:
 
   <\verbatim>
+    \;
+
     \<gtr\> let r7 = simplify $ mateigen s2 q; r7;
 
     [[q-1,1,{-c1*i;c2}],[q+1,1,{c3*i;c4}]]
@@ -1811,52 +2057,76 @@
     \<gtr\> let r10 = map last r7 ; r10; // eigenvectors
 
     [{-c1*i;c2},{c3*i;c4}]
+
+    \;
   </verbatim>
 
   Transpose (operator <verbatim|tp>):
 
   <\verbatim>
+    \;
+
     \<gtr\> map (simplify.tp) [s1,s2,s3] ; // -\<gtr\> [s1',s2',s3']
 
     [{0,1;1,0},{0,i;-i,0},{1,0;0,-1}]
+
+    \;
   </verbatim>
 
   Trace (operator <verbatim|trace>):
 
   <\verbatim>
+    \;
+
     \<gtr\> map (simplify.trace) [s1,s2,s3] ;
 
     [0,0,0]
+
+    \;
   </verbatim>
 
   Cofactor (trivial here):
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ cofactor s2 1 1 ;
 
     0
+
+    \;
   </verbatim>
 
   Nullspace of <puredoc-image|_images/math/c228ed3c88cd90a7dff90a1693e80272b2e39303.png|66%|66%||>
   + {0,i;0,0}:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ nullspace (s2+{0,i;0,0}) ;
 
     [{0;1}]
+
+    \;
   </verbatim>
 
   Rank:
 
   <\verbatim>
+    \;
+
     \<gtr\> map (simplify . rank) [s0,s1,s2,s3] ;
 
     [2,2,2,2]
+
+    \;
   </verbatim>
 
   Inverse (simply <puredoc-image|_images/math/eca231602567a7238426dd18cd9b8884244e80a6.png|66%|66%||>):
 
   <\verbatim>
+    \;
+
     \<gtr\> let r15 = simplify $ 1/s2 ; r15;
 
     {0,1/i;(-1)/i,0}
@@ -1866,6 +2136,8 @@
     \<gtr\> simplify $ s2*r15 ;
 
     {1,0;0,1}
+
+    \;
   </verbatim>
 
   Solving without <verbatim|solve>:
@@ -1875,12 +2147,16 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ (1/{a11,a12;a21,a22}*{y1;y2}) ; // A^-1 * y' ;
 
     {(-a12*y2+a22*y1)/(a11*a22-a12*a21);(a11*y2-a21*y1)/(a11*a22-a12*a21)}
+
+    \;
   </verbatim>
 
-  <subsubsection|Limits<label|limits>>
+  <subsubsection|Limits><label|limits>
 
   From the package description:
 
@@ -1898,6 +2174,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ limit (x*sin(1/x)) x infinity ;
 
     1
@@ -1907,12 +2185,14 @@
     \<gtr\> simplify $ limit (1/x) x 0 ;
 
     inf
+
+    \;
   </verbatim>
 
   Notes: This package loads automatically. Author: Stanley L. Kameny.
 
   <subsubsection|Ordinary differential equations
-  solver<label|ordinary-differential-equations-solver>>
+  solver><label|ordinary-differential-equations-solver>
 
   The <verbatim|ODESOLVE> package is a solver for ordinary differential
   equations.
@@ -1924,6 +2204,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> declare depend [y,x]; \ // declare: y depends on x
 
     []
@@ -1933,6 +2215,8 @@
     \<gtr\> simplify $ odesolve [df y x == x^2+exp(x)] [y] x ;
 
     [y==(3*C+3*e^x+x^3)/3]
+
+    \;
   </verbatim>
 
   Problem 2:
@@ -1942,21 +2226,29 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ odesolve [(df y x 2) == y] [y] x
     [[x==0,y==A],[x==1,y==B]] ;
 
     [y==(-e^(2*x)*A+e^(2*x)*B*e+A*e^2-B*e)/(e^x*e^2-e^x)]
+
+    \;
   </verbatim>
 
   Remember to remove dependencies:
 
   <\verbatim>
+    \;
+
     \<gtr\> declare nodepend [y,x];
 
     []
+
+    \;
   </verbatim>
 
-  <subsubsection|Series Summation and Products<label|series-summation-and-products>>
+  <subsubsection|Series Summation and Products><label|series-summation-and-products>
 
   <verbatim|SUM>: A package for series summation
 
@@ -1975,6 +2267,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ sum (n^3) n 1 N ;
 
     (N^4+2*N^3+N^2)/4
@@ -1996,9 +2290,11 @@
     \<gtr\> simplify $ prod (k/(k+2)) k 1 N ;
 
     2/(N^2+3*N+2)
+
+    \;
   </verbatim>
 
-  <subsubsection|Taylor Series<label|taylor-series>>
+  <subsubsection|Taylor Series><label|taylor-series>
 
   <verbatim|TAYLOR>: Manipulation of Taylor series
 
@@ -2019,6 +2315,8 @@
   For details consult the package documentation in the REDUCE distribution.
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ taylor (exp (x^2+y^2)) x 0 2 y 0 2 ;
 
     x^2*y^2+x^2+y^2+1
@@ -2040,12 +2338,14 @@
     \<gtr\> simplify $ inverse_taylor (exp(x)-1) x y 0 8;
 
     (-105*y^8+120*y^7-140*y^6+168*y^5-210*y^4+280*y^3-420*y^2+840*y)/840
+
+    \;
   </verbatim>
 
-  Note that the ``big O'' residual terms are omitted in the results returned
+  Note that the \Pbig O\Q residual terms are omitted in the results returned
   by <verbatim|simplify>, although REDUCE will print them.
 
-  <subsubsection|Boolean Expressions<label|boolean-expressions>>
+  <subsubsection|Boolean Expressions><label|boolean-expressions>
 
   The truth values within REDUCE are <verbatim|t> and <verbatim|nil>
   <verbatim|=> <verbatim|()>. Not all predicates (functions returning a truth
@@ -2055,6 +2355,8 @@
   Some examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ evenp 200 ;
 
     t
@@ -2068,6 +2370,8 @@
     \<gtr\> lisp (fixp 200) ;
 
     t
+
+    \;
   </verbatim>
 
   where <verbatim|fixp> tests for integers.
@@ -2077,6 +2381,8 @@
   the expression go through to REDUCE:
 
   <\verbatim>
+    \;
+
     \<gtr\> lisp (numberp x) ;
 
     0
@@ -2094,6 +2400,8 @@
     \<gtr\> lisp ('numberp 111) ;
 
     t
+
+    \;
   </verbatim>
 
   In the first case <verbatim|numberp> <verbatim|x> evaluates to zero in
@@ -2108,6 +2416,8 @@
   <verbatim|freeof>:
 
   <\verbatim>
+    \;
+
     \<gtr\> lisp (ordp x y) ;
 
     t
@@ -2145,9 +2455,11 @@
     \<gtr\> simplify $ freeof (x^n*y^m) (y^m) ;
 
     0
+
+    \;
   </verbatim>
 
-  <subsubsection|Mathematical Functions<label|mathematical-functions>>
+  <subsubsection|Mathematical Functions><label|mathematical-functions>
 
   REDUCE provides many mathematical functions which can take arbitrary scalar
   expressions as their single argument:
@@ -2167,6 +2479,8 @@
   may have to be quoted to prevent evaluation on the Pure side. For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ cos 4.3;
 
     cos (43/10)
@@ -2182,11 +2496,15 @@
     \<gtr\> simplify $ cos 4.3;
 
     (-21601483)/53896027
+
+    \;
   </verbatim>
 
   Some examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ cos (-x) ;
 
     cos x
@@ -2212,6 +2530,8 @@
     \<gtr\> simplify $ erf (-a);
 
     -erf a
+
+    \;
   </verbatim>
 
   The special functions are in two separate packages <verbatim|SPECFN> and
@@ -2283,7 +2603,7 @@
   Author: Chris Cannam, with contributions from Winfried Neun, Herbert
   Melenk, Victor Adamchik, Francis Wright and several others.
 
-  <subsubsection|Definite Integrals<label|definite-integrals>>
+  <subsubsection|Definite Integrals><label|definite-integrals>
 
   <verbatim|DEFINT>: Calculating definite integrals by using the Meijer G
   integration formula.
@@ -2293,6 +2613,8 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::load "defint" ;
 
     0
@@ -2302,6 +2624,8 @@
     \<gtr\> simplify $ intg (exp(-x)) x 0 infinity ;
 
     1
+
+    \;
   </verbatim>
 
   <\center>
@@ -2309,9 +2633,13 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ intg (x^2*cos(x)*exp(-2*x)) x 0 infinity ;
 
     4/125
+
+    \;
   </verbatim>
 
   <\center>
@@ -2319,9 +2647,13 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ intg (x*exp(-1/2*x)) x 0 1 ;
 
     2*sqrt e*(2*sqrt e-3)/e
+
+    \;
   </verbatim>
 
   <\center>
@@ -2329,9 +2661,13 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ intg (x*log(1+x)) x 0 1 ;
 
     1/4
+
+    \;
   </verbatim>
 
   <\center>
@@ -2339,14 +2675,20 @@
   </center>
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ intg (cos(2*x)) x y (2*y);
 
     (sin (4*y)-sin (2*y))/2
+
+    \;
   </verbatim>
 
   Various transformations:
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ laplace_transform (exp(-a*x)) x ;
 
     1/(a+s)
@@ -2398,16 +2740,20 @@
     \<gtr\> simplify $ fourier_cos (exp(-a*x)) x ;
 
     a/(a^2+s^2)
+
+    \;
   </verbatim>
 
   <subsubsection|Declarations, Switches and
-  Loading<label|declarations-switches-and-loading>>
+  Loading><label|declarations-switches-and-loading>
 
   Lisp evaluation can be used in the REDUCE system, in particular, to declare
   operator symbols and their properties (<verbatim|simplify> won't do that).
   E.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> lisp ('operator [myop]);
 
     \<gtr\> lisp ('flag [myop] odd);
@@ -2415,6 +2761,8 @@
     \<gtr\> lisp ('prop myop); // =\<gtr\> [odd:t,simpfn:simpiden]
 
     \<gtr\> simplify (myop (-x)); // =\<gtr\> -myop x
+
+    \;
   </verbatim>
 
   For the most common kinds of declarations, the
@@ -2424,6 +2772,8 @@
   done as follows:
 
   <\verbatim>
+    \;
+
     \<gtr\> declare operator myop;
 
     \<gtr\> declare odd myop;
@@ -2431,6 +2781,8 @@
     \<gtr\> simplify (myop (-x));
 
     -myop x
+
+    \;
   </verbatim>
 
   Please see the description of <hlink|<with|font-family|tt|declare>|#declare>
@@ -2456,27 +2808,39 @@
   <hlink|<with|font-family|tt|reduce::switch>|#reduce::switch>, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::switch "exp" 0 ;
 
     0
+
+    \;
   </verbatim>
 
   Packages can be loaded with the <hlink|<with|font-family|tt|reduce::load>|#reduce::load>
   command:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::load "defint" ;
 
     0
+
+    \;
   </verbatim>
 
   REDUCE source files can be read in with the
   <hlink|<with|font-family|tt|reduce::in>|#reduce::in> command:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::in "myreduce.red" ;
 
     0
+
+    \;
   </verbatim>
 
   Last but not least, REDUCE terminal input and output can also be redirected
@@ -2489,6 +2853,8 @@
   function:
 
   <\verbatim>
+    \;
+
     \<gtr\> reduce::feed "(print '(a b c d))";
 
     0
@@ -2508,9 +2874,11 @@
     \<gtr\> reduce::capture 0; // stop capturing output
 
     0
+
+    \;
   </verbatim>
 
-  <subsubsection|Plotting<label|plotting>>
+  <subsubsection|Plotting><label|plotting>
 
   REDUCE can do 2- and 3-dimensional function plots through its
   <hlink|gnuplot|http://www.gnuplot.info/> package. Some examples (note that
@@ -2518,6 +2886,8 @@
   to Reduce, rather than being evaluated on the Pure side):
 
   <\verbatim>
+    \;
+
     \<gtr\> simplify $ plot (sin x/x) (x=='(-15..15));
 
     \;
@@ -2545,9 +2915,11 @@
     // Output options.
 
     \<gtr\> simplify $ plot (sin x) [x=='(0..10),terminal==postscript,output=="sin.ps"];
+
+    \;
   </verbatim>
 
-  <subsubsection|References<label|references>>
+  <subsubsection|References><label|references>
 
   <\description>
     <item*|[REDUM]<label|redum>><em|REDUCE User's Manual>, Version 3.8,
@@ -2565,7 +2937,7 @@
     SYMSAC '81, ACM (New York) (1981), 109-116.
   </description>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-reduce-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-reduce-toc>
 
   <\itemize>
     <item><hlink|Computer Algebra with Pure: A Reduce Interface|#>
@@ -2668,6 +3040,6 @@
   <hlink|previous|pure-rational.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-gsl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-mpfr<label|module-mpfr>>
+  <section*|pure-mpfr><label|module-mpfr>
 
-  Version 0.5, October 28, 2014
+  Version 0.5, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -43,7 +43,7 @@
   report any bugs on the Pure issue tracker, on the Pure mailing list, or
   directly to the author, see <hlink|http://purelang.bitbucket.org/|http://purelang.bitbucket.org/>.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2011 by Albert Graef.
 
@@ -60,7 +60,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-mpfr-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-mpfr-0.5.tar.gz>.
 
@@ -77,13 +77,17 @@
   libmpfr 3.x (3.0.0 has been tested). Older libmpfr versions (2.x) probably
   require some work.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   After installation, you can use the operations of this module by placing
   the following import declaration in your Pure programs:
 
   <\verbatim>
+    \;
+
     using mpfr;
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Note:> This also pulls in the
@@ -101,7 +105,7 @@
   interfere with the overloading of arithmetic operations in the
   <verbatim|mpfr> module.
 
-  <subsubsection|Precision and Rounding<label|precision-and-rounding>>
+  <subsubsection|Precision and Rounding><label|precision-and-rounding>
 
   The following operations of the MPFR library are provided to inspect and
   change the default precision and rounding modes used by MPFR.
@@ -163,7 +167,7 @@
     pretty-printer.
   </description>
 
-  <subsubsection|MPFR Numbers<label|mpfr-numbers>>
+  <subsubsection|MPFR Numbers><label|mpfr-numbers>
 
   The module defines the following data type for representing <verbatim|mpfr>
   values, which is a subtype of the Pure <hlink|<with|font-family|tt|real>|purelib.tm#real/type>
@@ -173,7 +177,7 @@
     <item*|<em|type> mpfr<label|mpfr/type>>This is a tagged pointer type
     (denoted <verbatim|mpfr*> in Pure extern declarations) which is
     compatible with the <verbatim|mpfr_t> and <verbatim|mpfr_ptr> data types
-    of the MPFR C library. Members of this type are ``cooked'' pointers,
+    of the MPFR C library. Members of this type are \Pcooked\Q pointers,
     which are allocated dynamically and freed automatically when they are
     garbage-collected (by means of a corresponding Pure sentry).
   </description>
@@ -183,7 +187,7 @@
     values.
   </description>
 
-  <subsubsection|Conversions<label|conversions>>
+  <subsubsection|Conversions><label|conversions>
 
   The following operations are provided to convert between <verbatim|mpfr>
   numbers and other kinds of Pure <verbatim|real> values.
@@ -252,7 +256,7 @@
     of an <verbatim|mpfr> number, i.e., <verbatim|x-trunc> <verbatim|x>.
   </description>
 
-  <subsubsection|Arithmetic<label|arithmetic>>
+  <subsubsection|Arithmetic><label|arithmetic>
 
   The following standard operators (see the <hlink|<em|Pure Library
   Manual>|purelib.tm>) are overloaded to provide <verbatim|mpfr> arithmetic
@@ -287,7 +291,7 @@
     <item*|x \<gtr\> y<label|\<gtr\>/mpfr>>Comparisons.
   </description>
 
-  <subsubsection|Math Functions<label|math-functions>>
+  <subsubsection|Math Functions><label|math-functions>
 
   The following functions from the <hlink|<with|font-family|tt|math>|purelib.tm#module-math>
   module are overloaded to provide support for <verbatim|mpfr> values. Note
@@ -343,7 +347,7 @@
     <item*|atanh x<label|atanh/mpfr>>Hyperbolic trigonometric functions.
   </description>
 
-  <subsubsection|Complex Number Support<label|complex-number-support>>
+  <subsubsection|Complex Number Support><label|complex-number-support>
 
   The following functions from the <hlink|<with|font-family|tt|math>|purelib.tm#module-math>
   module are overloaded to provide support for complex values involving
@@ -367,23 +371,29 @@
     <item*|conj x<label|conj/mpfr>>
   </description>
 
-  <subsection|Examples<label|examples>>
+  <subsection|Examples><label|examples>
 
   Import the module and set the default precision:
 
   <\verbatim>
+    \;
+
     \<gtr\> using mpfr;
 
     \<gtr\> mpfr_set_default_prec 64; // extended precision (long double on
     x86)
 
     ()
+
+    \;
   </verbatim>
 
   Calculate pi with the current precision. Note that mixed arithmetic works
   with any combination of real and mpfr numbers.
 
   <\verbatim>
+    \;
+
     \<gtr\> let Pi = 4*atan (mpfr 1);
 
     \<gtr\> pi; Pi; abs (Pi-pi);
@@ -405,11 +415,15 @@
     3.14159265358979323851
 
     1
+
+    \;
   </verbatim>
 
   You can also query the precision of a number and change it on the fly:
 
   <\verbatim>
+    \;
+
     \<gtr\> Pi; mpfr_get_prec Pi;
 
     3.14159265358979323851
@@ -421,11 +435,15 @@
     3.1415926535897931
 
     53
+
+    \;
   </verbatim>
 
   Complex <verbatim|mpfr> numbers work, too:
 
   <\verbatim>
+    \;
+
     \<gtr\> let z = mpfr 2^(1/i); z;
 
     0.769238901363972126565+:-0.638961276313634801184
@@ -441,9 +459,11 @@
     \<gtr\> polar z;
 
     1.0\<less\>:-1.57079632679489661926
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-mpfr-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-mpfr-toc>
 
   <\itemize>
     <item><hlink|pure-mpfr|#>
@@ -486,6 +506,6 @@
   <hlink|previous|pure-gsl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

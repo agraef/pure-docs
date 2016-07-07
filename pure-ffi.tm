@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-doc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-ffi<label|module-ffi>>
+  <section*|pure-ffi><label|module-ffi>
 
-  Version 0.14, October 28, 2014
+  Version 0.14, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -26,7 +26,7 @@
   callable from C. Moreover, depending on the libffi implementation, it may
   also be possible to call foreign languages other than C.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2008, 2009 by Albert Graef.
 
@@ -43,7 +43,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-ffi-0.14.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-ffi-0.14.tar.gz>.
 
@@ -63,7 +63,7 @@
   versions (2.x) do not appear to work (closures are broken). Patches are
   welcome.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   The module exposes a simplified interface to libffi tailored to the Pure
   language. Call interfaces are described using the desired ABI, return type
@@ -100,6 +100,8 @@
   uncurried form, as a Pure tuple. E.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> using ffi;
 
     \<gtr\> let fmod = fcall "fmod" FFI_DEFAULT_ABI double_t
@@ -108,6 +110,8 @@
     \<gtr\> fmod (5.3,0.7);
 
     0.4
+
+    \;
   </verbatim>
 
   C structs are fully supported and are passed in a type-safe manner, see
@@ -116,6 +120,8 @@
   <verbatim|pointer_t> instead.) For instance:
 
   <\verbatim>
+    \;
+
     \<gtr\> let complex_t = struct_t (double_t,double_t);
 
     \<gtr\> let cexp = fcall "cexp" FFI_DEFAULT_ABI complex_t (complex_t);
@@ -123,17 +129,19 @@
     \<gtr\> members (cexp (struct complex_t (0.0,1.0)));
 
     0.54030230586814,0.841470984807897
+
+    \;
   </verbatim>
 
   See the examples folder in the sources for more examples.
 
-  <subsection|TODO<label|todo>>
+  <subsection|TODO><label|todo>
 
   The API isn't perfect yet. In particular, one might consider to implement
   type descriptors as structs instead of raw pointers, and support for typed
   pointers would be useful. Contributions and suggestions are welcome.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-ffi-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-ffi-toc>
 
   <\itemize>
     <item><hlink|pure-ffi|#>
@@ -162,6 +170,6 @@
   <hlink|previous|pure-doc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

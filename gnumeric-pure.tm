@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|Gnumeric/Pure: A Pure Plugin for
-  Gnumeric<label|gnumeric-pure-a-pure-plugin-for-gnumeric>>
+  Gnumeric><label|gnumeric-pure-a-pure-plugin-for-gnumeric>
 
-  Version 0.14, October 28, 2014
+  Version 0.15, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -23,7 +23,7 @@
   sources created from Pure streams and OpenGL rendering in Gnumeric frame
   widgets via Pure's OpenGL module.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
   This package provides a <hlink|Gnumeric|http://www.gnumeric.org/> extension
   which gives you access to the <hlink|Pure|http://purelang.bitbucket.org/>
@@ -82,7 +82,7 @@
   environment. If not then you should consult the corresponding documentation
   to learn more about these.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009-2013 by Albert Graef.
 
@@ -99,21 +99,19 @@
   You should have received a copy of the GNU General Public License along
   with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Obviously, you need to have both Pure and Gnumeric installed. Pure 0.36 and
-  Gnumeric 1.9.13 or later are known to work. The current version of this
-  module (0.13, currently only available in Pure's Mercurial repository) will
-  work with the latest, GTK3-based versions of Gnumeric (Gnumeric 1.11 and
-  later, 1.12 has been tested). To obtain this version, clone the Pure
-  repository or download it as a zip file at
-  <hlink|https://bitbucket.org/purelang/pure-lang|https://bitbucket.org/purelang/pure-lang>;
-  the module can be found in the gnumeric-pure subdirectory of the
-  repository.
+  Gnumeric 1.9.13 or later are known to work. The current release of this
+  module will work with the latest, GTK3-based versions of Gnumeric (Gnumeric
+  1.11 and later, 1.12.23 has been tested).
 
-  Unfortunately, the Gnumeric plugin interface changed in recent releases, so
-  if you are still running Gnumeric 1.10 or earlier then you should use
-  version 0.12 of the module instead:
+  Please note that the Gnumeric plugin interface is a moving target, which
+  means that from time to time the gnumeric-pure module sources are updated
+  to accommodate the latest changes in Gnumeric. Thus, depending on which
+  Gnumeric version you are running, you may have to go with an older version
+  of gnumeric-pure. In particular, if you are still running Gnumeric 1.10 or
+  earlier then you should use version 0.12 of the module instead:
 
   <\quote-env>
     <hlink|https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz>
@@ -165,7 +163,11 @@
   respectively. For instance:
 
   <\verbatim>
+    \;
+
     $ make prefix=/usr gnmversion=1.12.4
+
+    \;
   </verbatim>
 
   In either case, <verbatim|make> <verbatim|install> also installs the
@@ -181,14 +183,14 @@
   <verbatim|pure-gnm> subdirectory to get the <verbatim|pure-gnm> script
   installed in this case.
 
-  <subsection|Setup<label|setup>>
+  <subsection|Setup><label|setup>
 
   Once Gnumeric/Pure has been properly installed, you should see it in
   Gnumeric's Tools/Plug-ins dialog. There are actually two main entries, one
-  labelled ``Pure functions'' and the other one labelled ``Pure plugin
-  loader''. You need to enable both before you can start using Pure functions
-  in your Gnumeric spreadsheets. There's also a third entry labelled ``Pure
-  OpenGL functions'' which you might want to enable if you want to try the
+  labelled \PPure functions\Q and the other one labelled \PPure plugin
+  loader\Q. You need to enable both before you can start using Pure functions
+  in your Gnumeric spreadsheets. There's also a third entry labelled \PPure
+  OpenGL functions\Q which you might want to enable if you want to try the
   OpenGL capabilities (this will only work if you built Gnumeric/Pure with
   OpenGL support and have Pure's OpenGL module installed; see <hlink|OpenGL
   Interface|#opengl-interface> for details).
@@ -206,6 +208,8 @@
   follows:
 
   <\verbatim>
+    \;
+
     \<less\>ui\<gtr\>
 
     \ \ \<less\>menubar\<gtr\>
@@ -241,16 +245,18 @@
     \ \ \<less\>/toolbar\<gtr\>
 
     \<less\>/ui\<gtr\>
+
+    \;
   </verbatim>
 
-  <subsection|Basic Usage<label|basic-usage>>
+  <subsection|Basic Usage><label|basic-usage>
 
   With Pure/Gnumeric installed and enabled, you should be ready to join the
-  fun now. Start up Gnumeric, click on a cell and invoke the ``f(x)'' dialog.
-  The Pure functions available for use are shown in the ``Pure'' category.
+  fun now. Start up Gnumeric, click on a cell and invoke the \Pf(x)\Q dialog.
+  The Pure functions available for use are shown in the \PPure\Q category.
   E.g., click on <verbatim|pure_hello>. Now the Pure interpreter will be
-  loaded and the function description displayed. Click ``Ok'' to select the
-  <verbatim|pure_hello> function and then ``Ok'' again to actually insert the
+  loaded and the function description displayed. Click \POk\Q to select the
+  <verbatim|pure_hello> function and then \POk\Q again to actually insert the
   function call (without arguments) into the current cell. You should now be
   able to read the friendly greeting returned by the function.
 
@@ -258,7 +264,11 @@
   a cell as usual. Click on a cell, then enter the following:
 
   <\verbatim>
+    \;
+
     =pure_hello(getenv("USER"))
+
+    \;
   </verbatim>
 
   The greeting should now be displayed with your login name in it.
@@ -267,12 +277,12 @@
   nothing special; they are just ordinary Pure functions which are defined by
   the <verbatim|pure_func.pure> script in the <verbatim|pure-func>
   subdirectory of your Gnumeric plugin directory. You can have a look at them
-  by invoking the ``Edit Pure Scripts'' option which gets added to the
+  by invoking the \PEdit Pure Scripts\Q option which gets added to the
   Tools/Pure menu once the Pure plugin loader is enabled. (This will invoke
   the emacs editor by default, or the editor named by the <verbatim|EDITOR>
   environment variable. You can set this environment variable in your shell's
   startup files.) The Tools/Pure menu contains a second Pure-related option,
-  ``Reload Pure Scripts'' which can be used to quickly reload all loaded Pure
+  \PReload Pure Scripts\Q which can be used to quickly reload all loaded Pure
   scripts after edits; more about that later.
 
   Please note that most of the functions in <verbatim|pure_func.pure> are
@@ -295,7 +305,7 @@
     <item><verbatim|pure_shell> is a variation of <verbatim|pure_eval> which
     executes arbitrary Pure code and returns the last evaluated expression
     (if any) as a string. This is mainly provided as a convenience to create
-    an ``interactive Pure shell'' which lets you evaluate Pure code inside
+    an \Pinteractive Pure shell\Q which lets you evaluate Pure code inside
     Gnumeric. To these ends, simply prepare a text cell for entering the code
     to be evaluated, and then apply <verbatim|pure_shell> on this text cell
     in another cell to display the result.
@@ -305,7 +315,7 @@
   found in <verbatim|pure-examples.gnumeric> example distributed with
   Gnumeric/Pure.
 
-  <subsection|Interactive Pure Shell<label|interactive-pure-shell>>
+  <subsection|Interactive Pure Shell><label|interactive-pure-shell>
 
   The <verbatim|pure-examples.gnumeric> spreadsheet also includes an instance
   of <verbatim|pure_shell> which lets you evaluate arbitrary Pure code in the
@@ -317,9 +327,13 @@
   Pure shell:
 
   <\verbatim>
+    \;
+
     \<gtr\> scanl (+) 0 (1..20)
 
     \ \ [0,1,3,6,10,15,21,28,36,45,55,66,78,91,105,120,136,153,171,190,210]
+
+    \;
   </verbatim>
 
   Note that here and in the following the prompt <verbatim|\>> indicates a
@@ -341,9 +355,13 @@
   declarations, so you can type:
 
   <\verbatim>
+    \;
+
     \<gtr\> using system; puts "Hello, world!";
 
     \ \ 14
+
+    \;
   </verbatim>
 
   This prints the string <verbatim|"Hello,> <verbatim|world!"> on standard
@@ -352,9 +370,13 @@
   library, by declaring it as a Pure <verbatim|extern> function:
 
   <\verbatim>
+    \;
+
     \<gtr\> extern int rand(); [rand \| i = 1..5];
 
     \ \ [1810821799,2106746672,1436605662,1363610028,695042099]
+
+    \;
   </verbatim>
 
   All functions in the Pure prelude are readily available in the Gnumeric
@@ -364,9 +386,13 @@
   can retrieve a cell value from the current sheet:
 
   <\verbatim>
+    \;
+
     \<gtr\> get_cell "A1"
 
     \ \ "Gnumeric/Pure Examples"
+
+    \;
   </verbatim>
 
   Using <verbatim|call> (see <hlink|Calling Gnumeric from
@@ -374,25 +400,33 @@
   function:
 
   <\verbatim>
+    \;
+
     \<gtr\> call "product" (1..10)
 
     \ \ 3628800.0
+
+    \;
   </verbatim>
 
-  <subsection|Defining Your Own Functions<label|defining-your-own-functions>>
+  <subsection|Defining Your Own Functions><label|defining-your-own-functions>
 
   After playing around with <verbatim|pure_func.pure> and the interactive
   Pure shell for a while, of course you will want to write your own
   functions, that's what this extension is about after all! This section
   shows you how to do this.
 
-  <subsubsection|Creating a Simple Plugin<label|creating-a-simple-plugin>>
+  <subsubsection|Creating a Simple Plugin><label|creating-a-simple-plugin>
 
   Let's consider a simple example: the factorial function. In Pure this
   function can be implemented as follows:
 
   <\verbatim>
+    \;
+
     factorial [x] = foldl (*) 1 (1..x);
+
+    \;
   </verbatim>
 
   Note the list bracket around the argument <verbatim|x>. You wouldn't
@@ -410,10 +444,12 @@
   written by hand, this is tedious and error-prone. Fortunately, recent
   Gnumeric/Pure versions provide the <verbatim|pure-gnm> helper script which
   makes this quite easy. To use <verbatim|pure-gnm> with our plugin script,
-  we have to add a special ``hashbang'' comment block to our script which
+  we have to add a special \Phashbang\Q comment block to our script which
   supplies the needed information. In our case, this might look as follows:
 
   <\verbatim>
+    \;
+
     #! N: My Pure functions
 
     #! C: Pure
@@ -421,6 +457,8 @@
     #! D: My Pure functions.
 
     #! F: factorial
+
+    \;
   </verbatim>
 
   You can add this comment block anywhere in your plugin script, but usually
@@ -438,13 +476,13 @@
   </itemize>
 
   The contents of the <verbatim|N> and <verbatim|D> fields (name and
-  description) are visible in Gnumeric's ``Plugin Manager'' dialog. You
+  description) are visible in Gnumeric's \PPlugin Manager\Q dialog. You
   should specify at least the name field (otherwise the plugin will be
-  displayed as ``Unnamed'' in the dialog), while the description is optional
+  displayed as \PUnnamed\Q in the dialog), while the description is optional
   (if you don't specify one, the description of the plugin will be empty).
   The <verbatim|C> field denotes the category under which the functions
-  listed in the <verbatim|F> field will be shown in Gnumeric's ``f(x)''
-  dialog; if you don't specify this, the functions will be in the ``Unknown''
+  listed in the <verbatim|F> field will be shown in Gnumeric's \Pf(x)\Q
+  dialog; if you don't specify this, the functions will be in the \PUnknown\Q
   category. The <verbatim|F> field is the most crucial part. It must contain
   all Pure functions defined in the plugin script or its imports that you
   want to be visible in Gnumeric, so you have to keep this in sync with the
@@ -452,12 +490,14 @@
   plugin will provide no functions at all.
 
   The <verbatim|D> and <verbatim|F> fields can also be split into multiple
-  lines (each prefixed with the ``hashbang'' comment marker and the
+  lines (each prefixed with the \Phashbang\Q comment marker and the
   corresponding field identifier) if necessary.
 
   So our <verbatim|myplugin.pure> script now looks like this:
 
   <\verbatim>
+    \;
+
     #! N: My Pure functions
 
     #! C: Pure
@@ -469,13 +509,19 @@
     \;
 
     factorial [x] = foldl (*) 1 (1..x);
+
+    \;
   </verbatim>
 
   Once you've added the comment block, you can generate the
   <verbatim|plugin.xml> file for the plugin simply as follows:
 
   <\verbatim>
+    \;
+
     $ pure-gnm myplugin.pure \<gtr\> plugin.xml
+
+    \;
   </verbatim>
 
   Note that by default <verbatim|pure-gnm> writes the <verbatim|plugin.xml>
@@ -489,6 +535,8 @@
   <verbatim|make>. E.g., the following Makefile will do the trick:
 
   <\verbatim>
+    \;
+
     myplugin = myplugin.pure
 
     \;
@@ -506,17 +554,21 @@
     clean:
 
     \ \ \ \ \ \ \ \ rm -f plugin.xml
+
+    \;
   </verbatim>
 
   Now you can just run <verbatim|make> in the plugin directory and it will
   rebuild the <verbatim|plugin.xml> file as needed.
 
-  <subsubsection|The plugin.xml File<label|the-plugin-xml-file>>
+  <subsubsection|The plugin.xml File><label|the-plugin-xml-file>
 
   The <verbatim|plugin.xml> file resulting from the previous step looks like
   this:
 
   <\verbatim>
+    \;
+
     \<less\>?xml version="1.0" encoding="UTF-8"?\<gtr\>
 
     \<less\>plugin id="Gnumeric_myplugin"\<gtr\>
@@ -556,6 +608,8 @@
     \ \ \<less\>/services\<gtr\>
 
     \<less\>/plugin\<gtr\>
+
+    \;
   </verbatim>
 
   You can also edit this file by hand if you know what you're doing; in that
@@ -596,7 +650,11 @@
   absolute path name, e.g.:
 
   <\verbatim>
+    \;
+
     $ pure-gnm $PWD/myplugin.pure \<gtr\> plugin.xml
+
+    \;
   </verbatim>
 
   Now you can move the <verbatim|plugin.xml> file whereever you like and
@@ -604,7 +662,7 @@
   this can be automatized using <verbatim|make> fairly easily; we'll return
   to that in the following section.
 
-  <subsubsection|Loading the Plugin<label|loading-the-plugin>>
+  <subsubsection|Loading the Plugin><label|loading-the-plugin>
 
   We now have the plugin script <verbatim|myplugin.pure> and the
   <verbatim|plugin.xml> file in the same directory, say,
@@ -646,6 +704,8 @@
   <hlink|Creating a Simple Plugin|#creating-a-simple-plugin>.
 
   <\verbatim>
+    \;
+
     gnmversion=$(shell pkg-config --modversion libspreadsheet-1.12)
 
     plugindir=$(HOME)/.gnumeric/$(gnmversion)/plugins/myplugin
@@ -664,6 +724,8 @@
     uninstall:
 
     \ \ \ \ \ \ \ \ rm -rf $(plugindir)
+
+    \;
   </verbatim>
 
   Now you can just run <verbatim|make> <verbatim|install> to make the plugin
@@ -671,14 +733,18 @@
   uninstall the plugin if it isn't needed any more.
 
   In any case, once you fire up Gnumeric again, the new plugin should be
-  listed as ``My Pure functions'' on the Plugin List tab in the
+  listed as \PMy Pure functions\Q on the Plugin List tab in the
   Tools/Plug-ins dialog. Check it to enable it. The <verbatim|factorial>
   function defined in the plugin should now be available and ready to be
   called just like any other Gnumeric function. For instance, type this into
   a cell to have the factorial of 10 computed:
 
   <\verbatim>
+    \;
+
     =factorial(10)
+
+    \;
   </verbatim>
 
   Also try saving the spreadsheet and loading it again after restarting
@@ -694,9 +760,9 @@
 
   In contrast, just changing the body of a function in a plugin usually needs
   neither a restart of Gnumeric nor a reloading of the spreadsheet. In this
-  case it's often sufficient to reload all scripts with the ``Reload Pure
-  Scripts'' option in the Tools/Pure menu, after which you can use
-  ``Recalculate'' (F9) to recompute the spreadsheet.
+  case it's often sufficient to reload all scripts with the \PReload Pure
+  Scripts\Q option in the Tools/Pure menu, after which you can use
+  \PRecalculate\Q (F9) to recompute the spreadsheet.
 
   It is also worth mentioning here that the Pure loader can load multiple
   Pure plugins (and of course each plugin can provide as many functions as
@@ -706,7 +772,7 @@
   All scripts are loaded in the same Pure interpreter (and thus are treated
   like one big script) so that functions in one script can use the function
   and variable definitions in another. If you need to access the definitions
-  in the <verbatim|pure_func.pure> ``mother script'', you can also just
+  in the <verbatim|pure_func.pure> \Pmother script\Q, you can also just
   import it into your scripts with a <verbatim|using> clause, i.e.:
   <verbatim|using> <verbatim|pure_func;>
 
@@ -721,7 +787,7 @@
   wasn't needed in this simple example, but you can find other examples in
   the Gnumeric/Pure distribution which make good use of this feature.
 
-  <subsubsection|Spicing It Up<label|spicing-it-up>>
+  <subsubsection|Spicing It Up><label|spicing-it-up>
 
   Our plugin example is now essentially complete, but in order to make it
   really convenient to use, we may want to add some information about how the
@@ -731,13 +797,15 @@
   interface this can be done by adding a rule for the <verbatim|gnm_info>
   function. In our example we tell Gnumeric that <verbatim|factorial> expects
   a single numeric argument. While we're at it, we might as well add some
-  helpful documentation to be displayed in Gnumeric's ``f(x)'' dialog. The
+  helpful documentation to be displayed in Gnumeric's \Pf(x)\Q dialog. The
   details of this are described in the following section, but to give you a
   sneak preview, here's a beefed-up version of our script which implements
   all this (you can also find this version of the example along with a GNU
   Makefile in the Gnumeric/Pure distribution):
 
   <\verbatim>
+    \;
+
     #! N: My Pure functions
 
     #! C: Pure
@@ -758,10 +826,12 @@
 
     \ ["x:number"] "Computes the factorial of @{x}." [] ["=factorial(10)"]
     [];
+
+    \;
   </verbatim>
 
-  Fire up Gnumeric again, press the ``f(x)'' button and select
-  <verbatim|factorial> under the <verbatim|Pure> category. The ``f(x)''
+  Fire up Gnumeric again, press the \Pf(x)\Q button and select
+  <verbatim|factorial> under the <verbatim|Pure> category. The \Pf(x)\Q
   dialog should now display the additional information we added above. Also
   note that Gnumeric now knows that this function is supposed to be called
   with exactly one <verbatim|f> (numeric) argument. Therefore the list
@@ -775,25 +845,25 @@
   take a look at some of the other included examples, you can find these in
   the <verbatim|examples> folder of the distribution tarball.
 
-  <subsection|Gnumeric/Pure Interface<label|gnumeric-pure-interface>>
+  <subsection|Gnumeric/Pure Interface><label|gnumeric-pure-interface>
 
   We already explained in the previous section that, when a Pure function is
   called from Gnumeric, it receives its arguments in a list by default.
   However, it is possible to tell Gnumeric about the expected arguments of
-  the function and also specify a help text to be displayed in the ``f(x)''
+  the function and also specify a help text to be displayed in the \Pf(x)\Q
   dialog, by giving a definition of the <verbatim|gnm_info> function as
   explained below.
 
   Note that <verbatim|gnm_info> is really an ordinary Pure function. Thus,
   rather than hardcoding this information as static text (such as the
-  ``docstrings'' used in Gnumeric's Python extension), the function
+  \Pdocstrings\Q used in Gnumeric's Python extension), the function
   descriptions can also be constructed dynamically in corresponding Pure
   code. This offers an opportunity for programmatic customizations. But note
   that the <verbatim|gnm_info> function will only be invoked when the plugin
   script is loaded, so once that is done the function description remains the
   same for the entire Gnumeric session.
 
-  <subsubsection|Function Descriptions<label|function-descriptions>>
+  <subsubsection|Function Descriptions><label|function-descriptions>
 
   To describe a given function to Gnumeric, define <verbatim|gnm_info>
   <verbatim|"\<name\>"> (where <verbatim|\<name\>> is the name of the
@@ -809,7 +879,7 @@
     a complete list of the supported parameter types.
 
     <item>The second element is a list of hash pairs <verbatim|key=\>text>
-    which together make up the help text shown in Gnumeric's ``f(x)'' dialog.
+    which together make up the help text shown in Gnumeric's \Pf(x)\Q dialog.
     You should at least specify the function name along with a short synopsis
     here, e.g. <verbatim|GNM_FUNC_HELP_NAME> <verbatim|=\>>
     <verbatim|"frob:the> <verbatim|frob> <verbatim|function">. Parameter
@@ -834,6 +904,8 @@
   Gnumeric sources:
 
   <\verbatim>
+    \;
+
     f : float \ \ \ \ \ \ \ \ \ \ no errors, string conversion attempted
 
     b : boolean \ \ \ \ \ \ \ \ identical to f
@@ -852,12 +924,16 @@
 
     ? : anything \ \ \ \ \ \ \ any value (scalars, non-scalars, errors,
     whatever)
+
+    \;
   </verbatim>
 
   The keys used in the function description may be any of the following,
   along with sample text for each type of field:
 
   <\verbatim>
+    \;
+
     GNM_FUNC_HELP_NAME \ \ \ \ \ \ \ \ =\<gtr\> "name:synopsis"
 
     GNM_FUNC_HELP_ARG \ \ \ \ \ \ \ \ \ =\<gtr\> "name:parameter description"
@@ -869,11 +945,15 @@
     GNM_FUNC_HELP_EXAMPLES \ \ \ \ =\<gtr\> "=sample_formula()"
 
     GNM_FUNC_HELP_SEEALSO \ \ \ \ \ =\<gtr\> "foo,bar,..."
+
+    \;
   </verbatim>
 
   The following keys are only supported in the latest Gnumeric versions:
 
   <\verbatim>
+    \;
+
     GNM_FUNC_HELP_EXTREF \ \ \ \ \ \ =\<gtr\>
     "wiki:en:Trigonometric_functions"
 
@@ -882,6 +962,8 @@
 
     GNM_FUNC_HELP_ODF \ \ \ \ \ \ \ \ \ =\<gtr\> "OpenOffice compatibility
     information."
+
+    \;
   </verbatim>
 
   Note that inside the descriptions, the notation <verbatim|@{arg}>
@@ -890,6 +972,8 @@
   function which also includes a help text:
 
   <\verbatim>
+    \;
+
     gnm_info "pure_max" = "ff",
 
     [GNM_FUNC_HELP_NAME \ \ \ \ =\<gtr\> "pure_max:maximum of two numbers",
@@ -903,6 +987,8 @@
     \ "Computes the maximum of two numbers @{x} and @{y}.",
 
     \ GNM_FUNC_HELP_EXAMPLES =\<gtr\> "=pure_max(17,22)"];
+
+    \;
   </verbatim>
 
   As you can see, the function descriptions are a bit unwieldy, so it's
@@ -910,6 +996,8 @@
   <verbatim|pure_func.pure>:
 
   <\verbatim>
+    \;
+
     gnm_help name::string args descr::string notes examples see_also =
 
     \ \ [GNM_FUNC_HELP_NAME \ \ \ \ \ \ \ \ =\<gtr\> name] +
@@ -928,11 +1016,15 @@
     \ \ (if null see_also then [] else
 
     \ \ \ [GNM_FUNC_HELP_SEEALSO \ \ \ \ =\<gtr\> join "," see_also]);
+
+    \;
   </verbatim>
 
   Now the description can be written simply as follows:
 
   <\verbatim>
+    \;
+
     gnm_info "pure_max" = "ff", gnm_help "pure_max:maximum of two numbers"
 
     \ \ ["x:number", "y:number"]
@@ -940,6 +1032,8 @@
     \ \ "Computes the maximum of two numbers @{x} and @{y}."
 
     \ \ [] ["=pure_max(17,22)"] [];
+
+    \;
   </verbatim>
 
   Since this function only has fixed arguments, it will be called in curried
@@ -947,18 +1041,26 @@
   the actual definition of <verbatim|pure_max> may look as follows:
 
   <\verbatim>
+    \;
+
     pure_max x y = max x y;
+
+    \;
   </verbatim>
 
   Conversely, if no signature is given, then the function accepts any number
   of parameters of any type, which are passed as a list. For instance:
 
   <\verbatim>
+    \;
+
     gnm_info "pure_sum" = gnm_help "pure_sum:sum of a collection of numbers"
 
     \ \ [] "Computes the sum of a collection of numbers."
 
     \ \ [] ["=pure_sum(1,2,3,4,5,6)"] ["pure_sums"];
+
+    \;
   </verbatim>
 
   Here the function will be called as <verbatim|pure_sum>
@@ -971,16 +1073,24 @@
   showing how to write functions which can deal with any numbers of scalars,
   arrays or ranges, see the <verbatim|pure_sum> and <verbatim|pure_sums>
   examples. These employ the following <verbatim|ranges> function to
-  ``flatten'' a parameter list to a list holding all denoted values:
+  \Pflatten\Q a parameter list to a list holding all denoted values:
 
   <\verbatim>
+    \;
+
     ranges xs = cat [ case x of _::matrix = list x; _ = [x] end \| x = xs ];
+
+    \;
   </verbatim>
 
   E.g., the <verbatim|pure_sum> function can now be defined as follows:
 
   <\verbatim>
+    \;
+
     pure_sum xs = foldl (+) 0 (ranges xs);
+
+    \;
   </verbatim>
 
   A function may also have both fixed and optional arguments (note that in
@@ -988,7 +1098,11 @@
   brevity):
 
   <\verbatim>
+    \;
+
     gnm_info "foo" = "ff\|ff";
+
+    \;
   </verbatim>
 
   In this case the fixed arguments are passed in curried form as usual, while
@@ -999,7 +1113,7 @@
   invoked with two, three or four arguments.
 
   <subsubsection|Conversions Between Pure and Gnumeric
-  Values<label|conversions-between-pure-and-gnumeric-values>>
+  Values><label|conversions-between-pure-and-gnumeric-values>
 
   The marshalling of types between Gnumeric and Pure is pretty
   straightforward; basically, Pure numbers, strings and matrices map to
@@ -1016,7 +1130,7 @@
 
   These conversions mostly work both ways. Note that on input, cell ranges
   are usually passed as matrices to Pure functions (i.e., they are passed
-  ``by value''), unless the function signature specifies a <verbatim|"r">
+  \Pby value\Q), unless the function signature specifies a <verbatim|"r">
   conversion in which case the cell ranges themselves are passed to the
   function in string form. (Such values can also be passed on to Gnumeric
   functions which expect a cell range (<verbatim|"r"> ) parameter, see
@@ -1044,23 +1158,27 @@
   needed; this can be done very conveniently using Pure's <verbatim|eval>
   function, see the Pure documentation for details.
 
-  <subsection|Advanced Features<label|advanced-features>>
+  <subsection|Advanced Features><label|advanced-features>
 
   This section explains various additional features provided by the
   Gnumeric/Pure interface that should be useful for writing your own
   functions. Note that for your convenience all functions discussed in this
   section are declared in <verbatim|pure_func.pure>.
 
-  <subsubsection|Calling Gnumeric from Pure<label|calling-gnumeric-from-pure>>
+  <subsubsection|Calling Gnumeric from Pure><label|calling-gnumeric-from-pure>
 
   It is possible to call Gnumeric functions from Pure using the
   <verbatim|call> function which takes the name of the function (a string) as
   its first, and the parameters as the second (list) argument. For instance:
 
   <\verbatim>
+    \;
+
     gnm_info "gnm_bitand" = "ff";
 
     gnm_bitand x y = call "bitand" [x,y];
+
+    \;
   </verbatim>
 
   Note that <verbatim|call> is an external C function provided by
@@ -1068,7 +1186,11 @@
   script as follows:
 
   <\verbatim>
+    \;
+
     extern expr* pure_gnmcall(char* name, expr* args) = call;
+
+    \;
   </verbatim>
 
   However, <verbatim|pure_func.pure> already contains the above declaration,
@@ -1079,12 +1201,14 @@
   conversions on the parameters, so you have to pass the proper types of
   arguments as required by the function.
 
-  <subsubsection|Accessing Spreadsheet Cells<label|accessing-spreadsheet-cells>>
+  <subsubsection|Accessing Spreadsheet Cells><label|accessing-spreadsheet-cells>
 
   Gnumeric/Pure provides the following functions to retrieve and modify the
   contents of spreadsheet cells and ranges of such cells:
 
   <\verbatim>
+    \;
+
     extern expr* pure_get_cell(char* s) = get_cell;
 
     extern expr* pure_get_cell_text(char* s) = get_cell_text;
@@ -1108,6 +1232,8 @@
     extern expr* pure_set_range_text(char* s, expr *x) = set_range_text;
 
     extern expr* pure_set_range_format(char* s, expr *x) = set_range_format;
+
+    \;
   </verbatim>
 
   For instance, here's how you use these functions to write and then read
@@ -1115,6 +1241,8 @@
   shell|#interactive-pure-shell>):
 
   <\verbatim>
+    \;
+
     \<gtr\> set_cell "A14" 42
 
     \ \ ()
@@ -1146,6 +1274,8 @@
     \<gtr\> get_range_text "A14:G14"
 
     \ \ {"=sum(B14:G14)","1","2","6","24","120","720"}
+
+    \;
   </verbatim>
 
   Note that while the <verbatim|set_cell> function sets the given cell to a
@@ -1164,6 +1294,8 @@
   entering the first expression):
 
   <\verbatim>
+    \;
+
     \<gtr\> set_cell_format "A14" "[Blue]0.00"
 
     \ \ ()
@@ -1171,25 +1303,33 @@
     \<gtr\> get_range_format "A14:C14"
 
     \ \ {"[Blue]0.00","General","General"}
+
+    \;
   </verbatim>
 
-  There are also functions to get the position of the ``current'' cell (i.e.,
+  There are also functions to get the position of the \Pcurrent\Q cell (i.e.,
   the cell from which a Pure function was called), and to translate between
   cell ranges in Gnumeric syntax and the corresponding internal
   representation consisting of a pointer to a Gnumeric sheet and the cell or
   range coordinates:
 
   <\verbatim>
+    \;
+
     extern expr* pure_this_cell() = this_cell;
 
     extern expr* pure_parse_range(char* s) = parse_range;
 
     extern expr* pure_make_range(expr* x) = make_range;
+
+    \;
   </verbatim>
 
   Examples:
 
   <\verbatim>
+    \;
+
     \<gtr\> this_cell
 
     \ \ "B4"
@@ -1201,9 +1341,11 @@
     \<gtr\> make_range (NULL,0,0,10,10)
 
     \ \ "Sheet2!A1:K11"
+
+    \;
   </verbatim>
 
-  <subsubsection|Asynchronous Data Sources<label|asynchronous-data-sources>>
+  <subsubsection|Asynchronous Data Sources><label|asynchronous-data-sources>
 
   Gnumeric/Pure makes it easy to set up asynchronous data sources which draw
   values from a Pure computation executed in a background process. This
@@ -1217,7 +1359,11 @@
   which is declared in <verbatim|pure_func.pure> as follows:
 
   <\verbatim>
+    \;
+
     extern expr* pure_datasource(expr* x) = datasource;
+
+    \;
   </verbatim>
 
   The argument to <verbatim|datasource> is typically a thunk or stream (lazy
@@ -1232,11 +1378,15 @@
   task:
 
   <\verbatim>
+    \;
+
     gnm_info "pure_frob" = "f";
 
     pure_frob x = datasource (lengthy_calculation x&);
 
     lengthy_calculation x = sleep 3 $$ foldl (*) 1 (1..x);
+
+    \;
   </verbatim>
 
   Note that a cell value may draw values from as many independent data
@@ -1244,11 +1394,15 @@
   invocations of <verbatim|datasource>:
 
   <\verbatim>
+    \;
+
     gnm_info "pure_frob2" = "ff";
 
     pure_frob2 x y = datasource (lengthy_calculation x&),
 
     \ \ datasource (lengthy_calculation y&);
+
+    \;
   </verbatim>
 
   Special treatment is given to (lazy) lists, in this case
@@ -1257,14 +1411,20 @@
   count off the seconds starting from a given initial value:
 
   <\verbatim>
+    \;
+
     gnm_info "pure_counter" = "f";
 
     pure_counter x = datasource [sleep (i\<gtr\>x) $$ i \| i = x..inf];
+
+    \;
   </verbatim>
 
   You can also try this interactively in the Pure shell:
 
   <\verbatim>
+    \;
+
     \<gtr\> datasource [sleep (i\<gtr\>0) $$ i \| i = 0..inf]
 
     \ \ 0
@@ -1272,11 +1432,15 @@
     \ \ 1
 
     \ \ ...
+
+    \;
   </verbatim>
 
   Here's another example for the Pure shell which prints the prime numbers:
 
   <\verbatim>
+    \;
+
     \<gtr\> datasource primes with primes = sieve (2..inf);
 
     \ \ \ \ sieve (p:qs) = p : (sleep 1 $$ sieve [q \| q = qs; q mod p])& end
@@ -1288,14 +1452,16 @@
     \ \ 5
 
     \ \ ...
+
+    \;
   </verbatim>
 
   Note that when processing a lazy list, the cell containing the call will
   keep changing as long as new values are produced (i.e., forever in this
-  example). The ``Stop Data Sources'' option in the Tools/Pure menu can be
-  used to stop all active data sources. ``Reload Pure Scripts'' also does
+  example). The \PStop Data Sources\Q option in the Tools/Pure menu can be
+  used to stop all active data sources. \PReload Pure Scripts\Q also does
   this. You can then restart the data sources at any time by using
-  ``Recalculate'' (<verbatim|F9>) to recompute the spreadsheet.
+  \PRecalculate\Q (<verbatim|F9>) to recompute the spreadsheet.
 
   Also note that because of the special way that <verbatim|datasource>
   handles list values, you cannot return a list directly as the result of
@@ -1315,7 +1481,7 @@
   <verbatim|datasource>. This is beyond the scope of this manual, however, so
   we leave this as an exercise to the interested reader.
 
-  <subsubsection|Triggers<label|triggers>>
+  <subsubsection|Triggers><label|triggers>
 
   In addition to asynchronous data sources, the <verbatim|trigger> function
   is provided to compute values or take actions depending on some external
@@ -1323,15 +1489,23 @@
   creation of some widget (see the next section):
 
   <\verbatim>
+    \;
+
     extern expr* pure_trigger(int timeout, expr* cond, expr *val, expr *data)
 
     \ \ = trigger;
+
+    \;
   </verbatim>
 
   Thus a typical invocation of the function looks as follows:
 
   <\verbatim>
+    \;
+
     trigger timeout condition value data
+
+    \;
   </verbatim>
 
   The <verbatim|condition> and <verbatim|value> arguments are callback
@@ -1365,8 +1539,12 @@
   cell value accordingly:
 
   <\verbatim>
+    \;
+
     \<gtr\> trigger 0 (\\_-\<gtr\>get_cell "A14"==="Hello")
     (\\_-\<gtr\>set_cell "A15" "World") ()
+
+    \;
   </verbatim>
 
   Now, as soon as you type <verbatim|Hello> in the cell A14, the trigger will
@@ -1374,29 +1552,37 @@
   isn't used here. A more useful example will be discussed in the following
   section.
 
-  <subsubsection|Sheet Objects<label|sheet-objects>>
+  <subsubsection|Sheet Objects><label|sheet-objects>
 
   Gnumeric offers some kinds of special objects which can be placed on a
   sheet. This comprises the chart and image objects which can be found in the
-  ``Insert'' menu, as well as a number of useful graphical elements and GUI
-  widgets on the ``Object'' toolbar, accessible via ``View/Toolbars''. The
+  \PInsert\Q menu, as well as a number of useful graphical elements and GUI
+  widgets on the \PObject\Q toolbar, accessible via \PView/Toolbars\Q. The
   latter are also useful for providing control input to Pure functions.
 
   Gnumeric/Pure provides the following function to retrieve information about
   the special objects in a spreadsheet:
 
   <\verbatim>
+    \;
+
     extern expr* pure_sheet_objects() = sheet_objects;
+
+    \;
   </verbatim>
 
   For instance, with one button object in your spreadsheet, the output of
   <verbatim|sheet_objects> might look like this:
 
   <\verbatim>
+    \;
+
     \<gtr\> sheet_objects
 
     \ \ [("Sheet1","button","Push Me!","A11",[#\<less\>pointer
     0x2a1dcd0\<gtr\>])]
+
+    \;
   </verbatim>
 
   Each object is described by a tuple which lists the name of the sheet on
@@ -1431,11 +1617,15 @@
   little wrapper around <verbatim|sheet_objects> which does this:
 
   <\verbatim>
+    \;
+
     pure_objects = trigger 0 (\\_-\<gtr\>all realized sheet_objects)
 
     \ \ (\\_-\<gtr\>matrix$map list sheet_objects) ()
 
     with realized (_,_,_,_,w) = ~listp w \|\| ~null w && ~any null w end;
+
+    \;
   </verbatim>
 
   See the <verbatim|widgets.gnumeric> spreadsheet in the distribution for an
@@ -1448,7 +1638,7 @@
   built-in support, is rendering an OpenGL scene in a Gnumeric frame widget,
   see below.
 
-  <subsubsection|OpenGL Interface<label|opengl-interface>>
+  <subsubsection|OpenGL Interface><label|opengl-interface>
 
   Gnumeric/Pure provides special support for rendering OpenGL scenes into
   Gnumeric frame widgets. To actually use this, you must have Pure's OpenGL
@@ -1456,6 +1646,8 @@
   frame with the OpenGL rendering capability:
 
   <\verbatim>
+    \;
+
     extern expr *pure_gl_window(char *name, int timeout,
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expr *setup_cb,
@@ -1466,6 +1658,8 @@
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expr *user_data)
     = gl_window;
+
+    \;
   </verbatim>
 
   The meaning of the parameters is as follows:
@@ -1529,7 +1723,11 @@
   realized:
 
   <\verbatim>
+    \;
+
     extern bool pure_check_window(char *name) = check_window;
+
+    \;
   </verbatim>
 
   This function returns <verbatim|true> as soon as the named frame widget is
@@ -1538,16 +1736,22 @@
   like this:
 
   <\verbatim>
+    \;
+
     trigger 0 check_window
 
     (\\frame-\<gtr\>gl_window frame timeout setup config display timer
     user_data) frame
+
+    \;
   </verbatim>
 
   Here's an example from <verbatim|pure_glfunc.pure> which shows how these
   functions are to be used:
 
   <\verbatim>
+    \;
+
     using pure_func, GL, GLU;
 
     extern void gdk_gl_draw_teapot(bool solid, double scale);
@@ -1636,18 +1840,20 @@
     \ \ scale step x = (x/100*step);
 
     end;
+
+    \;
   </verbatim>
 
   Have a look at the <verbatim|gl-example.gnumeric> spreadsheet included in
   the distribution to see this example in action. (You first need to enable
-  the ``Pure OpenGL functions'' in the Plugin Manager to make this work.) The
+  the \PPure OpenGL functions\Q in the Plugin Manager to make this work.) The
   screenshot below shows how the example looks like in Gnumeric.
 
   <puredoc-image|_images/opengl.png|66%|66%||>
 
   Gnumeric/Pure OpenGL example.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|gnumeric-pure-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|gnumeric-pure-toc>
 
   <\itemize>
     <item><hlink|Gnumeric/Pure: A Pure Plugin for Gnumeric|#>
@@ -1719,6 +1925,6 @@
   <hlink|previous|pure-stlvec.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

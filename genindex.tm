@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -37,7 +37,7 @@
   <hlink|<with|font-series|bold|X>|#X> \|
   <hlink|<with|font-series|bold|Z>|#Z>
 
-  <subsection*|Symbols<label|Symbols>>
+  <subsection*|Symbols><label|Symbols>
 
   <hlink|<with|font-series|bold|! (infix function)>|pure-stlvec.tm#!/stlvec>,
   <hlink|<with|font-series|bold|[1]>|purelib.tm#!>,
@@ -79,30 +79,30 @@
 
   <hlink|<with|font-series|bold|& (postfix function)>|pure.tm#-amp>
 
-  <hlink|<with|font-series|bold|&& (infix function)>|purelib.tm#-amp-amp>,
-  <hlink|<with|font-series|bold|[1]>|pure.tm#-amp-amp/special>
+  <hlink|<with|font-series|bold|&& (infix
+  function)>|pure.tm#-amp-amp/special>, <hlink|<with|font-series|bold|[1]>|purelib.tm#-amp-amp>
 
   <hlink|<with|font-series|bold|' (prefix function)>|pure.tm#'>
 
   <hlink|<with|font-series|bold|() (constructor)>|purelib.tm#()>
   <hlink|<with|font-series|bold|(command)>|pure.tm#index-37>
 
-  <hlink|<with|font-series|bold|* (infix function)>|purelib.tm#*>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#*/dict>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#*/set>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#*/gsl-matrix>,
-  <hlink|<with|font-series|bold|[4]>|pure-gsl.tm#*/gsl-matrix>,
+  <hlink|<with|font-series|bold|* (infix function)>|pure-gsl.tm#*/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#*/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#*>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#*/dict>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#*/set>,
   <hlink|<with|font-series|bold|[5]>|pure-mpfr.tm#*/mpfr>,
   <hlink|<with|font-series|bold|[6]>|pure-stldict.tm#*/stldict>
 
-  <hlink|<with|font-series|bold|+ (infix function)>|purelib.tm#+/list>,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#+/string>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#+>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#+/pointer>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#+/dict>,
-  <hlink|<with|font-series|bold|[5]>|purelib.tm#+/set>,
-  <hlink|<with|font-series|bold|[6]>|pure-gsl.tm#+/gsl-matrix>,
-  <hlink|<with|font-series|bold|[7]>|pure-gsl.tm#+/gsl-matrix>,
+  <hlink|<with|font-series|bold|+ (infix function)>|pure-gsl.tm#+/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#+/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#+/list>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#+/string>,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#+>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#+/pointer>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#+/dict>,
+  <hlink|<with|font-series|bold|[7]>|purelib.tm#+/set>,
   <hlink|<with|font-series|bold|[8]>|pure-mpfr.tm#+/mpfr>,
   <hlink|<with|font-series|bold|[9]>|pure-stldict.tm#+/stldict>
 
@@ -110,176 +110,176 @@
 
   <hlink|<with|font-series|bold|, (infix constructor)>|purelib.tm#,>
 
-  <hlink|<with|font-series|bold|- (infix function)>|purelib.tm#->,
-  <hlink|<with|font-series|bold|[1]>|purelib.tm#-/pointer>,
-  <hlink|<with|font-series|bold|[2]>|purelib.tm#-/pointerdiff>,
-  <hlink|<with|font-series|bold|[3]>|purelib.tm#-/dict>,
-  <hlink|<with|font-series|bold|[4]>|purelib.tm#-/set>,
-  <hlink|<with|font-series|bold|[5]>|pure-gsl.tm#-/gsl-matrix>,
-  <hlink|<with|font-series|bold|[6]>|pure-gsl.tm#-/gsl-matrix>,
-  <hlink|<with|font-series|bold|[7]>|pure-gsl.tm#-/gsl-matrix>,
-  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#-/stldict>
-  <hlink|<with|font-series|bold|(prefix function)>|purelib.tm#-/unary>,
+  <hlink|<with|font-series|bold|- (infix function)>|pure-gsl.tm#-/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#-/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#-/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#->,
+  <hlink|<with|font-series|bold|[4]>|purelib.tm#-/pointer>,
+  <hlink|<with|font-series|bold|[5]>|purelib.tm#-/pointerdiff>,
+  <hlink|<with|font-series|bold|[6]>|purelib.tm#-/dict>,
+  <hlink|<with|font-series|bold|[7]>|purelib.tm#-/set>,
+  <hlink|<with|font-series|bold|[8]>|pure-stldict.tm#-/stldict>
+  <hlink|<with|font-series|bold|(prefix function)>|pure-gsl.tm#-/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#-/unary>,
   <hlink|<with|font-series|bold|[2]>|pure-mpfr.tm#-/mpfr>
 
-  -- <hlink|pure command line option|pure.tm#cmdoption-pure-->
+  \U <hlink|pure command line option|pure.tm#cmdoption-pure-->
 
-  <hlink|<with|font-series|bold|--\<gtr\> (infix constructor)>|pure.tm#--\>>
+  <hlink|<with|font-series|bold|\U\<gtr\> (infix constructor)>|pure.tm#--\>>
 
-  --all <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--all>
+  \Uall <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--all>
 
-  --alt-template file <hlink|pure-gen command line
+  \Ualt-template file <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--alt-template>
 
-  --c-output file <hlink|pure-gen command line
+  \Uc-output file <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--c-output>
 
-  --checks <hlink|pure command line option|pure.tm#cmdoption-pure--checks>
+  \Uchecks <hlink|pure command line option|pure.tm#cmdoption-pure--checks>
 
-  --const <hlink|pure command line option|pure.tm#cmdoption-pure--const>
+  \Uconst <hlink|pure command line option|pure.tm#cmdoption-pure--const>
 
-  --cpp option <hlink|pure-gen command line
+  \Ucpp option <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--cpp>
 
-  --ctags <hlink|pure command line option|pure.tm#cmdoption-pure--ctags>
+  \Uctags <hlink|pure command line option|pure.tm#cmdoption-pure--ctags>
 
-  --define name[=value] <hlink|pure-gen command line
+  \Udefine name[=value] <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--define>
 
-  --defined fun <hlink|pure-pragma command line
+  \Udefined fun <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--defined>
 
-  --disable option <hlink|pure-pragma command line
+  \Udisable option <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--disable>
 
-  --disable optname <hlink|pure command line
+  \Udisable optname <hlink|pure command line
   option|pure.tm#cmdoption-pure--disable>
 
-  --dry-run <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--dry-run>
+  \Udry-run <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--dry-run>
 
-  --eager fun <hlink|pure-pragma command line
+  \Ueager fun <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--eager>
 
-  --eager-jit <hlink|pure command line option|pure.tm#cmdoption-pure--eager-jit>
+  \Ueager-jit <hlink|pure command line option|pure.tm#cmdoption-pure--eager-jit>
 
-  --echo <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--echo>
+  \Uecho <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--echo>
 
-  --else <hlink|pure-pragma command line option|pure.tm#cmdoption-pure-pragma--else>
+  \Uelse <hlink|pure-pragma command line option|pure.tm#cmdoption-pure-pragma--else>
 
-  --enable option <hlink|pure-pragma command line
+  \Uenable option <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--enable>
 
-  --enable optname <hlink|pure command line
+  \Uenable optname <hlink|pure command line
   option|pure.tm#cmdoption-pure--enable>
 
-  --endif <hlink|pure-pragma command line
+  \Uendif <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--endif>
 
-  --escape char <hlink|pure command line option|pure.tm#cmdoption-pure--escape>
+  \Uescape char <hlink|pure command line option|pure.tm#cmdoption-pure--escape>
 
-  --etags <hlink|pure command line option|pure.tm#cmdoption-pure--etags>
+  \Uetags <hlink|pure command line option|pure.tm#cmdoption-pure--etags>
 
-  --exclude pattern <hlink|pure-gen command line
+  \Uexclude pattern <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--exclude>
 
-  --fold <hlink|pure command line option|pure.tm#cmdoption-pure--fold>
+  \Ufold <hlink|pure command line option|pure.tm#cmdoption-pure--fold>
 
-  --help <hlink|pure command line option|pure.tm#cmdoption-pure--help>
+  \Uhelp <hlink|pure command line option|pure.tm#cmdoption-pure--help>
   <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--help>
 
-  --if option <hlink|pure-pragma command line
+  \Uif option <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--if>
 
-  --ifdef option <hlink|pure-pragma command line
+  \Uifdef option <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--ifdef>
 
-  --ifndef option <hlink|pure-pragma command line
+  \Uifndef option <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--ifndef>
 
-  --ifnot option <hlink|pure-pragma command line
+  \Uifnot option <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--ifnot>
 
-  --include path <hlink|pure-gen command line
+  \Uinclude path <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--include>
 
-  --interface iface <hlink|pure-gen command line
+  \Uinterface iface <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--interface>
 
-  --lib-name lib <hlink|pure-gen command line
+  \Ulib-name lib <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--lib-name>
 
-  --main name <hlink|pure command line option|pure.tm#cmdoption-pure--main>
+  \Umain name <hlink|pure command line option|pure.tm#cmdoption-pure--main>
 
-  --namespace name <hlink|pure-gen command line
+  \Unamespace name <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--namespace>
 
-  --nochecks <hlink|pure command line option|pure.tm#cmdoption-pure--nochecks>
+  \Unochecks <hlink|pure command line option|pure.tm#cmdoption-pure--nochecks>
 
-  --noclobber <hlink|pure-gen command line
+  \Unoclobber <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--noclobber>
 
-  --noconst <hlink|pure command line option|pure.tm#cmdoption-pure--noconst>
+  \Unoconst <hlink|pure command line option|pure.tm#cmdoption-pure--noconst>
 
-  --nodefined fun <hlink|pure-pragma command line
+  \Unodefined fun <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--nodefined>
 
-  --noediting <hlink|pure command line option|pure.tm#cmdoption-pure--noediting>
+  \Unoediting <hlink|pure command line option|pure.tm#cmdoption-pure--noediting>
 
-  --nofold <hlink|pure command line option|pure.tm#cmdoption-pure--nofold>
+  \Unofold <hlink|pure command line option|pure.tm#cmdoption-pure--nofold>
 
-  --noprelude <hlink|pure command line option|pure.tm#cmdoption-pure--noprelude>
+  \Unoprelude <hlink|pure command line option|pure.tm#cmdoption-pure--noprelude>
 
-  --norc <hlink|pure command line option|pure.tm#cmdoption-pure--norc>
+  \Unorc <hlink|pure command line option|pure.tm#cmdoption-pure--norc>
 
-  --nosymbolic <hlink|pure command line option|pure.tm#cmdoption-pure--nosymbolic>
+  \Unosymbolic <hlink|pure command line option|pure.tm#cmdoption-pure--nosymbolic>
 
-  --notc <hlink|pure command line option|pure.tm#cmdoption-pure--notc>
+  \Unotc <hlink|pure command line option|pure.tm#cmdoption-pure--notc>
 
-  --nowarn <hlink|pure-pragma command line
+  \Unowarn <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--nowarn>
 
-  --output file <hlink|pure-gen command line
+  \Uoutput file <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--output>
 
-  --prefix prefix <hlink|pure-gen command line
+  \Uprefix prefix <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--prefix>
 
-  --quoteargs fun <hlink|pure-pragma command line
+  \Uquoteargs fun <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--quoteargs>
 
-  --required fun <hlink|pure-pragma command line
+  \Urequired fun <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--required>
 
-  --rewarn <hlink|pure-pragma command line
+  \Urewarn <hlink|pure-pragma command line
   option|pure.tm#cmdoption-pure-pragma--rewarn>
 
-  --select pattern <hlink|pure-gen command line
+  \Uselect pattern <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--select>
 
-  --symbolic <hlink|pure command line option|pure.tm#cmdoption-pure--symbolic>
+  \Usymbolic <hlink|pure command line option|pure.tm#cmdoption-pure--symbolic>
 
-  --tc <hlink|pure command line option|pure.tm#cmdoption-pure--tc>
+  \Utc <hlink|pure command line option|pure.tm#cmdoption-pure--tc>
 
-  --template file <hlink|pure-gen command line
+  \Utemplate file <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--template>
 
-  --texmacs <hlink|pure command line option|pure.tm#cmdoption-pure--texmacs>
+  \Utexmacs <hlink|pure command line option|pure.tm#cmdoption-pure--texmacs>
 
-  --undefine name <hlink|pure-gen command line
+  \Uundefine name <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--undefine>
 
-  --verbose <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--verbose>
+  \Uverbose <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--verbose>
 
-  --version <hlink|pure command line option|pure.tm#cmdoption-pure--version>
+  \Uversion <hlink|pure command line option|pure.tm#cmdoption-pure--version>
   <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen--version>
 
-  --warn <hlink|pure-pragma command line option|pure.tm#cmdoption-pure-pragma--warn>
+  \Uwarn <hlink|pure-pragma command line option|pure.tm#cmdoption-pure-pragma--warn>
 
-  --warnings[=level] <hlink|pure-gen command line
+  \Uwarnings[=level] <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--warnings>
 
-  --wrap prefix <hlink|pure-gen command line
+  \Uwrap prefix <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--wrap>
 
   -a <hlink|pure-gen command line option|pure-gen.tm#cmdoption-pure-gen-a>
@@ -380,10 +380,10 @@
   <hlink|<with|font-series|bold|.^ (infix
   function)>|pure-gsl.tm#.?5E/gsl-matrix>
 
-  <hlink|<with|font-series|bold|/ (infix function)>|purelib.tm#/>,
+  <hlink|<with|font-series|bold|/ (infix function)>|pure-gsl.tm#//gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#//gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#//gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#//gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#/>,
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#//mpfr>
 
   <hlink|<with|font-series|bold|: (infix constructor)>|purelib.tm#:>
@@ -397,8 +397,9 @@
   <hlink|<with|font-series|bold|\<less\>: (infix function)>|purelib.tm#\<:>
 
   <hlink|<with|font-series|bold|\<less\>\<less\> (infix
-  function)>|purelib.tm#\<\<>, <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\<\</gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#\<\</gsl-matrix>
+  function)>|pure-gsl.tm#\<\</gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\<\</gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#\<\<>
 
   <hlink|<with|font-series|bold|\<less\>= (infix
   function)>|purelib.tm#\<=/string>, <hlink|<with|font-series|bold|[1]>|purelib.tm#\<=>,
@@ -435,24 +436,25 @@
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#\>=/mpfr>
 
   <hlink|<with|font-series|bold|\<gtr\>\<gtr\> (infix
-  function)>|purelib.tm#\>\>>, <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\>\>/gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#\>\>/gsl-matrix>
+  function)>|pure-gsl.tm#\>\>/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#\>\>/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#\>\>>
 
   <hlink|<with|font-series|bold|[] (constructor)>|purelib.tm#[]>
 
   <hlink|<with|font-series|bold|\\ (infix
   function)>|pure-gsl.tm#?5C/gsl-matrix>
 
-  <hlink|<with|font-series|bold|^ (infix function)>|purelib.tm#?5E>,
+  <hlink|<with|font-series|bold|^ (infix function)>|pure-gsl.tm#?5E/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#?5E/gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#?5E/gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#?5E/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#?5E>,
   <hlink|<with|font-series|bold|[4]>|pure-mpfr.tm#?5E/mpfr>
 
   <hlink|<with|font-series|bold|{\| \|} (outfix macro)>|purelib.tm#?7B\|>
 
-  <hlink|<with|font-series|bold|\|\| (infix function)>|purelib.tm#\|\|>,
-  <hlink|<with|font-series|bold|[1]>|pure.tm#\|\|/special>
+  <hlink|<with|font-series|bold|\|\| (infix function)>|pure.tm#\|\|/special>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#\|\|>
 
   <hlink|<with|font-series|bold|<math|\<sim\>> (prefix
   function)>|purelib.tm#-tilde>
@@ -472,7 +474,7 @@
   <hlink|<with|font-series|bold|<math|\<sim\>>== (infix
   function)>|purelib.tm#-tilde==>
 
-  <subsection*|_<label|->>
+  <subsection*|_><label|->
 
   <hlink|<with|font-series|bold|__as__ (infix constructor)>|pure.tm#--as-->
 
@@ -516,7 +518,7 @@
 
   <hlink|<with|font-series|bold|__with__ (infix macro)>|pure.tm#--with-->
 
-  <subsection*|A<label|A>>
+  <subsection*|A><label|A>
 
   <hlink|<with|font-series|bold|abs (function)>|purelib.tm#abs>,
   <hlink|<with|font-series|bold|[1]>|purelib.tm#abs/complex>,
@@ -566,9 +568,10 @@
 
   <hlink|<with|font-series|bold|all (function)>|purelib.tm#all>
 
-  <hlink|<with|font-series|bold|and (infix function)>|purelib.tm#and>,
+  <hlink|<with|font-series|bold|and (infix
+  function)>|pure-gsl.tm#and/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#and/gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#and/gsl-matrix>
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#and>
 
   <hlink|<with|font-series|bold|ans (function)>|purelib.tm#ans>
 
@@ -640,7 +643,7 @@
   <hlink|<with|font-series|bold|avahi::publish
   (function)>|pure-avahi.tm#avahi::publish>
 
-  <subsection*|B<label|B>>
+  <subsection*|B><label|B>
 
   <hlink|<with|font-series|bold|bad_argument
   (constructor)>|pure-stlvec.tm#bad-argument/stlvec>
@@ -732,7 +735,7 @@
   <hlink|<with|font-series|bold|byte_string_pointer
   (function)>|purelib.tm#byte-string-pointer>
 
-  <subsection*|C<label|C>>
+  <subsection*|C><label|C>
 
   <hlink|<with|font-series|bold|cairo (module)>|pure-gtk.tm#module-cairo>
 
@@ -902,7 +905,7 @@
 
   <hlink|<with|font-series|bold|cyclen (function)>|purelib.tm#cyclen>
 
-  <subsection*|D<label|D>>
+  <subsection*|D><label|D>
 
   <hlink|<with|font-series|bold|daylight (variable)>|purelib.tm#daylight>
 
@@ -956,10 +959,11 @@
 
   <hlink|<with|font-series|bold|dim (function)>|purelib.tm#dim>
 
-  <hlink|<with|font-series|bold|div (infix function)>|purelib.tm#div>,
+  <hlink|<with|font-series|bold|div (infix
+  function)>|pure-gsl.tm#div/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#div/gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#div/gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#div/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#div>,
   <hlink|<with|font-series|bold|[4]>|pure-rational.tm#div/rational>
 
   <hlink|<with|font-series|bold|dmatrix (function)>|purelib.tm#dmatrix>
@@ -999,7 +1003,7 @@
 
   <hlink|dump (command)|pure.tm#index-43>
 
-  <subsection*|E<label|E>>
+  <subsection*|E><label|E>
 
   <hlink|<with|font-series|bold|e (constant)>|purelib.tm#e>
 
@@ -1148,7 +1152,7 @@
   <hlink|<with|font-series|bold|exp (function)>|purelib.tm#exp>,
   <hlink|<with|font-series|bold|[1]>|pure-mpfr.tm#exp/mpfr>
 
-  <subsection*|F<label|F>>
+  <subsection*|F><label|F>
 
   <hlink|<with|font-series|bold|failed_cond
   (constructor)>|pure-stlvec.tm#failed-cond/stlvec>,
@@ -1327,7 +1331,7 @@
 
   <hlink|<with|font-series|bold|fwrite (function)>|purelib.tm#fwrite>
 
-  <subsection*|G<label|G>>
+  <subsection*|G><label|G>
 
   <hlink|<with|font-series|bold|g2 (module)>|pure-g2.tm#module-g2>
 
@@ -2128,11 +2132,11 @@
   <hlink|<with|font-series|bold|gsl::sf::bessel_k0_scaled
   (function)>|pure-gsl.tm#gsl::sf::bessel-k0-scaled>
 
-  <hlink|<with|font-series|bold|gsl::sf::bessel_k0_scaled_e
-  (function)>|pure-gsl.tm#gsl::sf::bessel-k0-scaled-e>
-
   <hlink|<with|font-series|bold|gsl::sf::bessel_K0_scaled_e
   (function)>|pure-gsl.tm#gsl::sf::bessel-K0-scaled-e>
+
+  <hlink|<with|font-series|bold|gsl::sf::bessel_k0_scaled_e
+  (function)>|pure-gsl.tm#gsl::sf::bessel-k0-scaled-e>
 
   <hlink|<with|font-series|bold|gsl::sf::bessel_K1
   (function)>|pure-gsl.tm#gsl::sf::bessel-K1>
@@ -2532,7 +2536,7 @@
 
   <hlink|<with|font-series|bold|gtk (module)>|pure-gtk.tm#module-gtk>
 
-  <subsection*|H<label|H>>
+  <subsection*|H><label|H>
 
   <hlink|<with|font-series|bold|hash (function)>|purelib.tm#hash>
 
@@ -2597,7 +2601,7 @@
 
   <hlink|<with|font-series|bold|hsetp (function)>|purelib.tm#hsetp>
 
-  <subsection*|I<label|I>>
+  <subsection*|I><label|I>
 
   <hlink|<with|font-series|bold|i (constant)>|purelib.tm#i>
 
@@ -2728,11 +2732,11 @@
 
   <hlink|<with|font-series|bold|iterwhile (function)>|purelib.tm#iterwhile>
 
-  <subsection*|J<label|J>>
+  <subsection*|J><label|J>
 
   <hlink|<with|font-series|bold|join (function)>|purelib.tm#join>
 
-  <subsection*|K<label|K>>
+  <subsection*|K><label|K>
 
   <hlink|<with|font-series|bold|key (function)>|purelib.tm#key>
 
@@ -2743,7 +2747,7 @@
 
   <hlink|<with|font-series|bold|kill (function)>|purelib.tm#kill>
 
-  <subsection*|L<label|L>>
+  <subsection*|L><label|L>
 
   <hlink|<with|font-series|bold|lambda (type)>|purelib.tm#lambda/type>
 
@@ -2825,7 +2829,7 @@
 
   <hlink|<with|font-series|bold|lv2 (module)>|pure-lv2.tm#module-lv2>
 
-  <subsection*|M<label|M>>
+  <subsection*|M><label|M>
 
   <hlink|<with|font-series|bold|make_ptrtag
   (function)>|purelib.tm#make-ptrtag>
@@ -2922,10 +2926,11 @@
 
   <hlink|<with|font-series|bold|mktime (function)>|purelib.tm#mktime>
 
-  <hlink|<with|font-series|bold|mod (infix function)>|purelib.tm#mod>,
+  <hlink|<with|font-series|bold|mod (infix
+  function)>|pure-gsl.tm#mod/gsl-matrix>,
   <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#mod/gsl-matrix>,
   <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#mod/gsl-matrix>,
-  <hlink|<with|font-series|bold|[3]>|pure-gsl.tm#mod/gsl-matrix>,
+  <hlink|<with|font-series|bold|[3]>|purelib.tm#mod>,
   <hlink|<with|font-series|bold|[4]>|pure-rational.tm#mod/rational>
 
   <hlink|<with|font-series|bold|mpfr (function)>|pure-mpfr.tm#mpfr>,
@@ -2973,7 +2978,7 @@
   <hlink|<with|font-series|bold|mutable_svit
   (type)>|pure-stlvec.tm#mutable-svit/type>
 
-  <subsection*|N<label|N>>
+  <subsection*|N><label|N>
 
   <hlink|<with|font-series|bold|nan (constant)>|purelib.tm#nan>
 
@@ -2989,8 +2994,9 @@
 
   <hlink|node info|pure-xml.tm#index-0>
 
-  <hlink|<with|font-series|bold|not (prefix function)>|purelib.tm#not>,
-  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#not/gsl-matrix>
+  <hlink|<with|font-series|bold|not (prefix
+  function)>|pure-gsl.tm#not/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#not>
 
   <hlink|<with|font-series|bold|NULL (constant)>|purelib.tm#NULL>
 
@@ -3012,7 +3018,7 @@
 
   <hlink|<with|font-series|bold|numberp (function)>|purelib.tm#numberp>
 
-  <subsection*|O<label|O>>
+  <subsection*|O><label|O>
 
   <hlink|<with|font-series|bold|octave (module)>|pure-octave.tm#module-octave>
 
@@ -3042,9 +3048,9 @@
 
   <hlink|operators|purelib.tm#index-0>
 
-  <hlink|<with|font-series|bold|or (infix function)>|purelib.tm#or>,
-  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#or/gsl-matrix>,
-  <hlink|<with|font-series|bold|[2]>|pure-gsl.tm#or/gsl-matrix>
+  <hlink|<with|font-series|bold|or (infix
+  function)>|pure-gsl.tm#or/gsl-matrix>, <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#or/gsl-matrix>,
+  <hlink|<with|font-series|bold|[2]>|purelib.tm#or>
 
   <hlink|<with|font-series|bold|ord (function)>|purelib.tm#ord>
 
@@ -3079,7 +3085,7 @@
 
   <hlink|override (command)|pure.tm#index-47>
 
-  <subsection*|P<label|P>>
+  <subsection*|P><label|P>
 
   <hlink|<with|font-series|bold|pack (function)>|purelib.tm#pack>
 
@@ -3160,8 +3166,8 @@
 
   <hlink|<with|font-series|bold|posix (module)>|purelib.tm#module-posix>
 
-  <hlink|<with|font-series|bold|pow (function)>|purelib.tm#pow>,
-  <hlink|<with|font-series|bold|[1]>|pure-gsl.tm#pow/gsl-matrix>
+  <hlink|<with|font-series|bold|pow (function)>|pure-gsl.tm#pow/gsl-matrix>,
+  <hlink|<with|font-series|bold|[1]>|purelib.tm#pow>
 
   <hlink|<with|font-series|bold|precision
   (function)>|pure-reduce.tm#precision>
@@ -3173,53 +3179,53 @@
   <hlink|<with|font-series|bold|ptrtag (function)>|purelib.tm#ptrtag> pure
   command line option
 
-  <hlink|--|pure.tm#cmdoption-pure-->
+  <hlink|\U|pure.tm#cmdoption-pure-->
 
-  <hlink|--checks|pure.tm#cmdoption-pure--checks>
+  <hlink|\Uchecks|pure.tm#cmdoption-pure--checks>
 
-  <hlink|--const|pure.tm#cmdoption-pure--const>
+  <hlink|\Uconst|pure.tm#cmdoption-pure--const>
 
-  <hlink|--ctags|pure.tm#cmdoption-pure--ctags>
+  <hlink|\Uctags|pure.tm#cmdoption-pure--ctags>
 
-  <hlink|--disable optname|pure.tm#cmdoption-pure--disable>
+  <hlink|\Udisable optname|pure.tm#cmdoption-pure--disable>
 
-  <hlink|--eager-jit|pure.tm#cmdoption-pure--eager-jit>
+  <hlink|\Ueager-jit|pure.tm#cmdoption-pure--eager-jit>
 
-  <hlink|--enable optname|pure.tm#cmdoption-pure--enable>
+  <hlink|\Uenable optname|pure.tm#cmdoption-pure--enable>
 
-  <hlink|--escape char|pure.tm#cmdoption-pure--escape>
+  <hlink|\Uescape char|pure.tm#cmdoption-pure--escape>
 
-  <hlink|--etags|pure.tm#cmdoption-pure--etags>
+  <hlink|\Uetags|pure.tm#cmdoption-pure--etags>
 
-  <hlink|--fold|pure.tm#cmdoption-pure--fold>
+  <hlink|\Ufold|pure.tm#cmdoption-pure--fold>
 
-  <hlink|--help|pure.tm#cmdoption-pure--help>
+  <hlink|\Uhelp|pure.tm#cmdoption-pure--help>
 
-  <hlink|--main name|pure.tm#cmdoption-pure--main>
+  <hlink|\Umain name|pure.tm#cmdoption-pure--main>
 
-  <hlink|--nochecks|pure.tm#cmdoption-pure--nochecks>
+  <hlink|\Unochecks|pure.tm#cmdoption-pure--nochecks>
 
-  <hlink|--noconst|pure.tm#cmdoption-pure--noconst>
+  <hlink|\Unoconst|pure.tm#cmdoption-pure--noconst>
 
-  <hlink|--noediting|pure.tm#cmdoption-pure--noediting>
+  <hlink|\Unoediting|pure.tm#cmdoption-pure--noediting>
 
-  <hlink|--nofold|pure.tm#cmdoption-pure--nofold>
+  <hlink|\Unofold|pure.tm#cmdoption-pure--nofold>
 
-  <hlink|--noprelude|pure.tm#cmdoption-pure--noprelude>
+  <hlink|\Unoprelude|pure.tm#cmdoption-pure--noprelude>
 
-  <hlink|--norc|pure.tm#cmdoption-pure--norc>
+  <hlink|\Unorc|pure.tm#cmdoption-pure--norc>
 
-  <hlink|--nosymbolic|pure.tm#cmdoption-pure--nosymbolic>
+  <hlink|\Unosymbolic|pure.tm#cmdoption-pure--nosymbolic>
 
-  <hlink|--notc|pure.tm#cmdoption-pure--notc>
+  <hlink|\Unotc|pure.tm#cmdoption-pure--notc>
 
-  <hlink|--symbolic|pure.tm#cmdoption-pure--symbolic>
+  <hlink|\Usymbolic|pure.tm#cmdoption-pure--symbolic>
 
-  <hlink|--tc|pure.tm#cmdoption-pure--tc>
+  <hlink|\Utc|pure.tm#cmdoption-pure--tc>
 
-  <hlink|--texmacs|pure.tm#cmdoption-pure--texmacs>
+  <hlink|\Utexmacs|pure.tm#cmdoption-pure--texmacs>
 
-  <hlink|--version|pure.tm#cmdoption-pure--version>
+  <hlink|\Uversion|pure.tm#cmdoption-pure--version>
 
   <hlink|-I directory|pure.tm#cmdoption-pure-I>
 
@@ -3259,51 +3265,51 @@
 
   <hlink|-x|pure.tm#cmdoption-pure-x> pure-gen command line option
 
-  <hlink|--all|pure-gen.tm#cmdoption-pure-gen--all>
+  <hlink|\Uall|pure-gen.tm#cmdoption-pure-gen--all>
 
-  <hlink|--alt-template file|pure-gen.tm#cmdoption-pure-gen--alt-template>
+  <hlink|\Ualt-template file|pure-gen.tm#cmdoption-pure-gen--alt-template>
 
-  <hlink|--c-output file|pure-gen.tm#cmdoption-pure-gen--c-output>
+  <hlink|\Uc-output file|pure-gen.tm#cmdoption-pure-gen--c-output>
 
-  <hlink|--cpp option|pure-gen.tm#cmdoption-pure-gen--cpp>
+  <hlink|\Ucpp option|pure-gen.tm#cmdoption-pure-gen--cpp>
 
-  <hlink|--define name[=value]|pure-gen.tm#cmdoption-pure-gen--define>
+  <hlink|\Udefine name[=value]|pure-gen.tm#cmdoption-pure-gen--define>
 
-  <hlink|--dry-run|pure-gen.tm#cmdoption-pure-gen--dry-run>
+  <hlink|\Udry-run|pure-gen.tm#cmdoption-pure-gen--dry-run>
 
-  <hlink|--echo|pure-gen.tm#cmdoption-pure-gen--echo>
+  <hlink|\Uecho|pure-gen.tm#cmdoption-pure-gen--echo>
 
-  <hlink|--exclude pattern|pure-gen.tm#cmdoption-pure-gen--exclude>
+  <hlink|\Uexclude pattern|pure-gen.tm#cmdoption-pure-gen--exclude>
 
-  <hlink|--help|pure-gen.tm#cmdoption-pure-gen--help>
+  <hlink|\Uhelp|pure-gen.tm#cmdoption-pure-gen--help>
 
-  <hlink|--include path|pure-gen.tm#cmdoption-pure-gen--include>
+  <hlink|\Uinclude path|pure-gen.tm#cmdoption-pure-gen--include>
 
-  <hlink|--interface iface|pure-gen.tm#cmdoption-pure-gen--interface>
+  <hlink|\Uinterface iface|pure-gen.tm#cmdoption-pure-gen--interface>
 
-  <hlink|--lib-name lib|pure-gen.tm#cmdoption-pure-gen--lib-name>
+  <hlink|\Ulib-name lib|pure-gen.tm#cmdoption-pure-gen--lib-name>
 
-  <hlink|--namespace name|pure-gen.tm#cmdoption-pure-gen--namespace>
+  <hlink|\Unamespace name|pure-gen.tm#cmdoption-pure-gen--namespace>
 
-  <hlink|--noclobber|pure-gen.tm#cmdoption-pure-gen--noclobber>
+  <hlink|\Unoclobber|pure-gen.tm#cmdoption-pure-gen--noclobber>
 
-  <hlink|--output file|pure-gen.tm#cmdoption-pure-gen--output>
+  <hlink|\Uoutput file|pure-gen.tm#cmdoption-pure-gen--output>
 
-  <hlink|--prefix prefix|pure-gen.tm#cmdoption-pure-gen--prefix>
+  <hlink|\Uprefix prefix|pure-gen.tm#cmdoption-pure-gen--prefix>
 
-  <hlink|--select pattern|pure-gen.tm#cmdoption-pure-gen--select>
+  <hlink|\Uselect pattern|pure-gen.tm#cmdoption-pure-gen--select>
 
-  <hlink|--template file|pure-gen.tm#cmdoption-pure-gen--template>
+  <hlink|\Utemplate file|pure-gen.tm#cmdoption-pure-gen--template>
 
-  <hlink|--undefine name|pure-gen.tm#cmdoption-pure-gen--undefine>
+  <hlink|\Uundefine name|pure-gen.tm#cmdoption-pure-gen--undefine>
 
-  <hlink|--verbose|pure-gen.tm#cmdoption-pure-gen--verbose>
+  <hlink|\Uverbose|pure-gen.tm#cmdoption-pure-gen--verbose>
 
-  <hlink|--version|pure-gen.tm#cmdoption-pure-gen--version>
+  <hlink|\Uversion|pure-gen.tm#cmdoption-pure-gen--version>
 
-  <hlink|--warnings[=level]|pure-gen.tm#cmdoption-pure-gen--warnings>
+  <hlink|\Uwarnings[=level]|pure-gen.tm#cmdoption-pure-gen--warnings>
 
-  <hlink|--wrap prefix|pure-gen.tm#cmdoption-pure-gen--wrap>
+  <hlink|\Uwrap prefix|pure-gen.tm#cmdoption-pure-gen--wrap>
 
   <hlink|-C option|pure-gen.tm#cmdoption-pure-gen-C>
 
@@ -3352,37 +3358,37 @@
   <hlink|-x pattern|pure-gen.tm#cmdoption-pure-gen-x> pure-pragma command
   line option
 
-  <hlink|--defined fun|pure.tm#cmdoption-pure-pragma--defined>
+  <hlink|\Udefined fun|pure.tm#cmdoption-pure-pragma--defined>
 
-  <hlink|--disable option|pure.tm#cmdoption-pure-pragma--disable>
+  <hlink|\Udisable option|pure.tm#cmdoption-pure-pragma--disable>
 
-  <hlink|--eager fun|pure.tm#cmdoption-pure-pragma--eager>
+  <hlink|\Ueager fun|pure.tm#cmdoption-pure-pragma--eager>
 
-  <hlink|--else|pure.tm#cmdoption-pure-pragma--else>
+  <hlink|\Uelse|pure.tm#cmdoption-pure-pragma--else>
 
-  <hlink|--enable option|pure.tm#cmdoption-pure-pragma--enable>
+  <hlink|\Uenable option|pure.tm#cmdoption-pure-pragma--enable>
 
-  <hlink|--endif|pure.tm#cmdoption-pure-pragma--endif>
+  <hlink|\Uendif|pure.tm#cmdoption-pure-pragma--endif>
 
-  <hlink|--if option|pure.tm#cmdoption-pure-pragma--if>
+  <hlink|\Uif option|pure.tm#cmdoption-pure-pragma--if>
 
-  <hlink|--ifdef option|pure.tm#cmdoption-pure-pragma--ifdef>
+  <hlink|\Uifdef option|pure.tm#cmdoption-pure-pragma--ifdef>
 
-  <hlink|--ifndef option|pure.tm#cmdoption-pure-pragma--ifndef>
+  <hlink|\Uifndef option|pure.tm#cmdoption-pure-pragma--ifndef>
 
-  <hlink|--ifnot option|pure.tm#cmdoption-pure-pragma--ifnot>
+  <hlink|\Uifnot option|pure.tm#cmdoption-pure-pragma--ifnot>
 
-  <hlink|--nodefined fun|pure.tm#cmdoption-pure-pragma--nodefined>
+  <hlink|\Unodefined fun|pure.tm#cmdoption-pure-pragma--nodefined>
 
-  <hlink|--nowarn|pure.tm#cmdoption-pure-pragma--nowarn>
+  <hlink|\Unowarn|pure.tm#cmdoption-pure-pragma--nowarn>
 
-  <hlink|--quoteargs fun|pure.tm#cmdoption-pure-pragma--quoteargs>
+  <hlink|\Uquoteargs fun|pure.tm#cmdoption-pure-pragma--quoteargs>
 
-  <hlink|--required fun|pure.tm#cmdoption-pure-pragma--required>
+  <hlink|\Urequired fun|pure.tm#cmdoption-pure-pragma--required>
 
-  <hlink|--rewarn|pure.tm#cmdoption-pure-pragma--rewarn>
+  <hlink|\Urewarn|pure.tm#cmdoption-pure-pragma--rewarn>
 
-  <hlink|--warn|pure.tm#cmdoption-pure-pragma--warn>
+  <hlink|\Uwarn|pure.tm#cmdoption-pure-pragma--warn>
 
   <hlink|PURE_ATS|pure.tm#index-25>, <hlink|[1]|pure.tm#index-28>
 
@@ -3443,13 +3449,13 @@
 
   <hlink|pwd (command)|pure.tm#index-48>
 
-  <subsection*|Q<label|Q>>
+  <subsection*|Q><label|Q>
 
   <hlink|quit (command)|pure.tm#index-49>
 
   <hlink|<with|font-series|bold|quote (function)>|pure.tm#quote>
 
-  <subsection*|R<label|R>>
+  <subsection*|R><label|R>
 
   <hlink|<with|font-series|bold|raise (function)>|purelib.tm#raise>
 
@@ -3899,7 +3905,7 @@
 
   <hlink|run (command)|pure.tm#index-50>
 
-  <subsection*|S<label|S>>
+  <subsection*|S><label|S>
 
   <hlink|<with|font-series|bold|same (function)>|purelib.tm#same>
 
@@ -4620,7 +4626,7 @@
   <hlink|<with|font-series|bold|system (function)>|purelib.tm#system>
   <hlink|<with|font-series|bold|(module)>|purelib.tm#module-system>
 
-  <subsection*|T<label|T>>
+  <subsection*|T><label|T>
 
   <hlink|<with|font-series|bold|tail (function)>|purelib.tm#tail>
 
@@ -4706,7 +4712,7 @@
 
   <hlink|<with|font-series|bold|tzset (function)>|purelib.tm#tzset>
 
-  <subsection*|U<label|U>>
+  <subsection*|U><label|U>
 
   <hlink|<with|font-series|bold|ubyte (function)>|purelib.tm#ubyte>
 
@@ -4738,7 +4744,7 @@
 
   <hlink|<with|font-series|bold|ushort (function)>|purelib.tm#ushort>
 
-  <subsection*|V<label|V>>
+  <subsection*|V><label|V>
 
   <hlink|<with|font-series|bold|val (function)>|purelib.tm#val>,
   <hlink|<with|font-series|bold|[1]>|purelib.tm#val/string>,
@@ -4764,7 +4770,7 @@
 
   <hlink|<with|font-series|bold|void (function)>|purelib.tm#void>
 
-  <subsection*|W<label|W>>
+  <subsection*|W><label|W>
 
   <hlink|<with|font-series|bold|wait (function)>|purelib.tm#wait>
 
@@ -4773,7 +4779,7 @@
   <hlink|<with|font-series|bold|write_history
   (function)>|pure-readline.tm#write-history>
 
-  <subsection*|X<label|X>>
+  <subsection*|X><label|X>
 
   <hlink|<with|font-series|bold|xdict (type)>|purelib.tm#xdict/type>
 
@@ -5010,7 +5016,7 @@
   <hlink|<with|font-series|bold|xslt::stylesheetp
   (function)>|pure-xml.tm#xslt::stylesheetp>
 
-  <subsection*|Z<label|Z>>
+  <subsection*|Z><label|Z>
 
   <hlink|<with|font-series|bold|zip (function)>|purelib.tm#zip>
 
@@ -5023,6 +5029,6 @@
   <hlink|toc|#genindex-toc> <hlink|index|#> <hlink|modules|pure-modindex.tm>
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Nov
-  25, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

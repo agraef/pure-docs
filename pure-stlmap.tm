@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-stllib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-stlmap<label|module-stlmap>>
+  <section*|pure-stlmap><label|module-stlmap><label|module-stlmmap><label|module-stlhmap><label|module-stlmap>
 
-  <label|module-stlmmap><label|module-stlhmap>Version 0.4, October 28, 2014
+  Version 0.4, July 07, 2016
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -19,7 +19,7 @@
   Library|http://en.cppreference.com/w/cpp>: map, set, multimap, multiset,
   unordered_map and unordered_set.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2012 by Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>.
 
@@ -32,26 +32,26 @@
   pure-stlmap is distributed under a BSD-style license, see the COPYING file
   for details.
 
-  <subsection|Introduction<label|introduction>>
+  <subsection|Introduction><label|introduction>
 
   This is pure-stlmap-0.1, the first release of pure-stlmap. It is possible
   that some of the functions might be changed slightly or even removed.
   Comments and questions would be especially appreciated at this early stage.
 
-  <subsubsection|Supported Containers<label|supported-containers>>
+  <subsubsection|Supported Containers><label|supported-containers>
 
   The Standard C++ Containers Library, often refered to as the standard
-  template library (``STL''), provides templates for generic containers and
+  template library (\PSTL\Q), provides templates for generic containers and
   generic algorithms. pure-stlmap provides six mutable containers,
-  ``stlmap'', ``stlset'', ``stlmmap'', ``stlmset'', ``stlhmap'' and
-  ``stlhset'', that are thin wrappers around the corresponding associative
+  \Pstlmap\Q, \Pstlset\Q, \Pstlmmap\Q, \Pstlmset\Q, \Pstlhmap\Q and
+  \Pstlhset\Q, that are thin wrappers around the corresponding associative
   containers provided by the STL, map, set, multimap, multiset, unordered_map
   and unordered_set, specialized to hold pure-expressions. pure-stlmap does
   not provide wrappers for unordered_multimap and unordered_multiset.
 
-  <subsubsection|Interface<label|interface>>
+  <subsubsection|Interface><label|interface>
 
-  pure-stlmap provides a ``key-based'' interface that can be used to work
+  pure-stlmap provides a \Pkey-based\Q interface that can be used to work
   with the supported STL containers in a way that should feel natural to Pure
   programmers. For example, the (!) function can be used to access values
   associated with keys and functions like
@@ -61,10 +61,10 @@
   <hlink|<with|font-family|tt|do>|#do/stlmap> can be used to operate on all
   or part of a container's elements without using an explict tail recursive
   loop. In addition, for the ordered containers, stlmap, stlmmap, stlset and
-  stlmset, pure-stlmap provides an ``interator-based'' interface that
+  stlmset, pure-stlmap provides an \Pinterator-based\Q interface that
   corresponds to the C++ interface, mostly on a one-to-one basis.
 
-  The interface for the unordered or ``hash table'' containers, stlhmap and
+  The interface for the unordered or \Phash table\Q containers, stlhmap and
   stlhset, is limited compared to that provided for the ordered containers.
   In particular iterators, operations on subsequences (ranges) and set
   operations are not supported.
@@ -88,16 +88,16 @@
   occurs automatically for stlmap and stlset) is O(n) time complexity for
   comparison and set operations.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
-  pure-stlmap-0.4 is included in the ``umbrella'' addon,
+  pure-stlmap-0.4 is included in the \Pumbrella\Q addon,
   <hlink|<em|pure-stllib>|pure-stllib.tm> which is available at
   <hlink|https://bitbucket.org/purelang/pure-lang/downloads|https://bitbucket.org/purelang/pure-lang/downloads>.
   After you have downloaded and installed
   <hlink|<em|pure-stllib>|pure-stllib.tm>, you will be able to use
   pure-stlmap (and <hlink|<em|pure-stlvec>|pure-stlvec.tm>, as well).
 
-  <subsection|Examples<label|examples>>
+  <subsection|Examples><label|examples>
 
   The pure-stlmap/uts subdirectory contains Pure scripts that are used to
   test pure-stlmap. These scripts contain simple tests, each of which
@@ -105,6 +105,8 @@
   expected output. E.g.,
 
   <\verbatim>
+    \;
+
     let sm1 = stlmap ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5];
 
     //- ()
@@ -120,6 +122,8 @@
     catch id $ sm1!"0";
 
     //- out_of_bounds
+
+    \;
   </verbatim>
 
   You might consider pasting parts of these scripts into a temporary file
@@ -128,19 +132,21 @@
   Two short example programs, anagrams.pure and poly.pure, can be found in
   the pure-stlmap/examples subdirectory.
 
-  <subsection|Quick Start<label|quick-start>>
+  <subsection|Quick Start><label|quick-start>
 
   This section introduces the basic functions you need to get up and running
   with pure-stlmap. For a quick look at the other functions provided by
   pure-stlmap, you can refer to pure-stllib-cheatsheet.pdf, which can be
   found in the pure-stllib/doc directory.
 
-  <subsubsection|Example Containers<label|example-containers>>
+  <subsubsection|Example Containers><label|example-containers>
 
   The code snippets that appear in the examples that follow assume that six
   containers have been created by entering the following at the prompt.
 
   <\verbatim>
+    \;
+
     $\<gtr\> pure -q
 
     \<gtr\> using stlmap, stlhmap, stlmmap;
@@ -162,6 +168,8 @@
     \<gtr\> let shs = stlhset ["a","b","c","d","e"];
 
     \<gtr\> let sms = stlmset ["a","b","c","c","d"];
+
+    \;
   </verbatim>
 
   The <verbatim|using> statement imports the three modules provided by
@@ -178,7 +186,7 @@
   corresponding source code. It can be found in in the pure-stlmap/examples
   directory.
 
-  <subsubsection|Constructors<label|constructors>>
+  <subsubsection|Constructors><label|constructors>
 
   You can construct empty pure-stlmap containers using the
   <hlink|<with|font-family|tt|emptystlmap>|#emptystlmap/stlmap>,
@@ -189,7 +197,11 @@
   <hlink|<with|font-family|tt|emptystlhset>|#emptystlhset/stlmap> functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm1 = emptystlmap; \ \ // uses (\<less\>) to order keys
+
+    \;
   </verbatim>
 
   You can construct a pure-stlmap container and fill it with elements all in
@@ -201,6 +213,8 @@
   <hlink|<with|font-family|tt|stlhset>|#stlhset/stlmap> functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> let shm1 = stlhmap ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3];
 
     \;
@@ -214,6 +228,8 @@
     \<gtr\> smh1!"b";
 
     2
+
+    \;
   </verbatim>
 
   As opposed to the hashed containers (stlhmap and stlhset), the ordered
@@ -221,16 +237,20 @@
   ordered by key.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm1 = stlmap ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3];
     members sm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3]
+
+    \;
   </verbatim>
 
-  <subsubsection|Ranges<label|ranges>>
+  <subsubsection|Ranges><label|ranges>
 
   For the ordered containers (stlmap, stlset, stlmmap and stlmset) you can
-  work with subsequences, called ``ranges'', of the containers' elements. A
+  work with subsequences, called \Pranges\Q, of the containers' elements. A
   range is specified by a tuple that consists of a container and two keys. If
   (sm, first_key, last_key) designates a range, the elements of the range are
   all of elements of the container sm whose keys are equivalent to or greater
@@ -238,6 +258,8 @@
   out of the tuple, the range consists of all of sm's elements.
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm; \ \ \ \ \ \ \ \ \ \ \ \ \ \ // no range keys - the
     whole container
 
@@ -262,14 +284,18 @@
     set (with no range keys)
 
     ["c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5,"a"=\<gtr\>1,"b"=\<gtr\>2]
+
+    \;
   </verbatim>
 
   Two special keys, <hlink|<with|font-family|tt|stl::smbeg>|#stl::smbeg/stlmap>
   and <hlink|<with|font-family|tt|stl::smend>|#stl::smend/stlmap> are
   reserved for use in ranges to designate the first element in a container
-  and the imaginary ``past-end'' element.
+  and the imaginary \Ppast-end\Q element.
 
   <\verbatim>
+    \;
+
     \<gtr\> members (sm,smbeg,"d");
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3]
@@ -279,12 +305,14 @@
     \<gtr\> members (sm,"b",smend);
 
     ["b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   Perhaps it should go without saying, but you cannot use either of these
   symbols as the keys of elements stored in a pure-stlmap container.
 
-  <subsubsection|Inserting and Replacing Elements<label|inserting-and-replacing-elements>>
+  <subsubsection|Inserting and Replacing Elements><label|inserting-and-replacing-elements>
 
   You can insert elements and, for the maps (stlmap, stlmmap and stlhmap),
   replace the values associated with keys that are already stored in the map,
@@ -295,6 +323,8 @@
   (key=\<gtr\>value) hash-pairs.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm1 = emptystlmap;
 
     \;
@@ -347,6 +377,8 @@
     ["e"=\<gtr\>25]
 
     \<gtr\>
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|insert>|#insert/stlmap> and
@@ -355,6 +387,8 @@
   vector, stlvec or another pure-stlmap container (of the same type). E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm2 = emptystlmap;
 
     \;
@@ -387,16 +421,20 @@
     \<gtr\> members sm2;
 
     ["a"=\<gtr\>11,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>15]
+
+    \;
   </verbatim>
 
-  <subsubsection|Access<label|access>>
+  <subsubsection|Access><label|access>
 
   If you want to see if a key is stored in a container use the
   <hlink|<with|font-family|tt|member>|#member/stlmap> function. (A key, k, is
-  considered to be ``stored'' in a container if there is an element in the
+  considered to be \Pstored\Q in a container if there is an element in the
   container that is equivalent to k.)
 
   <\verbatim>
+    \;
+
     \<gtr\> member sm "x"; \ // ("x"=\<gtr\>val) is not an element of sm for
     any val
 
@@ -408,12 +446,16 @@
     equivalent to "a"
 
     1
+
+    \;
   </verbatim>
 
   The value (or values for a multi-key container) associated with a key can
   be accessed using the (!) function.
 
   <\verbatim>
+    \;
+
     \<gtr\> sm!"a"; \ \ // return the value associated with "a"
 
     1
@@ -442,6 +484,8 @@
     \<gtr\> sms!"c"; \ // with multisets, return a list of keys
 
     ["c","c"]
+
+    \;
   </verbatim>
 
   If the key is not stored in the container, (!) throws an
@@ -449,17 +493,21 @@
   exception.
 
   <\verbatim>
+    \;
+
     \<gtr\> catch id $ sm!"x"; // "x" is not stored as a key in sm
 
     out_of_bounds
+
+    \;
   </verbatim>
 
   Please note that all access is strictly by keys. For example you cannot use
   the <hlink|<with|font-family|tt|member>|#member/stlmap> function to
-  determine if (``a''=\<gtr\>1) is an element stored in sm; you can only ask
-  if the key ``a'' is stored in sm.
+  determine if (\Pa\Q=\<gtr\>1) is an element stored in sm; you can only ask
+  if the key \Pa\Q is stored in sm.
 
-  <subsubsection|Erasing Elements<label|erasing-elements>>
+  <subsubsection|Erasing Elements><label|erasing-elements>
 
   For any pure-stlmap container, you can use the
   <hlink|<with|font-family|tt|erase>|#erase/stlmap> function to remove all
@@ -468,6 +516,8 @@
   all of the elements in a range defined on the container.
 
   <\verbatim>
+    \;
+
     \<gtr\> let shm1 = stlhmap shm; \ \ \ \ \ \ // make some copies of maps
 
     \<gtr\> let smm1 = stlmmap smm;
@@ -531,9 +581,11 @@
     \<gtr\> members smm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
-  <subsubsection|Conversions<label|conversions>>
+  <subsubsection|Conversions><label|conversions>
 
   The elements of an associated container be copied into a list, vector or
   stlvec using the <hlink|<with|font-family|tt|members>|#members/stlmap>,
@@ -543,6 +595,8 @@
   can be built from a range.
 
   <\verbatim>
+    \;
+
     \<gtr\> members ss;
 
     ["a","b","c","d","e"]
@@ -586,6 +640,8 @@
     \<gtr\> members $ stlvec sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   You can convert the contents of an ordered container (stlmap, stlset,
@@ -593,6 +649,8 @@
   <hlink|<with|font-family|tt|stream>|#stream/stlmap> function.
 
   <\verbatim>
+    \;
+
     \<gtr\> let ss1 = stlhset (0..100000);
 
     \;
@@ -612,9 +670,11 @@
     [704782707,704882705,704982704,705082704]
 
     0s, 17 cells
+
+    \;
   </verbatim>
 
-  <subsubsection|Functional Programming<label|functional-programming>>
+  <subsubsection|Functional Programming><label|functional-programming>
 
   Most of the Pure list operations, including
   <hlink|<with|font-family|tt|map>|#map/stlmap>,
@@ -626,6 +686,8 @@
   of pure-stlmap's associative containers. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> map (\\x-\<gtr\>x-32) shs;
 
     ["D","E","A","B","C"]
@@ -643,11 +705,15 @@
     "b"=\<gtr\>2
 
     ()
+
+    \;
   </verbatim>
 
   List comprehensions also work.
 
   <\verbatim>
+    \;
+
     \<gtr\> [k-32=\<gtr\>v+100 \| (k=\<gtr\>v) = smm; k\<gtr\>"a" &&
     k\<less\>"e"];
 
@@ -658,12 +724,14 @@
     \<gtr\> {k-32=\<gtr\>v+100 \| (k=\<gtr\>v) = (smm,"b","e")};
 
     {"B"=\<gtr\>102,"C"=\<gtr\>131,"C"=\<gtr\>132,"D"=\<gtr\>104}
+
+    \;
   </verbatim>
 
   It is highly recommended that you use the functional programming
   operations, as opposed to recursive loops, whenever possible.
 
-  <subsection|Concepts<label|concepts>>
+  <subsection|Concepts><label|concepts>
 
   This section describes pure-stlmap's containers, iterators, ranges,
   elements, keys, values and how these objects are related to each other. It
@@ -672,45 +740,45 @@
   stlset, stlmmap or stlmset) stores a function that it used to order its
   keys and to determine if two keys are equivalent.
 
-  <subsubsection|Containers and Elements<label|containers-and-elements>>
+  <subsubsection|Containers and Elements><label|containers-and-elements>
 
   The six associative containers supported by pure-stlmap can be grouped
   together in terms of certain defining attributes.
 
-  The three ``maps'' provided by pure-stlmap, stlmap, stlmmap and stlhmap,
+  The three \Pmaps\Q provided by pure-stlmap, stlmap, stlmmap and stlhmap,
   associate values with keys. If a value v is associated with a key, k, in an
   map, m, then we say that (k=\<gtr\>v) is an element of m, k is a key stored
   in m and v is a value stored in m.
 
-  The three ``sets'' provided by pure-stlmap, stlset, stlmset and stlhset,
+  The three \Psets\Q provided by pure-stlmap, stlset, stlmset and stlhset,
   hold single elements, as opposed to key value pairs. If an element e is
   contained a set, s, we say that e is simultaneously an element, key and
   value stored s. In other words, we sometimes speak of a set as if it were a
   map where each element, key and value are the same object.
 
-  The ``ordered'' containers, stlmap, stlset, stlmmap and stlmset, each have
-  a ``key-less-than'' function that they use keep their elements in a
+  The \Pordered\Q containers, stlmap, stlset, stlmmap and stlmset, each have
+  a \Pkey-less-than\Q function that they use keep their elements in a
   sequence that is ordered by keys. The default key-less-than function is
   <verbatim|(\<)>, but this can be changed when the container is created. The
   elements stored in a stlmap or stlset have unique keys, i.e., two elements
   stored in the container will never have equivalent keys. For these
-  purposes, two keys are ``equivalent'' if neither key is key-less-than the
+  purposes, two keys are \Pequivalent\Q if neither key is key-less-than the
   other. In contrast, stlmmap and stlmset do not have unique keys. I.e., it
   is possible for different elements stored in a stlmmap or stlmset can have
   equivalent keys.
 
-  The ``hashed'' containers, sthmap and stlhset do not keep their elements in
+  The \Phashed\Q containers, sthmap and stlhset do not keep their elements in
   a sequence. Instead they store their elments in a hash table using a
-  ``key-hash'' function and a ``key-equal'' function. Currently the key-hash
+  \Pkey-hash\Q function and a \Pkey-equal\Q function. Currently the key-hash
   function is always <hlink|<with|font-family|tt|hash>|purelib.tm#hash> and
   the key-equal function is always (===), both of which are defined in the
   Prelude. The elements stored in a hashed container have unique keys. I.e.,
-  two elements stored in the container will never by ``key-equal''. At times
-  we say that two keys stored in a hashed container are ``equivalent'' if
+  two elements stored in the container will never by \Pkey-equal\Q. At times
+  we say that two keys stored in a hashed container are \Pequivalent\Q if
   they are key-equal.
 
-  The ``ordered maps'', stlmap and stlmmap, each have a ``value-less-than''
-  function and a ``value-equal'' function that is used for lexicographical
+  The \Pordered maps\Q, stlmap and stlmmap, each have a \Pvalue-less-than\Q
+  function and a \Pvalue-equal\Q function that is used for lexicographical
   comparisons. The default functions are <verbatim|(\<)> and (==)
   respectively, but these can customized when the container is created.
 
@@ -730,13 +798,15 @@
   <subsubsection|Ranges>
 
   For the ordered containers (stlmap, stlset, stlmmap and stlmset), you can
-  work with a subsequence or ``range'' of a container's elements. Given an
+  work with a subsequence or \Prange\Q of a container's elements. Given an
   ordered container, oc, and keys f and l, the range (oc,f,l) consists of all
   of the elements in oc starting with the first element that is not less than
   f up to but not including the first element that is greater or equal to l.
   Note that f and l do not have to be stored in oc.
 
   <\verbatim>
+    \;
+
     \<gtr\> members (sm,"b","e");
 
     ["b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4]
@@ -746,6 +816,8 @@
     \<gtr\> members (sm,"c1",smend);
 
     ["d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   When a range is passed to a function provided by pure-stlmap, the keys can
@@ -753,9 +825,13 @@
   elements.
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   Please note that support for ranges is not provided for the unordered
@@ -766,9 +842,9 @@
   range, and the container in question is a a stlhmap or stlhset, the range
   simply refers to the container itself.
 
-  <subsubsection|Iterators<label|iterators>>
+  <subsubsection|Iterators><label|iterators>
 
-  The native STL interface is based on ``iterators'' that point to elements
+  The native STL interface is based on \Piterators\Q that point to elements
   in containers. pure-stlmap provides support for iterators defined on its
   ordered containers (stlmap, stlmmap, stlset and stlmset) but not for its
   unordered containers (stlhmap and stlhset).
@@ -779,7 +855,7 @@
   iterators are discussed separately at the end of this document.
 
   <subsubsection|Selecting Elements Using
-  Keys<label|selecting-elements-using-keys>>
+  Keys><label|selecting-elements-using-keys>
 
   Throughout pure-stlmap, unless you resort to using iterators, you can only
   specify elements and ranges of elements using keys. For example you cannot
@@ -787,6 +863,8 @@
   if a specific key, value pair is an element of a stlmap.
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -802,13 +880,15 @@
     \<gtr\> catch id $ member sm (a=\<gtr\>1);
 
     bad_argument
+
+    \;
   </verbatim>
 
   In the last line of code, <hlink|<with|font-family|tt|member>|#member/stlmap>
   treats (a=\<gtr\>1) as a key. Because (a=\<gtr\>1) cannot be compared to a
   string using <verbatim|(\<)>, the ersatz key is treated as a bad argument.
 
-  This ``key access only'' approach can be an issue for stlmmaps and because
+  This \Pkey access only\Q approach can be an issue for stlmmaps and because
   multiple elements can have equivalent keys. I.e., given a stlmmap, smm,
   that containes multiple element with keys equivalent to, say, k, which
   element should (!) return? pure-stlmap dodges this issue by returning all
@@ -818,6 +898,8 @@
   with the given key.
 
   <\verbatim>
+    \;
+
     \<gtr\> members smm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>31,"c"=\<gtr\>32,"d"=\<gtr\>4];
@@ -839,28 +921,30 @@
     \<gtr\> replace smm "c" []; members smm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   If selecting and replacing lists of elements with the same key is not
   convenient, you can always use iterators to track down and modify any
   specific element.
 
-  <subsubsection|C++ Implementation<label|c-implementation>>
+  <subsubsection|C++ Implementation><label|c-implementation>
 
   For those that want to refer to the <hlink|C++ standard library
   documentation|http://en.cppreference.com/w/cpp>, stlmap is (essentially)
   map\<less\>px*,px*\<gtr\>, stlmmap is multimap\<less\>px*,px*\<gtr\> and
   stlhmap is unordered_map\<less\>px*,px*\<gtr\>, where px is defined by
-  ``typedef pure_expr px''. I.e., in C++ Containers library speak, key_type
+  \Ptypedef pure_expr px\Q. I.e., in C++ Containers library speak, key_type
   is px*, mapped_type is px* and value_type is pair\<less\>px*,px*\<gtr\>.
   This might be a bit confusing because pure-stlmap's (key=\<gtr\>value)
-  ``elements'' correspond to C++ value_types, a
+  \Pelements\Q correspond to C++ value_types, a
   pair\<less\>key_type,mapped_type\<gtr\>, and pure-stlmap's values
   correspond to mapped_types. The C++ objects for stlset, stlmset and stlhset
   are the same as stlmap, stmmap and stlhmap except that pure-stlmap ensures
   that the second member of the C++ value_type pair is always NULL.
 
-  <subsection|Modules<label|modules>>
+  <subsection|Modules><label|modules>
 
   pure-stlmap provides three separate modules
   <hlink|<with|font-family|tt|stlmap>|#module-stlmap>,
@@ -885,6 +969,8 @@
   E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -894,9 +980,11 @@
     \<gtr\> members (sm,"c",smend);
 
     ["c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
-  <subsubsection|The stlhmap Module<label|the-stlhmap-module>>
+  <subsubsection|The stlhmap Module><label|the-stlhmap-module>
 
   If all you want is fast insertion and lookup, you don't care about the
   order of the elements stored in the container, and you do not want to use
@@ -910,7 +998,11 @@
   import it by adding the following <verbatim|using> statement to your code.
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlhmap;
+
+    \;
   </verbatim>
 
   The <hlink|<with|font-family|tt|stlhmap>|#module-stlhmap> module defines
@@ -926,7 +1018,7 @@
   with keys cannot be accessed or modified. I.e., a stlhset is a specialized
   kind of stlhmap.
 
-  <subsubsection|The stlmap Module<label|the-stlmap-module>>
+  <subsubsection|The stlmap Module><label|the-stlmap-module>
 
   The <hlink|<with|font-family|tt|stlmap>|#module-stlmap> module provides you
   with stlmaps and stlsets and the functions that operate on them. Consider
@@ -940,7 +1032,11 @@
   your code.
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlmap;
+
+    \;
   </verbatim>
 
   Importing the stlmap module introduces types to describe stlmap and stlset,
@@ -965,7 +1061,7 @@
   of stlmap. Accordingly, it is not necessary, for example, to define a
   separate type for iterators on stlsets as opposed to iterators on stlmaps.
 
-  <subsubsection|The stlmmap Module<label|the-stlmmap-module>>
+  <subsubsection|The stlmmap Module><label|the-stlmmap-module>
 
   If you need a multi-keyed container, the
   <hlink|<with|font-family|tt|stlmmap>|#module-stlmmap> module, which
@@ -979,7 +1075,11 @@
   module by adding the following using statement to your code.
 
   <\verbatim>
+    \;
+
     \<gtr\> using stlmmap;
+
+    \;
   </verbatim>
 
   Importing the stlmmap module introduces types to describe stlmmap and
@@ -1005,7 +1105,7 @@
   separate type for iterators on stlmsets as opposed to iterators on
   stlmmaps.
 
-  <subsection|Container Operations<label|container-operations>>
+  <subsection|Container Operations><label|container-operations>
 
   Each of the six associative containers supported by pure-stlmap has its own
   set of unique characteristics. Because of this the description of functions
@@ -1014,7 +1114,7 @@
   pure-stllib-cheatsheet.pdf which can be found in the pure-stlib/doc
   directory.
 
-  <subsubsection|Container Construction<label|container-construction>>
+  <subsubsection|Container Construction><label|container-construction>
 
   New empty ordered containers (stlmap, stlset, stlmmap and stlmset) can be
   constructed using optional parameters that allow you to specify customized
@@ -1097,7 +1197,7 @@
     <hlink|<with|font-family|tt|stl::smend>|#stl::smend/stlmap>).
   </description>
 
-  <subsubsection|Information<label|information>>
+  <subsubsection|Information><label|information>
 
   This group of functions allows you make inquiries regarding the number of
   elments in a container, the number of instances of a given key held by a
@@ -1139,9 +1239,11 @@
 
   Here are two examples using the <hlink|<with|font-family|tt|stl::bounds>|#stl::bounds/stlmap>
   function. Notice that bounds returns <hlink|<with|font-family|tt|stl::smbeg>|#stl::smbeg/stlmap>
-  instead of ``a'' in the first example.
+  instead of \Pa\Q in the first example.
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -1157,6 +1259,8 @@
     \<gtr\> bounds (sm,"a1","e");
 
     "b","e"
+
+    \;
   </verbatim>
 
   <\description>
@@ -1184,7 +1288,7 @@
     <verbatim|``hacon> where <verbatim|hacon> is a stlhmap or stlhset.
   </description>
 
-  <subsubsection|Modification<label|modification>>
+  <subsubsection|Modification><label|modification>
 
   You can insert new items or, for the maps (stlmap, stlmmap and stlhmap),
   replace values associated with keys using the
@@ -1199,6 +1303,8 @@
   already inserted. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> members ss;
 
     ["a","b","c","d","e"]
@@ -1208,6 +1314,8 @@
     \<gtr\> catch id $ insert ss 1; \ \ // e.g., 1\<less\>"a" is not defined
 
     bad_argument
+
+    \;
   </verbatim>
 
   Currently there is no similar restriction for stlhmaps and stlhsets because
@@ -1216,6 +1324,8 @@
   function that can compare any two objects.
 
   <\verbatim>
+    \;
+
     \<gtr\> members shs;
 
     ["c","d","e","a","b"]
@@ -1229,6 +1339,8 @@
     \<gtr\> members shs;
 
     ["c",1,"d","e","a","b"]
+
+    \;
   </verbatim>
 
   Elements can be inserted into a pure-stlmap container individually or en
@@ -1240,7 +1352,7 @@
 
   <\description>
     <item*|insert acon src<label|insert/stlmap>>Attempts to copy elements
-    from <verbatim|src> a valid ``insert source'' into <verbatim|acon> which
+    from <verbatim|src> a valid \Pinsert source\Q into <verbatim|acon> which
     can be any pure-stlmap container. A valid insert source is (a) a single
     element, (b) a list, vector, stlvec of elements or (c), a range over an
     associative container of the same type as <verbatim|acon>. If
@@ -1276,11 +1388,11 @@
     <verbatim|map> this function throws <hlink|<with|font-family|tt|out_of_bounds>|purelib.tm#out-of-bounds>.
     If <verbatim|map> is a stlmap or stlhmap and (oldkey=\<gtr\>oldval) is an
     element of <verbatim|map>, where oldkey is equivalent to <verbatim|key>,
-    change the element to (oldkey=\<gtr\>``x``). If <verbatim|map> is a
+    change the element to (oldkey=\<gtr\>\Px\P). If <verbatim|map> is a
     stlmmap and <verbatim|key> is stored in <verbatim|map>, change the values
     of elements with key eqivalent to <verbatim|key>, one by one, to the
     elements of <verbatim|x>. Add or delete elements as necessary so that,
-    when the smoke clears, the values of <verbatim|map>!``key`` are copies of
+    when the smoke clears, the values of <verbatim|map>!\Pkey\P are copies of
     the elements of <verbatim|x>. In all cases, if <verbatim|key> is stored
     in <verbatim|map> returns <verbatim|x>.
   </description>
@@ -1288,6 +1400,8 @@
   Here are some examples using <hlink|<with|font-family|tt|replace>|#replace/stlmap>.
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -1327,6 +1441,8 @@
     \<gtr\> members smm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   <\description>
@@ -1338,13 +1454,15 @@
     <verbatim|where> <verbatim|dflt> <verbatim|is> <verbatim|``map>`s dflt
     value, (b) <hlink|<with|font-family|tt|replace>|#replace/stlmap>
     <verbatim|map> <verbatim|k> nv when nv = <verbatim|fun> <verbatim|v>
-    (<verbatim|map>!``k``) end. Returns <verbatim|map>.
+    (<verbatim|map>!\Pk\P) end. Returns <verbatim|map>.
   </description>
 
   Here is an example using <hlink|<with|font-family|tt|replace_with>|#replace-with/stlmap>
   in which a stlmmap is converted to a stlmap.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm1 = emptystlmap;
 
     \;
@@ -1364,11 +1482,15 @@
     \<gtr\> members sm1;
 
     ["a"=\<gtr\>[1],"b"=\<gtr\>[2],"c"=\<gtr\>[32,31],"d"=\<gtr\>[4],"e"=\<gtr\>[5]]
+
+    \;
   </verbatim>
 
   Here is another example in which items are counted.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm1 = mkstlmap ( (\<less\>), 0 );
 
     \;
@@ -1388,6 +1510,8 @@
     \<gtr\> members sm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>1,"c"=\<gtr\>2,"d"=\<gtr\>1]
+
+    \;
   </verbatim>
 
   You can remove all the elements in a container, remove all the elements
@@ -1403,7 +1527,7 @@
     <verbatim|acon> which can be any container provided by pure-stlmap. The
     second erases all elements in <verbatim|acon> with key equivalent to
     <verbatim|k>. The third erases the elements in the range
-    (<verbatim|acon>,``k1``,``k2``). The third form only applys to the
+    (<verbatim|acon>,\Pk1\P,\Pk2\P). The third form only applys to the
     ordered containers (stlmap, stlmmap, stlset and stlmset), not stlhmap or
     stlhset (because ranges are not defined for stlhmaps or stlhsets).
     Returns the number of elements removed from the container.
@@ -1412,6 +1536,8 @@
   Here are some examples using <hlink|<with|font-family|tt|erase>|#erase/stlmap>.
 
   <\verbatim>
+    \;
+
     \<gtr\> members smm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>31,"c"=\<gtr\>32,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -1445,6 +1571,8 @@
     \<gtr\> members smm;;
 
     ["a"=\<gtr\>1,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   <\description>
@@ -1454,7 +1582,7 @@
     (E.g., both are stlmaps or both are stlmsets).
   </description>
 
-  <subsubsection|Accessing Elements<label|accessing-elements>>
+  <subsubsection|Accessing Elements><label|accessing-elements>
 
   You can test if a key is stored in a container and access the value
   associated with a key using the familiar
@@ -1480,6 +1608,8 @@
   E.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> sm!"c";
 
     3
@@ -1510,6 +1640,8 @@
     if key is not stored
 
     []
+
+    \;
   </verbatim>
 
   You can access a sequence of elements in an ordered container (stlmap,
@@ -1540,9 +1672,13 @@
   and key. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> bump_wc sm w = if member sm w then replace sm w (sm!w + 1)
 
     \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else insert sm (w=\<gtr\>1);
+
+    \;
   </verbatim>
 
   In general, this function would require two lookups to add a new word and
@@ -1561,10 +1697,14 @@
   lookups.
 
   <\verbatim>
+    \;
+
     \<gtr\> if member sm "a" then sm!"a" else insert sm ("a"=\<gtr\>10);
+
+    \;
   </verbatim>
 
-  Here each ``a'' is a distinct Pure object. The two ``a''s satisfy (==) and
+  Here each \Pa\Q is a distinct Pure object. The two \Pa\Qs satisfy (==) and
   even (===) but they are not the same internally and the caching mechanism
   will not help.
 
@@ -1576,6 +1716,8 @@
   function that shows caching in action.
 
   <\verbatim>
+    \;
+
     \<gtr\> let a_key = "a";
 
     \;
@@ -1642,6 +1784,8 @@
     \<gtr\> members sm;
 
     ["a"=\<gtr\>10,"b"=\<gtr\>2,"c"=\<gtr\>30,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   These examples show that caching can be effective wnen visiting elements of
@@ -1671,6 +1815,8 @@
   <hlink|<with|font-family|tt|vals>|#vals/stlmap> functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> members shm; \ \ // must do all of shm elements because shm is a
     stlhmap
 
@@ -1688,6 +1834,8 @@
     \<gtr\> vals (sm,"b","e");
 
     [2,3,4]
+
+    \;
   </verbatim>
 
   <\description>
@@ -1711,6 +1859,8 @@
   Here is an example using the stream function on a stlmmap.
 
   <\verbatim>
+    \;
+
     \<gtr\> members smm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>31,"c"=\<gtr\>32,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -1726,6 +1876,8 @@
     \<gtr\> list ans;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>31]
+
+    \;
   </verbatim>
 
   <subsubsection|Functional Programming>
@@ -1758,6 +1910,8 @@
   Here are some examples.
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -1780,6 +1934,8 @@
     \<gtr\> filter (\\(k=\<gtr\>v)-\<gtr\>v mod 2) sm;
 
     ["a"=\<gtr\>1,"c"=\<gtr\>3,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   <\description>
@@ -1803,6 +1959,8 @@
   comprehensions over pure-stlmap's containers. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> [ k + str v \| (k=\<gtr\>v) = (sm,"b","e")];
 
     ["b2","c3","d4"]
@@ -1818,12 +1976,16 @@
     \<gtr\> { {k;v} \| \ (k=\<gtr\>v) = sm; v mod 2};
 
     {"a","c","e";1,3,5}
+
+    \;
   </verbatim>
 
   The functional programming operations work directly on the underlying data
   structure.
 
   <\verbatim>
+    \;
+
     \<gtr\> let ints = 0..10000;
 
     \;
@@ -1835,9 +1997,11 @@
     [99]
 
     0s, 6 cells
+
+    \;
   </verbatim>
 
-  <subsubsection|Comparison<label|comparison>>
+  <subsubsection|Comparison><label|comparison>
 
   Two associative containers of the same type are considered to be equal if
   they contain the same number of elements and if each pair of their
@@ -1862,6 +2026,8 @@
   You need to be careful when using these operators. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> members ss;
 
     ["a","b","c","d","e"]
@@ -1881,6 +2047,8 @@
     \<gtr\> (xx,"a","c") == (ss,"a","c"); \ // oops!
 
     0
+
+    \;
   </verbatim>
 
   The second comparison was intended to compare identical ranges and return
@@ -1893,9 +2061,13 @@
   function.
 
   <\verbatim>
+    \;
+
     \<gtr\> map_equal (xx,"a","c") (ss,"a","c");
 
     1
+
+    \;
   </verbatim>
 
   The other comparison operators <verbatim|(\<)>, <verbatim|(\<=)>,
@@ -1921,7 +2093,7 @@
 
     <item*|rng1 \<gtr\>= rng2<label|\<gtr\>=/stlmap>>The these three
     operators are the same as <verbatim|rng2> \<less\> <verbatim|rng1>,
-    <math|\<sim\>>(<verbatim|rng1>\<gtr\>``rng2`) and
+    <math|\<sim\>>(<verbatim|rng1>\<gtr\>\Prng2`) and
     <math|\<sim\>>(<verbatim|rng1``\<``rng2>) respectively.
   </description>
 
@@ -1930,6 +2102,8 @@
   not necessarily ordered by values.
 
   <\verbatim>
+    \;
+
     \<gtr\> let smm2 = stlmmap ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>32,"c"=\<gtr\>31,"d"=\<gtr\>4];
 
     \;
@@ -1949,6 +2123,8 @@
     \<gtr\> smm == smm2; // probably not what you want
 
     0
+
+    \;
   </verbatim>
 
   These operations do not make much sense for a stlmmap unless elements with
@@ -1958,7 +2134,7 @@
   function may or may not preserve the order of insertion of elements with
   equivalent keys (C++11 does preserve the order).
 
-  <subsubsection|Set Algorithms<label|set-algorithms>>
+  <subsubsection|Set Algorithms><label|set-algorithms>
 
   pure-stlmap provides wrappers for the STL set algorithms that apply to
   ranges defined on the four ordered associative containers (stlmap, stlset,
@@ -2005,6 +2181,8 @@
   operations to a pair of stlmaps or stlmmaps. E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> let smm1 = stlmmap ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>31,"c"=\<gtr\>32];
 
     \<gtr\> let smm2 = stlmmap ["c"=\<gtr\>32,"c"=\<gtr\>32,"c"=\<gtr\>33,"d"=\<gtr\>4,"e"=\<gtr\>5];
@@ -2039,9 +2217,11 @@
     \<gtr\> members $ map_intersection sm1 sm2; // "c"=\<gtr\>31 from sm1
 
     ["c"=\<gtr\>31]
+
+    \;
   </verbatim>
 
-  <subsubsection|Direct C Calls<label|direct-c-calls>>
+  <subsubsection|Direct C Calls><label|direct-c-calls>
 
   It is common to encounter code that (a) tests if a key is stored in a
   container using <hlink|<with|font-family|tt|member>|#member/stlmap> and (b)
@@ -2104,7 +2284,7 @@
 
   <subsection|Iterators>
 
-  This section provides a quick overview of pure-stlmap's ``iterator-based''
+  This section provides a quick overview of pure-stlmap's \Piterator-based\Q
   interface.
 
   <subsubsection|Concepts>
@@ -2113,6 +2293,8 @@
   points to.
 
   <\verbatim>
+    \;
+
     \<gtr\> let sm1 = stlmap sm; members sm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5];
@@ -2145,6 +2327,8 @@
     \<gtr\> members sm1;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>20,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   Please note that you can never modify an element's key, only its value. If
@@ -2152,6 +2336,8 @@
   insert a new element.
 
   <\verbatim>
+    \;
+
     \<gtr\> erase (sm1,i) $$ insert sm1 ("b1"=\<gtr\>21);
 
     1
@@ -2161,14 +2347,18 @@
     \<gtr\> members sm1;
 
     ["a"=\<gtr\>1,"b1"=\<gtr\>21,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
+
+    \;
   </verbatim>
 
   Given two iterators, i and j, pointing into a ordered container oc, the
-  range (i,j), denotes oc's elements starting with ``oc[i]'', the element
+  range (i,j), denotes oc's elements starting with \Poc[i]\Q, the element
   pointed to by i, up to but not including oc[j]. In pure-stlmap, this range
   is denoted by the tuple (i,j).
 
   <\verbatim>
+    \;
+
     \<gtr\> members sm;
 
     ["a"=\<gtr\>1,"b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4,"e"=\<gtr\>5]
@@ -2187,12 +2377,16 @@
     range
 
     ["b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4]
+
+    \;
   </verbatim>
 
   Perhaps it is worth mentioning that functions that act on ranges do not
   care if the range is specified by a pair of iterators or by keys.
 
   <\verbatim>
+    \;
+
     \<gtr\> members ss;
 
     ["a","b","c","d","e"]
@@ -2212,9 +2406,11 @@
     \<gtr\> map (+21) (i,j);
 
     ["x","y","z"]
+
+    \;
   </verbatim>
 
-  <subsubsection|Exceptions<label|exceptions>>
+  <subsubsection|Exceptions><label|exceptions>
 
   In pure-stlmap functions that accept iterators throw a
   <verbatim|bad_argument> exception if called with an invalid iterator. An
@@ -2225,6 +2421,8 @@
   containers. Here are some examples of iterator errors.
 
   <\verbatim>
+    \;
+
     \<gtr\> let i,j = find sm "a", find sm "d";
 
     \;
@@ -2269,11 +2467,13 @@
     \<gtr\> catch id $ get_elm i; // bad iterator exception
 
     bad_argument
+
+    \;
   </verbatim>
 
-  <subsubsection|Functions<label|functions>>
+  <subsubsection|Functions><label|functions>
 
-  In this section ``acon'' always denotes one of the containers that supports
+  In this section \Pacon\Q always denotes one of the containers that supports
   interators (stlmap, stlset, stlmmap and stlmset).
 
   <\description>
@@ -2351,6 +2551,8 @@
   E.g.,
 
   <\verbatim>
+    \;
+
     \<gtr\> let ok, smx, f, l = stl::range_info (sm1,"b","e");
 
     \;
@@ -2358,6 +2560,8 @@
     \<gtr\> ok, smx === sm1, stl::members (f,l);
 
     1,1,["b"=\<gtr\>2,"c"=\<gtr\>3,"d"=\<gtr\>4]
+
+    \;
   </verbatim>
 
   <\description>
@@ -2430,6 +2634,8 @@
   Here are some examples using iterators.
 
   <\verbatim>
+    \;
+
     \<gtr\> let b,e = begin smm, pastend smm;
 
     \;
@@ -2507,21 +2713,23 @@
     \<gtr\> inc j $$ endp j;
 
     1
+
+    \;
   </verbatim>
 
-  <subsection|Backward Compatibilty<label|backward-compatibilty>>
+  <subsection|Backward Compatibilty><label|backward-compatibilty>
 
   This section documents changes in pure-stlmap.
 
-  <subsubsection|pure-stlmap-0.2<label|pure-stlmap-0-2>>
+  <subsubsection|pure-stlmap-0.2><label|pure-stlmap-0-2>
 
   Optimized common predicates, such as (\<less\>) and (\<gtr\>)
 
-  <subsubsection|pure-stlmap-0.3<label|pure-stlmap-0-3>>
+  <subsubsection|pure-stlmap-0.3><label|pure-stlmap-0-3>
 
   Fixed (\<gtr\>) comparisons on plain old data.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-stlmap-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-stlmap-toc>
 
   <\itemize>
     <item><hlink|pure-stlmap|#>
@@ -2644,6 +2852,6 @@
   <hlink|previous|pure-stllib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

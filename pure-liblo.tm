@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,13 +8,13 @@
   <hlink|previous|pure-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-liblo<label|module-lo>>
+  <section*|pure-liblo><label|module-lo><label|module-osc><label|module-lo>
 
-  <label|module-osc>Version 0.9, October 28, 2014
+  Version 0.9, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009 by Albert Graef.
 
@@ -31,7 +31,7 @@
   You should have received a copy of the GNU Lesser General Public License
   along with this program. If not, see \<less\><hlink|http://www.gnu.org/licenses/|http://www.gnu.org/licenses/>\<gtr\>.
 
-  <subsection|Description<label|description>>
+  <subsection|Description><label|description>
 
   This is a quick and dirty Pure wrapper for the
   <hlink|liblo|http://liblo.sourceforge.net/> library by Steve Harris and
@@ -82,7 +82,7 @@
     illustrates how to use these modules.
   </itemize>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-liblo-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-liblo-toc>
 
   <\itemize>
     <item><hlink|pure-liblo|#>
@@ -107,6 +107,6 @@
   <hlink|previous|pure-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

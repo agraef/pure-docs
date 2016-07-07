@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-csv.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-fastcgi: FastCGI module for Pure<label|module-fastcgi>>
+  <section*|pure-fastcgi: FastCGI module for Pure><label|module-fastcgi>
 
-  Version 0.6, October 28, 2014
+  Version 0.6, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -22,13 +22,13 @@
   and enable caching techniques. Most ordinary CGI scripts can be converted
   to use FastCGI with minimal changes.
 
-  <subsection|Copying<label|copying>>
+  <subsection|Copying><label|copying>
 
   Copyright (c) 2009 by Albert Graef. pure-fastcgi is distributed under a
   3-clause BSD-style license, please see the included COPYING file for
   details.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Besides Pure, you'll need to have the <hlink|FastCGI|http://www.fastcgi.com>
   library installed to compile this module. Also, to run FastCGI scripts,
@@ -46,7 +46,7 @@
   up some platform-specific things accordingly. If this doesn't work for your
   system then you'll have to edit the Makefile accordingly.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   pure-fastcgi provides the <verbatim|accept> function with which you tell
   the FastCGI server that your script is ready to accept another request.
@@ -61,6 +61,8 @@
   loop to process requests as follows:
 
   <\verbatim>
+    \;
+
     #!/usr/local/bin/pure -x
 
     \;
@@ -96,9 +98,11 @@
     \;
 
     main 0;
+
+    \;
   </verbatim>
 
-  (You might have to adjust the ``shebang'' in the first line above, so that
+  (You might have to adjust the \Pshebang\Q in the first line above, so that
   the shell finds the Pure interpreter. Also, remember to make the script
   executable. If you're worried about startup times, or if your operating
   system doesn't support shebangs, then you can also use the Pure interpreter
@@ -134,6 +138,8 @@
   will set up a directory for FastCGI scripts:
 
   <\verbatim>
+    \;
+
     ScriptAlias /fastcgi-bin/ "/srv/www/fastcgi-bin/"
 
     \<less\>Location /fastcgi-bin/\<gtr\>
@@ -147,6 +153,8 @@
     \ \ \ \ Allow from all
 
     \<less\>/Location\<gtr\>
+
+    \;
   </verbatim>
 
   (Replace <verbatim|fastcgi-script> with <verbatim|fcgid-script> if you're
@@ -155,12 +163,14 @@
   Put this entry into http.conf or a similar file provided by your Apache
   installation (usually under /etc/apache2), and restart Apache. After that
   you can just throw your scripts into the <verbatim|fastcgi-bin> directory
-  to have them executed via an URL like <href|http://localhost/fastcgi-bin/myscript>.
+  to have them executed via an URL like <slink|http://localhost/fastcgi-bin/myscript>.
 
   You can also set up a handler for the <verbatim|.pure> filename extension
   as follows:
 
   <\verbatim>
+    \;
+
     \<less\>IfModule mod_fastcgi.c\<gtr\>
 
     \<less\>FilesMatch "\\.pure$"\<gtr\>
@@ -172,6 +182,8 @@
     \<less\>/FilesMatch\<gtr\>
 
     \<less\>/IfModule\<gtr\>
+
+    \;
   </verbatim>
 
   (Again, you'll have to adjust the <verbatim|IfModule> statement and replace
@@ -179,7 +191,7 @@
   <verbatim|mod_fcgid>.) After that you should be able to execute scripts
   with the proper extension anywhere under your server's document root.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-fastcgi-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-fastcgi-toc>
 
   <\itemize>
     <item><hlink|pure-fastcgi: FastCGI module for Pure|#>
@@ -208,6 +220,6 @@
   <hlink|previous|pure-csv.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

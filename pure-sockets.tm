@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-readline.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|pure-sockets: Pure Sockets Interface<label|module-sockets>>
+  <section*|pure-sockets: Pure Sockets Interface><label|module-sockets>
 
-  Version 0.7, October 28, 2014
+  Version 0.7, July 07, 2016
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -19,7 +19,7 @@
   datagram based protocols and use these to transmit messages. Unix-style
   file sockets are also available if the host system supports them.
 
-  <subsection|Installation<label|installation>>
+  <subsection|Installation><label|installation>
 
   Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-sockets-0.7.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-sockets-0.7.tar.gz>.
 
@@ -38,13 +38,17 @@
   CFLAGS variable, e.g.: <verbatim|make> <verbatim|CFLAGS=-O3>. Again, please
   see the Makefile for details.
 
-  <subsection|Usage<label|usage>>
+  <subsection|Usage><label|usage>
 
   To use the operations of this module, put the following in your Pure
   script:
 
   <\verbatim>
+    \;
+
     using sockets;
+
+    \;
   </verbatim>
 
   With the <hlink|<with|font-family|tt|sockets>|#module-sockets> module
@@ -66,7 +70,7 @@
   subdirectory for some examples.
 
   <subsubsection|Creating and Inspecting Socket
-  Addresses<label|creating-and-inspecting-socket-addresses>>
+  Addresses><label|creating-and-inspecting-socket-addresses>
 
   These functions are Pure-specific. The created socket addresses are
   malloc'ed and free themselves automatically when garbage-collected.
@@ -144,7 +148,7 @@
     original address.
   </description>
 
-  <subsubsection|Creating and Closing Sockets<label|creating-and-closing-sockets>>
+  <subsubsection|Creating and Closing Sockets><label|creating-and-closing-sockets>
 
   <\description>
     <item*|socket domain type protocol<label|socket>>Creates a socket for the
@@ -177,7 +181,7 @@
     compatibility. On POSIX systems this is just <verbatim|close>.
   </description>
 
-  <subsubsection|Establishing Connections<label|establishing-connections>>
+  <subsubsection|Establishing Connections><label|establishing-connections>
 
   <\description>
     <item*|accept sockfd addr<label|accept>>
@@ -195,7 +199,7 @@
     <item*|listen sockfd backlog<label|listen>>
   </description>
 
-  <subsubsection|Socket I/O<label|socket-i-o>>
+  <subsubsection|Socket I/O><label|socket-i-o>
 
   <\description>
     <item*|recv fd buf len flags<label|recv>>
@@ -222,7 +226,7 @@
   <hlink|<with|font-family|tt|system>|purelib.tm#module-system> module
   instead.
 
-  <subsubsection|Socket Information<label|socket-information>>
+  <subsubsection|Socket Information><label|socket-information>
 
   <\description>
     <item*|getsockname fd addr<label|getsockname>>
@@ -249,7 +253,7 @@
   actually an <verbatim|int*>, so you can pass a Pure int vector (with
   <verbatim|len> <verbatim|=> <verbatim|SIZEOF_INT>) for that parameter.
 
-  <subsection|Example<label|example>>
+  <subsection|Example><label|example>
 
   Here is a fairly minimal example using Unix stream sockets. To keep things
   simple, this does no error checking whatsoever and just keeps sending
@@ -257,6 +261,8 @@
   examples directory in the sources.
 
   <\verbatim>
+    \;
+
     using sockets, system;
 
     \;
@@ -342,6 +348,8 @@
     \ \ end;
 
     end;
+
+    \;
   </verbatim>
 
   To use this example, run the <verbatim|server> function in one instance of
@@ -356,6 +364,8 @@
   look like:
 
   <\verbatim>
+    \;
+
     \<gtr\> client;
 
     client\<gtr\> 1+1
@@ -383,13 +393,15 @@
     server is exiting
 
     ()
+
+    \;
   </verbatim>
 
   Note that while the server processes requests sequentially, it accepts
   connections from a new client after each request, so that you can run as
   many clients as you like.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-sockets-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-sockets-toc>
 
   <\itemize>
     <item><hlink|pure-sockets: Pure Sockets Interface|#>
@@ -430,6 +442,6 @@
   <hlink|previous|pure-readline.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -7,9 +7,9 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \| <hlink|Pure
   Language and Library Documentation|#>
 
-  <section*|Pure Language and Library Documentation<label|pure-language-and-library-documentation>>
+  <section*|Pure Language and Library Documentation><label|pure-language-and-library-documentation>
 
-  Last updated: October 28, 2014 (v0.64)
+  Last updated: July 07, 2016 (v0.64)
 
   This manual collects all of Pure's online documentation: <hlink|<em|The
   Pure Manual>|pure.tm> which covers the Pure language and the operation of
@@ -71,7 +71,7 @@
   From the Pure website you can also download a recent version of this manual
   in <hlink|pdf format|http://puredocs.bitbucket.org/puredoc.pdf>.
 
-  <subsection|Language and Standard Library<label|language-and-standard-library>>
+  <subsection|Language and Standard Library><label|language-and-standard-library>
 
   This part of the manual documents the Pure language and interpreter, as
   well as the standard library distributed with the interpreter.
@@ -83,7 +83,7 @@
   </itemize>
 
   <subsection|Basic Support Utilities and
-  Libraries<label|basic-support-utilities-and-libraries>>
+  Libraries><label|basic-support-utilities-and-libraries>
 
   This part covers general programming tools and libraries which are useful
   in many Pure programs but don't come bundled with the interpreter.
@@ -112,7 +112,7 @@
     <item><hlink|pure-stlvec|pure-stlvec.tm>
   </itemize>
 
-  <subsection|Scientific Computing<label|scientific-computing>>
+  <subsection|Scientific Computing><label|scientific-computing>
 
   Interfaces to various 3rd party mathematical software.
 
@@ -138,7 +138,7 @@
     Interface|pure-reduce.tm>
   </itemize>
 
-  <subsection|Database and Web Programming<label|database-and-web-programming>>
+  <subsection|Database and Web Programming><label|database-and-web-programming>
 
   Modules for dealing with data in CSV and XML format, interfacing to SQL
   databases, and running Pure scripts in a web server using the FastCGI
@@ -158,7 +158,7 @@
     <item><hlink|Pure-XML - XML/XSLT interface|pure-xml.tm>
   </itemize>
 
-  <subsection|GUI and Graphics<label|gui-and-graphics>>
+  <subsection|GUI and Graphics><label|gui-and-graphics>
 
   Various interfaces to 3rd party GUI and graphics libraries.
 
@@ -172,7 +172,7 @@
     <item><hlink|pure-tk|pure-tk.tm>
   </itemize>
 
-  <subsection|Multimedia<label|multimedia>>
+  <subsection|Multimedia><label|multimedia>
 
   A collection of scripts and modules useful for programming media
   applications. Currently, this covers digital audio, MIDI and OSC.
@@ -200,7 +200,7 @@
     <item><hlink|pure-midi|pure-midi.tm>
   </itemize>
 
-  <subsection|Appendix: Installation and Usage<label|appendix-installation-and-usage>>
+  <subsection|Appendix: Installation and Usage><label|appendix-installation-and-usage>
 
   General information about installing and using Pure.
 
@@ -214,7 +214,7 @@
     <item><hlink|Reporting Bugs|bugs.tm>
   </itemize>
 
-  <subsection|Index<label|index>>
+  <subsection|Index><label|index>
 
   <\itemize>
     <item><hlink|<em|Module Index>|pure-modindex.tm>
@@ -222,7 +222,7 @@
     <item><hlink|<em|Index>|genindex.tm>
   </itemize>
 
-  <subsubsection*|<hlink|Table Of Contents|#><label|index-toc>>
+  <subsubsection*|<hlink|Table Of Contents|#>><label|index-toc>
 
   <\itemize>
     <item><hlink|Pure Language and Library Documentation|#>
@@ -256,6 +256,6 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \| <hlink|Pure
   Language and Library Documentation|#>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Nov
-  25, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

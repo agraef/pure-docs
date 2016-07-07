@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -9,9 +9,9 @@
   Documentation|index.tm>
 
   <section*|pure-gsl - GNU Scientific Library Interface for
-  Pure<label|module-gsl>>
+  Pure><label|module-gsl>
 
-  Version 0.12, October 28, 2014
+  Version 0.12, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -69,7 +69,11 @@
   After installation, you can import the entire GSL interface as follows:
 
   <\verbatim>
+    \;
+
     using gsl;
+
+    \;
   </verbatim>
 
   For convenience, the different parts of the GSL interface are also
@@ -77,16 +81,24 @@
   operations:
 
   <\verbatim>
+    \;
+
     using gsl::matrix;
+
+    \;
   </verbatim>
 
   In either case, the global <verbatim|gsl_version> variable reports the
   installed GSL version:
 
   <\verbatim>
+    \;
+
     \<gtr\> show gsl_version
 
     let gsl_version = "1.11";
+
+    \;
   </verbatim>
 
   (This variable used to be defined by the Pure runtime but has been moved
@@ -100,6 +112,8 @@
   access to the operations in a given namespace, e.g.:
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::poly;
 
     \<gtr\> using namespace gsl::poly;
@@ -107,6 +121,8 @@
     \<gtr\> eval {1,2,3} 2;
 
     17
+
+    \;
   </verbatim>
 
   See the <verbatim|examples> folder in the sources for some examples.
@@ -114,7 +130,7 @@
   If you'd like to contribute, please mail the authors or contact us at
   <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>.
 
-  <subsection|Polynomials<label|module-gsl::poly>>
+  <subsection|Polynomials><label|module-gsl::poly>
 
   This module provides Pure wrappers for the GSL polynomial routines. For
   detail about the routines, see Chapter 6 of the GSL manual,
@@ -123,7 +139,7 @@
 
   Polynomials are represented by vectors (one row matrices).
 
-  <subsubsection|Routines<label|routines>>
+  <subsubsection|Routines><label|routines>
 
   <\description>
     <item*|gsl::poly::eval c::matrix x<label|gsl::poly::eval>>implements
@@ -192,11 +208,13 @@
     handled automatically.
   </description>
 
-  <subsubsection|Examples<label|examples>>
+  <subsubsection|Examples><label|examples>
 
   Usage of each library routine is illustrated below.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::poly;
 
     \<gtr\> using namespace gsl::poly;
@@ -270,9 +288,11 @@
     \<gtr\> complex_solve {6,1,-7,-1,1};
 
     [1.0+:0.0,-1.0+:0.0,-2.0+:0.0,3.0+:0.0]
+
+    \;
   </verbatim>
 
-  <subsection|Special Functions<label|module-gsl::sf>>
+  <subsection|Special Functions><label|module-gsl::sf>
 
   This module is loaded via the command <verbatim|using> <verbatim|gsl::sf>
   and provides Pure wrappers for the GSL Special Functions. For details, see
@@ -284,11 +304,15 @@
   <verbatim|gsl::sf>. Modes for the functions must be one of:
 
   <\verbatim>
+    \;
+
     GSL_PREC_DOUBLE
 
     GSL_PREC_SINGLE
 
     GSL_PREC_APPROX
+
+    \;
   </verbatim>
 
   Results for some of the functions are returned as a Pure list instead of
@@ -305,7 +329,7 @@
     </itemize>
   </quote-env>
 
-  <subsubsection|Airy Functions<label|airy-functions>>
+  <subsubsection|Airy Functions><label|airy-functions><label|airy-functions>
 
   <\description>
     <item*|gsl::sf::airy_Ai x<label|gsl::sf::airy-Ai>>
@@ -482,6 +506,8 @@
   The following illustrate the Airy functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::sf;
 
     \<gtr\> using namespace gsl::sf;
@@ -645,9 +671,11 @@
     \<gtr\> airy_zero_Bi_deriv_e 3;
 
     [-5.5123957296636,1.22399773198358e-15]
+
+    \;
   </verbatim>
 
-  <subsubsection|Bessel Functions<label|bessel-functions>>
+  <subsubsection|Bessel Functions><label|bessel-functions>
 
   <\description>
     <item*|gsl::sf::bessel_J0 x<label|gsl::sf::bessel-J0>>implements
@@ -1176,6 +1204,8 @@
   The following illustrate the Bessel functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::sf;
 
     \<gtr\> using namespace gsl::sf;
@@ -1569,9 +1599,11 @@
     \<gtr\> bessel_zero_Jnu_e 1.2 3;
 
     [10.4676986203553,2.09353972407105e-14]86203553
+
+    \;
   </verbatim>
 
-  <subsubsection|Clausen Functions<label|clausen-functions>>
+  <subsubsection|Clausen Functions><label|clausen-functions>
 
   <\description>
     <item*|gsl::sf::clausen x<label|gsl::sf::clausen>>implements
@@ -1588,6 +1620,8 @@
   The following illustrate the Clausen functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::sf;
 
     \<gtr\> using namespace gsl::sf;
@@ -1599,9 +1633,11 @@
     \<gtr\> clausen_e 4.5;
 
     [-0.831839220823219,8.60688668835964e-16]
+
+    \;
   </verbatim>
 
-  <subsubsection|Colomb Functions<label|colomb-functions>>
+  <subsubsection|Colomb Functions><label|colomb-functions>
 
   The results of the Coulomb wave functions are returned as a list whose
   elements are ordered corresponding to the argument order of the
@@ -1674,6 +1710,8 @@
   The following illustrate the Coulomb functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::sf;
 
     \<gtr\> using namespace gsl::sf;
@@ -1723,9 +1761,11 @@
     [0.0159218263353144,0.0251746178646226,0.00890057150292734,
 
     \ 0.00172996014234001,0.000235267570111599]
+
+    \;
   </verbatim>
 
-  <subsubsection|Coupling Coefficients<label|coupling-coefficients>>
+  <subsubsection|Coupling Coefficients><label|coupling-coefficients>
 
   <\description>
     <item*|gsl::sf::coupling_3j m::matrix<label|gsl::sf::coupling-3j>>implements
@@ -1768,6 +1808,8 @@
   The following illustrate the coupling coefficient functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::sf;
 
     \<gtr\> using namespace gsl::sf;
@@ -1795,9 +1837,11 @@
     \<gtr\> coupling_9j_e {1,2,3;2,1,2;1,1,1};
 
     [-0.0962250448649376,4.84948508304183e-16]
+
+    \;
   </verbatim>
 
-  <subsubsection|Dawson Function<label|dawson-function>>
+  <subsubsection|Dawson Function><label|dawson-function>
 
   <\description>
     <item*|gsl::sf::dawson x<label|gsl::sf::dawson>>implements
@@ -1814,6 +1858,8 @@
   The following illustrate the dawson functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> dawson 3;/**-
 
     0.178271030610558
@@ -1821,9 +1867,11 @@
     \<gtr\> dawson_e 3;
 
     [0.178271030610558,8.9920386788099e-16]
+
+    \;
   </verbatim>
 
-  <subsubsection|Debye Functions<label|debye-functions>>
+  <subsubsection|Debye Functions><label|debye-functions>
 
   <\description>
     <item*|gsl::sf::debye_1 x<label|gsl::sf::debye-1>>implements
@@ -1890,6 +1938,8 @@
   The following illustrate the debye functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> debye_1 0.4;
 
     0.904437352623294
@@ -1937,9 +1987,11 @@
     \<gtr\> debye_6_e 5.4;
 
     [0.0533132925698824,1.18379289859322e-17]
+
+    \;
   </verbatim>
 
-  <subsubsection|Dilogarithm<label|dilogarithm>>
+  <subsubsection|Dilogarithm><label|dilogarithm>
 
   <\description>
     <item*|gsl::sf::dilog x<label|gsl::sf::dilog>>implements
@@ -1968,6 +2020,8 @@
   The following illustrate the dilog functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> dilog 1.0;
 
     1.64493406684823
@@ -1985,6 +2039,8 @@
     [-0.817454913536463+:0.0980262093913011,3.8224192909699e-15,
 
     \ 1.47247478976757e-15]
+
+    \;
   </verbatim>
 
   <\description>
@@ -2003,6 +2059,8 @@
   The following illustrate the multiply functions.
 
   <\verbatim>
+    \;
+
     \<gtr\> multiply_e 10.0 11.0;
 
     [110.0,4.88498130835069e-14]
@@ -2010,9 +2068,11 @@
     \<gtr\> multiply_err_e 10.0 0.04 11.0 0.002;
 
     [110.0,0.460000000000049]
+
+    \;
   </verbatim>
 
-  <subsection|Matrices<label|module-gsl::matrix>>
+  <subsection|Matrices><label|module-gsl::matrix>
 
   This module is loaded via the command <verbatim|using>
   <verbatim|gsl::matrix> and provides wrappers for many of the GSL matrix,
@@ -2030,7 +2090,7 @@
   It also contains some general utility functions for creating various types
   of matrices.
 
-  <subsubsection|Matrix Creation<label|matrix-creation>>
+  <subsubsection|Matrix Creation><label|matrix-creation>
 
   The utility functions <verbatim|zeros> and <verbatim|ones> create matrices
   with all elements zero or one, respectively, and <verbatim|eye> creates
@@ -2153,7 +2213,7 @@
     <with|font-series|bold|n> identity matrix with complex entries.
   </description>
 
-  <subsubsection|Matrix Operators and Functions<label|matrix-operators-and-functions>>
+  <subsubsection|Matrix Operators and Functions><label|matrix-operators-and-functions>
 
   The following operations are defined for constant <verbatim|a> and matrices
   <verbatim|x> and <verbatim|y>. Some operators are not defined in the GSL
@@ -2364,7 +2424,7 @@
     <verbatim|k> a nonnegative integer.
   </description>
 
-  <subsubsection|Singular Value Decomposition<label|singular-value-decomposition>>
+  <subsubsection|Singular Value Decomposition><label|singular-value-decomposition>
 
   For a given <with|font-series|bold|n> x <with|font-series|bold|m> matrix
   <verbatim|x>, these functions yield a singular-value decomposition
@@ -2412,7 +2472,7 @@
     inverse of a matrix from its singular value decomposition.
   </description>
 
-  <subsection|Least-Squares Fitting<label|module-gsl::fit>>
+  <subsection|Least-Squares Fitting><label|module-gsl::fit>
 
   This module is loaded via the command <verbatim|using> <verbatim|gsl::fit>
   and provides Pure wrappers for the GSL least-squares fitting routines found
@@ -2473,15 +2533,21 @@
   Usage of each implemented library routine is illustrated below.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::fit;
 
     \<gtr\> using namespace gsl::fit;
+
+    \;
   </verbatim>
 
   The following code determines the equation for the least-squares line
   through the points (1,0.01), (2,1.11), (3,1.9), (4,2.85), and (5,4.01).
 
   <\verbatim>
+    \;
+
     \<gtr\> Y x = '(a + b * x)
 
     \<gtr\> when
@@ -2497,6 +2563,8 @@
     \<gtr\> eval $ Y 2;
 
     1.002
+
+    \;
   </verbatim>
 
   The following code illustrates estimating y-values without constructing an
@@ -2508,6 +2576,8 @@
   <with|font-series|bold|x> = 2 below.
 
   <\verbatim>
+    \;
+
     \<gtr\> let c0:c1:cov00:cov01:cov11:_ = linear {1,2,3,4,5}
 
     \<gtr\> \ \ {0.01,1.11,1.9,2.85,4.01};
@@ -2523,6 +2593,8 @@
     \<gtr\> linear_est 3 c0 c1 cov00 cov01 cov11;
 
     [1.976,0.0484148737476408]
+
+    \;
   </verbatim>
 
   Next, we determine a least-squares line through the points (1,0.01),
@@ -2530,6 +2602,8 @@
   and 0.5.
 
   <\verbatim>
+    \;
+
     \<gtr\> W x = '(a + b * x)
 
     \<gtr\> when
@@ -2549,6 +2623,8 @@
     \<gtr\> eval $ W 2;
 
     0.982
+
+    \;
   </verbatim>
 
   The least-squares slope for <verbatim|Y> <verbatim|=> <verbatim|c1>
@@ -2557,6 +2633,8 @@
   error about <with|font-series|bold|x> = 1, 2, and 3 are given.
 
   <\verbatim>
+    \;
+
     \<gtr\> let c1:cov11:sumsq:_ = mul {1,2,3} {3,5,7};
 
     \<gtr\> mul_est 1 c1 cov11;
@@ -2570,6 +2648,8 @@
     \<gtr\> mul_est 3 c1 cov11;
 
     [7.28571428571428,0.371153744479045]
+
+    \;
   </verbatim>
 
   The least-squares slope for <verbatim|Y> <verbatim|=> <verbatim|c1>
@@ -2579,6 +2659,8 @@
   follows.
 
   <\verbatim>
+    \;
+
     \<gtr\> let c1:cov11:sumsq:_ = wmul {1,2,3} {0.4,0.9,0.4} {3,5,7};
 
     \<gtr\> mul_est 1 c1 cov11;
@@ -2592,9 +2674,11 @@
     \<gtr\> mul_est 3 c1 cov11;
 
     [7.34210526315789,1.08821437516502]
+
+    \;
   </verbatim>
 
-  <subsection|Statistics<label|module-gsl::stats>>
+  <subsection|Statistics><label|module-gsl::stats>
 
   This module is loaded via the command <verbatim|using>
   <verbatim|gsl::stats> and provides Pure wrappers for the GSL Statistics
@@ -2891,6 +2975,8 @@
   module.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::stats;
 
     \<gtr\> using namespace gsl::stats;
@@ -3066,9 +3152,11 @@
     \<gtr\> quantile_from_sorted_data {1.0,2.0,3.0} 0.25;
 
     1.5
+
+    \;
   </verbatim>
 
-  <subsection|Random Number Distributions<label|module-gsl::randist>>
+  <subsection|Random Number Distributions><label|module-gsl::randist>
 
   This module is loaded via the command <verbatim|using>
   <verbatim|gsl::randist> and provides Pure wrappers for the GSL random
@@ -3735,6 +3823,8 @@
   <verbatim|randist> module. The pdf functions are illustrated first.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::stats;
 
     \<gtr\> using namespace gsl::ran;
@@ -3904,11 +3994,15 @@
     \<gtr\> test_discrete;
 
     1.0
+
+    \;
   </verbatim>
 
   The cumulative distribution functions are shown.
 
   <\verbatim>
+    \;
+
     \<gtr\> using namespace gsl::cdf;
 
     \<gtr\> ugaussian_P \ (-1.3);
@@ -4254,9 +4348,11 @@
     \<gtr\> hypergeometric_Q \ 1 \ 5 \ 20 \ 3;
 
     0.0913043478260873
+
+    \;
   </verbatim>
 
-  <subsection|Sorting<label|module-gsl::sort>>
+  <subsection|Sorting><label|module-gsl::sort>
 
   This module is loaded via the command <verbatim|using> <verbatim|gsl::sort>
   and provides Pure wrappers for the GSL sorting routines found in Chapter 11
@@ -4283,6 +4379,8 @@
   Usage of each library routine is illustrated below.
 
   <\verbatim>
+    \;
+
     \<gtr\> using gsl::sort;
 
     \<gtr\> using namespace gsl;
@@ -4294,9 +4392,11 @@
     \<gtr\> sort_vector_index {0.0,1.0,5.0,2.0,8.0,0.0};
 
     {5,0,1,3,2,4}
+
+    \;
   </verbatim>
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|pure-gsl-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|pure-gsl-toc>
 
   <\itemize>
     <item><hlink|pure-gsl - GNU Scientific Library Interface for Pure|#>
@@ -4406,6 +4506,6 @@
   <hlink|previous|pure-gplot.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

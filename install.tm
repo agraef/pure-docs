@@ -1,4 +1,4 @@
-<TeXmacs|1.0.7.20>
+<TeXmacs|1.99.4>
 
 <style|<tuple|generic|puredoc>>
 
@@ -8,9 +8,9 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <section*|Installing Pure (and LLVM)<label|installing-pure-and-llvm>>
+  <section*|Installing Pure (and LLVM)><label|installing-pure-and-llvm>
 
-  Version 0.64, October 28, 2014
+  Version 0.64, July 07, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -37,7 +37,7 @@
   Information about ports and packages for other (UNIX-like) systems is
   provided at the same location.
 
-  <subsection|Quick Summary<label|quick-summary>>
+  <subsection|Quick Summary><label|quick-summary>
 
   Here is the executive summary for the impatient. This assumes that you're
   using LLVM 3.4 and Pure 0.64, please substitute your actual version numbers
@@ -70,6 +70,8 @@
   Installing LLVM and clang (the latter is optional but recommended):
 
   <\verbatim>
+    \;
+
     $ tar xfvz llvm-3.4.src.tar.gz
 
     $ tar xfvz clang-3.4.src.tar.gz && mv clang-3.4 llvm-3.4/tools/clang
@@ -80,6 +82,8 @@
     --enable-targets=host-only
 
     $ make && sudo make install
+
+    \;
   </verbatim>
 
   You may want to leave out <verbatim|--enable-shared> to install LLVM as
@@ -90,12 +94,14 @@
   disable stuff that makes LLVM very slow and/or breaks it on some systems.)
 
   If you're running gcc 4.5 or later, you may also want to install the LLVM
-  ``DragonEgg'' plugin for gcc, please check the <hlink|dragonegg|#dragonegg>
+  \PDragonEgg\Q plugin for gcc, please check the <hlink|dragonegg|#dragonegg>
   section below for details.
 
   Installing Pure:
 
   <\verbatim>
+    \;
+
     $ tar xfvz pure-0.64.tar.gz
 
     $ cd pure-0.64
@@ -103,13 +109,19 @@
     $ ./configure --enable-release
 
     $ make && sudo make install
+
+    \;
   </verbatim>
 
   Depending on your system you may have to run a utility to announce the
   shared LLVM and Pure libraries to the dynamic loader. E.g., on Linux:
 
   <\verbatim>
+    \;
+
     $ sudo /sbin/ldconfig
+
+    \;
   </verbatim>
 
   It is also recommended that you run the following to make sure that the
@@ -117,7 +129,11 @@
   details):
 
   <\verbatim>
+    \;
+
     $ make check
+
+    \;
   </verbatim>
 
   The following is optional, but if you want to read the online documentation
@@ -125,29 +141,43 @@
   have to download and install the documentation files:
 
   <\verbatim>
+    \;
+
     $ sudo make install-docs
+
+    \;
   </verbatim>
 
   This needs the <verbatim|wget> program. You can also download and install
   the pure-docs tarball manually in the usual way, e.g.:
 
   <\verbatim>
+    \;
+
     $ tar xfvz pure-docs-0.64.tar.gz
 
     $ cd pure-docs-0.64
 
     $ sudo make install
+
+    \;
   </verbatim>
 
   That's it, Pure should be ready to go now:
 
   <\verbatim>
+    \;
+
     $ pure
+
+    \;
   </verbatim>
 
   Uninstalling:
 
   <\verbatim>
+    \;
+
     $ cd pure-0.64
 
     $ sudo make uninstall
@@ -155,11 +185,13 @@
     $ cd ../llvm-3.4
 
     $ sudo make uninstall
+
+    \;
   </verbatim>
 
   Please see below for much more detailed installation instructions.
 
-  <subsection|Basic Installation<label|basic-installation>>
+  <subsection|Basic Installation><label|basic-installation>
 
   The basic installation process is as follows. Note that steps 1-3 are only
   required once. Steps 2-3 can be avoided if binary LLVM packages are
@@ -237,9 +269,9 @@
     <item>GNU ltdl (part of the libtool software):
     <hlink|http://www.gnu.org/software/libtool|http://www.gnu.org/software/libtool>
 
-    <item>Mercurial: <hlink|http://mercurial.selenic.com|http://mercurial.selenic.com>
-    (There's also a very nice Windows frontend, TortoiseHg, see
-    <hlink|http://tortoisehg.bitbucket.org|http://tortoisehg.bitbucket.org>.)
+    <item>Git: <hlink|https://git-scm.com/|https://git-scm.com/> (A number of
+    graphical frontends can be found there as well. Windows users may also
+    want to check TortoiseGit, see <hlink|https://tortoisegit.org/|https://tortoisegit.org/>.)
   </itemize>
 
   The GNU multiprecision library or some compatible replacement is required
@@ -347,6 +379,8 @@
   follows:
 
   <\verbatim>
+    \;
+
     $ cd llvm-3.4
 
     $ ./configure --enable-shared --enable-optimized
@@ -355,6 +389,8 @@
     $ make
 
     $ sudo make install
+
+    \;
   </verbatim>
 
   LLVM 2.7 and earlier may also require the flags
@@ -390,13 +426,15 @@
   <with|font-series|bold|Step 4.> Get and unpack the Pure sources.
 
   These can be downloaded from <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>.
-  The latest source tarballs can always be found under the ``Featured
-  Downloads'' there.
+  The latest source tarballs can always be found under the \PFeatured
+  Downloads\Q there.
 
   <with|font-series|bold|Step 5.> Configure, build and install Pure as
   follows (<verbatim|x.y> denotes the current Pure version number):
 
   <\verbatim>
+    \;
+
     $ cd pure-x.y
 
     $ ./configure --enable-release
@@ -404,6 +442,8 @@
     $ make
 
     $ sudo make install
+
+    \;
   </verbatim>
 
   The <verbatim|--enable-release> option configures Pure for a release build.
@@ -452,14 +492,22 @@
   follows:
 
   <\verbatim>
+    \;
+
     $ sudo /sbin/ldconfig
+
+    \;
   </verbatim>
 
   After the build is complete, you can (and should) also run a few tests to
   check that Pure is working correctly on your computer:
 
   <\verbatim>
+    \;
+
     $ make check
+
+    \;
   </verbatim>
 
   (This can be done before actually installing Pure, but make sure that you
@@ -509,13 +557,21 @@
   line:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release CC=clang CXX=clang++
+
+    \;
   </verbatim>
 
   Or, when using llvm-gcc:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release CC=llvm-gcc CXX=llvm-g++
+
+    \;
   </verbatim>
 
   llvm-gcc 4.2 and clang 2.8 or later should build Pure cleanly and pass all
@@ -525,7 +581,11 @@
   documentation as follows:
 
   <\verbatim>
+    \;
+
     $ sudo make install-docs
+
+    \;
   </verbatim>
 
   This isn't necessary to run the interpreter, but highly recommended, as it
@@ -544,11 +604,15 @@
   documentation tarball should correspond to your interpreter version):
 
   <\verbatim>
+    \;
+
     $ tar xfvz pure-docs-x.y.tar.gz
 
     $ cd pure-docs-x.y
 
     $ sudo make install
+
+    \;
   </verbatim>
 
   As a bonus, downloading the package manually also gives you the
@@ -560,7 +624,11 @@
   as follows:
 
   <\verbatim>
+    \;
+
     $ sudo make install-tm
+
+    \;
   </verbatim>
 
   <with|font-series|bold|Step 7.> The Pure interpreter should be ready to go
@@ -569,6 +637,8 @@
   Run Pure interactively as:
 
   <\verbatim>
+    \;
+
     $ pure
 
     \;
@@ -586,34 +656,48 @@
     \;
 
     Loaded prelude from /usr/lib/pure/prelude.pure.
+
+    \;
   </verbatim>
 
   Check that it works:
 
   <\verbatim>
+    \;
+
     \<gtr\> 6*7;
 
     42
+
+    \;
   </verbatim>
 
   Read the online documentation:
 
   <\verbatim>
+    \;
+
     \<gtr\> help
+
+    \;
   </verbatim>
 
   Exit the interpreter (you can also just type the end-of-file character at
   the beginning of a line, i.e., <verbatim|Ctrl-D> on Unix):
 
   <\verbatim>
+    \;
+
     \<gtr\> quit
+
+    \;
   </verbatim>
 
   You can also run the interpreter from GNU Emacs and GNU TeXmacs (see
-  below), and for Windows there is a nice GUI application named ``PurePad''
+  below), and for Windows there is a nice GUI application named \PPurePad\Q
   which makes it easy to edit and run your Pure scripts.
 
-  <subsection|Emacs Pure Mode<label|emacs-pure-mode>>
+  <subsection|Emacs Pure Mode><label|emacs-pure-mode>
 
   This step is optional, but if you're friends with Emacs then you should
   definitely give Pure mode a try. This is an Emacs programming mode which
@@ -633,6 +717,8 @@
   .emacs file to load the mode at startup. A minimal setup looks like this:
 
   <\verbatim>
+    \;
+
     (require 'pure-mode)
 
     (setq auto-mode-alist
@@ -643,6 +729,8 @@
     (add-hook 'pure-mode-hook 'turn-on-font-lock)
 
     (add-hook 'pure-eval-mode-hook 'turn-on-font-lock)
+
+    \;
   </verbatim>
 
   This loads Pure mode, associates the .pure and .purerc filename extensions
@@ -654,15 +742,23 @@
   in Emacs:
 
   <\verbatim>
+    \;
+
     (require 'w3m-load)
+
+    \;
   </verbatim>
 
   Also, you can enable code folding by adding this to your .emacs:
 
   <\verbatim>
+    \;
+
     (require 'hideshow)
 
     (add-hook 'pure-mode-hook 'hs-minor-mode)
+
+    \;
   </verbatim>
 
   These lines should come before the loading of Pure mode in your .emacs, so
@@ -672,18 +768,22 @@
   a Pure file to check that it works, e.g.:
 
   <\verbatim>
+    \;
+
     $ emacs examples/hello.pure
+
+    \;
   </verbatim>
 
   The online help about Pure mode can be read with <verbatim|C-h>
   <verbatim|m>. The Pure documentation can be accessed in Pure mode with
   <verbatim|C-c> <verbatim|h>.
 
-  <subsection|TeXmacs Plugin<label|texmacs-plugin>>
+  <subsection|TeXmacs Plugin><label|texmacs-plugin>
 
   Pure 0.56 has full support for running Pure as a session in <hlink|GNU
   TeXmacs|http://savannah.gnu.org/projects/texmacs/>. This is triggered by
-  the <hlink|<em|--texmacs>|pure.tm#cmdoption-pure--texmacs> option of the
+  the <hlink|<em|\Utexmacs>|pure.tm#cmdoption-pure--texmacs> option of the
   interpreter. If TeXmacs was detected by configure then after running
   <verbatim|make> and <verbatim|sudo> <verbatim|make> <verbatim|install> the
   required plugin files should already be installed in the system-wide
@@ -732,6 +832,8 @@
   which has plugin support at all.
 
   <\verbatim>
+    \;
+
     (plugin-configure pure
 
     \ \ (:require (url-exists-in-path? "pure"))
@@ -739,6 +841,8 @@
     \ \ (:launch "pure -i --texmacs")
 
     \ \ (:session "Pure"))
+
+    \;
   </verbatim>
 
   This Scheme file should go into <math|\<sim\>>/.TeXmacs/plugins/pure/progs/init-pure.scm.
@@ -748,7 +852,7 @@
   interpreter).
 
   <subsection|Installing an LLVM-capable C/C++
-  Compiler<label|installing-an-llvm-capable-c-c-compiler>>
+  Compiler><label|installing-an-llvm-capable-c-c-compiler>
 
   As already mentioned above, we suggest that you also install a C/C++
   compiler with an LLVM backend. Clang, llvm-gcc as well as the new dragonegg
@@ -757,7 +861,7 @@
   facilities in Pure 0.44 and later. (However, you can always install clang,
   llvm-gcc and/or dragonegg at a later time to enable these features.)
 
-  <subsubsection|clang<label|clang>>
+  <subsubsection|clang><label|clang>
 
   With LLVM 2.8 and later, we recommend installing clang, the new LLVM-based
   C/C++ compiler (<hlink|http://clang.llvm.org/|http://clang.llvm.org/>).
@@ -771,14 +875,18 @@
   <verbatim|clang>. Then build and install clang as follows:
 
   <\verbatim>
+    \;
+
     $ cd llvm-3.4/tools/clang
 
     $ make
 
     $ sudo make install
+
+    \;
   </verbatim>
 
-  <subsubsection|llvm-gcc<label|llvm-gcc>>
+  <subsubsection|llvm-gcc><label|llvm-gcc>
 
   <with|font-series|bold|Note:> This section applies to LLVM versions up to
   2.9. With LLVM 3.0 or later, llvm-gcc is not supported any more and you
@@ -794,6 +902,8 @@
   as follows:
 
   <\verbatim>
+    \;
+
     $ cd llvm-gcc-4.2-2.9.source
 
     $ mkdir obj
@@ -806,6 +916,8 @@
     $ make
 
     $ sudo make install
+
+    \;
   </verbatim>
 
   (You might wish to add <verbatim|fortran> to <verbatim|--enable-languages>
@@ -819,17 +931,21 @@
   code:
 
   <\verbatim>
+    \;
+
     export PURE_CC=llvm-gcc
 
     export PURE_CXX=llvm-g++
 
     export PURE_FC=llvm-gfortran
+
+    \;
   </verbatim>
 
-  <subsubsection|dragonegg<label|dragonegg>>
+  <subsubsection|dragonegg><label|dragonegg>
 
   If you're running LLVM 3.x, then instead of llvm-gcc you should use
-  ``DragonEgg'' (<hlink|http://dragonegg.llvm.org/|http://dragonegg.llvm.org/>),
+  \PDragonEgg\Q (<hlink|http://dragonegg.llvm.org/|http://dragonegg.llvm.org/>),
   the new LLVM backend for gcc \<gtr\>=4.5. This is provided in the form of a
   plugin which, if you have gcc 4.5 or later, readily plugs into your
   existing system compiler.
@@ -841,20 +957,28 @@
   downloading the svn sources, install dragonegg as follows:
 
   <\verbatim>
+    \;
+
     $ make
 
     $ sudo cp dragonegg.so `gcc -print-file-name=plugin`
+
+    \;
   </verbatim>
 
   Finally, add something like the following lines to your shell startup
   files, so that Pure uses gcc+dragonegg for all inlined C/C++/Fortran code:
 
   <\verbatim>
+    \;
+
     export PURE_CC="gcc -fplugin=dragonegg"
 
     export PURE_CXX="g++ -fplugin=dragonegg"
 
     export PURE_FC="gfortran -fplugin=dragonegg"
+
+    \;
   </verbatim>
 
   (Please also check the README file included in the dragonegg package for
@@ -864,10 +988,10 @@
   command line.)
 
   <subsection|Installing From Development
-  Sources<label|installing-from-development-sources>>
+  Sources><label|installing-from-development-sources>
 
-  The latest development version of Pure is available in its Mercurial (Hg)
-  source code repository. You can browse the repository at:
+  The latest development version of Pure is available in its Git source code
+  repository. You can browse the repository at:
 
   <hlink|https://bitbucket.org/purelang/pure-lang|https://bitbucket.org/purelang/pure-lang>
 
@@ -885,15 +1009,17 @@
   repository:
 
   <\verbatim>
-    $ hg clone https://bitbucket.org/purelang/pure-lang
+    \;
+
+    $ git clone https://bitbucket.org/purelang/pure-lang
+
+    \;
   </verbatim>
 
   This clones the repository and puts it into the pure-lang subdirectory in
-  the current directory. (Project members please use https: instead of http:
-  if you're planning to push any changes back to the server.) This step needs
-  to be done only once; once you've cloned the repository, you can update it
-  to the latest revision at any time by running <verbatim|hg> <verbatim|pull>
-  <verbatim|-u>.
+  the current directory. This step needs to be done only once; once you've
+  cloned the repository, you can update it to the latest revision at any time
+  by running <verbatim|git> <verbatim|pull>.
 
   <with|font-series|bold|Step 5'.> Configure, build and install Pure.
 
@@ -902,6 +1028,8 @@
   isn't included in the source repository.
 
   <\verbatim>
+    \;
+
     $ cd pure-lang/pure
 
     $ autoreconf
@@ -911,6 +1039,8 @@
     $ make
 
     $ sudo make install
+
+    \;
   </verbatim>
 
   (Don't forget to also run <verbatim|make> <verbatim|check> to make sure
@@ -926,14 +1056,18 @@
 
   Alternatively, a ready-made recent snapshot of the documentation in html
   and pdf formats is also available in its own repository, which can be
-  cloned as follows (the documentation is in the docs subdirectory):
+  cloned as follows:
 
   <\verbatim>
-    $ hg clone https://bitbucket.org/purelang/purelang.bitbucket.org
+    \;
+
+    $ git clone https://bitbucket.org/puredocs/puredocs.bitbucket.org.git
+
+    \;
   </verbatim>
 
   <subsection|Other Build and Installation
-  Options<label|other-build-and-installation-options>>
+  Options><label|other-build-and-installation-options>
 
   The Pure configure script takes a few options which enable you to change
   the installation path and control a number of other build options.
@@ -943,7 +1077,7 @@
   Use <verbatim|./configure> <verbatim|--help> to print a summary of the
   provided options.
 
-  <subsubsection|Installation Path<label|installation-path>>
+  <subsubsection|Installation Path><label|installation-path>
 
   By default, the pure program, the runtime.h header file, the runtime
   library, the pure.pc file and the library scripts are installed in
@@ -953,18 +1087,26 @@
   <verbatim|--prefix> option, e.g.:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release --prefix=/usr
+
+    \;
   </verbatim>
 
   In addition, the <verbatim|DESTDIR> variable enables package maintainers to
-  install Pure into a special ``staging'' directory, so that installed files
+  install Pure into a special \Pstaging\Q directory, so that installed files
   can be packaged more easily. If set at installation time,
   <verbatim|DESTDIR> will be used as an additional prefix to all installation
   paths. For instance, the following command will put all installed files
   into the tmp-root subdirectory of the current directory:
 
   <\verbatim>
+    \;
+
     $ make install DESTDIR=tmp-root
+
+    \;
   </verbatim>
 
   Note that if you install Pure into a non-standard location, you may have to
@@ -987,7 +1129,7 @@
   the file by adjusting the <verbatim|PKG_CONFIG_PATH> environment variable
   accordingly, see pkg-config(1) for details.
 
-  <subsubsection|Tool Prefix and LLVM Version<label|tool-prefix-and-llvm-version>>
+  <subsubsection|Tool Prefix and LLVM Version><label|tool-prefix-and-llvm-version>
 
   On some systems the LLVM toolchain may be located in special directories
   not on the <verbatim|PATH>, so that different LLVM installations can
@@ -999,7 +1141,11 @@
   using the <verbatim|--with-tool-prefix> configure option. E.g.:
 
   <\verbatim>
+    \;
+
     $ ./configure --with-tool-prefix=/usr/lib/llvm-3.4/bin
+
+    \;
   </verbatim>
 
   This is also the directory where configure will first look for the
@@ -1023,14 +1169,18 @@
   yourself, or try to locate a suitable LLVM installation and tell configure
   about it, using the options explained above.
 
-  <subsubsection|Versioned Installations<label|versioned-installations>>
+  <subsubsection|Versioned Installations><label|versioned-installations>
 
   Beginning with version 0.4, Pure fully supports parallel installations of
   different versions of the interpreter. As of Pure 0.21, to enable this you
   have to specify <verbatim|--enable-versioned> when running configure:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release --enable-versioned
+
+    \;
   </verbatim>
 
   When this option is enabled, bin/pure, include/pure, lib/pure,
@@ -1048,7 +1198,7 @@
   an unversioned install under /usr and several versioned installations under
   /usr/local is ok.
 
-  <subsubsection|Separate Build Directory<label|separate-build-directory>>
+  <subsubsection|Separate Build Directory><label|separate-build-directory>
 
   It is possible to build Pure in a separate directory, in order to keep your
   source tree tidy and clean, or to build multiple versions of the
@@ -1058,6 +1208,8 @@
   there, e.g. (this assumes that you start from the source directory):
 
   <\verbatim>
+    \;
+
     $ mkdir BUILD
 
     $ cd BUILD
@@ -1065,9 +1217,11 @@
     $ ../configure --enable-release
 
     $ make
+
+    \;
   </verbatim>
 
-  <subsubsection|Compiler and Linker Options<label|compiler-and-linker-options>>
+  <subsubsection|Compiler and Linker Options><label|compiler-and-linker-options>
 
   There are a number of environment variables you can set on the configure
   command line if you need special compiler or linker options:
@@ -1090,21 +1244,25 @@
   </itemize>
 
   (The <verbatim|CFLAGS> variable is only used to build the pure_main.o
-  module which is linked into batch-compiled executables, see ``Batch
-  Compilation'' in the manual for details.)
+  module which is linked into batch-compiled executables, see \PBatch
+  Compilation\Q in the manual for details.)
 
   For instance, the following configure command changes the default
   compilation options to <verbatim|-g> and adds /opt/include and /opt/lib to
   the include and library search paths, respectively:
 
   <\verbatim>
+    \;
+
     $ ./configure CPPFLAGS=-I/opt/include CXXFLAGS=-g LDFLAGS=-L/opt/lib
+
+    \;
   </verbatim>
 
   More details on the build and installation process and other available
   targets and options can be found in the Makefile.
 
-  <subsubsection|Predefined Build Types<label|predefined-build-types>>
+  <subsubsection|Predefined Build Types><label|predefined-build-types>
 
   For convenience, configure provides some options to set up
   <verbatim|CPPFLAGS> and <verbatim|CXXFLAGS> for various build types. Please
@@ -1115,11 +1273,15 @@
   The default build includes debugging information and additional runtime
   checks which provide diagnostics useful for maintainers if anything is
   wrong with the interpreter. It is also noticeably slower than the
-  ``release'' build. If you want to enjoy maximum performance, you should
+  \Prelease\Q build. If you want to enjoy maximum performance, you should
   configure Pure for a release build as follows:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release
+
+    \;
   </verbatim>
 
   This disables all runtime checks and debugging information in the
@@ -1131,10 +1293,14 @@
   compilers may provide a similar flag or a separate command to strip
   compiled executables and libraries).
 
-  You can also do a ``debug'' build as follows:
+  You can also do a \Pdebug\Q build as follows:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-debug
+
+    \;
   </verbatim>
 
   This is like the default build, but disables all optimizations, so
@@ -1146,7 +1312,11 @@
   option to enable compiler warnings (<verbatim|-Wall>):
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release --enable-warnings
+
+    \;
   </verbatim>
 
   This option is useful to check the interpreter sources for questionable
@@ -1154,11 +1324,15 @@
   versions it spits out lots of bogus warnings, so it is not enabled by
   default.
 
-  In addition, there is an option to build a ``monolithic'' interpreter which
+  In addition, there is an option to build a \Pmonolithic\Q interpreter which
   is linked statically instead of producing a separate runtime library:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release --disable-shared
+
+    \;
   </verbatim>
 
   We strongly discourage from using this option, since it drastically
@@ -1178,7 +1352,11 @@
   warning flags manually and enables C++0x support in gcc:
 
   <\verbatim>
+    \;
+
     $ ./configure --enable-release CFLAGS="-Wall" CXXFLAGS="-std=c++0x -Wall"
+
+    \;
   </verbatim>
 
   If you mix build types and manual compilation flags in this way then it's
@@ -1188,7 +1366,7 @@
   instead.
 
   <subsubsection|Running Pure From The Source
-  Directory<label|running-pure-from-the-source-directory>>
+  Directory><label|running-pure-from-the-source-directory>
 
   After your build is done, you should also run <verbatim|make>
   <verbatim|check> to verify that your Pure interpreter works correctly. This
@@ -1212,7 +1390,7 @@
   After that you should be able to run the Pure interpreter from the source
   directory, by typing <verbatim|./pure>.
 
-  <subsubsection|Other Targets<label|other-targets>>
+  <subsubsection|Other Targets><label|other-targets>
 
   The Makefile supports the usual <verbatim|clean> and <verbatim|distclean>
   targets, and <verbatim|realclean> will remove all files created by the
@@ -1231,7 +1409,7 @@
   <verbatim|config>. This needs autoconf, of course. (The distribution was
   prepared using autoconf 2.68.)
 
-  <subsubsection|Pkg-config Support<label|pkg-config-support>>
+  <subsubsection|Pkg-config Support><label|pkg-config-support>
 
   Pure 0.47 and later install a pkg-config file (pure.pc) which lets addon
   modules query the installed Pure for the information needed to build and
@@ -1265,7 +1443,7 @@
   Windows version is available as well. An example illustrating the use of
   pkg-config can be found in the examples/hellomod directory in the sources.
 
-  <subsection|System Notes<label|system-notes>>
+  <subsection|System Notes><label|system-notes>
 
   Pure is known to work on recent Linux, Mac OS X and BSD versions under x86,
   x86-64 (AMD/Intel x86, 32 and 64 bit) and ppc (PowerPC), as well as on MS
@@ -1273,11 +1451,11 @@
   platforms and/or LLVM versions which are discussed below, along with
   corresponding workarounds.
 
-  <subsubsection|All Platforms<label|all-platforms>>
+  <subsubsection|All Platforms><label|all-platforms>
 
   Compiling the default and release versions using gcc with all warnings
-  turned on (<verbatim|-Wall>) might give you the warning ``dereferencing
-  type-punned pointer will break strict-aliasing rules'' at some point in
+  turned on (<verbatim|-Wall>) might give you the warning \Pdereferencing
+  type-punned pointer will break strict-aliasing rules\Q at some point in
   util.cc with some gcc versions. This is harmless and can be ignored.
 
   If your Pure program runs out of stack space, the interpreter may segfault.
@@ -1289,7 +1467,7 @@
   the<label|index-0><hlink|<with|font-family|tt|PURE_STACK>|pure.tm#envvar-PURE-STACK>
   environment variable; see the Pure manual for details.
 
-  <subsubsection|LLVM 2.5<label|llvm-2-5>>
+  <subsubsection|LLVM 2.5><label|llvm-2-5>
 
   The LLVM 2.5 JIT is broken on x86-32 if it is built with
   <verbatim|--enable-pic>, so make sure you do <em|not> use this option when
@@ -1316,13 +1494,13 @@
   for LLVM versions older than 3.0 is likely to be dropped in future Pure
   releases.
 
-  <subsubsection|LLVM 3.3<label|llvm-3-3>>
+  <subsubsection|LLVM 3.3><label|llvm-3-3>
 
   Reportedly the Pure batch compiler is broken when using LLVM 3.3 on Mac OS
   X. If you need the batch compiler then use either LLVM 3.2 or 3.4+ on OS X
   instead, these are known to work on that platform.
 
-  <subsubsection|LLVM 3.4+<label|llvm-3-4>>
+  <subsubsection|LLVM 3.4+><label|llvm-3-4>
 
   On Linux, the <verbatim|llc> program from LLVM 3.4 and 3.5 is known to
   create native assembler (.s) code which doesn't mangle assembler symbols as
@@ -1332,7 +1510,7 @@
   Pure 0.61 and later now creates native object (.o) files directly using
   llc, without going through the native assembler stage.
 
-  <subsubsection|PowerPC<label|powerpc>>
+  <subsubsection|PowerPC><label|powerpc>
 
   You'll need Pure \<gtr\>= 0.35 and LLVM \<gtr\>= 2.6. Also make sure that
   you always configure LLVM with <verbatim|--disable-expensive-checks> and
@@ -1341,14 +1519,14 @@
   tail call optimization doesn't work on this platform right now because of
   LLVM limitations.
 
-  <subsubsection|Linux<label|linux>>
+  <subsubsection|Linux><label|linux>
 
   Linux is the primary development platform for this software, and the
   sources should build out of the box on all recent Linux distributions.
   Packages for various Linux distributions are also available, please check
   the Pure website for details.
 
-  <subsubsection|Mac OS X<label|mac-os-x>>
+  <subsubsection|Mac OS X><label|mac-os-x>
 
   Pure should build fine on recent OS X versions, and a port by Ryan Schmidt
   exists in the MacPorts collection, see <hlink|http://www.macports.org/|http://www.macports.org/>.
@@ -1362,11 +1540,15 @@
   libraries and LLVM tools are found:
 
   <\verbatim>
+    \;
+
     ./configure --enable-release --prefix=/opt/local \\
 
     CPPFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib \\
 
     --with-tool-prefix=/opt/local/libexec/llvm-3.4/bin
+
+    \;
   </verbatim>
 
   This assumes that your MacPorts installation lives under /opt/local and
@@ -1378,7 +1560,7 @@
   still using one of these, your best bet is to find a port on MacPorts which
   works for your OS X version.
 
-  <subsubsection|BSD<label|bsd>>
+  <subsubsection|BSD><label|bsd>
 
   FreeBSD now offers a fairly extensive selection of Pure packages in their
   distribution.
@@ -1395,14 +1577,18 @@
   linker paths. E.g., the following reportedly does the trick on NetBSD:
 
   <\verbatim>
+    \;
+
     export C_INCLUDE_PATH=/usr/local/include:/usr/pkg/include
 
     export LIBRARY_PATH=/usr/local/lib:/usr/pkg/lib
 
     export LD_LIBRARY_PATH=/usr/pkg/lib:/usr/local/lib
+
+    \;
   </verbatim>
 
-  <subsubsection|MS Windows<label|ms-windows>>
+  <subsubsection|MS Windows><label|ms-windows>
 
   Thanks to Jiri Spitz' perseverance, tireless testing and bug reports, the
   sources compile and run fine on Windows, using the Mingw port of the GNU
@@ -1417,16 +1603,16 @@
   However, the easiest way is to just go with the Pure MSI package available
   on the Pure website. This includes all required libraries and some
   shortcuts to run the Pure interpreter and read online documentation in html
-  help format, as well as ``PurePad'', an alternative GUI frontend for
+  help format, as well as \PPurePad\Q, an alternative GUI frontend for
   editing and running Pure scripts on Windows.
 
   After installing the MSI, you might also want to go to the LLVM website and
   grab the LLVM toolchain for mingw32/x86. It is sufficient to install the
-  ``LLVM binaries'' package on your system to make the Pure batch compiler
+  \PLLVM binaries\Q package on your system to make the Pure batch compiler
   work. Just unzip these into some convenient location on your harddrive and
   set up <verbatim|PATH> so that it points to the llvm-x.y directory.
 
-  <subsubsection*|<hlink|Table Of Contents|index.tm><label|install-toc>>
+  <subsubsection*|<hlink|Table Of Contents|index.tm>><label|install-toc>
 
   <\itemize>
     <item><hlink|Installing Pure (and LLVM)|#>
@@ -1516,6 +1702,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2014, Albert Gräf et al. Last updated on Oct
-  28, 2014. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
+  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
