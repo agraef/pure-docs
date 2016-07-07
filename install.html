@@ -969,7 +969,11 @@ examples/hellomod directory in the sources.</p>
 x86-64 (AMD/Intel x86, 32 and 64 bit) and ppc (PowerPC), as well as on MS
 Windows (AMD/Intel x86, 32 bit). There are a few known quirks for specific
 platforms and/or LLVM versions which are discussed below, along with
-corresponding workarounds.</p>
+corresponding workarounds. As a fairly demanding LLVM application, Pure is
+also known to shake the bugs out of LLVM, so if you run into any LLVM-related
+issues, Pure isn&#8217;t necessarily the culprit! However, most of the bugs have
+been ironed out over the years, so Pure should work fine with any recent LLVM
+version (3.4 or later).</p>
 <div class="section" id="all-platforms">
 <h3>All Platforms<a class="headerlink" href="#all-platforms" title="Permalink to this headline">¶</a></h3>
 <p>Compiling the default and release versions using gcc with all warnings turned
@@ -1021,6 +1025,13 @@ results in native assembler code which can&#8217;t be compiled using the system
 assemblers. As a remedy, the batch compiler in Pure 0.61 and later now creates
 native object (.o) files directly using llc, without going through the native
 assembler stage.</p>
+</div>
+<div class="section" id="llvm-3-6">
+<h3>LLVM 3.6+<a class="headerlink" href="#llvm-3-6" title="Permalink to this headline">¶</a></h3>
+<p>Pure doesn&#8217;t work with LLVM versions 3.6 and beyond yet because these don&#8217;t
+include the &#8220;old&#8221; LLVM JIT any more. So until Pure gets ported to the new
+MCJIT (expected real soon now), you will have to stick with LLVM 3.5
+(fortunately, this version is still readily available on most platforms).</p>
 </div>
 <div class="section" id="powerpc">
 <h3>PowerPC<a class="headerlink" href="#powerpc" title="Permalink to this headline">¶</a></h3>
@@ -1091,7 +1102,9 @@ headers and precompiled binaries are available from the Pure website
 the Pure website. This includes all required libraries and some shortcuts to
 run the Pure interpreter and read online documentation in html help format, as
 well as &#8220;PurePad&#8221;, an alternative GUI frontend for editing and running Pure
-scripts on Windows.</p>
+scripts on Windows. The only limitation is that the binaries in this package
+still are for x86 (32 bit) only right now, but they should work fine on all 64
+bit flavors of Windows, including Windows 7+.</p>
 <p>After installing the MSI, you might also want to go to the LLVM website and
 grab the LLVM toolchain for mingw32/x86. It is sufficient to install the &#8220;LLVM
 binaries&#8221; package on your system to make the Pure batch compiler work. Just
@@ -1138,6 +1151,7 @@ unzip these into some convenient location on your harddrive and set up
 <li><a class="reference internal" href="#llvm-2-5">LLVM 2.5</a></li>
 <li><a class="reference internal" href="#llvm-3-3">LLVM 3.3</a></li>
 <li><a class="reference internal" href="#llvm-3-4">LLVM 3.4+</a></li>
+<li><a class="reference internal" href="#llvm-3-6">LLVM 3.6+</a></li>
 <li><a class="reference internal" href="#powerpc">PowerPC</a></li>
 <li><a class="reference internal" href="#linux">Linux</a></li>
 <li><a class="reference internal" href="#mac-os-x">Mac OS X</a></li>

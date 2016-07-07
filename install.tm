@@ -1449,7 +1449,11 @@
   x86-64 (AMD/Intel x86, 32 and 64 bit) and ppc (PowerPC), as well as on MS
   Windows (AMD/Intel x86, 32 bit). There are a few known quirks for specific
   platforms and/or LLVM versions which are discussed below, along with
-  corresponding workarounds.
+  corresponding workarounds. As a fairly demanding LLVM application, Pure is
+  also known to shake the bugs out of LLVM, so if you run into any
+  LLVM-related issues, Pure isn't necessarily the culprit! However, most of
+  the bugs have been ironed out over the years, so Pure should work fine with
+  any recent LLVM version (3.4 or later).
 
   <subsubsection|All Platforms><label|all-platforms>
 
@@ -1509,6 +1513,13 @@
   compiled using the system assemblers. As a remedy, the batch compiler in
   Pure 0.61 and later now creates native object (.o) files directly using
   llc, without going through the native assembler stage.
+
+  <subsubsection|LLVM 3.6+><label|llvm-3-6>
+
+  Pure doesn't work with LLVM versions 3.6 and beyond yet because these don't
+  include the \Pold\Q LLVM JIT any more. So until Pure gets ported to the new
+  MCJIT (expected real soon now), you will have to stick with LLVM 3.5
+  (fortunately, this version is still readily available on most platforms).
 
   <subsubsection|PowerPC><label|powerpc>
 
@@ -1604,7 +1615,10 @@
   on the Pure website. This includes all required libraries and some
   shortcuts to run the Pure interpreter and read online documentation in html
   help format, as well as \PPurePad\Q, an alternative GUI frontend for
-  editing and running Pure scripts on Windows.
+  editing and running Pure scripts on Windows. The only limitation is that
+  the binaries in this package still are for x86 (32 bit) only right now, but
+  they should work fine on all 64 bit flavors of Windows, including Windows
+  7+.
 
   After installing the MSI, you might also want to go to the LLVM website and
   grab the LLVM toolchain for mingw32/x86. It is sufficient to install the
@@ -1675,6 +1689,8 @@
         <item><hlink|LLVM 3.3|#llvm-3-3>
 
         <item><hlink|LLVM 3.4+|#llvm-3-4>
+
+        <item><hlink|LLVM 3.6+|#llvm-3-6>
 
         <item><hlink|PowerPC|#powerpc>
 
