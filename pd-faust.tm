@@ -1,4 +1,4 @@
-<TeXmacs|1.99.4>
+<TeXmacs|1.99.5>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.10, July 07, 2016
+  Version 0.12, December 20, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -60,7 +60,10 @@
   You'll need <hlink|Faust|http://faust.grame.fr/> and
   <hlink|Pd|http://puredata.info/>, obviously. Fairly recent versions of
   these are required. Faust versions \<gtr\>= 0.9.46 and 2.0.a3 and Pd
-  version \<gtr\>= 0.43.1 have been tested and are known to work.
+  version \<gtr\>= 0.43.1 have been tested and are known to work. (Faust
+  versions \<gtr\> 0.9.85 are needed for pd-faust 0.12 or later, as the
+  included examples have been updated to work with the new standard Faust
+  library.)
 
   The pd-faust objects are written in the
   <hlink|Pure|http://purelang.bitbucket.org/> programming language, so you'll
@@ -848,6 +851,6 @@
   <hlink|previous|faust2pd.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
-  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
+  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.99.4>
+<TeXmacs|1.99.5>
 
 <style|<tuple|generic|puredoc>>
 
@@ -506,6 +506,6 @@
   <hlink|previous|pure-gsl.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
-  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
+  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

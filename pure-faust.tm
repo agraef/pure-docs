@@ -1,4 +1,4 @@
-<TeXmacs|1.99.4>
+<TeXmacs|1.99.5>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-faust><label|module-faust>
 
-  Version 0.11, July 07, 2016
+  Version 0.12, December 20, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -55,7 +55,7 @@
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz>.
 
   Binary packages can be found at <hlink|http://purelang.bitbucket.org/|http://purelang.bitbucket.org/>.
   To install from source, run the usual <verbatim|make> <verbatim|&&>
@@ -80,9 +80,10 @@
   <verbatim|pure.cpp> architecture file. This should be included in recent
   Faust releases. If your Faust version doesn't have it yet, you can find a
   suitable version of this file in the <verbatim|examples> folder. Simply
-  copy the file to your Faust library directory (usually
-  <verbatim|/usr/local/lib/faust> or similar) or the directory holding the
-  Faust sources to be compiled, and you should be set.
+  copy the file to your Faust library directory (usually something like
+  <verbatim|/usr/local/lib/faust>, <verbatim|/usr/local/share/faust> with the
+  latest Faust versions) or the directory holding the Faust sources to be
+  compiled, and you should be set.
 
   <subsection|Usage><label|usage>
 
@@ -496,6 +497,6 @@
   <hlink|previous|pure-audio.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
-  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
+  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

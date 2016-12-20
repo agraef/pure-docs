@@ -1,4 +1,4 @@
-<TeXmacs|1.99.4>
+<TeXmacs|1.99.5>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust><label|faust2pd-pd-patch-generator-for-faust>
 
-  Version 2.13, July 07, 2016
+  Version 2.14, December 20, 2016
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -60,7 +60,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2009-2014 by Albert Graef.
+  Copyright (c) 2009-2016 by Albert Graef.
 
   faust2pd is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -101,11 +101,14 @@
   convenient capabilities, such as retrieving the JSON description directly
   from a running dsp instance via Faust's httpd interface. For the latter,
   you also need to have the <hlink|curl|http://curl.haxx.se> program
-  installed.
+  installed. Faust versions \<gtr\> 0.9.85 are needed for faust2pd 2.14 or
+  later \U the included examples have been updated to work with the new
+  standard Faust library, so some examples may not work with earlier Faust
+  versions any more.
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.13.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.13.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.14.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.14.tar.gz>.
 
   Run <verbatim|make> and <verbatim|make> <verbatim|install> to compile and
   install the faust2pd program on your system. You can set the installation
@@ -806,6 +809,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Jul
-  07, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
+  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
