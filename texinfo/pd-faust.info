@@ -1,7 +1,7 @@
-This is pd-faust.info, produced by makeinfo version 6.1 from
+This is pd-faust.info, produced by makeinfo version 6.3 from
 pd-faust.texi.
 
-     Pure 0.64, July 07, 2016
+     Pure 0.64, December 20, 2016
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pd-faust.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-faust
 ********
 
-     Pure 0.64, July 07, 2016
+     Pure 0.64, December 20, 2016
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2016, Albert Gräf et al
 
-  Version 0.10, July 07, 2016
+  Version 0.12, December 20, 2016
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -91,7 +91,9 @@ File: pd-faust.info,  Node: Installation,  Next: Usage,  Prev: Copying,  Up: Top
 
 You’ll need Faust(1) and Pd(2), obviously.  Fairly recent versions of
 these are required.  Faust versions >= 0.9.46 and 2.0.a3 and Pd version
->= 0.43.1 have been tested and are known to work.
+>= 0.43.1 have been tested and are known to work.  (Faust versions >
+0.9.85 are needed for pd-faust 0.12 or later, as the included examples
+have been updated to work with the new standard Faust library.)
 
   The pd-faust objects are written in the Pure(3) programming language,
 so you’ll also need an installation of the Pure interpreter (0.51 or
@@ -850,73 +852,73 @@ Index
 
 
 Tag Table:
-Node: Top353
-Ref: pd-faust doc543
-Ref: 0543
-Node: Copying2017
-Ref: pd-faust faust2pd2099
-Ref: 12099
-Ref: pd-faust pd-faust2099
-Ref: 22099
-Ref: pd-faust copying2099
-Ref: 32099
-Node: Installation2629
-Ref: pd-faust installation2713
-Ref: 42713
-Ref: Installation-Footnote-16132
-Ref: Installation-Footnote-26163
-Ref: Installation-Footnote-36193
-Ref: Installation-Footnote-46232
-Ref: Installation-Footnote-56283
-Ref: Installation-Footnote-66334
-Ref: Installation-Footnote-76395
-Node: Usage6420
-Ref: pd-faust usage6513
-Ref: 66513
-Node: The fdsp~ and fsynth~ Objects8053
-Ref: pd-faust the-fdsp-and-fsynth-objects8152
-Ref: 88152
-Ref: The fdsp~ and fsynth~ Objects-Footnote-114210
-Node: The faust~ Object14271
-Ref: pd-faust the-faust-object14393
-Ref: a14393
-Ref: The faust~ Object-Footnote-117131
-Ref: The faust~ Object-Footnote-217178
-Node: GUI Subpatches17225
-Ref: pd-faust gui-subpatches17326
-Ref: b17326
-Node: Examples19622
-Ref: pd-faust examples19727
-Ref: 519727
-Node: Operating the Patches21141
-Ref: pd-faust operating-the-patches21265
-Ref: 721265
-Ref: Operating the Patches-Footnote-129274
-Ref: Operating the Patches-Footnote-229332
-Node: External MIDI and OSC Controllers29382
-Ref: pd-faust external-midi-and-osc-controllers29521
-Ref: 929521
-Ref: pd-faust pd-lv2plugin29521
-Ref: d29521
-Ref: External MIDI and OSC Controllers-Footnote-133504
-Ref: External MIDI and OSC Controllers-Footnote-233561
-Ref: External MIDI and OSC Controllers-Footnote-333612
-Node: Tweaking the GUI Layout33664
-Ref: pd-faust pd-mdnsbrowser33796
-Ref: e33796
-Ref: pd-faust tweaking-the-gui-layout33796
-Ref: c33796
-Node: Remote Control36960
-Ref: pd-faust remote-control37050
-Ref: f37050
-Ref: Remote Control-Footnote-137728
-Node: Caveats and Bugs37779
-Ref: pd-faust faust-mode37865
-Ref: 1037865
-Ref: pd-faust caveats-and-bugs37865
-Ref: 1137865
-Ref: Caveats and Bugs-Footnote-139545
-Node: Index39579
+Node: Top357
+Ref: pd-faust doc551
+Ref: 0551
+Node: Copying2029
+Ref: pd-faust faust2pd2111
+Ref: 12111
+Ref: pd-faust pd-faust2111
+Ref: 22111
+Ref: pd-faust copying2111
+Ref: 32111
+Node: Installation2641
+Ref: pd-faust installation2725
+Ref: 42725
+Ref: Installation-Footnote-16298
+Ref: Installation-Footnote-26329
+Ref: Installation-Footnote-36359
+Ref: Installation-Footnote-46398
+Ref: Installation-Footnote-56449
+Ref: Installation-Footnote-66500
+Ref: Installation-Footnote-76561
+Node: Usage6586
+Ref: pd-faust usage6679
+Ref: 66679
+Node: The fdsp~ and fsynth~ Objects8219
+Ref: pd-faust the-fdsp-and-fsynth-objects8318
+Ref: 88318
+Ref: The fdsp~ and fsynth~ Objects-Footnote-114376
+Node: The faust~ Object14437
+Ref: pd-faust the-faust-object14559
+Ref: a14559
+Ref: The faust~ Object-Footnote-117297
+Ref: The faust~ Object-Footnote-217344
+Node: GUI Subpatches17391
+Ref: pd-faust gui-subpatches17492
+Ref: b17492
+Node: Examples19788
+Ref: pd-faust examples19893
+Ref: 519893
+Node: Operating the Patches21307
+Ref: pd-faust operating-the-patches21431
+Ref: 721431
+Ref: Operating the Patches-Footnote-129440
+Ref: Operating the Patches-Footnote-229498
+Node: External MIDI and OSC Controllers29548
+Ref: pd-faust external-midi-and-osc-controllers29687
+Ref: 929687
+Ref: pd-faust pd-lv2plugin29687
+Ref: d29687
+Ref: External MIDI and OSC Controllers-Footnote-133670
+Ref: External MIDI and OSC Controllers-Footnote-233727
+Ref: External MIDI and OSC Controllers-Footnote-333778
+Node: Tweaking the GUI Layout33830
+Ref: pd-faust pd-mdnsbrowser33962
+Ref: e33962
+Ref: pd-faust tweaking-the-gui-layout33962
+Ref: c33962
+Node: Remote Control37126
+Ref: pd-faust remote-control37216
+Ref: f37216
+Ref: Remote Control-Footnote-137894
+Node: Caveats and Bugs37945
+Ref: pd-faust faust-mode38031
+Ref: 1038031
+Ref: pd-faust caveats-and-bugs38031
+Ref: 1138031
+Ref: Caveats and Bugs-Footnote-139711
+Node: Index39745
 
 End Tag Table
 

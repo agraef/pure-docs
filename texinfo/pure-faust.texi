@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.64, July 07, 2016
+Pure 0.64, December 20, 2016
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2016, Albert Gräf et al
 @anchor{pure-faust doc}@anchor{2}
 @geindex faust (module)
 
-Version 0.11, July 07, 2016
+Version 0.12, December 20, 2016
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -111,7 +111,7 @@ with this program.  If not, see <@indicateurl{http://www.gnu.org/licenses/}>.
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz}.
 
 Binary packages can be found at @indicateurl{http://purelang.bitbucket.org/}. To install
 from source, run the usual @code{make && sudo make install}. This requires Pure,
@@ -132,8 +132,9 @@ To compile Faust programs for use with this module, you'll also need the
 @code{pure.cpp} architecture file. This should be included in recent Faust
 releases. If your Faust version doesn't have it yet, you can find a suitable
 version of this file in the @code{examples} folder. Simply copy the file to your
-Faust library directory (usually @code{/usr/local/lib/faust} or similar) or the
-directory holding the Faust sources to be compiled, and you should be set.
+Faust library directory (usually something like @code{/usr/local/lib/faust},
+@code{/usr/local/share/faust} with the latest Faust versions) or the directory
+holding the Faust sources to be compiled, and you should be set.
 
 @node Usage,Faust2 Compatibility,Installation,Top
 @anchor{pure-faust usage}@anchor{7}

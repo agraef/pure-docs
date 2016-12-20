@@ -57,7 +57,7 @@
             
   <div class="section" id="module-faust">
 <span id="pure-faust"></span><h1>pure-faust<a class="headerlink" href="#module-faust" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.11, July 07, 2016</p>
+<p>Version 0.12, December 20, 2016</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>This module lets you load and run Faust-generated signal processing modules in
 <a class="reference external" href="http://purelang.bitbucket.org/">Pure</a>. <a class="reference external" href="http://faust.grame.fr/">Faust</a> (an acronym for Functional AUdio STreams) is a functional
@@ -95,7 +95,7 @@ with this program.  If not, see &lt;<a class="reference external" href="http://w
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.11.tar.gz</a>.</p>
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz</a>.</p>
 <p>Binary packages can be found at <a class="reference external" href="http://purelang.bitbucket.org/">http://purelang.bitbucket.org/</a>. To install
 from source, run the usual <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt>. This requires Pure,
 of course (the present version will work with Pure 0.52 and later). The
@@ -113,8 +113,9 @@ compile your own Faust sources. You&#8217;ll need Faust 0.9.46 or later.</p>
 <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture file. This should be included in recent Faust
 releases. If your Faust version doesn&#8217;t have it yet, you can find a suitable
 version of this file in the <tt class="docutils literal"><span class="pre">examples</span></tt> folder. Simply copy the file to your
-Faust library directory (usually <tt class="docutils literal"><span class="pre">/usr/local/lib/faust</span></tt> or similar) or the
-directory holding the Faust sources to be compiled, and you should be set.</p>
+Faust library directory (usually something like <tt class="docutils literal"><span class="pre">/usr/local/lib/faust</span></tt>,
+<tt class="docutils literal"><span class="pre">/usr/local/share/faust</span></tt> with the latest Faust versions) or the directory
+holding the Faust sources to be compiled, and you should be set.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
@@ -405,7 +406,7 @@ bitcode loader (only the <tt class="docutils literal"><span class="pre">pure.cpp
     </div>
     <div class="footer">
     &copy; Copyright 2009-2016, Albert Gräf et al.
-    Last updated on Jul 07, 2016.
+    Last updated on Dec 20, 2016.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
