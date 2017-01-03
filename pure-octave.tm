@@ -10,7 +10,7 @@
 
   <section*|pure-octave><label|module-octave>
 
-  Version 0.7, July 07, 2016
+  Version 0.7, January 03, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -53,9 +53,11 @@
   <verbatim|prefix=/usr> sets the installation prefix. Please see the
   Makefile for details.
 
-  NOTE: This release of pure-octave has been tested with Octave 3.6.2 and
-  3.8.0. Older versions might require some fiddling with the sources to get
-  the embedded Octave interface working.
+  NOTE: This release of pure-octave has been tested with Octave 3.6.2, 3.8
+  and 4.0. Octave 4.2 does <em|not> work at present (segfaults in
+  octave_eval), so we recommend using Octave 4.0 until this bug is fixed.
+  Older versions might require some fiddling with the sources to get the
+  embedded Octave interface working.
 
   <subsection|Basic Usage><label|basic-usage>
 
@@ -715,6 +717,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
-  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
+  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

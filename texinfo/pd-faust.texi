@@ -19,11 +19,11 @@
 
 @copying
 @quotation
-Pure 0.64, December 20, 2016
+Pure 0.64, January 03, 2017
 
 Albert Gräf (Editor)
 
-Copyright @copyright{} 2009-2016, Albert Gräf et al
+Copyright @copyright{} 2009-2017, Albert Gräf et al
 @end quotation
 
 @end copying
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2016, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-faust doc}@anchor{0}
-Version 0.12, December 20, 2016
+Version 0.13, January 03, 2017
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -95,7 +95,7 @@ are regenerated automatically and on the fly as needed.
 @chapter Copying
 
 
-Copyright (c) 2011-2016 by Albert Graef
+Copyright (c) 2011-2017 by Albert Graef
 
 pd-faust is distributed under the GNU LGPL v3+. Please see the included
 COPYING and COPYING.LESSER files for details.
@@ -111,11 +111,12 @@ distribution, cf. @indicateurl{http://faust.grame.fr/}.
 @chapter Installation
 
 
-You'll need Faust@footnote{http://faust.grame.fr/} and Pd@footnote{http://puredata.info/}, obviously. Fairly recent versions of these are
-required. Faust versions >= 0.9.46 and 2.0.a3 and Pd version >= 0.43.1 have
-been tested and are known to work. (Faust versions > 0.9.85 are needed for
-pd-faust 0.12 or later, as the included examples have been updated to work
-with the new standard Faust library.)
+You'll need Faust@footnote{http://faust.grame.fr/} and Pd@footnote{http://puredata.info/}, obviously. Faust versions >= 0.9.46 and 2.0.a3 and
+Pd version >= 0.43.1 have been tested and are known to work. Note that the
+examples still use the "old" a.k.a. "legacy" Faust library modules, so they
+should work out of the box with both "old" Faust versions (up to 0.9.85) and
+later ones featuring the "new" Faust library (anything after 0.9.85, including
+current git sources).
 
 The pd-faust objects are written in the Pure@footnote{http://purelang.bitbucket.org/} programming language, so you'll
 also need an installation of the Pure interpreter (0.51 or later), along with
@@ -192,17 +193,17 @@ and a corresponding @code{midiosc} abstraction which can be used to handle MIDI
 input and playback as well as OSC controller automation. This useful helper
 abstraction is described in more detail under @pxref{7,,Operating the Patches} below.
 
-@cartouche
-@quotation Note 
-pd-faust interprets MIDI, OSC and Faust dsp filenames relative to
-the hosting Pd patch by default. It will also search the @code{midi}, @code{osc}
-and @code{dsp} subfolders, if they exist, for the corresponding types of
-files. Failing that, it finally searches the directories on the Pd library
-path (including their @code{midi}, @code{osc} and @code{dsp} subfolders). To disable
-this search, just use absolute pathnames (or pathnames relative to the
-@code{.} or @code{..} directory) instead.
-@end quotation
-@end cartouche
+pd-faust interprets MIDI, OSC and Faust dsp filenames relative to the hosting
+Pd patch by default. It will also search the @code{midi}, @code{osc} and @code{dsp}
+subfolders, if they exist, for the corresponding types of files. Failing that,
+it finally searches the directories on the Pd library path (including their
+@code{midi}, @code{osc} and @code{dsp} subfolders). To disable this search, just use
+absolute pathnames (or pathnames relative to the @code{.} or @code{..} directory)
+instead.
+
+Like pd-pure, pd-faust remaps Pd's @code{menu-open} command so that it lets you
+edit the Faust source of a @code{faust~}, @code{fdsp~} or @code{fsynth~} object by
+right-clicking on the object and choosing @code{Open} from the context menu.
 
 @menu
 * The fdsp~ and fsynth~ Objects:: 
@@ -348,24 +349,28 @@ This is also used internally for communication with the Pd GUI and for
 controller automation.
 @end itemize
 
-In addition, the @code{fdsp~} and @code{fsynth~} objects respond to MIDI controller
-messages of the form @code{ctl val num chan}, and the @code{fsynth~} object also
-understands note-related messages of the form @code{note num vel chan} (note
-on/off) and @code{bend val chan} (pitch bend). In either case, pd-faust provides
-the necessary logic to map controller and note-related messages to the
+The @code{fdsp~} and @code{fsynth~} objects also respond to MIDI controller messages
+of the form @code{ctl val num chan}, and the @code{fsynth~} object understands
+note-related messages of the form @code{note num vel chan} (note on/off) and
+@code{bend val chan} (pitch bend). In either case, pd-faust provides the
+necessary logic to map controller and note-related messages to the
 corresponding control changes in the Faust unit.
 
-@cartouche
-@quotation Note 
-Like pd-pure, pd-faust also remaps Pd's @code{menu-open} command so
-that it lets you edit the Faust source of an @code{fdsp~} or @code{fsynth~}
-object by right-clicking on the object and choosing @code{Open} from the
-context menu.
-@end quotation
-@end cartouche
+In addition, pd-faust 0.13 and later offer support for the MIDI Tuning
+Standard (MTS), so that instruments can be retuned using the corresponding
+sysex messages for octave-based tunings. To these ends, the @code{fsynth~} object
+accepts messages of the form @code{sysex b1 b2 ...} where @code{b1}, @code{b2}, ... are
+the individual data bytes of the message. A description of the MIDI Tuning
+Standard is beyond the scope of this manual. However, there are some tools
+which let you construct such messages from various input formats, such as the
+author's sclsyx@footnote{https://bitbucket.org/agraef/sclsyx} program. You can then either include the tuning messages in a
+MIDI file or transmit them directly to Pd's MIDI input. There's also a version
+of sclsyx.pure included in the author's pd-smmf@footnote{https://bitbucket.org/agraef/pd-smmf} package, which can be run as
+a Pd external to output tunings in the format understood by the @code{fsynth~}
+object.
 
 @node The faust~ Object,GUI Subpatches,The fdsp~ and fsynth~ Objects,Usage
-@anchor{pd-faust the-faust-object}@anchor{a}
+@anchor{pd-faust the-faust-object}@anchor{a}@anchor{pd-faust pd-smmf}@anchor{b}
 @section The faust~ Object
 
 
@@ -425,7 +430,7 @@ omni input) can be overridden as needed if the unit should only listen on a
 specific MIDI channel.
 
 @node GUI Subpatches,Examples,The faust~ Object,Usage
-@anchor{pd-faust gui-subpatches}@anchor{b}
+@anchor{pd-faust gui-subpatches}@anchor{c}
 @section GUI Subpatches
 
 
@@ -446,7 +451,7 @@ generated automatically by pd-faust when the corresponding @code{faust~},
 reloaded at runtime.
 
 As with faust2pd, the default appearance of the GUI can be adjusted in various
-ways; see @pxref{c,,Tweaking the GUI Layout} below for details.
+ways; see @pxref{d,,Tweaking the GUI Layout} below for details.
 
 The relative order in which you insert a @code{faust~}, @code{fdsp~} or @code{fsynth~}
 object and its GUI subpatch into the main patch matters. Normally, the GUI
@@ -652,7 +657,7 @@ package which encodes incoming MIDI messages in a format compatible with the
 @code{faust~}, @code{fdsp~} and @code{fsynth~} objects.
 
 @node External MIDI and OSC Controllers,Tweaking the GUI Layout,Operating the Patches,Usage
-@anchor{pd-faust external-midi-and-osc-controllers}@anchor{9}@anchor{pd-faust pd-lv2plugin}@anchor{d}
+@anchor{pd-faust external-midi-and-osc-controllers}@anchor{9}@anchor{pd-faust pd-lv2plugin}@anchor{e}
 @section External MIDI and OSC Controllers
 
 
@@ -734,7 +739,7 @@ Zeroconf (Avahi/Bonjour) services in the local network, so that your Pd
 patches can establish OSC connections in an automatic fashion.
 
 @node Tweaking the GUI Layout,Remote Control,External MIDI and OSC Controllers,Usage
-@anchor{pd-faust pd-mdnsbrowser}@anchor{e}@anchor{pd-faust tweaking-the-gui-layout}@anchor{c}
+@anchor{pd-faust pd-mdnsbrowser}@anchor{f}@anchor{pd-faust tweaking-the-gui-layout}@anchor{d}
 @section Tweaking the GUI Layout
 
 
@@ -823,7 +828,7 @@ preset = nentry("preset [pd:radio-slider]", 0, 0, 7, 1);
 @noindent
 
 @node Remote Control,,Tweaking the GUI Layout,Usage
-@anchor{pd-faust remote-control}@anchor{f}
+@anchor{pd-faust remote-control}@anchor{10}
 @section Remote Control
 
 
@@ -838,7 +843,7 @@ Faust mode@footnote{https://github.com/rukano/emacs-faust-mode}; please see etc/
 instructions.
 
 @node Caveats and Bugs,Index,Usage,Top
-@anchor{pd-faust faust-mode}@anchor{10}@anchor{pd-faust caveats-and-bugs}@anchor{11}
+@anchor{pd-faust faust-mode}@anchor{11}@anchor{pd-faust caveats-and-bugs}@anchor{12}
 @chapter Caveats and Bugs
 
 

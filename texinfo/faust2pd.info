@@ -1,11 +1,11 @@
 This is faust2pd.info, produced by makeinfo version 6.3 from
 faust2pd.texi.
 
-     Pure 0.64, December 20, 2016
+     Pure 0.64, January 03, 2017
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2016, Albert Gräf et al
+     Copyright © 2009-2017, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: faust2pd.info,  Node: Top,  Next: Copying,  Up: (dir)
 faust2pd
 ********
 
-     Pure 0.64, December 20, 2016
+     Pure 0.64, January 03, 2017
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2016, Albert Gräf et al
+     Copyright © 2009-2017, Albert Gräf et al
 
-  Version 2.14, December 20, 2016
+  Version 2.15, January 03, 2017
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -93,7 +93,7 @@ File: faust2pd.info,  Node: Copying,  Next: Requirements,  Prev: Top,  Up: Top
 1 Copying
 *********
 
-Copyright (c) 2009-2016 by Albert Graef.
+Copyright (c) 2009-2017 by Albert Graef.
 
   faust2pd is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -131,14 +131,15 @@ compiler work.
 
   To compile the examples, you’ll need GNU C++ and make, Pd(3) and, of
 course, Faust(4).  Make sure you get a recent version of Faust; Faust
-0.9.67 or later is recommended.  Faust 0.9.70 and later have support for
+0.9.67 or later is required.  Faust 0.9.70 and later have support for
 the new JSON format and offer some other new and convenient
 capabilities, such as retrieving the JSON description directly from a
-running dsp instance via Faust’s httpd interface.  For the latter, you
-also need to have the curl(5) program installed.  Faust versions >
-0.9.85 are needed for faust2pd 2.14 or later – the included examples
-have been updated to work with the new standard Faust library, so some
-examples may not work with earlier Faust versions any more.
+running dsp instance via Faust’s httpd interface; for the latter, you
+also need to have the curl(5) program installed.  Note that the examples
+still use the "old" a.k.a.  "legacy" Faust library modules, so they
+should work out of the box with both "old" Faust versions (up to 0.9.85)
+and later ones featuring the "new" Faust library (anything after 0.9.85,
+including current git sources).
 
    ---------- Footnotes ----------
 
@@ -159,7 +160,7 @@ File: faust2pd.info,  Node: Installation,  Next: Quickstart,  Prev: Requirements
 **************
 
 Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.14.tar.gz’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.15.tar.gz’.
 
   Run ‘make’ and ‘make install’ to compile and install the faust2pd
 program on your system.  You can set the installation prefix by running
@@ -860,104 +861,104 @@ Index
 
 
 Tag Table:
-Node: Top387
-Ref: faust2pd doc581
-Ref: 1581
-Node: Copying3222
-Ref: faust2pd copying3304
-Ref: 23304
-Ref: faust2pd faust2pd-pd-patch-generator-for-faust3304
-Ref: 33304
-Node: Requirements3983
-Ref: faust2pd requirements4074
-Ref: 44074
-Ref: Requirements-Footnote-15559
-Ref: Requirements-Footnote-25597
-Ref: Requirements-Footnote-35635
-Ref: Requirements-Footnote-45664
-Ref: Requirements-Footnote-55699
-Node: Installation5727
-Ref: faust2pd curl5821
-Ref: 55821
-Ref: faust2pd installation5821
-Ref: 65821
-Node: Quickstart7036
-Ref: faust2pd quickstart7135
-Ref: 87135
-Ref: faust2pd appendix-faustxml7135
-Ref: 77135
-Ref: faust2pd id17135
-Ref: 97135
-Node: Control Interface11131
-Ref: faust2pd control-interface11226
-Ref: b11226
-Node: Examples15741
-Ref: faust2pd examples15853
-Ref: c15853
-Node: Wrapping DSPs with faust2pd17590
-Ref: faust2pd wrapping-dsps-with-faust2pd17695
-Ref: a17695
-Node: JSON Support18382
-Ref: faust2pd json-support18485
-Ref: d18485
-Ref: JSON Support-Footnote-120165
-Node: faust2pd Options20193
-Ref: faust2pd faust2pd-options20296
-Ref: e20296
-Node: Conclusion27856
-Ref: faust2pd conclusion27970
-Ref: f27970
-Node: Acknowledgements28664
-Ref: faust2pd acknowledgements28729
-Ref: 1028729
-Ref: faust2pd module-faustxml28884
-Ref: 028884
-Node: Appendix faustxml28884
-Node: Usage29827
-Ref: faust2pd usage29911
-Ref: 1229911
-Node: Data Structure30153
-Ref: faust2pd data-structure30256
-Ref: 1330256
-Ref: faust2pd faustxml button30376
-Ref: 1430376
-Ref: faust2pd faustxml checkbox30421
-Ref: 1530421
-Ref: faust2pd faustxml nentry30518
-Ref: 1630518
-Ref: faust2pd faustxml vslider30583
-Ref: 1730583
-Ref: faust2pd faustxml hslider30649
-Ref: 1830649
-Ref: faust2pd faustxml vbargraph30809
-Ref: 1930809
-Ref: faust2pd faustxml hbargraph30867
-Ref: 1a30867
-Ref: faust2pd faustxml vgroup30989
-Ref: 1b30989
-Ref: faust2pd faustxml hgroup31045
-Ref: 1c31045
-Ref: faust2pd faustxml tgroup31101
-Ref: 1d31101
-Node: Operations31228
-Ref: faust2pd operations31317
-Ref: 1e31317
-Ref: faust2pd faustxml controlp31348
-Ref: 1f31348
-Ref: faust2pd faustxml control_type31433
-Ref: 2031433
-Ref: faust2pd faustxml control_label31477
-Ref: 2131477
-Ref: faust2pd faustxml control_args31522
-Ref: 2231522
-Ref: faust2pd faustxml controls31648
-Ref: 2331648
-Ref: faust2pd faustxml pcontrols32057
-Ref: 2432057
-Ref: faust2pd faustxml info32497
-Ref: 1132497
-Node: Module Index35063
-Node: Index35210
+Node: Top386
+Ref: faust2pd doc579
+Ref: 1579
+Node: Copying3219
+Ref: faust2pd copying3301
+Ref: 23301
+Ref: faust2pd faust2pd-pd-patch-generator-for-faust3301
+Ref: 33301
+Node: Requirements3980
+Ref: faust2pd requirements4071
+Ref: 44071
+Ref: Requirements-Footnote-15602
+Ref: Requirements-Footnote-25640
+Ref: Requirements-Footnote-35678
+Ref: Requirements-Footnote-45707
+Ref: Requirements-Footnote-55742
+Node: Installation5770
+Ref: faust2pd curl5864
+Ref: 55864
+Ref: faust2pd installation5864
+Ref: 65864
+Node: Quickstart7079
+Ref: faust2pd quickstart7178
+Ref: 87178
+Ref: faust2pd appendix-faustxml7178
+Ref: 77178
+Ref: faust2pd id17178
+Ref: 97178
+Node: Control Interface11174
+Ref: faust2pd control-interface11269
+Ref: b11269
+Node: Examples15784
+Ref: faust2pd examples15896
+Ref: c15896
+Node: Wrapping DSPs with faust2pd17633
+Ref: faust2pd wrapping-dsps-with-faust2pd17738
+Ref: a17738
+Node: JSON Support18425
+Ref: faust2pd json-support18528
+Ref: d18528
+Ref: JSON Support-Footnote-120208
+Node: faust2pd Options20236
+Ref: faust2pd faust2pd-options20339
+Ref: e20339
+Node: Conclusion27899
+Ref: faust2pd conclusion28013
+Ref: f28013
+Node: Acknowledgements28707
+Ref: faust2pd acknowledgements28772
+Ref: 1028772
+Ref: faust2pd module-faustxml28927
+Ref: 028927
+Node: Appendix faustxml28927
+Node: Usage29870
+Ref: faust2pd usage29954
+Ref: 1229954
+Node: Data Structure30196
+Ref: faust2pd data-structure30299
+Ref: 1330299
+Ref: faust2pd faustxml button30419
+Ref: 1430419
+Ref: faust2pd faustxml checkbox30464
+Ref: 1530464
+Ref: faust2pd faustxml nentry30561
+Ref: 1630561
+Ref: faust2pd faustxml vslider30626
+Ref: 1730626
+Ref: faust2pd faustxml hslider30692
+Ref: 1830692
+Ref: faust2pd faustxml vbargraph30852
+Ref: 1930852
+Ref: faust2pd faustxml hbargraph30910
+Ref: 1a30910
+Ref: faust2pd faustxml vgroup31032
+Ref: 1b31032
+Ref: faust2pd faustxml hgroup31088
+Ref: 1c31088
+Ref: faust2pd faustxml tgroup31144
+Ref: 1d31144
+Node: Operations31271
+Ref: faust2pd operations31360
+Ref: 1e31360
+Ref: faust2pd faustxml controlp31391
+Ref: 1f31391
+Ref: faust2pd faustxml control_type31476
+Ref: 2031476
+Ref: faust2pd faustxml control_label31520
+Ref: 2131520
+Ref: faust2pd faustxml control_args31565
+Ref: 2231565
+Ref: faust2pd faustxml controls31691
+Ref: 2331691
+Ref: faust2pd faustxml pcontrols32100
+Ref: 2432100
+Ref: faust2pd faustxml info32540
+Ref: 1132540
+Node: Module Index35106
+Node: Index35253
 
 End Tag Table
 

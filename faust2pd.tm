@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust><label|faust2pd-pd-patch-generator-for-faust>
 
-  Version 2.14, December 20, 2016
+  Version 2.15, January 03, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -60,7 +60,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2009-2016 by Albert Graef.
+  Copyright (c) 2009-2017 by Albert Graef.
 
   faust2pd is free software: you can redistribute it and/or modify it under
   the terms of the GNU General Public License as published by the Free
@@ -96,19 +96,19 @@
   To compile the examples, you'll need GNU C++ and make,
   <hlink|Pd|http://puredata.info> and, of course,
   <hlink|Faust|http://faudiostream.sf.net>. Make sure you get a recent
-  version of Faust; Faust 0.9.67 or later is recommended. Faust 0.9.70 and
-  later have support for the new JSON format and offer some other new and
+  version of Faust; Faust 0.9.67 or later is required. Faust 0.9.70 and later
+  have support for the new JSON format and offer some other new and
   convenient capabilities, such as retrieving the JSON description directly
-  from a running dsp instance via Faust's httpd interface. For the latter,
+  from a running dsp instance via Faust's httpd interface; for the latter,
   you also need to have the <hlink|curl|http://curl.haxx.se> program
-  installed. Faust versions \<gtr\> 0.9.85 are needed for faust2pd 2.14 or
-  later \U the included examples have been updated to work with the new
-  standard Faust library, so some examples may not work with earlier Faust
-  versions any more.
+  installed. Note that the examples still use the \Pold\Q a.k.a. \Plegacy\Q
+  Faust library modules, so they should work out of the box with both \Pold\Q
+  Faust versions (up to 0.9.85) and later ones featuring the \Pnew\Q Faust
+  library (anything after 0.9.85, including current git sources).
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.14.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.14.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.15.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.15.tar.gz>.
 
   Run <verbatim|make> and <verbatim|make> <verbatim|install> to compile and
   install the faust2pd program on your system. You can set the installation
@@ -809,6 +809,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
-  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
+  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

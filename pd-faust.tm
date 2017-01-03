@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.12, December 20, 2016
+  Version 0.13, January 03, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -44,7 +44,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2011-2016 by Albert Graef
+  Copyright (c) 2011-2017 by Albert Graef
 
   pd-faust is distributed under the GNU LGPL v3+. Please see the included
   COPYING and COPYING.LESSER files for details.
@@ -58,12 +58,12 @@
   <subsection|Installation><label|installation>
 
   You'll need <hlink|Faust|http://faust.grame.fr/> and
-  <hlink|Pd|http://puredata.info/>, obviously. Fairly recent versions of
-  these are required. Faust versions \<gtr\>= 0.9.46 and 2.0.a3 and Pd
-  version \<gtr\>= 0.43.1 have been tested and are known to work. (Faust
-  versions \<gtr\> 0.9.85 are needed for pd-faust 0.12 or later, as the
-  included examples have been updated to work with the new standard Faust
-  library.)
+  <hlink|Pd|http://puredata.info/>, obviously. Faust versions \<gtr\>= 0.9.46
+  and 2.0.a3 and Pd version \<gtr\>= 0.43.1 have been tested and are known to
+  work. Note that the examples still use the \Pold\Q a.k.a. \Plegacy\Q Faust
+  library modules, so they should work out of the box with both \Pold\Q Faust
+  versions (up to 0.9.85) and later ones featuring the \Pnew\Q Faust library
+  (anything after 0.9.85, including current git sources).
 
   The pd-faust objects are written in the
   <hlink|Pure|http://purelang.bitbucket.org/> programming language, so you'll
@@ -146,14 +146,19 @@
   more detail under <hlink|Operating the Patches|#operating-the-patches>
   below.
 
-  <with|font-series|bold|Note:> pd-faust interprets MIDI, OSC and Faust dsp
-  filenames relative to the hosting Pd patch by default. It will also search
-  the <verbatim|midi>, <verbatim|osc> and <verbatim|dsp> subfolders, if they
-  exist, for the corresponding types of files. Failing that, it finally
-  searches the directories on the Pd library path (including their
-  <verbatim|midi>, <verbatim|osc> and <verbatim|dsp> subfolders). To disable
-  this search, just use absolute pathnames (or pathnames relative to the
-  <verbatim|.> or <verbatim|..> directory) instead.
+  pd-faust interprets MIDI, OSC and Faust dsp filenames relative to the
+  hosting Pd patch by default. It will also search the <verbatim|midi>,
+  <verbatim|osc> and <verbatim|dsp> subfolders, if they exist, for the
+  corresponding types of files. Failing that, it finally searches the
+  directories on the Pd library path (including their <verbatim|midi>,
+  <verbatim|osc> and <verbatim|dsp> subfolders). To disable this search, just
+  use absolute pathnames (or pathnames relative to the <verbatim|.> or
+  <verbatim|..> directory) instead.
+
+  Like pd-pure, pd-faust remaps Pd's <verbatim|menu-open> command so that it
+  lets you edit the Faust source of a <verbatim|faust~>, <verbatim|fdsp~> or
+  <verbatim|fsynth~> object by right-clicking on the object and choosing
+  <verbatim|Open> from the context menu.
 
   <subsubsection|The fdsp<math|\<sim\>> and fsynth<math|\<sim\>>
   Objects><label|the-fdsp-and-fsynth-objects>
@@ -279,9 +284,9 @@
     communication with the Pd GUI and for controller automation.
   </itemize>
 
-  In addition, the <verbatim|fdsp~> and <verbatim|fsynth~> objects respond to
-  MIDI controller messages of the form <verbatim|ctl> <verbatim|val>
-  <verbatim|num> <verbatim|chan>, and the <verbatim|fsynth~> object also
+  The <verbatim|fdsp~> and <verbatim|fsynth~> objects also respond to MIDI
+  controller messages of the form <verbatim|ctl> <verbatim|val>
+  <verbatim|num> <verbatim|chan>, and the <verbatim|fsynth~> object
   understands note-related messages of the form <verbatim|note>
   <verbatim|num> <verbatim|vel> <verbatim|chan> (note on/off) and
   <verbatim|bend> <verbatim|val> <verbatim|chan> (pitch bend). In either
@@ -289,10 +294,21 @@
   note-related messages to the corresponding control changes in the Faust
   unit.
 
-  <with|font-series|bold|Note:> Like pd-pure, pd-faust also remaps Pd's
-  <verbatim|menu-open> command so that it lets you edit the Faust source of
-  an <verbatim|fdsp~> or <verbatim|fsynth~> object by right-clicking on the
-  object and choosing <verbatim|Open> from the context menu.
+  In addition, pd-faust 0.13 and later offer support for the MIDI Tuning
+  Standard (MTS), so that instruments can be retuned using the corresponding
+  sysex messages for octave-based tunings. To these ends, the
+  <verbatim|fsynth~> object accepts messages of the form <verbatim|sysex>
+  <verbatim|b1> <verbatim|b2> <verbatim|...> where <verbatim|b1>,
+  <verbatim|b2>, ... are the individual data bytes of the message. A
+  description of the MIDI Tuning Standard is beyond the scope of this manual.
+  However, there are some tools which let you construct such messages from
+  various input formats, such as the author's
+  <hlink|sclsyx|https://bitbucket.org/agraef/sclsyx> program. You can then
+  either include the tuning messages in a MIDI file or transmit them directly
+  to Pd's MIDI input. There's also a version of sclsyx.pure included in the
+  author's <hlink|pd-smmf|https://bitbucket.org/agraef/pd-smmf> package,
+  which can be run as a Pd external to output tunings in the format
+  understood by the <verbatim|fsynth~> object.
 
   <subsubsection|The faust<math|\<sim\>> Object><label|the-faust-object>
 
@@ -851,6 +867,6 @@
   <hlink|previous|faust2pd.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2016, Albert Gräf et al. Last updated on Dec
-  20, 2016. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
+  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

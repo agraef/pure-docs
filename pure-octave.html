@@ -57,7 +57,7 @@
             
   <div class="section" id="module-octave">
 <span id="pure-octave"></span><h1>pure-octave<a class="headerlink" href="#module-octave" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.7, July 07, 2016</p>
+<p>Version 0.7, January 03, 2017</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>A Pure interface to <a class="reference external" href="http://www.octave.org">GNU Octave</a>.</p>
 <div class="contents local topic" id="contents">
@@ -104,9 +104,11 @@ utility and the corresponding header files and libraries).</p>
 setup. If it gets this wrong, you can set some variables manually. In
 particular, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span> <span class="pre">prefix=/usr</span></tt> sets the installation prefix. Please
 see the Makefile for details.</p>
-<p>NOTE: This release of pure-octave has been tested with Octave 3.6.2 and 3.8.0.
-Older versions might require some fiddling with the sources to get the
-embedded Octave interface working.</p>
+<p>NOTE: This release of pure-octave has been tested with Octave 3.6.2, 3.8 and
+4.0. Octave 4.2 does <em>not</em> work at present (segfaults in octave_eval), so we
+recommend using Octave 4.0 until this bug is fixed. Older versions might
+require some fiddling with the sources to get the embedded Octave interface
+working.</p>
 </div>
 <div class="section" id="basic-usage">
 <h2><a class="toc-backref" href="#id4">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
@@ -546,8 +548,8 @@ seem to be fixed in the latest Octave and VTK versions, however.)</p>
       </ul>
     </div>
     <div class="footer">
-    &copy; Copyright 2009-2016, Albert Gräf et al.
-    Last updated on Dec 20, 2016.
+    &copy; Copyright 2009-2017, Albert Gräf et al.
+    Last updated on Jan 03, 2017.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
