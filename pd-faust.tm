@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.13, January 03, 2017
+  Version 0.14, January 07, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -109,7 +109,9 @@
   <verbatim|PD=pd-extended> to the <verbatim|make> command line. This is
   known to work with <hlink|pd-extended|http://puredata.info/downloads/pd-extended>
   and <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>, two
-  popular alternative Pd distributions available on the web.
+  popular alternative Pd distributions available on the web, as well as
+  <hlink|purr-data|https://git.purrdata.net/jwilkes/purr-data> (the new
+  cross-platform version of <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>).
 
   Some further build options are described in the Makefile. In particular, it
   is possible to compile the Faust dsps to LLVM bitcode which can be loaded
@@ -868,5 +870,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  07, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

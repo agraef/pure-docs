@@ -1,7 +1,7 @@
 This is pd-pure.info, produced by makeinfo version 6.3 from
 pd-pure.texi.
 
-     Pure 0.64, January 03, 2017
+     Pure 0.64, January 07, 2017
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pd-pure.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-pure
 *******
 
-     Pure 0.64, January 03, 2017
+     Pure 0.64, January 07, 2017
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2017, Albert Gräf et al
 
-  Version 0.21, July 07, 2016
+  Version 0.22, January 07, 2017
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -65,7 +65,7 @@ File: pd-pure.info,  Node: Copying,  Next: Installation,  Prev: Top,  Up: Top
 1 Copying
 *********
 
-Copyright (c) 2009-2016 by Albert Graef.  pd-pure is distributed under a
+Copyright (c) 2009-2017 by Albert Graef.  pd-pure is distributed under a
 3-clause BSD-style license, please see the included COPYING file for
 details.
 
@@ -78,7 +78,7 @@ File: pd-pure.info,  Node: Installation,  Next: Usage,  Prev: Copying,  Up: Top
 MS Windows users please see *note pd-pure on Windows: 4. below.
 
   Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.tar.gz’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz’.
 
   Usually, ‘make && sudo make install’ should do the trick.  This will
 compile the external (you need to have GNU make, Pd and Pure installed
@@ -94,7 +94,8 @@ Makefile assumes ‘$(prefix)/lib/pd’.
 building and installing the module, by adding a definition like
 ‘PD=pd-extended’ to the ‘make’ command line.  This is known to work with
 pd-extended(1) and pd-l2ork(2), two popular alternative Pd distributions
-available on the web.
+available on the web, as well as purr-data(3) (the new cross-platform
+version of pd-l2ork(4)).
 
   The Makefile also tries to guess the host system type and Pure
 version, and set up some platform-specific things accordingly.  If this
@@ -111,6 +112,10 @@ accordingly.
 
    (2) http://l2ork.music.vt.edu/main/?page_id=56
 
+   (3) https://git.purrdata.net/jwilkes/purr-data
+
+   (4) http://l2ork.music.vt.edu/main/?page_id=56
+
 
 File: pd-pure.info,  Node: pd-pure on Windows,  Up: Installation
 
@@ -118,7 +123,7 @@ File: pd-pure.info,  Node: pd-pure on Windows,  Up: Installation
 ======================
 
 There’s a binary package in MSI format available at the Pure website:
-‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.msi’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi’.
 Use that if you can.  You’ll also need the latest Pure version (0.50 at
 the time of this writing), and Pd 0.43 or later, which is available from
 Miller Puckette’s website: ‘http://crca.ucsd.edu/~msp/software.html’.
@@ -1421,110 +1426,112 @@ Tag Table:
 Node: Top379
 Ref: pd-pure doc569
 Ref: 0569
-Ref: Top-Footnote-11581
-Node: Copying1611
-Ref: pd-pure pd-pure-pd-loader-for-pure-scripts1692
-Ref: 11692
-Ref: pd-pure copying1692
-Ref: 21692
-Node: Installation1865
-Ref: pd-pure installation1948
-Ref: 31948
-Ref: Installation-Footnote-13288
-Ref: Installation-Footnote-23339
-Node: pd-pure on Windows3390
-Ref: pd-pure pd-pure-on-windows3458
-Ref: 43458
-Node: Usage3876
-Ref: pd-pure usage3967
-Ref: 53967
-Node: Control Objects7422
-Ref: pd-pure control-objects7514
-Ref: 67514
-Node: Simple Objects10885
-Ref: pd-pure simple-objects10979
-Ref: 910979
-Node: Creation Arguments11407
-Ref: pd-pure creation-arguments11527
-Ref: a11527
-Node: The [pure] Object12093
-Ref: pd-pure the-pure-object12229
-Ref: c12229
-Node: Configuring Inlets and Outlets13357
-Ref: pd-pure configuring-inlets-and-outlets13502
-Ref: e13502
-Node: Variadic Creation Functions16369
-Ref: pd-pure variadic-creation-functions16508
-Ref: b16508
-Node: Local State18784
-Ref: pd-pure local-state18884
-Ref: f18884
-Node: Audio Objects19558
-Ref: pd-pure audio-objects19662
-Ref: 719662
-Ref: Audio Objects-Footnote-133938
-Node: Advanced Features33974
-Ref: pd-pure advanced-features34068
-Ref: 834068
-Node: Asynchronous Messages34596
-Ref: pd-pure asynchronous-messages34699
-Ref: 1134699
-Node: Wireless Messaging38215
-Ref: pd-pure wireless-messaging38357
-Ref: 1438357
-Ref: Wireless Messaging-Footnote-141138
-Ref: Wireless Messaging-Footnote-241211
-Node: Reading and Writing Audio Data41304
-Ref: pd-pure reading-and-writing-audio-data41448
-Ref: 1741448
-Node: Controlling the Runtime42854
-Ref: pd-pure controlling-the-runtime42990
-Ref: d42990
-Node: Livecoding44624
-Ref: pd-pure livecoding44744
-Ref: 1044744
-Node: Remote Control49405
-Ref: pd-pure remote-control49519
-Ref: 1a49519
-Node: Compiling Objects52770
-Ref: pd-pure compiling-objects52895
-Ref: 1b52895
-Node: Programming Interface54154
-Ref: pd-pure programming-interface54256
-Ref: 1354256
-Ref: pd-pure pd_version_s54562
-Ref: 1c54562
-Ref: pd-pure pd_path54978
-Ref: 1d54978
-Ref: pd-pure pd_libdir55243
-Ref: 1e55243
-Ref: pd-pure pd_getdir55439
-Ref: 1f55439
-Ref: pd-pure pd_getfile55995
-Ref: 2055995
-Ref: pd-pure pd_setfile56523
-Ref: 2156523
-Ref: pd-pure pd_post57007
-Ref: 2257007
-Ref: pd-pure pd_error_s57293
-Ref: 2357293
-Ref: pd-pure pd_time57803
-Ref: 1257803
-Ref: pd-pure pd_send58076
-Ref: 1558076
-Ref: pd-pure pd_receive58322
-Ref: 1658322
-Ref: pd-pure pd_unreceive58813
-Ref: 2458813
-Ref: pd-pure pd_getbuffer59009
-Ref: 1859009
-Ref: pd-pure pd_setbuffer59064
-Ref: 1959064
-Ref: pd-pure pd_getbuffersize59127
-Ref: 2559127
-Ref: pd-pure pd_setbuffersize59184
-Ref: 2659184
-Node: Index60369
+Ref: Top-Footnote-11584
+Node: Copying1614
+Ref: pd-pure pd-pure-pd-loader-for-pure-scripts1695
+Ref: 11695
+Ref: pd-pure copying1695
+Ref: 21695
+Node: Installation1868
+Ref: pd-pure installation1951
+Ref: 31951
+Ref: Installation-Footnote-13364
+Ref: Installation-Footnote-23415
+Ref: Installation-Footnote-33466
+Ref: Installation-Footnote-43517
+Node: pd-pure on Windows3568
+Ref: pd-pure pd-pure-on-windows3636
+Ref: 43636
+Node: Usage4054
+Ref: pd-pure usage4145
+Ref: 54145
+Node: Control Objects7600
+Ref: pd-pure control-objects7692
+Ref: 67692
+Node: Simple Objects11063
+Ref: pd-pure simple-objects11157
+Ref: 911157
+Node: Creation Arguments11585
+Ref: pd-pure creation-arguments11705
+Ref: a11705
+Node: The [pure] Object12271
+Ref: pd-pure the-pure-object12407
+Ref: c12407
+Node: Configuring Inlets and Outlets13535
+Ref: pd-pure configuring-inlets-and-outlets13680
+Ref: e13680
+Node: Variadic Creation Functions16547
+Ref: pd-pure variadic-creation-functions16686
+Ref: b16686
+Node: Local State18962
+Ref: pd-pure local-state19062
+Ref: f19062
+Node: Audio Objects19736
+Ref: pd-pure audio-objects19840
+Ref: 719840
+Ref: Audio Objects-Footnote-134116
+Node: Advanced Features34152
+Ref: pd-pure advanced-features34246
+Ref: 834246
+Node: Asynchronous Messages34774
+Ref: pd-pure asynchronous-messages34877
+Ref: 1134877
+Node: Wireless Messaging38393
+Ref: pd-pure wireless-messaging38535
+Ref: 1438535
+Ref: Wireless Messaging-Footnote-141316
+Ref: Wireless Messaging-Footnote-241389
+Node: Reading and Writing Audio Data41482
+Ref: pd-pure reading-and-writing-audio-data41626
+Ref: 1741626
+Node: Controlling the Runtime43032
+Ref: pd-pure controlling-the-runtime43168
+Ref: d43168
+Node: Livecoding44802
+Ref: pd-pure livecoding44922
+Ref: 1044922
+Node: Remote Control49583
+Ref: pd-pure remote-control49697
+Ref: 1a49697
+Node: Compiling Objects52948
+Ref: pd-pure compiling-objects53073
+Ref: 1b53073
+Node: Programming Interface54332
+Ref: pd-pure programming-interface54434
+Ref: 1354434
+Ref: pd-pure pd_version_s54740
+Ref: 1c54740
+Ref: pd-pure pd_path55156
+Ref: 1d55156
+Ref: pd-pure pd_libdir55421
+Ref: 1e55421
+Ref: pd-pure pd_getdir55617
+Ref: 1f55617
+Ref: pd-pure pd_getfile56173
+Ref: 2056173
+Ref: pd-pure pd_setfile56701
+Ref: 2156701
+Ref: pd-pure pd_post57185
+Ref: 2257185
+Ref: pd-pure pd_error_s57471
+Ref: 2357471
+Ref: pd-pure pd_time57981
+Ref: 1257981
+Ref: pd-pure pd_send58254
+Ref: 1558254
+Ref: pd-pure pd_receive58500
+Ref: 1658500
+Ref: pd-pure pd_unreceive58991
+Ref: 2458991
+Ref: pd-pure pd_getbuffer59187
+Ref: 1859187
+Ref: pd-pure pd_setbuffer59242
+Ref: 1959242
+Ref: pd-pure pd_getbuffersize59305
+Ref: 2559305
+Ref: pd-pure pd_setbuffersize59362
+Ref: 2659362
+Node: Index60547
 
 End Tag Table
 

@@ -1,7 +1,7 @@
 This is pd-faust.info, produced by makeinfo version 6.3 from
 pd-faust.texi.
 
-     Pure 0.64, January 03, 2017
+     Pure 0.64, January 07, 2017
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pd-faust.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-faust
 ********
 
-     Pure 0.64, January 03, 2017
+     Pure 0.64, January 07, 2017
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2017, Albert Gräf et al
 
-  Version 0.13, January 03, 2017
+  Version 0.14, January 07, 2017
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -134,15 +134,16 @@ Makefile assumes ‘$(prefix)/lib/pd’.
 building and installing the module, by adding a definition like
 ‘PD=pd-extended’ to the ‘make’ command line.  This is known to work with
 pd-extended(4) and pd-l2ork(5), two popular alternative Pd distributions
-available on the web.
+available on the web, as well as purr-data(6) (the new cross-platform
+version of pd-l2ork(7)).
 
   Some further build options are described in the Makefile.  In
 particular, it is possible to compile the Faust dsps to LLVM bitcode
 which can be loaded directly by the Pure interpreter, but for that
-you’ll need a special Faust version (see the Faust2(6) website for how
+you’ll need a special Faust version (see the Faust2(8) website for how
 to get this version up and running) and an LLVM-capable C/C++ compiler
 such as clang or gcc with the dragonegg plugin (please check the
-Makefile and the LLVM(7) website for details).
+Makefile and the LLVM(9) website for details).
 
   If you have the required tools then you can build the bitcode modules
 by running ‘make bitcode’ after ‘make’.  If you run ‘make install’
@@ -165,9 +166,13 @@ that in the present implementation it is not possible to load both
 
    (5) http://l2ork.music.vt.edu/main/?page_id=56
 
-   (6) https://bitbucket.org/purelang/pure-lang/wiki/Faust2
+   (6) https://git.purrdata.net/jwilkes/purr-data
 
-   (7) http://llvm.org/
+   (7) http://l2ork.music.vt.edu/main/?page_id=56
+
+   (8) https://bitbucket.org/purelang/pure-lang/wiki/Faust2
+
+   (9) http://llvm.org/
 
 
 File: pd-faust.info,  Node: Usage,  Next: Caveats and Bugs,  Prev: Installation,  Up: Top
@@ -882,64 +887,66 @@ Ref: 32108
 Node: Installation2638
 Ref: pd-faust installation2722
 Ref: 42722
-Ref: Installation-Footnote-16363
-Ref: Installation-Footnote-26394
-Ref: Installation-Footnote-36424
-Ref: Installation-Footnote-46463
-Ref: Installation-Footnote-56514
-Ref: Installation-Footnote-66565
-Ref: Installation-Footnote-76626
-Node: Usage6651
-Ref: pd-faust usage6744
-Ref: 66744
-Node: The fdsp~ and fsynth~ Objects8479
-Ref: pd-faust the-fdsp-and-fsynth-objects8578
-Ref: 88578
-Ref: The fdsp~ and fsynth~ Objects-Footnote-115250
-Ref: The fdsp~ and fsynth~ Objects-Footnote-215311
-Ref: The fdsp~ and fsynth~ Objects-Footnote-315355
-Node: The faust~ Object15400
-Ref: pd-faust the-faust-object15522
-Ref: a15522
-Ref: pd-faust pd-smmf15522
-Ref: b15522
-Ref: The faust~ Object-Footnote-118260
-Ref: The faust~ Object-Footnote-218307
-Node: GUI Subpatches18354
-Ref: pd-faust gui-subpatches18455
-Ref: c18455
-Node: Examples20751
-Ref: pd-faust examples20856
-Ref: 520856
-Node: Operating the Patches22270
-Ref: pd-faust operating-the-patches22394
-Ref: 722394
-Ref: Operating the Patches-Footnote-130403
-Ref: Operating the Patches-Footnote-230461
-Node: External MIDI and OSC Controllers30511
-Ref: pd-faust external-midi-and-osc-controllers30650
-Ref: 930650
-Ref: pd-faust pd-lv2plugin30650
-Ref: e30650
-Ref: External MIDI and OSC Controllers-Footnote-134633
-Ref: External MIDI and OSC Controllers-Footnote-234690
-Ref: External MIDI and OSC Controllers-Footnote-334741
-Node: Tweaking the GUI Layout34793
-Ref: pd-faust pd-mdnsbrowser34925
-Ref: f34925
-Ref: pd-faust tweaking-the-gui-layout34925
-Ref: d34925
-Node: Remote Control38089
-Ref: pd-faust remote-control38179
-Ref: 1038179
-Ref: Remote Control-Footnote-138857
-Node: Caveats and Bugs38908
-Ref: pd-faust faust-mode38994
-Ref: 1138994
-Ref: pd-faust caveats-and-bugs38994
-Ref: 1238994
-Ref: Caveats and Bugs-Footnote-140674
-Node: Index40708
+Ref: Installation-Footnote-16436
+Ref: Installation-Footnote-26467
+Ref: Installation-Footnote-36497
+Ref: Installation-Footnote-46536
+Ref: Installation-Footnote-56587
+Ref: Installation-Footnote-66638
+Ref: Installation-Footnote-76689
+Ref: Installation-Footnote-86740
+Ref: Installation-Footnote-96801
+Node: Usage6826
+Ref: pd-faust usage6919
+Ref: 66919
+Node: The fdsp~ and fsynth~ Objects8654
+Ref: pd-faust the-fdsp-and-fsynth-objects8753
+Ref: 88753
+Ref: The fdsp~ and fsynth~ Objects-Footnote-115425
+Ref: The fdsp~ and fsynth~ Objects-Footnote-215486
+Ref: The fdsp~ and fsynth~ Objects-Footnote-315530
+Node: The faust~ Object15575
+Ref: pd-faust the-faust-object15697
+Ref: a15697
+Ref: pd-faust pd-smmf15697
+Ref: b15697
+Ref: The faust~ Object-Footnote-118435
+Ref: The faust~ Object-Footnote-218482
+Node: GUI Subpatches18529
+Ref: pd-faust gui-subpatches18630
+Ref: c18630
+Node: Examples20926
+Ref: pd-faust examples21031
+Ref: 521031
+Node: Operating the Patches22445
+Ref: pd-faust operating-the-patches22569
+Ref: 722569
+Ref: Operating the Patches-Footnote-130578
+Ref: Operating the Patches-Footnote-230636
+Node: External MIDI and OSC Controllers30686
+Ref: pd-faust external-midi-and-osc-controllers30825
+Ref: 930825
+Ref: pd-faust pd-lv2plugin30825
+Ref: e30825
+Ref: External MIDI and OSC Controllers-Footnote-134808
+Ref: External MIDI and OSC Controllers-Footnote-234865
+Ref: External MIDI and OSC Controllers-Footnote-334916
+Node: Tweaking the GUI Layout34968
+Ref: pd-faust pd-mdnsbrowser35100
+Ref: f35100
+Ref: pd-faust tweaking-the-gui-layout35100
+Ref: d35100
+Node: Remote Control38264
+Ref: pd-faust remote-control38354
+Ref: 1038354
+Ref: Remote Control-Footnote-139032
+Node: Caveats and Bugs39083
+Ref: pd-faust faust-mode39169
+Ref: 1139169
+Ref: pd-faust caveats-and-bugs39169
+Ref: 1239169
+Ref: Caveats and Bugs-Footnote-140849
+Node: Index40883
 
 End Tag Table
 

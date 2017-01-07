@@ -57,7 +57,7 @@
             
   <div class="section" id="pd-pure-pd-loader-for-pure-scripts">
 <h1>pd-pure: Pd loader for Pure scripts<a class="headerlink" href="#pd-pure-pd-loader-for-pure-scripts" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.21, July 07, 2016</p>
+<p>Version 0.22, January 07, 2017</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>This is a <a class="reference external" href="http://puredata.info/">Pd</a> loader plugin for the Pure programming language which lets you
 write external Pd objects in Pure.</p>
@@ -103,14 +103,14 @@ to a library in binary format which can be loaded much faster with Pd&#8217;s
 </div>
 <div class="section" id="copying">
 <h2><a class="toc-backref" href="#id2">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
-<p>Copyright (c) 2009-2016 by Albert Graef. pd-pure is distributed under a
+<p>Copyright (c) 2009-2017 by Albert Graef. pd-pure is distributed under a
 3-clause BSD-style license, please see the included COPYING file for details.</p>
 </div>
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#id3">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>MS Windows users please see <a class="reference internal" href="#pd-pure-on-windows">pd-pure on Windows</a> below.</p>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.tar.gz</a>.</p>
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz</a>.</p>
 <p>Usually, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt> should do the trick. This will compile
 the external (you need to have GNU make, Pd and Pure installed to do that) and
 install it in the lib/pd/extra/pure directory.</p>
@@ -122,14 +122,15 @@ with <tt class="docutils literal"><span class="pre">make</span> <span class="pre
 <p>It is also possible to specify an alternative flavour of Pd when building and
 installing the module, by adding a definition like <tt class="docutils literal"><span class="pre">PD=pd-extended</span></tt> to the
 <tt class="docutils literal"><span class="pre">make</span></tt> command line. This is known to work with <a class="reference external" href="http://puredata.info/downloads/pd-extended">pd-extended</a> and <a class="reference external" href="http://l2ork.music.vt.edu/main/?page_id=56">pd-l2ork</a>,
-two popular alternative Pd distributions available on the web.</p>
+two popular alternative Pd distributions available on the web, as well as
+<a class="reference external" href="https://git.purrdata.net/jwilkes/purr-data">purr-data</a> (the new cross-platform version of <a class="reference external" href="http://l2ork.music.vt.edu/main/?page_id=56">pd-l2ork</a>).</p>
 <p>The Makefile also tries to guess the host system type and Pure version, and
 set up some platform-specific things accordingly. If this doesn&#8217;t work for
 your system then you&#8217;ll have to edit the Makefile accordingly.</p>
 <div class="section" id="pd-pure-on-windows">
 <h3><a class="toc-backref" href="#id4">pd-pure on Windows</a><a class="headerlink" href="#pd-pure-on-windows" title="Permalink to this headline">¶</a></h3>
 <p>There&#8217;s a binary package in MSI format available at the Pure website:
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.msi">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.msi</a>. Use that if you
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi</a>. Use that if you
 can. You&#8217;ll also need the latest Pure version (0.50 at the time of this
 writing), and Pd 0.43 or later, which is available from Miller Puckette&#8217;s
 website: <a class="reference external" href="http://crca.ucsd.edu/~msp/software.html">http://crca.ucsd.edu/~msp/software.html</a>.</p>
@@ -1320,7 +1321,7 @@ array.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2017, Albert Gräf et al.
-    Last updated on Jan 03, 2017.
+    Last updated on Jan 07, 2017.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

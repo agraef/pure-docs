@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.64, January 03, 2017
+Pure 0.64, January 07, 2017
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2017, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-pure doc}@anchor{0}
-Version 0.21, July 07, 2016
+Version 0.22, January 07, 2017
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -80,7 +80,7 @@ to a library in binary format which can be loaded much faster with Pd's
 @chapter Copying
 
 
-Copyright (c) 2009-2016 by Albert Graef. pd-pure is distributed under a
+Copyright (c) 2009-2017 by Albert Graef. pd-pure is distributed under a
 3-clause BSD-style license, please see the included COPYING file for details.
 
 @node Installation,Usage,Copying,Top
@@ -91,7 +91,7 @@ Copyright (c) 2009-2016 by Albert Graef. pd-pure is distributed under a
 MS Windows users please see @pxref{4,,pd-pure on Windows} below.
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.tar.gz}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz}.
 
 Usually, @code{make && sudo make install} should do the trick. This will compile
 the external (you need to have GNU make, Pd and Pure installed to do that) and
@@ -106,7 +106,8 @@ with @code{make pdlibdir=/some/path}; by default the Makefile assumes
 It is also possible to specify an alternative flavour of Pd when building and
 installing the module, by adding a definition like @code{PD=pd-extended} to the
 @code{make} command line. This is known to work with pd-extended@footnote{http://puredata.info/downloads/pd-extended} and pd-l2ork@footnote{http://l2ork.music.vt.edu/main/?page_id=56},
-two popular alternative Pd distributions available on the web.
+two popular alternative Pd distributions available on the web, as well as
+purr-data@footnote{https://git.purrdata.net/jwilkes/purr-data} (the new cross-platform version of pd-l2ork@footnote{http://l2ork.music.vt.edu/main/?page_id=56}).
 
 The Makefile also tries to guess the host system type and Pure version, and
 set up some platform-specific things accordingly. If this doesn't work for
@@ -123,7 +124,7 @@ your system then you'll have to edit the Makefile accordingly.
 
 
 There's a binary package in MSI format available at the Pure website:
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.msi}. Use that if you
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi}. Use that if you
 can. You'll also need the latest Pure version (0.50 at the time of this
 writing), and Pd 0.43 or later, which is available from Miller Puckette's
 website: @indicateurl{http://crca.ucsd.edu/~msp/software.html}.

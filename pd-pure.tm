@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.21, July 07, 2016
+  Version 0.22, January 07, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -30,7 +30,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2009-2016 by Albert Graef. pd-pure is distributed under a
+  Copyright (c) 2009-2017 by Albert Graef. pd-pure is distributed under a
   3-clause BSD-style license, please see the included COPYING file for
   details.
 
@@ -39,7 +39,7 @@
   MS Windows users please see <hlink|pd-pure on Windows|#pd-pure-on-windows>
   below.
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -58,7 +58,9 @@
   <verbatim|PD=pd-extended> to the <verbatim|make> command line. This is
   known to work with <hlink|pd-extended|http://puredata.info/downloads/pd-extended>
   and <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>, two
-  popular alternative Pd distributions available on the web.
+  popular alternative Pd distributions available on the web, as well as
+  <hlink|purr-data|https://git.purrdata.net/jwilkes/purr-data> (the new
+  cross-platform version of <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>).
 
   The Makefile also tries to guess the host system type and Pure version, and
   set up some platform-specific things accordingly. If this doesn't work for
@@ -67,7 +69,7 @@
   <subsubsection|pd-pure on Windows><label|pd-pure-on-windows>
 
   There's a binary package in MSI format available at the Pure website:
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.21.msi>.
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi>.
   Use that if you can. You'll also need the latest Pure version (0.50 at the
   time of this writing), and Pd 0.43 or later, which is available from Miller
   Puckette's website: <hlink|http://crca.ucsd.edu/<math|\<sim\>>msp/software.html|http://crca.ucsd.edu/-tildemsp/software.html>.
@@ -1735,5 +1737,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  07, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
