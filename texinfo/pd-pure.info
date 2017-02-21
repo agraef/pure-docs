@@ -573,15 +573,12 @@ following differences:
      of a signal object on the left is somewhat at odds with most other
      signal objects in Pd, which typically have a (main) signal
      inlet/outlet on the left and the control inlets and outlets on the
-     right.  However, we think that this kind of setup simply makes the
-     most sense for Pure signal objects, since the control inlet/outlet
-     pair will always be there in the same position, whereas the signal
+     right.  However, we think that this kind of setup makes the most
+     sense for Pure signal objects, since the control inlet/outlet pair
+     will always be there in the same position, whereas the signal
      inlets and outlets may vary (and might actually not be present at
      all, e.g., if the sole purpose of a signal object is to have some
-     code executed for each "dsp tick").  Also note that some Pd flavors
-     (most notably, Pd-extended and its descendants) will incorrectly
-     display the leftmost _inlet_ of a signal object as a signal inlet
-     when it’s really a control inlet.
+     code executed for each "dsp tick").
 
   Whenever Pd has audio processing enabled, the object function is
 invoked with one block of sample data for each iteration of Pd’s audio
@@ -1242,7 +1239,7 @@ that instead of fiddling around with ‘[pure-runtime]’, but since
 ‘[pure-remote]’ is implemented using ‘[pure-runtime]’, it may be useful
 to know how all this works at the most basic level, which is what we
 explain below.  (If you don’t care about the nitty-gritty stuff then you
-may just skip ahead now to the *note Remote Control: 1b. section.)
+may just skip ahead to the *note Remote Control: 1b. section now.)
 
   Sending a ‘bang’ to the ‘[pure-runtime]’ object tells the plugin to
 reload all object scripts and update the Pure objects in your patch
@@ -1680,75 +1677,75 @@ Ref: 1021709
 Node: Signal Objects22383
 Ref: pd-pure signal-objects22488
 Ref: 722488
-Ref: Signal Objects-Footnote-137833
-Node: Advanced Features37864
-Ref: pd-pure advanced-features37959
-Ref: 837959
-Node: Asynchronous Messages38534
-Ref: pd-pure asynchronous-messages38637
-Ref: 1238637
-Node: Wireless Messaging42153
-Ref: pd-pure wireless-messaging42295
-Ref: 1542295
-Ref: Wireless Messaging-Footnote-145076
-Ref: Wireless Messaging-Footnote-245149
-Node: Reading and Writing Audio Data45242
-Ref: pd-pure reading-and-writing-audio-data45386
-Ref: 1845386
-Node: Controlling the Runtime46792
-Ref: pd-pure controlling-the-runtime46949
-Ref: d46949
-Node: Loading Script Files at Startup49258
-Ref: pd-pure loading-script-files-at-startup49395
-Ref: e49395
-Ref: Loading Script Files at Startup-Footnote-152741
-Ref: Loading Script Files at Startup-Footnote-252791
-Ref: Loading Script Files at Startup-Footnote-352842
-Node: Livecoding52892
-Ref: pd-pure livecoding53020
-Ref: 1153020
-Node: Remote Control58532
-Ref: pd-pure remote-control58646
-Ref: 1b58646
-Node: Compiling Objects62750
-Ref: pd-pure compiling-objects62875
-Ref: 1c62875
-Node: Programming Interface64141
-Ref: pd-pure programming-interface64243
-Ref: 1464243
-Ref: pd-pure pd_version_s65483
-Ref: 1d65483
-Ref: pd-pure pd_path65899
-Ref: 1e65899
-Ref: pd-pure pd_libdir66164
-Ref: 1f66164
-Ref: pd-pure pd_getdir66347
-Ref: 2066347
-Ref: pd-pure pd_getfile66903
-Ref: 2166903
-Ref: pd-pure pd_setfile67431
-Ref: 2267431
-Ref: pd-pure pd_post67915
-Ref: 2367915
-Ref: pd-pure pd_error_s68201
-Ref: 2468201
-Ref: pd-pure pd_time68711
-Ref: 1368711
-Ref: pd-pure pd_send68984
-Ref: 1668984
-Ref: pd-pure pd_receive69230
-Ref: 1769230
-Ref: pd-pure pd_unreceive69721
-Ref: 2569721
-Ref: pd-pure pd_getbuffer69917
-Ref: 1969917
-Ref: pd-pure pd_setbuffer69972
-Ref: 1a69972
-Ref: pd-pure pd_getbuffersize70035
-Ref: 2670035
-Ref: pd-pure pd_setbuffersize70092
-Ref: 2770092
-Node: Index71272
+Ref: Signal Objects-Footnote-137612
+Node: Advanced Features37643
+Ref: pd-pure advanced-features37738
+Ref: 837738
+Node: Asynchronous Messages38313
+Ref: pd-pure asynchronous-messages38416
+Ref: 1238416
+Node: Wireless Messaging41932
+Ref: pd-pure wireless-messaging42074
+Ref: 1542074
+Ref: Wireless Messaging-Footnote-144855
+Ref: Wireless Messaging-Footnote-244928
+Node: Reading and Writing Audio Data45021
+Ref: pd-pure reading-and-writing-audio-data45165
+Ref: 1845165
+Node: Controlling the Runtime46571
+Ref: pd-pure controlling-the-runtime46728
+Ref: d46728
+Node: Loading Script Files at Startup49037
+Ref: pd-pure loading-script-files-at-startup49174
+Ref: e49174
+Ref: Loading Script Files at Startup-Footnote-152520
+Ref: Loading Script Files at Startup-Footnote-252570
+Ref: Loading Script Files at Startup-Footnote-352621
+Node: Livecoding52671
+Ref: pd-pure livecoding52799
+Ref: 1152799
+Node: Remote Control58311
+Ref: pd-pure remote-control58425
+Ref: 1b58425
+Node: Compiling Objects62529
+Ref: pd-pure compiling-objects62654
+Ref: 1c62654
+Node: Programming Interface63920
+Ref: pd-pure programming-interface64022
+Ref: 1464022
+Ref: pd-pure pd_version_s65262
+Ref: 1d65262
+Ref: pd-pure pd_path65678
+Ref: 1e65678
+Ref: pd-pure pd_libdir65943
+Ref: 1f65943
+Ref: pd-pure pd_getdir66126
+Ref: 2066126
+Ref: pd-pure pd_getfile66682
+Ref: 2166682
+Ref: pd-pure pd_setfile67210
+Ref: 2267210
+Ref: pd-pure pd_post67694
+Ref: 2367694
+Ref: pd-pure pd_error_s67980
+Ref: 2467980
+Ref: pd-pure pd_time68490
+Ref: 1368490
+Ref: pd-pure pd_send68763
+Ref: 1668763
+Ref: pd-pure pd_receive69009
+Ref: 1769009
+Ref: pd-pure pd_unreceive69500
+Ref: 2569500
+Ref: pd-pure pd_getbuffer69696
+Ref: 1969696
+Ref: pd-pure pd_setbuffer69751
+Ref: 1a69751
+Ref: pd-pure pd_getbuffersize69814
+Ref: 2669814
+Ref: pd-pure pd_setbuffersize69871
+Ref: 2769871
+Node: Index71051
 
 End Tag Table
 

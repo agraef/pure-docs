@@ -495,14 +495,11 @@ function to be invoked at runtime.</li>
 signal object on the left is somewhat at odds with most other signal
 objects in Pd, which typically have a (main) signal inlet/outlet on the
 left and the control inlets and outlets on the right. However, we think
-that this kind of setup simply makes the most sense for Pure signal
-objects, since the control inlet/outlet pair will always be there in the
-same position, whereas the signal inlets and outlets may vary (and might
-actually not be present at all, e.g., if the sole purpose of a signal
-object is to have some code executed for each &#8220;dsp tick&#8221;). Also note that
-some Pd flavors (most notably, Pd-extended and its descendants) will
-incorrectly display the leftmost <em>inlet</em> of a signal object as a signal
-inlet when it&#8217;s really a control inlet.</p>
+that this kind of setup makes the most sense for Pure signal objects, since
+the control inlet/outlet pair will always be there in the same position,
+whereas the signal inlets and outlets may vary (and might actually not be
+present at all, e.g., if the sole purpose of a signal object is to have
+some code executed for each &#8220;dsp tick&#8221;).</p>
 </div>
 <p>Whenever Pd has audio processing enabled, the object function is invoked with
 one block of sample data for each iteration of Pd&#8217;s audio loop. The sample
@@ -1044,8 +1041,8 @@ useful &#8220;remote control&#8221; feature. We <em>really</em> recommend using 
 fiddling around with <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt>, but since <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> is
 implemented using <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt>, it may be useful to know how all this
 works at the most basic level, which is what we explain below. (If you don&#8217;t
-care about the nitty-gritty stuff then you may just skip ahead now to the
-<a class="reference internal" href="#remote-control">Remote Control</a> section.)</p>
+care about the nitty-gritty stuff then you may just skip ahead to the <a class="reference internal" href="#remote-control">Remote
+Control</a> section now.)</p>
 <p>Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> to the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object tells the plugin to reload
 all object scripts and update the Pure objects in your patch accordingly. The
 object also provides two outlets to deal with the inevitable latencies caused

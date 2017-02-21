@@ -568,14 +568,11 @@
   inlet/outlet pair of a signal object on the left is somewhat at odds with
   most other signal objects in Pd, which typically have a (main) signal
   inlet/outlet on the left and the control inlets and outlets on the right.
-  However, we think that this kind of setup simply makes the most sense for
-  Pure signal objects, since the control inlet/outlet pair will always be
-  there in the same position, whereas the signal inlets and outlets may vary
-  (and might actually not be present at all, e.g., if the sole purpose of a
-  signal object is to have some code executed for each \Pdsp tick\Q). Also
-  note that some Pd flavors (most notably, Pd-extended and its descendants)
-  will incorrectly display the leftmost <em|inlet> of a signal object as a
-  signal inlet when it's really a control inlet.
+  However, we think that this kind of setup makes the most sense for Pure
+  signal objects, since the control inlet/outlet pair will always be there in
+  the same position, whereas the signal inlets and outlets may vary (and
+  might actually not be present at all, e.g., if the sole purpose of a signal
+  object is to have some code executed for each \Pdsp tick\Q).
 
   Whenever Pd has audio processing enabled, the object function is invoked
   with one block of sample data for each iteration of Pd's audio loop. The
@@ -1526,8 +1523,8 @@
   <verbatim|[pure-runtime]>, but since <verbatim|[pure-remote]> is
   implemented using <verbatim|[pure-runtime]>, it may be useful to know how
   all this works at the most basic level, which is what we explain below. (If
-  you don't care about the nitty-gritty stuff then you may just skip ahead
-  now to the <hlink|Remote Control|#remote-control> section.)
+  you don't care about the nitty-gritty stuff then you may just skip ahead to
+  the <hlink|Remote Control|#remote-control> section now.)
 
   Sending a <verbatim|bang> to the <verbatim|[pure-runtime]> object tells the
   plugin to reload all object scripts and update the Pure objects in your
