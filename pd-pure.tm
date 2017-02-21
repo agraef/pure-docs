@@ -14,31 +14,43 @@
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  This is a <hlink|Pd|http://puredata.info/> loader plugin for the
-  <hlink|Pure|https://purelang.bitbucket.io/> programming language which lets
-  you write external Pd objects in Pure. This is generally much easier and a
-  lot more fun than having to code externals in a comparatively low-level
-  language such as C or C++. Being a full-featured functional programming
-  language, Pure certainly has its own learning curve, but once mastered, it
-  makes programming many kinds of Pd objects a walk in the park. Its Pd
-  interface is very convenient to use and has livecoding support, i.e., the
-  ability to reload Pure externals at any time while your Pd patch keeps
-  running. Pure also offers a comprehensive library of its own and many
-  interfaces to third-party software useful for implementing Pd objects, such
-  as <hlink|Octave|http://www.octave.org/> and Grame's
+  This is a <hlink|Pure|https://purelang.bitbucket.io/> \Ploader plugin\Q for
+  <hlink|Pd|http://puredata.info/>, Miller Puckette's graphical dataflow
+  programming system for realtime multimedia applications. If you are a Pd
+  user, it lets you write external Pd objects in Pure, which is generally
+  much more convenient and a lot more fun than having to code Pd externals in
+  a comparatively low-level language such as C or C++. If you are a Pure
+  user, it provides you with an alternative way to develop and run your Pure
+  scripts in one of the best graphical dataflow environments available today.
+
+  Pure certainly has its own learning curve, but once mastered, it makes
+  programming many kinds of Pd objects a walk in the park. Its Pd interface
+  is convenient to use and has livecoding support, i.e., the ability to
+  reload Pure externals at any time while your Pd patch keeps running. Pure
+  also offers a comprehensive library and many interfaces to third-party
+  software useful for implementing Pd objects, such as
+  <hlink|Octave|http://www.octave.org/> and Grame's
   <hlink|Faust|http://faust.grame.fr/>.
 
-  <with|font-series|bold|Caveat:> Please note that Pure is a
-  <em|JIT-compiled> language and thus there may be some noticeable latencies
-  when the embedded Pure runtime first loads your Pure scripts and compiles
-  them on the fly. This shouldn't be much of an issue on reasonably modern
-  hardware, however, and once the scripts <em|have> been loaded, they are
-  executed very efficiently. As of pd-pure 0.15, it is also possible to
-  <em|precompile> a collection of Pure objects to a binary external library
-  which can be loaded just like any other library of Pd externals with Pd's
-  <verbatim|-lib> option. In addition, pd-pure 0.24 and later offer the
-  ability to <em|preload> Pure scripts with the <verbatim|-lib> option at
-  startup.
+  But pd-pure isn't limited to just computer music and realtime multimedia
+  programming, which are Pd's hallmark applications. It also allows you to
+  employ Pd as a graphical dataflow environment for developing and testing
+  your Pure programs, leveraging Pd's built-in facilities for creating
+  graphical user interfaces for your application, while getting Pd's
+  sophisticated realtime multimedia capabilities for free.
+
+  <with|font-series|bold|Note:> Pure is a <em|JIT> (\Pjust in time\Q)
+  <em|compiled> language which means that there may be some noticeable
+  latencies when the embedded Pure runtime first loads your Pure scripts and
+  compiles them on the fly. This shouldn't be much of an issue on most
+  contemporary hardware any more, and once the scripts <em|have> been loaded,
+  they are executed very efficiently. Nevertheless, as a remedy it is also
+  possible to <em|precompile> a collection of Pure objects to a binary
+  external library which can be loaded quickly at startup with Pd's
+  <verbatim|-lib> option. In addition, pd-pure 0.24+ offers the ability to
+  preload Pure <em|source> scripts with the <verbatim|-lib> option at
+  startup, so that they don't cause any more hiccups when the objects are
+  instantiated later.
 
   <subsection|Copying><label|copying>
 
@@ -82,13 +94,19 @@
   set up some platform-specific things accordingly. If this doesn't work for
   your system then you'll have to edit the Makefile accordingly.
 
-  MS Windows users please note that there's a binary package in MSI format
-  available at the Pure website: <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi>.
+  MS Windows users please note that there's a binary package in zip format
+  available at the Pure website: <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip>.
+  You can simply drop the <verbatim|pure> folder contained in the package
+  into the <verbatim|extra> folder of your Pd installation. In addition, you
+  will also need an installation of the Pure interpreter itself; a
+  corresponding Windows installer can be found in the <hlink|download
+  section|https://bitbucket.org/purelang/pure-lang/downloads/> of the Pure
+  website as well (look for the latest pure-x.y.msi package).
 
   Mac users can find pd-pure and all its dependencies in
-  <hlink|MacPorts|http://www.macports.org/>. Please also check the \PPure on
-  Mac OS X\Q <hlink|wiki page|https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends>
-  for details.
+  <hlink|MacPorts|http://www.macports.org/>. Please also check the
+  <hlink|Pure on Mac OS X|https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends>
+  wiki page for details.
 
   <subsection|Usage><label|usage>
 
@@ -96,14 +114,25 @@
   startup, either with the <verbatim|-lib> option (<verbatim|pd>
   <verbatim|-lib> <verbatim|pure>), or by specifying <verbatim|pure> in Pd's
   startup options. This setting can be saved so that the Pure loader is
-  always available when you run Pd. Once the Pure loader has been installed,
-  you should see a message in the Pd main window indicating that the external
-  has been loaded.
+  always available when you run Pd. Once the Pure loader has been activated,
+  you should see a sign-on message like the following in the Pd main window,
+  indicating that the external has been successfully loaded:
+
+  <\verbatim>
+    \;
+
+    pd-pure 0.24 (pure-0.64) (c) 2009-2017 Albert Graef
+    \<less\>aggraef@gmail.com\<gtr\>
+
+    pd-pure: compiled for pd-0.47 on Feb 21 2017
+
+    \;
+  </verbatim>
 
   Since version 0.12 pd-pure supports the definition of both control and
-  audio objects in Pure. The latter are also known as \Ptilde\Q or \Pdsp
+  signal objects in Pure. The latter are also known as \Ptilde\Q or \Pdsp
   objects\Q in Pd parlance; pd-pure follows the Pd convention in that these
-  objects have a trailing tilde in their name. Audio objects are used
+  objects have a trailing tilde in their name. Signal objects are used
   primarily for processing audio signals, whereas control objects are
   employed for asynchronous message processing.
 
@@ -122,7 +151,7 @@
   This object takes numbers as inputs on its single inlet, adds 5 to them and
   outputs the result on its single outlet.
 
-  Similarly, audio objects can be created with <verbatim|[pure~]>. For
+  Similarly, signal objects can be created with <verbatim|[pure~]>. For
   instance, the following object processes incoming vectors of samples,
   multiplying each sample with 2:
 
@@ -187,7 +216,7 @@
 
   In the following section, we first discuss in detail how <hlink|control
   objects|#control-objects> are defined and used. After that, the necessary
-  adjustments for implementing <hlink|audio objects|#audio-objects> are
+  adjustments for implementing <hlink|signal objects|#signal-objects> are
   explained. Some advanced uses of pd-pure are described under
   <hlink|Advanced Features|#advanced-features>.
 
@@ -505,21 +534,21 @@
     \;
   </verbatim>
 
-  <subsection|Audio Objects><label|audio-objects>
+  <subsection|Signal Objects><label|signal-objects>
 
   If the name of a Pure object (i.e., the basename of the corresponding Pure
   script) ends with the <verbatim|~> character, pd-pure assumes that it
-  denotes an audio object whose primary purpose is to process sample data.
+  denotes a signal object whose primary purpose is to process sample data.
   The basic setup is similar to the case of control objects, with the
   following differences:
 
   <\itemize>
-    <item>The object function for an audio object <verbatim|xyz~> is named
+    <item>The object function for a signal object <verbatim|xyz~> is named
     <verbatim|xyz_dsp> (rather than <verbatim|xyz>). The function is defined
     in the <verbatim|xyz~.pure> script file, which must be located in the
     same directory as the Pd patch or anywhere on Pd's search path.
 
-    <item>To keep things simple, a Pure audio object is always equipped with
+    <item>To keep things simple, a Pure signal object is always equipped with
     exactly one control inlet and one control outlet, which are the leftmost
     inlet and outlet of the object. These can be used to process control
     messages in the usual fashion, in addition to the audio processing
@@ -534,6 +563,19 @@
     <verbatim|foo> is the actual processing function to be invoked at
     runtime.
   </itemize>
+
+  <with|font-series|bold|Note:> pd-pure's convention of placing the control
+  inlet/outlet pair of a signal object on the left is somewhat at odds with
+  most other signal objects in Pd, which typically have a (main) signal
+  inlet/outlet on the left and the control inlets and outlets on the right.
+  However, we think that this kind of setup simply makes the most sense for
+  Pure signal objects, since the control inlet/outlet pair will always be
+  there in the same position, whereas the signal inlets and outlets may vary
+  (and might actually not be present at all, e.g., if the sole purpose of a
+  signal object is to have some code executed for each \Pdsp tick\Q). Also
+  note that some Pd flavors (most notably, Pd-extended and its descendants)
+  will incorrectly display the leftmost <em|inlet> of a signal object as a
+  signal inlet when it's really a control inlet.
 
   Whenever Pd has audio processing enabled, the object function is invoked
   with one block of sample data for each iteration of Pd's audio loop. The
@@ -643,12 +685,12 @@
   dsps which just analyze the incoming signal data and store the results
   somewhere for later retrieval.)
 
-  Audio objects can also process control messages and generate responses on
+  Signal objects can also process control messages and generate responses on
   the leftmost inlet/outlet pair as usual. This is commonly used to set and
   retrieve various control parameters used or generated by the audio
   processing part of the object.
 
-  For instance, here is an audio object which plays back a soundfile using
+  For instance, here is a signal object which plays back a soundfile using
   the <verbatim|sndfile> module (cf. <hlink|<em|pure-audio>|pure-audio.tm>).
   The object function reads the entire file (whose name is passed as a
   creation argument) at creation time and turns over processing to the
@@ -1441,10 +1483,10 @@
 
   The <verbatim|-lib> mechanism also works with Pd's <verbatim|[declare]>
   object, so that, like the <verbatim|[pure-runtime]> object, it can also be
-  used on a per-patch basis. For instance, you can invoke the <verbatim|foo>
-  and <verbatim|bar> script files in a patch by inserting the following
-  object (using the same <verbatim|-lib> and <verbatim|-path> options that
-  you'd use on the command line):
+  used in patches. For instance, you can invoke the <verbatim|foo> and
+  <verbatim|bar> script files in a patch by inserting the following object
+  (using the same <verbatim|-lib> and <verbatim|-path> options that you'd use
+  on the command line):
 
   <\verbatim>
     \;
@@ -1468,13 +1510,24 @@
   <subsubsection|Livecoding><label|livecoding>
 
   Livecoding means changing Pure objects on the fly while a patch is running.
-  A simple, but limited way to do this is to just edit the boxes containing
-  Pure objects interactively, as you can do with any kind of Pd object. In
-  this case, the changes take effect immediately after you finish editing a
-  box. However, for more elaborate changes, you may have to edit the
-  underlying Pure scripts and notify the Pure interpreter so that it reloads
-  the scripts. The Pure loader provides the special <verbatim|[pure-runtime]>
-  object to do this.
+  A simple, but rather limited way to do this is to just edit the boxes
+  containing Pure objects interactively, as you can do with any kind of Pd
+  object. In this case, the changes take effect immediately after you finish
+  editing a box. However, for more elaborate changes, you may have to edit
+  the underlying Pure scripts and notify the Pure interpreter so that it
+  reloads the scripts. The Pure loader provides the special
+  <verbatim|[pure-runtime]> object to do this.
+
+  Please note that <verbatim|[pure-runtime]> is a rather primitive way of
+  doing these things, so pd-pure also provides a more convenient
+  <verbatim|[pure-remote]> helper abstraction which takes care of all the
+  gory details and also provides a useful \Premote control\Q feature. We
+  <em|really> recommend using that instead of fiddling around with
+  <verbatim|[pure-runtime]>, but since <verbatim|[pure-remote]> is
+  implemented using <verbatim|[pure-runtime]>, it may be useful to know how
+  all this works at the most basic level, which is what we explain below. (If
+  you don't care about the nitty-gritty stuff then you may just skip ahead
+  now to the <hlink|Remote Control|#remote-control> section.)
 
   Sending a <verbatim|bang> to the <verbatim|[pure-runtime]> object tells the
   plugin to reload all object scripts and update the Pure objects in your
@@ -1493,8 +1546,8 @@
   won't be reloaded with the <verbatim|bang> message.
 
   While this facility is tremendously useful for interactive development,
-  there are some caveats and corresponding workarounds that you should keep
-  in mind.
+  there are some limitations and corresponding workarounds that you should
+  keep in mind.
 
   First, since the compilation is done in Pd's main thread, it may lead to
   undesirable pauses in Pd's audio and control processing. With the
@@ -1513,9 +1566,9 @@
   quickest way to force an update of all affected Pure objects in one go,
   while preserving the current object connections, is to select the
   corresponding part of the patch and use Pd's cut and paste commands to
-  reinsert it into the patch (if there are a lot of Pure objects scattered
-  out all over the patch then you might just want to select and reinsert the
-  entire contents of the patch).
+  reinsert it (if there are a lot of Pure objects scattered out all over the
+  patch then you might just want to select and reinsert the entire contents
+  of the patch).
 
   Finally, note that the reloading of object scripts amounts to a \Pcold
   restart\Q of the Pure objects in your patches. If a Pure object keeps some
@@ -1575,34 +1628,48 @@
 
   The distribution also includes an abstraction pure-remote.pd which you can
   include in your patch to enable live coding, as well as remote control of
-  the patch through the <with|font-series|bold|pdsend> program. Sending a
-  <verbatim|bang> (or <verbatim|reload>) causes a reload of the object
-  scripts, as described above. This can also be triggered directly by
-  clicking the bang control of the abstraction. The bang control also
-  provides visual feedback indicating whether the compilation is still in
-  progress. Messages are routed through the embedded
-  <verbatim|[pure-runtime]> object using the single inlet and the two outlets
-  of the abstraction, so that <verbatim|pure-remote> can also be controlled
-  from within the patch itself.
+  the patch through the <with|font-series|bold|pdsend> program. This
+  abstraction is installed directly under Pd's <verbatim|extra> directory so
+  that normally it should be available without any further ado. As already
+  mentioned, <verbatim|[pure-remote]> provides a more convenient way to
+  enable live coding in your patches, so you should normally use this
+  abstraction instead of fiddling around with <verbatim|[pure-runtime]>
+  itself.
 
-  For added convenience, the <verbatim|[pure-runtime]> and
-  <verbatim|[pure-remote]> objects also accept any other message of the form
-  <verbatim|receiver> <verbatim|message> and will route the given message to
-  the given receiver. This is intended to provide remote control of various
-  parameters in patches. For instance, by having
-  <with|font-series|bold|pdsend> send a <verbatim|play> <verbatim|0> or
+  Sending a <verbatim|bang> or <verbatim|reload> to <verbatim|[pure-remote]>
+  causes a reload of the object scripts, as described under
+  <hlink|Livecoding|#livecoding> above. The former can also be triggered
+  directly by clicking the bang control of the abstraction (which also
+  provides visual feedback while a compilation is still in progress). Note
+  that the single inlet of the abstraction actually gets routed to the
+  embedded <verbatim|[pure-runtime]> object, and conversely its two outlets
+  receive the output from that object, so that <verbatim|[pure-remote]> can
+  also be operated basically in the same way as <verbatim|[pure-runtime]> if
+  needed. But usually the abstraction's bang control should be all that you
+  need to care about.
+
+  For added convenience, <verbatim|[pure-remote]> also accepts any <em|other>
+  message of the form <verbatim|receiver> <verbatim|message> and will route
+  the given message to the given receiver. In addition it listens on a
+  certain port (4711 by default, but you can change this inside the
+  abstraction if needed) for messages coming in from other applications,
+  typically via the <with|font-series|bold|pdsend> program. This is intended
+  to provide remote control of the Pure runtime as well as various parameters
+  in patches. For instance, by having <with|font-series|bold|pdsend> send a
+  <verbatim|bang> to port 4711, you can trigger a reload of the Pure objects
+  in your patches. Moreover, by sending a <verbatim|play> <verbatim|0> or
   <verbatim|play> <verbatim|1> message, one might implement a simple playback
   control, provided that your patch includes an appropriate receiver (often a
   GUI object). See the pure-help.pd patch for an example.
 
   To make these features available in <with|font-series|bold|emacs>, there's
   an accompanying elisp program (pure-remote.el) which contains some
-  convenient keybindings for the necessary <with|font-series|bold|pdsend>
-  invocations, so that you can operate the pure-remote patch with simple
-  keystrokes directly from the text editor. The same bindings are also
-  available in Emacs Pure mode, but need to be enabled before you can use
-  them; please see the pure-remote.el file for details. As shipped,
-  pure-remote.el and Pure mode implement the following commands:
+  keybindings for the necessary <with|font-series|bold|pdsend> invocations,
+  so that you can operate the pure-remote patch with simple keystrokes
+  directly from the text editor. The same bindings are also available in
+  Emacs Pure mode, but need to be enabled before you can use them; please see
+  the pure-remote.el file for details. As shipped, pure-remote.el and Pure
+  mode implement the following commands:
 
   <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<table|<row|<cell|<verbatim|C-C>
   <verbatim|C-X>>|<cell|Quick Reload>|<cell|Sends a <verbatim|bang> message
@@ -1658,16 +1725,26 @@
   <hlink|<em|The Pure Manual>|pure.tm> for details). For your convenience,
   there's a <verbatim|pd.pure> script included in the distribution which
   already contains all the required <verbatim|extern> declarations, so you
-  just need to import this script in your Pure scripts.
+  just need to import this script in your Pure scripts and you're set.
 
   The <verbatim|pd.pure> script will be installed in the <verbatim|lib>
-  subfolder along with the Pd Pure loader external and the examples, and the
+  subfolder along with the Pd Pure loader external and the examples. The
   embedded Pure runtime has been set up so that it always has this directory
-  in its search path, so that it's enough to just include a declaration like
-  <verbatim|using> <verbatim|pd;> in your Pure scripts if you want to call
-  one of the interface routines. (Note that you can also put your own library
-  scripts into this folder to make them available to all your Pure object
-  scripts.)
+  in its search path, so that it's enough to include a declaration like the
+  following in your Pure scripts if you want to call one of the interface
+  routines:
+
+  <\verbatim>
+    \;
+
+    using pd;
+
+    \;
+  </verbatim>
+
+  (We mention in passing that, in the same fashion you can also put your own
+  library scripts into the <verbatim|extra/pure/lib> folder to make them
+  available to all your Pure object scripts.)
 
   <\description>
     <item*|extern char *pd_version_s()<label|pd-version-s>>Returns the Pd
@@ -1844,7 +1921,7 @@
         <item><hlink|Local State|#local-state>
       </itemize>
 
-      <item><hlink|Audio Objects|#audio-objects>
+      <item><hlink|Signal Objects|#signal-objects>
 
       <item><hlink|Advanced Features|#advanced-features>
 

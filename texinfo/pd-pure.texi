@@ -50,26 +50,43 @@ Version 0.24, February 21, 2017
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
-This is a Pd@footnote{http://puredata.info/} loader plugin for the Pure@footnote{https://purelang.bitbucket.io/} programming language which lets you
-write external Pd objects in Pure. This is generally much easier and a lot
-more fun than having to code externals in a comparatively low-level language
-such as C or C++. Being a full-featured functional programming language, Pure
-certainly has its own learning curve, but once mastered, it makes programming
-many kinds of Pd objects a walk in the park. Its Pd interface is very
+This is a Pure@footnote{https://purelang.bitbucket.io/} "loader plugin" for Pd@footnote{http://puredata.info/}, Miller Puckette's graphical dataflow
+programming system for realtime multimedia applications. If you are a Pd user,
+it lets you write external Pd objects in Pure, which is generally much more
+convenient and a lot more fun than having to code Pd externals in a
+comparatively low-level language such as C or C++. If you are a Pure user, it
+provides you with an alternative way to develop and run your Pure scripts in
+one of the best graphical dataflow environments available today.
+
+Pure certainly has its own learning curve, but once mastered, it makes
+programming many kinds of Pd objects a walk in the park. Its Pd interface is
 convenient to use and has livecoding support, i.e., the ability to reload Pure
 externals at any time while your Pd patch keeps running. Pure also offers a
-comprehensive library of its own and many interfaces to third-party software
-useful for implementing Pd objects, such as Octave@footnote{http://www.octave.org/} and Grame's Faust@footnote{http://faust.grame.fr/}.
+comprehensive library and many interfaces to third-party software useful for
+implementing Pd objects, such as Octave@footnote{http://www.octave.org/} and Grame's Faust@footnote{http://faust.grame.fr/}.
 
-@strong{Caveat:} Please note that Pure is a @emph{JIT-compiled} language and thus there
-may be some noticeable latencies when the embedded Pure runtime first loads
-your Pure scripts and compiles them on the fly. This shouldn't be much of an
-issue on reasonably modern hardware, however, and once the scripts @emph{have} been
-loaded, they are executed very efficiently. As of pd-pure 0.15, it is also
-possible to @emph{precompile} a collection of Pure objects to a binary external
-library which can be loaded just like any other library of Pd externals with
-Pd's @code{-lib} option. In addition, pd-pure 0.24 and later offer the ability to
-@emph{preload} Pure scripts with the @code{-lib} option at startup.
+But pd-pure isn't limited to just computer music and realtime multimedia
+programming, which are Pd's hallmark applications. It also allows you to
+employ Pd as a graphical dataflow environment for developing and testing your
+Pure programs, leveraging Pd's built-in facilities for creating graphical user
+interfaces for your application, while getting Pd's sophisticated realtime
+multimedia capabilities for free.
+
+@cartouche
+@quotation Note 
+Pure is a @emph{JIT} ("just in time") @emph{compiled} language which means
+that there may be some noticeable latencies when the embedded Pure runtime
+first loads your Pure scripts and compiles them on the fly. This shouldn't
+be much of an issue on most contemporary hardware any more, and once the
+scripts @emph{have} been loaded, they are executed very efficiently.
+Nevertheless, as a remedy it is also possible to @emph{precompile} a collection
+of Pure objects to a binary external library which can be loaded quickly at
+startup with Pd's @code{-lib} option. In addition, pd-pure 0.24+ offers the
+ability to preload Pure @emph{source} scripts with the @code{-lib} option at
+startup, so that they don't cause any more hiccups when the objects are
+instantiated later.
+@end quotation
+@end cartouche
 
 
 @menu
@@ -77,7 +94,7 @@ Pd's @code{-lib} option. In addition, pd-pure 0.24 and later offer the ability t
 * Installation:: 
 * Usage:: 
 * Control Objects:: 
-* Audio Objects:: 
+* Signal Objects:: 
 * Advanced Features:: 
 * Index:: 
 
@@ -125,15 +142,20 @@ The Makefile also tries to guess the host system type and Pure version, and
 set up some platform-specific things accordingly. If this doesn't work for
 your system then you'll have to edit the Makefile accordingly.
 
-MS Windows users please note that there's a binary package in MSI format
+MS Windows users please note that there's a binary package in zip format
 available at the Pure website:
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip}.
+You can simply drop the @code{pure} folder contained in the package into the
+@code{extra} folder of your Pd installation. In addition, you will also need an
+installation of the Pure interpreter itself; a corresponding Windows installer
+can be found in the download section@footnote{https://bitbucket.org/purelang/pure-lang/downloads/} of the Pure website as well (look for
+the latest pure-x.y.msi package).
 
 Mac users can find pd-pure and all its dependencies in MacPorts@footnote{http://www.macports.org/}. Please also
-check the "Pure on Mac OS X" wiki page@footnote{https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends} for details.
+check the Pure on Mac OS X@footnote{https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends} wiki page for details.
 
 @node Usage,Control Objects,Installation,Top
-@anchor{pd-pure usage}@anchor{4}@anchor{pd-pure wiki-page}@anchor{5}
+@anchor{pd-pure usage}@anchor{4}@anchor{pd-pure pure-on-mac-os-x}@anchor{5}
 @chapter Usage
 
 
@@ -141,13 +163,20 @@ After installation, you still have to tell Pd to load the Pure external at
 startup, either with the @code{-lib} option (@code{pd -lib pure}), or by specifying
 @code{pure} in Pd's startup options. This setting can be saved so that the Pure
 loader is always available when you run Pd. Once the Pure loader has been
-installed, you should see a message in the Pd main window indicating that the
-external has been loaded.
+activated, you should see a sign-on message like the following in the Pd main
+window, indicating that the external has been successfully loaded:
+
+@example
+pd-pure 0.24 (pure-0.64) (c) 2009-2017 Albert Graef <aggraef@@gmail.com>
+pd-pure: compiled for pd-0.47 on Feb 21 2017
+@end example
+
+@noindent
 
 Since version 0.12 pd-pure supports the definition of both @cite{control} and
-@cite{audio objects} in Pure. The latter are also known as "tilde" or "dsp objects"
+@cite{signal objects} in Pure. The latter are also known as "tilde" or "dsp objects"
 in Pd parlance; pd-pure follows the Pd convention in that these objects have a
-trailing tilde in their name. Audio objects are used primarily for processing
+trailing tilde in their name. Signal objects are used primarily for processing
 audio signals, whereas control objects are employed for asynchronous message
 processing.
 
@@ -163,7 +192,7 @@ which takes the function to be evaluated as its argument. For instance:
 This object takes numbers as inputs on its single inlet, adds 5 to them and
 outputs the result on its single outlet.
 
-Similarly, audio objects can be created with @code{[pure~]}. For instance, the
+Similarly, signal objects can be created with @code{[pure~]}. For instance, the
 following object processes incoming vectors of samples, multiplying each
 sample with 2:
 
@@ -219,10 +248,10 @@ command. Most reasonably recent Pd versions and flavors do.)
 
 In the following section, we first discuss in detail how @pxref{6,,control objects}
 are defined and used. After that, the necessary adjustments for implementing
-@pxref{7,,audio objects} are explained. Some advanced uses of pd-pure are described
+@pxref{7,,signal objects} are explained. Some advanced uses of pd-pure are described
 under @pxref{8,,Advanced Features}.
 
-@node Control Objects,Audio Objects,Usage,Top
+@node Control Objects,Signal Objects,Usage,Top
 @anchor{pd-pure control-objects}@anchor{6}
 @chapter Control Objects
 
@@ -581,27 +610,27 @@ end when r = ref 0 end;
 
 @noindent
 
-@node Audio Objects,Advanced Features,Control Objects,Top
-@anchor{pd-pure audio-objects}@anchor{7}
-@chapter Audio Objects
+@node Signal Objects,Advanced Features,Control Objects,Top
+@anchor{pd-pure signal-objects}@anchor{7}
+@chapter Signal Objects
 
 
 If the name of a Pure object (i.e., the basename of the corresponding Pure
-script) ends with the @code{~} character, pd-pure assumes that it denotes an
-audio object whose primary purpose is to process sample data. The basic setup
+script) ends with the @code{~} character, pd-pure assumes that it denotes a
+signal object whose primary purpose is to process sample data. The basic setup
 is similar to the case of control objects, with the following differences:
 
 
 @itemize *
 
 @item 
-The object function for an audio object @code{xyz~} is named @code{xyz_dsp}
+The object function for a signal object @code{xyz~} is named @code{xyz_dsp}
 (rather than @code{xyz}). The function is defined in the @code{xyz~.pure} script
 file, which must be located in the same directory as the Pd patch or
 anywhere on Pd's search path.
 
 @item 
-To keep things simple, a Pure audio object is always equipped with exactly
+To keep things simple, a Pure signal object is always equipped with exactly
 one control inlet and one control outlet, which are the leftmost inlet and
 outlet of the object. These can be used to process control messages in the
 usual fashion, in addition to the audio processing performed by the object.
@@ -615,6 +644,23 @@ triple @code{n,m,foo} where @code{n} and @code{m} are the desired number of sign
 inlets and outlets, respectively, and @code{foo} is the actual processing
 function to be invoked at runtime.
 @end itemize
+
+@cartouche
+@quotation Note 
+pd-pure's convention of placing the control inlet/outlet pair of a
+signal object on the left is somewhat at odds with most other signal
+objects in Pd, which typically have a (main) signal inlet/outlet on the
+left and the control inlets and outlets on the right. However, we think
+that this kind of setup simply makes the most sense for Pure signal
+objects, since the control inlet/outlet pair will always be there in the
+same position, whereas the signal inlets and outlets may vary (and might
+actually not be present at all, e.g., if the sole purpose of a signal
+object is to have some code executed for each "dsp tick"). Also note that
+some Pd flavors (most notably, Pd-extended and its descendants) will
+incorrectly display the leftmost @emph{inlet} of a signal object as a signal
+inlet when it's really a control inlet.
+@end quotation
+@end cartouche
 
 Whenever Pd has audio processing enabled, the object function is invoked with
 one block of sample data for each iteration of Pd's audio loop. The sample
@@ -704,12 +750,12 @@ return @code{()} if neither signal nor control output is required. (This may be
 the case, e.g., for dsps which just analyze the incoming signal data and store
 the results somewhere for later retrieval.)
 
-Audio objects can also process control messages and generate responses on the
+Signal objects can also process control messages and generate responses on the
 leftmost inlet/outlet pair as usual. This is commonly used to set and retrieve
 various control parameters used or generated by the audio processing part of
 the object.
 
-For instance, here is an audio object which plays back a soundfile using the
+For instance, here is a signal object which plays back a soundfile using the
 @code{sndfile} module (cf. @code{pure-audio}). The object function reads the
 entire file (whose name is passed as a creation argument) at creation time and
 turns over processing to the @code{playsf} function which returns one block of
@@ -916,7 +962,7 @@ Faust programs using the facilities described in @pxref{11,,Livecoding} below. A
 Pure implementation of a Faust external which does all this @emph{and} provides the
 extra conveniences of faust2pd under one hood can be found in @code{pd-faust}.
 
-@node Advanced Features,Index,Audio Objects,Top
+@node Advanced Features,Index,Signal Objects,Top
 @anchor{pd-pure advanced-features}@anchor{8}
 @chapter Advanced Features
 
@@ -1246,10 +1292,10 @@ path will be different depending on the platform and Pd flavor you use, so
 please check your local Pd documentation for details.
 
 The @code{-lib} mechanism also works with Pd's @code{[declare]} object, so that,
-like the @code{[pure-runtime]} object, it can also be used on a per-patch
-basis. For instance, you can invoke the @code{foo} and @code{bar} script files in a
-patch by inserting the following object (using the same @code{-lib} and @code{-path}
-options that you'd use on the command line):
+like the @code{[pure-runtime]} object, it can also be used in patches. For
+instance, you can invoke the @code{foo} and @code{bar} script files in a patch by
+inserting the following object (using the same @code{-lib} and @code{-path} options
+that you'd use on the command line):
 
 @example
 [declare -lib foo -lib bar]
@@ -1273,12 +1319,22 @@ patch doesn't contain any instance of the named object at all.
 
 
 Livecoding means changing Pure objects on the fly while a patch is running. A
-simple, but limited way to do this is to just edit the boxes containing Pure
-objects interactively, as you can do with any kind of Pd object. In this case,
-the changes take effect immediately after you finish editing a box. However,
-for more elaborate changes, you may have to edit the underlying Pure scripts
-and notify the Pure interpreter so that it reloads the scripts. The Pure
-loader provides the special @code{[pure-runtime]} object to do this.
+simple, but rather limited way to do this is to just edit the boxes containing
+Pure objects interactively, as you can do with any kind of Pd object. In this
+case, the changes take effect immediately after you finish editing a box.
+However, for more elaborate changes, you may have to edit the underlying Pure
+scripts and notify the Pure interpreter so that it reloads the scripts. The
+Pure loader provides the special @code{[pure-runtime]} object to do this.
+
+Please note that @code{[pure-runtime]} is a rather primitive way of doing these
+things, so pd-pure also provides a more convenient @code{[pure-remote]} helper
+abstraction which takes care of all the gory details and also provides a
+useful "remote control" feature. We @emph{really} recommend using that instead of
+fiddling around with @code{[pure-runtime]}, but since @code{[pure-remote]} is
+implemented using @code{[pure-runtime]}, it may be useful to know how all this
+works at the most basic level, which is what we explain below. (If you don't
+care about the nitty-gritty stuff then you may just skip ahead now to the
+@pxref{1b,,Remote Control} section.)
 
 Sending a @code{bang} to the @code{[pure-runtime]} object tells the plugin to reload
 all object scripts and update the Pure objects in your patch accordingly. The
@@ -1295,7 +1351,8 @@ This will usually take much longer, but is only necessary if you edited
 imported library modules which won't be reloaded with the @code{bang} message.
 
 While this facility is tremendously useful for interactive development, there
-are some caveats and corresponding workarounds that you should keep in mind.
+are some limitations and corresponding workarounds that you should keep in
+mind.
 
 First, since the compilation is done in Pd's main thread, it may lead to
 undesirable pauses in Pd's audio and control processing. With the @code{bang}
@@ -1313,9 +1370,9 @@ the reloaded objects will still appear to have the same inlets and outlets as
 before (and often cease to function properly). The quickest way to force an
 update of all affected Pure objects in one go, while preserving the current
 object connections, is to select the corresponding part of the patch and use
-Pd's cut and paste commands to reinsert it into the patch (if there are a lot
-of Pure objects scattered out all over the patch then you might just want to
-select and reinsert the entire contents of the patch).
+Pd's cut and paste commands to reinsert it (if there are a lot of Pure objects
+scattered out all over the patch then you might just want to select and
+reinsert the entire contents of the patch).
 
 Finally, note that the reloading of object scripts amounts to a "cold restart"
 of the Pure objects in your patches. If a Pure object keeps some @pxref{10,,local state}, it will be lost. As a remedy, the loader implements a simple protocol
@@ -1368,26 +1425,39 @@ end;
 
 The distribution also includes an abstraction pure-remote.pd which you can
 include in your patch to enable live coding, as well as remote control of the
-patch through the @strong{pdsend} program. Sending a @code{bang} (or
-@code{reload}) causes a reload of the object scripts, as described above. This
-can also be triggered directly by clicking the bang control of the
-abstraction. The bang control also provides visual feedback indicating whether
-the compilation is still in progress. Messages are routed through the embedded
-@code{[pure-runtime]} object using the single inlet and the two outlets of the
-abstraction, so that @code{pure-remote} can also be controlled from within the
-patch itself.
+patch through the @strong{pdsend} program. This abstraction is installed
+directly under Pd's @code{extra} directory so that normally it should be
+available without any further ado. As already mentioned, @code{[pure-remote]}
+provides a more convenient way to enable live coding in your patches, so you
+should normally use this abstraction instead of fiddling around with
+@code{[pure-runtime]} itself.
 
-For added convenience, the @code{[pure-runtime]} and @code{[pure-remote]} objects
-also accept any other message of the form @code{receiver message} and will route
-the given message to the given receiver. This is intended to provide remote
-control of various parameters in patches. For instance, by having
-@strong{pdsend} send a @code{play 0} or @code{play 1} message, one might implement
-a simple playback control, provided that your patch includes an appropriate
-receiver (often a GUI object). See the pure-help.pd patch for an example.
+Sending a @code{bang} or @code{reload} to @code{[pure-remote]} causes a reload of the
+object scripts, as described under @pxref{11,,Livecoding} above. The former can also be
+triggered directly by clicking the bang control of the abstraction (which also
+provides visual feedback while a compilation is still in progress). Note that
+the single inlet of the abstraction actually gets routed to the embedded
+@code{[pure-runtime]} object, and conversely its two outlets receive the output
+from that object, so that @code{[pure-remote]} can also be operated basically in
+the same way as @code{[pure-runtime]} if needed. But usually the abstraction's
+bang control should be all that you need to care about.
+
+For added convenience, @code{[pure-remote]} also accepts any @emph{other} message of
+the form @code{receiver message} and will route the given message to the given
+receiver. In addition it listens on a certain port (4711 by default, but you
+can change this inside the abstraction if needed) for messages coming in from
+other applications, typically via the @strong{pdsend} program. This is
+intended to provide remote control of the Pure runtime as well as various
+parameters in patches. For instance, by having @strong{pdsend} send a
+@code{bang} to port 4711, you can trigger a reload of the Pure objects in your
+patches. Moreover, by sending a @code{play 0} or @code{play 1} message, one might
+implement a simple playback control, provided that your patch includes an
+appropriate receiver (often a GUI object). See the pure-help.pd patch for an
+example.
 
 To make these features available in @strong{emacs}, there's an accompanying
-elisp program (pure-remote.el) which contains some convenient keybindings for
-the necessary @strong{pdsend} invocations, so that you can operate the
+elisp program (pure-remote.el) which contains some keybindings for the
+necessary @strong{pdsend} invocations, so that you can operate the
 pure-remote patch with simple keystrokes directly from the text editor. The
 same bindings are also available in Emacs Pure mode, but need to be enabled
 before you can use them; please see the pure-remote.el file for details. As
@@ -1536,14 +1606,22 @@ to access them in your Pure scripts, you will need corresponding @code{extern}
 declarations (see the "C Interface" section in @code{pure} for details). For
 your convenience, there's a @code{pd.pure} script included in the distribution
 which already contains all the required @code{extern} declarations, so you just
-need to import this script in your Pure scripts.
+need to import this script in your Pure scripts and you're set.
 
 The @code{pd.pure} script will be installed in the @code{lib} subfolder along with
-the Pd Pure loader external and the examples, and the embedded Pure runtime
-has been set up so that it always has this directory in its search path, so
-that it's enough to just include a declaration like @code{using pd;} in your Pure
-scripts if you want to call one of the interface routines. (Note that you can
-also put your own library scripts into this folder to make them available to
+the Pd Pure loader external and the examples. The embedded Pure runtime has
+been set up so that it always has this directory in its search path, so that
+it's enough to include a declaration like the following in your Pure scripts
+if you want to call one of the interface routines:
+
+@example
+using pd;
+@end example
+
+@noindent
+
+(We mention in passing that, in the same fashion you can also put your own
+library scripts into the @code{extra/pure/lib} folder to make them available to
 all your Pure object scripts.)
 
 @geindex pd_version_s (C function)

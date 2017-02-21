@@ -59,25 +59,39 @@
 <h1>pd-pure: Pd loader for Pure scripts<a class="headerlink" href="#pd-pure-pd-loader-for-pure-scripts" title="Permalink to this headline">¶</a></h1>
 <p>Version 0.24, February 21, 2017</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
-<p>This is a <a class="reference external" href="http://puredata.info/">Pd</a> loader plugin for the <a class="reference external" href="https://purelang.bitbucket.io/">Pure</a> programming language which lets you
-write external Pd objects in Pure. This is generally much easier and a lot
-more fun than having to code externals in a comparatively low-level language
-such as C or C++. Being a full-featured functional programming language, Pure
-certainly has its own learning curve, but once mastered, it makes programming
-many kinds of Pd objects a walk in the park. Its Pd interface is very
+<p>This is a <a class="reference external" href="https://purelang.bitbucket.io/">Pure</a> &#8220;loader plugin&#8221; for <a class="reference external" href="http://puredata.info/">Pd</a>, Miller Puckette&#8217;s graphical dataflow
+programming system for realtime multimedia applications. If you are a Pd user,
+it lets you write external Pd objects in Pure, which is generally much more
+convenient and a lot more fun than having to code Pd externals in a
+comparatively low-level language such as C or C++. If you are a Pure user, it
+provides you with an alternative way to develop and run your Pure scripts in
+one of the best graphical dataflow environments available today.</p>
+<p>Pure certainly has its own learning curve, but once mastered, it makes
+programming many kinds of Pd objects a walk in the park. Its Pd interface is
 convenient to use and has livecoding support, i.e., the ability to reload Pure
 externals at any time while your Pd patch keeps running. Pure also offers a
-comprehensive library of its own and many interfaces to third-party software
-useful for implementing Pd objects, such as <a class="reference external" href="http://www.octave.org/">Octave</a> and Grame&#8217;s <a class="reference external" href="http://faust.grame.fr/">Faust</a>.</p>
-<p><strong>Caveat:</strong> Please note that Pure is a <em>JIT-compiled</em> language and thus there
-may be some noticeable latencies when the embedded Pure runtime first loads
-your Pure scripts and compiles them on the fly. This shouldn&#8217;t be much of an
-issue on reasonably modern hardware, however, and once the scripts <em>have</em> been
-loaded, they are executed very efficiently. As of pd-pure 0.15, it is also
-possible to <em>precompile</em> a collection of Pure objects to a binary external
-library which can be loaded just like any other library of Pd externals with
-Pd&#8217;s <tt class="docutils literal"><span class="pre">-lib</span></tt> option. In addition, pd-pure 0.24 and later offer the ability to
-<em>preload</em> Pure scripts with the <tt class="docutils literal"><span class="pre">-lib</span></tt> option at startup.</p>
+comprehensive library and many interfaces to third-party software useful for
+implementing Pd objects, such as <a class="reference external" href="http://www.octave.org/">Octave</a> and Grame&#8217;s <a class="reference external" href="http://faust.grame.fr/">Faust</a>.</p>
+<p>But pd-pure isn&#8217;t limited to just computer music and realtime multimedia
+programming, which are Pd&#8217;s hallmark applications. It also allows you to
+employ Pd as a graphical dataflow environment for developing and testing your
+Pure programs, leveraging Pd&#8217;s built-in facilities for creating graphical user
+interfaces for your application, while getting Pd&#8217;s sophisticated realtime
+multimedia capabilities for free.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Pure is a <em>JIT</em> (&#8220;just in time&#8221;) <em>compiled</em> language which means
+that there may be some noticeable latencies when the embedded Pure runtime
+first loads your Pure scripts and compiles them on the fly. This shouldn&#8217;t
+be much of an issue on most contemporary hardware any more, and once the
+scripts <em>have</em> been loaded, they are executed very efficiently.
+Nevertheless, as a remedy it is also possible to <em>precompile</em> a collection
+of Pure objects to a binary external library which can be loaded quickly at
+startup with Pd&#8217;s <tt class="docutils literal"><span class="pre">-lib</span></tt> option. In addition, pd-pure 0.24+ offers the
+ability to preload Pure <em>source</em> scripts with the <tt class="docutils literal"><span class="pre">-lib</span></tt> option at
+startup, so that they don&#8217;t cause any more hiccups when the objects are
+instantiated later.</p>
+</div>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#copying" id="id2">Copying</a></li>
@@ -92,7 +106,7 @@ Pd&#8217;s <tt class="docutils literal"><span class="pre">-lib</span></tt> optio
 <li><a class="reference internal" href="#local-state" id="id11">Local State</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#audio-objects" id="id12">Audio Objects</a></li>
+<li><a class="reference internal" href="#signal-objects" id="id12">Signal Objects</a></li>
 <li><a class="reference internal" href="#advanced-features" id="id13">Advanced Features</a><ul>
 <li><a class="reference internal" href="#asynchronous-messages" id="id14">Asynchronous Messages</a></li>
 <li><a class="reference internal" href="#wireless-messaging" id="id15">Wireless Messaging</a></li>
@@ -137,11 +151,16 @@ improvements.)</p>
 <p>The Makefile also tries to guess the host system type and Pure version, and
 set up some platform-specific things accordingly. If this doesn&#8217;t work for
 your system then you&#8217;ll have to edit the Makefile accordingly.</p>
-<p>MS Windows users please note that there&#8217;s a binary package in MSI format
+<p>MS Windows users please note that there&#8217;s a binary package in zip format
 available at the Pure website:
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi</a>.</p>
+<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip">https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip</a>.
+You can simply drop the <tt class="docutils literal"><span class="pre">pure</span></tt> folder contained in the package into the
+<tt class="docutils literal"><span class="pre">extra</span></tt> folder of your Pd installation. In addition, you will also need an
+installation of the Pure interpreter itself; a corresponding Windows installer
+can be found in the <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/">download section</a> of the Pure website as well (look for
+the latest pure-x.y.msi package).</p>
 <p>Mac users can find pd-pure and all its dependencies in <a class="reference external" href="http://www.macports.org/">MacPorts</a>. Please also
-check the &#8220;Pure on Mac OS X&#8221; <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends">wiki page</a> for details.</p>
+check the <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends">Pure on Mac OS X</a> wiki page for details.</p>
 </div>
 <div class="section" id="usage">
 <h2><a class="toc-backref" href="#id4">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
@@ -149,12 +168,16 @@ check the &#8220;Pure on Mac OS X&#8221; <a class="reference external" href="htt
 startup, either with the <tt class="docutils literal"><span class="pre">-lib</span></tt> option (<tt class="docutils literal"><span class="pre">pd</span> <span class="pre">-lib</span> <span class="pre">pure</span></tt>), or by specifying
 <tt class="docutils literal"><span class="pre">pure</span></tt> in Pd&#8217;s startup options. This setting can be saved so that the Pure
 loader is always available when you run Pd. Once the Pure loader has been
-installed, you should see a message in the Pd main window indicating that the
-external has been loaded.</p>
+activated, you should see a sign-on message like the following in the Pd main
+window, indicating that the external has been successfully loaded:</p>
+<div class="highlight-pure"><div class="highlight"><pre>pd-pure <span class="mf">0.24</span> (pure-<span class="mf">0.64</span>) (c) <span class="mi">2009</span>-<span class="mi">2017</span> Albert Graef &lt;aggraef<span class="p">@</span>gmail.com&gt;
+pd-pure: compiled for pd-<span class="mf">0.47</span> on Feb <span class="mi">21</span> <span class="mi">2017</span>
+</pre></div>
+</div>
 <p>Since version 0.12 pd-pure supports the definition of both <cite>control</cite> and
-<cite>audio objects</cite> in Pure. The latter are also known as &#8220;tilde&#8221; or &#8220;dsp objects&#8221;
+<cite>signal objects</cite> in Pure. The latter are also known as &#8220;tilde&#8221; or &#8220;dsp objects&#8221;
 in Pd parlance; pd-pure follows the Pd convention in that these objects have a
-trailing tilde in their name. Audio objects are used primarily for processing
+trailing tilde in their name. Signal objects are used primarily for processing
 audio signals, whereas control objects are employed for asynchronous message
 processing.</p>
 <p>Simple &#8220;one-off&#8221; control objects can be created with the <tt class="docutils literal"><span class="pre">[pure]</span></tt> class
@@ -164,7 +187,7 @@ which takes the function to be evaluated as its argument. For instance:</p>
 </div>
 <p>This object takes numbers as inputs on its single inlet, adds 5 to them and
 outputs the result on its single outlet.</p>
-<p>Similarly, audio objects can be created with <tt class="docutils literal"><span class="pre">[pure~]</span></tt>. For instance, the
+<p>Similarly, signal objects can be created with <tt class="docutils literal"><span class="pre">[pure~]</span></tt>. For instance, the
 following object processes incoming vectors of samples, multiplying each
 sample with 2:</p>
 <div class="highlight-pure"><div class="highlight"><pre>[pure~ map (*<span class="mi">2</span>)]
@@ -204,7 +227,7 @@ text editor, provided that your Pd version supports the <tt class="docutils lite
 command. Most reasonably recent Pd versions and flavors do.)</p>
 <p>In the following section, we first discuss in detail how <a class="reference internal" href="#control-objects">control objects</a>
 are defined and used. After that, the necessary adjustments for implementing
-<a class="reference internal" href="#audio-objects">audio objects</a> are explained. Some advanced uses of pd-pure are described
+<a class="reference internal" href="#signal-objects">signal objects</a> are explained. Some advanced uses of pd-pure are described
 under <a class="reference internal" href="#advanced-features">Advanced Features</a>.</p>
 </div>
 <div class="section" id="control-objects">
@@ -443,18 +466,18 @@ mycounter = next <span class="kr">with</span>
 </div>
 </div>
 </div>
-<div class="section" id="audio-objects">
-<h2><a class="toc-backref" href="#id12">Audio Objects</a><a class="headerlink" href="#audio-objects" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="signal-objects">
+<h2><a class="toc-backref" href="#id12">Signal Objects</a><a class="headerlink" href="#signal-objects" title="Permalink to this headline">¶</a></h2>
 <p>If the name of a Pure object (i.e., the basename of the corresponding Pure
-script) ends with the <tt class="docutils literal"><span class="pre">~</span></tt> character, pd-pure assumes that it denotes an
-audio object whose primary purpose is to process sample data. The basic setup
+script) ends with the <tt class="docutils literal"><span class="pre">~</span></tt> character, pd-pure assumes that it denotes a
+signal object whose primary purpose is to process sample data. The basic setup
 is similar to the case of control objects, with the following differences:</p>
 <ul class="simple">
-<li>The object function for an audio object <tt class="docutils literal"><span class="pre">xyz~</span></tt> is named <tt class="docutils literal"><span class="pre">xyz_dsp</span></tt>
+<li>The object function for a signal object <tt class="docutils literal"><span class="pre">xyz~</span></tt> is named <tt class="docutils literal"><span class="pre">xyz_dsp</span></tt>
 (rather than <tt class="docutils literal"><span class="pre">xyz</span></tt>). The function is defined in the <tt class="docutils literal"><span class="pre">xyz~.pure</span></tt> script
 file, which must be located in the same directory as the Pd patch or
 anywhere on Pd&#8217;s search path.</li>
-<li>To keep things simple, a Pure audio object is always equipped with exactly
+<li>To keep things simple, a Pure signal object is always equipped with exactly
 one control inlet and one control outlet, which are the leftmost inlet and
 outlet of the object. These can be used to process control messages in the
 usual fashion, in addition to the audio processing performed by the object.</li>
@@ -466,6 +489,21 @@ triple <tt class="docutils literal"><span class="pre">n,m,foo</span></tt> where 
 inlets and outlets, respectively, and <tt class="docutils literal"><span class="pre">foo</span></tt> is the actual processing
 function to be invoked at runtime.</li>
 </ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">pd-pure&#8217;s convention of placing the control inlet/outlet pair of a
+signal object on the left is somewhat at odds with most other signal
+objects in Pd, which typically have a (main) signal inlet/outlet on the
+left and the control inlets and outlets on the right. However, we think
+that this kind of setup simply makes the most sense for Pure signal
+objects, since the control inlet/outlet pair will always be there in the
+same position, whereas the signal inlets and outlets may vary (and might
+actually not be present at all, e.g., if the sole purpose of a signal
+object is to have some code executed for each &#8220;dsp tick&#8221;). Also note that
+some Pd flavors (most notably, Pd-extended and its descendants) will
+incorrectly display the leftmost <em>inlet</em> of a signal object as a signal
+inlet when it&#8217;s really a control inlet.</p>
+</div>
 <p>Whenever Pd has audio processing enabled, the object function is invoked with
 one block of sample data for each iteration of Pd&#8217;s audio loop. The sample
 data is encoded as a double matrix which has one row for each signal inlet of
@@ -533,11 +571,11 @@ to specify an empty signal matrix instead). The object function may also
 return <tt class="docutils literal"><span class="pre">()</span></tt> if neither signal nor control output is required. (This may be
 the case, e.g., for dsps which just analyze the incoming signal data and store
 the results somewhere for later retrieval.)</p>
-<p>Audio objects can also process control messages and generate responses on the
+<p>Signal objects can also process control messages and generate responses on the
 leftmost inlet/outlet pair as usual. This is commonly used to set and retrieve
 various control parameters used or generated by the audio processing part of
 the object.</p>
-<p>For instance, here is an audio object which plays back a soundfile using the
+<p>For instance, here is a signal object which plays back a soundfile using the
 <tt class="xref py py-mod docutils literal"><span class="pre">sndfile</span></tt> module (cf. <a class="reference internal" href="pure-audio.html"><em>pure-audio</em></a>). The object function reads the
 entire file (whose name is passed as a creation argument) at creation time and
 turns over processing to the <tt class="docutils literal"><span class="pre">playsf</span></tt> function which returns one block of
@@ -973,10 +1011,10 @@ E.g., on Linux this usually includes the <tt class="docutils literal"><span clas
 path will be different depending on the platform and Pd flavor you use, so
 please check your local Pd documentation for details.</p>
 <p>The <tt class="docutils literal"><span class="pre">-lib</span></tt> mechanism also works with Pd&#8217;s <tt class="docutils literal"><span class="pre">[declare]</span></tt> object, so that,
-like the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object, it can also be used on a per-patch
-basis. For instance, you can invoke the <tt class="docutils literal"><span class="pre">foo</span></tt> and <tt class="docutils literal"><span class="pre">bar</span></tt> script files in a
-patch by inserting the following object (using the same <tt class="docutils literal"><span class="pre">-lib</span></tt> and <tt class="docutils literal"><span class="pre">-path</span></tt>
-options that you&#8217;d use on the command line):</p>
+like the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object, it can also be used in patches. For
+instance, you can invoke the <tt class="docutils literal"><span class="pre">foo</span></tt> and <tt class="docutils literal"><span class="pre">bar</span></tt> script files in a patch by
+inserting the following object (using the same <tt class="docutils literal"><span class="pre">-lib</span></tt> and <tt class="docutils literal"><span class="pre">-path</span></tt> options
+that you&#8217;d use on the command line):</p>
 <div class="highlight-pure"><div class="highlight"><pre>[declare -lib foo -lib bar]
 </pre></div>
 </div>
@@ -993,12 +1031,21 @@ patch doesn&#8217;t contain any instance of the named object at all.</p>
 <div class="section" id="livecoding">
 <h3><a class="toc-backref" href="#id19">Livecoding</a><a class="headerlink" href="#livecoding" title="Permalink to this headline">¶</a></h3>
 <p>Livecoding means changing Pure objects on the fly while a patch is running. A
-simple, but limited way to do this is to just edit the boxes containing Pure
-objects interactively, as you can do with any kind of Pd object. In this case,
-the changes take effect immediately after you finish editing a box. However,
-for more elaborate changes, you may have to edit the underlying Pure scripts
-and notify the Pure interpreter so that it reloads the scripts. The Pure
-loader provides the special <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object to do this.</p>
+simple, but rather limited way to do this is to just edit the boxes containing
+Pure objects interactively, as you can do with any kind of Pd object. In this
+case, the changes take effect immediately after you finish editing a box.
+However, for more elaborate changes, you may have to edit the underlying Pure
+scripts and notify the Pure interpreter so that it reloads the scripts. The
+Pure loader provides the special <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object to do this.</p>
+<p>Please note that <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> is a rather primitive way of doing these
+things, so pd-pure also provides a more convenient <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> helper
+abstraction which takes care of all the gory details and also provides a
+useful &#8220;remote control&#8221; feature. We <em>really</em> recommend using that instead of
+fiddling around with <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt>, but since <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> is
+implemented using <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt>, it may be useful to know how all this
+works at the most basic level, which is what we explain below. (If you don&#8217;t
+care about the nitty-gritty stuff then you may just skip ahead now to the
+<a class="reference internal" href="#remote-control">Remote Control</a> section.)</p>
 <p>Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> to the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object tells the plugin to reload
 all object scripts and update the Pure objects in your patch accordingly. The
 object also provides two outlets to deal with the inevitable latencies caused
@@ -1012,7 +1059,8 @@ scratch and reloads everything, including the prelude and imported modules.
 This will usually take much longer, but is only necessary if you edited
 imported library modules which won&#8217;t be reloaded with the <tt class="docutils literal"><span class="pre">bang</span></tt> message.</p>
 <p>While this facility is tremendously useful for interactive development, there
-are some caveats and corresponding workarounds that you should keep in mind.</p>
+are some limitations and corresponding workarounds that you should keep in
+mind.</p>
 <p>First, since the compilation is done in Pd&#8217;s main thread, it may lead to
 undesirable pauses in Pd&#8217;s audio and control processing. With the <tt class="docutils literal"><span class="pre">bang</span></tt>
 message the delays will usually be small, but may still be noticeable. There&#8217;s
@@ -1028,9 +1076,9 @@ the reloaded objects will still appear to have the same inlets and outlets as
 before (and often cease to function properly). The quickest way to force an
 update of all affected Pure objects in one go, while preserving the current
 object connections, is to select the corresponding part of the patch and use
-Pd&#8217;s cut and paste commands to reinsert it into the patch (if there are a lot
-of Pure objects scattered out all over the patch then you might just want to
-select and reinsert the entire contents of the patch).</p>
+Pd&#8217;s cut and paste commands to reinsert it (if there are a lot of Pure objects
+scattered out all over the patch then you might just want to select and
+reinsert the entire contents of the patch).</p>
 <p>Finally, note that the reloading of object scripts amounts to a &#8220;cold restart&#8221;
 of the Pure objects in your patches. If a Pure object keeps some <a class="reference internal" href="#local-state">local
 state</a>, it will be lost. As a remedy, the loader implements a simple protocol
@@ -1070,24 +1118,36 @@ mycounter = sentry pd_save $ next (ref <span class="mi">0</span>) <span class="k
 <h3><a class="toc-backref" href="#id20">Remote Control</a><a class="headerlink" href="#remote-control" title="Permalink to this headline">¶</a></h3>
 <p>The distribution also includes an abstraction pure-remote.pd which you can
 include in your patch to enable live coding, as well as remote control of the
-patch through the <strong class="program">pdsend</strong> program. Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> (or
-<tt class="docutils literal"><span class="pre">reload</span></tt>) causes a reload of the object scripts, as described above. This
-can also be triggered directly by clicking the bang control of the
-abstraction. The bang control also provides visual feedback indicating whether
-the compilation is still in progress. Messages are routed through the embedded
-<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object using the single inlet and the two outlets of the
-abstraction, so that <tt class="docutils literal"><span class="pre">pure-remote</span></tt> can also be controlled from within the
-patch itself.</p>
-<p>For added convenience, the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> and <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> objects
-also accept any other message of the form <tt class="docutils literal"><span class="pre">receiver</span> <span class="pre">message</span></tt> and will route
-the given message to the given receiver. This is intended to provide remote
-control of various parameters in patches. For instance, by having
-<strong class="program">pdsend</strong> send a <tt class="docutils literal"><span class="pre">play</span> <span class="pre">0</span></tt> or <tt class="docutils literal"><span class="pre">play</span> <span class="pre">1</span></tt> message, one might implement
-a simple playback control, provided that your patch includes an appropriate
-receiver (often a GUI object). See the pure-help.pd patch for an example.</p>
+patch through the <strong class="program">pdsend</strong> program. This abstraction is installed
+directly under Pd&#8217;s <tt class="docutils literal"><span class="pre">extra</span></tt> directory so that normally it should be
+available without any further ado. As already mentioned, <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt>
+provides a more convenient way to enable live coding in your patches, so you
+should normally use this abstraction instead of fiddling around with
+<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> itself.</p>
+<p>Sending a <tt class="docutils literal"><span class="pre">bang</span></tt> or <tt class="docutils literal"><span class="pre">reload</span></tt> to <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> causes a reload of the
+object scripts, as described under <a class="reference internal" href="#livecoding">Livecoding</a> above. The former can also be
+triggered directly by clicking the bang control of the abstraction (which also
+provides visual feedback while a compilation is still in progress). Note that
+the single inlet of the abstraction actually gets routed to the embedded
+<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object, and conversely its two outlets receive the output
+from that object, so that <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> can also be operated basically in
+the same way as <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> if needed. But usually the abstraction&#8217;s
+bang control should be all that you need to care about.</p>
+<p>For added convenience, <tt class="docutils literal"><span class="pre">[pure-remote]</span></tt> also accepts any <em>other</em> message of
+the form <tt class="docutils literal"><span class="pre">receiver</span> <span class="pre">message</span></tt> and will route the given message to the given
+receiver. In addition it listens on a certain port (4711 by default, but you
+can change this inside the abstraction if needed) for messages coming in from
+other applications, typically via the <strong class="program">pdsend</strong> program. This is
+intended to provide remote control of the Pure runtime as well as various
+parameters in patches. For instance, by having <strong class="program">pdsend</strong> send a
+<tt class="docutils literal"><span class="pre">bang</span></tt> to port 4711, you can trigger a reload of the Pure objects in your
+patches. Moreover, by sending a <tt class="docutils literal"><span class="pre">play</span> <span class="pre">0</span></tt> or <tt class="docutils literal"><span class="pre">play</span> <span class="pre">1</span></tt> message, one might
+implement a simple playback control, provided that your patch includes an
+appropriate receiver (often a GUI object). See the pure-help.pd patch for an
+example.</p>
 <p>To make these features available in <strong class="program">emacs</strong>, there&#8217;s an accompanying
-elisp program (pure-remote.el) which contains some convenient keybindings for
-the necessary <strong class="program">pdsend</strong> invocations, so that you can operate the
+elisp program (pure-remote.el) which contains some keybindings for the
+necessary <strong class="program">pdsend</strong> invocations, so that you can operate the
 pure-remote patch with simple keystrokes directly from the text editor. The
 same bindings are also available in Emacs Pure mode, but need to be enabled
 before you can use them; please see the pure-remote.el file for details. As
@@ -1167,13 +1227,17 @@ to access them in your Pure scripts, you will need corresponding <tt class="docu
 declarations (see the &#8220;C Interface&#8221; section in <a class="reference internal" href="pure.html"><em>The Pure Manual</em></a> for details). For
 your convenience, there&#8217;s a <tt class="docutils literal"><span class="pre">pd.pure</span></tt> script included in the distribution
 which already contains all the required <tt class="docutils literal"><span class="pre">extern</span></tt> declarations, so you just
-need to import this script in your Pure scripts.</p>
+need to import this script in your Pure scripts and you&#8217;re set.</p>
 <p>The <tt class="docutils literal"><span class="pre">pd.pure</span></tt> script will be installed in the <tt class="docutils literal"><span class="pre">lib</span></tt> subfolder along with
-the Pd Pure loader external and the examples, and the embedded Pure runtime
-has been set up so that it always has this directory in its search path, so
-that it&#8217;s enough to just include a declaration like <tt class="docutils literal"><span class="pre">using</span> <span class="pre">pd;</span></tt> in your Pure
-scripts if you want to call one of the interface routines. (Note that you can
-also put your own library scripts into this folder to make them available to
+the Pd Pure loader external and the examples. The embedded Pure runtime has
+been set up so that it always has this directory in its search path, so that
+it&#8217;s enough to include a declaration like the following in your Pure scripts
+if you want to call one of the interface routines:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> pd<span class="p">;</span>
+</pre></div>
+</div>
+<p>(We mention in passing that, in the same fashion you can also put your own
+library scripts into the <tt class="docutils literal"><span class="pre">extra/pure/lib</span></tt> folder to make them available to
 all your Pure object scripts.)</p>
 <dl class="function">
 <dt id="pd_version_s">
@@ -1340,7 +1404,7 @@ array.</p>
 <li><a class="reference internal" href="#local-state">Local State</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#audio-objects">Audio Objects</a></li>
+<li><a class="reference internal" href="#signal-objects">Signal Objects</a></li>
 <li><a class="reference internal" href="#advanced-features">Advanced Features</a><ul>
 <li><a class="reference internal" href="#asynchronous-messages">Asynchronous Messages</a></li>
 <li><a class="reference internal" href="#wireless-messaging">Wireless Messaging</a></li>
