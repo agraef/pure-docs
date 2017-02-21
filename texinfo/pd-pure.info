@@ -1,7 +1,7 @@
 This is pd-pure.info, produced by makeinfo version 6.3 from
 pd-pure.texi.
 
-     Pure 0.64, January 07, 2017
+     Pure 0.64, February 21, 2017
 
      Albert Gräf (Editor)
 
@@ -21,29 +21,39 @@ File: pd-pure.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-pure
 *******
 
-     Pure 0.64, January 07, 2017
+     Pure 0.64, February 21, 2017
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2017, Albert Gräf et al
 
-  Version 0.22, January 07, 2017
+  Version 0.24, February 21, 2017
 
   Albert Graef <<aggraef@gmail.com>>
 
-  This is a Pd(1) loader plugin for the Pure programming language which
-lets you write external Pd objects in Pure.
+  This is a Pd(1) loader plugin for the Pure(2) programming language
+which lets you write external Pd objects in Pure.  This is generally
+much easier and a lot more fun than having to code externals in a
+comparatively low-level language such as C or C++.  Being a
+full-featured functional programming language, Pure certainly has its
+own learning curve, but once mastered, it makes programming many kinds
+of Pd objects a walk in the park.  Its Pd interface is very convenient
+to use and has livecoding support, i.e., the ability to reload Pure
+externals at any time while your Pd patch keeps running.  Pure also
+offers a comprehensive library of its own and many interfaces to
+third-party software useful for implementing Pd objects, such as
+Octave(3) and Grame’s Faust(4).
 
-  Please note that the present version of the module is still somewhat
-experimental, but it seems to work fairly well at least with Pure
-versions 0.34 and later.  In particular, note that Pure is a _compiled_
-language and thus there are some inevitable latencies at startup, when
-the embedded Pure interpreter loads your Pure scripts and compiles them
-on the fly.  However, once the scripts have been compiled, they are
-executed very efficiently.  As of pd-pure 0.15, it is also possible to
-_precompile_ a collection of Pure objects to a library in binary format
-which can be loaded much faster with Pd’s ‘-lib’ option.  (This requires
-Pure 0.50 or later.)
+  *Caveat:* Please note that Pure is a _JIT-compiled_ language and thus
+there may be some noticeable latencies when the embedded Pure runtime
+first loads your Pure scripts and compiles them on the fly.  This
+shouldn’t be much of an issue on reasonably modern hardware, however,
+and once the scripts _have_ been loaded, they are executed very
+efficiently.  As of pd-pure 0.15, it is also possible to _precompile_ a
+collection of Pure objects to a binary external library which can be
+loaded just like any other library of Pd externals with Pd’s ‘-lib’
+option.  In addition, pd-pure 0.24 and later offer the ability to
+_preload_ Pure scripts with the ‘-lib’ option at startup.
 
 * Menu:
 
@@ -58,6 +68,12 @@ Pure 0.50 or later.)
    ---------- Footnotes ----------
 
    (1) http://puredata.info/
+
+   (2) https://purelang.bitbucket.io/
+
+   (3) http://www.octave.org/
+
+   (4) http://faust.grame.fr/
 
 
 File: pd-pure.info,  Node: Copying,  Next: Installation,  Prev: Top,  Up: Top
@@ -75,10 +91,13 @@ File: pd-pure.info,  Node: Installation,  Next: Usage,  Prev: Copying,  Up: Top
 2 Installation
 **************
 
-MS Windows users please see *note pd-pure on Windows: 4. below.
+You’ll need Pure 0.50+ and Pd 0.43+.  We recommend using Pd versions
+0.47.0 and above, since these offer substantial improvements in Pd’s
+"loader" functionality which pd-pure hooks into to provide Pure object
+creation.
 
   Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz’.
+‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.tar.gz’.
 
   Usually, ‘make && sudo make install’ should do the trick.  This will
 compile the external (you need to have GNU make, Pd and Pure installed
@@ -90,21 +109,25 @@ installed.  If it guesses wrong, you can tell it the right prefix with
 lib/pd directory with ‘make pdlibdir=/some/path’; by default the
 Makefile assumes ‘$(prefix)/lib/pd’.
 
-  It is also possible to specify an alternative flavour of Pd when
+  It is also possible to specify an alternative flavor of Pd when
 building and installing the module, by adding a definition like
 ‘PD=pd-extended’ to the ‘make’ command line.  This is known to work with
 pd-extended(1) and pd-l2ork(2), two popular alternative Pd distributions
-available on the web, as well as purr-data(3) (the new cross-platform
-version of pd-l2ork(4)).
+available on the web, as well as pd-l2ork(3)’s latest cross-platform
+version purr-data(4).  (If you’re going with one of these, we recommend
+using purr-data(5) since it has all the latest loader improvements.)
 
   The Makefile also tries to guess the host system type and Pure
 version, and set up some platform-specific things accordingly.  If this
 doesn’t work for your system then you’ll have to edit the Makefile
 accordingly.
 
-* Menu:
+  MS Windows users please note that there’s a binary package in MSI
+format available at the Pure website:
+‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi’.
 
-* pd-pure on Windows:: 
+  Mac users can find pd-pure and all its dependencies in MacPorts(6).
+Please also check the "Pure on Mac OS X" wiki page(7) for details.
 
    ---------- Footnotes ----------
 
@@ -112,21 +135,16 @@ accordingly.
 
    (2) http://l2ork.music.vt.edu/main/?page_id=56
 
-   (3) https://git.purrdata.net/jwilkes/purr-data
+   (3) http://l2ork.music.vt.edu/main/?page_id=56
 
-   (4) http://l2ork.music.vt.edu/main/?page_id=56
+   (4) https://agraef.github.io/purr-data-intro/
 
-
-File: pd-pure.info,  Node: pd-pure on Windows,  Up: Installation
+   (5) https://agraef.github.io/purr-data-intro/
 
-2.1 pd-pure on Windows
-======================
+   (6) http://www.macports.org/
 
-There’s a binary package in MSI format available at the Pure website:
-‘https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi’.
-Use that if you can.  You’ll also need the latest Pure version (0.50 at
-the time of this writing), and Pd 0.43 or later, which is available from
-Miller Puckette’s website: ‘http://crca.ucsd.edu/~msp/software.html’.
+   (7) 
+https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends
 
 
 File: pd-pure.info,  Node: Usage,  Next: Control Objects,  Prev: Installation,  Up: Top
@@ -136,17 +154,16 @@ File: pd-pure.info,  Node: Usage,  Next: Control Objects,  Prev: Installation,  
 
 After installation, you still have to tell Pd to load the Pure external
 at startup, either with the ‘-lib’ option (‘pd -lib pure’), or by
-specifying ‘pure’ in the File/Startup options (Media/Preferences/Startup
-in Pd 0.43 and later).  This setting can be saved so that the Pure
-loader is always available when you run Pd.  Once the Pure loader has
-been installed, you should see a message in the Pd main window
-indicating that the external has been loaded.
+specifying ‘pure’ in Pd’s startup options.  This setting can be saved so
+that the Pure loader is always available when you run Pd.  Once the Pure
+loader has been installed, you should see a message in the Pd main
+window indicating that the external has been loaded.
 
   Since version 0.12 pd-pure supports the definition of both ‘control’
-and ‘audio objects’ in Pure.  The latter are also known as "tilde
-objects" in Pd parlance; pd-pure follows the Pd convention in that audio
-objects have a trailing tilde in their name.  Audio objects are used
-primarily for processing audio signals, whereas control objects are
+and ‘audio objects’ in Pure.  The latter are also known as "tilde" or
+"dsp objects" in Pd parlance; pd-pure follows the Pd convention in that
+these objects have a trailing tilde in their name.  Audio objects are
+used primarily for processing audio signals, whereas control objects are
 employed for asynchronous message processing.
 
   Simple "one-off" control objects can be created with the ‘[pure]’
@@ -203,7 +220,8 @@ patches.  These can also be accessed in Pd by right-clicking on any Pure
 object and selecting the ‘Help’ option.  (Recent pd-pure versions also
 allow you to right-click and select ‘Open’ to open the script of a named
 Pure object in a text editor, provided that your Pd version supports the
-‘menu-open’ command.)
+‘menu-open’ command.  Most reasonably recent Pd versions and flavors
+do.)
 
   In the following section, we first discuss in detail how *note control
 objects: 6. are defined and used.  After that, the necessary adjustments
@@ -220,14 +238,19 @@ Basically, to implement a Pd control object named ‘foo’, all you have to
 do is supply a Pure script named foo.pure which defines a function ‘foo’
 (and anything else that you might need to define the function).  This
 function is also called the ‘object function’.  You can put the script
-containing the object function in the same directory as the Pd patch in
-which you want to use the ‘foo’ object, or anywhere on Pd’s search path.
-(The latter is useful if the object is to be used in several patches
-located in different subdirectories.)  The script will be executed once,
-at the time the first object with the given name is created, and will be
-executed in the directory where it is located.  Thus, if the script
-needs to import other Pure scripts or load some data files, you can put
-these into the same directory so that the object script can find them.
+containing the object function either in the same directory as the Pd
+patch in which you want to use the ‘foo’ object, or anywhere on Pd’s
+search path.  (The latter is useful if the object is to be used in
+several patches located in different subdirectories.  Also note that the
+former requires that you already _saved_ the Pd patch in the directory
+containing the foo.pure script _before_ you create a ‘foo’ object in it,
+so that the Pure loader finds the script.)
+
+  The script will be executed once, at the time the first object with
+the given name is created, and will be executed in the directory where
+it is located.  Thus, if the script needs to import other Pure scripts
+or load some data files, you can put these into the same directory so
+that the object script can find them.
 
   The ‘foo’ function gets evaluated at object creation time, receiving
 any additional parameters the object is created with.  The resulting
@@ -327,10 +350,10 @@ For simple kinds of objects like the above, the Pure loader provides the
 generic ‘[pure]’ object as a quick means to create Pure control objects
 without actually preparing a script file.  The creation parameter of
 ‘[pure]’ is the object function.  This can be a predefined Pure
-function, or you can define it on the fly in a ‘with’ clause.  (It is
-also possible to explicitly load additional script files needed to
-implement objects defined using ‘[pure]’; see *note Controlling the
-Runtime: d. for details.)
+function, or you can define it on the fly in a ‘with’ clause.  You can
+also just load additional script files defining the functions you use
+with ‘[pure]’; see *note Controlling the Runtime: d. and *note Loading
+Script Files at Startup: e. for details.
 
   For instance, ‘[pure succ]’ uses the predefined Pure function ‘succ’
 which adds 1 to its input, while the object ‘[pure add 5 with add x y =
@@ -804,11 +827,14 @@ However, invoking Faust dsps via Pure also offers some benefits.  In
 particular, it enables you to add more sophisticated control processing,
 interface to other 3rd party software for additional pre- and
 postprocessing of the signal data, or do live editing of Faust programs
-using the facilities described in *note Livecoding: 10. below.
+using the facilities described in *note Livecoding: 11. below.  An
+actual Pure implementation of a Faust external which does all this _and_
+provides the extra conveniences of faust2pd under one hood can be found
+in ‘pd-faust’.
 
    ---------- Footnotes ----------
 
-   (1) http://faudiostream.sf.net/
+   (1) http://faust.grame.fr/
 
 
 File: pd-pure.info,  Node: Advanced Features,  Next: Index,  Prev: Audio Objects,  Up: Top
@@ -817,9 +843,10 @@ File: pd-pure.info,  Node: Advanced Features,  Next: Index,  Prev: Audio Objects
 *******************
 
 This section discusses some advanced features of the Pd Pure loader.  It
-explains the use of timer callbacks, wireless connections and wave
-arrays, and the livecoding and interactive control facilities.  We also
-give an overview of the API provided for pd-pure programmers.
+explains the use of timer callbacks, "wireless" connections
+(send/receive), wave arrays, and the runtime control and livecoding
+facilities.  We also give an overview of the API provided for pd-pure
+programmers.
 
 * Menu:
 
@@ -827,6 +854,7 @@ give an overview of the API provided for pd-pure programmers.
 * Wireless Messaging:: 
 * Reading and Writing Audio Data:: 
 * Controlling the Runtime:: 
+* Loading Script Files at Startup:: 
 * Livecoding:: 
 * Remote Control:: 
 * Compiling Objects:: 
@@ -890,9 +918,9 @@ to equip our ‘mydelay’ object with a ‘stop’ message as follows:
 facility.  The following example shows how to maintain a timed message
 queue in a Pure list, in order to implement a simple delay line similar
 to Pd’s builtin ‘pipe’ object.  Here we also employ the *note pd_time():
-12. function, which is provided by the Pure loader so that Pure scripts
+13. function, which is provided by the Pure loader so that Pure scripts
 can access the current logical Pd time in milliseconds (see *note
-Programming Interface: 13. below).  This is convenient if we need to
+Programming Interface: 14. below).  This is convenient if we need to
 deal with absolute time values, which we use in this example to keep
 track of the times at which messages in the queue are to be delivered:
 
@@ -919,8 +947,8 @@ As of version 0.14, pd-pure offers some facilities for sending and
 receiving messages directly, without any wired connections to the inlets
 and outlets of an object (similar to what the Pd ‘[send]’ and
 ‘[receive]’ objects provide).  See the description for the *note
-pd_send(): 15. and *note pd_receive(): 16. routines in the *note
-Programming Interface: 13. section.
+pd_send(): 16. and *note pd_receive(): 17. routines in the *note
+Programming Interface: 14. section.
 
   For instance, here’s how you can use the ‘pd_send’ function to send
 messages to the Pd runtime:
@@ -1000,8 +1028,8 @@ loop, or as waveshaping functions used to implement distortion effects.
   Each array has a name (Pd symbol) under which it can be accessed from
 Pure code.  pd-pure makes it possible to transfer audio data directly
 between Pd arrays and Pure double vectors by means of the *note
-pd_getbuffer(): 18. and *note pd_setbuffer(): 19. routines.  Please see
-*note Programming Interface: 13. below for a closer description of the
+pd_getbuffer(): 19. and *note pd_setbuffer(): 1a. routines.  Please see
+*note Programming Interface: 14. below for a closer description of the
 provided routines.
 
   For instance, here is a ‘randomwave’ object which fills a Pd array
@@ -1023,7 +1051,7 @@ response to a ‘bang’ message:
 
 
 
-File: pd-pure.info,  Node: Controlling the Runtime,  Next: Livecoding,  Prev: Reading and Writing Audio Data,  Up: Advanced Features
+File: pd-pure.info,  Node: Controlling the Runtime,  Next: Loading Script Files at Startup,  Prev: Reading and Writing Audio Data,  Up: Advanced Features
 
 6.4 Controlling the Runtime
 ===========================
@@ -1033,7 +1061,13 @@ possible to control the embedded Pure interpreter in some ways.  There
 can be any number of ‘[pure-runtime]’ objects in a patch, which all
 refer to the same instance of the Pure interpreter.
 
-  The first use of ‘[pure-runtime]’ is to load additional Pure scripts.
+  First and foremost, the ‘[pure-runtime]’ object accepts some control
+messages which can be used to dynamically reload all loaded scripts, and
+to implement "remote control" of a patch using the *pdsend* program.
+This is described in more detail in the *note Livecoding: 11.
+subsection.
+
+  The second use of ‘[pure-runtime]’ is to load additional Pure scripts.
 To these ends, ‘[pure-runtime]’ can be invoked with the names of scripts
 to be loaded at object creation time as arguments.  The script names
 should be specified without the ‘.pure’ suffix; it will be added
@@ -1045,24 +1079,110 @@ following object to your patch:
      [pure-runtime foo bar]
 
 
-  This facility can be used, e.g., to load any additional scripts needed
-for anonymous objects defined with ‘[pure]’ and ‘[pure~]’.
+  This facility can be used, in particular, to load any additional
+scripts needed for anonymous objects defined with ‘[pure]’ and
+‘[pure~]’.  However, the present implementation of the ‘[pure-runtime]’
+script loader suffers from some technical shortcomings.  In particular,
+it mostly bypasses pd-pure’s internal tracking of script files, so you
+should _never_ use it to load scripts which implement named Pure
+objects; these are better handled automatically by the Pure loader.
+Another caveat is that you _must_ ensure that the ‘[pure-runtime]’
+object is inserted into the patch _before_ any anonymous objects which
+depend on the loaded scripts.
 
-     Note: You’ll have to make sure that the ‘[pure-runtime]’ object is
-     inserted into the patch before any anonymous objects which depend
-     on the loaded scripts.  Also note that you shouldn’t explicitly
-     load the scripts which implement named Pure objects; this will be
-     handled automatically by the Pure loader.
-
-  The ‘[pure-runtime]’ object also accepts control messages which can be
-used to dynamically reload all loaded scripts, and to implement "remote
-control" of a patch using the *pdsend* program.  This is described in
-the following subsection.
+  In fact, the script loading facility of ‘[pure-runtime]’ is considered
+a "legacy" feature now that ‘[declare -lib]’ (discussed in the next
+subsection) offers a better way to load additional script files using
+Pd’s built-in ‘-lib’ mechanism.  However, the implementation of the
+latter requires a recent Pd version (0.47.0 or later) and thus the
+‘[pure-runtime]’ script loader is still provided for backwards
+compatibility.
 
 
-File: pd-pure.info,  Node: Livecoding,  Next: Remote Control,  Prev: Controlling the Runtime,  Up: Advanced Features
+File: pd-pure.info,  Node: Loading Script Files at Startup,  Next: Livecoding,  Prev: Controlling the Runtime,  Up: Advanced Features
 
-6.5 Livecoding
+6.5 Loading Script Files at Startup
+===================================
+
+As of version 0.24, pd-pure provides an easier and more familiar way to
+load additional Pure scripts using Pd’s ‘-lib’ mechanism during Pd’s
+startup or when a patch is loaded.  Compared to the rather rudimentary
+script loading facility provided by the ‘[pure-runtime]’ object, this
+also offers two chief advantages:
+
+   - It works with _both_ named Pure objects and auxiliary library
+     scripts defining functions to be used with the ‘[pure]’ and
+     ‘[pure~]’ objects.
+
+   - The Pure loader keeps track of the loaded scripts and allows them
+     to be reloaded at any time using the *note livecoding: 11.
+     facility.
+
+  Note that at present, this feature requires the latest incarnation of
+the Pd loader, which means that you should make sure that you’re using
+Pd 0.47.0 or later, or a compatible Pd flavor such as purr-data(1).
+
+  To load some script files at startup, just add the corresponding
+script names (without the ‘.pure’ suffix) to Pd’s startup libraries, or
+invoke them from the command line using the ‘-lib’ option, just like
+you’d do with any other Pd externals and libraries.  E.g.:
+
+     pd -lib foo -lib bar
+
+
+  Note that these options _must_ come after any options required to
+launch the Pure loader (see *note Usage: 4. above), otherwise Pd will
+_not_ recognize the scripts as loadable libraries.  You can also specify
+the relative or absolute path to the scripts if needed, for instance:
+
+     pd -lib ~/pd-pure-externals/foo -lib ~/pd-pure-externals/bar
+
+
+  Or you can use Pd’s ‘-path’ option (or Pd’s search path configuration
+dialog) to specify where Pd should go looking for the script files:
+
+     pd -path ~/pd-pure-externals -lib foo -lib bar
+
+
+  Note that no special search path will be needed if you just drop the
+Pure scripts to be loaded into one of the directories on Pd’s default
+search path.  E.g., on Linux this usually includes the ‘~/pd-externals’
+folder (‘~/pd-l2ork-externals’ when using pd-l2ork(2) or purr-data(3)).
+The default path will be different depending on the platform and Pd
+flavor you use, so please check your local Pd documentation for details.
+
+  The ‘-lib’ mechanism also works with Pd’s ‘[declare]’ object, so that,
+like the ‘[pure-runtime]’ object, it can also be used on a per-patch
+basis.  For instance, you can invoke the ‘foo’ and ‘bar’ script files in
+a patch by inserting the following object (using the same ‘-lib’ and
+‘-path’ options that you’d use on the command line):
+
+     [declare -lib foo -lib bar]
+
+
+  The scripts will then be loaded automagically as soon as you open the
+patch in Pd.  (Note that, as with the ‘[pure-runtime]’ object, the
+‘[declare]’ object needs to be inserted _before_ any objects which
+depend on the loaded scripts.)  This facility is most useful with
+anonymous objects, since named objects will be loaded anyway if needed,
+if you just type their name into an object box.  But it works with named
+objects, too, and it also allows you to mix and match named and
+anonymous objects in a single script file, _and_ make sure that the
+script gets loaded (and reloaded when livecoding) even if the patch
+doesn’t contain any instance of the named object at all.
+
+   ---------- Footnotes ----------
+
+   (1) https://agraef.github.io/purr-data-intro/
+
+   (2) http://l2ork.music.vt.edu/main/?page_id=56
+
+   (3) https://agraef.github.io/purr-data-intro/
+
+
+File: pd-pure.info,  Node: Livecoding,  Next: Remote Control,  Prev: Loading Script Files at Startup,  Up: Advanced Features
+
+6.6 Livecoding
 ==============
 
 Livecoding means changing Pure objects on the fly while a patch is
@@ -1090,31 +1210,34 @@ modules.  This will usually take much longer, but is only necessary if
 you edited imported library modules which won’t be reloaded with the
 ‘bang’ message.
 
-  While this facility is very useful for interactive development, it
-does have some limitations:
+  While this facility is tremendously useful for interactive
+development, there are some caveats and corresponding workarounds that
+you should keep in mind.
 
-   * At present, the number of inlets and outlets of Pure objects never
-     changes after reloading scripts.  Pd does not support this through
-     its API right now.  Thus by editing and reloading the Pure scripts
-     you can change the functionality of existing Pure objects in a
-     running patch, but not their interfaces.  (It is possible to make
-     changes to inlets and outlets take effect by manually editing the
-     affected objects afterwards.  But this will be cumbersome when you
-     have to edit a lot of objects, so it might be easier to just
-     restart Pd and reload the patches in such cases.)
+  First, since the compilation is done in Pd’s main thread, it may lead
+to undesirable pauses in Pd’s audio and control processing.  With the
+‘bang’ message the delays will usually be small, but may still be
+noticeable.  There’s no way around this in the current implementation,
+but as a remedy you can try to keep the compilation times to a minimum.
+This can be achieved by putting all code which you don’t plan to edit
+"live" into library modules which are imported in the object scripts.
+By these means, the number of definitions in the object scripts
+themselves can be kept small, resulting in faster compilation.
 
-   * Reloading scripts may need some time depending on how much Pure
-     code has to be recompiled and how fast your cpu is.  With the
-     ‘bang’ message the delays will usually be small, but still
-     noticable.  In order to keep the compilation times to a minimum, it
-     is a good idea to put all code which you don’t plan to edit "live"
-     into library modules which are imported in the object scripts.  By
-     these means, the number of definitions in the object scripts
-     themselves can be kept small, resulting in faster compilation.
+  Second, Pd doesn’t allow objects to change their inlet/outlet
+configuration on the fly.  If a code change in a Pure object involves
+any such modifications, the reloaded objects will still appear to have
+the same inlets and outlets as before (and often cease to function
+properly).  The quickest way to force an update of all affected Pure
+objects in one go, while preserving the current object connections, is
+to select the corresponding part of the patch and use Pd’s cut and paste
+commands to reinsert it into the patch (if there are a lot of Pure
+objects scattered out all over the patch then you might just want to
+select and reinsert the entire contents of the patch).
 
-  Also note that the reloading of object scripts amounts to a "cold
+  Finally, note that the reloading of object scripts amounts to a "cold
 restart" of the Pure objects in your patches.  If a Pure object keeps
-some *note local state: f, it will be lost.  As a remedy, the loader
+some *note local state: 10, it will be lost.  As a remedy, the loader
 implements a simple protocol which allows Pure objects to record their
 internal state before a script gets reloaded, and restore it afterwards.
 To these ends, a Pure object may respond to the following two messages:
@@ -1137,7 +1260,7 @@ To these ends, a Pure object may respond to the following two messages:
 object must subscribe to it.  This is done by setting ‘pd_save’ as a
 sentry on the object function (see the description of the ‘sentry’
 function in the ‘purelib’ for details).  For instance, here’s the
-mycounter example from *note Local State: f. again, with the necessary
+mycounter example from *note Local State: 10. again, with the necessary
 additions to support the ‘pd_save’/‘pd_restore’ protocol:
 
      nonfix bang pd_save;
@@ -1152,7 +1275,7 @@ additions to support the ‘pd_save’/‘pd_restore’ protocol:
 
 File: pd-pure.info,  Node: Remote Control,  Next: Compiling Objects,  Prev: Livecoding,  Up: Advanced Features
 
-6.6 Remote Control
+6.7 Remote Control
 ==================
 
 The distribution also includes an abstraction pure-remote.pd which you
@@ -1217,7 +1340,7 @@ applications.
 
 File: pd-pure.info,  Node: Compiling Objects,  Next: Programming Interface,  Prev: Remote Control,  Up: Advanced Features
 
-6.7 Compiling Objects
+6.8 Compiling Objects
 =====================
 
 pd-pure’s livecoding abilities require that objects are run from source
@@ -1233,8 +1356,9 @@ other external library of Pd objects.  This basically involves using the
 Pure interpreter as a batch compiler to translate the Pure scripts
 implementing the objects to a shared library.  You also have to link in
 a small amount of C code so that the shared module can be loaded by Pd
-and registers its Pd object classes with pd-pure.  The examples/lib
-folder contains a complete example showing how this is done.
+and registers its Pd object classes with pd-pure.  The
+examples/libexample folder contains a complete example showing how this
+is done.
 
   Note that even if you load all your pd-pure objects from such
 libraries, you still need to load the pd-pure module first, since it
@@ -1244,13 +1368,27 @@ object (no matter whether it’s implemented in compiled or source form).
 
 File: pd-pure.info,  Node: Programming Interface,  Prev: Compiling Objects,  Up: Advanced Features
 
-6.8 Programming Interface
+6.9 Programming Interface
 =========================
 
 The Pure loader provides a number of interface routines which can be
-called by Pure scripts running in the Pd environment.  Note that in
-order to access these functions, you’ll have to add the corresponding
-‘extern’ declarations to your scripts.
+called by Pure scripts running in the Pd environment.  We give a brief
+description of these functions below.  These functions are all
+implemented in C, so in order to access them in your Pure scripts, you
+will need corresponding ‘extern’ declarations (see the "C Interface"
+section in ‘pure’ for details).  For your convenience, there’s a
+‘pd.pure’ script included in the distribution which already contains all
+the required ‘extern’ declarations, so you just need to import this
+script in your Pure scripts.
+
+  The ‘pd.pure’ script will be installed in the ‘lib’ subfolder along
+with the Pd Pure loader external and the examples, and the embedded Pure
+runtime has been set up so that it always has this directory in its
+search path, so that it’s enough to just include a declaration like
+‘using pd;’ in your Pure scripts if you want to call one of the
+interface routines.  (Note that you can also put your own library
+scripts into this folder to make them available to all your Pure object
+scripts.)
 
  -- C Function: extern char *pd_version_s ()
 
@@ -1272,9 +1410,8 @@ order to access these functions, you’ll have to add the corresponding
 
  -- C Function: extern char *pd_libdir ()
 
-     Returns the Pd library dir (as determined at compile time).  This
-     is useful if your Pure scripts need to access files in that
-     directory.
+     Returns the Pd library dir (determined at runtime).  This is useful
+     if your Pure scripts need to access files in that directory.
 
  -- C Function: extern expr *pd_getdir ()
 
@@ -1293,7 +1430,7 @@ order to access these functions, you’ll have to add the corresponding
      ‘menu-open’ action (accessible by right-clicking on a Pure object
      and selecting ‘Open’).  This is usually the Pure script of the
      object, if available, but this can be changed with *note
-     pd_setfile(): 21. below.  The function must be called during object
+     pd_setfile(): 22. below.  The function must be called during object
      creation or in the method calls of an object, so that it is clear
      what the current object is; otherwise the function will fail.
 
@@ -1316,7 +1453,7 @@ order to access these functions, you’ll have to add the corresponding
 
  -- C Function: extern void pd_error_s (char *s)
 
-     Like *note pd_post(): 22, but prints an error message instead.  If
+     Like *note pd_post(): 23, but prints an error message instead.  If
      this routine is invoked from an object (i.e., during object
      creation or a method call) then Pd’s ‘pd_error()’ function is
      called, which allows the object to be tracked down with Pd’s ‘Find
@@ -1329,7 +1466,7 @@ order to access these functions, you’ll have to add the corresponding
      Retrieves the current Pd time as a double value in milliseconds,
      which is useful, in particular, when used in conjunction with the
      asynchronous message facility described under *note Asynchronous
-     Messages: 11.
+     Messages: 12.
 
  -- C Function: extern void pd_send (char *sym, expr *x)
 
@@ -1355,26 +1492,26 @@ order to access these functions, you’ll have to add the corresponding
  -- C Function: extern expr *pd_getbuffer (char *name)
  -- C Function: extern void pd_setbuffer (char *name, expr *x)
  -- C Function: extern int pd_getbuffersize (char *name)
- -- C Function: extern void pd_setbuffersize (char *name, uint32_t sz)
+ -- C Function: extern void pd_setbuffersize (char *name, int sz)
 
      Routines to access the Pd array (sample buffer) with the given
      name.  These functions can be used to transfer audio data between
-     Pd and Pure scripts; see *note Reading and Writing Audio Data: 17.
+     Pd and Pure scripts; see *note Reading and Writing Audio Data: 18.
      above for an example.
 
-     *note pd_getbuffersize(): 25. and *note pd_setbuffersize(): 26.
+     *note pd_getbuffersize(): 26. and *note pd_setbuffersize(): 27.
      gets or sets the size of the given buffer, respectively.
 
-     *note pd_getbuffer(): 18. reads the contents of the buffer and
+     *note pd_getbuffer(): 19. reads the contents of the buffer and
      returns it as a Pure vector (or fails if the array with the given
      name doesn’t exist).
 
-     *note pd_setbuffer(): 19. sets the contents of the buffer from the
+     *note pd_setbuffer(): 1a. sets the contents of the buffer from the
      given Pure vector ‘x’.  If the size of the vector exceeds the size
      of the buffer, the former is truncated.  Conversely, if the size of
      the buffer exceeds the size of the Pure vector, the trailing
      samples are unaffected.  _Note:_ The second argument of *note
-     pd_setbuffer(): 19. can also be a pair ‘(i,x)’ denoting an offset
+     pd_setbuffer(): 1a. can also be a pair ‘(i,x)’ denoting an offset
      ‘i’ into the array at which the sample data is to be written, so
      that this routine allows you to overwrite any part of the array.
 
@@ -1388,150 +1525,161 @@ Index
 * Menu:
 
 * pd_error_s (C function):               Programming Interface.
-                                                              (line  73)
+                                                              (line  86)
 * pd_getbuffer (C function):             Programming Interface.
-                                                              (line 111)
+                                                              (line 124)
 * pd_getbuffersize (C function):         Programming Interface.
-                                                              (line 111)
+                                                              (line 124)
 * pd_getdir (C function):                Programming Interface.
-                                                              (line  35)
+                                                              (line  48)
 * pd_getfile (C function):               Programming Interface.
-                                                              (line  46)
+                                                              (line  59)
 * pd_libdir (C function):                Programming Interface.
-                                                              (line  29)
+                                                              (line  43)
 * pd_path (C function):                  Programming Interface.
-                                                              (line  23)
+                                                              (line  37)
 * pd_post (C function):                  Programming Interface.
-                                                              (line  66)
+                                                              (line  79)
 * pd_receive (C function):               Programming Interface.
-                                                              (line  96)
+                                                              (line 109)
 * pd_send (C function):                  Programming Interface.
-                                                              (line  90)
+                                                              (line 103)
 * pd_setbuffer (C function):             Programming Interface.
-                                                              (line 111)
+                                                              (line 124)
 * pd_setbuffersize (C function):         Programming Interface.
-                                                              (line 111)
+                                                              (line 124)
 * pd_setfile (C function):               Programming Interface.
-                                                              (line  56)
+                                                              (line  69)
 * pd_time (C function):                  Programming Interface.
-                                                              (line  83)
+                                                              (line  96)
 * pd_unreceive (C function):             Programming Interface.
-                                                              (line 106)
+                                                              (line 119)
 * pd_version_s (C function):             Programming Interface.
-                                                              (line  11)
+                                                              (line  25)
 
 
 
 Tag Table:
-Node: Top379
-Ref: pd-pure doc569
-Ref: 0569
-Ref: Top-Footnote-11584
-Node: Copying1614
-Ref: pd-pure pd-pure-pd-loader-for-pure-scripts1695
-Ref: 11695
-Ref: pd-pure copying1695
-Ref: 21695
-Node: Installation1868
-Ref: pd-pure installation1951
-Ref: 31951
-Ref: Installation-Footnote-13364
-Ref: Installation-Footnote-23415
-Ref: Installation-Footnote-33466
-Ref: Installation-Footnote-43517
-Node: pd-pure on Windows3568
-Ref: pd-pure pd-pure-on-windows3636
-Ref: 43636
-Node: Usage4054
-Ref: pd-pure usage4145
-Ref: 54145
-Node: Control Objects7600
-Ref: pd-pure control-objects7692
-Ref: 67692
-Node: Simple Objects11063
-Ref: pd-pure simple-objects11157
-Ref: 911157
-Node: Creation Arguments11585
-Ref: pd-pure creation-arguments11705
-Ref: a11705
-Node: The [pure] Object12271
-Ref: pd-pure the-pure-object12407
-Ref: c12407
-Node: Configuring Inlets and Outlets13535
-Ref: pd-pure configuring-inlets-and-outlets13680
-Ref: e13680
-Node: Variadic Creation Functions16547
-Ref: pd-pure variadic-creation-functions16686
-Ref: b16686
-Node: Local State18962
-Ref: pd-pure local-state19062
-Ref: f19062
-Node: Audio Objects19736
-Ref: pd-pure audio-objects19840
-Ref: 719840
-Ref: Audio Objects-Footnote-134116
-Node: Advanced Features34152
-Ref: pd-pure advanced-features34246
-Ref: 834246
-Node: Asynchronous Messages34774
-Ref: pd-pure asynchronous-messages34877
-Ref: 1134877
-Node: Wireless Messaging38393
-Ref: pd-pure wireless-messaging38535
-Ref: 1438535
-Ref: Wireless Messaging-Footnote-141316
-Ref: Wireless Messaging-Footnote-241389
-Node: Reading and Writing Audio Data41482
-Ref: pd-pure reading-and-writing-audio-data41626
-Ref: 1741626
-Node: Controlling the Runtime43032
-Ref: pd-pure controlling-the-runtime43168
-Ref: d43168
-Node: Livecoding44802
-Ref: pd-pure livecoding44922
-Ref: 1044922
-Node: Remote Control49583
-Ref: pd-pure remote-control49697
-Ref: 1a49697
-Node: Compiling Objects52948
-Ref: pd-pure compiling-objects53073
-Ref: 1b53073
-Node: Programming Interface54332
-Ref: pd-pure programming-interface54434
-Ref: 1354434
-Ref: pd-pure pd_version_s54740
-Ref: 1c54740
-Ref: pd-pure pd_path55156
-Ref: 1d55156
-Ref: pd-pure pd_libdir55421
-Ref: 1e55421
-Ref: pd-pure pd_getdir55617
-Ref: 1f55617
-Ref: pd-pure pd_getfile56173
-Ref: 2056173
-Ref: pd-pure pd_setfile56701
-Ref: 2156701
-Ref: pd-pure pd_post57185
-Ref: 2257185
-Ref: pd-pure pd_error_s57471
-Ref: 2357471
-Ref: pd-pure pd_time57981
-Ref: 1257981
-Ref: pd-pure pd_send58254
-Ref: 1558254
-Ref: pd-pure pd_receive58500
-Ref: 1658500
-Ref: pd-pure pd_unreceive58991
-Ref: 2458991
-Ref: pd-pure pd_getbuffer59187
-Ref: 1859187
-Ref: pd-pure pd_setbuffer59242
-Ref: 1959242
-Ref: pd-pure pd_getbuffersize59305
-Ref: 2559305
-Ref: pd-pure pd_setbuffersize59362
-Ref: 2659362
-Node: Index60547
+Node: Top380
+Ref: pd-pure doc571
+Ref: 0571
+Ref: Top-Footnote-12271
+Ref: Top-Footnote-22301
+Ref: Top-Footnote-32340
+Ref: Top-Footnote-42371
+Node: Copying2402
+Ref: pd-pure pd-pure-pd-loader-for-pure-scripts2483
+Ref: 12483
+Ref: pd-pure copying2483
+Ref: 22483
+Node: Installation2656
+Ref: pd-pure installation2739
+Ref: 32739
+Ref: Installation-Footnote-14717
+Ref: Installation-Footnote-24768
+Ref: Installation-Footnote-34819
+Ref: Installation-Footnote-44870
+Ref: Installation-Footnote-54920
+Ref: Installation-Footnote-64970
+Ref: Installation-Footnote-75003
+Node: Usage5102
+Ref: pd-pure usage5193
+Ref: 45193
+Ref: pd-pure wiki-page5193
+Ref: 55193
+Node: Control Objects8658
+Ref: pd-pure control-objects8750
+Ref: 68750
+Node: Simple Objects12341
+Ref: pd-pure simple-objects12435
+Ref: 912435
+Node: Creation Arguments12863
+Ref: pd-pure creation-arguments12983
+Ref: a12983
+Node: The [pure] Object13549
+Ref: pd-pure the-pure-object13685
+Ref: c13685
+Node: Configuring Inlets and Outlets14835
+Ref: pd-pure configuring-inlets-and-outlets14980
+Ref: f14980
+Node: Variadic Creation Functions17847
+Ref: pd-pure variadic-creation-functions17986
+Ref: b17986
+Node: Local State20262
+Ref: pd-pure local-state20362
+Ref: 1020362
+Node: Audio Objects21036
+Ref: pd-pure audio-objects21140
+Ref: 721140
+Ref: Audio Objects-Footnote-135584
+Node: Advanced Features35615
+Ref: pd-pure advanced-features35709
+Ref: 835709
+Node: Asynchronous Messages36284
+Ref: pd-pure asynchronous-messages36387
+Ref: 1236387
+Node: Wireless Messaging39903
+Ref: pd-pure wireless-messaging40045
+Ref: 1540045
+Ref: Wireless Messaging-Footnote-142826
+Ref: Wireless Messaging-Footnote-242899
+Node: Reading and Writing Audio Data42992
+Ref: pd-pure reading-and-writing-audio-data43136
+Ref: 1843136
+Node: Controlling the Runtime44542
+Ref: pd-pure controlling-the-runtime44699
+Ref: d44699
+Node: Loading Script Files at Startup47008
+Ref: pd-pure loading-script-files-at-startup47145
+Ref: e47145
+Ref: Loading Script Files at Startup-Footnote-150501
+Ref: Loading Script Files at Startup-Footnote-250551
+Ref: Loading Script Files at Startup-Footnote-350602
+Node: Livecoding50652
+Ref: pd-pure livecoding50780
+Ref: 1150780
+Node: Remote Control55641
+Ref: pd-pure remote-control55755
+Ref: 1b55755
+Node: Compiling Objects59006
+Ref: pd-pure compiling-objects59131
+Ref: 1c59131
+Node: Programming Interface60397
+Ref: pd-pure programming-interface60499
+Ref: 1460499
+Ref: pd-pure pd_version_s61655
+Ref: 1d61655
+Ref: pd-pure pd_path62071
+Ref: 1e62071
+Ref: pd-pure pd_libdir62336
+Ref: 1f62336
+Ref: pd-pure pd_getdir62519
+Ref: 2062519
+Ref: pd-pure pd_getfile63075
+Ref: 2163075
+Ref: pd-pure pd_setfile63603
+Ref: 2263603
+Ref: pd-pure pd_post64087
+Ref: 2364087
+Ref: pd-pure pd_error_s64373
+Ref: 2464373
+Ref: pd-pure pd_time64883
+Ref: 1364883
+Ref: pd-pure pd_send65156
+Ref: 1665156
+Ref: pd-pure pd_receive65402
+Ref: 1765402
+Ref: pd-pure pd_unreceive65893
+Ref: 2565893
+Ref: pd-pure pd_getbuffer66089
+Ref: 1966089
+Ref: pd-pure pd_setbuffer66144
+Ref: 1a66144
+Ref: pd-pure pd_getbuffersize66207
+Ref: 2666207
+Ref: pd-pure pd_setbuffersize66264
+Ref: 2766264
+Node: Index67444
 
 End Tag Table
 

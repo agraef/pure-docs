@@ -10,23 +10,35 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.22, January 07, 2017
+  Version 0.24, February 21, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  This is a <hlink|Pd|http://puredata.info/> loader plugin for the Pure
-  programming language which lets you write external Pd objects in Pure.
+  This is a <hlink|Pd|http://puredata.info/> loader plugin for the
+  <hlink|Pure|https://purelang.bitbucket.io/> programming language which lets
+  you write external Pd objects in Pure. This is generally much easier and a
+  lot more fun than having to code externals in a comparatively low-level
+  language such as C or C++. Being a full-featured functional programming
+  language, Pure certainly has its own learning curve, but once mastered, it
+  makes programming many kinds of Pd objects a walk in the park. Its Pd
+  interface is very convenient to use and has livecoding support, i.e., the
+  ability to reload Pure externals at any time while your Pd patch keeps
+  running. Pure also offers a comprehensive library of its own and many
+  interfaces to third-party software useful for implementing Pd objects, such
+  as <hlink|Octave|http://www.octave.org/> and Grame's
+  <hlink|Faust|http://faust.grame.fr/>.
 
-  Please note that the present version of the module is still somewhat
-  experimental, but it seems to work fairly well at least with Pure versions
-  0.34 and later. In particular, note that Pure is a <em|compiled> language
-  and thus there are some inevitable latencies at startup, when the embedded
-  Pure interpreter loads your Pure scripts and compiles them on the fly.
-  However, once the scripts have been compiled, they are executed very
-  efficiently. As of pd-pure 0.15, it is also possible to <em|precompile> a
-  collection of Pure objects to a library in binary format which can be
-  loaded much faster with Pd's <verbatim|-lib> option. (This requires Pure
-  0.50 or later.)
+  <with|font-series|bold|Caveat:> Please note that Pure is a
+  <em|JIT-compiled> language and thus there may be some noticeable latencies
+  when the embedded Pure runtime first loads your Pure scripts and compiles
+  them on the fly. This shouldn't be much of an issue on reasonably modern
+  hardware, however, and once the scripts <em|have> been loaded, they are
+  executed very efficiently. As of pd-pure 0.15, it is also possible to
+  <em|precompile> a collection of Pure objects to a binary external library
+  which can be loaded just like any other library of Pd externals with Pd's
+  <verbatim|-lib> option. In addition, pd-pure 0.24 and later offer the
+  ability to <em|preload> Pure scripts with the <verbatim|-lib> option at
+  startup.
 
   <subsection|Copying><label|copying>
 
@@ -36,10 +48,11 @@
 
   <subsection|Installation><label|installation>
 
-  MS Windows users please see <hlink|pd-pure on Windows|#pd-pure-on-windows>
-  below.
+  You'll need Pure 0.50+ and Pd 0.43+. We recommend using Pd versions 0.47.0
+  and above, since these offer substantial improvements in Pd's \Ploader\Q
+  functionality which pd-pure hooks into to provide Pure object creation.
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -53,43 +66,46 @@
   <verbatim|pdlibdir=/some/path>; by default the Makefile assumes
   <verbatim|$(prefix)/lib/pd>.
 
-  It is also possible to specify an alternative flavour of Pd when building
+  It is also possible to specify an alternative flavor of Pd when building
   and installing the module, by adding a definition like
   <verbatim|PD=pd-extended> to the <verbatim|make> command line. This is
   known to work with <hlink|pd-extended|http://puredata.info/downloads/pd-extended>
   and <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>, two
   popular alternative Pd distributions available on the web, as well as
-  <hlink|purr-data|https://git.purrdata.net/jwilkes/purr-data> (the new
-  cross-platform version of <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>).
+  <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56>`s latest
+  cross-platform version <hlink|purr-data|https://agraef.github.io/purr-data-intro/>.
+  (If you're going with one of these, we recommend using
+  <hlink|purr-data|https://agraef.github.io/purr-data-intro/> since it has
+  all the latest loader improvements.)
 
   The Makefile also tries to guess the host system type and Pure version, and
   set up some platform-specific things accordingly. If this doesn't work for
   your system then you'll have to edit the Makefile accordingly.
 
-  <subsubsection|pd-pure on Windows><label|pd-pure-on-windows>
+  MS Windows users please note that there's a binary package in MSI format
+  available at the Pure website: <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.msi>.
 
-  There's a binary package in MSI format available at the Pure website:
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.22.msi>.
-  Use that if you can. You'll also need the latest Pure version (0.50 at the
-  time of this writing), and Pd 0.43 or later, which is available from Miller
-  Puckette's website: <hlink|http://crca.ucsd.edu/<math|\<sim\>>msp/software.html|http://crca.ucsd.edu/-tildemsp/software.html>.
+  Mac users can find pd-pure and all its dependencies in
+  <hlink|MacPorts|http://www.macports.org/>. Please also check the \PPure on
+  Mac OS X\Q <hlink|wiki page|https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends>
+  for details.
 
   <subsection|Usage><label|usage>
 
   After installation, you still have to tell Pd to load the Pure external at
   startup, either with the <verbatim|-lib> option (<verbatim|pd>
-  <verbatim|-lib> <verbatim|pure>), or by specifying <verbatim|pure> in the
-  File/Startup options (Media/Preferences/Startup in Pd 0.43 and later). This
-  setting can be saved so that the Pure loader is always available when you
-  run Pd. Once the Pure loader has been installed, you should see a message
-  in the Pd main window indicating that the external has been loaded.
+  <verbatim|-lib> <verbatim|pure>), or by specifying <verbatim|pure> in Pd's
+  startup options. This setting can be saved so that the Pure loader is
+  always available when you run Pd. Once the Pure loader has been installed,
+  you should see a message in the Pd main window indicating that the external
+  has been loaded.
 
   Since version 0.12 pd-pure supports the definition of both control and
-  audio objects in Pure. The latter are also known as \Ptilde objects\Q in Pd
-  parlance; pd-pure follows the Pd convention in that audio objects have a
-  trailing tilde in their name. Audio objects are used primarily for
-  processing audio signals, whereas control objects are employed for
-  asynchronous message processing.
+  audio objects in Pure. The latter are also known as \Ptilde\Q or \Pdsp
+  objects\Q in Pd parlance; pd-pure follows the Pd convention in that these
+  objects have a trailing tilde in their name. Audio objects are used
+  primarily for processing audio signals, whereas control objects are
+  employed for asynchronous message processing.
 
   Simple \Pone-off\Q control objects can be created with the
   <verbatim|[pure]> class which takes the function to be evaluated as its
@@ -166,7 +182,8 @@
   right-clicking on any Pure object and selecting the <verbatim|Help> option.
   (Recent pd-pure versions also allow you to right-click and select
   <verbatim|Open> to open the script of a named Pure object in a text editor,
-  provided that your Pd version supports the <verbatim|menu-open> command.)
+  provided that your Pd version supports the <verbatim|menu-open> command.
+  Most reasonably recent Pd versions and flavors do.)
 
   In the following section, we first discuss in detail how <hlink|control
   objects|#control-objects> are defined and used. After that, the necessary
@@ -180,14 +197,19 @@
   have to do is supply a Pure script named foo.pure which defines a function
   <verbatim|foo> (and anything else that you might need to define the
   function). This function is also called the object function. You can put
-  the script containing the object function in the same directory as the Pd
-  patch in which you want to use the <verbatim|foo> object, or anywhere on
-  Pd's search path. (The latter is useful if the object is to be used in
-  several patches located in different subdirectories.) The script will be
-  executed once, at the time the first object with the given name is created,
-  and will be executed in the directory where it is located. Thus, if the
-  script needs to import other Pure scripts or load some data files, you can
-  put these into the same directory so that the object script can find them.
+  the script containing the object function either in the same directory as
+  the Pd patch in which you want to use the <verbatim|foo> object, or
+  anywhere on Pd's search path. (The latter is useful if the object is to be
+  used in several patches located in different subdirectories. Also note that
+  the former requires that you already <em|saved> the Pd patch in the
+  directory containing the foo.pure script <em|before> you create a
+  <verbatim|foo> object in it, so that the Pure loader finds the script.)
+
+  The script will be executed once, at the time the first object with the
+  given name is created, and will be executed in the directory where it is
+  located. Thus, if the script needs to import other Pure scripts or load
+  some data files, you can put these into the same directory so that the
+  object script can find them.
 
   The <verbatim|foo> function gets evaluated at object creation time,
   receiving any additional parameters the object is created with. The
@@ -265,10 +287,11 @@
   generic <verbatim|[pure]> object as a quick means to create Pure control
   objects without actually preparing a script file. The creation parameter of
   <verbatim|[pure]> is the object function. This can be a predefined Pure
-  function, or you can define it on the fly in a <verbatim|with> clause. (It
-  is also possible to explicitly load additional script files needed to
-  implement objects defined using <verbatim|[pure]>; see <hlink|Controlling
-  the Runtime|#controlling-the-runtime> for details.)
+  function, or you can define it on the fly in a <verbatim|with> clause. You
+  can also just load additional script files defining the functions you use
+  with <verbatim|[pure]>; see <hlink|Controlling the
+  Runtime|#controlling-the-runtime> and <hlink|Loading Script Files at
+  Startup|#loading-script-files-at-startup> for details.
 
   For instance, <verbatim|[pure> <verbatim|succ]> uses the predefined Pure
   function <verbatim|succ> which adds 1 to its input, while the object
@@ -713,15 +736,15 @@
 
   As another example, here's a complete stereo amplifier stage with bass,
   treble, gain and balance controls and a dB meter. The dsp part is
-  implemented in <hlink|Faust|http://faudiostream.sf.net/>, Grame's
-  functional dsp programming language. The Pure program just does the
-  necessary interfacing to Pd, which includes processing of incoming control
-  messages for setting the control parameters of the Faust dsp, and the
-  generation of output control messages to send the dB meter values (also
-  computed in the Faust dsp) to Pd. (To run this example, you need the
-  \Pfaust2\Q branch of the Faust compiler so that the dsp can be inlined into
-  the Pure program. Note that the entire section inside the <verbatim|%\<>
-  <verbatim|%\>> braces is Faust code.)
+  implemented in <hlink|Faust|http://faust.grame.fr/>, Grame's functional dsp
+  programming language. The Pure program just does the necessary interfacing
+  to Pd, which includes processing of incoming control messages for setting
+  the control parameters of the Faust dsp, and the generation of output
+  control messages to send the dB meter values (also computed in the Faust
+  dsp) to Pd. (To run this example, you need the \Pfaust2\Q branch of the
+  Faust compiler so that the dsp can be inlined into the Pure program. Note
+  that the entire section inside the <verbatim|%\<> <verbatim|%\>> braces is
+  Faust code.)
 
   <\verbatim>
     \;
@@ -1030,14 +1053,18 @@
   sophisticated control processing, interface to other 3rd party software for
   additional pre- and postprocessing of the signal data, or do live editing
   of Faust programs using the facilities described in
-  <hlink|Livecoding|#livecoding> below.
+  <hlink|Livecoding|#livecoding> below. An actual Pure implementation of a
+  Faust external which does all this <em|and> provides the extra conveniences
+  of faust2pd under one hood can be found in
+  <hlink|<em|pd-faust>|pd-faust.tm>.
 
   <subsection|Advanced Features><label|advanced-features>
 
   This section discusses some advanced features of the Pd Pure loader. It
-  explains the use of timer callbacks, wireless connections and wave arrays,
-  and the livecoding and interactive control facilities. We also give an
-  overview of the API provided for pd-pure programmers.
+  explains the use of timer callbacks, \Pwireless\Q connections
+  (send/receive), wave arrays, and the runtime control and livecoding
+  facilities. We also give an overview of the API provided for pd-pure
+  programmers.
 
   <subsubsection|Asynchronous Messages><label|asynchronous-messages>
 
@@ -1300,7 +1327,13 @@
   can be any number of <verbatim|[pure-runtime]> objects in a patch, which
   all refer to the same instance of the Pure interpreter.
 
-  The first use of <verbatim|[pure-runtime]> is to load additional Pure
+  First and foremost, the <verbatim|[pure-runtime]> object accepts some
+  control messages which can be used to dynamically reload all loaded
+  scripts, and to implement \Premote control\Q of a patch using the
+  <with|font-series|bold|pdsend> program. This is described in more detail in
+  the <hlink|Livecoding|#livecoding> subsection.
+
+  The second use of <verbatim|[pure-runtime]> is to load additional Pure
   scripts. To these ends, <verbatim|[pure-runtime]> can be invoked with the
   names of scripts to be loaded at object creation time as arguments. The
   script names should be specified without the <verbatim|.pure> suffix; it
@@ -1317,19 +1350,120 @@
     \;
   </verbatim>
 
-  This facility can be used, e.g., to load any additional scripts needed for
-  anonymous objects defined with <verbatim|[pure]> and <verbatim|[pure~]>.
+  This facility can be used, in particular, to load any additional scripts
+  needed for anonymous objects defined with <verbatim|[pure]> and
+  <verbatim|[pure~]>. However, the present implementation of the
+  <verbatim|[pure-runtime]> script loader suffers from some technical
+  shortcomings. In particular, it mostly bypasses pd-pure's internal tracking
+  of script files, so you should <em|never> use it to load scripts which
+  implement named Pure objects; these are better handled automatically by the
+  Pure loader. Another caveat is that you <em|must> ensure that the
+  <verbatim|[pure-runtime]> object is inserted into the patch <em|before> any
+  anonymous objects which depend on the loaded scripts.
 
-  <with|font-series|bold|Note:> You'll have to make sure that the
-  <verbatim|[pure-runtime]> object is inserted into the patch before any
-  anonymous objects which depend on the loaded scripts. Also note that you
-  shouldn't explicitly load the scripts which implement named Pure objects;
-  this will be handled automatically by the Pure loader.
+  In fact, the script loading facility of <verbatim|[pure-runtime]> is
+  considered a \Plegacy\Q feature now that <verbatim|[declare>
+  <verbatim|-lib]> (discussed in the next subsection) offers a better way to
+  load additional script files using Pd's built-in <verbatim|-lib> mechanism.
+  However, the implementation of the latter requires a recent Pd version
+  (0.47.0 or later) and thus the <verbatim|[pure-runtime]> script loader is
+  still provided for backwards compatibility.
 
-  The <verbatim|[pure-runtime]> object also accepts control messages which
-  can be used to dynamically reload all loaded scripts, and to implement
-  \Premote control\Q of a patch using the <with|font-series|bold|pdsend>
-  program. This is described in the following subsection.
+  <subsubsection|Loading Script Files at Startup><label|loading-script-files-at-startup>
+
+  As of version 0.24, pd-pure provides an easier and more familiar way to
+  load additional Pure scripts using Pd's <verbatim|-lib> mechanism during
+  Pd's startup or when a patch is loaded. Compared to the rather rudimentary
+  script loading facility provided by the <verbatim|[pure-runtime]> object,
+  this also offers two chief advantages:
+
+  <\itemize>
+    <item>It works with <em|both> named Pure objects and auxiliary library
+    scripts defining functions to be used with the <verbatim|[pure]> and
+    <verbatim|[pure~]> objects.
+
+    <item>The Pure loader keeps track of the loaded scripts and allows them
+    to be reloaded at any time using the <hlink|livecoding|#livecoding>
+    facility.
+  </itemize>
+
+  Note that at present, this feature requires the latest incarnation of the
+  Pd loader, which means that you should make sure that you're using Pd
+  0.47.0 or later, or a compatible Pd flavor such as
+  <hlink|purr-data|https://agraef.github.io/purr-data-intro/>.
+
+  To load some script files at startup, just add the corresponding script
+  names (without the <verbatim|.pure> suffix) to Pd's startup libraries, or
+  invoke them from the command line using the <verbatim|-lib> option, just
+  like you'd do with any other Pd externals and libraries. E.g.:
+
+  <\verbatim>
+    \;
+
+    pd -lib foo -lib bar
+
+    \;
+  </verbatim>
+
+  Note that these options <em|must> come after any options required to launch
+  the Pure loader (see <hlink|Usage|#usage> above), otherwise Pd will
+  <em|not> recognize the scripts as loadable libraries. You can also specify
+  the relative or absolute path to the scripts if needed, for instance:
+
+  <\verbatim>
+    \;
+
+    pd -lib ~/pd-pure-externals/foo -lib ~/pd-pure-externals/bar
+
+    \;
+  </verbatim>
+
+  Or you can use Pd's <verbatim|-path> option (or Pd's search path
+  configuration dialog) to specify where Pd should go looking for the script
+  files:
+
+  <\verbatim>
+    \;
+
+    pd -path ~/pd-pure-externals -lib foo -lib bar
+
+    \;
+  </verbatim>
+
+  Note that no special search path will be needed if you just drop the Pure
+  scripts to be loaded into one of the directories on Pd's default search
+  path. E.g., on Linux this usually includes the <verbatim|~/pd-externals>
+  folder (<verbatim|~/pd-l2ork-externals> when using
+  <hlink|pd-l2ork|http://l2ork.music.vt.edu/main/?page-id=56> or
+  <hlink|purr-data|https://agraef.github.io/purr-data-intro/>). The default
+  path will be different depending on the platform and Pd flavor you use, so
+  please check your local Pd documentation for details.
+
+  The <verbatim|-lib> mechanism also works with Pd's <verbatim|[declare]>
+  object, so that, like the <verbatim|[pure-runtime]> object, it can also be
+  used on a per-patch basis. For instance, you can invoke the <verbatim|foo>
+  and <verbatim|bar> script files in a patch by inserting the following
+  object (using the same <verbatim|-lib> and <verbatim|-path> options that
+  you'd use on the command line):
+
+  <\verbatim>
+    \;
+
+    [declare -lib foo -lib bar]
+
+    \;
+  </verbatim>
+
+  The scripts will then be loaded automagically as soon as you open the patch
+  in Pd. (Note that, as with the <verbatim|[pure-runtime]> object, the
+  <verbatim|[declare]> object needs to be inserted <em|before> any objects
+  which depend on the loaded scripts.) This facility is most useful with
+  anonymous objects, since named objects will be loaded anyway if needed, if
+  you just type their name into an object box. But it works with named
+  objects, too, and it also allows you to mix and match named and anonymous
+  objects in a single script file, <em|and> make sure that the script gets
+  loaded (and reloaded when livecoding) even if the patch doesn't contain any
+  instance of the named object at all.
 
   <subsubsection|Livecoding><label|livecoding>
 
@@ -1358,30 +1492,32 @@
   longer, but is only necessary if you edited imported library modules which
   won't be reloaded with the <verbatim|bang> message.
 
-  While this facility is very useful for interactive development, it does
-  have some limitations:
+  While this facility is tremendously useful for interactive development,
+  there are some caveats and corresponding workarounds that you should keep
+  in mind.
 
-  <\itemize>
-    <item>At present, the number of inlets and outlets of Pure objects never
-    changes after reloading scripts. Pd does not support this through its API
-    right now. Thus by editing and reloading the Pure scripts you can change
-    the functionality of existing Pure objects in a running patch, but not
-    their interfaces. (It is possible to make changes to inlets and outlets
-    take effect by manually editing the affected objects afterwards. But this
-    will be cumbersome when you have to edit a lot of objects, so it might be
-    easier to just restart Pd and reload the patches in such cases.)
+  First, since the compilation is done in Pd's main thread, it may lead to
+  undesirable pauses in Pd's audio and control processing. With the
+  <verbatim|bang> message the delays will usually be small, but may still be
+  noticeable. There's no way around this in the current implementation, but
+  as a remedy you can try to keep the compilation times to a minimum. This
+  can be achieved by putting all code which you don't plan to edit \Plive\Q
+  into library modules which are imported in the object scripts. By these
+  means, the number of definitions in the object scripts themselves can be
+  kept small, resulting in faster compilation.
 
-    <item>Reloading scripts may need some time depending on how much Pure
-    code has to be recompiled and how fast your cpu is. With the
-    <verbatim|bang> message the delays will usually be small, but still
-    noticable. In order to keep the compilation times to a minimum, it is a
-    good idea to put all code which you don't plan to edit \Plive\Q into
-    library modules which are imported in the object scripts. By these means,
-    the number of definitions in the object scripts themselves can be kept
-    small, resulting in faster compilation.
-  </itemize>
+  Second, Pd doesn't allow objects to change their inlet/outlet configuration
+  on the fly. If a code change in a Pure object involves any such
+  modifications, the reloaded objects will still appear to have the same
+  inlets and outlets as before (and often cease to function properly). The
+  quickest way to force an update of all affected Pure objects in one go,
+  while preserving the current object connections, is to select the
+  corresponding part of the patch and use Pd's cut and paste commands to
+  reinsert it into the patch (if there are a lot of Pure objects scattered
+  out all over the patch then you might just want to select and reinsert the
+  entire contents of the patch).
 
-  Also note that the reloading of object scripts amounts to a \Pcold
+  Finally, note that the reloading of object scripts amounts to a \Pcold
   restart\Q of the Pure objects in your patches. If a Pure object keeps some
   <hlink|local state|#local-state>, it will be lost. As a remedy, the loader
   implements a simple protocol which allows Pure objects to record their
@@ -1504,8 +1640,8 @@
   Pure interpreter as a batch compiler to translate the Pure scripts
   implementing the objects to a shared library. You also have to link in a
   small amount of C code so that the shared module can be loaded by Pd and
-  registers its Pd object classes with pd-pure. The examples/lib folder
-  contains a complete example showing how this is done.
+  registers its Pd object classes with pd-pure. The examples/libexample
+  folder contains a complete example showing how this is done.
 
   Note that even if you load all your pd-pure objects from such libraries,
   you still need to load the pd-pure module first, since it provides the
@@ -1515,9 +1651,23 @@
   <subsubsection|Programming Interface><label|programming-interface>
 
   The Pure loader provides a number of interface routines which can be called
-  by Pure scripts running in the Pd environment. Note that in order to access
-  these functions, you'll have to add the corresponding <verbatim|extern>
-  declarations to your scripts.
+  by Pure scripts running in the Pd environment. We give a brief description
+  of these functions below. These functions are all implemented in C, so in
+  order to access them in your Pure scripts, you will need corresponding
+  <verbatim|extern> declarations (see the \PC Interface\Q section in
+  <hlink|<em|The Pure Manual>|pure.tm> for details). For your convenience,
+  there's a <verbatim|pd.pure> script included in the distribution which
+  already contains all the required <verbatim|extern> declarations, so you
+  just need to import this script in your Pure scripts.
+
+  The <verbatim|pd.pure> script will be installed in the <verbatim|lib>
+  subfolder along with the Pd Pure loader external and the examples, and the
+  embedded Pure runtime has been set up so that it always has this directory
+  in its search path, so that it's enough to just include a declaration like
+  <verbatim|using> <verbatim|pd;> in your Pure scripts if you want to call
+  one of the interface routines. (Note that you can also put your own library
+  scripts into this folder to make them available to all your Pure object
+  scripts.)
 
   <\description>
     <item*|extern char *pd_version_s()<label|pd-version-s>>Returns the Pd
@@ -1546,8 +1696,8 @@
 
   <\description>
     <item*|extern char *pd_libdir()<label|pd-libdir>>Returns the Pd library
-    dir (as determined at compile time). This is useful if your Pure scripts
-    need to access files in that directory.
+    dir (determined at runtime). This is useful if your Pure scripts need to
+    access files in that directory.
   </description>
 
   <\description>
@@ -1641,8 +1791,8 @@
     <item*|extern int pd_getbuffersize(char<em|<nbsp>*name>)<label|pd-getbuffersize>>
 
     <item*|extern void pd_setbuffersize(char<em|<nbsp>*name>,
-    uint32_t<em|<nbsp>sz>)<label|pd-setbuffersize>>Routines to access the Pd
-    array (sample buffer) with the given name. These functions can be used to
+    int<em|<nbsp>sz>)<label|pd-setbuffersize>>Routines to access the Pd array
+    (sample buffer) with the given name. These functions can be used to
     transfer audio data between Pd and Pure scripts; see <hlink|Reading and
     Writing Audio Data|#reading-and-writing-audio-data> above for an example.
 
@@ -1674,10 +1824,6 @@
       <item><hlink|Copying|#copying>
 
       <item><hlink|Installation|#installation>
-
-      <\itemize>
-        <item><hlink|pd-pure on Windows|#pd-pure-on-windows>
-      </itemize>
 
       <item><hlink|Usage|#usage>
 
@@ -1712,6 +1858,9 @@
 
         <item><hlink|Controlling the Runtime|#controlling-the-runtime>
 
+        <item><hlink|Loading Script Files at
+        Startup|#loading-script-files-at-startup>
+
         <item><hlink|Livecoding|#livecoding>
 
         <item><hlink|Remote Control|#remote-control>
@@ -1736,6 +1885,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  07, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  21, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
