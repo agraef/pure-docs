@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.24, February 21, 2017
+  Version 0.24, February 23, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -1391,22 +1391,35 @@
 
   This facility can be used, in particular, to load any additional scripts
   needed for anonymous objects defined with <verbatim|[pure]> and
-  <verbatim|[pure~]>. However, the present implementation of the
-  <verbatim|[pure-runtime]> script loader suffers from some technical
-  shortcomings. In particular, it mostly bypasses pd-pure's internal tracking
-  of script files, so you should <em|never> use it to load scripts which
-  implement named Pure objects; these are better handled automatically by the
-  Pure loader. Another caveat is that you <em|must> ensure that the
-  <verbatim|[pure-runtime]> object is inserted into the patch <em|before> any
-  anonymous objects which depend on the loaded scripts.
+  <verbatim|[pure~]>. Note that you shouldn't use this to load named Pure
+  objects, you should let the Pure loader handle these as it also keeps track
+  of the scripts in <hlink|livecoding|#livecoding>. Another caveat is that
+  you <em|must> ensure that the <verbatim|[pure-runtime]> object is inserted
+  into the patch <em|before> any anonymous objects which depend on the loaded
+  scripts. (Also note that the script loading facility of
+  <verbatim|[pure-runtime]> is by and large considered a legacy feature now
+  that <verbatim|[declare> <verbatim|-lib]>, discussed in the next
+  subsection, offers a better way to load additional script files using Pd's
+  built-in <verbatim|-lib> mechanism.)
 
-  In fact, the script loading facility of <verbatim|[pure-runtime]> is
-  considered a \Plegacy\Q feature now that <verbatim|[declare>
-  <verbatim|-lib]> (discussed in the next subsection) offers a better way to
-  load additional script files using Pd's built-in <verbatim|-lib> mechanism.
-  However, the implementation of the latter requires a recent Pd version
-  (0.47.0 or later) and thus the <verbatim|[pure-runtime]> script loader is
-  still provided for backwards compatibility.
+  Last but not least, you can also specify <verbatim|-w> as an argument to
+  <verbatim|[pure-runtime]> in order to enable warnings in the embedded Pure
+  interpreter. This has the same effect as running <verbatim|pure>
+  <verbatim|-w> on the command line. It causes the interpreter to produce
+  additional warning messages for some dubious (albeit correct) constructs,
+  which may be a useful aid, in particular, for Pure novices. This is a
+  global option; once enabled, it applies to all subsequently loaded Pure
+  scripts until the interpreter is restarted from scratch (see
+  <hlink|Livecoding|#livecoding>). The <verbatim|-w> option can also be
+  combined with names of scripts to be loaded, e.g.:
+
+  <\verbatim>
+    \;
+
+    [pure-runtime -w foo bar]
+
+    \;
+  </verbatim>
 
   <subsubsection|Loading Script Files at Startup><label|loading-script-files-at-startup>
 
@@ -1960,5 +1973,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
-  21, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  23, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -57,7 +57,7 @@
             
   <div class="section" id="pd-pure-pd-loader-for-pure-scripts">
 <h1>pd-pure: Pd loader for Pure scripts<a class="headerlink" href="#pd-pure-pd-loader-for-pure-scripts" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.24, February 21, 2017</p>
+<p>Version 0.24, February 23, 2017</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>This is a <a class="reference external" href="https://purelang.bitbucket.io/">Pure</a> &#8220;loader plugin&#8221; for <a class="reference external" href="http://puredata.info/">Pd</a>, Miller Puckette&#8217;s graphical dataflow
 programming system for realtime multimedia applications. If you are a Pd user,
@@ -951,20 +951,27 @@ your patch:</p>
 </pre></div>
 </div>
 <p>This facility can be used, in particular, to load any additional scripts
-needed for anonymous objects defined with <tt class="docutils literal"><span class="pre">[pure]</span></tt> and <tt class="docutils literal"><span class="pre">[pure~]</span></tt>.
-However, the present implementation of the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> script loader
-suffers from some technical shortcomings. In particular, it mostly bypasses
-pd-pure&#8217;s internal tracking of script files, so you should <em>never</em> use it to
-load scripts which implement named Pure objects; these are better handled
-automatically by the Pure loader. Another caveat is that you <em>must</em> ensure
-that the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object is inserted into the patch <em>before</em> any
-anonymous objects which depend on the loaded scripts.</p>
-<p>In fact, the script loading facility of <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> is considered a
-&#8220;legacy&#8221; feature now that <tt class="docutils literal"><span class="pre">[declare</span> <span class="pre">-lib]</span></tt> (discussed in the next
-subsection) offers a better way to load additional script files using Pd&#8217;s
-built-in <tt class="docutils literal"><span class="pre">-lib</span></tt> mechanism. However, the implementation of the latter
-requires a recent Pd version (0.47.0 or later) and thus the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt>
-script loader is still provided for backwards compatibility.</p>
+needed for anonymous objects defined with <tt class="docutils literal"><span class="pre">[pure]</span></tt> and <tt class="docutils literal"><span class="pre">[pure~]</span></tt>. Note
+that you shouldn&#8217;t use this to load named Pure objects, you should let the
+Pure loader handle these as it also keeps track of the scripts in <a class="reference internal" href="#livecoding">livecoding</a>.
+Another caveat is that you <em>must</em> ensure that the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object is
+inserted into the patch <em>before</em> any anonymous objects which depend on the
+loaded scripts. (Also note that the script loading facility of
+<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> is by and large considered a legacy feature now that
+<tt class="docutils literal"><span class="pre">[declare</span> <span class="pre">-lib]</span></tt>, discussed in the next subsection, offers a better way to
+load additional script files using Pd&#8217;s built-in <tt class="docutils literal"><span class="pre">-lib</span></tt> mechanism.)</p>
+<p>Last but not least, you can also specify <tt class="docutils literal"><span class="pre">-w</span></tt> as an argument to
+<tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> in order to enable warnings in the embedded Pure
+interpreter. This has the same effect as running <tt class="docutils literal"><span class="pre">pure</span> <span class="pre">-w</span></tt> on the command
+line. It causes the interpreter to produce additional warning messages for
+some dubious (albeit correct) constructs, which may be a useful aid, in
+particular, for Pure novices. This is a global option; once enabled, it
+applies to all subsequently loaded Pure scripts until the interpreter is
+restarted from scratch (see <a class="reference internal" href="#livecoding">Livecoding</a>). The <tt class="docutils literal"><span class="pre">-w</span></tt> option can also be
+combined with names of scripts to be loaded, e.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre>[pure-runtime -w foo bar]
+</pre></div>
+</div>
 </div>
 <div class="section" id="loading-script-files-at-startup">
 <h3><a class="toc-backref" href="#id18">Loading Script Files at Startup</a><a class="headerlink" href="#loading-script-files-at-startup" title="Permalink to this headline">¶</a></h3>
@@ -1468,7 +1475,7 @@ array.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2017, Albert Gräf et al.
-    Last updated on Feb 21, 2017.
+    Last updated on Feb 23, 2017.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

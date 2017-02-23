@@ -1,7 +1,7 @@
 This is pd-pure.info, produced by makeinfo version 6.3 from
 pd-pure.texi.
 
-     Pure 0.64, February 21, 2017
+     Pure 0.64, February 23, 2017
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pd-pure.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-pure
 *******
 
-     Pure 0.64, February 21, 2017
+     Pure 0.64, February 23, 2017
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2017, Albert Gräf et al
 
-  Version 0.24, February 21, 2017
+  Version 0.24, February 23, 2017
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -1118,22 +1118,29 @@ following object to your patch:
 
   This facility can be used, in particular, to load any additional
 scripts needed for anonymous objects defined with ‘[pure]’ and
-‘[pure~]’.  However, the present implementation of the ‘[pure-runtime]’
-script loader suffers from some technical shortcomings.  In particular,
-it mostly bypasses pd-pure’s internal tracking of script files, so you
-should _never_ use it to load scripts which implement named Pure
-objects; these are better handled automatically by the Pure loader.
-Another caveat is that you _must_ ensure that the ‘[pure-runtime]’
-object is inserted into the patch _before_ any anonymous objects which
-depend on the loaded scripts.
+‘[pure~]’.  Note that you shouldn’t use this to load named Pure objects,
+you should let the Pure loader handle these as it also keeps track of
+the scripts in *note livecoding: 11.  Another caveat is that you _must_
+ensure that the ‘[pure-runtime]’ object is inserted into the patch
+_before_ any anonymous objects which depend on the loaded scripts.
+(Also note that the script loading facility of ‘[pure-runtime]’ is by
+and large considered a legacy feature now that ‘[declare -lib]’,
+discussed in the next subsection, offers a better way to load additional
+script files using Pd’s built-in ‘-lib’ mechanism.)
 
-  In fact, the script loading facility of ‘[pure-runtime]’ is considered
-a "legacy" feature now that ‘[declare -lib]’ (discussed in the next
-subsection) offers a better way to load additional script files using
-Pd’s built-in ‘-lib’ mechanism.  However, the implementation of the
-latter requires a recent Pd version (0.47.0 or later) and thus the
-‘[pure-runtime]’ script loader is still provided for backwards
-compatibility.
+  Last but not least, you can also specify ‘-w’ as an argument to
+‘[pure-runtime]’ in order to enable warnings in the embedded Pure
+interpreter.  This has the same effect as running ‘pure -w’ on the
+command line.  It causes the interpreter to produce additional warning
+messages for some dubious (albeit correct) constructs, which may be a
+useful aid, in particular, for Pure novices.  This is a global option;
+once enabled, it applies to all subsequently loaded Pure scripts until
+the interpreter is restarted from scratch (see *note Livecoding: 11.).
+The ‘-w’ option can also be combined with names of scripts to be loaded,
+e.g.:
+
+     [pure-runtime -w foo bar]
+
 
 
 File: pd-pure.info,  Node: Loading Script Files at Startup,  Next: Livecoding,  Prev: Controlling the Runtime,  Up: Advanced Features
@@ -1695,57 +1702,57 @@ Ref: 1845165
 Node: Controlling the Runtime46571
 Ref: pd-pure controlling-the-runtime46728
 Ref: d46728
-Node: Loading Script Files at Startup49037
-Ref: pd-pure loading-script-files-at-startup49174
-Ref: e49174
-Ref: Loading Script Files at Startup-Footnote-152520
-Ref: Loading Script Files at Startup-Footnote-252570
-Ref: Loading Script Files at Startup-Footnote-352621
-Node: Livecoding52671
-Ref: pd-pure livecoding52799
-Ref: 1152799
-Node: Remote Control58311
-Ref: pd-pure remote-control58425
-Ref: 1b58425
-Node: Compiling Objects62529
-Ref: pd-pure compiling-objects62654
-Ref: 1c62654
-Node: Programming Interface63920
-Ref: pd-pure programming-interface64022
-Ref: 1464022
-Ref: pd-pure pd_version_s65262
-Ref: 1d65262
-Ref: pd-pure pd_path65678
-Ref: 1e65678
-Ref: pd-pure pd_libdir65943
-Ref: 1f65943
-Ref: pd-pure pd_getdir66126
-Ref: 2066126
-Ref: pd-pure pd_getfile66682
-Ref: 2166682
-Ref: pd-pure pd_setfile67210
-Ref: 2267210
-Ref: pd-pure pd_post67694
-Ref: 2367694
-Ref: pd-pure pd_error_s67980
-Ref: 2467980
-Ref: pd-pure pd_time68490
-Ref: 1368490
-Ref: pd-pure pd_send68763
-Ref: 1668763
-Ref: pd-pure pd_receive69009
-Ref: 1769009
-Ref: pd-pure pd_unreceive69500
-Ref: 2569500
-Ref: pd-pure pd_getbuffer69696
-Ref: 1969696
-Ref: pd-pure pd_setbuffer69751
-Ref: 1a69751
-Ref: pd-pure pd_getbuffersize69814
-Ref: 2669814
-Ref: pd-pure pd_setbuffersize69871
-Ref: 2769871
-Node: Index71051
+Node: Loading Script Files at Startup49379
+Ref: pd-pure loading-script-files-at-startup49516
+Ref: e49516
+Ref: Loading Script Files at Startup-Footnote-152862
+Ref: Loading Script Files at Startup-Footnote-252912
+Ref: Loading Script Files at Startup-Footnote-352963
+Node: Livecoding53013
+Ref: pd-pure livecoding53141
+Ref: 1153141
+Node: Remote Control58653
+Ref: pd-pure remote-control58767
+Ref: 1b58767
+Node: Compiling Objects62871
+Ref: pd-pure compiling-objects62996
+Ref: 1c62996
+Node: Programming Interface64262
+Ref: pd-pure programming-interface64364
+Ref: 1464364
+Ref: pd-pure pd_version_s65604
+Ref: 1d65604
+Ref: pd-pure pd_path66020
+Ref: 1e66020
+Ref: pd-pure pd_libdir66285
+Ref: 1f66285
+Ref: pd-pure pd_getdir66468
+Ref: 2066468
+Ref: pd-pure pd_getfile67024
+Ref: 2167024
+Ref: pd-pure pd_setfile67552
+Ref: 2267552
+Ref: pd-pure pd_post68036
+Ref: 2368036
+Ref: pd-pure pd_error_s68322
+Ref: 2468322
+Ref: pd-pure pd_time68832
+Ref: 1368832
+Ref: pd-pure pd_send69105
+Ref: 1669105
+Ref: pd-pure pd_receive69351
+Ref: 1769351
+Ref: pd-pure pd_unreceive69842
+Ref: 2569842
+Ref: pd-pure pd_getbuffer70038
+Ref: 1970038
+Ref: pd-pure pd_setbuffer70093
+Ref: 1a70093
+Ref: pd-pure pd_getbuffersize70156
+Ref: 2670156
+Ref: pd-pure pd_setbuffersize70213
+Ref: 2770213
+Node: Index71393
 
 End Tag Table
 

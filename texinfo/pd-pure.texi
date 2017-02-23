@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.64, February 21, 2017
+Pure 0.64, February 23, 2017
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2017, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-pure doc}@anchor{0}
-Version 0.24, February 21, 2017
+Version 0.24, February 23, 2017
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -1207,21 +1207,31 @@ your patch:
 @noindent
 
 This facility can be used, in particular, to load any additional scripts
-needed for anonymous objects defined with @code{[pure]} and @code{[pure~]}.
-However, the present implementation of the @code{[pure-runtime]} script loader
-suffers from some technical shortcomings. In particular, it mostly bypasses
-pd-pure's internal tracking of script files, so you should @emph{never} use it to
-load scripts which implement named Pure objects; these are better handled
-automatically by the Pure loader. Another caveat is that you @emph{must} ensure
-that the @code{[pure-runtime]} object is inserted into the patch @emph{before} any
-anonymous objects which depend on the loaded scripts.
+needed for anonymous objects defined with @code{[pure]} and @code{[pure~]}. Note
+that you shouldn't use this to load named Pure objects, you should let the
+Pure loader handle these as it also keeps track of the scripts in @pxref{11,,livecoding}.
+Another caveat is that you @emph{must} ensure that the @code{[pure-runtime]} object is
+inserted into the patch @emph{before} any anonymous objects which depend on the
+loaded scripts. (Also note that the script loading facility of
+@code{[pure-runtime]} is by and large considered a legacy feature now that
+@code{[declare -lib]}, discussed in the next subsection, offers a better way to
+load additional script files using Pd's built-in @code{-lib} mechanism.)
 
-In fact, the script loading facility of @code{[pure-runtime]} is considered a
-"legacy" feature now that @code{[declare -lib]} (discussed in the next
-subsection) offers a better way to load additional script files using Pd's
-built-in @code{-lib} mechanism. However, the implementation of the latter
-requires a recent Pd version (0.47.0 or later) and thus the @code{[pure-runtime]}
-script loader is still provided for backwards compatibility.
+Last but not least, you can also specify @code{-w} as an argument to
+@code{[pure-runtime]} in order to enable warnings in the embedded Pure
+interpreter. This has the same effect as running @code{pure -w} on the command
+line. It causes the interpreter to produce additional warning messages for
+some dubious (albeit correct) constructs, which may be a useful aid, in
+particular, for Pure novices. This is a global option; once enabled, it
+applies to all subsequently loaded Pure scripts until the interpreter is
+restarted from scratch (see @pxref{11,,Livecoding}). The @code{-w} option can also be
+combined with names of scripts to be loaded, e.g.:
+
+@example
+[pure-runtime -w foo bar]
+@end example
+
+@noindent
 
 @node Loading Script Files at Startup,Livecoding,Controlling the Runtime,Advanced Features
 @anchor{pd-pure loading-script-files-at-startup}@anchor{e}
