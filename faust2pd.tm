@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust><label|faust2pd-pd-patch-generator-for-faust>
 
-  Version 2.15, January 03, 2017
+  Version 2.15, February 24, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -809,6 +809,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  24, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

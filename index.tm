@@ -9,7 +9,7 @@
 
   <section*|Pure Language and Library Documentation><label|pure-language-and-library-documentation>
 
-  Last updated: July 07, 2016 (v0.64)
+  Last updated: February 24, 2017 (v0.65)
 
   This manual collects all of Pure's online documentation: <hlink|<em|The
   Pure Manual>|pure.tm> which covers the Pure language and the operation of
@@ -257,5 +257,5 @@
   Language and Library Documentation|#>
 
   <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
-  23, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  25, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

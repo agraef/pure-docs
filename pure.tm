@@ -10,11 +10,11 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.64, July 07, 2016
+  Version 0.65, February 24, 2017
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  Copyright (c) 2009-2014 by Albert Gräf. This document is available under
+  Copyright (c) 2009-2017 by Albert Gräf. This document is available under
   the <hlink|GNU Free Documentation License|http://www.gnu.org/copyleft/fdl.html>.
   Also see the <hlink|Copying|#copying> section for licensing information of
   the software.
@@ -80,10 +80,10 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.64
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.65
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2017 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -5148,10 +5148,10 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.64
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.65
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2017 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -15154,7 +15154,7 @@
 
     [(argc--\<gtr\>0),(argv--\<gtr\>[]),(compiling--\<gtr\>0),
 
-    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.64")]
+    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.65")]
 
     \;
   </verbatim>
@@ -18238,7 +18238,7 @@
 
     sysinfo \ \ \ var \ sysinfo = "x86_64-unknown-linux-gnu";
 
-    version \ \ \ var \ version = "0.64";
+    version \ \ \ var \ version = "0.65";
 
     5 variables
 
@@ -22399,7 +22399,7 @@
   Third party software licensing notes:
 
   Pure uses <hlink|LLVM|#llvm> as its compiler backend. LLVM is under
-  Copyright (c) 2003-2012 by the University of Illinois at Urbana-Champaign,
+  Copyright (c) 2003-2016 by the University of Illinois at Urbana-Champaign,
   and is licensed under a 3-clause BSD-style license, please read
   COPYING.LLVM included in the distribution for the exact licensing terms.
   You can also find the LLVM license at the <hlink|LLVM|#llvm> website.
@@ -22865,6 +22865,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  24, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

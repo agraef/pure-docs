@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)><label|installing-pure-and-llvm>
 
-  Version 0.64, July 07, 2016
+  Version 0.65, February 25, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -26,11 +26,11 @@
 
   Pure is known to work on Linux, FreeBSD, NetBSD, Mac OS X and MS Windows,
   and should compile (with the usual amount of tweaking) on all recent
-  UNIX/POSIX- based platforms. We recommend using version 4.x of the GNU C++
-  compiler; it should be available almost everywhere (in fact, since you'll
-  need LLVM anyway, you may also use one of the LLVM-based C/C++ compilers
-  such as llvm-gcc or clang). You'll also need a Bourne-compatible shell and
-  GNU make, which are also readily available on most platforms.
+  UNIX/POSIX- based platforms. Pure should compile out of the box with
+  reasonably recent versions of either gcc or clang. You'll also need a
+  Bourne-compatible shell and GNU make, which are also readily available on
+  most platforms. For Windows compilation we support the Mingw version of gcc
+  along with the MSYS environment.
 
   A binary package in msi format is provided for Windows users in the
   download area at <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>.
@@ -40,8 +40,8 @@
   <subsection|Quick Summary><label|quick-summary>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.4 and Pure 0.64, please substitute your actual version numbers
-  in the commands given below.
+  using LLVM 3.4 and Pure 0.65, please substitute your actual version numbers
+  in the commands given below as needed.
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
   then the Pure version described here most likely is still under
@@ -56,16 +56,25 @@
   you want to use Emacs Pure mode). These should all be available as binary
   packages on most systems.
 
-  You'll probably need the latest Pure and LLVM tarballs which, at the time
-  of this writing, are available here:
+  You'll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.65
+  tarballs are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.64.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.65.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.65.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/clang-3.4.src.tar.gz|http://llvm.org/releases/3.4/clang-3.4.src.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz|http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz>
+
+  <with|font-series|bold|Note:> The present Pure version requires an LLVM
+  version that still supports the \Pold\Q (pre-MCJIT) just-in-time compiler
+  back-end (JIT). This means that the latest <em|supported> LLVM release is
+  <with|font-series|bold|3.5.2>, which was released in April 2015. Earlier
+  versions in the 3.x series should still work fine as well, if you can make
+  them compile on your system. The following instructions assume that you use
+  the very stable LLVM 3.4 release, otherwise you'll have to adjust the
+  commands in the instructions accordingly.
 
   Installing LLVM and clang (the latter is optional but recommended):
 
@@ -86,25 +95,27 @@
     \;
   </verbatim>
 
+  Be patient, this takes a while...
+
   You may want to leave out <verbatim|--enable-shared> to install LLVM as
   static libraries only, and <verbatim|--enable-targets=host-only> if you
   want to enable cross compilation for all supported targets in LLVM. (With
   some older LLVM versions you may also have to add
   <verbatim|--disable-assertions> <verbatim|--disable-expensive-checks> to
   disable stuff that makes LLVM very slow and/or breaks it on some systems.)
-
-  If you're running gcc 4.5 or later, you may also want to install the LLVM
-  \PDragonEgg\Q plugin for gcc, please check the <hlink|dragonegg|#dragonegg>
-  section below for details.
+  Also, if you're still running gcc 4.5 or 4.6, you may want to install the
+  LLVM \PDragonEgg\Q plugin for gcc, which provides LLVM bitcode compilation
+  for languages other than C/C++. Please check the
+  <hlink|dragonegg|#dragonegg> section below for details.
 
   Installing Pure:
 
   <\verbatim>
     \;
 
-    $ tar xfvz pure-0.64.tar.gz
+    $ tar xfvz pure-0.65.tar.gz
 
-    $ cd pure-0.64
+    $ cd pure-0.65
 
     $ ./configure --enable-release
 
@@ -154,9 +165,9 @@
   <\verbatim>
     \;
 
-    $ tar xfvz pure-docs-0.64.tar.gz
+    $ tar xfvz pure-docs-0.65.tar.gz
 
-    $ cd pure-docs-0.64
+    $ cd pure-docs-0.65
 
     $ sudo make install
 
@@ -178,7 +189,7 @@
   <\verbatim>
     \;
 
-    $ cd pure-0.64
+    $ cd pure-0.65
 
     $ sudo make uninstall
 
@@ -237,7 +248,7 @@
 
     <item>flex and bison;
 
-    <item>mercurial (needed to fetch the development sources).
+    <item>git (needed to fetch the development sources).
   </itemize>
 
   The following may be required to build some LLVM versions:
@@ -268,11 +279,12 @@
 
     <item>GNU ltdl (part of the libtool software):
     <hlink|http://www.gnu.org/software/libtool|http://www.gnu.org/software/libtool>
-
-    <item>Git: <hlink|https://git-scm.com/|https://git-scm.com/> (A number of
-    graphical frontends can be found there as well. Windows users may also
-    want to check TortoiseGit, see <hlink|https://tortoisegit.org/|https://tortoisegit.org/>.)
   </itemize>
+
+  Git can be obtained from <hlink|https://git-scm.com/|https://git-scm.com/>.
+  A number of graphical frontends can be found there as well. Windows users
+  may also want to check TortoiseGit, see
+  <hlink|https://tortoisegit.org/|https://tortoisegit.org/>.
 
   The GNU multiprecision library or some compatible replacement is required
   for Pure's bigint support. Instead of GMP it's also possible to use MPIR.
@@ -340,30 +352,24 @@
   to change the regex library used by the Pure runtime you need to recompile
   the interpreter.
 
-  <with|font-series|bold|Step 2.> Get and unpack the latest LLVM sources.
+  <with|font-series|bold|Step 2.> Get and unpack the LLVM sources.
 
   You can find these at <hlink|http://llvm.org/releases/download.html|http://llvm.org/releases/download.html>.
 
-  You only need the llvm-2.x or 3.x tarball which contains the LLVM library
-  as well as most of the LLVM toolchain. LLVM 3.4 is the latest stable
-  release at the time of this writing. LLVM versions 2.5 thru 3.4 have all
-  been tested and are known to work with Pure. We really recommend using LLVM
-  2.8 or later, however, because LLVM has improved considerably in recent
+  You only need the LLVM tarball which contains the LLVM library as well as
+  most of the LLVM toolchain. LLVM 3.5.2 is the latest <em|supported> release
+  at the time of this writing. LLVM versions 2.5 thru 3.5 have all been
+  tested and are known to work with Pure. We really recommend using LLVM 3.0
+  or later, however, because LLVM has improved considerably in recent
   releases. (Support for older versions may be dropped in the future.)
-
-  The latest LLVM from svn might work as well, but we don't guarantee this.
-  While we're committed to make Pure work with new LLVM versions as they
-  become available, we're not able to track LLVM development in the trunk
-  very closely. So you might run into intermittent compilation problems, bugs
-  and other incompatibilities when going with the svn version.
 
   At this point we also recommend getting an LLVM-capable C/C++ compiler.
   This is completely optional, but you'll need it to take advantage of the
   new bitcode loader in Pure 0.44 and later. The easiest way to go is to take
-  the clang-2.x or 3.x tarball which corresponds to your LLVM version, unpack
-  its contents into the LLVM tools directory and rename the
-  <verbatim|clang-x.y> directory to just <verbatim|clang>. The clang compiler
-  will then be built and installed along with LLVM. You can also use llvm-gcc
+  the clang tarball which corresponds to your LLVM version, unpack its
+  contents into the LLVM tools directory and rename the <verbatim|clang-x.y>
+  directory to just <verbatim|clang>. The clang compiler will then be built
+  and installed along with LLVM. On older systems, you can also use llvm-gcc
   or dragonegg instead, please see <hlink|Installing an LLVM-capable C/C++
   Compiler|#installing-an-llvm-capable-c-c-compiler> below for further
   details.
@@ -376,7 +382,7 @@
   compile LLVM yourself.
 
   <with|font-series|bold|Step 3.> Configure, build and install LLVM as
-  follows:
+  follows (assuming LLVM 3.4):
 
   <\verbatim>
     \;
@@ -409,33 +415,25 @@
   deploy the Pure runtime library on systems which don't have LLVM
   installed.)
 
-  <with|font-series|bold|Note:> With LLVM 2.5, on x86-64 systems you have to
-  add <verbatim|--enable-pic> to the configure command, so that the static
-  LLVM libraries can be linked into the Pure runtime library. (Do <em|not>
-  add this option when compiling on a 32 bit system, it's broken there.) With
-  LLVM 2.6 and later this option isn't needed anymore. See the comments on
-  32/64 bit support in the <hlink|System Notes|#system-notes> section below
-  for details.
-
   Also note that the configure flags are for an optimized (non-debug) build
   and disable all compilation targets but the one for your system. You might
   wish to play with the configure options, but note that some options
-  (especially <verbatim|--enable-expensive-checks>) make LLVM very slow and
-  may even break the Pure interpreter on some systems.
+  (especially <verbatim|--enable-expensive-checks>) can make LLVM very slow
+  and may even break the Pure interpreter on some systems.
 
   <with|font-series|bold|Step 4.> Get and unpack the Pure sources.
 
   These can be downloaded from <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>.
-  The latest source tarballs can always be found under the \PFeatured
-  Downloads\Q there.
+  The latest source tarballs can always be found in the \PDownloads\Q
+  section.
 
   <with|font-series|bold|Step 5.> Configure, build and install Pure as
-  follows (<verbatim|x.y> denotes the current Pure version number):
+  follows:
 
   <\verbatim>
     \;
 
-    $ cd pure-x.y
+    $ cd pure-0.65
 
     $ ./configure --enable-release
 
@@ -449,8 +447,8 @@
   The <verbatim|--enable-release> option configures Pure for a release build.
   This is recommended for maximum performance. If you leave away this option
   then you'll get a default build which includes debugging information and
-  runtime checks useful for the Pure maintainers, but also runs considerably
-  slower.
+  extra runtime checks useful for the Pure maintainers, but also runs
+  considerably slower.
 
   To find out about other build options, you can invoke configure as
   <verbatim|./configure> <verbatim|--help>.
@@ -462,8 +460,8 @@
   the <verbatim|--prefix> configure option, see <hlink|Other Build And
   Installation Options|#other-build-and-installation-options> for details.
   (The runtime.h header file is not needed for normal operation, but can be
-  used to write C/C++ extensions modules, if you need to access and
-  manipulate Pure expressions from C/C++.)
+  used to write C/C++ extensions modules or embed Pure in your C/C++
+  applications.)
 
   In addition, if the presence of GNU Emacs was detected at configure time,
   then by default pure-mode.el and pure-mode.elc will be installed in the
@@ -532,12 +530,12 @@
   previous invocation (<verbatim|./run-tests> <verbatim|-f> or, equivalently,
   <verbatim|make> <verbatim|recheck>).
 
-  Also note that MSYS 1.0.11 (or at least the diffutils package from that
-  version) is required to make <verbatim|make> <verbatim|check> work on
+  Also note that MSYS 1.0.11 or later (or at least the diffutils package from
+  that version) is required to make <verbatim|make> <verbatim|check> work on
   Windows. Also, under MS Windows this step is expected to fail on some math
   tests in test020.pure; this is nothing to worry about, it just indicates
   that some math routines in Microsoft's C library aren't fully
-  POSIX-compatible. The same applies to BSD systems.
+  POSIX-compatible. The same applies to some BSD systems.
 
   If Pure appears to be broken on your system (<verbatim|make>
   <verbatim|check> reports a lot of failures), it's often because of a
@@ -599,16 +597,15 @@
 
   The <verbatim|install-docs> target requires a working Internet connection
   and the wget command. Instead, you can also download the
-  pure-docs-x.y.tar.gz tarball manually and then install the documentation
-  from the downloaded tarball in the usual way (the x.y version number of the
-  documentation tarball should correspond to your interpreter version):
+  pure-docs-0.65.tar.gz tarball manually and then install the documentation
+  from the downloaded tarball in the usual way:
 
   <\verbatim>
     \;
 
-    $ tar xfvz pure-docs-x.y.tar.gz
+    $ tar xfvz pure-docs-0.65.tar.gz
 
-    $ cd pure-docs-x.y
+    $ cd pure-docs-0.65
 
     $ sudo make install
 
@@ -616,12 +613,12 @@
   </verbatim>
 
   As a bonus, downloading the package manually also gives you the
-  documentation in pdf format, so that you can print it if you like. In
-  addition, as of version 0.56 the tarball also contains the documentation in
-  TeXmacs format so that you can read it inside TeXmacs (see <hlink|TeXmacs
-  Plugin|#texmacs-plugin> below). After unpacking the tarball and installing
-  the html documentation, you can install the TeXmacs-formatted documentation
-  as follows:
+  documentation in pdf format (900+ pages), so that you can print it if you
+  like. In addition, as of version 0.56 the tarball also contains the
+  documentation in TeXmacs format so that you can read it inside TeXmacs (see
+  <hlink|TeXmacs Plugin|#texmacs-plugin> below). After unpacking the tarball
+  and installing the html documentation, you can install the
+  TeXmacs-formatted documentation as follows:
 
   <\verbatim>
     \;
@@ -643,10 +640,10 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.64
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.65
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2014 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2017 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -855,11 +852,13 @@
   Compiler><label|installing-an-llvm-capable-c-c-compiler>
 
   As already mentioned above, we suggest that you also install a C/C++
-  compiler with an LLVM backend. Clang, llvm-gcc as well as the new dragonegg
-  gcc plugin are all fully supported by Pure. Pure can be used without this,
-  but then you'll miss out on the LLVM bitcode loader and C/C++ inlining
-  facilities in Pure 0.44 and later. (However, you can always install clang,
-  llvm-gcc and/or dragonegg at a later time to enable these features.)
+  compiler with an LLVM backend. clang, llvm-gcc as well as the dragonegg gcc
+  plugin are all fully supported by Pure. (Nowadays, the LLVM project's main
+  focus is on clang, however; llvm-gcc and dragonegg are not supported on
+  recent systems any more.) Pure can be used without this, but then you'll
+  miss out on the LLVM bitcode loader and C/C++ inlining facilities in Pure
+  0.44 and later. (Note that you can always install clang, llvm-gcc and/or
+  dragonegg at a later time to enable these features.)
 
   <subsubsection|clang><label|clang>
 
@@ -870,8 +869,8 @@
   it's the easiest way to go if you want to use that feature.
 
   If you haven't built clang along with LLVM yet, you can now just drop the
-  contents of the clang-x.y tarball into the <verbatim|llvm-x.y/tools>
-  directory, renaming the resulting <verbatim|clang-x.y> directory to just
+  contents of the clang tarball into the <verbatim|llvm/tools> directory,
+  renaming the resulting <verbatim|clang-x.y> directory to just
   <verbatim|clang>. Then build and install clang as follows:
 
   <\verbatim>
@@ -888,9 +887,9 @@
 
   <subsubsection|llvm-gcc><label|llvm-gcc>
 
-  <with|font-series|bold|Note:> This section applies to LLVM versions up to
-  2.9. With LLVM 3.0 or later, llvm-gcc is not supported any more and you
-  should use <hlink|clang|#clang> or <hlink|dragonegg|#dragonegg> instead.
+  <with|font-series|bold|Note:> LEGACY ALERT: This section applies to LLVM
+  versions up to 2.9. With LLVM 3.0 or later, llvm-gcc is not supported any
+  more and you should use <hlink|clang|#clang> instead.
 
   If available, llvm-gcc can be installed either as an alternative or in
   addition to clang. The main advantage of llvm-gcc over clang is that it has
@@ -944,17 +943,20 @@
 
   <subsubsection|dragonegg><label|dragonegg>
 
-  If you're running LLVM 3.x, then instead of llvm-gcc you should use
-  \PDragonEgg\Q (<hlink|http://dragonegg.llvm.org/|http://dragonegg.llvm.org/>),
-  the new LLVM backend for gcc \<gtr\>=4.5. This is provided in the form of a
-  plugin which, if you have gcc 4.5 or later, readily plugs into your
-  existing system compiler.
+  <with|font-series|bold|Note:> LEGACY ALERT: This section applies to LLVM
+  versions up to 3.3 and gcc 4.5 or 4.6. If you're running a newer LLVM
+  and/or gcc version, you should use <hlink|clang|#clang> instead.
 
-  If you already have a suitable gcc version, installing DragonEgg is a piece
-  of cake. First, make sure that you have the mpc and gcc plugin development
-  files installed (packages <verbatim|mpc-dev> and <verbatim|gcc-plugin-dev>
-  on Ubuntu). Then, after unpacking the dragonegg source tarball or
-  downloading the svn sources, install dragonegg as follows:
+  Instead of llvm-gcc it's also possible to use \PDragonEgg\Q
+  (<hlink|http://dragonegg.llvm.org/|http://dragonegg.llvm.org/>). This is
+  provided in the form of a gcc plugin which, if you have one of the
+  supported gcc versions, readily plugs into your existing system compiler.
+
+  To install DragonEgg, make sure that you have the mpc and gcc plugin
+  development files installed (packages <verbatim|mpc-dev> and
+  <verbatim|gcc-plugin-dev> on Ubuntu). Then, after unpacking the dragonegg
+  source tarball or downloading the svn sources, install dragonegg as
+  follows:
 
   <\verbatim>
     \;
@@ -1001,7 +1003,7 @@
 
   Note that if you're going with the development sources, you'll also need
   fairly recent versions of autoconf, flex and bison (autoconf 2.63, flex
-  2.5.31 and bison 2.3 should be ok).
+  2.5.31 and bison 2.3 or later should be ok).
 
   To compile from the development sources, replace steps 4 and 5 above with:
 
@@ -1024,8 +1026,8 @@
   <with|font-series|bold|Step 5'.> Configure, build and install Pure.
 
   This is pretty much the same as with the distribution tarball, except that
-  you need to run `autoreconf' once to generate the configure script which
-  isn't included in the source repository.
+  you need to run <verbatim|autoreconf> once to generate the configure script
+  which isn't included in the source repository.
 
   <\verbatim>
     \;
@@ -1049,10 +1051,8 @@
   <with|font-series|bold|Step 6'.> In addition, you can also build and
   install a recent snapshot of the documentation from the repository.
 
-  You need to have a recent Sphinx version installed to do that; you can find
-  this at <hlink|http://sphinx.pocoo.org/|http://sphinx.pocoo.org/>. Have a
-  look at the Makefile in the pure-lang/sphinx subdirectory or type
-  <verbatim|make> <verbatim|help> there for instructions.
+  This can be a bit tricky to set up, please check the FAQ wiki page on the
+  Pure website for details.
 
   Alternatively, a ready-made recent snapshot of the documentation in html
   and pdf formats is also available in its own repository, which can be
@@ -1116,8 +1116,8 @@
   <verbatim|LIBRARY_PATH> (or similar) so that the header and library of the
   runtime library is found. (This will become unnecessary once all addon
   modules have been converted to use pkg-config, see below, but this isn't
-  the case right now.) On some systems (notably, BSD) this is even necessary
-  with the default prefix, because /usr/local is not in the default search
+  the case right now.) On some systems this is even necessary with the
+  default prefix, because /usr/local is not always in the default search
   paths.
 
   As of Pure 0.47, Pure also installs a pkg-config file which may be queried
@@ -1171,9 +1171,9 @@
 
   <subsubsection|Versioned Installations><label|versioned-installations>
 
-  Beginning with version 0.4, Pure fully supports parallel installations of
-  different versions of the interpreter. As of Pure 0.21, to enable this you
-  have to specify <verbatim|--enable-versioned> when running configure:
+  Pure fully supports parallel installations of different versions of the
+  interpreter. To enable this you have to specify
+  <verbatim|--enable-versioned> when running configure:
 
   <\verbatim>
     \;
@@ -1407,7 +1407,7 @@
   Last but not least, if you modify configure.ac for some reason then you can
   regenerate the configure script and config.h.in with <verbatim|make>
   <verbatim|config>. This needs autoconf, of course. (The distribution was
-  prepared using autoconf 2.68.)
+  prepared using autoconf 2.69.)
 
   <subsubsection|Pkg-config Support><label|pkg-config-support>
 
@@ -1460,7 +1460,7 @@
   Compiling the default and release versions using gcc with all warnings
   turned on (<verbatim|-Wall>) might give you the warning \Pdereferencing
   type-punned pointer will break strict-aliasing rules\Q at some point in
-  util.cc with some gcc versions. This is harmless and can be ignored.
+  util.cc with some older gcc versions. This is harmless and can be ignored.
 
   If your Pure program runs out of stack space, the interpreter may segfault.
   While the Pure interpreter does advisory stack checks to avoid that kind of
@@ -1475,18 +1475,11 @@
 
   The LLVM 2.5 JIT is broken on x86-32 if it is built with
   <verbatim|--enable-pic>, so make sure you do <em|not> use this option when
-  compiling LLVM \<less\>=2.5 on 32 bit systems. Some older LLVM 2.5 packages
-  for Linux are broken on x86-32 for this reason (this has been reported for
-  Ubuntu 9.04 and Fedora Core 10), the symptom being that the Pure
-  interpreter fails a lot of checks and/or segfaults right at startup. In
-  that case you'll have to find a newer, corrected package or build your own
-  LLVM from source instead.
-
-  On the other hand, building the Pure runtime library (libpure) on x86-64
-  systems <em|requires> that you configure LLVM 2.5 with
-  <verbatim|--enable-pic> so that the static LLVM libraries can be linked
-  into the runtime library. With LLVM 2.6 and later, this option isn't needed
-  anymore.
+  compiling LLVM \<less\>=2.5 on 32 bit systems. On the other hand, building
+  the Pure runtime library (libpure) on x86-64 systems <em|requires> that you
+  configure LLVM 2.5 with <verbatim|--enable-pic> so that the static LLVM
+  libraries can be linked into the runtime library. With LLVM 2.6 and later,
+  this option isn't needed anymore.
 
   This LLVM version also has issues on PowerPC. Use LLVM 2.6 or later instead
   and check the notes on <hlink|PowerPC|#powerpc> below.
@@ -1518,17 +1511,19 @@
 
   Pure doesn't work with LLVM versions 3.6 and beyond yet because these don't
   include the \Pold\Q LLVM JIT any more. So until Pure gets ported to the new
-  MCJIT (expected real soon now), you will have to stick with LLVM 3.5
-  (fortunately, this version is still readily available on most platforms).
+  MCJIT, you will have to stick with LLVM 3.5. Fortunately, this version is
+  still readily available on most platforms.
 
   <subsubsection|PowerPC><label|powerpc>
 
-  You'll need Pure \<gtr\>= 0.35 and LLVM \<gtr\>= 2.6. Also make sure that
-  you always configure LLVM with <verbatim|--disable-expensive-checks> and
-  Pure with <verbatim|--disable-fastcc>. With these settings Pure should work
-  fine on ppc (tested on ppc32 running Fedora Core 11 and 12), but note that
-  tail call optimization doesn't work on this platform right now because of
-  LLVM limitations.
+  (This hasn't been checked in a <em|long> time, so this information may well
+  be outdated.) You'll need Pure \<gtr\>= 0.35 and LLVM \<gtr\>= 2.6. Also
+  make sure that you always configure LLVM with
+  <verbatim|--disable-expensive-checks> and Pure with
+  <verbatim|--disable-fastcc>. With these settings Pure should work fine on
+  ppc (tested on ppc32 running Fedora Core 11 and 12), but note that tail
+  call optimization doesn't work on this platform because of LLVM
+  limitations.
 
   <subsubsection|Linux><label|linux>
 
@@ -1542,7 +1537,7 @@
   Pure should build fine on recent OS X versions, and a port by Ryan Schmidt
   exists in the MacPorts collection, see <hlink|http://www.macports.org/|http://www.macports.org/>.
   If you install straight from the source, make sure that you use a recent
-  LLVM version (LLVM 2.7 or later should work fine on all flavours of Intel
+  LLVM version (LLVM 2.7 or later should work fine on all flavors of Intel
   Macs).
 
   Even if you compile Pure from source, we recommend installing LLVM and the
@@ -1568,8 +1563,8 @@
 
   On really old Macs from the bygone PPC era you'll have to be prepared to
   deal with all kinds of issues with compilers, LLVM toolchain etc. If you're
-  still using one of these, your best bet is to find a port on MacPorts which
-  works for your OS X version.
+  still using one of these, your best bet is to find an older port on
+  MacPorts which works for your OS X version.
 
   <subsubsection|BSD><label|bsd>
 
@@ -1617,14 +1612,8 @@
   help format, as well as \PPurePad\Q, an alternative GUI frontend for
   editing and running Pure scripts on Windows. The only limitation is that
   the binaries in this package still are for x86 (32 bit) only right now, but
-  they should work fine on all 64 bit flavors of Windows, including Windows
-  7+.
-
-  After installing the MSI, you might also want to go to the LLVM website and
-  grab the LLVM toolchain for mingw32/x86. It is sufficient to install the
-  \PLLVM binaries\Q package on your system to make the Pure batch compiler
-  work. Just unzip these into some convenient location on your harddrive and
-  set up <verbatim|PATH> so that it points to the llvm-x.y directory.
+  these do work fine on all recent 64 bit flavors of Windows (tested on
+  Windows 7, 8 and 10).
 
   <subsubsection*|<hlink|Table Of Contents|index.tm>><label|install-toc>
 
@@ -1718,6 +1707,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  25, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

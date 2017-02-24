@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.64, February 23, 2017
+Pure 0.65, February 25, 2017
 
 Albert Gräf (Editor)
 
@@ -48,11 +48,11 @@ Copyright @copyright{} 2009-2017, Albert Gräf et al
 @anchor{pure doc}@anchor{0}
 @c Teach TeX how to hyphenate 'namespace' and 'whitespace'.
 
-Version 0.64, July 07, 2016
+Version 0.65, February 24, 2017
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
-Copyright (c) 2009-2014 by Albert Gräf. This document is available under the
+Copyright (c) 2009-2017 by Albert Gräf. This document is available under the
 GNU Free Documentation License@footnote{http://www.gnu.org/copyleft/fdl.html}. Also see the @pxref{1,,Copying} section for licensing information of the
 software.
 
@@ -317,8 +317,8 @@ calculator" program. Simply run the program from the shell as follows:
 @example
 $ pure
 
- __ \  |   |  __| _ \    Pure 0.64 (x86_64-unknown-linux-gnu)
- |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
+ __ \  |   |  __| _ \    Pure 0.65 (x86_64-unknown-linux-gnu)
+ |   | |   | |    __/    Copyright (c) 2008-2017 by Albert Graef
  .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
 _|                       for license information.)
 
@@ -5087,8 +5087,8 @@ way. You then simply run it like this:
 @example
 $ pure
 
- __ \  |   |  __| _ \    Pure 0.64 (x86_64-unknown-linux-gnu)
- |   | |   | |    __/    Copyright (c) 2008-2014 by Albert Graef
+ __ \  |   |  __| _ \    Pure 0.65 (x86_64-unknown-linux-gnu)
+ |   | |   | |    __/    Copyright (c) 2008-2017 by Albert Graef
  .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
 _|                       for license information.)
 
@@ -12728,7 +12728,7 @@ Or let's lists all global variables along with their values:
 @example
 > catmap get_vardef (globsym "*" 0);
 [(argc-->0),(argv-->[]),(compiling-->0),
-(sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.64")]
+(sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.65")]
 @end example
 
 @noindent
@@ -15397,7 +15397,7 @@ argc       var  argc = 0;
 argv       var  argv = [];
 compiling  var  compiling = 0;
 sysinfo    var  sysinfo = "x86_64-unknown-linux-gnu";
-version    var  version = "0.64";
+version    var  version = "0.65";
 5 variables
 @end example
 
@@ -18659,7 +18659,7 @@ software.
 
 Third party software licensing notes:
 
-Pure uses @pxref{6,,LLVM} as its compiler backend. LLVM is under Copyright (c) 2003-2012
+Pure uses @pxref{6,,LLVM} as its compiler backend. LLVM is under Copyright (c) 2003-2016
 by the University of Illinois at Urbana-Champaign, and is licensed under a
 3-clause BSD-style license, please read COPYING.LLVM included in the
 distribution for the exact licensing terms. You can also find the LLVM license

@@ -85,14 +85,11 @@
     binaries, usually <verbatim|c:\\mingw\\bin>.
 
     <item>In order to use the C/C++ code inlining feature of the Pure
-    interpreter, you'll also need an LLVM-enabled C/C++ compiler such as
-    <hlink|clang|http://clang.llvm.org/>. (That's pretty much the only option
-    on Windows right now; at the time of this writing, the
-    <hlink|dragonegg|http://dragonegg.llvm.org/> plugin for gcc hasn't been
-    ported to Windows yet.) This Pure release has been built and tested with
-    LLVM 3.5, so this is the version of clang that you should get. Windows
-    binaries for clang 3.5 can be found at the <hlink|LLVM download
-    page|http://llvm.org/releases>:
+    interpreter, you'll also need an LLVM-enabled C/C++ compiler, i.e.,
+    <hlink|clang|http://clang.llvm.org/>. This Pure release has been built
+    and tested with LLVM 3.5, so this is the version of clang that you should
+    get. Windows binaries for clang 3.5 can be found on the <hlink|LLVM
+    download page|http://llvm.org/releases>:
 
     <hlink|http://llvm.org/releases/3.5.0/LLVM-3.5.0-win32.exe|http://llvm.org/releases/3.5.0/LLVM-3.5.0-win32.exe>
 
@@ -117,6 +114,6 @@
   <hlink|previous|install.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  25, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

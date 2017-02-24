@@ -11,7 +11,7 @@
   <section*|Pure-CSV - Comma Separated Value Interface for the Pure
   Programming Language><label|pure-csv-comma-separated-value-interface-for-the-pure-programming-language>
 
-  Version 1.6, July 07, 2016
+  Version 1.6, February 24, 2017
 
   Eddie Rucker \<less\><hlink|erucker@bmc.edu|mailto:erucker@bmc.edu>\<gtr\>
 
@@ -719,6 +719,6 @@
   <hlink|previous|pure-reduce.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  24, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

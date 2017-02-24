@@ -11,7 +11,7 @@
   <section*|Computer Algebra with Pure: A Reduce
   Interface><label|module-reduce>
 
-  Version 0.4, July 07, 2016
+  Version 0.4, February 24, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -3040,6 +3040,6 @@
   <hlink|previous|pure-rational.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Jan
-  03, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
+  24, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
