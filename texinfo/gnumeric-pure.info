@@ -1,7 +1,7 @@
 This is gnumeric-pure.info, produced by makeinfo version 6.3 from
 gnumeric-pure.texi.
 
-     Pure 0.65, February 25, 2017
+     Pure 0.65, February 27, 2017
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: gnumeric-pure.info,  Node: Top,  Next: Introduction,  Up: (dir)
 gnumeric-pure
 *************
 
-     Pure 0.65, February 25, 2017
+     Pure 0.65, February 27, 2017
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2017, Albert Gräf et al
 
-  Version 0.15, February 24, 2017
+  Version 0.16, February 27, 2017
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -35,8 +35,7 @@ gnumeric-pure
 functions in Gnumeric, the Gnome spreadsheet.  It offers better
 execution speed than the existing Perl and Python plugins, and provides
 some powerful features not found in other Gnumeric scripting plugins,
-such as asynchronous data sources created from Pure streams and OpenGL
-rendering in Gnumeric frame widgets via Pure’s OpenGL module.
+such as asynchronous data sources created from Pure streams.
 
 * Menu:
 
@@ -82,9 +81,6 @@ other Gnumeric scripting plugins:
    * Pure also provides a bridge to Octave(5) so that you can call
      arbitrary Octave functions using this extension.
 
-   * Gnumeric/Pure offers support for rendering OpenGL(6) scenes in
-     Gnumeric frame widgets, via Pure’s own OpenGL interface.
-
    * Pure also has built-in support for lazy data structures and thus
      allows you to handle potentially infinite amounts of data such as
      the list of all prime numbers.  Gnumeric/Pure lets you turn such
@@ -110,8 +106,8 @@ fairly quickly.
   For more advanced uses, Gnumeric/Pure also provides a programming
 interface which lets you do various special tasks such as modifying
 entire ranges of cells with one Pure call, calling Gnumeric functions
-from Pure, and setting up asynchronous data sources and OpenGL frames.
-The manual explains all this in detail.
+from Pure, and setting up asynchronous data sources.  The manual
+explains all this in detail.
 
      Note: This manual assumes that you’re already familiar with
      Gnumeric as well as the Pure language and its programming
@@ -130,15 +126,13 @@ The manual explains all this in detail.
 
    (5) http://www.octave.org/
 
-   (6) http://www.opengl.org/
-
 
 File: gnumeric-pure.info,  Node: Copying,  Next: Installation,  Prev: Introduction,  Up: Top
 
 2 Copying
 *********
 
-Copyright (c) 2009-2013 by Albert Graef.
+Copyright (c) 2009-2017 by Albert Graef.
 
   Gnumeric/Pure is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by the
@@ -162,7 +156,8 @@ File: gnumeric-pure.info,  Node: Installation,  Next: Setup,  Prev: Copying,  Up
 Obviously, you need to have both Pure and Gnumeric installed.  Pure 0.36
 and Gnumeric 1.9.13 or later are known to work.  The current release of
 this module will work with the latest, GTK3-based versions of Gnumeric
-(Gnumeric 1.11 and later, 1.12.23 has been tested).
+(Gnumeric 1.11 and later, various versions starting from 1.12.23 have
+been tested and are known to work).
 
   Please note that the Gnumeric plugin interface is a moving target,
 which means that from time to time the gnumeric-pure module sources are
@@ -173,19 +168,6 @@ Gnumeric 1.10 or earlier then you should use version 0.12 of the module
 instead:
 
      ‘https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz’
-
-  In the 0.12 version of the module, the Makefile is set up to build
-Gnumeric/Pure with OpenGL support, which requires that you have the
-OpenGL libraries as well as GtkGLExt(1) (the Gtk OpenGL extension) for
-GTK2 installed.  These should be readily available on most systems, but
-you can also disable this feature by invoking ‘make’ as ‘make GLDEPS=’.
-
-  For version 0.13 and later, you’ll need a GTK3-compatible version of
-GtkGLExt which can be found at ‘https://github.com/tdz/gtkglext’.  The
-OpenGL support under GTK3 is still under development and currently has
-some issues, however, so it is disabled by default.  If you want to give
-it a try then you’ll have to uncomment the ‘GLDEPS’ line at the
-beginning of the Makefile.
 
   Run ‘make’ to compile the software.  You might have to adjust the
 settings at the beginning of the Makefile to make this work.  Once the
@@ -225,14 +207,9 @@ to load a plugin; see *note Defining Your Own Functions: 5. for
 details.)
 
   If ‘make install’ doesn’t work for some reason, you can also just copy
-the ‘pure-func’, ‘pure-glfunc’ and ‘pure-loader’ directories manually to
-your Gnumeric plugin directory.  You can still run ‘make install’ in the
-‘pure-gnm’ subdirectory to get the ‘pure-gnm’ script installed in this
-case.
-
-   ---------- Footnotes ----------
-
-   (1) http://gtkglext.sourceforge.net
+the ‘pure-func’ and ‘pure-loader’ directories manually to your Gnumeric
+plugin directory.  You can still run ‘make install’ in the ‘pure-gnm’
+subdirectory to get the ‘pure-gnm’ script installed in this case.
 
 
 File: gnumeric-pure.info,  Node: Setup,  Next: Basic Usage,  Prev: Installation,  Up: Top
@@ -244,11 +221,7 @@ Once Gnumeric/Pure has been properly installed, you should see it in
 Gnumeric’s Tools/Plug-ins dialog.  There are actually two main entries,
 one labelled "Pure functions" and the other one labelled "Pure plugin
 loader".  You need to enable both before you can start using Pure
-functions in your Gnumeric spreadsheets.  There’s also a third entry
-labelled "Pure OpenGL functions" which you might want to enable if you
-want to try the OpenGL capabilities (this will only work if you built
-Gnumeric/Pure with OpenGL support and have Pure’s OpenGL module
-installed; see *note OpenGL Interface: 7. for details).
+functions in your Gnumeric spreadsheets.
 
   Gnumeric doesn’t provide much in the way of GUI customization options
 right now, but at least it’s possible for plugins to install and
@@ -396,14 +369,14 @@ declaring it as a Pure ‘extern’ function:
   All functions in the Pure prelude are readily available in the
 Gnumeric Pure shell, as well as the functions defined in
 ‘pure_func.pure’ and its imports, including the programming interface
-described in *note Advanced Features: a.  For instance, here’s how you
+described in *note Advanced Features: 9.  For instance, here’s how you
 can retrieve a cell value from the current sheet:
 
      > get_cell "A1"
        "Gnumeric/Pure Examples"
 
 
-  Using ‘call’ (see *note Calling Gnumeric from Pure: b.), you can also
+  Using ‘call’ (see *note Calling Gnumeric from Pure: a.), you can also
 invoke any Gnumeric function:
 
      > call "product" (1..10)
@@ -445,7 +418,7 @@ pass a single numeric argument that way in Pure, but this is needed here
 since by default Gnumeric passes arguments as a list to a Pure function.
 There are other ways to configure the call interface to Pure functions,
 but these require that we tell Gnumeric about the number and types of
-arguments, see *note Gnumeric/Pure Interface: d. below.  For the moment
+arguments, see *note Gnumeric/Pure Interface: c. below.  For the moment
 let’s stick to the default scheme, however, in order to keep things
 simple.
 
@@ -646,7 +619,7 @@ this with ‘make’.  The following requires GNU make to work, and you’ll
 also need to have the Gnumeric development files installed, so that the
 Gnumeric version can be determined easily with a shell command.  These
 rules are to be added to the end of the Makefile described previously
-under *note Creating a Simple Plugin: c.
+under *note Creating a Simple Plugin: b.
 
      gnmversion=$(shell pkg-config --modversion libspreadsheet-1.12)
      plugindir=$(HOME)/.gnumeric/$(gnmversion)/plugins/myplugin
@@ -989,7 +962,7 @@ passed "by value"), unless the function signature specifies a ‘"r"’
 conversion in which case the cell ranges themselves are passed to the
 function in string form.  (Such values can also be passed on to Gnumeric
 functions which expect a cell range (‘"r"’ ) parameter, see *note
-Calling Gnumeric from Pure: b. below.)
+Calling Gnumeric from Pure: a. below.)
 
   Conversely, matrices, lists and tuples all become Gnumeric arrays on
 output, so usually you’ll want to enter these as array functions
@@ -1031,7 +1004,6 @@ this section are declared in ‘pure_func.pure’.
 * Asynchronous Data Sources:: 
 * Triggers:: 
 * Sheet Objects:: 
-* OpenGL Interface:: 
 
 
 File: gnumeric-pure.info,  Node: Calling Gnumeric from Pure,  Next: Accessing Spreadsheet Cells,  Up: Advanced Features
@@ -1087,7 +1059,7 @@ the contents of spreadsheet cells and ranges of such cells:
 
   For instance, here’s how you use these functions to write and then
 read some cell values (try this in the *note interactive Pure shell:
-9.):
+8.):
 
      > set_cell "A14" 42
        ()
@@ -1301,7 +1273,7 @@ print ‘World’ in cell A15.  Note that the ‘data’ argument isn’t used
 here.  A more useful example will be discussed in the following section.
 
 
-File: gnumeric-pure.info,  Node: Sheet Objects,  Next: OpenGL Interface,  Prev: Triggers,  Up: Advanced Features
+File: gnumeric-pure.info,  Node: Sheet Objects,  Prev: Triggers,  Up: Advanced Features
 
 9.5 Sheet Objects
 =================
@@ -1366,151 +1338,7 @@ example.
   Possible uses of this facility are left to your imagination.  Using
 Gnumeric’s internal APIs and Pure’s Gtk interface, you might manipulate
 the GUI widgets in various ways (add icons to buttons or custom child
-widgets to frames, etc.).  One particularly useful case, for which
-Gnumeric/Pure has built-in support, is rendering an OpenGL scene in a
-Gnumeric frame widget, see below.
-
-
-File: gnumeric-pure.info,  Node: OpenGL Interface,  Prev: Sheet Objects,  Up: Advanced Features
-
-9.6 OpenGL Interface
-====================
-
-Gnumeric/Pure provides special support for rendering OpenGL scenes into
-Gnumeric frame widgets.  To actually use this, you must have Pure’s
-OpenGL module installed.  The following function is provided to equip a
-Gnumeric frame with the OpenGL rendering capability:
-
-     extern expr *pure_gl_window(char *name, int timeout,
-                                 expr *setup_cb, expr *config_cb,
-                                 expr *display_cb, expr *timer_cb,
-                                 expr *user_data) = gl_window;
-
-
-  The meaning of the parameters is as follows:
-
-   * ‘name’ is a string which specifies the label of the frame widget
-     into which the scene is to be rendered.
-
-   * ‘timeout’ is a time value in milliseconds (an integer) which
-     specifies the period for invocations of the ‘timer_cb’ callback,
-     see below.  If this value is zero or negative then the timer
-     callback is disabled.
-
-   * ‘setup_cb’, ‘config_cb’, ‘display_cb’ and ‘timer_cb’ are the Pure
-     callback functions which are invoked by ‘gl_window’ to actually
-     render the scene.  The callbacks are all invoked with two
-     arguments: the ‘user_data’ parameter that ‘gl_window’ was invoked
-     with, and a second parameter with callback-specific information as
-     described below.
-
-   * ‘user_data’ is any information that the caller wants to be passed
-     as the first argument to the callback functions.
-
-  The different callbacks are:
-
-   * ‘setup_cb’ is called for initializing the scene.  It receives the
-     ‘GtkDrawingArea’ widget as the second argument.  Typically this is
-     used to set the initial projection and modelview matrices, enable
-     lighting, etc.
-
-   * ‘config_cb’ is called when the width or height of the frame widget
-     changes so that the rendering parameters (typically the viewport)
-     can be adjusted accordingly.  It is invoked with a pair of integers
-     ‘(w,h)’ as the second argument, which denotes the new dimension
-     allocated to the drawing area.
-
-   * ‘display_cb’ is called whenever the contents of the drawing area
-     needs to be redrawn.  This typically does most of the work
-     necessary to render the scene.  The second callback argument is
-     always ‘()’.
-
-   * ‘timer_cb’ is called at regular intervals as specified with the
-     ‘timeout’ parameter (see above), unless the ‘timeout’ value is zero
-     or negative in which case this callback is disabled.  The second
-     callback argument is always ‘()’.  The timer callback is typically
-     used to incrementally adjust some parameters of the scene in order
-     to render animations.  When invoked, the callback automatically
-     arranges for ‘display_cb’ to be called afterwards, so you don’t
-     have to do that manually in your callback definition.
-
-  You’ll need at least either the ‘display_cb’ or the ‘timer_cb’
-function to render anything, but typically all of these callbacks will
-be needed for animated scenes.  Callback functions which aren’t needed
-can be specified as ‘()’.
-
-  There’s also a related helper function which can be used as a trigger
-condition to defer rendering until the target frame widget has been
-realized:
-
-     extern bool pure_check_window(char *name) = check_window;
-
-
-  This function returns ‘true’ as soon as the named frame widget is
-ready to go, at wich time ‘gl_windows’ can be called on the widget.  So
-your call to ‘gl_windows’ should usually be wrapped up like this:
-
-     trigger 0 check_window
-     (\frame->gl_window frame timeout setup config display timer user_data) frame
-
-
-  Here’s an example from ‘pure_glfunc.pure’ which shows how these
-functions are to be used:
-
-     using pure_func, GL, GLU;
-     extern void gdk_gl_draw_teapot(bool solid, double scale);
-     gnm_info "gltest" = "sbfff";
-
-     gltest frame m a b c = trigger 0 check_window
-       (\frame->gl_window frame (m*40) setup config display timer ()) frame
-     with
-       setup _ _ = () when
-         // Initialize.
-         GL::ClearColor 0.1 0.1 0.3 1.0;
-         GL::ShadeModel GL::SMOOTH;
-         GL::Enable GL::DEPTH_TEST;
-         // Initial projection and modelview matrices.
-         GL::MatrixMode GL::PROJECTION;
-         GL::LoadIdentity;
-         GL::Rotatef 20.0 (-1.0) 0.0 0.0;
-         GL::MatrixMode GL::MODELVIEW;
-         GL::LoadIdentity;
-         // Lighting.
-         GL::Lightfv GL::LIGHT0 GL::DIFFUSE {1.0,0.0,0.0,1.0};
-         GL::Lightfv GL::LIGHT0 GL::POSITION {2.0,2.0,-5.0,1.0};
-         GL::Enable GL::LIGHTING;
-         GL::Enable GL::LIGHT0;
-       end;
-       config _ (w,h) = GL::Viewport 0 0 w h;
-       display _ _ = () when
-         GL::Clear (GL::DEPTH_BUFFER_BIT or GL::COLOR_BUFFER_BIT);
-         gdk_gl_draw_teapot true 0.5;
-       end if m;
-       display _ _ = () when
-         GL::Clear (GL::DEPTH_BUFFER_BIT or GL::COLOR_BUFFER_BIT);
-         GL::LoadIdentity;
-         GL::Rotatef (scale 360 a) 0.0 1.0 0.0;
-         GL::Rotatef (scale 360 b) 1.0 0.0 0.0;
-         GL::Rotatef (scale 360 c) 0.0 0.0 1.0;
-         gdk_gl_draw_teapot true 0.5;
-       end;
-       timer _ _ = () when
-         GL::Rotatef (scale 36 a) 0.0 1.0 0.0;
-         GL::Rotatef (scale 36 b) 1.0 0.0 0.0;
-         GL::Rotatef (scale 36 c) 0.0 0.0 1.0;
-       end;
-       scale step x = (x/100*step);
-     end;
-
-
-  Have a look at the ‘gl-example.gnumeric’ spreadsheet included in the
-distribution to see this example in action.  (You first need to enable
-the "Pure OpenGL functions" in the Plugin Manager to make this work.)
-The screenshot below shows how the example looks like in Gnumeric.
-
- [image src="opengl.png" ]
-
-Figure: Gnumeric/Pure OpenGL example.
+widgets to frames, etc.).
 
 
 File: gnumeric-pure.info,  Node: Index,  Prev: Advanced Features,  Up: Top
@@ -1524,81 +1352,76 @@ Tag Table:
 Node: Top410
 Ref: gnumeric-pure doc624
 Ref: 0624
-Ref: Top-Footnote-11356
-Ref: Top-Footnote-21389
-Node: Introduction1428
-Ref: gnumeric-pure introduction1515
-Ref: 11515
-Ref: gnumeric-pure gnumeric-pure-a-pure-plugin-for-gnumeric1515
-Ref: 21515
-Ref: Introduction-Footnote-14327
-Ref: Introduction-Footnote-24360
-Ref: Introduction-Footnote-34399
-Ref: Introduction-Footnote-44433
-Ref: Introduction-Footnote-54464
-Ref: Introduction-Footnote-64495
-Node: Copying4526
-Ref: gnumeric-pure copying4622
-Ref: 34622
-Node: Installation5311
-Ref: gnumeric-pure installation5400
-Ref: 45400
-Ref: Installation-Footnote-19039
-Node: Setup9079
-Ref: gnumeric-pure setup9172
-Ref: 69172
-Node: Basic Usage11046
-Ref: gnumeric-pure basic-usage11149
-Ref: 811149
-Node: Interactive Pure Shell14143
-Ref: gnumeric-pure interactive-pure-shell14268
-Ref: 914268
-Node: Defining Your Own Functions16730
-Ref: gnumeric-pure defining-your-own-functions16867
-Ref: 516867
-Node: Creating a Simple Plugin17290
-Ref: gnumeric-pure creating-a-simple-plugin17413
-Ref: c17413
-Node: The plugin xml File21391
-Ref: gnumeric-pure the-plugin-xml-file21541
-Ref: e21541
-Node: Loading the Plugin24592
-Ref: gnumeric-pure loading-the-plugin24731
-Ref: f24731
-Node: Spicing It Up30280
-Ref: gnumeric-pure spicing-it-up30391
-Ref: 1030391
-Node: Gnumeric/Pure Interface32570
-Ref: gnumeric-pure gnumeric-pure-interface32702
-Ref: d32702
-Node: Function Descriptions33753
-Ref: gnumeric-pure function-descriptions33894
-Ref: 1133894
-Node: Conversions Between Pure and Gnumeric Values40454
-Ref: gnumeric-pure conversions-between-pure-and-gnumeric-values40595
-Ref: 1240595
-Node: Advanced Features43812
-Ref: gnumeric-pure advanced-features43922
-Ref: a43922
-Node: Calling Gnumeric from Pure44379
-Ref: gnumeric-pure calling-gnumeric-from-pure44502
-Ref: b44502
-Node: Accessing Spreadsheet Cells45419
-Ref: gnumeric-pure accessing-spreadsheet-cells45576
-Ref: 1345576
-Node: Asynchronous Data Sources48734
-Ref: gnumeric-pure asynchronous-data-sources48873
-Ref: 1448873
-Node: Triggers52857
-Ref: gnumeric-pure triggers52982
-Ref: 1552982
-Node: Sheet Objects55483
-Ref: gnumeric-pure sheet-objects55599
-Ref: 1655599
-Node: OpenGL Interface58534
-Ref: gnumeric-pure opengl-interface58633
-Ref: 758633
-Node: Index64425
+Ref: Top-Footnote-11282
+Ref: Top-Footnote-21315
+Node: Introduction1354
+Ref: gnumeric-pure introduction1441
+Ref: 11441
+Ref: gnumeric-pure gnumeric-pure-a-pure-plugin-for-gnumeric1441
+Ref: 21441
+Ref: Introduction-Footnote-14103
+Ref: Introduction-Footnote-24136
+Ref: Introduction-Footnote-34175
+Ref: Introduction-Footnote-44209
+Ref: Introduction-Footnote-54240
+Node: Copying4271
+Ref: gnumeric-pure copying4367
+Ref: 34367
+Node: Installation5056
+Ref: gnumeric-pure installation5145
+Ref: 45145
+Node: Setup8032
+Ref: gnumeric-pure setup8125
+Ref: 68125
+Node: Basic Usage9706
+Ref: gnumeric-pure basic-usage9809
+Ref: 79809
+Node: Interactive Pure Shell12803
+Ref: gnumeric-pure interactive-pure-shell12928
+Ref: 812928
+Node: Defining Your Own Functions15390
+Ref: gnumeric-pure defining-your-own-functions15527
+Ref: 515527
+Node: Creating a Simple Plugin15950
+Ref: gnumeric-pure creating-a-simple-plugin16073
+Ref: b16073
+Node: The plugin xml File20051
+Ref: gnumeric-pure the-plugin-xml-file20201
+Ref: d20201
+Node: Loading the Plugin23252
+Ref: gnumeric-pure loading-the-plugin23391
+Ref: e23391
+Node: Spicing It Up28940
+Ref: gnumeric-pure spicing-it-up29051
+Ref: f29051
+Node: Gnumeric/Pure Interface31230
+Ref: gnumeric-pure gnumeric-pure-interface31362
+Ref: c31362
+Node: Function Descriptions32413
+Ref: gnumeric-pure function-descriptions32554
+Ref: 1032554
+Node: Conversions Between Pure and Gnumeric Values39114
+Ref: gnumeric-pure conversions-between-pure-and-gnumeric-values39255
+Ref: 1139255
+Node: Advanced Features42472
+Ref: gnumeric-pure advanced-features42582
+Ref: 942582
+Node: Calling Gnumeric from Pure43017
+Ref: gnumeric-pure calling-gnumeric-from-pure43140
+Ref: a43140
+Node: Accessing Spreadsheet Cells44057
+Ref: gnumeric-pure accessing-spreadsheet-cells44214
+Ref: 1244214
+Node: Asynchronous Data Sources47372
+Ref: gnumeric-pure asynchronous-data-sources47511
+Ref: 1347511
+Node: Triggers51495
+Ref: gnumeric-pure triggers51620
+Ref: 1451620
+Node: Sheet Objects54121
+Ref: gnumeric-pure sheet-objects54212
+Ref: 1554212
+Node: Index57002
 
 End Tag Table
 

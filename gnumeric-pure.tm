@@ -11,7 +11,7 @@
   <section*|Gnumeric/Pure: A Pure Plugin for
   Gnumeric><label|gnumeric-pure-a-pure-plugin-for-gnumeric>
 
-  Version 0.15, February 24, 2017
+  Version 0.16, February 27, 2017
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -20,8 +20,7 @@
   Gnumeric, the Gnome spreadsheet. It offers better execution speed than the
   existing Perl and Python plugins, and provides some powerful features not
   found in other Gnumeric scripting plugins, such as asynchronous data
-  sources created from Pure streams and OpenGL rendering in Gnumeric frame
-  widgets via Pure's OpenGL module.
+  sources created from Pure streams.
 
   <subsection|Introduction><label|introduction>
 
@@ -45,10 +44,6 @@
 
     <item>Pure also provides a bridge to <hlink|Octave|http://www.octave.org/>
     so that you can call arbitrary Octave functions using this extension.
-
-    <item>Gnumeric/Pure offers support for rendering
-    <hlink|OpenGL|http://www.opengl.org/> scenes in Gnumeric frame widgets,
-    via Pure's own OpenGL interface.
 
     <item>Pure also has built-in support for lazy data structures and thus
     allows you to handle potentially infinite amounts of data such as the
@@ -74,8 +69,7 @@
   For more advanced uses, Gnumeric/Pure also provides a programming interface
   which lets you do various special tasks such as modifying entire ranges of
   cells with one Pure call, calling Gnumeric functions from Pure, and setting
-  up asynchronous data sources and OpenGL frames. The manual explains all
-  this in detail.
+  up asynchronous data sources. The manual explains all this in detail.
 
   <with|font-series|bold|Note:> This manual assumes that you're already
   familiar with Gnumeric as well as the Pure language and its programming
@@ -84,7 +78,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2009-2013 by Albert Graef.
+  Copyright (c) 2009-2017 by Albert Graef.
 
   Gnumeric/Pure is free software: you can redistribute it and/or modify it
   under the terms of the GNU General Public License as published by the Free
@@ -104,7 +98,8 @@
   Obviously, you need to have both Pure and Gnumeric installed. Pure 0.36 and
   Gnumeric 1.9.13 or later are known to work. The current release of this
   module will work with the latest, GTK3-based versions of Gnumeric (Gnumeric
-  1.11 and later, 1.12.23 has been tested).
+  1.11 and later, various versions starting from 1.12.23 have been tested and
+  are known to work).
 
   Please note that the Gnumeric plugin interface is a moving target, which
   means that from time to time the gnumeric-pure module sources are updated
@@ -116,20 +111,6 @@
   <\quote-env>
     <hlink|https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz>
   </quote-env>
-
-  In the 0.12 version of the module, the Makefile is set up to build
-  Gnumeric/Pure with OpenGL support, which requires that you have the OpenGL
-  libraries as well as <hlink|GtkGLExt|http://gtkglext.sourceforge.net> (the
-  Gtk OpenGL extension) for GTK2 installed. These should be readily available
-  on most systems, but you can also disable this feature by invoking
-  <verbatim|make> as <verbatim|make> <verbatim|GLDEPS=>.
-
-  For version 0.13 and later, you'll need a GTK3-compatible version of
-  GtkGLExt which can be found at <hlink|https://github.com/tdz/gtkglext|https://github.com/tdz/gtkglext>.
-  The OpenGL support under GTK3 is still under development and currently has
-  some issues, however, so it is disabled by default. If you want to give it
-  a try then you'll have to uncomment the <verbatim|GLDEPS> line at the
-  beginning of the Makefile.
 
   Run <verbatim|make> to compile the software. You might have to adjust the
   settings at the beginning of the Makefile to make this work. Once the
@@ -177,11 +158,10 @@
   Functions|#defining-your-own-functions> for details.)
 
   If <verbatim|make> <verbatim|install> doesn't work for some reason, you can
-  also just copy the <verbatim|pure-func>, <verbatim|pure-glfunc> and
-  <verbatim|pure-loader> directories manually to your Gnumeric plugin
-  directory. You can still run <verbatim|make> <verbatim|install> in the
-  <verbatim|pure-gnm> subdirectory to get the <verbatim|pure-gnm> script
-  installed in this case.
+  also just copy the <verbatim|pure-func> and <verbatim|pure-loader>
+  directories manually to your Gnumeric plugin directory. You can still run
+  <verbatim|make> <verbatim|install> in the <verbatim|pure-gnm> subdirectory
+  to get the <verbatim|pure-gnm> script installed in this case.
 
   <subsection|Setup><label|setup>
 
@@ -189,11 +169,7 @@
   Gnumeric's Tools/Plug-ins dialog. There are actually two main entries, one
   labelled \PPure functions\Q and the other one labelled \PPure plugin
   loader\Q. You need to enable both before you can start using Pure functions
-  in your Gnumeric spreadsheets. There's also a third entry labelled \PPure
-  OpenGL functions\Q which you might want to enable if you want to try the
-  OpenGL capabilities (this will only work if you built Gnumeric/Pure with
-  OpenGL support and have Pure's OpenGL module installed; see <hlink|OpenGL
-  Interface|#opengl-interface> for details).
+  in your Gnumeric spreadsheets.
 
   Gnumeric doesn't provide much in the way of GUI customization options right
   now, but at least it's possible for plugins to install and configure
@@ -1634,224 +1610,7 @@
   Possible uses of this facility are left to your imagination. Using
   Gnumeric's internal APIs and Pure's Gtk interface, you might manipulate the
   GUI widgets in various ways (add icons to buttons or custom child widgets
-  to frames, etc.). One particularly useful case, for which Gnumeric/Pure has
-  built-in support, is rendering an OpenGL scene in a Gnumeric frame widget,
-  see below.
-
-  <subsubsection|OpenGL Interface><label|opengl-interface>
-
-  Gnumeric/Pure provides special support for rendering OpenGL scenes into
-  Gnumeric frame widgets. To actually use this, you must have Pure's OpenGL
-  module installed. The following function is provided to equip a Gnumeric
-  frame with the OpenGL rendering capability:
-
-  <\verbatim>
-    \;
-
-    extern expr *pure_gl_window(char *name, int timeout,
-
-    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expr *setup_cb,
-    expr *config_cb,
-
-    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expr *display_cb,
-    expr *timer_cb,
-
-    \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ expr *user_data)
-    = gl_window;
-
-    \;
-  </verbatim>
-
-  The meaning of the parameters is as follows:
-
-  <\itemize>
-    <item><verbatim|name> is a string which specifies the label of the frame
-    widget into which the scene is to be rendered.
-
-    <item><verbatim|timeout> is a time value in milliseconds (an integer)
-    which specifies the period for invocations of the <verbatim|timer_cb>
-    callback, see below. If this value is zero or negative then the timer
-    callback is disabled.
-
-    <item><verbatim|setup_cb>, <verbatim|config_cb>, <verbatim|display_cb>
-    and <verbatim|timer_cb> are the Pure callback functions which are invoked
-    by <verbatim|gl_window> to actually render the scene. The callbacks are
-    all invoked with two arguments: the <verbatim|user_data> parameter that
-    <verbatim|gl_window> was invoked with, and a second parameter with
-    callback-specific information as described below.
-
-    <item><verbatim|user_data> is any information that the caller wants to be
-    passed as the first argument to the callback functions.
-  </itemize>
-
-  The different callbacks are:
-
-  <\itemize>
-    <item><verbatim|setup_cb> is called for initializing the scene. It
-    receives the <verbatim|GtkDrawingArea> widget as the second argument.
-    Typically this is used to set the initial projection and modelview
-    matrices, enable lighting, etc.
-
-    <item><verbatim|config_cb> is called when the width or height of the
-    frame widget changes so that the rendering parameters (typically the
-    viewport) can be adjusted accordingly. It is invoked with a pair of
-    integers <verbatim|(w,h)> as the second argument, which denotes the new
-    dimension allocated to the drawing area.
-
-    <item><verbatim|display_cb> is called whenever the contents of the
-    drawing area needs to be redrawn. This typically does most of the work
-    necessary to render the scene. The second callback argument is always
-    <verbatim|()>.
-
-    <item><verbatim|timer_cb> is called at regular intervals as specified
-    with the <verbatim|timeout> parameter (see above), unless the
-    <verbatim|timeout> value is zero or negative in which case this callback
-    is disabled. The second callback argument is always <verbatim|()>. The
-    timer callback is typically used to incrementally adjust some parameters
-    of the scene in order to render animations. When invoked, the callback
-    automatically arranges for <verbatim|display_cb> to be called afterwards,
-    so you don't have to do that manually in your callback definition.
-  </itemize>
-
-  You'll need at least either the <verbatim|display_cb> or the
-  <verbatim|timer_cb> function to render anything, but typically all of these
-  callbacks will be needed for animated scenes. Callback functions which
-  aren't needed can be specified as <verbatim|()>.
-
-  There's also a related helper function which can be used as a trigger
-  condition to defer rendering until the target frame widget has been
-  realized:
-
-  <\verbatim>
-    \;
-
-    extern bool pure_check_window(char *name) = check_window;
-
-    \;
-  </verbatim>
-
-  This function returns <verbatim|true> as soon as the named frame widget is
-  ready to go, at wich time <verbatim|gl_windows> can be called on the
-  widget. So your call to <verbatim|gl_windows> should usually be wrapped up
-  like this:
-
-  <\verbatim>
-    \;
-
-    trigger 0 check_window
-
-    (\\frame-\<gtr\>gl_window frame timeout setup config display timer
-    user_data) frame
-
-    \;
-  </verbatim>
-
-  Here's an example from <verbatim|pure_glfunc.pure> which shows how these
-  functions are to be used:
-
-  <\verbatim>
-    \;
-
-    using pure_func, GL, GLU;
-
-    extern void gdk_gl_draw_teapot(bool solid, double scale);
-
-    gnm_info "gltest" = "sbfff";
-
-    \;
-
-    gltest frame m a b c = trigger 0 check_window
-
-    \ \ (\\frame-\<gtr\>gl_window frame (m*40) setup config display timer ())
-    frame
-
-    with
-
-    \ \ setup _ _ = () when
-
-    \ \ \ \ // Initialize.
-
-    \ \ \ \ GL::ClearColor 0.1 0.1 0.3 1.0;
-
-    \ \ \ \ GL::ShadeModel GL::SMOOTH;
-
-    \ \ \ \ GL::Enable GL::DEPTH_TEST;
-
-    \ \ \ \ // Initial projection and modelview matrices.
-
-    \ \ \ \ GL::MatrixMode GL::PROJECTION;
-
-    \ \ \ \ GL::LoadIdentity;
-
-    \ \ \ \ GL::Rotatef 20.0 (-1.0) 0.0 0.0;
-
-    \ \ \ \ GL::MatrixMode GL::MODELVIEW;
-
-    \ \ \ \ GL::LoadIdentity;
-
-    \ \ \ \ // Lighting.
-
-    \ \ \ \ GL::Lightfv GL::LIGHT0 GL::DIFFUSE {1.0,0.0,0.0,1.0};
-
-    \ \ \ \ GL::Lightfv GL::LIGHT0 GL::POSITION {2.0,2.0,-5.0,1.0};
-
-    \ \ \ \ GL::Enable GL::LIGHTING;
-
-    \ \ \ \ GL::Enable GL::LIGHT0;
-
-    \ \ end;
-
-    \ \ config _ (w,h) = GL::Viewport 0 0 w h;
-
-    \ \ display _ _ = () when
-
-    \ \ \ \ GL::Clear (GL::DEPTH_BUFFER_BIT or GL::COLOR_BUFFER_BIT);
-
-    \ \ \ \ gdk_gl_draw_teapot true 0.5;
-
-    \ \ end if m;
-
-    \ \ display _ _ = () when
-
-    \ \ \ \ GL::Clear (GL::DEPTH_BUFFER_BIT or GL::COLOR_BUFFER_BIT);
-
-    \ \ \ \ GL::LoadIdentity;
-
-    \ \ \ \ GL::Rotatef (scale 360 a) 0.0 1.0 0.0;
-
-    \ \ \ \ GL::Rotatef (scale 360 b) 1.0 0.0 0.0;
-
-    \ \ \ \ GL::Rotatef (scale 360 c) 0.0 0.0 1.0;
-
-    \ \ \ \ gdk_gl_draw_teapot true 0.5;
-
-    \ \ end;
-
-    \ \ timer _ _ = () when
-
-    \ \ \ \ GL::Rotatef (scale 36 a) 0.0 1.0 0.0;
-
-    \ \ \ \ GL::Rotatef (scale 36 b) 1.0 0.0 0.0;
-
-    \ \ \ \ GL::Rotatef (scale 36 c) 0.0 0.0 1.0;
-
-    \ \ end;
-
-    \ \ scale step x = (x/100*step);
-
-    end;
-
-    \;
-  </verbatim>
-
-  Have a look at the <verbatim|gl-example.gnumeric> spreadsheet included in
-  the distribution to see this example in action. (You first need to enable
-  the \PPure OpenGL functions\Q in the Plugin Manager to make this work.) The
-  screenshot below shows how the example looks like in Gnumeric.
-
-  <puredoc-image|_images/opengl.png|66%|66%||>
-
-  Gnumeric/Pure OpenGL example.
+  to frames, etc.).
 
   <subsubsection*|<hlink|Table Of Contents|index.tm>><label|gnumeric-pure-toc>
 
@@ -1905,8 +1664,6 @@
         <item><hlink|Triggers|#triggers>
 
         <item><hlink|Sheet Objects|#sheet-objects>
-
-        <item><hlink|OpenGL Interface|#opengl-interface>
       </itemize>
     </itemize>
   </itemize>
@@ -1926,5 +1683,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
-  24, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  27, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

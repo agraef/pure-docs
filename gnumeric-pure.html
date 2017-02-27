@@ -57,14 +57,13 @@
             
   <div class="section" id="gnumeric-pure-a-pure-plugin-for-gnumeric">
 <h1>Gnumeric/Pure: A Pure Plugin for Gnumeric<a class="headerlink" href="#gnumeric-pure-a-pure-plugin-for-gnumeric" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.15, February 24, 2017</p>
+<p>Version 0.16, February 27, 2017</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Gnumeric/Pure is a <a class="reference external" href="http://www.gnumeric.org/">Gnumeric</a> extension which lets you use <a class="reference external" href="http://purelang.bitbucket.org/">Pure</a> functions in
 Gnumeric, the Gnome spreadsheet. It offers better execution speed than the
 existing Perl and Python plugins, and provides some powerful features not
 found in other Gnumeric scripting plugins, such as asynchronous data sources
-created from Pure streams and OpenGL rendering in Gnumeric frame widgets via
-Pure&#8217;s OpenGL module.</p>
+created from Pure streams.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
@@ -91,7 +90,6 @@ Pure&#8217;s OpenGL module.</p>
 <li><a class="reference internal" href="#asynchronous-data-sources" id="id18">Asynchronous Data Sources</a></li>
 <li><a class="reference internal" href="#triggers" id="id19">Triggers</a></li>
 <li><a class="reference internal" href="#sheet-objects" id="id20">Sheet Objects</a></li>
-<li><a class="reference internal" href="#opengl-interface" id="id21">OpenGL Interface</a></li>
 </ul>
 </li>
 </ul>
@@ -112,8 +110,6 @@ computations in addition to the usual numeric calculations.</li>
 it easy to deal with cell ranges in a spreadsheet in an efficient manner.</li>
 <li>Pure also provides a bridge to <a class="reference external" href="http://www.octave.org/">Octave</a> so that you can call arbitrary Octave
 functions using this extension.</li>
-<li>Gnumeric/Pure offers support for rendering <a class="reference external" href="http://www.opengl.org/">OpenGL</a> scenes in Gnumeric frame
-widgets, via Pure&#8217;s own OpenGL interface.</li>
 <li>Pure also has built-in support for lazy data structures and thus allows you
 to handle potentially infinite amounts of data such as the list of all prime
 numbers. Gnumeric/Pure lets you turn such lazy values into asynchronous data
@@ -134,8 +130,7 @@ started with Gnumeric/Pure fairly quickly.</p>
 <p>For more advanced uses, Gnumeric/Pure also provides a programming interface
 which lets you do various special tasks such as modifying entire ranges of
 cells with one Pure call, calling Gnumeric functions from Pure, and setting up
-asynchronous data sources and OpenGL frames. The manual explains all this in
-detail.</p>
+asynchronous data sources. The manual explains all this in detail.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This manual assumes that you&#8217;re already familiar with Gnumeric as
@@ -145,7 +140,7 @@ should consult the corresponding documentation to learn more about these.</p>
 </div>
 <div class="section" id="copying">
 <h2><a class="toc-backref" href="#id2">Copying</a><a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
-<p>Copyright (c) 2009-2013 by Albert Graef.</p>
+<p>Copyright (c) 2009-2017 by Albert Graef.</p>
 <p>Gnumeric/Pure is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License as published by the Free Software
 Foundation, either version 2 of the License, or (at your option) any later
@@ -162,7 +157,8 @@ this program.  If not, see &lt;<a class="reference external" href="http://www.gn
 <p>Obviously, you need to have both Pure and Gnumeric installed. Pure 0.36 and
 Gnumeric 1.9.13 or later are known to work. The current release of this module
 will work with the latest, GTK3-based versions of Gnumeric (Gnumeric 1.11 and
-later, 1.12.23 has been tested).</p>
+later, various versions starting from 1.12.23 have been tested and are known
+to work).</p>
 <p>Please note that the Gnumeric plugin interface is a moving target, which means
 that from time to time the gnumeric-pure module sources are updated to
 accommodate the latest changes in Gnumeric. Thus, depending on which Gnumeric
@@ -171,16 +167,6 @@ gnumeric-pure. In particular, if you are still running Gnumeric 1.10 or
 earlier then you should use version 0.12 of the module instead:</p>
 <blockquote>
 <div><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/gnumeric-pure-0.12.tar.gz</a></div></blockquote>
-<p>In the 0.12 version of the module, the Makefile is set up to build
-Gnumeric/Pure with OpenGL support, which requires that you have the OpenGL
-libraries as well as <a class="reference external" href="http://gtkglext.sourceforge.net">GtkGLExt</a> (the Gtk OpenGL extension) for GTK2 installed.
-These should be readily available on most systems, but you can also disable
-this feature by invoking <tt class="docutils literal"><span class="pre">make</span></tt> as <tt class="docutils literal"><span class="pre">make</span> <span class="pre">GLDEPS=</span></tt>.</p>
-<p>For version 0.13 and later, you&#8217;ll need a GTK3-compatible version of GtkGLExt
-which can be found at <a class="reference external" href="https://github.com/tdz/gtkglext">https://github.com/tdz/gtkglext</a>. The OpenGL support
-under GTK3 is still under development and currently has some issues, however,
-so it is disabled by default. If you want to give it a try then you&#8217;ll have to
-uncomment the <tt class="docutils literal"><span class="pre">GLDEPS</span></tt> line at the beginning of the Makefile.</p>
 <p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the software. You might have to adjust the settings at
 the beginning of the Makefile to make this work. Once the compile goes
 through, you should now have a <tt class="docutils literal"><span class="pre">pure_loader.so</span></tt> file in the <tt class="docutils literal"><span class="pre">pure-loader</span></tt>
@@ -209,10 +195,9 @@ under the Pure installation prefix. (This is a little convenience script to
 generate the <tt class="docutils literal"><span class="pre">plugin.xml</span></tt> files used by Gnumeric to load a plugin; see
 <a class="reference internal" href="#defining-your-own-functions">Defining Your Own Functions</a> for details.)</p>
 <p>If <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> doesn&#8217;t work for some reason, you can also just copy the
-<tt class="docutils literal"><span class="pre">pure-func</span></tt>, <tt class="docutils literal"><span class="pre">pure-glfunc</span></tt> and <tt class="docutils literal"><span class="pre">pure-loader</span></tt> directories manually to
-your Gnumeric plugin directory. You can still run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> in the
-<tt class="docutils literal"><span class="pre">pure-gnm</span></tt> subdirectory to get the <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> script installed in this
-case.</p>
+<tt class="docutils literal"><span class="pre">pure-func</span></tt> and <tt class="docutils literal"><span class="pre">pure-loader</span></tt> directories manually to your Gnumeric plugin
+directory. You can still run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> in the <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> subdirectory
+to get the <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> script installed in this case.</p>
 </div>
 <div class="section" id="setup">
 <h2><a class="toc-backref" href="#id4">Setup</a><a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
@@ -220,10 +205,7 @@ case.</p>
 Gnumeric&#8217;s Tools/Plug-ins dialog. There are actually two main entries, one
 labelled &#8220;Pure functions&#8221; and the other one labelled &#8220;Pure plugin loader&#8221;. You
 need to enable both before you can start using Pure functions in your Gnumeric
-spreadsheets. There&#8217;s also a third entry labelled &#8220;Pure OpenGL functions&#8221;
-which you might want to enable if you want to try the OpenGL capabilities
-(this will only work if you built Gnumeric/Pure with OpenGL support and have
-Pure&#8217;s OpenGL module installed; see <a class="reference internal" href="#opengl-interface">OpenGL Interface</a> for details).</p>
+spreadsheets.</p>
 <p>Gnumeric doesn&#8217;t provide much in the way of GUI customization options right
 now, but at least it&#8217;s possible for plugins to install and configure
 additional menu and toolbar options. Gnumeric/Pure adds three additional
@@ -1133,129 +1115,7 @@ that the information is updated once all objects are fully displayed. The
 <p>Possible uses of this facility are left to your imagination. Using Gnumeric&#8217;s
 internal APIs and Pure&#8217;s Gtk interface, you might manipulate the GUI widgets
 in various ways (add icons to buttons or custom child widgets to frames,
-etc.). One particularly useful case, for which Gnumeric/Pure has built-in
-support, is rendering an OpenGL scene in a Gnumeric frame widget, see below.</p>
-</div>
-<div class="section" id="opengl-interface">
-<h3><a class="toc-backref" href="#id21">OpenGL Interface</a><a class="headerlink" href="#opengl-interface" title="Permalink to this headline">¶</a></h3>
-<p>Gnumeric/Pure provides special support for rendering OpenGL scenes into
-Gnumeric frame widgets. To actually use this, you must have Pure&#8217;s OpenGL
-module installed. The following function is provided to equip a Gnumeric frame
-with the OpenGL rendering capability:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span> *pure_gl_window(<span class="kt">char</span> *name, <span class="kt">int</span> timeout,
-                            <span class="kt">expr</span> *setup_cb, <span class="kt">expr</span> *config_cb,
-                            <span class="kt">expr</span> *display_cb, <span class="kt">expr</span> *timer_cb,
-                            <span class="kt">expr</span> *user_data) = gl_window<span class="p">;</span>
-</pre></div>
-</div>
-<p>The meaning of the parameters is as follows:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">name</span></tt> is a string which specifies the label of the frame widget into
-which the scene is to be rendered.</li>
-<li><tt class="docutils literal"><span class="pre">timeout</span></tt> is a time value in milliseconds (an integer) which specifies the
-period for invocations of the <tt class="docutils literal"><span class="pre">timer_cb</span></tt> callback, see below. If this
-value is zero or negative then the timer callback is disabled.</li>
-<li><tt class="docutils literal"><span class="pre">setup_cb</span></tt>, <tt class="docutils literal"><span class="pre">config_cb</span></tt>, <tt class="docutils literal"><span class="pre">display_cb</span></tt> and <tt class="docutils literal"><span class="pre">timer_cb</span></tt> are the Pure
-callback functions which are invoked by <tt class="docutils literal"><span class="pre">gl_window</span></tt> to actually render the
-scene. The callbacks are all invoked with two arguments: the <tt class="docutils literal"><span class="pre">user_data</span></tt>
-parameter that <tt class="docutils literal"><span class="pre">gl_window</span></tt> was invoked with, and a second parameter with
-callback-specific information as described below.</li>
-<li><tt class="docutils literal"><span class="pre">user_data</span></tt> is any information that the caller wants to be passed as the
-first argument to the callback functions.</li>
-</ul>
-<p>The different callbacks are:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">setup_cb</span></tt> is called for initializing the scene. It receives the
-<tt class="docutils literal"><span class="pre">GtkDrawingArea</span></tt> widget as the second argument. Typically this is used to
-set the initial projection and modelview matrices, enable lighting, etc.</li>
-<li><tt class="docutils literal"><span class="pre">config_cb</span></tt> is called when the width or height of the frame widget changes
-so that the rendering parameters (typically the viewport) can be adjusted
-accordingly. It is invoked with a pair of integers <tt class="docutils literal"><span class="pre">(w,h)</span></tt> as the second
-argument, which denotes the new dimension allocated to the drawing area.</li>
-<li><tt class="docutils literal"><span class="pre">display_cb</span></tt> is called whenever the contents of the drawing area needs to
-be redrawn. This typically does most of the work necessary to render the
-scene. The second callback argument is always <tt class="docutils literal"><span class="pre">()</span></tt>.</li>
-<li><tt class="docutils literal"><span class="pre">timer_cb</span></tt> is called at regular intervals as specified with the
-<tt class="docutils literal"><span class="pre">timeout</span></tt> parameter (see above), unless the <tt class="docutils literal"><span class="pre">timeout</span></tt> value is zero or
-negative in which case this callback is disabled. The second callback
-argument is always <tt class="docutils literal"><span class="pre">()</span></tt>. The timer callback is typically used to
-incrementally adjust some parameters of the scene in order to render
-animations. When invoked, the callback automatically arranges for
-<tt class="docutils literal"><span class="pre">display_cb</span></tt> to be called afterwards, so you don&#8217;t have to do that
-manually in your callback definition.</li>
-</ul>
-<p>You&#8217;ll need at least either the <tt class="docutils literal"><span class="pre">display_cb</span></tt> or the <tt class="docutils literal"><span class="pre">timer_cb</span></tt> function to
-render anything, but typically all of these callbacks will be needed for
-animated scenes. Callback functions which aren&#8217;t needed can be specified as
-<tt class="docutils literal"><span class="pre">()</span></tt>.</p>
-<p>There&#8217;s also a related helper function which can be used as a trigger
-condition to defer rendering until the target frame widget has been realized:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">bool</span> pure_check_window(<span class="kt">char</span> *name) = check_window<span class="p">;</span>
-</pre></div>
-</div>
-<p>This function returns <tt class="docutils literal"><span class="pre">true</span></tt> as soon as the named frame widget is ready to
-go, at wich time <tt class="docutils literal"><span class="pre">gl_windows</span></tt> can be called on the widget. So your call to
-<tt class="docutils literal"><span class="pre">gl_windows</span></tt> should usually be wrapped up like this:</p>
-<div class="highlight-pure"><div class="highlight"><pre>trigger <span class="mi">0</span> check_window
-(\frame-&gt;gl_window frame timeout setup config display timer user_data) frame
-</pre></div>
-</div>
-<p>Here&#8217;s an example from <tt class="docutils literal"><span class="pre">pure_glfunc.pure</span></tt> which shows how these functions
-are to be used:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> pure_func, GL, GLU<span class="p">;</span>
-<span class="kr">extern</span> <span class="kt">void</span> gdk_gl_draw_teapot(<span class="kt">bool</span> solid, <span class="kt">double</span> scale)<span class="p">;</span>
-gnm_info <span class="s">&quot;gltest&quot;</span> = <span class="s">&quot;sbfff&quot;</span><span class="p">;</span>
-
-gltest frame m a b c = trigger <span class="mi">0</span> check_window
-  (\frame-&gt;gl_window frame (m*<span class="mi">40</span>) setup config display timer ()) frame
-<span class="kr">with</span>
-  setup _ _ = () <span class="kr">when</span>
-    <span class="c1">// Initialize.</span>
-    GL<span class="p">::</span>ClearColor <span class="mf">0.1</span> <span class="mf">0.1</span> <span class="mf">0.3</span> <span class="mf">1.0</span><span class="p">;</span>
-    GL<span class="p">::</span>ShadeModel GL<span class="p">::</span>SMOOTH<span class="p">;</span>
-    GL<span class="p">::</span>Enable GL<span class="p">::</span>DEPTH_TEST<span class="p">;</span>
-    <span class="c1">// Initial projection and modelview matrices.</span>
-    GL<span class="p">::</span>MatrixMode GL<span class="p">::</span>PROJECTION<span class="p">;</span>
-    GL<span class="p">::</span>LoadIdentity<span class="p">;</span>
-    GL<span class="p">::</span>Rotatef <span class="mf">20.0</span> (-<span class="mf">1.0</span>) <span class="mf">0.0</span> <span class="mf">0.0</span><span class="p">;</span>
-    GL<span class="p">::</span>MatrixMode GL<span class="p">::</span>MODELVIEW<span class="p">;</span>
-    GL<span class="p">::</span>LoadIdentity<span class="p">;</span>
-    <span class="c1">// Lighting.</span>
-    GL<span class="p">::</span>Lightfv GL<span class="p">::</span>LIGHT0 GL<span class="p">::</span>DIFFUSE {<span class="mf">1.0</span>,<span class="mf">0.0</span>,<span class="mf">0.0</span>,<span class="mf">1.0</span>}<span class="p">;</span>
-    GL<span class="p">::</span>Lightfv GL<span class="p">::</span>LIGHT0 GL<span class="p">::</span>POSITION {<span class="mf">2.0</span>,<span class="mf">2.0</span>,-<span class="mf">5.0</span>,<span class="mf">1.0</span>}<span class="p">;</span>
-    GL<span class="p">::</span>Enable GL<span class="p">::</span>LIGHTING<span class="p">;</span>
-    GL<span class="p">::</span>Enable GL<span class="p">::</span>LIGHT0<span class="p">;</span>
-  <span class="kr">end</span><span class="p">;</span>
-  config _ (w,h) = GL<span class="p">::</span>Viewport <span class="mi">0</span> <span class="mi">0</span> w h<span class="p">;</span>
-  display _ _ = () <span class="kr">when</span>
-    GL<span class="p">::</span>Clear (GL<span class="p">::</span>DEPTH_BUFFER_BIT or GL<span class="p">::</span>COLOR_BUFFER_BIT)<span class="p">;</span>
-    gdk_gl_draw_teapot true <span class="mf">0.5</span><span class="p">;</span>
-  <span class="kr">end</span> <span class="kr">if</span> m<span class="p">;</span>
-  display _ _ = () <span class="kr">when</span>
-    GL<span class="p">::</span>Clear (GL<span class="p">::</span>DEPTH_BUFFER_BIT or GL<span class="p">::</span>COLOR_BUFFER_BIT)<span class="p">;</span>
-    GL<span class="p">::</span>LoadIdentity<span class="p">;</span>
-    GL<span class="p">::</span>Rotatef (scale <span class="mi">360</span> a) <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">;</span>
-    GL<span class="p">::</span>Rotatef (scale <span class="mi">360</span> b) <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span><span class="p">;</span>
-    GL<span class="p">::</span>Rotatef (scale <span class="mi">360</span> c) <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">;</span>
-    gdk_gl_draw_teapot true <span class="mf">0.5</span><span class="p">;</span>
-  <span class="kr">end</span><span class="p">;</span>
-  timer _ _ = () <span class="kr">when</span>
-    GL<span class="p">::</span>Rotatef (scale <span class="mi">36</span> a) <span class="mf">0.0</span> <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">;</span>
-    GL<span class="p">::</span>Rotatef (scale <span class="mi">36</span> b) <span class="mf">1.0</span> <span class="mf">0.0</span> <span class="mf">0.0</span><span class="p">;</span>
-    GL<span class="p">::</span>Rotatef (scale <span class="mi">36</span> c) <span class="mf">0.0</span> <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">;</span>
-  <span class="kr">end</span><span class="p">;</span>
-  scale step x = (x/<span class="mi">100</span>*step)<span class="p">;</span>
-<span class="kr">end</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Have a look at the <tt class="docutils literal"><span class="pre">gl-example.gnumeric</span></tt> spreadsheet included in the
-distribution to see this example in action. (You first need to enable the
-&#8220;Pure OpenGL functions&#8221; in the Plugin Manager to make this work.)  The
-screenshot below shows how the example looks like in Gnumeric.</p>
-<div class="figure">
-<img alt="_images/opengl.png" src="_images/opengl.png" />
-<p class="caption">Gnumeric/Pure OpenGL example.</p>
-</div>
+etc.).</p>
 </div>
 </div>
 </div>
@@ -1293,7 +1153,6 @@ screenshot below shows how the example looks like in Gnumeric.</p>
 <li><a class="reference internal" href="#asynchronous-data-sources">Asynchronous Data Sources</a></li>
 <li><a class="reference internal" href="#triggers">Triggers</a></li>
 <li><a class="reference internal" href="#sheet-objects">Sheet Objects</a></li>
-<li><a class="reference internal" href="#opengl-interface">OpenGL Interface</a></li>
 </ul>
 </li>
 </ul>
@@ -1350,7 +1209,7 @@ screenshot below shows how the example looks like in Gnumeric.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2017, Albert Gräf et al.
-    Last updated on Feb 24, 2017.
+    Last updated on Feb 27, 2017.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
