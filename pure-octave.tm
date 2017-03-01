@@ -54,16 +54,14 @@
   Makefile for details.
 
   This release of pure-octave has been tested and is known to work with
-  Octave 3.6.2, 3.8, 4.0 and 4.3 (the latter is the current development
-  version at the time of this writing). Older versions might require some
-  fiddling with the sources to get the embedded Octave interface working.
+  Octave 3.6.2, 3.8, 4.0 and (development version) 4.3. Older versions might
+  require some fiddling with the sources to get the embedded Octave interface
+  working.
 
-  <with|font-series|bold|NOTE:> The embedded interpreter interface in
-  <with|font-series|bold|Octave 4.2> (patch levels 0+1 at least) is
-  <with|font-series|bold|broken> (segfault in liboctinterp's eval_string
-  function used by octave_eval), so we recommend to either stick to Octave
-  4.0 or update to the 4.3 development version, until this bug is fixed
-  upstream or Octave 4.4 arrives (whatever happens first).
+  <with|font-series|bold|NOTE:> At the time of this writing, the embedded
+  interpreter is broken with Octave <with|font-series|bold|4.2>, so you'll
+  either have to stick to Octave 4.0 for the time being, or use the 4.3
+  development version.
 
   <subsection|Basic Usage><label|basic-usage>
 
