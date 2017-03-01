@@ -1,7 +1,7 @@
 This is pure-glpk.info, produced by makeinfo version 6.3 from
 pure-glpk.texi.
 
-     Pure 0.65, February 27, 2017
+     Pure 0.65, March 01, 2017
 
      Albert Gräf (Editor)
 
@@ -22,7 +22,7 @@ File: pure-glpk.info,  Node: Top,  Next: Installation,  Up: (dir)
 pure-glpk
 *********
 
-     Pure 0.65, February 27, 2017
+     Pure 0.65, March 01, 2017
 
      Albert Gräf (Editor)
 
@@ -7258,633 +7258,633 @@ Index
 
 
 Tag Table:
-Node: Top437
-Ref: pure-glpk doc639
-Ref: 0639
-Node: Installation1806
-Ref: pure-glpk pure-glpk-glpk-interface-for-the-pure-programming-language1896
-Ref: 11896
-Ref: pure-glpk installation1896
-Ref: 21896
-Node: Error Handling3805
-Ref: pure-glpk error-handling3924
-Ref: 33924
-Node: Further Information and Examples5663
-Ref: pure-glpk further-information-and-examples5791
-Ref: 45791
-Node: Interface description6059
-Ref: pure-glpk interface-description6208
-Ref: 56208
-Node: Descriptions of interface functions6822
-Ref: pure-glpk descriptions-of-interface-functions6944
-Ref: 66944
-Node: Basic API routines15856
-Ref: pure-glpk basic-api-routines15978
-Ref: 715978
-Node: Problem creating and modifying routines19965
-Ref: pure-glpk problem-creating-and-modifying-routines20098
-Ref: 820098
-Node: Create the GLPK problem object21083
-Ref: pure-glpk create-the-glpk-problem-object21221
-Ref: 921221
-Node: Set the problem name21505
-Ref: pure-glpk set-the-problem-name21670
-Ref: a21670
-Node: Set objective name21972
-Ref: pure-glpk set-objective-name22134
-Ref: b22134
-Node: Set the objective direction22428
-Ref: pure-glpk set-the-objective-direction22597
-Ref: c22597
-Node: Add new rows to the problem22989
-Ref: pure-glpk add-new-rows-to-the-problem23170
-Ref: d23170
-Node: Add new columns to the problem23535
-Ref: pure-glpk add-new-columns-to-the-problem23705
-Ref: e23705
-Node: Set the row name24082
-Ref: pure-glpk set-the-row-name24244
-Ref: f24244
-Node: Set the column name24584
-Ref: pure-glpk set-the-column-name24737
-Ref: 1024737
-Node: Set change row bounds25092
-Ref: pure-glpk set-change-row-bounds25253
-Ref: 1125253
-Node: Set change column bounds26115
-Ref: pure-glpk set-change-column-bounds26306
-Ref: 1226306
-Node: Set change objective coefficient or constant term27195
-Ref: pure-glpk set-change-objective-coefficient-or-constant-term27391
-Ref: 1327391
-Node: Load or replace matrix row27836
-Ref: pure-glpk load-or-replace-matrix-row28037
-Ref: 1428037
-Node: Load or replace matrix column28581
-Ref: pure-glpk load-or-replace-matrix-column28773
-Ref: 1528773
-Node: Load or replace the whole problem matrix29323
-Ref: pure-glpk load-or-replace-the-whole-problem-matrix29534
-Ref: 1629534
-Node: Check for duplicate elements in sparse matrix30088
-Ref: pure-glpk check-for-duplicate-elements-in-sparse-matrix30308
-Ref: 1730308
-Node: Sort elements of the constraint matrix31198
-Ref: pure-glpk sort-elements-of-the-constraint-matrix31405
-Ref: 1831405
-Node: Delete rows from the matrix31688
-Ref: pure-glpk delete-rows-from-the-matrix31880
-Ref: 1931880
-Node: Delete columns from the matrix32538
-Ref: pure-glpk delete-columns-from-the-matrix32756
-Ref: 1a32756
-Node: Copy the whole content of the GLPK problem object to another one33435
-Ref: pure-glpk copy-the-whole-content-of-the-glpk-problem-object-to-another-one33669
-Ref: 1b33669
-Node: Erase all data from the GLPK problem object34307
-Ref: pure-glpk erase-all-data-from-the-glpk-problem-object34541
-Ref: 1c34541
-Node: Delete the GLPK problem object34890
-Ref: pure-glpk delete-the-glpk-problem-object35051
-Ref: 1d35051
-Node: Problem retrieving routines35378
-Ref: pure-glpk problem-retrieving-routines35553
-Ref: 1e35553
-Node: Get the problem name36124
-Ref: pure-glpk get-the-problem-name36242
-Ref: 1f36242
-Node: Get the objective name36517
-Ref: pure-glpk get-the-objective-name36671
-Ref: 2036671
-Node: Get the objective direction36946
-Ref: pure-glpk get-the-objective-direction37098
-Ref: 2137098
-Node: Get number of rows37454
-Ref: pure-glpk get-number-of-rows37605
-Ref: 2237605
-Node: Get number of columns37868
-Ref: pure-glpk get-number-of-columns38009
-Ref: 2338009
-Node: Get name of a row38290
-Ref: pure-glpk get-name-of-a-row38433
-Ref: 2438433
-Node: Get name of a column38742
-Ref: pure-glpk get-name-of-a-column38876
-Ref: 2538876
-Node: Get row type39201
-Ref: pure-glpk get-row-type39337
-Ref: 2639337
-Node: Get row lower bound39866
-Ref: pure-glpk get-row-lower-bound40001
-Ref: 2740001
-Node: Get row upper bound40376
-Ref: pure-glpk get-row-upper-bound40514
-Ref: 2840514
-Node: Get column type40891
-Ref: pure-glpk get-column-type41032
-Ref: 2941032
-Node: Get column lower bound41572
-Ref: pure-glpk get-column-lower-bound41716
-Ref: 2a41716
-Node: Get column upper bound42126
-Ref: pure-glpk get-column-upper-bound42280
-Ref: 2b42280
-Node: Get objective coefficient42672
-Ref: pure-glpk get-objective-coefficient42838
-Ref: 2c42838
-Node: Get number of nonzero coefficients43249
-Ref: pure-glpk get-number-of-nonzero-coefficients43430
-Ref: 2d43430
-Node: Retrive a row from the problem matrix43749
-Ref: pure-glpk retrive-a-row-from-the-problem-matrix43945
-Ref: 2e43945
-Node: Retrive a column from the problem matrix44370
-Ref: pure-glpk retrive-a-column-from-the-problem-matrix44523
-Ref: 2f44523
-Node: Row and column searching routines44960
-Ref: pure-glpk row-and-column-searching-routines45120
-Ref: 3045120
-Node: Create index for searching rows and columns by their names45404
-Ref: pure-glpk create-index-for-searching-rows-and-columns-by-their-names45569
-Ref: 3145569
-Node: Find a row number by name45892
-Ref: pure-glpk find-a-row-number-by-name46094
-Ref: 3246094
-Node: Find a column number by name46517
-Ref: pure-glpk find-a-column-number-by-name46719
-Ref: 3346719
-Node: Delete index for searching rows and columns by their names47155
-Ref: pure-glpk delete-index-for-searching-rows-and-columns-by-their-names47323
-Ref: 3447323
-Node: Problem scaling routines47646
-Ref: pure-glpk problem-scaling-routines47809
-Ref: 3547809
-Node: Set the row scale factor48104
-Ref: pure-glpk set-the-row-scale-factor48228
-Ref: 3648228
-Node: Set the column scale factor48583
-Ref: pure-glpk set-the-column-scale-factor48745
-Ref: 3748745
-Node: Retrieve the row scale factor49108
-Ref: pure-glpk retrieve-the-row-scale-factor49278
-Ref: 3849278
-Node: Retrieve the column scale factor49602
-Ref: pure-glpk retrieve-the-column-scale-factor49795
-Ref: 3949795
-Node: Scale the problem data according to supplied flags50130
-Ref: pure-glpk scale-the-problem-data-according-to-supplied-flags50318
-Ref: 3a50318
-Node: Unscale the problem data51097
-Ref: pure-glpk unscale-the-problem-data51244
-Ref: 3b51244
-Node: LP basis constructing routines51499
-Ref: pure-glpk lp-basis-constructing-routines51652
-Ref: 3c51652
-Node: Set the row status51901
-Ref: pure-glpk set-the-row-status52019
-Ref: 3d52019
-Node: Set the column status52953
-Ref: pure-glpk set-the-column-status53112
-Ref: 3e53112
-Node: Construct standard problem basis53992
-Ref: pure-glpk construct-standard-problem-basis54165
-Ref: 3f54165
-Node: Construct advanced problem basis54430
-Ref: pure-glpk construct-advanced-problem-basis54613
-Ref: 4054613
-Node: Construct Bixby's problem basis54878
-Ref: pure-glpk construct-bixby-s-problem-basis55020
-Ref: 4155020
-Node: Simplex method routines55285
-Ref: pure-glpk simplex-method-routines55444
-Ref: 4255444
-Node: Solve the LP problem using simplex method56086
-Ref: pure-glpk solve-the-lp-problem-using-simplex-method56261
-Ref: 4356261
-Node: Solve the LP problem using simplex method in exact arithmetics62311
-Ref: pure-glpk solve-the-lp-problem-using-simplex-method-in-exact-arithmetics62536
-Ref: 4462536
-Node: Retrieve generic status of basic solution64766
-Ref: pure-glpk retrieve-generic-status-of-basic-solution64992
-Ref: 4564992
-Node: Retrieve generic status of primal solution65569
-Ref: pure-glpk retrieve-generic-status-of-primal-solution65773
-Ref: 4665773
-Node: Retrieve generic status of dual solution66301
-Ref: pure-glpk retrieve-generic-status-of-dual-solution66504
-Ref: 4766504
-Node: Retrieve value of the objective function67020
-Ref: pure-glpk retrieve-value-of-the-objective-function67222
-Ref: 4867222
-Node: Retrieve generic status of a row variable67543
-Ref: pure-glpk retrieve-generic-status-of-a-row-variable67730
-Ref: 4967730
-Node: Retrieve row primal value68331
-Ref: pure-glpk retrieve-row-primal-value68501
-Ref: 4a68501
-Node: Retrieve row dual value68839
-Ref: pure-glpk retrieve-row-dual-value69012
-Ref: 4b69012
-Node: Retrieve generic status of a column variable69342
-Ref: pure-glpk retrieve-generic-status-of-a-column-variable69518
-Ref: 4c69518
-Node: Retrieve column primal value70130
-Ref: pure-glpk retrieve-column-primal-value70309
-Ref: 4d70309
-Node: Retrieve column dual value70673
-Ref: pure-glpk retrieve-column-dual-value70848
-Ref: 4e70848
-Node: Determine variable causing unboundedness71193
-Ref: pure-glpk determine-variable-causing-unboundedness71331
-Ref: 4f71331
-Node: Interior-point method routines72492
-Ref: pure-glpk interior-point-method-routines72655
-Ref: 5072655
-Node: Solve the LP problem using interior-point method73146
-Ref: pure-glpk solve-the-lp-problem-using-interior-point-method73315
-Ref: 5173315
-Node: Retrieve status of interior-point solution76341
-Ref: pure-glpk retrieve-status-of-interior-point-solution76583
-Ref: 5276583
-Node: Retrieve the objective function value of interior-point solution77130
-Ref: pure-glpk retrieve-the-objective-function-value-of-interior-point-solution77376
-Ref: 5377376
-Node: Retrieve row primal value of interior-point solution77766
-Ref: pure-glpk retrieve-row-primal-value-of-interior-point-solution78020
-Ref: 5478020
-Node: Retrieve row dual value of interior-point solution78423
-Ref: pure-glpk retrieve-row-dual-value-of-interior-point-solution78668
-Ref: 5578668
-Node: Retrieve column primal value of interior-point solution79070
-Ref: pure-glpk retrieve-column-primal-value-of-interior-point-solution79316
-Ref: 5679316
-Node: Retrieve column dual value of interior-point solution79731
-Ref: pure-glpk retrieve-column-dual-value-of-interior-point-solution79918
-Ref: 5779918
-Node: Mixed integer programming routines80333
-Ref: pure-glpk mixed-integer-programming-routines80492
-Ref: 5880492
-Node: Set column kind80945
-Ref: pure-glpk set-column-kind81063
-Ref: 5981063
-Node: Retrieve column kind81551
-Ref: pure-glpk retrieve-column-kind81712
-Ref: 5a81712
-Node: Retrieve number of integer columns82135
-Ref: pure-glpk retrieve-number-of-integer-columns82314
-Ref: 5b82314
-Node: Retrieve number of binary columns82629
-Ref: pure-glpk retrieve-number-of-binary-columns82837
-Ref: 5c82837
-Node: Solve the MIP problem using branch-and-cut method83122
-Ref: pure-glpk solve-the-mip-problem-using-branch-and-cut-method83327
-Ref: 5d83327
-Node: Retrieve status of mip solution92258
-Ref: pure-glpk retrieve-status-of-mip-solution92483
-Ref: 5e92483
-Node: Retrieve the objective function value of mip solution93159
-Ref: pure-glpk retrieve-the-objective-function-value-of-mip-solution93369
-Ref: 5f93369
-Node: Retrieve row value of mip solution93715
-Ref: pure-glpk retrieve-row-value-of-mip-solution93931
-Ref: 6093931
-Node: Retrieve column value of mip solution94280
-Ref: pure-glpk retrieve-column-value-of-mip-solution94434
-Ref: 6194434
-Node: Additional routines94795
-Ref: pure-glpk additional-routines94915
-Ref: 6294915
-Node: Check Karush-Kuhn-Tucker conditions95019
-Ref: pure-glpk check-karush-kuhn-tucker-conditions95113
-Ref: 6395113
-Node: Utility API routines96658
-Ref: pure-glpk utility-api-routines96810
-Ref: 6496810
-Node: Problem data reading/writing routines98073
-Ref: pure-glpk problem-data-reading-writing-routines98207
-Ref: 6598207
-Node: Read LP problem data from a MPS file98563
-Ref: pure-glpk read-lp-problem-data-from-a-mps-file98722
-Ref: 6698722
-Node: Write LP problem data into a MPS file99614
-Ref: pure-glpk write-lp-problem-data-into-a-mps-file99820
-Ref: 6799820
-Node: Read LP problem data from a CPLEX file100662
-Ref: pure-glpk read-lp-problem-data-from-a-cplex-file100871
-Ref: 68100871
-Node: Write LP problem data into a CPLEX file101533
-Ref: pure-glpk write-lp-problem-data-into-a-cplex-file101740
-Ref: 69101740
-Node: Read LP problem data in GLPK format102395
-Ref: pure-glpk read-lp-problem-data-in-glpk-format102600
-Ref: 6a102600
-Node: Write LP problem data in GLPK format103266
-Ref: pure-glpk write-lp-problem-data-in-glpk-format103423
-Ref: 6b103423
-Node: Routines for MathProg models104082
-Ref: pure-glpk routines-for-mathprog-models104266
-Ref: 6c104266
-Node: Create the MathProg translator object104600
-Ref: pure-glpk create-the-mathprog-translator-object104746
-Ref: 6d104746
-Node: Read and translate model section105061
-Ref: pure-glpk read-and-translate-model-section105247
-Ref: 6e105247
-Node: Read and translate data section105947
-Ref: pure-glpk read-and-translate-data-section106114
-Ref: 6f106114
-Node: Generate the model106594
-Ref: pure-glpk generate-the-model106766
-Ref: 70106766
-Node: Build problem instance from the model107296
-Ref: pure-glpk build-problem-instance-from-the-model107456
-Ref: 71107456
-Node: Postsolve the model107821
-Ref: pure-glpk postsolve-the-model108000
-Ref: 72108000
-Node: Delete the MathProg translator object108630
-Ref: pure-glpk delete-the-mathprog-translator-object108763
-Ref: 73108763
-Node: Problem solution reading/writing routines109072
-Ref: pure-glpk problem-solution-reading-writing-routines109210
-Ref: 74109210
-Node: Write basic solution in printable format109770
-Ref: pure-glpk write-basic-solution-in-printable-format109936
-Ref: 75109936
-Node: Read basic solution from a text file110374
-Ref: pure-glpk read-basic-solution-from-a-text-file110586
-Ref: 76110586
-Node: Write basic solution into a text file111042
-Ref: pure-glpk write-basic-solution-into-a-text-file111247
-Ref: 77111247
-Node: Print sensitivity analysis report111708
-Ref: pure-glpk print-sensitivity-analysis-report111926
-Ref: 78111926
-Node: Write interior-point solution in printable format112868
-Ref: pure-glpk write-interior-point-solution-in-printable-format113094
-Ref: 79113094
-Node: Read interior-point solution from a text file113559
-Ref: pure-glpk read-interior-point-solution-from-a-text-file113798
-Ref: 7a113798
-Node: Write interior-point solution into a text file114281
-Ref: pure-glpk write-interior-point-solution-into-a-text-file114509
-Ref: 7b114509
-Node: Write MIP solution in printable format114997
-Ref: pure-glpk write-mip-solution-in-printable-format115214
-Ref: 7c115214
-Node: Read MIP solution from a text file115646
-Ref: pure-glpk read-mip-solution-from-a-text-file115852
-Ref: 7d115852
-Node: Write MIP solution into a text file116302
-Ref: pure-glpk write-mip-solution-into-a-text-file116461
-Ref: 7e116461
-Node: Advanced API routines116918
-Ref: pure-glpk advanced-api-routines117079
-Ref: 7f117079
-Node: LP basis routines118004
-Ref: pure-glpk lp-basis-routines118115
-Ref: 80118115
-Node: Check whether basis factorization exists118625
-Ref: pure-glpk check-whether-basis-factorization-exists118762
-Ref: 81118762
-Node: Compute the basis factorization119175
-Ref: pure-glpk compute-the-basis-factorization119371
-Ref: 82119371
-Node: Check whether basis factorization has been updated120135
-Ref: pure-glpk check-whether-basis-factorization-has-been-updated120325
-Ref: 83120325
-Node: Get basis factorization parameters120778
-Ref: pure-glpk get-basis-factorization-parameters120974
-Ref: 84120974
-Node: Change basis factorization parameters124033
-Ref: pure-glpk change-basis-factorization-parameters124216
-Ref: 85124216
-Node: Retrieve the basis header information127588
-Ref: pure-glpk retrieve-the-basis-header-information127775
-Ref: 86127775
-Node: Retrieve row index in the basis header128398
-Ref: pure-glpk retrieve-row-index-in-the-basis-header128589
-Ref: 87128589
-Node: Retrieve column index in the basis header129287
-Ref: pure-glpk retrieve-column-index-in-the-basis-header129471
-Ref: 88129471
-Node: Perform forward transformation130212
-Ref: pure-glpk perform-forward-transformation130389
-Ref: 89130389
-Node: Perform backward transformation130979
-Ref: pure-glpk perform-backward-transformation131131
-Ref: 8a131131
-Node: Warm up LP basis131725
-Ref: pure-glpk warm-up-lp-basis131838
-Ref: 8b131838
-Node: Simplex tableau routines132495
-Ref: pure-glpk simplex-tableau-routines132606
-Ref: 8c132606
-Node: Compute row of the tableau132990
-Ref: pure-glpk compute-row-of-the-tableau133118
-Ref: 8d133118
-Node: Compute column of the tableau133926
-Ref: pure-glpk compute-column-of-the-tableau134097
-Ref: 8e134097
-Node: Transform explicitly specified row134962
-Ref: pure-glpk transform-explicitly-specified-row135144
-Ref: 8f135144
-Node: Transform explicitly specified column136088
-Ref: pure-glpk transform-explicitly-specified-column136266
-Ref: 90136266
-Node: Perform primal ratio test137208
-Ref: pure-glpk perform-primal-ratio-test137375
-Ref: 91137375
-Node: Perform dual ratio test138645
-Ref: pure-glpk perform-dual-ratio-test138817
-Ref: 92138817
-Node: Analyze active bound of non-basic variable140080
-Ref: pure-glpk analyze-active-bound-of-non-basic-variable140274
-Ref: 93140274
-Node: Analyze objective coefficient at basic variable142006
-Ref: pure-glpk analyze-objective-coefficient-at-basic-variable142168
-Ref: 94142168
-Node: Branch-and-cut API routines145232
-Ref: pure-glpk branch-and-cut-api-routines145403
-Ref: 95145403
-Node: Basic routines146668
-Ref: pure-glpk basic-routines146792
-Ref: 96146792
-Node: Determine reason for calling the callback routine147253
-Ref: pure-glpk determine-reason-for-calling-the-callback-routine147390
-Ref: 97147390
-Node: Access the problem object148077
-Ref: pure-glpk access-the-problem-object148258
-Ref: 98148258
-Node: Determine additional row attributes148592
-Ref: pure-glpk determine-additional-row-attributes148748
-Ref: 99148748
-Node: Compute relative MIP gap149880
-Ref: pure-glpk compute-relative-mip-gap150043
-Ref: 9a150043
-Node: Access application-specific data150336
-Ref: pure-glpk access-application-specific-data150504
-Ref: 9b150504
-Node: Select subproblem to continue the search151010
-Ref: pure-glpk select-subproblem-to-continue-the-search151189
-Ref: 9c151189
-Node: Provide solution found by heuristic151589
-Ref: pure-glpk provide-solution-found-by-heuristic151784
-Ref: 9d151784
-Node: Check whether can branch upon specified variable152635
-Ref: pure-glpk check-whether-can-branch-upon-specified-variable152820
-Ref: 9e152820
-Node: Choose variable to branch upon153276
-Ref: pure-glpk choose-variable-to-branch-upon153456
-Ref: 9f153456
-Node: Terminate the solution process154028
-Ref: pure-glpk terminate-the-solution-process154151
-Ref: a0154151
-Node: The search tree exploring routines154423
-Ref: pure-glpk the-search-tree-exploring-routines154577
-Ref: a1154577
-Node: Determine the search tree size154991
-Ref: pure-glpk determine-the-search-tree-size155139
-Ref: a2155139
-Node: Determine current active subproblem155801
-Ref: pure-glpk determine-current-active-subproblem155990
-Ref: a3155990
-Node: Determine next active subproblem156421
-Ref: pure-glpk determine-next-active-subproblem156616
-Ref: a4156616
-Node: Determine previous active subproblem157528
-Ref: pure-glpk determine-previous-active-subproblem157722
-Ref: a5157722
-Node: Determine parent active subproblem158650
-Ref: pure-glpk determine-parent-active-subproblem158838
-Ref: a6158838
-Node: Determine subproblem level159343
-Ref: pure-glpk determine-subproblem-level159527
-Ref: a7159527
-Node: Determine subproblem local bound159991
-Ref: pure-glpk determine-subproblem-local-bound160189
-Ref: a8160189
-Node: Find active subproblem with the best local bound160602
-Ref: pure-glpk find-active-subproblem-with-the-best-local-bound160765
-Ref: a9160765
-Node: The cut pool routines161302
-Ref: pure-glpk the-cut-pool-routines161433
-Ref: aa161433
-Node: Determine current size of the cut pool161667
-Ref: pure-glpk determine-current-size-of-the-cut-pool161805
-Ref: ab161805
-Node: Add constraint to the cut pool162219
-Ref: pure-glpk add-constraint-to-the-cut-pool162401
-Ref: ac162401
-Node: Remove constraint from the cut pool163554
-Ref: pure-glpk remove-constraint-from-the-cut-pool163738
-Ref: ad163738
-Node: Remove all constraints from the cut pool164388
-Ref: pure-glpk remove-all-constraints-from-the-cut-pool164533
-Ref: ae164533
-Node: Graph and network API routines164825
-Ref: pure-glpk graph-and-network-api-routines164997
-Ref: af164997
-Node: Basic graph routines166243
-Ref: pure-glpk basic-graph-routines166365
-Ref: b0166365
-Node: Create the GLPK graph object166698
-Ref: pure-glpk create-the-glpk-graph-object166813
-Ref: b1166813
-Node: Set the graph name167275
-Ref: pure-glpk set-the-graph-name167422
-Ref: b2167422
-Node: Add vertices to a graph167755
-Ref: pure-glpk add-vertices-to-a-graph167892
-Ref: b3167892
-Node: Add arc to a graph168280
-Ref: pure-glpk add-arc-to-a-graph168437
-Ref: b4168437
-Node: Erase content of the GLPK graph object168755
-Ref: pure-glpk erase-content-of-the-glpk-graph-object168917
-Ref: b5168917
-Node: Delete the GLPK graph object169528
-Ref: pure-glpk delete-the-glpk-graph-object169705
-Ref: b6169705
-Node: Read graph in a plain text format170166
-Ref: pure-glpk read-graph-in-a-plain-text-format170339
-Ref: b7170339
-Node: Write graph in a plain text format170712
-Ref: pure-glpk write-graph-in-a-plain-text-format170848
-Ref: b8170848
-Node: Graph analysis routines171225
-Ref: pure-glpk graph-analysis-routines171381
-Ref: b9171381
-Node: Find all weakly connected components of a graph171560
-Ref: pure-glpk find-all-weakly-connected-components-of-a-graph171728
-Ref: ba171728
-Node: Find all strongly connected components of a graph172332
-Ref: pure-glpk find-all-strongly-connected-components-of-a-graph172500
-Ref: bb172500
-Node: Minimum cost flow problem173111
-Ref: pure-glpk minimum-cost-flow-problem173267
-Ref: bc173267
-Node: Read minimum cost flow problem data in DIMACS format173653
-Ref: pure-glpk read-minimum-cost-flow-problem-data-in-dimacs-format173832
-Ref: bd173832
-Node: Write minimum cost flow problem data in DIMACS format175331
-Ref: pure-glpk write-minimum-cost-flow-problem-data-in-dimacs-format175558
-Ref: be175558
-Node: Convert minimum cost flow problem to LP177060
-Ref: pure-glpk convert-minimum-cost-flow-problem-to-lp177295
-Ref: bf177295
-Node: Solve minimum cost flow problem with out-of-kilter algorithm178865
-Ref: pure-glpk solve-minimum-cost-flow-problem-with-out-of-kilter-algorithm179083
-Ref: c0179083
-Node: Klingman's network problem generator181845
-Ref: pure-glpk klingman-s-network-problem-generator182059
-Ref: c1182059
-Node: Grid-like network problem generator184387
-Ref: pure-glpk grid-like-network-problem-generator184532
-Ref: c2184532
-Node: Maximum flow problem186993
-Ref: pure-glpk maximum-flow-problem187117
-Ref: c3187117
-Node: Read maximum cost flow problem data in DIMACS format187448
-Ref: pure-glpk read-maximum-cost-flow-problem-data-in-dimacs-format187622
-Ref: c4187622
-Node: Write maximum cost flow problem data in DIMACS format187904
-Ref: pure-glpk write-maximum-cost-flow-problem-data-in-dimacs-format188121
-Ref: c5188121
-Node: Convert maximum flow problem to LP188410
-Ref: pure-glpk convert-maximum-flow-problem-to-lp188631
-Ref: c6188631
-Node: Solve maximum flow problem with Ford-Fulkerson algorithm188879
-Ref: pure-glpk solve-maximum-flow-problem-with-ford-fulkerson-algorithm189088
-Ref: c7189088
-Node: Goldfarb's maximum flow problem generator189384
-Ref: pure-glpk goldfarb-s-maximum-flow-problem-generator189550
-Ref: c8189550
-Node: Miscellaneous routines189808
-Ref: pure-glpk miscellaneous-routines189944
-Ref: c9189944
-Node: Library environment routines190284
-Ref: pure-glpk library-environment-routines190374
-Ref: ca190374
-Node: Determine library version190665
-Ref: pure-glpk determine-library-version190797
-Ref: cb190797
-Node: Enable/disable terminal output191018
-Ref: pure-glpk enable-disable-terminal-output191199
-Ref: cc191199
-Node: Enable/disable the terminal hook routine191596
-Ref: pure-glpk enable-disable-the-terminal-hook-routine191780
-Ref: cd191780
-Node: Get memory usage information192342
-Ref: pure-glpk get-memory-usage-information192518
-Ref: ce192518
-Node: Set memory usage limit193287
-Ref: pure-glpk set-memory-usage-limit193452
-Ref: cf193452
-Node: Free GLPK library environment193697
-Ref: pure-glpk free-glpk-library-environment193825
-Ref: d0193825
-Node: Index194038
+Node: Top434
+Ref: pure-glpk doc633
+Ref: 0633
+Node: Installation1800
+Ref: pure-glpk pure-glpk-glpk-interface-for-the-pure-programming-language1890
+Ref: 11890
+Ref: pure-glpk installation1890
+Ref: 21890
+Node: Error Handling3799
+Ref: pure-glpk error-handling3918
+Ref: 33918
+Node: Further Information and Examples5657
+Ref: pure-glpk further-information-and-examples5785
+Ref: 45785
+Node: Interface description6053
+Ref: pure-glpk interface-description6202
+Ref: 56202
+Node: Descriptions of interface functions6816
+Ref: pure-glpk descriptions-of-interface-functions6938
+Ref: 66938
+Node: Basic API routines15850
+Ref: pure-glpk basic-api-routines15972
+Ref: 715972
+Node: Problem creating and modifying routines19959
+Ref: pure-glpk problem-creating-and-modifying-routines20092
+Ref: 820092
+Node: Create the GLPK problem object21077
+Ref: pure-glpk create-the-glpk-problem-object21215
+Ref: 921215
+Node: Set the problem name21499
+Ref: pure-glpk set-the-problem-name21664
+Ref: a21664
+Node: Set objective name21966
+Ref: pure-glpk set-objective-name22128
+Ref: b22128
+Node: Set the objective direction22422
+Ref: pure-glpk set-the-objective-direction22591
+Ref: c22591
+Node: Add new rows to the problem22983
+Ref: pure-glpk add-new-rows-to-the-problem23164
+Ref: d23164
+Node: Add new columns to the problem23529
+Ref: pure-glpk add-new-columns-to-the-problem23699
+Ref: e23699
+Node: Set the row name24076
+Ref: pure-glpk set-the-row-name24238
+Ref: f24238
+Node: Set the column name24578
+Ref: pure-glpk set-the-column-name24731
+Ref: 1024731
+Node: Set change row bounds25086
+Ref: pure-glpk set-change-row-bounds25247
+Ref: 1125247
+Node: Set change column bounds26109
+Ref: pure-glpk set-change-column-bounds26300
+Ref: 1226300
+Node: Set change objective coefficient or constant term27189
+Ref: pure-glpk set-change-objective-coefficient-or-constant-term27385
+Ref: 1327385
+Node: Load or replace matrix row27830
+Ref: pure-glpk load-or-replace-matrix-row28031
+Ref: 1428031
+Node: Load or replace matrix column28575
+Ref: pure-glpk load-or-replace-matrix-column28767
+Ref: 1528767
+Node: Load or replace the whole problem matrix29317
+Ref: pure-glpk load-or-replace-the-whole-problem-matrix29528
+Ref: 1629528
+Node: Check for duplicate elements in sparse matrix30082
+Ref: pure-glpk check-for-duplicate-elements-in-sparse-matrix30302
+Ref: 1730302
+Node: Sort elements of the constraint matrix31192
+Ref: pure-glpk sort-elements-of-the-constraint-matrix31399
+Ref: 1831399
+Node: Delete rows from the matrix31682
+Ref: pure-glpk delete-rows-from-the-matrix31874
+Ref: 1931874
+Node: Delete columns from the matrix32532
+Ref: pure-glpk delete-columns-from-the-matrix32750
+Ref: 1a32750
+Node: Copy the whole content of the GLPK problem object to another one33429
+Ref: pure-glpk copy-the-whole-content-of-the-glpk-problem-object-to-another-one33663
+Ref: 1b33663
+Node: Erase all data from the GLPK problem object34301
+Ref: pure-glpk erase-all-data-from-the-glpk-problem-object34535
+Ref: 1c34535
+Node: Delete the GLPK problem object34884
+Ref: pure-glpk delete-the-glpk-problem-object35045
+Ref: 1d35045
+Node: Problem retrieving routines35372
+Ref: pure-glpk problem-retrieving-routines35547
+Ref: 1e35547
+Node: Get the problem name36118
+Ref: pure-glpk get-the-problem-name36236
+Ref: 1f36236
+Node: Get the objective name36511
+Ref: pure-glpk get-the-objective-name36665
+Ref: 2036665
+Node: Get the objective direction36940
+Ref: pure-glpk get-the-objective-direction37092
+Ref: 2137092
+Node: Get number of rows37448
+Ref: pure-glpk get-number-of-rows37599
+Ref: 2237599
+Node: Get number of columns37862
+Ref: pure-glpk get-number-of-columns38003
+Ref: 2338003
+Node: Get name of a row38284
+Ref: pure-glpk get-name-of-a-row38427
+Ref: 2438427
+Node: Get name of a column38736
+Ref: pure-glpk get-name-of-a-column38870
+Ref: 2538870
+Node: Get row type39195
+Ref: pure-glpk get-row-type39331
+Ref: 2639331
+Node: Get row lower bound39860
+Ref: pure-glpk get-row-lower-bound39995
+Ref: 2739995
+Node: Get row upper bound40370
+Ref: pure-glpk get-row-upper-bound40508
+Ref: 2840508
+Node: Get column type40885
+Ref: pure-glpk get-column-type41026
+Ref: 2941026
+Node: Get column lower bound41566
+Ref: pure-glpk get-column-lower-bound41710
+Ref: 2a41710
+Node: Get column upper bound42120
+Ref: pure-glpk get-column-upper-bound42274
+Ref: 2b42274
+Node: Get objective coefficient42666
+Ref: pure-glpk get-objective-coefficient42832
+Ref: 2c42832
+Node: Get number of nonzero coefficients43243
+Ref: pure-glpk get-number-of-nonzero-coefficients43424
+Ref: 2d43424
+Node: Retrive a row from the problem matrix43743
+Ref: pure-glpk retrive-a-row-from-the-problem-matrix43939
+Ref: 2e43939
+Node: Retrive a column from the problem matrix44364
+Ref: pure-glpk retrive-a-column-from-the-problem-matrix44517
+Ref: 2f44517
+Node: Row and column searching routines44954
+Ref: pure-glpk row-and-column-searching-routines45114
+Ref: 3045114
+Node: Create index for searching rows and columns by their names45398
+Ref: pure-glpk create-index-for-searching-rows-and-columns-by-their-names45563
+Ref: 3145563
+Node: Find a row number by name45886
+Ref: pure-glpk find-a-row-number-by-name46088
+Ref: 3246088
+Node: Find a column number by name46511
+Ref: pure-glpk find-a-column-number-by-name46713
+Ref: 3346713
+Node: Delete index for searching rows and columns by their names47149
+Ref: pure-glpk delete-index-for-searching-rows-and-columns-by-their-names47317
+Ref: 3447317
+Node: Problem scaling routines47640
+Ref: pure-glpk problem-scaling-routines47803
+Ref: 3547803
+Node: Set the row scale factor48098
+Ref: pure-glpk set-the-row-scale-factor48222
+Ref: 3648222
+Node: Set the column scale factor48577
+Ref: pure-glpk set-the-column-scale-factor48739
+Ref: 3748739
+Node: Retrieve the row scale factor49102
+Ref: pure-glpk retrieve-the-row-scale-factor49272
+Ref: 3849272
+Node: Retrieve the column scale factor49596
+Ref: pure-glpk retrieve-the-column-scale-factor49789
+Ref: 3949789
+Node: Scale the problem data according to supplied flags50124
+Ref: pure-glpk scale-the-problem-data-according-to-supplied-flags50312
+Ref: 3a50312
+Node: Unscale the problem data51091
+Ref: pure-glpk unscale-the-problem-data51238
+Ref: 3b51238
+Node: LP basis constructing routines51493
+Ref: pure-glpk lp-basis-constructing-routines51646
+Ref: 3c51646
+Node: Set the row status51895
+Ref: pure-glpk set-the-row-status52013
+Ref: 3d52013
+Node: Set the column status52947
+Ref: pure-glpk set-the-column-status53106
+Ref: 3e53106
+Node: Construct standard problem basis53986
+Ref: pure-glpk construct-standard-problem-basis54159
+Ref: 3f54159
+Node: Construct advanced problem basis54424
+Ref: pure-glpk construct-advanced-problem-basis54607
+Ref: 4054607
+Node: Construct Bixby's problem basis54872
+Ref: pure-glpk construct-bixby-s-problem-basis55014
+Ref: 4155014
+Node: Simplex method routines55279
+Ref: pure-glpk simplex-method-routines55438
+Ref: 4255438
+Node: Solve the LP problem using simplex method56080
+Ref: pure-glpk solve-the-lp-problem-using-simplex-method56255
+Ref: 4356255
+Node: Solve the LP problem using simplex method in exact arithmetics62305
+Ref: pure-glpk solve-the-lp-problem-using-simplex-method-in-exact-arithmetics62530
+Ref: 4462530
+Node: Retrieve generic status of basic solution64760
+Ref: pure-glpk retrieve-generic-status-of-basic-solution64986
+Ref: 4564986
+Node: Retrieve generic status of primal solution65563
+Ref: pure-glpk retrieve-generic-status-of-primal-solution65767
+Ref: 4665767
+Node: Retrieve generic status of dual solution66295
+Ref: pure-glpk retrieve-generic-status-of-dual-solution66498
+Ref: 4766498
+Node: Retrieve value of the objective function67014
+Ref: pure-glpk retrieve-value-of-the-objective-function67216
+Ref: 4867216
+Node: Retrieve generic status of a row variable67537
+Ref: pure-glpk retrieve-generic-status-of-a-row-variable67724
+Ref: 4967724
+Node: Retrieve row primal value68325
+Ref: pure-glpk retrieve-row-primal-value68495
+Ref: 4a68495
+Node: Retrieve row dual value68833
+Ref: pure-glpk retrieve-row-dual-value69006
+Ref: 4b69006
+Node: Retrieve generic status of a column variable69336
+Ref: pure-glpk retrieve-generic-status-of-a-column-variable69512
+Ref: 4c69512
+Node: Retrieve column primal value70124
+Ref: pure-glpk retrieve-column-primal-value70303
+Ref: 4d70303
+Node: Retrieve column dual value70667
+Ref: pure-glpk retrieve-column-dual-value70842
+Ref: 4e70842
+Node: Determine variable causing unboundedness71187
+Ref: pure-glpk determine-variable-causing-unboundedness71325
+Ref: 4f71325
+Node: Interior-point method routines72486
+Ref: pure-glpk interior-point-method-routines72649
+Ref: 5072649
+Node: Solve the LP problem using interior-point method73140
+Ref: pure-glpk solve-the-lp-problem-using-interior-point-method73309
+Ref: 5173309
+Node: Retrieve status of interior-point solution76335
+Ref: pure-glpk retrieve-status-of-interior-point-solution76577
+Ref: 5276577
+Node: Retrieve the objective function value of interior-point solution77124
+Ref: pure-glpk retrieve-the-objective-function-value-of-interior-point-solution77370
+Ref: 5377370
+Node: Retrieve row primal value of interior-point solution77760
+Ref: pure-glpk retrieve-row-primal-value-of-interior-point-solution78014
+Ref: 5478014
+Node: Retrieve row dual value of interior-point solution78417
+Ref: pure-glpk retrieve-row-dual-value-of-interior-point-solution78662
+Ref: 5578662
+Node: Retrieve column primal value of interior-point solution79064
+Ref: pure-glpk retrieve-column-primal-value-of-interior-point-solution79310
+Ref: 5679310
+Node: Retrieve column dual value of interior-point solution79725
+Ref: pure-glpk retrieve-column-dual-value-of-interior-point-solution79912
+Ref: 5779912
+Node: Mixed integer programming routines80327
+Ref: pure-glpk mixed-integer-programming-routines80486
+Ref: 5880486
+Node: Set column kind80939
+Ref: pure-glpk set-column-kind81057
+Ref: 5981057
+Node: Retrieve column kind81545
+Ref: pure-glpk retrieve-column-kind81706
+Ref: 5a81706
+Node: Retrieve number of integer columns82129
+Ref: pure-glpk retrieve-number-of-integer-columns82308
+Ref: 5b82308
+Node: Retrieve number of binary columns82623
+Ref: pure-glpk retrieve-number-of-binary-columns82831
+Ref: 5c82831
+Node: Solve the MIP problem using branch-and-cut method83116
+Ref: pure-glpk solve-the-mip-problem-using-branch-and-cut-method83321
+Ref: 5d83321
+Node: Retrieve status of mip solution92252
+Ref: pure-glpk retrieve-status-of-mip-solution92477
+Ref: 5e92477
+Node: Retrieve the objective function value of mip solution93153
+Ref: pure-glpk retrieve-the-objective-function-value-of-mip-solution93363
+Ref: 5f93363
+Node: Retrieve row value of mip solution93709
+Ref: pure-glpk retrieve-row-value-of-mip-solution93925
+Ref: 6093925
+Node: Retrieve column value of mip solution94274
+Ref: pure-glpk retrieve-column-value-of-mip-solution94428
+Ref: 6194428
+Node: Additional routines94789
+Ref: pure-glpk additional-routines94909
+Ref: 6294909
+Node: Check Karush-Kuhn-Tucker conditions95013
+Ref: pure-glpk check-karush-kuhn-tucker-conditions95107
+Ref: 6395107
+Node: Utility API routines96652
+Ref: pure-glpk utility-api-routines96804
+Ref: 6496804
+Node: Problem data reading/writing routines98067
+Ref: pure-glpk problem-data-reading-writing-routines98201
+Ref: 6598201
+Node: Read LP problem data from a MPS file98557
+Ref: pure-glpk read-lp-problem-data-from-a-mps-file98716
+Ref: 6698716
+Node: Write LP problem data into a MPS file99608
+Ref: pure-glpk write-lp-problem-data-into-a-mps-file99814
+Ref: 6799814
+Node: Read LP problem data from a CPLEX file100656
+Ref: pure-glpk read-lp-problem-data-from-a-cplex-file100865
+Ref: 68100865
+Node: Write LP problem data into a CPLEX file101527
+Ref: pure-glpk write-lp-problem-data-into-a-cplex-file101734
+Ref: 69101734
+Node: Read LP problem data in GLPK format102389
+Ref: pure-glpk read-lp-problem-data-in-glpk-format102594
+Ref: 6a102594
+Node: Write LP problem data in GLPK format103260
+Ref: pure-glpk write-lp-problem-data-in-glpk-format103417
+Ref: 6b103417
+Node: Routines for MathProg models104076
+Ref: pure-glpk routines-for-mathprog-models104260
+Ref: 6c104260
+Node: Create the MathProg translator object104594
+Ref: pure-glpk create-the-mathprog-translator-object104740
+Ref: 6d104740
+Node: Read and translate model section105055
+Ref: pure-glpk read-and-translate-model-section105241
+Ref: 6e105241
+Node: Read and translate data section105941
+Ref: pure-glpk read-and-translate-data-section106108
+Ref: 6f106108
+Node: Generate the model106588
+Ref: pure-glpk generate-the-model106760
+Ref: 70106760
+Node: Build problem instance from the model107290
+Ref: pure-glpk build-problem-instance-from-the-model107450
+Ref: 71107450
+Node: Postsolve the model107815
+Ref: pure-glpk postsolve-the-model107994
+Ref: 72107994
+Node: Delete the MathProg translator object108624
+Ref: pure-glpk delete-the-mathprog-translator-object108757
+Ref: 73108757
+Node: Problem solution reading/writing routines109066
+Ref: pure-glpk problem-solution-reading-writing-routines109204
+Ref: 74109204
+Node: Write basic solution in printable format109764
+Ref: pure-glpk write-basic-solution-in-printable-format109930
+Ref: 75109930
+Node: Read basic solution from a text file110368
+Ref: pure-glpk read-basic-solution-from-a-text-file110580
+Ref: 76110580
+Node: Write basic solution into a text file111036
+Ref: pure-glpk write-basic-solution-into-a-text-file111241
+Ref: 77111241
+Node: Print sensitivity analysis report111702
+Ref: pure-glpk print-sensitivity-analysis-report111920
+Ref: 78111920
+Node: Write interior-point solution in printable format112862
+Ref: pure-glpk write-interior-point-solution-in-printable-format113088
+Ref: 79113088
+Node: Read interior-point solution from a text file113553
+Ref: pure-glpk read-interior-point-solution-from-a-text-file113792
+Ref: 7a113792
+Node: Write interior-point solution into a text file114275
+Ref: pure-glpk write-interior-point-solution-into-a-text-file114503
+Ref: 7b114503
+Node: Write MIP solution in printable format114991
+Ref: pure-glpk write-mip-solution-in-printable-format115208
+Ref: 7c115208
+Node: Read MIP solution from a text file115640
+Ref: pure-glpk read-mip-solution-from-a-text-file115846
+Ref: 7d115846
+Node: Write MIP solution into a text file116296
+Ref: pure-glpk write-mip-solution-into-a-text-file116455
+Ref: 7e116455
+Node: Advanced API routines116912
+Ref: pure-glpk advanced-api-routines117073
+Ref: 7f117073
+Node: LP basis routines117998
+Ref: pure-glpk lp-basis-routines118109
+Ref: 80118109
+Node: Check whether basis factorization exists118619
+Ref: pure-glpk check-whether-basis-factorization-exists118756
+Ref: 81118756
+Node: Compute the basis factorization119169
+Ref: pure-glpk compute-the-basis-factorization119365
+Ref: 82119365
+Node: Check whether basis factorization has been updated120129
+Ref: pure-glpk check-whether-basis-factorization-has-been-updated120319
+Ref: 83120319
+Node: Get basis factorization parameters120772
+Ref: pure-glpk get-basis-factorization-parameters120968
+Ref: 84120968
+Node: Change basis factorization parameters124027
+Ref: pure-glpk change-basis-factorization-parameters124210
+Ref: 85124210
+Node: Retrieve the basis header information127582
+Ref: pure-glpk retrieve-the-basis-header-information127769
+Ref: 86127769
+Node: Retrieve row index in the basis header128392
+Ref: pure-glpk retrieve-row-index-in-the-basis-header128583
+Ref: 87128583
+Node: Retrieve column index in the basis header129281
+Ref: pure-glpk retrieve-column-index-in-the-basis-header129465
+Ref: 88129465
+Node: Perform forward transformation130206
+Ref: pure-glpk perform-forward-transformation130383
+Ref: 89130383
+Node: Perform backward transformation130973
+Ref: pure-glpk perform-backward-transformation131125
+Ref: 8a131125
+Node: Warm up LP basis131719
+Ref: pure-glpk warm-up-lp-basis131832
+Ref: 8b131832
+Node: Simplex tableau routines132489
+Ref: pure-glpk simplex-tableau-routines132600
+Ref: 8c132600
+Node: Compute row of the tableau132984
+Ref: pure-glpk compute-row-of-the-tableau133112
+Ref: 8d133112
+Node: Compute column of the tableau133920
+Ref: pure-glpk compute-column-of-the-tableau134091
+Ref: 8e134091
+Node: Transform explicitly specified row134956
+Ref: pure-glpk transform-explicitly-specified-row135138
+Ref: 8f135138
+Node: Transform explicitly specified column136082
+Ref: pure-glpk transform-explicitly-specified-column136260
+Ref: 90136260
+Node: Perform primal ratio test137202
+Ref: pure-glpk perform-primal-ratio-test137369
+Ref: 91137369
+Node: Perform dual ratio test138639
+Ref: pure-glpk perform-dual-ratio-test138811
+Ref: 92138811
+Node: Analyze active bound of non-basic variable140074
+Ref: pure-glpk analyze-active-bound-of-non-basic-variable140268
+Ref: 93140268
+Node: Analyze objective coefficient at basic variable142000
+Ref: pure-glpk analyze-objective-coefficient-at-basic-variable142162
+Ref: 94142162
+Node: Branch-and-cut API routines145226
+Ref: pure-glpk branch-and-cut-api-routines145397
+Ref: 95145397
+Node: Basic routines146662
+Ref: pure-glpk basic-routines146786
+Ref: 96146786
+Node: Determine reason for calling the callback routine147247
+Ref: pure-glpk determine-reason-for-calling-the-callback-routine147384
+Ref: 97147384
+Node: Access the problem object148071
+Ref: pure-glpk access-the-problem-object148252
+Ref: 98148252
+Node: Determine additional row attributes148586
+Ref: pure-glpk determine-additional-row-attributes148742
+Ref: 99148742
+Node: Compute relative MIP gap149874
+Ref: pure-glpk compute-relative-mip-gap150037
+Ref: 9a150037
+Node: Access application-specific data150330
+Ref: pure-glpk access-application-specific-data150498
+Ref: 9b150498
+Node: Select subproblem to continue the search151004
+Ref: pure-glpk select-subproblem-to-continue-the-search151183
+Ref: 9c151183
+Node: Provide solution found by heuristic151583
+Ref: pure-glpk provide-solution-found-by-heuristic151778
+Ref: 9d151778
+Node: Check whether can branch upon specified variable152629
+Ref: pure-glpk check-whether-can-branch-upon-specified-variable152814
+Ref: 9e152814
+Node: Choose variable to branch upon153270
+Ref: pure-glpk choose-variable-to-branch-upon153450
+Ref: 9f153450
+Node: Terminate the solution process154022
+Ref: pure-glpk terminate-the-solution-process154145
+Ref: a0154145
+Node: The search tree exploring routines154417
+Ref: pure-glpk the-search-tree-exploring-routines154571
+Ref: a1154571
+Node: Determine the search tree size154985
+Ref: pure-glpk determine-the-search-tree-size155133
+Ref: a2155133
+Node: Determine current active subproblem155795
+Ref: pure-glpk determine-current-active-subproblem155984
+Ref: a3155984
+Node: Determine next active subproblem156415
+Ref: pure-glpk determine-next-active-subproblem156610
+Ref: a4156610
+Node: Determine previous active subproblem157522
+Ref: pure-glpk determine-previous-active-subproblem157716
+Ref: a5157716
+Node: Determine parent active subproblem158644
+Ref: pure-glpk determine-parent-active-subproblem158832
+Ref: a6158832
+Node: Determine subproblem level159337
+Ref: pure-glpk determine-subproblem-level159521
+Ref: a7159521
+Node: Determine subproblem local bound159985
+Ref: pure-glpk determine-subproblem-local-bound160183
+Ref: a8160183
+Node: Find active subproblem with the best local bound160596
+Ref: pure-glpk find-active-subproblem-with-the-best-local-bound160759
+Ref: a9160759
+Node: The cut pool routines161296
+Ref: pure-glpk the-cut-pool-routines161427
+Ref: aa161427
+Node: Determine current size of the cut pool161661
+Ref: pure-glpk determine-current-size-of-the-cut-pool161799
+Ref: ab161799
+Node: Add constraint to the cut pool162213
+Ref: pure-glpk add-constraint-to-the-cut-pool162395
+Ref: ac162395
+Node: Remove constraint from the cut pool163548
+Ref: pure-glpk remove-constraint-from-the-cut-pool163732
+Ref: ad163732
+Node: Remove all constraints from the cut pool164382
+Ref: pure-glpk remove-all-constraints-from-the-cut-pool164527
+Ref: ae164527
+Node: Graph and network API routines164819
+Ref: pure-glpk graph-and-network-api-routines164991
+Ref: af164991
+Node: Basic graph routines166237
+Ref: pure-glpk basic-graph-routines166359
+Ref: b0166359
+Node: Create the GLPK graph object166692
+Ref: pure-glpk create-the-glpk-graph-object166807
+Ref: b1166807
+Node: Set the graph name167269
+Ref: pure-glpk set-the-graph-name167416
+Ref: b2167416
+Node: Add vertices to a graph167749
+Ref: pure-glpk add-vertices-to-a-graph167886
+Ref: b3167886
+Node: Add arc to a graph168274
+Ref: pure-glpk add-arc-to-a-graph168431
+Ref: b4168431
+Node: Erase content of the GLPK graph object168749
+Ref: pure-glpk erase-content-of-the-glpk-graph-object168911
+Ref: b5168911
+Node: Delete the GLPK graph object169522
+Ref: pure-glpk delete-the-glpk-graph-object169699
+Ref: b6169699
+Node: Read graph in a plain text format170160
+Ref: pure-glpk read-graph-in-a-plain-text-format170333
+Ref: b7170333
+Node: Write graph in a plain text format170706
+Ref: pure-glpk write-graph-in-a-plain-text-format170842
+Ref: b8170842
+Node: Graph analysis routines171219
+Ref: pure-glpk graph-analysis-routines171375
+Ref: b9171375
+Node: Find all weakly connected components of a graph171554
+Ref: pure-glpk find-all-weakly-connected-components-of-a-graph171722
+Ref: ba171722
+Node: Find all strongly connected components of a graph172326
+Ref: pure-glpk find-all-strongly-connected-components-of-a-graph172494
+Ref: bb172494
+Node: Minimum cost flow problem173105
+Ref: pure-glpk minimum-cost-flow-problem173261
+Ref: bc173261
+Node: Read minimum cost flow problem data in DIMACS format173647
+Ref: pure-glpk read-minimum-cost-flow-problem-data-in-dimacs-format173826
+Ref: bd173826
+Node: Write minimum cost flow problem data in DIMACS format175325
+Ref: pure-glpk write-minimum-cost-flow-problem-data-in-dimacs-format175552
+Ref: be175552
+Node: Convert minimum cost flow problem to LP177054
+Ref: pure-glpk convert-minimum-cost-flow-problem-to-lp177289
+Ref: bf177289
+Node: Solve minimum cost flow problem with out-of-kilter algorithm178859
+Ref: pure-glpk solve-minimum-cost-flow-problem-with-out-of-kilter-algorithm179077
+Ref: c0179077
+Node: Klingman's network problem generator181839
+Ref: pure-glpk klingman-s-network-problem-generator182053
+Ref: c1182053
+Node: Grid-like network problem generator184381
+Ref: pure-glpk grid-like-network-problem-generator184526
+Ref: c2184526
+Node: Maximum flow problem186987
+Ref: pure-glpk maximum-flow-problem187111
+Ref: c3187111
+Node: Read maximum cost flow problem data in DIMACS format187442
+Ref: pure-glpk read-maximum-cost-flow-problem-data-in-dimacs-format187616
+Ref: c4187616
+Node: Write maximum cost flow problem data in DIMACS format187898
+Ref: pure-glpk write-maximum-cost-flow-problem-data-in-dimacs-format188115
+Ref: c5188115
+Node: Convert maximum flow problem to LP188404
+Ref: pure-glpk convert-maximum-flow-problem-to-lp188625
+Ref: c6188625
+Node: Solve maximum flow problem with Ford-Fulkerson algorithm188873
+Ref: pure-glpk solve-maximum-flow-problem-with-ford-fulkerson-algorithm189082
+Ref: c7189082
+Node: Goldfarb's maximum flow problem generator189378
+Ref: pure-glpk goldfarb-s-maximum-flow-problem-generator189544
+Ref: c8189544
+Node: Miscellaneous routines189802
+Ref: pure-glpk miscellaneous-routines189938
+Ref: c9189938
+Node: Library environment routines190278
+Ref: pure-glpk library-environment-routines190368
+Ref: ca190368
+Node: Determine library version190659
+Ref: pure-glpk determine-library-version190791
+Ref: cb190791
+Node: Enable/disable terminal output191012
+Ref: pure-glpk enable-disable-terminal-output191193
+Ref: cc191193
+Node: Enable/disable the terminal hook routine191590
+Ref: pure-glpk enable-disable-the-terminal-hook-routine191774
+Ref: cd191774
+Node: Get memory usage information192336
+Ref: pure-glpk get-memory-usage-information192512
+Ref: ce192512
+Node: Set memory usage limit193281
+Ref: pure-glpk set-memory-usage-limit193446
+Ref: cf193446
+Node: Free GLPK library environment193691
+Ref: pure-glpk free-glpk-library-environment193819
+Ref: d0193819
+Node: Index194032
 
 End Tag Table
 

@@ -10,7 +10,7 @@
 
   <section*|pure-octave><label|module-octave>
 
-  Version 0.8, February 27, 2017
+  Version 0.9, March 01, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -39,7 +39,7 @@
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.8.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.8.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.9.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.9.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -53,11 +53,17 @@
   <verbatim|prefix=/usr> sets the installation prefix. Please see the
   Makefile for details.
 
-  NOTE: This release of pure-octave has been tested with Octave 3.6.2, 3.8
-  and 4.0. Octave 4.2 does <em|not> work at present (segfaults in
-  octave_eval), so we recommend using Octave 4.0 until this bug is fixed.
-  Older versions might require some fiddling with the sources to get the
-  embedded Octave interface working.
+  This release of pure-octave has been tested and is known to work with
+  Octave 3.6.2, 3.8, 4.0 and 4.3 (the latter is the current development
+  version at the time of this writing). Older versions might require some
+  fiddling with the sources to get the embedded Octave interface working.
+
+  <with|font-series|bold|NOTE:> The embedded interpreter interface in
+  <with|font-series|bold|Octave 4.2> (patch levels 0+1 at least) is
+  <with|font-series|bold|broken> (segfault in liboctinterp's eval_string
+  function used by octave_eval), so we recommend to either stick to Octave
+  4.0 or update to the 4.3 development version, until this bug is fixed
+  upstream or Octave 4.4 arrives (whatever happens first).
 
   <subsection|Basic Usage><label|basic-usage>
 
@@ -717,6 +723,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
-  27, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
+  01, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
