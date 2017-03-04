@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)><label|installing-pure-and-llvm>
 
-  Version 0.65, February 25, 2017
+  Version 0.66, March 04, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -40,7 +40,7 @@
   <subsection|Quick Summary><label|quick-summary>
 
   Here is the executive summary for the impatient. This assumes that you're
-  using LLVM 3.4 and Pure 0.65, please substitute your actual version numbers
+  using LLVM 3.4 and Pure 0.66, please substitute your actual version numbers
   in the commands given below as needed.
 
   <with|font-series|bold|Note:> If you're reading this documentation online,
@@ -56,10 +56,10 @@
   you want to use Emacs Pure mode). These should all be available as binary
   packages on most systems.
 
-  You'll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.65
+  You'll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.66
   tarballs are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.65.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.65.tar.gz>
+  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
@@ -113,9 +113,9 @@
   <\verbatim>
     \;
 
-    $ tar xfvz pure-0.65.tar.gz
+    $ tar xfvz pure-0.66.tar.gz
 
-    $ cd pure-0.65
+    $ cd pure-0.66
 
     $ ./configure --enable-release
 
@@ -165,9 +165,9 @@
   <\verbatim>
     \;
 
-    $ tar xfvz pure-docs-0.65.tar.gz
+    $ tar xfvz pure-docs-0.66.tar.gz
 
-    $ cd pure-docs-0.65
+    $ cd pure-docs-0.66
 
     $ sudo make install
 
@@ -189,7 +189,7 @@
   <\verbatim>
     \;
 
-    $ cd pure-0.65
+    $ cd pure-0.66
 
     $ sudo make uninstall
 
@@ -433,7 +433,7 @@
   <\verbatim>
     \;
 
-    $ cd pure-0.65
+    $ cd pure-0.66
 
     $ ./configure --enable-release
 
@@ -597,15 +597,15 @@
 
   The <verbatim|install-docs> target requires a working Internet connection
   and the wget command. Instead, you can also download the
-  pure-docs-0.65.tar.gz tarball manually and then install the documentation
+  pure-docs-0.66.tar.gz tarball manually and then install the documentation
   from the downloaded tarball in the usual way:
 
   <\verbatim>
     \;
 
-    $ tar xfvz pure-docs-0.65.tar.gz
+    $ tar xfvz pure-docs-0.66.tar.gz
 
-    $ cd pure-docs-0.65
+    $ cd pure-docs-0.66
 
     $ sudo make install
 
@@ -640,7 +640,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.65
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.66
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2017 by
@@ -1707,6 +1707,6 @@
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
-  25, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
+  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

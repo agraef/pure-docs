@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.65, February 25, 2017</p>
+<p>Version 0.66, March 04, 2017</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -82,7 +82,7 @@ for other (UNIX-like) systems is provided at the same location.</p>
 <div class="section" id="quick-summary">
 <h2>Quick Summary<a class="headerlink" href="#quick-summary" title="Permalink to this headline">¶</a></h2>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
-using LLVM 3.4 and Pure 0.65, please substitute your actual version
+using LLVM 3.4 and Pure 0.66, please substitute your actual version
 numbers in the commands given below as needed.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -97,10 +97,10 @@ libgmp and libmpfr (including header files for development), wget (for
 downloading and installing the online documentation), GNU emacs (if you want
 to use Emacs Pure mode). These should all be available as binary packages on
 most systems.</p>
-<p>You&#8217;ll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.65
+<p>You&#8217;ll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.66
 tarballs are available here:</p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.65.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.65.tar.gz</a></div>
+<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
@@ -135,8 +135,8 @@ LLVM &#8220;DragonEgg&#8221; plugin for gcc, which provides LLVM bitcode compila
 languages other than C/C++. Please check the <a class="reference internal" href="#dragonegg">dragonegg</a> section below for
 details.</p>
 <p>Installing Pure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.65.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-0.65
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.66.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-0.66
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -159,8 +159,8 @@ the documentation files:</p>
 </div>
 <p>This needs the <tt class="docutils literal"><span class="pre">wget</span></tt> program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.65.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.65
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.66.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.66
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -169,7 +169,7 @@ pure-docs tarball manually in the usual way, e.g.:</p>
 </pre></div>
 </div>
 <p>Uninstalling:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.65
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.66
 <span class="gp">$</span> sudo make uninstall
 <span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.4
 <span class="gp">$</span> sudo make uninstall
@@ -329,7 +329,7 @@ Pure interpreter on some systems.</p>
 <p>These can be downloaded from <a class="reference external" href="http://purelang.bitbucket.org">http://purelang.bitbucket.org</a>. The latest source
 tarballs can always be found in the &#8220;Downloads&#8221; section.</p>
 <p><strong>Step 5.</strong> Configure, build and install Pure as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.65
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.66
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
@@ -435,11 +435,11 @@ make this work. By default, the interpreter assumes w3m (a text-based
 browser), you can change this by setting the <tt class="docutils literal"><span class="pre">BROWSER</span></tt> or the <tt class="docutils literal"><span class="pre">PURE_HELP</span></tt>
 variable accordingly.</p>
 <p>The <tt class="docutils literal"><span class="pre">install-docs</span></tt> target requires a working Internet connection and the
-wget command. Instead, you can also download the pure-docs-0.65.tar.gz
+wget command. Instead, you can also download the pure-docs-0.66.tar.gz
 tarball manually and then install the documentation from the downloaded
 tarball in the usual way:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.65.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.65
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.66.tar.gz
+<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.66
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -456,7 +456,7 @@ install the TeXmacs-formatted documentation as follows:</p>
 <p>Run Pure interactively as:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
 
-<span class="go"> __ \  |   |  __| _ \    Pure 0.65 (x86_64-unknown-linux-gnu)</span>
+<span class="go"> __ \  |   |  __| _ \    Pure 0.66 (x86_64-unknown-linux-gnu)</span>
 <span class="go"> |   | |   | |    __/    Copyright (c) 2008-2017 by Albert Graef</span>
 <span class="go"> .__/ \__,_|_|  \___|    (Type &#39;help&#39; for help, &#39;help copying&#39;</span>
 <span class="go">_|                       for license information.)</span>
@@ -1206,7 +1206,7 @@ recent 64 bit flavors of Windows (tested on Windows 7, 8 and 10).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2017, Albert Gräf et al.
-    Last updated on Feb 25, 2017.
+    Last updated on Mar 04, 2017.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
