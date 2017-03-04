@@ -9,7 +9,7 @@
 
   <section*|Pure Language and Library Documentation><label|pure-language-and-library-documentation>
 
-  Last updated: February 24, 2017 (v0.65)
+  Last updated: March 04, 2017 (v0.66)
 
   This manual collects all of Pure's online documentation: <hlink|<em|The
   Pure Manual>|pure.tm> which covers the Pure language and the operation of

@@ -10,7 +10,7 @@
 
   <section*|pure-audio><label|module-audio><label|module-fftw><label|module-sndfile><label|module-samplerate><label|module-realtime><label|module-audio>
 
-  Version 0.6, February 24, 2017
+  Version 0.6, March 04, 2017
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -102,6 +102,6 @@
   <hlink|previous|pd-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Feb
-  24, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
+  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
