@@ -11,7 +11,7 @@
   <section*|Pure-GLPK - GLPK interface for the Pure programming
   language><label|pure-glpk-glpk-interface-for-the-pure-programming-language>
 
-  Version 0.5, March 04, 2017
+  Version 0.5, January 13, 2018
 
   Jiri Spitz \<less\><hlink|jiri.spitz@bluetone.cz|mailto:jiri.spitz@bluetone.cz>\<gtr\>
 
@@ -8543,6 +8543,6 @@
   <hlink|previous|gnumeric-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
-  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
+  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

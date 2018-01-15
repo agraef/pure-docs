@@ -19,11 +19,11 @@
 
 @copying
 @quotation
-Pure 0.66, March 04, 2017
+Pure 0.66, January 15, 2018
 
 Albert Gräf (Editor)
 
-Copyright @copyright{} 2009-2017, Albert Gräf et al
+Copyright @copyright{} 2009-2018, Albert Gräf et al
 @end quotation
 
 @end copying
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2017, Albert Gräf et al
 @anchor{pure-faust doc}@anchor{2}
 @geindex faust (module)
 
-Version 0.12, March 04, 2017
+Version 0.13, January 14, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -62,13 +62,13 @@ Grame@footnote{http://www.grame.fr/} and distributed as GPL'ed software.
 As of Pure 0.45, there's also built-in support for Faust interoperability
 in the Pure core, including the ability to inline Faust code in Pure
 programs; see @emph{Interfacing to Faust} in the Pure manual.  The built-in
-Faust interface requires Faust2@footnote{https://bitbucket.org/purelang/pure-lang/wiki/Faust2} which is still under development and
-available as a separate package in the Faust git repository.  Both
-interfaces provide pretty much the same basic capabilities and should work
-equally well for most applications. In fact, as of version 0.5 pure-faust
-comes with a compatibility module which provides the pure-faust API on top
-of the built-in Faust interface, see the description of the @pxref{1,,faust2}
-module below for details.
+Faust interface requires a recent Faust version (2.0 or later, denoted
+using the "Faust2" moniker in the following). Both interfaces provide
+pretty much the same basic capabilities and should work equally well for
+most applications. In fact, as of version 0.5 pure-faust comes with a
+compatibility module which provides the pure-faust API on top of the
+built-in Faust interface, see the description of the @pxref{1,,faust2} module
+below for details.
 @end quotation
 @end cartouche
 
@@ -111,9 +111,9 @@ with this program.  If not, see <@indicateurl{http://www.gnu.org/licenses/}>.
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz}.
+@indicateurl{https://github.com/agraef/pure-lang/releases/download/pure-faust-0.13/pure-faust-0.13.tar.gz}
 
-Binary packages can be found at @indicateurl{http://purelang.bitbucket.org/}. To install
+Binary packages can be found at @indicateurl{https://agraef.github.io/pure-lang/}. To install
 from source, run the usual @code{make && sudo make install}. This requires Pure,
 of course (the present version will work with Pure 0.52 and later). The
 Makefile tries to guess the installation prefix under which Pure is
@@ -160,8 +160,18 @@ data will be represented as doubles on the Pure side.)
 Also note that the above compile command is for a Linux or BSD system using
 @code{gcc}. Add @code{-fPIC} for 64 bit compilation. For Windows compilation, the
 output filename should be @code{mydsp.dll} instead of @code{mydsp.so}; on Mac OSX,
-it should be @code{mydsp.dylib}. There's a Makefile in the @code{examples} folder
-which automates this process.
+it should be @code{mydsp.dylib}. There's a Makefile and a shell script in the
+@code{examples} folder which both automate this process; the latter will also be
+included in recent Faust releases. Using the shell script, you can compile a
+Faust dsp simply as follows:
+
+@example
+$ faust2pure mydsp.dsp
+@end example
+
+@noindent
+
+This will also print the name of the compiled module on stdout.
 
 Once the module has been compiled, you can fire up the Pure interpreter and
 load the dsp as follows:
@@ -435,16 +445,16 @@ using faust2;
 @noindent
 
 To instantiate a Faust dsp using the @pxref{1,,faust2} interface, you'll have to
-compile the Faust program to LLVM bitcode format. The examples directory
-includes a @code{pure.c} Faust architecture file to help with this. Please see
+compile the Faust program to LLVM bitcode format. The easiest way to do this
+is to use the @code{faust2pure} script with the @code{-bitcode} option. Please see
 the @emph{Interfacing to Faust} section in the Pure manual for details.
 
 Note that only one of the @pxref{0,,faust} and @pxref{1,,faust2} modules may be
 imported into a program; trying to use both modules in the same program will
-@emph{not} work. Also note that the @pxref{1,,faust2} module requires Faust2@footnote{https://bitbucket.org/purelang/pure-lang/wiki/Faust2} and a
+@emph{not} work. Also note that the @pxref{1,,faust2} module requires Faust2 and a
 fairly recent Pure version to work, whereas the @pxref{0,,faust} module works with
-both Faust2 and the mainline Faust version and doesn't rely on the Faust
-bitcode loader (only the @code{pure.cpp} architecture is needed).
+both current Faust (Faust2) and older Faust versions and doesn't rely on the
+Faust bitcode loader (only the @code{pure.cpp} architecture is needed).
 
 @node Acknowledgements,Module Index,Faust2 Compatibility,Top
 @anchor{pure-faust acknowledgements}@anchor{9}

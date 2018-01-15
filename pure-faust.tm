@@ -10,7 +10,7 @@
 
   <section*|pure-faust><label|module-faust>
 
-  Version 0.12, March 04, 2017
+  Version 0.13, January 14, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -25,14 +25,14 @@
   support for Faust interoperability in the Pure core, including the ability
   to inline Faust code in Pure programs; see <hlink|<em|Interfacing to
   Faust>|pure.tm#interfacing-to-faust> in the Pure manual. The built-in Faust
-  interface requires <hlink|Faust2|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
-  which is still under development and available as a separate package in the
-  Faust git repository. Both interfaces provide pretty much the same basic
-  capabilities and should work equally well for most applications. In fact,
-  as of version 0.5 pure-faust comes with a compatibility module which
-  provides the pure-faust API on top of the built-in Faust interface, see the
-  description of the <hlink|<with|font-family|tt|faust2>|#module-faust2>
-  module below for details.
+  interface requires a recent Faust version (2.0 or later, denoted using the
+  \PFaust2\Q moniker in the following). Both interfaces provide pretty much
+  the same basic capabilities and should work equally well for most
+  applications. In fact, as of version 0.5 pure-faust comes with a
+  compatibility module which provides the pure-faust API on top of the
+  built-in Faust interface, see the description of the
+  <hlink|<with|font-family|tt|faust2>|#module-faust2> module below for
+  details.
 
   <subsection|Copying><label|copying>
 
@@ -55,9 +55,9 @@
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz>.
+  Get the latest source from <hlink|https://github.com/agraef/pure-lang/releases/download/pure-faust-0.13/pure-faust-0.13.tar.gz|https://github.com/agraef/pure-lang/releases/download/pure-faust-0.13/pure-faust-0.13.tar.gz>
 
-  Binary packages can be found at <hlink|http://purelang.bitbucket.org/|http://purelang.bitbucket.org/>.
+  Binary packages can be found at <hlink|https://agraef.github.io/pure-lang/|https://agraef.github.io/pure-lang/>.
   To install from source, run the usual <verbatim|make> <verbatim|&&>
   <verbatim|sudo> <verbatim|make> <verbatim|install>. This requires Pure, of
   course (the present version will work with Pure 0.52 and later). The
@@ -110,8 +110,20 @@
   <verbatim|gcc>. Add <verbatim|-fPIC> for 64 bit compilation. For Windows
   compilation, the output filename should be <verbatim|mydsp.dll> instead of
   <verbatim|mydsp.so>; on Mac OSX, it should be <verbatim|mydsp.dylib>.
-  There's a Makefile in the <verbatim|examples> folder which automates this
-  process.
+  There's a Makefile and a shell script in the <verbatim|examples> folder
+  which both automate this process; the latter will also be included in
+  recent Faust releases. Using the shell script, you can compile a Faust dsp
+  simply as follows:
+
+  <\verbatim>
+    \;
+
+    $ faust2pure mydsp.dsp
+
+    \;
+  </verbatim>
+
+  This will also print the name of the compiled module on stdout.
 
   Once the module has been compiled, you can fire up the Pure interpreter and
   load the dsp as follows:
@@ -447,8 +459,8 @@
 
   To instantiate a Faust dsp using the <hlink|<with|font-family|tt|faust2>|#module-faust2>
   interface, you'll have to compile the Faust program to LLVM bitcode format.
-  The examples directory includes a <verbatim|pure.c> Faust architecture file
-  to help with this. Please see the <hlink|<em|Interfacing to
+  The easiest way to do this is to use the <verbatim|faust2pure> script with
+  the <verbatim|-bitcode> option. Please see the <hlink|<em|Interfacing to
   Faust>|pure.tm#interfacing-to-faust> section in the Pure manual for
   details.
 
@@ -456,11 +468,11 @@
   and <hlink|<with|font-family|tt|faust2>|#module-faust2> modules may be
   imported into a program; trying to use both modules in the same program
   will <em|not> work. Also note that the <hlink|<with|font-family|tt|faust2>|#module-faust2>
-  module requires <hlink|Faust2|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
-  and a fairly recent Pure version to work, whereas the
-  <hlink|<with|font-family|tt|faust>|#module-faust> module works with both
-  Faust2 and the mainline Faust version and doesn't rely on the Faust bitcode
-  loader (only the <verbatim|pure.cpp> architecture is needed).
+  module requires Faust2 and a fairly recent Pure version to work, whereas
+  the <hlink|<with|font-family|tt|faust>|#module-faust> module works with
+  both current Faust (Faust2) and older Faust versions and doesn't rely on
+  the Faust bitcode loader (only the <verbatim|pure.cpp> architecture is
+  needed).
 
   <subsection|Acknowledgements><label|acknowledgements>
 
@@ -497,6 +509,6 @@
   <hlink|previous|pure-audio.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
-  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
+  14, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

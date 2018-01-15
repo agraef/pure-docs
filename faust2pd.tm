@@ -11,7 +11,7 @@
   <section*|faust2pd: Pd Patch Generator for
   Faust><label|faust2pd-pd-patch-generator-for-faust>
 
-  Version 2.15, March 04, 2017
+  Version 2.16, January 15, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -81,7 +81,7 @@
   shouldn't be any major roadblocks preventing it to work on other systems
   supported by Pure.
 
-  The faust2pd script is written in the <hlink|Pure|http://purelang.bitbucket.org>
+  The faust2pd script is written in the <hlink|Pure|https://agraef.github.io/pure-lang/>
   programming language and requires Pure's XML module, so you need to install
   these to make it work. Install the latest pure*.tar.gz and pure-xml*.tar.gz
   packages and you should be set. (Pure 0.47 or later is required.) Also make
@@ -91,7 +91,7 @@
 
   To run the seqdemo example, you'll also need the Pd Pure external
   (pd-pure*.tar.gz), also available at the
-  <hlink|Pure|http://purelang.bitbucket.org> website.
+  <hlink|Pure|https://agraef.github.io/pure-lang/> website.
 
   To compile the examples, you'll need GNU C++ and make,
   <hlink|Pd|http://puredata.info> and, of course,
@@ -108,7 +108,7 @@
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.15.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.15.tar.gz>.
+  Get the latest source from <hlink|https://github.com/agraef/pure-lang/releases/download/faust2pd-2.16/faust2pd-2.16.tar.gz|https://github.com/agraef/pure-lang/releases/download/faust2pd-2.16/faust2pd-2.16.tar.gz>.
 
   Run <verbatim|make> and <verbatim|make> <verbatim|install> to compile and
   install the faust2pd program on your system. You can set the installation
@@ -352,7 +352,7 @@
     multitimbral synth, built with Faust units, in an automatic fashion using
     a pattern sequencer programmed in Pure. This example requires the Pure
     interpreter as well as the pd-pure plugin available from
-    <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>.
+    <hlink|https://agraef.github.io/pure-lang/|https://agraef.github.io/pure-lang/>.
   </itemize>
 
   <subsection|Wrapping DSPs with faust2pd><label|wrapping-dsps-with-faust2pd>
@@ -809,6 +809,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
-  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
+  15, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

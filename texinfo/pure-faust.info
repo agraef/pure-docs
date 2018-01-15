@@ -1,11 +1,11 @@
-This is pure-faust.info, produced by makeinfo version 6.3 from
+This is pure-faust.info, produced by makeinfo version 6.5 from
 pure-faust.texi.
 
-     Pure 0.66, March 04, 2017
+     Pure 0.66, January 15, 2018
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2017, Albert Gräf et al
+     Copyright © 2009-2018, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-faust.info,  Node: Top,  Next: Copying,  Up: (dir)
 pure-faust
 **********
 
-     Pure 0.66, March 04, 2017
+     Pure 0.66, January 15, 2018
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2017, Albert Gräf et al
+     Copyright © 2009-2018, Albert Gräf et al
 
-  Version 0.12, March 04, 2017
+  Version 0.13, January 14, 2018
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -39,24 +39,24 @@ synthesis developed at Grame(3) and distributed as GPL’ed software.
      Note: As of Pure 0.45, there’s also built-in support for Faust
      interoperability in the Pure core, including the ability to inline
      Faust code in Pure programs; see _Interfacing to Faust_ in the Pure
-     manual.  The built-in Faust interface requires Faust2(4) which is
-     still under development and available as a separate package in the
-     Faust git repository.  Both interfaces provide pretty much the same
-     basic capabilities and should work equally well for most
-     applications.  In fact, as of version 0.5 pure-faust comes with a
-     compatibility module which provides the pure-faust API on top of
-     the built-in Faust interface, see the description of the *note
-     faust2: 1. module below for details.
+     manual.  The built-in Faust interface requires a recent Faust
+     version (2.0 or later, denoted using the "Faust2" moniker in the
+     following).  Both interfaces provide pretty much the same basic
+     capabilities and should work equally well for most applications.
+     In fact, as of version 0.5 pure-faust comes with a compatibility
+     module which provides the pure-faust API on top of the built-in
+     Faust interface, see the description of the *note faust2: 1. module
+     below for details.
 
 * Menu:
 
-* Copying:: 
-* Installation:: 
-* Usage:: 
-* Faust2 Compatibility:: 
-* Acknowledgements:: 
-* Module Index:: 
-* Index:: 
+* Copying::
+* Installation::
+* Usage::
+* Faust2 Compatibility::
+* Acknowledgements::
+* Module Index::
+* Index::
 
    ---------- Footnotes ----------
 
@@ -65,8 +65,6 @@ synthesis developed at Grame(3) and distributed as GPL’ed software.
    (2) http://faust.grame.fr/
 
    (3) http://www.grame.fr/
-
-   (4) https://bitbucket.org/purelang/pure-lang/wiki/Faust2
 
 
 File: pure-faust.info,  Node: Copying,  Next: Installation,  Prev: Top,  Up: Top
@@ -99,10 +97,10 @@ File: pure-faust.info,  Node: Installation,  Next: Usage,  Prev: Copying,  Up: T
 **************
 
 Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz’.
+‘https://github.com/agraef/pure-lang/releases/download/pure-faust-0.13/pure-faust-0.13.tar.gz’
 
-  Binary packages can be found at ‘http://purelang.bitbucket.org/’.  To
-install from source, run the usual ‘make && sudo make install’.  This
+  Binary packages can be found at ‘https://agraef.github.io/pure-lang/’.
+To install from source, run the usual ‘make && sudo make install’.  This
 requires Pure, of course (the present version will work with Pure 0.52
 and later).  The Makefile tries to guess the installation prefix under
 which Pure is installed.  If it guesses wrong, you can tell it the right
@@ -150,7 +148,14 @@ case, all data will be represented as doubles on the Pure side.)
 using ‘gcc’.  Add ‘-fPIC’ for 64 bit compilation.  For Windows
 compilation, the output filename should be ‘mydsp.dll’ instead of
 ‘mydsp.so’; on Mac OSX, it should be ‘mydsp.dylib’.  There’s a Makefile
-in the ‘examples’ folder which automates this process.
+and a shell script in the ‘examples’ folder which both automate this
+process; the latter will also be included in recent Faust releases.
+Using the shell script, you can compile a Faust dsp simply as follows:
+
+     $ faust2pure mydsp.dsp
+
+
+  This will also print the name of the compiled module on stdout.
 
   Once the module has been compiled, you can fire up the Pure
 interpreter and load the dsp as follows:
@@ -371,21 +376,17 @@ above.  This module is invoked with the following import clause:
 
   To instantiate a Faust dsp using the *note faust2: 1. interface,
 you’ll have to compile the Faust program to LLVM bitcode format.  The
-examples directory includes a ‘pure.c’ Faust architecture file to help
-with this.  Please see the _Interfacing to Faust_ section in the Pure
-manual for details.
+easiest way to do this is to use the ‘faust2pure’ script with the
+‘-bitcode’ option.  Please see the _Interfacing to Faust_ section in the
+Pure manual for details.
 
   Note that only one of the *note faust: 0. and *note faust2: 1. modules
 may be imported into a program; trying to use both modules in the same
 program will _not_ work.  Also note that the *note faust2: 1. module
-requires Faust2(1) and a fairly recent Pure version to work, whereas the
-*note faust: 0. module works with both Faust2 and the mainline Faust
-version and doesn’t rely on the Faust bitcode loader (only the
+requires Faust2 and a fairly recent Pure version to work, whereas the
+*note faust: 0. module works with both current Faust (Faust2) and older
+Faust versions and doesn’t rely on the Faust bitcode loader (only the
 ‘pure.cpp’ architecture is needed).
-
-   ---------- Footnotes ----------
-
-   (1) https://bitbucket.org/purelang/pure-lang/wiki/Faust2
 
 
 File: pure-faust.info,  Node: Acknowledgements,  Next: Module Index,  Prev: Faust2 Compatibility,  Up: Top
@@ -403,8 +404,8 @@ Module Index
 
 * Menu:
 
-* faust: 0. 
-* faust2: 1. 
+* faust: 0.
+* faust2: 1.
 
 
 File: pure-faust.info,  Node: Index,  Prev: Module Index,  Up: Top
@@ -421,39 +422,37 @@ Index
 
 
 Tag Table:
-Node: Top400
-Ref: pure-faust doc597
-Ref: 2597
-Ref: Top-Footnote-11862
-Ref: Top-Footnote-21901
-Ref: Top-Footnote-31932
-Ref: Top-Footnote-41961
-Node: Copying2022
-Ref: pure-faust copying2106
-Ref: 32106
-Ref: pure-faust pure-faust2106
-Ref: 42106
-Ref: pure-faust module-faust2106
-Ref: 02106
-Ref: pure-faust pure2106
-Ref: 52106
-Node: Installation2966
-Ref: pure-faust installation3052
-Ref: 63052
-Node: Usage4722
-Ref: pure-faust usage4821
-Ref: 74821
-Node: Faust2 Compatibility13928
-Ref: pure-faust module-faust214031
-Ref: 114031
-Ref: pure-faust faust2-compatibility14031
-Ref: 814031
-Ref: Faust2 Compatibility-Footnote-115183
-Node: Acknowledgements15244
-Ref: pure-faust acknowledgements15354
-Ref: 915354
-Node: Module Index15463
-Node: Index15622
+Node: Top402
+Ref: pure-faust doc601
+Ref: 2601
+Ref: Top-Footnote-11844
+Ref: Top-Footnote-21883
+Ref: Top-Footnote-31914
+Node: Copying1943
+Ref: pure-faust copying2027
+Ref: 32027
+Ref: pure-faust pure-faust2027
+Ref: 42027
+Ref: pure-faust module-faust2027
+Ref: 02027
+Ref: pure-faust pure2027
+Ref: 52027
+Node: Installation2887
+Ref: pure-faust installation2973
+Ref: 62973
+Node: Usage4665
+Ref: pure-faust usage4764
+Ref: 74764
+Node: Faust2 Compatibility14121
+Ref: pure-faust module-faust214224
+Ref: 114224
+Ref: pure-faust faust2-compatibility14224
+Ref: 814224
+Node: Acknowledgements15354
+Ref: pure-faust acknowledgements15464
+Ref: 915464
+Node: Module Index15573
+Node: Index15730
 
 End Tag Table
 

@@ -57,7 +57,7 @@
             
   <div class="section" id="module-faust">
 <span id="pure-faust"></span><h1>pure-faust<a class="headerlink" href="#module-faust" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.12, March 04, 2017</p>
+<p>Version 0.13, January 14, 2018</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>This module lets you load and run Faust-generated signal processing modules in
 <a class="reference external" href="http://purelang.bitbucket.org/">Pure</a>. <a class="reference external" href="http://faust.grame.fr/">Faust</a> (an acronym for Functional AUdio STreams) is a functional
@@ -68,13 +68,13 @@ programming language for real-time sound processing and synthesis developed at
 <p class="last">As of Pure 0.45, there&#8217;s also built-in support for Faust interoperability
 in the Pure core, including the ability to inline Faust code in Pure
 programs; see <a class="reference internal" href="pure.html#interfacing-to-faust"><em>Interfacing to Faust</em></a> in the Pure manual.  The built-in
-Faust interface requires <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a> which is still under development and
-available as a separate package in the Faust git repository.  Both
-interfaces provide pretty much the same basic capabilities and should work
-equally well for most applications. In fact, as of version 0.5 pure-faust
-comes with a compatibility module which provides the pure-faust API on top
-of the built-in Faust interface, see the description of the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a>
-module below for details.</p>
+Faust interface requires a recent Faust version (2.0 or later, denoted
+using the &#8220;Faust2&#8221; moniker in the following). Both interfaces provide
+pretty much the same basic capabilities and should work equally well for
+most applications. In fact, as of version 0.5 pure-faust comes with a
+compatibility module which provides the pure-faust API on top of the
+built-in Faust interface, see the description of the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> module
+below for details.</p>
 </div>
 <div class="section" id="copying">
 <h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
@@ -95,8 +95,8 @@ with this program.  If not, see &lt;<a class="reference external" href="http://w
 <div class="section" id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-faust-0.12.tar.gz</a>.</p>
-<p>Binary packages can be found at <a class="reference external" href="http://purelang.bitbucket.org/">http://purelang.bitbucket.org/</a>. To install
+<a class="reference external" href="https://github.com/agraef/pure-lang/releases/download/pure-faust-0.13/pure-faust-0.13.tar.gz">https://github.com/agraef/pure-lang/releases/download/pure-faust-0.13/pure-faust-0.13.tar.gz</a></p>
+<p>Binary packages can be found at <a class="reference external" href="https://agraef.github.io/pure-lang/">https://agraef.github.io/pure-lang/</a>. To install
 from source, run the usual <tt class="docutils literal"><span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">sudo</span> <span class="pre">make</span> <span class="pre">install</span></tt>. This requires Pure,
 of course (the present version will work with Pure 0.52 and later). The
 Makefile tries to guess the installation prefix under which Pure is
@@ -133,8 +133,14 @@ data will be represented as doubles on the Pure side.)</p>
 <p>Also note that the above compile command is for a Linux or BSD system using
 <tt class="docutils literal"><span class="pre">gcc</span></tt>. Add <tt class="docutils literal"><span class="pre">-fPIC</span></tt> for 64 bit compilation. For Windows compilation, the
 output filename should be <tt class="docutils literal"><span class="pre">mydsp.dll</span></tt> instead of <tt class="docutils literal"><span class="pre">mydsp.so</span></tt>; on Mac OSX,
-it should be <tt class="docutils literal"><span class="pre">mydsp.dylib</span></tt>. There&#8217;s a Makefile in the <tt class="docutils literal"><span class="pre">examples</span></tt> folder
-which automates this process.</p>
+it should be <tt class="docutils literal"><span class="pre">mydsp.dylib</span></tt>. There&#8217;s a Makefile and a shell script in the
+<tt class="docutils literal"><span class="pre">examples</span></tt> folder which both automate this process; the latter will also be
+included in recent Faust releases. Using the shell script, you can compile a
+Faust dsp simply as follows:</p>
+<div class="highlight-pure"><div class="highlight"><pre>$ faust2pure mydsp.dsp
+</pre></div>
+</div>
+<p>This will also print the name of the compiled module on stdout.</p>
 <p>Once the module has been compiled, you can fire up the Pure interpreter and
 load the dsp as follows:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> faust<span class="p">;</span>
@@ -322,15 +328,15 @@ invoked with the following import clause:</p>
 </pre></div>
 </div>
 <p>To instantiate a Faust dsp using the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> interface, you&#8217;ll have to
-compile the Faust program to LLVM bitcode format. The examples directory
-includes a <tt class="docutils literal"><span class="pre">pure.c</span></tt> Faust architecture file to help with this. Please see
+compile the Faust program to LLVM bitcode format. The easiest way to do this
+is to use the <tt class="docutils literal"><span class="pre">faust2pure</span></tt> script with the <tt class="docutils literal"><span class="pre">-bitcode</span></tt> option. Please see
 the <a class="reference internal" href="pure.html#interfacing-to-faust"><em>Interfacing to Faust</em></a> section in the Pure manual for details.</p>
 <p>Note that only one of the <a class="reference internal" href="#module-faust"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust</span></tt></a> and <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> modules may be
 imported into a program; trying to use both modules in the same program will
-<em>not</em> work. Also note that the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> module requires <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a> and a
+<em>not</em> work. Also note that the <a class="reference internal" href="#module-faust2"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust2</span></tt></a> module requires Faust2 and a
 fairly recent Pure version to work, whereas the <a class="reference internal" href="#module-faust"><tt class="xref pure pure-mod docutils literal"><span class="pre">faust</span></tt></a> module works with
-both Faust2 and the mainline Faust version and doesn&#8217;t rely on the Faust
-bitcode loader (only the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture is needed).</p>
+both current Faust (Faust2) and older Faust versions and doesn&#8217;t rely on the
+Faust bitcode loader (only the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture is needed).</p>
 </div>
 <div class="section" id="acknowledgements">
 <h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
@@ -405,8 +411,8 @@ bitcode loader (only the <tt class="docutils literal"><span class="pre">pure.cpp
       </ul>
     </div>
     <div class="footer">
-    &copy; Copyright 2009-2017, Albert Gräf et al.
-    Last updated on Mar 04, 2017.
+    &copy; Copyright 2009-2018, Albert Gräf et al.
+    Last updated on Jan 14, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

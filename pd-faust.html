@@ -57,31 +57,29 @@
             
   <div class="section" id="pd-faust">
 <h1>pd-faust<a class="headerlink" href="#pd-faust" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.14, March 04, 2017</p>
+<p>Version 0.15, January 14, 2018</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>pd-faust is a dynamic environment for running Faust dsps in Pd. It is based on
 the author&#8217;s <a class="reference internal" href="faust2pd.html"><em>faust2pd</em></a> script, but offers many small
 improvements and some major additional features:</p>
 <ul class="simple">
-<li>Faust dsps are implemented using two Pd objects, <tt class="docutils literal"><span class="pre">fsynth~</span></tt> and <tt class="docutils literal"><span class="pre">fdsp~</span></tt>,
-which provide the necessary infrastructure to run Faust synthesizer and
-effect units in Pd, respectively. As of pd-faust 0.10, there&#8217;s also a
-<tt class="docutils literal"><span class="pre">faust~</span></tt> convenience object which unifies <tt class="docutils literal"><span class="pre">fsynth~</span></tt> and <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and
-provides reasonable defaults for most creation arguments.</li>
+<li>Faust dsps are implemented by the <tt class="docutils literal"><span class="pre">faust~</span></tt> external which provides the
+necessary infrastructure to run Faust instruments and effect units in Pd.</li>
 <li>In contrast to faust2pd, the Pd GUI of Faust units is generated dynamically,
 inside Pd. While pd-faust supports the same global GUI layout options as
 faust2pd, it also provides various options to adjust the layout of
 individual control items.</li>
 <li>pd-faust recognizes the <tt class="docutils literal"><span class="pre">midi</span></tt> and <tt class="docutils literal"><span class="pre">osc</span></tt> controller attributes in the
 Faust source and automatically provides corresponding MIDI and OSC
-controller mappings. OSC-based controller automation is also available.</li>
+controller mappings. OSC-based controller automation is also available
+through a separate helper abstraction.</li>
 <li>Perhaps most importantly, Faust dsps can be reloaded at any time (even while
 the Pd patch is running), in which case the GUI and the controller mappings
 are regenerated automatically and on the fly as needed.</li>
 </ul>
 <div class="section" id="copying">
 <h2>Copying<a class="headerlink" href="#copying" title="Permalink to this headline">¶</a></h2>
-<p>Copyright (c) 2011-2017 by Albert Graef</p>
+<p>Copyright (c) 2011-2018 by Albert Graef</p>
 <p>pd-faust is distributed under the GNU LGPL v3+. Please see the included
 COPYING and COPYING.LESSER files for details.</p>
 <p>This package also includes the faust-stk instruments which are distributed
@@ -135,31 +133,34 @@ two popular alternative Pd distributions available on the web, as well as
 <a class="reference external" href="https://git.purrdata.net/jwilkes/purr-data">purr-data</a> (the new cross-platform version of <a class="reference external" href="http://l2ork.music.vt.edu/main/?page_id=56">pd-l2ork</a>).</p>
 <p>Some further build options are described in the Makefile. In particular, it is
 possible to compile the Faust dsps to LLVM bitcode which can be loaded
-directly by the Pure interpreter, but for that you&#8217;ll need a special Faust
-version (see the <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a> website for how to get this version up and running)
-and an LLVM-capable C/C++ compiler such as clang or gcc with the dragonegg
-plugin (please check the Makefile and the <a class="reference external" href="http://llvm.org/">LLVM</a> website for details).</p>
-<p>If you have the required tools then you can build the bitcode modules by
-running <tt class="docutils literal"><span class="pre">make</span> <span class="pre">bitcode</span></tt> after <tt class="docutils literal"><span class="pre">make</span></tt>. If you run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt>
-afterwards, the bitcode modules will be installed along with the &#8220;normal&#8221;
-Faust plugins. In addition, a second object library called <tt class="docutils literal"><span class="pre">pdfaust2</span></tt> will
-be built and installed, which can be used as a drop-in replacement for
-<tt class="docutils literal"><span class="pre">pdfaust</span></tt> and lets you run the bitcode modules. (Note that in the present
-implementation it is not possible to load both <tt class="docutils literal"><span class="pre">pdfaust</span></tt> and <tt class="docutils literal"><span class="pre">pdfaust2</span></tt> in
-Pd, you&#8217;ll have to pick one or the other.)</p>
+directly by the Pure interpreter. This requires a recent Faust version (2.0
+and later) and an LLVM-capable C/C++ compiler such as <a class="reference external" href="http://clang.llvm.org/">clang</a> (please check the
+<a class="reference internal" href="#compiling-faust-dsps">Compiling Faust DSPs</a> section below for details). If you have the required
+tools then you can build the bitcode modules by running <tt class="docutils literal"><span class="pre">make</span> <span class="pre">bitcode</span></tt> after
+<tt class="docutils literal"><span class="pre">make</span></tt>. If you run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> afterwards, the bitcode modules will be
+installed along with the &#8220;normal&#8221; Faust plugins. In addition, a second object
+library called <tt class="docutils literal"><span class="pre">pdfaust2</span></tt> will be built and installed, which can be used as
+a drop-in replacement for <tt class="docutils literal"><span class="pre">pdfaust</span></tt> and lets you run the bitcode
+modules. (Note that in the present implementation it is not possible to load
+both <tt class="docutils literal"><span class="pre">pdfaust</span></tt> and <tt class="docutils literal"><span class="pre">pdfaust2</span></tt> in Pd, you&#8217;ll have to pick one or the
+other.)</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>Working with pd-faust basically involves adding a bunch of <tt class="docutils literal"><span class="pre">faust~</span></tt> (or the
-underlying <tt class="docutils literal"><span class="pre">fsynth~</span></tt> and <tt class="docutils literal"><span class="pre">fdsp~</span></tt>) objects to a Pd patch along with the
-corresponding GUI subpatches, and wiring up the Faust units in some variation
-of a synth-effects chain which typically takes input from Pd&#8217;s MIDI interface
-(<tt class="docutils literal"><span class="pre">notein</span></tt>, <tt class="docutils literal"><span class="pre">ctlin</span></tt>, etc.) and outputs the signals produced by the Faust
-units to Pd&#8217;s audio interface (<tt class="docutils literal"><span class="pre">dac~</span></tt>).</p>
-<p>For convenience, pd-faust also includes the <tt class="docutils literal"><span class="pre">midiseq</span></tt> and <tt class="docutils literal"><span class="pre">oscseq</span></tt> objects
-and a corresponding <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction which can be used to handle MIDI
-input and playback as well as OSC controller automation. This useful helper
-abstraction is described in more detail under <a class="reference internal" href="#operating-the-patches">Operating the Patches</a> below.</p>
+<p>Working with pd-faust basically involves adding a bunch of <tt class="docutils literal"><span class="pre">faust~</span></tt> objects
+to a Pd patch along with the corresponding GUI subpatches, and wiring up the
+Faust units in some variation of a synth-effects chain which typically takes
+input from Pd&#8217;s MIDI interface (<tt class="docutils literal"><span class="pre">notein</span></tt>, <tt class="docutils literal"><span class="pre">ctlin</span></tt>, etc.) and outputs the
+signals produced by the Faust units to Pd&#8217;s audio interface (<tt class="docutils literal"><span class="pre">dac~</span></tt>).</p>
+<p>For convenience, pd-faust also includes a few helper objects and abstractions
+to handle MIDI input and playback as well as OSC controller automation. For
+simple uses, the included <tt class="docutils literal"><span class="pre">midi-input</span></tt> and <tt class="docutils literal"><span class="pre">midi-output</span></tt> abstractions
+provide a way to encode and decode MIDI messages in the author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/pd-smmf">SMMF</a> format
+used by <tt class="docutils literal"><span class="pre">faust~</span></tt> objects. For applications requiring more elaborate MIDI and
+OSC support, the <tt class="docutils literal"><span class="pre">midiseq</span></tt> and <tt class="docutils literal"><span class="pre">oscseq</span></tt> objects and a corresponding
+<tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction can be used to handle MIDI input and playback as well
+as OSC controller automation. This is described in more detail under <a class="reference internal" href="#midi-and-osc-sequencing">MIDI and
+OSC Sequencing</a> below.</p>
 <p>pd-faust interprets MIDI, OSC and Faust dsp filenames relative to the hosting
 Pd patch by default. It will also search the <tt class="docutils literal"><span class="pre">midi</span></tt>, <tt class="docutils literal"><span class="pre">osc</span></tt> and <tt class="docutils literal"><span class="pre">dsp</span></tt>
 subfolders, if they exist, for the corresponding types of files. Failing that,
@@ -168,142 +169,106 @@ it finally searches the directories on the Pd library path (including their
 absolute pathnames (or pathnames relative to the <tt class="docutils literal"><span class="pre">.</span></tt> or <tt class="docutils literal"><span class="pre">..</span></tt> directory)
 instead.</p>
 <p>Like pd-pure, pd-faust remaps Pd&#8217;s <tt class="docutils literal"><span class="pre">menu-open</span></tt> command so that it lets you
-edit the Faust source of a <tt class="docutils literal"><span class="pre">faust~</span></tt>, <tt class="docutils literal"><span class="pre">fdsp~</span></tt> or <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object by
-right-clicking on the object and choosing <tt class="docutils literal"><span class="pre">Open</span></tt> from the context menu.</p>
-<div class="section" id="the-fdsp-and-fsynth-objects">
-<h3>The fdsp~ and fsynth~ Objects<a class="headerlink" href="#the-fdsp-and-fsynth-objects" title="Permalink to this headline">¶</a></h3>
-<p>The <tt class="docutils literal"><span class="pre">fdsp~</span></tt> object is invoked as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>fdsp~ dspname instname channel
+edit the Faust source of a <tt class="docutils literal"><span class="pre">faust~</span></tt> object by right-clicking on the object
+and choosing <tt class="docutils literal"><span class="pre">Open</span></tt> from the context menu. This requires that the <tt class="docutils literal"><span class="pre">.dsp</span></tt>
+source file of the Faust module is available in the same directory as the
+binary module.</p>
+<div class="section" id="compiling-faust-dsps">
+<h3>Compiling Faust DSPs<a class="headerlink" href="#compiling-faust-dsps" title="Permalink to this headline">¶</a></h3>
+<p>To run a Faust module (<tt class="docutils literal"><span class="pre">.dsp</span></tt> file) inside Pd using the <tt class="docutils literal"><span class="pre">faust~</span></tt> object,
+the Faust dsp must be compiled to a form which can be loaded in <em>Pure</em> (not
+Pd!), so the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture (included in the Faust distribution) is
+used to compile the dsp to a shared library object. It is of course possible
+to do this manually using the faust and gcc compilers, but for convenience
+there&#8217;s a GNU Makefile in the examples/dsp subdirectory which provides all the
+build rules necessary to do this. This Makefile is self-contained, so you can
+just drop it into any directory with Faust dsp sources and run <tt class="docutils literal"><span class="pre">make</span></tt> there
+to compile the modules to a format which is ready to be loaded with pd-faust.</p>
+<p>Another possibility is to use the <tt class="docutils literal"><span class="pre">faust2pure</span></tt> script included in recent
+Faust versions and also in the examples subdirectory of the pure-faust
+package, see the <a class="reference internal" href="pure-faust.html"><em>pure-faust</em></a> documentation for details.
+E.g., to compile a Faust dsp <tt class="docutils literal"><span class="pre">organ.dsp</span></tt> to a module loadable with pd-faust,
+simply use the following command:</p>
+<div class="highlight-pure"><div class="highlight"><pre>faust2pure organ.dsp
 </pre></div>
 </div>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">dspname</span></tt> denotes the name of the Faust dsp (usually this is just the name
-of the .dsp file with the extension stripped off). Please note that the
-Faust dsp must be provided in a form which can be loaded in <em>Pure</em> (not
-Pd!), so the <tt class="docutils literal"><span class="pre">pure.cpp</span></tt> architecture (included in the Faust distribution)
-must be used to compile the dsp to a shared library. (If you&#8217;re already
-running <a class="reference external" href="https://bitbucket.org/purelang/pure-lang/wiki/Faust2">Faust2</a>, you can also compile to an LLVM bitcode file instead; Pure
-has built-in support for loading these.) There&#8217;s a GNU Makefile in the
-examples/dsp subdirectory which shows how to do this. This Makefile is
-self-contained, so you can just drop it into any directory with Faust dsp
-sources and run <tt class="docutils literal"><span class="pre">make</span></tt> there to compile the modules to a format which is
-ready to be loaded with pd-faust.</li>
-<li><tt class="docutils literal"><span class="pre">instname</span></tt> denotes the name of the instance of the Faust unit. Multiple
-instances of the same Faust dsp can be used in a Pd patch, which must all
-have different instance names. In addition, the instance name is also used
-to identify the GUI subpatch of the unit (see below) and to generate unique
-OSC addresses for the unit&#8217;s control elements.</li>
-<li><tt class="docutils literal"><span class="pre">channel</span></tt> is the number of the MIDI channel the unit responds to. This can
-be 1..16, or 0 to specify &#8220;omni&#8221; operation (listen to MIDI messages on all
-channels).</li>
-</ul>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Since the <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects are written in Pure,
-their creation arguments should be specified in Pure syntax. In particular,
-both <tt class="docutils literal"><span class="pre">dspname</span></tt> or <tt class="docutils literal"><span class="pre">instname</span></tt> may either be Pure identifiers or
-double-quoted strings (the former will automatically be translated to the
-latter). Similarly, the <tt class="docutils literal"><span class="pre">channel</span></tt> argument (as well as the <tt class="docutils literal"><span class="pre">numvoices</span></tt>
-argument of the <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object, see below) must be an integer constant
-in Pure syntax, which is pretty much like Pd syntax but also allows the
-integer to be specified in hexadecimal, octal or binary.</p>
-</div>
-<p>The <tt class="docutils literal"><span class="pre">fdsp~</span></tt> object requires a Faust dsp which can work as an effect unit,
-processing audio input and producing audio output. The unit can have as many
-audio input and output channels as you like (including zero).</p>
-<p>The <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object works in a similar fashion, but has an additional
-creation argument specifying the desired number of voices:</p>
-<div class="highlight-pure"><div class="highlight"><pre>fsynth~ dspname instname channel numvoices
+<p>This will leave a shared library module <tt class="docutils literal"><span class="pre">organ.so</span></tt> (<tt class="docutils literal"><span class="pre">organ.dylib</span></tt> on
+macOS, <tt class="docutils literal"><span class="pre">organ.dll</span></tt> on Windows) in the current directory which can then be
+loaded with pd-faust, by just inserting an object like <tt class="docutils literal"><span class="pre">faust~</span> <span class="pre">organ</span></tt> in
+your patch. Note that to make this work, pd-faust must be able to locate the
+object. To these ends, you should create the patch in the same directory that
+also contains the <tt class="docutils literal"><span class="pre">.dsp</span></tt> and <tt class="docutils literal"><span class="pre">.so</span></tt> files of the Faust dsp. (As mentioned
+earlier, it is also possible to put the <tt class="docutils literal"><span class="pre">.dsp</span></tt> and <tt class="docutils literal"><span class="pre">.so</span></tt> files into the
+<tt class="docutils literal"><span class="pre">dsp</span></tt> subdirectory of the directory containing the patch, or just put them
+somewhere on Pd&#8217;s library path.)</p>
+<p>If you&#8217;re running a recent version of Faust, you can also compile to an LLVM
+bitcode file instead; pd-pure can load these directly using Pure&#8217;s built-in
+Faust bitcode loader. As already mentioned, this requires Faust 2.0 or later
+and that you build and install the alternative <tt class="docutils literal"><span class="pre">pdfaust2</span></tt> library as
+described under <a class="reference internal" href="#installation">Installation</a> above. The main advantage of using bitcode
+modules is that compiling these is often much faster. The main disadvantage is
+that you&#8217;ll need a special C compiler capable of producing LLVM bitcode (i.e.,
+<a class="reference external" href="http://clang.llvm.org/">clang</a>).</p>
+<p>The process of compiling Faust dsps to bitcode modules is pretty much the same
+as above, only that you have to run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">bitcode</span></tt> with the provided
+Makefile, or use the faust2pure script with the <tt class="docutils literal"><span class="pre">-bitcode</span></tt> option, e.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre>faust2pure -bitcode organ.dsp
 </pre></div>
 </div>
-<p>The <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object requires a Faust dsp which can work as a monophonic
-synthesizer. This typically means that the unit has zero audio inputs and a
-nonzero number of audio outputs, although it is possible to have synths
-processing any number of audio input channels as well. (You can even have
-synths producing zero audio outputs, but this is generally not very useful.)
-In addition, pd-faust assumes that the Faust unit provides three so-called
-&#8220;voice controls&#8221; which indicate which note to play:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">freq</span></tt> is the fundamental frequency of the note in Hz.</li>
-<li><tt class="docutils literal"><span class="pre">gain</span></tt> is the velocity of the note, as a normalized value between 0 and 1.
-This usually controls the volume of the output signal.</li>
-<li><tt class="docutils literal"><span class="pre">gate</span></tt> indicates whether a note is currently playing. This value is either
-0 (no note to play) or 1 (play a note), and usually triggers the envelop
-function (ADSR or similar).</li>
-</ul>
-<p>pd-faust doesn&#8217;t care at which path inside the Faust dsp these controls are
-located, but they must all be there, and the basenames of the controls must be
-unique throughout the entire dsp. Otherwise the synth will not work as
-expected.</p>
-<p>Like <a class="reference internal" href="faust2pd.html"><em>faust2pd</em></a>, pd-faust implements the necessary logic to
-drive the given number of voices of an <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object. That is, it will
-actually create a separate instance of the Faust dsp for each voice and handle
-polyphony by allocating voices from this pool in a round-robin fashion,
-performing the usual voice stealing if the number of simultaneous notes to
-play exceeds the number of voices. Also note that an <tt class="docutils literal"><span class="pre">fsynth~</span></tt> operated in
-omni mode (<tt class="docutils literal"><span class="pre">channel</span> <span class="pre">=</span> <span class="pre">0</span></tt>) automatically filters out messages on channel 10
-which is reserved for percussion in the General MIDI standard.</p>
-<p>The <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects respond to the following messages:</p>
-<ul class="simple">
-<li><tt class="docutils literal"><span class="pre">bang</span></tt> outputs the current control settings on the control outlet in OSC
-format.</li>
-<li><tt class="docutils literal"><span class="pre">write</span></tt> outputs the current control settings to external MIDI and/or OSC
-devices. This message can also be invoked with a numeric argument to toggle
-the &#8220;write mode&#8221; of the unit; please see <a class="reference internal" href="#external-midi-and-osc-controllers">External MIDI and OSC
-Controllers</a> below for details.</li>
-<li><tt class="docutils literal"><span class="pre">reload</span></tt> reloads the Faust unit. This also reloads the shared library or
-bitcode file if the unit was recompiled since the object was last loaded.
-(Instead of feeding a <tt class="docutils literal"><span class="pre">reload</span></tt> message to the control inlet of a Faust
-unit, you can also just send a <tt class="docutils literal"><span class="pre">bang</span></tt> to the <tt class="docutils literal"><span class="pre">reload</span></tt> receiver.)</li>
-<li><tt class="docutils literal"><span class="pre">addr</span> <span class="pre">value</span></tt> changes the control indicated by the OSC address <tt class="docutils literal"><span class="pre">addr</span></tt>.
-This is also used internally for communication with the Pd GUI and for
-controller automation.</li>
-</ul>
-<p>The <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects also respond to MIDI controller messages
-of the form <tt class="docutils literal"><span class="pre">ctl</span> <span class="pre">val</span> <span class="pre">num</span> <span class="pre">chan</span></tt>, and the <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object understands
-note-related messages of the form <tt class="docutils literal"><span class="pre">note</span> <span class="pre">num</span> <span class="pre">vel</span> <span class="pre">chan</span></tt> (note on/off) and
-<tt class="docutils literal"><span class="pre">bend</span> <span class="pre">val</span> <span class="pre">chan</span></tt> (pitch bend). In either case, pd-faust provides the
-necessary logic to map controller and note-related messages to the
-corresponding control changes in the Faust unit.</p>
-<p>In addition, pd-faust 0.13 and later offer support for the MIDI Tuning
-Standard (MTS), so that instruments can be retuned using the corresponding
-sysex messages for octave-based tunings. To these ends, the <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object
-accepts messages of the form <tt class="docutils literal"><span class="pre">sysex</span> <span class="pre">b1</span> <span class="pre">b2</span> <span class="pre">...</span></tt> where <tt class="docutils literal"><span class="pre">b1</span></tt>, <tt class="docutils literal"><span class="pre">b2</span></tt>, ... are
-the individual data bytes of the message. A description of the MIDI Tuning
-Standard is beyond the scope of this manual. However, there are some tools
-which let you construct such messages from various input formats, such as the
-author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/sclsyx">sclsyx</a> program. You can then either include the tuning messages in a
-MIDI file or transmit them directly to Pd&#8217;s MIDI input. There&#8217;s also a version
-of sclsyx.pure included in the author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/pd-smmf">pd-smmf</a> package, which can be run as
-a Pd external to output tunings in the format understood by the <tt class="docutils literal"><span class="pre">fsynth~</span></tt>
-object.</p>
+<p>This creates the <tt class="docutils literal"><span class="pre">organ.bc</span></tt> module which can be loaded by the <tt class="docutils literal"><span class="pre">pdfaust2</span></tt>
+library, pretty much like <tt class="docutils literal"><span class="pre">pdfaust</span></tt> loads shared object modules. Otherwise
+there won&#8217;t be much of a noticeable difference (gcc may produce better code in
+some cases, clang in others, which may result in some Faust dsps running with
+better performance as shared library modules, others in bitcode). Note,
+however, that in the current implementation <tt class="docutils literal"><span class="pre">pdfaust</span></tt> and <tt class="docutils literal"><span class="pre">pdfaust2</span></tt> can
+<em>not</em> be loaded at the same time in Pd, therefore you&#8217;ll have to decide
+beforehand which of the two available interfaces you want to use.</p>
 </div>
 <div class="section" id="the-faust-object">
 <h3>The faust~ Object<a class="headerlink" href="#the-faust-object" title="Permalink to this headline">¶</a></h3>
-<p>Starting with version 0.10, pd-faust includes the <tt class="docutils literal"><span class="pre">faust~</span></tt> external as a
-convenience which provides the functionality of both <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt>
-in a single object. This object also supplies reasonable defaults for most
-arguments. While the underlying <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects are still
-available for backward compatibility, the <tt class="docutils literal"><span class="pre">faust~</span></tt> object is often much
-easier to use and should be considered the preferred way to create Faust
-objects in a Pd patch now.</p>
+<p>Starting with version 0.10, pd-faust offers the <tt class="docutils literal"><span class="pre">faust~</span></tt> external which
+provides a uniform way to create both audio effects and synth (instrument)
+units, and also supplies reasonable defaults for most arguments. (While the
+underlying <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects of older pd-faust versions are
+still provided for backward compatibility, they are deprecated and shouldn&#8217;t
+be invoked directly any more.)</p>
 <p>The <tt class="docutils literal"><span class="pre">faust~</span></tt> object is invoked as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>fsynth~ dspname [instname] [channel] [numvoices]
+<div class="highlight-pure"><div class="highlight"><pre>faust~ dspname [instname] [channel] [numvoices]
 </pre></div>
 </div>
-<p>As indicated, all creation arguments except the first, <tt class="docutils literal"><span class="pre">dspname</span></tt> argument
-are optional. The meaning of these arguments is the same as with the <tt class="docutils literal"><span class="pre">fdsp~</span></tt>
-and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects. A <tt class="docutils literal"><span class="pre">numvoices</span></tt> value of zero can be used to indicate
+<p>The creation arguments in square brackets are optional. Please note that since
+the <tt class="docutils literal"><span class="pre">faust~</span></tt> object is written in Pure, the creation arguments should be
+specified in Pure syntax. In particular, both <tt class="docutils literal"><span class="pre">dspname</span></tt> or <tt class="docutils literal"><span class="pre">instname</span></tt> may
+either be Pure identifiers or double-quoted strings (the former will
+automatically be translated to the latter). Similarly, the <tt class="docutils literal"><span class="pre">channel</span></tt> and
+<tt class="docutils literal"><span class="pre">numvoices</span></tt> arguments must be integer constants in Pure syntax, which is
+pretty much like Pd syntax but also allows the integer to be specified in
+hexadecimal, octal or binary.</p>
+<p>The meaning of these arguments is as follows:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">dspname</span></tt> denotes the name of the Faust dsp (usually this is just the name
+of the .dsp file with the extension stripped off).</li>
+<li><tt class="docutils literal"><span class="pre">instname</span></tt> denotes the name of the instance of the Faust unit. By default,
+this is the same as <tt class="docutils literal"><span class="pre">dspname</span></tt>. Multiple instances of the same Faust dsp
+can be used in a Pd patch, but then they must all have different instance
+names. The instance name is also used to identify the GUI subpatch of the
+unit (see below) and to generate unique OSC addresses for the unit&#8217;s control
+elements.</li>
+<li><tt class="docutils literal"><span class="pre">channel</span></tt> is the number of the MIDI channel the unit responds to. This can
+be 1..16, or 0 (the default) to specify &#8220;omni&#8221; operation (listen to MIDI
+messages on all channels).</li>
+<li><tt class="docutils literal"><span class="pre">numvoices</span></tt> denotes the number of voices of a synth unit. This determines
+the maximum number of notes which can be played simultaneously (i.e., the
+degree of polyphony). A <tt class="docutils literal"><span class="pre">numvoices</span></tt> value of zero can be used to indicate
 an effect unit. If the <tt class="docutils literal"><span class="pre">numvoices</span></tt> argument is omitted, the <tt class="docutils literal"><span class="pre">faust~</span></tt>
 object checks the meta data of the Faust module to see whether the loaded
-Faust module is an effect or a synth and creates an instance of the
-corresponding underlying object (<tt class="docutils literal"><span class="pre">fdsp~</span></tt> or <tt class="docutils literal"><span class="pre">fsynth~</span></tt>).</p>
+Faust module is an effect or a synth, see below for details.</li>
+</ul>
 <p>Note that if only a single number follows the <tt class="docutils literal"><span class="pre">dspname</span></tt> or <tt class="docutils literal"><span class="pre">instname</span></tt>
 argument then it is always interpreted as a channel number; thus, if you want
-to denote the <tt class="docutils literal"><span class="pre">numvoices</span></tt> argument then you&#8217;ll have to specify <em>both</em>
-<tt class="docutils literal"><span class="pre">channel</span></tt> and <tt class="docutils literal"><span class="pre">numvoices</span></tt>, in that order.</p>
-<p>By default, the instance name is assumed to be the same as the dsp name, the
-default MIDI channel is 0 (omni), and the number of voices of an instrument is
+to denote the <tt class="docutils literal"><span class="pre">numvoices</span></tt> value in the creation arguments then you&#8217;ll have
+to specify <em>both</em> <tt class="docutils literal"><span class="pre">channel</span></tt> and <tt class="docutils literal"><span class="pre">numvoices</span></tt>, in that order.</p>
+<p>Unless specified explicitly, the number of voices of an instrument is
 determined using the value of the <tt class="docutils literal"><span class="pre">nvoices</span></tt> meta key declared in the dsp
 source. Thus, to turn a Faust dsp into a synth with 8 voices you can use a
 declaration like the following anywhere in the Faust program:</p>
@@ -318,31 +283,99 @@ specifying the corresponding creation argument. In particular, you can specify
 the number of synth voices (overriding the <tt class="docutils literal"><span class="pre">nvoices</span></tt> key in the dsp source),
 or use a <tt class="docutils literal"><span class="pre">numvoices</span></tt> value of zero to force a synth to be loaded as an
 ordinary effect unit. Also, if there are multiple instances of the same dsp in
-a patch then you can explicitly specify different instance names using the
-<tt class="docutils literal"><span class="pre">instname</span></tt> argument, and the default <tt class="docutils literal"><span class="pre">channel</span></tt> value of zero (denoting
-omni input) can be overridden as needed if the unit should only listen on a
-specific MIDI channel.</p>
+a patch then you can (and should) explicitly specify different instance names
+using the <tt class="docutils literal"><span class="pre">instname</span></tt> argument, and the default <tt class="docutils literal"><span class="pre">channel</span></tt> value of zero
+(denoting omni input) can be overridden as needed if the unit should only
+listen on a specific MIDI channel.</p>
+</div>
+<div class="section" id="effect-and-synth-units">
+<h3>Effect and Synth Units<a class="headerlink" href="#effect-and-synth-units" title="Permalink to this headline">¶</a></h3>
+<p>A <tt class="docutils literal"><span class="pre">faust~</span></tt> object with zero voices requires a Faust dsp which can work as an
+effect unit, processing audio input and producing audio output. The unit can
+have as many audio input and output channels as you like (including zero).</p>
+<p>A <tt class="docutils literal"><span class="pre">faust~</span></tt> object with a non-zero number of voices works in a similar
+fashion, but requires a Faust dsp which can work as a (monophonic)
+synthesizer. This typically means that the unit has zero audio inputs and a
+nonzero number of audio outputs, although it is possible to have synths
+processing any number of audio input channels as well. (You can even have
+synths producing zero audio outputs, but this is generally not very useful.)</p>
+<p>In the synth case, pd-faust also assumes that the Faust unit provides three
+so-called &#8220;voice controls&#8221; which indicate which note to play:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">freq</span></tt> is the fundamental frequency of the note in Hz.</li>
+<li><tt class="docutils literal"><span class="pre">gain</span></tt> is the velocity of the note, as a normalized value between 0 and 1.
+This usually controls the volume of the output signal.</li>
+<li><tt class="docutils literal"><span class="pre">gate</span></tt> indicates whether a note is currently playing. This value is either
+0 (no note to play) or 1 (play a note), and usually triggers the envelop
+function (ADSR or similar).</li>
+</ul>
+<p>pd-faust doesn&#8217;t care at which path inside the Faust dsp these controls are
+located, but they must all be there, and the basenames of the controls must be
+unique throughout the entire dsp. Otherwise the synth will not work as
+expected.</p>
+<p>Like <a class="reference internal" href="faust2pd.html"><em>faust2pd</em></a>, pd-faust implements the necessary logic to
+drive the given number of voices of a <tt class="docutils literal"><span class="pre">faust~</span></tt> instrument object. That is,
+it will actually create a separate instance of the Faust dsp for each voice
+and handle polyphony by allocating voices from this pool in a round-robin
+fashion, performing the usual voice stealing if the number of simultaneous
+notes to play exceeds the number of voices. Also note that a <tt class="docutils literal"><span class="pre">faust~</span></tt>
+instrument operated in omni mode (<tt class="docutils literal"><span class="pre">channel</span> <span class="pre">=</span> <span class="pre">0</span></tt>) automatically filters out
+messages on channel 10 which is reserved for percussion in the General MIDI
+standard.</p>
+<p>A <tt class="docutils literal"><span class="pre">faust~</span></tt> object always responds to the following messages:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">bang</span></tt> outputs the current control settings on the control outlet in OSC
+format.</li>
+<li><tt class="docutils literal"><span class="pre">write</span></tt> outputs the current control settings to special <tt class="docutils literal"><span class="pre">midiout</span></tt> and
+<tt class="docutils literal"><span class="pre">oscout</span></tt> receivers, so that they can be processed and/or sent to external
+MIDI and/or OSC devices. This message can also be invoked with a numeric
+argument to toggle the &#8220;write mode&#8221; of the unit; please see <a class="reference internal" href="#external-midi-and-osc-controllers">External MIDI
+and OSC Controllers</a> below for details.</li>
+<li><tt class="docutils literal"><span class="pre">reload</span></tt> reloads the Faust unit. This also reloads the shared library or
+bitcode file if the unit was recompiled since the object was last loaded.
+(Instead of feeding a <tt class="docutils literal"><span class="pre">reload</span></tt> message to the control inlet of a Faust
+unit, you can also just send a <tt class="docutils literal"><span class="pre">bang</span></tt> to the <tt class="docutils literal"><span class="pre">reload</span></tt> receiver.)</li>
+<li><tt class="docutils literal"><span class="pre">addr</span> <span class="pre">value</span></tt> changes the control indicated by the OSC address <tt class="docutils literal"><span class="pre">addr</span></tt>.
+This is also used internally for communication with the Pd GUI and for
+controller automation.</li>
+</ul>
+<p>The object also responds to MIDI controller messages of the form <tt class="docutils literal"><span class="pre">ctl</span> <span class="pre">val</span> <span class="pre">num</span>
+<span class="pre">chan</span></tt> and, in the case of instruments, note-related messages of the form
+<tt class="docutils literal"><span class="pre">note</span> <span class="pre">num</span> <span class="pre">vel</span> <span class="pre">chan</span></tt> (note on/off) and <tt class="docutils literal"><span class="pre">bend</span> <span class="pre">val</span> <span class="pre">chan</span></tt> (pitch bend). It
+also provides the necessary logic to map controller and note-related messages
+to the corresponding control changes in the Faust unit.</p>
+<p>In addition, pd-faust 0.13 and later offer support for the MIDI Tuning
+Standard (MTS), so that instruments can be retuned using the corresponding
+sysex messages for octave-based tunings. To these ends, the <tt class="docutils literal"><span class="pre">faust~</span></tt> object
+accepts messages of the form <tt class="docutils literal"><span class="pre">sysex</span> <span class="pre">b1</span> <span class="pre">b2</span> <span class="pre">...</span></tt> where <tt class="docutils literal"><span class="pre">b1</span></tt>, <tt class="docutils literal"><span class="pre">b2</span></tt>, ... are
+the individual data bytes of the message. A description of the MIDI Tuning
+Standard is beyond the scope of this manual. However, there are some tools
+which let you construct such messages from various input formats, such as the
+author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/sclsyx">sclsyx</a> program. You can then either include the tuning messages in a
+MIDI file or transmit them directly to Pd&#8217;s MIDI input. There&#8217;s also a version
+of sclsyx.pure included in the author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/pd-smmf">pd-smmf</a> package, which can be run as
+a Pd external to output tunings in the format understood by the <tt class="docutils literal"><span class="pre">faust~</span></tt>
+object.</p>
 </div>
 <div class="section" id="gui-subpatches">
 <h3>GUI Subpatches<a class="headerlink" href="#gui-subpatches" title="Permalink to this headline">¶</a></h3>
-<p>For each <tt class="docutils literal"><span class="pre">faust~</span></tt>, <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object, the Pd patch may
-contain an (initially empty) &#8220;one-off&#8221; graph-on-parent subpatch with the same
-name as the instance name of the Faust unit:</p>
+<p>For each <tt class="docutils literal"><span class="pre">faust~</span></tt> object, the Pd patch may contain an (initially empty)
+&#8220;one-off&#8221; graph-on-parent subpatch with the same name as the instance name of
+the Faust unit:</p>
 <div class="highlight-pure"><div class="highlight"><pre>pd instname
 </pre></div>
 </div>
 <p>You shouldn&#8217;t insert anything into this subpatch, its contents (a bunch of Pd
 GUI elements corresponding to the control elements of the Faust unit) will be
-generated automatically by pd-faust when the corresponding <tt class="docutils literal"><span class="pre">faust~</span></tt>,
-<tt class="docutils literal"><span class="pre">fdsp~</span></tt> or <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object is created, and whenever the unit gets
-reloaded at runtime.</p>
+generated automatically by pd-faust when the corresponding <tt class="docutils literal"><span class="pre">faust~</span></tt> object
+is created, and whenever the unit gets reloaded at runtime.</p>
 <p>As with faust2pd, the default appearance of the GUI can be adjusted in various
 ways; see <a class="reference internal" href="#tweaking-the-gui-layout">Tweaking the GUI Layout</a> below for details.</p>
-<p>The relative order in which you insert a <tt class="docutils literal"><span class="pre">faust~</span></tt>, <tt class="docutils literal"><span class="pre">fdsp~</span></tt> or <tt class="docutils literal"><span class="pre">fsynth~</span></tt>
-object and its GUI subpatch into the main patch matters. Normally, the GUI
-subpatch should be inserted <em>first</em>, so that it will be updated automatically
-when its associated Faust unit is first created, and also when the main patch
-is saved and then reloaded later.</p>
+<p>The relative order in which you insert a <tt class="docutils literal"><span class="pre">faust~</span></tt> object and its GUI
+subpatch into the main patch matters. Normally, the GUI subpatch should be
+inserted <em>first</em>, so that it will be updated automatically when its associated
+Faust unit is first created, and also when the main patch is saved and then
+reloaded later.</p>
 <p>However, in some situations it may be preferable to insert the GUI subpatch
 <em>after</em> its associated Faust unit. If you do this, the GUI will <em>not</em> be
 updated automatically when the main patch is loaded, so you&#8217;ll have to reload
@@ -364,13 +397,18 @@ again.)</p>
 <div class="section" id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>The examples folder contains a few example patches which illustrate how this
-all works. Having installed pd-faust as described above, you can run these
-from the examples directory, e.g.: <tt class="docutils literal"><span class="pre">pd</span> <span class="pre">test.pd</span></tt>. (You can also run the
-examples without actually installing pd-faust if you invoke Pd from the main
-pd-faust source directory, e.g., as follows: <tt class="docutils literal"><span class="pre">pd</span> <span class="pre">-lib</span> <span class="pre">lib/pdfaust</span>
-<span class="pre">examples/test.pd</span></tt>.)</p>
+all works. Having compiled and installed pd-faust as described above, you can
+run these directly from the examples directory in the sources, e.g.: <tt class="docutils literal"><span class="pre">pd</span>
+<span class="pre">test.pd</span></tt>. (You can also run the examples without actually installing pd-faust
+if you invoke Pd from the main pd-faust source directory, e.g., as follows:
+<tt class="docutils literal"><span class="pre">pd</span> <span class="pre">-lib</span> <span class="pre">lib/pdfaust</span> <span class="pre">examples/test.pd</span></tt>.) The same collection of examples is
+also copied to <tt class="docutils literal"><span class="pre">$prefix/lib/pd/extra/faust</span></tt> when running <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt>
+(where <tt class="docutils literal"><span class="pre">$prefix</span></tt> denotes the prefix under which Pd is installed, usually
+<tt class="docutils literal"><span class="pre">/usr</span></tt> or <tt class="docutils literal"><span class="pre">/usr/local</span></tt>) so that you can also run them from there.</p>
 <p>Here are some of the examples that are currently available:</p>
 <ul class="simple">
+<li>simple.pd: Minimalistic example which works without the <tt class="docutils literal"><span class="pre">midiosc</span></tt>
+abstraction.</li>
 <li>test.pd: Simple patch running a single Faust instrument.</li>
 <li>synth.pd: Slightly more elaborate patch featuring a synth-effects chain.</li>
 <li>bouree.pd: Full-featured example running various instruments.</li>
@@ -379,8 +417,8 @@ pd-faust source directory, e.g., as follows: <tt class="docutils literal"><span 
 of the instruments and effects are contained in corresponding subdirectories
 (midi, osc, dsp) of the examples directory. A slightly modified version of
 the faust-stk instruments from the Faust distribution is also included, please
-check the examples/dsp/README-STK file for more information about these.</p>
-<p>The MIDI files are all in standard MIDI file format. (Some of these come from
+check the examples/dsp/README-STK file for more information about these.
+The MIDI files are all in standard MIDI file format. (Some of these come from
 the faust-stk distribution, others can be found on the web.) The OSC files
 used by pd-faust for controller automation are plain ASCII files suitable for
 hand-editing if you know what you are doing; the format should be fairly
@@ -391,11 +429,29 @@ self-explanatory.</p>
 <p>The generated Pd GUI elements for the Faust dsps are pretty much the same as
 with <a class="reference internal" href="faust2pd.html"><em>faust2pd</em></a> (which see). The only obvious change is the
 addition of a &#8220;record&#8221; button (gray toggle in the upper right corner) which
-enables recording of OSC automation data.</p>
-<p>In each example distributed with pd-faust you can also find an instance of the
+enables recording of OSC automation data. This requires the use of the
 <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction which serves as a little sequencer applet that enables
 you to control MIDI playback and OSC recording. The usage of this abstraction
-should be fairly obvious, but you can also find a brief description below.</p>
+should be fairly obvious, but you can also find a brief description under
+<a class="reference internal" href="#midi-and-osc-sequencing">MIDI and OSC Sequencing</a> below.</p>
+<p>Note that the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction, even though most of the distributed
+examples include it, is by no means required unless you really need the MIDI
+playback and OSC automation features it provides. In most simple use cases,
+you just insert <tt class="docutils literal"><span class="pre">faust~</span></tt> objects (along with their corresponding GUI
+subpatches if needed/wanted) into your patch, wire them up as needed and be
+done with it. If you also need MIDI input (controller and note data), the
+<tt class="docutils literal"><span class="pre">midi-input</span></tt> abstraction provides a simpler way to encode incoming MIDI
+messages from Pd&#8217;s MIDI inputs in the SMMF format understood by <tt class="docutils literal"><span class="pre">faust~</span></tt>
+objects. Simply connect the outlet of <tt class="docutils literal"><span class="pre">midi-input</span></tt> to the leftmost inlet of
+any <tt class="docutils literal"><span class="pre">faust~</span></tt> instrument or effect unit that you want to play or control
+through MIDI, make sure that the instrument (or last effect unit in the chain)
+is connected to Pd&#8217;s audio output a.k.a. <tt class="docutils literal"><span class="pre">dac~</span></tt>, and you should be set.
+MIDI output via the <tt class="docutils literal"><span class="pre">midiout</span></tt> receiver (cf. <a class="reference internal" href="#external-midi-and-osc-controllers">External MIDI and OSC
+Controllers</a>) can be handled in a similar way using the <tt class="docutils literal"><span class="pre">midi-output</span></tt>
+abstraction (see simple.pd for an example).</p>
+</div>
+<div class="section" id="midi-and-osc-sequencing">
+<h3>MIDI and OSC Sequencing<a class="headerlink" href="#midi-and-osc-sequencing" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">If you use the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction in your own patches, you
@@ -415,14 +471,14 @@ parameter empty (specify <tt class="docutils literal"><span class="pre">&quot;&q
 if you don&#8217;t need MIDI playback. The latter is useful, in particular, if you
 use <tt class="docutils literal"><span class="pre">midiosc</span></tt> with an external MIDI sequencer (see below).</p>
 <p>The abstraction has a single control outlet through which it feeds the
-generated MIDI and other messages to the connected <tt class="docutils literal"><span class="pre">fsynth~</span></tt> and <tt class="docutils literal"><span class="pre">fdsp~</span></tt>
-objects. Live MIDI input is also accepted and forwarded to the control outlet,
-after being translated to the format understood by <tt class="docutils literal"><span class="pre">fsynth~</span></tt> and <tt class="docutils literal"><span class="pre">fdsp~</span></tt>
-objects. In addition, <tt class="docutils literal"><span class="pre">midiosc</span></tt> can also be controlled through an external
-MIDI sequencer connected to Pd&#8217;s MIDI input. To these ends, <a class="reference external" href="http://en.wikipedia.org/wiki/MIDI_Machine_Control">MIDI Machine
-Control</a> (MMC) can be used to start and stop OSC playback and recording with
-the transport controls of the external sequencer program. To make this work,
-the external sequencer must be configured as an MMC master.</p>
+generated MIDI and other messages to the connected <tt class="docutils literal"><span class="pre">faust~</span></tt> objects. Live
+MIDI input is also accepted and forwarded to the control outlet, after being
+translated to the format understood by <tt class="docutils literal"><span class="pre">faust~</span></tt> objects. In addition,
+<tt class="docutils literal"><span class="pre">midiosc</span></tt> can also be controlled through an external MIDI sequencer
+connected to Pd&#8217;s MIDI input. To these ends, <a class="reference external" href="http://en.wikipedia.org/wiki/MIDI_Machine_Control">MIDI Machine Control</a> (MMC) can
+be used to start and stop OSC playback and recording with the transport
+controls of the external sequencer program. To make this work, the external
+sequencer must be configured as an MMC master.</p>
 <p>At the bottom of the abstraction there is a little progress bar along with a
 time display which indicates the current song position. If playback is
 stopped, you can also use these to change the current position for playback,
@@ -492,32 +548,41 @@ which have been recorded up to (and including) this point.</li>
 <p>Please note that <tt class="docutils literal"><span class="pre">midiosc</span></tt> is merely a prototypical implementation which
 should cover most common uses. It can also be used as a starting point for
 your own abstractions if you need more elaborate input/output interfacing than
-what <tt class="docutils literal"><span class="pre">midiosc</span></tt> provides. On the other hand, for simple uses your patches may
-just feed control messages directly into <tt class="docutils literal"><span class="pre">faust~</span></tt>, <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt>
-objects instead. If you just need plain MIDI input, another possibility is to
-use the <tt class="docutils literal"><span class="pre">midi-input</span></tt> abstraction contained in the author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/pd-lv2plugin">pd-lv2plugin</a>
-package which encodes incoming MIDI messages in a format compatible with the
-<tt class="docutils literal"><span class="pre">faust~</span></tt>, <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and <tt class="docutils literal"><span class="pre">fsynth~</span></tt> objects.</p>
+what <tt class="docutils literal"><span class="pre">midiosc</span></tt> provides.</p>
 </div>
 <div class="section" id="external-midi-and-osc-controllers">
 <h3>External MIDI and OSC Controllers<a class="headerlink" href="#external-midi-and-osc-controllers" title="Permalink to this headline">¶</a></h3>
-<p>The <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object has built-in (and hard-wired) support for MIDI notes,
-pitch bend and MIDI controller 123 (all notes off). Other controller data
-received from external MIDI and OSC devices is interpreted according to the
-controller mappings defined in the Faust source (this is explained below), by
-updating the corresponding GUI elements and the control variables of the Faust
-dsp. For obvious reasons, this only works with <em>active</em> Faust controls.</p>
-<p>A <tt class="docutils literal"><span class="pre">faust~</span></tt>, <tt class="docutils literal"><span class="pre">fdsp~</span></tt> or <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object can also be put in <em>write mode</em>
-by feeding a message of the form <tt class="docutils literal"><span class="pre">write</span> <span class="pre">1</span></tt> into its control inlet (the
-<tt class="docutils literal"><span class="pre">write</span> <span class="pre">0</span></tt> message disables write mode again). For convenience, the <tt class="docutils literal"><span class="pre">write</span></tt>
-toggle in the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction allows you to do this simultaneously for
-all Faust units connected to <tt class="docutils literal"><span class="pre">midiosc</span></tt>&#8216;s control outlet.</p>
+<p>For instrument units, the <tt class="docutils literal"><span class="pre">faust~</span></tt> object has built-in (and hard-wired)
+support for MIDI notes, pitch bend and MIDI controller 123 (all notes off).
+Other controller data received from external MIDI and OSC devices is
+interpreted according to the controller mappings defined in the Faust source
+(this is explained below), by updating the corresponding GUI elements and the
+control variables of the Faust dsp. (This only works with <em>active</em> Faust
+controls, i.e., dsp controls which are to be manipulated from the host
+environment, not the dsp&#8217;s <em>passive</em> a.k.a. &#8220;bargraph&#8221; controls which return
+control values computed by the dsp.)</p>
+<p>A <tt class="docutils literal"><span class="pre">faust~</span></tt> object can also be put in <em>write mode</em> by feeding a message of
+the form <tt class="docutils literal"><span class="pre">write</span> <span class="pre">1</span></tt> into its control inlet (the <tt class="docutils literal"><span class="pre">write</span> <span class="pre">0</span></tt> message disables
+write mode again). For convenience, the <tt class="docutils literal"><span class="pre">write</span></tt> toggle in the <tt class="docutils literal"><span class="pre">midiosc</span></tt>
+abstraction allows you to do this simultaneously for all Faust units connected
+to <tt class="docutils literal"><span class="pre">midiosc</span></tt>&#8216;s control outlet.</p>
 <p>When an object is in write mode, it also <em>outputs</em> MIDI and OSC controller
 data in response to both automation data and the manual operation of the Pd
 GUI elements, again according to the controller mappings defined in the Faust
-source, so that it can drive an external device such as a MIDI fader box or a
-multitouch OSC controller. Note that this works with both <em>active</em> and
-<em>passive</em> Faust controls.</p>
+source, so that it can drive an external device, e.g., in order to provide
+feedback to a MIDI fader box or a multitouch OSC controller. This works with
+both <em>active</em> and <em>passive</em> Faust controls.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">One pitfall in the current implementation is that, for better or
+worse, the output is <em>not</em> emitted directly on the object&#8217;s control outlet,
+but instead goes to special <tt class="docutils literal"><span class="pre">midiout</span></tt> and <tt class="docutils literal"><span class="pre">oscout</span></tt> receivers provided
+by the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction which then takes care of outputting the
+data. Thus, if you&#8217;re <em>not</em> using <tt class="docutils literal"><span class="pre">midiosc</span></tt>, you will have to provide
+these receivers yourself if you want to process the generated MIDI and/or
+OSC data in some way (the included simple.pd example shows how to do this
+for MIDI data).</p>
+</div>
 <p>To configure MIDI controller assignments, the labels of the Faust control
 elements have to be marked up with the special <tt class="docutils literal"><span class="pre">midi</span></tt> attribute in the Faust
 source. For instance, a pan control (MIDI controller 10) may be implemented in
@@ -529,9 +594,9 @@ the Faust source as follows:</p>
 controller 10 by changing the pan control in the Faust unit accordingly,
 mapping the controller values 0..127 to the range and step size given in the
 Faust source. Moreover, in write mode corresponding MIDI controller data will
-be generated and sent to Pd&#8217;s MIDI output, on the MIDI channel specified in
-the creation arguments of the Faust unit (0 meaning &#8220;omni&#8221;, i.e., output on
-all MIDI channels).</p>
+be generated and sent to the <tt class="docutils literal"><span class="pre">midiout</span></tt> receiver as discussed above, on the
+MIDI channel specified in the creation arguments of the Faust unit (0 meaning
+&#8220;omni&#8221;, i.e., output on all MIDI channels).</p>
 <p>The same functionality is also available for external OSC devices, employing
 explicit OSC controller assignments in the Faust source by means of the
 <tt class="docutils literal"><span class="pre">osc</span></tt> attribute. E.g., the following enables input and output of OSC
@@ -548,16 +613,17 @@ the value ranges of the controls of an external OSC device must match the
 ranges of the corresponding controls in the Faust program).</p>
 </div>
 <p>To actually connect with external OSC devices, you will also need some OSC
-input and output facilities. Neither vanilla Pd nor pd-faust includes any of
-these, so you will have to rely on 3rd party externals for that. We recommend
+input and output facilities. Older versions of vanilla Pd didn&#8217;t offer these,
+and the built-in OSC facilities of the latest Pd versions still have some
+limitations, so pd-pure relies on 3rd party externals for that. We recommend
 Martin Peach&#8217;s <a class="reference external" href="http://puredata.info/Members/martinrp/OSCobjects">OSC externals</a> which are included in Hans-Christoph Steiner&#8217;s
-<a class="reference external" href="http://puredata.info/downloads/pd-extended">Pd-extended</a> distribution. pd-faust includes a version of the <tt class="docutils literal"><span class="pre">midiosc</span></tt>
-abstraction named <tt class="docutils literal"><span class="pre">midiosc-mrpeach</span></tt> which can be used as a drop-in
-replacement for <tt class="docutils literal"><span class="pre">midiosc</span></tt> and implements OSC input and output using Martin
-Peach&#8217;s objects. You most likely have to edit this abstraction to make it work
-for your local network setup; at least you&#8217;ll probably have to change the
-network addresses in the abstraction so that it works with the OSC device or
-application that you use.</p>
+Pd-extended distribution and derivatives such as Pd-l2ork and Purr-Data.</p>
+<p>pd-faust includes a version of the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction named
+<tt class="docutils literal"><span class="pre">midiosc-mrpeach</span></tt> which can be used as a drop-in replacement for <tt class="docutils literal"><span class="pre">midiosc</span></tt>
+and implements OSC input and output using Martin Peach&#8217;s objects. You most
+likely have to edit this abstraction to make it work for your local network
+setup; at least you&#8217;ll probably have to change the network addresses in the
+abstraction so that it works with the OSC device or application that you use.</p>
 <p>Another useful abstraction is the <tt class="docutils literal"><span class="pre">oscbrowser</span></tt> object available in the
 author&#8217;s separate <a class="reference external" href="https://bitbucket.org/agraef/pd-mdnsbrowser">pd-mdnsbrowser</a> package. It lets you discover and publish
 Zeroconf (Avahi/Bonjour) services in the local network, so that your Pd
@@ -636,17 +702,15 @@ instructions.</p>
 <div class="section" id="caveats-and-bugs">
 <h2>Caveats and Bugs<a class="headerlink" href="#caveats-and-bugs" title="Permalink to this headline">¶</a></h2>
 <p>Some parts of this software might still be experimental, under construction
-and/or bug-ridden. Bug reports, patches and suggestions are welcome. Please
-send these directly to the author, or post them either to the Faust or the
-Pure mailing list.</p>
+and/or bug-ridden. Bug reports, patches and suggestions are welcome.</p>
 <p>In particular, please note the following known limitations in the current
 implementation:</p>
 <ul class="simple">
-<li>Passive Faust controls are only supported in <tt class="docutils literal"><span class="pre">fdsp~</span></tt> objects.</li>
-<li>The names of the voice controls in the <tt class="docutils literal"><span class="pre">fsynth~</span></tt> object (<tt class="docutils literal"><span class="pre">freq</span></tt>,
-<tt class="docutils literal"><span class="pre">gain</span></tt>, <tt class="docutils literal"><span class="pre">gate</span></tt>) are currently hard-coded, as are the names of the
-<tt class="docutils literal"><span class="pre">midi</span></tt>, <tt class="docutils literal"><span class="pre">osc</span></tt> and <tt class="docutils literal"><span class="pre">dsp</span></tt> subfolders used to locate various kinds of
-files.</li>
+<li>Passive Faust controls are only supported in effect units (<tt class="docutils literal"><span class="pre">faust~</span></tt>
+objects with zero voices).</li>
+<li>The names of the voice controls of instrument units (<tt class="docutils literal"><span class="pre">freq</span></tt>, <tt class="docutils literal"><span class="pre">gain</span></tt>,
+<tt class="docutils literal"><span class="pre">gate</span></tt>) are currently hard-coded, as are the names of the <tt class="docutils literal"><span class="pre">midi</span></tt>,
+<tt class="docutils literal"><span class="pre">osc</span></tt> and <tt class="docutils literal"><span class="pre">dsp</span></tt> subfolders used to locate various kinds of files.</li>
 <li>Polyphonic aftertouch and channel pressure messages are not supported in the
 MIDI interface right now, so you&#8217;ll have to use ordinary MIDI controllers
 for these parameters instead. Coarse/fine pairs of MIDI controllers aren&#8217;t
@@ -676,11 +740,13 @@ pd-faust versions.</p>
 <li><a class="reference internal" href="#copying">Copying</a></li>
 <li><a class="reference internal" href="#installation">Installation</a></li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
-<li><a class="reference internal" href="#the-fdsp-and-fsynth-objects">The fdsp~ and fsynth~ Objects</a></li>
+<li><a class="reference internal" href="#compiling-faust-dsps">Compiling Faust DSPs</a></li>
 <li><a class="reference internal" href="#the-faust-object">The faust~ Object</a></li>
+<li><a class="reference internal" href="#effect-and-synth-units">Effect and Synth Units</a></li>
 <li><a class="reference internal" href="#gui-subpatches">GUI Subpatches</a></li>
 <li><a class="reference internal" href="#examples">Examples</a></li>
 <li><a class="reference internal" href="#operating-the-patches">Operating the Patches</a></li>
+<li><a class="reference internal" href="#midi-and-osc-sequencing">MIDI and OSC Sequencing</a></li>
 <li><a class="reference internal" href="#external-midi-and-osc-controllers">External MIDI and OSC Controllers</a></li>
 <li><a class="reference internal" href="#tweaking-the-gui-layout">Tweaking the GUI Layout</a></li>
 <li><a class="reference internal" href="#remote-control">Remote Control</a></li>
@@ -740,8 +806,8 @@ pd-faust versions.</p>
       </ul>
     </div>
     <div class="footer">
-    &copy; Copyright 2009-2017, Albert Gräf et al.
-    Last updated on Mar 04, 2017.
+    &copy; Copyright 2009-2018, Albert Gräf et al.
+    Last updated on Jan 14, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

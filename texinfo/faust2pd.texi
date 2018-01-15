@@ -19,11 +19,11 @@
 
 @copying
 @quotation
-Pure 0.66, March 04, 2017
+Pure 0.66, January 15, 2018
 
 Albert Gräf (Editor)
 
-Copyright @copyright{} 2009-2017, Albert Gräf et al
+Copyright @copyright{} 2009-2018, Albert Gräf et al
 @end quotation
 
 @end copying
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2017, Albert Gräf et al
 
 @c %**start of body
 @anchor{faust2pd doc}@anchor{1}
-Version 2.15, March 04, 2017
+Version 2.16, January 15, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -144,7 +144,7 @@ faust2pd is known to work on Linux, Mac OS X, and Windows, and there shouldn't
 be any major roadblocks preventing it to work on other systems supported by
 Pure.
 
-The faust2pd script is written in the Pure@footnote{http://purelang.bitbucket.org} programming language and requires
+The faust2pd script is written in the Pure@footnote{https://agraef.github.io/pure-lang/} programming language and requires
 Pure's XML module, so you need to install these to make it work. Install the
 latest pure*.tar.gz and pure-xml*.tar.gz packages and you should be set. (Pure
 0.47 or later is required.) Also make sure that the LLVM base package is
@@ -152,7 +152,7 @@ installed, as described in the Pure INSTALL file, some LLVM utilities are
 needed to make Pure's batch compiler work.
 
 To run the seqdemo example, you'll also need the Pd Pure external
-(pd-pure*.tar.gz), also available at the Pure@footnote{http://purelang.bitbucket.org} website.
+(pd-pure*.tar.gz), also available at the Pure@footnote{https://agraef.github.io/pure-lang/} website.
 
 To compile the examples, you'll need GNU C++ and make, Pd@footnote{http://puredata.info} and, of course,
 Faust@footnote{http://faudiostream.sf.net}. Make sure you get a recent version of Faust; Faust 0.9.67 or later is
@@ -171,7 +171,7 @@ including current git sources).
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/faust2pd-2.15.tar.gz}.
+@indicateurl{https://github.com/agraef/pure-lang/releases/download/faust2pd-2.16/faust2pd-2.16.tar.gz}.
 
 Run @code{make} and @code{make install} to compile and install the faust2pd program
 on your system. You can set the installation prefix by running make as @code{make
@@ -416,7 +416,7 @@ The examples/seqdemo/seqdemo.pd patch demonstrates how to operate a
 multitimbral synth, built with Faust units, in an automatic fashion using a
 pattern sequencer programmed in Pure. This example requires the Pure
 interpreter as well as the pd-pure plugin available from
-@indicateurl{http://purelang.bitbucket.org}.
+@indicateurl{https://agraef.github.io/pure-lang/}.
 @end itemize
 
 @node Wrapping DSPs with faust2pd,Conclusion,Examples,Top

@@ -1,11 +1,11 @@
-This is purelib.info, produced by makeinfo version 6.3 from
+This is purelib.info, produced by makeinfo version 6.5 from
 purelib.texi.
 
-     Pure 0.66, March 04, 2017
+     Pure 0.66, January 15, 2018
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2017, Albert Gräf et al
+     Copyright © 2009-2018, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: purelib.info,  Node: Top,  Next: Prelude,  Up: (dir)
 Pure Library Manual
 *******************
 
-     Pure 0.66, March 04, 2017
+     Pure 0.66, January 15, 2018
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2017, Albert Gräf et al
+     Copyright © 2009-2018, Albert Gräf et al
 
-  Version 0.66, March 04, 2017
+  Version 0.66, January 13, 2018
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -43,125 +43,125 @@ language and the operation of the Pure interpreter.
 
 * Menu:
 
-* Prelude:: 
-* Mathematical Functions:: 
-* Enumerated Types:: 
-* Container Types:: 
-* System Interface:: 
-* Module Index:: 
-* Index:: 
+* Prelude::
+* Mathematical Functions::
+* Enumerated Types::
+* Container Types::
+* System Interface::
+* Module Index::
+* Index::
 
  — The Detailed Node Listing —
 
 Prelude
 
-* Constants and Operators:: 
-* Prelude Types:: 
-* Basic Combinators:: 
-* Lists and Tuples:: 
-* Slicing:: 
-* Hash Pairs:: 
-* List Functions:: 
-* String Functions:: 
-* Matrix Functions:: 
-* Record Functions:: 
-* Primitives:: 
+* Constants and Operators::
+* Prelude Types::
+* Basic Combinators::
+* Lists and Tuples::
+* Slicing::
+* Hash Pairs::
+* List Functions::
+* String Functions::
+* Matrix Functions::
+* Record Functions::
+* Primitives::
 
 List Functions
 
-* Common List Functions:: 
-* List Generators:: 
-* Zip and Friends:: 
+* Common List Functions::
+* List Generators::
+* Zip and Friends::
 
 String Functions
 
-* Basic String Functions:: 
-* Low-Level Operations:: 
+* Basic String Functions::
+* Low-Level Operations::
 
 Matrix Functions
 
-* Matrix Construction and Conversions:: 
-* Matrix Inspection and Manipulation:: 
-* Pointers and Matrices:: 
+* Matrix Construction and Conversions::
+* Matrix Inspection and Manipulation::
+* Pointers and Matrices::
 
 Primitives
 
-* Special Constants:: 
-* Arithmetic:: 
-* Conversions:: 
-* Predicates:: 
-* Inspection:: 
-* Eval and Friends:: 
-* Expression Serialization:: 
-* Other Special Primitives:: 
-* Pointer Operations:: 
-* Sentries:: 
-* Tagged Pointers:: 
-* Expression References:: 
-* Pointer Arithmetic:: 
+* Special Constants::
+* Arithmetic::
+* Conversions::
+* Predicates::
+* Inspection::
+* Eval and Friends::
+* Expression Serialization::
+* Other Special Primitives::
+* Pointer Operations::
+* Sentries::
+* Tagged Pointers::
+* Expression References::
+* Pointer Arithmetic::
 
 Mathematical Functions
 
-* Imports:: 
-* Basic Math Functions:: 
-* Complex Numbers:: 
-* Rational Numbers:: 
-* Semantic Number Predicates and Types:: 
+* Imports::
+* Basic Math Functions::
+* Complex Numbers::
+* Rational Numbers::
+* Semantic Number Predicates and Types::
 
 Container Types
 
-* Arrays:: 
-* Heaps:: 
-* Dictionaries:: 
-* Sets and Bags:: 
+* Arrays::
+* Heaps::
+* Dictionaries::
+* Sets and Bags::
 
 Arrays
 
-* Imports: Imports<2>. 
-* Operations:: 
-* Examples:: 
+* Imports: Imports<2>.
+* Operations::
+* Examples::
 
 Heaps
 
-* Imports: Imports<3>. 
-* Operations: Operations<2>. 
-* Examples: Examples<2>. 
+* Imports: Imports<3>.
+* Operations: Operations<2>.
+* Examples: Examples<2>.
 
 Dictionaries
 
-* Imports: Imports<4>. 
-* Operations: Operations<3>. 
-* Examples: Examples<3>. 
+* Imports: Imports<4>.
+* Operations: Operations<3>.
+* Examples: Examples<3>.
 
 Sets and Bags
 
-* Imports: Imports<5>. 
-* Operations: Operations<4>. 
-* Examples: Examples<4>. 
+* Imports: Imports<5>.
+* Operations: Operations<4>.
+* Examples: Examples<4>.
 
 System Interface
 
-* Imports: Imports<6>. 
-* Errno and Friends:: 
-* POSIX Locale:: 
-* Signal Handling:: 
-* Time Functions:: 
-* Process Functions:: 
-* Basic I/O Interface:: 
-* Stat and Friends:: 
-* Reading Directories:: 
-* Shell Globbing:: 
-* Regex Matching:: 
-* Additional POSIX Functions:: 
-* Option Parsing:: 
+* Imports: Imports<6>.
+* Errno and Friends::
+* POSIX Locale::
+* Signal Handling::
+* Time Functions::
+* Process Functions::
+* Basic I/O Interface::
+* Stat and Friends::
+* Reading Directories::
+* Shell Globbing::
+* Regex Matching::
+* Additional POSIX Functions::
+* Option Parsing::
 
 Regex Matching
 
-* Basic Examples:: 
-* Regex Substitutions and Splitting:: 
-* Empty Matches:: 
-* Submatches:: 
-* Perl Regex Compatibility:: 
+* Basic Examples::
+* Regex Substitutions and Splitting::
+* Empty Matches::
+* Submatches::
+* Perl Regex Compatibility::
 
 
    ---------- Footnotes ----------
@@ -188,17 +188,17 @@ import declarations, unless explicitly noted otherwise.
 
 * Menu:
 
-* Constants and Operators:: 
-* Prelude Types:: 
-* Basic Combinators:: 
-* Lists and Tuples:: 
-* Slicing:: 
-* Hash Pairs:: 
-* List Functions:: 
-* String Functions:: 
-* Matrix Functions:: 
-* Record Functions:: 
-* Primitives:: 
+* Constants and Operators::
+* Prelude Types::
+* Basic Combinators::
+* Lists and Tuples::
+* Slicing::
+* Hash Pairs::
+* List Functions::
+* String Functions::
+* Matrix Functions::
+* Record Functions::
+* Primitives::
 
 
 File: purelib.info,  Node: Constants and Operators,  Next: Prelude Types,  Up: Prelude
@@ -955,9 +955,9 @@ different names, though, and of course everything is typed dynamically.
 
 * Menu:
 
-* Common List Functions:: 
-* List Generators:: 
-* Zip and Friends:: 
+* Common List Functions::
+* List Generators::
+* Zip and Friends::
 
 
 File: purelib.info,  Node: Common List Functions,  Next: List Generators,  Up: List Functions
@@ -1216,8 +1216,8 @@ expressions and their string representation, see *note Eval and Friends:
 
 * Menu:
 
-* Basic String Functions:: 
-* Low-Level Operations:: 
+* Basic String Functions::
+* Low-Level Operations::
 
 
 File: purelib.info,  Node: Basic String Functions,  Next: Low-Level Operations,  Up: String Functions
@@ -1631,9 +1631,9 @@ implementation of records using symbolic vectors.
 
 * Menu:
 
-* Matrix Construction and Conversions:: 
-* Matrix Inspection and Manipulation:: 
-* Pointers and Matrices:: 
+* Matrix Construction and Conversions::
+* Matrix Inspection and Manipulation::
+* Pointers and Matrices::
 
 
 File: purelib.info,  Node: Matrix Construction and Conversions,  Next: Matrix Inspection and Manipulation,  Up: Matrix Functions
@@ -2237,19 +2237,19 @@ finalizers) and "references" (mutable expression pointers).
 
 * Menu:
 
-* Special Constants:: 
-* Arithmetic:: 
-* Conversions:: 
-* Predicates:: 
-* Inspection:: 
-* Eval and Friends:: 
-* Expression Serialization:: 
-* Other Special Primitives:: 
-* Pointer Operations:: 
-* Sentries:: 
-* Tagged Pointers:: 
-* Expression References:: 
-* Pointer Arithmetic:: 
+* Special Constants::
+* Arithmetic::
+* Conversions::
+* Predicates::
+* Inspection::
+* Eval and Friends::
+* Expression Serialization::
+* Other Special Primitives::
+* Pointer Operations::
+* Sentries::
+* Tagged Pointers::
+* Expression References::
+* Pointer Arithmetic::
 
 
 File: purelib.info,  Node: Special Constants,  Next: Arithmetic,  Up: Primitives
@@ -3904,11 +3904,11 @@ defines complex and rational numbers.
 
 * Menu:
 
-* Imports:: 
-* Basic Math Functions:: 
-* Complex Numbers:: 
-* Rational Numbers:: 
-* Semantic Number Predicates and Types:: 
+* Imports::
+* Basic Math Functions::
+* Complex Numbers::
+* Rational Numbers::
+* Semantic Number Predicates and Types::
 
 
 File: purelib.info,  Node: Imports,  Next: Basic Math Functions,  Up: Mathematical Functions
@@ -4419,34 +4419,34 @@ whether one dictionary, set or bag is contained in another.
 
 * Menu:
 
-* Arrays:: 
-* Heaps:: 
-* Dictionaries:: 
-* Sets and Bags:: 
+* Arrays::
+* Heaps::
+* Dictionaries::
+* Sets and Bags::
 
 Arrays
 
-* Imports: Imports<2>. 
-* Operations:: 
-* Examples:: 
+* Imports: Imports<2>.
+* Operations::
+* Examples::
 
 Heaps
 
-* Imports: Imports<3>. 
-* Operations: Operations<2>. 
-* Examples: Examples<2>. 
+* Imports: Imports<3>.
+* Operations: Operations<2>.
+* Examples: Examples<2>.
 
 Dictionaries
 
-* Imports: Imports<4>. 
-* Operations: Operations<3>. 
-* Examples: Examples<3>. 
+* Imports: Imports<4>.
+* Operations: Operations<3>.
+* Examples: Examples<3>.
 
 Sets and Bags
 
-* Imports: Imports<5>. 
-* Operations: Operations<4>. 
-* Examples: Examples<4>. 
+* Imports: Imports<5>.
+* Operations: Operations<4>.
+* Examples: Examples<4>.
 
 
 File: purelib.info,  Node: Arrays,  Next: Heaps,  Up: Container Types
@@ -4465,9 +4465,9 @@ All these operations are carried out in logarithmic time.
 
 * Menu:
 
-* Imports: Imports<2>. 
-* Operations:: 
-* Examples:: 
+* Imports: Imports<2>.
+* Operations::
+* Examples::
 
 
 File: purelib.info,  Node: Imports<2>,  Next: Operations,  Up: Arrays
@@ -4651,9 +4651,9 @@ the order in which equal elements are retrieved is not specified.
 
 * Menu:
 
-* Imports: Imports<3>. 
-* Operations: Operations<2>. 
-* Examples: Examples<2>. 
+* Imports: Imports<3>.
+* Operations: Operations<2>.
+* Examples: Examples<2>.
 
 
 File: purelib.info,  Node: Imports<3>,  Next: Operations<2>,  Up: Heaps
@@ -4798,9 +4798,9 @@ single-/multi-valued keys was done by Albert Graef.
 
 * Menu:
 
-* Imports: Imports<4>. 
-* Operations: Operations<3>. 
-* Examples: Examples<3>. 
+* Imports: Imports<4>.
+* Operations: Operations<3>.
+* Examples: Examples<3>.
 
 
 File: purelib.info,  Node: Imports<4>,  Next: Operations<3>,  Up: Dictionaries
@@ -5128,9 +5128,9 @@ Jiri Spitz, see *note Dictionaries: 111. for details.
 
 * Menu:
 
-* Imports: Imports<5>. 
-* Operations: Operations<4>. 
-* Examples: Examples<4>. 
+* Imports: Imports<5>.
+* Operations: Operations<4>.
+* Examples: Examples<4>.
 
 
 File: purelib.info,  Node: Imports<5>,  Next: Operations<4>,  Up: Sets and Bags
@@ -5342,19 +5342,19 @@ pages, so we concentrate on the Pure-specific aspects here.
 
 * Menu:
 
-* Imports: Imports<6>. 
-* Errno and Friends:: 
-* POSIX Locale:: 
-* Signal Handling:: 
-* Time Functions:: 
-* Process Functions:: 
-* Basic I/O Interface:: 
-* Stat and Friends:: 
-* Reading Directories:: 
-* Shell Globbing:: 
-* Regex Matching:: 
-* Additional POSIX Functions:: 
-* Option Parsing:: 
+* Imports: Imports<6>.
+* Errno and Friends::
+* POSIX Locale::
+* Signal Handling::
+* Time Functions::
+* Process Functions::
+* Basic I/O Interface::
+* Stat and Friends::
+* Reading Directories::
+* Shell Globbing::
+* Regex Matching::
+* Additional POSIX Functions::
+* Option Parsing::
 
 
 File: purelib.info,  Node: Imports<6>,  Next: Errno and Friends,  Up: System Interface
@@ -6303,11 +6303,11 @@ the following lazy alternatives are available:
 
 * Menu:
 
-* Basic Examples:: 
-* Regex Substitutions and Splitting:: 
-* Empty Matches:: 
-* Submatches:: 
-* Perl Regex Compatibility:: 
+* Basic Examples::
+* Regex Substitutions and Splitting::
+* Empty Matches::
+* Submatches::
+* Perl Regex Compatibility::
 
 
 File: purelib.info,  Node: Basic Examples,  Next: Regex Substitutions and Splitting,  Up: Regex Matching
@@ -6684,17 +6684,17 @@ Module Index
 
 * Menu:
 
-* array: 0. 
-* dict: 1. 
-* enum: 2. 
-* getopt: 3. 
-* heap: 4. 
-* math: 5. 
-* pointers: 6. 
-* posix: 7. 
-* regex: 8. 
-* set: 9. 
-* system: a. 
+* array: 0.
+* dict: 1.
+* enum: 2.
+* getopt: 3.
+* heap: 4.
+* math: 5.
+* pointers: 6.
+* posix: 7.
+* regex: 8.
+* set: 9.
+* system: a.
 
 
 File: purelib.info,  Node: Index,  Prev: Module Index,  Up: Top
@@ -7645,1633 +7645,1633 @@ Index
 
 
 Tag Table:
-Node: Top361
-Ref: purelib doc573
-Ref: b573
-Ref: Top-Footnote-13104
-Node: Prelude3149
-Ref: purelib prelude3240
-Ref: c3240
-Ref: purelib pure-library-manual3240
-Ref: d3240
-Ref: purelib id13240
-Ref: e3240
-Node: Constants and Operators4239
-Ref: purelib constants-and-operators4329
-Ref: f4329
-Ref: purelib true4533
-Ref: 104533
-Ref: purelib false4556
-Ref: 114556
-Ref: purelib failed_cond4785
-Ref: 124785
-Ref: purelib failed_match4819
-Ref: 134819
-Ref: purelib stack_fault4854
-Ref: 144854
-Ref: purelib malloc_error4888
-Ref: 154888
-Ref: purelib bad_list_value5297
-Ref: 165297
-Ref: purelib bad_tuple_value5336
-Ref: 175336
-Ref: purelib bad_string_value5376
-Ref: 185376
-Ref: purelib bad_matrix_value5417
-Ref: 195417
-Ref: purelib out_of_bounds5640
-Ref: 1a5640
-Ref: purelib operators5794
-Ref: 1b5794
-Node: Prelude Types7401
-Ref: purelib prelude-types7517
-Ref: 1c7517
-Ref: purelib id27517
-Ref: 1d7517
-Ref: purelib number/type7700
-Ref: 1e7700
-Ref: purelib complex/type7722
-Ref: 1f7722
-Ref: purelib real/type7745
-Ref: 207745
-Ref: purelib rational/type7765
-Ref: 217765
-Ref: purelib integer/type7789
-Ref: 227789
-Ref: purelib bool/type7812
-Ref: 237812
-Ref: purelib char/type9397
-Ref: 259397
-Ref: purelib list/type9572
-Ref: 279572
-Ref: purelib rlist/type9592
-Ref: 289592
-Ref: purelib tuple/type10302
-Ref: 2910302
-Ref: purelib appl/type10897
-Ref: 2a10897
-Ref: purelib function/type11110
-Ref: 2b11110
-Ref: purelib fun/type11481
-Ref: 2c11481
-Ref: purelib lambda/type11595
-Ref: 2d11595
-Ref: purelib closure/type11656
-Ref: 2e11656
-Ref: purelib thunk/type11817
-Ref: 2f11817
-Ref: purelib var/type12003
-Ref: 3012003
-Ref: purelib symbol/type12173
-Ref: 3112173
-Node: Basic Combinators12527
-Ref: purelib basic-combinators12636
-Ref: 3512636
-Ref: purelib $12751
-Ref: 3612751
-Ref: purelib12776
-Ref: 3712776
-Ref: purelib id13110
-Ref: 3813110
-Ref: purelib cst13134
-Ref: 3913134
-Ref: purelib void13369
-Ref: 3a13369
-Ref: purelib flip14395
-Ref: 3d14395
-Ref: purelib curry14739
-Ref: 3e14739
-Ref: purelib uncurry15037
-Ref: 3f15037
-Ref: purelib curry315297
-Ref: 4015297
-Ref: purelib uncurry315325
-Ref: 4115325
-Ref: purelib fix15485
-Ref: 4215485
-Ref: Basic Combinators-Footnote-116301
-Node: Lists and Tuples16361
-Ref: purelib lists-and-tuples16464
-Ref: 2616464
-Ref: purelib []16730
-Ref: 4316730
-Ref: 4416755
-Ref: 4516809
-Ref: 4616837
-Ref: purelib +/list19603
-Ref: 4719603
-Ref: purelib ==/list20802
-Ref: 4920802
-Ref: purelib ~=/list20828
-Ref: 4a20828
-Ref: purelib #21335
-Ref: 4c21335
-Ref: purelib !21685
-Ref: 4d21685
-Ref: purelib !!22051
-Ref: 4e22051
-Ref: 5023022
-Ref: purelib null23969
-Ref: 5123969
-Ref: purelib reverse24110
-Ref: 5224110
-Ref: purelib list24344
-Ref: 5324344
-Ref: purelib tuple24370
-Ref: 5424370
-Ref: purelib stream25010
-Ref: 5525010
-Node: Slicing25371
-Ref: purelib slicing25467
-Ref: 4f25467
-Ref: purelib subseq26674
-Ref: 5726674
-Ref: purelib slice27100
-Ref: 5827100
-Node: Hash Pairs27886
-Ref: purelib id327980
-Ref: 5927980
-Ref: purelib hash-pairs27980
-Ref: 5a27980
-Ref: purelib =>28369
-Ref: 5d28369
-Ref: purelib ==/hashpair28465
-Ref: 5e28465
-Ref: purelib ~=/hashpair28491
-Ref: 5f28491
-Ref: purelib key28617
-Ref: 5b28617
-Ref: purelib val28647
-Ref: 5c28647
-Node: List Functions29315
-Ref: purelib list-functions29418
-Ref: 6029418
-Node: Common List Functions29820
-Ref: purelib common-list-functions29917
-Ref: 6129917
-Ref: purelib any29974
-Ref: 6229974
-Ref: purelib all30085
-Ref: 6330085
-Ref: purelib cat30196
-Ref: 6430196
-Ref: purelib catmap30257
-Ref: 5630257
-Ref: purelib do30422
-Ref: 3b30422
-Ref: purelib drop30583
-Ref: 6530583
-Ref: purelib dropwhile30670
-Ref: 6630670
-Ref: purelib filter30800
-Ref: 6730800
-Ref: purelib foldl30914
-Ref: 6830914
-Ref: purelib foldl131127
-Ref: 6931127
-Ref: purelib foldr31364
-Ref: 6a31364
-Ref: purelib foldr131577
-Ref: 6b31577
-Ref: purelib head31814
-Ref: 6c31814
-Ref: purelib index31912
-Ref: 6d31912
-Ref: purelib init32272
-Ref: 6e32272
-Ref: purelib last32377
-Ref: 6f32377
-Ref: purelib listmap32474
-Ref: 7032474
-Ref: purelib map32734
-Ref: 3c32734
-Ref: purelib scanl32810
-Ref: 7132810
-Ref: purelib scanl132994
-Ref: 7232994
-Ref: purelib scanr33183
-Ref: 7333183
-Ref: purelib scanr133367
-Ref: 7433367
-Ref: purelib sort33556
-Ref: 7533556
-Ref: purelib tail34108
-Ref: 7634108
-Ref: purelib take34214
-Ref: 7734214
-Ref: purelib takewhile34299
-Ref: 7834299
-Node: List Generators34427
-Ref: purelib list-generators34548
-Ref: 7934548
-Ref: purelib cycle34837
-Ref: 7a34837
-Ref: purelib cyclen34944
-Ref: 7b34944
-Ref: purelib iterate35074
-Ref: 7c35074
-Ref: purelib iteraten35201
-Ref: 7d35201
-Ref: purelib iterwhile35339
-Ref: 7e35339
-Ref: purelib repeat35542
-Ref: 7f35542
-Ref: purelib repeatn35616
-Ref: 8035616
-Node: Zip and Friends35726
-Ref: purelib zip-and-friends35817
-Ref: 8135817
-Ref: purelib unzip35862
-Ref: 8235862
-Ref: purelib unzip335965
-Ref: 8335965
-Ref: purelib zip36033
-Ref: 8436033
-Ref: purelib zip336232
-Ref: 8536232
-Ref: purelib zipwith36331
-Ref: 8636331
-Ref: purelib zipwith336463
-Ref: 8736463
-Ref: purelib dowith36875
-Ref: 8836875
-Ref: purelib dowith337023
-Ref: 8937023
-Node: String Functions37186
-Ref: purelib id437295
-Ref: 8a37295
-Ref: purelib string-functions37295
-Ref: 8b37295
-Node: Basic String Functions37903
-Ref: purelib basic-string-functions38008
-Ref: 8d38008
-Ref: purelib +/string38067
-Ref: 8e38067
-Ref: purelib !/string38092
-Ref: 8f38092
-Ref: purelib !!/string38117
-Ref: 9038117
-Ref: purelib null/string38415
-Ref: 9138415
-Ref: purelib #/string38441
-Ref: 9238441
-Ref: purelib ==/string38660
-Ref: 9338660
-Ref: purelib ~=/string38686
-Ref: 9438686
-Ref: purelib <=/string38712
-Ref: 9538712
-Ref: purelib >=/string38738
-Ref: 9638738
-Ref: purelib </string38764
-Ref: 9738764
-Ref: purelib >/string38789
-Ref: 9838789
-Ref: purelib index/string39166
-Ref: 9939166
-Ref: purelib substr39341
-Ref: 9a39341
-Ref: purelib ord40014
-Ref: 9b40014
-Ref: purelib chr40172
-Ref: 9c40172
-Ref: purelib chars40691
-Ref: 9d40691
-Ref: purelib list/string40718
-Ref: 9e40718
-Ref: purelib tuple/string40801
-Ref: 9f40801
-Ref: purelib matrix/string40828
-Ref: a040828
-Ref: purelib strcat40954
-Ref: a140954
-Ref: purelib string41104
-Ref: a241104
-Ref: purelib split41565
-Ref: a341565
-Ref: purelib join41672
-Ref: a441672
-Node: Low-Level Operations42828
-Ref: purelib low-level-operations42933
-Ref: a642933
-Ref: purelib string/pointer43566
-Ref: a843566
-Ref: purelib cstring43594
-Ref: a743594
-Ref: purelib string_dup43934
-Ref: a943934
-Ref: purelib cstring_dup43966
-Ref: aa43966
-Ref: purelib byte_string44273
-Ref: ab44273
-Ref: purelib byte_cstring44306
-Ref: ac44306
-Ref: purelib byte_string_pointer45417
-Ref: ae45417
-Ref: purelib byte_cstring_pointer45459
-Ref: af45459
-Ref: purelib string_list45571
-Ref: b045571
-Ref: purelib cstring_list45606
-Ref: b145606
-Ref: purelib string_vector45701
-Ref: b245701
-Ref: purelib cstring_vector45738
-Ref: b345738
-Node: Matrix Functions48158
-Ref: purelib id548269
-Ref: b648269
-Ref: purelib matrix-functions48269
-Ref: b748269
-Ref: purelib #/matrix48487
-Ref: b848487
-Ref: purelib dim48510
-Ref: b948510
-Ref: purelib null/matrix48734
-Ref: ba48734
-Ref: purelib ==/matrix48893
-Ref: bb48893
-Ref: purelib ~=/matrix48919
-Ref: bc48919
-Ref: purelib !/matrix49099
-Ref: bd49099
-Ref: purelib !!/matrix49124
-Ref: be49124
-Node: Matrix Construction and Conversions51219
-Ref: purelib matrix-construction-and-conversions51351
-Ref: c151351
-Ref: purelib matrix51436
-Ref: c251436
-Ref: purelib rowvector52013
-Ref: c352013
-Ref: purelib colvector52045
-Ref: c452045
-Ref: purelib vector52077
-Ref: c552077
-Ref: purelib rowvectorseq53094
-Ref: c753094
-Ref: purelib colvectorseq53135
-Ref: c853135
-Ref: purelib vectorseq53176
-Ref: c953176
-Ref: purelib dmatrix54660
-Ref: ca54660
-Ref: purelib cmatrix54690
-Ref: cb54690
-Ref: purelib imatrix54720
-Ref: cc54720
-Ref: purelib smatrix54750
-Ref: cd54750
-Ref: purelib list/matrix55583
-Ref: ce55583
-Ref: purelib list2/matrix55609
-Ref: cf55609
-Ref: purelib tuple/matrix55636
-Ref: d055636
-Ref: purelib non-splicing56058
-Ref: c656058
-Ref: purelib {|56169
-Ref: d156169
-Node: Matrix Inspection and Manipulation57821
-Ref: purelib matrix-inspection-and-manipulation57983
-Ref: 3357983
-Ref: purelib nmatrix58161
-Ref: d258161
-Ref: purelib dmatrixp58433
-Ref: d358433
-Ref: purelib cmatrixp58463
-Ref: d458463
-Ref: purelib imatrixp58493
-Ref: d558493
-Ref: purelib smatrixp58523
-Ref: d658523
-Ref: purelib nmatrixp58553
-Ref: d758553
-Ref: purelib vectorp58657
-Ref: d858657
-Ref: purelib rowvectorp58686
-Ref: d958686
-Ref: purelib colvectorp58718
-Ref: da58718
-Ref: purelib stride58849
-Ref: db58849
-Ref: purelib subseq/matrix59144
-Ref: bf59144
-Ref: purelib subseq2/matrix59176
-Ref: c059176
-Ref: purelib row59466
-Ref: dd59466
-Ref: purelib col59493
-Ref: de59493
-Ref: purelib rows59576
-Ref: df59576
-Ref: purelib cols59602
-Ref: e059602
-Ref: purelib diag59687
-Ref: e159687
-Ref: purelib subdiag59713
-Ref: e259713
-Ref: purelib supdiag59744
-Ref: e359744
-Ref: purelib submat60093
-Ref: e460093
-Ref: purelib rowcat60363
-Ref: e560363
-Ref: purelib colcat60392
-Ref: e660392
-Ref: purelib matcat60875
-Ref: e760875
-Ref: purelib rowcatmap61368
-Ref: e861368
-Ref: purelib colcatmap61402
-Ref: e961402
-Ref: purelib rowmap61436
-Ref: ea61436
-Ref: purelib colmap61467
-Ref: eb61467
-Ref: purelib diagmat61666
-Ref: ec61666
-Ref: purelib subdiagmat61695
-Ref: ed61695
-Ref: purelib supdiagmat61729
-Ref: ee61729
-Ref: purelib re/matrix62225
-Ref: ef62225
-Ref: purelib im/matrix62249
-Ref: f062249
-Ref: purelib conj/matrix62273
-Ref: f162273
-Ref: purelib pack62395
-Ref: dc62395
-Ref: purelib packed62421
-Ref: f262421
-Ref: purelib redim63073
-Ref: f363073
-Ref: purelib sort/matrix63529
-Ref: f463529
-Ref: purelib transpose/matrix64937
-Ref: f564937
-Ref: purelib rowrev65068
-Ref: f665068
-Ref: purelib colrev65096
-Ref: f765096
-Ref: purelib reverse/matrix65124
-Ref: f865124
-Node: Pointers and Matrices65288
-Ref: purelib pointers-and-matrices65406
-Ref: f965406
-Ref: purelib pointer/matrix65884
-Ref: fa65884
-Ref: purelib double_pointer66295
-Ref: fb66295
-Ref: purelib float_pointer66333
-Ref: fc66333
-Ref: purelib complex_pointer66370
-Ref: fd66370
-Ref: purelib complex_float_pointer66409
-Ref: fe66409
-Ref: purelib int64_pointer66454
-Ref: ff66454
-Ref: purelib int_pointer66491
-Ref: 10066491
-Ref: purelib short_pointer66526
-Ref: 10166526
-Ref: purelib byte_pointer66563
-Ref: 10266563
-Ref: purelib double_matrix67235
-Ref: 10367235
-Ref: purelib float_matrix67276
-Ref: 10467276
-Ref: purelib complex_matrix67316
-Ref: 10567316
-Ref: purelib complex_float_matrix67358
-Ref: 10667358
-Ref: purelib int64_matrix67406
-Ref: 10767406
-Ref: purelib int_matrix67446
-Ref: 10867446
-Ref: purelib short_matrix67484
-Ref: 10967484
-Ref: purelib byte_matrix67524
-Ref: 10a67524
-Ref: purelib double_matrix_view68268
-Ref: 10b68268
-Ref: purelib complex_matrix_view68314
-Ref: 10c68314
-Ref: purelib int_matrix_view68361
-Ref: 10d68361
-Node: Record Functions68822
-Ref: purelib id668927
-Ref: 10e68927
-Ref: purelib record-functions68927
-Ref: 3468927
-Ref: purelib record/type70460
-Ref: 11370460
-Ref: purelib recordp70638
-Ref: 11470638
-Ref: purelib record70699
-Ref: 11570699
-Ref: purelib #/record71171
-Ref: 11771171
-Ref: purelib member/record71357
-Ref: 10f71357
-Ref: purelib !/record71442
-Ref: 11871442
-Ref: purelib !!/record71614
-Ref: 11971614
-Ref: purelib insert/record71771
-Ref: 11071771
-Ref: purelib update/record71806
-Ref: 11a71806
-Ref: purelib delete/record72148
-Ref: 11b72148
-Ref: purelib keys/record72349
-Ref: 11c72349
-Ref: purelib vals/record72375
-Ref: 11d72375
-Node: Primitives73661
-Ref: purelib primitives73741
-Ref: 11e73741
-Node: Special Constants74618
-Ref: purelib special-constants74702
-Ref: 11f74702
-Ref: purelib inf74753
-Ref: 12074753
-Ref: purelib nan74771
-Ref: 12174771
-Ref: purelib NULL74964
-Ref: ad74964
-Node: Arithmetic75176
-Ref: purelib arithmetic75280
-Ref: 12575280
-Ref: purelib +79406
-Ref: 4879406
-Ref: purelib -79431
-Ref: 12979431
-Ref: purelib *79456
-Ref: 12a79456
-Ref: purelib /79481
-Ref: 12b79481
-Ref: purelib ^79506
-Ref: 12c79506
-Ref: purelib -/unary79669
-Ref: 12d79669
-Ref: purelib div79784
-Ref: 12e79784
-Ref: purelib mod79811
-Ref: 12f79811
-Ref: purelib ==79888
-Ref: 4b79888
-Ref: purelib ~=79914
-Ref: 13079914
-Ref: purelib <=79972
-Ref: 13179972
-Ref: purelib >=79998
-Ref: 13279998
-Ref: purelib >80024
-Ref: 13380024
-Ref: purelib <80049
-Ref: 13480049
-Ref: purelib ~80094
-Ref: 13580094
-Ref: purelib &&80117
-Ref: 13680117
-Ref: purelib ||80143
-Ref: 13780143
-Ref: purelib not80439
-Ref: 13880439
-Ref: purelib and80464
-Ref: 13980464
-Ref: purelib or80491
-Ref: 13a80491
-Ref: purelib <<80624
-Ref: 13b80624
-Ref: purelib >>80650
-Ref: 13c80650
-Ref: purelib abs81480
-Ref: 13d81480
-Ref: purelib sgn81505
-Ref: 13e81505
-Ref: purelib min81574
-Ref: 13f81574
-Ref: purelib max81601
-Ref: 14081601
-Ref: purelib succ81762
-Ref: 14181762
-Ref: purelib pred81788
-Ref: 14281788
-Ref: purelib gcd81880
-Ref: 14381880
-Ref: purelib lcd81907
-Ref: 14481907
-Ref: purelib pow82131
-Ref: 14582131
-Node: Conversions82428
-Ref: purelib conversions82525
-Ref: 14682525
-Ref: purelib hash82628
-Ref: 14782628
-Ref: purelib bool82710
-Ref: 14882710
-Ref: purelib int82819
-Ref: 14982819
-Ref: purelib bigint82844
-Ref: 14a82844
-Ref: purelib double82872
-Ref: 14b82872
-Ref: purelib pointer82956
-Ref: 14c82956
-Ref: purelib ubyte83374
-Ref: 14d83374
-Ref: purelib ushort83401
-Ref: 14e83401
-Ref: purelib uint83429
-Ref: 14f83429
-Ref: purelib uint6483455
-Ref: 15083455
-Ref: purelib ulong83483
-Ref: 15183483
-Ref: purelib rounding-functions84384
-Ref: 15284384
-Ref: purelib floor84437
-Ref: 15384437
-Ref: purelib ceil84464
-Ref: 15484464
-Ref: purelib round84513
-Ref: 15584513
-Ref: purelib trunc84540
-Ref: 15684540
-Ref: purelib frac84607
-Ref: 15784607
-Node: Predicates84862
-Ref: purelib predicates84959
-Ref: 3284959
-Ref: purelib same85242
-Ref: 15885242
-Ref: purelib ===85270
-Ref: 11685270
-Ref: purelib ~==85297
-Ref: 15985297
-Ref: purelib typep85763
-Ref: 15a85763
-Ref: purelib intp86158
-Ref: 15b86158
-Ref: purelib bigintp86184
-Ref: 15c86184
-Ref: purelib doublep86213
-Ref: 15d86213
-Ref: purelib stringp86242
-Ref: 15e86242
-Ref: purelib pointerp86271
-Ref: 15f86271
-Ref: purelib matrixp86301
-Ref: 16086301
-Ref: purelib boolp86381
-Ref: 16186381
-Ref: purelib charp86485
-Ref: 16286485
-Ref: purelib numberp86568
-Ref: 16386568
-Ref: purelib complexp86597
-Ref: 16486597
-Ref: purelib realp86627
-Ref: 16586627
-Ref: purelib rationalp86654
-Ref: 16686654
-Ref: purelib integerp86685
-Ref: 16786685
-Ref: purelib exactp86904
-Ref: 16886904
-Ref: purelib inexactp86932
-Ref: 16986932
-Ref: purelib infp87055
-Ref: 12287055
-Ref: purelib nanp87081
-Ref: 12387081
-Ref: purelib null/pointer87168
-Ref: 12487168
-Ref: purelib applp87226
-Ref: 16a87226
-Ref: purelib listp87253
-Ref: 16b87253
-Ref: purelib rlistp87280
-Ref: 16c87280
-Ref: purelib tuplep87308
-Ref: 16d87308
-Ref: purelib funp87823
-Ref: 16e87823
-Ref: purelib lambdap87849
-Ref: 16f87849
-Ref: purelib thunkp87878
-Ref: 17087878
-Ref: purelib closurep87906
-Ref: 17187906
-Ref: purelib functionp88160
-Ref: 17288160
-Ref: purelib symbolp88385
-Ref: 17388385
-Ref: purelib varp88414
-Ref: 17488414
-Node: Inspection88879
-Ref: purelib inspection88981
-Ref: 17588981
-Ref: purelib ans89293
-Ref: 17689293
-Ref: purelib __func__89808
-Ref: 17789808
-Ref: purelib __namespace__91081
-Ref: 17991081
-Ref: purelib __dir__91495
-Ref: 17a91495
-Ref: purelib __file__91519
-Ref: 17b91519
-Ref: purelib __list__92710
-Ref: 17d92710
-Ref: purelib __locals__94542
-Ref: 17e94542
-Ref: purelib get_fundef98012
-Ref: 18198012
-Ref: purelib get_typedef98046
-Ref: 18298046
-Ref: purelib get_macdef98081
-Ref: 18398081
-Ref: purelib get_interface98277
-Ref: 18498277
-Ref: purelib get_interface_typedef98314
-Ref: 18598314
-Ref: purelib get_vardef99131
-Ref: 18699131
-Ref: purelib get_constdef99165
-Ref: 18799165
-Ref: purelib add_fundef99549
-Ref: 18999549
-Ref: purelib add_typedef99585
-Ref: 18a99585
-Ref: purelib add_macdef99622
-Ref: 18b99622
-Ref: purelib add_fundef_at99865
-Ref: 18c99865
-Ref: purelib add_typedef_at99906
-Ref: 18d99906
-Ref: purelib add_macdef_at99948
-Ref: 18e99948
-Ref: purelib add_interface100305
-Ref: 18f100305
-Ref: purelib add_interface_at100508
-Ref: 190100508
-Ref: purelib add_vardef100765
-Ref: 191100765
-Ref: purelib add_constdef100801
-Ref: 192100801
-Ref: purelib del_fundef101164
-Ref: 193101164
-Ref: purelib del_typedef101199
-Ref: 194101199
-Ref: purelib del_macdef101235
-Ref: 195101235
-Ref: purelib del_interface101529
-Ref: 196101529
-Ref: purelib del_vardef101692
-Ref: 197101692
-Ref: purelib del_constdef101726
-Ref: 198101726
-Ref: purelib nargs102251
-Ref: 199102251
-Ref: purelib arity102486
-Ref: 19a102486
-Ref: purelib fixity102730
-Ref: 19b102730
-Node: Eval and Friends105176
-Ref: purelib eval-and-friends105292
-Ref: 8c105292
-Ref: purelib str106031
-Ref: 178106031
-Ref: purelib val/string106146
-Ref: 19d106146
-Ref: purelib eval106555
-Ref: 17c106555
-Ref: purelib evalcmd107737
-Ref: 180107737
-Ref: purelib lasterr108255
-Ref: 188108255
-Ref: purelib lasterrpos108697
-Ref: 19e108697
-Ref: purelib __str__111029
-Ref: 19f111029
-Ref: purelib globsym111404
-Ref: 1a0111404
-Ref: purelib clearsym111876
-Ref: 1a1111876
-Ref: purelib reduce112493
-Ref: 17f112493
-Ref: purelib reduce_with113008
-Ref: 1a2113008
-Node: Expression Serialization115579
-Ref: purelib expression-serialization115709
-Ref: 19c115709
-Ref: purelib blob116459
-Ref: 1a3116459
-Ref: purelib val/blob116646
-Ref: 1a4116646
-Ref: purelib blobp116795
-Ref: 1a5116795
-Ref: purelib #/blob117185
-Ref: 1a6117185
-Ref: purelib blob_size117208
-Ref: 1a7117208
-Ref: purelib blob_crc117239
-Ref: 1a8117239
-Node: Other Special Primitives118921
-Ref: purelib other-special-primitives119053
-Ref: 1a9119053
-Ref: purelib exit119118
-Ref: 1aa119118
-Ref: purelib throw119206
-Ref: 1ab119206
-Ref: purelib __break__119287
-Ref: 1ac119287
-Ref: purelib __trace__119316
-Ref: 1ad119316
-Ref: purelib force119669
-Ref: 1ae119669
-Node: Pointer Operations119829
-Ref: purelib pointer-operations119945
-Ref: 1af119945
-Ref: purelib addr120279
-Ref: 1b0120279
-Ref: purelib calloc120688
-Ref: 1b1120688
-Ref: purelib malloc120728
-Ref: 1b2120728
-Ref: purelib realloc120759
-Ref: 1b3120759
-Ref: purelib free120795
-Ref: 1b4120795
-Ref: purelib get_byte121419
-Ref: 1b5121419
-Ref: purelib get_short121451
-Ref: 1b6121451
-Ref: purelib get_int121484
-Ref: 1b7121484
-Ref: purelib get_int64121515
-Ref: 1b8121515
-Ref: purelib get_long121548
-Ref: 1b9121548
-Ref: purelib get_float121580
-Ref: 1ba121580
-Ref: purelib get_double121613
-Ref: 1bb121613
-Ref: purelib get_string121647
-Ref: 1bc121647
-Ref: purelib get_pointer121681
-Ref: 1bd121681
-Ref: purelib put_byte121843
-Ref: 1be121843
-Ref: purelib put_short121877
-Ref: 1bf121877
-Ref: purelib put_int121912
-Ref: 1c0121912
-Ref: purelib put_int64121945
-Ref: 1c1121945
-Ref: purelib put_long121980
-Ref: 1c2121980
-Ref: purelib put_float122014
-Ref: 1c3122014
-Ref: purelib put_double122049
-Ref: 1c4122049
-Ref: purelib put_string122085
-Ref: 1c5122085
-Ref: purelib put_pointer122121
-Ref: 1c6122121
-Node: Sentries122312
-Ref: purelib sentries122419
-Ref: 1c7122419
-Ref: purelib sentry122943
-Ref: 1c8122943
-Ref: purelib clear_sentry123071
-Ref: 1c9123071
-Ref: purelib get_sentry123159
-Ref: 1ca123159
-Ref: purelib cookedp124118
-Ref: 1cb124118
-Ref: purelib cooked124207
-Ref: 1cc124207
-Node: Tagged Pointers127370
-Ref: purelib id7127480
-Ref: 1cd127480
-Ref: purelib tagged-pointers127480
-Ref: 1ce127480
-Ref: purelib ptrtag128142
-Ref: 1cf128142
-Ref: purelib get_ptrtag128310
-Ref: 1d0128310
-Ref: purelib check_ptrtag128392
-Ref: 1d1128392
-Ref: purelib make_ptrtag128645
-Ref: 1d2128645
-Ref: purelib pointer_tag129789
-Ref: 1d3129789
-Ref: purelib pointer_type130277
-Ref: 1d4130277
-Ref: purelib pointer_cast130684
-Ref: 1d5130684
-Node: Expression References132776
-Ref: purelib expression-references132896
-Ref: 112132896
-Ref: purelib id8132896
-Ref: 1d6132896
-Ref: purelib ref/type133448
-Ref: 1d7133448
-Ref: purelib ref133560
-Ref: 1d8133560
-Ref: purelib put133642
-Ref: 1d9133642
-Ref: purelib get133724
-Ref: 1da133724
-Ref: purelib unref133802
-Ref: 1db133802
-Ref: purelib refp134016
-Ref: 1dc134016
-Ref: purelib module-pointers135444
-Ref: 6135444
-Node: Pointer Arithmetic135446
-Ref: purelib pointer-arithmetic135542
-Ref: 127135542
-Ref: purelib int/pointer136156
-Ref: 1dd136156
-Ref: purelib bigint/pointer136181
-Ref: 1de136181
-Ref: purelib +/pointer136669
-Ref: 1df136669
-Ref: purelib -/pointer136694
-Ref: 1e0136694
-Ref: purelib -/pointerdiff136719
-Ref: 1e1136719
-Ref: purelib ==/pointer137246
-Ref: 1e2137246
-Ref: purelib ~=/pointer137272
-Ref: 1e3137272
-Ref: purelib <=/pointer137404
-Ref: 1e4137404
-Ref: purelib >=/pointer137430
-Ref: 1e5137430
-Ref: purelib >/pointer137456
-Ref: 1e6137456
-Ref: purelib </pointer137481
-Ref: 1e7137481
-Node: Mathematical Functions137715
-Ref: purelib module-math137819
-Ref: 5137819
-Ref: purelib mathematical-functions137819
-Ref: 128137819
-Node: Imports138112
-Ref: purelib imports138208
-Ref: 1e8138208
-Node: Basic Math Functions138345
-Ref: purelib basic-math-functions138465
-Ref: 1e9138465
-Ref: purelib e138573
-Ref: 1ea138573
-Ref: purelib pi138627
-Ref: 1eb138627
-Ref: purelib random139302
-Ref: 1ef139302
-Ref: purelib random31139417
-Ref: 1ec139417
-Ref: purelib random53139519
-Ref: 1ed139519
-Ref: purelib srandom139638
-Ref: 1ee139638
-Ref: purelib sqrt140078
-Ref: 1f0140078
-Ref: purelib exp140137
-Ref: 1f1140137
-Ref: purelib ln140162
-Ref: 1f2140162
-Ref: purelib log140186
-Ref: 1f3140186
-Ref: purelib sin140272
-Ref: 1f4140272
-Ref: purelib cos140297
-Ref: 1f5140297
-Ref: purelib tan140322
-Ref: 1f6140322
-Ref: purelib asin140379
-Ref: 1f7140379
-Ref: purelib acos140405
-Ref: 1f8140405
-Ref: purelib atan140431
-Ref: 1f9140431
-Ref: purelib atan2140497
-Ref: 1fa140497
-Ref: purelib sinh140657
-Ref: 1fb140657
-Ref: purelib cosh140683
-Ref: 1fc140683
-Ref: purelib tanh140709
-Ref: 1fd140709
-Ref: purelib asinh140778
-Ref: 1fe140778
-Ref: purelib acosh140805
-Ref: 1ff140805
-Ref: purelib atanh140832
-Ref: 200140832
-Ref: Basic Math Functions-Footnote-1140946
-Node: Complex Numbers141011
-Ref: purelib complex-numbers141140
-Ref: 201141140
-Ref: 202141181
-Ref: 203141207
-Ref: purelib i141269
-Ref: 204141269
-Ref: purelib complex142974
-Ref: 205142974
-Ref: purelib polar143057
-Ref: 206143057
-Ref: purelib rect143084
-Ref: 207143084
-Ref: purelib cis143172
-Ref: 208143172
-Ref: purelib abs/complex143331
-Ref: 209143331
-Ref: purelib arg143356
-Ref: 20a143356
-Ref: purelib re143542
-Ref: 20b143542
-Ref: purelib im143566
-Ref: 20c143566
-Ref: purelib conj143622
-Ref: 20d143622
-Node: Rational Numbers144131
-Ref: purelib rational-numbers144276
-Ref: 126144276
-Ref: purelib %144319
-Ref: 20e144319
-Ref: purelib rational145757
-Ref: 20f145757
-Ref: purelib num146334
-Ref: 210146334
-Ref: purelib den146359
-Ref: 211146359
-Node: Semantic Number Predicates and Types147059
-Ref: purelib semantic-number-predicates-and-types147180
-Ref: 24147180
-Ref: purelib compvalp147643
-Ref: 212147643
-Ref: purelib realvalp147748
-Ref: 213147748
-Ref: purelib ratvalp147824
-Ref: 214147824
-Ref: purelib bigintvalp147977
-Ref: 215147977
-Ref: purelib intvalp148090
-Ref: 216148090
-Ref: purelib compval148207
-Ref: 217148207
-Ref: purelib realval148230
-Ref: 218148230
-Ref: purelib ratval148253
-Ref: 219148253
-Ref: purelib bigintval148275
-Ref: 21a148275
-Ref: purelib intval148300
-Ref: 21b148300
-Ref: purelib module-enum148536
-Ref: 2148536
-Node: Enumerated Types148537
-Ref: purelib enumerated-types148649
-Ref: 21c148649
-Ref: purelib enum149346
-Ref: 21d149346
-Ref: purelib defenum150067
-Ref: 21e150067
-Ref: purelib enumof150276
-Ref: 21f150276
-Ref: purelib enum/type150517
-Ref: 220150517
-Ref: purelib enump150725
-Ref: 221150725
-Node: Container Types152798
-Ref: purelib container-types152904
-Ref: 222152904
-Ref: purelib module-array154133
-Ref: 0154133
-Node: Arrays154547
-Ref: purelib arrays154620
-Ref: 223154620
-Ref: purelib array/type154916
-Ref: 224154916
-Node: Imports<2>155029
-Ref: purelib id9155102
-Ref: 225155102
-Node: Operations155244
-Ref: purelib operations155334
-Ref: 226155334
-Ref: purelib emptyarray155369
-Ref: 227155369
-Ref: purelib array155429
-Ref: 228155429
-Ref: purelib array2155501
-Ref: 229155501
-Ref: purelib mkarray155589
-Ref: 22a155589
-Ref: purelib mkarray2155677
-Ref: 22b155677
-Ref: purelib arrayp155776
-Ref: 22c155776
-Ref: purelib #/array155845
-Ref: 22d155845
-Ref: purelib !/array155891
-Ref: 22e155891
-Ref: purelib null/array156024
-Ref: 22f156024
-Ref: purelib members/array156097
-Ref: 230156097
-Ref: purelib list/array156126
-Ref: 231156126
-Ref: purelib members2/array156192
-Ref: 232156192
-Ref: purelib list2/array156222
-Ref: 233156222
-Ref: purelib first/array156299
-Ref: 234156299
-Ref: purelib last/array156326
-Ref: 235156326
-Ref: purelib rmfirst/array156392
-Ref: 236156392
-Ref: purelib rmlast/array156421
-Ref: 237156421
-Ref: purelib insert/array156498
-Ref: 238156498
-Ref: purelib append/array156578
-Ref: 239156578
-Ref: purelib update/array156652
-Ref: 23a156652
-Ref: purelib update2/array156742
-Ref: 23b156742
-Node: Examples156815
-Ref: purelib examples156886
-Ref: 23c156886
-Ref: purelib module-heap158263
-Ref: 4158263
-Node: Heaps158264
-Ref: purelib heaps158358
-Ref: 23d158358
-Ref: purelib heap/type158949
-Ref: 23f158949
-Node: Imports<3>159086
-Ref: purelib id10159161
-Ref: 240159161
-Node: Operations<2>159302
-Ref: purelib id11159397
-Ref: 241159397
-Ref: purelib emptyheap159432
-Ref: 242159432
-Ref: purelib heap159490
-Ref: 243159490
-Ref: purelib heapp159559
-Ref: 244159559
-Ref: purelib #/heap159625
-Ref: 245159625
-Ref: purelib null/heap159670
-Ref: 246159670
-Ref: purelib members/heap159742
-Ref: 247159742
-Ref: purelib list/heap159771
-Ref: 248159771
-Ref: purelib first/heap159851
-Ref: 249159851
-Ref: purelib rmfirst/heap159930
-Ref: 24a159930
-Ref: purelib insert/heap160020
-Ref: 24b160020
-Node: Examples<2>160085
-Ref: purelib id12160161
-Ref: 24c160161
-Ref: purelib module-dict160336
-Ref: 1160336
-Node: Dictionaries160337
-Ref: purelib dictionaries160438
-Ref: 111160438
-Ref: purelib dict/type160744
-Ref: 24d160744
-Ref: purelib hdict/type160897
-Ref: 24e160897
-Ref: purelib mdict/type161044
-Ref: 24f161044
-Ref: purelib hmdict/type161187
-Ref: 250161187
-Ref: purelib xdict/type161315
-Ref: 251161315
-Node: Imports<4>163464
-Ref: purelib id13163546
-Ref: 258163546
-Node: Operations<3>163687
-Ref: purelib id14163789
-Ref: 259163789
-Ref: purelib emptydict163824
-Ref: 25a163824
-Ref: purelib emptyhdict163853
-Ref: 25b163853
-Ref: purelib emptymdict163883
-Ref: 25c163883
-Ref: purelib emptyhmdict163913
-Ref: 25d163913
-Ref: purelib dict163978
-Ref: 25e163978
-Ref: purelib hdict164005
-Ref: 25f164005
-Ref: purelib mdict164033
-Ref: 260164033
-Ref: purelib hmdict164061
-Ref: 261164061
-Ref: purelib dictp164351
-Ref: 262164351
-Ref: purelib hdictp164378
-Ref: 263164378
-Ref: purelib mdictp164406
-Ref: 264164406
-Ref: purelib hmdictp164434
-Ref: 265164434
-Ref: purelib mkdict164534
-Ref: 266164534
-Ref: purelib mkhdict164565
-Ref: 267164565
-Ref: purelib mkmdict164597
-Ref: 268164597
-Ref: purelib mkhmdict164629
-Ref: 269164629
-Ref: purelib +/dict164730
-Ref: 26a164730
-Ref: purelib -/dict164822
-Ref: 26b164822
-Ref: purelib */dict164926
-Ref: 26c164926
-Ref: purelib #/dict165038
-Ref: 26d165038
-Ref: purelib !/dict165125
-Ref: 26e165125
-Ref: purelib null/dict165334
-Ref: 26f165334
-Ref: purelib member/dict165411
-Ref: 270165411
-Ref: purelib members/dict165504
-Ref: 252165504
-Ref: purelib list/dict165533
-Ref: 271165533
-Ref: purelib keys/dict165645
-Ref: 253165645
-Ref: purelib vals/dict165749
-Ref: 254165749
-Ref: purelib first/dict165809
-Ref: 272165809
-Ref: purelib last/dict165836
-Ref: 273165836
-Ref: purelib rmfirst/dict165931
-Ref: 255165931
-Ref: purelib rmlast/dict165960
-Ref: 256165960
-Ref: purelib insert/dict166059
-Ref: 274166059
-Ref: purelib update/dict166094
-Ref: 275166094
-Ref: purelib delete/dict166437
-Ref: 257166437
-Ref: purelib delete_val/dict166603
-Ref: 276166603
-Ref: purelib delete_all/dict166859
-Ref: 277166859
-Node: Examples<3>168587
-Ref: purelib id15168670
-Ref: 278168670
-Ref: purelib module-set171539
-Ref: 9171539
-Node: Sets and Bags171540
-Ref: purelib sets-and-bags171627
-Ref: 23e171627
-Ref: purelib set/type172249
-Ref: 279172249
-Ref: purelib bag/type172268
-Ref: 27a172268
-Ref: purelib hset/type172430
-Ref: 27b172430
-Ref: purelib hbag/type172450
-Ref: 27c172450
-Ref: purelib xset/type172631
-Ref: 27d172631
-Node: Imports<5>173843
-Ref: purelib id16173926
-Ref: 27e173926
-Node: Operations<4>174066
-Ref: purelib id17174169
-Ref: 27f174169
-Ref: purelib emptyset174204
-Ref: 280174204
-Ref: purelib emptybag174232
-Ref: 281174232
-Ref: purelib emptyhset174260
-Ref: 282174260
-Ref: purelib emptyhbag174289
-Ref: 283174289
-Ref: purelib set174352
-Ref: 284174352
-Ref: purelib bag174378
-Ref: 285174378
-Ref: purelib hset174404
-Ref: 286174404
-Ref: purelib hbag174431
-Ref: 287174431
-Ref: purelib setp174653
-Ref: 288174653
-Ref: purelib bagp174679
-Ref: 289174679
-Ref: purelib hsetp174705
-Ref: 28a174705
-Ref: purelib hbagp174732
-Ref: 28b174732
-Ref: purelib +/set174830
-Ref: 28c174830
-Ref: purelib -/set174928
-Ref: 28d174928
-Ref: purelib */set175032
-Ref: 28e175032
-Ref: purelib #/set175144
-Ref: 28f175144
-Ref: purelib null/set175203
-Ref: 290175203
-Ref: purelib member/set175280
-Ref: 291175280
-Ref: purelib members/set175355
-Ref: 292175355
-Ref: purelib list/set175384
-Ref: 293175384
-Ref: purelib first/set175497
-Ref: 294175497
-Ref: purelib last/set175524
-Ref: 295175524
-Ref: purelib rmfirst/set175619
-Ref: 296175619
-Ref: purelib rmlast/set175648
-Ref: 297175648
-Ref: purelib insert/set175747
-Ref: 298175747
-Ref: purelib delete/set175869
-Ref: 299175869
-Ref: purelib delete_all/set176004
-Ref: 29a176004
-Node: Examples<4>177307
-Ref: purelib id18177391
-Ref: 29b177391
-Ref: purelib module-system179280
-Ref: a179280
-Node: System Interface179281
-Ref: purelib system-interface179383
-Ref: b5179383
-Node: Imports<6>180272
-Ref: purelib id19180362
-Ref: 29c180362
-Node: Errno and Friends180676
-Ref: purelib errno-and-friends180787
-Ref: 29e180787
-Ref: purelib errno180832
-Ref: 29f180832
-Ref: purelib set_errno180857
-Ref: 2a0180857
-Ref: purelib perror180888
-Ref: 2a1180888
-Ref: purelib strerror180918
-Ref: 2a2180918
-Node: POSIX Locale181391
-Ref: purelib posix-locale181507
-Ref: 2a3181507
-Ref: purelib setlocale181542
-Ref: 2a4181542
-Node: Signal Handling182996
-Ref: purelib signal-handling183109
-Ref: 2a5183109
-Ref: purelib trap183150
-Ref: 2a6183150
-Node: Time Functions184029
-Ref: purelib time-functions184147
-Ref: 2a7184147
-Ref: purelib time184408
-Ref: 2a8184408
-Ref: purelib gettimeofday184640
-Ref: 2a9184640
-Ref: purelib clock185124
-Ref: 2aa185124
-Ref: purelib sleep185424
-Ref: 2ab185424
-Ref: purelib nanosleep185451
-Ref: 2ac185451
-Ref: purelib tzset186496
-Ref: 2ad186496
-Ref: purelib tzname186561
-Ref: 2ae186561
-Ref: purelib timezone186582
-Ref: 2af186582
-Ref: purelib daylight186605
-Ref: 2b0186605
-Ref: purelib ctime187435
-Ref: 2b1187435
-Ref: purelib gmtime187567
-Ref: 2b2187567
-Ref: purelib localtime187595
-Ref: 2b3187595
-Ref: purelib mktime187981
-Ref: 2b6187981
-Ref: purelib asctime188148
-Ref: 2b4188148
-Ref: purelib strftime188178
-Ref: 2b5188178
-Ref: purelib strptime188406
-Ref: 2b7188406
-Node: Process Functions192969
-Ref: purelib process-functions193091
-Ref: 2b8193091
-Ref: purelib system193415
-Ref: 2bd193415
-Ref: purelib execv193477
-Ref: 2be193477
-Ref: purelib execvp193512
-Ref: 2bf193512
-Ref: purelib execve193548
-Ref: 2c0193548
-Ref: purelib spawnv194476
-Ref: 2c1194476
-Ref: purelib spawnvp194517
-Ref: 2c2194517
-Ref: purelib spawnve194559
-Ref: 2c3194559
-Node: Basic I/O Interface195969
-Ref: purelib basic-i-o-interface196093
-Ref: 2c4196093
-Ref: purelib stdin196498
-Ref: 2c5196498
-Ref: purelib stdout196518
-Ref: 2c6196518
-Ref: purelib stderr196539
-Ref: 2c7196539
-Ref: purelib fopen196593
-Ref: 2c8196593
-Ref: purelib popen196628
-Ref: 2c9196628
-Ref: purelib fdopen196947
-Ref: 2ca196947
-Ref: purelib freopen197178
-Ref: 2cb197178
-Ref: purelib fclose197411
-Ref: 2cc197411
-Ref: purelib pclose197440
-Ref: 2cd197440
-Ref: purelib tmpfile197500
-Ref: 2ce197500
-Ref: purelib feof197699
-Ref: 2cf197699
-Ref: purelib ferror197726
-Ref: 2d0197726
-Ref: purelib clearerr197755
-Ref: 2d1197755
-Ref: purelib fileno197880
-Ref: 2d2197880
-Ref: purelib fflush197976
-Ref: 2d3197976
-Ref: purelib fgets198092
-Ref: 2d4198092
-Ref: purelib gets198120
-Ref: 2d5198120
-Ref: purelib fget198269
-Ref: 2d6198269
-Ref: purelib fputs198386
-Ref: 2d7198386
-Ref: purelib puts198416
-Ref: 2d8198416
-Ref: purelib fread198672
-Ref: 2d9198672
-Ref: purelib fwrite198715
-Ref: 2da198715
-Ref: purelib fseek198892
-Ref: 2db198892
-Ref: purelib ftell198934
-Ref: 2dc198934
-Ref: purelib rewind198962
-Ref: 2dd198962
-Ref: purelib setbuf199382
-Ref: 2de199382
-Ref: purelib setvbuf199415
-Ref: 2df199415
-Ref: purelib printf201849
-Ref: 2e0201849
-Ref: purelib fprintf201887
-Ref: 2e1201887
-Ref: purelib sprintf202437
-Ref: 2e2202437
-Ref: purelib scanf202915
-Ref: 2e3202915
-Ref: purelib fscanf202947
-Ref: 2e4202947
-Ref: purelib sscanf203875
-Ref: 2e5203875
-Ref: Basic I/O Interface-Footnote-1205297
-Ref: Basic I/O Interface-Footnote-2205323
-Ref: Basic I/O Interface-Footnote-3205351
-Ref: Basic I/O Interface-Footnote-4205377
-Ref: Basic I/O Interface-Footnote-5205405
-Node: Stat and Friends205433
-Ref: purelib stat-and-friends205559
-Ref: 2e6205559
-Ref: purelib stat205602
-Ref: 2e7205602
-Ref: purelib lstat206259
-Ref: 2e8206259
-Ref: purelib fstat206510
-Ref: 2e9206510
-Node: Reading Directories208415
-Ref: purelib reading-directories208536
-Ref: 2ea208536
-Ref: purelib readdir208585
-Ref: 2eb208585
-Node: Shell Globbing208780
-Ref: purelib shell-globbing208899
-Ref: 2ec208899
-Ref: purelib fnmatch208940
-Ref: 2ed208940
-Ref: purelib glob209119
-Ref: 2ee209119
-Node: Regex Matching209752
-Ref: purelib regex-matching209878
-Ref: a5209878
-Ref: purelib module-regex209878
-Ref: 8209878
-Ref: purelib regex210826
-Ref: 2ef210826
-Ref: purelib reg_result214590
-Ref: 2f1214590
-Ref: purelib reg_info214804
-Ref: 2f2214804
-Ref: purelib reg214908
-Ref: 2f3214908
-Ref: purelib regs215072
-Ref: 2f4215072
-Ref: purelib regexg215423
-Ref: 2f5215423
-Ref: purelib regexgg215835
-Ref: 2f6215835
-Ref: purelib regsub215958
-Ref: 2f7215958
-Ref: purelib regsplit216508
-Ref: 2f8216508
-Ref: purelib regexgs216911
-Ref: 2f9216911
-Ref: purelib regexggs216960
-Ref: 2fa216960
-Ref: purelib regsplits217010
-Ref: 2fb217010
-Node: Basic Examples217410
-Ref: purelib basic-examples217518
-Ref: 2fc217518
-Node: Regex Substitutions and Splitting219497
-Ref: purelib regex-substitutions-and-splitting219627
-Ref: 2fd219627
-Node: Empty Matches220340
-Ref: purelib empty-matches220466
-Ref: 2fe220466
-Node: Submatches221392
-Ref: purelib submatches221509
-Ref: 2ff221509
-Node: Perl Regex Compatibility222919
-Ref: purelib perl-regex-compatibility223014
-Ref: 2f0223014
-Node: Additional POSIX Functions225280
-Ref: purelib module-posix225406
-Ref: 7225406
-Ref: purelib additional-posix-functions225406
-Ref: 29d225406
-Ref: purelib fork226013
-Ref: 2b9226013
-Ref: purelib getpid226064
-Ref: 300226064
-Ref: purelib getppid226090
-Ref: 301226090
-Ref: purelib wait226209
-Ref: 2bb226209
-Ref: purelib waitpid226240
-Ref: 2bc226240
-Ref: purelib kill226474
-Ref: 2ba226474
-Ref: purelib raise226557
-Ref: 302226557
-Ref: purelib pause226640
-Ref: 303226640
-Ref: purelib module-getopt226703
-Ref: 3226703
-Node: Option Parsing226704
-Ref: purelib option-parsing226807
-Ref: b4226807
-Ref: purelib getopt227098
-Ref: 304227098
-Node: Module Index230389
-Node: Index230660
+Node: Top363
+Ref: purelib doc577
+Ref: b577
+Ref: Top-Footnote-13032
+Node: Prelude3077
+Ref: purelib prelude3168
+Ref: c3168
+Ref: purelib pure-library-manual3168
+Ref: d3168
+Ref: purelib id13168
+Ref: e3168
+Node: Constants and Operators4156
+Ref: purelib constants-and-operators4246
+Ref: f4246
+Ref: purelib true4450
+Ref: 104450
+Ref: purelib false4473
+Ref: 114473
+Ref: purelib failed_cond4702
+Ref: 124702
+Ref: purelib failed_match4736
+Ref: 134736
+Ref: purelib stack_fault4771
+Ref: 144771
+Ref: purelib malloc_error4805
+Ref: 154805
+Ref: purelib bad_list_value5214
+Ref: 165214
+Ref: purelib bad_tuple_value5253
+Ref: 175253
+Ref: purelib bad_string_value5293
+Ref: 185293
+Ref: purelib bad_matrix_value5334
+Ref: 195334
+Ref: purelib out_of_bounds5557
+Ref: 1a5557
+Ref: purelib operators5711
+Ref: 1b5711
+Node: Prelude Types7318
+Ref: purelib prelude-types7434
+Ref: 1c7434
+Ref: purelib id27434
+Ref: 1d7434
+Ref: purelib number/type7617
+Ref: 1e7617
+Ref: purelib complex/type7639
+Ref: 1f7639
+Ref: purelib real/type7662
+Ref: 207662
+Ref: purelib rational/type7682
+Ref: 217682
+Ref: purelib integer/type7706
+Ref: 227706
+Ref: purelib bool/type7729
+Ref: 237729
+Ref: purelib char/type9314
+Ref: 259314
+Ref: purelib list/type9489
+Ref: 279489
+Ref: purelib rlist/type9509
+Ref: 289509
+Ref: purelib tuple/type10219
+Ref: 2910219
+Ref: purelib appl/type10814
+Ref: 2a10814
+Ref: purelib function/type11027
+Ref: 2b11027
+Ref: purelib fun/type11398
+Ref: 2c11398
+Ref: purelib lambda/type11512
+Ref: 2d11512
+Ref: purelib closure/type11573
+Ref: 2e11573
+Ref: purelib thunk/type11734
+Ref: 2f11734
+Ref: purelib var/type11920
+Ref: 3011920
+Ref: purelib symbol/type12090
+Ref: 3112090
+Node: Basic Combinators12444
+Ref: purelib basic-combinators12553
+Ref: 3512553
+Ref: purelib $12668
+Ref: 3612668
+Ref: purelib12693
+Ref: 3712693
+Ref: purelib id13027
+Ref: 3813027
+Ref: purelib cst13051
+Ref: 3913051
+Ref: purelib void13286
+Ref: 3a13286
+Ref: purelib flip14312
+Ref: 3d14312
+Ref: purelib curry14656
+Ref: 3e14656
+Ref: purelib uncurry14954
+Ref: 3f14954
+Ref: purelib curry315214
+Ref: 4015214
+Ref: purelib uncurry315242
+Ref: 4115242
+Ref: purelib fix15402
+Ref: 4215402
+Ref: Basic Combinators-Footnote-116218
+Node: Lists and Tuples16278
+Ref: purelib lists-and-tuples16381
+Ref: 2616381
+Ref: purelib []16647
+Ref: 4316647
+Ref: 4416672
+Ref: 4516726
+Ref: 4616754
+Ref: purelib +/list19520
+Ref: 4719520
+Ref: purelib ==/list20719
+Ref: 4920719
+Ref: purelib ~=/list20745
+Ref: 4a20745
+Ref: purelib #21252
+Ref: 4c21252
+Ref: purelib !21602
+Ref: 4d21602
+Ref: purelib !!21968
+Ref: 4e21968
+Ref: 5022939
+Ref: purelib null23886
+Ref: 5123886
+Ref: purelib reverse24027
+Ref: 5224027
+Ref: purelib list24261
+Ref: 5324261
+Ref: purelib tuple24287
+Ref: 5424287
+Ref: purelib stream24927
+Ref: 5524927
+Node: Slicing25288
+Ref: purelib slicing25384
+Ref: 4f25384
+Ref: purelib subseq26591
+Ref: 5726591
+Ref: purelib slice27017
+Ref: 5827017
+Node: Hash Pairs27803
+Ref: purelib id327897
+Ref: 5927897
+Ref: purelib hash-pairs27897
+Ref: 5a27897
+Ref: purelib =>28286
+Ref: 5d28286
+Ref: purelib ==/hashpair28382
+Ref: 5e28382
+Ref: purelib ~=/hashpair28408
+Ref: 5f28408
+Ref: purelib key28534
+Ref: 5b28534
+Ref: purelib val28564
+Ref: 5c28564
+Node: List Functions29232
+Ref: purelib list-functions29335
+Ref: 6029335
+Node: Common List Functions29734
+Ref: purelib common-list-functions29831
+Ref: 6129831
+Ref: purelib any29888
+Ref: 6229888
+Ref: purelib all29999
+Ref: 6329999
+Ref: purelib cat30110
+Ref: 6430110
+Ref: purelib catmap30171
+Ref: 5630171
+Ref: purelib do30336
+Ref: 3b30336
+Ref: purelib drop30497
+Ref: 6530497
+Ref: purelib dropwhile30584
+Ref: 6630584
+Ref: purelib filter30714
+Ref: 6730714
+Ref: purelib foldl30828
+Ref: 6830828
+Ref: purelib foldl131041
+Ref: 6931041
+Ref: purelib foldr31278
+Ref: 6a31278
+Ref: purelib foldr131491
+Ref: 6b31491
+Ref: purelib head31728
+Ref: 6c31728
+Ref: purelib index31826
+Ref: 6d31826
+Ref: purelib init32186
+Ref: 6e32186
+Ref: purelib last32291
+Ref: 6f32291
+Ref: purelib listmap32388
+Ref: 7032388
+Ref: purelib map32648
+Ref: 3c32648
+Ref: purelib scanl32724
+Ref: 7132724
+Ref: purelib scanl132908
+Ref: 7232908
+Ref: purelib scanr33097
+Ref: 7333097
+Ref: purelib scanr133281
+Ref: 7433281
+Ref: purelib sort33470
+Ref: 7533470
+Ref: purelib tail34022
+Ref: 7634022
+Ref: purelib take34128
+Ref: 7734128
+Ref: purelib takewhile34213
+Ref: 7834213
+Node: List Generators34341
+Ref: purelib list-generators34462
+Ref: 7934462
+Ref: purelib cycle34751
+Ref: 7a34751
+Ref: purelib cyclen34858
+Ref: 7b34858
+Ref: purelib iterate34988
+Ref: 7c34988
+Ref: purelib iteraten35115
+Ref: 7d35115
+Ref: purelib iterwhile35253
+Ref: 7e35253
+Ref: purelib repeat35456
+Ref: 7f35456
+Ref: purelib repeatn35530
+Ref: 8035530
+Node: Zip and Friends35640
+Ref: purelib zip-and-friends35731
+Ref: 8135731
+Ref: purelib unzip35776
+Ref: 8235776
+Ref: purelib unzip335879
+Ref: 8335879
+Ref: purelib zip35947
+Ref: 8435947
+Ref: purelib zip336146
+Ref: 8536146
+Ref: purelib zipwith36245
+Ref: 8636245
+Ref: purelib zipwith336377
+Ref: 8736377
+Ref: purelib dowith36789
+Ref: 8836789
+Ref: purelib dowith336937
+Ref: 8936937
+Node: String Functions37100
+Ref: purelib id437209
+Ref: 8a37209
+Ref: purelib string-functions37209
+Ref: 8b37209
+Node: Basic String Functions37815
+Ref: purelib basic-string-functions37920
+Ref: 8d37920
+Ref: purelib +/string37979
+Ref: 8e37979
+Ref: purelib !/string38004
+Ref: 8f38004
+Ref: purelib !!/string38029
+Ref: 9038029
+Ref: purelib null/string38327
+Ref: 9138327
+Ref: purelib #/string38353
+Ref: 9238353
+Ref: purelib ==/string38572
+Ref: 9338572
+Ref: purelib ~=/string38598
+Ref: 9438598
+Ref: purelib <=/string38624
+Ref: 9538624
+Ref: purelib >=/string38650
+Ref: 9638650
+Ref: purelib </string38676
+Ref: 9738676
+Ref: purelib >/string38701
+Ref: 9838701
+Ref: purelib index/string39078
+Ref: 9939078
+Ref: purelib substr39253
+Ref: 9a39253
+Ref: purelib ord39926
+Ref: 9b39926
+Ref: purelib chr40084
+Ref: 9c40084
+Ref: purelib chars40603
+Ref: 9d40603
+Ref: purelib list/string40630
+Ref: 9e40630
+Ref: purelib tuple/string40713
+Ref: 9f40713
+Ref: purelib matrix/string40740
+Ref: a040740
+Ref: purelib strcat40866
+Ref: a140866
+Ref: purelib string41016
+Ref: a241016
+Ref: purelib split41477
+Ref: a341477
+Ref: purelib join41584
+Ref: a441584
+Node: Low-Level Operations42740
+Ref: purelib low-level-operations42845
+Ref: a642845
+Ref: purelib string/pointer43478
+Ref: a843478
+Ref: purelib cstring43506
+Ref: a743506
+Ref: purelib string_dup43846
+Ref: a943846
+Ref: purelib cstring_dup43878
+Ref: aa43878
+Ref: purelib byte_string44185
+Ref: ab44185
+Ref: purelib byte_cstring44218
+Ref: ac44218
+Ref: purelib byte_string_pointer45329
+Ref: ae45329
+Ref: purelib byte_cstring_pointer45371
+Ref: af45371
+Ref: purelib string_list45483
+Ref: b045483
+Ref: purelib cstring_list45518
+Ref: b145518
+Ref: purelib string_vector45613
+Ref: b245613
+Ref: purelib cstring_vector45650
+Ref: b345650
+Node: Matrix Functions48070
+Ref: purelib id548181
+Ref: b648181
+Ref: purelib matrix-functions48181
+Ref: b748181
+Ref: purelib #/matrix48399
+Ref: b848399
+Ref: purelib dim48422
+Ref: b948422
+Ref: purelib null/matrix48646
+Ref: ba48646
+Ref: purelib ==/matrix48805
+Ref: bb48805
+Ref: purelib ~=/matrix48831
+Ref: bc48831
+Ref: purelib !/matrix49011
+Ref: bd49011
+Ref: purelib !!/matrix49036
+Ref: be49036
+Node: Matrix Construction and Conversions51128
+Ref: purelib matrix-construction-and-conversions51260
+Ref: c151260
+Ref: purelib matrix51345
+Ref: c251345
+Ref: purelib rowvector51922
+Ref: c351922
+Ref: purelib colvector51954
+Ref: c451954
+Ref: purelib vector51986
+Ref: c551986
+Ref: purelib rowvectorseq53003
+Ref: c753003
+Ref: purelib colvectorseq53044
+Ref: c853044
+Ref: purelib vectorseq53085
+Ref: c953085
+Ref: purelib dmatrix54569
+Ref: ca54569
+Ref: purelib cmatrix54599
+Ref: cb54599
+Ref: purelib imatrix54629
+Ref: cc54629
+Ref: purelib smatrix54659
+Ref: cd54659
+Ref: purelib list/matrix55492
+Ref: ce55492
+Ref: purelib list2/matrix55518
+Ref: cf55518
+Ref: purelib tuple/matrix55545
+Ref: d055545
+Ref: purelib non-splicing55967
+Ref: c655967
+Ref: purelib {|56078
+Ref: d156078
+Node: Matrix Inspection and Manipulation57730
+Ref: purelib matrix-inspection-and-manipulation57892
+Ref: 3357892
+Ref: purelib nmatrix58070
+Ref: d258070
+Ref: purelib dmatrixp58342
+Ref: d358342
+Ref: purelib cmatrixp58372
+Ref: d458372
+Ref: purelib imatrixp58402
+Ref: d558402
+Ref: purelib smatrixp58432
+Ref: d658432
+Ref: purelib nmatrixp58462
+Ref: d758462
+Ref: purelib vectorp58566
+Ref: d858566
+Ref: purelib rowvectorp58595
+Ref: d958595
+Ref: purelib colvectorp58627
+Ref: da58627
+Ref: purelib stride58758
+Ref: db58758
+Ref: purelib subseq/matrix59053
+Ref: bf59053
+Ref: purelib subseq2/matrix59085
+Ref: c059085
+Ref: purelib row59375
+Ref: dd59375
+Ref: purelib col59402
+Ref: de59402
+Ref: purelib rows59485
+Ref: df59485
+Ref: purelib cols59511
+Ref: e059511
+Ref: purelib diag59596
+Ref: e159596
+Ref: purelib subdiag59622
+Ref: e259622
+Ref: purelib supdiag59653
+Ref: e359653
+Ref: purelib submat60002
+Ref: e460002
+Ref: purelib rowcat60272
+Ref: e560272
+Ref: purelib colcat60301
+Ref: e660301
+Ref: purelib matcat60784
+Ref: e760784
+Ref: purelib rowcatmap61277
+Ref: e861277
+Ref: purelib colcatmap61311
+Ref: e961311
+Ref: purelib rowmap61345
+Ref: ea61345
+Ref: purelib colmap61376
+Ref: eb61376
+Ref: purelib diagmat61575
+Ref: ec61575
+Ref: purelib subdiagmat61604
+Ref: ed61604
+Ref: purelib supdiagmat61638
+Ref: ee61638
+Ref: purelib re/matrix62134
+Ref: ef62134
+Ref: purelib im/matrix62158
+Ref: f062158
+Ref: purelib conj/matrix62182
+Ref: f162182
+Ref: purelib pack62304
+Ref: dc62304
+Ref: purelib packed62330
+Ref: f262330
+Ref: purelib redim62982
+Ref: f362982
+Ref: purelib sort/matrix63438
+Ref: f463438
+Ref: purelib transpose/matrix64846
+Ref: f564846
+Ref: purelib rowrev64977
+Ref: f664977
+Ref: purelib colrev65005
+Ref: f765005
+Ref: purelib reverse/matrix65033
+Ref: f865033
+Node: Pointers and Matrices65197
+Ref: purelib pointers-and-matrices65315
+Ref: f965315
+Ref: purelib pointer/matrix65793
+Ref: fa65793
+Ref: purelib double_pointer66204
+Ref: fb66204
+Ref: purelib float_pointer66242
+Ref: fc66242
+Ref: purelib complex_pointer66279
+Ref: fd66279
+Ref: purelib complex_float_pointer66318
+Ref: fe66318
+Ref: purelib int64_pointer66363
+Ref: ff66363
+Ref: purelib int_pointer66400
+Ref: 10066400
+Ref: purelib short_pointer66435
+Ref: 10166435
+Ref: purelib byte_pointer66472
+Ref: 10266472
+Ref: purelib double_matrix67144
+Ref: 10367144
+Ref: purelib float_matrix67185
+Ref: 10467185
+Ref: purelib complex_matrix67225
+Ref: 10567225
+Ref: purelib complex_float_matrix67267
+Ref: 10667267
+Ref: purelib int64_matrix67315
+Ref: 10767315
+Ref: purelib int_matrix67355
+Ref: 10867355
+Ref: purelib short_matrix67393
+Ref: 10967393
+Ref: purelib byte_matrix67433
+Ref: 10a67433
+Ref: purelib double_matrix_view68177
+Ref: 10b68177
+Ref: purelib complex_matrix_view68223
+Ref: 10c68223
+Ref: purelib int_matrix_view68270
+Ref: 10d68270
+Node: Record Functions68731
+Ref: purelib id668836
+Ref: 10e68836
+Ref: purelib record-functions68836
+Ref: 3468836
+Ref: purelib record/type70369
+Ref: 11370369
+Ref: purelib recordp70547
+Ref: 11470547
+Ref: purelib record70608
+Ref: 11570608
+Ref: purelib #/record71080
+Ref: 11771080
+Ref: purelib member/record71266
+Ref: 10f71266
+Ref: purelib !/record71351
+Ref: 11871351
+Ref: purelib !!/record71523
+Ref: 11971523
+Ref: purelib insert/record71680
+Ref: 11071680
+Ref: purelib update/record71715
+Ref: 11a71715
+Ref: purelib delete/record72057
+Ref: 11b72057
+Ref: purelib keys/record72258
+Ref: 11c72258
+Ref: purelib vals/record72284
+Ref: 11d72284
+Node: Primitives73570
+Ref: purelib primitives73650
+Ref: 11e73650
+Node: Special Constants74514
+Ref: purelib special-constants74598
+Ref: 11f74598
+Ref: purelib inf74649
+Ref: 12074649
+Ref: purelib nan74667
+Ref: 12174667
+Ref: purelib NULL74860
+Ref: ad74860
+Node: Arithmetic75072
+Ref: purelib arithmetic75176
+Ref: 12575176
+Ref: purelib +79302
+Ref: 4879302
+Ref: purelib -79327
+Ref: 12979327
+Ref: purelib *79352
+Ref: 12a79352
+Ref: purelib /79377
+Ref: 12b79377
+Ref: purelib ^79402
+Ref: 12c79402
+Ref: purelib -/unary79565
+Ref: 12d79565
+Ref: purelib div79680
+Ref: 12e79680
+Ref: purelib mod79707
+Ref: 12f79707
+Ref: purelib ==79784
+Ref: 4b79784
+Ref: purelib ~=79810
+Ref: 13079810
+Ref: purelib <=79868
+Ref: 13179868
+Ref: purelib >=79894
+Ref: 13279894
+Ref: purelib >79920
+Ref: 13379920
+Ref: purelib <79945
+Ref: 13479945
+Ref: purelib ~79990
+Ref: 13579990
+Ref: purelib &&80013
+Ref: 13680013
+Ref: purelib ||80039
+Ref: 13780039
+Ref: purelib not80335
+Ref: 13880335
+Ref: purelib and80360
+Ref: 13980360
+Ref: purelib or80387
+Ref: 13a80387
+Ref: purelib <<80520
+Ref: 13b80520
+Ref: purelib >>80546
+Ref: 13c80546
+Ref: purelib abs81376
+Ref: 13d81376
+Ref: purelib sgn81401
+Ref: 13e81401
+Ref: purelib min81470
+Ref: 13f81470
+Ref: purelib max81497
+Ref: 14081497
+Ref: purelib succ81658
+Ref: 14181658
+Ref: purelib pred81684
+Ref: 14281684
+Ref: purelib gcd81776
+Ref: 14381776
+Ref: purelib lcd81803
+Ref: 14481803
+Ref: purelib pow82027
+Ref: 14582027
+Node: Conversions82324
+Ref: purelib conversions82421
+Ref: 14682421
+Ref: purelib hash82524
+Ref: 14782524
+Ref: purelib bool82606
+Ref: 14882606
+Ref: purelib int82715
+Ref: 14982715
+Ref: purelib bigint82740
+Ref: 14a82740
+Ref: purelib double82768
+Ref: 14b82768
+Ref: purelib pointer82852
+Ref: 14c82852
+Ref: purelib ubyte83270
+Ref: 14d83270
+Ref: purelib ushort83297
+Ref: 14e83297
+Ref: purelib uint83325
+Ref: 14f83325
+Ref: purelib uint6483351
+Ref: 15083351
+Ref: purelib ulong83379
+Ref: 15183379
+Ref: purelib rounding-functions84280
+Ref: 15284280
+Ref: purelib floor84333
+Ref: 15384333
+Ref: purelib ceil84360
+Ref: 15484360
+Ref: purelib round84409
+Ref: 15584409
+Ref: purelib trunc84436
+Ref: 15684436
+Ref: purelib frac84503
+Ref: 15784503
+Node: Predicates84758
+Ref: purelib predicates84855
+Ref: 3284855
+Ref: purelib same85138
+Ref: 15885138
+Ref: purelib ===85166
+Ref: 11685166
+Ref: purelib ~==85193
+Ref: 15985193
+Ref: purelib typep85659
+Ref: 15a85659
+Ref: purelib intp86054
+Ref: 15b86054
+Ref: purelib bigintp86080
+Ref: 15c86080
+Ref: purelib doublep86109
+Ref: 15d86109
+Ref: purelib stringp86138
+Ref: 15e86138
+Ref: purelib pointerp86167
+Ref: 15f86167
+Ref: purelib matrixp86197
+Ref: 16086197
+Ref: purelib boolp86277
+Ref: 16186277
+Ref: purelib charp86381
+Ref: 16286381
+Ref: purelib numberp86464
+Ref: 16386464
+Ref: purelib complexp86493
+Ref: 16486493
+Ref: purelib realp86523
+Ref: 16586523
+Ref: purelib rationalp86550
+Ref: 16686550
+Ref: purelib integerp86581
+Ref: 16786581
+Ref: purelib exactp86800
+Ref: 16886800
+Ref: purelib inexactp86828
+Ref: 16986828
+Ref: purelib infp86951
+Ref: 12286951
+Ref: purelib nanp86977
+Ref: 12386977
+Ref: purelib null/pointer87064
+Ref: 12487064
+Ref: purelib applp87122
+Ref: 16a87122
+Ref: purelib listp87149
+Ref: 16b87149
+Ref: purelib rlistp87176
+Ref: 16c87176
+Ref: purelib tuplep87204
+Ref: 16d87204
+Ref: purelib funp87719
+Ref: 16e87719
+Ref: purelib lambdap87745
+Ref: 16f87745
+Ref: purelib thunkp87774
+Ref: 17087774
+Ref: purelib closurep87802
+Ref: 17187802
+Ref: purelib functionp88056
+Ref: 17288056
+Ref: purelib symbolp88281
+Ref: 17388281
+Ref: purelib varp88310
+Ref: 17488310
+Node: Inspection88775
+Ref: purelib inspection88877
+Ref: 17588877
+Ref: purelib ans89189
+Ref: 17689189
+Ref: purelib __func__89704
+Ref: 17789704
+Ref: purelib __namespace__90977
+Ref: 17990977
+Ref: purelib __dir__91391
+Ref: 17a91391
+Ref: purelib __file__91415
+Ref: 17b91415
+Ref: purelib __list__92606
+Ref: 17d92606
+Ref: purelib __locals__94438
+Ref: 17e94438
+Ref: purelib get_fundef97908
+Ref: 18197908
+Ref: purelib get_typedef97942
+Ref: 18297942
+Ref: purelib get_macdef97977
+Ref: 18397977
+Ref: purelib get_interface98173
+Ref: 18498173
+Ref: purelib get_interface_typedef98210
+Ref: 18598210
+Ref: purelib get_vardef99027
+Ref: 18699027
+Ref: purelib get_constdef99061
+Ref: 18799061
+Ref: purelib add_fundef99445
+Ref: 18999445
+Ref: purelib add_typedef99481
+Ref: 18a99481
+Ref: purelib add_macdef99518
+Ref: 18b99518
+Ref: purelib add_fundef_at99761
+Ref: 18c99761
+Ref: purelib add_typedef_at99802
+Ref: 18d99802
+Ref: purelib add_macdef_at99844
+Ref: 18e99844
+Ref: purelib add_interface100201
+Ref: 18f100201
+Ref: purelib add_interface_at100404
+Ref: 190100404
+Ref: purelib add_vardef100661
+Ref: 191100661
+Ref: purelib add_constdef100697
+Ref: 192100697
+Ref: purelib del_fundef101060
+Ref: 193101060
+Ref: purelib del_typedef101095
+Ref: 194101095
+Ref: purelib del_macdef101131
+Ref: 195101131
+Ref: purelib del_interface101425
+Ref: 196101425
+Ref: purelib del_vardef101588
+Ref: 197101588
+Ref: purelib del_constdef101622
+Ref: 198101622
+Ref: purelib nargs102147
+Ref: 199102147
+Ref: purelib arity102382
+Ref: 19a102382
+Ref: purelib fixity102626
+Ref: 19b102626
+Node: Eval and Friends105072
+Ref: purelib eval-and-friends105188
+Ref: 8c105188
+Ref: purelib str105927
+Ref: 178105927
+Ref: purelib val/string106042
+Ref: 19d106042
+Ref: purelib eval106451
+Ref: 17c106451
+Ref: purelib evalcmd107633
+Ref: 180107633
+Ref: purelib lasterr108151
+Ref: 188108151
+Ref: purelib lasterrpos108593
+Ref: 19e108593
+Ref: purelib __str__110925
+Ref: 19f110925
+Ref: purelib globsym111300
+Ref: 1a0111300
+Ref: purelib clearsym111772
+Ref: 1a1111772
+Ref: purelib reduce112389
+Ref: 17f112389
+Ref: purelib reduce_with112904
+Ref: 1a2112904
+Node: Expression Serialization115475
+Ref: purelib expression-serialization115605
+Ref: 19c115605
+Ref: purelib blob116355
+Ref: 1a3116355
+Ref: purelib val/blob116542
+Ref: 1a4116542
+Ref: purelib blobp116691
+Ref: 1a5116691
+Ref: purelib #/blob117081
+Ref: 1a6117081
+Ref: purelib blob_size117104
+Ref: 1a7117104
+Ref: purelib blob_crc117135
+Ref: 1a8117135
+Node: Other Special Primitives118817
+Ref: purelib other-special-primitives118949
+Ref: 1a9118949
+Ref: purelib exit119014
+Ref: 1aa119014
+Ref: purelib throw119102
+Ref: 1ab119102
+Ref: purelib __break__119183
+Ref: 1ac119183
+Ref: purelib __trace__119212
+Ref: 1ad119212
+Ref: purelib force119565
+Ref: 1ae119565
+Node: Pointer Operations119725
+Ref: purelib pointer-operations119841
+Ref: 1af119841
+Ref: purelib addr120175
+Ref: 1b0120175
+Ref: purelib calloc120584
+Ref: 1b1120584
+Ref: purelib malloc120624
+Ref: 1b2120624
+Ref: purelib realloc120655
+Ref: 1b3120655
+Ref: purelib free120691
+Ref: 1b4120691
+Ref: purelib get_byte121315
+Ref: 1b5121315
+Ref: purelib get_short121347
+Ref: 1b6121347
+Ref: purelib get_int121380
+Ref: 1b7121380
+Ref: purelib get_int64121411
+Ref: 1b8121411
+Ref: purelib get_long121444
+Ref: 1b9121444
+Ref: purelib get_float121476
+Ref: 1ba121476
+Ref: purelib get_double121509
+Ref: 1bb121509
+Ref: purelib get_string121543
+Ref: 1bc121543
+Ref: purelib get_pointer121577
+Ref: 1bd121577
+Ref: purelib put_byte121739
+Ref: 1be121739
+Ref: purelib put_short121773
+Ref: 1bf121773
+Ref: purelib put_int121808
+Ref: 1c0121808
+Ref: purelib put_int64121841
+Ref: 1c1121841
+Ref: purelib put_long121876
+Ref: 1c2121876
+Ref: purelib put_float121910
+Ref: 1c3121910
+Ref: purelib put_double121945
+Ref: 1c4121945
+Ref: purelib put_string121981
+Ref: 1c5121981
+Ref: purelib put_pointer122017
+Ref: 1c6122017
+Node: Sentries122208
+Ref: purelib sentries122315
+Ref: 1c7122315
+Ref: purelib sentry122839
+Ref: 1c8122839
+Ref: purelib clear_sentry122967
+Ref: 1c9122967
+Ref: purelib get_sentry123055
+Ref: 1ca123055
+Ref: purelib cookedp124014
+Ref: 1cb124014
+Ref: purelib cooked124103
+Ref: 1cc124103
+Node: Tagged Pointers127266
+Ref: purelib id7127376
+Ref: 1cd127376
+Ref: purelib tagged-pointers127376
+Ref: 1ce127376
+Ref: purelib ptrtag128038
+Ref: 1cf128038
+Ref: purelib get_ptrtag128206
+Ref: 1d0128206
+Ref: purelib check_ptrtag128288
+Ref: 1d1128288
+Ref: purelib make_ptrtag128541
+Ref: 1d2128541
+Ref: purelib pointer_tag129685
+Ref: 1d3129685
+Ref: purelib pointer_type130173
+Ref: 1d4130173
+Ref: purelib pointer_cast130580
+Ref: 1d5130580
+Node: Expression References132672
+Ref: purelib expression-references132792
+Ref: 112132792
+Ref: purelib id8132792
+Ref: 1d6132792
+Ref: purelib ref/type133344
+Ref: 1d7133344
+Ref: purelib ref133456
+Ref: 1d8133456
+Ref: purelib put133538
+Ref: 1d9133538
+Ref: purelib get133620
+Ref: 1da133620
+Ref: purelib unref133698
+Ref: 1db133698
+Ref: purelib refp133912
+Ref: 1dc133912
+Ref: purelib module-pointers135340
+Ref: 6135340
+Node: Pointer Arithmetic135342
+Ref: purelib pointer-arithmetic135438
+Ref: 127135438
+Ref: purelib int/pointer136052
+Ref: 1dd136052
+Ref: purelib bigint/pointer136077
+Ref: 1de136077
+Ref: purelib +/pointer136565
+Ref: 1df136565
+Ref: purelib -/pointer136590
+Ref: 1e0136590
+Ref: purelib -/pointerdiff136615
+Ref: 1e1136615
+Ref: purelib ==/pointer137142
+Ref: 1e2137142
+Ref: purelib ~=/pointer137168
+Ref: 1e3137168
+Ref: purelib <=/pointer137300
+Ref: 1e4137300
+Ref: purelib >=/pointer137326
+Ref: 1e5137326
+Ref: purelib >/pointer137352
+Ref: 1e6137352
+Ref: purelib </pointer137377
+Ref: 1e7137377
+Node: Mathematical Functions137611
+Ref: purelib module-math137715
+Ref: 5137715
+Ref: purelib mathematical-functions137715
+Ref: 128137715
+Node: Imports138003
+Ref: purelib imports138099
+Ref: 1e8138099
+Node: Basic Math Functions138236
+Ref: purelib basic-math-functions138356
+Ref: 1e9138356
+Ref: purelib e138464
+Ref: 1ea138464
+Ref: purelib pi138518
+Ref: 1eb138518
+Ref: purelib random139193
+Ref: 1ef139193
+Ref: purelib random31139308
+Ref: 1ec139308
+Ref: purelib random53139410
+Ref: 1ed139410
+Ref: purelib srandom139529
+Ref: 1ee139529
+Ref: purelib sqrt139969
+Ref: 1f0139969
+Ref: purelib exp140028
+Ref: 1f1140028
+Ref: purelib ln140053
+Ref: 1f2140053
+Ref: purelib log140077
+Ref: 1f3140077
+Ref: purelib sin140163
+Ref: 1f4140163
+Ref: purelib cos140188
+Ref: 1f5140188
+Ref: purelib tan140213
+Ref: 1f6140213
+Ref: purelib asin140270
+Ref: 1f7140270
+Ref: purelib acos140296
+Ref: 1f8140296
+Ref: purelib atan140322
+Ref: 1f9140322
+Ref: purelib atan2140388
+Ref: 1fa140388
+Ref: purelib sinh140548
+Ref: 1fb140548
+Ref: purelib cosh140574
+Ref: 1fc140574
+Ref: purelib tanh140600
+Ref: 1fd140600
+Ref: purelib asinh140669
+Ref: 1fe140669
+Ref: purelib acosh140696
+Ref: 1ff140696
+Ref: purelib atanh140723
+Ref: 200140723
+Ref: Basic Math Functions-Footnote-1140837
+Node: Complex Numbers140902
+Ref: purelib complex-numbers141031
+Ref: 201141031
+Ref: 202141072
+Ref: 203141098
+Ref: purelib i141160
+Ref: 204141160
+Ref: purelib complex142865
+Ref: 205142865
+Ref: purelib polar142948
+Ref: 206142948
+Ref: purelib rect142975
+Ref: 207142975
+Ref: purelib cis143063
+Ref: 208143063
+Ref: purelib abs/complex143222
+Ref: 209143222
+Ref: purelib arg143247
+Ref: 20a143247
+Ref: purelib re143433
+Ref: 20b143433
+Ref: purelib im143457
+Ref: 20c143457
+Ref: purelib conj143513
+Ref: 20d143513
+Node: Rational Numbers144022
+Ref: purelib rational-numbers144167
+Ref: 126144167
+Ref: purelib %144210
+Ref: 20e144210
+Ref: purelib rational145648
+Ref: 20f145648
+Ref: purelib num146225
+Ref: 210146225
+Ref: purelib den146250
+Ref: 211146250
+Node: Semantic Number Predicates and Types146950
+Ref: purelib semantic-number-predicates-and-types147071
+Ref: 24147071
+Ref: purelib compvalp147534
+Ref: 212147534
+Ref: purelib realvalp147639
+Ref: 213147639
+Ref: purelib ratvalp147715
+Ref: 214147715
+Ref: purelib bigintvalp147868
+Ref: 215147868
+Ref: purelib intvalp147981
+Ref: 216147981
+Ref: purelib compval148098
+Ref: 217148098
+Ref: purelib realval148121
+Ref: 218148121
+Ref: purelib ratval148144
+Ref: 219148144
+Ref: purelib bigintval148166
+Ref: 21a148166
+Ref: purelib intval148191
+Ref: 21b148191
+Ref: purelib module-enum148427
+Ref: 2148427
+Node: Enumerated Types148428
+Ref: purelib enumerated-types148540
+Ref: 21c148540
+Ref: purelib enum149237
+Ref: 21d149237
+Ref: purelib defenum149958
+Ref: 21e149958
+Ref: purelib enumof150167
+Ref: 21f150167
+Ref: purelib enum/type150408
+Ref: 220150408
+Ref: purelib enump150616
+Ref: 221150616
+Node: Container Types152689
+Ref: purelib container-types152795
+Ref: 222152795
+Ref: purelib module-array154024
+Ref: 0154024
+Node: Arrays154422
+Ref: purelib arrays154495
+Ref: 223154495
+Ref: purelib array/type154791
+Ref: 224154791
+Node: Imports<2>154901
+Ref: purelib id9154974
+Ref: 225154974
+Node: Operations155116
+Ref: purelib operations155206
+Ref: 226155206
+Ref: purelib emptyarray155241
+Ref: 227155241
+Ref: purelib array155301
+Ref: 228155301
+Ref: purelib array2155373
+Ref: 229155373
+Ref: purelib mkarray155461
+Ref: 22a155461
+Ref: purelib mkarray2155549
+Ref: 22b155549
+Ref: purelib arrayp155648
+Ref: 22c155648
+Ref: purelib #/array155717
+Ref: 22d155717
+Ref: purelib !/array155763
+Ref: 22e155763
+Ref: purelib null/array155896
+Ref: 22f155896
+Ref: purelib members/array155969
+Ref: 230155969
+Ref: purelib list/array155998
+Ref: 231155998
+Ref: purelib members2/array156064
+Ref: 232156064
+Ref: purelib list2/array156094
+Ref: 233156094
+Ref: purelib first/array156171
+Ref: 234156171
+Ref: purelib last/array156198
+Ref: 235156198
+Ref: purelib rmfirst/array156264
+Ref: 236156264
+Ref: purelib rmlast/array156293
+Ref: 237156293
+Ref: purelib insert/array156370
+Ref: 238156370
+Ref: purelib append/array156450
+Ref: 239156450
+Ref: purelib update/array156524
+Ref: 23a156524
+Ref: purelib update2/array156614
+Ref: 23b156614
+Node: Examples156687
+Ref: purelib examples156758
+Ref: 23c156758
+Ref: purelib module-heap158135
+Ref: 4158135
+Node: Heaps158136
+Ref: purelib heaps158230
+Ref: 23d158230
+Ref: purelib heap/type158821
+Ref: 23f158821
+Node: Imports<3>158955
+Ref: purelib id10159030
+Ref: 240159030
+Node: Operations<2>159171
+Ref: purelib id11159266
+Ref: 241159266
+Ref: purelib emptyheap159301
+Ref: 242159301
+Ref: purelib heap159359
+Ref: 243159359
+Ref: purelib heapp159428
+Ref: 244159428
+Ref: purelib #/heap159494
+Ref: 245159494
+Ref: purelib null/heap159539
+Ref: 246159539
+Ref: purelib members/heap159611
+Ref: 247159611
+Ref: purelib list/heap159640
+Ref: 248159640
+Ref: purelib first/heap159720
+Ref: 249159720
+Ref: purelib rmfirst/heap159799
+Ref: 24a159799
+Ref: purelib insert/heap159889
+Ref: 24b159889
+Node: Examples<2>159954
+Ref: purelib id12160030
+Ref: 24c160030
+Ref: purelib module-dict160205
+Ref: 1160205
+Node: Dictionaries160206
+Ref: purelib dictionaries160307
+Ref: 111160307
+Ref: purelib dict/type160613
+Ref: 24d160613
+Ref: purelib hdict/type160766
+Ref: 24e160766
+Ref: purelib mdict/type160913
+Ref: 24f160913
+Ref: purelib hmdict/type161056
+Ref: 250161056
+Ref: purelib xdict/type161184
+Ref: 251161184
+Node: Imports<4>163330
+Ref: purelib id13163412
+Ref: 258163412
+Node: Operations<3>163553
+Ref: purelib id14163655
+Ref: 259163655
+Ref: purelib emptydict163690
+Ref: 25a163690
+Ref: purelib emptyhdict163719
+Ref: 25b163719
+Ref: purelib emptymdict163749
+Ref: 25c163749
+Ref: purelib emptyhmdict163779
+Ref: 25d163779
+Ref: purelib dict163844
+Ref: 25e163844
+Ref: purelib hdict163871
+Ref: 25f163871
+Ref: purelib mdict163899
+Ref: 260163899
+Ref: purelib hmdict163927
+Ref: 261163927
+Ref: purelib dictp164217
+Ref: 262164217
+Ref: purelib hdictp164244
+Ref: 263164244
+Ref: purelib mdictp164272
+Ref: 264164272
+Ref: purelib hmdictp164300
+Ref: 265164300
+Ref: purelib mkdict164400
+Ref: 266164400
+Ref: purelib mkhdict164431
+Ref: 267164431
+Ref: purelib mkmdict164463
+Ref: 268164463
+Ref: purelib mkhmdict164495
+Ref: 269164495
+Ref: purelib +/dict164596
+Ref: 26a164596
+Ref: purelib -/dict164688
+Ref: 26b164688
+Ref: purelib */dict164792
+Ref: 26c164792
+Ref: purelib #/dict164904
+Ref: 26d164904
+Ref: purelib !/dict164991
+Ref: 26e164991
+Ref: purelib null/dict165200
+Ref: 26f165200
+Ref: purelib member/dict165277
+Ref: 270165277
+Ref: purelib members/dict165370
+Ref: 252165370
+Ref: purelib list/dict165399
+Ref: 271165399
+Ref: purelib keys/dict165511
+Ref: 253165511
+Ref: purelib vals/dict165615
+Ref: 254165615
+Ref: purelib first/dict165675
+Ref: 272165675
+Ref: purelib last/dict165702
+Ref: 273165702
+Ref: purelib rmfirst/dict165797
+Ref: 255165797
+Ref: purelib rmlast/dict165826
+Ref: 256165826
+Ref: purelib insert/dict165925
+Ref: 274165925
+Ref: purelib update/dict165960
+Ref: 275165960
+Ref: purelib delete/dict166303
+Ref: 257166303
+Ref: purelib delete_val/dict166469
+Ref: 276166469
+Ref: purelib delete_all/dict166725
+Ref: 277166725
+Node: Examples<3>168453
+Ref: purelib id15168536
+Ref: 278168536
+Ref: purelib module-set171405
+Ref: 9171405
+Node: Sets and Bags171406
+Ref: purelib sets-and-bags171493
+Ref: 23e171493
+Ref: purelib set/type172115
+Ref: 279172115
+Ref: purelib bag/type172134
+Ref: 27a172134
+Ref: purelib hset/type172296
+Ref: 27b172296
+Ref: purelib hbag/type172316
+Ref: 27c172316
+Ref: purelib xset/type172497
+Ref: 27d172497
+Node: Imports<5>173706
+Ref: purelib id16173789
+Ref: 27e173789
+Node: Operations<4>173929
+Ref: purelib id17174032
+Ref: 27f174032
+Ref: purelib emptyset174067
+Ref: 280174067
+Ref: purelib emptybag174095
+Ref: 281174095
+Ref: purelib emptyhset174123
+Ref: 282174123
+Ref: purelib emptyhbag174152
+Ref: 283174152
+Ref: purelib set174215
+Ref: 284174215
+Ref: purelib bag174241
+Ref: 285174241
+Ref: purelib hset174267
+Ref: 286174267
+Ref: purelib hbag174294
+Ref: 287174294
+Ref: purelib setp174516
+Ref: 288174516
+Ref: purelib bagp174542
+Ref: 289174542
+Ref: purelib hsetp174568
+Ref: 28a174568
+Ref: purelib hbagp174595
+Ref: 28b174595
+Ref: purelib +/set174693
+Ref: 28c174693
+Ref: purelib -/set174791
+Ref: 28d174791
+Ref: purelib */set174895
+Ref: 28e174895
+Ref: purelib #/set175007
+Ref: 28f175007
+Ref: purelib null/set175066
+Ref: 290175066
+Ref: purelib member/set175143
+Ref: 291175143
+Ref: purelib members/set175218
+Ref: 292175218
+Ref: purelib list/set175247
+Ref: 293175247
+Ref: purelib first/set175360
+Ref: 294175360
+Ref: purelib last/set175387
+Ref: 295175387
+Ref: purelib rmfirst/set175482
+Ref: 296175482
+Ref: purelib rmlast/set175511
+Ref: 297175511
+Ref: purelib insert/set175610
+Ref: 298175610
+Ref: purelib delete/set175732
+Ref: 299175732
+Ref: purelib delete_all/set175867
+Ref: 29a175867
+Node: Examples<4>177170
+Ref: purelib id18177254
+Ref: 29b177254
+Ref: purelib module-system179143
+Ref: a179143
+Node: System Interface179144
+Ref: purelib system-interface179246
+Ref: b5179246
+Node: Imports<6>180122
+Ref: purelib id19180212
+Ref: 29c180212
+Node: Errno and Friends180526
+Ref: purelib errno-and-friends180637
+Ref: 29e180637
+Ref: purelib errno180682
+Ref: 29f180682
+Ref: purelib set_errno180707
+Ref: 2a0180707
+Ref: purelib perror180738
+Ref: 2a1180738
+Ref: purelib strerror180768
+Ref: 2a2180768
+Node: POSIX Locale181241
+Ref: purelib posix-locale181357
+Ref: 2a3181357
+Ref: purelib setlocale181392
+Ref: 2a4181392
+Node: Signal Handling182846
+Ref: purelib signal-handling182959
+Ref: 2a5182959
+Ref: purelib trap183000
+Ref: 2a6183000
+Node: Time Functions183879
+Ref: purelib time-functions183997
+Ref: 2a7183997
+Ref: purelib time184258
+Ref: 2a8184258
+Ref: purelib gettimeofday184490
+Ref: 2a9184490
+Ref: purelib clock184974
+Ref: 2aa184974
+Ref: purelib sleep185274
+Ref: 2ab185274
+Ref: purelib nanosleep185301
+Ref: 2ac185301
+Ref: purelib tzset186346
+Ref: 2ad186346
+Ref: purelib tzname186411
+Ref: 2ae186411
+Ref: purelib timezone186432
+Ref: 2af186432
+Ref: purelib daylight186455
+Ref: 2b0186455
+Ref: purelib ctime187285
+Ref: 2b1187285
+Ref: purelib gmtime187417
+Ref: 2b2187417
+Ref: purelib localtime187445
+Ref: 2b3187445
+Ref: purelib mktime187831
+Ref: 2b6187831
+Ref: purelib asctime187998
+Ref: 2b4187998
+Ref: purelib strftime188028
+Ref: 2b5188028
+Ref: purelib strptime188256
+Ref: 2b7188256
+Node: Process Functions192819
+Ref: purelib process-functions192941
+Ref: 2b8192941
+Ref: purelib system193265
+Ref: 2bd193265
+Ref: purelib execv193327
+Ref: 2be193327
+Ref: purelib execvp193362
+Ref: 2bf193362
+Ref: purelib execve193398
+Ref: 2c0193398
+Ref: purelib spawnv194326
+Ref: 2c1194326
+Ref: purelib spawnvp194367
+Ref: 2c2194367
+Ref: purelib spawnve194409
+Ref: 2c3194409
+Node: Basic I/O Interface195819
+Ref: purelib basic-i-o-interface195943
+Ref: 2c4195943
+Ref: purelib stdin196348
+Ref: 2c5196348
+Ref: purelib stdout196368
+Ref: 2c6196368
+Ref: purelib stderr196389
+Ref: 2c7196389
+Ref: purelib fopen196443
+Ref: 2c8196443
+Ref: purelib popen196478
+Ref: 2c9196478
+Ref: purelib fdopen196797
+Ref: 2ca196797
+Ref: purelib freopen197028
+Ref: 2cb197028
+Ref: purelib fclose197261
+Ref: 2cc197261
+Ref: purelib pclose197290
+Ref: 2cd197290
+Ref: purelib tmpfile197350
+Ref: 2ce197350
+Ref: purelib feof197549
+Ref: 2cf197549
+Ref: purelib ferror197576
+Ref: 2d0197576
+Ref: purelib clearerr197605
+Ref: 2d1197605
+Ref: purelib fileno197730
+Ref: 2d2197730
+Ref: purelib fflush197826
+Ref: 2d3197826
+Ref: purelib fgets197942
+Ref: 2d4197942
+Ref: purelib gets197970
+Ref: 2d5197970
+Ref: purelib fget198119
+Ref: 2d6198119
+Ref: purelib fputs198236
+Ref: 2d7198236
+Ref: purelib puts198266
+Ref: 2d8198266
+Ref: purelib fread198522
+Ref: 2d9198522
+Ref: purelib fwrite198565
+Ref: 2da198565
+Ref: purelib fseek198742
+Ref: 2db198742
+Ref: purelib ftell198784
+Ref: 2dc198784
+Ref: purelib rewind198812
+Ref: 2dd198812
+Ref: purelib setbuf199232
+Ref: 2de199232
+Ref: purelib setvbuf199265
+Ref: 2df199265
+Ref: purelib printf201699
+Ref: 2e0201699
+Ref: purelib fprintf201737
+Ref: 2e1201737
+Ref: purelib sprintf202287
+Ref: 2e2202287
+Ref: purelib scanf202765
+Ref: 2e3202765
+Ref: purelib fscanf202797
+Ref: 2e4202797
+Ref: purelib sscanf203725
+Ref: 2e5203725
+Ref: Basic I/O Interface-Footnote-1205147
+Ref: Basic I/O Interface-Footnote-2205173
+Ref: Basic I/O Interface-Footnote-3205201
+Ref: Basic I/O Interface-Footnote-4205227
+Ref: Basic I/O Interface-Footnote-5205255
+Node: Stat and Friends205283
+Ref: purelib stat-and-friends205409
+Ref: 2e6205409
+Ref: purelib stat205452
+Ref: 2e7205452
+Ref: purelib lstat206109
+Ref: 2e8206109
+Ref: purelib fstat206360
+Ref: 2e9206360
+Node: Reading Directories208265
+Ref: purelib reading-directories208386
+Ref: 2ea208386
+Ref: purelib readdir208435
+Ref: 2eb208435
+Node: Shell Globbing208630
+Ref: purelib shell-globbing208749
+Ref: 2ec208749
+Ref: purelib fnmatch208790
+Ref: 2ed208790
+Ref: purelib glob208969
+Ref: 2ee208969
+Node: Regex Matching209602
+Ref: purelib regex-matching209728
+Ref: a5209728
+Ref: purelib module-regex209728
+Ref: 8209728
+Ref: purelib regex210676
+Ref: 2ef210676
+Ref: purelib reg_result214440
+Ref: 2f1214440
+Ref: purelib reg_info214654
+Ref: 2f2214654
+Ref: purelib reg214758
+Ref: 2f3214758
+Ref: purelib regs214922
+Ref: 2f4214922
+Ref: purelib regexg215273
+Ref: 2f5215273
+Ref: purelib regexgg215685
+Ref: 2f6215685
+Ref: purelib regsub215808
+Ref: 2f7215808
+Ref: purelib regsplit216358
+Ref: 2f8216358
+Ref: purelib regexgs216761
+Ref: 2f9216761
+Ref: purelib regexggs216810
+Ref: 2fa216810
+Ref: purelib regsplits216860
+Ref: 2fb216860
+Node: Basic Examples217255
+Ref: purelib basic-examples217363
+Ref: 2fc217363
+Node: Regex Substitutions and Splitting219342
+Ref: purelib regex-substitutions-and-splitting219472
+Ref: 2fd219472
+Node: Empty Matches220185
+Ref: purelib empty-matches220311
+Ref: 2fe220311
+Node: Submatches221237
+Ref: purelib submatches221354
+Ref: 2ff221354
+Node: Perl Regex Compatibility222764
+Ref: purelib perl-regex-compatibility222859
+Ref: 2f0222859
+Node: Additional POSIX Functions225125
+Ref: purelib module-posix225251
+Ref: 7225251
+Ref: purelib additional-posix-functions225251
+Ref: 29d225251
+Ref: purelib fork225858
+Ref: 2b9225858
+Ref: purelib getpid225909
+Ref: 300225909
+Ref: purelib getppid225935
+Ref: 301225935
+Ref: purelib wait226054
+Ref: 2bb226054
+Ref: purelib waitpid226085
+Ref: 2bc226085
+Ref: purelib kill226319
+Ref: 2ba226319
+Ref: purelib raise226402
+Ref: 302226402
+Ref: purelib pause226485
+Ref: 303226485
+Ref: purelib module-getopt226548
+Ref: 3226548
+Node: Option Parsing226549
+Ref: purelib option-parsing226652
+Ref: b4226652
+Ref: purelib getopt226943
+Ref: 304226943
+Node: Module Index230234
+Node: Index230494
 
 End Tag Table
 

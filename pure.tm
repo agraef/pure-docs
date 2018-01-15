@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.66, March 04, 2017
+  Version 0.66, January 15, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -16951,16 +16951,12 @@
   to process sample data stored in Pure matrices.
 
   Pure's LLVM bitcode loader has some special knowledge about Faust built
-  into it, which makes interfacing to Faust programs simple and efficient. At
-  present, you'll need a special LLVM-capable version of Faust to make this
-  work, which is available under the \Pfaust2\Q branch in Faust's git
-  repository. Some information on how to get this up and running can be found
-  on the <hlink|LLVM backend for Faust|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
-  website.
+  into it, which makes interfacing to Faust programs simple and efficient.
+  You'll need a recent LLVM-capable version of Faust (Faust 2.0 or later,
+  abbreviated \PFaust2\Q in the following) to make this work.
 
   <with|font-series|bold|Note:> There's also an alternative interface to
-  Faust which is available as a separate package and works with either Faust2
-  or the stable Faust version. Please check the
+  Faust which is available as a separate package, please check the
   <hlink|<em|pure-faust>|pure-faust.tm> package for details. This package
   also provides the <hlink|<with|font-family|tt|faust2>|pure-faust.tm#module-faust2>
   compatibility module which implements the pure-faust API on top of Pure's
@@ -17002,6 +16998,18 @@
     faust -double -a pure.c -lang c example.dsp -o example.c
 
     clang -emit-llvm -O3 -c example.c -o example.bc
+
+    \;
+  </verbatim>
+
+  The <hlink|<em|pure-faust>|pure-faust.tm> package contains a little helper
+  script <verbatim|faust2pure> (also available in recent Faust revisions)
+  which makes this a lot easier, so that you can simply write:
+
+  <\verbatim>
+    \;
+
+    faust2pure -double -bitcode example.dsp
 
     \;
   </verbatim>
@@ -20946,7 +20954,7 @@
 
   This rule will only be matched if both occurrences of <verbatim|x> are
   bound to the same value. More precisely, the two instances of <verbatim|x>
-  will checked for syntactic equality during pattern matching, using the
+  will be checked for syntactic equality during pattern matching, using the
   <hlink|<with|font-family|tt|same>|purelib.tm#same> primitive provided by
   the prelude. This may need time proportional to the sizes of both argument
   terms, and thus become quite costly for big terms. In fact,
@@ -22865,6 +22873,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
-  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
+  15, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

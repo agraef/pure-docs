@@ -10,7 +10,7 @@
 
   <section*|pure-sockets: Pure Sockets Interface><label|module-sockets>
 
-  Version 0.7, March 04, 2017
+  Version 0.7, January 13, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -442,6 +442,6 @@
   <hlink|previous|pure-readline.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
-  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
+  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.14, March 04, 2017
+  Version 0.15, January 14, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -19,12 +19,9 @@
   small improvements and some major additional features:
 
   <\itemize>
-    <item>Faust dsps are implemented using two Pd objects, <verbatim|fsynth~>
-    and <verbatim|fdsp~>, which provide the necessary infrastructure to run
-    Faust synthesizer and effect units in Pd, respectively. As of pd-faust
-    0.10, there's also a <verbatim|faust~> convenience object which unifies
-    <verbatim|fsynth~> and <verbatim|fdsp~> and provides reasonable defaults
-    for most creation arguments.
+    <item>Faust dsps are implemented by the <verbatim|faust~> external which
+    provides the necessary infrastructure to run Faust instruments and effect
+    units in Pd.
 
     <item>In contrast to faust2pd, the Pd GUI of Faust units is generated
     dynamically, inside Pd. While pd-faust supports the same global GUI
@@ -34,7 +31,7 @@
     <item>pd-faust recognizes the <verbatim|midi> and <verbatim|osc>
     controller attributes in the Faust source and automatically provides
     corresponding MIDI and OSC controller mappings. OSC-based controller
-    automation is also available.
+    automation is also available through a separate helper abstraction.
 
     <item>Perhaps most importantly, Faust dsps can be reloaded at any time
     (even while the Pd patch is running), in which case the GUI and the
@@ -44,7 +41,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2011-2017 by Albert Graef
+  Copyright (c) 2011-2018 by Albert Graef
 
   pd-faust is distributed under the GNU LGPL v3+. Please see the included
   COPYING and COPYING.LESSER files for details.
@@ -115,16 +112,14 @@
 
   Some further build options are described in the Makefile. In particular, it
   is possible to compile the Faust dsps to LLVM bitcode which can be loaded
-  directly by the Pure interpreter, but for that you'll need a special Faust
-  version (see the <hlink|Faust2|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>
-  website for how to get this version up and running) and an LLVM-capable
-  C/C++ compiler such as clang or gcc with the dragonegg plugin (please check
-  the Makefile and the <hlink|LLVM|http://llvm.org/> website for details).
-
-  If you have the required tools then you can build the bitcode modules by
-  running <verbatim|make> <verbatim|bitcode> after <verbatim|make>. If you
-  run <verbatim|make> <verbatim|install> afterwards, the bitcode modules will
-  be installed along with the \Pnormal\Q Faust plugins. In addition, a second
+  directly by the Pure interpreter. This requires a recent Faust version (2.0
+  and later) and an LLVM-capable C/C++ compiler such as
+  <hlink|clang|http://clang.llvm.org/> (please check the <hlink|Compiling
+  Faust DSPs|#compiling-faust-dsps> section below for details). If you have
+  the required tools then you can build the bitcode modules by running
+  <verbatim|make> <verbatim|bitcode> after <verbatim|make>. If you run
+  <verbatim|make> <verbatim|install> afterwards, the bitcode modules will be
+  installed along with the \Pnormal\Q Faust plugins. In addition, a second
   object library called <verbatim|pdfaust2> will be built and installed,
   which can be used as a drop-in replacement for <verbatim|pdfaust> and lets
   you run the bitcode modules. (Note that in the present implementation it is
@@ -134,19 +129,23 @@
   <subsection|Usage><label|usage>
 
   Working with pd-faust basically involves adding a bunch of
-  <verbatim|faust~> (or the underlying <verbatim|fsynth~> and
-  <verbatim|fdsp~>) objects to a Pd patch along with the corresponding GUI
+  <verbatim|faust~> objects to a Pd patch along with the corresponding GUI
   subpatches, and wiring up the Faust units in some variation of a
   synth-effects chain which typically takes input from Pd's MIDI interface
   (<verbatim|notein>, <verbatim|ctlin>, etc.) and outputs the signals
   produced by the Faust units to Pd's audio interface (<verbatim|dac~>).
 
-  For convenience, pd-faust also includes the <verbatim|midiseq> and
+  For convenience, pd-faust also includes a few helper objects and
+  abstractions to handle MIDI input and playback as well as OSC controller
+  automation. For simple uses, the included <verbatim|midi-input> and
+  <verbatim|midi-output> abstractions provide a way to encode and decode MIDI
+  messages in the author's <hlink|SMMF|https://bitbucket.org/agraef/pd-smmf>
+  format used by <verbatim|faust~> objects. For applications requiring more
+  elaborate MIDI and OSC support, the <verbatim|midiseq> and
   <verbatim|oscseq> objects and a corresponding <verbatim|midiosc>
-  abstraction which can be used to handle MIDI input and playback as well as
-  OSC controller automation. This useful helper abstraction is described in
-  more detail under <hlink|Operating the Patches|#operating-the-patches>
-  below.
+  abstraction can be used to handle MIDI input and playback as well as OSC
+  controller automation. This is described in more detail under <hlink|MIDI
+  and OSC Sequencing|#midi-and-osc-sequencing> below.
 
   pd-faust interprets MIDI, OSC and Faust dsp filenames relative to the
   hosting Pd patch by default. It will also search the <verbatim|midi>,
@@ -158,202 +157,150 @@
   <verbatim|..> directory) instead.
 
   Like pd-pure, pd-faust remaps Pd's <verbatim|menu-open> command so that it
-  lets you edit the Faust source of a <verbatim|faust~>, <verbatim|fdsp~> or
-  <verbatim|fsynth~> object by right-clicking on the object and choosing
-  <verbatim|Open> from the context menu.
+  lets you edit the Faust source of a <verbatim|faust~> object by
+  right-clicking on the object and choosing <verbatim|Open> from the context
+  menu. This requires that the <verbatim|.dsp> source file of the Faust
+  module is available in the same directory as the binary module.
 
-  <subsubsection|The fdsp<math|\<sim\>> and fsynth<math|\<sim\>>
-  Objects><label|the-fdsp-and-fsynth-objects>
+  <subsubsection|Compiling Faust DSPs><label|compiling-faust-dsps>
 
-  The <verbatim|fdsp~> object is invoked as follows:
+  To run a Faust module (<verbatim|.dsp> file) inside Pd using the
+  <verbatim|faust~> object, the Faust dsp must be compiled to a form which
+  can be loaded in <em|Pure> (not Pd!), so the <verbatim|pure.cpp>
+  architecture (included in the Faust distribution) is used to compile the
+  dsp to a shared library object. It is of course possible to do this
+  manually using the faust and gcc compilers, but for convenience there's a
+  GNU Makefile in the examples/dsp subdirectory which provides all the build
+  rules necessary to do this. This Makefile is self-contained, so you can
+  just drop it into any directory with Faust dsp sources and run
+  <verbatim|make> there to compile the modules to a format which is ready to
+  be loaded with pd-faust.
 
-  <\verbatim>
-    \;
-
-    fdsp~ dspname instname channel
-
-    \;
-  </verbatim>
-
-  <\itemize>
-    <item><verbatim|dspname> denotes the name of the Faust dsp (usually this
-    is just the name of the .dsp file with the extension stripped off).
-    Please note that the Faust dsp must be provided in a form which can be
-    loaded in <em|Pure> (not Pd!), so the <verbatim|pure.cpp> architecture
-    (included in the Faust distribution) must be used to compile the dsp to a
-    shared library. (If you're already running
-    <hlink|Faust2|https://bitbucket.org/purelang/pure-lang/wiki/Faust2>, you
-    can also compile to an LLVM bitcode file instead; Pure has built-in
-    support for loading these.) There's a GNU Makefile in the examples/dsp
-    subdirectory which shows how to do this. This Makefile is self-contained,
-    so you can just drop it into any directory with Faust dsp sources and run
-    <verbatim|make> there to compile the modules to a format which is ready
-    to be loaded with pd-faust.
-
-    <item><verbatim|instname> denotes the name of the instance of the Faust
-    unit. Multiple instances of the same Faust dsp can be used in a Pd patch,
-    which must all have different instance names. In addition, the instance
-    name is also used to identify the GUI subpatch of the unit (see below)
-    and to generate unique OSC addresses for the unit's control elements.
-
-    <item><verbatim|channel> is the number of the MIDI channel the unit
-    responds to. This can be 1..16, or 0 to specify \Pomni\Q operation
-    (listen to MIDI messages on all channels).
-  </itemize>
-
-  <with|font-series|bold|Note:> Since the <verbatim|fdsp~> and
-  <verbatim|fsynth~> objects are written in Pure, their creation arguments
-  should be specified in Pure syntax. In particular, both <verbatim|dspname>
-  or <verbatim|instname> may either be Pure identifiers or double-quoted
-  strings (the former will automatically be translated to the latter).
-  Similarly, the <verbatim|channel> argument (as well as the
-  <verbatim|numvoices> argument of the <verbatim|fsynth~> object, see below)
-  must be an integer constant in Pure syntax, which is pretty much like Pd
-  syntax but also allows the integer to be specified in hexadecimal, octal or
-  binary.
-
-  The <verbatim|fdsp~> object requires a Faust dsp which can work as an
-  effect unit, processing audio input and producing audio output. The unit
-  can have as many audio input and output channels as you like (including
-  zero).
-
-  The <verbatim|fsynth~> object works in a similar fashion, but has an
-  additional creation argument specifying the desired number of voices:
+  Another possibility is to use the <verbatim|faust2pure> script included in
+  recent Faust versions and also in the examples subdirectory of the
+  pure-faust package, see the <hlink|<em|pure-faust>|pure-faust.tm>
+  documentation for details. E.g., to compile a Faust dsp
+  <verbatim|organ.dsp> to a module loadable with pd-faust, simply use the
+  following command:
 
   <\verbatim>
     \;
 
-    fsynth~ dspname instname channel numvoices
+    faust2pure organ.dsp
 
     \;
   </verbatim>
 
-  The <verbatim|fsynth~> object requires a Faust dsp which can work as a
-  monophonic synthesizer. This typically means that the unit has zero audio
-  inputs and a nonzero number of audio outputs, although it is possible to
-  have synths processing any number of audio input channels as well. (You can
-  even have synths producing zero audio outputs, but this is generally not
-  very useful.) In addition, pd-faust assumes that the Faust unit provides
-  three so-called \Pvoice controls\Q which indicate which note to play:
+  This will leave a shared library module <verbatim|organ.so>
+  (<verbatim|organ.dylib> on macOS, <verbatim|organ.dll> on Windows) in the
+  current directory which can then be loaded with pd-faust, by just inserting
+  an object like <verbatim|faust~> <verbatim|organ> in your patch. Note that
+  to make this work, pd-faust must be able to locate the object. To these
+  ends, you should create the patch in the same directory that also contains
+  the <verbatim|.dsp> and <verbatim|.so> files of the Faust dsp. (As
+  mentioned earlier, it is also possible to put the <verbatim|.dsp> and
+  <verbatim|.so> files into the <verbatim|dsp> subdirectory of the directory
+  containing the patch, or just put them somewhere on Pd's library path.)
 
-  <\itemize>
-    <item><verbatim|freq> is the fundamental frequency of the note in Hz.
+  If you're running a recent version of Faust, you can also compile to an
+  LLVM bitcode file instead; pd-pure can load these directly using Pure's
+  built-in Faust bitcode loader. As already mentioned, this requires Faust
+  2.0 or later and that you build and install the alternative
+  <verbatim|pdfaust2> library as described under
+  <hlink|Installation|#installation> above. The main advantage of using
+  bitcode modules is that compiling these is often much faster. The main
+  disadvantage is that you'll need a special C compiler capable of producing
+  LLVM bitcode (i.e., <hlink|clang|http://clang.llvm.org/>).
 
-    <item><verbatim|gain> is the velocity of the note, as a normalized value
-    between 0 and 1. This usually controls the volume of the output signal.
+  The process of compiling Faust dsps to bitcode modules is pretty much the
+  same as above, only that you have to run <verbatim|make> <verbatim|bitcode>
+  with the provided Makefile, or use the faust2pure script with the
+  <verbatim|-bitcode> option, e.g.:
 
-    <item><verbatim|gate> indicates whether a note is currently playing. This
-    value is either 0 (no note to play) or 1 (play a note), and usually
-    triggers the envelop function (ADSR or similar).
-  </itemize>
+  <\verbatim>
+    \;
 
-  pd-faust doesn't care at which path inside the Faust dsp these controls are
-  located, but they must all be there, and the basenames of the controls must
-  be unique throughout the entire dsp. Otherwise the synth will not work as
-  expected.
+    faust2pure -bitcode organ.dsp
 
-  Like <hlink|<em|faust2pd>|faust2pd.tm>, pd-faust implements the necessary
-  logic to drive the given number of voices of an <verbatim|fsynth~> object.
-  That is, it will actually create a separate instance of the Faust dsp for
-  each voice and handle polyphony by allocating voices from this pool in a
-  round-robin fashion, performing the usual voice stealing if the number of
-  simultaneous notes to play exceeds the number of voices. Also note that an
-  <verbatim|fsynth~> operated in omni mode (<verbatim|channel> <verbatim|=>
-  <verbatim|0>) automatically filters out messages on channel 10 which is
-  reserved for percussion in the General MIDI standard.
+    \;
+  </verbatim>
 
-  The <verbatim|fdsp~> and <verbatim|fsynth~> objects respond to the
-  following messages:
-
-  <\itemize>
-    <item><verbatim|bang> outputs the current control settings on the control
-    outlet in OSC format.
-
-    <item><verbatim|write> outputs the current control settings to external
-    MIDI and/or OSC devices. This message can also be invoked with a numeric
-    argument to toggle the \Pwrite mode\Q of the unit; please see
-    <hlink|External MIDI and OSC Controllers|#external-midi-and-osc-controllers>
-    below for details.
-
-    <item><verbatim|reload> reloads the Faust unit. This also reloads the
-    shared library or bitcode file if the unit was recompiled since the
-    object was last loaded. (Instead of feeding a <verbatim|reload> message
-    to the control inlet of a Faust unit, you can also just send a
-    <verbatim|bang> to the <verbatim|reload> receiver.)
-
-    <item><verbatim|addr> <verbatim|value> changes the control indicated by
-    the OSC address <verbatim|addr>. This is also used internally for
-    communication with the Pd GUI and for controller automation.
-  </itemize>
-
-  The <verbatim|fdsp~> and <verbatim|fsynth~> objects also respond to MIDI
-  controller messages of the form <verbatim|ctl> <verbatim|val>
-  <verbatim|num> <verbatim|chan>, and the <verbatim|fsynth~> object
-  understands note-related messages of the form <verbatim|note>
-  <verbatim|num> <verbatim|vel> <verbatim|chan> (note on/off) and
-  <verbatim|bend> <verbatim|val> <verbatim|chan> (pitch bend). In either
-  case, pd-faust provides the necessary logic to map controller and
-  note-related messages to the corresponding control changes in the Faust
-  unit.
-
-  In addition, pd-faust 0.13 and later offer support for the MIDI Tuning
-  Standard (MTS), so that instruments can be retuned using the corresponding
-  sysex messages for octave-based tunings. To these ends, the
-  <verbatim|fsynth~> object accepts messages of the form <verbatim|sysex>
-  <verbatim|b1> <verbatim|b2> <verbatim|...> where <verbatim|b1>,
-  <verbatim|b2>, ... are the individual data bytes of the message. A
-  description of the MIDI Tuning Standard is beyond the scope of this manual.
-  However, there are some tools which let you construct such messages from
-  various input formats, such as the author's
-  <hlink|sclsyx|https://bitbucket.org/agraef/sclsyx> program. You can then
-  either include the tuning messages in a MIDI file or transmit them directly
-  to Pd's MIDI input. There's also a version of sclsyx.pure included in the
-  author's <hlink|pd-smmf|https://bitbucket.org/agraef/pd-smmf> package,
-  which can be run as a Pd external to output tunings in the format
-  understood by the <verbatim|fsynth~> object.
+  This creates the <verbatim|organ.bc> module which can be loaded by the
+  <verbatim|pdfaust2> library, pretty much like <verbatim|pdfaust> loads
+  shared object modules. Otherwise there won't be much of a noticeable
+  difference (gcc may produce better code in some cases, clang in others,
+  which may result in some Faust dsps running with better performance as
+  shared library modules, others in bitcode). Note, however, that in the
+  current implementation <verbatim|pdfaust> and <verbatim|pdfaust2> can
+  <em|not> be loaded at the same time in Pd, therefore you'll have to decide
+  beforehand which of the two available interfaces you want to use.
 
   <subsubsection|The faust<math|\<sim\>> Object><label|the-faust-object>
 
-  Starting with version 0.10, pd-faust includes the <verbatim|faust~>
-  external as a convenience which provides the functionality of both
-  <verbatim|fdsp~> and <verbatim|fsynth~> in a single object. This object
-  also supplies reasonable defaults for most arguments. While the underlying
-  <verbatim|fdsp~> and <verbatim|fsynth~> objects are still available for
-  backward compatibility, the <verbatim|faust~> object is often much easier
-  to use and should be considered the preferred way to create Faust objects
-  in a Pd patch now.
+  Starting with version 0.10, pd-faust offers the <verbatim|faust~> external
+  which provides a uniform way to create both audio effects and synth
+  (instrument) units, and also supplies reasonable defaults for most
+  arguments. (While the underlying <verbatim|fdsp~> and <verbatim|fsynth~>
+  objects of older pd-faust versions are still provided for backward
+  compatibility, they are deprecated and shouldn't be invoked directly any
+  more.)
 
   The <verbatim|faust~> object is invoked as follows:
 
   <\verbatim>
     \;
 
-    fsynth~ dspname [instname] [channel] [numvoices]
+    faust~ dspname [instname] [channel] [numvoices]
 
     \;
   </verbatim>
 
-  As indicated, all creation arguments except the first, <verbatim|dspname>
-  argument are optional. The meaning of these arguments is the same as with
-  the <verbatim|fdsp~> and <verbatim|fsynth~> objects. A <verbatim|numvoices>
-  value of zero can be used to indicate an effect unit. If the
-  <verbatim|numvoices> argument is omitted, the <verbatim|faust~> object
-  checks the meta data of the Faust module to see whether the loaded Faust
-  module is an effect or a synth and creates an instance of the corresponding
-  underlying object (<verbatim|fdsp~> or <verbatim|fsynth~>).
+  The creation arguments in square brackets are optional. Please note that
+  since the <verbatim|faust~> object is written in Pure, the creation
+  arguments should be specified in Pure syntax. In particular, both
+  <verbatim|dspname> or <verbatim|instname> may either be Pure identifiers or
+  double-quoted strings (the former will automatically be translated to the
+  latter). Similarly, the <verbatim|channel> and <verbatim|numvoices>
+  arguments must be integer constants in Pure syntax, which is pretty much
+  like Pd syntax but also allows the integer to be specified in hexadecimal,
+  octal or binary.
+
+  The meaning of these arguments is as follows:
+
+  <\itemize>
+    <item><verbatim|dspname> denotes the name of the Faust dsp (usually this
+    is just the name of the .dsp file with the extension stripped off).
+
+    <item><verbatim|instname> denotes the name of the instance of the Faust
+    unit. By default, this is the same as <verbatim|dspname>. Multiple
+    instances of the same Faust dsp can be used in a Pd patch, but then they
+    must all have different instance names. The instance name is also used to
+    identify the GUI subpatch of the unit (see below) and to generate unique
+    OSC addresses for the unit's control elements.
+
+    <item><verbatim|channel> is the number of the MIDI channel the unit
+    responds to. This can be 1..16, or 0 (the default) to specify \Pomni\Q
+    operation (listen to MIDI messages on all channels).
+
+    <item><verbatim|numvoices> denotes the number of voices of a synth unit.
+    This determines the maximum number of notes which can be played
+    simultaneously (i.e., the degree of polyphony). A <verbatim|numvoices>
+    value of zero can be used to indicate an effect unit. If the
+    <verbatim|numvoices> argument is omitted, the <verbatim|faust~> object
+    checks the meta data of the Faust module to see whether the loaded Faust
+    module is an effect or a synth, see below for details.
+  </itemize>
 
   Note that if only a single number follows the <verbatim|dspname> or
   <verbatim|instname> argument then it is always interpreted as a channel
-  number; thus, if you want to denote the <verbatim|numvoices> argument then
-  you'll have to specify <em|both> <verbatim|channel> and
-  <verbatim|numvoices>, in that order.
+  number; thus, if you want to denote the <verbatim|numvoices> value in the
+  creation arguments then you'll have to specify <em|both> <verbatim|channel>
+  and <verbatim|numvoices>, in that order.
 
-  By default, the instance name is assumed to be the same as the dsp name,
-  the default MIDI channel is 0 (omni), and the number of voices of an
-  instrument is determined using the value of the <verbatim|nvoices> meta key
-  declared in the dsp source. Thus, to turn a Faust dsp into a synth with 8
-  voices you can use a declaration like the following anywhere in the Faust
-  program:
+  Unless specified explicitly, the number of voices of an instrument is
+  determined using the value of the <verbatim|nvoices> meta key declared in
+  the dsp source. Thus, to turn a Faust dsp into a synth with 8 voices you
+  can use a declaration like the following anywhere in the Faust program:
 
   <\verbatim>
     \;
@@ -375,16 +322,108 @@
   <verbatim|nvoices> key in the dsp source), or use a <verbatim|numvoices>
   value of zero to force a synth to be loaded as an ordinary effect unit.
   Also, if there are multiple instances of the same dsp in a patch then you
-  can explicitly specify different instance names using the
+  can (and should) explicitly specify different instance names using the
   <verbatim|instname> argument, and the default <verbatim|channel> value of
   zero (denoting omni input) can be overridden as needed if the unit should
   only listen on a specific MIDI channel.
 
+  <subsubsection|Effect and Synth Units><label|effect-and-synth-units>
+
+  A <verbatim|faust~> object with zero voices requires a Faust dsp which can
+  work as an effect unit, processing audio input and producing audio output.
+  The unit can have as many audio input and output channels as you like
+  (including zero).
+
+  A <verbatim|faust~> object with a non-zero number of voices works in a
+  similar fashion, but requires a Faust dsp which can work as a (monophonic)
+  synthesizer. This typically means that the unit has zero audio inputs and a
+  nonzero number of audio outputs, although it is possible to have synths
+  processing any number of audio input channels as well. (You can even have
+  synths producing zero audio outputs, but this is generally not very
+  useful.)
+
+  In the synth case, pd-faust also assumes that the Faust unit provides three
+  so-called \Pvoice controls\Q which indicate which note to play:
+
+  <\itemize>
+    <item><verbatim|freq> is the fundamental frequency of the note in Hz.
+
+    <item><verbatim|gain> is the velocity of the note, as a normalized value
+    between 0 and 1. This usually controls the volume of the output signal.
+
+    <item><verbatim|gate> indicates whether a note is currently playing. This
+    value is either 0 (no note to play) or 1 (play a note), and usually
+    triggers the envelop function (ADSR or similar).
+  </itemize>
+
+  pd-faust doesn't care at which path inside the Faust dsp these controls are
+  located, but they must all be there, and the basenames of the controls must
+  be unique throughout the entire dsp. Otherwise the synth will not work as
+  expected.
+
+  Like <hlink|<em|faust2pd>|faust2pd.tm>, pd-faust implements the necessary
+  logic to drive the given number of voices of a <verbatim|faust~> instrument
+  object. That is, it will actually create a separate instance of the Faust
+  dsp for each voice and handle polyphony by allocating voices from this pool
+  in a round-robin fashion, performing the usual voice stealing if the number
+  of simultaneous notes to play exceeds the number of voices. Also note that
+  a <verbatim|faust~> instrument operated in omni mode (<verbatim|channel>
+  <verbatim|=> <verbatim|0>) automatically filters out messages on channel 10
+  which is reserved for percussion in the General MIDI standard.
+
+  A <verbatim|faust~> object always responds to the following messages:
+
+  <\itemize>
+    <item><verbatim|bang> outputs the current control settings on the control
+    outlet in OSC format.
+
+    <item><verbatim|write> outputs the current control settings to special
+    <verbatim|midiout> and <verbatim|oscout> receivers, so that they can be
+    processed and/or sent to external MIDI and/or OSC devices. This message
+    can also be invoked with a numeric argument to toggle the \Pwrite mode\Q
+    of the unit; please see <hlink|External MIDI and OSC
+    Controllers|#external-midi-and-osc-controllers> below for details.
+
+    <item><verbatim|reload> reloads the Faust unit. This also reloads the
+    shared library or bitcode file if the unit was recompiled since the
+    object was last loaded. (Instead of feeding a <verbatim|reload> message
+    to the control inlet of a Faust unit, you can also just send a
+    <verbatim|bang> to the <verbatim|reload> receiver.)
+
+    <item><verbatim|addr> <verbatim|value> changes the control indicated by
+    the OSC address <verbatim|addr>. This is also used internally for
+    communication with the Pd GUI and for controller automation.
+  </itemize>
+
+  The object also responds to MIDI controller messages of the form
+  <verbatim|ctl> <verbatim|val> <verbatim|num> <verbatim|chan> and, in the
+  case of instruments, note-related messages of the form <verbatim|note>
+  <verbatim|num> <verbatim|vel> <verbatim|chan> (note on/off) and
+  <verbatim|bend> <verbatim|val> <verbatim|chan> (pitch bend). It also
+  provides the necessary logic to map controller and note-related messages to
+  the corresponding control changes in the Faust unit.
+
+  In addition, pd-faust 0.13 and later offer support for the MIDI Tuning
+  Standard (MTS), so that instruments can be retuned using the corresponding
+  sysex messages for octave-based tunings. To these ends, the
+  <verbatim|faust~> object accepts messages of the form <verbatim|sysex>
+  <verbatim|b1> <verbatim|b2> <verbatim|...> where <verbatim|b1>,
+  <verbatim|b2>, ... are the individual data bytes of the message. A
+  description of the MIDI Tuning Standard is beyond the scope of this manual.
+  However, there are some tools which let you construct such messages from
+  various input formats, such as the author's
+  <hlink|sclsyx|https://bitbucket.org/agraef/sclsyx> program. You can then
+  either include the tuning messages in a MIDI file or transmit them directly
+  to Pd's MIDI input. There's also a version of sclsyx.pure included in the
+  author's <hlink|pd-smmf|https://bitbucket.org/agraef/pd-smmf> package,
+  which can be run as a Pd external to output tunings in the format
+  understood by the <verbatim|faust~> object.
+
   <subsubsection|GUI Subpatches><label|gui-subpatches>
 
-  For each <verbatim|faust~>, <verbatim|fdsp~> and <verbatim|fsynth~> object,
-  the Pd patch may contain an (initially empty) \Pone-off\Q graph-on-parent
-  subpatch with the same name as the instance name of the Faust unit:
+  For each <verbatim|faust~> object, the Pd patch may contain an (initially
+  empty) \Pone-off\Q graph-on-parent subpatch with the same name as the
+  instance name of the Faust unit:
 
   <\verbatim>
     \;
@@ -397,19 +436,18 @@
   You shouldn't insert anything into this subpatch, its contents (a bunch of
   Pd GUI elements corresponding to the control elements of the Faust unit)
   will be generated automatically by pd-faust when the corresponding
-  <verbatim|faust~>, <verbatim|fdsp~> or <verbatim|fsynth~> object is
-  created, and whenever the unit gets reloaded at runtime.
+  <verbatim|faust~> object is created, and whenever the unit gets reloaded at
+  runtime.
 
   As with faust2pd, the default appearance of the GUI can be adjusted in
   various ways; see <hlink|Tweaking the GUI Layout|#tweaking-the-gui-layout>
   below for details.
 
-  The relative order in which you insert a <verbatim|faust~>,
-  <verbatim|fdsp~> or <verbatim|fsynth~> object and its GUI subpatch into the
-  main patch matters. Normally, the GUI subpatch should be inserted
-  <em|first>, so that it will be updated automatically when its associated
-  Faust unit is first created, and also when the main patch is saved and then
-  reloaded later.
+  The relative order in which you insert a <verbatim|faust~> object and its
+  GUI subpatch into the main patch matters. Normally, the GUI subpatch should
+  be inserted <em|first>, so that it will be updated automatically when its
+  associated Faust unit is first created, and also when the main patch is
+  saved and then reloaded later.
 
   However, in some situations it may be preferable to insert the GUI subpatch
   <em|after> its associated Faust unit. If you do this, the GUI will <em|not>
@@ -433,16 +471,23 @@
   <subsubsection|Examples><label|examples>
 
   The examples folder contains a few example patches which illustrate how
-  this all works. Having installed pd-faust as described above, you can run
-  these from the examples directory, e.g.: <verbatim|pd> <verbatim|test.pd>.
-  (You can also run the examples without actually installing pd-faust if you
-  invoke Pd from the main pd-faust source directory, e.g., as follows:
-  <verbatim|pd> <verbatim|-lib> <verbatim|lib/pdfaust>
-  <verbatim|examples/test.pd>.)
+  this all works. Having compiled and installed pd-faust as described above,
+  you can run these directly from the examples directory in the sources,
+  e.g.: <verbatim|pd> <verbatim|test.pd>. (You can also run the examples
+  without actually installing pd-faust if you invoke Pd from the main
+  pd-faust source directory, e.g., as follows: <verbatim|pd> <verbatim|-lib>
+  <verbatim|lib/pdfaust> <verbatim|examples/test.pd>.) The same collection of
+  examples is also copied to <verbatim|$prefix/lib/pd/extra/faust> when
+  running <verbatim|make> <verbatim|install> (where <verbatim|$prefix>
+  denotes the prefix under which Pd is installed, usually <verbatim|/usr> or
+  <verbatim|/usr/local>) so that you can also run them from there.
 
   Here are some of the examples that are currently available:
 
   <\itemize>
+    <item>simple.pd: Minimalistic example which works without the
+    <verbatim|midiosc> abstraction.
+
     <item>test.pd: Simple patch running a single Faust instrument.
 
     <item>synth.pd: Slightly more elaborate patch featuring a synth-effects
@@ -456,26 +501,43 @@
   subdirectories (midi, osc, dsp) of the examples directory. A slightly
   modified version of the faust-stk instruments from the Faust distribution
   is also included, please check the examples/dsp/README-STK file for more
-  information about these.
-
-  The MIDI files are all in standard MIDI file format. (Some of these come
-  from the faust-stk distribution, others can be found on the web.) The OSC
-  files used by pd-faust for controller automation are plain ASCII files
-  suitable for hand-editing if you know what you are doing; the format should
-  be fairly self-explanatory.
+  information about these. The MIDI files are all in standard MIDI file
+  format. (Some of these come from the faust-stk distribution, others can be
+  found on the web.) The OSC files used by pd-faust for controller automation
+  are plain ASCII files suitable for hand-editing if you know what you are
+  doing; the format should be fairly self-explanatory.
 
   <subsubsection|Operating the Patches><label|operating-the-patches>
 
   The generated Pd GUI elements for the Faust dsps are pretty much the same
   as with <hlink|<em|faust2pd>|faust2pd.tm> (which see). The only obvious
   change is the addition of a \Precord\Q button (gray toggle in the upper
-  right corner) which enables recording of OSC automation data.
+  right corner) which enables recording of OSC automation data. This requires
+  the use of the <verbatim|midiosc> abstraction which serves as a little
+  sequencer applet that enables you to control MIDI playback and OSC
+  recording. The usage of this abstraction should be fairly obvious, but you
+  can also find a brief description under <hlink|MIDI and OSC
+  Sequencing|#midi-and-osc-sequencing> below.
 
-  In each example distributed with pd-faust you can also find an instance of
-  the <verbatim|midiosc> abstraction which serves as a little sequencer
-  applet that enables you to control MIDI playback and OSC recording. The
-  usage of this abstraction should be fairly obvious, but you can also find a
-  brief description below.
+  Note that the <verbatim|midiosc> abstraction, even though most of the
+  distributed examples include it, is by no means required unless you really
+  need the MIDI playback and OSC automation features it provides. In most
+  simple use cases, you just insert <verbatim|faust~> objects (along with
+  their corresponding GUI subpatches if needed/wanted) into your patch, wire
+  them up as needed and be done with it. If you also need MIDI input
+  (controller and note data), the <verbatim|midi-input> abstraction provides
+  a simpler way to encode incoming MIDI messages from Pd's MIDI inputs in the
+  SMMF format understood by <verbatim|faust~> objects. Simply connect the
+  outlet of <verbatim|midi-input> to the leftmost inlet of any
+  <verbatim|faust~> instrument or effect unit that you want to play or
+  control through MIDI, make sure that the instrument (or last effect unit in
+  the chain) is connected to Pd's audio output a.k.a. <verbatim|dac~>, and
+  you should be set. MIDI output via the <verbatim|midiout> receiver (cf.
+  <hlink|External MIDI and OSC Controllers|#external-midi-and-osc-controllers>)
+  can be handled in a similar way using the <verbatim|midi-output>
+  abstraction (see simple.pd for an example).
+
+  <subsubsection|MIDI and OSC Sequencing><label|midi-and-osc-sequencing>
 
   <with|font-series|bold|Note:> If you use the <verbatim|midiosc> abstraction
   in your own patches, you should copy it to the directory containing your
@@ -496,16 +558,15 @@
   external MIDI sequencer (see below).
 
   The abstraction has a single control outlet through which it feeds the
-  generated MIDI and other messages to the connected <verbatim|fsynth~> and
-  <verbatim|fdsp~> objects. Live MIDI input is also accepted and forwarded to
-  the control outlet, after being translated to the format understood by
-  <verbatim|fsynth~> and <verbatim|fdsp~> objects. In addition,
-  <verbatim|midiosc> can also be controlled through an external MIDI
-  sequencer connected to Pd's MIDI input. To these ends, <hlink|MIDI Machine
-  Control|http://en.wikipedia.org/wiki/MIDI-Machine-Control> (MMC) can be
-  used to start and stop OSC playback and recording with the transport
-  controls of the external sequencer program. To make this work, the external
-  sequencer must be configured as an MMC master.
+  generated MIDI and other messages to the connected <verbatim|faust~>
+  objects. Live MIDI input is also accepted and forwarded to the control
+  outlet, after being translated to the format understood by
+  <verbatim|faust~> objects. In addition, <verbatim|midiosc> can also be
+  controlled through an external MIDI sequencer connected to Pd's MIDI input.
+  To these ends, <hlink|MIDI Machine Control|http://en.wikipedia.org/wiki/MIDI-Machine-Control>
+  (MMC) can be used to start and stop OSC playback and recording with the
+  transport controls of the external sequencer program. To make this work,
+  the external sequencer must be configured as an MMC master.
 
   At the bottom of the abstraction there is a little progress bar along with
   a time display which indicates the current song position. If playback is
@@ -591,39 +652,43 @@
   Please note that <verbatim|midiosc> is merely a prototypical implementation
   which should cover most common uses. It can also be used as a starting
   point for your own abstractions if you need more elaborate input/output
-  interfacing than what <verbatim|midiosc> provides. On the other hand, for
-  simple uses your patches may just feed control messages directly into
-  <verbatim|faust~>, <verbatim|fdsp~> and <verbatim|fsynth~> objects instead.
-  If you just need plain MIDI input, another possibility is to use the
-  <verbatim|midi-input> abstraction contained in the author's
-  <hlink|pd-lv2plugin|https://bitbucket.org/agraef/pd-lv2plugin> package
-  which encodes incoming MIDI messages in a format compatible with the
-  <verbatim|faust~>, <verbatim|fdsp~> and <verbatim|fsynth~> objects.
+  interfacing than what <verbatim|midiosc> provides.
 
   <subsubsection|External MIDI and OSC Controllers><label|external-midi-and-osc-controllers>
 
-  The <verbatim|fsynth~> object has built-in (and hard-wired) support for
-  MIDI notes, pitch bend and MIDI controller 123 (all notes off). Other
-  controller data received from external MIDI and OSC devices is interpreted
-  according to the controller mappings defined in the Faust source (this is
-  explained below), by updating the corresponding GUI elements and the
-  control variables of the Faust dsp. For obvious reasons, this only works
-  with <em|active> Faust controls.
+  For instrument units, the <verbatim|faust~> object has built-in (and
+  hard-wired) support for MIDI notes, pitch bend and MIDI controller 123 (all
+  notes off). Other controller data received from external MIDI and OSC
+  devices is interpreted according to the controller mappings defined in the
+  Faust source (this is explained below), by updating the corresponding GUI
+  elements and the control variables of the Faust dsp. (This only works with
+  <em|active> Faust controls, i.e., dsp controls which are to be manipulated
+  from the host environment, not the dsp's <em|passive> a.k.a. \Pbargraph\Q
+  controls which return control values computed by the dsp.)
 
-  A <verbatim|faust~>, <verbatim|fdsp~> or <verbatim|fsynth~> object can also
-  be put in <em|write mode> by feeding a message of the form <verbatim|write>
-  <verbatim|1> into its control inlet (the <verbatim|write> <verbatim|0>
-  message disables write mode again). For convenience, the <verbatim|write>
-  toggle in the <verbatim|midiosc> abstraction allows you to do this
-  simultaneously for all Faust units connected to <verbatim|midiosc>`s
-  control outlet.
+  A <verbatim|faust~> object can also be put in <em|write mode> by feeding a
+  message of the form <verbatim|write> <verbatim|1> into its control inlet
+  (the <verbatim|write> <verbatim|0> message disables write mode again). For
+  convenience, the <verbatim|write> toggle in the <verbatim|midiosc>
+  abstraction allows you to do this simultaneously for all Faust units
+  connected to <verbatim|midiosc>`s control outlet.
 
   When an object is in write mode, it also <em|outputs> MIDI and OSC
   controller data in response to both automation data and the manual
   operation of the Pd GUI elements, again according to the controller
   mappings defined in the Faust source, so that it can drive an external
-  device such as a MIDI fader box or a multitouch OSC controller. Note that
-  this works with both <em|active> and <em|passive> Faust controls.
+  device, e.g., in order to provide feedback to a MIDI fader box or a
+  multitouch OSC controller. This works with both <em|active> and
+  <em|passive> Faust controls.
+
+  <with|font-series|bold|Note:> One pitfall in the current implementation is
+  that, for better or worse, the output is <em|not> emitted directly on the
+  object's control outlet, but instead goes to special <verbatim|midiout> and
+  <verbatim|oscout> receivers provided by the <verbatim|midiosc> abstraction
+  which then takes care of outputting the data. Thus, if you're <em|not>
+  using <verbatim|midiosc>, you will have to provide these receivers yourself
+  if you want to process the generated MIDI and/or OSC data in some way (the
+  included simple.pd example shows how to do this for MIDI data).
 
   To configure MIDI controller assignments, the labels of the Faust control
   elements have to be marked up with the special <verbatim|midi> attribute in
@@ -642,9 +707,9 @@
   controller 10 by changing the pan control in the Faust unit accordingly,
   mapping the controller values 0..127 to the range and step size given in
   the Faust source. Moreover, in write mode corresponding MIDI controller
-  data will be generated and sent to Pd's MIDI output, on the MIDI channel
-  specified in the creation arguments of the Faust unit (0 meaning \Pomni\Q,
-  i.e., output on all MIDI channels).
+  data will be generated and sent to the <verbatim|midiout> receiver as
+  discussed above, on the MIDI channel specified in the creation arguments of
+  the Faust unit (0 meaning \Pomni\Q, i.e., output on all MIDI channels).
 
   The same functionality is also available for external OSC devices,
   employing explicit OSC controller assignments in the Faust source by means
@@ -667,18 +732,20 @@
   program).
 
   To actually connect with external OSC devices, you will also need some OSC
-  input and output facilities. Neither vanilla Pd nor pd-faust includes any
-  of these, so you will have to rely on 3rd party externals for that. We
+  input and output facilities. Older versions of vanilla Pd didn't offer
+  these, and the built-in OSC facilities of the latest Pd versions still have
+  some limitations, so pd-pure relies on 3rd party externals for that. We
   recommend Martin Peach's <hlink|OSC externals|http://puredata.info/Members/martinrp/OSCobjects>
-  which are included in Hans-Christoph Steiner's
-  <hlink|Pd-extended|http://puredata.info/downloads/pd-extended>
-  distribution. pd-faust includes a version of the <verbatim|midiosc>
-  abstraction named <verbatim|midiosc-mrpeach> which can be used as a drop-in
-  replacement for <verbatim|midiosc> and implements OSC input and output
-  using Martin Peach's objects. You most likely have to edit this abstraction
-  to make it work for your local network setup; at least you'll probably have
-  to change the network addresses in the abstraction so that it works with
-  the OSC device or application that you use.
+  which are included in Hans-Christoph Steiner's Pd-extended distribution and
+  derivatives such as Pd-l2ork and Purr-Data.
+
+  pd-faust includes a version of the <verbatim|midiosc> abstraction named
+  <verbatim|midiosc-mrpeach> which can be used as a drop-in replacement for
+  <verbatim|midiosc> and implements OSC input and output using Martin Peach's
+  objects. You most likely have to edit this abstraction to make it work for
+  your local network setup; at least you'll probably have to change the
+  network addresses in the abstraction so that it works with the OSC device
+  or application that you use.
 
   Another useful abstraction is the <verbatim|oscbrowser> object available in
   the author's separate <hlink|pd-mdnsbrowser|https://bitbucket.org/agraef/pd-mdnsbrowser>
@@ -786,18 +853,16 @@
   <subsection|Caveats and Bugs><label|caveats-and-bugs>
 
   Some parts of this software might still be experimental, under construction
-  and/or bug-ridden. Bug reports, patches and suggestions are welcome. Please
-  send these directly to the author, or post them either to the Faust or the
-  Pure mailing list.
+  and/or bug-ridden. Bug reports, patches and suggestions are welcome.
 
   In particular, please note the following known limitations in the current
   implementation:
 
   <\itemize>
-    <item>Passive Faust controls are only supported in <verbatim|fdsp~>
-    objects.
+    <item>Passive Faust controls are only supported in effect units
+    (<verbatim|faust~> objects with zero voices).
 
-    <item>The names of the voice controls in the <verbatim|fsynth~> object
+    <item>The names of the voice controls of instrument units
     (<verbatim|freq>, <verbatim|gain>, <verbatim|gate>) are currently
     hard-coded, as are the names of the <verbatim|midi>, <verbatim|osc> and
     <verbatim|dsp> subfolders used to locate various kinds of files.
@@ -833,16 +898,19 @@
       <item><hlink|Usage|#usage>
 
       <\itemize>
-        <item><hlink|The fdsp<math|\<sim\>> and fsynth<math|\<sim\>>
-        Objects|#the-fdsp-and-fsynth-objects>
+        <item><hlink|Compiling Faust DSPs|#compiling-faust-dsps>
 
         <item><hlink|The faust<math|\<sim\>> Object|#the-faust-object>
+
+        <item><hlink|Effect and Synth Units|#effect-and-synth-units>
 
         <item><hlink|GUI Subpatches|#gui-subpatches>
 
         <item><hlink|Examples|#examples>
 
         <item><hlink|Operating the Patches|#operating-the-patches>
+
+        <item><hlink|MIDI and OSC Sequencing|#midi-and-osc-sequencing>
 
         <item><hlink|External MIDI and OSC
         Controllers|#external-midi-and-osc-controllers>
@@ -869,6 +937,6 @@
   <hlink|previous|faust2pd.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2017, Albert Gräf et al. Last updated on Mar
-  04, 2017. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
+  14, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
