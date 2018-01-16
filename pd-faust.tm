@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.15, January 14, 2018
+  Version 0.15, January 16, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -159,8 +159,11 @@
   Like pd-pure, pd-faust remaps Pd's <verbatim|menu-open> command so that it
   lets you edit the Faust source of a <verbatim|faust~> object by
   right-clicking on the object and choosing <verbatim|Open> from the context
-  menu. This requires that the <verbatim|.dsp> source file of the Faust
-  module is available in the same directory as the binary module.
+  menu. (This requires that the <verbatim|.dsp> source file of the Faust
+  module is available in the same directory as the binary module.) There's
+  also special support for the Emacs editor which lets you quickly compile
+  Faust programs and reload Faust dsps in Pd, see <hlink|Remote
+  Control|#remote-control> for details.
 
   <subsubsection|Compiling Faust DSPs><label|compiling-faust-dsps>
 
@@ -840,15 +843,41 @@
   <subsubsection|Remote Control><label|remote-control>
 
   Also included in the sources is a helper abstraction faust-remote.pd and an
-  accompanying elisp program faust-remote.el. These work pretty much like
+  accompanying elisp package faust-remote.el. These work pretty much like
   pure-remote.pd and pure-remote.el in the <hlink|<em|pd-pure>|pd-pure.tm>
   distribution, but are tailored for the remote control of Faust dsps in a Pd
-  patch. In particular, they enable you to quickly reload the Faust dsps in
-  Pd using a simple keyboard command (<verbatim|C-C> <verbatim|C-X> by
-  default) from Emacs. The faust-remote.el program was designed to be used
-  with Juan Romero's Emacs <hlink|Faust mode|https://github.com/rukano/emacs-faust-mode>;
-  please see etc/faust-remote.el in the pd-faust source for usage
-  instructions.
+  patch. In particular, they enable you to quickly compile Faust sources
+  (<verbatim|C-C> <verbatim|C-K> command) and reload the compiled dsps in Pd
+  (<verbatim|C-C> <verbatim|C-X>) from Emacs. Clicking the bang control in
+  the faust-remote.pd abstraction also reloads all Faust dsps.
+
+  The faust-remote.el package was designed to be used with Juan Romero's
+  Emacs <hlink|Faust mode|https://github.com/rukano/emacs-faust-mode>; please
+  see etc/faust-remote.el in the pd-faust source for usage instructions. Note
+  that at present faust-remote.el isn't installed automatically. You can do
+  this manually by just copying the file to your Emacs site-lisp directory or
+  any other location on the Emacs load-path. E.g., on Linux and other
+  Unix-like systems:
+
+  <\verbatim>
+    \;
+
+    sudo cp etc/faust-remote.el /usr/share/emacs/site-lisp/
+
+    \;
+  </verbatim>
+
+  To enable the package, put the following line into your .emacs
+  configuration file (this also auto-loads <hlink|Faust
+  mode|https://github.com/rukano/emacs-faust-mode>):
+
+  <\verbatim>
+    \;
+
+    (require 'faust-remote)
+
+    \;
+  </verbatim>
 
   <subsection|Caveats and Bugs><label|caveats-and-bugs>
 
@@ -938,5 +967,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  14, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

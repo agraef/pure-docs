@@ -57,7 +57,7 @@
             
   <div class="section" id="pd-faust">
 <h1>pd-faust<a class="headerlink" href="#pd-faust" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.15, January 14, 2018</p>
+<p>Version 0.15, January 16, 2018</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>pd-faust is a dynamic environment for running Faust dsps in Pd. It is based on
 the author&#8217;s <a class="reference internal" href="faust2pd.html"><em>faust2pd</em></a> script, but offers many small
@@ -170,9 +170,11 @@ absolute pathnames (or pathnames relative to the <tt class="docutils literal"><s
 instead.</p>
 <p>Like pd-pure, pd-faust remaps Pd&#8217;s <tt class="docutils literal"><span class="pre">menu-open</span></tt> command so that it lets you
 edit the Faust source of a <tt class="docutils literal"><span class="pre">faust~</span></tt> object by right-clicking on the object
-and choosing <tt class="docutils literal"><span class="pre">Open</span></tt> from the context menu. This requires that the <tt class="docutils literal"><span class="pre">.dsp</span></tt>
+and choosing <tt class="docutils literal"><span class="pre">Open</span></tt> from the context menu. (This requires that the <tt class="docutils literal"><span class="pre">.dsp</span></tt>
 source file of the Faust module is available in the same directory as the
-binary module.</p>
+binary module.) There&#8217;s also special support for the Emacs editor which lets
+you quickly compile Faust programs and reload Faust dsps in Pd, see <a class="reference internal" href="#remote-control">Remote
+Control</a> for details.</p>
 <div class="section" id="compiling-faust-dsps">
 <h3>Compiling Faust DSPs<a class="headerlink" href="#compiling-faust-dsps" title="Permalink to this headline">¶</a></h3>
 <p>To run a Faust module (<tt class="docutils literal"><span class="pre">.dsp</span></tt> file) inside Pd using the <tt class="docutils literal"><span class="pre">faust~</span></tt> object,
@@ -689,14 +691,27 @@ preset = nentry(<span class="s">&quot;preset [pd:radio-slider]&quot;</span>, <sp
 <div class="section" id="remote-control">
 <h3>Remote Control<a class="headerlink" href="#remote-control" title="Permalink to this headline">¶</a></h3>
 <p>Also included in the sources is a helper abstraction faust-remote.pd and an
-accompanying elisp program faust-remote.el. These work pretty much like
+accompanying elisp package faust-remote.el. These work pretty much like
 pure-remote.pd and pure-remote.el in the <a class="reference internal" href="pd-pure.html"><em>pd-pure</em></a> distribution,
 but are tailored for the remote control of Faust dsps in a Pd patch. In
-particular, they enable you to quickly reload the Faust dsps in Pd using a
-simple keyboard command (<tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-X</span></tt> by default) from Emacs. The
-faust-remote.el program was designed to be used with Juan Romero&#8217;s Emacs
+particular, they enable you to quickly compile Faust sources (<tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-K</span></tt>
+command) and reload the compiled dsps in Pd (<tt class="docutils literal"><span class="pre">C-C</span> <span class="pre">C-X</span></tt>) from Emacs. Clicking
+the bang control in the faust-remote.pd abstraction also reloads all Faust
+dsps.</p>
+<p>The faust-remote.el package was designed to be used with Juan Romero&#8217;s Emacs
 <a class="reference external" href="https://github.com/rukano/emacs-faust-mode">Faust mode</a>; please see etc/faust-remote.el in the pd-faust source for usage
-instructions.</p>
+instructions. Note that at present faust-remote.el isn&#8217;t installed
+automatically. You can do this manually by just copying the file to your Emacs
+site-lisp directory or any other location on the Emacs load-path. E.g., on
+Linux and other Unix-like systems:</p>
+<div class="highlight-pure"><div class="highlight"><pre>sudo cp etc/faust-remote.el /usr/share/emacs/site-lisp/
+</pre></div>
+</div>
+<p>To enable the package, put the following line into your .emacs configuration
+file (this also auto-loads <a class="reference external" href="https://github.com/rukano/emacs-faust-mode">Faust mode</a>):</p>
+<div class="highlight-pure"><div class="highlight"><pre>(require &#39;faust-remote)
+</pre></div>
+</div>
 </div>
 </div>
 <div class="section" id="caveats-and-bugs">
@@ -807,7 +822,7 @@ pd-faust versions.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Jan 14, 2018.
+    Last updated on Jan 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

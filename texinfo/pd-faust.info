@@ -1,7 +1,7 @@
 This is pd-faust.info, produced by makeinfo version 6.5 from
 pd-faust.texi.
 
-     Pure 0.66, January 15, 2018
+     Pure 0.66, January 16, 2018
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pd-faust.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-faust
 ********
 
-     Pure 0.66, January 15, 2018
+     Pure 0.66, January 16, 2018
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2018, Albert Gräf et al
 
-  Version 0.15, January 14, 2018
+  Version 0.15, January 16, 2018
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -201,9 +201,11 @@ search, just use absolute pathnames (or pathnames relative to the ‘.’ or
 
   Like pd-pure, pd-faust remaps Pd’s ‘menu-open’ command so that it lets
 you edit the Faust source of a ‘faust~’ object by right-clicking on the
-object and choosing ‘Open’ from the context menu.  This requires that
+object and choosing ‘Open’ from the context menu.  (This requires that
 the ‘.dsp’ source file of the Faust module is available in the same
-directory as the binary module.
+directory as the binary module.)  There’s also special support for the
+Emacs editor which lets you quickly compile Faust programs and reload
+Faust dsps in Pd, see *note Remote Control: a. for details.
 
 * Menu:
 
@@ -430,7 +432,7 @@ percussion in the General MIDI standard.
      and ‘oscout’ receivers, so that they can be processed and/or sent
      to external MIDI and/or OSC devices.  This message can also be
      invoked with a numeric argument to toggle the "write mode" of the
-     unit; please see *note External MIDI and OSC Controllers: c. below
+     unit; please see *note External MIDI and OSC Controllers: d. below
      for details.
 
    * ‘reload’ reloads the Faust unit.  This also reloads the shared
@@ -490,7 +492,7 @@ corresponding ‘faust~’ object is created, and whenever the unit gets
 reloaded at runtime.
 
   As with faust2pd, the default appearance of the GUI can be adjusted in
-various ways; see *note Tweaking the GUI Layout: f. below for details.
+various ways; see *note Tweaking the GUI Layout: 10. below for details.
 
   The relative order in which you insert a ‘faust~’ object and its GUI
 subpatch into the main patch matters.  Normally, the GUI subpatch should
@@ -588,7 +590,7 @@ or effect unit that you want to play or control through MIDI, make sure
 that the instrument (or last effect unit in the chain) is connected to
 Pd’s audio output a.k.a.  ‘dac~’, and you should be set.  MIDI output
 via the ‘midiout’ receiver (cf.  *note External MIDI and OSC
-Controllers: c.) can be handled in a similar way using the ‘midi-output’
+Controllers: d.) can be handled in a similar way using the ‘midi-output’
 abstraction (see simple.pd for an example).
 
 
@@ -697,7 +699,7 @@ in the file.
      Faust instruments.  The ‘write’ button does the same with MIDI and
      OSC controller data generated either through automation data or by
      manually operating the control elements in the Pd GUI, see *note
-     External MIDI and OSC Controllers: c. below for details.
+     External MIDI and OSC Controllers: d. below for details.
 
    * There’s one additional button in the third row, the ‘send’ button
      which recalls the recorded OSC parameter settings at a given point
@@ -893,18 +895,35 @@ File: pd-faust.info,  Node: Remote Control,  Prev: Tweaking the GUI Layout,  Up:
 ===================
 
 Also included in the sources is a helper abstraction faust-remote.pd and
-an accompanying elisp program faust-remote.el.  These work pretty much
+an accompanying elisp package faust-remote.el.  These work pretty much
 like pure-remote.pd and pure-remote.el in the ‘pd-pure’ distribution,
 but are tailored for the remote control of Faust dsps in a Pd patch.  In
-particular, they enable you to quickly reload the Faust dsps in Pd using
-a simple keyboard command (‘C-C C-X’ by default) from Emacs.  The
-faust-remote.el program was designed to be used with Juan Romero’s Emacs
-Faust mode(1); please see etc/faust-remote.el in the pd-faust source for
-usage instructions.
+particular, they enable you to quickly compile Faust sources (‘C-C C-K’
+command) and reload the compiled dsps in Pd (‘C-C C-X’) from Emacs.
+Clicking the bang control in the faust-remote.pd abstraction also
+reloads all Faust dsps.
+
+  The faust-remote.el package was designed to be used with Juan Romero’s
+Emacs Faust mode(1); please see etc/faust-remote.el in the pd-faust
+source for usage instructions.  Note that at present faust-remote.el
+isn’t installed automatically.  You can do this manually by just copying
+the file to your Emacs site-lisp directory or any other location on the
+Emacs load-path.  E.g., on Linux and other Unix-like systems:
+
+     sudo cp etc/faust-remote.el /usr/share/emacs/site-lisp/
+
+
+  To enable the package, put the following line into your .emacs
+configuration file (this also auto-loads Faust mode(2)):
+
+     (require 'faust-remote)
+
 
    ---------- Footnotes ----------
 
    (1) https://github.com/rukano/emacs-faust-mode
+
+   (2) https://github.com/rukano/emacs-faust-mode
 
 
 File: pd-faust.info,  Node: Caveats and Bugs,  Next: Index,  Prev: Usage,  Up: Top
@@ -984,57 +1003,58 @@ Ref: pd-faust usage6580
 Ref: 76580
 Ref: pd-faust clang6580
 Ref: 86580
-Ref: Usage-Footnote-18774
-Node: Compiling Faust DSPs8819
-Ref: pd-faust compiling-faust-dsps8909
-Ref: 68909
-Ref: Compiling Faust DSPs-Footnote-112181
-Node: The faust~ Object12212
-Ref: pd-faust the-faust-object12333
-Ref: a12333
-Ref: The faust~ Object-Footnote-116276
-Ref: The faust~ Object-Footnote-216323
-Node: Effect and Synth Units16370
-Ref: pd-faust effect-and-synth-units16485
-Ref: b16485
-Ref: Effect and Synth Units-Footnote-120975
-Ref: Effect and Synth Units-Footnote-221019
-Node: GUI Subpatches21064
-Ref: pd-faust gui-subpatches21170
-Ref: d21170
-Ref: pd-faust pd-smmf21170
-Ref: e21170
-Node: Examples23376
-Ref: pd-faust examples23481
-Ref: 523481
-Node: Operating the Patches25292
-Ref: pd-faust operating-the-patches25406
-Ref: 1025406
-Node: MIDI and OSC Sequencing27151
-Ref: pd-faust midi-and-osc-sequencing27290
-Ref: 927290
-Ref: MIDI and OSC Sequencing-Footnote-134261
-Node: External MIDI and OSC Controllers34319
-Ref: pd-faust external-midi-and-osc-controllers34460
-Ref: c34460
-Ref: External MIDI and OSC Controllers-Footnote-139344
-Ref: External MIDI and OSC Controllers-Footnote-239401
-Node: Tweaking the GUI Layout39453
-Ref: pd-faust pd-mdnsbrowser39585
-Ref: 1139585
-Ref: pd-faust tweaking-the-gui-layout39585
-Ref: f39585
-Node: Remote Control42749
-Ref: pd-faust remote-control42839
-Ref: 1242839
-Ref: Remote Control-Footnote-143519
-Node: Caveats and Bugs43570
-Ref: pd-faust faust-mode43656
-Ref: 1343656
-Ref: pd-faust caveats-and-bugs43656
-Ref: 1443656
-Ref: Caveats and Bugs-Footnote-145264
-Node: Index45298
+Ref: Usage-Footnote-18946
+Node: Compiling Faust DSPs8991
+Ref: pd-faust compiling-faust-dsps9081
+Ref: 69081
+Ref: Compiling Faust DSPs-Footnote-112353
+Node: The faust~ Object12384
+Ref: pd-faust the-faust-object12505
+Ref: b12505
+Ref: The faust~ Object-Footnote-116448
+Ref: The faust~ Object-Footnote-216495
+Node: Effect and Synth Units16542
+Ref: pd-faust effect-and-synth-units16657
+Ref: c16657
+Ref: Effect and Synth Units-Footnote-121147
+Ref: Effect and Synth Units-Footnote-221191
+Node: GUI Subpatches21236
+Ref: pd-faust gui-subpatches21342
+Ref: e21342
+Ref: pd-faust pd-smmf21342
+Ref: f21342
+Node: Examples23549
+Ref: pd-faust examples23654
+Ref: 523654
+Node: Operating the Patches25465
+Ref: pd-faust operating-the-patches25579
+Ref: 1125579
+Node: MIDI and OSC Sequencing27324
+Ref: pd-faust midi-and-osc-sequencing27463
+Ref: 927463
+Ref: MIDI and OSC Sequencing-Footnote-134434
+Node: External MIDI and OSC Controllers34492
+Ref: pd-faust external-midi-and-osc-controllers34633
+Ref: d34633
+Ref: External MIDI and OSC Controllers-Footnote-139517
+Ref: External MIDI and OSC Controllers-Footnote-239574
+Node: Tweaking the GUI Layout39626
+Ref: pd-faust pd-mdnsbrowser39758
+Ref: 1239758
+Ref: pd-faust tweaking-the-gui-layout39758
+Ref: 1039758
+Node: Remote Control42922
+Ref: pd-faust remote-control43012
+Ref: a43012
+Ref: Remote Control-Footnote-144258
+Ref: Remote Control-Footnote-244309
+Node: Caveats and Bugs44360
+Ref: pd-faust faust-mode44446
+Ref: 1344446
+Ref: pd-faust caveats-and-bugs44446
+Ref: 1444446
+Ref: Caveats and Bugs-Footnote-146054
+Node: Index46088
 
 End Tag Table
 

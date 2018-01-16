@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.66, January 15, 2018
+Pure 0.66, January 16, 2018
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-faust doc}@anchor{0}
-Version 0.15, January 14, 2018
+Version 0.15, January 16, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -203,9 +203,10 @@ instead.
 
 Like pd-pure, pd-faust remaps Pd's @code{menu-open} command so that it lets you
 edit the Faust source of a @code{faust~} object by right-clicking on the object
-and choosing @code{Open} from the context menu. This requires that the @code{.dsp}
+and choosing @code{Open} from the context menu. (This requires that the @code{.dsp}
 source file of the Faust module is available in the same directory as the
-binary module.
+binary module.) There's also special support for the Emacs editor which lets
+you quickly compile Faust programs and reload Faust dsps in Pd, see @pxref{a,,Remote Control} for details.
 
 @menu
 * Compiling Faust DSPs:: 
@@ -287,7 +288,7 @@ however, that in the current implementation @code{pdfaust} and @code{pdfaust2} c
 beforehand which of the two available interfaces you want to use.
 
 @node The faust~ Object,Effect and Synth Units,Compiling Faust DSPs,Usage
-@anchor{pd-faust the-faust-object}@anchor{a}
+@anchor{pd-faust the-faust-object}@anchor{b}
 @section The faust~ Object
 
 
@@ -377,7 +378,7 @@ using the @code{instname} argument, and the default @code{channel} value of zero
 listen on a specific MIDI channel.
 
 @node Effect and Synth Units,GUI Subpatches,The faust~ Object,Usage
-@anchor{pd-faust effect-and-synth-units}@anchor{b}
+@anchor{pd-faust effect-and-synth-units}@anchor{c}
 @section Effect and Synth Units
 
 
@@ -439,7 +440,7 @@ format.
 @code{write} outputs the current control settings to special @code{midiout} and
 @code{oscout} receivers, so that they can be processed and/or sent to external
 MIDI and/or OSC devices. This message can also be invoked with a numeric
-argument to toggle the "write mode" of the unit; please see @pxref{c,,External MIDI and OSC Controllers} below for details.
+argument to toggle the "write mode" of the unit; please see @pxref{d,,External MIDI and OSC Controllers} below for details.
 
 @item 
 @code{reload} reloads the Faust unit. This also reloads the shared library or
@@ -473,7 +474,7 @@ a Pd external to output tunings in the format understood by the @code{faust~}
 object.
 
 @node GUI Subpatches,Examples,Effect and Synth Units,Usage
-@anchor{pd-faust gui-subpatches}@anchor{d}@anchor{pd-faust pd-smmf}@anchor{e}
+@anchor{pd-faust gui-subpatches}@anchor{e}@anchor{pd-faust pd-smmf}@anchor{f}
 @section GUI Subpatches
 
 
@@ -493,7 +494,7 @@ generated automatically by pd-faust when the corresponding @code{faust~} object
 is created, and whenever the unit gets reloaded at runtime.
 
 As with faust2pd, the default appearance of the GUI can be adjusted in various
-ways; see @pxref{f,,Tweaking the GUI Layout} below for details.
+ways; see @pxref{10,,Tweaking the GUI Layout} below for details.
 
 The relative order in which you insert a @code{faust~} object and its GUI
 subpatch into the main patch matters. Normally, the GUI subpatch should be
@@ -566,7 +567,7 @@ hand-editing if you know what you are doing; the format should be fairly
 self-explanatory.
 
 @node Operating the Patches,MIDI and OSC Sequencing,Examples,Usage
-@anchor{pd-faust operating-the-patches}@anchor{10}
+@anchor{pd-faust operating-the-patches}@anchor{11}
 @section Operating the Patches
 
 
@@ -591,7 +592,7 @@ objects. Simply connect the outlet of @code{midi-input} to the leftmost inlet of
 any @code{faust~} instrument or effect unit that you want to play or control
 through MIDI, make sure that the instrument (or last effect unit in the chain)
 is connected to Pd's audio output a.k.a. @code{dac~}, and you should be set.
-MIDI output via the @code{midiout} receiver (cf. @pxref{c,,External MIDI and OSC Controllers}) can be handled in a similar way using the @code{midi-output}
+MIDI output via the @code{midiout} receiver (cf. @pxref{d,,External MIDI and OSC Controllers}) can be handled in a similar way using the @code{midi-output}
 abstraction (see simple.pd for an example).
 
 @node MIDI and OSC Sequencing,External MIDI and OSC Controllers,Operating the Patches,Usage
@@ -703,7 +704,7 @@ through Pd's MIDI output so that it can be used to drive an external MIDI
 device in addition to the Faust instruments. The @code{write} button does the
 same with MIDI and OSC controller data generated either through automation
 data or by manually operating the control elements in the Pd GUI, see
-@pxref{c,,External MIDI and OSC Controllers} below for details.
+@pxref{d,,External MIDI and OSC Controllers} below for details.
 
 @item 
 There's one additional button in the third row, the @code{send} button which
@@ -720,7 +721,7 @@ your own abstractions if you need more elaborate input/output interfacing than
 what @code{midiosc} provides.
 
 @node External MIDI and OSC Controllers,Tweaking the GUI Layout,MIDI and OSC Sequencing,Usage
-@anchor{pd-faust external-midi-and-osc-controllers}@anchor{c}
+@anchor{pd-faust external-midi-and-osc-controllers}@anchor{d}
 @section External MIDI and OSC Controllers
 
 
@@ -820,7 +821,7 @@ Zeroconf (Avahi/Bonjour) services in the local network, so that your Pd
 patches can establish OSC connections in an automatic fashion.
 
 @node Tweaking the GUI Layout,Remote Control,External MIDI and OSC Controllers,Usage
-@anchor{pd-faust pd-mdnsbrowser}@anchor{11}@anchor{pd-faust tweaking-the-gui-layout}@anchor{f}
+@anchor{pd-faust pd-mdnsbrowser}@anchor{12}@anchor{pd-faust tweaking-the-gui-layout}@anchor{10}
 @section Tweaking the GUI Layout
 
 
@@ -909,19 +910,40 @@ preset = nentry("preset [pd:radio-slider]", 0, 0, 7, 1);
 @noindent
 
 @node Remote Control,,Tweaking the GUI Layout,Usage
-@anchor{pd-faust remote-control}@anchor{12}
+@anchor{pd-faust remote-control}@anchor{a}
 @section Remote Control
 
 
 Also included in the sources is a helper abstraction faust-remote.pd and an
-accompanying elisp program faust-remote.el. These work pretty much like
+accompanying elisp package faust-remote.el. These work pretty much like
 pure-remote.pd and pure-remote.el in the @code{pd-pure} distribution,
 but are tailored for the remote control of Faust dsps in a Pd patch. In
-particular, they enable you to quickly reload the Faust dsps in Pd using a
-simple keyboard command (@code{C-C C-X} by default) from Emacs. The
-faust-remote.el program was designed to be used with Juan Romero's Emacs
+particular, they enable you to quickly compile Faust sources (@code{C-C C-K}
+command) and reload the compiled dsps in Pd (@code{C-C C-X}) from Emacs. Clicking
+the bang control in the faust-remote.pd abstraction also reloads all Faust
+dsps.
+
+The faust-remote.el package was designed to be used with Juan Romero's Emacs
 Faust mode@footnote{https://github.com/rukano/emacs-faust-mode}; please see etc/faust-remote.el in the pd-faust source for usage
-instructions.
+instructions. Note that at present faust-remote.el isn't installed
+automatically. You can do this manually by just copying the file to your Emacs
+site-lisp directory or any other location on the Emacs load-path. E.g., on
+Linux and other Unix-like systems:
+
+@example
+sudo cp etc/faust-remote.el /usr/share/emacs/site-lisp/
+@end example
+
+@noindent
+
+To enable the package, put the following line into your .emacs configuration
+file (this also auto-loads Faust mode@footnote{https://github.com/rukano/emacs-faust-mode}):
+
+@example
+(require 'faust-remote)
+@end example
+
+@noindent
 
 @node Caveats and Bugs,Index,Usage,Top
 @anchor{pd-faust faust-mode}@anchor{13}@anchor{pd-faust caveats-and-bugs}@anchor{14}
