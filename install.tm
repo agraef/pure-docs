@@ -4,13 +4,13 @@
 
 <\body>
   <hlink|toc|#install-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|windows.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|bugs.tm> \|
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|Installing Pure (and LLVM)><label|installing-pure-and-llvm>
 
-  Version 0.66, January 13, 2018
+  Version 0.66, February 22, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -33,7 +33,7 @@
   along with the MSYS environment.
 
   A binary package in msi format is provided for Windows users in the
-  download area at <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>.
+  download area at <hlink|https://github.com/agraef/pure-lang/releases|https://github.com/agraef/pure-lang/releases>.
   Information about ports and packages for other (UNIX-like) systems is
   provided at the same location.
 
@@ -59,7 +59,7 @@
   You'll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.66
   tarballs are available here:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz>
+  <hlink|https://github.com/agraef/pure-lang/releases/download/pure-0.66/pure-0.66.tar.gz|https://github.com/agraef/pure-lang/releases/download/pure-0.66/pure-0.66.tar.gz>
 
   <hlink|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz|http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz>
 
@@ -423,7 +423,7 @@
 
   <with|font-series|bold|Step 4.> Get and unpack the Pure sources.
 
-  These can be downloaded from <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>.
+  These can be downloaded from <hlink|https://agraef.github.io/pure-lang|https://agraef.github.io/pure-lang>.
   The latest source tarballs can always be found in the \PDownloads\Q
   section.
 
@@ -517,7 +517,7 @@
   contain some <verbatim|*.diff> files containing further information about
   the failed tests. In that case please zip up the entire test directory and
   mail it to the author, post it on the Pure mailing list, or enter a bug
-  report at <hlink|https://bitbucket.org/purelang/pure-lang/issues|https://bitbucket.org/purelang/pure-lang/issues>.
+  report at <hlink|https://github.com/agraef/pure-lang/issues|https://github.com/agraef/pure-lang/issues>.
   Also please include precise information about your platform (operating
   system and cpu architecture) and the Pure and LLVM versions and/or source
   revision numbers you're running.
@@ -995,7 +995,7 @@
   The latest development version of Pure is available in its Git source code
   repository. You can browse the repository at:
 
-  <hlink|https://bitbucket.org/purelang/pure-lang|https://bitbucket.org/purelang/pure-lang>
+  <hlink|https://github.com/agraef/pure-lang|https://github.com/agraef/pure-lang>
 
   (You'll notice that the repository also contains various addon modules. See
   the pure subdirectory for the latest sources of the Pure interpreter
@@ -1013,7 +1013,7 @@
   <\verbatim>
     \;
 
-    $ git clone https://bitbucket.org/purelang/pure-lang
+    $ git clone https://github.com/agraef/pure-lang.git
 
     \;
   </verbatim>
@@ -1061,7 +1061,7 @@
   <\verbatim>
     \;
 
-    $ git clone https://bitbucket.org/puredocs/puredocs.bitbucket.org.git
+    $ git clone https://github.com/agraef/pure-docs.git
 
     \;
   </verbatim>
@@ -1604,7 +1604,7 @@
   <verbatim|make> <verbatim|install>. You'll need LLVM, of course (which
   builds with Mingw just fine), and a few additional libraries for which
   headers and precompiled binaries are available from the Pure website
-  (<hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>).
+  (<hlink|https://agraef.github.io/pure-lang/|https://agraef.github.io/pure-lang/>).
 
   However, the easiest way is to just go with the Pure MSI package available
   on the Pure website. This includes all required libraries and some
@@ -1700,13 +1700,13 @@
 
   Next topic
 
-  <hlink|Running Pure on Windows|windows.tm>
+  <hlink|Reporting Bugs|bugs.tm>
 
   <hlink|toc|#install-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|windows.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|next|bugs.tm> \|
   <hlink|previous|pure-midi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
+  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

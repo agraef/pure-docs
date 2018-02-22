@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.15, January 16, 2018
+  Version 0.15, February 22, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -63,9 +63,9 @@
   (anything after 0.9.85, including current git sources).
 
   The pd-faust objects are written in the
-  <hlink|Pure|http://purelang.bitbucket.org/> programming language, so you'll
-  also need an installation of the Pure interpreter (0.51 or later), along
-  with the following packages (minimum required versions are given in
+  <hlink|Pure|https://agraef.github.io/pure-lang/> programming language, so
+  you'll also need an installation of the Pure interpreter (0.51 or later),
+  along with the following packages (minimum required versions are given in
   parentheses): <hlink|<em|pd-pure>|pd-pure.tm> (0.15),
   <hlink|<em|pure-faust>|pure-faust.tm> (0.8),
   <hlink|<em|pure-midi>|pure-midi.tm> (0.5) and
@@ -966,6 +966,6 @@
   <hlink|previous|faust2pd.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
+  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

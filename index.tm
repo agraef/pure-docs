@@ -9,7 +9,7 @@
 
   <section*|Pure Language and Library Documentation><label|pure-language-and-library-documentation>
 
-  Last updated: January 13, 2018 (v0.66)
+  Last updated: February 22, 2018 (v0.66)
 
   This manual collects all of Pure's online documentation: <hlink|<em|The
   Pure Manual>|pure.tm> which covers the Pure language and the operation of
@@ -18,8 +18,7 @@
   Pure interpreter; all available documentation for the various <hlink|addon
   modules|#addon-modules> which can be downloaded as separate packages from
   the Pure website; and an appendix with <hlink|<em|installation
-  instructions>|install.tm> and additional information for <hlink|<em|Windows
-  users>|windows.tm>.
+  instructions>|install.tm>.
 
   Most of the Pure documentation is distributed under the <hlink|GNU Free
   Documentation License|http://www.gnu.org/copyleft/fdl.html>. The authors of
@@ -63,13 +62,13 @@
   please see:
 
   <\itemize>
-    <item>Pure website: <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>
+    <item>Pure website: <hlink|https://agraef.github.io/pure-lang/|https://agraef.github.io/pure-lang/>
 
     <item>Pure mailing list: <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
   </itemize>
 
   From the Pure website you can also download a recent version of this manual
-  in <hlink|pdf format|http://puredocs.bitbucket.org/puredoc.pdf>.
+  in <hlink|pdf format|https://agraef.github.io/pure-docs/puredoc.pdf>.
 
   <subsection|Language and Standard Library><label|language-and-standard-library>
 
@@ -207,10 +206,6 @@
   <\itemize>
     <item><hlink|Installing Pure (and LLVM)|install.tm>
 
-    <item><hlink|Running Pure on Windows|windows.tm>
-
-    <item><hlink|Using PurePad|purepad.tm>
-
     <item><hlink|Reporting Bugs|bugs.tm>
   </itemize>
 
@@ -256,6 +251,6 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|next|pure.tm> \| <hlink|Pure
   Language and Library Documentation|#>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
+  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

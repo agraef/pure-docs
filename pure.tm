@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.66, January 15, 2018
+  Version 0.66, February 22, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -30,7 +30,7 @@
   under the following URLs:
 
   <\itemize>
-    <item>Pure website: <hlink|http://purelang.bitbucket.org|http://purelang.bitbucket.org>
+    <item>Pure website: <hlink|https://agraef.github.io/pure-lang/|https://agraef.github.io/pure-lang/>
 
     <item>Pure mailing list: <hlink|http://groups.google.com/group/pure-lang|http://groups.google.com/group/pure-lang>
   </itemize>
@@ -17799,7 +17799,7 @@
 
     \<gtr\> help file:mydoc.html#foo
 
-    \<gtr\> help http://purelang.bitbucket.org
+    \<gtr\> help https://agraef.github.io/pure-lang/
 
     \;
   </verbatim>
@@ -22873,6 +22873,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  15, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
+  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

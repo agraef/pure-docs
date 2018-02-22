@@ -4,7 +4,7 @@
 
 <\body>
   <hlink|toc|#bugs-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|previous|purepad.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|previous|install.tm> \|
   <hlink|Pure Language and Library Documentation|index.tm>
 
   <section*|Reporting Bugs><label|reporting-bugs>
@@ -16,7 +16,7 @@
   Pure issue tracker which is available here:
 
   <\quote-env>
-    <hlink|https://bitbucket.org/purelang/pure-lang/issues|https://bitbucket.org/purelang/pure-lang/issues>
+    <hlink|https://github.com/agraef/pure-lang/issues|https://github.com/agraef/pure-lang/issues>
   </quote-env>
 
   If you are unsure if the problem you are hitting is really a bug, or if
@@ -36,12 +36,12 @@
 
   Previous topic
 
-  <hlink|Using PurePad|purepad.tm>
+  <hlink|Installing Pure (and LLVM)|install.tm>
 
   <hlink|toc|#bugs-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|previous|purepad.tm> \|
+  <hlink|modules|pure-modindex.tm> \| <hlink|previous|install.tm> \|
   <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
+  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.66, January 16, 2018
+Pure 0.66, February 22, 2018
 
 Albert Gräf (Editor)
 
@@ -46,11 +46,11 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-pure doc}@anchor{0}
-Version 0.24, January 13, 2018
+Version 0.24, February 22, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
-This is a Pure@footnote{https://purelang.bitbucket.io/} "loader plugin" for Pd@footnote{http://puredata.info/}, Miller Puckette's graphical dataflow
+This is a Pure@footnote{https://agraef.github.io/pure-lang/} "loader plugin" for Pd@footnote{http://puredata.info/}, Miller Puckette's graphical dataflow
 programming system for realtime multimedia applications. If you are a Pd user,
 it lets you write external Pd objects in Pure, which is generally much more
 convenient and a lot more fun than having to code Pd externals in a
@@ -142,17 +142,14 @@ The Makefile also tries to guess the host system type and Pure version, and
 set up some platform-specific things accordingly. If this doesn't work for
 your system then you'll have to edit the Makefile accordingly.
 
-MS Windows users please note that there's a binary package in zip format
-available at the Pure website:
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip}.
-You can simply drop the @code{pure} folder contained in the package into the
-@code{extra} folder of your Pd installation. In addition, you will also need an
-installation of the Pure interpreter itself; a corresponding Windows installer
-can be found in the download section@footnote{https://bitbucket.org/purelang/pure-lang/downloads/} of the Pure website as well (look for
-the latest pure-x.y.msi package).
+MS Windows users please note that there's a binary package available at the
+Pure website, please check the Pure on Windows@footnote{https://github.com/agraef/pure-lang/wiki/PureOnWindows#pd-and-friends} wiki page for details. In
+addition, you will also need an installation of the Pure interpreter itself; a
+corresponding Windows installer can be found in the download section@footnote{https://github.com/agraef/pure-lang/releases} of the
+Pure website as well (look for the latest pure msi package).
 
 Mac users can find pd-pure and all its dependencies in MacPorts@footnote{http://www.macports.org/}. Please also
-check the Pure on Mac OS X@footnote{https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends} wiki page for details.
+check the Pure on Mac OS X@footnote{https://github.com/agraef/pure-lang/wiki/PureOnMacOSX#pd-and-friends} wiki page for details.
 
 @node Usage,Control Objects,Installation,Top
 @anchor{pd-pure usage}@anchor{4}@anchor{pd-pure pure-on-mac-os-x}@anchor{5}

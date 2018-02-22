@@ -10,18 +10,19 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.24, January 13, 2018
+  Version 0.24, February 22, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  This is a <hlink|Pure|https://purelang.bitbucket.io/> \Ploader plugin\Q for
-  <hlink|Pd|http://puredata.info/>, Miller Puckette's graphical dataflow
-  programming system for realtime multimedia applications. If you are a Pd
-  user, it lets you write external Pd objects in Pure, which is generally
-  much more convenient and a lot more fun than having to code Pd externals in
-  a comparatively low-level language such as C or C++. If you are a Pure
-  user, it provides you with an alternative way to develop and run your Pure
-  scripts in one of the best graphical dataflow environments available today.
+  This is a <hlink|Pure|https://agraef.github.io/pure-lang/> \Ploader
+  plugin\Q for <hlink|Pd|http://puredata.info/>, Miller Puckette's graphical
+  dataflow programming system for realtime multimedia applications. If you
+  are a Pd user, it lets you write external Pd objects in Pure, which is
+  generally much more convenient and a lot more fun than having to code Pd
+  externals in a comparatively low-level language such as C or C++. If you
+  are a Pure user, it provides you with an alternative way to develop and run
+  your Pure scripts in one of the best graphical dataflow environments
+  available today.
 
   Pure certainly has its own learning curve, but once mastered, it makes
   programming many kinds of Pd objects a walk in the park. Its Pd interface
@@ -94,18 +95,17 @@
   set up some platform-specific things accordingly. If this doesn't work for
   your system then you'll have to edit the Makefile accordingly.
 
-  MS Windows users please note that there's a binary package in zip format
-  available at the Pure website: <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24-win32.zip>.
-  You can simply drop the <verbatim|pure> folder contained in the package
-  into the <verbatim|extra> folder of your Pd installation. In addition, you
-  will also need an installation of the Pure interpreter itself; a
-  corresponding Windows installer can be found in the <hlink|download
-  section|https://bitbucket.org/purelang/pure-lang/downloads/> of the Pure
-  website as well (look for the latest pure-x.y.msi package).
+  MS Windows users please note that there's a binary package available at the
+  Pure website, please check the <hlink|Pure on
+  Windows|https://github.com/agraef/pure-lang/wiki/PureOnWindows#pd-and-friends>
+  wiki page for details. In addition, you will also need an installation of
+  the Pure interpreter itself; a corresponding Windows installer can be found
+  in the <hlink|download section|https://github.com/agraef/pure-lang/releases>
+  of the Pure website as well (look for the latest pure msi package).
 
   Mac users can find pd-pure and all its dependencies in
   <hlink|MacPorts|http://www.macports.org/>. Please also check the
-  <hlink|Pure on Mac OS X|https://bitbucket.org/purelang/pure-lang/wiki/PureOnMacOSX#markdown-header-pd-and-friends>
+  <hlink|Pure on Mac OS X|https://github.com/agraef/pure-lang/wiki/PureOnMacOSX#pd-and-friends>
   wiki page for details.
 
   <subsection|Usage><label|usage>
@@ -1972,6 +1972,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
+  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

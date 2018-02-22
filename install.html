@@ -27,7 +27,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <link rel="top" title="Pure Language and Library Documentation" href="index.html" />
-    <link rel="next" title="Running Pure on Windows" href="windows.html" />
+    <link rel="next" title="Reporting Bugs" href="bugs.html" />
     <link rel="prev" title="pure-midi" href="pure-midi.html" /> 
   </head>
   <body>
@@ -41,7 +41,7 @@
           <a href="pure-modindex.html" title="Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="windows.html" title="Running Pure on Windows"
+          <a href="bugs.html" title="Reporting Bugs"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="pure-midi.html" title="pure-midi"
@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.66, January 13, 2018</p>
+<p>Version 0.66, February 22, 2018</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -77,8 +77,8 @@ and GNU make, which are also readily available on most platforms. For Windows
 compilation we support the Mingw version of gcc along with the MSYS
 environment.</p>
 <p>A binary package in msi format is provided for Windows users in the download
-area at <a class="reference external" href="http://purelang.bitbucket.org">http://purelang.bitbucket.org</a>. Information about ports and packages
-for other (UNIX-like) systems is provided at the same location.</p>
+area at <a class="reference external" href="https://github.com/agraef/pure-lang/releases">https://github.com/agraef/pure-lang/releases</a>. Information about ports
+and packages for other (UNIX-like) systems is provided at the same location.</p>
 <div class="section" id="quick-summary">
 <h2>Quick Summary<a class="headerlink" href="#quick-summary" title="Permalink to this headline">¶</a></h2>
 <p>Here is the executive summary for the impatient. This assumes that you&#8217;re
@@ -100,7 +100,7 @@ most systems.</p>
 <p>You&#8217;ll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.66
 tarballs are available here:</p>
 <div class="line-block">
-<div class="line"><a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-0.66.tar.gz</a></div>
+<div class="line"><a class="reference external" href="https://github.com/agraef/pure-lang/releases/download/pure-0.66/pure-0.66.tar.gz">https://github.com/agraef/pure-lang/releases/download/pure-0.66/pure-0.66.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz">http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/clang-3.4.src.tar.gz">http://llvm.org/releases/3.4/clang-3.4.src.tar.gz</a></div>
 <div class="line"><a class="reference external" href="http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz">http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz</a></div>
@@ -326,8 +326,8 @@ play with the configure options, but note that some options (especially
 <tt class="docutils literal"><span class="pre">--enable-expensive-checks</span></tt>) can make LLVM very slow and may even break the
 Pure interpreter on some systems.</p>
 <p><strong>Step 4.</strong> Get and unpack the Pure sources.</p>
-<p>These can be downloaded from <a class="reference external" href="http://purelang.bitbucket.org">http://purelang.bitbucket.org</a>. The latest source
-tarballs can always be found in the &#8220;Downloads&#8221; section.</p>
+<p>These can be downloaded from <a class="reference external" href="https://agraef.github.io/pure-lang">https://agraef.github.io/pure-lang</a>. The latest
+source tarballs can always be found in the &#8220;Downloads&#8221; section.</p>
 <p><strong>Step 5.</strong> Configure, build and install Pure as follows:</p>
 <div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.66
 <span class="gp">$</span> ./configure --enable-release
@@ -384,7 +384,7 @@ found.)</p>
 some <tt class="docutils literal"><span class="pre">*.diff</span></tt> files containing further information about the failed tests.
 In that case please zip up the entire test directory and mail it to the
 author, post it on the Pure mailing list, or enter a bug report at
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/issues">https://bitbucket.org/purelang/pure-lang/issues</a>. Also please include precise
+<a class="reference external" href="https://github.com/agraef/pure-lang/issues">https://github.com/agraef/pure-lang/issues</a>. Also please include precise
 information about your platform (operating system and cpu architecture) and
 the Pure and LLVM versions and/or source revision numbers you&#8217;re running.</p>
 <p>Note that <tt class="docutils literal"><span class="pre">make</span> <span class="pre">check</span></tt> executes the run-tests script which is generated at
@@ -675,7 +675,7 @@ compiler to generate LLVM bitcode from the command line.)</p>
 <h2>Installing From Development Sources<a class="headerlink" href="#installing-from-development-sources" title="Permalink to this headline">¶</a></h2>
 <p>The latest development version of Pure is available in its Git
 source code repository. You can browse the repository at:</p>
-<p><a class="reference external" href="https://bitbucket.org/purelang/pure-lang">https://bitbucket.org/purelang/pure-lang</a></p>
+<p><a class="reference external" href="https://github.com/agraef/pure-lang">https://github.com/agraef/pure-lang</a></p>
 <p>(You&#8217;ll notice that the repository also contains various addon modules. See
 the pure subdirectory for the latest sources of the Pure interpreter itself.)</p>
 <p>Note that if you&#8217;re going with the development sources, you&#8217;ll also need
@@ -683,7 +683,7 @@ fairly recent versions of autoconf, flex and bison (autoconf 2.63, flex 2.5.31
 and bison 2.3 or later should be ok).</p>
 <p>To compile from the development sources, replace steps 4 and 5 above with:</p>
 <p><strong>Step 4&#8217;.</strong> Fetch the latest sources from the repository:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://bitbucket.org/purelang/pure-lang
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/agraef/pure-lang.git
 </pre></div>
 </div>
 <p>This clones the repository and puts it into the pure-lang subdirectory in the
@@ -710,7 +710,7 @@ website for details.</p>
 <p>Alternatively, a ready-made recent snapshot of the documentation in html and
 pdf formats is also available in its own repository, which can be cloned as
 follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://bitbucket.org/puredocs/puredocs.bitbucket.org.git
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/agraef/pure-docs.git
 </pre></div>
 </div>
 </div>
@@ -1095,7 +1095,7 @@ compiler and the MSYS environment from <a class="reference external" href="http:
 usual <tt class="docutils literal"><span class="pre">./configure</span> <span class="pre">&amp;&amp;</span> <span class="pre">make</span> <span class="pre">&amp;&amp;</span> <span class="pre">make</span> <span class="pre">install</span></tt>. You&#8217;ll need LLVM, of course
 (which builds with Mingw just fine), and a few additional libraries for which
 headers and precompiled binaries are available from the Pure website
-(<a class="reference external" href="http://purelang.bitbucket.org">http://purelang.bitbucket.org</a>).</p>
+(<a class="reference external" href="https://agraef.github.io/pure-lang/">https://agraef.github.io/pure-lang/</a>).</p>
 <p>However, the easiest way is to just go with the Pure MSI package available on
 the Pure website. This includes all required libraries and some shortcuts to
 run the Pure interpreter and read online documentation in html help format, as
@@ -1160,8 +1160,8 @@ recent 64 bit flavors of Windows (tested on Windows 7, 8 and 10).</p>
   <p class="topless"><a href="pure-midi.html"
                         title="previous chapter">pure-midi</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="windows.html"
-                        title="next chapter">Running Pure on Windows</a></p>
+  <p class="topless"><a href="bugs.html"
+                        title="next chapter">Reporting Bugs</a></p>
 <h3>This Page</h3>
 <ul class="this-page-menu">
   <li><a href="bugs.html">Report a Bug</a></li>
@@ -1196,7 +1196,7 @@ recent 64 bit flavors of Windows (tested on Windows 7, 8 and 10).</p>
           <a href="pure-modindex.html" title="Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="windows.html" title="Running Pure on Windows"
+          <a href="bugs.html" title="Reporting Bugs"
              >next</a> |</li>
         <li class="right" >
           <a href="pure-midi.html" title="pure-midi"
@@ -1206,7 +1206,7 @@ recent 64 bit flavors of Windows (tested on Windows 7, 8 and 10).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Jan 13, 2018.
+    Last updated on Feb 22, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
