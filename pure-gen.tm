@@ -857,7 +857,7 @@
 
   <\description>
     <item*|Language.C>A C parser written in Haskell by Manuel Chakravarty et
-    al, <hlink|http://www.sivity.net/projects/language.c|http://www.sivity.net/projects/language.c>.
+    al, <hlink|https://hackage.haskell.org/package/language-c|https://hackage.haskell.org/package/language-c>.
 
     <item*|SWIG>The Simplified Wrapper and Interface Generator,
     <hlink|http://www.swig.org|http://www.swig.org>.
