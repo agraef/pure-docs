@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.24, February 22, 2018
+  Version 0.25, February 25, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -65,7 +65,7 @@
   and above, since these offer substantial improvements in Pd's \Ploader\Q
   functionality which pd-pure hooks into to provide Pure object creation.
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pd-pure-0.24.tar.gz>.
+  Get the latest source from <hlink|https://github.com/agraef/pure-lang/releases/download/pd-pure-0.25/pd-pure-0.25.tar.gz|https://github.com/agraef/pure-lang/releases/download/pd-pure-0.25/pd-pure-0.25.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -1973,5 +1973,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
-  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  25, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

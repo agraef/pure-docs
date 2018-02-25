@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.15, February 22, 2018
+  Version 0.16, February 25, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -967,5 +967,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
-  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  25, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
