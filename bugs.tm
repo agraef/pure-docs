@@ -42,6 +42,6 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|previous|install.tm> \|
   <hlink|Pure Language and Library Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Feb
-  22, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
+  01, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

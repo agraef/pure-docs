@@ -10,7 +10,7 @@
 
   <section*|Pure-Sql3><label|module-sql3>
 
-  Version 0.5, January 13, 2018
+  Version 0.5, March 01, 2018
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -1409,6 +1409,6 @@
   <hlink|previous|pure-odbc.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
+  01, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

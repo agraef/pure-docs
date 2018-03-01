@@ -10,7 +10,7 @@
 
   <section*|pure-octave><label|module-octave>
 
-  Version 0.9, January 13, 2018
+  Version 0.9, March 01, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -54,14 +54,14 @@
   Makefile for details.
 
   This release of pure-octave has been tested and is known to work with
-  Octave 3.6.2, 3.8, 4.0 and (development version) 4.3. Older versions might
-  require some fiddling with the sources to get the embedded Octave interface
-  working.
+  Octave 3.6.2, 3.8, 4.0 and (development version) 4.3. (The latter is still
+  a moving target at the time of this writing, however, so don't rely on
+  pure-octave working with it.) Older versions might require some fiddling
+  with the sources to get the embedded Octave interface working.
 
-  <with|font-series|bold|NOTE:> At the time of this writing, the embedded
-  interpreter is broken with Octave <with|font-series|bold|4.2>, so you'll
-  either have to stick to Octave 4.0 for the time being, or use the 4.3
-  development version.
+  <with|font-series|bold|NOTE:> The embedded interpreter is broken with
+  Octave <with|font-series|bold|4.2>, so you'll have to stick to Octave 4.0
+  for the time being.
 
   <subsection|Basic Usage><label|basic-usage>
 
@@ -721,6 +721,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
+  01, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

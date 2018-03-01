@@ -4,8 +4,7 @@
 
 <\body>
   <hlink|toc|#purepad-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|bugs.tm> \|
-  <hlink|previous|windows.tm> \| <hlink|Pure Language and Library
+  <hlink|modules|pure-modindex.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|Using PurePad><label|using-purepad>
@@ -286,19 +285,10 @@
     </itemize>
   </itemize>
 
-  Previous topic
-
-  <hlink|Running Pure on Windows|windows.tm>
-
-  Next topic
-
-  <hlink|Reporting Bugs|bugs.tm>
-
   <hlink|toc|#purepad-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|bugs.tm> \|
-  <hlink|previous|windows.tm> \| <hlink|Pure Language and Library
+  <hlink|modules|pure-modindex.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
+  01, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

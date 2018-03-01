@@ -11,7 +11,7 @@
   <section*|Pure-Rational - Rational number library for the Pure programming
   language><label|pure-rational-rational-number-library-for-the-pure-programming-language>
 
-  Version 0.1, January 13, 2018
+  Version 0.1, March 01, 2018
 
   Rob Hubbard
 
@@ -4315,6 +4315,6 @@
   <hlink|previous|pure-octave.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
+  01, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

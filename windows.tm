@@ -4,8 +4,7 @@
 
 <\body>
   <hlink|toc|#windows-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|purepad.tm> \|
-  <hlink|previous|install.tm> \| <hlink|Pure Language and Library
+  <hlink|modules|pure-modindex.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
   <section*|Running Pure on Windows><label|running-pure-on-windows>
@@ -101,19 +100,10 @@
     installation and edit it as needed.
   </itemize>
 
-  Previous topic
-
-  <hlink|Installing Pure (and LLVM)|install.tm>
-
-  Next topic
-
-  <hlink|Using PurePad|purepad.tm>
-
   <hlink|toc|#windows-toc> <hlink|index|genindex.tm>
-  <hlink|modules|pure-modindex.tm> \| <hlink|next|purepad.tm> \|
-  <hlink|previous|install.tm> \| <hlink|Pure Language and Library
+  <hlink|modules|pure-modindex.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Jan
-  13, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
+  01, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
