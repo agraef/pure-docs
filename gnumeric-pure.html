@@ -187,7 +187,7 @@ Gnumeric&#8217;s installation prefix (usually either <tt class="docutils literal
 <p>The Makefile tries to guess the installation path and version number of
 Gnumeric on its own. If it guesses wrong, you can change these using the
 Makefile variables <tt class="docutils literal"><span class="pre">prefix</span></tt> and <tt class="docutils literal"><span class="pre">gnmversion</span></tt>, respectively. For instance:</p>
-<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>make <span class="nv">prefix</span><span class="o">=</span>/usr <span class="nv">gnmversion</span><span class="o">=</span>1.12.4
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ make <span class="nv">prefix</span><span class="o">=</span>/usr <span class="nv">gnmversion</span><span class="o">=</span><span class="m">1</span>.12.4
 </pre></div>
 </div>
 <p>In either case, <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> also installs the <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> helper script
@@ -216,7 +216,7 @@ Gnumeric plugin directory. Have a look at this file and edit is as
 desired. E.g., if you want to put the Pure-related options into a submenu and
 enable toolbar buttons for these options, then your <tt class="docutils literal"><span class="pre">pure-ui.xml</span></tt> file
 should look as follows:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="nt">&lt;ui&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="nt">&lt;ui&gt;</span>
   <span class="nt">&lt;menubar&gt;</span>
     <span class="nt">&lt;menu</span> <span class="na">name=</span><span class="s">&quot;Tools&quot;</span> <span class="na">action=</span><span class="s">&quot;MenuTools&quot;</span><span class="nt">&gt;</span>
       <span class="nt">&lt;separator/&gt;</span>
@@ -249,7 +249,7 @@ the current cell. You should now be able to read the friendly greeting
 returned by the function.</p>
 <p>Of course, you can also enter the function call directly as a formula into a
 cell as usual. Click on a cell, then enter the following:</p>
-<div class="highlight-pure"><div class="highlight"><pre>=pure_hello(getenv(<span class="s">&quot;USER&quot;</span>))
+<div class="highlight-pure"><div class="highlight"><pre><span></span>=pure_hello(getenv(<span class="s">&quot;USER&quot;</span>))
 </pre></div>
 </div>
 <p>The greeting should now be displayed with your login name in it.</p>
@@ -293,7 +293,7 @@ helpful if you&#8217;re developing new Pure functions to be used in Gnumeric. It
 also lets you use Gnumeric as a kind of GUI frontend to the Pure
 interpreter. You can try this now. Open the <tt class="docutils literal"><span class="pre">pure-examples</span></tt> spreadsheet in
 Gnumeric and enter the following into the input cell of the Pure shell:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>scanl (+) <span class="mi">0</span> (<span class="mi">1</span>..<span class="mi">20</span>)
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>scanl (+) <span class="mi">0</span> (<span class="mi">1</span>..<span class="mi">20</span>)
   [<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">6</span>,<span class="mi">10</span>,<span class="mi">15</span>,<span class="mi">21</span>,<span class="mi">28</span>,<span class="mi">36</span>,<span class="mi">45</span>,<span class="mi">55</span>,<span class="mi">66</span>,<span class="mi">78</span>,<span class="mi">91</span>,<span class="mi">105</span>,<span class="mi">120</span>,<span class="mi">136</span>,<span class="mi">153</span>,<span class="mi">171</span>,<span class="mi">190</span>,<span class="mi">210</span>]
 </pre></div>
 </div>
@@ -312,7 +312,7 @@ which you can use as a scratchpad for experimentation purposes.</p>
 <p>Also note that this is in fact <em>Pure code</em> (not a Gnumeric formula) being
 evaluated there. You can execute any Pure code, including Pure declarations,
 so you can type:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span> puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span> puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
   <span class="mi">14</span>
 </pre></div>
 </div>
@@ -320,7 +320,7 @@ so you can type:</p>
 terminal window where you launched Gnumeric. Here is another example, showing
 how you can invoke any function from the C library, by declaring it as a Pure
 <tt class="docutils literal"><span class="pre">extern</span></tt> function:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> rand()<span class="p">;</span> [rand | i = <span class="mi">1</span>..<span class="mi">5</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> rand()<span class="p">;</span> [rand | i = <span class="mi">1</span>..<span class="mi">5</span>]<span class="p">;</span>
   [<span class="mi">1810821799</span>,<span class="mi">2106746672</span>,<span class="mi">1436605662</span>,<span class="mi">1363610028</span>,<span class="mi">695042099</span>]
 </pre></div>
 </div>
@@ -328,13 +328,13 @@ how you can invoke any function from the C library, by declaring it as a Pure
 shell, as well as the functions defined in <tt class="docutils literal"><span class="pre">pure_func.pure</span></tt> and its imports,
 including the programming interface described in <a class="reference internal" href="#advanced-features">Advanced Features</a>. For
 instance, here&#8217;s how you can retrieve a cell value from the current sheet:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>get_cell <span class="s">&quot;A1&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>get_cell <span class="s">&quot;A1&quot;</span>
   <span class="s">&quot;Gnumeric/Pure Examples&quot;</span>
 </pre></div>
 </div>
 <p>Using <tt class="docutils literal"><span class="pre">call</span></tt> (see <a class="reference internal" href="#calling-gnumeric-from-pure">Calling Gnumeric from Pure</a>), you can also invoke any
 Gnumeric function:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>call <span class="s">&quot;product&quot;</span> (<span class="mi">1</span>..<span class="mi">10</span>)
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>call <span class="s">&quot;product&quot;</span> (<span class="mi">1</span>..<span class="mi">10</span>)
   <span class="mf">3628800.0</span>
 </pre></div>
 </div>
@@ -348,7 +348,7 @@ this extension is about after all! This section shows you how to do this.</p>
 <h3><a class="toc-backref" href="#id8">Creating a Simple Plugin</a><a class="headerlink" href="#creating-a-simple-plugin" title="Permalink to this headline">¶</a></h3>
 <p>Let&#8217;s consider a simple example: the factorial function. In Pure this function
 can be implemented as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>factorial [x] = foldl (*) <span class="mi">1</span> (<span class="mi">1</span>..x)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>factorial [x] = foldl (*) <span class="mi">1</span> (<span class="mi">1</span>..x)<span class="p">;</span>
 </pre></div>
 </div>
 <p>Note the list bracket around the argument <tt class="docutils literal"><span class="pre">x</span></tt>. You wouldn&#8217;t normally pass a
@@ -366,7 +366,7 @@ the <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> helper s
 <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> with our plugin script, we have to add a special &#8220;hashbang&#8221;
 comment block to our script which supplies the needed information. In our
 case, this might look as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="cp">#! N: My Pure functions</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="cp">#! N: My Pure functions</span>
 <span class="cp">#! C: Pure</span>
 <span class="cp">#! D: My Pure functions.</span>
 <span class="cp">#! F: factorial</span>
@@ -396,7 +396,7 @@ no functions at all.</p>
 prefixed with the &#8220;hashbang&#8221; comment marker and the corresponding field
 identifier) if necessary.</p>
 <p>So our <tt class="docutils literal"><span class="pre">myplugin.pure</span></tt> script now looks like this:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="cp">#! N: My Pure functions</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="cp">#! N: My Pure functions</span>
 <span class="cp">#! C: Pure</span>
 <span class="cp">#! D: My Pure functions.</span>
 <span class="cp">#! F: factorial</span>
@@ -406,7 +406,7 @@ factorial [x] = foldl (*) <span class="mi">1</span> (<span class="mi">1</span>..
 </div>
 <p>Once you&#8217;ve added the comment block, you can generate the <tt class="docutils literal"><span class="pre">plugin.xml</span></tt> file
 for the plugin simply as follows:</p>
-<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>pure-gnm myplugin.pure &gt; plugin.xml
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ pure-gnm myplugin.pure &gt; plugin.xml
 </pre></div>
 </div>
 <p>Note that by default <tt class="docutils literal"><span class="pre">pure-gnm</span></tt> writes the <tt class="docutils literal"><span class="pre">plugin.xml</span></tt> file to standard
@@ -416,14 +416,14 @@ actually create the file, we simply redirect the output to <tt class="docutils l
 new functions or deleted or renamed old ones, or changed the name or
 description of the plugin). It&#8217;s easy to automate this step using
 <tt class="docutils literal"><span class="pre">make</span></tt>. E.g., the following Makefile will do the trick:</p>
-<div class="highlight-make"><div class="highlight"><pre><span class="nv">myplugin</span> <span class="o">=</span> myplugin.pure
+<div class="highlight-make"><div class="highlight"><pre><span></span><span class="nv">myplugin</span> <span class="o">=</span> myplugin.pure
 
-all: plugin.xml
+<span class="nf">all</span><span class="o">:</span> <span class="n">plugin</span>.<span class="n">xml</span>
 
-plugin.xml: <span class="k">$(</span>myplugin<span class="k">)</span>
-        pure-gnm <span class="nv">$&lt;</span> &gt; <span class="nv">$@</span>
+<span class="nf">plugin.xml</span><span class="o">:</span> <span class="k">$(</span><span class="nv">myplugin</span><span class="k">)</span>
+        pure-gnm $&lt; &gt; <span class="nv">$@</span>
 
-clean:
+<span class="nf">clean</span><span class="o">:</span>
         rm -f plugin.xml
 </pre></div>
 </div>
@@ -433,7 +433,7 @@ clean:
 <div class="section" id="the-plugin-xml-file">
 <h3><a class="toc-backref" href="#id9">The plugin.xml File</a><a class="headerlink" href="#the-plugin-xml-file" title="Permalink to this headline">¶</a></h3>
 <p>The <tt class="docutils literal"><span class="pre">plugin.xml</span></tt> file resulting from the previous step looks like this:</p>
-<div class="highlight-xml"><div class="highlight"><pre><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
 <span class="nt">&lt;plugin</span> <span class="na">id=</span><span class="s">&quot;Gnumeric_myplugin&quot;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;information&gt;</span>
     <span class="nt">&lt;name&gt;</span>My Pure functions<span class="nt">&lt;/name&gt;</span>
@@ -483,7 +483,7 @@ value of the <tt class="docutils literal"><span class="pre">module_name</span></
 the <tt class="docutils literal"><span class="pre">plugin.xml</span></tt> file, but you can also specify an absolute path there if
 you want to keep the plugin script elsewhere. To achieve this with
 <tt class="docutils literal"><span class="pre">pure-gnm</span></tt>, you can just invoke it with an absolute path name, e.g.:</p>
-<div class="highlight-sh"><div class="highlight"><pre><span class="nv">$ </span>pure-gnm <span class="nv">$PWD</span>/myplugin.pure &gt; plugin.xml
+<div class="highlight-sh"><div class="highlight"><pre><span></span>$ pure-gnm <span class="nv">$PWD</span>/myplugin.pure &gt; plugin.xml
 </pre></div>
 </div>
 <p>Now you can move the <tt class="docutils literal"><span class="pre">plugin.xml</span></tt> file whereever you like and still have
@@ -524,14 +524,14 @@ The following requires GNU make to work, and you&#8217;ll also need to have the
 Gnumeric development files installed, so that the Gnumeric version can be
 determined easily with a shell command. These rules are to be added to the end
 of the Makefile described previously under <a class="reference internal" href="#creating-a-simple-plugin">Creating a Simple Plugin</a>.</p>
-<div class="highlight-make"><div class="highlight"><pre><span class="nv">gnmversion</span><span class="o">=</span><span class="k">$(</span>shell pkg-config --modversion libspreadsheet-1.12<span class="k">)</span>
+<div class="highlight-make"><div class="highlight"><pre><span></span><span class="nv">gnmversion</span><span class="o">=</span><span class="k">$(</span>shell pkg-config --modversion libspreadsheet-1.12<span class="k">)</span>
 <span class="nv">plugindir</span><span class="o">=</span><span class="k">$(</span>HOME<span class="k">)</span>/.gnumeric/<span class="k">$(</span>gnmversion<span class="k">)</span>/plugins/myplugin
 
-install: <span class="k">$(</span>myplugin<span class="k">)</span>
+<span class="nf">install</span><span class="o">:</span> <span class="k">$(</span><span class="nv">myplugin</span><span class="k">)</span>
         <span class="nb">test</span> -d <span class="k">$(</span>plugindir<span class="k">)</span> <span class="o">||</span> mkdir -p <span class="k">$(</span>plugindir<span class="k">)</span>
-        pure-gnm <span class="k">$(</span>CURDIR<span class="k">)</span>/<span class="nv">$&lt;</span> &gt; <span class="k">$(</span>plugindir<span class="k">)</span>/plugin.xml
+        pure-gnm <span class="k">$(</span>CURDIR<span class="k">)</span>/$&lt; &gt; <span class="k">$(</span>plugindir<span class="k">)</span>/plugin.xml
 
-uninstall:
+<span class="nf">uninstall</span><span class="o">:</span>
         rm -rf <span class="k">$(</span>plugindir<span class="k">)</span>
 </pre></div>
 </div>
@@ -544,7 +544,7 @@ dialog. Check it to enable it. The <tt class="docutils literal"><span class="pre
 plugin should now be available and ready to be called just like any other
 Gnumeric function. For instance, type this into a cell to have the factorial
 of 10 computed:</p>
-<div class="highlight-pure"><div class="highlight"><pre>=factorial(<span class="mi">10</span>)
+<div class="highlight-pure"><div class="highlight"><pre><span></span>=factorial(<span class="mi">10</span>)
 </pre></div>
 </div>
 <p>Also try saving the spreadsheet and loading it again after restarting
@@ -599,7 +599,7 @@ might as well add some helpful documentation to be displayed in Gnumeric&#8217;s
 to give you a sneak preview, here&#8217;s a beefed-up version of our script which
 implements all this (you can also find this version of the example along with
 a GNU Makefile in the Gnumeric/Pure distribution):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="cp">#! N: My Pure functions</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="cp">#! N: My Pure functions</span>
 <span class="cp">#! C: Pure</span>
 <span class="cp">#! D: My Pure functions.</span>
 <span class="cp">#! F: factorial</span>
@@ -669,7 +669,7 @@ function becomes variadic and the (optional) parameters are passed as a Pure
 list (in addition to the non-optional parameters).</p>
 <p>Here&#8217;s the list of valid parameter types, as they are documented in the
 Gnumeric sources:</p>
-<div class="highlight-none"><div class="highlight"><pre>f : float           no errors, string conversion attempted
+<div class="highlight-none"><div class="highlight"><pre><span></span>f : float           no errors, string conversion attempted
 b : boolean         identical to f
 s : string          no errors
 S : scalar          any non-error scalar
@@ -682,7 +682,7 @@ A : area            array, range (as above), or scalar
 </div>
 <p>The keys used in the function description may be any of the following, along
 with sample text for each type of field:</p>
-<div class="highlight-pure"><div class="highlight"><pre>GNM_FUNC_HELP_NAME         =&gt; <span class="s">&quot;name:synopsis&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>GNM_FUNC_HELP_NAME         =&gt; <span class="s">&quot;name:synopsis&quot;</span>
 GNM_FUNC_HELP_ARG          =&gt; <span class="s">&quot;name:parameter description&quot;</span>
 GNM_FUNC_HELP_DESCRIPTION  =&gt; <span class="s">&quot;Long description.&quot;</span>
 GNM_FUNC_HELP_NOTE         =&gt; <span class="s">&quot;Note.&quot;</span>
@@ -691,7 +691,7 @@ GNM_FUNC_HELP_SEEALSO      =&gt; <span class="s">&quot;foo,bar,...&quot;</span>
 </pre></div>
 </div>
 <p>The following keys are only supported in the latest Gnumeric versions:</p>
-<div class="highlight-pure"><div class="highlight"><pre>GNM_FUNC_HELP_EXTREF       =&gt; <span class="s">&quot;wiki:en:Trigonometric_functions&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>GNM_FUNC_HELP_EXTREF       =&gt; <span class="s">&quot;wiki:en:Trigonometric_functions&quot;</span>
 GNM_FUNC_HELP_EXCEL        =&gt; <span class="s">&quot;Excel compatibility information.&quot;</span>
 GNM_FUNC_HELP_ODF          =&gt; <span class="s">&quot;OpenOffice compatibility information.&quot;</span>
 </pre></div>
@@ -700,7 +700,7 @@ GNM_FUNC_HELP_ODF          =&gt; <span class="s">&quot;OpenOffice compatibility 
 Gnumeric versions) can be used to refer to a parameter value. For instance,
 here&#8217;s a sample description for a binary function which also includes a help
 text:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;pure_max&quot;</span> = <span class="s">&quot;ff&quot;</span>,
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;pure_max&quot;</span> = <span class="s">&quot;ff&quot;</span>,
 [GNM_FUNC_HELP_NAME     =&gt; <span class="s">&quot;pure_max:maximum of two numbers&quot;</span>,
  GNM_FUNC_HELP_ARG      =&gt; <span class="s">&quot;x:number&quot;</span>,
  GNM_FUNC_HELP_ARG      =&gt; <span class="s">&quot;y:number&quot;</span>,
@@ -712,7 +712,7 @@ text:</p>
 <p>As you can see, the function descriptions are a bit unwieldy, so it&#8217;s
 convenient to construct them using this little helper function defined in
 <tt class="docutils literal"><span class="pre">pure_func.pure</span></tt>:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_help name<span class="p">::</span><span class="kt">string</span> args descr<span class="p">::</span><span class="kt">string</span> notes examples see_also =
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_help name<span class="p">::</span><span class="kt">string</span> args descr<span class="p">::</span><span class="kt">string</span> notes examples see_also =
   [GNM_FUNC_HELP_NAME         =&gt; name] +
   [GNM_FUNC_HELP_ARG          =&gt; x | x<span class="p">::</span><span class="kt">string</span> = args ] +
   [GNM_FUNC_HELP_DESCRIPTION  =&gt; descr ] +
@@ -723,7 +723,7 @@ convenient to construct them using this little helper function defined in
 </pre></div>
 </div>
 <p>Now the description can be written simply as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;pure_max&quot;</span> = <span class="s">&quot;ff&quot;</span>, gnm_help <span class="s">&quot;pure_max:maximum of two numbers&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;pure_max&quot;</span> = <span class="s">&quot;ff&quot;</span>, gnm_help <span class="s">&quot;pure_max:maximum of two numbers&quot;</span>
   [<span class="s">&quot;x:number&quot;</span>, <span class="s">&quot;y:number&quot;</span>]
   <span class="s">&quot;Computes the maximum of two numbers @{x} and @{y}.&quot;</span>
   [] [<span class="s">&quot;=pure_max(17,22)&quot;</span>] []<span class="p">;</span>
@@ -732,12 +732,12 @@ convenient to construct them using this little helper function defined in
 <p>Since this function only has fixed arguments, it will be called in curried
 form, i.e., as <tt class="docutils literal"><span class="pre">pure_max</span> <span class="pre">x</span> <span class="pre">y</span></tt>. For instance, the actual definition of
 <tt class="docutils literal"><span class="pre">pure_max</span></tt> may look as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure_max x y = max x y<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure_max x y = max x y<span class="p">;</span>
 </pre></div>
 </div>
 <p>Conversely, if no signature is given, then the function accepts any number of
 parameters of any type, which are passed as a list. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;pure_sum&quot;</span> = gnm_help <span class="s">&quot;pure_sum:sum of a collection of numbers&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;pure_sum&quot;</span> = gnm_help <span class="s">&quot;pure_sum:sum of a collection of numbers&quot;</span>
   [] <span class="s">&quot;Computes the sum of a collection of numbers.&quot;</span>
   [] [<span class="s">&quot;=pure_sum(1,2,3,4,5,6)&quot;</span>] [<span class="s">&quot;pure_sums&quot;</span>]<span class="p">;</span>
 </pre></div>
@@ -752,16 +752,16 @@ write functions which can deal with any numbers of scalars, arrays or ranges,
 see the <tt class="docutils literal"><span class="pre">pure_sum</span></tt> and <tt class="docutils literal"><span class="pre">pure_sums</span></tt> examples. These employ the following
 <tt class="docutils literal"><span class="pre">ranges</span></tt> function to &#8220;flatten&#8221; a parameter list to a list holding all
 denoted values:</p>
-<div class="highlight-pure"><div class="highlight"><pre>ranges xs = cat [ <span class="kr">case</span> x <span class="kr">of</span> _<span class="p">::</span><span class="kt">matrix</span> = list x<span class="p">;</span> _ = [x] <span class="kr">end</span> | x = xs ]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>ranges xs = cat [ <span class="kr">case</span> x <span class="kr">of</span> _<span class="p">::</span><span class="kt">matrix</span> = list x<span class="p">;</span> _ = [x] <span class="kr">end</span> | x = xs ]<span class="p">;</span>
 </pre></div>
 </div>
 <p>E.g., the <tt class="docutils literal"><span class="pre">pure_sum</span></tt> function can now be defined as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure_sum xs = foldl (+) <span class="mi">0</span> (ranges xs)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure_sum xs = foldl (+) <span class="mi">0</span> (ranges xs)<span class="p">;</span>
 </pre></div>
 </div>
 <p>A function may also have both fixed and optional arguments (note that in what
 follows we&#8217;re going to omit the detailed function descriptions for brevity):</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;foo&quot;</span> = <span class="s">&quot;ff|ff&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;foo&quot;</span> = <span class="s">&quot;ff|ff&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>In this case the fixed arguments are passed in curried form as usual, while
@@ -848,13 +848,13 @@ declared in <tt class="docutils literal"><span class="pre">pure_func.pure</span>
 <p>It is possible to call Gnumeric functions from Pure using the <tt class="docutils literal"><span class="pre">call</span></tt>
 function which takes the name of the function (a string) as its first, and the
 parameters as the second (list) argument. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;gnm_bitand&quot;</span> = <span class="s">&quot;ff&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;gnm_bitand&quot;</span> = <span class="s">&quot;ff&quot;</span><span class="p">;</span>
 gnm_bitand x y = call <span class="s">&quot;bitand&quot;</span> [x,y]<span class="p">;</span>
 </pre></div>
 </div>
 <p>Note that <tt class="docutils literal"><span class="pre">call</span></tt> is an external C function provided by Gnumeric/Pure. If
 you want to use it, it must be declared in your Pure script as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span>* pure_gnmcall(<span class="kt">char</span>* name, <span class="kt">expr</span>* args) = call<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">expr</span>* pure_gnmcall(<span class="kt">char</span>* name, <span class="kt">expr</span>* args) = call<span class="p">;</span>
 </pre></div>
 </div>
 <p>However, <tt class="docutils literal"><span class="pre">pure_func.pure</span></tt> already contains the above declaration, so you
@@ -868,7 +868,7 @@ by the function.</p>
 <h3><a class="toc-backref" href="#id17">Accessing Spreadsheet Cells</a><a class="headerlink" href="#accessing-spreadsheet-cells" title="Permalink to this headline">¶</a></h3>
 <p>Gnumeric/Pure provides the following functions to retrieve and modify the
 contents of spreadsheet cells and ranges of such cells:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span>* pure_get_cell(<span class="kt">char</span>* s) = get_cell<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">expr</span>* pure_get_cell(<span class="kt">char</span>* s) = get_cell<span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">expr</span>* pure_get_cell_text(<span class="kt">char</span>* s) = get_cell_text<span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">expr</span>* pure_get_cell_format(<span class="kt">char</span>* s) = get_cell_format<span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">expr</span>* pure_set_cell(<span class="kt">char</span>* s, <span class="kt">expr</span> *x) = set_cell<span class="p">;</span>
@@ -884,7 +884,7 @@ contents of spreadsheet cells and ranges of such cells:</p>
 </div>
 <p>For instance, here&#8217;s how you use these functions to write and then read some
 cell values (try this in the <a class="reference internal" href="#interactive-pure-shell">interactive Pure shell</a>):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>set_cell <span class="s">&quot;A14&quot;</span> <span class="mi">42</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>set_cell <span class="s">&quot;A14&quot;</span> <span class="mi">42</span>
   ()
 <span class="gp">&gt; </span>get_cell <span class="s">&quot;A14&quot;</span>
   <span class="mf">42.0</span>
@@ -914,7 +914,7 @@ and retrieved as Pure matrices.</p>
 <p>Functions to retrieve and change the cell format are also provided (watch the
 contents of the cell <tt class="docutils literal"><span class="pre">A14</span></tt> change its color to blue on entering the first
 expression):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>set_cell_format <span class="s">&quot;A14&quot;</span> <span class="s">&quot;[Blue]0.00&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>set_cell_format <span class="s">&quot;A14&quot;</span> <span class="s">&quot;[Blue]0.00&quot;</span>
   ()
 <span class="gp">&gt; </span>get_range_format <span class="s">&quot;A14:C14&quot;</span>
   {<span class="s">&quot;[Blue]0.00&quot;</span>,<span class="s">&quot;General&quot;</span>,<span class="s">&quot;General&quot;</span>}
@@ -925,13 +925,13 @@ cell from which a Pure function was called), and to translate between cell
 ranges in Gnumeric syntax and the corresponding internal representation
 consisting of a pointer to a Gnumeric sheet and the cell or range
 coordinates:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span>* pure_this_cell() = this_cell<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">expr</span>* pure_this_cell() = this_cell<span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">expr</span>* pure_parse_range(<span class="kt">char</span>* s) = parse_range<span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">expr</span>* pure_make_range(<span class="kt">expr</span>* x) = make_range<span class="p">;</span>
 </pre></div>
 </div>
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>this_cell
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>this_cell
   <span class="s">&quot;B4&quot;</span>
 <span class="gp">&gt; </span>parse_range this_cell
   <span class="kt">#&lt;pointer 0x875220&gt;</span>,<span class="mi">1</span>,<span class="mi">3</span>
@@ -951,7 +951,7 @@ tickers, etc.) in (soft) realtime.</p>
 <p>To do this, you simply pass an expression to the <tt class="docutils literal"><span class="pre">datasource</span></tt> function. This
 is another external C function provided by Gnumeric/Pure, which is declared in
 <tt class="docutils literal"><span class="pre">pure_func.pure</span></tt> as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span>* pure_datasource(<span class="kt">expr</span>* x) = datasource<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">expr</span>* pure_datasource(<span class="kt">expr</span>* x) = datasource<span class="p">;</span>
 </pre></div>
 </div>
 <p>The argument to <tt class="docutils literal"><span class="pre">datasource</span></tt> is typically a thunk or stream (lazy list)
@@ -962,7 +962,7 @@ gets updated automatically as soon as the value becomes available, at which
 point the <tt class="docutils literal"><span class="pre">datasource</span></tt> call now returns the computed value. E.g., here&#8217;s how
 you would wrap up a lengthy calculation as a thunk and submit it to
 <tt class="docutils literal"><span class="pre">datasource</span></tt> which carries out the computation as a background task:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;pure_frob&quot;</span> = <span class="s">&quot;f&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;pure_frob&quot;</span> = <span class="s">&quot;f&quot;</span><span class="p">;</span>
 pure_frob x = datasource (lengthy_calculation x&amp;)<span class="p">;</span>
 lengthy_calculation x = sleep <span class="mi">3</span> $$ foldl (*) <span class="mi">1</span> (<span class="mi">1</span>..x)<span class="p">;</span>
 </pre></div>
@@ -970,7 +970,7 @@ lengthy_calculation x = sleep <span class="mi">3</span> $$ foldl (*) <span class
 <p>Note that a cell value may draw values from as many independent data sources
 as you want, so the definition of a cell may also involve multiple invocations
 of <tt class="docutils literal"><span class="pre">datasource</span></tt>:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;pure_frob2&quot;</span> = <span class="s">&quot;ff&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;pure_frob2&quot;</span> = <span class="s">&quot;ff&quot;</span><span class="p">;</span>
 pure_frob2 x y = datasource (lengthy_calculation x&amp;),
   datasource (lengthy_calculation y&amp;)<span class="p">;</span>
 </pre></div>
@@ -979,19 +979,19 @@ pure_frob2 x y = datasource (lengthy_calculation x&amp;),
 returns a new value each time a list element becomes available. For instance,
 the following function uses an infinite stream to count off the seconds
 starting from a given initial value:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gnm_info <span class="s">&quot;pure_counter&quot;</span> = <span class="s">&quot;f&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gnm_info <span class="s">&quot;pure_counter&quot;</span> = <span class="s">&quot;f&quot;</span><span class="p">;</span>
 pure_counter x = datasource [sleep (i&gt;x) $$ i | i = x..inf]<span class="p">;</span>
 </pre></div>
 </div>
 <p>You can also try this interactively in the Pure shell:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>datasource [sleep (i&gt;<span class="mi">0</span>) $$ i | i = <span class="mi">0</span>..inf]
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>datasource [sleep (i&gt;<span class="mi">0</span>) $$ i | i = <span class="mi">0</span>..inf]
   <span class="mi">0</span>
   <span class="mi">1</span>
   ...
 </pre></div>
 </div>
 <p>Here&#8217;s another example for the Pure shell which prints the prime numbers:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>datasource primes <span class="kr">with</span> primes = sieve (<span class="mi">2</span>..inf)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>datasource primes <span class="kr">with</span> primes = sieve (<span class="mi">2</span>..inf)<span class="p">;</span>
     sieve (p:qs) = p : (sleep <span class="mi">1</span> $$ sieve [q | q = qs<span class="p">;</span> q mod p])&amp; <span class="kr">end</span>
   <span class="mi">2</span>
   <span class="mi">3</span>
@@ -1026,12 +1026,12 @@ however, so we leave this as an exercise to the interested reader.</p>
 to compute values or take actions depending on some external condition, such
 as the availability of data on a special device or the creation of some widget
 (see the next section):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span>* pure_trigger(<span class="kt">int</span> timeout, <span class="kt">expr</span>* cond, <span class="kt">expr</span> *val, <span class="kt">expr</span> *data)
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">expr</span>* pure_trigger(<span class="kt">int</span> timeout, <span class="kt">expr</span>* cond, <span class="kt">expr</span> *val, <span class="kt">expr</span> *data)
   = trigger<span class="p">;</span>
 </pre></div>
 </div>
 <p>Thus a typical invocation of the function looks as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>trigger timeout condition value data
+<div class="highlight-pure"><div class="highlight"><pre><span></span>trigger timeout condition value data
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">condition</span></tt> and <tt class="docutils literal"><span class="pre">value</span></tt> arguments are callback functions which get
@@ -1057,7 +1057,7 @@ is computed just once.</p>
 <p>Here&#8217;s a (rather useless) example of a trigger which fires exactly once, as
 soon as a certain cell goes to a certain value, and then modifies another cell
 value accordingly:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>trigger <span class="mi">0</span> (\_-&gt;get_cell <span class="s">&quot;A14&quot;</span>===<span class="s">&quot;Hello&quot;</span>) (\_-&gt;set_cell <span class="s">&quot;A15&quot;</span> <span class="s">&quot;World&quot;</span>) ()
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>trigger <span class="mi">0</span> (\_-&gt;get_cell <span class="s">&quot;A14&quot;</span>===<span class="s">&quot;Hello&quot;</span>) (\_-&gt;set_cell <span class="s">&quot;A15&quot;</span> <span class="s">&quot;World&quot;</span>) ()
 </pre></div>
 </div>
 <p>Now, as soon as you type <tt class="docutils literal"><span class="pre">Hello</span></tt> in the cell A14, the trigger will print
@@ -1073,12 +1073,12 @@ widgets on the &#8220;Object&#8221; toolbar, accessible via &#8220;View/Toolbars
 are also useful for providing control input to Pure functions.</p>
 <p>Gnumeric/Pure provides the following function to retrieve information about
 the special objects in a spreadsheet:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">expr</span>* pure_sheet_objects() = sheet_objects<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">expr</span>* pure_sheet_objects() = sheet_objects<span class="p">;</span>
 </pre></div>
 </div>
 <p>For instance, with one button object in your spreadsheet, the output of
 <tt class="docutils literal"><span class="pre">sheet_objects</span></tt> might look like this:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sheet_objects
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sheet_objects
   [(<span class="s">&quot;Sheet1&quot;</span>,<span class="s">&quot;button&quot;</span>,<span class="s">&quot;Push Me!&quot;</span>,<span class="s">&quot;A11&quot;</span>,[<span class="kt">#&lt;pointer 0x2a1dcd0&gt;</span>])]
 </pre></div>
 </div>
@@ -1106,7 +1106,7 @@ spreadsheet is loaded. Therefore it is necessary to use a trigger to make sure
 that the information is updated once all objects are fully displayed. The
 <tt class="docutils literal"><span class="pre">pure_func.pure</span></tt> script contains the following little wrapper around
 <tt class="docutils literal"><span class="pre">sheet_objects</span></tt> which does this:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure_objects = trigger <span class="mi">0</span> (\_-&gt;all realized sheet_objects)
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure_objects = trigger <span class="mi">0</span> (\_-&gt;all realized sheet_objects)
   (\_-&gt;<span class="kt">matrix</span>$map list sheet_objects) ()
 <span class="kr">with</span> realized (_,_,_,_,w) = ~listp w || ~null w &amp;&amp; ~any null w <span class="kr">end</span><span class="p">;</span>
 </pre></div>
@@ -1209,7 +1209,7 @@ etc.).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

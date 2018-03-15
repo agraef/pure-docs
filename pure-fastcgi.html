@@ -99,7 +99,7 @@ server that your script is ready to accept another request.</p>
 to the server instead. These routines are all in the <tt class="docutils literal"><span class="pre">fastcgi</span></tt> namespace. In
 your Pure script, you can set up a simple loop to process requests as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="cp">#!/usr/local/bin/pure -x</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="cp">#!/usr/local/bin/pure -x</span>
 
 <span class="kr">using</span> fastcgi<span class="p">;</span>
 <span class="kr">using</span> <span class="kr">namespace</span> fastcgi<span class="p">;</span>
@@ -145,7 +145,7 @@ elaborate examples.</p>
 the FastCGI module loaded and must also be set up to execute the
 scripts. E.g., when using Apache, the following configuration file entry will
 set up a directory for FastCGI scripts:</p>
-<div class="highlight-pure"><div class="highlight"><pre>ScriptAlias /fastcgi-bin/ <span class="s">&quot;/srv/www/fastcgi-bin/&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>ScriptAlias /fastcgi-bin/ <span class="s">&quot;/srv/www/fastcgi-bin/&quot;</span>
 &lt;Location /fastcgi-bin/&gt;
     Options ExecCGI
     SetHandler fastcgi-script
@@ -162,7 +162,7 @@ can just throw your scripts into the <tt class="docutils literal"><span class="p
 executed via an URL like <tt class="docutils literal"><span class="pre">http://localhost/fastcgi-bin/myscript</span></tt>.</p>
 <p>You can also set up a handler for the <tt class="docutils literal"><span class="pre">.pure</span></tt> filename extension as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>&lt;IfModule mod_fastcgi.c&gt;
+<div class="highlight-pure"><div class="highlight"><pre><span></span>&lt;IfModule mod_fastcgi.c&gt;
 &lt;FilesMatch <span class="s">&quot;\.pure$&quot;</span>&gt;
     AddHandler fastcgi-script .pure
     Options +ExecCGI
@@ -243,7 +243,7 @@ anywhere under your server&#8217;s document root.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

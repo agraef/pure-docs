@@ -132,7 +132,7 @@ might not be available on some platforms.)</p>
 <p>Note that in difference to <a class="reference internal" href="pure.html#extern"><tt class="xref std std-keyword docutils literal"><span class="pre">extern</span></tt></a> functions, arguments to functions
 created with libffi are always passed in uncurried form, as a Pure tuple.
 E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> ffi<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> ffi<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> fmod = fcall <span class="s">&quot;fmod&quot;</span> FFI_DEFAULT_ABI double_t (double_t,double_t)<span class="p">;</span>
 <span class="gp">&gt; </span>fmod (<span class="mf">5.3</span>,<span class="mf">0.7</span>)<span class="p">;</span>
 <span class="mf">0.4</span>
@@ -142,7 +142,7 @@ E.g.:</p>
 ffi.pure for details. Note that these are to be used for passing structs by
 value. (When passing a pointer to a struct, you must use <tt class="docutils literal"><span class="pre">pointer_t</span></tt>
 instead.) For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> complex_t = struct_t (double_t,double_t)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> complex_t = struct_t (double_t,double_t)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> cexp = fcall <span class="s">&quot;cexp&quot;</span> FFI_DEFAULT_ABI complex_t (complex_t)<span class="p">;</span>
 <span class="gp">&gt; </span>members (cexp (struct complex_t (<span class="mf">0.0</span>,<span class="mf">1.0</span>)))<span class="p">;</span>
 <span class="mf">0.54030230586814</span>,<span class="mf">0.841470984807897</span>
@@ -225,7 +225,7 @@ would be useful. Contributions and suggestions are welcome.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

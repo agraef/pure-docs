@@ -198,7 +198,7 @@ names as their counterparts in the STL.</p>
 <h3><a class="toc-backref" href="#id26">Simple Examples</a><a class="headerlink" href="#simple-examples" title="Permalink to this headline">¶</a></h3>
 <p>Here are some examples that use the basic operations provided by the
 stlvec module.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">;</span>
 
 <span class="gp">&gt; </span><span class="kr">let</span> sv1 = stlvec (<span class="mi">0</span>..<span class="mi">4</span>)<span class="p">;</span> members sv1<span class="p">;</span>
 [<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>]
@@ -251,7 +251,7 @@ STLVEC <span class="kt">#&lt;pointer 0x9145a38&gt;</span>
 </pre></div>
 </div>
 <p>Here are some examples that use STL algorithms.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">::</span>algorithms<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">::</span>algorithms<span class="p">;</span>
 
 <span class="gp">&gt; </span>stl<span class="p">::</span>reverse (sv1,<span class="mi">2</span>,<span class="mi">6</span>)<span class="p">;</span> members sv1<span class="p">;</span>
 ()
@@ -395,7 +395,7 @@ necessary to understand a bit about STL&#8217;s &#8220;back insert iterators.&#8
 iterator that points to the first member of the target range. Consistent with
 raw C usage, it is ok to copy over existing elements the target
 stlvec. E.g.,:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">::</span>modifying<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> stlvec<span class="p">::</span>modifying<span class="p">;</span>
 
 <span class="gp">&gt; </span><span class="kr">let</span> v1 = stlvec (<span class="mi">0</span>..<span class="mi">2</span>)<span class="p">;</span>
 
@@ -409,7 +409,7 @@ stlvec. E.g.,:</p>
 always preferable to append the copied items to the end of a target stlvec,
 rather than overwriting all or part or part of it. This can be accomplished
 using stl::svback. E.g.,:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>stl<span class="p">::</span>copy v1 (v2,stl<span class="p">::</span>svback) $$ members v2<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>stl<span class="p">::</span>copy v1 (v2,stl<span class="p">::</span>svback) $$ members v2<span class="p">;</span>
 [<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">2</span>,<span class="s">&quot;f&quot;</span>,<span class="s">&quot;g&quot;</span>,<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">2</span>]
 </pre></div>
 </div>
@@ -430,7 +430,7 @@ embedded pointer directly.</p>
 <p>As the names suggest, stlvecs are mutable and const_stlvecs are
 immutable. Functions that modify a stlvec will simply fail unless the stlvec
 is mutable.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> v = const_stlvec $ stlvec (<span class="mi">0</span>..<span class="mi">3</span>)<span class="p">;</span> v2<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> v = const_stlvec $ stlvec (<span class="mi">0</span>..<span class="mi">3</span>)<span class="p">;</span> v2<span class="p">;</span>
 CONST_STLVEC <span class="kt">#&lt;pointer 0x8c1dbf0&gt;</span>
 
 <span class="gp">&gt; </span>replace v <span class="mi">0</span> <span class="mi">100</span><span class="p">;</span> <span class="c1">// fails</span>
@@ -495,7 +495,7 @@ const_stlvec to make the new stlvec immutable before it is returned. It should
 be noted that several of the STL algorithms have &#8220;copy&#8221; versions which place
 their results directly into a new stlvec, which can eliminate the need to copy
 the input stlvec. E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sv1 = stlvec (<span class="s">&quot;a&quot;</span>..<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> sv1 = stlvec (<span class="s">&quot;a&quot;</span>..<span class="s">&quot;e&quot;</span>)<span class="p">;</span>
 
 <span class="gp">&gt; </span><span class="kr">let</span> sv2 = emptystlvec<span class="p">;</span>
 
@@ -507,7 +507,7 @@ the input stlvec. E.g.:</p>
 sv2.</p>
 <p>If desired, in Pure it is easy to write functions that have automatic
 copy-on-write semantics. E.g.,</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>my_replace csv<span class="p">::</span>const_stlvec i x = my_replace (stlvec csv) i x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>my_replace csv<span class="p">::</span>const_stlvec i x = my_replace (stlvec csv) i x<span class="p">;</span>
 <span class="gp">&gt; </span>my_replace sv<span class="p">::</span>stlvec i x = replace sv i x<span class="p">;</span>
 </pre></div>
 </div>
@@ -645,7 +645,7 @@ function.</p>
 </div>
 <div class="section" id="examples">
 <h3><a class="toc-backref" href="#id39">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stlvec, stlvec<span class="p">::</span>modifying<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> stlvec, stlvec<span class="p">::</span>modifying<span class="p">;</span>
 
 <span class="gp">&gt; </span><span class="kr">let</span> sv1 = stlvec (<span class="mi">0</span>..<span class="mi">4</span>)<span class="p">;</span> members sv1<span class="p">;</span>
 [<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>]
@@ -697,7 +697,7 @@ module.</p>
 <h3><a class="toc-backref" href="#id41">Imports</a><a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -965,7 +965,7 @@ non-modifying sequence operations.</p>
 <h3><a class="toc-backref" href="#id46">Imports</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>nonmodifying<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>nonmodifying<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1084,7 +1084,7 @@ algorithms.</p>
 <h3><a class="toc-backref" href="#id50">Imports</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>modifying<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>modifying<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1169,7 +1169,7 @@ placed in msv[p,p+last-first)</p>
 <tt class="descclassname">stl::</tt><tt class="descname">generate</tt> (msv,first,last) gen_fun<a class="headerlink" href="#stl::generate/stlvec" title="Permalink to this definition">¶</a></dt>
 <dd><p>replace the elements in msv[first,last) with the sequence generated by
 successive calls to gen_fun (), e.g.,</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> count = ref <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> count = ref <span class="mi">0</span><span class="p">;</span>
 
 <span class="gp">&gt; </span>g _ = n <span class="kr">when</span> n = get count + <span class="mi">1</span><span class="p">;</span> put count n<span class="p">;</span> <span class="kr">end</span><span class="p">;</span>
 
@@ -1298,7 +1298,7 @@ search algorithms.</p>
 <h3><a class="toc-backref" href="#id54">Imports</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>sort<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>sort<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1391,7 +1391,7 @@ algorithms. These algorithms operate on sorted ranges.</p>
 <h3><a class="toc-backref" href="#id58">Imports</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>merge<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>merge<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1475,7 +1475,7 @@ applicable)</p>
 <h3><a class="toc-backref" href="#id62">Imports</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>heap<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>heap<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1526,7 +1526,7 @@ algorithms.</p>
 <h3><a class="toc-backref" href="#id66">Imports</a><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>minmax<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>minmax<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1590,7 +1590,7 @@ algorithms.</p>
 <h3><a class="toc-backref" href="#id70">Imports</a><a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stlvec<span class="p">::</span>numeric<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stlvec<span class="p">::</span>numeric<span class="p">;</span>
 </pre></div>
 </div>
 <p>All of the functions are in the stl namespace.</p>
@@ -1825,7 +1825,7 @@ a second parameter.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

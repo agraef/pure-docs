@@ -117,9 +117,9 @@ release, otherwise you&#8217;ll have to adjust the commands in the instructions
 accordingly.</p>
 </div>
 <p>Installing LLVM and clang (the latter is optional but recommended):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz llvm-3.4.src.tar.gz
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> tar xfvz llvm-3.4.src.tar.gz
 <span class="gp">$</span> tar xfvz clang-3.4.src.tar.gz <span class="o">&amp;&amp;</span> mv clang-3.4 llvm-3.4/tools/clang
-<span class="gp">$</span> <span class="nb">cd </span>llvm-3.4
+<span class="gp">$</span> <span class="nb">cd</span> llvm-3.4
 <span class="gp">$</span> ./configure --enable-shared --enable-optimized --enable-targets<span class="o">=</span>host-only
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
@@ -135,41 +135,41 @@ LLVM &#8220;DragonEgg&#8221; plugin for gcc, which provides LLVM bitcode compila
 languages other than C/C++. Please check the <a class="reference internal" href="#dragonegg">dragonegg</a> section below for
 details.</p>
 <p>Installing Pure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-0.66.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-0.66
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> tar xfvz pure-0.66.tar.gz
+<span class="gp">$</span> <span class="nb">cd</span> pure-0.66
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make <span class="o">&amp;&amp;</span> sudo make install
 </pre></div>
 </div>
 <p>Depending on your system you may have to run a utility to announce the shared
 LLVM and Pure libraries to the dynamic loader. E.g., on Linux:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo /sbin/ldconfig
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /sbin/ldconfig
 </pre></div>
 </div>
 <p>It is also recommended that you run the following to make sure that the Pure
 interpreter works correctly on your platform (see step 5 below for details):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make check
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make check
 </pre></div>
 </div>
 <p>The following is optional, but if you want to read the online documentation in
 the interpreter or in <a class="reference internal" href="#emacs-pure-mode">Emacs Pure mode</a>, you&#8217;ll have to download and install
 the documentation files:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo make install-docs
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo make install-docs
 </pre></div>
 </div>
 <p>This needs the <tt class="docutils literal"><span class="pre">wget</span></tt> program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.66.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.66
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> tar xfvz pure-docs-0.66.tar.gz
+<span class="gp">$</span> <span class="nb">cd</span> pure-docs-0.66
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
 <p>That&#8217;s it, Pure should be ready to go now:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pure
 </pre></div>
 </div>
 <p>Uninstalling:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.66
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> pure-0.66
 <span class="gp">$</span> sudo make uninstall
 <span class="gp">$</span> <span class="nb">cd</span> ../llvm-3.4
 <span class="gp">$</span> sudo make uninstall
@@ -301,7 +301,7 @@ If the Pure interpreter segfaults on startup or fails its test suite
 available for your system, or compile LLVM yourself.</p>
 </div>
 <p><strong>Step 3.</strong> Configure, build and install LLVM as follows (assuming LLVM 3.4):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-3.4
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> llvm-3.4
 <span class="gp">$</span> ./configure --enable-shared --enable-optimized --enable-targets<span class="o">=</span>host-only
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
@@ -329,7 +329,7 @@ Pure interpreter on some systems.</p>
 <p>These can be downloaded from <a class="reference external" href="https://agraef.github.io/pure-lang">https://agraef.github.io/pure-lang</a>. The latest
 source tarballs can always be found in the &#8220;Downloads&#8221; section.</p>
 <p><strong>Step 5.</strong> Configure, build and install Pure as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-0.66
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> pure-0.66
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
@@ -368,12 +368,12 @@ still possible to install the plugin manually with <tt class="docutils literal">
 <p>On some systems you have to tell the dynamic linker to update its cache so
 that it finds the Pure runtime library. E.g., on Linux this is done as
 follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo /sbin/ldconfig
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo /sbin/ldconfig
 </pre></div>
 </div>
 <p>After the build is complete, you can (and should) also run a few tests to
 check that Pure is working correctly on your computer:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make check
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make check
 </pre></div>
 </div>
 <p>(This can be done before actually installing Pure, but make sure that you
@@ -412,18 +412,18 @@ problem.</p>
 <p>If you have one of the LLVM C/C++ compilers installed (see
 <a class="reference internal" href="#installing-an-llvm-capable-c-c-compiler">Installing an LLVM-capable C/C++ Compiler</a>), you can use those to compile
 Pure by passing the appropriate compiler names on the configure line:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release <span class="nv">CC</span><span class="o">=</span>clang <span class="nv">CXX</span><span class="o">=</span>clang++
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release <span class="nv">CC</span><span class="o">=</span>clang <span class="nv">CXX</span><span class="o">=</span>clang++
 </pre></div>
 </div>
 <p>Or, when using llvm-gcc:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release <span class="nv">CC</span><span class="o">=</span>llvm-gcc <span class="nv">CXX</span><span class="o">=</span>llvm-g++
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release <span class="nv">CC</span><span class="o">=</span>llvm-gcc <span class="nv">CXX</span><span class="o">=</span>llvm-g++
 </pre></div>
 </div>
 <p class="last">llvm-gcc 4.2 and clang 2.8 or later should build Pure cleanly and pass all
 checks.</p>
 </div>
 <p><strong>Step 6.</strong> Download and install the online documentation as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo make install-docs
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo make install-docs
 </pre></div>
 </div>
 <p>This isn&#8217;t necessary to run the interpreter, but highly recommended, as it
@@ -438,8 +438,8 @@ variable accordingly.</p>
 wget command. Instead, you can also download the pure-docs-0.66.tar.gz
 tarball manually and then install the documentation from the downloaded
 tarball in the usual way:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tar xfvz pure-docs-0.66.tar.gz
-<span class="gp">$</span> <span class="nb">cd </span>pure-docs-0.66
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> tar xfvz pure-docs-0.66.tar.gz
+<span class="gp">$</span> <span class="nb">cd</span> pure-docs-0.66
 <span class="gp">$</span> sudo make install
 </pre></div>
 </div>
@@ -449,12 +449,12 @@ as of version 0.56 the tarball also contains the documentation in TeXmacs
 format so that you can read it inside TeXmacs (see <a class="reference internal" href="#texmacs-plugin">TeXmacs Plugin</a> below).
 After unpacking the tarball and installing the html documentation, you can
 install the TeXmacs-formatted documentation as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> sudo make install-tm
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo make install-tm
 </pre></div>
 </div>
 <p><strong>Step 7.</strong> The Pure interpreter should be ready to go now.</p>
 <p>Run Pure interactively as:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> pure
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pure
 
 <span class="go"> __ \  |   |  __| _ \    Pure 0.66 (x86_64-unknown-linux-gnu)</span>
 <span class="go"> |   | |   | |    __/    Copyright (c) 2008-2017 by Albert Graef</span>
@@ -465,17 +465,17 @@ install the TeXmacs-formatted documentation as follows:</p>
 </pre></div>
 </div>
 <p>Check that it works:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> 6*7;
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> <span class="m">6</span>*7<span class="p">;</span>
 <span class="go">42</span>
 </pre></div>
 </div>
 <p>Read the online documentation:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> <span class="nb">help</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> <span class="nb">help</span>
 </pre></div>
 </div>
 <p>Exit the interpreter (you can also just type the end-of-file character at the
 beginning of a line, i.e., <tt class="docutils literal"><span class="pre">Ctrl-D</span></tt> on Unix):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">&gt;</span> quit
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">&gt;</span> quit
 </pre></div>
 </div>
 <p>You can also run the interpreter from GNU Emacs and GNU TeXmacs (see below),
@@ -497,7 +497,7 @@ site-lisp directory. (In fact, you can specify any directory on Emacs&#8217;
 loadpath for <tt class="docutils literal"><span class="pre">elispdir</span></tt>.)</p>
 <p>Before you can use Pure mode, you still have to add some stuff to your .emacs
 file to load the mode at startup. A minimal setup looks like this:</p>
-<div class="highlight-scheme"><div class="highlight"><pre><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;pure-mode</span><span class="p">)</span>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;pure-mode</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">setq</span> <span class="nv">auto-mode-alist</span>
       <span class="p">(</span><span class="nb">cons </span><span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;\\.pure\\(rc\\)?$&quot;</span> <span class="o">.</span> <span class="nv">pure-mode</span><span class="p">)</span> <span class="nv">auto-mode-alist</span><span class="p">))</span>
 <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;pure-mode-hook</span> <span class="ss">&#39;turn-on-font-lock</span><span class="p">)</span>
@@ -510,11 +510,11 @@ with it, and enables syntax highlighting.</p>
 file. In particular, we recommend installing emacs-w3m and enabling it as
 follows in your .emacs file, so that you can read the online documentation in
 Emacs:</p>
-<div class="highlight-scheme"><div class="highlight"><pre><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;w3m-load</span><span class="p">)</span>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;w3m-load</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Also, you can enable code folding by adding this to your .emacs:</p>
-<div class="highlight-scheme"><div class="highlight"><pre><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;hideshow</span><span class="p">)</span>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;hideshow</span><span class="p">)</span>
 <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;pure-mode-hook</span> <span class="ss">&#39;hs-minor-mode</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -522,7 +522,7 @@ Emacs:</p>
 that Pure mode can adjust accordingly.</p>
 <p>Once Emacs has been configured to load Pure mode, you can just run it with a
 Pure file to check that it works, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> emacs examples/hello.pure
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> emacs examples/hello.pure
 </pre></div>
 </div>
 <p>The online help about Pure mode can be read with <tt class="docutils literal"><span class="pre">C-h</span> <span class="pre">m</span></tt>. The Pure
@@ -567,7 +567,7 @@ try the following minimal setup instead. This lacks all the bells and whistles
 of the distributed plugin, but should be sufficient to run a basic Pure
 session in TeXmacs, and should hopefully work with any TeXmacs version which
 has plugin support at all.</p>
-<div class="highlight-scheme"><div class="highlight"><pre><span class="p">(</span><span class="nf">plugin-configure</span> <span class="nv">pure</span>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">plugin-configure</span> <span class="nv">pure</span>
   <span class="p">(</span><span class="nf">:require</span> <span class="p">(</span><span class="nf">url-exists-in-path?</span> <span class="s">&quot;pure&quot;</span><span class="p">))</span>
   <span class="p">(</span><span class="nf">:launch</span> <span class="s">&quot;pure -i --texmacs&quot;</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">:session</span> <span class="s">&quot;Pure&quot;</span><span class="p">))</span>
@@ -599,7 +599,7 @@ want to use that feature.</p>
 contents of the clang tarball into the <tt class="docutils literal"><span class="pre">llvm/tools</span></tt> directory, renaming the
 resulting <tt class="docutils literal"><span class="pre">clang-x.y</span></tt> directory to just <tt class="docutils literal"><span class="pre">clang</span></tt>. Then build and install
 clang as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-3.4/tools/clang
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> llvm-3.4/tools/clang
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
 </pre></div>
@@ -619,9 +619,9 @@ additional language frontends (Ada and Fortran).</p>
 <p>Installing llvm-gcc from source actually isn&#8217;t all that difficult, if a bit
 time-consuming. Assuming that you have unpacked both the LLVM and the llvm-gcc
 sources in the same directory, you can build and install llvm-gcc as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>llvm-gcc-4.2-2.9.source
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> llvm-gcc-4.2-2.9.source
 <span class="gp">$</span> mkdir obj
-<span class="gp">$</span> <span class="nb">cd </span>obj
+<span class="gp">$</span> <span class="nb">cd</span> obj
 <span class="gp">$</span> ../configure --program-prefix<span class="o">=</span>llvm- --enable-llvm<span class="o">=</span><span class="nv">$PWD</span>/../../llvm-2.9 --enable-languages<span class="o">=</span>c,c++
 <span class="gp">$</span> make
 <span class="gp">$</span> sudo make install
@@ -632,7 +632,7 @@ to build the Fortran compiler, and, likewise, <tt class="docutils literal"><span
 <p>Be patient, this takes a while.</p>
 <p>Having installed llvm-gcc, you can add something like the following lines to
 your shell startup files, so that Pure uses it for inlined C/C++/Fortran code:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">export PURE_CC=llvm-gcc</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">export PURE_CC=llvm-gcc</span>
 <span class="go">export PURE_CXX=llvm-g++</span>
 <span class="go">export PURE_FC=llvm-gfortran</span>
 </pre></div>
@@ -654,13 +654,13 @@ existing system compiler.</p>
 development files installed (packages <tt class="docutils literal"><span class="pre">mpc-dev</span></tt> and <tt class="docutils literal"><span class="pre">gcc-plugin-dev</span></tt> on
 Ubuntu). Then, after unpacking the dragonegg source tarball or downloading the
 svn sources, install dragonegg as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make
 <span class="gp">$</span> sudo cp dragonegg.so <span class="sb">`</span>gcc -print-file-name<span class="o">=</span>plugin<span class="sb">`</span>
 </pre></div>
 </div>
 <p>Finally, add something like the following lines to your shell startup files,
 so that Pure uses gcc+dragonegg for all inlined C/C++/Fortran code:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">export PURE_CC=&quot;gcc -fplugin=dragonegg&quot;</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">export PURE_CC=&quot;gcc -fplugin=dragonegg&quot;</span>
 <span class="go">export PURE_CXX=&quot;g++ -fplugin=dragonegg&quot;</span>
 <span class="go">export PURE_FC=&quot;gfortran -fplugin=dragonegg&quot;</span>
 </pre></div>
@@ -683,7 +683,7 @@ fairly recent versions of autoconf, flex and bison (autoconf 2.63, flex 2.5.31
 and bison 2.3 or later should be ok).</p>
 <p>To compile from the development sources, replace steps 4 and 5 above with:</p>
 <p><strong>Step 4&#8217;.</strong> Fetch the latest sources from the repository:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/agraef/pure-lang.git
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/agraef/pure-lang.git
 </pre></div>
 </div>
 <p>This clones the repository and puts it into the pure-lang subdirectory in the
@@ -694,7 +694,7 @@ running <tt class="docutils literal"><span class="pre">git</span> <span class="p
 <p>This is pretty much the same as with the distribution tarball, except that you
 need to run <tt class="docutils literal"><span class="pre">autoreconf</span></tt> once to generate the configure script which isn&#8217;t
 included in the source repository.</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> <span class="nb">cd </span>pure-lang/pure
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> pure-lang/pure
 <span class="gp">$</span> autoreconf
 <span class="gp">$</span> ./configure --enable-release
 <span class="gp">$</span> make
@@ -710,7 +710,7 @@ website for details.</p>
 <p>Alternatively, a ready-made recent snapshot of the documentation in html and
 pdf formats is also available in its own repository, which can be cloned as
 follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> git clone https://github.com/agraef/pure-docs.git
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> git clone https://github.com/agraef/pure-docs.git
 </pre></div>
 </div>
 </div>
@@ -727,7 +727,7 @@ the pure.pc file and the library scripts are installed in /usr/local/bin,
 /usr/local/include/pure, /usr/local/lib, /usr/local/lib/pkg-config and
 /usr/local/lib/pure, respectively. This can be changed by specifying the
 desired installation prefix with the <tt class="docutils literal"><span class="pre">--prefix</span></tt> option, e.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release --prefix<span class="o">=</span>/usr
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release --prefix<span class="o">=</span>/usr
 </pre></div>
 </div>
 <p>In addition, the <tt class="docutils literal"><span class="pre">DESTDIR</span></tt> variable enables package maintainers to install
@@ -736,7 +736,7 @@ packaged more easily. If set at installation time, <tt class="docutils literal">
 an additional prefix to all installation paths. For instance, the following
 command will put all installed files into the tmp-root subdirectory of the
 current directory:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> make install <span class="nv">DESTDIR</span><span class="o">=</span>tmp-root
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> make install <span class="nv">DESTDIR</span><span class="o">=</span>tmp-root
 </pre></div>
 </div>
 <p>Note that if you install Pure into a non-standard location, you may have to
@@ -765,7 +765,7 @@ package.</p>
 <p>To deal with this situation, the configure script distributed with Pure 0.55
 and later allows you to specify the directory with the LLVM toolchain using
 the <tt class="docutils literal"><span class="pre">--with-tool-prefix</span></tt> configure option. E.g.:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --with-tool-prefix<span class="o">=</span>/usr/lib/llvm-3.4/bin
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --with-tool-prefix<span class="o">=</span>/usr/lib/llvm-3.4/bin
 </pre></div>
 </div>
 <p>This is also the directory where configure will first look for the
@@ -790,7 +790,7 @@ above.</p>
 <p>Pure fully supports parallel installations of different versions of the
 interpreter. To enable this you have to specify <tt class="docutils literal"><span class="pre">--enable-versioned</span></tt> when
 running configure:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release --enable-versioned
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release --enable-versioned
 </pre></div>
 </div>
 <p>When this option is enabled, bin/pure, include/pure, lib/pure,
@@ -812,8 +812,8 @@ source tree tidy and clean, or to build multiple versions of the interpreter
 with different compilation flags from the same source tree.</p>
 <p>To these ends, just cd to the build directory and run configure and make
 there, e.g. (this assumes that you start from the source directory):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkdir BUILD
-<span class="gp">$</span> <span class="nb">cd </span>BUILD
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> mkdir BUILD
+<span class="gp">$</span> <span class="nb">cd</span> BUILD
 <span class="gp">$</span> ../configure --enable-release
 <span class="gp">$</span> make
 </pre></div>
@@ -836,7 +836,7 @@ for details.)</p>
 <p>For instance, the following configure command changes the default compilation
 options to <tt class="docutils literal"><span class="pre">-g</span></tt> and adds /opt/include and /opt/lib to the include and
 library search paths, respectively:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure <span class="nv">CPPFLAGS</span><span class="o">=</span>-I/opt/include <span class="nv">CXXFLAGS</span><span class="o">=</span>-g <span class="nv">LDFLAGS</span><span class="o">=</span>-L/opt/lib
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure <span class="nv">CPPFLAGS</span><span class="o">=</span>-I/opt/include <span class="nv">CXXFLAGS</span><span class="o">=</span>-g <span class="nv">LDFLAGS</span><span class="o">=</span>-L/opt/lib
 </pre></div>
 </div>
 <p>More details on the build and installation process and other available targets
@@ -854,7 +854,7 @@ which provide diagnostics useful for maintainers if anything is wrong with the
 interpreter. It is also noticeably slower than the &#8220;release&#8221; build. If you
 want to enjoy maximum performance, you should configure Pure for a release
 build as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release
 </pre></div>
 </div>
 <p>This disables all runtime checks and debugging information in the interpreter,
@@ -865,7 +865,7 @@ substantially faster on most systems.</p>
 a similar flag or a separate command to strip compiled executables and
 libraries).</p>
 <p>You can also do a &#8220;debug&#8221; build as follows:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-debug
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-debug
 </pre></div>
 </div>
 <p>This is like the default build, but disables all optimizations, so compilation
@@ -873,7 +873,7 @@ is faster but the compiled interpreter is <em>much</em> slower than even the def
 build. Hence this build is only recommended for debugging purposes.</p>
 <p>You can combine all build types with the <tt class="docutils literal"><span class="pre">--enable-warnings</span></tt> option to
 enable compiler warnings (<tt class="docutils literal"><span class="pre">-Wall</span></tt>):</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release --enable-warnings
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release --enable-warnings
 </pre></div>
 </div>
 <p>This option is useful to check the interpreter sources for questionable
@@ -881,7 +881,7 @@ constructs which might actually be bugs. However, for some older gcc versions
 it spits out lots of bogus warnings, so it is not enabled by default.</p>
 <p>In addition, there is an option to build a &#8220;monolithic&#8221; interpreter which is
 linked statically instead of producing a separate runtime library:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release --disable-shared
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release --disable-shared
 </pre></div>
 </div>
 <p>We strongly discourage from using this option, since it drastically increases
@@ -896,7 +896,7 @@ described in the previous section, except that <tt class="docutils literal"><spa
 optimization (<tt class="docutils literal"><span class="pre">-O</span></tt>) options in <tt class="docutils literal"><span class="pre">CFLAGS</span></tt> and <tt class="docutils literal"><span class="pre">CXXFLAGS</span></tt>. Other options
 will be preserved. For instance, the following configures for a release build,
 but sets the warning flags manually and enables C++0x support in gcc:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> ./configure --enable-release <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-Wall&quot;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&quot;-std=c++0x -Wall&quot;</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> ./configure --enable-release <span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;-Wall&quot;</span> <span class="nv">CXXFLAGS</span><span class="o">=</span><span class="s2">&quot;-std=c++0x -Wall&quot;</span>
 </pre></div>
 </div>
 <p>If you mix build types and manual compilation flags in this way then it&#8217;s
@@ -1056,7 +1056,7 @@ install straight from the source, make sure that you use a recent LLVM version
 other dependencies from MacPorts. In that case you&#8217;ll have to add a few
 options to the configure command so that the required header files, libraries
 and LLVM tools are found:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">./configure --enable-release --prefix=/opt/local \</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">./configure --enable-release --prefix=/opt/local \</span>
 <span class="go">CPPFLAGS=-I/opt/local/include LDFLAGS=-L/opt/local/lib \</span>
 <span class="go">--with-tool-prefix=/opt/local/libexec/llvm-3.4/bin</span>
 </pre></div>
@@ -1081,7 +1081,7 @@ make. In addition to gmake, you&#8217;ll need recent versions of the following
 packages: perl5, flex, bison, gmp, mpfr and readline (or editline). Depending
 on your system, you might also have to set up some compiler and linker paths.
 E.g., the following reportedly does the trick on NetBSD:</p>
-<div class="highlight-console"><div class="highlight"><pre><span class="go">export C_INCLUDE_PATH=/usr/local/include:/usr/pkg/include</span>
+<div class="highlight-console"><div class="highlight"><pre><span></span><span class="go">export C_INCLUDE_PATH=/usr/local/include:/usr/pkg/include</span>
 <span class="go">export LIBRARY_PATH=/usr/local/lib:/usr/pkg/lib</span>
 <span class="go">export LD_LIBRARY_PATH=/usr/pkg/lib:/usr/local/lib</span>
 </pre></div>
@@ -1206,7 +1206,7 @@ recent 64 bit flavors of Windows (tested on Windows 7, 8 and 10).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

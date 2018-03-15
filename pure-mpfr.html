@@ -116,7 +116,7 @@ been tested). Older libmpfr versions (2.x) probably require some work.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>After installation, you can use the operations of this module by placing the
 following import declaration in your Pure programs:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> mpfr<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> mpfr<span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -408,14 +408,14 @@ support for complex values involving <tt class="docutils literal"><span class="p
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>Import the module and set the default precision:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> mpfr<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> mpfr<span class="p">;</span>
 <span class="gp">&gt; </span>mpfr_set_default_prec <span class="mi">64</span><span class="p">;</span> <span class="c1">// extended precision (long double on x86)</span>
 ()
 </pre></div>
 </div>
 <p>Calculate pi with the current precision. Note that mixed arithmetic works with
 any combination of real and mpfr numbers.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> Pi = <span class="mi">4</span>*atan (mpfr <span class="mi">1</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> Pi = <span class="mi">4</span>*atan (mpfr <span class="mi">1</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>pi<span class="p">;</span> Pi<span class="p">;</span> abs (Pi-pi)<span class="p">;</span>
 <span class="mf">3.14159265358979</span>
 <span class="mf">3.14159265358979323851</span>
@@ -429,7 +429,7 @@ any combination of real and mpfr numbers.</p>
 </pre></div>
 </div>
 <p>You can also query the precision of a number and change it on the fly:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>Pi<span class="p">;</span> mpfr_get_prec Pi<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>Pi<span class="p">;</span> mpfr_get_prec Pi<span class="p">;</span>
 <span class="mf">3.14159265358979323851</span>
 <span class="mi">64</span>
 <span class="gp">&gt; </span><span class="kr">let</span> Pi1 = mpfr (Pi,<span class="mi">53</span>)<span class="p">;</span> Pi1<span class="p">;</span> mpfr_get_prec Pi1<span class="p">;</span>
@@ -438,7 +438,7 @@ any combination of real and mpfr numbers.</p>
 </pre></div>
 </div>
 <p>Complex <tt class="docutils literal"><span class="pre">mpfr</span></tt> numbers work, too:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> z = mpfr <span class="mi">2</span>^(<span class="mi">1</span>/i)<span class="p">;</span> z<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> z = mpfr <span class="mi">2</span>^(<span class="mi">1</span>/i)<span class="p">;</span> z<span class="p">;</span>
 <span class="mf">0.769238901363972126565</span>+:-<span class="mf">0.638961276313634801184</span>
 <span class="gp">&gt; </span><span class="kr">let</span> z = ln z/ln (mpfr <span class="mi">2</span>)<span class="p">;</span> z<span class="p">;</span>
 <span class="mf">0.0</span>+:-<span class="mf">1.0</span>
@@ -526,7 +526,7 @@ any combination of real and mpfr numbers.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

@@ -105,17 +105,17 @@ the hashdict module.</p>
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>After installation, you can use the operations of this package by placing the
 following import declaration in your Pure programs:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> stldict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> stldict<span class="p">;</span>
 </pre></div>
 </div>
 <p>This imports the whole shebang. If you only need either the hashed or the
 ordered dictionaries, you can also import the corresponding modules
 separately, i.e.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> hashdict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> hashdict<span class="p">;</span>
 </pre></div>
 </div>
 <p>or:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> orddict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> orddict<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -458,7 +458,7 @@ handle the case of mixed operand types.</p>
 object rather than just syntactically equal, you&#8217;ll have to cast them to
 generic C pointers before comparing them with <a class="reference internal" href="purelib.html#===" title="==="><tt class="xref pure pure-func docutils literal"><span class="pre">===</span></tt></a>. This can be done
 with the following little helper function:</p>
-<div class="highlight-pure"><div class="highlight"><pre>same_dict x y = pointer_cast <span class="s">&quot;void*&quot;</span> x === pointer_cast <span class="s">&quot;void*&quot;</span> y<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>same_dict x y = pointer_cast <span class="s">&quot;void*&quot;</span> x === pointer_cast <span class="s">&quot;void*&quot;</span> y<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -650,7 +650,7 @@ member list) for printing the corresponding type of dictionary.</p>
 best). In the case of an outfix symbol the list brackets around the members
 are removed; this makes it possible to render the container in a format
 similar to Pure&#8217;s list syntax. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stldict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> stldict<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">outfix</span> {$ $}<span class="p">;</span>
 <span class="gp">&gt; </span>orddict_symbol ({$ $})<span class="p">;</span>
 ()
@@ -665,7 +665,7 @@ which also discusses how to make such a custom print representation reparsable.<
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>Some basic examples showing <a class="reference internal" href="#hashdict/type" title="hashdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashdict</span></tt></a> in action:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> stldict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> stldict<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> m = hashdict [foo=&gt;<span class="mi">99</span>, bar=&gt;bar <span class="mi">4711L</span>, baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>]<span class="p">;</span> m<span class="p">;</span>
 hashdict [foo=&gt;<span class="mi">99</span>,bar=&gt;bar <span class="mi">4711L</span>,baz=&gt;[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]]
 <span class="gp">&gt; </span>m!bar<span class="p">;</span>
@@ -681,7 +681,7 @@ bar <span class="mi">4711L</span>
 </pre></div>
 </div>
 <p>Hashed multidicts (<a class="reference internal" href="#hashmdict/type" title="hashmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">hashmdict</span></tt></a>):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m = hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>,baz=&gt;bar <span class="mi">4711L</span>]<span class="p">;</span> m<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m = hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>,baz=&gt;bar <span class="mi">4711L</span>]<span class="p">;</span> m<span class="p">;</span>
 hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],baz=&gt;bar <span class="mi">4711L</span>]
 <span class="gp">&gt; </span>m!baz<span class="p">;</span>
 [[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],bar <span class="mi">4711L</span>]
@@ -691,7 +691,7 @@ hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;[<span class="mi">1</span>
 </div>
 <p>The following example illustrates how to employ ordered dictionaries
 (<a class="reference internal" href="#orddict/type" title="orddict"><tt class="xref pure pure-type docutils literal"><span class="pre">orddict</span></tt></a>) as a set data structure:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1 = orddict [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m1 = orddict [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> m2 = orddict (<span class="mi">3</span>..<span class="mi">6</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>m1<span class="p">;</span>m2<span class="p">;</span>
 orddict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
@@ -709,7 +709,7 @@ orddict [<span class="mi">3</span>,<span class="mi">5</span>]
 </pre></div>
 </div>
 <p>Of course, the same works with ordered multidicts (<a class="reference internal" href="#ordmdict/type" title="ordmdict"><tt class="xref pure pure-type docutils literal"><span class="pre">ordmdict</span></tt></a>):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1 = ordmdict [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m1 = ordmdict [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> m2 = ordmdict (<span class="mi">3</span>..<span class="mi">6</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>m1<span class="p">;</span>m2<span class="p">;</span>
 ordmdict [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
@@ -728,7 +728,7 @@ ordmdict [<span class="mi">3</span>,<span class="mi">5</span>]
 </div>
 <p>In fact, the binary operations (comparisons as well as the set operations
 <tt class="docutils literal"><span class="pre">+</span></tt>, <tt class="docutils literal"><span class="pre">-</span></tt> and <tt class="docutils literal"><span class="pre">*</span></tt>) work with any combination of dictionary operands:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1 = hashdict (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m1 = hashdict (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> m2 = ordmdict (<span class="mi">3</span>..<span class="mi">7</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>m1+m2<span class="p">;</span>
 hashmdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>]
@@ -738,7 +738,7 @@ hashmdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">
 where hashed beats ordered and multi-valued beats single-valued dictionaries.
 If this is not what you want, you can also specify the desired conversions
 explicitly:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>m1+orddict m2<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>m1+orddict m2<span class="p">;</span>
 hashdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>]
 <span class="gp">&gt; </span>orddict m1+m2<span class="p">;</span>
 ordmdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>]
@@ -746,13 +746,13 @@ ordmdict [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3
 </div>
 <p>Also note that the &#8220;set&#8221; operations not only work with proper sets, but also
 with general dictionaries:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>hashdict [i=&gt;i+<span class="mi">1</span>|i=<span class="mi">1</span>..<span class="mi">4</span>]+hashdict [i=&gt;i-<span class="mi">1</span>|i=<span class="mi">3</span>..<span class="mi">5</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>hashdict [i=&gt;i+<span class="mi">1</span>|i=<span class="mi">1</span>..<span class="mi">4</span>]+hashdict [i=&gt;i-<span class="mi">1</span>|i=<span class="mi">3</span>..<span class="mi">5</span>]<span class="p">;</span>
 hashdict [<span class="mi">1</span>=&gt;<span class="mi">2</span>,<span class="mi">2</span>=&gt;<span class="mi">3</span>,<span class="mi">3</span>=&gt;<span class="mi">2</span>,<span class="mi">4</span>=&gt;<span class="mi">3</span>,<span class="mi">5</span>=&gt;<span class="mi">4</span>]
 </pre></div>
 </div>
 <p>All dictionary containers can be used as generators in list and matrix
 comprehensions:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m = hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>,baz=&gt;bar <span class="mi">4711L</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m = hashmdict [foo=&gt;<span class="mi">99</span>,baz=&gt;<span class="mi">1</span>..<span class="mi">5</span>,baz=&gt;bar <span class="mi">4711L</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>[x y | x=&gt;y = m]<span class="p">;</span>
 [foo <span class="mi">99</span>,baz [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>],baz (bar <span class="mi">4711L</span>)]
 <span class="gp">&gt; </span>{{x<span class="p">;</span>y} | x=&gt;y = m}<span class="p">;</span>
@@ -766,7 +766,7 @@ the <a class="reference internal" href="#stream/stldict" title="stream"><tt clas
 instead. This will often be slower, but in the case of big dictionaries the
 tradeoff between memory usage and execution speed might be worth
 considering. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m = hashdict [foo i =&gt; i | i = <span class="mi">1</span>..<span class="mi">10000</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m = hashdict [foo i =&gt; i | i = <span class="mi">1</span>..<span class="mi">10000</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>stream m<span class="p">;</span>
 (foo <span class="mi">1512</span>=&gt;<span class="mi">1512</span>):<span class="kt">#&lt;thunk 0x7fa1718350a8&gt;</span>
 <span class="gp">&gt; </span>stats -m
@@ -865,7 +865,7 @@ considering. For instance:</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

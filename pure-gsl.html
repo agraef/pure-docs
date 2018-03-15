@@ -99,18 +99,18 @@ Older GSL versions might still work, but then some operations may be
 missing. The latest and greatest GSL version is always available from
 <a class="reference external" href="http://www.gnu.org/software/gsl">http://www.gnu.org/software/gsl</a>.</p>
 <p>After installation, you can import the entire GSL interface as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> gsl<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> gsl<span class="p">;</span>
 </pre></div>
 </div>
 <p>For convenience, the different parts of the GSL interface are also
 available as separate modules. E.g., if you only need the matrix
 operations:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> gsl<span class="p">::</span><span class="kt">matrix</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> gsl<span class="p">::</span><span class="kt">matrix</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>In either case, the global <tt class="docutils literal"><span class="pre">gsl_version</span></tt> variable reports the installed
 GSL version:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>show gsl_version
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>show gsl_version
 <span class="kr">let</span> gsl_version = <span class="s">&quot;1.11&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -121,7 +121,7 @@ correspondence with the module names. Thus, e.g., the <tt class="docutils litera
 routine is named <tt class="docutils literal"><span class="pre">gsl::poly::eval</span></tt> in Pure and can be found in the
 <tt class="docutils literal"><span class="pre">gsl::poly</span></tt> module and namespace. The <tt class="docutils literal"><span class="pre">using</span> <span class="pre">namespace</span></tt> declaration can
 be used to facilitate access to the operations in a given namespace, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>poly<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>poly<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>poly<span class="p">;</span>
 <span class="gp">&gt; </span>eval {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>} <span class="mi">2</span><span class="p">;</span>
 <span class="mi">17</span>
@@ -267,7 +267,7 @@ handled automatically.</p>
 <div class="section" id="examples">
 <h3><a class="toc-backref" href="#id20">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>Usage of each library routine is illustrated below.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>poly<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>poly<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>poly<span class="p">;</span>
 <span class="gp">&gt; </span>eval {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>} <span class="mi">2</span><span class="p">;</span>
 <span class="mi">17</span>
@@ -316,7 +316,7 @@ of the GSL manual,</p>
 <p><a class="reference external" href="http://www.gnu.org/software/gsl/manual/html_node/Special-Functions.html">http://www.gnu.org/software/gsl/manual/html_node/Special-Functions.html</a>.</p>
 <p>To load the library, use the Pure command <tt class="docutils literal"><span class="pre">using</span> <span class="pre">gsl::sf</span></tt>.
 Modes for the functions must be one of:</p>
-<div class="highlight-pure"><div class="highlight"><pre>GSL_PREC_DOUBLE
+<div class="highlight-pure"><div class="highlight"><pre><span></span>GSL_PREC_DOUBLE
 GSL_PREC_SINGLE
 GSL_PREC_APPROX
 </pre></div>
@@ -528,7 +528,7 @@ the function with <tt class="docutils literal"><span class="pre">mode</span> <sp
 <div class="section" id="id1">
 <h3><a class="toc-backref" href="#id23">Examples</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the Airy functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span>airy_Ai (-<span class="mf">1.2</span>)<span class="p">;</span> <span class="c1">// defaults to GSL_PREC_DOUBLE</span>
 <span class="mf">0.52619437480212</span>
@@ -1219,7 +1219,7 @@ the function with <tt class="docutils literal"><span class="pre">mode</span> <sp
 <div class="section" id="id2">
 <h3><a class="toc-backref" href="#id25">Examples</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the Bessel functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span>bessel_J0 (-<span class="mf">1.2</span>)<span class="p">;</span>
 <span class="mf">0.671132744264363</span>
@@ -1437,7 +1437,7 @@ the function with <tt class="docutils literal"><span class="pre">mode</span> <sp
 <div class="section" id="id3">
 <h3><a class="toc-backref" href="#id27">Examples</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the Clausen functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span>clausen <span class="mf">4.5</span><span class="p">;</span>
 -<span class="mf">0.831839220823219</span>
@@ -1521,7 +1521,7 @@ corresponding C functions in GSL library.</p>
 <div class="section" id="id4">
 <h3><a class="toc-backref" href="#id29">Examples</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the Coulomb functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span>hydrogenicR_1 <span class="mf">0.2</span> <span class="mi">4</span><span class="p">;</span>
 <span class="mf">0.0803784086420537</span>
@@ -1597,7 +1597,7 @@ matrix instead of six integer arguments.</p>
 <div class="section" id="id5">
 <h3><a class="toc-backref" href="#id31">Examples</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the coupling coefficient functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>sf<span class="p">;</span>
 <span class="gp">&gt; </span>coupling_3j {<span class="mi">6</span>,<span class="mi">4</span>,<span class="mi">2</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>}<span class="p">;</span>
 -<span class="mf">0.29277002188456</span>
@@ -1632,7 +1632,7 @@ matrix instead of six integer arguments.</p>
 <div class="section" id="id6">
 <h3><a class="toc-backref" href="#id33">Examples</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the dawson functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>dawson <span class="mi">3</span><span class="p">;</span>/**-
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>dawson <span class="mi">3</span><span class="p">;</span>/**-
 <span class="mf">0.178271030610558</span>
 <span class="gp">&gt; </span>dawson_e <span class="mi">3</span><span class="p">;</span>
 [<span class="mf">0.178271030610558</span>,<span class="mf">8.9920386788099e-16</span>]
@@ -1717,7 +1717,7 @@ matrix instead of six integer arguments.</p>
 <div class="section" id="id7">
 <h3><a class="toc-backref" href="#id35">Examples</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the debye functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>debye_1 <span class="mf">0.4</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>debye_1 <span class="mf">0.4</span><span class="p">;</span>
 <span class="mf">0.904437352623294</span>
 <span class="gp">&gt; </span>debye_1_e <span class="mf">0.4</span><span class="p">;</span>
 [<span class="mf">0.904437352623294</span>,<span class="mf">3.84040456356756e-16</span>]
@@ -1776,7 +1776,7 @@ the list <tt class="docutils literal"><span class="pre">[re+:im,</span> <span cl
 <div class="section" id="id8">
 <h3><a class="toc-backref" href="#id37">Examples</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the dilog functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>dilog <span class="mf">1.0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>dilog <span class="mf">1.0</span><span class="p">;</span>
 <span class="mf">1.64493406684823</span>
 <span class="gp">&gt; </span>dilog (<span class="mi">1</span>&lt;:<span class="mi">2</span>)<span class="p">;</span>
 -<span class="mf">0.496658586741567</span>+:<span class="mf">0.727146050863279</span>
@@ -1803,7 +1803,7 @@ the list <tt class="docutils literal"><span class="pre">[re+:im,</span> <span cl
 <div class="section" id="id9">
 <h3><a class="toc-backref" href="#id38">Examples</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrate the multiply functions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>multiply_e <span class="mf">10.0</span> <span class="mf">11.0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>multiply_e <span class="mf">10.0</span> <span class="mf">11.0</span><span class="p">;</span>
 [<span class="mf">110.0</span>,<span class="mf">4.88498130835069e-14</span>]
 <span class="gp">&gt; </span>multiply_err_e <span class="mf">10.0</span> <span class="mf">0.04</span> <span class="mf">11.0</span> <span class="mf">0.002</span><span class="p">;</span>
 [<span class="mf">110.0</span>,<span class="mf">0.460000000000049</span>]
@@ -2298,13 +2298,13 @@ the GSL manual,</p>
 <div class="section" id="id11">
 <h3><a class="toc-backref" href="#id45">Examples</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h3>
 <p>Usage of each implemented library routine is illustrated below.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>fit<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>fit<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>fit<span class="p">;</span>
 </pre></div>
 </div>
 <p>The following code determines the equation for the least-squares line
 through the points (1,0.01), (2,1.11), (3,1.9), (4,2.85), and (5,4.01).</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>Y x = &#39;(a + b * x)
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>Y x = &#39;(a + b * x)
 <span class="gp">&gt; </span><span class="kr">when</span>
 <span class="gp">&gt; </span>  a:b:_ = linear {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>} {<span class="mf">0.01</span>,<span class="mf">1.11</span>,<span class="mf">1.9</span>,<span class="mf">2.85</span>,<span class="mf">4.01</span>}
 <span class="gp">&gt; </span><span class="kr">end</span><span class="p">;</span>
@@ -2319,7 +2319,7 @@ constructing an equation for the least-squares line determined by
 the points <tt class="docutils literal"><span class="pre">{x1,x2,x3,...,xn}</span></tt>, <tt class="docutils literal"><span class="pre">{y1,y2,y3,...,yn}</span></tt>. Here we
 estimate the <strong class="dfn">y</strong>-value at <strong class="dfn">x</strong> = 1, <strong class="dfn">x</strong> = 2, and <strong class="dfn">x</strong> = 3. Compare the output
 above at <strong class="dfn">x</strong> = 2 to the output at <strong class="dfn">x</strong> = 2 below.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> c0:c1:cov00:cov01:cov11:_ = linear {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>}
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> c0:c1:cov00:cov01:cov11:_ = linear {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>}
 <span class="gp">&gt; </span>  {<span class="mf">0.01</span>,<span class="mf">1.11</span>,<span class="mf">1.9</span>,<span class="mf">2.85</span>,<span class="mf">4.01</span>}<span class="p">;</span>
 <span class="gp">&gt; </span>linear_est <span class="mi">1</span> c0 c1 cov00 cov01 cov11<span class="p">;</span>
 [<span class="mf">0.028</span>,<span class="mf">0.0838570211729465</span>]
@@ -2332,7 +2332,7 @@ above at <strong class="dfn">x</strong> = 2 to the output at <strong class="dfn"
 <p>Next, we determine a least-squares line through the points (1,0.01),
 (2,1.11), (3,1.9), (4,2.85), and (5,4.01) using weights 0.1, 0.2, 0.3,
 0.4, and 0.5.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>W x = &#39;(a + b * x)
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>W x = &#39;(a + b * x)
 <span class="gp">&gt; </span><span class="kr">when</span>
 <span class="gp">&gt; </span>  a:b:_ = wlinear (<span class="kt">matrix</span> (<span class="mi">1</span>..<span class="mi">5</span>))
 <span class="gp">&gt; </span>          {<span class="mf">0.1</span>, <span class="mf">0.2</span>, <span class="mf">0.3</span>, <span class="mf">0.4</span>, <span class="mf">0.5</span>}
@@ -2347,7 +2347,7 @@ above at <strong class="dfn">x</strong> = 2 to the output at <strong class="dfn"
 <p>The least-squares slope for <tt class="docutils literal"><span class="pre">Y</span> <span class="pre">=</span> <span class="pre">c1</span> <span class="pre">*</span> <span class="pre">X</span></tt> using the points (1,3),
 (2,5), and (3,7) is calculated below. Also, the <strong class="dfn">y</strong>-values and
 standard error about <strong class="dfn">x</strong> = 1, 2, and 3 are given.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> c1:cov11:sumsq:_ = mul {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>} {<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">7</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> c1:cov11:sumsq:_ = mul {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>} {<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">7</span>}<span class="p">;</span>
 <span class="gp">&gt; </span>mul_est <span class="mi">1</span> c1 cov11<span class="p">;</span>
 [<span class="mf">2.42857142857143</span>,<span class="mf">0.123717914826348</span>]
 <span class="gp">&gt; </span>mul_est <span class="mi">2</span> c1 cov11<span class="p">;</span>
@@ -2360,7 +2360,7 @@ standard error about <strong class="dfn">x</strong> = 1, 2, and 3 are given.</p>
 (2,5), and (3,7), and weights 0.4, 0.9, and 0.4 is calculated below.
 The approximation of y-values and standard error about <strong class="dfn">x</strong> = 1, 2, and
 3 follows.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> c1:cov11:sumsq:_ = wmul {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>} {<span class="mf">0.4</span>,<span class="mf">0.9</span>,<span class="mf">0.4</span>} {<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">7</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> c1:cov11:sumsq:_ = wmul {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>} {<span class="mf">0.4</span>,<span class="mf">0.9</span>,<span class="mf">0.4</span>} {<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">7</span>}<span class="p">;</span>
 <span class="gp">&gt; </span>mul_est <span class="mi">1</span> c1 cov11<span class="p">;</span>
 [<span class="mf">2.44736842105263</span>,<span class="mf">0.362738125055006</span>]
 <span class="gp">&gt; </span>mul_est <span class="mi">2</span> c1 cov11<span class="p">;</span>
@@ -2681,7 +2681,7 @@ and <tt class="docutils literal"><span class="pre">n</span></tt> arguments. Resu
 <div class="section" id="id13">
 <h3><a class="toc-backref" href="#id48">Examples</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrates the use of each function in the <tt class="docutils literal"><span class="pre">stats</span></tt> module.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>stats<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>stats<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>stats<span class="p">;</span>
 <span class="gp">&gt; </span>mean {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>}<span class="p">;</span>
 <span class="mf">3.0</span>
@@ -3542,7 +3542,7 @@ prefixes <tt class="docutils literal"><span class="pre">gsl_ran_</span></tt> and
 <h3><a class="toc-backref" href="#id51">Examples</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h3>
 <p>The following illustrates the use of each function in the <tt class="docutils literal"><span class="pre">randist</span></tt> module.
 The pdf functions are illustrated first.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>stats<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>stats<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>ran<span class="p">;</span>
 <span class="gp">&gt; </span>ugaussian_pdf <span class="mf">1.2</span><span class="p">;</span>
 <span class="mf">0.194186054983213</span>
@@ -3630,7 +3630,7 @@ The pdf functions are illustrated first.</p>
 </pre></div>
 </div>
 <p>The cumulative distribution functions are shown.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>cdf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">::</span>cdf<span class="p">;</span>
 <span class="gp">&gt; </span>ugaussian_P  (-<span class="mf">1.3</span>)<span class="p">;</span>
 <span class="mf">0.0968004845856103</span>
 <span class="gp">&gt; </span>ugaussian_Q  (-<span class="mf">1.3</span>)<span class="p">;</span>
@@ -3833,7 +3833,7 @@ routines found in Chapter 11 of the GSL manual,</p>
 <div class="section" id="id17">
 <h3><a class="toc-backref" href="#id54">Examples</a><a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
 <p>Usage of each library routine is illustrated below.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sort<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> gsl<span class="p">::</span>sort<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> gsl<span class="p">;</span>
 <span class="gp">&gt; </span>sort_vector {<span class="mi">0</span>,<span class="mi">3</span>,<span class="mi">2</span>,<span class="mi">4</span>,<span class="mi">5</span>}<span class="p">;</span>
 {<span class="mi">0</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>}
@@ -3959,7 +3959,7 @@ routines found in Chapter 11 of the GSL manual,</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

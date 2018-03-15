@@ -191,7 +191,7 @@ Faust versions and also in the examples subdirectory of the pure-faust
 package, see the <a class="reference internal" href="pure-faust.html"><em>pure-faust</em></a> documentation for details.
 E.g., to compile a Faust dsp <tt class="docutils literal"><span class="pre">organ.dsp</span></tt> to a module loadable with pd-faust,
 simply use the following command:</p>
-<div class="highlight-pure"><div class="highlight"><pre>faust2pure organ.dsp
+<div class="highlight-pure"><div class="highlight"><pre><span></span>faust2pure organ.dsp
 </pre></div>
 </div>
 <p>This will leave a shared library module <tt class="docutils literal"><span class="pre">organ.so</span></tt> (<tt class="docutils literal"><span class="pre">organ.dylib</span></tt> on
@@ -214,7 +214,7 @@ that you&#8217;ll need a special C compiler capable of producing LLVM bitcode (i
 <p>The process of compiling Faust dsps to bitcode modules is pretty much the same
 as above, only that you have to run <tt class="docutils literal"><span class="pre">make</span> <span class="pre">bitcode</span></tt> with the provided
 Makefile, or use the faust2pure script with the <tt class="docutils literal"><span class="pre">-bitcode</span></tt> option, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>faust2pure -bitcode organ.dsp
+<div class="highlight-pure"><div class="highlight"><pre><span></span>faust2pure -bitcode organ.dsp
 </pre></div>
 </div>
 <p>This creates the <tt class="docutils literal"><span class="pre">organ.bc</span></tt> module which can be loaded by the <tt class="docutils literal"><span class="pre">pdfaust2</span></tt>
@@ -235,7 +235,7 @@ underlying <tt class="docutils literal"><span class="pre">fdsp~</span></tt> and 
 still provided for backward compatibility, they are deprecated and shouldn&#8217;t
 be invoked directly any more.)</p>
 <p>The <tt class="docutils literal"><span class="pre">faust~</span></tt> object is invoked as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>faust~ dspname [instname] [channel] [numvoices]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>faust~ dspname [instname] [channel] [numvoices]
 </pre></div>
 </div>
 <p>The creation arguments in square brackets are optional. Please note that since
@@ -274,7 +274,7 @@ to specify <em>both</em> <tt class="docutils literal"><span class="pre">channel<
 determined using the value of the <tt class="docutils literal"><span class="pre">nvoices</span></tt> meta key declared in the dsp
 source. Thus, to turn a Faust dsp into a synth with 8 voices you can use a
 declaration like the following anywhere in the Faust program:</p>
-<div class="highlight-pure"><div class="highlight"><pre>declare nvoices <span class="s">&quot;8&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>declare nvoices <span class="s">&quot;8&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The format of this declaration is the same as for the <a class="reference external" href="https://bitbucket.org/agraef/faust-lv2">faust-lv2</a> and
@@ -364,7 +364,7 @@ object.</p>
 <p>For each <tt class="docutils literal"><span class="pre">faust~</span></tt> object, the Pd patch may contain an (initially empty)
 &#8220;one-off&#8221; graph-on-parent subpatch with the same name as the instance name of
 the Faust unit:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pd instname
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pd instname
 </pre></div>
 </div>
 <p>You shouldn&#8217;t insert anything into this subpatch, its contents (a bunch of Pd
@@ -589,7 +589,7 @@ for MIDI data).</p>
 elements have to be marked up with the special <tt class="docutils literal"><span class="pre">midi</span></tt> attribute in the Faust
 source. For instance, a pan control (MIDI controller 10) may be implemented in
 the Faust source as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pan = hslider(<span class="s">&quot;pan [midi:ctrl 10]&quot;</span>, <span class="mi">0</span>, -<span class="mi">1</span>, <span class="mi">1</span>, <span class="mf">0.01</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pan = hslider(<span class="s">&quot;pan [midi:ctrl 10]&quot;</span>, <span class="mi">0</span>, -<span class="mi">1</span>, <span class="mi">1</span>, <span class="mf">0.01</span>)<span class="p">;</span>
 </pre></div>
 </div>
 <p>pd-faust will then provide the necessary logic to handle MIDI input from
@@ -603,7 +603,7 @@ MIDI channel specified in the creation arguments of the Faust unit (0 meaning
 explicit OSC controller assignments in the Faust source by means of the
 <tt class="docutils literal"><span class="pre">osc</span></tt> attribute. E.g., the following enables input and output of OSC
 messages for the OSC <tt class="docutils literal"><span class="pre">/pan</span></tt> address:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pan = hslider(<span class="s">&quot;pan [osc:/pan]&quot;</span>, <span class="mi">0</span>, -<span class="mi">1</span>, <span class="mi">1</span>, <span class="mf">0.01</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pan = hslider(<span class="s">&quot;pan [osc:/pan]&quot;</span>, <span class="mi">0</span>, -<span class="mi">1</span>, <span class="mi">1</span>, <span class="mf">0.01</span>)<span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -661,7 +661,7 @@ patterns from the Pd GUI.</li>
 <p>In pd-faust there is no way to specify the above options on the command line,
 so you&#8217;ll have to put them as <tt class="docutils literal"><span class="pre">pd</span></tt> attributes on the <em>main</em> group of your
 Faust program, as described in the faust2pd documentation. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>process = vgroup(<span class="s">&quot;[pd:no-slider-nums][pd:font-size=12]&quot;</span>, ...)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>process = vgroup(<span class="s">&quot;[pd:no-slider-nums][pd:font-size=12]&quot;</span>, ...)<span class="p">;</span>
 </pre></div>
 </div>
 <p>In addition, the following options can be used to change the appearance of
@@ -682,7 +682,7 @@ items.</li>
 the corresponding Faust control. For instance, the following Faust code hides
 the controls in the <tt class="docutils literal"><span class="pre">aux</span></tt> group, removes the number entry from the <tt class="docutils literal"><span class="pre">pan</span></tt>
 control, and renders the <tt class="docutils literal"><span class="pre">preset</span></tt> item as a Pd radio control:</p>
-<div class="highlight-pure"><div class="highlight"><pre>aux = vgroup(<span class="s">&quot;aux [pd:hidden]&quot;</span>, aux_part)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>aux = vgroup(<span class="s">&quot;aux [pd:hidden]&quot;</span>, aux_part)<span class="p">;</span>
 pan = hslider(<span class="s">&quot;pan [pd:no-slider-num]&quot;</span>, <span class="mi">0</span>, -<span class="mi">1</span>, <span class="mi">1</span>, <span class="mf">0.01</span>)<span class="p">;</span>
 preset = nentry(<span class="s">&quot;preset [pd:radio-slider]&quot;</span>, <span class="mi">0</span>, <span class="mi">0</span>, <span class="mi">7</span>, <span class="mi">1</span>)<span class="p">;</span>
 </pre></div>
@@ -704,12 +704,12 @@ instructions. Note that at present faust-remote.el isn&#8217;t installed
 automatically. You can do this manually by just copying the file to your Emacs
 site-lisp directory or any other location on the Emacs load-path. E.g., on
 Linux and other Unix-like systems:</p>
-<div class="highlight-pure"><div class="highlight"><pre>sudo cp etc/faust-remote.el /usr/share/emacs/site-lisp/
+<div class="highlight-pure"><div class="highlight"><pre><span></span>sudo cp etc/faust-remote.el /usr/share/emacs/site-lisp/
 </pre></div>
 </div>
 <p>To enable the package, put the following line into your .emacs configuration
 file (this also auto-loads <a class="reference external" href="https://github.com/rukano/emacs-faust-mode">Faust mode</a>):</p>
-<div class="highlight-pure"><div class="highlight"><pre>(require &#39;faust-remote)
+<div class="highlight-pure"><div class="highlight"><pre><span></span>(require &#39;faust-remote)
 </pre></div>
 </div>
 </div>
@@ -822,7 +822,7 @@ pd-faust versions.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

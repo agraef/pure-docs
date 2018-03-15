@@ -100,7 +100,7 @@ you can fix that yourself by regenerating the bindings, see below.</p>
 <span id="using-the-gl-bindings"></span><h2>Using the GL Bindings<a class="headerlink" href="#module-GL" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="module-GLU"></span><span class="target" id="module-GLUT"></span><span class="target" id="module-GL_ARB"></span><span class="target" id="module-GL_EXT"></span><span class="target" id="module-GL_NV"></span><span class="target" id="module-GL_ATI"></span><p>The bindings mainly consist of 3 Pure files: GL.pure, GLU.pure and GLUT.pure.</p>
 <p>In your Pure program, write something like:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> GL, GLU, GLUT<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> GL, GLU, GLUT<span class="p">;</span>
 </pre></div>
 </div>
 <p>GL.pure covers OpenGL up through version 2.1. To get access to extensions, you
@@ -114,11 +114,11 @@ your OpenGL implementation does not define a given function, a
 only argument.</p>
 <p>The functions are in namespaces GL, GLU and GLUT respectively. Functions
 are in curried form, i.e.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>GL<span class="p">::</span>Vertex3d <span class="mf">1.0</span> <span class="mf">2.0</span> <span class="mf">3.0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>GL<span class="p">::</span>Vertex3d <span class="mf">1.0</span> <span class="mf">2.0</span> <span class="mf">3.0</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>GL enumerants are in uppercase, as in C:</p>
-<div class="highlight-pure"><div class="highlight"><pre>GL<span class="p">::</span>Begin GL<span class="p">::</span>LINE_STRIP<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>GL<span class="p">::</span>Begin GL<span class="p">::</span>LINE_STRIP<span class="p">;</span>
 </pre></div>
 </div>
 <p>Currently, if the GLU or GLUT bindings reference a function that your DLL does
@@ -149,7 +149,7 @@ use a &#8220;staged&#8221; header set which is different from the installed Open
 headers. The &#8221;.&#8221; directory will always be searched first, so you can also just
 put the vendor-specific headers there. For instance, if you&#8217;re like Scott and
 you use Ubuntu with an Nvidia GPU, then you can do this:</p>
-<div class="highlight-pure"><div class="highlight"><pre>cd pure-gl/GL
+<div class="highlight-pure"><div class="highlight"><pre><span></span>cd pure-gl/GL
 ln -s /usr/share/doc/nvidia-glx-new-dev/include/GL/gl.h
 ln -s /usr/share/doc/nvidia-glx-new-dev/include/GL/glext.h
 </pre></div>
@@ -162,12 +162,12 @@ GL/all_gl.h. If you use openglut instead of freeglut you will have to change
 the GL/all_gl_freeglut.h file accordingly.</p>
 <p>Once you have set up things to your liking, you can regenerate the bindings by
 running make as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>make generate
+<div class="highlight-pure"><div class="highlight"><pre><span></span>make generate
 </pre></div>
 </div>
 <p>If you need a custom path to the OpenGL headers as described above (say,
 /usr/local/include) then do this instead:</p>
-<div class="highlight-pure"><div class="highlight"><pre>make generate glpath=/usr/local/include
+<div class="highlight-pure"><div class="highlight"><pre><span></span>make generate glpath=/usr/local/include
 </pre></div>
 </div>
 <p>If you&#8217;re lucky, this will regenerate all the GL*.pure and GL*.c files, and
@@ -249,7 +249,7 @@ one (e.g., GL_EXT.c) and modify it accordingly.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

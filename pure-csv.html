@@ -211,7 +211,7 @@ reading tab delimited files without quoted strings.</p>
 </dd>
 </dl>
 <p id="example-dialect">Example</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {delimiter=&gt;<span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>, quote_flag=&gt;STRING}<span class="p">;</span>
 <span class="gp">&gt;</span>
@@ -251,7 +251,7 @@ The header record may be accessed by <tt class="docutils literal"><span class="p
 </dd>
 </dl>
 <p id="examples-open">Examples</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {delimiter=&gt;<span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;junk.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
@@ -266,7 +266,7 @@ The header record may be accessed by <tt class="docutils literal"><span class="p
 </pre></div>
 </div>
 <p>Suppose our file &#8220;test.csv&#8221; is as presented below.</p>
-<div class="highlight-pure"><div class="highlight"><pre>ir$ more test.csv
+<div class="highlight-pure"><div class="highlight"><pre><span></span>ir$ more test.csv
 NAME,TEST1,TEST2
 <span class="s">&quot;HOPE, BOB&quot;</span>,<span class="mi">90</span>,<span class="mi">95</span>
 <span class="s">&quot;JONES, SALLY&quot;</span>,<span class="mi">88</span>,<span class="mi">72</span>
@@ -275,7 +275,7 @@ NAME,TEST1,TEST2
 </div>
 <p>Notice how the <tt class="docutils literal"><span class="pre">LIST</span></tt> option affects the return of <tt class="docutils literal"><span class="pre">getr</span></tt> and how the
 <tt class="docutils literal"><span class="pre">HEADER</span></tt> option may be used to index records.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;MINIMAL}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;r&quot;</span>, d, [LIST,HEADER])<span class="p">;</span>
@@ -338,7 +338,7 @@ Writing to a file opened for reading invokes the <tt class="docutils literal"><s
 <div class="section" id="examples">
 <span id="id1"></span><h3><a class="toc-backref" href="#id9">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h3>
 <p>The first example shows how to write and read a default CSV file.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;testing.csv&quot;</span>, <span class="s">&quot;w&quot;</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>fputr f [{<span class="s">&quot;bob&quot;</span>,<span class="mf">3.9</span>,<span class="s">&quot;&quot;</span>,-<span class="mi">2</span>},{<span class="s">&quot;fred&quot;</span>,-<span class="mf">11.8</span>,<span class="s">&quot;&quot;</span>,<span class="mi">0</span>},{<span class="s">&quot;mary&quot;</span>,<span class="mf">2.3</span>,<span class="s">&quot;$&quot;</span>,<span class="mi">11</span>}]<span class="p">;</span>
@@ -354,7 +354,7 @@ Writing to a file opened for reading invokes the <tt class="docutils literal"><s
 </div>
 <p>The second example illustrates how to write and read a CSV file using
 automatic conversions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;MINIMAL}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
@@ -374,7 +374,7 @@ automatic conversions.</p>
 </div>
 <p>Records containing quotes, delimiters, and line breaks are also properly
 handled.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;STRING}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
@@ -393,11 +393,11 @@ handled.</p>
 <p>Consider the following hand written CSV file. According to RFC4180, this is
 not a valid CSV file. However, by using the <tt class="docutils literal"><span class="pre">space_around_quoted_field</span></tt>, the
 file can still be read.</p>
-<div class="highlight-pure"><div class="highlight"><pre>erucker:$ more test.csv
+<div class="highlight-pure"><div class="highlight"><pre><span></span>erucker:$ more test.csv
   <span class="s">&quot;this&quot;</span>,   <span class="s">&quot;is&quot;</span>,  <span class="s">&quot;not&quot;</span>, <span class="s">&quot;valid&quot;</span>
 </pre></div>
 </div>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open <span class="s">&quot;test.csv&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>getr f<span class="p">;</span>
@@ -412,12 +412,12 @@ csv<span class="p">::</span>error <span class="s">&quot;parse error at line 1&qu
 <p>The <tt class="docutils literal"><span class="pre">trim_space</span></tt> flag should be used with caution. A field with space in
 front of a number should be interpreted as a string, but consider the following
 file.</p>
-<div class="highlight-pure"><div class="highlight"><pre>erucker:$ more test.csv
+<div class="highlight-pure"><div class="highlight"><pre><span></span>erucker:$ more test.csv
 <span class="s">&quot;  this   &quot;</span>, <span class="mi">45</span> ,<span class="mi">23</span>,  hello
 </pre></div>
 </div>
 <p>Now observe the differences for the two dialects below.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {trim_space=&gt;BOTH}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>,<span class="s">&quot;r&quot;</span>,d)<span class="p">;</span>
@@ -431,7 +431,7 @@ file.</p>
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">trim_space</span></tt> flag also affects writing.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {trim_space=&gt;BOTH}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d)<span class="p">;</span>
@@ -448,7 +448,7 @@ erucker:$ more test.csv
 <p>For the last example a tab delimiter is used, automatic conversions is on,
 and records are represented as lists. Files are automatically closed when
 the script is finished.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">using</span> <span class="kr">namespace</span> csv<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d = dialect {quote_flag=&gt;MINIMAL, delimiter=&gt;<span class="s">&quot;</span><span class="se">\t</span><span class="s">&quot;</span>}<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> f = open (<span class="s">&quot;test.csv&quot;</span>, <span class="s">&quot;w&quot;</span>, d, [LIST])<span class="p">;</span>
@@ -539,7 +539,7 @@ the script is finished.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

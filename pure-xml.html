@@ -115,13 +115,13 @@ module. This requires libxml2, libxslt and Pure.</p>
 <h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>Use the following declaration to make the operations of this module available
 in your programs:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> xml<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> xml<span class="p">;</span>
 </pre></div>
 </div>
 <p>The module defines two namespaces <tt class="docutils literal"><span class="pre">xml</span></tt> and <tt class="docutils literal"><span class="pre">xslt</span></tt> for the XML and the
 XSLT operations, respectively. For convenience, you can open these in your
 program as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> <span class="kr">namespace</span> xml, xslt<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> <span class="kr">namespace</span> xml, xslt<span class="p">;</span>
 </pre></div>
 </div>
 <p>A number of complete examples illustrating the use of this module can be found
@@ -519,7 +519,7 @@ attribute.)</p>
 <p><strong>Example</strong></p>
 <p>Read the sample.xml document distributed with the sources (ignoring blank
 nodes) and retrieve the document info:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> xml<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> xml<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> sample = xml<span class="p">::</span>load_file <span class="s">&quot;sample.xml&quot;</span> xml<span class="p">::</span>NOBLANKS<span class="p">;</span>
 <span class="gp">&gt; </span>xml<span class="p">::</span>doc_info sample<span class="p">;</span>
 <span class="s">&quot;1.0&quot;</span>,<span class="s">&quot;&quot;</span>,<span class="s">&quot;sample.xml&quot;</span>,<span class="mi">0</span>,-<span class="mi">2</span>
@@ -596,7 +596,7 @@ attribute nodes of a node:</p>
 the <tt class="docutils literal"><span class="pre">i</span></tt>th child of <tt class="docutils literal"><span class="pre">node</span></tt>.</p>
 <p><strong>Example</strong></p>
 <p>Peek at the root node of the sample document and its children:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> r = xml<span class="p">::</span>root sample<span class="p">;</span> r<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> r = xml<span class="p">::</span>root sample<span class="p">;</span> r<span class="p">;</span>
 <span class="kt">#&lt;pointer 0xe15e10&gt;</span>
 <span class="gp">&gt; </span>xml<span class="p">::</span>node_info r<span class="p">;</span>
 xml<span class="p">::</span>element <span class="s">&quot;story&quot;</span> [] []
@@ -689,7 +689,7 @@ entity substitution).</p>
 
 <p><strong>Examples</strong></p>
 <p>Set and unset a node attribute:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>xml<span class="p">::</span>set_node_attr r <span class="s">&quot;foo&quot;</span> <span class="s">&quot;4711&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>xml<span class="p">::</span>set_node_attr r <span class="s">&quot;foo&quot;</span> <span class="s">&quot;4711&quot;</span><span class="p">;</span>
 ()
 <span class="gp">&gt; </span>xml<span class="p">::</span>node_info r<span class="p">;</span>
 xml<span class="p">::</span>element <span class="s">&quot;story&quot;</span> [] [<span class="s">&quot;foo&quot;</span>=&gt;<span class="s">&quot;4711&quot;</span>]
@@ -705,14 +705,14 @@ xml<span class="p">::</span>element <span class="s">&quot;story&quot;</span> [] 
 important operation of this module if you want to extract information from
 an existing XML document without traversing the entire structure. Here is a
 very simple example of its use:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>[xml<span class="p">::</span>node_content n, xml<span class="p">::</span>node_path n | n = xml<span class="p">::</span>select sample <span class="s">&quot;//author&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>[xml<span class="p">::</span>node_content n, xml<span class="p">::</span>node_path n | n = xml<span class="p">::</span>select sample <span class="s">&quot;//author&quot;</span>]<span class="p">;</span>
 [(<span class="s">&quot;John Fleck&quot;</span>,<span class="s">&quot;/story/storyinfo/author&quot;</span>)]
 </pre></div>
 </div>
 <p>Note that if the XPath expression contains qualified names, the
 corresponding namespace prefixes and their URIs must be given in the second
 argument along with the XPath, as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>xml<span class="p">::</span>select doc (<span class="s">&quot;//foo:bar&quot;</span>, [<span class="s">&quot;foo&quot;</span>=&gt;<span class="s">&quot;http://www.foo.org&quot;</span>])<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>xml<span class="p">::</span>select doc (<span class="s">&quot;//foo:bar&quot;</span>, [<span class="s">&quot;foo&quot;</span>=&gt;<span class="s">&quot;http://www.foo.org&quot;</span>])<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -754,7 +754,7 @@ respectively.</p>
 
 <p><strong>Examples</strong></p>
 <p>Replace the first child of the root node in the sample document:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>xml<span class="p">::</span>node_info (r!<span class="mi">0</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>xml<span class="p">::</span>node_info (r!<span class="mi">0</span>)<span class="p">;</span>
 xml<span class="p">::</span>cdata <span class="s">&quot;&lt;greeting&gt;Hello, world!&lt;/greeting&gt;&quot;</span>
 <span class="gp">&gt; </span>xml<span class="p">::</span>replace (r!<span class="mi">0</span>) (xml<span class="p">::</span>text <span class="s">&quot;bla bla&quot;</span>)<span class="p">;</span>
 <span class="kt">#&lt;pointer 0xd40d80&gt;</span>
@@ -763,7 +763,7 @@ xml<span class="p">::</span>text <span class="s">&quot;bla bla&quot;</span>
 </pre></div>
 </div>
 <p>Delete that node:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>xml<span class="p">::</span>unlink (r!<span class="mi">0</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>xml<span class="p">::</span>unlink (r!<span class="mi">0</span>)<span class="p">;</span>
 ()
 <span class="gp">&gt; </span>xml<span class="p">::</span>node_info (r!<span class="mi">0</span>)<span class="p">;</span>
 xml<span class="p">::</span>comment <span class="s">&quot;This is a sample document for testing the xml interface.&quot;</span>
@@ -828,12 +828,12 @@ output-related information contained in the stylesheet.</p>
 <p><strong>Example</strong></p>
 <p>Load the recipes.xml document and the recipes.xsl stylesheet distributed
 with the sources:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> recipes = xml<span class="p">::</span>load_file <span class="s">&quot;recipes.xml&quot;</span> xml<span class="p">::</span>DTDVALID<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> recipes = xml<span class="p">::</span>load_file <span class="s">&quot;recipes.xml&quot;</span> xml<span class="p">::</span>DTDVALID<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> style = xslt<span class="p">::</span>load_stylesheet <span class="s">&quot;recipes.xsl&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Apply the stylesheet to the document and save the result in a html file:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> res = xslt<span class="p">::</span>apply_stylesheet style recipes []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> res = xslt<span class="p">::</span>apply_stylesheet style recipes []<span class="p">;</span>
 <span class="gp">&gt; </span>xslt<span class="p">::</span>save_result_file <span class="s">&quot;recipes.html&quot;</span> res style <span class="mi">0</span><span class="p">;</span>
 ()
 </pre></div>
@@ -923,7 +923,7 @@ browser.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

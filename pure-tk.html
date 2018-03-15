@@ -157,7 +157,7 @@ per process, but of course you can create secondary interpreter instances in
 the Tcl interpreter using the appropriate Tcl commands.</p>
 <p>Simple dialogs can be created directly using Tk&#8217;s <tt class="docutils literal"><span class="pre">tk_messageBox</span></tt> and
 <tt class="docutils literal"><span class="pre">tk_dialog</span></tt> functions. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;tk_dialog .warning </span><span class="se">\&quot;</span><span class="s">Warning</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\&quot;</span><span class="s">Are you sure?</span><span class="se">\&quot;</span><span class="s"> warning 0 Yes No Cancel&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>tk <span class="s">&quot;tk_dialog .warning </span><span class="se">\&quot;</span><span class="s">Warning</span><span class="se">\&quot;</span><span class="s"> </span><span class="se">\&quot;</span><span class="s">Are you sure?</span><span class="se">\&quot;</span><span class="s"> warning 0 Yes No Cancel&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Other kinds of common dialogs are available; see the Tcl/Tk manual for
@@ -171,7 +171,7 @@ care of processing events in the Tcl/Tk GUI. We discuss this in the following.</
 <p>pure-tk installs a special Tcl command named <tt class="docutils literal"><span class="pre">pure</span></tt> in the interpreter which
 can be used to implement callbacks in Pure. This command is invoked from Tcl
 as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure function args ...
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure function args ...
 </pre></div>
 </div>
 <p>It calls the Pure function named by the first argument, passing any remaining
@@ -181,7 +181,7 @@ the result returned to the Tcl interpreter is empty.</p>
 <p>Pure callbacks are installed on Tk widgets just like any other, just using the
 <tt class="docutils literal"><span class="pre">pure</span></tt> command as the actual callback command. For instance, you can define
 a callback which gets invoked when a button is pushed as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> tk, system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> tk, system<span class="p">;</span>
 tk <span class="s">&quot;button .b -text {Hello, world!} -command {pure hello}; pack .b&quot;</span><span class="p">;</span>
 hello = puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
 </pre></div>
@@ -200,7 +200,7 @@ hello = puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</
 interpreter is exited. You can terminate the interpreter in a Pure callback by
 calling <a class="reference internal" href="#tk_quit" title="tk_quit"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_quit</span></tt></a>. Thus a minimalistic Tcl/Tk application coded in Pure
 may look as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> tk<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> tk<span class="p">;</span>
 tk <span class="s">&quot;button .b -text {Hello, world!} -command {pure tk_quit}; pack .b&quot;</span><span class="p">;</span>
 tk_main<span class="p">;</span>
 </pre></div>
@@ -228,7 +228,7 @@ interpreter with the <a class="reference internal" href="#tk_set" title="tk_set"
 functions. This is useful, e.g., to change the variables associated with entry
 and button widgets, and to retrieve the current values from the
 application. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_set <span class="s">&quot;entry_val&quot;</span> <span class="s">&quot;some string&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tk_set <span class="s">&quot;entry_val&quot;</span> <span class="s">&quot;some string&quot;</span><span class="p">;</span>
 <span class="s">&quot;some string&quot;</span>
 <span class="gp">&gt; </span>tk_get <span class="s">&quot;entry_val&quot;</span><span class="p">;</span>
 <span class="s">&quot;some string&quot;</span>
@@ -240,7 +240,7 @@ tk_get <span class="s">&quot;entry_val&quot;</span>
 </div>
 <p>Note that <a class="reference internal" href="#tk_set" title="tk_set"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_set</span></tt></a> returns the assigned value, so it is possible to chain
 such calls if several variables have to be set to the same value:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_set <span class="s">&quot;foo&quot;</span> $ tk_set <span class="s">&quot;bar&quot;</span> <span class="s">&quot;yes&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tk_set <span class="s">&quot;foo&quot;</span> $ tk_set <span class="s">&quot;bar&quot;</span> <span class="s">&quot;yes&quot;</span><span class="p">;</span>
 <span class="s">&quot;yes&quot;</span>
 <span class="gp">&gt; </span>map tk_get [<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>]<span class="p">;</span>
 [<span class="s">&quot;yes&quot;</span>,<span class="s">&quot;yes&quot;</span>]
@@ -266,7 +266,7 @@ corresponding Tcl lists and vice versa:</p>
 <dd><p>convert between Pure and Tcl lists</p>
 </dd></dl>
 
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_join [<span class="s">&quot;0&quot;</span>,<span class="s">&quot;1.0&quot;</span>,<span class="s">&quot;Hello, world!&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tk_join [<span class="s">&quot;0&quot;</span>,<span class="s">&quot;1.0&quot;</span>,<span class="s">&quot;Hello, world!&quot;</span>]<span class="p">;</span>
 <span class="s">&quot;0 1.0 {Hello, world!}&quot;</span>
 <span class="gp">&gt; </span>tk_split ans<span class="p">;</span>
 [<span class="s">&quot;0&quot;</span>,<span class="s">&quot;1.0&quot;</span>,<span class="s">&quot;Hello, world!&quot;</span>]
@@ -283,14 +283,14 @@ doubles):</p>
 <dd><p>convert between Pure and Tcl values with numeric conversions</p>
 </dd></dl>
 
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_str [<span class="mi">0</span>,<span class="mf">1.0</span>,<span class="s">&quot;Hello, world!&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tk_str [<span class="mi">0</span>,<span class="mf">1.0</span>,<span class="s">&quot;Hello, world!&quot;</span>]<span class="p">;</span>
 <span class="s">&quot;0 1.0 {Hello, world!}&quot;</span>
 <span class="gp">&gt; </span>tk_val ans<span class="p">;</span>
 [<span class="mi">0</span>,<span class="mf">1.0</span>,<span class="s">&quot;Hello, world!&quot;</span>]
 </pre></div>
 </div>
 <p>In addition, these operations also convert single atomic values:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tk_str <span class="mf">1.0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tk_str <span class="mf">1.0</span><span class="p">;</span>
 <span class="s">&quot;1.0&quot;</span>
 <span class="gp">&gt; </span>tk_val ans<span class="p">;</span>
 <span class="mf">1.0</span>
@@ -306,7 +306,7 @@ pure-tk.</p>
 of the <tt class="xref pure pure-func docutils literal"><span class="pre">tk_error</span></tt> function, which is invoked with an error message as
 its single argument. For instance, the following implementation of
 <tt class="xref pure pure-func docutils literal"><span class="pre">tk_error</span></tt> throws an exception:</p>
-<div class="highlight-pure"><div class="highlight"><pre>tk_error msg = <span class="nb">throw</span> msg<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>tk_error msg = <span class="nb">throw</span> msg<span class="p">;</span>
 </pre></div>
 </div>
 <p>If no definition for this function is provided, then errors cause a literal
@@ -324,7 +324,7 @@ application, in order to reduce &#8220;flickering&#8221;.</p>
 </li>
 <li><p class="first">Instead of calling <a class="reference internal" href="#tk_main" title="tk_main"><tt class="xref pure pure-func docutils literal"><span class="pre">tk_main</span></tt></a>, you can also code your own main loop in
 Pure as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>main = do_something $$ main <span class="kr">if</span> tk_ready<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>main = do_something $$ main <span class="kr">if</span> tk_ready<span class="p">;</span>
      = () <span class="kr">otherwise</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -344,13 +344,13 @@ applications. Usually, you will prefer to put the commands making up your
 application into a separate Tcl script. One way to incorporate the Tcl
 script into your your Pure program is to use the Tcl <tt class="docutils literal"><span class="pre">source</span></tt> command,
 e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;source myapp.tcl&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>tk <span class="s">&quot;source myapp.tcl&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>However, this always requires the script to be available at runtime. Another
 method is to read the script into a string which is assigned to a Pure
 constant, and then invoke the <a class="reference internal" href="#tk" title="tk"><tt class="xref pure pure-func docutils literal"><span class="pre">tk</span></tt></a> command on this string value:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> system<span class="p">;</span>
 <span class="kr">const</span> ui = fget $ fopen <span class="s">&quot;myapp.tcl&quot;</span> <span class="s">&quot;r&quot;</span><span class="p">;</span>
 tk ui<span class="p">;</span>
 </pre></div>
@@ -361,7 +361,7 @@ native executable (see the Pure manual for details on this), in which case
 the text of the Tcl script is included verbatim in the executable. The
 compiled program can then be run without having the original Tcl script file
 available:</p>
-<div class="highlight-pure"><div class="highlight"><pre>$ pure -c myapp.pure -o myapp
+<div class="highlight-pure"><div class="highlight"><pre><span></span>$ pure -c myapp.pure -o myapp
 $ ./myapp
 </pre></div>
 </div>
@@ -372,7 +372,7 @@ if you create the interface using some interface builder like <a class="referenc
 <ul>
 <li><p class="first">The Tcl <tt class="docutils literal"><span class="pre">package</span></tt> command allows you to load additional extensions into
 the Tcl interpreter at runtime. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;package require Gnocl&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>tk <span class="s">&quot;package require Gnocl&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This loads Peter G. Baum&#8217;s <a class="reference external" href="http://www.gnocl.org/">Gnocl</a> extension which turns Tcl into a frontend
@@ -380,7 +380,7 @@ for <a class="reference external" href="http://www.gtk.org/">GTK+</a> and <a cla
 the nitty-gritty details of creating a GTK+/Gnome application from a <a class="reference external" href="http://glade.gnome.org/">Glade</a>
 UI file and set up Pure callbacks as specified in the UI file. To use this,
 just import the gnocl.pure module into your Pure scripts:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> gnocl<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> gnocl<span class="p">;</span>
 </pre></div>
 </div>
 <p>Note that the Glade interface requires that you have a fairly recent version
@@ -395,16 +395,16 @@ as part of a Pure program and not as a separate child process, this might
 not be what you want. If you&#8217;d like <tt class="docutils literal"><span class="pre">exit</span></tt> to only exit the Tcl
 interpreter, without exiting the Pure program, you can redefine the <tt class="docutils literal"><span class="pre">exit</span></tt>
 procedure, e.g., as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;proc exit { {returnCode 0} } { pure tk_quit }&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>tk <span class="s">&quot;proc exit { {returnCode 0} } { pure tk_quit }&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If you want to do something with the exit code provided by <tt class="docutils literal"><span class="pre">exit</span></tt>, you
 will have to provide an appropriate callback function, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>tk <span class="s">&quot;proc exit { {returnCode 0} } { pure quit_cb $returnCode }&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>tk <span class="s">&quot;proc exit { {returnCode 0} } { pure quit_cb $returnCode }&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>A suitable implementation of <tt class="docutils literal"><span class="pre">quit_cb</span></tt> might look as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>quit_cb <span class="mi">0</span> = puts <span class="s">&quot;Application exited normally.&quot;</span> $$ tk_quit<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>quit_cb <span class="mi">0</span> = puts <span class="s">&quot;Application exited normally.&quot;</span> $$ tk_quit<span class="p">;</span>
 quit_cb n = printf <span class="s">&quot;Application exited with exit code %d.</span><span class="se">\n</span><span class="s">&quot;</span> n $$
             tk_quit <span class="kr">otherwise</span><span class="p">;</span>
 </pre></div>
@@ -492,7 +492,7 @@ this way, the latter can be implemented using Tk&#8217;s <tt class="docutils lit
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

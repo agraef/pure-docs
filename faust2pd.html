@@ -193,9 +193,9 @@ interpreter).</p>
 to its own Pd external. Under Linux, the basic compilation process is as
 follows (taking the freeverb module from the Faust distribution as an
 example):</p>
-<div class="highlight-sh"><div class="highlight"><pre><span class="c"># compile the Faust source to a C++ module using the &quot;puredata&quot; architecture</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># compile the Faust source to a C++ module using the &quot;puredata&quot; architecture</span>
 faust -a puredata.cpp freeverb.dsp -o freeverb.cpp
-<span class="c"># compile the C++ module to a Pd plugin</span>
+<span class="c1"># compile the C++ module to a Pd plugin</span>
 g++ -shared -Dmydsp<span class="o">=</span>freeverb freeverb.cpp -o freeverb~.pd_linux
 </pre></div>
 </div>
@@ -222,11 +222,11 @@ GUI elements to inspect and change the control values.</p>
 <p>The process to compile a plugin and build a wrapper patch is very similar to
 what we&#8217;ve seen above. You only have to add the -xml option when invoking the
 Faust compiler and run faust2pd on the resulting XML file:</p>
-<div class="highlight-sh"><div class="highlight"><pre><span class="c"># compile the Faust source and generate the xml file</span>
+<div class="highlight-sh"><div class="highlight"><pre><span></span><span class="c1"># compile the Faust source and generate the xml file</span>
 faust -a puredata.cpp -xml freeverb.dsp -o freeverb.cpp
-<span class="c"># compile the C++ module to a Pd plugin</span>
+<span class="c1"># compile the C++ module to a Pd plugin</span>
 g++ -shared -Dmydsp<span class="o">=</span>freeverb freeverb.cpp -o freeverb~.pd_linux
-<span class="c"># generate the Pd patch from the xml file</span>
+<span class="c1"># generate the Pd patch from the xml file</span>
 faust2pd freeverb.dsp.xml
 </pre></div>
 </div>
@@ -349,7 +349,7 @@ interpreter as well as the pd-pure plugin available from
 <p>The faust2pd script generates Pd patches from the dsp.xml files created by
 Faust when run with the -xml option. Most of the sample patches were actually
 created that way. After installation you can run the script as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>faust2pd [-hVbs] [-f size] [-o output-file] [-n #voices]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>faust2pd [-hVbs] [-f size] [-o output-file] [-n #voices]
   [-r max] [-X patterns] [-x width] [-y height] input-file
 </pre></div>
 </div>
@@ -511,13 +511,13 @@ can also be specified in the Faust source, as special meta data in the label
 of the toplevel group of the dsp. These take the form <tt class="docutils literal"><span class="pre">[pd:option]</span></tt> or
 <tt class="docutils literal"><span class="pre">[pd:option=value]</span></tt> where <tt class="docutils literal"><span class="pre">option</span></tt> is any of the layout options understood
 by faust2pd. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>process = vgroup(<span class="s">&quot;mysynth [pd:nvoices=8] [pd:no-slider-nums]&quot;</span>, ...)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>process = vgroup(<span class="s">&quot;mysynth [pd:nvoices=8] [pd:no-slider-nums]&quot;</span>, ...)<span class="p">;</span>
 </pre></div>
 </div>
 <p>Alternatively, as of faust2pd 2.11, these options can also be specified as a
 single chunk of global meta data, using the <tt class="docutils literal"><span class="pre">faust2pd</span></tt> key. So the above can
 also be written as:</p>
-<div class="highlight-pure"><div class="highlight"><pre>declare faust2pd <span class="s">&quot;--nvoices=8 --no-slider-nums&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>declare faust2pd <span class="s">&quot;--nvoices=8 --no-slider-nums&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Note that source options carrying arguments, like <tt class="docutils literal"><span class="pre">--nvoices</span></tt> in the above
@@ -559,12 +559,12 @@ convenience functions are provided to deal with the control descriptions.</p>
 <div class="section" id="usage">
 <h3><a class="toc-backref" href="#id14">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h3>
 <p>Use the following declaration to import this module in your programs:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> faustxml<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> faustxml<span class="p">;</span>
 </pre></div>
 </div>
 <p>For convenience, you can also use the following to get access to the
 module&#8217;s namespace:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> <span class="kr">namespace</span> faustxml<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> <span class="kr">namespace</span> faustxml<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -662,7 +662,7 @@ contents.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> faustxml<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> faustxml<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> name,descr,version,in,out,group,opts =
 <span class="gp">&gt; </span>  faustxml<span class="p">::</span>info <span class="s">&quot;examples/basic/freeverb.dsp.xml&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>name,descr,version,in,out<span class="p">;</span>
@@ -786,7 +786,7 @@ JSON data.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

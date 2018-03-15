@@ -129,7 +129,7 @@ that are not available through Pure&#8217;s generic ODBC interface.</p>
 <p>Here is a simple example that opens a database file &#8220;readme.db&#8221;
 (creating it if it does not exist), adds a table &#8220;RM&#8221;, populates &#8220;RM&#8221;
 and executes a query.</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure-sql3$&gt; pure -q
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure-sql3$&gt; pure -q
 <span class="gp">&gt;</span>
 
 <span class="gp">&gt; </span><span class="kr">using</span> sql3<span class="p">;</span> <span class="kr">using</span> <span class="kr">namespace</span> sql3<span class="p">;</span>
@@ -190,14 +190,15 @@ with Sql3 in the Pure interpreter in particular. For example, after
 entering the Pure statements from the Simple Example above, you could
 start a new terminal, cd to pure-sql3, type &#8220;sqlite3 readme.db&#8221; at the
 prompt, and see the effect the Pure statements had on the database:</p>
-<div class="highlight-sql"><pre>pure-sql3$&gt; sqlite3 readme.db
-SQLite version 3.6.16
-Enter ".help" for instructions
-Enter SQL statements terminated with a ";"
+<div class="highlight-sql"><div class="highlight"><pre><span></span><span class="n">pure</span><span class="o">-</span><span class="n">sql3$</span><span class="o">&gt;</span> <span class="n">sqlite3</span> <span class="n">readme</span><span class="p">.</span><span class="n">db</span>
+<span class="n">SQLite</span> <span class="k">version</span> <span class="mi">3</span><span class="p">.</span><span class="mi">6</span><span class="p">.</span><span class="mi">16</span>
+<span class="n">Enter</span> <span class="ss">&quot;.help&quot;</span> <span class="k">for</span> <span class="n">instructions</span>
+<span class="n">Enter</span> <span class="k">SQL</span> <span class="n">statements</span> <span class="n">terminated</span> <span class="k">with</span> <span class="n">a</span> <span class="ss">&quot;;&quot;</span>
 
-sqlite&gt; select * from RM;
-Sam|20
-Fred|22</pre>
+<span class="n">sqlite</span><span class="o">&gt;</span> <span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">RM</span><span class="p">;</span>
+<span class="n">Sam</span><span class="o">|</span><span class="mi">20</span>
+<span class="n">Fred</span><span class="o">|</span><span class="mi">22</span>
+</pre></div>
 </div>
 <p>For bottom up REPL development, sqlite3 and Pure are an excellent
 combination.</p>
@@ -242,7 +243,7 @@ type tags in rule patterns or as the first parameter passed to in the typep
 function. It follows that all db_ptrs are sqlite3* pointers and all stmt_ptrs
 are sqlite3_stmt* pointers. Thus, using dbp and sp1 from the introductory
 example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>typep db_ptr dbp, pointer_type dbp<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>typep db_ptr dbp, pointer_type dbp<span class="p">;</span>
 <span class="mi">1</span>, <span class="s">&quot;sqlite3*&quot;</span>
 
 <span class="gp">&gt; </span>typep stmt_ptr sp1, pointer_type sp1<span class="p">;</span>
@@ -279,7 +280,7 @@ by SQLite.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span> <span class="kr">let</span> dbp2 = open <span class="s">&quot;abc.db&quot;</span><span class="p">;</span> dbp2<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span> <span class="kr">let</span> dbp2 = open <span class="s">&quot;abc.db&quot;</span><span class="p">;</span> dbp2<span class="p">;</span>
 <span class="kt">#&lt;pointer 0x992dff8&gt;</span>
 </pre></div>
 </div>
@@ -314,7 +315,7 @@ Prepared Statements</a>)</p>
 database connection object that must be closed. In this case, <a class="reference internal" href="#sql3::open" title="sql3::open"><tt class="xref pure pure-func docutils literal"><span class="pre">open</span></tt></a>
 automatically closes the the connection object and then throws an
 exception. E.g.,:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="nb">catch</span> error (open (<span class="s">&quot;RM_zyx.db&quot;</span>,SQLITE_OPEN_READONLY))<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nb">catch</span> error (open (<span class="s">&quot;RM_zyx.db&quot;</span>,SQLITE_OPEN_READONLY))<span class="p">;</span>
 error (sql3<span class="p">::</span>db_error <span class="mi">14</span> <span class="s">&quot;unable to open database file [open RM_zyx.db]&quot;</span>)
 </pre></div>
 </div>
@@ -354,7 +355,7 @@ close it using sqlite3_close; otherwise do nothing.</p>
 statements associated with the connection being closed. Sql3 will
 detect and throw a db_error if an attempt is subsequently made to
 execute a statement associated with the closed database connection.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> dbp2_sp = prep dbp2 <span class="s">&quot;ci:&quot;</span> <span class="s">&quot;select * from RM&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> dbp2_sp = prep dbp2 <span class="s">&quot;ci:&quot;</span> <span class="s">&quot;select * from RM&quot;</span><span class="p">;</span>
 
 <span class="gp">&gt; </span>exec dbp2_sp ()<span class="p">;</span>
 [[<span class="s">&quot;Sam&quot;</span>,<span class="mi">20</span>],[<span class="s">&quot;Fred&quot;</span>,<span class="mi">22</span>]]
@@ -436,7 +437,7 @@ indicate that (a) a string and an int will be used to bind <tt class="docutils l
 an int will be used to bind <tt class="docutils literal"><span class="pre">sp2</span></tt> and (c) <tt class="docutils literal"><span class="pre">sp2</span></tt>, when executed,
 will return a result set in the form of a list of sublists each of
 which contains a string and an int.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sp1 = prep dbp <span class="s">&quot;ci&quot;</span> <span class="s">&quot;insert into RM values (?,?)&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> sp1 = prep dbp <span class="s">&quot;ci&quot;</span> <span class="s">&quot;insert into RM values (?,?)&quot;</span><span class="p">;</span>
 
 <span class="gp">&gt; </span><span class="kr">let</span> sp2 = prep dbp <span class="s">&quot;ci:i&quot;</span> <span class="s">&quot;select * from RM where age &gt; ?&quot;</span><span class="p">;</span>
 </pre></div>
@@ -548,7 +549,7 @@ a valid stmt_ptr or the rule will fail.</p>
 number and type correspond to the bind parameter types specified in
 the call to <a class="reference internal" href="#sql3::prep" title="sql3::prep"><tt class="xref pure pure-func docutils literal"><span class="pre">prep</span></tt></a> that produced the first parameter <tt class="docutils literal"><span class="pre">sp</span></tt>.</p>
 <p>Thus, using sp1 and sp2 defined in the introductory example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>exec sp1 (<span class="s">&quot;Tom&quot;</span>,<span class="mi">30</span>)<span class="p">;</span>  <span class="c1">//insert Tom</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>exec sp1 (<span class="s">&quot;Tom&quot;</span>,<span class="mi">30</span>)<span class="p">;</span>  <span class="c1">//insert Tom</span>
 []
 
 <span class="gp">&gt; </span>exec sp2 <span class="mi">19</span><span class="p">;</span>          <span class="c1">//select age &gt; 19</span>
@@ -556,13 +557,13 @@ the call to <a class="reference internal" href="#sql3::prep" title="sql3::prep">
 </pre></div>
 </div>
 <p>An error is thrown if the args do not correspond to the specified types.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="nb">catch</span> error (exec sp2 <span class="s">&quot;a&quot;</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nb">catch</span> error (exec sp2 <span class="s">&quot;a&quot;</span>)<span class="p">;</span>
 error (sql3<span class="p">::</span>db_error <span class="mi">0</span> <span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">a</span><span class="se">\&quot;</span><span class="s"> does not have type int&quot;</span>)
 </pre></div>
 </div>
 <p>If a prepared statement does not have any binding parameters,
 the call to <a class="reference internal" href="#sql3::exec" title="sql3::exec"><tt class="xref pure pure-func docutils literal"><span class="pre">exec</span></tt></a> should use <tt class="docutils literal"><span class="pre">()</span></tt> as the binding argument.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sp3 = prep dbp <span class="s">&quot;c:&quot;</span> <span class="s">&quot;select name from RM&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> sp3 = prep dbp <span class="s">&quot;c:&quot;</span> <span class="s">&quot;select name from RM&quot;</span><span class="p">;</span>
 
 <span class="gp">&gt; </span>exec sp3 ()<span class="p">;</span>
 [[<span class="s">&quot;Sam&quot;</span>],[<span class="s">&quot;Fred&quot;</span>],[<span class="s">&quot;Tom&quot;</span>]]
@@ -573,7 +574,7 @@ blob argument because it must be a pair. In order to preserve the
 tuple as a pair, binding arguments that include a blob should passed
 to exec as a list. If passed as a member of a larger tuple, it will be
 treated as two arguments due to the nature of tuples.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> blb = (<span class="mi">100</span>,ptr)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> blb = (<span class="mi">100</span>,ptr)<span class="p">;</span>
 
 <span class="gp">&gt; </span>(a,blb,c)<span class="p">;</span>
 a,<span class="mi">100</span>,ptr,c
@@ -598,7 +599,7 @@ sets. In such cases it is preferable to use <a class="reference internal" href="
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>lexec sp2 <span class="mi">19</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>lexec sp2 <span class="mi">19</span><span class="p">;</span>
 [<span class="s">&quot;Sam&quot;</span>,<span class="mi">20</span>]:<span class="kt">#&lt;thunk 0xb6475ab0&gt;</span>
 </pre></div>
 </div>
@@ -619,7 +620,7 @@ statement.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>exec dbp <span class="s">&quot;create table if not exists RM (name varchar, age integer)&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>exec dbp <span class="s">&quot;create table if not exists RM (name varchar, age integer)&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -724,7 +725,7 @@ scope.</p>
 closed (which would have caused an exception to be thrown), an attempt
 to finalize it, including the automatic finalization can occur when
 stmt_ptr goes out of scope, will cause an exception to be thrown.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="nb">catch</span> error (finalize dbp2_sp)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="nb">catch</span> error (finalize dbp2_sp)<span class="p">;</span>
 error (sql3<span class="p">::</span>db_error <span class="mi">0</span> <span class="s">&quot;finalize: STMT attached to a closed db_ptr.&quot;</span>)
 </pre></div>
 </div>
@@ -752,7 +753,7 @@ corresponding error message. If ec&gt;0, the error was detected by SQLite
 itself, and ec and msg are those returned by SQLite. If ec==0, the error
 was detected by Sql3 and msg is a Sql3 specific description of the
 error. E.g.,</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>db_error_handler (db_error ec msg) = ()
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>db_error_handler (db_error ec msg) = ()
 <span class="gp">&gt; </span><span class="kr">when</span>
 <span class="gp">&gt; </span>  source = <span class="kr">if</span> ec &gt; <span class="mi">0</span> <span class="kr">then</span> <span class="s">&quot;SQLite&quot;</span> <span class="kr">else</span> <span class="s">&quot;Sql3&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>  printf <span class="s">&quot;%s db_error: ec %d, %s</span><span class="se">\n</span><span class="s">&quot;</span> (source,ec,msg)<span class="p">;</span>
@@ -777,7 +778,7 @@ executing successfully because the database referenced by <tt class="docutils li
 <div class="section" id="sqlite-error-codes">
 <h4><a class="toc-backref" href="#id25">SQLite Error Codes</a><a class="headerlink" href="#sqlite-error-codes" title="Permalink to this headline">¶</a></h4>
 <p>Here is a list, as of January 31, 2011, of SQLite&#8217;s error codes.</p>
-<div class="highlight-pure"><div class="highlight"><pre>SQLITE_ERROR        <span class="mi">1</span>   <span class="cm">/* SQL error or missing database */</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>SQLITE_ERROR        <span class="mi">1</span>   <span class="cm">/* SQL error or missing database */</span>
 SQLITE_INTERNAL     <span class="mi">2</span>   <span class="cm">/* Internal logic error in SQLite */</span>
 SQLITE_PERM         <span class="mi">3</span>   <span class="cm">/* Access permission denied */</span>
 SQLITE_ABORT        <span class="mi">4</span>   <span class="cm">/* Callback routine requested an abort */</span>
@@ -845,7 +846,7 @@ passed to <tt class="docutils literal"><span class="pre">pure_fun</span></tt> as
 <p>Here is an example of a scalar function that takes two parameters. Note
 that any kind of Pure &#8220;function&#8221; can be passed here; local functions,
 global functions, lambdas or partial applications all work.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>create_function dbp<span class="p">::</span>dbp <span class="s">&quot;p_fn&quot;</span> <span class="mi">2</span> plus <span class="kr">with</span> plus x y = x + y<span class="p">;</span> <span class="kr">end</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>create_function dbp<span class="p">::</span>dbp <span class="s">&quot;p_fn&quot;</span> <span class="mi">2</span> plus <span class="kr">with</span> plus x y = x + y<span class="p">;</span> <span class="kr">end</span><span class="p">;</span>
 
 <span class="gp">&gt; </span><span class="kr">let</span> sp4 = prep dbp <span class="s">&quot;cii:&quot;</span>
 <span class="gp">&gt; </span>          <span class="s">&quot;select p_fn(&#39;Hi &#39;,name), age, p_fn(age,10) from RM&quot;</span><span class="p">;</span>
@@ -855,7 +856,7 @@ global functions, lambdas or partial applications all work.</p>
 </pre></div>
 </div>
 <p>Here is an example of a variadic function:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>create_function dbp <span class="s">&quot;p_qm&quot;</span> (-<span class="mi">1</span>) quasimodo <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>create_function dbp <span class="s">&quot;p_qm&quot;</span> (-<span class="mi">1</span>) quasimodo <span class="kr">with</span>
 <span class="gp">&gt; </span>  quasimodo xs = <span class="s">&quot;quasimodo: &quot;</span>+join <span class="s">&quot;:&quot;</span> [str x | x=xs]<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">end</span><span class="p">;</span>
 </pre></div>
@@ -863,13 +864,13 @@ global functions, lambdas or partial applications all work.</p>
 <p>If the SQL function takes no arguments, the corresponding Pure
 function must, for technical reasons in Pure, take a single dummy
 argument. E.g.,</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>create_function dbp <span class="s">&quot;p_count&quot;</span> <span class="mi">0</span> counter <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>create_function dbp <span class="s">&quot;p_count&quot;</span> <span class="mi">0</span> counter <span class="kr">with</span>
 <span class="gp">&gt; </span>  counter () = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">end</span> <span class="kr">when</span> r = ref <span class="mi">0</span> <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Here is how <tt class="docutils literal"><span class="pre">count</span></tt> and <tt class="docutils literal"><span class="pre">quasimodo</span></tt> might be used:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> sp5 = prep dbp <span class="s">&quot;ic:&quot;</span> <span class="s">&quot;select p_count(), p_qm(name,age) from RM&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> sp5 = prep dbp <span class="s">&quot;ic:&quot;</span> <span class="s">&quot;select p_count(), p_qm(name,age) from RM&quot;</span><span class="p">;</span>
 
 <span class="gp">&gt; </span>exec sp5 ()<span class="p">;</span>
 [[<span class="mi">1</span>,<span class="s">&quot;quasimodo: </span><span class="se">\&quot;</span><span class="s">Sam</span><span class="se">\&quot;</span><span class="s">:20&quot;</span>],[<span class="mi">2</span>,<span class="s">&quot;quasimodo: </span><span class="se">\&quot;</span><span class="s">Fred</span><span class="se">\&quot;</span><span class="s">:22&quot;</span>]]
@@ -906,7 +907,7 @@ accumulated result.</p>
 <p>Note that for a single-argument step function, this works exactly as
 if the functions were invoked as &#8220;<tt class="docutils literal"><span class="pre">final</span> <span class="pre">(foldl</span> <span class="pre">step</span> <span class="pre">start</span> <span class="pre">values)</span></tt>&#8221;,
 where <tt class="docutils literal"><span class="pre">values</span></tt> is the list of aggregated values from the database.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>create_function dbp <span class="s">&quot;p_avg&quot;</span> <span class="mi">1</span> (step,final,(<span class="mi">0</span>,<span class="mf">0.0</span>)) <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>create_function dbp <span class="s">&quot;p_avg&quot;</span> <span class="mi">1</span> (step,final,(<span class="mi">0</span>,<span class="mf">0.0</span>)) <span class="kr">with</span>
 <span class="gp">&gt; </span>  step (n,a) x = n+<span class="mi">1</span>, a+x<span class="p">;</span>
 <span class="gp">&gt; </span>  final (n,a) = a/n<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">end</span><span class="p">;</span>
@@ -931,7 +932,7 @@ same db_ptr or stmt_ptr that is passed to Sql3&#8217;s functions, such as
 <a class="reference internal" href="#sql3::prep" title="sql3::prep"><tt class="xref pure pure-func docutils literal"><span class="pre">prep</span></tt></a> or <a class="reference internal" href="#sql3::exec" title="sql3::exec"><tt class="xref pure pure-func docutils literal"><span class="pre">exec</span></tt></a>.</p>
 <p>For example, you can override SQLite&#8217;s default behavior with respect
 to a busy database as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> sqlite3_busy_timeout(sqlite3*, <span class="kt">int</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> sqlite3_busy_timeout(sqlite3*, <span class="kt">int</span>)<span class="p">;</span>
 
 <span class="gp">&gt; </span>sqlite3_busy_timeout dbp <span class="mi">10</span><span class="p">;</span>
 </pre></div>
@@ -943,7 +944,7 @@ busy handlers.</p>
 <p>Another example is to query the number of database rows that were
 changed, inserted or deleted by the most recently completed SQL
 statement executed on a given database connection:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> sqlite3_changes(sqlite3*)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> sqlite3_changes(sqlite3*)<span class="p">;</span>
 
 <span class="gp">&gt; </span>exec sp1 (<span class="s">&quot;Harvey&quot;</span>,<span class="mi">30</span>)<span class="p">;</span>
 
@@ -953,7 +954,7 @@ statement executed on a given database connection:</p>
 </div>
 <p>As a final example, in this case using a stmt_ptr, you can determine
 name assigned to a column in a result using <tt class="docutils literal"><span class="pre">sqlite3_column_name</span></tt>:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">char</span> *sqlite3_column_name(sqlite3_stmt*, <span class="kt">int</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">char</span> *sqlite3_column_name(sqlite3_stmt*, <span class="kt">int</span>)<span class="p">;</span>
 
 <span class="gp">&gt; </span>exec sp2 <span class="mi">29</span><span class="p">;</span>
 [[<span class="s">&quot;Harvey&quot;</span>,<span class="mi">30</span>]]
@@ -992,7 +993,7 @@ script deals with dates and certain Pure expressions as bigints and
 native Pure expressions, while the database stores these as utf-8
 text. The following snippets show parts of the script that are
 relevant to this discussion:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">const</span> custom_binds = [
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">const</span> custom_binds = [
   <span class="s">&quot;t&quot;</span>=&gt;[<span class="s">&quot;c&quot;</span>,day_to_str,str_to_day],
   <span class="s">&quot;s&quot;</span>=&gt;[<span class="s">&quot;c&quot;</span>,str,eval]
 ]<span class="p">;</span>
@@ -1009,7 +1010,7 @@ stm3b = sql3<span class="p">::</span>prep db <span class="s">&quot;c:&quot;</spa
 <p>Executing stm3a and stm3b from the interpreter shows that TC&#8217;s date
 field is stored as a string, but returned to the Pure script as a
 bigint.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sql3<span class="p">::</span>exec stm3a ())<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sql3<span class="p">::</span>exec stm3a ())<span class="p">;</span>
 [[<span class="mi">14691L</span>]]
 
 <span class="gp">&gt; </span>sql3<span class="p">::</span>exec stm3b ())<span class="p">;</span>
@@ -1163,7 +1164,7 @@ Database Connection</a> and <a class="reference external" href="http://www.sqlit
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

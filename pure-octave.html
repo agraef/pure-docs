@@ -115,7 +115,7 @@ have to stick to Octave 4.0 for the time being.</p>
 <div class="section" id="basic-usage">
 <h2><a class="toc-backref" href="#id4">Basic Usage</a><a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
 <p>Import this module into your Pure scripts as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> octave<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> octave<span class="p">;</span>
 </pre></div>
 </div>
 <p>This will add an embedded instance of the Octave interpreter to your program.
@@ -127,7 +127,7 @@ instance of Octave in each process.)</p>
 <dd><p>Executes arbitrary Octave code.</p>
 </dd></dl>
 
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_eval <span class="s">&quot;eig([1 2;3 4])&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_eval <span class="s">&quot;eig([1 2;3 4])&quot;</span><span class="p">;</span>
 ans =
 
   -<span class="mf">0.37228</span>
@@ -139,7 +139,7 @@ ans =
 <p>This prints the result on stdout and returns a result code (zero if everything
 went fine). To suppress the printing of the result, simply terminate the
 Octave statement with a semicolon:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_eval <span class="s">&quot;eig([1 2;3 4]);&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_eval <span class="s">&quot;eig([1 2;3 4]);&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
 </pre></div>
 </div>
@@ -154,13 +154,13 @@ Octave statement with a semicolon:</p>
 <p>This allows you to define values to be used when evaluating Octave code, and
 to transfer results back to Pure. However, before such globals can be accessed
 in Octave, you must explicitly declare them as globals:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_eval <span class="s">&quot;global x y ans&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_eval <span class="s">&quot;global x y ans&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
 </pre></div>
 </div>
 <p>Now you can use <a class="reference internal" href="#octave_set" title="octave_set"><tt class="xref pure pure-func docutils literal"><span class="pre">octave_set</span></tt></a> and <a class="reference internal" href="#octave_get" title="octave_get"><tt class="xref pure pure-func docutils literal"><span class="pre">octave_get</span></tt></a> to transfer values
 between Pure and Octave as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_set <span class="s">&quot;x&quot;</span> {<span class="mf">1.0</span>,<span class="mf">2.0</span><span class="p">;</span><span class="mf">3.0</span>,<span class="mf">4.0</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_set <span class="s">&quot;x&quot;</span> {<span class="mf">1.0</span>,<span class="mf">2.0</span><span class="p">;</span><span class="mf">3.0</span>,<span class="mf">4.0</span>}<span class="p">;</span>
 {<span class="mf">1.0</span>,<span class="mf">2.0</span><span class="p">;</span><span class="mf">3.0</span>,<span class="mf">4.0</span>}
 <span class="gp">&gt; </span>octave_eval <span class="s">&quot;eig(x);&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
@@ -171,7 +171,7 @@ between Pure and Octave as follows:</p>
 <p>Note that the most recent result can always be accessed through Octave&#8217;s
 <tt class="docutils literal"><span class="pre">ans</span></tt> variable. You can also use an explicit variable definition as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_eval <span class="s">&quot;y = eig(x);&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_eval <span class="s">&quot;y = eig(x);&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
 <span class="gp">&gt; </span>octave_get <span class="s">&quot;y&quot;</span><span class="p">;</span>
 {-<span class="mf">0.372281323269014</span><span class="p">;</span><span class="mf">5.37228132326901</span>}
@@ -188,7 +188,7 @@ the function, <tt class="docutils literal"><span class="pre">n</span></tt> the n
 function arguments.</p>
 </dd></dl>
 
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> x = {<span class="mf">1.0</span>,<span class="mf">2.0</span><span class="p">;</span><span class="mf">3.0</span>,<span class="mf">4.0</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> x = {<span class="mf">1.0</span>,<span class="mf">2.0</span><span class="p">;</span><span class="mf">3.0</span>,<span class="mf">4.0</span>}<span class="p">;</span>
 <span class="gp">&gt; </span>octave_call <span class="s">&quot;eig&quot;</span> <span class="mi">1</span> x<span class="p">;</span>
 {-<span class="mf">0.372281323269014</span><span class="p">;</span><span class="mf">5.37228132326901</span>}
 </pre></div>
@@ -197,13 +197,13 @@ function arguments.</p>
 values. This will usually be 1 (or 0 if you don&#8217;t care about the result), but
 some Octave functions may return a variable number of results, depending on
 how they&#8217;re called. Multiple values are returned as tuples in Pure:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_call <span class="s">&quot;eig&quot;</span> <span class="mi">2</span> x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_call <span class="s">&quot;eig&quot;</span> <span class="mi">2</span> x<span class="p">;</span>
 {-<span class="mf">0.824564840132394</span>,-<span class="mf">0.415973557919284</span><span class="p">;</span><span class="mf">0.565767464968992</span>,-<span class="mf">0.909376709132124</span>},
 {-<span class="mf">0.372281323269014</span>,<span class="mf">0.0</span><span class="p">;</span><span class="mf">0.0</span>,<span class="mf">5.37228132326901</span>}
 </pre></div>
 </div>
 <p>Multiple <em>arguments</em> are also specified as a tuple:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_call <span class="s">&quot;norm&quot;</span> <span class="mi">1</span> (x, <span class="mi">2</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_call <span class="s">&quot;norm&quot;</span> <span class="mi">1</span> (x, <span class="mi">2</span>)<span class="p">;</span>
 <span class="mf">5.46498570421904</span>
 <span class="gp">&gt; </span>octave_call <span class="s">&quot;norm&quot;</span> <span class="mi">1</span> (x, <span class="mi">1</span>)<span class="p">;</span>
 <span class="mf">6.0</span>
@@ -235,7 +235,7 @@ parameters are determined automatically, see the description of the
 <p>Note that inline functions allow you to call stuff that is not an Octave
 function and hence cannot be specified directly in <a class="reference internal" href="#octave_call" title="octave_call"><tt class="xref pure pure-func docutils literal"><span class="pre">octave_call</span></tt></a>, such
 as an operator. Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> eig = octave_func <span class="s">&quot;eig&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> eig = octave_func <span class="s">&quot;eig&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> mul = octave_func <span class="s">&quot;x*y&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>octave_call eig <span class="mi">1</span> (octave_call mul <span class="mi">1</span> (x,x))<span class="p">;</span>
 {<span class="mf">0.138593383654928</span><span class="p">;</span><span class="mf">28.8614066163451</span>}
@@ -286,7 +286,7 @@ objects with the <a class="reference internal" href="#octave_valuep" title="octa
 <dd><p>Check for Octave value pointers.</p>
 </dd></dl>
 
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> eig = octave_func <span class="s">&quot;eig&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> eig = octave_func <span class="s">&quot;eig&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>eig<span class="p">;</span> octave_valuep eig<span class="p">;</span>
 <span class="kt">#&lt;pointer 0x230dba0&gt;</span>
 <span class="mi">1</span>
@@ -303,7 +303,7 @@ matrix will be returned as a scalar from Octave to Pure.</p>
 as (machine) integer matrices. When converted back to Octave, these all
 become Octave <tt class="docutils literal"><span class="pre">int32</span></tt> matrices, but you can easily convert them to boolean
 or other types of matrices in Octave as needed. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_set <span class="s">&quot;a&quot;</span> {<span class="mi">1</span>,<span class="mi">2</span><span class="p">;</span><span class="mi">3</span>,<span class="mi">4</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_set <span class="s">&quot;a&quot;</span> {<span class="mi">1</span>,<span class="mi">2</span><span class="p">;</span><span class="mi">3</span>,<span class="mi">4</span>}<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">2</span><span class="p">;</span><span class="mi">3</span>,<span class="mi">4</span>}
 <span class="gp">&gt; </span>octave_eval <span class="s">&quot;global a ans&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
@@ -332,7 +332,7 @@ ans =
 <li><p class="first">Octave strings are mapped to Pure strings, and character matrices with more
 than one row are mapped to (symbolic) column vectors of Pure strings.
 Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_set <span class="s">&quot;a&quot;</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_set <span class="s">&quot;a&quot;</span> <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
 <span class="s">&quot;Hello, world!&quot;</span>
 <span class="gp">&gt; </span>octave_eval <span class="s">&quot;a&quot;</span><span class="p">;</span>
 a = Hello, world!
@@ -354,7 +354,7 @@ as symbolic Pure matrices, structs as Pure records. This is still
 experimental and minor details of the Pure data representations are subject
 to change; please check octave.pure for more information. Here are some
 examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_call <span class="s">&quot;rand&quot;</span> <span class="mi">1</span> (<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_call <span class="s">&quot;rand&quot;</span> <span class="mi">1</span> (<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>)<span class="p">;</span>
 {{<span class="mf">0.775409654288678</span>,<span class="mf">0.946392719372485</span>,<span class="mf">0.351919625087157</span>},
 {<span class="mf">0.388835562237807</span>,<span class="mf">0.589476406910984</span>,<span class="mf">0.839694088469728</span>}}
 <span class="gp">&gt; </span>octave_call <span class="s">&quot;size&quot;</span> <span class="mi">1</span> ans<span class="p">;</span>
@@ -369,14 +369,14 @@ examples:</p>
 </div>
 <p>Nested cell arrays and structs are set off with the special <tt class="docutils literal"><span class="pre">cell</span></tt> and
 <tt class="docutils literal"><span class="pre">struct</span></tt> constructors:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_eval <span class="s">&quot;x = {[1,2,3], {1,2,3}}; x{3}.name = &#39;Peter&#39;; x{3}.age = 23;&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_eval <span class="s">&quot;x = {[1,2,3], {1,2,3}}; x{3}.name = &#39;Peter&#39;; x{3}.age = 23;&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
 <span class="gp">&gt; </span>octave_get <span class="s">&quot;x&quot;</span><span class="p">;</span>
 {{<span class="mf">1.0</span>,<span class="mf">2.0</span>,<span class="mf">3.0</span>},cell {<span class="mf">1.0</span>,<span class="mf">2.0</span>,<span class="mf">3.0</span>},struct {<span class="s">&quot;name&quot;</span>=&gt;<span class="s">&quot;Peter&quot;</span>,<span class="s">&quot;age&quot;</span>=&gt;<span class="mf">23.0</span>}}
 </pre></div>
 </div>
 <p>Struct arrays are also supported:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>octave_eval <span class="s">&quot;y = struct(&#39;name&#39;, {&#39;Peter&#39;,&#39;Hannah&#39;}, &#39;age&#39;, {23, 16});&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>octave_eval <span class="s">&quot;y = struct(&#39;name&#39;, {&#39;Peter&#39;,&#39;Hannah&#39;}, &#39;age&#39;, {23, 16});&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
 <span class="gp">&gt; </span>octave_get <span class="s">&quot;y&quot;</span><span class="p">;</span>
 {{<span class="s">&quot;name&quot;</span>=&gt;<span class="s">&quot;Peter&quot;</span>,<span class="s">&quot;age&quot;</span>=&gt;<span class="mf">23.0</span>},{<span class="s">&quot;name&quot;</span>=&gt;<span class="s">&quot;Hannah&quot;</span>,<span class="s">&quot;age&quot;</span>=&gt;<span class="mf">16.0</span>}}
@@ -385,7 +385,7 @@ examples:</p>
 <p>There&#8217;s also a little convenience function to factor a struct array into a
 more condensed form (this format can also be used to denote a struct array
 in Pure):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>struct_array ans<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>struct_array ans<span class="p">;</span>
 {<span class="s">&quot;name&quot;</span>=&gt;{<span class="s">&quot;Peter&quot;</span>,<span class="s">&quot;Hannah&quot;</span>},<span class="s">&quot;age&quot;</span>=&gt;{<span class="mf">23.0</span>,<span class="mf">16.0</span>}}
 <span class="gp">&gt; </span>octave_call <span class="s">&quot;disp&quot;</span> <span class="mi">0</span> ans<span class="p">;</span>
 
@@ -404,7 +404,7 @@ in Pure):</p>
 <p>The embedded Octave interpreter provides one special builtin, the
 <tt class="docutils literal"><span class="pre">pure_call</span></tt> function which can be used to call any function defined in the
 executing Pure script from Octave. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>even m<span class="p">::</span><span class="kt">matrix</span> = {~(<span class="kt">int</span> x mod <span class="mi">2</span>) | x=m}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>even m<span class="p">::</span><span class="kt">matrix</span> = {~(<span class="kt">int</span> x mod <span class="mi">2</span>) | x=m}<span class="p">;</span>
 <span class="gp">&gt; </span>octave_eval <span class="s">&quot;pure_call(&#39;even&#39;, 1:12)&quot;</span><span class="p">;</span>
 ans =
 
@@ -415,7 +415,7 @@ ans =
 </div>
 <p>Here&#8217;s the description of the <tt class="docutils literal"><span class="pre">pure_call</span></tt> function, as it is printed with
 Octave&#8217;s <tt class="docutils literal"><span class="pre">help</span></tt> command:</p>
-<div class="highlight-none"><div class="highlight"><pre>`pure_call&#39; is a built-in function
+<div class="highlight-none"><div class="highlight"><pre><span></span>`pure_call&#39; is a built-in function
 
   RES = pure_call(NAME, ARG, ...)
   [RES, ...] = pure_call(NAME, ARG, ...)
@@ -433,7 +433,7 @@ plotting capabilities available in a convenient form in Pure, the distribution
 includes an additional gnuplot.pure module which provides simple wrappers of
 the most important plotting functions. Please check gnuplot.pure for details.
 For instance, here are a few simple plotting commands:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> gnuplot<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> gnuplot<span class="p">;</span>
 <span class="kr">using</span> <span class="kr">namespace</span> gnuplot<span class="p">;</span>
 
 sombrero()<span class="p">;</span> <span class="c1">// sample &quot;sombrero&quot; plot (3d)</span>
@@ -448,7 +448,7 @@ print <span class="s">&quot;plot.eps&quot;</span><span class="p">;</span> <span 
 used a <tt class="docutils literal"><span class="pre">using</span> <span class="pre">namespace</span></tt> declaration for convenience here. The following
 example does the &#8220;sombrero&#8221; plot again, but shows some of the explicit
 plotting commands and helper functions to generate the data:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> math<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> math<span class="p">;</span>
 <span class="kr">let</span> u = linspace (-<span class="mi">8</span>, <span class="mi">8</span>, <span class="mi">41</span>)<span class="p">;</span>
 <span class="kr">let</span> x,y = meshgrid2 u<span class="p">;</span>
 <span class="kr">let</span> z = {sin r/r | r = {sqrt (x^<span class="mi">2</span>+y^<span class="mi">2</span>)+eps() | x,y = zip x y}}<span class="p">;</span>
@@ -551,7 +551,7 @@ seem to be fixed in the latest Octave and VTK versions, however.)</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

@@ -239,7 +239,7 @@ matrix index is out of bounds.</p>
 <p id="operators"><span id="index-0"></span>Here&#8217;s the list of predefined operator symbols. Note that the parser will
 automagically give unary minus the same precedence level as the
 corresponding binary operator.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">infixl</span>  <span class="mi">1000</span>   $$ <span class="p">;</span>                <span class="c1">// sequence operator</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">infixl</span>  <span class="mi">1000</span>   $$ <span class="p">;</span>                <span class="c1">// sequence operator</span>
 <span class="kr">infixr</span>  <span class="mi">1100</span>   $ <span class="p">;</span>                 <span class="c1">// right-associative application</span>
 <span class="kr">infixr</span>  <span class="mi">1200</span>   , <span class="p">;</span>                 <span class="c1">// pair (tuple)</span>
 <span class="kr">infix</span>   <span class="mi">1300</span>   =&gt; <span class="p">;</span>                <span class="c1">// key=&gt;value pairs (&quot;hash rocket&quot;)</span>
@@ -422,7 +422,7 @@ f <tt class="descname">.</tt> g<a class="headerlink" href="#." title="Permalink 
 <dd><p>Like in Haskell, these denote right-associative application and function
 composition. They are also defined as macros so that saturated calls of
 them are eliminated automatically. Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>foo $ bar <span class="mi">99</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>foo $ bar <span class="mi">99</span><span class="p">;</span>
 foo (bar <span class="mi">99</span>)
 <span class="gp">&gt; </span>(foo.bar) <span class="mi">99</span><span class="p">;</span>
 foo (bar <span class="mi">99</span>)
@@ -437,7 +437,7 @@ foo (bar <span class="mi">99</span>)
 <tt class="descname">cst</tt> x y<a class="headerlink" href="#cst" title="Permalink to this definition">¶</a></dt>
 <dd><p>These are the customary identity and constant combinators from the
 combinatorial calculus:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map id (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>map id (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]
 <span class="gp">&gt; </span>map (cst <span class="mi">0</span>) (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
 [<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>]
@@ -452,7 +452,7 @@ combinatorial calculus:</p>
 special twist that it is also defined as a macro optimizing the case of
 &#8220;throwaway&#8221; list and matrix comprehensions. This is useful if a
 comprehension is evaluated solely for its side effects. E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">int</span> rand()<span class="p">;</span>
 <span class="gp">&gt; </span>foo = <span class="kt">void</span> [printf <span class="s">&quot;%d</span><span class="se">\n</span><span class="s">&quot;</span> rand | _ = <span class="mi">1</span>..<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>show foo
@@ -477,13 +477,13 @@ from Haskell:</p>
 <dt id="flip">
 <tt class="descname">flip</tt> f<a class="headerlink" href="#flip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Swaps arguments of a binary function <tt class="docutils literal"><span class="pre">f</span></tt>, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (flip (/) <span class="mi">2</span>) (<span class="mi">1</span>..<span class="mi">3</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>map (flip (/) <span class="mi">2</span>) (<span class="mi">1</span>..<span class="mi">3</span>)<span class="p">;</span>
 [<span class="mf">0.5</span>,<span class="mf">1.0</span>,<span class="mf">1.5</span>]
 </pre></div>
 </div>
 <p>This combinator is also used by the compiler to implement right operator
 sections, which allows you to write the above simply as:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (/<span class="mi">2</span>) (<span class="mi">1</span>..<span class="mi">3</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>map (/<span class="mi">2</span>) (<span class="mi">1</span>..<span class="mi">3</span>)<span class="p">;</span>
 [<span class="mf">0.5</span>,<span class="mf">1.0</span>,<span class="mf">1.5</span>]
 </pre></div>
 </div>
@@ -494,7 +494,7 @@ sections, which allows you to write the above simply as:</p>
 <tt class="descname">curry</tt> f<a class="headerlink" href="#curry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Turns a function <tt class="docutils literal"><span class="pre">f</span></tt> expecting a pair of values into a curried
 function of two arguments:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>dowith (curry (printf <span class="s">&quot;%d: %g</span><span class="se">\n</span><span class="s">&quot;</span>)) (<span class="mi">0</span>..<span class="mi">2</span>) [<span class="mf">0.0</span>,<span class="mf">2.718</span>,<span class="mf">3.14</span>]<span class="p">;</span>
 <span class="mi">0</span>: <span class="mi">0</span>
 <span class="mi">1</span>: <span class="mf">2.718</span>
@@ -509,7 +509,7 @@ function of two arguments:</p>
 <tt class="descname">uncurry</tt> f<a class="headerlink" href="#uncurry" title="Permalink to this definition">¶</a></dt>
 <dd><p>The inverse of <a class="reference internal" href="#curry" title="curry"><tt class="xref pure pure-func docutils literal"><span class="pre">curry</span></tt></a>. Turns a curried function <tt class="docutils literal"><span class="pre">f</span></tt> expecting
 two arguments into a function processing a single pair argument:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map (uncurry (*)) [(<span class="mi">2</span>,<span class="mi">3</span>),(<span class="mi">4</span>,<span class="mi">5</span>),(<span class="mi">6</span>,<span class="mi">7</span>)]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>map (uncurry (*)) [(<span class="mi">2</span>,<span class="mi">3</span>),(<span class="mi">4</span>,<span class="mi">5</span>),(<span class="mi">6</span>,<span class="mi">7</span>)]<span class="p">;</span>
 [<span class="mi">6</span>,<span class="mi">20</span>,<span class="mi">42</span>]
 </pre></div>
 </div>
@@ -530,7 +530,7 @@ functions and functions operating on triples.</p>
 <dd><p>This is the (normal order) fixed point combinator which allows you to
 create recursive anonymous functions. It takes another function <tt class="docutils literal"><span class="pre">f</span></tt> as
 its argument and applies <tt class="docutils literal"><span class="pre">f</span></tt> to <tt class="docutils literal"><span class="pre">fix</span> <span class="pre">f</span></tt> itself:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> fact = fix (\f n -&gt; <span class="kr">if</span> n&lt;=<span class="mi">0</span> <span class="kr">then</span> <span class="mi">1</span> <span class="kr">else</span> n*f (n-<span class="mi">1</span>))<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> fact = fix (\f n -&gt; <span class="kr">if</span> n&lt;=<span class="mi">0</span> <span class="kr">then</span> <span class="mi">1</span> <span class="kr">else</span> n*f (n-<span class="mi">1</span>))<span class="p">;</span>
 <span class="gp">&gt; </span>map fact (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">6</span>,<span class="mi">24</span>,<span class="mi">120</span>]
 </pre></div>
@@ -538,7 +538,7 @@ its argument and applies <tt class="docutils literal"><span class="pre">f</span>
 <p>See <a class="reference external" href="http://en.wikipedia.org/wiki/Fixed_point_combinator">Fixed point combinator</a> at Wikipedia for an explanation of how this magic works.
 Just like in Haskell, <a class="reference internal" href="#fix" title="fix"><tt class="xref pure pure-func docutils literal"><span class="pre">fix</span></tt></a> can be used to produce least fixed
 points of arbitrary functions. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>fix (cst bar)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>fix (cst bar)<span class="p">;</span>
 bar
 <span class="gp">&gt; </span><span class="kr">let</span> xs = fix (<span class="mi">1</span>:)<span class="p">;</span>
 <span class="gp">&gt; </span>xs<span class="p">;</span>
@@ -577,7 +577,7 @@ same as in Lisp or Prolog except that they use a Haskell-like syntax. In
 contrast to Haskell, list concatenation is denoted &#8216;<a class="reference internal" href="#+/list" title="+"><tt class="xref pure pure-func docutils literal"><span class="pre">+</span></tt></a>&#8216;
 (see below), and lists may contain an arbitrary mixture of arguments, i.e.,
 they are fully polymorphic:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>:[]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>:[]<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]
 <span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]+[u,v,w]+[<span class="mf">3.14</span>]<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,u,v,w,<span class="mf">3.14</span>]
@@ -589,20 +589,20 @@ turning the tail of a list into a &#8220;thunk&#8221; (a.k.a. &#8220;future&#822
 evaluation until the list tail is actually needed, see section <a class="reference internal" href="pure.html#lazy-evaluation-and-streams"><em>Lazy Evaluation and Streams</em></a> in the Pure Manual. For instance, an infinite
 arithmetic sequence (see below) will always produce a list with a thunked
 tail:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">3</span>..inf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">3</span>..inf<span class="p">;</span>
 <span class="mi">1</span>:<span class="kt">#&lt;thunk 0x7f696cd2dbd8&gt;</span>
 </pre></div>
 </div>
 <p>Pure also distinguishes <strong class="dfn">proper</strong> and <strong class="dfn">improper</strong> lists. The former are
 always terminated by an empty list in the final tail and can thus be
 written using the conventional <tt class="docutils literal"><span class="pre">[x1,x2,...,xn]</span></tt> syntax:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>:[]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>:[]<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]
 </pre></div>
 </div>
 <p>In contrast, improper lists are terminated with a non-list value and
 can only be represented using the &#8216;<a class="reference internal" href="#:" title=":"><tt class="xref pure pure-func docutils literal"><span class="pre">:</span></tt></a>&#8216; operator:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span><span class="p">;</span>
 <span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>
 </pre></div>
 </div>
@@ -620,7 +620,7 @@ actually a &#8220;constructor with equations&#8221; since it obeys the laws
 <tt class="docutils literal"><span class="pre">(x,y),z</span> <span class="pre">==</span> <span class="pre">x,(y,z)</span></tt> and <tt class="docutils literal"><span class="pre">(),x</span> <span class="pre">==</span> <span class="pre">x,()</span> <span class="pre">==</span> <span class="pre">x</span></tt>. Also note that there
 isn&#8217;t a separate operation for concatenating tuples, since the pairing
 operator already does this:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>(<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>),(<span class="mi">10</span>,<span class="mi">9</span>,<span class="mi">8</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>(<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>),(<span class="mi">10</span>,<span class="mi">9</span>,<span class="mi">8</span>)<span class="p">;</span>
 <span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">10</span>,<span class="mi">9</span>,<span class="mi">8</span>
 <span class="gp">&gt; </span>(),(a,b,c)<span class="p">;</span>
 a,b,c
@@ -637,7 +637,7 @@ are always eager in Pure.</p>
 x <tt class="descname">+</tt> y<a class="headerlink" href="#+/list" title="Permalink to this definition">¶</a></dt>
 <dd><p>List concatenation. This non-destructively appends the elements of <tt class="docutils literal"><span class="pre">y</span></tt>
 to <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]+[u,v,w]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]+[u,v,w]<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,u,v,w]
 </pre></div>
 </div>
@@ -645,14 +645,14 @@ to <tt class="docutils literal"><span class="pre">x</span></tt>.</p>
 the empty list marking the &#8220;end&#8221; of <tt class="docutils literal"><span class="pre">x</span></tt> with <tt class="docutils literal"><span class="pre">y</span></tt>, as if defined by
 the following equations (however, the prelude actually defines this
 operation in a tail-recursive fashion):</p>
-<div class="highlight-pure"><div class="highlight"><pre>[] + ys = ys<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[] + ys = ys<span class="p">;</span>
 (x:xs) + ys = x : xs+ys<span class="p">;</span>
 </pre></div>
 </div>
 <p>To make this work, both operands should be proper lists, otherwise you
 may get somewhat surprising (but correct) improper list results like the
 following:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]+<span class="mi">99</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]+<span class="mi">99</span><span class="p">;</span>
 <span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>:<span class="mi">99</span>
 <span class="gp">&gt; </span>(<span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">3</span>)+<span class="mi">33</span><span class="p">;</span>
 <span class="mi">1</span>:<span class="mi">2</span>:<span class="mi">36</span>
@@ -677,7 +677,7 @@ be defined on the list or tuple members if you want to use these
 operations. Also note that these operations are inherently eager, so
 applying them to two infinite lists may take an infinite amount of
 time.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reverse [a,b,c] == [c,b,a]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>reverse [a,b,c] == [c,b,a]<span class="p">;</span>
 <span class="mi">1</span>
 <span class="gp">&gt; </span>(a,b,c) == ()<span class="p">;</span>
 <span class="mi">0</span>
@@ -690,7 +690,7 @@ time.</p>
 <tt class="descname">#</tt> x<a class="headerlink" href="##" title="Permalink to this definition">¶</a></dt>
 <dd><p>List and tuple size. This operation counts the number of elements in a
 list or tuple:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>#[a,b,c]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>#[a,b,c]<span class="p">;</span>
 <span class="mi">3</span>
 <span class="gp">&gt; </span>#(a,b,c)<span class="p">;</span>
 <span class="mi">3</span>
@@ -706,7 +706,7 @@ x <tt class="descname">!</tt> i<a class="headerlink" href="#!" title="Permalink 
 <dd><p>Indexing of lists and tuples is always zero-based (i.e., indices run
 from <tt class="docutils literal"><span class="pre">0</span></tt> to <tt class="docutils literal"><span class="pre">#x-1</span></tt>), and an exception will be raised if the index is
 out of bounds:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]!<span class="mi">2</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]!<span class="mi">2</span><span class="p">;</span>
 <span class="mi">3</span>
 <span class="gp">&gt; </span>[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]!<span class="mi">4</span><span class="p">;</span>
 <span class="gr">&lt;stdin&gt;, line 34: </span>unhandled exception &#39;out_of_bounds&#39; while evaluating
@@ -721,7 +721,7 @@ x <tt class="descname">!!</tt> is<a class="headerlink" href="#!!" title="Permali
 <dd><p>The slicing operation takes a list or tuple and a list of indices and
 returns the list or tuple of the corresponding elements, respectively.
 Indices which are out of the valid range are silently ignored:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>(<span class="mi">1</span>..<span class="mi">5</span>)!!(<span class="mi">3</span>..<span class="mi">10</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>(<span class="mi">1</span>..<span class="mi">5</span>)!!(<span class="mi">3</span>..<span class="mi">10</span>)<span class="p">;</span>
 [<span class="mi">4</span>,<span class="mi">5</span>]
 <span class="gp">&gt; </span>(<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>)!!(<span class="mi">3</span>..<span class="mi">10</span>)<span class="p">;</span>
 <span class="mi">4</span>,<span class="mi">5</span>
@@ -731,7 +731,7 @@ Indices which are out of the valid range are silently ignored:</p>
 that it always works in linear time, see <a class="reference internal" href="#slicing">Slicing</a> below for details. But
 indices can actually be specified in any order, so that you can retrieve
 any permutation of the members, also with duplicates. E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>(<span class="mi">1</span>..<span class="mi">5</span>)!![<span class="mi">2</span>,<span class="mi">4</span>,<span class="mi">4</span>,<span class="mi">1</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>(<span class="mi">1</span>..<span class="mi">5</span>)!![<span class="mi">2</span>,<span class="mi">4</span>,<span class="mi">4</span>,<span class="mi">1</span>]<span class="p">;</span>
 [<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">2</span>]
 </pre></div>
 </div>
@@ -748,7 +748,7 @@ x <tt class="descname">..</tt> y<a class="headerlink" href="#.." title="Permalin
 that there are no brackets around the construct and a step width is
 indicated by specifying the first two elements as <tt class="docutils literal"><span class="pre">x:y</span></tt> instead of
 <tt class="docutils literal"><span class="pre">x,y</span></tt>.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>..<span class="mi">5</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>..<span class="mi">5</span><span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>]
 <span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">3</span>..<span class="mi">11</span><span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">7</span>,<span class="mi">9</span>,<span class="mi">11</span>]
@@ -756,7 +756,7 @@ indicated by specifying the first two elements as <tt class="docutils literal"><
 </div>
 <p>To prevent unwanted artifacts due to rounding errors, the upper bound in
 a floating point sequence is always rounded to the nearest grid point:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mf">0.0</span>:<span class="mf">0.1</span>..<span class="mf">0.29</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mf">0.0</span>:<span class="mf">0.1</span>..<span class="mf">0.29</span><span class="p">;</span>
 [<span class="mf">0.0</span>,<span class="mf">0.1</span>,<span class="mf">0.2</span>,<span class="mf">0.3</span>]
 <span class="gp">&gt; </span><span class="mf">0.0</span>:<span class="mf">0.1</span>..<span class="mf">0.31</span><span class="p">;</span>
 [<span class="mf">0.0</span>,<span class="mf">0.1</span>,<span class="mf">0.2</span>,<span class="mf">0.3</span>]
@@ -764,7 +764,7 @@ a floating point sequence is always rounded to the nearest grid point:</p>
 </div>
 <p>Last but not least, you can specify infinite sequences with an infinite
 upper bound (<tt class="docutils literal"><span class="pre">inf</span></tt> or <tt class="docutils literal"><span class="pre">-inf</span></tt>):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">3</span>..inf<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>:<span class="mi">3</span>..inf<span class="p">;</span>
 <span class="mi">1</span>:<span class="kt">#&lt;thunk 0x7f696cd2dbd8&gt;</span>
 <span class="gp">&gt; </span>-<span class="mi">1</span>:-<span class="mi">3</span>..-inf<span class="p">;</span>
 -<span class="mi">1</span>:<span class="kt">#&lt;thunk 0x7f696cd2fde8&gt;</span>
@@ -777,7 +777,7 @@ upper bound (<tt class="docutils literal"><span class="pre">inf</span></tt> or <
 <dt id="null">
 <tt class="descname">null</tt> x<a class="headerlink" href="#null" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test for the empty list and tuple.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>null []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>null []<span class="p">;</span>
 <span class="mi">1</span>
 <span class="gp">&gt; </span>null (a,b,c)<span class="p">;</span>
 <span class="mi">0</span>
@@ -789,7 +789,7 @@ upper bound (<tt class="docutils literal"><span class="pre">inf</span></tt> or <
 <dt id="reverse">
 <tt class="descname">reverse</tt> x<a class="headerlink" href="#reverse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reverse a list or tuple.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reverse (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>reverse (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
 [<span class="mi">5</span>,<span class="mi">4</span>,<span class="mi">3</span>,<span class="mi">2</span>,<span class="mi">1</span>]
 <span class="gp">&gt; </span>reverse (a,b,c)<span class="p">;</span>
 (c,b,a)
@@ -804,7 +804,7 @@ upper bound (<tt class="docutils literal"><span class="pre">inf</span></tt> or <
 <dt id="tuple">
 <tt class="descname">tuple</tt> x<a class="headerlink" href="#tuple" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert between (finite) lists and tuples.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tuple (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tuple (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
 <span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>
 <span class="gp">&gt; </span>list (a,b,c)<span class="p">;</span>
 [a,b,c]
@@ -812,13 +812,13 @@ upper bound (<tt class="docutils literal"><span class="pre">inf</span></tt> or <
 </div>
 <p>The <tt class="docutils literal"><span class="pre">list</span></tt> function can be used to turn a finite lazy list into an
 eager one:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>list $ take <span class="mi">10</span> (-<span class="mi">1</span>:-<span class="mi">3</span>..-inf)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>list $ take <span class="mi">10</span> (-<span class="mi">1</span>:-<span class="mi">3</span>..-inf)<span class="p">;</span>
 [-<span class="mi">1</span>,-<span class="mi">3</span>,-<span class="mi">5</span>,-<span class="mi">7</span>,-<span class="mi">9</span>,-<span class="mi">11</span>,-<span class="mi">13</span>,-<span class="mi">15</span>,-<span class="mi">17</span>,-<span class="mi">19</span>]
 </pre></div>
 </div>
 <p>You can also achieve the same effect somewhat more conveniently by
 slicing a finite part from a stream:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>(-<span class="mi">1</span>:-<span class="mi">3</span>..-inf)!!(<span class="mi">0</span>..<span class="mi">9</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>(-<span class="mi">1</span>:-<span class="mi">3</span>..-inf)!!(<span class="mi">0</span>..<span class="mi">9</span>)<span class="p">;</span>
 [-<span class="mi">1</span>,-<span class="mi">3</span>,-<span class="mi">5</span>,-<span class="mi">7</span>,-<span class="mi">9</span>,-<span class="mi">11</span>,-<span class="mi">13</span>,-<span class="mi">15</span>,-<span class="mi">17</span>,-<span class="mi">19</span>]
 </pre></div>
 </div>
@@ -830,7 +830,7 @@ stream).</p>
 <dt id="stream">
 <tt class="descname">stream</tt> x<a class="headerlink" href="#stream" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a list to a stream.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>stream (<span class="mi">1</span>..<span class="mi">10</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>stream (<span class="mi">1</span>..<span class="mi">10</span>)<span class="p">;</span>
 <span class="mi">1</span>:<span class="kt">#&lt;thunk 0x7fe537fe2b58&gt;</span>
 </pre></div>
 </div>
@@ -880,7 +880,7 @@ still applied if possible.)</p>
 
 <p>You can readily see the effects of this optimization by running the slicing
 operator against <a class="reference internal" href="#slice" title="slice"><tt class="xref pure pure-func docutils literal"><span class="pre">slice</span></tt></a>:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> xs = <span class="mi">1</span>..<span class="mi">1000000</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> xs = <span class="mi">1</span>..<span class="mi">1000000</span><span class="p">;</span>
 <span class="gp">&gt; </span>stats -m
 <span class="gp">&gt; </span>#slice xs (<span class="mi">100000</span>..<span class="mi">299990</span>)<span class="p">;</span>
 <span class="mi">199991</span>
@@ -892,7 +892,7 @@ operator against <a class="reference internal" href="#slice" title="slice"><tt c
 </div>
 <p>Even more drastic improvements in both running time and memory usage can be
 seen in the case of matrix slices:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> x = rowvector xs<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> x = rowvector xs<span class="p">;</span>
 <span class="gp">&gt; </span>#slice x (<span class="mi">100000</span>..<span class="mi">299990</span>)<span class="p">;</span>
 <span class="mi">199991</span>
 <span class="mi">0</span>.19s, <span class="mi">599990</span> cells
@@ -921,7 +921,7 @@ x <tt class="descname">==</tt> y<a class="headerlink" href="#==/hashpair" title=
 <dt id="~=/hashpair">
 x <tt class="descname">~=</tt> y<a class="headerlink" href="#~=/hashpair" title="Permalink to this definition">¶</a></dt>
 <dd><p>Equality and inequality of hash pairs.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>(<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>) == (<span class="s">&quot;bar&quot;</span>=&gt;<span class="mi">99</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>(<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>) == (<span class="s">&quot;bar&quot;</span>=&gt;<span class="mi">99</span>)<span class="p">;</span>
 <span class="mi">0</span>
 </pre></div>
 </div>
@@ -933,7 +933,7 @@ x <tt class="descname">~=</tt> y<a class="headerlink" href="#~=/hashpair" title=
 <dt id="val">
 <tt class="descname">val</tt> (x=&gt;y)<a class="headerlink" href="#val" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract the components of a hash pair.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>key (<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>), val (<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>key (<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>), val (<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>)<span class="p">;</span>
 <span class="s">&quot;foo&quot;</span>,<span class="mi">99</span>
 </pre></div>
 </div>
@@ -1117,7 +1117,7 @@ the given predicate <tt class="docutils literal"><span class="pre">p</span></tt>
 indicating whether the first argument is &#8220;less than&#8221; the second. (An
 exception is raised if the result of a comparison is not a machine
 integer.)</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sort (&gt;) (<span class="mi">1</span>..<span class="mi">10</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sort (&gt;) (<span class="mi">1</span>..<span class="mi">10</span>)<span class="p">;</span>
 [<span class="mi">10</span>,<span class="mi">9</span>,<span class="mi">8</span>,<span class="mi">7</span>,<span class="mi">6</span>,<span class="mi">5</span>,<span class="mi">4</span>,<span class="mi">3</span>,<span class="mi">2</span>,<span class="mi">1</span>]
 <span class="gp">&gt; </span>sort (&lt;) ans<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>,<span class="mi">8</span>,<span class="mi">9</span>,<span class="mi">10</span>]
@@ -1280,7 +1280,7 @@ s <tt class="descname">!</tt> i<a class="headerlink" href="#!/string" title="Per
 <dt id="!!/string">
 s <tt class="descname">!!</tt> is<a class="headerlink" href="#!!/string" title="Permalink to this definition">¶</a></dt>
 <dd><p>String concatenation, indexing and slicing works just like with lists:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="s">&quot;abc&quot;</span>+<span class="s">&quot;xyz&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="s">&quot;abc&quot;</span>+<span class="s">&quot;xyz&quot;</span><span class="p">;</span>
 <span class="s">&quot;abcxyz&quot;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> s = <span class="s">&quot;The quick brown fox jumps over the lazy dog.&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>s!<span class="mi">5</span><span class="p">;</span>
@@ -1298,7 +1298,7 @@ s <tt class="descname">!!</tt> is<a class="headerlink" href="#!!/string" title="
 <tt class="descname">#</tt> s<a class="headerlink" href="##/string" title="Permalink to this definition">¶</a></dt>
 <dd><p>Checking for empty strings and determining the size of a string also
 works as expected:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>null <span class="s">&quot;&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>null <span class="s">&quot;&quot;</span><span class="p">;</span>
 <span class="mi">1</span>
 <span class="gp">&gt; </span>null s<span class="p">;</span>
 <span class="mi">0</span>
@@ -1323,7 +1323,7 @@ s <tt class="descname">&lt;</tt> t<a class="headerlink" href="#</string" title="
 s <tt class="descname">&gt;</tt> t<a class="headerlink" href="#>/string" title="Permalink to this definition">¶</a></dt>
 <dd><p>String equality and comparisons. This employs the usual lexicographic
 order based on the (UTF-8) character codes.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="s">&quot;awe&quot;</span>&gt;<span class="s">&quot;awesome&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="s">&quot;awe&quot;</span>&gt;<span class="s">&quot;awesome&quot;</span><span class="p">;</span>
 <span class="mi">0</span>
 <span class="gp">&gt; </span><span class="s">&quot;foo&quot;</span>&gt;=<span class="s">&quot;bar&quot;</span><span class="p">;</span>
 <span class="mi">1</span>
@@ -1352,7 +1352,7 @@ string.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>index s <span class="s">&quot;jumps&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>index s <span class="s">&quot;jumps&quot;</span><span class="p">;</span>
 <span class="mi">20</span>
 <span class="gp">&gt; </span>substr s <span class="mi">20</span> <span class="mi">10</span><span class="p">;</span>
 <span class="s">&quot;jumps over&quot;</span>
@@ -1379,7 +1379,7 @@ point.</p>
 
 <p id="index-21">In addition, the usual character arithmetic works, including arithmetic
 sequences of characters, so that you can write stuff like the following:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="s">&quot;a&quot;</span>-<span class="s">&quot;A&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="s">&quot;a&quot;</span>-<span class="s">&quot;A&quot;</span><span class="p">;</span>
 <span class="mi">32</span>
 <span class="gp">&gt; </span><span class="s">&quot;u&quot;</span>-<span class="mi">32</span><span class="p">;</span>
 <span class="s">&quot;U&quot;</span>
@@ -1422,7 +1422,7 @@ works with the other types of aggregates.</p>
 </dd></dl>
 
 <p>For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>list <span class="s">&quot;abc&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>list <span class="s">&quot;abc&quot;</span><span class="p">;</span>
 [<span class="s">&quot;a&quot;</span>,<span class="s">&quot;b&quot;</span>,<span class="s">&quot;c&quot;</span>]
 <span class="gp">&gt; </span><span class="kt">string</span> (<span class="s">&quot;a&quot;</span>..<span class="s">&quot;z&quot;</span>)<span class="p">;</span>
 <span class="s">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span>
@@ -1444,7 +1444,7 @@ given <tt class="docutils literal"><span class="pre">delim</span></tt> string.</
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> xs = split <span class="s">&quot; &quot;</span> s<span class="p">;</span> xs<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> xs = split <span class="s">&quot; &quot;</span> s<span class="p">;</span> xs<span class="p">;</span>
 [<span class="s">&quot;The&quot;</span>,<span class="s">&quot;quick&quot;</span>,<span class="s">&quot;brown&quot;</span>,<span class="s">&quot;fox&quot;</span>,<span class="s">&quot;jumps&quot;</span>,<span class="s">&quot;over&quot;</span>,<span class="s">&quot;the&quot;</span>,<span class="s">&quot;lazy&quot;</span>,<span class="s">&quot;dog.&quot;</span>]
 <span class="gp">&gt; </span>join <span class="s">&quot;:&quot;</span> xs<span class="p">;</span>
 <span class="s">&quot;The:quick:brown:fox:jumps:over:the:lazy:dog.&quot;</span>
@@ -1459,14 +1459,14 @@ strings in the obvious way, treating the string like a list of characters.
 yield string results under all circumstances, will actually return lists in
 that case, so you might have to apply <a class="reference internal" href="#string" title="string"><tt class="xref pure pure-func docutils literal"><span class="pre">string</span></tt></a> explicitly to convert
 these back to a string.) For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>filter (&gt;=<span class="s">&quot;k&quot;</span>) s<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>filter (&gt;=<span class="s">&quot;k&quot;</span>) s<span class="p">;</span>
 <span class="s">&quot;qukrownoxumpsovrtlzyo&quot;</span>
 <span class="gp">&gt; </span><span class="kt">string</span> $ map pred <span class="s">&quot;ibm&quot;</span><span class="p">;</span>
 <span class="s">&quot;hal&quot;</span>
 </pre></div>
 </div>
 <p>List comprehensions can draw values from strings, too:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kt">string</span> [x+<span class="mi">1</span> | x=<span class="s">&quot;HAL&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kt">string</span> [x+<span class="mi">1</span> | x=<span class="s">&quot;HAL&quot;</span>]<span class="p">;</span>
 <span class="s">&quot;IBM&quot;</span>
 </pre></div>
 </div>
@@ -1563,14 +1563,14 @@ explicit fashion. This is useful, e.g., for operations like <tt class="docutils 
 which may mutate the given <tt class="docutils literal"><span class="pre">char**</span></tt> vector.</p>
 <p>If you have <tt class="docutils literal"><span class="pre">getopt</span></tt> in your C library, you can try the following
 example. First enter these definitions:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">int</span> getopt(<span class="kt">int</span> argc, <span class="kt">char</span> **argv, <span class="kt">char</span> *optstring)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">int</span> getopt(<span class="kt">int</span> argc, <span class="kt">char</span> **argv, <span class="kt">char</span> *optstring)<span class="p">;</span>
 optind = get_int $ addr <span class="s">&quot;optind&quot;</span><span class="p">;</span>
 optarg = cstring_dup $ get_pointer $ addr <span class="s">&quot;optarg&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now let&#8217;s run <tt class="docutils literal"><span class="pre">getopt</span></tt> on a byte string vector constructed from an
 argument vector (which includes the &#8220;program name&#8221; in the first element):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> args = byte_cstring_pointer {<span class="s">&quot;progname&quot;</span>,<span class="s">&quot;boo&quot;</span>,<span class="s">&quot;-n&quot;</span>,<span class="s">&quot;-tfoo&quot;</span>,<span class="s">&quot;bar&quot;</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> args = byte_cstring_pointer {<span class="s">&quot;progname&quot;</span>,<span class="s">&quot;boo&quot;</span>,<span class="s">&quot;-n&quot;</span>,<span class="s">&quot;-tfoo&quot;</span>,<span class="s">&quot;bar&quot;</span>}<span class="p">;</span>
 <span class="gp">&gt; </span>getopt <span class="mi">5</span> args <span class="s">&quot;nt:&quot;</span>, optarg<span class="p">;</span>
 <span class="mi">110</span>,<span class="kt">#&lt;pointer 0x0&gt;</span>
 <span class="gp">&gt; </span>getopt <span class="mi">5</span> args <span class="s">&quot;nt:&quot;</span>, optarg<span class="p">;</span>
@@ -1585,7 +1585,7 @@ argument vector (which includes the &#8220;program name&#8221; in the first elem
 no more options, and we can retrieve the current <tt class="docutils literal"><span class="pre">optindex</span></tt> value and the
 mutated argument vector to see which non-option arguments remain to be
 processed, as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>optind, cstring_vector <span class="mi">5</span> args<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>optind, cstring_vector <span class="mi">5</span> args<span class="p">;</span>
 <span class="mi">3</span>,{<span class="s">&quot;progname&quot;</span>,<span class="s">&quot;-n&quot;</span>,<span class="s">&quot;-tfoo&quot;</span>,<span class="s">&quot;boo&quot;</span>,<span class="s">&quot;bar&quot;</span>}
 </pre></div>
 </div>
@@ -1608,7 +1608,7 @@ in numeric computations.</p>
 <tt class="descname">dim</tt> x<a class="headerlink" href="#dim" title="Permalink to this definition">¶</a></dt>
 <dd><p>Determine the size of a matrix (number of elements) and its dimensions
 (number of rows and columns).</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> x = {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span> #x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> x = {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span> #x<span class="p">;</span>
 <span class="mi">6</span>
 <span class="gp">&gt; </span>dim x<span class="p">;</span>
 <span class="mi">2</span>,<span class="mi">3</span>
@@ -1630,7 +1630,7 @@ x <tt class="descname">==</tt> y<a class="headerlink" href="#==/matrix" title="P
 x <tt class="descname">~=</tt> y<a class="headerlink" href="#~=/matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Matrix equality and inequality. These check the dimensions and the
 matrix elements for equality:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>x == transpose x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x == transpose x<span class="p">;</span>
 <span class="mi">0</span>
 </pre></div>
 </div>
@@ -1649,30 +1649,30 @@ and &#8216;<a class="reference internal" href="#!!" title="!!"><tt class="xref p
 but note that Pure matrices are in row-major order and the indices are
 zero-based. It is possible to access elements with a one-dimensional index
 (in row-major oder):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>x!<span class="mi">3</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x!<span class="mi">3</span><span class="p">;</span>
 <span class="mi">4</span>
 </pre></div>
 </div>
 <p>Or you can specify a pair of row and column index:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>x!(<span class="mi">1</span>,<span class="mi">0</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x!(<span class="mi">1</span>,<span class="mi">0</span>)<span class="p">;</span>
 <span class="mi">4</span>
 </pre></div>
 </div>
 <p>Slicing works accordingly. You can either specify a list of (one- or
 two-dimensional) indices, in which case the result is always a row
 vector:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>x!!(<span class="mi">2</span>..<span class="mi">5</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x!!(<span class="mi">2</span>..<span class="mi">5</span>)<span class="p">;</span>
 {<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}
 </pre></div>
 </div>
 <p>Or you can specify a pair of row and column index lists:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>x!!(<span class="mi">0</span>..<span class="mi">1</span>,<span class="mi">1</span>..<span class="mi">2</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x!!(<span class="mi">0</span>..<span class="mi">1</span>,<span class="mi">1</span>..<span class="mi">2</span>)<span class="p">;</span>
 {<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">5</span>,<span class="mi">6</span>}
 </pre></div>
 </div>
 <p>The following abbreviations are provided to grab a slice from a row or
 column:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>x!!(<span class="mi">1</span>,<span class="mi">1</span>..<span class="mi">2</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>x!!(<span class="mi">1</span>,<span class="mi">1</span>..<span class="mi">2</span>)<span class="p">;</span>
 {<span class="mi">5</span>,<span class="mi">6</span>}
 <span class="gp">&gt; </span>x!!(<span class="mi">0</span>..<span class="mi">1</span>,<span class="mi">1</span>)<span class="p">;</span>
 {<span class="mi">2</span><span class="p">;</span><span class="mi">5</span>}
@@ -1686,7 +1686,7 @@ optimizations.</p>
 <p>Most of the generic list operations are implemented on matrices as well,
 see <a class="reference internal" href="#common-list-functions">Common List Functions</a>. Hence operations like <a class="reference internal" href="#map" title="map"><tt class="xref pure pure-func docutils literal"><span class="pre">map</span></tt></a> and
 <a class="reference internal" href="#zipwith" title="zipwith"><tt class="xref pure pure-func docutils literal"><span class="pre">zipwith</span></tt></a> work as expected:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>map succ {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>map succ {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
 {<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span><span class="p">;</span><span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>}
 <span class="gp">&gt; </span>zipwith (+) {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>} {<span class="mi">1</span>,<span class="mi">0</span>,<span class="mi">1</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">2</span>,<span class="mi">0</span>}<span class="p">;</span>
 {<span class="mi">2</span>,<span class="mi">2</span>,<span class="mi">4</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">7</span>,<span class="mi">6</span>}
@@ -1710,7 +1710,7 @@ rows of the matrix to the corresponding rectangular matrix; otherwise,
 the result is a row vector. (In the former case, <a class="reference internal" href="#matrix" title="matrix"><tt class="xref pure pure-func docutils literal"><span class="pre">matrix</span></tt></a> may
 throw a <a class="reference internal" href="#bad_matrix_value" title="bad_matrix_value"><tt class="xref pure pure-cons docutils literal"><span class="pre">bad_matrix_value</span></tt></a> exception in case of dimension
 mismatch, with the offending submatrix as argument.)</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kt">matrix</span> [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kt">matrix</span> [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>}
 <span class="gp">&gt; </span><span class="kt">matrix</span> [[<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>],[<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>]]<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}
@@ -1733,7 +1733,7 @@ converted aggregate). Also, the <a class="reference internal" href="#vector" tit
 <a class="reference internal" href="#rowvector" title="rowvector"><tt class="xref pure pure-func docutils literal"><span class="pre">rowvector</span></tt></a>. These functions can also be used to create recursive
 (symbolic) matrix structures of arbitrary depth, which provide a nested
 array data structure with efficient (constant time) element access.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>rowvector [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>rowvector [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>}
 <span class="gp">&gt; </span>colvector [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
 {<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>}
@@ -1757,7 +1757,7 @@ entering nested vectors more easily, see the description of the
 arithmetic sequence. Again, <a class="reference internal" href="#vectorseq" title="vectorseq"><tt class="xref pure pure-func docutils literal"><span class="pre">vectorseq</span></tt></a> is provided as a synonym
 for <a class="reference internal" href="#rowvectorseq" title="rowvectorseq"><tt class="xref pure pure-func docutils literal"><span class="pre">rowvectorseq</span></tt></a>. These operations are optimized for the case of
 int and double ranges.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>rowvectorseq <span class="mi">0</span> <span class="mi">10</span> <span class="mi">1</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>rowvectorseq <span class="mi">0</span> <span class="mi">10</span> <span class="mi">1</span><span class="p">;</span>
 {<span class="mi">0</span>,<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">7</span>,<span class="mi">8</span>,<span class="mi">9</span>,<span class="mi">10</span>}
 <span class="gp">&gt; </span>colvectorseq <span class="mi">0</span> <span class="mi">10</span> <span class="mi">1</span><span class="p">;</span>
 {<span class="mi">0</span><span class="p">;</span><span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span><span class="p">;</span><span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span><span class="p">;</span><span class="mi">7</span><span class="p">;</span><span class="mi">8</span><span class="p">;</span><span class="mi">9</span><span class="p">;</span><span class="mi">10</span>}
@@ -1768,12 +1768,12 @@ int and double ranges.</p>
 <p>The prelude also contains some optimization rules which translate calls
 to <a class="reference internal" href="#vector" title="vector"><tt class="xref pure pure-func docutils literal"><span class="pre">vector</span></tt></a> et al on arithmetic sequences to the corresponding
 calls to <a class="reference internal" href="#vectorseq" title="vectorseq"><tt class="xref pure pure-func docutils literal"><span class="pre">vectorseq</span></tt></a> et al, such as:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">def</span> vector (n1:n2..m) = vectorseq n1 m (n2-n1)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">def</span> vector (n1:n2..m) = vectorseq n1 m (n2-n1)<span class="p">;</span>
 <span class="kr">def</span> vector (n..m) = vectorseq n m <span class="mi">1</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>foo = vector (<span class="mi">1</span>..<span class="mi">10</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>foo = vector (<span class="mi">1</span>..<span class="mi">10</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>bar = vector (<span class="mf">0.0</span>:<span class="mf">0.1</span>..<span class="mf">0.9</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>show foo bar
 bar = vectorseq <span class="mf">0.0</span> <span class="mf">0.9</span> <span class="mf">0.1</span><span class="p">;</span>
@@ -1804,7 +1804,7 @@ corresponding type (integer, double, complex or symbolic). If the input
 is a list, the result is always a row vector; this is usually faster
 than the <a class="reference internal" href="#matrix" title="matrix"><tt class="xref pure pure-func docutils literal"><span class="pre">matrix</span></tt></a> and <a class="reference internal" href="#vector" title="vector"><tt class="xref pure pure-func docutils literal"><span class="pre">vector</span></tt></a> operations, but requires that
 the elements already are of the appropriate type.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kt">imatrix</span> [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kt">imatrix</span> [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>}
 <span class="gp">&gt; </span><span class="kt">dmatrix</span> {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
 {<span class="mf">1.0</span>,<span class="mf">2.0</span>,<span class="mf">3.0</span><span class="p">;</span><span class="mf">4.0</span>,<span class="mf">5.0</span>,<span class="mf">6.0</span>}
@@ -1814,7 +1814,7 @@ the elements already are of the appropriate type.</p>
 <tt class="docutils literal"><span class="pre">n</span></tt> or a pair <tt class="docutils literal"><span class="pre">(n,m)</span></tt> of ints as argument, in which case they
 construct a zero rowvector or matrix with the corresponding
 dimensions.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kt">imatrix</span> <span class="mi">3</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kt">imatrix</span> <span class="mi">3</span><span class="p">;</span>
 {<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>}
 <span class="gp">&gt; </span><span class="kt">imatrix</span> (<span class="mi">2</span>,<span class="mi">3</span>)<span class="p">;</span>
 {<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span><span class="p">;</span><span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>}
@@ -1832,7 +1832,7 @@ dimensions.</p>
 <dd><p>These convert a matrix back to a flat list or tuple. The <tt class="xref pure pure-func docutils literal"><span class="pre">list2</span></tt>
 function converts a matrix to a list of lists (one sublist for each row
 of the matrix).</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tuple {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tuple {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
 <span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>
 <span class="gp">&gt; </span>list {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>]
@@ -1861,7 +1861,7 @@ components. For instance, note how the ordinary matrix brackets combine the
 column subvectors in the first example below to a 3x2 matrix, while the
 non-splicing brackets in the second example create a 1x2 row vector with
 the column vectors as members instead:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>{{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>},{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>{{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>},{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}}<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">4</span><span class="p">;</span><span class="mi">2</span>,<span class="mi">5</span><span class="p">;</span><span class="mi">3</span>,<span class="mi">6</span>}
 <span class="gp">&gt; </span>{|{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>},{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}|}<span class="p">;</span>
 {{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>},{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}}
@@ -1870,14 +1870,14 @@ the column vectors as members instead:</p>
 <p>The second example works like a quoted matrix expression such as
 <tt class="docutils literal"><span class="pre">'{{1;2;3},{4;5;6}}</span></tt>, but the non-splicing brackets also evaluate
 their arguments:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>&#39;{vector (<span class="mi">1</span>..<span class="mi">3</span>),vector (<span class="mi">4</span>..<span class="mi">6</span>)}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>&#39;{vector (<span class="mi">1</span>..<span class="mi">3</span>),vector (<span class="mi">4</span>..<span class="mi">6</span>)}<span class="p">;</span>
 {vector (<span class="mi">1</span>..<span class="mi">3</span>),vector (<span class="mi">4</span>..<span class="mi">6</span>)}
 <span class="gp">&gt; </span>{|vector (<span class="mi">1</span>..<span class="mi">3</span>),vector (<span class="mi">4</span>..<span class="mi">6</span>)|}<span class="p">;</span>
 {{<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>},{<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}}
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">{|</span> <span class="pre">|}</span></tt> brackets can be nested. Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>{|<span class="mi">1</span>,{|vector (<span class="mi">1</span>..<span class="mi">5</span>),<span class="mi">2</span>*<span class="mi">3</span>|},{}|}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>{|<span class="mi">1</span>,{|vector (<span class="mi">1</span>..<span class="mi">5</span>),<span class="mi">2</span>*<span class="mi">3</span>|},{}|}<span class="p">;</span>
 {<span class="mi">1</span>,{{<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>},<span class="mi">6</span>},{}}
 <span class="gp">&gt; </span>{|{|{<span class="mi">1</span>,<span class="mi">2</span>}|},{|{<span class="mi">3</span>,<span class="mi">4</span>}|}|}<span class="p">;</span>
 {{{<span class="mi">1</span>,<span class="mi">2</span>}},{{<span class="mi">3</span>,<span class="mi">4</span>}}}
@@ -1885,7 +1885,7 @@ their arguments:</p>
 </div>
 <p>Also note that the <tt class="docutils literal"><span class="pre">{|</span> <span class="pre">|}</span></tt> brackets only produce row vectors, but you
 can just transpose the result if you need a column vector instead:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>transpose {|{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>},{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}|}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>transpose {|{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>},{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}|}<span class="p">;</span>
 {{<span class="mi">1</span><span class="p">;</span><span class="mi">2</span><span class="p">;</span><span class="mi">3</span>}<span class="p">;</span>{<span class="mi">4</span><span class="p">;</span><span class="mi">5</span><span class="p">;</span><span class="mi">6</span>}}
 </pre></div>
 </div>
@@ -2097,19 +2097,19 @@ instead of a list. Note that the function sorts <em>all</em> elements of the
 matrix in one go (regardless of the dimensions), as if the matrix was a
 single big vector. The result matrix has the same dimensions as the
 input matrix. Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sort (&lt;) {<span class="mi">10</span>,<span class="mi">9</span><span class="p">;</span><span class="mi">8</span>,<span class="mi">7</span><span class="p">;</span><span class="mi">6</span>,<span class="mi">5</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sort (&lt;) {<span class="mi">10</span>,<span class="mi">9</span><span class="p">;</span><span class="mi">8</span>,<span class="mi">7</span><span class="p">;</span><span class="mi">6</span>,<span class="mi">5</span>}<span class="p">;</span>
 {<span class="mi">5</span>,<span class="mi">6</span><span class="p">;</span><span class="mi">7</span>,<span class="mi">8</span><span class="p">;</span><span class="mi">9</span>,<span class="mi">10</span>}
 </pre></div>
 </div>
 <p>If you&#8217;d like to sort the individual rows instead, you can do that as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sort_rows p = rowcat . map (sort p) . rows<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sort_rows p = rowcat . map (sort p) . rows<span class="p">;</span>
 <span class="gp">&gt; </span>sort_rows (&lt;) {<span class="mi">10</span>,<span class="mi">9</span><span class="p">;</span><span class="mi">8</span>,<span class="mi">7</span><span class="p">;</span><span class="mi">6</span>,<span class="mi">5</span>}<span class="p">;</span>
 {<span class="mi">9</span>,<span class="mi">10</span><span class="p">;</span><span class="mi">7</span>,<span class="mi">8</span><span class="p">;</span><span class="mi">5</span>,<span class="mi">6</span>}
 </pre></div>
 </div>
 <p>Likewise, to sort the columns of a matrix:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sort_cols p = colcat . map (sort p) . cols<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sort_cols p = colcat . map (sort p) . cols<span class="p">;</span>
 <span class="gp">&gt; </span>sort_cols (&lt;) {<span class="mi">10</span>,<span class="mi">9</span><span class="p">;</span><span class="mi">8</span>,<span class="mi">7</span><span class="p">;</span><span class="mi">6</span>,<span class="mi">5</span>}<span class="p">;</span>
 {<span class="mi">6</span>,<span class="mi">5</span><span class="p">;</span><span class="mi">8</span>,<span class="mi">7</span><span class="p">;</span><span class="mi">10</span>,<span class="mi">9</span>}
 </pre></div>
@@ -2125,7 +2125,7 @@ to sort symbolic matrices and to choose the order predicate.</p>
 <dt id="transpose/matrix">
 <tt class="descname">transpose</tt> x<a class="headerlink" href="#transpose/matrix" title="Permalink to this definition">¶</a></dt>
 <dd><p>Transpose a matrix. Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>transpose {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>transpose {<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span><span class="p">;</span><span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>}<span class="p">;</span>
 {<span class="mi">1</span>,<span class="mi">4</span><span class="p">;</span><span class="mi">2</span>,<span class="mi">5</span><span class="p">;</span><span class="mi">3</span>,<span class="mi">6</span>}
 </pre></div>
 </div>
@@ -2340,7 +2340,7 @@ stored in the record.</p>
 </dd></dl>
 
 <p>Here are a few basic examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> r = {x=&gt;<span class="mi">5</span>, y=&gt;<span class="mi">12</span>}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> r = {x=&gt;<span class="mi">5</span>, y=&gt;<span class="mi">12</span>}<span class="p">;</span>
 <span class="gp">&gt; </span>r!y<span class="p">;</span> r!![y,x]<span class="p">;</span>              <span class="c1">// indexing and slicing</span>
 <span class="mi">12</span>
 {<span class="mi">12</span>,<span class="mi">5</span>}
@@ -2891,7 +2891,7 @@ interactive usage. Note that the <a class="reference internal" href="#ans" title
 until a new expression is computed. (It is possible to clear the
 <a class="reference internal" href="#ans" title="ans"><tt class="xref pure pure-func docutils literal"><span class="pre">ans</span></tt></a> value with the interactive command <tt class="docutils literal"><span class="pre">clear</span> <span class="pre">ans</span></tt>, however.)
 Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="mi">1</span>/<span class="mi">3</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="mi">1</span>/<span class="mi">3</span><span class="p">;</span>
 <span class="mf">0.333333333333333</span>
 <span class="gp">&gt; </span>ans/<span class="mi">2</span><span class="p">;</span>
 <span class="mf">0.166666666666667</span>
@@ -2911,7 +2911,7 @@ toplevel). Note that in contrast to the C99 variable of the same name,
 this really returns the function value itself in Pure; the <a class="reference internal" href="#str" title="str"><tt class="xref pure pure-func docutils literal"><span class="pre">str</span></tt></a>
 function can be used if you need the print name of the function.
 Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>foo x = <span class="kr">if</span> x&gt;<span class="mi">0</span> <span class="kr">then</span> x <span class="kr">else</span> <span class="nb">throw</span> __func__<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>foo x = <span class="kr">if</span> x&gt;<span class="mi">0</span> <span class="kr">then</span> x <span class="kr">else</span> <span class="nb">throw</span> __func__<span class="p">;</span>
 <span class="gp">&gt; </span>foo (-<span class="mi">99</span>)<span class="p">;</span>
 <span class="gr">&lt;stdin&gt;, line 2: </span>unhandled exception &#39;foo&#39; while evaluating &#39;foo (-99)&#39;
 <span class="gp">&gt; </span>(\x-&gt;x+<span class="s">&quot;: &quot;</span>+str __func__) <span class="s">&quot;test&quot;</span><span class="p">;</span>
@@ -2921,7 +2921,7 @@ Examples:</p>
 <p>If you want, you can add a default rule for <a class="reference internal" href="#__func__" title="__func__"><tt class="xref pure pure-func docutils literal"><span class="pre">__func__</span></tt></a> which
 specifies the behaviour when <a class="reference internal" href="#__func__" title="__func__"><tt class="xref pure pure-func docutils literal"><span class="pre">__func__</span></tt></a> gets called at the global
 level. E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>__func__ = <span class="nb">throw</span> <span class="s">&quot;__func__ called at global level&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>__func__ = <span class="nb">throw</span> <span class="s">&quot;__func__ called at global level&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>__func__<span class="p">;</span>
 <span class="gr">&lt;stdin&gt;, line 5: </span>unhandled exception &#39;&quot;__func__ called at global level&quot;&#39; while
 evaluating &#39;__func__&#39;
@@ -2935,7 +2935,7 @@ evaluating &#39;__func__&#39;
 <dd><p>Returns the current namespace at the point of the call. This is
 implemented as a built-in macro which expands to a string. The empty
 string is returned in the default namespace. Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">namespace</span> foo<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">namespace</span> foo<span class="p">;</span>
 <span class="gp">&gt; </span>foo = __namespace__<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">namespace</span><span class="p">;</span>
 <span class="gp">&gt; </span>show foo::foo
@@ -2963,12 +2963,12 @@ macros return the empty string if the code containing the call is not in
 a script (i.e., if it is executed directly at the interactive command
 line or through <a class="reference internal" href="#eval" title="eval"><tt class="xref pure pure-func docutils literal"><span class="pre">eval</span></tt></a>). For instance, assume that the following
 code is stored in the file /home/user/test.pure:</p>
-<div class="highlight-pure"><div class="highlight"><pre>foo = __file__,__dir__<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>foo = __file__,__dir__<span class="p">;</span>
 bar = eval <span class="s">&quot;__file__,__dir__&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Then running this script interactively you&#8217;ll get the following:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>foo<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>foo<span class="p">;</span>
 <span class="s">&quot;/home/user/test.pure&quot;</span>,<span class="s">&quot;/home/user/&quot;</span>
 <span class="gp">&gt; </span>bar<span class="p">;</span>
 <span class="s">&quot;&quot;</span>,<span class="s">&quot;&quot;</span>
@@ -2985,7 +2985,7 @@ cf. <a class="reference internal" href="pure.html#primary-expressions"><em>Prima
 custom aggregate notations (usually implemented as outfix operators)
 which are supposed to be parsed like the built-in list and matrix
 brackets. Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">outfix</span> (: :)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">outfix</span> (: :)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">def</span> (:x:) = __list__ x<span class="p">;</span>
 <span class="gp">&gt; </span>(:(<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>):)<span class="p">;</span>
 [(<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>)]
@@ -2999,7 +2999,7 @@ special processing of parenthesized expressions happens also if the
 macro is applied in prefix form. This should rarely be a problem in
 practice, but if it is then you can use <a class="reference internal" href="#$" title="$"><tt class="xref pure pure-func docutils literal"><span class="pre">$</span></tt></a> to pass arguments
 without adding an (undesired) extra level of parentheses:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>((<span class="p">::</span>)) ((<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>))<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>((<span class="p">::</span>)) ((<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>))<span class="p">;</span>
 [(<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>)]
 <span class="gp">&gt; </span>((<span class="p">::</span>)) $ (<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>)<span class="p">;</span>
 [(<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>)]
@@ -3012,7 +3012,7 @@ in prefix form using <a class="reference internal" href="#$" title="$"><tt class
 substituted away at macro expansion time in the example above.) The same
 trick works if for some reason you want to apply <a class="reference internal" href="#__list__" title="__list__"><tt class="xref pure pure-macro docutils literal"><span class="pre">__list__</span></tt></a> in a
 direct fashion:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>__list__ ((<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>))<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>__list__ ((<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>))<span class="p">;</span>
 [(<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">4</span>)]
 <span class="gp">&gt; </span>__list__ $ (<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>)<span class="p">;</span>
 [(<span class="mi">1</span>,<span class="mi">2</span>),(<span class="mi">3</span>,<span class="mi">4</span>)]
@@ -3028,7 +3028,7 @@ direct fashion:</p>
 return value is a list of hash pairs <tt class="docutils literal"><span class="pre">x=&gt;f</span></tt> where <tt class="docutils literal"><span class="pre">x</span></tt> is the global
 symbol denoting the function (the symbol is always quoted) and <tt class="docutils literal"><span class="pre">f</span></tt> is
 the function value itself. Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>__locals__ <span class="kr">with</span> foo x = x+<span class="mi">1</span><span class="p">;</span> x = a+b <span class="kr">end</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>__locals__ <span class="kr">with</span> foo x = x+<span class="mi">1</span><span class="p">;</span> x = a+b <span class="kr">end</span><span class="p">;</span>
 [x=&gt;a+b,foo=&gt;foo]
 <span class="gp">&gt; </span>f <span class="mi">99</span> <span class="kr">when</span> _=&gt;f = ans!<span class="mi">1</span> <span class="kr">end</span><span class="p">;</span>
 <span class="mi">100</span>
@@ -3057,7 +3057,7 @@ especially in applications of the <a class="reference internal" href="#reduce" t
 want the calling function to be in the environment, you&#8217;ll have to add it
 to the result of <a class="reference internal" href="#__locals__" title="__locals__"><tt class="xref pure pure-macro docutils literal"><span class="pre">__locals__</span></tt></a> yourself. Using the <a class="reference internal" href="#__func__" title="__func__"><tt class="xref pure pure-func docutils literal"><span class="pre">__func__</span></tt></a>
 primitive from above, we can implement this as a macro:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">def</span> __mylocals__ = [val (str __func__)=&gt;__func__]+__locals__<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">def</span> __mylocals__ = [val (str __func__)=&gt;__func__]+__locals__<span class="p">;</span>
 </pre></div>
 </div>
 <p>You can then use <tt class="docutils literal"><span class="pre">__mylocals__</span></tt> instead of <tt class="docutils literal"><span class="pre">__locals__</span></tt> whenever you
@@ -3070,7 +3070,7 @@ the point of the call, a symbol in the default namespace is used, as
 we&#8217;ve seen above. Otherwise the result may be also be a qualified symbol
 if such a symbol has already been declared or defined at the point of the
 call. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">namespace</span> foo<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">namespace</span> foo<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">public</span> foo<span class="p">;</span>
 <span class="gp">&gt; </span>__locals__ <span class="kr">with</span> foo x = x+<span class="mi">1</span> <span class="kr">end</span><span class="p">;</span>
 [foo<span class="p">::</span>foo=&gt;foo]
@@ -3267,7 +3267,7 @@ function also happens to be an operator symbol. Often these will coincide
 expects two arguments). But this is not necessarily the case, as shown in
 the following example of a binary operator which actually takes <em>three</em>
 arguments:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">infix</span> <span class="mi">0</span> oops<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">infix</span> <span class="mi">0</span> oops<span class="p">;</span>
 <span class="gp">&gt; </span>(oops) x y z = x*z+y<span class="p">;</span>
 <span class="gp">&gt; </span>arity (oops)<span class="p">;</span>
 <span class="mi">2</span>
@@ -3387,7 +3387,7 @@ anytime soon.)</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>str (<span class="mi">1</span>/<span class="mi">3</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>str (<span class="mi">1</span>/<span class="mi">3</span>)<span class="p">;</span>
 <span class="s">&quot;0.333333333333333&quot;</span>
 <span class="gp">&gt; </span>val <span class="s">&quot;1/3&quot;</span><span class="p">;</span>
 <span class="mi">1</span>/<span class="mi">3</span>
@@ -3418,7 +3418,7 @@ manual for details.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>__str__ (&#39;__lambda__ [x __type__ <span class="kt">int</span>] (x+<span class="mi">1</span>))<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>__str__ (&#39;__lambda__ [x __type__ <span class="kt">int</span>] (x+<span class="mi">1</span>))<span class="p">;</span>
 <span class="s">&quot;</span><span class="se">\\</span><span class="s">x::int -&gt; x+1&quot;</span>
 </pre></div>
 </div>
@@ -3446,7 +3446,7 @@ string or a literal (quoted) symbol.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> x,y = <span class="mi">77</span>,<span class="mi">99</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> x,y = <span class="mi">77</span>,<span class="mi">99</span><span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> syms = globsym <span class="s">&quot;[a-z]&quot;</span> <span class="mi">0</span><span class="p">;</span> syms<span class="p">;</span>
 [x,y]
 <span class="gp">&gt; </span>map eval syms<span class="p">;</span>
@@ -3487,7 +3487,7 @@ parameters and expands to the curried call <tt class="docutils literal"><span cl
 the <a class="reference internal" href="#reduce_with" title="reduce_with"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce_with</span></tt></a> primitive, which takes one additional argument, the
 expression to be rewritten. The following example shows how to expand or
 factorize an expression using local rules for the laws of distributivity:</p>
-<div class="highlight-pure"><div class="highlight"><pre>expand = reduce <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>expand = reduce <span class="kr">with</span>
   (a+b)*c = a*c+b*c<span class="p">;</span>
   a*(b+c) = a*b+a*c<span class="p">;</span>
 <span class="kr">end</span><span class="p">;</span>
@@ -3509,7 +3509,7 @@ not the local incarnations of <tt class="docutils literal"><span class="pre">*</
 <p><a class="reference internal" href="#reduce" title="reduce"><tt class="xref pure pure-macro docutils literal"><span class="pre">reduce</span></tt></a> also adjusts to quoted arguments. In this case, the local
 rules are applied as usual, but back-substituted globals are <em>not</em>
 evaluated in the result:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>expand ((a+<span class="mi">1</span>)*<span class="mi">2</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>expand ((a+<span class="mi">1</span>)*<span class="mi">2</span>)<span class="p">;</span>
 a*<span class="mi">2</span>+<span class="mi">2</span>
 <span class="gp">&gt; </span>expand (&#39;((a+<span class="mi">1</span>)*<span class="mi">2</span>))<span class="p">;</span>
 a*<span class="mi">2</span>+<span class="mi">1</span>*<span class="mi">2</span>
@@ -3518,20 +3518,20 @@ a*<span class="mi">2</span>+<span class="mi">1</span>*<span class="mi">2</span>
 <p>Note that <a class="reference internal" href="#reduce" title="reduce"><tt class="xref pure pure-macro docutils literal"><span class="pre">reduce</span></tt></a> only takes into account local <em>function</em> bindings
 from <a class="reference internal" href="pure.html#with"><tt class="xref std std-keyword docutils literal"><span class="pre">with</span></tt></a> clauses, local <em>variable</em> bindings do not affect its
 operation in any way:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> y = [x,x^<span class="mi">2</span>,x^<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> y = [x,x^<span class="mi">2</span>,x^<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>reduce y <span class="kr">when</span> x = u+v <span class="kr">end</span><span class="p">;</span>
 [x,x^<span class="mi">2</span>,x^<span class="mi">3</span>]
 </pre></div>
 </div>
 <p>However, in such cases you can perform the desired substitution by turning
 the <a class="reference internal" href="pure.html#when"><tt class="xref std std-keyword docutils literal"><span class="pre">when</span></tt></a> into a <a class="reference internal" href="pure.html#with"><tt class="xref std std-keyword docutils literal"><span class="pre">with</span></tt></a> clause:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce y <span class="kr">with</span> x = u+v <span class="kr">end</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>reduce y <span class="kr">with</span> x = u+v <span class="kr">end</span><span class="p">;</span>
 [u+v,(u+v)^<span class="mi">2</span>,(u+v)^<span class="mi">3</span>]
 </pre></div>
 </div>
 <p>Or you can just invoke the underlying <a class="reference internal" href="#reduce_with" title="reduce_with"><tt class="xref pure pure-func docutils literal"><span class="pre">reduce_with</span></tt></a> builtin directly,
 with the desired substitutions given as hash pairs in the first argument:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>reduce_with [x=&gt;u+v] y<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>reduce_with [x=&gt;u+v] y<span class="p">;</span>
 [u+v,(u+v)^<span class="mi">2</span>,(u+v)^<span class="mi">3</span>]
 </pre></div>
 </div>
@@ -3593,7 +3593,7 @@ value). For convenience, <tt class="docutils literal"><span class="pre">#p</span
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> b = blob {<span class="s">&quot;Hello, world!&quot;</span>, <span class="mi">1</span>/<span class="mi">3</span>, <span class="mi">4711</span>, NULL}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> b = blob {<span class="s">&quot;Hello, world!&quot;</span>, <span class="mi">1</span>/<span class="mi">3</span>, <span class="mi">4711</span>, NULL}<span class="p">;</span>
 <span class="gp">&gt; </span>b<span class="p">;</span> #b<span class="p">;</span> uint $ blob_crc b<span class="p">;</span>
 <span class="kt">#&lt;pointer 0x141dca0&gt;</span>
 <span class="mi">148L</span>
@@ -3769,7 +3769,7 @@ expression.</p>
 <p>As of Pure 0.45, sentries can be placed on any Pure expression. The sentry
 itself can also be any type of object (but usually it&#8217;s a function).
 Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>sentry (\_-&gt;puts <span class="s">&quot;I&#39;m done for!&quot;</span>) (<span class="mi">1</span>..<span class="mi">3</span>)<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">2</span>,<span class="mi">3</span>]
 <span class="gp">&gt; </span>clear ans
@@ -3799,7 +3799,7 @@ shorthand for <tt class="docutils literal"><span class="pre">sentry</span> <span
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> p = cooked (malloc <span class="mi">1024</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>cookedp p<span class="p">;</span>
 <span class="mi">1</span>
@@ -3814,7 +3814,7 @@ circumstances, when you need to associate an expression with another,
 structure instead of a function to be executed at finalization time. For
 instance, here&#8217;s how we can employ sentries to implement hashing of
 function values:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> dict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> dict<span class="p">;</span>
 hashed f x = <span class="kr">case</span> get_sentry f <span class="kr">of</span>
                h<span class="p">::</span>hdict = h!x <span class="kr">if</span> member h x<span class="p">;</span>
                _ = y <span class="kr">when</span> y = f x<span class="p">;</span> sentry (update h x y) f
@@ -3827,18 +3827,18 @@ hashed f x = <span class="kr">case</span> get_sentry f <span class="kr">of</span
 </pre></div>
 </div>
 <p>E.g., consider the naive recursive definition of the Fibonacci function:</p>
-<div class="highlight-pure"><div class="highlight"><pre>fib n<span class="p">::</span><span class="kt">int</span> = <span class="kr">if</span> n&lt;=<span class="mi">1</span> <span class="kr">then</span> <span class="mi">1</span> <span class="kr">else</span> fib (n-<span class="mi">1</span>)+fib (n-<span class="mi">2</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>fib n<span class="p">::</span><span class="kt">int</span> = <span class="kr">if</span> n&lt;=<span class="mi">1</span> <span class="kr">then</span> <span class="mi">1</span> <span class="kr">else</span> fib (n-<span class="mi">1</span>)+fib (n-<span class="mi">2</span>)<span class="p">;</span>
 </pre></div>
 </div>
 <p>A hashed version of the Fibonacci function can be defined as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">let</span> hfib = hashed f <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">let</span> hfib = hashed f <span class="kr">with</span>
   f n<span class="p">::</span><span class="kt">int</span> = <span class="kr">if</span> n&lt;=<span class="mi">1</span> <span class="kr">then</span> <span class="mi">1</span> <span class="kr">else</span> hfib (n-<span class="mi">1</span>)+hfib (n-<span class="mi">2</span>)
 <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This turns the naive definition of the Fibonacci function (which has
 exponential time complexity) into a linear time operation:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>stats
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>stats
 <span class="gp">&gt; </span>fib <span class="mi">35</span><span class="p">;</span>
 <span class="mi">14930352</span>
 <span class="mi">4</span>.53s
@@ -3850,13 +3850,13 @@ exponential time complexity) into a linear time operation:</p>
 <p>Finally, note that there can be only one sentry per expression but,
 building on the operations provided here, it&#8217;s easy to design a scheme
 where sentries are chained. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>chain_sentry f x = sentry (h (get_sentry x)) x <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>chain_sentry f x = sentry (h (get_sentry x)) x <span class="kr">with</span>
   h g x = g x $$ f x<span class="p">;</span>
 <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This invokes the original sentry before the chained one:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>f _ = puts <span class="s">&quot;sentry#1&quot;</span><span class="p">;</span> g _ = puts <span class="s">&quot;sentry#2&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> p = chain_sentry g $ sentry f $ malloc <span class="mi">10</span><span class="p">;</span>
 <span class="gp">&gt; </span>clear p
@@ -3870,20 +3870,20 @@ are other uses, like the &#8220;hashed function&#8221; example above, where you&
 the original sentry to stay intact. This can be achieved by placing the new
 sentry as a sentry on the <em>original sentry</em> rather than the expression
 itself:</p>
-<div class="highlight-pure"><div class="highlight"><pre>attach_sentry f x = sentry (sentry f (get_sentry x)) x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>attach_sentry f x = sentry (sentry f (get_sentry x)) x<span class="p">;</span>
 </pre></div>
 </div>
 <p>This requires that the sentry will actually be garbage-collected when its
 hosting expression gets freed, so it will <em>not</em> work if the original sentry
 is a global:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> p = attach_sentry g $ sentry f $ malloc <span class="mi">10</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> p = attach_sentry g $ sentry f $ malloc <span class="mi">10</span><span class="p">;</span>
 <span class="gp">&gt; </span>clear p
 sentry#<span class="mi">1</span>
 </pre></div>
 </div>
 <p>However, the attached sentry will work ok if you can ensure that the
 original sentry is a (partial or constructor) application. E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> p = attach_sentry g $ sentry (f$) $ malloc <span class="mi">10</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> p = attach_sentry g $ sentry (f$) $ malloc <span class="mi">10</span><span class="p">;</span>
 <span class="gp">&gt; </span>clear p
 sentry#<span class="mi">1</span>
 sentry#<span class="mi">2</span>
@@ -3929,7 +3929,7 @@ iff the tags match. If <tt class="docutils literal"><span class="pre">x</span></
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> p = malloc <span class="mi">10</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> p = malloc <span class="mi">10</span><span class="p">;</span>
 <span class="gp">&gt; </span>get_ptrtag p<span class="p">;</span> <span class="c1">// zero by default</span>
 <span class="mi">0</span>
 <span class="gp">&gt; </span><span class="kr">let</span> t = make_ptrtag<span class="p">;</span> t<span class="p">;</span>
@@ -3948,7 +3948,7 @@ iff the tags match. If <tt class="docutils literal"><span class="pre">x</span></
 just tests the tags for equality. On the other hand, a generic
 <a class="reference internal" href="#NULL" title="NULL"><tt class="xref pure pure-const docutils literal"><span class="pre">NULL</span></tt></a> pointer, like in C, is considered compatible with all pointer
 types:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> t1 = make_ptrtag<span class="p">;</span> t1<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> t1 = make_ptrtag<span class="p">;</span> t1<span class="p">;</span>
 <span class="mi">13</span>
 <span class="gp">&gt; </span>check_ptrtag t1 p<span class="p">;</span>
 <span class="mi">0</span>
@@ -4002,7 +4002,7 @@ operation).</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> p = malloc <span class="mi">10</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> p = malloc <span class="mi">10</span><span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> q = pointer_cast <span class="s">&quot;char*&quot;</span> p<span class="p">;</span>
 <span class="gp">&gt; </span>map pointer_type [p,q]<span class="p">;</span>
 [<span class="s">&quot;void*&quot;</span>,<span class="s">&quot;char*&quot;</span>]
@@ -4020,7 +4020,7 @@ non-contiguous.)</p>
 <p>If you have to do many casts to a given type, you can avoid the overhead of
 repeatedly looking up the type name by assigning the tag to a variable,
 which can then be passed to <a class="reference internal" href="#pointer_cast" title="pointer_cast"><tt class="xref pure pure-func docutils literal"><span class="pre">pointer_cast</span></tt></a> instead:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> ty = pointer_tag <span class="s">&quot;long*&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> ty = pointer_tag <span class="s">&quot;long*&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>pointer_cast ty p, pointer_cast ty q<span class="p">;</span>
 </pre></div>
 </div>
@@ -4031,7 +4031,7 @@ still be with the original cooked pointer value, thus you have to ensure
 that this value survives its type-cast duplicate. It&#8217;s usually best to
 apply the cast right at the spot where the pointer gets passed to an
 external function, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">char</span> *gets(<span class="kt">char</span>*)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">extern</span> <span class="kt">char</span> *gets(<span class="kt">char</span>*)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> p = cooked $ malloc <span class="mi">1000</span><span class="p">;</span>
 <span class="gp">&gt; </span>gets (pointer_cast <span class="s">&quot;char*&quot;</span> p)<span class="p">;</span>
 </pre></div>
@@ -4094,7 +4094,7 @@ it unusable as a reference. Doing this will also leak memory, so don&#8217;t!</p
 <p>There is another pitfall with expression references, namely that they can
 be used to create cyclic chains which currently can&#8217;t be reclaimed by
 Pure&#8217;s reference-counting garbage collector. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>done r = printf <span class="s">&quot;done %s</span><span class="se">\n</span><span class="s">&quot;</span> (str r)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> x = ref ()<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> y = ref (sentry done <span class="mi">2</span>,x)<span class="p">;</span>
@@ -4107,7 +4107,7 @@ Pure&#8217;s reference-counting garbage collector. For instance:</p>
 resulting in a memory leak (you can verify this by noting that the sentries
 are not being called). To prevent this, you&#8217;ll have to break the cycle
 first:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>put y <span class="mi">3</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>put y <span class="mi">3</span><span class="p">;</span>
 done <span class="mi">2</span>
 <span class="mi">3</span>
 <span class="gp">&gt; </span>clear x y
@@ -4126,7 +4126,7 @@ it&#8217;s a good idea to avoid such cycles if possible.</p>
 comparisons of pointer values. This module normally is not included in the
 prelude, so to use these operations, you have to add the following import
 declaration to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> pointers<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> pointers<span class="p">;</span>
 </pre></div>
 </div>
 <p>The module overloads the comparison and some of the arithmetic operators
@@ -4197,7 +4197,7 @@ complex and rational numbers.</p>
 <h3><a class="toc-backref" href="#id54">Imports</a><a class="headerlink" href="#imports" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> math<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> math<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -4405,7 +4405,7 @@ you can also find both of these in one go by converting to polar form.</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> math<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> math<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> z = <span class="mi">2</span>^(<span class="mi">1</span>/i)<span class="p">;</span> z<span class="p">;</span>
 <span class="mf">0.769238901363972</span>+:-<span class="mf">0.638961276313635</span>
 <span class="gp">&gt; </span><span class="kr">let</span> z = ln z/ln <span class="mi">2</span><span class="p">;</span> z<span class="p">;</span>
@@ -4419,7 +4419,7 @@ you can also find both of these in one go by converting to polar form.</p>
 <p>Please note that, as the <a class="reference internal" href="#+:" title="+:"><tt class="xref pure pure-func docutils literal"><span class="pre">+:</span></tt></a> and <a class="reference internal" href="#&lt;:" title="&lt;:"><tt class="xref pure pure-func docutils literal"><span class="pre">&lt;:</span></tt></a> constructors bind weaker
 than the other arithmetic operators, complex numbers <em>must</em> be
 parenthesized accordingly, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>(<span class="mi">1</span>+:<span class="mi">2</span>)*(<span class="mi">3</span>+:<span class="mi">4</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>(<span class="mi">1</span>+:<span class="mi">2</span>)*(<span class="mi">3</span>+:<span class="mi">4</span>)<span class="p">;</span>
 -<span class="mi">5</span>+:<span class="mi">10</span>
 </pre></div>
 </div>
@@ -4473,7 +4473,7 @@ other number types.</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> math<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> math<span class="p">;</span>
 <span class="gp">&gt; </span><span class="mi">5</span>%<span class="mi">7</span> + <span class="mi">2</span>%<span class="mi">3</span><span class="p">;</span>
 <span class="mi">29L</span>%<span class="mi">21L</span>
 <span class="gp">&gt; </span><span class="mi">3</span>%<span class="mi">8</span> - <span class="mi">1</span>%<span class="mi">3</span><span class="p">;</span>
@@ -4491,7 +4491,7 @@ other number types.</p>
 <p>Note that doubles can&#8217;t represent most rationals exactly, so conversion
 from double to rational <em>will</em> yield funny results in many cases (which are
 still accurate up to rounding errors). For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> x = rational (<span class="mi">1</span>/<span class="mi">17</span>)<span class="p">;</span> x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> x = rational (<span class="mi">1</span>/<span class="mi">17</span>)<span class="p">;</span> x<span class="p">;</span>
 <span class="mi">4238682002231055L</span>%<span class="mi">72057594037927936L</span>
 <span class="gp">&gt; </span>num x/den x<span class="p">;</span>
 <span class="mf">0.0588235294117647</span>
@@ -4568,7 +4568,7 @@ and characters. This also includes support for arithmetic sequences.</p>
 <p>Please note that this module is not included in the prelude by default, so
 you have to use the following import declaration to get access to its
 operations:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> enum<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> enum<span class="p">;</span>
 </pre></div>
 </div>
 <p>The following operations are provided:</p>
@@ -4616,24 +4616,24 @@ constructed with <a class="reference internal" href="#enum" title="enum"><tt cla
 </dd></dl>
 
 <p>For instance, consider:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> sun mon tue wed thu fri sat<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">nonfix</span> sun mon tue wed thu fri sat<span class="p">;</span>
 <span class="kr">type</span> day sun | day mon | day tue | day wed | day thu | day fri | day sat<span class="p">;</span>
 </pre></div>
 </div>
 <p>Once the type is defined, we can turn it into an enumeration simply as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>enum day<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>enum day<span class="p">;</span>
 </pre></div>
 </div>
 <p>There&#8217;s also a convenience function <a class="reference internal" href="#defenum" title="defenum"><tt class="xref pure pure-func docutils literal"><span class="pre">defenum</span></tt></a> which defines the type
 and makes it enumerable in one go:</p>
-<div class="highlight-pure"><div class="highlight"><pre>defenum day [sun,mon,tue,wed,thu,fri,sat]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>defenum day [sun,mon,tue,wed,thu,fri,sat]<span class="p">;</span>
 </pre></div>
 </div>
 <p>In particular, this sets up the functions <tt class="docutils literal"><span class="pre">day</span></tt> and <tt class="docutils literal"><span class="pre">ord</span></tt> so that you
 can convert between members of the <tt class="docutils literal"><span class="pre">day</span></tt> type and the corresponding
 ordinals:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>ord sun<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>ord sun<span class="p">;</span>
 <span class="mi">0</span>
 <span class="gp">&gt; </span>day (ans+<span class="mi">3</span>)<span class="p">;</span>
 wed
@@ -4641,7 +4641,7 @@ wed
 </div>
 <p>You can also retrieve the type of an enumerated type member (or rather its
 enumeration function) with <a class="reference internal" href="#enumof" title="enumof"><tt class="xref pure pure-func docutils literal"><span class="pre">enumof</span></tt></a>:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>enumof sun<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>enumof sun<span class="p">;</span>
 day
 <span class="gp">&gt; </span>ans <span class="mi">5</span><span class="p">;</span>
 fri
@@ -4649,7 +4649,7 @@ fri
 </div>
 <p>Basic arithmetic, comparisons and arithmetic sequences also work as usual,
 provided that the involved members are all from the same enumeration:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>succ mon<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>succ mon<span class="p">;</span>
 tue
 <span class="gp">&gt; </span>pred sat<span class="p">;</span>
 fri
@@ -4670,11 +4670,11 @@ wed
 <p>Note that given one member of the enumeration, you can use <a class="reference internal" href="#enumof" title="enumof"><tt class="xref pure pure-func docutils literal"><span class="pre">enumof</span></tt></a>
 to quickly enumerate <em>all</em> members of the type starting at the given
 member. Here&#8217;s a little helper function which does this:</p>
-<div class="highlight-pure"><div class="highlight"><pre>enumerate x<span class="p">::</span>enum = iterwhile (typep ty) succ x <span class="kr">when</span> ty = enumof x <span class="kr">end</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>enumerate x<span class="p">::</span>enum = iterwhile (typep ty) succ x <span class="kr">when</span> ty = enumof x <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>enumerate sun<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>enumerate sun<span class="p">;</span>
 [sun,mon,tue,wed,thu,fri,sat]
 </pre></div>
 </div>
@@ -4682,7 +4682,7 @@ member. Here&#8217;s a little helper function which does this:</p>
 enumerated type members (no matter whether of the same or another type).
 Thus if you later add more elements to the <tt class="docutils literal"><span class="pre">day</span></tt> type, you can just call
 <a class="reference internal" href="#enum" title="enum"><tt class="xref pure pure-func docutils literal"><span class="pre">enum</span></tt></a> again to update the enumeration accordingly:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>succ sat<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>succ sat<span class="p">;</span>
 sat+<span class="mi">1</span>
 <span class="gp">&gt; </span><span class="kr">type</span> day doomsday<span class="p">;</span>
 <span class="gp">&gt; </span>enum day<span class="p">;</span>
@@ -4706,7 +4706,7 @@ client modules shouldn&#8217;t rely on the internal representation. Each type
 provides a corresponding type tag (cf. <a class="reference internal" href="pure.html#type-tags"><em>Type Tags</em></a> in the Pure
 Manual), as given in the description of each type, which can be used to
 match values of the type, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>shift a<span class="p">::</span>array = rmfirst a<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>shift a<span class="p">::</span>array = rmfirst a<span class="p">;</span>
 </pre></div>
 </div>
 <p>All container types implement the equality predicates <a class="reference internal" href="#==" title="=="><tt class="xref pure pure-func docutils literal"><span class="pre">==</span></tt></a> and
@@ -4730,7 +4730,7 @@ array. All these operations are carried out in logarithmic time.</p>
 <h4><a class="toc-backref" href="#id62">Imports</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> array<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> array<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -4856,11 +4856,11 @@ a <tt class="descname">!</tt> (i,j)</dt>
 <div class="section" id="examples">
 <h4><a class="toc-backref" href="#id64">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h4>
 <p>Import the module:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> array<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> array<span class="p">;</span>
 </pre></div>
 </div>
 <p>A one-dimensional array:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> a<span class="p">::</span>array = array (<span class="mf">0.0</span>:<span class="mf">0.1</span>..<span class="mf">1.0</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> a<span class="p">::</span>array = array (<span class="mf">0.0</span>:<span class="mf">0.1</span>..<span class="mf">1.0</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>#a<span class="p">;</span> members a<span class="p">;</span>
 <span class="mi">11</span>
 [<span class="mf">0.0</span>,<span class="mf">0.1</span>,<span class="mf">0.2</span>,<span class="mf">0.3</span>,<span class="mf">0.4</span>,<span class="mf">0.5</span>,<span class="mf">0.6</span>,<span class="mf">0.7</span>,<span class="mf">0.8</span>,<span class="mf">0.9</span>,<span class="mf">1.0</span>]
@@ -4869,21 +4869,21 @@ a <tt class="descname">!</tt> (i,j)</dt>
 <p>Indexing an array works in the usual way, using Pure&#8217;s <a class="reference internal" href="#!" title="!"><tt class="xref pure pure-func docutils literal"><span class="pre">!</span></tt></a>
 operator. By virtue of the prelude, slicing an array with <a class="reference internal" href="#!!" title="!!"><tt class="xref pure pure-func docutils literal"><span class="pre">!!</span></tt></a> also
 works as expected:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>a!<span class="mi">5</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>a!<span class="mi">5</span><span class="p">;</span>
 <span class="mf">0.5</span>
 <span class="gp">&gt; </span>a!!(<span class="mi">3</span>..<span class="mi">7</span>)<span class="p">;</span>
 [<span class="mf">0.3</span>,<span class="mf">0.4</span>,<span class="mf">0.5</span>,<span class="mf">0.6</span>,<span class="mf">0.7</span>]
 </pre></div>
 </div>
 <p>Updating a member of an array produces a new array:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> b<span class="p">::</span>array = update a <span class="mi">1</span> <span class="mf">2.0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> b<span class="p">::</span>array = update a <span class="mi">1</span> <span class="mf">2.0</span><span class="p">;</span>
 <span class="gp">&gt; </span>members b<span class="p">;</span>
 [<span class="mf">0.0</span>,<span class="mf">2.0</span>,<span class="mf">0.2</span>,<span class="mf">0.3</span>,<span class="mf">0.4</span>,<span class="mf">0.5</span>,<span class="mf">0.6</span>,<span class="mf">0.7</span>,<span class="mf">0.8</span>,<span class="mf">0.9</span>,<span class="mf">1.0</span>]
 </pre></div>
 </div>
 <p>Two-dimensional arrays can be created with <a class="reference internal" href="#array2" title="array2"><tt class="xref pure pure-func docutils literal"><span class="pre">array2</span></tt></a> from a list of
 lists:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> a2<span class="p">::</span>array = array2 [[i,x | x = [u,v,w]] | i = <span class="mi">1</span>..<span class="mi">2</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> a2<span class="p">::</span>array = array2 [[i,x | x = [u,v,w]] | i = <span class="mi">1</span>..<span class="mi">2</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>members2 a2<span class="p">;</span>
 [[(<span class="mi">1</span>,u),(<span class="mi">1</span>,v),(<span class="mi">1</span>,w)],[(<span class="mi">2</span>,u),(<span class="mi">2</span>,v),(<span class="mi">2</span>,w)]]
 <span class="gp">&gt; </span>a2!(<span class="mi">1</span>,<span class="mi">2</span>)<span class="p">;</span>
@@ -4895,14 +4895,14 @@ lists:</p>
 </pre></div>
 </div>
 <p>Here&#8217;s how to convert an array to a Pure matrix:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kt">matrix</span> $ members a<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kt">matrix</span> $ members a<span class="p">;</span>
 {<span class="mf">0.0</span>,<span class="mf">0.1</span>,<span class="mf">0.2</span>,<span class="mf">0.3</span>,<span class="mf">0.4</span>,<span class="mf">0.5</span>,<span class="mf">0.6</span>,<span class="mf">0.7</span>,<span class="mf">0.8</span>,<span class="mf">0.9</span>,<span class="mf">1.0</span>}
 <span class="gp">&gt; </span><span class="kt">matrix</span> $ members2 a2<span class="p">;</span>
 {(<span class="mi">1</span>,u),(<span class="mi">1</span>,v),(<span class="mi">1</span>,w)<span class="p">;</span>(<span class="mi">2</span>,u),(<span class="mi">2</span>,v),(<span class="mi">2</span>,w)}
 </pre></div>
 </div>
 <p>Converting back from a matrix to an array:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> b2<span class="p">::</span>array = array2 $ list2 {(<span class="mi">1</span>,u),(<span class="mi">1</span>,v),(<span class="mi">1</span>,w)<span class="p">;</span>(<span class="mi">2</span>,u),(<span class="mi">2</span>,v),(<span class="mi">2</span>,w)}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> b2<span class="p">::</span>array = array2 $ list2 {(<span class="mi">1</span>,u),(<span class="mi">1</span>,v),(<span class="mi">1</span>,w)<span class="p">;</span>(<span class="mi">2</span>,u),(<span class="mi">2</span>,v),(<span class="mi">2</span>,w)}<span class="p">;</span>
 <span class="gp">&gt; </span>members2 b2<span class="p">;</span>
 [[(<span class="mi">1</span>,u),(<span class="mi">1</span>,v),(<span class="mi">1</span>,w)],[(<span class="mi">2</span>,u),(<span class="mi">2</span>,v),(<span class="mi">2</span>,w)]]
 </pre></div>
@@ -4929,7 +4929,7 @@ in which equal elements are retrieved is not specified.</p>
 <h4><a class="toc-backref" href="#id66">Imports</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> heap<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> heap<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -4994,7 +4994,7 @@ to your program:</p>
 </div>
 <div class="section" id="id12">
 <h4><a class="toc-backref" href="#id68">Examples</a><a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h4>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> h<span class="p">::</span>heap = heap [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> h<span class="p">::</span>heap = heap [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>members h<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
 <span class="gp">&gt; </span>first h<span class="p">;</span>
@@ -5078,7 +5078,7 @@ was done by Albert Graef.</p>
 <h4><a class="toc-backref" href="#id70">Imports</a><a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h4>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> dict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> dict<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -5278,7 +5278,7 @@ very few keys).</li>
 <div class="section" id="id15">
 <h4><a class="toc-backref" href="#id72">Examples</a><a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h4>
 <p>A normal (ordered) dictionary:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> dict<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> dict<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> d<span class="p">::</span>dict = dict [<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">77</span>,<span class="s">&quot;bar&quot;</span>=&gt;<span class="mf">99.1</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>keys d<span class="p">;</span> vals d<span class="p">;</span> members d<span class="p">;</span>
 [<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;foo&quot;</span>]
@@ -5289,7 +5289,7 @@ very few keys).</li>
 <p>Indexing a dictionary works in the usual way, using Pure&#8217;s <a class="reference internal" href="#!" title="!"><tt class="xref pure pure-func docutils literal"><span class="pre">!</span></tt></a>
 operator. An <a class="reference internal" href="#out_of_bounds" title="out_of_bounds"><tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt></a> exception is thrown if the key is not in
 the dictionary:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>d!<span class="s">&quot;foo&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>d!<span class="s">&quot;foo&quot;</span><span class="p">;</span>
 <span class="mi">77</span>
 <span class="gp">&gt; </span>d!<span class="s">&quot;baz&quot;</span><span class="p">;</span>
 <span class="gr">&lt;stdin&gt;, line 5: </span>unhandled exception &#39;out_of_bounds&#39; while evaluating
@@ -5298,13 +5298,13 @@ the dictionary:</p>
 </div>
 <p>By virtue of the prelude, slicing a dictionary with <a class="reference internal" href="#!!" title="!!"><tt class="xref pure pure-func docutils literal"><span class="pre">!!</span></tt></a> also works
 as expected:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>d!![<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;baz&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>d!![<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;baz&quot;</span>]<span class="p">;</span>
 [<span class="mi">77</span>,<span class="mf">99.1</span>]
 </pre></div>
 </div>
 <p>A hashed dictionary can be used with any key values, which are stored in a
 seemingly random order:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> h<span class="p">::</span>hdict = hdict [foo=&gt;<span class="mi">77</span>,<span class="mi">42</span>=&gt;<span class="mf">99.1</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> h<span class="p">::</span>hdict = hdict [foo=&gt;<span class="mi">77</span>,<span class="mi">42</span>=&gt;<span class="mf">99.1</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>keys h<span class="p">;</span> vals h<span class="p">;</span> members h<span class="p">;</span>
 [<span class="mi">42</span>,foo]
 [<span class="mf">99.1</span>,<span class="mi">77</span>]
@@ -5320,24 +5320,24 @@ value for a given key to be stored in the dictionary. In this case, the
 indexing operation returns a list of all values for the given key, which
 may be empty if the key is not in the dictionary (rather than throwing an
 <a class="reference internal" href="#out_of_bounds" title="out_of_bounds"><tt class="xref pure pure-cons docutils literal"><span class="pre">out_of_bounds</span></tt></a> exception):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> d<span class="p">::</span>mdict = mdict [<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">77</span>,<span class="s">&quot;bar&quot;</span>=&gt;<span class="mf">99.1</span>,<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> d<span class="p">::</span>mdict = mdict [<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">77</span>,<span class="s">&quot;bar&quot;</span>=&gt;<span class="mf">99.1</span>,<span class="s">&quot;foo&quot;</span>=&gt;<span class="mi">99</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>d!<span class="s">&quot;foo&quot;</span><span class="p">;</span> d!<span class="s">&quot;baz&quot;</span><span class="p">;</span>
 [<span class="mi">77</span>,<span class="mi">99</span>]
 []
 </pre></div>
 </div>
 <p>Slicing thus returns a list of lists of values here:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>d!![<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;baz&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>d!![<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;baz&quot;</span>]<span class="p">;</span>
 [[<span class="mi">77</span>,<span class="mi">99</span>],[<span class="mf">99.1</span>],[]]
 </pre></div>
 </div>
 <p>To obtain a flat list you can just concatenate the results:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>cat $ d!![<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;baz&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>cat $ d!![<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;bar&quot;</span>,<span class="s">&quot;baz&quot;</span>]<span class="p">;</span>
 [<span class="mi">77</span>,<span class="mi">99</span>,<span class="mf">99.1</span>]
 </pre></div>
 </div>
 <p>Hashed multidicts provide both key hashing and multiple values per key:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> h<span class="p">::</span>hmdict = hmdict [foo=&gt;<span class="mi">77</span>,<span class="mi">42</span>=&gt;<span class="mf">99.1</span>,<span class="mi">42</span>=&gt;<span class="mi">77</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> h<span class="p">::</span>hmdict = hmdict [foo=&gt;<span class="mi">77</span>,<span class="mi">42</span>=&gt;<span class="mf">99.1</span>,<span class="mi">42</span>=&gt;<span class="mi">77</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>keys h<span class="p">;</span> vals h<span class="p">;</span> members h<span class="p">;</span>
 [<span class="mi">42</span>,<span class="mi">42</span>,foo]
 [<span class="mf">99.1</span>,<span class="mi">77</span>,<span class="mi">77</span>]
@@ -5349,7 +5349,7 @@ may be empty if the key is not in the dictionary (rather than throwing an
 <p>There are also some set-like operations which allow you to add/remove the
 members (<tt class="docutils literal"><span class="pre">key=&gt;val</span></tt> pairs) of one dictionary to/from another dictionary,
 and to compute the intersection of two dictionaries. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> h1 = hmdict [a=&gt;<span class="mi">1</span>,b=&gt;<span class="mi">2</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> h1 = hmdict [a=&gt;<span class="mi">1</span>,b=&gt;<span class="mi">2</span>]<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> h2 = hmdict [b=&gt;<span class="mi">2</span>,c=&gt;<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>members (h1+h2)<span class="p">;</span>
 [a=&gt;<span class="mi">1</span>,c=&gt;<span class="mi">3</span>,b=&gt;<span class="mi">2</span>,b=&gt;<span class="mi">2</span>]
@@ -5361,7 +5361,7 @@ and to compute the intersection of two dictionaries. For instance:</p>
 </div>
 <p>It&#8217;s possible to mix dictionaries of different types in these operations.
 The necessary conversions are handled automatically:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> h1 = hmdict [a=&gt;<span class="mi">1</span>,b=&gt;<span class="mi">2</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> h1 = hmdict [a=&gt;<span class="mi">1</span>,b=&gt;<span class="mi">2</span>]<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> h2 = hdict  [b=&gt;<span class="mi">3</span>,c=&gt;<span class="mi">4</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>members (h1+h2)<span class="p">;</span>
 [a=&gt;<span class="mi">1</span>,c=&gt;<span class="mi">4</span>,b=&gt;<span class="mi">2</span>,b=&gt;<span class="mi">3</span>]
@@ -5371,7 +5371,7 @@ The necessary conversions are handled automatically:</p>
 type in such cases (a hashed multidict in the above example). If this is
 not what you want, you&#8217;ll have to apply the necessary conversions
 manually:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members (hdict h1+h2)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>members (hdict h1+h2)<span class="p">;</span>
 [a=&gt;<span class="mi">1</span>,c=&gt;<span class="mi">4</span>,b=&gt;<span class="mi">3</span>]
 </pre></div>
 </div>
@@ -5431,7 +5431,7 @@ for details.</p>
 <h4><a class="toc-backref" href="#id74">Imports</a><a class="headerlink" href="#id16" title="Permalink to this headline">¶</a></h4>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> set<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> set<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -5573,7 +5573,7 @@ sum is probably more common in practical applications, and also
 generalizes easily to multidicts (see <a class="reference internal" href="#dictionaries">Dictionaries</a>). However, if
 multiset union is needed, it can easily be defined in terms of multiset
 sum as follows:</p>
-<div class="last highlight-pure"><div class="highlight"><pre>union m1 m2 = m1+(m2-m1)<span class="p">;</span>
+<div class="last highlight-pure"><div class="highlight"><pre><span></span>union m1 m2 = m1+(m2-m1)<span class="p">;</span>
 </pre></div>
 </div>
 </div>
@@ -5581,7 +5581,7 @@ sum as follows:</p>
 <div class="section" id="id18">
 <h4><a class="toc-backref" href="#id76">Examples</a><a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h4>
 <p>Some basic set operations:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m<span class="p">::</span>set = set [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m<span class="p">::</span>set = set [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>members m<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
 <span class="gp">&gt; </span>map (member m) (<span class="mi">1</span>..<span class="mi">5</span>)<span class="p">;</span>
@@ -5596,7 +5596,7 @@ sum as follows:</p>
 </div>
 <p>The bag operations work in a similar fashion, but multiple instances are
 permitted in this case, and each instance counts as a separate member:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m<span class="p">::</span>bag = bag [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m<span class="p">::</span>bag = bag [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span>members m<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">5</span>,<span class="mi">11</span>]
 <span class="gp">&gt; </span>members $ delete m <span class="mi">3</span><span class="p">;</span>
@@ -5614,7 +5614,7 @@ permitted in this case, and each instance counts as a separate member:</p>
 <p>As already mentioned, operands of different types can be mixed with the
 infix operators; the necessary conversions are handled automatically. E.g.,
 here&#8217;s how you add a set to a bag:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> m1<span class="p">::</span>bag = bag [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> m1<span class="p">::</span>bag = bag [<span class="mi">5</span>,<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">11</span>,<span class="mi">3</span>]<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> m2<span class="p">::</span>set = set (<span class="mi">3</span>..<span class="mi">6</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>members (m1+m2)<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">11</span>]
@@ -5623,13 +5623,13 @@ here&#8217;s how you add a set to a bag:</p>
 <p>Note that the result will always be promoted to the most general operand
 type in such cases (a bag in the above example). If this is not what you
 want, you&#8217;ll have to apply the necessary conversions manually:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members (set m1+m2)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>members (set m1+m2)<span class="p">;</span>
 [<span class="mi">1</span>,<span class="mi">3</span>,<span class="mi">4</span>,<span class="mi">5</span>,<span class="mi">6</span>,<span class="mi">11</span>]
 </pre></div>
 </div>
 <p>If set members aren&#8217;t ordered then you&#8217;ll get an exception when trying to
 create an ordered set or bag from them:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>set [a,b,c]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>set [a,b,c]<span class="p">;</span>
 <span class="gr">&lt;stdin&gt;, line 5: </span>unhandled exception &#39;failed_cond&#39; while evaluating
 &#39;set [a,b,c]&#39;
 </pre></div>
@@ -5637,7 +5637,7 @@ create an ordered set or bag from them:</p>
 <p>In such a case hashed sets and bags must be used instead. These work
 analogously to the ordered sets and bags, but distinct members are stored
 in an apparently random order:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>members $ hset [a,b,c] * hset [c,d,e]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>members $ hset [a,b,c] * hset [c,d,e]<span class="p">;</span>
 [c]
 <span class="gp">&gt; </span>members $ hbag [a,b,c] + hbag [c,d,e]<span class="p">;</span>
 [a,c,c,b,d,e]
@@ -5660,7 +5660,7 @@ the Pure-specific aspects here.</p>
 <h3><a class="toc-backref" href="#id78">Imports</a><a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
 <p>To use the operations of this module, add the following import declaration
 to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> system<span class="p">;</span>
 </pre></div>
 </div>
 <p>Some functions of the system interface are provided in separate modules;
@@ -5685,7 +5685,7 @@ to survive a return to the command line in interactive sessions.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>fopen <span class="s">&quot;junk&quot;</span> <span class="s">&quot;r&quot;</span>, perror <span class="s">&quot;junk&quot;</span><span class="p">;</span>
 junk: No such file or directory
 fopen <span class="s">&quot;junk&quot;</span> <span class="s">&quot;r&quot;</span>
@@ -5720,7 +5720,7 @@ sets the default system locale. Unless your scripts rely on a specific
 encoding, setting the locale to either <tt class="docutils literal"><span class="pre">&quot;C&quot;</span></tt> or <tt class="docutils literal"><span class="pre">&quot;&quot;</span></tt> should always be
 safe.</p>
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>setlocale LC_ALL NULL<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>setlocale LC_ALL NULL<span class="p">;</span>
 <span class="s">&quot;en_US.UTF-8&quot;</span>
 </pre></div>
 </div>
@@ -5796,20 +5796,20 @@ by a signal, in which case the time remaining to be slept is returned.</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>time,sleep <span class="mi">1</span>,time<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>time,sleep <span class="mi">1</span>,time<span class="p">;</span>
 <span class="mi">1270241703L</span>,<span class="mi">0</span>,<span class="mi">1270241704L</span>
 <span class="gp">&gt; </span>gettimeofday,nanosleep <span class="mf">0.1</span>,gettimeofday<span class="p">;</span>
 <span class="mf">1270241709.06338</span>,<span class="mf">0.0</span>,<span class="mf">1270241709.16341</span>
 </pre></div>
 </div>
 <p>Here&#8217;s a little macro which lets you time evaluations:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">def</span> timex x = y,(t2-t1)/CLOCKS_PER_SEC <span class="kr">when</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">def</span> timex x = y,(t2-t1)/CLOCKS_PER_SEC <span class="kr">when</span>
   t1 = clock<span class="p">;</span> y = x<span class="p">;</span> t2 = clock<span class="p">;</span>
 <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>timex (foldl (+) <span class="mi">0</span> (<span class="mi">1</span>..<span class="mi">100000</span>))<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>timex (foldl (+) <span class="mi">0</span> (<span class="mi">1</span>..<span class="mi">100000</span>))<span class="p">;</span>
 <span class="mi">705082704</span>,<span class="mf">0.07</span>
 </pre></div>
 </div>
@@ -5835,7 +5835,7 @@ and <a class="reference internal" href="#daylight" title="daylight"><tt class="x
 details. This routine is also called automatically when the system module
 is loaded, so you only have to invoke it to get up-to-date information
 after changes to the locale or the timezone. Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>tzset<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>tzset<span class="p">;</span>
 ()
 <span class="gp">&gt; </span>tzname, timezone, daylight<span class="p">;</span>
 [<span class="s">&quot;CET&quot;</span>,<span class="s">&quot;CEST&quot;</span>],-<span class="mi">3600</span>,<span class="mi">1</span>
@@ -5895,7 +5895,7 @@ processed, see the example below.</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> t = time<span class="p">;</span> t<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> t = time<span class="p">;</span> t<span class="p">;</span>
 <span class="mi">1270239790L</span>
 <span class="gp">&gt; </span><span class="kr">let</span> tm = localtime t<span class="p">;</span> tm<span class="p">;</span>
 <span class="kt">#&lt;pointer 0x7ff97ecbdde0&gt;</span>
@@ -5923,7 +5923,7 @@ contain additional public and private fields. The actual size of a <tt class="do
 struct is given by the <tt class="xref pure pure-const docutils literal"><span class="pre">SIZEOF_TM</span></tt> constant, so a safe way to
 allocate suitable dynamic storage for the <a class="reference internal" href="#strptime" title="strptime"><tt class="xref pure pure-func docutils literal"><span class="pre">strptime</span></tt></a> function is as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> tm = pointer_cast <span class="s">&quot;int*&quot;</span> $ calloc <span class="mi">1</span> SIZEOF_TM<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> tm = pointer_cast <span class="s">&quot;int*&quot;</span> $ calloc <span class="mi">1</span> SIZEOF_TM<span class="p">;</span>
 <span class="gp">&gt; </span>strptime <span class="s">&quot;4/2/10&quot;</span> <span class="s">&quot;%D&quot;</span> tm, int_matrix <span class="mi">9</span> tm<span class="p">;</span>
 <span class="s">&quot;&quot;</span>,{<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">110</span>,<span class="mi">5</span>,<span class="mi">91</span>,<span class="mi">0</span>}
 </pre></div>
@@ -5931,7 +5931,7 @@ follows:</p>
 <p>Instead of explicitly allocating dynamic storage and converting it to a
 Pure matrix later, you can also invoke <a class="reference internal" href="#strptime" title="strptime"><tt class="xref pure pure-func docutils literal"><span class="pre">strptime</span></tt></a> directly with an
 int matrix of sufficient size:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> tm = <span class="kt">imatrix</span> (SIZEOF_TM div SIZEOF_INT + <span class="mi">1</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> tm = <span class="kt">imatrix</span> (SIZEOF_TM div SIZEOF_INT + <span class="mi">1</span>)<span class="p">;</span>
 <span class="gp">&gt; </span>strptime <span class="s">&quot;4/2/10&quot;</span> <span class="s">&quot;%D&quot;</span> tm, take <span class="mi">9</span> tm<span class="p">;</span>
 <span class="s">&quot;&quot;</span>,{<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">2</span>,<span class="mi">3</span>,<span class="mi">110</span>,<span class="mi">5</span>,<span class="mi">91</span>,<span class="mi">0</span>}
 </pre></div>
@@ -5939,7 +5939,7 @@ int matrix of sufficient size:</p>
 <p>Last but not least, to make calling <a class="reference internal" href="#strptime" title="strptime"><tt class="xref pure pure-func docutils literal"><span class="pre">strptime</span></tt></a> more convenient, you
 can supply your own little wrapper function which takes care of allocating
 the storage, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>mystrptime s format = s,take <span class="mi">9</span> tm <span class="kr">when</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>mystrptime s format = s,take <span class="mi">9</span> tm <span class="kr">when</span>
   tm = <span class="kt">imatrix</span> (SIZEOF_TM div SIZEOF_INT + <span class="mi">1</span>)<span class="p">;</span>
   s = strptime s format tm<span class="p">;</span>
 <span class="kr">end</span><span class="p">;</span>
@@ -6045,7 +6045,7 @@ task.)</p>
 which terminates the program with a given exit code, cf. <a class="reference internal" href="#other-special-primitives">Other Special
 Primitives</a>.</p>
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>system <span class="s">&quot;pwd&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>system <span class="s">&quot;pwd&quot;</span><span class="p">;</span>
 /home/ag/svn/pure-lang/trunk/pure/lib
 <span class="mi">0</span>
 <span class="gp">&gt; </span>spawnvp P_WAIT <span class="s">&quot;pwd&quot;</span> [<span class="s">&quot;pwd&quot;</span>]<span class="p">;</span>
@@ -6208,14 +6208,14 @@ the buffer size.</p>
 by this module.  <tt class="docutils literal"><span class="pre">setbuf</span> <span class="pre">fp</span> <span class="pre">buf</span></tt> is actually equivalent to the
 following call (except that <a class="reference internal" href="#setvbuf" title="setvbuf"><tt class="xref pure pure-func docutils literal"><span class="pre">setvbuf</span></tt></a> also returns an integer
 return value):</p>
-<div class="highlight-pure"><div class="highlight"><pre>setvbuf fp buf (<span class="kr">if</span> null buf <span class="kr">then</span> _IONBF <span class="kr">else</span> _IOFBF) BUFSIZ
+<div class="highlight-pure"><div class="highlight"><pre><span></span>setvbuf fp buf (<span class="kr">if</span> null buf <span class="kr">then</span> _IONBF <span class="kr">else</span> _IOFBF) BUFSIZ
 </pre></div>
 </div>
 <p>Please see the setbuf(3) manual page for details.</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>puts <span class="s">&quot;Hello, world!&quot;</span><span class="p">;</span>
 Hello, world!
 <span class="mi">14</span>
 
@@ -6302,7 +6302,7 @@ corresponding items will not be returned.</p>
 </dd></dl>
 
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>do (printf <span class="s">&quot;%s%d</span><span class="se">\n</span><span class="s">&quot;</span>) [(<span class="s">&quot;foo&quot;</span>,<span class="mi">5</span>),(<span class="s">&quot;catch&quot;</span>,<span class="mi">22</span>)]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>do (printf <span class="s">&quot;%s%d</span><span class="se">\n</span><span class="s">&quot;</span>) [(<span class="s">&quot;foo&quot;</span>,<span class="mi">5</span>),(<span class="s">&quot;catch&quot;</span>,<span class="mi">22</span>)]<span class="p">;</span>
 foo5
 catch22
 ()
@@ -6312,7 +6312,7 @@ catch22
 </div>
 <p>As mentioned above, special argument formats are provided for bigints and
 multiprecision floats:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>sscanf <span class="s">&quot;a(5) = 1234&quot;</span> <span class="s">&quot;a(%d) = %Zd&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>sscanf <span class="s">&quot;a(5) = 1234&quot;</span> <span class="s">&quot;a(%d) = %Zd&quot;</span><span class="p">;</span>
 <span class="mi">5</span>,<span class="mi">1234L</span>
 <span class="gp">&gt; </span>sprintf <span class="s">&quot;a(%d) = %Zd&quot;</span> ans<span class="p">;</span>
 <span class="s">&quot;a(5) = 1234&quot;</span>
@@ -6386,7 +6386,7 @@ of last access, last modification and creation, respectively, which can be
 decoded using the appropriate time functions like <a class="reference internal" href="#ctime" title="ctime"><tt class="xref pure pure-func docutils literal"><span class="pre">ctime</span></tt></a> or
 <a class="reference internal" href="#strftime" title="strftime"><tt class="xref pure pure-func docutils literal"><span class="pre">strftime</span></tt></a>, see <a class="reference internal" href="#time-functions">Time Functions</a>.</p>
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>stat <span class="s">&quot;/etc/passwd&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>stat <span class="s">&quot;/etc/passwd&quot;</span><span class="p">;</span>
 <span class="mi">64773L</span>,<span class="mi">9726294L</span>,<span class="mi">33188</span>,<span class="mi">1</span>,<span class="mi">0</span>,<span class="mi">0</span>,<span class="mi">0L</span>,<span class="mi">1623L</span>,<span class="mi">1250373163L</span>,<span class="mi">1242692339L</span>,<span class="mi">1242692339L</span>
 <span class="gp">&gt; </span>stat <span class="s">&quot;/etc/passwd&quot;</span>!<span class="mi">7</span><span class="p">;</span>                                <span class="c1">// file size</span>
 <span class="mi">1623L</span>
@@ -6411,7 +6411,7 @@ its entries as a list.</p>
 </dd></dl>
 
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>readdir <span class="s">&quot;/home&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>readdir <span class="s">&quot;/home&quot;</span><span class="p">;</span>
 [<span class="s">&quot;ag&quot;</span>,<span class="s">&quot;.&quot;</span>,<span class="s">&quot;..&quot;</span>]
 </pre></div>
 </div>
@@ -6437,7 +6437,7 @@ case the integer result code of the underlying C routine is returned).</p>
 global environment. See the fnmatch(3) and glob(3) manpages for the meaning
 of these.</p>
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>glob <span class="s">&quot;*.pure&quot;</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>glob <span class="s">&quot;*.pure&quot;</span> <span class="mi">0</span><span class="p">;</span>
 [<span class="s">&quot;array.pure&quot;</span>,<span class="s">&quot;dict.pure&quot;</span>,<span class="s">&quot;getopt.pure&quot;</span>,<span class="s">&quot;heap.pure&quot;</span>,<span class="s">&quot;math.pure&quot;</span>,
 <span class="s">&quot;matrices.pure&quot;</span>,<span class="s">&quot;prelude.pure&quot;</span>,<span class="s">&quot;primitives.pure&quot;</span>,<span class="s">&quot;set.pure&quot;</span>,
 <span class="s">&quot;strings.pure&quot;</span>,<span class="s">&quot;system.pure&quot;</span>]
@@ -6451,7 +6451,7 @@ included in the system module any more, but is provided as a separate regex
 module which can be used independently of the system module. To use the
 operations of this module, add the following import declaration to your
 program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> regex<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> regex<span class="p">;</span>
 </pre></div>
 </div>
 <p>Since the POSIX regex functions (<tt class="docutils literal"><span class="pre">regcomp</span></tt> and <tt class="docutils literal"><span class="pre">regexec</span></tt>) have a
@@ -6619,27 +6619,27 @@ matches one by one, using &#8220;call by need&#8221; evaluation.</p>
 <div class="section" id="basic-examples">
 <h4><a class="toc-backref" href="#id89">Basic Examples</a><a class="headerlink" href="#basic-examples" title="Permalink to this headline">¶</a></h4>
 <p>Let&#8217;s have a look at some simple examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> pat = <span class="s">&quot;[[:alpha:]][[:alnum:]]*&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> pat = <span class="s">&quot;[[:alpha:]][[:alnum:]]*&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> s = <span class="s">&quot;1var foo 99 BAR $%&amp;&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Simple match:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regex pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regex pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 <span class="mi">1</span>,<span class="mi">1</span>,<span class="s">&quot;var&quot;</span>
 </pre></div>
 </div>
 <p>Same without match info:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regex pat REG_NOSUB s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regex pat REG_NOSUB s <span class="mi">0</span><span class="p">;</span>
 <span class="mi">1</span>
 </pre></div>
 </div>
 <p>Global match, return the list of all matches:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regexg id pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regexg id pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 [(<span class="mi">1</span>,<span class="s">&quot;var&quot;</span>),(<span class="mi">5</span>,<span class="s">&quot;foo&quot;</span>),(<span class="mi">12</span>,<span class="s">&quot;BAR&quot;</span>)]
 </pre></div>
 </div>
 <p>Same with overlapping matches:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regexgg id pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regexgg id pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 [(<span class="mi">1</span>,<span class="s">&quot;var&quot;</span>),(<span class="mi">2</span>,<span class="s">&quot;ar&quot;</span>),(<span class="mi">3</span>,<span class="s">&quot;r&quot;</span>),(<span class="mi">5</span>,<span class="s">&quot;foo&quot;</span>),(<span class="mi">6</span>,<span class="s">&quot;oo&quot;</span>),(<span class="mi">7</span>,<span class="s">&quot;o&quot;</span>),(<span class="mi">12</span>,<span class="s">&quot;BAR&quot;</span>),
 (<span class="mi">13</span>,<span class="s">&quot;AR&quot;</span>),(<span class="mi">14</span>,<span class="s">&quot;R&quot;</span>)]
 </pre></div>
@@ -6648,21 +6648,21 @@ matches one by one, using &#8220;call by need&#8221; evaluation.</p>
 replaced with an arbitrary function which processes the matches. For
 instance, if we only want the matched strings instead of the full match
 info:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regexg (!<span class="mi">1</span>) pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regexg (!<span class="mi">1</span>) pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 [<span class="s">&quot;var&quot;</span>,<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;BAR&quot;</span>]
 </pre></div>
 </div>
 <p>Lazy versions of both <a class="reference internal" href="#regexg" title="regexg"><tt class="xref pure pure-func docutils literal"><span class="pre">regexg</span></tt></a> and <a class="reference internal" href="#regexgg" title="regexgg"><tt class="xref pure pure-func docutils literal"><span class="pre">regexgg</span></tt></a> are provided which
 return the result as a stream instead. These can be processed in a &#8220;call by
 need&#8221; fashion:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regexgs id pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regexgs id pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 (<span class="mi">1</span>,<span class="s">&quot;var&quot;</span>):<span class="kt">#&lt;thunk 0x7fb1b7976750&gt;</span>
 <span class="gp">&gt; </span>last ans<span class="p">;</span>
 <span class="mi">12</span>,<span class="s">&quot;BAR&quot;</span>
 </pre></div>
 </div>
 <p>Let&#8217;s verify that the processing is really done lazily:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>test x = printf <span class="s">&quot;got: %s</span><span class="se">\n</span><span class="s">&quot;</span> (str x) $$ x<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> xs = regexgs test pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 got: <span class="mi">1</span>,<span class="s">&quot;var&quot;</span>
@@ -6679,7 +6679,7 @@ remaining matches are processed as the result stream is traversed. This is
 most useful if you have to deal with bigger amounts of text. By processing
 the result stream in a piecemeal fashion, you can avoid keeping the entire
 result list in memory. For instance, compare the following:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> s2 = fget $ fopen <span class="s">&quot;system.pure&quot;</span> <span class="s">&quot;r&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> s2 = fget $ fopen <span class="s">&quot;system.pure&quot;</span> <span class="s">&quot;r&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>stats -m
 <span class="gp">&gt; </span>#regexg id pat <span class="mi">0</span> s2 <span class="mi">0</span><span class="p">;</span>
 <span class="mi">7977</span>
@@ -6693,12 +6693,12 @@ result list in memory. For instance, compare the following:</p>
 <div class="section" id="regex-substitutions-and-splitting">
 <h4><a class="toc-backref" href="#id90">Regex Substitutions and Splitting</a><a class="headerlink" href="#regex-substitutions-and-splitting" title="Permalink to this headline">¶</a></h4>
 <p>We can also perform substitutions on matches:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regsub (sprintf <span class="s">&quot;&lt;%d:%s&gt;&quot;</span>) pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regsub (sprintf <span class="s">&quot;&lt;%d:%s&gt;&quot;</span>) pat <span class="mi">0</span> s <span class="mi">0</span><span class="p">;</span>
 <span class="s">&quot;1&lt;1:var&gt; &lt;5:foo&gt; 99 &lt;12:BAR&gt; $%&amp;&quot;</span>
 </pre></div>
 </div>
 <p>Or split a string using a delimiter pattern (this uses an egrep pattern):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> delim = <span class="s">&quot;[[:space:]]+&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> delim = <span class="s">&quot;[[:space:]]+&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>regsplit delim REG_EXTENDED s <span class="mi">0</span><span class="p">;</span>
 [<span class="s">&quot;1var&quot;</span>,<span class="s">&quot;foo&quot;</span>,<span class="s">&quot;99&quot;</span>,<span class="s">&quot;BAR&quot;</span>,<span class="s">&quot;$%&amp;&quot;</span>]
 <span class="gp">&gt; </span>regsplit delim REG_EXTENDED <span class="s">&quot;The   quick brown    fox&quot;</span> <span class="mi">0</span><span class="p">;</span>
@@ -6706,7 +6706,7 @@ result list in memory. For instance, compare the following:</p>
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="#regsplit" title="regsplit"><tt class="xref pure pure-func docutils literal"><span class="pre">regsplit</span></tt></a> operation also has a lazy variation:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regsplits <span class="s">&quot;[[:space:]]+&quot;</span> REG_EXTENDED <span class="s">&quot;The   quick brown    fox&quot;</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regsplits <span class="s">&quot;[[:space:]]+&quot;</span> REG_EXTENDED <span class="s">&quot;The   quick brown    fox&quot;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="s">&quot;The&quot;</span>:<span class="kt">#&lt;thunk 0x7fb1b79775b0&gt;</span>
 <span class="gp">&gt; </span>last ans<span class="p">;</span>
 <span class="s">&quot;fox&quot;</span>
@@ -6719,7 +6719,7 @@ result list in memory. For instance, compare the following:</p>
 one match is reported for each position (which also prevents looping). And
 of course an empty match will only be reported if nothing else matches. For
 instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regexg id <span class="s">&quot;&quot;</span> REG_EXTENDED <span class="s">&quot;foo&quot;</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regexg id <span class="s">&quot;&quot;</span> REG_EXTENDED <span class="s">&quot;foo&quot;</span> <span class="mi">0</span><span class="p">;</span>
 [(<span class="mi">0</span>,<span class="s">&quot;&quot;</span>),(<span class="mi">1</span>,<span class="s">&quot;&quot;</span>),(<span class="mi">2</span>,<span class="s">&quot;&quot;</span>),(<span class="mi">3</span>,<span class="s">&quot;&quot;</span>)]
 <span class="gp">&gt; </span>regexg id <span class="s">&quot;o*&quot;</span> REG_EXTENDED <span class="s">&quot;foo&quot;</span> <span class="mi">0</span><span class="p">;</span>
 [(<span class="mi">0</span>,<span class="s">&quot;&quot;</span>),(<span class="mi">1</span>,<span class="s">&quot;oo&quot;</span>),(<span class="mi">3</span>,<span class="s">&quot;&quot;</span>)]
@@ -6728,7 +6728,7 @@ instance:</p>
 </pre></div>
 </div>
 <p>This also works when substituting or splitting:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>regsub (cst <span class="s">&quot; &quot;</span>) <span class="s">&quot;&quot;</span> REG_EXTENDED <span class="s">&quot;some text&quot;</span> <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>regsub (cst <span class="s">&quot; &quot;</span>) <span class="s">&quot;&quot;</span> REG_EXTENDED <span class="s">&quot;some text&quot;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="s">&quot; s o m e   t e x t &quot;</span>
 <span class="gp">&gt; </span>regsub (cst <span class="s">&quot; &quot;</span>) <span class="s">&quot; ?&quot;</span> REG_EXTENDED <span class="s">&quot;some text&quot;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="s">&quot; s o m e  t e x t &quot;</span>
@@ -6746,7 +6746,7 @@ information, which is useful if we need to retrieve the text matched by a
 given subexpression. For instance, suppose we want to parse environment
 lines, such as those returned by the shell&#8217;s <tt class="docutils literal"><span class="pre">set</span></tt> command. These can be
 dissected using the following regex:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> env_pat = <span class="s">&quot;^([^=]+)=(.*)$&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> env_pat = <span class="s">&quot;^([^=]+)=(.*)$&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> env_flags = REG_EXTENDED or REG_NEWLINE<span class="p">;</span>
 <span class="gp">&gt; </span>regex env_pat env_flags <span class="s">&quot;SHELL=/bin/sh&quot;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="mi">1</span>,<span class="mi">0</span>,<span class="s">&quot;SHELL=/bin/sh&quot;</span>,<span class="mi">0</span>,<span class="s">&quot;SHELL&quot;</span>,<span class="mi">6</span>,<span class="s">&quot;/bin/sh&quot;</span>
@@ -6756,13 +6756,13 @@ dissected using the following regex:</p>
 <tt class="xref pure pure-var docutils literal"><span class="pre">REG_NEWLINE</span></tt> flag so that we properly deal with multiline input.
 The desired information is in the 4th and 6th element of the submatch info,
 we can retrieve that as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>parse_env s = regexg (\info -&gt; info!<span class="mi">3</span> =&gt; info!<span class="mi">5</span>) env_pat env_flags s <span class="mi">0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>parse_env s = regexg (\info -&gt; info!<span class="mi">3</span> =&gt; info!<span class="mi">5</span>) env_pat env_flags s <span class="mi">0</span><span class="p">;</span>
 <span class="gp">&gt; </span>parse_env <span class="s">&quot;SHELL=/bin/sh</span><span class="se">\n</span><span class="s">HOME=/home/bar</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
 [<span class="s">&quot;SHELL&quot;</span>=&gt;<span class="s">&quot;/bin/sh&quot;</span>,<span class="s">&quot;HOME&quot;</span>=&gt;<span class="s">&quot;/home/bar&quot;</span>]
 </pre></div>
 </div>
 <p>We can get hold of the real process environment as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> env = parse_env $ fget $ popen <span class="s">&quot;set&quot;</span> <span class="s">&quot;r&quot;</span><span class="p">;</span>
 <span class="gp">&gt; </span>#env<span class="p">;</span>
 <span class="mi">109</span>
@@ -6772,7 +6772,7 @@ we can retrieve that as follows:</p>
 </div>
 <p>Just for the fun of it, let&#8217;s convert this to a record, providing easy
 random access to the environment variables:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> env = record env<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> env = record env<span class="p">;</span>
 <span class="gp">&gt; </span>env!![<span class="s">&quot;SHELL&quot;</span>,<span class="s">&quot;HOME&quot;</span>]<span class="p">;</span>
 {<span class="s">&quot;/bin/bash&quot;</span>,<span class="s">&quot;/home/ag&quot;</span>}
 </pre></div>
@@ -6789,7 +6789,7 @@ You need to have the pcreposix library installed to make that work, see
 above, except that they will now understand Perl-style regular expressions,
 as implemented by the libpcre library, instead of the (much more limited)
 POSIX syntax. For instance, you can now write:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> regex<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> regex<span class="p">;</span>
 <span class="gp">&gt; </span>regex <span class="s">&quot;(?:Bob says: (</span><span class="se">\\</span><span class="s">w+))&quot;</span> <span class="mi">0</span> <span class="s">&quot;Bob says: Go&quot;</span> <span class="mi">0</span><span class="p">;</span>
 <span class="mi">1</span>,<span class="mi">0</span>,<span class="s">&quot;Bob says: Go&quot;</span>,<span class="mi">10</span>,<span class="s">&quot;Go&quot;</span>
 </pre></div>
@@ -6827,7 +6827,7 @@ all supported systems. (In particular, none of these functions are provided
 on MS Windows.) You can load this module in addition to the system module
 if you need the additional functionality. To use the operations of this
 module, add the following import declaration to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> posix<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> posix<span class="p">;</span>
 </pre></div>
 </div>
 <p>The following operations are provided. Please see the appropriate POSIX
@@ -6881,7 +6881,7 @@ status of the child process.</p>
 <p>This is a quick-and-dirty replacement for the GNU getopt functions, ported
 from the Q library. To use the operations of this module, add the following
 import declaration to your program:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> getopt<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> getopt<span class="p">;</span>
 </pre></div>
 </div>
 <p>The following operation is provided:</p>
@@ -6926,7 +6926,7 @@ the option. Conversely, to indicate that an option has no short option
 equivalent, simply specify an empty option string for the <tt class="docutils literal"><span class="pre">short_opt</span></tt>
 field.</p>
 <p>Examples:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> opts = [(<span class="s">&quot;--help&quot;</span>, <span class="s">&quot;-h&quot;</span>, NOARG),       <span class="c1">// no argument</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> opts = [(<span class="s">&quot;--help&quot;</span>, <span class="s">&quot;-h&quot;</span>, NOARG),       <span class="c1">// no argument</span>
 <span class="gp">&gt; </span>            (<span class="s">&quot;--version&quot;</span>, <span class="s">&quot;&quot;</span>, NOARG),      <span class="c1">// no short option</span>
 <span class="gp">&gt; </span>            (<span class="s">&quot;--filename&quot;</span>, <span class="s">&quot;-f&quot;</span>, REQARG),  <span class="c1">// required argument</span>
 <span class="gp">&gt; </span>            (<span class="s">&quot;--count&quot;</span>, <span class="s">&quot;-n&quot;</span>, OPTARG)]<span class="p">;</span>    <span class="c1">// optional argument</span>
@@ -7110,7 +7110,7 @@ copied to the result lists as is.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

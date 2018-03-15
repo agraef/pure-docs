@@ -167,7 +167,7 @@ startup, either with the <tt class="docutils literal"><span class="pre">-lib</sp
 loader is always available when you run Pd. Once the Pure loader has been
 activated, you should see a sign-on message like the following in the Pd main
 window, indicating that the external has been successfully loaded:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pd-pure <span class="mf">0.24</span> (pure-<span class="mf">0.64</span>) (c) <span class="mi">2009</span>-<span class="mi">2017</span> Albert Graef &lt;aggraef<span class="p">@</span>gmail.com&gt;
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pd-pure <span class="mf">0.24</span> (pure-<span class="mf">0.64</span>) (c) <span class="mi">2009</span>-<span class="mi">2017</span> Albert Graef &lt;aggraef<span class="p">@</span>gmail.com&gt;
 pd-pure: compiled for pd-<span class="mf">0.47</span> on Feb <span class="mi">21</span> <span class="mi">2017</span>
 </pre></div>
 </div>
@@ -179,7 +179,7 @@ audio signals, whereas control objects are employed for asynchronous message
 processing.</p>
 <p>Simple &#8220;one-off&#8221; control objects can be created with the <tt class="docutils literal"><span class="pre">[pure]</span></tt> class
 which takes the function to be evaluated as its argument. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>[pure (+<span class="mi">5</span>)]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[pure (+<span class="mi">5</span>)]
 </pre></div>
 </div>
 <p>This object takes numbers as inputs on its single inlet, adds 5 to them and
@@ -187,7 +187,7 @@ outputs the result on its single outlet.</p>
 <p>Similarly, signal objects can be created with <tt class="docutils literal"><span class="pre">[pure~]</span></tt>. For instance, the
 following object processes incoming vectors of samples, multiplying each
 sample with 2:</p>
-<div class="highlight-pure"><div class="highlight"><pre>[pure~ map (*<span class="mi">2</span>)]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[pure~ map (*<span class="mi">2</span>)]
 </pre></div>
 </div>
 <p>Note that in this case the object has actually two inlet/outlet pairs. The
@@ -203,11 +203,11 @@ used several times in a patch, it is more convenient to implement it as a
 <cite>named</cite> object instead. To these ends, the object function is stored in a
 corresponding Pure script named after the object. For instance, we might put
 the following <tt class="docutils literal"><span class="pre">add</span></tt> function into a script named add.pure:</p>
-<div class="highlight-pure"><div class="highlight"><pre>add x y = x+y<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>add x y = x+y<span class="p">;</span>
 </pre></div>
 </div>
 <p>Now we can use the following object in a Pd patch:</p>
-<div class="highlight-pure"><div class="highlight"><pre>[add <span class="mi">5</span>]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[add <span class="mi">5</span>]
 </pre></div>
 </div>
 <p>The Pure loader then recognizes <tt class="docutils literal"><span class="pre">add</span></tt> as an instance of the object
@@ -305,7 +305,7 @@ versa).</p>
 <p>By default, a Pure object has just one inlet and one outlet and thus acts like
 a simple function with no internal state. For instance, the following object
 accepts Pd <tt class="docutils literal"><span class="pre">float</span></tt> messages and adds 5 to each received value:</p>
-<div class="highlight-pure"><div class="highlight"><pre>add5 x = x+<span class="mi">5</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>add5 x = x+<span class="mi">5</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>In the Pd patch each <tt class="docutils literal"><span class="pre">[add5]</span></tt> object then has a single inlet supplying
@@ -315,7 +315,7 @@ parameters and a single outlet for results of the add5 function.</p>
 <h3><a class="toc-backref" href="#id7">Creation Arguments</a><a class="headerlink" href="#creation-arguments" title="Permalink to this headline">¶</a></h3>
 <p>You can parameterize an object with creation arguments, which are passed to
 the Pure function at object creation time. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>add x y = x+y<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>add x y = x+y<span class="p">;</span>
 </pre></div>
 </div>
 <p>This object can then be invoked, e.g., as <tt class="docutils literal"><span class="pre">[add</span> <span class="pre">5]</span></tt> in the Pd patch to
@@ -355,7 +355,7 @@ outlet.)</p>
 <p>For instance, the following object, invoked as <tt class="docutils literal"><span class="pre">[cross]</span></tt> in the Pd patch,
 has two inlets and two outlets and routes messages from the left inlet to the
 right outlet and vice versa:</p>
-<div class="highlight-pure"><div class="highlight"><pre>cross = <span class="mi">2</span>,<span class="mi">2</span>,cross <span class="kr">with</span> cross (k,x) = (<span class="mi">1</span>-k,x) <span class="kr">end</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>cross = <span class="mi">2</span>,<span class="mi">2</span>,cross <span class="kr">with</span> cross (k,x) = (<span class="mi">1</span>-k,x) <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>You can also emit multiple messages, possibly to different outlets, in one
@@ -363,7 +363,7 @@ go. These must be encoded as Pure vectors (or matrices) of values or
 <tt class="docutils literal"><span class="pre">index,value</span></tt> pairs, which are emitted in the order in which they are
 written. E.g., the following <tt class="docutils literal"><span class="pre">[fan]</span></tt> object implements an &#8220;n-fan&#8221; which
 routes its input to <tt class="docutils literal"><span class="pre">n</span></tt> outlets simultaneously:</p>
-<div class="highlight-pure"><div class="highlight"><pre>fan n = <span class="mi">1</span>,n,fan <span class="kr">with</span> fan x = reverse {k,x | k = <span class="mi">0</span>..n-<span class="mi">1</span>} <span class="kr">end</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>fan n = <span class="mi">1</span>,n,fan <span class="kr">with</span> fan x = reverse {k,x | k = <span class="mi">0</span>..n-<span class="mi">1</span>} <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>(Note that, because of the use of <tt class="docutils literal"><span class="pre">reverse</span></tt>, the <tt class="docutils literal"><span class="pre">n</span></tt> outlets are served in
@@ -371,12 +371,12 @@ right-to-left order here. This is not strictly necessary, but matches the Pd
 convention.)</p>
 <p>Another example is the following <tt class="docutils literal"><span class="pre">[dup]</span></tt> object with a single inlet and
 outlet, which just sends out each received message twice:</p>
-<div class="highlight-pure"><div class="highlight"><pre>dup x = {x,x}<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>dup x = {x,x}<span class="p">;</span>
 </pre></div>
 </div>
 <p>Note that this is different from the following, which outputs a list value to
 the outlet instead:</p>
-<div class="highlight-pure"><div class="highlight"><pre>dup2 x = [x,x]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>dup2 x = [x,x]<span class="p">;</span>
 </pre></div>
 </div>
 <p>(Also, please note that this behaviour is new in pd-pure 0.14. Previously, a
@@ -389,14 +389,14 @@ tuple <tt class="docutils literal"><span class="pre">()</span></tt>. (Note that,
 send a value back to Pd, namely an empty list value.) For instance, the
 following object <tt class="docutils literal"><span class="pre">[echo]</span></tt> implements a sink which just prints received
 messages on standard output, which is useful for debugging purposes:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> system<span class="p">;</span>
 echo x = () <span class="kr">when</span> puts (str x) <span class="kr">end</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>You could also implement this object as follows, by just removing the
 superflous outlet (in this case all return values from the function will be
 ignored anyway):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> system<span class="p">;</span>
 echo = <span class="mi">1</span>,<span class="mi">0</span>,puts.str<span class="p">;</span>
 </pre></div>
 </div>
@@ -422,7 +422,7 @@ as <tt class="docutils literal"><span class="pre">pack</span></tt> and <tt class
 <tt class="docutils literal"><span class="pre">sel</span></tt> object in Pure. The object compares its input against a number of
 values given as creation arguments, and bangs the corresponding outlet if it
 is found, or passes on the input on the rightmost outlet otherwise:</p>
-<div class="highlight-pure"><div class="highlight"><pre>mysel = varargs mysel <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>mysel = varargs mysel <span class="kr">with</span>
   mysel xs = <span class="mi">1</span>,#xs+<span class="mi">1</span>,mysel <span class="kr">with</span>
     mysel x = i,bang <span class="kr">if</span> i&lt;#xs <span class="kr">when</span> i = #takewhile (~==x) xs <span class="kr">end</span><span class="p">;</span>
             = #xs,x <span class="kr">otherwise</span><span class="p">;</span>
@@ -444,7 +444,7 @@ rightmost &#8220;default&#8221; outlet.</p>
 <p>Local state can be kept in Pure reference values. For instance, the following
 <tt class="docutils literal"><span class="pre">[mycounter]</span></tt> object produces the next counter value when receiving a
 <tt class="docutils literal"><span class="pre">bang</span></tt> message:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">nonfix</span> bang<span class="p">;</span>
 mycounter = next (ref <span class="mi">0</span>) <span class="kr">with</span>
   next r bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
   next _ _    = () <span class="kr">otherwise</span><span class="p">;</span>
@@ -454,7 +454,7 @@ mycounter = next (ref <span class="mi">0</span>) <span class="kr">with</span>
 <p>Note that the state is kept as an additional first parameter to the local
 function <tt class="docutils literal"><span class="pre">next</span></tt> here. Alternatively, you can also make the state a local
 variable of <tt class="docutils literal"><span class="pre">mycounter</span></tt>:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">nonfix</span> bang<span class="p">;</span>
 mycounter = next <span class="kr">with</span>
   next bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
   next _    = () <span class="kr">otherwise</span><span class="p">;</span>
@@ -520,7 +520,7 @@ extra samples are silently ignored.)</p>
 inlet/outlet pair (in addition to the leftmost control inlet/outlet pair,
 which isn&#8217;t used in this example). This object just multiplies its input signal
 by 2:</p>
-<div class="highlight-pure"><div class="highlight"><pre>mul2_dsp x<span class="p">::</span><span class="kt">matrix</span> = map (*<span class="mi">2</span>) x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>mul2_dsp x<span class="p">::</span><span class="kt">matrix</span> = map (*<span class="mi">2</span>) x<span class="p">;</span>
 </pre></div>
 </div>
 <p>This code would then be placed into a script file named <tt class="docutils literal"><span class="pre">mul2~.dsp</span></tt> and
@@ -533,14 +533,14 @@ albeit in curried form).</p>
 <p>Creation parameters can also be used in the same way as with control objects.
 The following object is to be invoked in Pd as <tt class="docutils literal"><span class="pre">[mul~</span> <span class="pre">f]</span></tt> where <tt class="docutils literal"><span class="pre">f</span></tt> is the
 desired gain factor.</p>
-<div class="highlight-pure"><div class="highlight"><pre>mul_dsp f<span class="p">::</span><span class="kt">double</span> x<span class="p">::</span><span class="kt">matrix</span> = map (*f) x<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>mul_dsp f<span class="p">::</span><span class="kt">double</span> x<span class="p">::</span><span class="kt">matrix</span> = map (*f) x<span class="p">;</span>
 </pre></div>
 </div>
 <p>Next, let&#8217;s try a custom number of signal inlets and outlets. The following
 object has two signal inlets and one signal outlet. Like Pd&#8217;s built-in
 <tt class="docutils literal"><span class="pre">[*~]</span></tt> object, it multiplies the two input signals, producing an amplitude
 (or ring) modulation effect:</p>
-<div class="highlight-pure"><div class="highlight"><pre>sigmul_dsp = <span class="mi">2</span>,<span class="mi">1</span>,sigmul <span class="kr">with</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>sigmul_dsp = <span class="mi">2</span>,<span class="mi">1</span>,sigmul <span class="kr">with</span>
   sigmul x<span class="p">::</span><span class="kt">matrix</span> = zipwith (*) (row x <span class="mi">0</span>) (row x <span class="mi">1</span>)<span class="p">;</span>
 <span class="kr">end</span><span class="p">;</span>
 </pre></div>
@@ -548,7 +548,7 @@ object has two signal inlets and one signal outlet. Like Pd&#8217;s built-in
 <p>Here&#8217;s another example which takes no inputs and produces one output signal, a
 random wave (i.e., white noise). Note the use of the <a class="reference internal" href="purelib.html#dim" title="dim"><tt class="xref pure pure-func docutils literal"><span class="pre">dim</span></tt></a> function
 to determine the number of samples to be generated for each block.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> genrand_real1() = random1<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">double</span> genrand_real1() = random1<span class="p">;</span>
 randomwave1_dsp = <span class="mi">0</span>,<span class="mi">1</span>,randomwave <span class="kr">with</span>
   randomwave in<span class="p">::</span><span class="kt">matrix</span> = {random | i=<span class="mi">1</span>..n} <span class="kr">when</span> _,n = dim in <span class="kr">end</span><span class="p">;</span>
   random = random1*<span class="mi">2</span>-<span class="mi">1</span><span class="p">;</span>
@@ -578,7 +578,7 @@ pointer) for each invocation with an (empty) input matrix. In addition, a
 <tt class="docutils literal"><span class="pre">bang</span></tt> message is output when the end of the file is reached. The object
 also responds to floating point values in the range from 0 to 1 on the control
 inlet by adjusting the playback pointer accordingly.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> sndfile<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> sndfile<span class="p">;</span>
 
 <span class="kr">nonfix</span> bang<span class="p">;</span>
 
@@ -623,7 +623,7 @@ computed in the Faust dsp) to Pd. (To run this example, you need the &#8220;faus
 branch of the Faust compiler so that the dsp can be inlined into the Pure
 program. Note that the entire section inside the <tt class="docutils literal"><span class="pre">%&lt;</span> <span class="pre">%&gt;</span></tt> braces is Faust
 code.)</p>
-<div class="highlight-pure"><div class="highlight"><pre>%&lt; -*- dsp:amp -*-
+<div class="highlight-pure"><div class="highlight"><pre><span></span>%&lt; -*- dsp:amp -*-
 
 import(&quot;math.lib&quot;);
 import(&quot;music.lib&quot;);
@@ -791,7 +791,7 @@ further <tt class="docutils literal"><span class="pre">pd_delay</span></tt> mess
 the message is scheduled to be delivered immediately.</p>
 <p>For instance, a simple kind of delay object can be implemented in Pure as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>mydelay _ (alarm msg) = msg<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>mydelay _ (alarm msg) = msg<span class="p">;</span>
 mydelay t msg = pd_delay t (alarm msg) <span class="kr">otherwise</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -809,7 +809,7 @@ this works like Pd&#8217;s builtin <tt class="docutils literal"><span class="pre
 cancels any existing timer. (Note that you still have to specify the <tt class="docutils literal"><span class="pre">msg</span></tt>
 parameter, but it will be ignored in this case.) We can use this to equip our
 <tt class="docutils literal"><span class="pre">mydelay</span></tt> object with a <tt class="docutils literal"><span class="pre">stop</span></tt> message as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> stop<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">nonfix</span> stop<span class="p">;</span>
 mydelay _ (alarm msg) = msg<span class="p">;</span>
 mydelay _ stop = pd_delay inf ()<span class="p">;</span>
 mydelay t msg = pd_delay t (alarm msg) <span class="kr">otherwise</span><span class="p">;</span>
@@ -824,7 +824,7 @@ logical Pd time in milliseconds (see <a class="reference internal" href="#progra
 convenient if we need to deal with absolute time values, which we use in this
 example to keep track of the times at which messages in the queue are to be
 delivered:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> pd_time()<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">double</span> pd_time()<span class="p">;</span>
 mypipe t = process (ref []) <span class="kr">with</span>
   process q () = <span class="kr">case</span> dequeue q <span class="kr">of</span>
                    x,(t,_):_ = {x,pd_delay (t-pd_time) ()}<span class="p">;</span>
@@ -847,7 +847,7 @@ provide). See the description for the <a class="reference internal" href="#pd_se
 <a class="reference internal" href="#pd_receive" title="pd_receive"><tt class="xref c c-func docutils literal"><span class="pre">pd_receive()</span></tt></a> routines in the <a class="reference internal" href="#programming-interface">Programming Interface</a> section.</p>
 <p>For instance, here&#8217;s how you can use the <tt class="docutils literal"><span class="pre">pd_send</span></tt> function to send messages
 to the Pd runtime:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pd_send <span class="s">&quot;pd&quot;</span> (dsp <span class="mi">1</span>)<span class="p">;</span> <span class="c1">// turn on audio processing</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pd_send <span class="s">&quot;pd&quot;</span> (dsp <span class="mi">1</span>)<span class="p">;</span> <span class="c1">// turn on audio processing</span>
 </pre></div>
 </div>
 <p>This function also enables you to perform dynamic patching, by sending the
@@ -857,7 +857,7 @@ listed in the <a class="reference external" href="http://puredata.info/docs/tuto
 examples can be found <a class="reference external" href="http://pure-data.svn.sourceforge.net/svnroot/pure-data/trunk/doc/additional/pd-msg/">here</a>. For instance, the following Pure object, when
 banged, inserts a few objects into a subpatch named <tt class="docutils literal"><span class="pre">test</span></tt> and connects them
 to each other:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">void</span> pd_send(<span class="kt">char</span>*, <span class="kt">expr</span>*)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">void</span> pd_send(<span class="kt">char</span>*, <span class="kt">expr</span>*)<span class="p">;</span>
 
 pd_send_test _ = () <span class="kr">when</span>
   pd_send <span class="s">&quot;pd-test&quot;</span> (obj <span class="mi">10</span> <span class="mi">0</span> <span class="s">&quot;osc~&quot;</span> <span class="mi">220</span>)<span class="p">;</span>
@@ -875,7 +875,7 @@ creation time or when one of the dsp or control processing methods of the
 object is invoked. For instance, the following object calls <tt class="docutils literal"><span class="pre">pd_receive</span></tt> at
 creation time in order to receive messages sent to the <tt class="docutils literal"><span class="pre">left</span></tt> and <tt class="docutils literal"><span class="pre">right</span></tt>
 receivers, and outputs them on its left or right outlet, respectively:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">void</span> pd_receive(<span class="kt">char</span>*)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">void</span> pd_receive(<span class="kt">char</span>*)<span class="p">;</span>
 
 pd_receive_test = <span class="mi">1</span>,<span class="mi">2</span>,process <span class="kr">with</span>
   process (left x) = <span class="mi">0</span>,x<span class="p">;</span>
@@ -911,7 +911,7 @@ a closer description of the provided routines.</p>
 <p>For instance, here is a <tt class="docutils literal"><span class="pre">randomwave</span></tt> object which fills a Pd array (whose
 name is given as the creation argument) with random values in response to a
 <tt class="docutils literal"><span class="pre">bang</span></tt> message:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> genrand_real1() = random1<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">double</span> genrand_real1() = random1<span class="p">;</span>
 
 <span class="kr">extern</span> <span class="kt">int</span> pd_getbuffersize(<span class="kt">char</span> *name)<span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">void</span> pd_setbuffer(<span class="kt">char</span> *name, <span class="kt">expr</span> *x)<span class="p">;</span>
@@ -944,7 +944,7 @@ scripts will be searched for in the directory of the patch containing the
 <tt class="docutils literal"><span class="pre">[pure-runtime]</span></tt> object and on the Pd path. For instance, to load the
 scripts <tt class="docutils literal"><span class="pre">foo.pure</span></tt> and <tt class="docutils literal"><span class="pre">bar.pure</span></tt>, you can add the following object to
 your patch:</p>
-<div class="highlight-pure"><div class="highlight"><pre>[pure-runtime foo bar]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[pure-runtime foo bar]
 </pre></div>
 </div>
 <p>This facility can be used, in particular, to load any additional scripts
@@ -966,7 +966,7 @@ particular, for Pure novices. This is a global option; once enabled, it
 applies to all subsequently loaded Pure scripts until the interpreter is
 restarted from scratch (see <a class="reference internal" href="#livecoding">Livecoding</a>). The <tt class="docutils literal"><span class="pre">-w</span></tt> option can also be
 combined with names of scripts to be loaded, e.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>[pure-runtime -w foo bar]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[pure-runtime -w foo bar]
 </pre></div>
 </div>
 </div>
@@ -990,19 +990,19 @@ later, or a compatible Pd flavor such as <a class="reference external" href="htt
 (without the <tt class="docutils literal"><span class="pre">.pure</span></tt> suffix) to Pd&#8217;s startup libraries, or invoke them from
 the command line using the <tt class="docutils literal"><span class="pre">-lib</span></tt> option, just like you&#8217;d do with any other
 Pd externals and libraries. E.g.:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pd -lib foo -lib bar
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pd -lib foo -lib bar
 </pre></div>
 </div>
 <p>Note that these options <em>must</em> come after any options required to launch the
 Pure loader (see <a class="reference internal" href="#usage">Usage</a> above), otherwise Pd will <em>not</em> recognize the scripts
 as loadable libraries. You can also specify the relative or absolute path to
 the scripts if needed, for instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pd -lib ~/pd-pure-externals/foo -lib ~/pd-pure-externals/bar
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pd -lib ~/pd-pure-externals/foo -lib ~/pd-pure-externals/bar
 </pre></div>
 </div>
 <p>Or you can use Pd&#8217;s <tt class="docutils literal"><span class="pre">-path</span></tt> option (or Pd&#8217;s search path configuration
 dialog) to specify where Pd should go looking for the script files:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pd -path ~/pd-pure-externals -lib foo -lib bar
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pd -path ~/pd-pure-externals -lib foo -lib bar
 </pre></div>
 </div>
 <p>Note that no special search path will be needed if you just drop the Pure
@@ -1016,7 +1016,7 @@ like the <tt class="docutils literal"><span class="pre">[pure-runtime]</span></t
 instance, you can invoke the <tt class="docutils literal"><span class="pre">foo</span></tt> and <tt class="docutils literal"><span class="pre">bar</span></tt> script files in a patch by
 inserting the following object (using the same <tt class="docutils literal"><span class="pre">-lib</span></tt> and <tt class="docutils literal"><span class="pre">-path</span></tt> options
 that you&#8217;d use on the command line):</p>
-<div class="highlight-pure"><div class="highlight"><pre>[declare -lib foo -lib bar]
+<div class="highlight-pure"><div class="highlight"><pre><span></span>[declare -lib foo -lib bar]
 </pre></div>
 </div>
 <p>The scripts will then be loaded automagically as soon as you open the patch in
@@ -1105,7 +1105,7 @@ object function (see the description of the <a class="reference internal" href="
 the <a class="reference internal" href="purelib.html"><em>Pure Library Manual</em></a> for details). For instance, here&#8217;s the mycounter example
 from <a class="reference internal" href="#local-state">Local State</a> again, with the necessary additions to support the
 <tt class="docutils literal"><span class="pre">pd_save</span></tt>/<tt class="docutils literal"><span class="pre">pd_restore</span></tt> protocol:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">nonfix</span> bang pd_save<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">nonfix</span> bang pd_save<span class="p">;</span>
 mycounter = sentry pd_save $ next (ref <span class="mi">0</span>) <span class="kr">with</span>
   next r bang = put r (get r+<span class="mi">1</span>)<span class="p">;</span>
   next r pd_save = get r<span class="p">;</span>
@@ -1234,7 +1234,7 @@ the Pd Pure loader external and the examples. The embedded Pure runtime has
 been set up so that it always has this directory in its search path, so that
 it&#8217;s enough to include a declaration like the following in your Pure scripts
 if you want to call one of the interface routines:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> pd<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> pd<span class="p">;</span>
 </pre></div>
 </div>
 <p>(We mention in passing that, in the same fashion you can also put your own
@@ -1246,7 +1246,7 @@ extern char *<tt class="descname">pd_version_s</tt><big>(</big><big>)</big><a cl
 <dd><p>Returns the Pd version number as a string. Note that this routine will only
 be available when a script is running inside Pd, so you can quickly check
 if that&#8217;s the case as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">let</span> ok = stringp $ eval <span class="s">&quot;extern char *pd_version_s(); pd_version_s;&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">let</span> ok = stringp $ eval <span class="s">&quot;extern char *pd_version_s(); pd_version_s;&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">ok</span></tt> variable will then be true iff the script is running inside Pd.</p>
@@ -1472,7 +1472,7 @@ array.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

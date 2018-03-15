@@ -95,7 +95,7 @@ via C.</p>
 </div>
 <div class="section" id="synopsis">
 <h2><a class="toc-backref" href="#id2">Synopsis</a><a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-pure"><div class="highlight"><pre>pure-gen [options ...] input-file
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure-gen [options ...] input-file
 </pre></div>
 </div>
 </div>
@@ -329,7 +329,7 @@ extension .c.</p>
 <h2><a class="toc-backref" href="#id8">Description</a><a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
 <p>pure-gen generates Pure bindings for C functions from a C header file. For
 instance, the command</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure-gen foo.h
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure-gen foo.h
 </pre></div>
 </div>
 <p>creates a Pure module foo.pure with <tt class="docutils literal"><span class="pre">extern</span></tt> declarations for the constants
@@ -344,9 +344,9 @@ which it only parses the input without actually generating any output
 files. This is useful for checking the input (possibly in combination with the
 <a class="reference internal" href="#cmdoption-pure-gen-e"><em class="xref std std-option">-e</em></a>, <a class="reference internal" href="#cmdoption-pure-gen-v"><em class="xref std std-option">-v</em></a> and/or <a class="reference internal" href="#cmdoption-pure-gen-w"><em class="xref std std-option">-w</em></a> options) before generating
 output. A particularly useful example is</p>
-<div class="highlight-sh"><div class="highlight"><pre>pure-gen -ne foo.h <span class="se">\</span>
-  | awk <span class="s1">&#39;$1==&quot;#&quot; &amp;&amp; $2~/^[0-9]+$/ &amp;&amp; $3!~/^&quot;&lt;.*&gt;&quot;$/  { print $3 }&#39;</span> <span class="se">\</span>
-  | sort | uniq
+<div class="highlight-sh"><div class="highlight"><pre><span></span>pure-gen -ne foo.h <span class="se">\</span>
+  <span class="p">|</span> awk <span class="s1">&#39;$1==&quot;#&quot; &amp;&amp; $2~/^[0-9]+$/ &amp;&amp; $3!~/^&quot;&lt;.*&gt;&quot;$/  { print $3 }&#39;</span> <span class="se">\</span>
+  <span class="p">|</span> sort <span class="p">|</span> uniq
 </pre></div>
 </div>
 <p>which prints on standard output all headers which are included in the source.
@@ -379,7 +379,7 @@ so that all these symbols are included as well.</p>
 symbols using the source filename and the symbol as search criteria. For
 instance, to just generate code for a single header foo.h and none of the
 other headers included in foo.h, you can invoke pure-gen as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure-gen -s foo.h<span class="p">::</span> foo.h
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure-gen -s foo.h<span class="p">::</span> foo.h
 </pre></div>
 </div>
 <p>Note that even in this case all included headers will be parsed so that
@@ -458,7 +458,7 @@ section.</p>
 foo.h header file whose operations are implemented in some library libfoo.a or
 libfoo.so. A command like the following generates both the C wrapper and the
 corresponding Pure module:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure-gen -fc foo.h
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure-gen -fc foo.h
 </pre></div>
 </div>
 <p>This creates foo.pure and foo.c, with an import clause for <tt class="docutils literal"><span class="pre">&quot;lib:foo&quot;</span></tt> at
@@ -467,7 +467,7 @@ and C output files using the <a class="reference internal" href="#cmdoption-pure
 respectively.)</p>
 <p>The generated wrapper is just an ordinary C file which should be compiled to a
 shared object (dll on Windows) as usual. E.g., using gcc on Linux:</p>
-<div class="highlight-pure"><div class="highlight"><pre>gcc -shared -o foo.so foo.c -lfoo
+<div class="highlight-pure"><div class="highlight"><pre><span></span>gcc -shared -o foo.so foo.c -lfoo
 </pre></div>
 </div>
 <p>That&#8217;s all. You should now be able to use the foo module by just putting the
@@ -475,8 +475,8 @@ declaration <tt class="docutils literal"><span class="pre">using</span> <span cl
 with the ffi interface if you replace the <tt class="docutils literal"><span class="pre">-fc</span></tt> option with <tt class="docutils literal"><span class="pre">-fc-ffi</span></tt>.</p>
 <p>You can also adjust the C wrapper code to some extent by providing your own
 template file, which has the following format:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* frontmatter here */</span>
-<span class="cp">#include %h</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cm">/* frontmatter here */</span>
+<span class="cp">#include</span> <span class="cpf">%h</span><span class="cp"></span>
 <span class="o">%%</span>
 
 <span class="cm">/* wrapper here */</span>
@@ -508,12 +508,12 @@ specify an &#8220;alternate&#8221; template for dealing with routines returning 
 values, see <a class="reference internal" href="#dealing-with-c-structs">Dealing with C Structs</a>.)</p>
 <p>For instance, suppose that we place the sample template above into a file
 foo.templ and invoke pure-gen on the foo.h header file as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre>pure-gen -fc -t foo.templ foo.h
+<div class="highlight-pure"><div class="highlight"><pre><span></span>pure-gen -fc -t foo.templ foo.h
 </pre></div>
 </div>
 <p>Then in foo.c you&#8217;d get C output code like the following:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* frontmatter here */</span>
-<span class="cp">#include &quot;foo.h&quot;</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cm">/* frontmatter here */</span>
+<span class="cp">#include</span> <span class="cpf">&quot;foo.h&quot;</span><span class="cp"></span>
 
 <span class="cm">/* wrapper here */</span>
 <span class="kt">void</span> <span class="nf">Pure_foo</span><span class="p">(</span><span class="kt">int</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">arg1</span><span class="p">)</span>
@@ -532,7 +532,7 @@ foo.templ and invoke pure-gen on the foo.h header file as follows:</p>
 <tt class="docutils literal"><span class="pre">Pure_</span></tt> prefix. You can change this with the <a class="reference internal" href="#cmdoption-pure-gen-P"><em class="xref std std-option">-P</em></a> option.</p>
 <p>This also works great to create boilerplate code for new modules. For this
 purpose the following template will do the trick:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="cm">/* Add #includes etc. here. */</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="cm">/* Add #includes etc. here. */</span>
 <span class="o">%%</span>
 
 <span class="o">%</span><span class="n">r</span> <span class="o">%</span><span class="n">n</span><span class="p">(</span><span class="o">%</span><span class="n">p</span><span class="p">)</span>
@@ -554,7 +554,7 @@ of C structs either.</p>
 will bark if you try to wrap an operation which passes or returns a C struct,
 printing a warning message like the following which indicates that the given
 function could not be wrapped:</p>
-<div class="highlight-pure"><div class="highlight"><pre>Warning: foo: struct argument or return <span class="kr">type</span>, try -fc-auto
+<div class="highlight-pure"><div class="highlight"><pre><span></span>Warning: foo: struct argument or return <span class="kr">type</span>, try -fc-auto
 </pre></div>
 </div>
 <p>What Pure <em>does</em> know is how to pass and return <em>pointers</em> to C structs in its
@@ -567,28 +567,28 @@ the ffi interface) to only generate the C wrapper when required. This saves
 the overhead of an extra function call if it&#8217;s not actually needed.</p>
 <p>Struct arguments in the original C function then become struct pointers in the
 wrapper function. E.g., if the function is declared in the header as follows:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="n">point</span><span class="p">;</span>
-<span class="k">extern</span> <span class="kt">double</span> <span class="n">foo</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="p">);</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">;</span> <span class="p">}</span> <span class="n">point</span><span class="p">;</span>
+<span class="k">extern</span> <span class="kt">double</span> <span class="nf">foo</span><span class="p">(</span><span class="n">point</span> <span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Then the generated wrapper code becomes:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="kt">double</span> <span class="nf">Pure_foo</span><span class="p">(</span><span class="n">point</span><span class="o">*</span> <span class="n">arg0</span><span class="p">)</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">Pure_foo</span><span class="p">(</span><span class="n">point</span><span class="o">*</span> <span class="n">arg0</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">return</span> <span class="n">foo</span><span class="p">(</span><span class="o">*</span><span class="n">arg0</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Which is declared in the Pure interface as:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> <span class="kt">double</span> Pure_foo(point*) = foo<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> <span class="kt">double</span> Pure_foo(point*) = foo<span class="p">;</span>
 </pre></div>
 </div>
 <p>Struct return values are handled by returning a pointer to a static variable
 holding the return value. E.g.,</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="k">extern</span> <span class="n">point</span> <span class="n">bar</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="k">extern</span> <span class="n">point</span> <span class="nf">bar</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>becomes:</p>
-<div class="highlight-c"><div class="highlight"><pre><span class="n">point</span><span class="o">*</span> <span class="nf">Pure_bar</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">arg1</span><span class="p">)</span>
+<div class="highlight-c"><div class="highlight"><pre><span></span><span class="n">point</span><span class="o">*</span> <span class="nf">Pure_bar</span><span class="p">(</span><span class="kt">double</span> <span class="n">arg0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">arg1</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">static</span> <span class="n">point</span> <span class="n">ret</span><span class="p">;</span>
   <span class="n">ret</span> <span class="o">=</span> <span class="n">bar</span><span class="p">(</span><span class="n">arg0</span><span class="p">,</span> <span class="n">arg1</span><span class="p">);</span> <span class="k">return</span> <span class="o">&amp;</span><span class="n">ret</span><span class="p">;</span>
@@ -596,7 +596,7 @@ holding the return value. E.g.,</p>
 </pre></div>
 </div>
 <p>Which is declared in the Pure interface as:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">extern</span> point* Pure_bar(<span class="kt">double</span>, <span class="kt">double</span>) = bar<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">extern</span> point* Pure_bar(<span class="kt">double</span>, <span class="kt">double</span>) = bar<span class="p">;</span>
 </pre></div>
 </div>
 <p>(Note that the generated code in this case comes from an alternate template.
@@ -604,21 +604,21 @@ It&#8217;s possible to configure the alternate template just like the normal one
 using the <a class="reference internal" href="#cmdoption-pure-gen-T"><em class="xref std std-option">-T</em></a> option instead of <a class="reference internal" href="#cmdoption-pure-gen-t"><em class="xref std std-option">-t</em></a>. See the <a class="reference internal" href="#generating-c-code">Generating C
 Code</a> section above for details about code templates.)</p>
 <p>In a Pure script you can now call <tt class="docutils literal"><span class="pre">foo</span></tt> and <tt class="docutils literal"><span class="pre">bar</span></tt> as:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>foo (bar <span class="mf">0.0</span> <span class="mf">1.0</span>)<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>foo (bar <span class="mf">0.0</span> <span class="mf">1.0</span>)<span class="p">;</span>
 </pre></div>
 </div>
 <p>Note, however, that the pointer returned by <tt class="docutils literal"><span class="pre">bar</span></tt> points to static storage
 which will be overwritten each time you invoke the <tt class="docutils literal"><span class="pre">bar</span></tt> function. Thus in
 the following example <em>both</em> <tt class="docutils literal"><span class="pre">u</span></tt> and <tt class="docutils literal"><span class="pre">v</span></tt> will point to the same <tt class="docutils literal"><span class="pre">point</span></tt>
 struct, namely that defined by the latter call to <tt class="docutils literal"><span class="pre">bar</span></tt>:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> u = bar <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">;</span> <span class="kr">let</span> v = bar <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> u = bar <span class="mf">1.0</span> <span class="mf">0.0</span><span class="p">;</span> <span class="kr">let</span> v = bar <span class="mf">0.0</span> <span class="mf">1.0</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Which most likely is <em>not</em> what you want. To avoid this, you&#8217;ll have to take
 dynamic copies of returned structs. It&#8217;s possible to do this manually by
 fiddling around with <tt class="docutils literal"><span class="pre">malloc</span></tt> and <tt class="docutils literal"><span class="pre">memcpy</span></tt>, but the most convenient way is
 to employ the struct functions provided by Pure&#8217;s ffi module:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> ffi<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> ffi<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> point_t = struct_t (double_t, double_t)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> u = copy_struct point_t (bar <span class="mf">1.0</span> <span class="mf">0.0</span>)<span class="p">;</span>
 <span class="gp">&gt; </span><span class="kr">let</span> v = copy_struct point_t (bar <span class="mf">0.0</span> <span class="mf">1.0</span>)<span class="p">;</span>
@@ -672,15 +672,15 @@ below.</p>
 <p>For the sake of a substantial, real-world example, here is how you can wrap
 the entire GNU Scientific Library in a single Pure module mygsl.pure, with the
 accompanying C module in mygsl.c:</p>
-<div class="highlight-sh"><div class="highlight"><pre>rm -f mygsl.pure mygsl.c
+<div class="highlight-sh"><div class="highlight"><pre><span></span>rm -f mygsl.pure mygsl.c
 <span class="nv">DEFS</span><span class="o">=</span>-DGSL_DISABLE_DEPRECATED
-<span class="k">for </span>x in /usr/include/gsl/gsl_*.h; <span class="k">do</span>
-<span class="k">  </span>pure-gen <span class="nv">$DEFS</span> -N -fc-auto -s <span class="s2">&quot;$x::&quot;</span> <span class="nv">$x</span> -o mygsl.pure -c mygsl.c
+<span class="k">for</span> x in /usr/include/gsl/gsl_*.h<span class="p">;</span> <span class="k">do</span>
+  pure-gen <span class="nv">$DEFS</span> -N -fc-auto -s <span class="s2">&quot;</span><span class="nv">$x</span><span class="s2">::&quot;</span> <span class="nv">$x</span> -o mygsl.pure -c mygsl.c
 <span class="k">done</span>
 </pre></div>
 </div>
 <p>The C module can then be compiled with:</p>
-<div class="highlight-sh"><div class="highlight"><pre>gcc <span class="nv">$DEFS</span> -shared -o mygsl.so mygsl.c -lgsl
+<div class="highlight-sh"><div class="highlight"><pre><span></span>gcc <span class="nv">$DEFS</span> -shared -o mygsl.so mygsl.c -lgsl
 </pre></div>
 </div>
 <p>Note that the <tt class="docutils literal"><span class="pre">GSL_DISABLE_DEPRECATED</span></tt> symbol must be defined here to avoid
@@ -793,7 +793,7 @@ Gutenberg University at Mainz, Germany).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

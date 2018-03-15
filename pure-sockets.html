@@ -82,7 +82,7 @@ details.</p>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>To use the operations of this module, put the following in your Pure script:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> sockets<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> sockets<span class="p">;</span>
 </pre></div>
 </div>
 <p>With the <a class="reference internal" href="#module-sockets"><tt class="xref pure pure-mod docutils literal"><span class="pre">sockets</span></tt></a> module loaded, all the standard socket functions are
@@ -311,7 +311,7 @@ argument is actually an <tt class="docutils literal"><span class="pre">int*</spa
 simple, this does no error checking whatsoever and just keeps sending strings
 back and forth. More elaborate examples can be found in the examples directory
 in the sources.</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="kr">using</span> sockets, system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> sockets, system<span class="p">;</span>
 
 <span class="kr">const</span> path = <span class="s">&quot;server_socket&quot;</span><span class="p">;</span>
 <span class="kr">extern</span> <span class="kt">int</span> unlink(<span class="kt">char</span> *name)<span class="p">;</span>
@@ -365,7 +365,7 @@ client prompt terminates the client but keeps the server running, so that you
 can start another client and reconnect to the server. Entering just <tt class="docutils literal"><span class="pre">quit</span></tt>
 in the client terminates both server and client. Here is how a typical
 interaction may look like:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>client<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>client<span class="p">;</span>
 client&gt; <span class="mi">1</span>+<span class="mi">1</span>
 client&gt; foo bar
 client&gt; quit
@@ -460,7 +460,7 @@ clients as you like.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

@@ -136,7 +136,7 @@ the data source to be used with the <tt class="docutils literal"><span class="pr
 available data sources can be obtained with the <tt class="docutils literal"><span class="pre">odbc::sources</span></tt>
 function. For instance, on my Linux system running MySQL and PostgreSQL it
 shows the following:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sources<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sources<span class="p">;</span>
 [(<span class="s">&quot;myodbc&quot;</span>,<span class="s">&quot;MySQL ODBC 2.50&quot;</span>),(<span class="s">&quot;psqlodbc&quot;</span>,<span class="s">&quot;PostgreSQL ODBC&quot;</span>)]
 </pre></div>
 </div>
@@ -153,7 +153,7 @@ least.) This function can be used to determine a legal value for the
 string, which is used to describe the data source and various other parameters
 such as user id and password. For instance, on my system I can connect to the
 local <tt class="docutils literal"><span class="pre">myodbc</span></tt> data source from above as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> db = odbc<span class="p">::</span>connect <span class="s">&quot;DSN=myodbc&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> db = odbc<span class="p">::</span>connect <span class="s">&quot;DSN=myodbc&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The <tt class="docutils literal"><span class="pre">odbc::connect</span></tt> function returns a pointer to an <tt class="docutils literal"><span class="pre">ODBCHandle</span></tt> object
@@ -161,7 +161,7 @@ which is used to refer to the database connection in the other routines
 provided by this module. An <tt class="docutils literal"><span class="pre">ODBCHandle</span></tt> object is closed automatically when
 it is no longer accessible. You can also close it explicitly with a call to
 the <tt class="docutils literal"><span class="pre">odbc::disconnect</span></tt> function:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>disconnect db<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>disconnect db<span class="p">;</span>
 </pre></div>
 </div>
 <p>After <tt class="docutils literal"><span class="pre">odbc::disconnect</span></tt> has been invoked on a handle, any further
@@ -170,7 +170,7 @@ operations on it will fail.</p>
 driver when opening the database connection. E.g., here&#8217;s how to specify a
 username and password; note that the different attributes are separated with a
 semicolon:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">let</span> db = odbc<span class="p">::</span>connect <span class="s">&quot;DSN=myodbc;UID=root;PWD=guess&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">let</span> db = odbc<span class="p">::</span>connect <span class="s">&quot;DSN=myodbc;UID=root;PWD=guess&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The precise set of attributes in the connect string depends on your ODBC
@@ -193,13 +193,13 @@ or <tt class="docutils literal"><span class="pre">database</span></tt>.)</p>
 </ul>
 <p>Using the <tt class="docutils literal"><span class="pre">FILEDSN</span></tt> option you can establish a connection to a data source
 described in a .dsn file on Windows, as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>connect <span class="s">&quot;FILEDSN=test.dsn&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>connect <span class="s">&quot;FILEDSN=test.dsn&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Usually it is also possible to directly connect to a driver and name a
 database file as the data source. For instance, using the MS Access ODBC
 driver you can connect to a database file test.mdb as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>connect <span class="s">&quot;DRIVER=Microsoft Access Driver (*.mdb);DBQ=test.mdb&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>connect <span class="s">&quot;DRIVER=Microsoft Access Driver (*.mdb);DBQ=test.mdb&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>SQLite (<a class="reference external" href="http://www.sqlite.org">http://www.sqlite.org</a>) provides another way to get a database up and
@@ -207,7 +207,7 @@ running quickly. For that you need the SQLite library and the SQLite ODBC
 driver available at <a class="reference external" href="http://www.ch-werner.de/sqliteodbc">http://www.ch-werner.de/sqliteodbc</a>. Then you can open an
 SQLite database as follows (the database file is named with the <tt class="docutils literal"><span class="pre">DATABASE</span></tt>
 attribute and is created automatically if it doesn&#8217;t exist):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>connect <span class="s">&quot;DRIVER=SQLite3;Database=test.db&quot;</span><span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>connect <span class="s">&quot;DRIVER=SQLite3;Database=test.db&quot;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>SQLite generally performs very well if you avoid some pitfalls (in particular,
@@ -235,7 +235,7 @@ API reference for more information):</p>
 <li>ODBC_VER: the ODBC version of the driver manager</li>
 </ul>
 <p>E.g., here is what the connection to MySQL shows on my Linux system:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>info db<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>info db<span class="p">;</span>
 <span class="s">&quot;myodbc&quot;</span>,<span class="s">&quot;test&quot;</span>,<span class="s">&quot;MySQL&quot;</span>,<span class="s">&quot;5.0.18&quot;</span>,<span class="s">&quot;myodbc3.dll&quot;</span>,<span class="s">&quot;03.51.12&quot;</span>,<span class="s">&quot;03.51&quot;</span>,<span class="s">&quot;03.52&quot;</span>
 </pre></div>
 </div>
@@ -245,7 +245,7 @@ particular, the <tt class="docutils literal"><span class="pre">odbc::getinfo</sp
 SQLGetInfo() routine. The result of <tt class="docutils literal"><span class="pre">odbc::getinfo</span></tt> is a pointer which can
 be converted to an integer or string value, depending on the type of
 information requested. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>get_short $ odbc<span class="p">::</span>getinfo db odbc<span class="p">::</span>SQL_MAX_TABLES_IN_SELECT<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>get_short $ odbc<span class="p">::</span>getinfo db odbc<span class="p">::</span>SQL_MAX_TABLES_IN_SELECT<span class="p">;</span>
 <span class="mi">31</span>
 
 <span class="gp">&gt; </span>cstring_dup $ odbc<span class="p">::</span>getinfo db odbc<span class="p">::</span>SQL_IDENTIFIER_QUOTE_CHAR<span class="p">;</span>
@@ -255,14 +255,14 @@ information requested. For instance:</p>
 <p>Information about supported SQL data types is available with the
 <tt class="docutils literal"><span class="pre">odbc::typeinfo</span></tt> routine (this returns a lot of data, see odbc.pure for an
 explanation):</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>typeinfo db odbc<span class="p">::</span>SQL_ALL_TYPES<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>typeinfo db odbc<span class="p">::</span>SQL_ALL_TYPES<span class="p">;</span>
 </pre></div>
 </div>
 <p>Moreover, information about the tables in the current database, as well as the
 structure of the tables and their primary and foreign keys can be retrieved
 with the <tt class="docutils literal"><span class="pre">odbc::tables</span></tt>, <tt class="docutils literal"><span class="pre">odbc::columns</span></tt>, <tt class="docutils literal"><span class="pre">odbc::primary_keys</span></tt> and
 <tt class="docutils literal"><span class="pre">odbc::foreign_keys</span></tt> functions:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>tables db<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>tables db<span class="p">;</span>
 [(<span class="s">&quot;event&quot;</span>,<span class="s">&quot;TABLE&quot;</span>),(<span class="s">&quot;pet&quot;</span>,<span class="s">&quot;TABLE&quot;</span>)]
 
 <span class="gp">&gt; </span>odbc<span class="p">::</span>columns db <span class="s">&quot;pet&quot;</span><span class="p">;</span>
@@ -298,7 +298,7 @@ case.</p>
 following examples assume the sample &#8220;menagerie&#8221; tables from the MySQL
 documentation. The <tt class="docutils literal"><span class="pre">initdb</span></tt> function in the examples/menagerie.pure script
 can be used to create these tables in your default database.)</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select name,species from pet where owner=&#39;Harold&#39;&quot;</span> []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select name,species from pet where owner=&#39;Harold&#39;&quot;</span> []<span class="p">;</span>
 [[<span class="s">&quot;name&quot;</span>,<span class="s">&quot;species&quot;</span>],[<span class="s">&quot;Fluffy&quot;</span>,<span class="s">&quot;cat&quot;</span>],[<span class="s">&quot;Buffy&quot;</span>,<span class="s">&quot;dog&quot;</span>]]
 </pre></div>
 </div>
@@ -306,19 +306,19 @@ can be used to create these tables in your default database.)</p>
 indicating a parameterless query. Queries involving marked input parameters
 can be executed by specifying the parameter values in the third argument of
 the <tt class="docutils literal"><span class="pre">sql</span></tt> call. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select name,species from pet where owner=?&quot;</span> [<span class="s">&quot;Harold&quot;</span>]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select name,species from pet where owner=?&quot;</span> [<span class="s">&quot;Harold&quot;</span>]<span class="p">;</span>
 [[<span class="s">&quot;name&quot;</span>,<span class="s">&quot;species&quot;</span>],[<span class="s">&quot;Fluffy&quot;</span>,<span class="s">&quot;cat&quot;</span>],[<span class="s">&quot;Buffy&quot;</span>,<span class="s">&quot;dog&quot;</span>]]
 </pre></div>
 </div>
 <p>Multiple parameters are specified as a list:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select name,species from pet where owner=? and species=?&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select name,species from pet where owner=? and species=?&quot;</span>
 <span class="gp">&gt; </span>[<span class="s">&quot;Harold&quot;</span>,<span class="s">&quot;cat&quot;</span>]<span class="p">;</span>
 [[<span class="s">&quot;name&quot;</span>,<span class="s">&quot;species&quot;</span>],[<span class="s">&quot;Fluffy&quot;</span>,<span class="s">&quot;cat&quot;</span>]]
 </pre></div>
 </div>
 <p>Parameterized queries are particularly useful for the purpose of inserting
 data into a table:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;insert into pet values (?,?,?,?,?,?)&quot;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;insert into pet values (?,?,?,?,?,?)&quot;</span>
 <span class="gp">&gt; </span>[<span class="s">&quot;Puffball&quot;</span>,<span class="s">&quot;Diane&quot;</span>,<span class="s">&quot;hamster&quot;</span>,<span class="s">&quot;f&quot;</span>,<span class="s">&quot;1999-03-30&quot;</span>,odbc<span class="p">::</span>SQLNULL]<span class="p">;</span>
 <span class="mi">1</span>
 </pre></div>
@@ -326,7 +326,7 @@ data into a table:</p>
 <p>In this case we could also have hard-coded the data to be inserted right into
 the SQL statement, but a parameterized query like the one above can easily be
 applied to a whole collection of data rows, e.g., as follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>do (odbc<span class="p">::</span>sql db <span class="s">&quot;insert into pet values (?,?,?,?,?,?)&quot;</span>) data<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>do (odbc<span class="p">::</span>sql db <span class="s">&quot;insert into pet values (?,?,?,?,?,?)&quot;</span>) data<span class="p">;</span>
 </pre></div>
 </div>
 <p>Parameterized queries also let you insert data which cannot be specified
@@ -380,7 +380,7 @@ returned by a query, the <tt class="docutils literal"><span class="pre">msql</sp
 invoked in exactly the same way as the <tt class="docutils literal"><span class="pre">sql</span></tt> function, but returns a list
 with all the result sets and/or row counts of the query.</p>
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>msql db <span class="s">&quot;select * from pet; select * from event&quot;</span> []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>msql db <span class="s">&quot;select * from pet; select * from event&quot;</span> []<span class="p">;</span>
 </pre></div>
 </div>
 <p>This will return a list with two result sets, one for each query.</p>
@@ -400,7 +400,7 @@ either the next row count, or a tuple of column names, after which you can
 invoke <tt class="docutils literal"><span class="pre">sql_fetch</span></tt> again to obtain the data rows in the second set,
 etc. When the last result set has been processed, <tt class="docutils literal"><span class="pre">sql_more</span></tt> fails.</p>
 <p>Example:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql_exec db <span class="s">&quot;select name,species from pet where owner=&#39;Harold&#39;&quot;</span> []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql_exec db <span class="s">&quot;select name,species from pet where owner=&#39;Harold&#39;&quot;</span> []<span class="p">;</span>
 [<span class="s">&quot;name&quot;</span>,<span class="s">&quot;species&quot;</span>]
 <span class="gp">&gt; </span>odbc<span class="p">::</span>sql_fetch db<span class="p">;</span> <span class="c1">// get the 1st row</span>
 [<span class="s">&quot;Fluffy&quot;</span>,<span class="s">&quot;cat&quot;</span>]
@@ -415,7 +415,7 @@ odbc<span class="p">::</span>sql_more <span class="kt">#&lt;pointer 0x24753e0&gt
 <p>Moreover, the <tt class="docutils literal"><span class="pre">sql_close</span></tt> function can be called at any time to terminate an
 SQL query, after which subsequent calls to <tt class="docutils literal"><span class="pre">sql_fetch</span></tt> and <tt class="docutils literal"><span class="pre">sql_more</span></tt> will
 fail:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql_close db<span class="p">;</span> <span class="c1">// terminate query</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql_close db<span class="p">;</span> <span class="c1">// terminate query</span>
 ()
 </pre></div>
 </div>
@@ -452,14 +452,14 @@ prohibitive when working with large amounts of data.</p>
 <p>These functions are invoked just like <tt class="docutils literal"><span class="pre">odbc::sql</span></tt> and <tt class="docutils literal"><span class="pre">odbc::msql</span></tt>, but
 they return a lazy list of rows (or a lazy list of lazy lists of rows in the
 case of <tt class="docutils literal"><span class="pre">lmsql</span></tt>). For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>lsql db <span class="s">&quot;select * from pet&quot;</span> []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>lsql db <span class="s">&quot;select * from pet&quot;</span> []<span class="p">;</span>
 [<span class="s">&quot;name&quot;</span>,<span class="s">&quot;owner&quot;</span>,<span class="s">&quot;species&quot;</span>,<span class="s">&quot;sex&quot;</span>,<span class="s">&quot;birth&quot;</span>,<span class="s">&quot;death&quot;</span>]:<span class="kt">#&lt;thunk 0x7ffbb9aa2eb8&gt;</span>
 </pre></div>
 </div>
 <p>Note that the tail of the result list is &#8220;thunked&#8221; and will only be produced
 on demand, as you traverse the list. As a simple example, suppose that we just
 want to print the <tt class="docutils literal"><span class="pre">name</span></tt> field of each data row:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span><span class="kr">using</span> system<span class="p">;</span>
 <span class="gp">&gt; </span>do (\(name:_)-&gt;puts name) $ tail $ odbc<span class="p">::</span>lsql db <span class="s">&quot;select * from pet&quot;</span> []<span class="p">;</span>
 Fluffy
 Claws
@@ -481,7 +481,7 @@ the processing significantly if only a part of the result set is needed. For
 instance, in the following example we only look at the first two data rows
 until the desired row is found, so the remaining rows are never fetched from
 the database:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>head [row | row<span class="p">@</span>(name:_) = tail $ odbc<span class="p">::</span>lsql db <span class="s">&quot;select * from pet&quot;</span> []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>head [row | row<span class="p">@</span>(name:_) = tail $ odbc<span class="p">::</span>lsql db <span class="s">&quot;select * from pet&quot;</span> []<span class="p">;</span>
 <span class="gp">&gt; </span>            name == <span class="s">&quot;Claws&quot;</span>]<span class="p">;</span>
 [<span class="s">&quot;Claws&quot;</span>,<span class="s">&quot;Gwen&quot;</span>,<span class="s">&quot;cat&quot;</span>,<span class="s">&quot;m&quot;</span>,<span class="s">&quot;1994-03-17&quot;</span>,odbc<span class="p">::</span>SQLNULL]
 </pre></div>
@@ -507,14 +507,14 @@ which specifies an error message and the corresponding SQL state (i.e., error
 code). A detailed explanation of the state codes can be found in the ODBC
 documentation. For instance, a reference to a non-existent table will cause a
 report like the following:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select * from pets&quot;</span> []<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>odbc<span class="p">::</span>sql db <span class="s">&quot;select * from pets&quot;</span> []<span class="p">;</span>
 odbc<span class="p">::</span>error <span class="s">&quot;[TCX][MyODBC]Table &#39;test.pets&#39; doesn&#39;t exist&quot;</span> <span class="s">&quot;S1000&quot;</span>
 </pre></div>
 </div>
 <p>You can check for such return values and take some appropriate action. By
 redefining odbc::error accordingly, you can also have it generate exceptions
 or print an error message. For instance:</p>
-<div class="highlight-pure"><div class="highlight"><pre>odbc<span class="p">::</span>error msg state = fprintf stderr <span class="s">&quot;%s (%s)</span><span class="se">\n</span><span class="s">&quot;</span> (msg,state) $$ ()<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span>odbc<span class="p">::</span>error msg state = fprintf stderr <span class="s">&quot;%s (%s)</span><span class="se">\n</span><span class="s">&quot;</span> (msg,state) $$ ()<span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -624,7 +624,7 @@ be found in the examples directory.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 01, 2018.
+    Last updated on Mar 16, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 
