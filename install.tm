@@ -10,7 +10,7 @@
 
   <section*|Installing Pure (and LLVM)><label|installing-pure-and-llvm>
 
-  Version 0.66, March 01, 2018
+  Version 0.66, March 17, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -464,15 +464,16 @@
   applications.)
 
   In addition, if the presence of GNU Emacs was detected at configure time,
-  then by default pure-mode.el and pure-mode.elc will be installed in the
-  Emacs site-lisp directory. make tries to guess the proper location of the
-  site-lisp directory, but if it guesses wrong or if you want to install in
-  some custom location then you can also set the <verbatim|elispdir> make
-  variable accordingly. If you prefer, you can also disable the automatic
-  installation of the elisp files by running configure with
-  <verbatim|./configure> <verbatim|--without-elisp>. (In that case, it's
-  still possible to install the elisp files manually with <verbatim|make>
-  <verbatim|install-el> <verbatim|install-elc>.)
+  then by default pure-mode.el and pure-mode.elc (as well as the
+  corresponding flycheck package) will be installed in the Emacs site-lisp
+  directory. make tries to guess the proper location of the site-lisp
+  directory, but if it guesses wrong or if you want to install in some custom
+  location then you can also set the <verbatim|elispdir> make variable
+  accordingly. If you prefer, you can also disable the automatic installation
+  of the elisp files by running configure with <verbatim|./configure>
+  <verbatim|--without-elisp>. (In that case, it's still possible to install
+  the elisp files manually with <verbatim|make> <verbatim|install-el>
+  <verbatim|install-elc>.)
 
   Similarly, if you have <hlink|GNU TeXmacs|http://savannah.gnu.org/projects/texmacs/>
   on your system and configure can locate it, the corresponding Pure plugin
@@ -758,8 +759,8 @@
     \;
   </verbatim>
 
-  These lines should come before the loading of Pure mode in your .emacs, so
-  that Pure mode can adjust accordingly.
+  These lines should come <em|before> the loading of Pure mode in your
+  .emacs, so that Pure mode can adjust accordingly.
 
   Once Emacs has been configured to load Pure mode, you can just run it with
   a Pure file to check that it works, e.g.:
@@ -775,6 +776,62 @@
   The online help about Pure mode can be read with <verbatim|C-h>
   <verbatim|m>. The Pure documentation can be accessed in Pure mode with
   <verbatim|C-c> <verbatim|h>.
+
+  Last but not least, support for <hlink|flycheck|http://www.flycheck.org>,
+  the on-the-fly syntax checker is available through a separate
+  flycheck-pure.el package, which can be enabled in your .emacs as follows:
+
+  <\verbatim>
+    \;
+
+    (require 'flycheck-pure)
+
+    (eval-after-load 'flycheck
+
+    \ \ '(add-hook 'flycheck-mode-hook #'flycheck-pure-setup))
+
+    \;
+  </verbatim>
+
+  You need to have <hlink|flycheck|http://www.flycheck.org> installed to make
+  this work (it's available in <hlink|MELPA|https://melpa.org>). Also, the
+  Pure interpreter needs to be in your <verbatim|PATH> or flycheck will not
+  be able to find it.
+
+  This is highly recommended, because flycheck will warn you about syntax
+  errors, undeclared identifiers, etc. immediately \U anything which can be
+  found without actually executing the program. flycheck does this by
+  continually running <verbatim|pure> <verbatim|--check> on your program
+  while you're editing it. By default, flycheck will flag both errors and
+  warnings by invoking the Pure interpreter with the
+  <hlink|<em|-w>|pure.tm#cmdoption-pure-w> option. If you only want to see
+  real compilation errors, you can turn this off by setting the
+  <verbatim|flycheck-pure-warnings> variable to <verbatim|nil>:
+
+  <\verbatim>
+    \;
+
+    (setq flycheck-pure-warnings nil)
+
+    \;
+  </verbatim>
+
+  Also note that flycheck will not run on a buffer unless you specifically
+  enable it (in which case you'll see the <verbatim|FlyC> indicator in the
+  mode line). However, you can also enable flycheck globally so that it
+  automatically runs in every buffer with a mode that has an associated
+  checker. To these ends, add the following line to your .emacs:
+
+  <\verbatim>
+    \;
+
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+
+    \;
+  </verbatim>
+
+  Please check the <hlink|flycheck|http://www.flycheck.org> website for more
+  information.
 
   <subsection|TeXmacs Plugin><label|texmacs-plugin>
 
@@ -1708,5 +1765,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  17, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

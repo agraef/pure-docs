@@ -135,6 +135,8 @@
   \Uc-output file <hlink|pure-gen command line
   option|pure-gen.tm#cmdoption-pure-gen--c-output>
 
+  \Ucheck <hlink|pure command line option|pure.tm#cmdoption-pure--check>
+
   \Uchecks <hlink|pure command line option|pure.tm#cmdoption-pure--checks>
 
   \Uconst <hlink|pure command line option|pure.tm#cmdoption-pure--const>
@@ -3173,6 +3175,8 @@
 
   <hlink|\U|pure.tm#cmdoption-pure-->
 
+  <hlink|\Ucheck|pure.tm#cmdoption-pure--check>
+
   <hlink|\Uchecks|pure.tm#cmdoption-pure--checks>
 
   <hlink|\Uconst|pure.tm#cmdoption-pure--const>
@@ -5021,5 +5025,5 @@
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  17, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

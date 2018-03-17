@@ -57,7 +57,7 @@
             
   <div class="section" id="installing-pure-and-llvm">
 <h1>Installing Pure (and LLVM)<a class="headerlink" href="#installing-pure-and-llvm" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.66, March 01, 2018</p>
+<p>Version 0.66, March 17, 2018</p>
 <div class="line-block">
 <div class="line">Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</div>
 <div class="line">Eddie Rucker &lt;<a class="reference external" href="mailto:erucker&#37;&#52;&#48;bmc&#46;edu">erucker<span>&#64;</span>bmc<span>&#46;</span>edu</a>&gt;</div>
@@ -349,13 +349,14 @@ installation prefix can be changed with the <tt class="docutils literal"><span c
 file is not needed for normal operation, but can be used to write C/C++
 extensions modules or embed Pure in your C/C++ applications.)</p>
 <p>In addition, if the presence of GNU Emacs was detected at configure time, then
-by default pure-mode.el and pure-mode.elc will be installed in the Emacs
-site-lisp directory. make tries to guess the proper location of the site-lisp
-directory, but if it guesses wrong or if you want to install in some custom
-location then you can also set the <tt class="docutils literal"><span class="pre">elispdir</span></tt> make variable accordingly. If
-you prefer, you can also disable the automatic installation of the elisp files
-by running configure with <tt class="docutils literal"><span class="pre">./configure</span> <span class="pre">--without-elisp</span></tt>. (In that case, it&#8217;s
-still possible to install the elisp files manually with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install-el</span>
+by default pure-mode.el and pure-mode.elc (as well as the corresponding
+flycheck package) will be installed in the Emacs site-lisp directory. make
+tries to guess the proper location of the site-lisp directory, but if it
+guesses wrong or if you want to install in some custom location then you can
+also set the <tt class="docutils literal"><span class="pre">elispdir</span></tt> make variable accordingly. If you prefer, you can
+also disable the automatic installation of the elisp files by running
+configure with <tt class="docutils literal"><span class="pre">./configure</span> <span class="pre">--without-elisp</span></tt>. (In that case, it&#8217;s still
+possible to install the elisp files manually with <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install-el</span>
 <span class="pre">install-elc</span></tt>.)</p>
 <p>Similarly, if you have <a class="reference external" href="http://savannah.gnu.org/projects/texmacs/">GNU TeXmacs</a> on your system and configure can locate
 it, the corresponding Pure plugin will be installed into the TeXmacs plugins
@@ -518,7 +519,7 @@ Emacs:</p>
 <span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;pure-mode-hook</span> <span class="ss">&#39;hs-minor-mode</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>These lines should come before the loading of Pure mode in your .emacs, so
+<p>These lines should come <em>before</em> the loading of Pure mode in your .emacs, so
 that Pure mode can adjust accordingly.</p>
 <p>Once Emacs has been configured to load Pure mode, you can just run it with a
 Pure file to check that it works, e.g.:</p>
@@ -527,6 +528,37 @@ Pure file to check that it works, e.g.:</p>
 </div>
 <p>The online help about Pure mode can be read with <tt class="docutils literal"><span class="pre">C-h</span> <span class="pre">m</span></tt>. The Pure
 documentation can be accessed in Pure mode with <tt class="docutils literal"><span class="pre">C-c</span> <span class="pre">h</span></tt>.</p>
+<p>Last but not least, support for <a class="reference external" href="http://www.flycheck.org">flycheck</a>, the on-the-fly syntax checker is
+available through a separate flycheck-pure.el package, which can be enabled in
+your .emacs as follows:</p>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">require</span> <span class="ss">&#39;flycheck-pure</span><span class="p">)</span>
+<span class="p">(</span><span class="nf">eval-after-load</span> <span class="ss">&#39;flycheck</span>
+  <span class="o">&#39;</span><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;flycheck-mode-hook</span> <span class="o">#</span><span class="ss">&#39;flycheck-pure-setup</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>You need to have <a class="reference external" href="http://www.flycheck.org">flycheck</a> installed to make this work (it&#8217;s available in
+<a class="reference external" href="https://melpa.org">MELPA</a>). Also, the Pure interpreter needs to be in your <tt class="docutils literal"><span class="pre">PATH</span></tt> or flycheck
+will not be able to find it.</p>
+<p>This is highly recommended, because flycheck will warn you about syntax
+errors, undeclared identifiers, etc. immediately &#8211; anything which can be
+found without actually executing the program. flycheck does this by
+continually running <tt class="docutils literal"><span class="pre">pure</span> <span class="pre">--check</span></tt> on your program while you&#8217;re editing it.
+By default, flycheck will flag both errors and warnings by invoking the Pure
+interpreter with the <a class="reference internal" href="pure.html#cmdoption-pure-w"><em class="xref std std-option">-w</em></a> option. If you only want to see
+real compilation errors, you can turn this off by setting the
+<tt class="docutils literal"><span class="pre">flycheck-pure-warnings</span></tt> variable to <tt class="docutils literal"><span class="pre">nil</span></tt>:</p>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">setq</span> <span class="nv">flycheck-pure-warnings</span> <span class="nv">nil</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Also note that flycheck will not run on a buffer unless you specifically
+enable it (in which case you&#8217;ll see the <tt class="docutils literal"><span class="pre">FlyC</span></tt> indicator in the mode line).
+However, you can also enable flycheck globally so that it automatically runs
+in every buffer with a mode that has an associated checker. To these ends, add
+the following line to your .emacs:</p>
+<div class="highlight-scheme"><div class="highlight"><pre><span></span><span class="p">(</span><span class="nf">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="o">#</span><span class="ss">&#39;global-flycheck-mode</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Please check the <a class="reference external" href="http://www.flycheck.org">flycheck</a> website for more information.</p>
 </div>
 <div class="section" id="texmacs-plugin">
 <h2>TeXmacs Plugin<a class="headerlink" href="#texmacs-plugin" title="Permalink to this headline">¶</a></h2>
@@ -1206,7 +1238,7 @@ recent 64 bit flavors of Windows (tested on Windows 7, 8 and 10).</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 16, 2018.
+    Last updated on Mar 17, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

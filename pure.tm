@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.66, March 01, 2018
+  Version 0.66, March 17, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -297,10 +297,10 @@
   <hlink|Compiling Scripts|#compiling-scripts> below.)
 
   Batch mode is also entered if the interpreter is invoked with one of the
-  <verbatim|--ctags> and <verbatim|--etags> options. However, in this case
-  the given scripts are not executed at all, but only parsed in order to
-  produce a vi or emacs tags file, see <hlink|Tagging
-  Scripts|#tagging-scripts> below.
+  <verbatim|--check>, <verbatim|--ctags> and <verbatim|--etags> options.
+  However, in this case the given scripts are not executed at all, but only
+  parsed in order to check them for syntactic validity, or to produce a vi or
+  emacs tags file, see <hlink|Tagging Scripts|#tagging-scripts> below.
 
   Here are some common ways to invoke the interpreter:
 
@@ -374,6 +374,11 @@
   <\description>
     <item*|-c<label|cmdoption-pure-c>>Batch compilation (compile the given
     scripts to a native binary).
+  </description>
+
+  <\description>
+    <item*|--check<label|cmdoption-pure--check>>Syntax check only, do not
+    execute code or produce any output files.
   </description>
 
   <\description>
@@ -555,10 +560,11 @@
   <hlink|<em|-x>|#cmdoption-pure-x> option is encountered, or after the first
   script (non-option) argument in <with|font-series|bold|script mode> (i.e.,
   if none of the options <hlink|<em|-b>|#cmdoption-pure-b>,
-  <hlink|<em|-i>|#cmdoption-pure-i>, <hlink|<em|\Uctags>|#cmdoption-pure--ctags>
-  and <hlink|<em|\Uetags>|#cmdoption-pure--etags> is present). In either
-  case, any remaining parameters are passed to the executing script by means
-  of the global <hlink|<with|font-family|tt|argc>|#argc> and
+  <hlink|<em|-i>|#cmdoption-pure-i>, <hlink|<em|\Ucheck>|#cmdoption-pure--check>,
+  <hlink|<em|\Uctags>|#cmdoption-pure--ctags> and
+  <hlink|<em|\Uetags>|#cmdoption-pure--etags> is present). In either case,
+  any remaining parameters are passed to the executing script by means of the
+  global <hlink|<with|font-family|tt|argc>|#argc> and
   <hlink|<with|font-family|tt|argv>|#argv> variables, denoting the number of
   arguments and the list of the actual parameter strings, respectively. In
   script mode this also includes the script name as <verbatim|argv!0>.
@@ -22874,5 +22880,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  17, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
