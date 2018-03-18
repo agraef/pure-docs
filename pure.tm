@@ -10,11 +10,11 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.66, March 17, 2018
+  Version 0.67, March 18, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
-  Copyright (c) 2009-2017 by Albert Gräf. This document is available under
+  Copyright (c) 2009-2018 by Albert Gräf. This document is available under
   the <hlink|GNU Free Documentation License|http://www.gnu.org/copyleft/fdl.html>.
   Also see the <hlink|Copying|#copying> section for licensing information of
   the software.
@@ -80,10 +80,10 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.66
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.67
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2017 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2018 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -5154,10 +5154,10 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.66
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.67
     (x86_64-unknown-linux-gnu)
 
-    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2017 by
+    \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2018 by
     Albert Graef
 
     \ .__/ \\__,_\|_\| \ \\___\| \ \ \ (Type 'help' for help, 'help copying'
@@ -15160,7 +15160,7 @@
 
     [(argc--\<gtr\>0),(argv--\<gtr\>[]),(compiling--\<gtr\>0),
 
-    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.66")]
+    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.67")]
 
     \;
   </verbatim>
@@ -18252,7 +18252,7 @@
 
     sysinfo \ \ \ var \ sysinfo = "x86_64-unknown-linux-gnu";
 
-    version \ \ \ var \ version = "0.66";
+    version \ \ \ var \ version = "0.67";
 
     5 variables
 
@@ -22880,5 +22880,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  17, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  18, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

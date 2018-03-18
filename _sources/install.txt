@@ -3,7 +3,7 @@
 Installing Pure (and LLVM)
 ==========================
 
-Version 0.66, |today|
+Version 0.67, |today|
 
 | Albert Graef <aggraef@gmail.com>
 | Eddie Rucker <erucker@bmc.edu>
@@ -37,7 +37,7 @@ Quick Summary
 =============
 
 Here is the executive summary for the impatient. This assumes that you're
-using LLVM 3.4 and Pure 0.66, please substitute your actual version
+using LLVM 3.4 and Pure 0.67, please substitute your actual version
 numbers in the commands given below as needed.
 
 .. note:: If you're reading this documentation online, then the Pure version
@@ -52,10 +52,10 @@ downloading and installing the online documentation), GNU emacs (if you want
 to use Emacs Pure mode). These should all be available as binary packages on
 most systems.
 
-You'll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.66
+You'll also need LLVM and, of course, Pure. The LLVM 3.4 and Pure 0.67
 tarballs are available here:
 
-| https://github.com/agraef/pure-lang/releases/download/pure-0.66/pure-0.66.tar.gz
+| https://github.com/agraef/pure-lang/releases/download/pure-0.67/pure-0.67.tar.gz
 | http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz
 | http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
 | http://llvm.org/releases/3.4/dragonegg-3.4.src.tar.gz
@@ -91,8 +91,8 @@ details.
 
 Installing Pure::
 
-  $ tar xfvz pure-0.66.tar.gz
-  $ cd pure-0.66
+  $ tar xfvz pure-0.67.tar.gz
+  $ cd pure-0.67
   $ ./configure --enable-release
   $ make && sudo make install
 
@@ -115,8 +115,8 @@ the documentation files::
 This needs the ``wget`` program. You can also download and install the
 pure-docs tarball manually in the usual way, e.g.::
 
-  $ tar xfvz pure-docs-0.66.tar.gz
-  $ cd pure-docs-0.66
+  $ tar xfvz pure-docs-0.67.tar.gz
+  $ cd pure-docs-0.67
   $ sudo make install
 
 That's it, Pure should be ready to go now::
@@ -125,7 +125,7 @@ That's it, Pure should be ready to go now::
 
 Uninstalling::
 
-  $ cd pure-0.66
+  $ cd pure-0.67
   $ sudo make uninstall
   $ cd ../llvm-3.4
   $ sudo make uninstall
@@ -318,7 +318,7 @@ source tarballs can always be found in the "Downloads" section.
 
 **Step 5.** Configure, build and install Pure as follows::
 
-  $ cd pure-0.66
+  $ cd pure-0.67
   $ ./configure --enable-release
   $ make
   $ sudo make install
@@ -433,12 +433,12 @@ browser), you can change this by setting the ``BROWSER`` or the ``PURE_HELP``
 variable accordingly.
 
 The ``install-docs`` target requires a working Internet connection and the
-wget command. Instead, you can also download the pure-docs-0.66.tar.gz
+wget command. Instead, you can also download the pure-docs-0.67.tar.gz
 tarball manually and then install the documentation from the downloaded
 tarball in the usual way::
 
-  $ tar xfvz pure-docs-0.66.tar.gz
-  $ cd pure-docs-0.66
+  $ tar xfvz pure-docs-0.67.tar.gz
+  $ cd pure-docs-0.67
   $ sudo make install
 
 As a bonus, downloading the package manually also gives you the documentation
@@ -456,7 +456,7 @@ Run Pure interactively as::
 
    $ pure
 
-    __ \  |   |  __| _ \    Pure 0.66 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2017 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)

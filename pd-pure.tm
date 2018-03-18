@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.25, March 01, 2018
+  Version 0.25, March 18, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -1973,5 +1973,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  16, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  18, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
