@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.67, March 18, 2018
+  Version 0.67, April 10, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -414,7 +414,9 @@
     <item*|-fPIC<label|cmdoption-pure-fPIC>>
 
     <item*|-fpic<label|cmdoption-pure-fpic>>Create position-independent code
-    (batch compilation).
+    (batch compilation). (This option will normally be added automatically on
+    platforms where it is needed, so you'll rarely have to specify this
+    explicitly.)
   </description>
 
   <\description>
@@ -596,7 +598,10 @@
     <item*|<em|variable> compiling<label|compiling>>A flag indicating whether
     the program is executed in a batch compilation
     (<hlink|<em|-c>|#cmdoption-pure-c> option), see <hlink|Compiling
-    Scripts|#compiling-scripts> below.
+    Scripts|#compiling-scripts> below. (This variable is still provided for
+    backward compatibility, but shouldn't be needed any more and is
+    considered deprecated. The compiler will warn about its use when the
+    <hlink|<em|-w>|#cmdoption-pure-w> option is specified.)
   </description>
 
   <\description>
@@ -659,17 +664,17 @@
   option forces the interpreter to batch mode (unless
   <hlink|<em|-i>|#cmdoption-pure-i> is specified as well, which overrides
   <hlink|<em|-c>|#cmdoption-pure-c>). Any scripts specified on the command
-  line are then executed as usual, but after execution the interpreter takes
-  a snapshot of the program and compiles it to one of several supported
-  output formats, LLVM assembler (.ll) or bitcode (.bc), native assembler
-  (.s) or object (.o), or a native executable, depending on the output
-  filename specified with <hlink|<em|-o>|#cmdoption-pure-o>. If the output
-  filename ends in the .ll extension, an LLVM assembler file is created which
-  can then be processed with the LLVM toolchain. If the output filename is
-  just `-`, the assembler file is written to standard output, which is useful
-  if you want to pass the generated code to the LLVM tools in a pipeline. If
-  the output filename ends in the .bc extension, an LLVM bitcode file is
-  created instead.
+  line are then compiled as usual (only bypassing immediate execution of
+  toplevel expressions) and the interpreter finally takes a snapshot of the
+  program and outputs it in one of several supported output formats, LLVM
+  assembler (.ll) or bitcode (.bc), native assembler (.s) or object (.o), or
+  a native executable, depending on the output filename specified with
+  <hlink|<em|-o>|#cmdoption-pure-o>. If the output filename ends in the .ll
+  extension, an LLVM assembler file is created which can then be processed
+  with the LLVM toolchain. If the output filename is just `-`, the assembler
+  file is written to standard output, which is useful if you want to pass the
+  generated code to the LLVM tools in a pipeline. If the output filename ends
+  in the .bc extension, an LLVM bitcode file is created instead.
 
   The .ll and .bc formats are supported natively by the Pure interpreter, no
   external tools are required to generate these. If the target is an .s, .o
@@ -5077,8 +5082,6 @@
 
     $ pure -c hello.pure -o hello
 
-    Hello, world!
-
     $ ./hello
 
     Hello, world!
@@ -5086,60 +5089,11 @@
     \;
   </verbatim>
 
-  You'll notice that the compilation command in the first line above
-  <em|also> prints the <verbatim|Hello,> <verbatim|world!> message. This
-  reveals a rather unusual aspect of Pure's batch compiler: it actually
-  <em|executes> the script even during batch compilation. The reasons for
-  this behaviour and potential uses are discussed in the <hlink|Batch
-  Compilation|#batch-compilation> section. If you want to suppress the
-  program output during batch compilation, you can rewrite the program as
-  follows:
-
-  <\verbatim>
-    \;
-
-    using system;
-
-    main = puts "Hello, world!";
-
-    compiling \|\| main;
-
-    \;
-  </verbatim>
-
-  Note that here we turned the code to be executed into a separate
-  <verbatim|main> function. This isn't really necessary, but often
-  convenient, since it allows us to run the code to be executed by just
-  evaluating a single function. (Note that in contrast to C, the name
-  <verbatim|main> has no special significance in Pure; it's just a function
-  like any other. We still have to include a call to this function at the end
-  of our program so that it gets executed.)
-
-  The last line now reads <verbatim|compiling> <verbatim|\|\|>
-  <verbatim|main> which is a shorthand for \Pif the <verbatim|compiling>
-  variable is nonzero then do nothing, otherwise evaluate the <verbatim|main>
-  function\Q. In a batch compilation the interpreter sets this variable to a
-  nonzero value so that the evaluation of <verbatim|main> is skipped:
-
-  <\verbatim>
-    \;
-
-    $ pure -c hello.pure -o hello
-
-    $ ./hello
-
-    Hello, world!
-
-    \;
-  </verbatim>
-
-  We should mention here that batch-compiled scripts have some limitations
-  because the compiled executable runs under a trimmed-down runtime system.
-  This disables some of the advanced compile time features which are only
-  available when running a script with the interpreter or at
-  batch-compilation time. However, this won't usually affect run-of-the-mill
-  scripts like the one above. More information about this can be found in the
-  <hlink|Batch Compilation|#batch-compilation> section.
+  We should mention here that batch-compiled scripts have some limitations.
+  In particular, some of the advanced compile time features are only
+  available when running a script with the interpreter. However, this won't
+  affect run-of-the-mill scripts like the one above. More information can be
+  found in the <hlink|Batch Compilation|#batch-compilation> section.
 
   <subsubsection|Running the Interpreter><label|running-the-interpreter>
 
@@ -19737,20 +19691,73 @@
   <subsection|Batch Compilation><label|batch-compilation>
 
   The interpreter's <hlink|<em|-c>|#cmdoption-pure-c> option provides a means
-  to turn Pure scripts into standalone executables. This feature is still a
-  bit experimental. In particular, note that the compiled executable is
-  essentially a <em|static snapshot> of your program which is executed on the
-  \Pbare metal\Q, without a hosting interpreter. Only a minimal runtime
-  system is provided. This considerably reduces startup times, but also
-  implies some quirks and limitations as detailed below.
+  to quickly turn Pure scripts into standalone executables. The compiled
+  executable is essentially a <em|static snapshot> of your program which is
+  executed on the \Pbare metal\Q, without a hosting interpreter and with just
+  a minimal runtime system. This considerably reduces startup times, but also
+  implies some limitations (mostly related to meta-programming capabilities)
+  which will be discussed in the following subsection, where we give a
+  detailed account on the batch compilation process.
 
-  First and foremost, the batch compiler always reorders the code so that all
-  toplevel expressions and <hlink|<with|font-family|tt|let>|#let> bindings
-  are evaluated <em|after> all functions have been defined. This is done to
+  <subsubsection|Compile Time Versus Run Time><label|compile-time-versus-run-time>
+
+  The batch compiler processes most of the script at compile time as usual.
+  The only exception are plain toplevel expressions which are <em|not>
+  executed during batch compilation, but of course they are compiled and
+  become part of the output code. Your program will normally have to include
+  at least one of these so that it does something useful. That is, the
+  toplevel expressions play the role of the \Pmain program\Q in your script.
+  They are best placed after all the function and variable definitions, at
+  the end of your program.
+
+  All other items (macro, type, function, constant and variable definitions)
+  are executed <em|at compile time> as usual. This might first seem a bit
+  weird, but it paves the way for the powerful programming technique of
+  <hlink|partial evaluation|http://en.wikipedia.org/wiki/Partial-evaluation>
+  (more about that later). In any case, compile-time execution can't really
+  be avoided in a highly dynamic language like Pure. Recall that even
+  constants can be defined by evaluating arbitrary expressions, and using
+  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> a program can easily
+  modify itself in even more unforeseeable ways.
+
+  Thus it is important to keep in mind that if
+  <hlink|<with|font-family|tt|const>|#const> and
+  <hlink|<with|font-family|tt|let>|#let> bindings involve any code to be
+  executed, that code will be run also during batch compilation. What this
+  means is that permanent side-effects such as creating or removing files
+  should be avoided in these definitions; stuff like reading files in order
+  to initialize constants and variables should be ok, though. Other
+  side-effects should be confined to the toplevel expressions making up your
+  main program. (The compiler has no way of checking these policies, so they
+  are the programmer's responsibility.)
+
+  In the case of <hlink|<with|font-family|tt|const>|#const>, the code needed
+  to construct these values will normally be run <em|only> during batch
+  compilation and the resulting values are then either inlined in other
+  definitions or stored as read-only variables, see <hlink|Constant
+  Definitions|#constant-definitions> for details. In contrast, the code for
+  <hlink|<with|font-family|tt|let>|#let>-bound variables will actually be
+  executed <em|twice>, once during batch compilation, and then again when the
+  compiled program runs.
+
+  <with|font-series|bold|Note:> There's one corner case in which
+  <hlink|<with|font-family|tt|const>|#const> is treated pretty much the same
+  as <hlink|<with|font-family|tt|let>|#let>, namely if a constant involves
+  run time data such as pointers and closures. In such cases the constant
+  value has to be recomputed at run time and effectively becomes a
+  (read-only) variable. (The same applies if the
+  <hlink|<em|\Unoconst>|#cmdoption-pure--noconst> option is used to force
+  computation of constant values at run time, see <hlink|Options Affecting
+  Code Size|#options-affecting-code-size>.)
+
+  The batch compiler always reorders the output code so that all toplevel
+  expressions and <hlink|<with|font-family|tt|let>|#let> bindings are
+  evaluated <em|after> all functions have been defined. This is done to
   reduce the size of the output executable, so that there's only a
   <em|single> snapshot of each function which will be used by all toplevel
   expressions and global variable definitions invoking the function.
-  Therefore you should avoid code like the following:
+  Therefore you should avoid code like the following, which changes the
+  function <verbatim|foo> on the fly between invocations:
 
   <\verbatim>
     \;
@@ -19764,49 +19771,8 @@
     \;
   </verbatim>
 
-  Note that if you run this through the interpreter, <verbatim|x> and
-  <verbatim|y> are bound to <verbatim|foo> <verbatim|99> and <verbatim|100>,
-  respectively, because expressions and variable definitions are executed
-  immediately, as the program is being processed. In contrast, if the same
-  program is batch-compiled, <em|both> variables will be defined <em|after>
-  the definition of <verbatim|foo> and thus refer to the same value
-  <verbatim|100> instead. This will rarely be a problem in practice (the
-  above example is really rather pathological and won't usually occur in
-  real-world programs), but to avoid these semantic differences, you'll have
-  to make sure that expressions are evaluated <em|after> all functions used
-  in the evaluation have been defined completely. (However, the batch
-  compiler currently doesn't check this condition and will happily generate
-  code for programs which violate it.)
-
-  Plain toplevel expressions won't be of much use in a batch-compiled
-  program, unless, of course, they are evaluated for their side-effects. Your
-  program will have to include at least one of these to play the role of the
-  \Pmain program\Q in your script. In most cases these expressions are best
-  placed after all the function and variable definitions, at the end of your
-  program.
-
-  Also note that during a batch compilation, the compiled program is actually
-  executed as usual, i.e., the script is also run <em|at compile time>. This
-  might first seem to be a big annoyance, but it actually opens the door for
-  some powerful programming techniques like <hlink|partial
-  evaluation|http://en.wikipedia.org/wiki/Partial-evaluation>. It is also a
-  necessity because of Pure's highly dynamic nature. For instance, Pure
-  allows you to define constants by evaluating an arbitrary expression (cf.
-  <hlink|Constant Definitions|#constant-definitions>), and using
-  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> a program can easily
-  modify itself in even more unforeseeable ways. Therefore pretty much
-  anything in your program can actually depend on previous computations
-  performed while the program is being executed. To make this work in
-  batch-compiled scripts, the batch compiler thus executes the script as
-  usual. The <hlink|<with|font-family|tt|compiling>|#compiling> variable can
-  be used to check whether the script is being batch-compiled, so you can
-  adjust to that by selectively enabling or disabling parts of the code. For
-  instance, you will usually want to skip execution of the \Pmain program\Q
-  during batch compilation.
-
-  Last but not least, note that some parts of Pure's metaprogramming
-  capabilities and other compile time features are disabled in batch-compiled
-  programs:
+  Last but not least, some parts of Pure's meta-programming capabilities and
+  other compile time features are disabled in batch-compiled programs:
 
   <\itemize>
     <item>The <hlink|<with|font-family|tt|eval>|purelib.tm#eval> function can
@@ -19820,7 +19786,8 @@
     <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> and similar
     operations (discussed under <hlink|Reflection|#reflection> in the
     <hlink|Macros|#macros> section) are all disabled. If you need any of
-    these capabilities, you have to run your program with the interpreter.
+    these capabilities at run time, you have to run your program with the
+    interpreter.
 
     <item>Constant and macro definitions, being compile time features, aren't
     available in the compiled program. If you need to use these with
@@ -19833,35 +19800,43 @@
     <hlink|<em|\Urequired>|#cmdoption-pure-pragma--required> pragma can be
     used to avoid this, see <hlink|Options Affecting Code
     Size|#options-affecting-code-size> below.)
-
-    <item>Code which gets executed to compute constant values at compile time
-    will generally <em|not> be executed in the compiled executable, so your
-    program shouldn't rely on side-effects of such computations (this would
-    be bad practice anyway). There is an exception to this rule, however,
-    namely if a constant value contains run time data such as pointers and
-    local functions which requires an initialization at run time, then the
-    batch compiler will generate code for that. (The same happens if the
-    <hlink|<em|\Unoconst>|#cmdoption-pure--noconst> option is used to force
-    computation of constant values at run time, see <hlink|Options Affecting
-    Code Size|#options-affecting-code-size>.)
   </itemize>
 
   What this boils down to is that in the batch-compiled program you will have
   to avoid anything which requires the compile time or interactive facilities
   of the interpreter. These restrictions only apply at run time, of course.
-  At compile time the program <em|is> being executed by the full version of
-  the interpreter so you can use <hlink|<with|font-family|tt|eval>|purelib.tm#eval>
+  During batch compilation the program <em|is> being executed by the
+  interpreter, so you can use <hlink|<with|font-family|tt|eval>|purelib.tm#eval>
   and <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> in any desired
-  way.
+  way. You just need to make sure that the corresponding code actually gets
+  executed at compile time (remember that plain toplevel expressions aren't).
+  This can be done most conveniently by wrapping it up in a
+  <hlink|<with|font-family|tt|const>|#const> or
+  <hlink|<with|font-family|tt|let>|#let> construct, omitting the left-hand
+  side (cf. <hlink|Simple Rules|#simple-rules>):
 
-  For most kinds of scripts, the above restrictions aren't really that much
-  of an obstacle, or can easily be worked around. For the few scripts which
-  actually need the full dynamic capabilities of Pure you'll just have to run
-  the script with the interpreter. This isn't a big deal either, only the
-  startup will be somewhat slower because the script is compiled on the fly.
-  Once the JIT has done its thing the \Pinterpreted\Q script will run every
-  bit as fast as the \Pcompiled\Q one, since in fact <em|both> are compiled
-  (only at different times) to exactly the same code!
+  <\verbatim>
+    \;
+
+    const eval "fancy compile time code goes here";
+
+    \;
+  </verbatim>
+
+  The same approach works with the other inspection operations discussed in
+  <hlink|Reflection|#reflection>, and also comes in handy if external C code
+  requires initialization at compile time. In some cases it may be necessary
+  to execute the same code <em|both> at compile and at run time, which can be
+  achieved by using <verbatim|let> in lieu of <verbatim|const>.
+
+  Most kinds of scripts will work fine when batch-compiled, using the tricks
+  we discussed above to work around the little kinks and limitations. For the
+  few scripts which actually need the full dynamic capabilities of Pure
+  you'll just have to run the script with the interpreter, which shouldn't
+  usually be a big impediment either. Once the JIT has done its thing the
+  \Pinterpreted\Q script will run every bit as fast as the \Pcompiled\Q one,
+  since in fact <em|both> are compiled (only at different times) to exactly
+  the same code!
 
   <subsubsection|Example><label|example>
 
@@ -19946,9 +19921,10 @@
   </verbatim>
 
   Next suppose that we'd like to supply the value <verbatim|n> at
-  <em|compile> rather than run time. To these ends we want to turn the value
-  passed to the <verbatim|main> function into a compile time constant, which
-  can be done as follows:
+  <em|compile> rather than run time. This is what <hlink|partial
+  evaluation|http://en.wikipedia.org/wiki/Partial-evaluation> is all about.
+  In Pure we can just turn the value passed to the <verbatim|main> function
+  into a compile time constant as follows:
 
   <\verbatim>
     \;
@@ -19960,21 +19936,6 @@
 
   (Note that we provide <verbatim|10> as a default if <verbatim|n> isn't
   specified on the command line.)
-
-  Moreover, in such a case we usually want to skip the execution of the main
-  function at compile time. To these ends, the predefined
-  <hlink|<with|font-family|tt|compiling>|#compiling> variable holds a truth
-  value indicating whether the program is actually running under the auspices
-  of the batch compiler, so that it can adjust accordingly. In our example,
-  the evaluation of <verbatim|main> becomes:
-
-  <\verbatim>
-    \;
-
-    if compiling then () else main n;
-
-    \;
-  </verbatim>
 
   Our program now looks as follows:
 
@@ -19995,7 +19956,7 @@
 
     const n = if argc\<gtr\>1 then sscanf (argv!1) "%d" else 10;
 
-    if compiling then () else main n;
+    main n;
 
     \;
   </verbatim>
@@ -20046,11 +20007,10 @@
     \;
   </verbatim>
 
-  In addition, there's also a <em|compile time> check analogous to the
-  <hlink|<with|font-family|tt|compiling>|#compiling> variable, which
-  indicates whether the source script is being run normally or in a batch
-  compilation; see <hlink|Conditional Compilation|#conditional-compilation>.
-  We might employ this as follows, replacing the last line of the script with
+  Finally, there's also a compile time check which comes in handy if we want
+  to execute different code depending on whether a script is batch-compiled
+  or not; see <hlink|Conditional Compilation|#conditional-compilation>. We
+  might employ this as follows, replacing the last line of the script with
   this:
 
   <\verbatim>
@@ -20058,7 +20018,7 @@
 
     #! --if compiled
 
-    if compiling then () else main n;
+    if argc\<gtr\>1 then main (sscanf (argv!1) "%d") else main n;
 
     #! --else
 
@@ -20070,17 +20030,19 @@
     \;
   </verbatim>
 
-  The code in the <verbatim|--if> <verbatim|compiled> section, which is the
-  same as before, is now only executed during batch compilation and in the
-  compiled executable. If we run the script normally, in the interpreter, the
-  code in the <verbatim|--else> section, which just prints a welcome message
-  if no arguments are given on the command line, is executed instead. So we
-  now actually have <em|four> different code paths, depending on whether the
-  script is run normally, with or without arguments, or in a batch
-  compilation, or as a native executable. This kind of setup is useful if the
-  script is to be run both interactively and non-interactively in the
-  interpreter while developing it, but once the script is finished it gets
-  compiled and installed as a native executable.
+  The code in the <verbatim|--if> <verbatim|compiled> section is only
+  executed in the compiled script. It now also checks whether there is a
+  parameter specified on the command line at run time, using that as the
+  value of <verbatim|n> if present, and falling back to the static
+  <verbatim|n> value (specified on the command line during compilation, or 10
+  by default) otherwise. If we run the script normally, in the interpreter,
+  the code in the <verbatim|--else> section is executed instead, which just
+  prints a welcome message if no arguments are given on the command line. So
+  we now actually have <em|four> different code paths, depending on whether
+  the script is run normally or batch-compiled, with or without arguments.
+  This kind of setup is useful if the script is to be run both interactively
+  and non-interactively in the interpreter while developing it, but once the
+  script is finished it gets compiled and installed as a native executable.
 
   <\verbatim>
     \;
@@ -20120,6 +20082,14 @@
     [1,2,6,24,120,720,5040,40320,362880,3628800]
 
     \;
+
+    $ ./hello 8
+
+    Hello, world!
+
+    [1,2,6,24,120,720,5040,40320]
+
+    \;
   </verbatim>
 
   You'll rarely need an elaborate setup like this, most of the time something
@@ -20135,19 +20105,19 @@
   and any other module imported with a <hlink|<with|font-family|tt|using>|#using>
   clause, even if they don't seem to be used anywhere. This considerably
   increases compilation times and makes the compiled executable much larger.
-  For instance, on a 64 bit Linux systems with ELF binaries the executable of
-  our hello.pure example is about thrice as large:
+  For instance, on my 64 bit Linux systems with ELF binaries the executable
+  of our hello.pure example is about twice as large:
 
   <\verbatim>
     \;
 
     $ pure -o hello -c -x hello.pure 7 && ls -l hello
 
-    -rwxr-xr-x 1 ag users 178484 2010-01-12 06:21 hello
+    -rwxr-xr-x 1 ag ag 337304 Apr 10 19:24 hello
 
     $ pure -o hello -c -u -x hello.pure 7 && ls -l hello
 
-    -rwxr-xr-x 1 ag users 541941 2010-01-12 06:21 hello
+    -rwxr-xr-x 1 ag ag 664112 Apr 10 19:24 hello
 
     \;
   </verbatim>
@@ -20218,17 +20188,16 @@
     \;
   </verbatim>
 
-  On my 64 bit Linux system this produces a 187115 bytes executable. Without
+  On my 64 bit Linux system this produces a 240 KB executable. Without
   <hlink|<em|\Unoconst>|#cmdoption-pure--noconst> the code becomes almost an
-  order of magnitude larger in this case (1788699 bytes). On the other hand,
-  the smaller executable also takes a little longer to run since it must
-  first recompute the value of the list constant at startup. So you have to
-  consider the tradeoffs in a given situation. Usually big executables aren't
-  much of a problem on modern operating systems, but if your program contains
-  a lot of big constants then this may become an important consideration.
-  However, if a constant value takes a long time to compute then you'll be
-  better off with the default behaviour of precomputing the value at compile
-  time.
+  order of magnitude larger (some 1800 KB). On the other hand, the smaller
+  executable also takes a little longer to run since it must first recompute
+  the value of the list constant at startup. So you have to consider the
+  tradeoffs in a given situation. Usually big executables aren't much of a
+  problem on modern operating systems, but if your program contains a lot of
+  big constants then this may become an important consideration. However, if
+  a constant value takes a long time to compute then you'll be better off
+  with the default behaviour of precomputing the value at compile time.
 
   <subsubsection|Other Output Code Formats><label|other-output-code-formats>
 
@@ -20367,9 +20336,9 @@
   additional required libraries.
 
   As this last example shows, you can also create shared libraries from Pure
-  modules. However, on some systems (most notably x86_64), this requires that
-  you pass the <hlink|<em|-fPIC>|#cmdoption-pure-fPIC> option when
-  batch-compiling the module, so that position-independent code is generated:
+  modules. However, on some systems you may have to pass the
+  <hlink|<em|-fPIC>|#cmdoption-pure-fPIC> option when batch-compiling the
+  module, so that position-independent code is generated:
 
   <\verbatim>
     \;
@@ -20379,14 +20348,18 @@
     \;
   </verbatim>
 
-  Note that even when building a shared module, you'll have to supply an
-  initialization routine which calls <verbatim|__pure_main__> somewhere.
+  <with|font-series|bold|Note:> On most systems it shouldn't be necessary to
+  specify <hlink|<em|-fPIC>|#cmdoption-pure-fPIC> explicitly any more, since
+  the compiler will add that option automatically on platforms known to
+  require it. Also note that even when building a shared module, you'll have
+  to supply an initialization routine which calls <verbatim|__pure_main__>
+  somewhere.
 
-  Also note that since Pure doesn't support separate compilation in the
-  present implementation, if you create different shared modules like this,
-  each will contain their own copy all the required Pure functions from the
-  prelude and other imported Pure modules. This becomes a problem when trying
-  to link several separate batch-compiled modules into the same executable or
+  Since Pure doesn't support separate compilation in the present
+  implementation, if you create different shared modules like this, each will
+  contain their own copy of all the required Pure functions from the prelude
+  and other imported Pure modules. This becomes a problem when trying to link
+  several separate batch-compiled modules into the same executable or
   library, because you'll get many name clashes for routines present in
   different modules (including the <verbatim|__pure_main__> entry point). To
   prevent this, the batch compiler can be invoked with the
@@ -20762,6 +20735,20 @@
   and <hlink|<em|\Unosymbolic>|#cmdoption-pure--nosymbolic> to set the
   default evaluation mode of global functions; these are discussed in
   <hlink|Defined Functions|#defined-functions> below.
+
+  Pure 0.66 fixed the treatment of unary/binary minus in custom namespaces.
+  The compiler now handles this by manufacturing a corresponding unary minus
+  operator and an accompanying <verbatim|neg> function symbol in the same
+  namespace, so that the overloaded <verbatim|-> operator works in exactly
+  the same manner as the default one.
+
+  Pure 0.68 changed the batch compiler so that plain toplevel expressions are
+  not evaluated during batch compilation any more. Thus the
+  <hlink|<with|font-family|tt|compiling>|#compiling> variable is obsolete
+  now. It is still supported for backward compatibility, but the compiler
+  will flag it as \Pdeprecated\Q when run with the
+  <hlink|<em|-w>|#cmdoption-pure-w> option. Please check <hlink|Batch
+  Compilation|#batch-compilation> for details.
 
   <subsubsection|Error Recovery><label|error-recovery>
 
@@ -22802,6 +22789,9 @@
       <item><hlink|Batch Compilation|#batch-compilation>
 
       <\itemize>
+        <item><hlink|Compile Time Versus Run
+        Time|#compile-time-versus-run-time>
+
         <item><hlink|Example|#example>
 
         <item><hlink|Options Affecting Code
@@ -22879,6 +22869,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  18, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
+  10, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

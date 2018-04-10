@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.67, March 18, 2018
+Pure 0.67, April 10, 2018
 
 Albert Gräf (Editor)
 
@@ -54,7 +54,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c title here.
 
-Version 0.67, March 18, 2018
+Version 0.67, April 10, 2018
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -5974,6 +5974,23 @@ using enum;
 
 @noindent
 
+Also note that the @pxref{21d,,enum} and @pxref{21e,,defenum} functions use
+meta-programming to modify the running program, which only works when
+running in the interpreter. Thus, if a script using these functions is to
+be compiled to a native executable, you need to make sure that calls to
+@pxref{21d,,enum} and @pxref{21e,,defenum} are invoked at compile time. The @code{const}
+keyword does this for you, e.g.:
+
+@example
+const enum day;
+@end example
+
+@noindent
+
+This isn't necessary if the script runs in the interpreter, but it won't
+hurt there either, so to be on the safe side, it is recommended to just
+always use @code{const} with these operations.
+
 The following operations are provided:
 
 @geindex enum (function)
@@ -6037,7 +6054,7 @@ Once the type is defined, we can turn it into an enumeration simply as
 follows:
 
 @example
-enum day;
+const enum day;
 @end example
 
 @noindent
@@ -6046,7 +6063,7 @@ There's also a convenience function @pxref{21e,,defenum} which defines the type
 and makes it enumerable in one go:
 
 @example
-defenum day [sun,mon,tue,wed,thu,fri,sat];
+const defenum day [sun,mon,tue,wed,thu,fri,sat];
 @end example
 
 @noindent

@@ -57,7 +57,7 @@
             
   <div class="section" id="pure-library-manual">
 <h1>Pure Library Manual<a class="headerlink" href="#pure-library-manual" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.67, March 18, 2018</p>
+<p>Version 0.67, April 10, 2018</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Copyright (c) 2009-2017 by Albert Gräf. This document is available under
 the <a class="reference external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</a>.</p>
@@ -4571,6 +4571,18 @@ operations:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">using</span> enum<span class="p">;</span>
 </pre></div>
 </div>
+<p>Also note that the <a class="reference internal" href="#enum" title="enum"><tt class="xref pure pure-func docutils literal"><span class="pre">enum</span></tt></a> and <a class="reference internal" href="#defenum" title="defenum"><tt class="xref pure pure-func docutils literal"><span class="pre">defenum</span></tt></a> functions use
+meta-programming to modify the running program, which only works when
+running in the interpreter. Thus, if a script using these functions is to
+be compiled to a native executable, you need to make sure that calls to
+<a class="reference internal" href="#enum" title="enum"><tt class="xref pure pure-func docutils literal"><span class="pre">enum</span></tt></a> and <a class="reference internal" href="#defenum" title="defenum"><tt class="xref pure pure-func docutils literal"><span class="pre">defenum</span></tt></a> are invoked at compile time. The <tt class="docutils literal"><span class="pre">const</span></tt>
+keyword does this for you, e.g.:</p>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">const</span> enum day<span class="p">;</span>
+</pre></div>
+</div>
+<p>This isn&#8217;t necessary if the script runs in the interpreter, but it won&#8217;t
+hurt there either, so to be on the safe side, it is recommended to just
+always use <tt class="docutils literal"><span class="pre">const</span></tt> with these operations.</p>
 <p>The following operations are provided:</p>
 <dl class="function">
 <dt id="enum">
@@ -4622,12 +4634,12 @@ constructed with <a class="reference internal" href="#enum" title="enum"><tt cla
 </div>
 <p>Once the type is defined, we can turn it into an enumeration simply as
 follows:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span></span>enum day<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">const</span> enum day<span class="p">;</span>
 </pre></div>
 </div>
 <p>There&#8217;s also a convenience function <a class="reference internal" href="#defenum" title="defenum"><tt class="xref pure pure-func docutils literal"><span class="pre">defenum</span></tt></a> which defines the type
 and makes it enumerable in one go:</p>
-<div class="highlight-pure"><div class="highlight"><pre><span></span>defenum day [sun,mon,tue,wed,thu,fri,sat]<span class="p">;</span>
+<div class="highlight-pure"><div class="highlight"><pre><span></span><span class="kr">const</span> defenum day [sun,mon,tue,wed,thu,fri,sat]<span class="p">;</span>
 </pre></div>
 </div>
 <p>In particular, this sets up the functions <tt class="docutils literal"><span class="pre">day</span></tt> and <tt class="docutils literal"><span class="pre">ord</span></tt> so that you
@@ -7110,7 +7122,7 @@ copied to the result lists as is.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Mar 18, 2018.
+    Last updated on Apr 10, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

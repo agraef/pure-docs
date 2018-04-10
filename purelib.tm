@@ -10,7 +10,7 @@
 
   <section*|Pure Library Manual><label|pure-library-manual>
 
-  Version 0.67, March 18, 2018
+  Version 0.67, April 10, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -5472,6 +5472,27 @@
     \;
   </verbatim>
 
+  Also note that the <hlink|<with|font-family|tt|enum>|#enum> and
+  <hlink|<with|font-family|tt|defenum>|#defenum> functions use
+  meta-programming to modify the running program, which only works when
+  running in the interpreter. Thus, if a script using these functions is to
+  be compiled to a native executable, you need to make sure that calls to
+  <hlink|<with|font-family|tt|enum>|#enum> and
+  <hlink|<with|font-family|tt|defenum>|#defenum> are invoked at compile time.
+  The <verbatim|const> keyword does this for you, e.g.:
+
+  <\verbatim>
+    \;
+
+    const enum day;
+
+    \;
+  </verbatim>
+
+  This isn't necessary if the script runs in the interpreter, but it won't
+  hurt there either, so to be on the safe side, it is recommended to just
+  always use <verbatim|const> with these operations.
+
   The following operations are provided:
 
   <\description>
@@ -5535,7 +5556,7 @@
   <\verbatim>
     \;
 
-    enum day;
+    const enum day;
 
     \;
   </verbatim>
@@ -5546,7 +5567,7 @@
   <\verbatim>
     \;
 
-    defenum day [sun,mon,tue,wed,thu,fri,sat];
+    const defenum day [sun,mon,tue,wed,thu,fri,sat];
 
     \;
   </verbatim>
@@ -8824,6 +8845,6 @@
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Mar
-  18, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
+  10, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

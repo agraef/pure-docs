@@ -3834,6 +3834,19 @@ operations::
 
   using enum;
 
+Also note that the :func:`enum` and :func:`defenum` functions use
+meta-programming to modify the running program, which only works when
+running in the interpreter. Thus, if a script using these functions is to
+be compiled to a native executable, you need to make sure that calls to
+:func:`enum` and :func:`defenum` are invoked at compile time. The ``const``
+keyword does this for you, e.g.::
+
+  const enum day;
+
+This isn't necessary if the script runs in the interpreter, but it won't
+hurt there either, so to be on the safe side, it is recommended to just
+always use ``const`` with these operations.
+
 The following operations are provided:
 
 .. function:: enum sym
@@ -3877,12 +3890,12 @@ For instance, consider::
 Once the type is defined, we can turn it into an enumeration simply as
 follows::
 
-  enum day;
+  const enum day;
 
 There's also a convenience function :func:`defenum` which defines the type
 and makes it enumerable in one go::
 
-  defenum day [sun,mon,tue,wed,thu,fri,sat];
+  const defenum day [sun,mon,tue,wed,thu,fri,sat];
 
 In particular, this sets up the functions ``day`` and ``ord`` so that you
 can convert between members of the ``day`` type and the corresponding

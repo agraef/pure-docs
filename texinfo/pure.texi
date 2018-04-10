@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.67, March 18, 2018
+Pure 0.67, April 10, 2018
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 @anchor{pure doc}@anchor{0}
 @c Teach TeX how to hyphenate 'namespace' and 'whitespace'.
 
-Version 0.67, March 18, 2018
+Version 0.67, April 10, 2018
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -251,6 +251,7 @@ Interactive Usage
 
 Batch Compilation
 
+* Compile Time Versus Run Time:: 
 * Example:: 
 * Options Affecting Code Size:: 
 * Other Output Code Formats:: 
@@ -666,7 +667,9 @@ Permitted prefixes are: @code{!$%&*,:<>@@\|}.
 @anchor{pure cmdoption-pure-fpic}@anchor{21}
 @deffnx {Option} -fpic
 
-Create position-independent code (batch compilation).
+Create position-independent code (batch compilation). (This option will
+normally be added automatically on platforms where it is needed, so you'll
+rarely have to specify this explicitly.)
 @end deffn
 
 @geindex pure command line option; -g
@@ -899,7 +902,10 @@ non-interactively and takes its input from the command line.
 @deffn {Variable} compiling
 
 A flag indicating whether the program is executed in a batch compilation
-(@pxref{18,,-c} option), see @pxref{14,,Compiling Scripts} below.
+(@pxref{18,,-c} option), see @pxref{14,,Compiling Scripts} below. (This variable is
+still provided for backward compatibility, but shouldn't be needed any more
+and is considered deprecated. The compiler will warn about its use when the
+@pxref{37,,-w} option is specified.)
 @end deffn
 
 @geindex version (variable)
@@ -967,17 +973,17 @@ otherwise this option will be ignored.
 It is also possible to compile your scripts to native code beforehand, using
 the @pxref{18,,-c} batch compilation option. This option forces the interpreter
 to batch mode (unless @pxref{25,,-i} is specified as well, which overrides
-@pxref{18,,-c}). Any scripts specified on the command line are then executed as
-usual, but after execution the interpreter takes a snapshot of the program and
-compiles it to one of several supported output formats, LLVM assembler (.ll)
-or bitcode (.bc), native assembler (.s) or object (.o), or a native
-executable, depending on the output filename specified with @pxref{2f,,-o}. If
-the output filename ends in the .ll extension, an LLVM assembler file is
-created which can then be processed with the LLVM toolchain. If the output
-filename is just '-', the assembler file is written to standard output, which
-is useful if you want to pass the generated code to the LLVM tools in a
-pipeline. If the output filename ends in the .bc extension, an LLVM bitcode
-file is created instead.
+@pxref{18,,-c}). Any scripts specified on the command line are then compiled as
+usual (only bypassing immediate execution of toplevel expressions) and the
+interpreter finally takes a snapshot of the program and outputs it in one of
+several supported output formats, LLVM assembler (.ll) or bitcode (.bc),
+native assembler (.s) or object (.o), or a native executable, depending on the
+output filename specified with @pxref{2f,,-o}. If the output filename ends in
+the .ll extension, an LLVM assembler file is created which can then be
+processed with the LLVM toolchain. If the output filename is just '-', the
+assembler file is written to standard output, which is useful if you want to
+pass the generated code to the LLVM tools in a pipeline. If the output
+filename ends in the .bc extension, an LLVM bitcode file is created instead.
 
 The .ll and .bc formats are supported natively by the Pure interpreter, no
 external tools are required to generate these. If the target is an .s, .o or
@@ -4363,7 +4369,7 @@ Note that the above definition leaves the case of a negative discriminant
 undefined.
 
 @node Simple Rules,Type Rules,General Rules,Rule Syntax
-@anchor{pure simple-rules}@anchor{df}
+@anchor{pure id6}@anchor{df}@anchor{pure simple-rules}@anchor{e0}
 @section Simple Rules
 
 
@@ -4402,7 +4408,7 @@ this case, however, the rule denotes a real rewriting rule, not a pattern
 binding, hence the left-hand side is mandatory in these rules.
 @anchor{pure type}@anchor{c7}
 @node Type Rules,,Simple Rules,Rule Syntax
-@anchor{pure type-rules}@anchor{55}@anchor{pure id6}@anchor{e0}
+@anchor{pure type-rules}@anchor{55}@anchor{pure id7}@anchor{e1}
 @section Type Rules
 
 
@@ -4802,7 +4808,7 @@ predicate, it is up to the programmer to ensure that the definition of a type
 is actually computable. In fact, you should strive for the best possible
 efficiency in type predicates. A type definition which has worse than
 @math{O(1)} complexity may well be a serious performance hog depending on the
-way in which it is used, see @pxref{e1,,Recursive Types} in the @pxref{c,,Caveats and Notes}
+way in which it is used, see @pxref{e2,,Recursive Types} in the @pxref{c,,Caveats and Notes}
 section for more information about this.
 
 Finally, note that in general it may be hard or even impossible to predict
@@ -4861,7 +4867,7 @@ Recursion
 
 
 @node Hello World,Running the Interpreter,,Examples
-@anchor{pure hello-world}@anchor{e2}
+@anchor{pure hello-world}@anchor{e3}
 @section Hello, World
 
 
@@ -4891,7 +4897,7 @@ world!}" message appears. That's because the interpreter first has to compile
 the definitions in your script as well as the prelude and other imported
 modules before the @code{puts "Hello, world!"} expression can be evaluated. The
 startup times can be reduced (sometimes considerably) by compiling scripts to
-native executables, see @pxref{e3,,Compiled Scripts} below.
+native executables, see @pxref{e4,,Compiled Scripts} below.
 
 @menu
 * Passing Parameters:: 
@@ -4901,7 +4907,7 @@ native executables, see @pxref{e3,,Compiled Scripts} below.
 @end menu
 
 @node Passing Parameters,Executable Scripts,,Hello World
-@anchor{pure passing-parameters}@anchor{e4}
+@anchor{pure passing-parameters}@anchor{e5}
 @subsection Passing Parameters
 
 
@@ -4935,7 +4941,7 @@ this here, but you can have a look at the @code{getopt} module which provides
 that kind of functionality in a convenient package.
 
 @node Executable Scripts,Compiled Scripts,Passing Parameters,Hello World
-@anchor{pure executable-scripts}@anchor{e5}
+@anchor{pure executable-scripts}@anchor{e6}
 @subsection Executable Scripts
 
 
@@ -5019,7 +5025,7 @@ interpreter for you, provided that it is installed somewhere on the system
 @end cartouche
 
 @node Compiled Scripts,,Executable Scripts,Hello World
-@anchor{pure compiled-scripts}@anchor{e3}
+@anchor{pure compiled-scripts}@anchor{e4}
 @subsection Compiled Scripts
 
 
@@ -5035,57 +5041,20 @@ instance:
 
 @example
 $ pure -c hello.pure -o hello
-Hello, world!
 $ ./hello
 Hello, world!
 @end example
 
 @noindent
 
-You'll notice that the compilation command in the first line above @emph{also}
-prints the @code{Hello, world!} message. This reveals a rather unusual aspect of
-Pure's batch compiler: it actually @emph{executes} the script even during batch
-compilation. The reasons for this behaviour and potential uses are discussed
-in the @pxref{b,,Batch Compilation} section. If you want to suppress the program
-output during batch compilation, you can rewrite the program as follows:
-
-@example
-using system;
-main = puts "Hello, world!";
-compiling || main;
-@end example
-
-@noindent
-
-Note that here we turned the code to be executed into a separate @code{main}
-function. This isn't really necessary, but often convenient, since it allows
-us to run the code to be executed by just evaluating a single function. (Note
-that in contrast to C, the name @code{main} has no special significance in Pure;
-it's just a function like any other. We still have to include a call to this
-function at the end of our program so that it gets executed.)
-
-The last line now reads @code{compiling || main} which is a shorthand for "if the
-@code{compiling} variable is nonzero then do nothing, otherwise evaluate the
-@code{main} function". In a batch compilation the interpreter sets this variable
-to a nonzero value so that the evaluation of @code{main} is skipped:
-
-@example
-$ pure -c hello.pure -o hello
-$ ./hello
-Hello, world!
-@end example
-
-@noindent
-
-We should mention here that batch-compiled scripts have some limitations
-because the compiled executable runs under a trimmed-down runtime system. This
-disables some of the advanced compile time features which are only available
-when running a script with the interpreter or at batch-compilation time.
-However, this won't usually affect run-of-the-mill scripts like the one above.
-More information about this can be found in the @pxref{b,,Batch Compilation} section.
+We should mention here that batch-compiled scripts have some limitations. In
+particular, some of the advanced compile time features are only available when
+running a script with the interpreter. However, this won't affect
+run-of-the-mill scripts like the one above. More information can be found in
+the @pxref{b,,Batch Compilation} section.
 
 @node Running the Interpreter,Basic Examples,Hello World,Examples
-@anchor{pure running-the-interpreter}@anchor{e6}
+@anchor{pure running-the-interpreter}@anchor{e7}
 @section Running the Interpreter
 
 
@@ -5346,7 +5315,7 @@ separate line. Please refer to @pxref{a,,Interactive Usage} for a detailed expla
 of the command syntax and the available commands.
 
 @node Basic Examples,Defining Functions,Running the Interpreter,Examples
-@anchor{pure basic-examples}@anchor{e7}
+@anchor{pure basic-examples}@anchor{e8}
 @section Basic Examples
 
 
@@ -5460,7 +5429,7 @@ with the @code{pow} function:
 
 Also note that many of the standard math functions are available in a separate
 @code{math} module, so we need to import that module if we want to use one of
-these (see @pxref{e8,,Modules and Imports} for a detailed explanation of Pure's module
+these (see @pxref{e9,,Modules and Imports} for a detailed explanation of Pure's module
 system). For instance:
 
 @example
@@ -5774,7 +5743,7 @@ h x = sin (6.28318530717959*x);
 
 Note that the compiler normally computes constant subexpressions at compile
 time, such as @code{2*π} in the function @code{h}. This works with all simple
-scalars (machine ints and doubles), see @pxref{e9,,Constant Definitions} for details.
+scalars (machine ints and doubles), see @pxref{ea,,Constant Definitions} for details.
 
 As an aside, the last example also shows that Pure has no problems with
 Unicode. @code{π} is a Greek letter and thus an identifier as good as any other,
@@ -6037,11 +6006,11 @@ ack x y = y+1 if x == 0;
 
 @noindent
 
-We will have more to say about recursive functions later; see @pxref{ea,,Recursion}
+We will have more to say about recursive functions later; see @pxref{eb,,Recursion}
 below.
 
 @node Pattern Matching,Local Functions and Variables,Defining Functions,Examples
-@anchor{pure pattern-matching}@anchor{eb}
+@anchor{pure pattern-matching}@anchor{ec}
 @section Pattern Matching
 
 
@@ -6221,7 +6190,7 @@ tail @code{xs}; in this case the result is @code{x} added to the sum of the
 remaining list elements @code{xs}. (In fact, this computational pattern is so
 common that the prelude provides a family of functions such as @code{foldl}
 and @code{foldr} to do this kind of operation in a generic way. Our @code{sum}
-function above is actually equivalent to @code{foldr (+) 0}, see @pxref{ec,,List Processing} below for details.)
+function above is actually equivalent to @code{foldr (+) 0}, see @pxref{ed,,List Processing} below for details.)
 
 Instead of placing the patterns directly into the left-hand sides of the
 function definition, you might also do the necessary pattern-matching in the
@@ -6277,7 +6246,7 @@ Choosing one or the other is again a question of style. However, if you're
 dealing with concrete data structures such as lists, pattern-matching
 definitions are often more convenient and easier to understand.
 
-Pattern matching also works with user-defined constructors (cf. @pxref{ed,,Data Types}). For instance, here's how to implement an insertion operation which
+Pattern matching also works with user-defined constructors (cf. @pxref{ee,,Data Types}). For instance, here's how to implement an insertion operation which
 can be used to construct a binary tree data structure useful for sorting and
 searching:
 
@@ -6317,7 +6286,7 @@ can then combine these operations to sort a list in ascending order:
 @noindent
 
 @node Local Functions and Variables,Data Types,Pattern Matching,Examples
-@anchor{pure local-functions-and-variables}@anchor{ee}
+@anchor{pure local-functions-and-variables}@anchor{ef}
 @section Local Functions and Variables
 
 
@@ -6389,7 +6358,7 @@ are techniques to create recursive functions out of lambdas using so-called
 fixed point combinators (cf. @code{fix}), named functions are much more
 convenient for that purpose.
 
-@pxref{eb,,Pattern matching} works in local definitions as usual. For instance, here
+@pxref{ec,,Pattern matching} works in local definitions as usual. For instance, here
 are several ways to swap two values represented as a tuple, using either a
 local function or a @pxref{97,,when} or @pxref{96,,case} expression:
 
@@ -6411,7 +6380,7 @@ function just sets up some initial parameter values and then invokes a local
 "worker" function which does all the real work. The following function
 calculates the sum of the positive integers up to @code{n} (the "accumulating
 parameters" technique used in this example will be explained later,
-cf. @pxref{ea,,Recursion}).
+cf. @pxref{eb,,Recursion}).
 
 @example
 sum n = sum 0 n with
@@ -6537,7 +6506,7 @@ but it certainly has its uses, especially when interfacing to imperative code
 written in other languages such as C.
 
 @node Data Types,Recursion,Local Functions and Variables,Examples
-@anchor{pure data-types}@anchor{ed}
+@anchor{pure data-types}@anchor{ee}
 @section Data Types
 
 
@@ -6576,7 +6545,7 @@ data objects.)
 
 We can now go ahead and define some operations on this kind of data. (To these
 ends, it's necessary to declare @code{nil} as a nonfix symbol so that we can use
-it as a literal in patterns; cf. @pxref{eb,,Pattern Matching}.)
+it as a literal in patterns; cf. @pxref{ec,,Pattern Matching}.)
 
 @example
 nonfix nil;
@@ -6614,7 +6583,7 @@ type mylist nil | mylist (cons x xs);
 @noindent
 
 This definition lets us use the @code{mylist} type as a tag on the left-hand side
-of an equation, cf. @pxref{eb,,Pattern Matching}. But if we're content with using the
+of an equation, cf. @pxref{ec,,Pattern Matching}. But if we're content with using the
 patterns directly then we might just as well do without that.
 
 Types consisting solely of constructor term patterns are sometimes also called
@@ -6770,7 +6739,7 @@ diligence in defining the interface operations in a suitable way. Please check
 examples.
 
 @node Recursion,Higher-Order Functions,Data Types,Examples
-@anchor{pure recursion}@anchor{ea}@anchor{pure duck-typing}@anchor{ef}
+@anchor{pure recursion}@anchor{eb}@anchor{pure duck-typing}@anchor{f0}
 @section Recursion
 
 
@@ -7008,7 +6977,7 @@ list (bin x L R) = list L + (x:list R);
 Note that these functions can't be made tail-recursive using the accumulating
 parameter technique, because traversing a tree structure requires more general
 forms of recursion. There is in fact a more general continuation passing@footnote{http://en.wikipedia.org/wiki/Continuation-passing_style}
-technique to do this, which we will look at in @pxref{f0,,The Same-Fringe Problem}
+technique to do this, which we will look at in @pxref{f1,,The Same-Fringe Problem}
 below; alas, it's not as easy as accumulating parameters. Fortunately, some
 important recursive structures such as lists only involve simple recursion and
 can thus be traversed and manipulated in a tail-recursive fashion more easily.
@@ -7058,7 +7027,7 @@ call each other:
 @end menu
 
 @node A Numeric Root Finder,The Same-Fringe Problem,,Recursion
-@anchor{pure a-numeric-root-finder}@anchor{f1}
+@anchor{pure a-numeric-root-finder}@anchor{f2}
 @subsection A Numeric Root Finder
 
 
@@ -7212,7 +7181,7 @@ teeth on these algorithms by translating them to Pure in the way we've shown
 here.
 
 @node The Same-Fringe Problem,,A Numeric Root Finder,Recursion
-@anchor{pure the-same-fringe-problem}@anchor{f0}
+@anchor{pure the-same-fringe-problem}@anchor{f1}
 @subsection The Same-Fringe Problem
 
 
@@ -7477,7 +7446,7 @@ still tail-recursive because the short-circuit logical operations @code{&&}
 and @code{||} are both tail-recursive in their second operand (cf. @pxref{4e,,Stack Size and Tail Recursion}).
 
 @node Higher-Order Functions,List Processing,Recursion,Examples
-@anchor{pure higher-order-functions}@anchor{f2}
+@anchor{pure higher-order-functions}@anchor{f3}
 @section Higher-Order Functions
 
 
@@ -7527,7 +7496,7 @@ recursion stops at the empty list which is returned as is. For instance:
 
 The prelude includes an entire collection of such generic list functions which
 have proven their utility as basic building blocks for many list processing
-tasks. We'll have a closer look at these later, see @pxref{ec,,List Processing}.
+tasks. We'll have a closer look at these later, see @pxref{ed,,List Processing}.
 
 Another numerical example is the function @code{derive} which we used in our root
 finder example to calculate the difference quotient of a function @code{f} at a
@@ -7633,7 +7602,7 @@ Constructors can be extended in exactly the same way:
 @noindent
 
 @node List Processing,String Processing,Higher-Order Functions,Examples
-@anchor{pure list-processing}@anchor{ec}
+@anchor{pure list-processing}@anchor{ed}
 @section List Processing
 
 
@@ -7778,7 +7747,7 @@ away all the results and simply returns @code{()}. Of course this makes sense
 only if the applied function has some interesting side-effect. E.g., here's a
 quick way to print all members of a list, one per line. This combines the
 @code{str} function (which converts any Pure expression to its printable
-representation, cf. @pxref{f3,,String Processing} below) with the @code{puts} function
+representation, cf. @pxref{f4,,String Processing} below) with the @code{puts} function
 from the @code{system} module (which is just the corresponding C function, so
 it prints a string on the terminal, followed by a newline).
 
@@ -8119,7 +8088,7 @@ at that for now. Please check the @code{purelib} for a full account of the
 available operations.
 
 @node String Processing,List Comprehensions,List Processing,Examples
-@anchor{pure string-processing}@anchor{f3}
+@anchor{pure string-processing}@anchor{f4}
 @section String Processing
 
 
@@ -8523,7 +8492,7 @@ end;
 @noindent
 
 @node Lazy Evaluation and Streams,Matrices and Vectors,List Comprehensions,Examples
-@anchor{pure id7}@anchor{f4}@anchor{pure lazy-evaluation-and-streams}@anchor{bd}
+@anchor{pure id8}@anchor{f5}@anchor{pure lazy-evaluation-and-streams}@anchor{bd}
 @section Lazy Evaluation and Streams
 
 
@@ -8692,7 +8661,7 @@ This may seem like a silly thing to do, because the original list is already
 fully known beforehand. But this transformation allows us to traverse the list
 in a lazy fashion, which can be useful if the list is employed in a list
 comprehension or processed by functions such as @code{cat} and @code{map}.
-For instance, we can use this to rewrite the @code{fringe} function from @pxref{f0,,The Same-Fringe Problem} so that it calculates the fringe in a lazy fashion:
+For instance, we can use this to rewrite the @code{fringe} function from @pxref{f1,,The Same-Fringe Problem} so that it calculates the fringe in a lazy fashion:
 
 @example
 lazyfringe t = if listp t then catmap lazyfringe (stream t) else [t];
@@ -8716,7 +8685,7 @@ a:#<thunk 0x7f127fc1f090>
 
 Hence a simple syntactic equality check now suffices to solve the same-fringe
 problem in an efficient way. For instance, consider the following sample trees
-from @pxref{f0,,The Same-Fringe Problem}:
+from @pxref{f1,,The Same-Fringe Problem}:
 
 @example
 let t1 = [[a,b],c,[[d]],e,[f,[[g,h]]]];
@@ -8782,7 +8751,7 @@ fringes at all. But the solution using lazy evaluation is certainly much
 simpler.
 
 @node Matrices and Vectors,Symbolic Matrices,Lazy Evaluation and Streams,Examples
-@anchor{pure id8}@anchor{f5}@anchor{pure matrices-and-vectors}@anchor{b1}
+@anchor{pure id9}@anchor{f6}@anchor{pure matrices-and-vectors}@anchor{b1}
 @section Matrices and Vectors
 
 
@@ -9015,7 +8984,7 @@ while evaluating '@{1,@{2,3@};@{4,5@}@}'
 This "splicing" of submatrices is especially useful when doing linear algebra,
 where matrices are often composed from smaller "block matrices" or vectors;
 we'll see an example of this later. (Sometimes this behaviour also gets in the
-way, and thus there are ways to disable it; see @pxref{f6,,Symbolic Matrices} below.)
+way, and thus there are ways to disable it; see @pxref{f7,,Symbolic Matrices} below.)
 
 Pure actually provides several different types of @strong{numeric matrices}, which
 correspond to the different GSL matrix types for integer, floating point and
@@ -9267,8 +9236,8 @@ with tr k = if k==i then j else if k==j then i else k end;
 @noindent
 
 Finally, let us define a convenient print representation of double matrices a
-la @pxref{f7,,Octave} (the meaning of the @pxref{f8,,__show__} function is explained in
-@pxref{f9,,Pretty-Printing}):
+la @pxref{f8,,Octave} (the meaning of the @pxref{f9,,__show__} function is explained in
+@pxref{fa,,Pretty-Printing}):
 
 @example
 using system;
@@ -9297,7 +9266,7 @@ Example:
 @noindent
 
 @node Symbolic Matrices,Record Data,Matrices and Vectors,Examples
-@anchor{pure symbolic-matrices}@anchor{f6}
+@anchor{pure symbolic-matrices}@anchor{f7}
 @section Symbolic Matrices
 
 
@@ -9452,7 +9421,7 @@ description of the @emph{non-splicing vector brackets} in the
 @code{purelib}.
 
 @node Record Data,The Quote,Symbolic Matrices,Examples
-@anchor{pure record-data}@anchor{fa}@anchor{pure id9}@anchor{fb}
+@anchor{pure id10}@anchor{fb}@anchor{pure record-data}@anchor{fc}
 @section Record Data
 
 
@@ -9701,7 +9670,7 @@ end;
 
 @noindent
 
-Continuing our example from @pxref{ee,,Local Functions and Variables}, we can now
+Continuing our example from @pxref{ef,,Local Functions and Variables}, we can now
 implement the @code{point} object as follows:
 
 @example
@@ -9808,7 +9777,7 @@ weenies, but it does have its advantages. As illustrated in the examples
 above, local variable substitution makes it easy to fill in the variable parts
 in a quoted "template" expression, without any need for an arguably complex
 tool like Lisp's "quasiquote". (But note that it is quite easy to define the
-quasiquote in Pure if you want it. See the @pxref{fc,,Recursive Macros} section for a
+quasiquote in Pure if you want it. See the @pxref{fd,,Recursive Macros} section for a
 simplified version; a full implementation can be found in the Pure library.)
 
 If you do need to quote a symbol which is already being used as a local
@@ -9905,32 +9874,32 @@ consisting of several source modules:
 symbol declarations determine "scope" and "fixity" of a symbol;
 
 @item 
-@pxref{fd,,interface} declarations specify abstract data types;
+@pxref{fe,,interface} declarations specify abstract data types;
 
 @item 
-@pxref{fe,,extern} declarations specify external C functions;
+@pxref{ff,,extern} declarations specify external C functions;
 
 @item 
 @pxref{43,,using} clauses let you include other scripts in a Pure script;
 
 @item 
-@pxref{ff,,namespace} declarations let you avoid name clashes and thereby
+@pxref{100,,namespace} declarations let you avoid name clashes and thereby
 make it easier to manage large programs consisting of many separate modules.
 @end itemize
 
 These are toplevel elements (cf. @pxref{c3,,Toplevel}):
 
 @example
-@anchor{pure id10}@anchor{100}item ::= symbol_decl | interface_decl | extern_decl
+@anchor{pure id11}@anchor{101}item ::= symbol_decl | interface_decl | extern_decl
          | using_decl | namespace_decl
 
 @end example
 
 @noindent
 
-We defer the discussion of @pxref{fe,,extern} declarations to the @pxref{45,,C Interface} section. The other kinds of declarations are described in the
+We defer the discussion of @pxref{ff,,extern} declarations to the @pxref{45,,C Interface} section. The other kinds of declarations are described in the
 following subsections.
-@anchor{pure public}@anchor{101}@anchor{pure private}@anchor{102}@anchor{pure infix}@anchor{103}@anchor{pure infixl}@anchor{104}@anchor{pure infixr}@anchor{105}@anchor{pure prefix}@anchor{106}@anchor{pure postfix}@anchor{107}@anchor{pure outfix}@anchor{108}
+@anchor{pure public}@anchor{102}@anchor{pure private}@anchor{103}@anchor{pure infix}@anchor{104}@anchor{pure infixl}@anchor{105}@anchor{pure infixr}@anchor{106}@anchor{pure prefix}@anchor{107}@anchor{pure postfix}@anchor{108}@anchor{pure outfix}@anchor{109}
 @menu
 * Symbol Declarations:: 
 * Interface Types:: 
@@ -9949,12 +9918,12 @@ scope (whether they are "public" or "private") and their fixity (for operator
 symbols). The syntax of these declarations is as follows:
 
 @example
-@anchor{pure grammar-token-symbol_decl}@anchor{109}symbol_decl ::= scope qualified_symbol+ ";"
+@anchor{pure grammar-token-symbol_decl}@anchor{10a}symbol_decl ::= scope qualified_symbol+ ";"
                 | [scope] fixity qualified_symbol+ ";"
-@anchor{pure grammar-token-scope}@anchor{10a}scope       ::= "public" | "private"
-@anchor{pure grammar-token-fixity}@anchor{10b}fixity      ::= "nonfix" | "outfix"
+@anchor{pure grammar-token-scope}@anchor{10b}scope       ::= "public" | "private"
+@anchor{pure grammar-token-fixity}@anchor{10c}fixity      ::= "nonfix" | "outfix"
                 | ("infix"|"infixl"|"infixr"|"prefix"|"postfix") precedence
-@anchor{pure grammar-token-precedence}@anchor{10c}precedence  ::= integer | "(" op ")"
+@anchor{pure grammar-token-precedence}@anchor{10d}precedence  ::= integer | "(" op ")"
 
 @end example
 
@@ -9977,7 +9946,7 @@ are visible everywhere in a program. An explicit public declaration of
 ordinary identifiers is thus rarely needed (unless you want to declare symbols
 as members of a specific namespace, see @pxref{ad,,Namespaces} below). Symbols can also
 be declared private, meaning that the symbol is visible only in the namespace
-it belongs to. This is explained in more detail under @pxref{10d,,Private Symbols} in
+it belongs to. This is explained in more detail under @pxref{10e,,Private Symbols} in
 the @pxref{ad,,Namespaces} section below.
 
 @cartouche
@@ -9995,10 +9964,10 @@ Note that to declare several symbols in a single declaration, you can list
 them all with whitespace in between. The same syntax applies to the other
 types of symbol declarations discussed below. (Commas are @emph{not} allowed as
 delimiters here, as they may occur as legal symbol constituents in the list of
-symbols.) The @pxref{101,,public} and @pxref{102,,private} keywords can also be
+symbols.) The @pxref{102,,public} and @pxref{103,,private} keywords can also be
 used as a prefix in any of the special symbol declarations discussed below, to
 specify the scope of the declared symbols (if the scope prefix is omitted, it
-defaults to @pxref{101,,public}).
+defaults to @pxref{102,,public}).
 
 The following "fixity" declarations are available for introducing special
 operator symbols. This changes the way that these symbols are parsed and thus
@@ -10029,9 +9998,9 @@ levels so that you can easily sneak in new operator symbols at low, high or
 intermediate precedences.)
 
 On each precedence level, you can declare (in order of increasing precedence)
-@pxref{103,,infix} (binary non-associative), @pxref{104,,infixl} (binary
-left-associative), @pxref{105,,infixr} (binary right-associative),
-@pxref{106,,prefix} (unary prefix) and @pxref{107,,postfix} (unary postfix)
+@pxref{104,,infix} (binary non-associative), @pxref{105,,infixl} (binary
+left-associative), @pxref{106,,infixr} (binary right-associative),
+@pxref{107,,prefix} (unary prefix) and @pxref{108,,postfix} (unary postfix)
 operators. For instance, here is a typical excerpt from the prelude (the full
 table can be found in the @emph{Prelude} section of the @code{purelib}):
 
@@ -10083,7 +10052,7 @@ postfix (^) ^^ ;
 @noindent
 
 Pure also provides unary outfix operators, which work like in Wm Leler's
-constraint programming language @pxref{10e,,Bertrand}. These can be declared as follows:
+constraint programming language @pxref{10f,,Bertrand}. These can be declared as follows:
 
 
 @deffn {Describe} outfix left right ...;
@@ -10126,7 +10095,7 @@ Semantically, nonfix symbols are a kind of "symbolic constants". However, it
 is important to note the difference to @emph{defined} constants, which are symbols
 bound to a constant value by means of a @pxref{52,,const} definition. In fact,
 there are some use cases where a symbol may be @emph{both} a defined constant and a
-nonfix symbol, see @pxref{e9,,Constant Definitions} in the @pxref{c,,Caveats and Notes} section
+nonfix symbol, see @pxref{ea,,Constant Definitions} in the @pxref{c,,Caveats and Notes} section
 for details.
 
 Syntactically, nonfix symbols work just like ordinary identifiers, so they may
@@ -10164,16 +10133,16 @@ Examples for all types of symbol declarations can be found in the
 relational, logical) operator symbols as well as the list and pair
 constructors '@code{:}' and '@code{,}', and a few nonfix symbols (@code{true} and
 @code{false}, as well as different kinds of exceptions).
-@anchor{pure interface}@anchor{fd}
+@anchor{pure interface}@anchor{fe}
 @node Interface Types,Modules and Imports,Symbol Declarations,Declarations
-@anchor{pure id11}@anchor{10f}@anchor{pure interface-types}@anchor{c8}
+@anchor{pure id12}@anchor{110}@anchor{pure interface-types}@anchor{c8}
 @section Interface Types
 
 
 Besides the "concrete" types already described in the @pxref{55,,Type Rules} section,
 Pure provides another, more abstract way to characterize a type through the
 collection of operations it supports. These @strong{interface types} work pretty much
-like in Google's @pxref{110,,Go} programming language. They provide a safe form of Duck typing@footnote{http://en.wikipedia.org/wiki/Duck_typing} in which the operations available on a type are stated explicitly, and
+like in Google's @pxref{111,,Go} programming language. They provide a safe form of Duck typing@footnote{http://en.wikipedia.org/wiki/Duck_typing} in which the operations available on a type are stated explicitly, and
 hence members of the type are always known to provide all of the listed
 operations.
 
@@ -10182,9 +10151,9 @@ patterns, the so-called @strong{signature} which specifies the manifest operatio
 the type:
 
 @example
-@anchor{pure grammar-token-interface_decl}@anchor{111}interface_decl ::= "interface" qualified_identifier
+@anchor{pure grammar-token-interface_decl}@anchor{112}interface_decl ::= "interface" qualified_identifier
                    "with" interface_item* "end" ";"
-@anchor{pure grammar-token-interface_item}@anchor{112}interface_item ::= pattern ";"
+@anchor{pure grammar-token-interface_item}@anchor{113}interface_item ::= pattern ";"
                    | "interface" qualified_identifier ";"
 
 @end example
@@ -10279,7 +10248,7 @@ yielding candidate patterns for each occurrence of the interface type tag
 in the pattern. For instance, here is a quick way to determine the type of
 all "addable" data structures in the prelude (this uses the interactive
 @code{show interface} command to list the patterns actually matched by an
-interface type, cf. @pxref{113,,The show Command}):
+interface type, cf. @pxref{114,,The show Command}):
 
 @example
 > interface addable with x::addable + y::addable; end;
@@ -10608,11 +10577,11 @@ limitations. In particular, the guarantees provided by an interface are of a
 purely syntactic nature; the signature doesn't tell us anything about the
 actual meaning of the provided operations, so unit testing is still needed to
 ensure certain semantic properties of the implementation. Some further issues
-due to Pure's dynamically typed nature are discussed under @pxref{114,,Interfaces} in the
+due to Pure's dynamically typed nature are discussed under @pxref{115,,Interfaces} in the
 @pxref{c,,Caveats and Notes} section.
 @anchor{pure using}@anchor{43}
 @node Modules and Imports,Namespaces,Interface Types,Declarations
-@anchor{pure id12}@anchor{115}@anchor{pure modules-and-imports}@anchor{e8}
+@anchor{pure id13}@anchor{116}@anchor{pure modules-and-imports}@anchor{e9}
 @section Modules and Imports
 
 
@@ -10621,8 +10590,8 @@ provides a simple but effective way to assemble a Pure program from several
 source modules.
 
 @example
-@anchor{pure grammar-token-using_decl}@anchor{116}using_decl ::= "using" name ("," name)* ";"
-@anchor{pure grammar-token-name}@anchor{117}name       ::= qualified_identifier | string
+@anchor{pure grammar-token-using_decl}@anchor{117}using_decl ::= "using" name ("," name)* ";"
+@anchor{pure grammar-token-name}@anchor{118}name       ::= qualified_identifier | string
 
 @end example
 
@@ -10839,7 +10808,7 @@ recommended practice for installing standalone Pure applications in source
 form which are to be run directly from the shell.
 
 @node Namespaces,,Modules and Imports,Declarations
-@anchor{pure namespace}@anchor{ff}@anchor{pure namespaces}@anchor{ad}
+@anchor{pure namespace}@anchor{100}@anchor{pure namespaces}@anchor{ad}
 @section Namespaces
 
 
@@ -10855,31 +10824,31 @@ constructs should be enough to start using it.)
 
 The global namespace is always available. By default, new symbols are created
 in this namespace, which is also called the @strong{default namespace}. Additional
-namespaces can be created with the @pxref{ff,,namespace} declaration, which
+namespaces can be created with the @pxref{100,,namespace} declaration, which
 also switches to the given namespace (makes it the @emph{current} namespace), so
 that new symbols are then created in that namespace rather than the default
 one. The current namespace also applies to all kinds of symbol declarations,
 including operator and nonfix symbol declarations, as well as
-@pxref{fe,,extern} declarations (the latter are described in the @pxref{45,,C Interface}
+@pxref{ff,,extern} declarations (the latter are described in the @pxref{45,,C Interface}
 section).
 
 The syntax of namespace declarations is captured by the following grammar
 rules:
 
 @example
-@anchor{pure grammar-token-namespace_decl}@anchor{118}namespace_decl ::= "namespace" [name] [brackets] ";"
+@anchor{pure grammar-token-namespace_decl}@anchor{119}namespace_decl ::= "namespace" [name] [brackets] ";"
                    | "namespace" name [brackets] "with" item+ "end" ";"
                    | "using" "namespace" [name_spec ("," name_spec)*] ";"
-@anchor{pure grammar-token-brackets}@anchor{119}brackets       ::= "(" left_op right_op ")"
-@anchor{pure grammar-token-name_spec}@anchor{11a}name_spec      ::= name ["(" qualified_symbol+ ")"]
+@anchor{pure grammar-token-brackets}@anchor{11a}brackets       ::= "(" left_op right_op ")"
+@anchor{pure grammar-token-name_spec}@anchor{11b}name_spec      ::= name ["(" qualified_symbol+ ")"]
 
 @end example
 
 @noindent
 
-The basic form of the @pxref{ff,,namespace} declaration looks as follows
-(there's also a "scoped" form of the @pxref{ff,,namespace} declaration which
-will be discussed in @pxref{11b,,Scoped Namespaces} at the end of this section):
+The basic form of the @pxref{100,,namespace} declaration looks as follows
+(there's also a "scoped" form of the @pxref{100,,namespace} declaration which
+will be discussed in @pxref{11c,,Scoped Namespaces} at the end of this section):
 
 @example
 namespace name;
@@ -10923,7 +10892,7 @@ A namespace can be "reopened" at any time to add new symbols and definitions
 to it. This allows namespaces to be created that span several source
 modules. You can also create several different namespaces in the same module.
 
-Similar to the @pxref{43,,using} declaration, a @pxref{ff,,namespace}
+Similar to the @pxref{43,,using} declaration, a @pxref{100,,namespace}
 declaration accepts either identifiers or double-quoted strings as namespace
 names. E.g., the following two declarations are equivalent:
 
@@ -10946,8 +10915,8 @@ namespace "Private stuff, keep out!";
 Note that the namespace prefix in a qualified identifier must be a legal
 identifier, so it isn't possible to access symbols in namespaces with such
 descriptive labels in a direct fashion. The only way to get at the symbols in
-this case is with @pxref{11c,,namespace brackets} or by using a @pxref{ff,,namespace} or
-@pxref{11d,,using namespace} declaration (for the latter see @pxref{11e,,Using Namespaces}
+this case is with @pxref{11d,,namespace brackets} or by using a @pxref{100,,namespace} or
+@pxref{11e,,using namespace} declaration (for the latter see @pxref{11f,,Using Namespaces}
 below).
 
 @menu
@@ -10961,14 +10930,14 @@ below).
 @end menu
 
 @node Using Namespaces,Symbol Lookup and Creation,,Namespaces
-@anchor{pure using-namespace}@anchor{11d}@anchor{pure using-namespaces}@anchor{11e}
+@anchor{pure using-namespace}@anchor{11e}@anchor{pure using-namespaces}@anchor{11f}
 @subsection Using Namespaces
 
 
 Since it is rather inconvenient if you always have to write identifiers in
 their qualified form outside of their "home" namespace, Pure allows you to
 specify a list of @emph{search} namespaces which are used to look up symbols not in
-the default or the current namespace. This is done with the @pxref{11d,,using namespace} declaration, which takes the following form:
+the default or the current namespace. This is done with the @pxref{11e,,using namespace} declaration, which takes the following form:
 
 @example
 using namespace name1, name2, ...;
@@ -10978,7 +10947,7 @@ using namespace;
 
 @noindent
 
-As with @pxref{ff,,namespace} declarations, the second form without any
+As with @pxref{100,,namespace} declarations, the second form without any
 namespace arguments gets you back to the default empty list of search
 namespaces.
 
@@ -11011,10 +10980,10 @@ The symbols in these namespaces can be accessed unqualified as follows:
 @noindent
 
 This method is often to be preferred over opening a namespace with the
-@pxref{ff,,namespace} declaration, since @pxref{11d,,using namespace} only gives
+@pxref{100,,namespace} declaration, since @pxref{11e,,using namespace} only gives
 you "read access" to the imported symbols, so you can't accidentally mess up
 the definitions of the namespace you're using. Another advantage is that the
-@pxref{11d,,using namespace} declaration also lets you search multiple
+@pxref{11e,,using namespace} declaration also lets you search multiple
 namespaces at once:
 
 @example
@@ -11077,7 +11046,7 @@ restricted the import from the @code{bar} namespace to the @code{bar} symbol, so
 that @code{bar::foo} has to be denoted with a qualified symbol now.
 
 @node Symbol Lookup and Creation,Private Symbols,Using Namespaces,Namespaces
-@anchor{pure id13}@anchor{11f}@anchor{pure symbol-lookup-and-creation}@anchor{6e}
+@anchor{pure id14}@anchor{120}@anchor{pure symbol-lookup-and-creation}@anchor{6e}
 @subsection Symbol Lookup and Creation
 
 
@@ -11095,7 +11064,7 @@ be bypassed by using an @emph{absolute} namespace qualifier of the form
 @code{::foo::bar}. In particular, @code{::bar} always denotes the symbol @code{bar} in
 the default namespace, while @code{::foo::bar} denotes the symbol @code{bar} in the
 @code{foo} namespace. (Normally, the latter kind of notation is only needed if
-you have to deal with nested namespaces, see @pxref{120,,Hierarchical Namespaces}
+you have to deal with nested namespaces, see @pxref{121,,Hierarchical Namespaces}
 below.)
 
 If no existing symbol is found, a new symbol is created automatically, by
@@ -11280,7 +11249,7 @@ This should rarely be necessary (in the above example you might just as well
 enter this rule while in the global namespace), but it can be useful in some
 circumstances.  Specifically, you might want to "overload" a global function
 or operator with a definition that makes use of private symbols of a namespace
-(which are only visible inside that namespace; see @pxref{10d,,Private Symbols}
+(which are only visible inside that namespace; see @pxref{10e,,Private Symbols}
 below). For instance:
 
 @example
@@ -11299,7 +11268,7 @@ can be accomplished much easier, but there are some situations where this
 method is needed.)
 
 @node Private Symbols,Namespace Brackets,Symbol Lookup and Creation,Namespaces
-@anchor{pure private-symbols}@anchor{10d}
+@anchor{pure private-symbols}@anchor{10e}
 @subsection Private Symbols
 
 
@@ -11307,7 +11276,7 @@ Pure also allows you to have private symbols, as a means to hide away internal
 operations which shouldn't be accessed directly outside the namespace in which
 they are declared. The scope of a private symbol is confined to its namespace,
 i.e., the symbol is only visible when its "home" namespace is current. Symbols
-are declared private by using the @pxref{102,,private} keyword in the symbol
+are declared private by using the @pxref{103,,private} keyword in the symbol
 declaration:
 
 @example
@@ -11351,7 +11320,7 @@ namespace current again:
 @noindent
 
 @node Namespace Brackets,Hierarchical Namespaces,Private Symbols,Namespaces
-@anchor{pure namespace-brackets}@anchor{11c}
+@anchor{pure namespace-brackets}@anchor{11d}
 @subsection Namespace Brackets
 
 
@@ -11368,7 +11337,7 @@ special @strong{namespace brackets} which can then be used to quickly switch
 namespaces in an expression by just enclosing a subexpression in the namespace
 brackets.
 
-To these ends, the syntax of @pxref{ff,,namespace} declarations allows you to
+To these ends, the syntax of @pxref{100,,namespace} declarations allows you to
 optionally specify a pair of outfix symbols inside parentheses after the
 namespace name. The outfix symbols to be used as namespace brackets must have
 been declared beforehand. For instance:
@@ -11401,9 +11370,9 @@ the meaning of the @code{^} operator, which now refers to @code{foo::^} instead.
 Also note that the namespace brackets themselves are removed from the
 resulting expression; they are only used to temporarily switch the namespace
 to @code{foo} inside the bracketed subexpression. This works pretty much like a
-@pxref{ff,,namespace} declaration (so any active search namespaces remain in
+@pxref{100,,namespace} declaration (so any active search namespaces remain in
 effect), but is limited in scope to the bracketed subexpression and only gives
-access to the public symbols of the namespace (like a @pxref{11d,,using namespace} declaration would do).
+access to the public symbols of the namespace (like a @pxref{11e,,using namespace} declaration would do).
 
 The rules of visibility for the namespace bracket symbols themselves are the
 same as for any other symbols. So they need to be in scope if you want to
@@ -11436,7 +11405,7 @@ x foo::^ y  = 2*x+y;
 @noindent
 
 The special meaning of namespace brackets can be turned off and back on again
-at any time with a corresponding @pxref{ff,,namespace} declaration. For
+at any time with a corresponding @pxref{100,,namespace} declaration. For
 instance:
 
 @example
@@ -11476,7 +11445,7 @@ temporarily switch back to the default namespace inside the @code{« »}-bracket
 expression which is parsed in the @code{foo} namespace.
 
 @node Hierarchical Namespaces,Scoped Namespaces,Namespace Brackets,Namespaces
-@anchor{pure hierarchical-namespaces}@anchor{120}
+@anchor{pure hierarchical-namespaces}@anchor{121}
 @subsection Hierarchical Namespaces
 
 
@@ -11513,7 +11482,7 @@ in name lookup accordingly, so that you can write:
 This works pretty much like a hierarchy of directories and files, where the
 namespaces play the role of the directories (with the default namespace as the
 root directory), the symbols in each namespace correspond to the files in a
-directory, and the @pxref{11d,,using namespace} declaration functions similar to
+directory, and the @pxref{11e,,using namespace} declaration functions similar to
 the shell's 
 @geindex PATH
 @geindex environment variable; PATH
@@ -11553,11 +11522,11 @@ Also note that, as a special case of the absolute qualifier notation,
 @code{::foo} always denotes the symbol @code{foo} in the default namespace.
 
 @node Scoped Namespaces,,Hierarchical Namespaces,Namespaces
-@anchor{pure scoped-namespaces}@anchor{11b}
+@anchor{pure scoped-namespaces}@anchor{11c}
 @subsection Scoped Namespaces
 
 
-Pure also provides an alternative scoped @pxref{ff,,namespace} construct which
+Pure also provides an alternative scoped @pxref{100,,namespace} construct which
 makes nested namespace definitions more convenient. This construct takes the
 following form:
 
@@ -11595,7 +11564,7 @@ end;
 @noindent
 
 Note that this kind of nesting does not necessarily imply a namespace
-hierarchy as discussed in @pxref{120,,Hierarchical Namespaces}. However, you can achieve
+hierarchy as discussed in @pxref{121,,Hierarchical Namespaces}. However, you can achieve
 this by using the appropriate qualified namespace names:
 
 @example
@@ -11611,7 +11580,7 @@ end;
 @noindent
 
 Another special feature of the scoped namespace construct is that
-@pxref{11d,,using namespace} declarations are always local to the current
+@pxref{11e,,using namespace} declarations are always local to the current
 namespace scope (and other nested namespace scopes inside it). Thus the
 previous setting is restored at the end of each scope:
 
@@ -11668,7 +11637,7 @@ Pure's namespaces can thus be used pretty much like "packages" or "modules" in
 languages like Ada or Modula-2. They provide a structured way to describe
 program components offering collections of related data and operations, which
 can be brought into scope in a controlled way by making judicious use of
-@pxref{11d,,using namespace} declarations. They also provide an abstraction
+@pxref{11e,,using namespace} declarations. They also provide an abstraction
 barrier, since internal operations and data structures can be hidden away
 employing private symbols.
 
@@ -11679,7 +11648,7 @@ if your programs grow beyond a small collection of simple source modules, and
 enable you to manage most Pure projects with ease.
 
 @node Macros,Exception Handling,Declarations,Top
-@anchor{pure macros}@anchor{63}@anchor{pure id14}@anchor{121}
+@anchor{pure macros}@anchor{63}@anchor{pure id15}@anchor{122}
 @chapter Macros
 
 
@@ -11727,7 +11696,7 @@ advanced features of Pure's macro system intended for power users.
 @end menu
 
 @node Optimization Rules,Recursive Macros,,Macros
-@anchor{pure id15}@anchor{122}@anchor{pure optimization-rules}@anchor{123}
+@anchor{pure id16}@anchor{123}@anchor{pure optimization-rules}@anchor{124}
 @section Optimization Rules
 
 
@@ -11763,7 +11732,7 @@ the corresponding function.)
 When running interactively, you can follow the reduction steps the compiler
 performs during macro evaluation. To these ends, you have to set "tracepoints"
 on the relevant macros, using the @code{trace} command with the @code{-m} option;
-see @pxref{124,,Interactive Commands}. (This works even if the interpreter is run in
+see @pxref{125,,Interactive Commands}. (This works even if the interpreter is run in
 non-debugging mode.) Note that since macro expansion is performed at compile
 time, you'll have to do this @emph{before} entering the definitions in which the
 macro is used. However, in many cases you can also just enter the right-hand
@@ -11810,7 +11779,7 @@ x+3
 
 Note that the contraction of the subterm @code{1+1+1} to the integer constant
 @code{3} is actually done by the compiler after macro expansion has been
-performed. This is also called "constant folding", see @pxref{e9,,Constant Definitions}
+performed. This is also called "constant folding", see @pxref{ea,,Constant Definitions}
 in the @pxref{c,,Caveats and Notes} section for details. It is also the reason that we
 added the first rule for @code{succ}. This rule may seem superflous at first
 sight, but actually it is needed to massage the sum into a form which enables
@@ -11821,10 +11790,10 @@ above examples are still rather elementary. Pure macros can do much more
 elaborate optimizations, but for this we first need to discuss how to write
 recursive macros, as well as macros which take apart special terms like
 lambdas. After that we'll return to the subject of optimization rules in
-@pxref{125,,Advanced Optimization} below.
+@pxref{126,,Advanced Optimization} below.
 
 @node Recursive Macros,User-Defined Special Forms,Optimization Rules,Macros
-@anchor{pure recursive-macros}@anchor{fc}
+@anchor{pure recursive-macros}@anchor{fd}
 @section Recursive Macros
 
 
@@ -11886,7 +11855,7 @@ def quasiquote x                = quote x;
 
 (Note the @code{f@@_}, which is an anonymous "as" pattern forcing the compiler to
 recognize @code{f} as a function variable, rather than a literal function
-symbol. See @pxref{126,,"As" Patterns} in the @pxref{c,,Caveats and Notes} section for an
+symbol. See @pxref{127,,"As" Patterns} in the @pxref{c,,Caveats and Notes} section for an
 explanation of this trick.)
 
 The first rule above takes care of "unquoting" embedded subterms. The second
@@ -11924,7 +11893,7 @@ foo 1 2 (2/3) (3/4) (5/6)
 @noindent
 
 @node User-Defined Special Forms,Macro Hygiene,Recursive Macros,Macros
-@anchor{pure user-defined-special-forms}@anchor{127}
+@anchor{pure user-defined-special-forms}@anchor{128}
 @section User-Defined Special Forms
 
 
@@ -11959,7 +11928,7 @@ the @code{x} parameter would have been evaluated already before it is passed to
 @code{timex}, making @code{timex} always return a zero time value. Try it!
 
 @node Macro Hygiene,Built-in Macros and Special Expressions,User-Defined Special Forms,Macros
-@anchor{pure macro-hygiene}@anchor{128}
+@anchor{pure macro-hygiene}@anchor{129}
 @section Macro Hygiene
 
 
@@ -12005,7 +11974,7 @@ of @code{y}, even though @code{y} is locally defined in the context of the macro
 call. (In some languages this form of name capture is sometimes used
 deliberately in order to make the macro use the binding of the symbol which is
 active at the point of the macro call. Normally, this won't work in Pure,
-although there is a way to force this behaviour in Pure as well, see @pxref{129,,Name Capture} in the @pxref{c,,Caveats and Notes} section.)
+although there is a way to force this behaviour in Pure as well, see @pxref{12a,,Name Capture} in the @pxref{c,,Caveats and Notes} section.)
 
 In contrast, the second form of name capture is usually not intended, and is
 therefore more dangerous. Consider the following example:
@@ -12053,7 +12022,7 @@ implemented as built-in macros which, when evaluated, construct the
 corresponding specials.
 
 @geindex __ifelse__ (macro)
-@anchor{pure __ifelse__}@anchor{12a}
+@anchor{pure __ifelse__}@anchor{12b}
 @deffn {Pure Macro} __ifelse__ x y z
 
 This macro expands to the conditional expression @code{if x then y else z}
@@ -12061,23 +12030,23 @@ during macro evaluation.
 @end deffn
 
 @geindex __lambda__ (macro)
-@anchor{pure __lambda__}@anchor{12b}
+@anchor{pure __lambda__}@anchor{12c}
 @deffn {Pure Macro} __lambda__ [x1,...,xn] y
 
 Expands to the lambda expression @code{\x1 ... xn -> y}.
 @end deffn
 
 @geindex __case__ (macro)
-@anchor{pure __case__}@anchor{12c}
+@anchor{pure __case__}@anchor{12d}
 @deffn {Pure Macro} __case__ x [(x1 --> y1),...,(xn --> yn)]
 
 Expands to the @pxref{96,,case} expression @code{case x of x1 = y1; ...; xn = yn
-end}. Note that the @pxref{12d,,--->} symbol is used to separate the left-hand
+end}. Note that the @pxref{12e,,--->} symbol is used to separate the left-hand
 side and the right-hand side of each rule (see below).
 @end deffn
 
 @geindex __when__ (infix macro)
-@anchor{pure __when__}@anchor{12e}
+@anchor{pure __when__}@anchor{12f}
 @deffn {Pure Macro} x __when__ [(x1 --> y1),...,(xn --> yn)]
 
 Expands to the @pxref{97,,when} expression @code{x when x1 = y1; ...; xn = yn
@@ -12087,7 +12056,7 @@ __when__ [_ --> foo y]}.
 @end deffn
 
 @geindex __with__ (infix macro)
-@anchor{pure __with__}@anchor{12f}
+@anchor{pure __with__}@anchor{130}
 @deffn {Pure Macro} x __with__ [(x1 --> y1),...,(xn --> yn)]
 
 Expands to the @pxref{98,,with} expression @code{x with x1 = y1; ...; xn = yn
@@ -12095,23 +12064,23 @@ end}.
 @end deffn
 
 Note that the following low-priority infix operators are used to denote
-equations in the @pxref{12c,,__case__}, @pxref{12e,,__when__} and @pxref{12f,,__with__}
+equations in the @pxref{12d,,__case__}, @pxref{12f,,__when__} and @pxref{130,,__with__}
 macros:
 
 @geindex --> (infix constructor)
-@anchor{pure -->}@anchor{12d}
+@anchor{pure -->}@anchor{12e}
 @deffn {Pure Constructor} x --> y
 
 Denotes an equation @code{x = y}.
 @end deffn
 
 @geindex __if__ (infix constructor)
-@anchor{pure __if__}@anchor{130}
+@anchor{pure __if__}@anchor{131}
 @deffn {Pure Constructor} x __if__ y
 
 Attaches a guard to the right-hand side of an equation. That is, @code{x --> y
 __if__ z} denotes the conditional equation @code{x = y if z}. This symbol is
-only recognized in @pxref{12c,,__case__} and @pxref{12f,,__with__} calls.
+only recognized in @pxref{12d,,__case__} and @pxref{130,,__with__} calls.
 @end deffn
 
 In addition, patterns on the left-hand side of equations or in lambda
@@ -12120,14 +12089,14 @@ arguments may be decorated with the following constructor terms to indicate
 priority):
 
 @geindex __as__ (infix constructor)
-@anchor{pure __as__}@anchor{131}
+@anchor{pure __as__}@anchor{132}
 @deffn {Pure Constructor} x __as__ y
 
 Denotes an "as" pattern @code{x @@ y}.
 @end deffn
 
 @geindex __type__ (infix constructor)
-@anchor{pure __type__}@anchor{132}
+@anchor{pure __type__}@anchor{133}
 @deffn {Pure Constructor} x __type__ y
 
 Denotes a type tag @code{x :: y}.
@@ -12218,7 +12187,7 @@ The @code{__str__} function can be used to pretty-print quoted specials:
 
 This is useful to see which expression a quoted special will expand to. Note
 that @code{__str__} can also be used to define print representations for
-quoted specials with @pxref{f8,,__show__} (described in @pxref{f9,,Pretty-Printing}) if you
+quoted specials with @pxref{f9,,__show__} (described in @pxref{fa,,Pretty-Printing}) if you
 always want to have them printed that way by the interpreter.
 
 As quoted specials are just ordinary Pure expressions, they can be manipulated
@@ -12239,7 +12208,7 @@ For convenience, a literal special expression can also be used on the
 left-hand side of an equation, in which case it actually denotes the
 corresponding placeholder term. So the @code{swap} function can also be defined
 like this (note that we first scratch the previous definition of @code{swap} with
-the @code{clear} command, see @pxref{124,,Interactive Commands}):
+the @code{clear} command, see @pxref{125,,Interactive Commands}):
 
 @example
 > clear swap
@@ -12333,7 +12302,7 @@ evaluated during macro evaluation. Pure provides yet another built-in macro
 for this purpose:
 
 @geindex __eval__ (macro)
-@anchor{pure __eval__}@anchor{133}
+@anchor{pure __eval__}@anchor{134}
 @deffn {Pure Macro} __eval__ x
 
 Evaluate @code{x} at macro expansion time. This works by stripping one level
@@ -12341,7 +12310,7 @@ of (outermost) quotes from @code{x} and performing macro expansion on the
 resulting unquoted subexpressions.
 @end deffn
 
-Using @pxref{133,,__eval__}, we can implement the @code{swap} macro as follows:
+Using @pxref{134,,__eval__}, we can implement the @code{swap} macro as follows:
 
 @example
 > clear swap
@@ -12365,12 +12334,12 @@ and you'll have to explicitly call @code{__eval__} to remove them during macro
 evaluation.
 
 A final caveat: Placeholder terms for specials are just simple expressions;
-they don't do any variable binding by themselves. Thus the rules of @pxref{128,,macro hygiene} don't apply to them, which makes it possible to manipulate lambdas
+they don't do any variable binding by themselves. Thus the rules of @pxref{129,,macro hygiene} don't apply to them, which makes it possible to manipulate lambdas
 and local definitions in any desired way. On the other hand, this means that
 it is the programmer's responsibility to avoid accidental name capture when
 using these facilities. Most macro code will work all right when written in a
 straightforward way, but there are some corner cases which need special
-attention (cf. @pxref{129,,Name Capture}).
+attention (cf. @pxref{12a,,Name Capture}).
 
 Sometimes the only convenient way to avoid name capture is to create new
 symbols on the fly. This will often be necessary if a macro generates an
@@ -12379,7 +12348,7 @@ lambda) from scratch. The following built-in macro is provided for this
 purpose:
 
 @geindex __gensym__ (macro)
-@anchor{pure __gensym__}@anchor{134}
+@anchor{pure __gensym__}@anchor{135}
 @deffn {Pure Macro} __gensym__
 
 Create a new unqualified symbol which is guaranteed to not exist at the
@@ -12389,10 +12358,10 @@ or variable symbols).
 @end deffn
 
 For instance, here's how we can implement a macro @code{foo} which creates a
-lambda from a given argument, using @pxref{134,,__gensym__} to generate a fresh
+lambda from a given argument, using @pxref{135,,__gensym__} to generate a fresh
 local variable for the lambda argument. This guarantees that variables in the
 argument expression don't get captured by the lambda variable when the closure
-is created with a call to the built-in @pxref{12b,,__lambda__} macro.
+is created with a call to the built-in @pxref{12c,,__lambda__} macro.
 
 @example
 > def foo x = bar __gensym__ x;
@@ -12410,9 +12379,9 @@ is created with a call to the built-in @pxref{12b,,__lambda__} macro.
 
 @noindent
 
-The @pxref{134,,__gensym__} macro returns a new variable for each invocation, and
+The @pxref{135,,__gensym__} macro returns a new variable for each invocation, and
 always ensures that it doesn't accidentally reuse a symbol already introduced
-by the user (even if it looks like a symbol that @pxref{134,,__gensym__} might
+by the user (even if it looks like a symbol that @pxref{135,,__gensym__} might
 itself create):
 
 @example
@@ -12429,7 +12398,7 @@ itself create):
 @noindent
 
 @node Advanced Optimization,Reflection,Built-in Macros and Special Expressions,Macros
-@anchor{pure advanced-optimization}@anchor{125}
+@anchor{pure advanced-optimization}@anchor{126}
 @section Advanced Optimization
 
 
@@ -12615,7 +12584,7 @@ special magic to filter out unmatched list elements; we also omitted this here
 for brevity.
 
 @node Reflection,,Advanced Optimization,Macros
-@anchor{pure reflection}@anchor{135}
+@anchor{pure reflection}@anchor{136}
 @section Reflection
 
 
@@ -12628,7 +12597,7 @@ Specifically, the @code{get_fundef} function allows you to retrieve the
 definition of a global Pure function. Given the symbol denoting the function,
 @code{get_fundef} returns the list of rewriting rules implementing the
 functions, using the same @code{lhs --> rhs} format used by the
-@pxref{12c,,__case__}, @pxref{12e,,__when__} and @pxref{12f,,__with__} macros discussed
+@pxref{12d,,__case__}, @pxref{12f,,__when__} and @pxref{130,,__with__} macros discussed
 above. For instance:
 
 @example
@@ -12721,7 +12690,7 @@ variables and constants. Note that in the latter two cases the rule list takes
 the form @code{[var-->val]} if the symbol is defined, @code{[]} if it isn't.
 
 For instance, let's check the definition of the @code{$} macro
-(cf. @pxref{123,,Optimization Rules}) and the @code{list} type (cf. @pxref{e1,,Recursive Types}):
+(cf. @pxref{124,,Optimization Rules}) and the @code{list} type (cf. @pxref{e2,,Recursive Types}):
 
 @example
 > get_macdef ($);
@@ -12773,17 +12742,17 @@ capabilities provided by these operations will work in batch-compiled
 programs, please check the @pxref{b,,Batch Compilation} section for details.
 
 @node Exception Handling,Standard Library,Macros,Top
-@anchor{pure exception-handling}@anchor{cd}@anchor{pure id16}@anchor{136}
+@anchor{pure exception-handling}@anchor{cd}@anchor{pure id17}@anchor{137}
 @chapter Exception Handling
 
 
 Pure also offers a useful exception handling facility. To raise an exception,
 you just invoke the built-in function @code{throw} with the value to be
 thrown as the argument. Exceptions are caught with the built-in special form
-@pxref{137,,catch} which is invoked as follows:
+@pxref{138,,catch} which is invoked as follows:
 
 @geindex catch (function)
-@anchor{pure catch}@anchor{137}
+@anchor{pure catch}@anchor{138}
 @deffn {Pure Function} catch handler x
 
 Catch an exception. The first argument denotes the exception handler (a
@@ -12807,7 +12776,7 @@ abstraction, or a @pxref{c2,,let}, @pxref{96,,case} or @pxref{97,,when}
 construct. These types of exceptions are reported using the symbols
 @code{stack_fault}, @code{failed_cond} and @code{failed_match},
 respectively, which are declared as nonfix symbols in the standard
-prelude. You can use @pxref{137,,catch} to handle these kinds of exceptions just
+prelude. You can use @pxref{138,,catch} to handle these kinds of exceptions just
 like any other. For instance:
 
 @example
@@ -12834,7 +12803,7 @@ Note that since the right-hand side of a type definition (cf. @pxref{55,,Type Ru
 is just ordinary Pure code, it may be susceptible to exceptions, too.  Such
 exceptions are reported or caught just like any other. In particular, if you
 want to make a type definition just fail silently in case of an exception,
-you'll have to wrap it up in a suitable @pxref{137,,catch} clause:
+you'll have to wrap it up in a suitable @pxref{138,,catch} clause:
 
 @example
 > foo x = throw foo; // dummy predicate which always throws an exception
@@ -13022,22 +12991,22 @@ operations to do basic C-style I/O, including @code{printf} and @code{scanf}.
 
 Pure makes it very easy to call C functions (as well as functions in a number
 of other languages supported by the GNU compiler collection). To call an
-existing C function, you just need an @pxref{fe,,extern} declaration of the
+existing C function, you just need an @pxref{ff,,extern} declaration of the
 function, as described below. By these means, all functions in the standard C
 library and the Pure runtime are readily available to Pure scripts. Functions
 can also be loaded from dynamic libraries and LLVM bitcode files at
 runtime. In the latter case, you don't even need to write any
-@pxref{fe,,extern} declarations, the interpreter will do that for you. As of
+@pxref{ff,,extern} declarations, the interpreter will do that for you. As of
 Pure 0.45, you can also add inline C/C++ and Fortran code to your Pure scripts
 and have the Pure interpreter compile them on the fly, provided that you have
 the corresponding compilers from the LLVM project installed.
 
 In some cases you will still have to rely on big and complicated third-party
 and system libraries which aren't readily available in bitcode form. It goes
-without saying that writing all the @pxref{fe,,extern} declarations for such
+without saying that writing all the @pxref{ff,,extern} declarations for such
 libraries can be a daunting task. Fortunately, there is a utility to help with
-this, by extracting the @pxref{fe,,extern} declarations automatically from C
-headers. Please see @pxref{138,,External C Functions} in the @pxref{c,,Caveats and Notes}
+this, by extracting the @pxref{ff,,extern} declarations automatically from C
+headers. Please see @pxref{139,,External C Functions} in the @pxref{c,,Caveats and Notes}
 section for details.
 
 @menu
@@ -13054,20 +13023,20 @@ section for details.
 @end menu
 
 @node Extern Declarations,Variadic C Functions,,C Interface
-@anchor{pure extern}@anchor{fe}@anchor{pure extern-declarations}@anchor{139}
+@anchor{pure extern}@anchor{ff}@anchor{pure extern-declarations}@anchor{13a}
 @section Extern Declarations
 
 
-To access an existing C function in Pure, you need an @pxref{fe,,extern}
+To access an existing C function in Pure, you need an @pxref{ff,,extern}
 declaration of the function, which is a simplified kind of C prototype. The
 syntax of these declarations is described by the following grammar rules:
 
 @example
-@anchor{pure grammar-token-extern_decl}@anchor{13a}extern_decl ::= [scope] "extern" prototype ("," prototype) ";"
-@anchor{pure grammar-token-prototype}@anchor{13b}prototype   ::= c_type identifier "(" [parameters | "..."] ")" ["=" identifier]
-@anchor{pure grammar-token-parameters}@anchor{13c}parameters  ::= parameter ("," parameter)* ["," "..."]
-@anchor{pure grammar-token-parameter}@anchor{13d}parameter   ::= c_type [identifier]
-@anchor{pure grammar-token-c_type}@anchor{13e}c_type      ::= identifier "*"*
+@anchor{pure grammar-token-extern_decl}@anchor{13b}extern_decl ::= [scope] "extern" prototype ("," prototype) ";"
+@anchor{pure grammar-token-prototype}@anchor{13c}prototype   ::= c_type identifier "(" [parameters | "..."] ")" ["=" identifier]
+@anchor{pure grammar-token-parameters}@anchor{13d}parameters  ::= parameter ("," parameter)* ["," "..."]
+@anchor{pure grammar-token-parameter}@anchor{13e}parameter   ::= c_type [identifier]
+@anchor{pure grammar-token-c_type}@anchor{13f}c_type      ::= identifier "*"*
 
 @end example
 
@@ -13076,7 +13045,7 @@ syntax of these declarations is described by the following grammar rules:
 Extern functions can be called in Pure just like any other. For instance, the
 following commands, entered interactively in the interpreter, let you use the
 @code{sin} function from the C library (of course you could just as well put the
-@pxref{fe,,extern} declaration into a script):
+@pxref{ff,,extern} declaration into a script):
 
 @example
 > extern double sin(double);
@@ -13086,8 +13055,8 @@ following commands, entered interactively in the interpreter, let you use the
 
 @noindent
 
-An @pxref{fe,,extern} declaration can also be prefixed with a
-@pxref{101,,public}/@pxref{102,,private} scope specifier:
+An @pxref{ff,,extern} declaration can also be prefixed with a
+@pxref{102,,public}/@pxref{103,,private} scope specifier:
 
 @example
 private extern double sin(double);
@@ -13095,7 +13064,7 @@ private extern double sin(double);
 
 @noindent
 
-Multiple prototypes can be given in one @pxref{fe,,extern} declaration,
+Multiple prototypes can be given in one @pxref{ff,,extern} declaration,
 separating them with commas:
 
 @example
@@ -13127,7 +13096,7 @@ or more asterisks, as in C. For instance:
 
 As you can see in the previous example, some pointer types get special
 treatment, allowing you to pass certain kinds of Pure data (such as Pure
-strings as @code{char*} in this example). This is discussed in more detail in @pxref{13f,,C Types} below.
+strings as @code{char*} in this example). This is discussed in more detail in @pxref{140,,C Types} below.
 
 The interpreter makes sure that the parameters in a call match; if not, then
 by default the call is treated as a normal form expression:
@@ -13144,7 +13113,7 @@ sin 0
 
 This gives you the opportunity to augment the external function with your own
 Pure equations. To make this work, you have to make sure that the
-@pxref{fe,,extern} declaration of the function comes first. For instance, we
+@pxref{ff,,extern} declaration of the function comes first. For instance, we
 might want to extend the @code{sin} function with a rule to handle integers:
 
 @example
@@ -13188,8 +13157,8 @@ an alternative, you can also declare the C function in a special namespace
 Note that the namespace qualification only affects the Pure side; the
 underlying C function is still called under the unqualified name as usual. The
 way in which such qualified externs are accessed is the same as for ordinary
-qualified symbols. In particular, the @pxref{11d,,using namespace} declaration
-applies as usual, and you can declare such symbols as @pxref{102,,private} if
+qualified symbols. In particular, the @pxref{11e,,using namespace} declaration
+applies as usual, and you can declare such symbols as @pxref{103,,private} if
 needed. It is also possible to combine a namespace qualifier with an alias:
 
 @example
@@ -13242,7 +13211,7 @@ mysin 1
 @noindent
 
 @node Variadic C Functions,C Types,Extern Declarations,C Interface
-@anchor{pure variadic-c-functions}@anchor{140}
+@anchor{pure variadic-c-functions}@anchor{141}
 @section Variadic C Functions
 
 
@@ -13285,11 +13254,11 @@ Hello, 99
 @noindent
 
 @node C Types,Importing Dynamic Libraries,Variadic C Functions,C Interface
-@anchor{pure c-types}@anchor{13f}@anchor{pure id17}@anchor{141}
+@anchor{pure c-types}@anchor{140}@anchor{pure id18}@anchor{142}
 @section C Types
 
 
-As indicated in the previous section, the data types in @pxref{fe,,extern}
+As indicated in the previous section, the data types in @pxref{ff,,extern}
 declarations are either C type names or pointer types derived from these. The
 special @code{expr*} pointer type is simply passed through; this provides a means
 to deal with Pure data in C functions in a direct fashion. For all other C
@@ -13304,7 +13273,7 @@ such objects using @code{void*} or some other appropriate pointer types. In
 practice, this simplified system should cover most kinds of calls that need to
 be done when interfacing to C libraries, but there are ways to work around
 these limitations if you need to access C structs or call back from C to Pure,
-see @pxref{138,,External C Functions} in the @pxref{c,,Caveats and Notes} section for details.
+see @pxref{139,,External C Functions} in the @pxref{c,,Caveats and Notes} section for details.
 
 @menu
 * Basic C Types:: 
@@ -13315,7 +13284,7 @@ see @pxref{138,,External C Functions} in the @pxref{c,,Caveats and Notes} sectio
 @end menu
 
 @node Basic C Types,Pointer Types,,C Types
-@anchor{pure basic-c-types}@anchor{142}
+@anchor{pure basic-c-types}@anchor{143}
 @subsection Basic C Types
 
 
@@ -13358,7 +13327,7 @@ functions provided by the prelude to convert the result back to an unsigned
 quantity.
 
 @node Pointer Types,Pointers and Matrices,Basic C Types,C Types
-@anchor{pure pointer-types}@anchor{143}
+@anchor{pure pointer-types}@anchor{144}
 @subsection Pointer Types
 
 
@@ -13397,7 +13366,7 @@ the underlying GSL matrix structure is passed (not just the data itself).
 This makes it possible to transfer GSL matrices between Pure and GSL
 routines in a direct fashion without any overhead. (For convenience, there
 are also some other pointer conversions for marshalling matrix arguments to
-numeric C vectors, which are described in @pxref{144,,Pointers and Matrices} below.)
+numeric C vectors, which are described in @pxref{145,,Pointers and Matrices} below.)
 
 @item 
 @code{expr*} is for any kind of Pure value. A pointer to the expression node is
@@ -13421,7 +13390,7 @@ means of corresponding library functions, please see the @emph{Tagged
 Pointers} section in the @code{purelib} for details.
 
 @node Pointers and Matrices,Pointer Examples,Pointer Types,C Types
-@anchor{pure pointers-and-matrices}@anchor{144}
+@anchor{pure pointers-and-matrices}@anchor{145}
 @subsection Pointers and Matrices
 
 
@@ -13488,7 +13457,7 @@ performance is critical, by always using "packed" matrices (see @code{pack}
 in @emph{Matrix Functions}) of the appropriate types.
 
 @node Pointer Examples,,Pointers and Matrices,C Types
-@anchor{pure pointer-examples}@anchor{145}
+@anchor{pure pointer-examples}@anchor{146}
 @subsection Pointer Examples
 
 
@@ -13607,7 +13576,7 @@ system "exit 1";
 @noindent
 
 @node Importing Dynamic Libraries,Importing LLVM Bitcode,C Types,C Interface
-@anchor{pure importing-dynamic-libraries}@anchor{146}
+@anchor{pure importing-dynamic-libraries}@anchor{147}
 @section Importing Dynamic Libraries
 
 
@@ -13636,11 +13605,11 @@ using "lib:libxyz";
 @noindent
 
 After this declaration the functions from the given library will be ready to
-be imported into your Pure program by means of corresponding @pxref{fe,,extern}
+be imported into your Pure program by means of corresponding @pxref{ff,,extern}
 declarations.
 
 Shared libraries opened with using clauses are searched for in the same way as
-source scripts (see section @pxref{e8,,Modules and Imports} above), using the
+source scripts (see section @pxref{e9,,Modules and Imports} above), using the
 @pxref{27,,-L} option and the 
 @geindex PURE_LIBRARY
 @geindex environment variable; PURE_LIBRARY
@@ -13657,28 +13626,28 @@ directories and
 @code{LD_LIBRARY_PATH} on Linux. The necessary filename
 suffix (e.g., .so on Linux or .dll on Windows) will be supplied automatically
 when needed. Of course you can also specify a full pathname for the library if
-you prefer that. If a library file cannot be found, or if an @pxref{fe,,extern}
+you prefer that. If a library file cannot be found, or if an @pxref{ff,,extern}
 declaration names a function symbol which cannot be resolved, an appropriate
 error message is printed.
 
 @node Importing LLVM Bitcode,Inline Code,Importing Dynamic Libraries,C Interface
-@anchor{pure importing-llvm-bitcode}@anchor{147}
+@anchor{pure importing-llvm-bitcode}@anchor{148}
 @section Importing LLVM Bitcode
 
 
 As of Pure 0.44, the interpreter also provides a direct way to import LLVM
 bitcode modules in Pure scripts. The main advantage of this method over the
 "plain" C interface explained above is that the bitcode loader knows all the
-call interfaces and generates the necessary @pxref{fe,,extern} declarations
+call interfaces and generates the necessary @pxref{ff,,extern} declarations
 automatically. This is more than just a convenience, as it also eliminates at
-least some of the mistakes in @pxref{fe,,extern} declarations that may arise
+least some of the mistakes in @pxref{ff,,extern} declarations that may arise
 when importing functions manually from dynamic libraries.
 
 @cartouche
 @quotation Note 
 The facilities described below require that you have an LLVM-capable
-C/C++ compiler installed. The available options right now are @pxref{148,,clang},
-@pxref{149,,llvm-gcc} and @pxref{14a,,dragonegg}. Please check the Pure @code{installation
+C/C++ compiler installed. The available options right now are @pxref{149,,clang},
+@pxref{14a,,llvm-gcc} and @pxref{14b,,dragonegg}. Please check the Pure @code{installation
 instructions} on how to get one of these (or all of them) up and
 running. Note that clang and llvm-gcc are standalone compilers, while
 dragonegg is supplied as a gcc plugin which hooks into your existing system
@@ -13705,8 +13674,8 @@ using "bc:modname[.bc]";
 filename extension is supplied automatically. Also, the bitcode file is
 searched for on the usual library search path.)
 
-That's it, no explicit @pxref{fe,,extern} declarations are required on the Pure
-side. The Pure interpreter automatically creates @pxref{fe,,extern}
+That's it, no explicit @pxref{ff,,extern} declarations are required on the Pure
+side. The Pure interpreter automatically creates @pxref{ff,,extern}
 declarations (in the current namespace) for all the external functions defined
 in the LLVM bitcode module, and generates the corresponding wrappers to make
 the functions callable from Pure. (This also works when batch-compiling a Pure
@@ -13714,8 +13683,8 @@ script. In this case, the bitcode file actually gets linked into the output
 code, so the loaded bitcode module only needs to be present at compile time.)
 
 By default the imported symbols will be public. You can also specify the
-desired scope of the symbols explicitly, by placing the @pxref{101,,public} or
-@pxref{102,,private} keyword before the module name. For instance:
+desired scope of the symbols explicitly, by placing the @pxref{102,,public} or
+@pxref{103,,private} keyword before the module name. For instance:
 
 @example
 using private "bc:modname";
@@ -13763,7 +13732,7 @@ int mygcd(int x, int y)
 @noindent
 
 Let's say that this code is in the file @code{mygcd.c}, then you'd compile it to
-a bitcode module using @pxref{148,,clang} as follows:
+a bitcode module using @pxref{149,,clang} as follows:
 
 @example
 clang -emit-llvm -c mygcd.c -o mygcd.bc
@@ -13775,7 +13744,7 @@ Note that the @code{-emit-llvm -c} options instruct clang to build an LLVM
 bitcode module. Of course, you can also add optimizations and other options to
 the compile command as desired.
 
-Using @pxref{14a,,dragonegg} is somewhat more involved, as it doesn't provide a direct way
+Using @pxref{14b,,dragonegg} is somewhat more involved, as it doesn't provide a direct way
 to produce a bitcode file yet.  However, you can create an LLVM assembler file
 which can then be translated to bitcode using the llvm-as program as follows:
 
@@ -13801,7 +13770,7 @@ In either case, you can now load the resulting bitcode module and run the
 
 @noindent
 
-To actually see the generated @pxref{fe,,extern} declaration of the imported
+To actually see the generated @pxref{ff,,extern} declaration of the imported
 function, you can use the interactive @code{show} command:
 
 @example
@@ -13814,7 +13783,7 @@ extern int mygcd(int, int);
 Some more examples showing how to use the bitcode interface can be found in
 the Pure sources. In particular, the interface also works with Fortran (using
 llvm-gfortran or gfortran with dragonegg), and there is special support for
-interfacing to Grame's functional DSP programming language @pxref{14b,,Faust} (the latter
+interfacing to Grame's functional DSP programming language @pxref{14c,,Faust} (the latter
 uses a special variant of the bitcode loader, which is selected with the
 @code{dsp} tag in the @pxref{43,,using} clause). Further details about these can
 be found below.
@@ -13833,7 +13802,7 @@ predefined meaning in Pure nor a proper type name in the bitcode file, will
 become a generic pointer type (@code{void*}, @code{void**}, etc.) in Pure. If this
 is a problem then you can just redeclare the corresponding functions under a
 synonym @emph{after} loading the bitcode module, giving the proper argument and
-result types (see @pxref{139,,Extern Declarations} above). For instance:
+result types (see @pxref{13a,,Extern Declarations} above). For instance:
 
 @example
 > using "bc:foo";
@@ -13854,7 +13823,7 @@ return values. The compiler will then print a warning; the affected
 functions will still be linked in, but they will not be callable from Pure.
 Also note that calling conventions for passing C structs @emph{by value} depend
 on the host ABI, so you should have a look at the resulting
-@pxref{fe,,extern} declaration (using @code{show}) to determine how the function
+@pxref{ff,,extern} declaration (using @code{show}) to determine how the function
 is actually to be called from Pure.
 @end itemize
 
@@ -13865,8 +13834,8 @@ is actually to be called from Pure.
 
 Instead of manually compiling source files to bitcode modules, you can also
 just place the source code into a Pure script, enclosing it in @code{%< ... %>}.
-(Optionally, the opening brace may also be preceded with a @pxref{101,,public}
-or @pxref{102,,private} scope specifier, which is used in the same way as the
+(Optionally, the opening brace may also be preceded with a @pxref{102,,public}
+or @pxref{103,,private} scope specifier, which is used in the same way as the
 scope specifier following the @pxref{43,,using} keyword when importing bitcode
 files.)
 
@@ -13897,7 +13866,7 @@ scripts which include all required external functions. The downside is that
 the inline code sections will have to be recompiled every time you run the
 script with the interpreter which may considerably increase startup times. If
 this is a problem then it's usually better to import a separate bitcode module
-instead (see @pxref{147,,Importing LLVM Bitcode}), or batch-compile your script to an
+instead (see @pxref{148,,Importing LLVM Bitcode}), or batch-compile your script to an
 executable (see @pxref{b,,Batch Compilation}).
 
 At present, C, C++, Fortran, ATS and Faust are supported as foreign source
@@ -13933,7 +13902,7 @@ standard, such as @code{fortran90} which is used in the example above. The
 language tag can also be followed by a module name, using the format @code{-*-
 lang:name -*-}. This is optional for all languages except Faust (where the
 module name specifies the namespace for the interface routines of the Faust
-module; see @pxref{14c,,Interfacing to Faust} below). So, e.g., a Faust DSP named
+module; see @pxref{14d,,Interfacing to Faust} below). So, e.g., a Faust DSP named
 @code{test} would be specified with a @code{dsp:test} tag. Case is @emph{significant} in
 the module name.
 
@@ -13965,7 +13934,7 @@ debugging and optimization options that you may want to add. Likewise,
 @code{PURE_FAUST} are used for the C++, Fortran, ATS and Faust compilers,
 respectively.
 
-For instance, if you prefer to use @pxref{149,,llvm-gcc} as your C compiler, and you'd
+For instance, if you prefer to use @pxref{14a,,llvm-gcc} as your C compiler, and you'd
 like to invoke it with the @code{-O3} optimization option, you would set
 @geindex PURE_CC
 @geindex environment variable; PURE_CC
@@ -13974,7 +13943,7 @@ can have the interpreter echo the compilation commands which are actually
 executed, by running Pure with the @code{-v0100} option, see @pxref{49,,Verbosity and Debugging Options}. Also note that the options necessary to produce LLVM
 bitcode will be added automatically, so you don't have to specify these.)
 
-Beginning with Pure 0.48, the @pxref{14a,,dragonegg} gcc plugin is also fully supported.
+Beginning with Pure 0.48, the @pxref{14b,,dragonegg} gcc plugin is also fully supported.
 To make this work, you need to explicitly specify the name of the plugin in
 the compilation command, so that the Pure interpreter can add the proper set
 of options needed for bitcode compilation. For instance:
@@ -13989,7 +13958,7 @@ Some further details on the bitcode support for specific target languages can
 be found in the subsections below.
 
 @node Interfacing to C++,Interfacing to ATS,Inline Code,C Interface
-@anchor{pure interfacing-to-c}@anchor{14d}
+@anchor{pure interfacing-to-c}@anchor{14e}
 @section Interfacing to C++
 
 
@@ -14080,11 +14049,11 @@ map (map_get m) (map_keys m); // => [bar 4711L,[1,2,3,4,5]]
 @noindent
 
 @node Interfacing to ATS,Interfacing to Faust,Interfacing to C++,C Interface
-@anchor{pure interfacing-to-ats}@anchor{14e}
+@anchor{pure interfacing-to-ats}@anchor{14f}
 @section Interfacing to ATS
 
 
-@pxref{14f,,ATS} is a statically typed functional programming language somewhat similar to
+@pxref{150,,ATS} is a statically typed functional programming language somewhat similar to
 ML, which also offers imperative and concurrent programming features. One of
 ATS's most unusual and interesting aspects is its highly expressive Applied
 Type System, which gives the language its name. ATS has a very elaborate C interface@footnote{http://ats-lang.sourceforge.net/DOCUMENT/INT2PROGINATS/HTML/c1995.html} which lets you expose functions written in the language using C
@@ -14162,11 +14131,11 @@ More information about ATS, as well as sources and binary packages of the ATS
 compiler can be found on the ATS website@footnote{http://www.ats-lang.org/}.
 
 @node Interfacing to Faust,,Interfacing to ATS,C Interface
-@anchor{pure interfacing-to-faust}@anchor{14c}@anchor{pure id20}@anchor{150}
+@anchor{pure interfacing-to-faust}@anchor{14d}@anchor{pure id21}@anchor{151}
 @section Interfacing to Faust
 
 
-@pxref{14b,,Faust} is a functional dsp (digital signal processing) programming language
+@pxref{14c,,Faust} is a functional dsp (digital signal processing) programming language
 developed at Grame, which is tailored to the task of generating and
 transforming streams of numeric data at the sample level. It is typically used
 to program sound synthesis and audio effect units, but can in fact be employed
@@ -14656,8 +14625,8 @@ objects like anonymous closures, thunks ("lazy" values to be evaluated when
 needed) and pointers which don't have a textual representation in the Pure
 syntax and will be printed in the format @code{#<}@emph{object description}@code{>}
 by default. It is also possible to override the print representation of any
-kind of expression by means of the @pxref{f8,,__show__} function, see
-@pxref{f9,,Pretty-Printing} below for details.
+kind of expression by means of the @pxref{f9,,__show__} function, see
+@pxref{fa,,Pretty-Printing} below for details.
 
 A number of other special features of Pure's command line interface are
 discussed in the following subsections.
@@ -14678,7 +14647,7 @@ discussed in the following subsections.
 @end menu
 
 @node Command Syntax,Online Help,,Interactive Usage
-@anchor{pure command-syntax}@anchor{151}
+@anchor{pure command-syntax}@anchor{152}
 @section Command Syntax
 
 
@@ -14692,7 +14661,7 @@ the beginning of an input line, which may be followed by some parameters as
 required by the command. The command language is intended solely for
 interactive purposes and thus doesn't offer any programming facilities of its
 own. However, it can be extended with user-defined commands implemented as
-ordinary Pure functions; this is described in the @pxref{152,,User-Defined Commands}
+ordinary Pure functions; this is described in the @pxref{153,,User-Defined Commands}
 section below.
 
 In fact, as of Pure 0.56 the interpreter actually provides two slightly
@@ -14920,13 +14889,13 @@ your browser program can handle these. For instance:
 @noindent
 
 @node Interactive Commands,Specifying Symbol Selections,Online Help,Interactive Usage
-@anchor{pure commands}@anchor{153}@anchor{pure interactive-commands}@anchor{124}
+@anchor{pure commands}@anchor{154}@anchor{pure interactive-commands}@anchor{125}
 @section Interactive Commands
 
 
 The following built-in commands are always understood by the interpreter. (In
 addition, you can define your own commands for frequently-used operations; see
-@pxref{152,,User-Defined Commands} below.)
+@pxref{153,,User-Defined Commands} below.)
 
 @geindex (command)
 
@@ -14975,15 +14944,15 @@ Change the current working dir.
 Purge the definitions of the given symbols (functions, macros, constants or
 global variables). All symbols must be specified in fully qualified form,
 see the remarks below. If invoked as @code{clear ans}, clears the @code{ans}
-value (see @pxref{154,,Last Result} below). When invoked without any arguments,
+value (see @pxref{155,,Last Result} below). When invoked without any arguments,
 @code{clear} purges all definitions at the current interactive "level" (after
 confirmation) and returns you to the previous level, if any. (It might be a
 good idea to first check your current definitions with @code{show} or back
 them up with @code{dump} before you do that.)  The desired level can be
 specified with the @code{-t} option. See the description of the @code{save}
-command and @pxref{155,,Definition Levels} below for further details. A description
+command and @pxref{156,,Definition Levels} below for further details. A description
 of the common options accepted by the @code{clear}, @code{dump} and @code{show}
-commands can be found in @pxref{156,,Specifying Symbol Selections} below.
+commands can be found in @pxref{157,,Specifying Symbol Selections} below.
 @end deffn
 
 @geindex del (command)
@@ -15017,12 +14986,12 @@ default output file is .pure in the current directory, which is then
 reloaded automatically the next time the interpreter starts up in
 interactive mode in the same directory. This provides a quick-and-dirty way
 to save an interactive session and have it restored later, but note that
-this isn't perfect. In particular, declarations of @pxref{fe,,extern}
+this isn't perfect. In particular, declarations of @pxref{ff,,extern}
 symbols won't be saved unless they're specified explicitly, and some
 objects like closures, thunks and pointers don't have a textual
 representation from which they could be reconstructed. To handle these,
 you'll probably have to prepare a corresponding .purerc file yourself, see
-@pxref{157,,Interactive Startup} below.
+@pxref{158,,Interactive Startup} below.
 
 A different filename can be specified with the @code{-n} option, which expects
 the name of the script to be written in the next argument, e.g: @code{dump -n
@@ -15072,7 +15041,7 @@ the program, such as strings or malloc'ed pointers.
 
 Enter "override" mode. This allows you to add equations "above" existing
 definitions in the source script, possibly overriding existing
-equations. See @pxref{155,,Definition Levels} below for details.
+equations. See @pxref{156,,Definition Levels} below for details.
 @end deffn
 
 @geindex pwd (command)
@@ -15117,7 +15086,7 @@ again. Also note that namespace and pragma settings of scripts loaded with
 @code{run} stick around after loading the script. This allows you to quickly
 set up your environment by just running a script containing the necessary
 namespace declarations and compiler directives. (Alternatively, you can
-also use the interpreter's startup files for that purpose, see @pxref{157,,Interactive Startup} below.)
+also use the interpreter's startup files for that purpose, see @pxref{158,,Interactive Startup} below.)
 @end deffn
 
 @geindex save (command)
@@ -15127,7 +15096,7 @@ also use the interpreter's startup files for that purpose, see @pxref{157,,Inter
 
 Begin a new level of temporary definitions. A subsequent @code{clear} command
 (see above) will purge the definitions made since the most recent @code{save}
-command. See @pxref{155,,Definition Levels} below for details.
+command. See @pxref{156,,Definition Levels} below for details.
 @end deffn
 
 @geindex show (command)
@@ -15135,10 +15104,10 @@ command. See @pxref{155,,Definition Levels} below for details.
 
 @deffn {Describe} show [option ...] [symbol ...]
 
-Show the definitions of symbols in various formats. See @pxref{113,,The show Command}
+Show the definitions of symbols in various formats. See @pxref{114,,The show Command}
 below for details. All symbols must be specified in fully qualified form,
 see the remarks below. A description of the common options accepted by the
-@code{clear}, @code{dump} and @code{show} commands can be found in @pxref{156,,Specifying Symbol Selections} below.
+@code{clear}, @code{dump} and @code{show} commands can be found in @pxref{157,,Specifying Symbol Selections} below.
 @end deffn
 
 @geindex stats (command)
@@ -15197,7 +15166,7 @@ deleted with the @code{del} command (see above).
 
 Exits "override" mode. This returns you to the normal mode of operation,
 where new equations are added "below" previous rules of an existing
-function. See @pxref{155,,Definition Levels} below for details.
+function. See @pxref{156,,Definition Levels} below for details.
 @end deffn
 
 Commands that accept options generally also understand the @code{-h} (help)
@@ -15215,10 +15184,10 @@ commands for the benefit of other programs such as @strong{emacs} driving
 the interpreter; currently these are @code{completion_matches}, @code{help_matches}
 and @code{help_index}. These aren't supposed to be invoked directly by the user,
 although they may sometimes be useful to implement custom functionality, see
-@pxref{152,,User-Defined Commands}.
+@pxref{153,,User-Defined Commands}.
 
 @node Specifying Symbol Selections,The show Command,Interactive Commands,Interactive Usage
-@anchor{pure specifying-symbol-selections}@anchor{156}
+@anchor{pure specifying-symbol-selections}@anchor{157}
 @section Specifying Symbol Selections
 
 
@@ -15304,11 +15273,11 @@ consequences as the Unix command @code{rm -rf *}, so don't do that. Also note
 that a macro or function symbol may well have defining equations at different
 levels, in which case a command like @code{clear -tn foo} might only affect some
 part of @code{foo}'s definition. The @code{dump} and @code{show} commands work
-analogously (albeit less destructively). See @pxref{155,,Definition Levels} below for
+analogously (albeit less destructively). See @pxref{156,,Definition Levels} below for
 some examples.
 
 @node The show Command,Definition Levels,Specifying Symbol Selections,Interactive Usage
-@anchor{pure the-show-command}@anchor{113}
+@anchor{pure the-show-command}@anchor{114}
 @section The show Command
 
 
@@ -15497,7 +15466,7 @@ using namespace C;
 @end itemize
 
 @node Definition Levels,Debugging,The show Command,Interactive Usage
-@anchor{pure definition-levels}@anchor{155}
+@anchor{pure definition-levels}@anchor{156}
 @section Definition Levels
 
 
@@ -15521,7 +15490,7 @@ macro rule belongs to so that the corresponding definitions can be removed
 again when the level is popped. On the other hand, intermediate changes in
 variable values are not recorded anywhere and cannot be undone. Moreover,
 global declarations (which encompasses @pxref{43,,using} clauses,
-@pxref{fe,,extern} declarations and special symbol declarations) always apply
+@pxref{ff,,extern} declarations and special symbol declarations) always apply
 to all levels, so they can't be undone either.
 
 That said, the temporary levels can still be pretty useful when you're playing
@@ -15660,7 +15629,7 @@ functions for inspecting and manipulating the source program, which may also
 be useful in custom command definitions; see the @code{purelib} for details.
 
 @node Debugging,Last Result,Definition Levels,Interactive Usage
-@anchor{pure id21}@anchor{158}@anchor{pure debugging}@anchor{4a}
+@anchor{pure debugging}@anchor{4a}@anchor{pure id22}@anchor{159}
 @section Debugging
 
 
@@ -15789,7 +15758,7 @@ x       exit the interpreter (after confirmation)
 @cartouche
 @quotation Note 
 If you specified an @pxref{1f,,---escape} prefix other than '@code{!}'
-(cf. @pxref{151,,Command Syntax}), that prefix will be used to execute interpreter
+(cf. @pxref{152,,Command Syntax}), that prefix will be used to execute interpreter
 commands instead, see below. The help message will tell you which command
 prefix is in effect.
 @end quotation
@@ -16010,7 +15979,7 @@ fashion with macro calls, see the @pxref{63,,Macros} section for some examples.
 The current sets of breakpoints and tracepoints can be changed with the
 @code{break}, @code{trace} and @code{del} commands, as shown above, and just @code{break}
 or @code{trace} without any arguments lists the currently defined breakpoints or
-tracepoints, respectively. Please see @pxref{124,,Interactive Commands} above for
+tracepoints, respectively. Please see @pxref{125,,Interactive Commands} above for
 details. Also note that these are really interpreter commands, so to invoke
 them in the debugger you have to escape them with the @code{!} command
 (or whatever other @pxref{1f,,---escape} prefix you specified).
@@ -16070,7 +16039,7 @@ becomes @code{1}, we might invoke @code{__break__} as follows:
 @noindent
 
 @node Last Result,Pretty-Printing,Debugging,Interactive Usage
-@anchor{pure last-result}@anchor{154}
+@anchor{pure last-result}@anchor{155}
 @section Last Result
 
 
@@ -16101,7 +16070,7 @@ ans
 @noindent
 
 @node Pretty-Printing,User-Defined Commands,Last Result,Interactive Usage
-@anchor{pure pretty-printing}@anchor{f9}
+@anchor{pure pretty-printing}@anchor{fa}
 @section Pretty-Printing
 
 
@@ -16110,24 +16079,24 @@ representations of expressions. This works in a fashion similar to Haskell's
 @code{show} function.
 
 @geindex __show__ (function)
-@anchor{pure __show__}@anchor{f8}
+@anchor{pure __show__}@anchor{f9}
 @deffn {Pure Function} __show__ x
 
 The programmer may define this function to supply custom print
 representations for certain expressions.
 @end deffn
 
-@pxref{f8,,__show__} is just an ordinary Pure function expected to return a string
+@pxref{f9,,__show__} is just an ordinary Pure function expected to return a string
 with the desired custom representation of a normal form value given as the
 function's single argument. The interpreter prints the strings returned by
-@pxref{f8,,__show__} just as they are. It will not check whether they conform to
+@pxref{f9,,__show__} just as they are. It will not check whether they conform to
 Pure syntax and/or semantics, or modify them in any way. Also, the library
 doesn't define this function anywhere, so you are free to add any rules that
 you want.
 
 Custom print representations are most useful for interactive purposes, if
 you're not happy with the default print syntax of some kinds of objects. One
-particularly useful application of @pxref{f8,,__show__} is to change the format of
+particularly useful application of @pxref{f9,,__show__} is to change the format of
 numeric values. Here are some examples:
 
 @example
@@ -16147,7 +16116,7 @@ numeric values. Here are some examples:
 @noindent
 
 The prelude function @code{str}, which returns the print representation of
-any Pure expression, calls @pxref{f8,,__show__} as well:
+any Pure expression, calls @pxref{f9,,__show__} as well:
 
 @example
 > str (1/7);
@@ -16156,7 +16125,7 @@ any Pure expression, calls @pxref{f8,,__show__} as well:
 
 @noindent
 
-Conversely, you can call the @code{str} function from @pxref{f8,,__show__}, but
+Conversely, you can call the @code{str} function from @pxref{f9,,__show__}, but
 in this case it always returns the default representation of an
 expression. This prevents the expression printer from going recursive, and
 allows you to define your custom representation in terms of the default
@@ -16171,12 +16140,12 @@ one. E.g., the following rule removes the @code{L} suffixes from bigint values:
 
 @noindent
 
-Of course, your definition of @pxref{f8,,__show__} can also call @pxref{f8,,__show__}
+Of course, your definition of @pxref{f9,,__show__} can also call @pxref{f9,,__show__}
 itself recursively to determine the custom representation of an object.
 
 One case which needs special consideration are thunks (futures). The printer
-will @emph{never} use @pxref{f8,,__show__} for those, to prevent them from being forced
-inadvertently. In fact, you @emph{can} use @pxref{f8,,__show__} to define custom
+will @emph{never} use @pxref{f9,,__show__} for those, to prevent them from being forced
+inadvertently. In fact, you @emph{can} use @pxref{f9,,__show__} to define custom
 representations for thunks, but only in the context of a rule for other kinds
 of objects, such as lists. For instance:
 
@@ -16208,7 +16177,7 @@ idea):
 
 @noindent
 
-Finally, by just purging the definition of the @pxref{f8,,__show__} function you
+Finally, by just purging the definition of the @pxref{f9,,__show__} function you
 can easily go back to the standard print syntax:
 
 @example
@@ -16221,12 +16190,12 @@ can easily go back to the standard print syntax:
 
 @noindent
 
-Note that if you have a set of definitions for the @pxref{f8,,__show__} function
+Note that if you have a set of definitions for the @pxref{f9,,__show__} function
 which should always be loaded at startup, you can put them into the
-interpreter's interactive startup files, see @pxref{157,,Interactive Startup} below.
+interpreter's interactive startup files, see @pxref{158,,Interactive Startup} below.
 
 @node User-Defined Commands,Interactive Startup,Pretty-Printing,Interactive Usage
-@anchor{pure user-defined-commands}@anchor{152}
+@anchor{pure user-defined-commands}@anchor{153}
 @section User-Defined Commands
 
 
@@ -16234,7 +16203,7 @@ It is possible to extend the interpreter with your own interactive
 commands. To these ends, all you have to do is provide some corresponding
 public function definitions in the special @code{__cmd__} namespace
 (cf. @pxref{ad,,Namespaces}). These definitions are typically placed in one of the
-interpreter's startup files (see @pxref{157,,Interactive Startup} below) so that they
+interpreter's startup files (see @pxref{158,,Interactive Startup} below) so that they
 are always available when running the interpreter interactively.
 
 A command function is invoked with one string argument which contains the rest
@@ -16336,7 +16305,7 @@ examples/poor.c  examples/sort.c
 interactively, we need to escape the second input line above with leading
 whitespace, so that it's not mistaken for an invocation of the built-in @code{ls}
 command. This isn't necessary if you're using the alternative "escape" command
-syntax described in @pxref{151,,Command Syntax}.)
+syntax described in @pxref{152,,Command Syntax}.)
 
 To do more interesting things, you should take a look at the reflection
 capabilities discussed in the @pxref{63,,Macros} section, which open up endless
@@ -16424,7 +16393,7 @@ More examples can be found in the sample.purerc file distributed with the Pure
 interpreter.
 
 @node Interactive Startup,,User-Defined Commands,Interactive Usage
-@anchor{pure interactive-startup}@anchor{157}
+@anchor{pure interactive-startup}@anchor{158}
 @section Interactive Startup
 
 
@@ -16449,29 +16418,88 @@ directory, which is usually created with the @code{dump} command (see
 above). This file is loaded after the .purerc files if it is present.
 
 The interpreter processes all these files in the same way as with the @code{run}
-command (see @pxref{124,,Interactive Commands} above). When invoking the interpreter,
+command (see @pxref{125,,Interactive Commands} above). When invoking the interpreter,
 you can specify the @pxref{2e,,---norc} option on the command line if you wish to
 skip these initializations.
 
 @node Batch Compilation,Caveats and Notes,Interactive Usage,Top
-@anchor{pure id22}@anchor{159}@anchor{pure batch-compilation}@anchor{b}
+@anchor{pure id23}@anchor{15a}@anchor{pure batch-compilation}@anchor{b}
 @chapter Batch Compilation
 
 
-The interpreter's @pxref{18,,-c} option provides a means to turn Pure scripts
-into standalone executables. This feature is still a bit experimental. In
-particular, note that the compiled executable is essentially a @emph{static
-snapshot} of your program which is executed on the "bare metal", without a
-hosting interpreter. Only a minimal runtime system is provided. This
-considerably reduces startup times, but also implies some quirks and
-limitations as detailed below.
+The interpreter's @pxref{18,,-c} option provides a means to quickly turn Pure
+scripts into standalone executables. The compiled executable is essentially a
+@emph{static snapshot} of your program which is executed on the "bare metal",
+without a hosting interpreter and with just a minimal runtime system. This
+considerably reduces startup times, but also implies some limitations (mostly
+related to meta-programming capabilities) which will be discussed in the
+following subsection, where we give a detailed account on the batch
+compilation process.
 
-First and foremost, the batch compiler always reorders the code so that all
-toplevel expressions and @pxref{c2,,let} bindings are evaluated @emph{after} all
-functions have been defined. This is done to reduce the size of the output
-executable, so that there's only a @emph{single} snapshot of each function which
-will be used by all toplevel expressions and global variable definitions
-invoking the function. Therefore you should avoid code like the following:
+@menu
+* Compile Time Versus Run Time:: 
+* Example:: 
+* Options Affecting Code Size:: 
+* Other Output Code Formats:: 
+* Calling Pure Functions From C:: 
+
+@end menu
+
+@node Compile Time Versus Run Time,Example,,Batch Compilation
+@anchor{pure compile-time-versus-run-time}@anchor{15b}
+@section Compile Time Versus Run Time
+
+
+The batch compiler processes most of the script at compile time as usual. The
+only exception are plain toplevel expressions which are @emph{not} executed during
+batch compilation, but of course they are compiled and become part of the
+output code. Your program will normally have to include at least one of these
+so that it does something useful. That is, the toplevel expressions play the
+role of the "main program" in your script. They are best placed after all the
+function and variable definitions, at the end of your program.
+
+All other items (macro, type, function, constant and variable definitions) are
+executed @emph{at compile time} as usual. This might first seem a bit weird, but it
+paves the way for the powerful programming technique of partial evaluation@footnote{http://en.wikipedia.org/wiki/Partial_evaluation}
+(more about that later). In any case, compile-time execution can't really be
+avoided in a highly dynamic language like Pure. Recall that even constants can
+be defined by evaluating arbitrary expressions, and using @code{eval} a
+program can easily modify itself in even more unforeseeable ways.
+
+Thus it is important to keep in mind that if @pxref{52,,const} and
+@pxref{c2,,let} bindings involve any code to be executed, that code will be run
+also during batch compilation. What this means is that permanent side-effects
+such as creating or removing files should be avoided in these definitions;
+stuff like reading files in order to initialize constants and variables should
+be ok, though. Other side-effects should be confined to the toplevel
+expressions making up your main program. (The compiler has no way of checking
+these policies, so they are the programmer's responsibility.)
+
+In the case of @pxref{52,,const}, the code needed to construct these values
+will normally be run @emph{only} during batch compilation and the resulting values
+are then either inlined in other definitions or stored as read-only variables,
+see @pxref{ea,,Constant Definitions} for details. In contrast, the code for
+@pxref{c2,,let}-bound variables will actually be executed @emph{twice}, once during
+batch compilation, and then again when the compiled program runs.
+
+@cartouche
+@quotation Note 
+There's one corner case in which @pxref{52,,const} is treated pretty
+much the same as @pxref{c2,,let}, namely if a constant involves run time
+data such as pointers and closures. In such cases the constant value has to
+be recomputed at run time and effectively becomes a (read-only) variable.
+(The same applies if the @pxref{51,,---noconst} option is used to force
+computation of constant values at run time, see @pxref{15c,,Options Affecting Code Size}.)
+@end quotation
+@end cartouche
+
+The batch compiler always reorders the output code so that all toplevel
+expressions and @pxref{c2,,let} bindings are evaluated @emph{after} all functions
+have been defined. This is done to reduce the size of the output executable,
+so that there's only a @emph{single} snapshot of each function which will be used
+by all toplevel expressions and global variable definitions invoking the
+function. Therefore you should avoid code like the following, which changes
+the function @code{foo} on the fly between invocations:
 
 @example
 let x = foo 99;
@@ -16481,42 +16509,8 @@ let y = foo 99;
 
 @noindent
 
-Note that if you run this through the interpreter, @code{x} and @code{y} are bound
-to @code{foo 99} and @code{100}, respectively, because expressions and variable
-definitions are executed immediately, as the program is being processed. In
-contrast, if the same program is batch-compiled, @emph{both} variables will be
-defined @emph{after} the definition of @code{foo} and thus refer to the same value
-@code{100} instead. This will rarely be a problem in practice (the above example
-is really rather pathological and won't usually occur in real-world programs),
-but to avoid these semantic differences, you'll have to make sure that
-expressions are evaluated @emph{after} all functions used in the evaluation have
-been defined completely. (However, the batch compiler currently doesn't check
-this condition and will happily generate code for programs which violate it.)
-
-Plain toplevel expressions won't be of much use in a batch-compiled program,
-unless, of course, they are evaluated for their side-effects. Your program
-will have to include at least one of these to play the role of the "main
-program" in your script. In most cases these expressions are best placed after
-all the function and variable definitions, at the end of your program.
-
-Also note that during a batch compilation, the compiled program is actually
-executed as usual, i.e., the script is also run @emph{at compile time}. This might
-first seem to be a big annoyance, but it actually opens the door for some
-powerful programming techniques like partial evaluation@footnote{http://en.wikipedia.org/wiki/Partial_evaluation}. It is also a
-necessity because of Pure's highly dynamic nature. For instance, Pure allows
-you to define constants by evaluating an arbitrary expression (cf. @pxref{e9,,Constant Definitions}), and using @code{eval} a program can easily modify itself in
-even more unforeseeable ways. Therefore pretty much anything in your program
-can actually depend on previous computations performed while the program is
-being executed. To make this work in batch-compiled scripts, the batch
-compiler thus executes the script as usual. The @pxref{3e,,compiling} variable can
-be used to check whether the script is being batch-compiled, so you can adjust
-to that by selectively enabling or disabling parts of the code. For instance,
-you will usually want to skip execution of the "main program" during batch
-compilation.
-
-Last but not least, note that some parts of Pure's metaprogramming
-capabilities and other compile time features are disabled in batch-compiled
-programs:
+Last but not least, some parts of Pure's meta-programming capabilities and
+other compile time features are disabled in batch-compiled programs:
 
 
 @itemize *
@@ -16528,9 +16522,9 @@ and @pxref{97,,when} clauses inside an expression, but you can't use
 @code{eval} to define new global variables and functions. In other words,
 anything which changes the executing program is "verboten". Moreover, the
 introspective capabilities provided by @code{evalcmd} and similar
-operations (discussed under @pxref{135,,Reflection} in the @pxref{63,,Macros} section) are all
-disabled. If you need any of these capabilities, you have to run your
-program with the interpreter.
+operations (discussed under @pxref{136,,Reflection} in the @pxref{63,,Macros} section) are all
+disabled. If you need any of these capabilities at run time, you have to run
+your program with the interpreter.
 
 @item 
 Constant and macro definitions, being compile time features, aren't
@@ -16540,45 +16534,41 @@ function definitions instead. Also, the compiler usually strips unused
 functions from the output code, so that only functions which are actually
 called somewhere in the static program text are available to @code{eval}.
 (The @pxref{34,,-u} option and the @pxref{5f,,---required}
-pragma can be used to avoid this, see @pxref{15a,,Options Affecting Code Size} below.)
-
-@item 
-Code which gets executed to compute constant values at compile time will
-generally @emph{not} be executed in the compiled executable, so your program
-shouldn't rely on side-effects of such computations (this would be bad
-practice anyway). There is an exception to this rule, however, namely if a
-constant value contains run time data such as pointers and local functions
-which requires an initialization at run time, then the batch compiler will
-generate code for that. (The same happens if the @pxref{51,,---noconst} option
-is used to force computation of constant values at run time, see @pxref{15a,,Options Affecting Code Size}.)
+pragma can be used to avoid this, see @pxref{15c,,Options Affecting Code Size} below.)
 @end itemize
 
 What this boils down to is that in the batch-compiled program you will have to
 avoid anything which requires the compile time or interactive facilities of
-the interpreter. These restrictions only apply at run time, of course. At
-compile time the program @emph{is} being executed by the full version of the
-interpreter so you can use @code{eval} and @code{evalcmd} in any desired
-way.
+the interpreter. These restrictions only apply at run time, of course. During
+batch compilation the program @emph{is} being executed by the interpreter, so you
+can use @code{eval} and @code{evalcmd} in any desired way. You just need to
+make sure that the corresponding code actually gets executed at compile time
+(remember that plain toplevel expressions aren't). This can be done most
+conveniently by wrapping it up in a @pxref{52,,const} or @pxref{c2,,let}
+construct, omitting the left-hand side (cf. @pxref{e0,,Simple Rules}):
 
-For most kinds of scripts, the above restrictions aren't really that much of
-an obstacle, or can easily be worked around. For the few scripts which
-actually need the full dynamic capabilities of Pure you'll just have to run
-the script with the interpreter. This isn't a big deal either, only the
-startup will be somewhat slower because the script is compiled on the
-fly. Once the JIT has done its thing the "interpreted" script will run every
-bit as fast as the "compiled" one, since in fact @emph{both} are compiled (only at
-different times) to exactly the same code!
+@example
+const eval "fancy compile time code goes here";
+@end example
 
-@menu
-* Example:: 
-* Options Affecting Code Size:: 
-* Other Output Code Formats:: 
-* Calling Pure Functions From C:: 
+@noindent
 
-@end menu
+The same approach works with the other inspection operations discussed in
+@pxref{136,,Reflection}, and also comes in handy if external C code requires
+initialization at compile time. In some cases it may be necessary to execute
+the same code @emph{both} at compile and at run time, which can be achieved by
+using @code{let} in lieu of @code{const}.
 
-@node Example,Options Affecting Code Size,,Batch Compilation
-@anchor{pure example}@anchor{15b}
+Most kinds of scripts will work fine when batch-compiled, using the tricks we
+discussed above to work around the little kinks and limitations. For the few
+scripts which actually need the full dynamic capabilities of Pure you'll just
+have to run the script with the interpreter, which shouldn't usually be a big
+impediment either. Once the JIT has done its thing the "interpreted" script
+will run every bit as fast as the "compiled" one, since in fact @emph{both} are
+compiled (only at different times) to exactly the same code!
+
+@node Example,Options Affecting Code Size,Compile Time Versus Run Time,Batch Compilation
+@anchor{pure example}@anchor{15d}
 @section Example
 
 
@@ -16637,8 +16627,9 @@ Hello, world!
 @noindent
 
 Next suppose that we'd like to supply the value @code{n} at @emph{compile} rather than
-run time. To these ends we want to turn the value passed to the @code{main}
-function into a compile time constant, which can be done as follows:
+run time. This is what partial evaluation@footnote{http://en.wikipedia.org/wiki/Partial_evaluation} is all about. In Pure we can just
+turn the value passed to the @code{main} function into a compile time constant as
+follows:
 
 @example
 const n = if argc>1 then sscanf (argv!1) "%d" else 10;
@@ -16648,18 +16639,6 @@ const n = if argc>1 then sscanf (argv!1) "%d" else 10;
 
 (Note that we provide @code{10} as a default if @code{n} isn't specified on the
 command line.)
-
-Moreover, in such a case we usually want to skip the execution of the main
-function at compile time. To these ends, the predefined @pxref{3e,,compiling}
-variable holds a truth value indicating whether the program is actually
-running under the auspices of the batch compiler, so that it can adjust
-accordingly. In our example, the evaluation of @code{main} becomes:
-
-@example
-if compiling then () else main n;
-@end example
-
-@noindent
 
 Our program now looks as follows:
 
@@ -16671,7 +16650,7 @@ fact n = if n>0 then n*fact (n-1) else 1;
 main n = do puts ["Hello, world!", str (map fact (1..n))];
 
 const n = if argc>1 then sscanf (argv!1) "%d" else 10;
-if compiling then () else main n;
+main n;
 @end example
 
 @noindent
@@ -16703,15 +16682,14 @@ Hello, world!
 
 @noindent
 
-In addition, there's also a @emph{compile time} check analogous to the
-@pxref{3e,,compiling} variable, which indicates whether the source script is being
-run normally or in a batch compilation; see @pxref{41,,Conditional Compilation}. We
-might employ this as follows, replacing the last line of the script with
-this:
+Finally, there's also a compile time check which comes in handy if we want to
+execute different code depending on whether a script is batch-compiled or not;
+see @pxref{41,,Conditional Compilation}. We might employ this as follows, replacing the
+last line of the script with this:
 
 @example
 #! --if compiled
-if compiling then () else main n;
+if argc>1 then main (sscanf (argv!1) "%d") else main n;
 #! --else
 if argc>1 then main n else puts "Try 'main n' where n is a number.";
 #! --endif
@@ -16719,14 +16697,16 @@ if argc>1 then main n else puts "Try 'main n' where n is a number.";
 
 @noindent
 
-The code in the @code{--if compiled} section, which is the same as before, is now
-only executed during batch compilation and in the compiled executable. If we
-run the script normally, in the interpreter, the code in the @code{--else}
-section, which just prints a welcome message if no arguments are given on the
-command line, is executed instead. So we now actually have @emph{four} different
-code paths, depending on whether the script is run normally, with or without
-arguments, or in a batch compilation, or as a native executable. This kind of
-setup is useful if the script is to be run both interactively and
+The code in the @code{--if compiled} section is only executed in the compiled
+script. It now also checks whether there is a parameter specified on the
+command line at run time, using that as the value of @code{n} if present, and
+falling back to the static @code{n} value (specified on the command line during
+compilation, or 10 by default) otherwise. If we run the script normally, in
+the interpreter, the code in the @code{--else} section is executed instead, which
+just prints a welcome message if no arguments are given on the command line.
+So we now actually have @emph{four} different code paths, depending on whether the
+script is run normally or batch-compiled, with or without arguments. This kind
+of setup is useful if the script is to be run both interactively and
 non-interactively in the interpreter while developing it, but once the script
 is finished it gets compiled and installed as a native executable.
 
@@ -16748,6 +16728,10 @@ $ pure -o hello -c hello.pure
 $ ./hello
 Hello, world!
 [1,2,6,24,120,720,5040,40320,362880,3628800]
+
+$ ./hello 8
+Hello, world!
+[1,2,6,24,120,720,5040,40320]
 @end example
 
 @noindent
@@ -16757,7 +16741,7 @@ like our simple first example will do the trick. But, as you've seen, Pure can
 easily do it.
 
 @node Options Affecting Code Size,Other Output Code Formats,Example,Batch Compilation
-@anchor{pure options-affecting-code-size}@anchor{15a}
+@anchor{pure options-affecting-code-size}@anchor{15c}
 @section Options Affecting Code Size
 
 
@@ -16767,14 +16751,14 @@ option, in which case the output code includes @emph{all} functions defined in t
 compiled program, the prelude and any other module imported with a
 @pxref{43,,using} clause, even if they don't seem to be used anywhere. This
 considerably increases compilation times and makes the compiled executable
-much larger. For instance, on a 64 bit Linux systems with ELF binaries the
-executable of our hello.pure example is about thrice as large:
+much larger. For instance, on my 64 bit Linux systems with ELF binaries the
+executable of our hello.pure example is about twice as large:
 
 @example
 $ pure -o hello -c -x hello.pure 7 && ls -l hello
--rwxr-xr-x 1 ag users 178484 2010-01-12 06:21 hello
+-rwxr-xr-x 1 ag ag 337304 Apr 10 19:24 hello
 $ pure -o hello -c -u -x hello.pure 7 && ls -l hello
--rwxr-xr-x 1 ag users 541941 2010-01-12 06:21 hello
+-rwxr-xr-x 1 ag ag 664112 Apr 10 19:24 hello
 @end example
 
 @noindent
@@ -16827,19 +16811,19 @@ puts $ str $ sum xs;
 
 @noindent
 
-On my 64 bit Linux system this produces a 187115 bytes executable. Without
-@pxref{51,,---noconst} the code becomes almost an order of magnitude larger in
-this case (1788699 bytes). On the other hand, the smaller executable also
-takes a little longer to run since it must first recompute the value of the
-list constant at startup. So you have to consider the tradeoffs in a given
-situation. Usually big executables aren't much of a problem on modern
-operating systems, but if your program contains a lot of big constants then
-this may become an important consideration. However, if a constant value takes
-a long time to compute then you'll be better off with the default behaviour of
-precomputing the value at compile time.
+On my 64 bit Linux system this produces a 240 KB executable. Without
+@pxref{51,,---noconst} the code becomes almost an order of magnitude larger (some
+1800 KB). On the other hand, the smaller executable also takes a little longer
+to run since it must first recompute the value of the list constant at
+startup. So you have to consider the tradeoffs in a given situation. Usually
+big executables aren't much of a problem on modern operating systems, but if
+your program contains a lot of big constants then this may become an important
+consideration. However, if a constant value takes a long time to compute then
+you'll be better off with the default behaviour of precomputing the value at
+compile time.
 
 @node Other Output Code Formats,Calling Pure Functions From C,Options Affecting Code Size,Batch Compilation
-@anchor{pure other-output-code-formats}@anchor{15c}
+@anchor{pure other-output-code-formats}@anchor{15e}
 @section Other Output Code Formats
 
 
@@ -16944,9 +16928,9 @@ this will be good enough, but if it isn't, you can just add options to the
 linker command as needed to pull in additional required libraries.
 
 As this last example shows, you can also create shared libraries from Pure
-modules. However, on some systems (most notably x86_64), this requires that
-you pass the @pxref{20,,-fPIC} option when batch-compiling the module, so that
-position-independent code is generated:
+modules. However, on some systems you may have to pass the @pxref{20,,-fPIC}
+option when batch-compiling the module, so that position-independent code is
+generated:
 
 @example
 $ pure -c -fPIC pure-odbc/examples/menagerie.pure -o menagerie.o
@@ -16954,18 +16938,25 @@ $ pure -c -fPIC pure-odbc/examples/menagerie.pure -o menagerie.o
 
 @noindent
 
-Note that even when building a shared module, you'll have to supply an
-initialization routine which calls @code{__pure_main__} somewhere.
+@cartouche
+@quotation Note 
+On most systems it shouldn't be necessary to specify @pxref{20,,-fPIC}
+explicitly any more, since the compiler will add that option automatically
+on platforms known to require it. Also note that even when building a
+shared module, you'll have to supply an initialization routine which calls
+@code{__pure_main__} somewhere.
+@end quotation
+@end cartouche
 
-Also note that since Pure doesn't support separate compilation in the present
-implementation, if you create different shared modules like this, each will
-contain their own copy all the required Pure functions from the prelude and
-other imported Pure modules. This becomes a problem when trying to link
-several separate batch-compiled modules into the same executable or library,
-because you'll get many name clashes for routines present in different modules
-(including the @code{__pure_main__} entry point). To prevent this, the batch
-compiler can be invoked with the @pxref{2a,,---main} option to explicitly set a
-name for the main entry point. For instance:
+Since Pure doesn't support separate compilation in the present implementation,
+if you create different shared modules like this, each will contain their own
+copy of all the required Pure functions from the prelude and other imported
+Pure modules. This becomes a problem when trying to link several separate
+batch-compiled modules into the same executable or library, because you'll get
+many name clashes for routines present in different modules (including the
+@code{__pure_main__} entry point). To prevent this, the batch compiler can be
+invoked with the @pxref{2a,,---main} option to explicitly set a name for the main
+entry point. For instance:
 
 @example
 $ pure -c hello.pure -o hello.o --main __hello_main__
@@ -17025,7 +17016,7 @@ toolchain. Please refer to the LLVM documentation@footnote{http://llvm.org/docs/
 description of the opt and llc programs) for details.
 
 @node Calling Pure Functions From C,,Other Output Code Formats,Batch Compilation
-@anchor{pure calling-pure-functions-from-c}@anchor{15d}@anchor{pure llvm-documentation}@anchor{15e}
+@anchor{pure calling-pure-functions-from-c}@anchor{15f}@anchor{pure llvm-documentation}@anchor{160}
 @section Calling Pure Functions From C
 
 
@@ -17108,7 +17099,7 @@ implementation and how to deal with them.
 @end menu
 
 @node Etymology,Backward Compatibility,,Caveats and Notes
-@anchor{pure etymology}@anchor{15f}
+@anchor{pure etymology}@anchor{161}
 @section Etymology
 
 
@@ -17127,15 +17118,15 @@ now. If you insist on a (recursive) backronym, just take "Pure" to stand for
 the "Pure universal rewriting engine".
 
 @node Backward Compatibility,Error Recovery,Etymology,Caveats and Notes
-@anchor{pure backward-compatibility}@anchor{160}
+@anchor{pure backward-compatibility}@anchor{162}
 @section Backward Compatibility
 
 
-Pure is based on the author's earlier @pxref{161,,Q} language, but it offers many new and
+Pure is based on the author's earlier @pxref{163,,Q} language, but it offers many new and
 powerful features and programs run much faster than their Q equivalents. The
 language also went through a thorough facelift in order to modernize the
 syntax and make it more similar to other modern-style functional languages, in
-particular @pxref{162,,Miranda} and @pxref{91,,Haskell}. Thus porting Q scripts to Pure often
+particular @pxref{164,,Miranda} and @pxref{91,,Haskell}. Thus porting Q scripts to Pure often
 involves a substantial amount of manual work, but it can (and has) been done.
 
 Since its modest beginnings in April 2008, Pure has gone through a lot of
@@ -17173,7 +17164,7 @@ tagged variable, no matter whether @code{foo} is also a valid namespace).
 
 Pure 0.26 extended the namespaces feature to add support for hierarchical
 namespaces. This means that name lookup works in a slightly different fashion
-now (see @pxref{120,,Hierarchical Namespaces} for details), but old code which doesn't
+now (see @pxref{121,,Hierarchical Namespaces} for details), but old code which doesn't
 use the new feature should continue to work unchanged.
 
 Pure 0.26 also changed the @code{nullary} keyword to @pxref{94,,nonfix}, which is
@@ -17196,7 +17187,7 @@ result yourself.
 
 Also, as of Pure 0.41 the batch compiler produces stripped executables by
 default. To create unstripped executables you now have to use the @pxref{34,,-u}
-option, see @pxref{15a,,Options Affecting Code Size} for details. The @code{-s}
+option, see @pxref{15c,,Options Affecting Code Size} for details. The @code{-s}
 option to produce stripped executables is still provided for backward
 compatibility, but it won't have any effect unless you use it to override a
 previous @pxref{34,,-u} option.
@@ -17216,7 +17207,7 @@ of numeric pointer arguments (@code{int*} etc.) was changed to bring them in lin
 with the other new numeric matrix conversions (@code{int**} etc.). In particular,
 the matrix data can now be modified in-place and type checking is more strict
 (@code{int*} requires an int matrix, etc.). Also, there's now support for
-@code{argv}-style vector arguments (@code{char**} and @code{void**}). Please see the @pxref{13f,,C Types} section for details.
+@code{argv}-style vector arguments (@code{char**} and @code{void**}). Please see the @pxref{140,,C Types} section for details.
 
 Pure 0.47 added a bunch of new features which have been on the wishlist for
 the forthcoming 1.0 release:
@@ -17226,7 +17217,7 @@ the forthcoming 1.0 release:
 
 @item 
 You can now define your own interactive commands by placing suitable
-function definitions in the special @code{__cmd__} namespace; see @pxref{152,,User-Defined Commands} for details.
+function definitions in the special @code{__cmd__} namespace; see @pxref{153,,User-Defined Commands} for details.
 
 @item 
 The syntax used to denote @pxref{7c,,inline code} sections was changed from
@@ -17237,7 +17228,7 @@ construct in Emacs Pure mode.
 
 @item 
 It is now possible to declare variadic externs, so that functions like
-@code{printf} can be called without much ado; see @pxref{140,,Variadic C Functions}.
+@code{printf} can be called without much ado; see @pxref{141,,Variadic C Functions}.
 
 @item 
 Support for simple kinds of matrix @pxref{b0,,patterns} like @code{@{x,y@}}, @code{@{x::int,y@}},
@@ -17249,7 +17240,7 @@ changed. Previously these would be evaluated even in the middle of a quoted
 expression. Now they will produce a special meta representation in terms of
 built-in macros, in order to support the advanced metaprogramming
 capabilities discussed in @pxref{64,,Built-in Macros and Special Expressions} and
-@pxref{135,,Reflection}.
+@pxref{136,,Reflection}.
 
 @item 
 Last but not least, Pure 0.47 sports a new, more flexible type tag feature
@@ -17278,7 +17269,7 @@ version and system dependencies can now be handled in a more convenient way.
 
 Pure 0.50 introduced the declaration of @pxref{c8,,interface types}, which make it
 possible to create the definition of a type from a description of its
-operations. To these ends, a new keyword @pxref{fd,,interface} was added to the
+operations. To these ends, a new keyword @pxref{fe,,interface} was added to the
 language.
 
 Pure 0.55 changed the default compilers for inline C, C++ and Fortran code to
@@ -17295,7 +17286,7 @@ behaviour of raising an exception in such cases offered no real benefits and
 was in fact very inconvenient in most situations. Pure 0.56 also enables stack
 checks by default (see @pxref{4e,,Stack Size and Tail Recursion} for details), and
 interactive commands can optionally be escaped by prefixing them with a
-special character (see @pxref{151,,Command Syntax}). The @code{true} and
+special character (see @pxref{152,,Command Syntax}). The @code{true} and
 @code{false} constants are now declared as @pxref{94,,nonfix} symbols in the
 prelude so that they can be used in patterns.
 
@@ -17310,8 +17301,19 @@ code generation options @pxref{56,,---symbolic} and @pxref{57,,---nosymbolic} to
 the default evaluation mode of global functions; these are discussed in
 @pxref{61,,Defined Functions} below.
 
+Pure 0.66 fixed the treatment of unary/binary minus in custom namespaces. The
+compiler now handles this by manufacturing a corresponding unary minus
+operator and an accompanying @code{neg} function symbol in the same namespace, so
+that the overloaded @code{-} operator works in exactly the same manner as the
+default one.
+
+Pure 0.68 changed the batch compiler so that plain toplevel expressions are
+not evaluated during batch compilation any more. Thus the @pxref{3e,,compiling}
+variable is obsolete now. It is still supported for backward compatibility,
+but the compiler will flag it as "deprecated" when run with the @pxref{37,,-w} option. Please check @pxref{b,,Batch Compilation} for details.
+
 @node Error Recovery,Splicing Tuples and Matrices,Backward Compatibility,Caveats and Notes
-@anchor{pure error-recovery}@anchor{163}
+@anchor{pure error-recovery}@anchor{165}
 @section Error Recovery
 
 
@@ -17380,7 +17382,7 @@ structures, one which nests, and one which doesn't but has other interesting
 properties.
 
 @node With and when,Non-Linear Patterns,Splicing Tuples and Matrices,Caveats and Notes
-@anchor{pure with-and-when}@anchor{164}
+@anchor{pure with-and-when}@anchor{166}
 @section With and when
 
 
@@ -17460,7 +17462,7 @@ reverse", i.e., from bottom to top, which is the order in which they will
 actually be executed.
 
 @node Non-Linear Patterns,"As" Patterns,With and when,Caveats and Notes
-@anchor{pure non-linear-patterns}@anchor{165}
+@anchor{pure non-linear-patterns}@anchor{167}
 @section Non-Linear Patterns
 
 
@@ -17500,7 +17502,7 @@ verified in a finite amount of time. Therefore the interpreter reports a
 "recursive variable" error in such situations.
 
 @node "As" Patterns,"Head = Function" Pitfalls,Non-Linear Patterns,Caveats and Notes
-@anchor{pure as-patterns}@anchor{126}
+@anchor{pure as-patterns}@anchor{127}
 @section "As" Patterns
 
 
@@ -17836,7 +17838,7 @@ second operand.
 In addition, the Pure compiler also does a specialized form of tail recursion
 optimization for type definition rules. Due to the special way in which type
 tags are processed, however, the amount of optimization performed in this case
-is somewhat limited; see @pxref{e1,,Recursive Types} below.
+is somewhat limited; see @pxref{e2,,Recursive Types} below.
 
 Finally, note that tail call optimization is @emph{always} disabled if the debugger
 is enabled (-g). This makes it much easier to debug programs, but means that
@@ -17897,7 +17899,7 @@ process x = printf "counting: %d\n" x $$ sleep 1 $$ x+1;
 @noindent
 
 @node Recursive Types,Interfaces,Handling of Asynchronous Signals,Caveats and Notes
-@anchor{pure recursive-types}@anchor{e1}
+@anchor{pure recursive-types}@anchor{e2}
 @section Recursive Types
 
 
@@ -18060,12 +18062,12 @@ or the other depends on the situation. Similar techniques and tradeoffs also
 apply to other recursive types such as trees.
 
 @node Interfaces,Numeric Calculations,Recursive Types,Caveats and Notes
-@anchor{pure interfaces}@anchor{114}
+@anchor{pure interfaces}@anchor{115}
 @section Interfaces
 
 
 Pure's implementation of @pxref{c8,,interface types} has some notable differences to
-interfaces in a statically typed language like @pxref{110,,Go}. These are mostly due to
+interfaces in a statically typed language like @pxref{111,,Go}. These are mostly due to
 Pure's dynamically typed nature.
 
 
@@ -18153,7 +18155,7 @@ argument you want to place the interface type tag, or even have different
 types for each possible argument position.
 
 @node Numeric Calculations,Constant Definitions,Interfaces,Caveats and Notes
-@anchor{pure numeric-calculations}@anchor{166}
+@anchor{pure numeric-calculations}@anchor{168}
 @section Numeric Calculations
 
 
@@ -18194,7 +18196,7 @@ integers, not bigints; for the latter you'll have to use the "big L" notation
 bigints.
 
 @node Constant Definitions,External C Functions,Numeric Calculations,Caveats and Notes
-@anchor{pure constant-definitions}@anchor{e9}
+@anchor{pure constant-definitions}@anchor{ea}
 @section Constant Definitions
 
 
@@ -18368,21 +18370,21 @@ initialization, so the compiler generates the appropriate run time
 initialization code in this case. For all practical purposes, this turns the
 constant into a read-only variable. (There's also a code generation option to
 force this behaviour even for "normal" constants for which it's not strictly
-necessary, in order to create smaller executables; see @pxref{15a,,Options Affecting Code Size} for details.)
+necessary, in order to create smaller executables; see @pxref{15c,,Options Affecting Code Size} for details.)
 
 @node External C Functions,Calling Special Forms,Constant Definitions,Caveats and Notes
-@anchor{pure external-c-functions}@anchor{138}
+@anchor{pure external-c-functions}@anchor{139}
 @section External C Functions
 
 
-The interpreter always takes your @pxref{fe,,extern} declarations of C routines
+The interpreter always takes your @pxref{ff,,extern} declarations of C routines
 at face value. It will not go and read any C header files to determine whether
 you actually declared the function correctly! So you have to be careful to
 give the proper declarations, otherwise your program might well give a
 segfault when calling the function. This problem can to some extent be
-alleviated by using the bitcode interface, see @pxref{147,,Importing LLVM Bitcode} and
+alleviated by using the bitcode interface, see @pxref{148,,Importing LLVM Bitcode} and
 @pxref{7c,,Inline Code} in the @pxref{45,,C Interface} section. However, you always have to be
-careful when calling @pxref{140,,variadic C functions}, as the compiler has no way of
+careful when calling @pxref{141,,variadic C functions}, as the compiler has no way of
 checking which combinations of extra parameters a function like @code{printf} is
 to be invoked with. (As a remedy, the standard library provides safe
 implementations of @code{printf} and other commonly used variadic functions
@@ -18396,16 +18398,16 @@ kind of functionality, please see @code{pure-ffi} for details.
 Last but not least, to make it easier to create Pure interfaces to large C
 libraries, there's a separate pure-gen program available at the Pure website.
 This program takes a C header (.h) file and creates a corresponding Pure
-module with definitions and @pxref{fe,,extern} declarations for the constants
+module with definitions and @pxref{ff,,extern} declarations for the constants
 and functions declared in the header. Please refer to @code{pure-gen} for
 details.
 
 @node Calling Special Forms,Laziness,External C Functions,Caveats and Notes
-@anchor{pure calling-special-forms}@anchor{167}
+@anchor{pure calling-special-forms}@anchor{169}
 @section Calling Special Forms
 
 
-Special forms are recognized at compile time only. Thus the @pxref{137,,catch}
+Special forms are recognized at compile time only. Thus the @pxref{138,,catch}
 function, as well as @pxref{be,,quote} and the operators @pxref{b9,,&&},
 @pxref{ba,,||}, @pxref{bb,,$$} and @pxref{bc,,&}, are only treated as special
 forms in direct (saturated) calls. They can still be used if you pass them
@@ -18413,11 +18415,11 @@ around as function values or in partial applications, but in this case they
 lose all their special call-by-name argument processing.
 
 @node Laziness,Name Capture,Calling Special Forms,Caveats and Notes
-@anchor{pure laziness}@anchor{168}
+@anchor{pure laziness}@anchor{16a}
 @section Laziness
 
 
-Pure does lazy evaluation in the same way as @pxref{169,,Alice ML}, providing an
+Pure does lazy evaluation in the same way as @pxref{16b,,Alice ML}, providing an
 explicit operation (@pxref{bc,,&}) to defer evaluation and create a "future" which
 is called by need. However, note that like any language with a basically eager
 evaluation strategy, Pure cannot really support lazy evaluation in a fully
@@ -18507,17 +18509,17 @@ is being traversed, leading to rather nasty memory leaks. Please see the
 @end itemize
 
 @node Name Capture,,Laziness,Caveats and Notes
-@anchor{pure name-capture}@anchor{129}
+@anchor{pure name-capture}@anchor{12a}
 @section Name Capture
 
 
-As explained in the @pxref{128,,Macro Hygiene} section, Pure macros are lexically scoped
+As explained in the @pxref{129,,Macro Hygiene} section, Pure macros are lexically scoped
 and thus "hygienic". So in principle Pure macros are not susceptible to name
 capture. However, this principle only applies to "real" block constructs, not
 their quoted "placeholder" representations described in @pxref{64,,Built-in Macros and Special Expressions}. One (rather obscure) case which deserves special
 attention is the case of macros involving free variables which are being
 called inside quoted block constructs. Note that this corresponds to the
-"mild" first form of name capture described in the @pxref{128,,Macro Hygiene}
+"mild" first form of name capture described in the @pxref{129,,Macro Hygiene}
 section. For instance, consider the following example:
 
 @example
@@ -18533,7 +18535,7 @@ G 10 __when__ [y-->99]
 Here the free @code{y} variable of the macro @code{G} got captured by the quoted
 @pxref{97,,when} clause when the quoted expression is evaluated. This happens
 because, using call by value, the call @code{G 10} gets evaluated before the
-@pxref{12e,,__when__} macro. So the behaviour of the macro evaluator in this case
+@pxref{12f,,__when__} macro. So the behaviour of the macro evaluator in this case
 is in fact correct; the only remedy here is to avoid macros involving free
 variables inside a quoted block construct. The same applies to
 "@pxref{62,,quoteargs}" macros which quote their
@@ -18595,7 +18597,7 @@ bug in the expression printer which will hopefully be fixed some time. But for
 the time being you will have to correct such glitches manually.
 
 @node Author,Acknowledgements,Caveats and Notes,Top
-@anchor{pure author}@anchor{16a}
+@anchor{pure author}@anchor{16c}
 @chapter Author
 
 
@@ -18603,7 +18605,7 @@ Albert Gräf <@email{aggraef@@gmail.com}>, Dept. of Computer Music, Johannes
 Gutenberg University of Mainz, Germany.
 
 @node Acknowledgements,Copying,Author,Top
-@anchor{pure acknowledgements}@anchor{16b}
+@anchor{pure acknowledgements}@anchor{16d}
 @chapter Acknowledgements
 
 
@@ -18683,7 +18685,7 @@ distribution for the exact licensing terms. You can also find the LLVM license
 at the @pxref{6,,LLVM} website.
 
 @node References and Links,Index,Copying,Top
-@anchor{pure references-and-links}@anchor{16c}
+@anchor{pure references-and-links}@anchor{16e}
 @chapter References and Links
 
 @anchor{pure aardappel}@anchor{b7}
@@ -18695,7 +18697,7 @@ at the @pxref{6,,LLVM} website.
 Wouter van Oortmerssen's functional programming language based on term
 rewriting, @indicateurl{http://wouter.fov120.com/aardappel}.
 @end table
-@anchor{pure alice-ml}@anchor{169}
+@anchor{pure alice-ml}@anchor{16b}
 
 @table @asis
 
@@ -18704,7 +18706,7 @@ rewriting, @indicateurl{http://wouter.fov120.com/aardappel}.
 A version of ML (see below) from which Pure borrows its model of lazy
 evaluation, @indicateurl{http://www.ps.uni-sb.de/alice}.
 @end table
-@anchor{pure ats}@anchor{14f}
+@anchor{pure ats}@anchor{150}
 
 @table @asis
 
@@ -18722,7 +18724,7 @@ which unifies implementation with formal specification,
 
 @emph{Term Rewriting and All That.} Cambridge University Press, Cambridge, 1998.
 @end table
-@anchor{pure bertrand}@anchor{10e}
+@anchor{pure bertrand}@anchor{10f}
 
 @table @asis
 
@@ -18733,7 +18735,7 @@ Wm Leler's constraint programming language based on term rewriting,
 @emph{Constraint Programming Languages: Their Specification and Generation.}
 Addison-Wesley, 1988.
 @end table
-@anchor{pure clang}@anchor{148}
+@anchor{pure clang}@anchor{149}
 
 @table @asis
 
@@ -18744,17 +18746,17 @@ LLVM, @indicateurl{http://clang.llvm.org}. Clang provides a comparatively light-
 alternative to gcc which is faster and has better and more friendly
 diagnostics.
 @end table
-@anchor{pure dragonegg}@anchor{14a}
+@anchor{pure dragonegg}@anchor{14b}
 
 @table @asis
 
 @item DragonEgg
 
 An LLVM backend for gcc 4.5 and later, @indicateurl{http://dragonegg.llvm.org}. In
-contrast to @pxref{149,,llvm-gcc}, DragonEgg is implemented as a plugin which hooks
+contrast to @pxref{14a,,llvm-gcc}, DragonEgg is implemented as a plugin which hooks
 into your system compiler.
 @end table
-@anchor{pure faust}@anchor{14b}
+@anchor{pure faust}@anchor{14c}
 
 @table @asis
 
@@ -18770,7 +18772,7 @@ Grame's functional DSP programming language, @indicateurl{http://faust.grame.fr}
 
 Free library for arbitrary precision arithmetic, @indicateurl{http://gmplib.org}.
 @end table
-@anchor{pure octave}@anchor{f7}
+@anchor{pure octave}@anchor{f8}
 
 @table @asis
 
@@ -18788,7 +18790,7 @@ replacement, @indicateurl{http://www.gnu.org/software/octave}.
 A free software library for numeric applications, can be used with Pure's
 numeric matrices, @indicateurl{http://www.gnu.org/software/gsl}.
 @end table
-@anchor{pure go}@anchor{110}
+@anchor{pure go}@anchor{111}
 
 @table @asis
 
@@ -18812,17 +18814,17 @@ A popular non-strict FPL, @indicateurl{http://www.haskell.org}.
 
 The LLVM code generator framework, @indicateurl{http://llvm.org}.
 @end table
-@anchor{pure llvm-gcc}@anchor{149}
+@anchor{pure llvm-gcc}@anchor{14a}
 
 @table @asis
 
 @item LLVM-GCC
 
 An LLVM-capable compiler based on gcc, see @indicateurl{http://llvm.org}. This is based
-on a fairly old gcc version (4.2) and has been replaced by the @pxref{14a,,DragonEgg}
+on a fairly old gcc version (4.2) and has been replaced by the @pxref{14b,,DragonEgg}
 plugin in the LLVM 3.x series.
 @end table
-@anchor{pure miranda}@anchor{162}
+@anchor{pure miranda}@anchor{164}
 
 @table @asis
 
@@ -18849,7 +18851,7 @@ D. MacQueen: @emph{The Definition of Standard ML (Revised).} MIT Press, 1997.
 @emph{Equational Logic as a Programming Language.} Series in the Foundations of
 Computing. MIT Press, Cambridge, Mass., 1985.
 @end table
-@anchor{pure q}@anchor{161}
+@anchor{pure q}@anchor{163}
 
 @table @asis
 
