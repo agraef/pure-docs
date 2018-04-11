@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.67',
+        VERSION:     '0.68',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -57,7 +57,7 @@
             
   <div class="section" id="the-pure-manual">
 <h1>The Pure Manual<a class="headerlink" href="#the-pure-manual" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.67, April 10, 2018</p>
+<p>Version 0.68, April 11, 2018</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Copyright (c) 2009-2018 by Albert Gräf. This document is available under the
 <a class="reference external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</a>. Also see the <a class="reference internal" href="#copying">Copying</a> section for licensing information of the
@@ -85,7 +85,7 @@ and the latest sources can be found under the following URLs:</p>
 <li><a class="reference internal" href="#options" id="id28">Options</a></li>
 <li><a class="reference internal" href="#overview-of-operation" id="id29">Overview of Operation</a></li>
 <li><a class="reference internal" href="#compiling-scripts" id="id30">Compiling Scripts</a></li>
-<li><a class="reference internal" href="#tagging-scripts" id="id31">Tagging Scripts</a></li>
+<li><a class="reference internal" href="#tagging-and-checking-scripts" id="id31">Tagging and Checking Scripts</a></li>
 <li><a class="reference internal" href="#running-interactively" id="id32">Running Interactively</a></li>
 <li><a class="reference internal" href="#verbosity-and-debugging-options" id="id33">Verbosity and Debugging Options</a></li>
 <li><a class="reference internal" href="#compilation-options" id="id34">Compilation Options</a><ul>
@@ -282,7 +282,7 @@ the benefit that the compiled code runs much faster than the usual kinds of
 calculator&#8221; program. Simply run the program from the shell as follows:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pure
 
-<span class="go"> __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)</span>
+<span class="go"> __ \  |   |  __| _ \    Pure 0.68 (x86_64-unknown-linux-gnu)</span>
 <span class="go"> |   | |   | |    __/    Copyright (c) 2008-2018 by Albert Graef</span>
 <span class="go"> .__/ \__,_|_|  \___|    (Type &#39;help&#39; for help, &#39;help copying&#39;</span>
 <span class="go">_|                       for license information.)</span>
@@ -424,7 +424,7 @@ performing <strong class="dfn">batch compilation</strong>, see <a class="referen
 <tt class="docutils literal"><span class="pre">--check</span></tt>, <tt class="docutils literal"><span class="pre">--ctags</span></tt> and <tt class="docutils literal"><span class="pre">--etags</span></tt> options. However, in this case the
 given scripts are not executed at all, but only parsed in order to check them
 for syntactic validity, or to produce a vi or emacs tags file, see
-<a class="reference internal" href="#tagging-scripts">Tagging Scripts</a> below.</p>
+<a href="#id162"><span class="problematic" id="id163">`Tagging Scripts`_</span></a> below.</p>
 <p>Here are some common ways to invoke the interpreter:</p>
 <dl class="docutils">
 <dt><tt class="docutils literal"><span class="pre">pure</span></tt></dt>
@@ -829,8 +829,8 @@ the suggested linker command (including all the dynamic modules loaded by the
 script, which also have to be linked in to create a working executable), to
 which you only have to add the options describing the desired output file.</p>
 </div>
-<div class="section" id="tagging-scripts">
-<h3><a class="toc-backref" href="#id31">Tagging Scripts</a><a class="headerlink" href="#tagging-scripts" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="tagging-and-checking-scripts">
+<h3><a class="toc-backref" href="#id31">Tagging and Checking Scripts</a><a class="headerlink" href="#tagging-and-checking-scripts" title="Permalink to this headline">¶</a></h3>
 <p>Pure programs often have declarations and definitions of global symbols
 scattered out over many different source files. The <a class="reference internal" href="#cmdoption-pure--ctags"><em class="xref std std-option">--ctags</em></a> and
 <a class="reference internal" href="#cmdoption-pure--etags"><em class="xref std std-option">--etags</em></a> options let you create a <a class="reference external" href="http://en.wikipedia.org/wiki/Ctags">tags</a> file which allows you to
@@ -854,6 +854,13 @@ pathnames, while scripts outside this hierarchy (such as included scripts from
 the standard library) are denoted with absolute pathnames. This scheme makes
 it possible to move an entire directory together with its tags file and have
 the tags information still work in the new location.</p>
+<p>In a similar fashion, the <a class="reference internal" href="#cmdoption-pure--check"><em class="xref std std-option">--check</em></a> option can be used to check
+scripts for syntax errors; no output files will be produced in this case.
+This is often used in combination with <a class="reference internal" href="#cmdoption-pure-w"><em class="xref std std-option">-w</em></a> to get warnings
+about implicit symbol declarations and the like. On-the-fly syntax checkers
+such as <a class="reference external" href="http://www.flycheck.org">flycheck</a> can employ this facility to check a program while it is
+being edited (the distribution actually includes a Pure module for flycheck,
+see <a class="reference internal" href="install.html"><em>Installing Pure (and LLVM)</em></a> for details).</p>
 </div>
 <div class="section" id="running-interactively">
 <h3><a class="toc-backref" href="#id32">Running Interactively</a><a class="headerlink" href="#running-interactively" title="Permalink to this headline">¶</a></h3>
@@ -3812,7 +3819,7 @@ most of the time you&#8217;ll probably use the Pure interpreter in an interactiv
 way. You then simply run it like this:</p>
 <div class="highlight-console"><div class="highlight"><pre><span></span><span class="gp">$</span> pure
 
-<span class="go"> __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)</span>
+<span class="go"> __ \  |   |  __| _ \    Pure 0.68 (x86_64-unknown-linux-gnu)</span>
 <span class="go"> |   | |   | |    __/    Copyright (c) 2008-2018 by Albert Graef</span>
 <span class="go"> .__/ \__,_|_|  \___|    (Type &#39;help&#39; for help, &#39;help copying&#39;</span>
 <span class="go">_|                       for license information.)</span>
@@ -9279,7 +9286,7 @@ Types</a>):</p>
 <p>Or let&#8217;s lists all global variables along with their values:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>catmap get_vardef (globsym <span class="s">&quot;*&quot;</span> <span class="mi">0</span>)<span class="p">;</span>
 [(argc--&gt;<span class="mi">0</span>),(argv--&gt;[]),(compiling--&gt;<span class="mi">0</span>),
-(sysinfo--&gt;<span class="s">&quot;x86_64-unknown-linux-gnu&quot;</span>),(version--&gt;<span class="s">&quot;0.67&quot;</span>)]
+(sysinfo--&gt;<span class="s">&quot;x86_64-unknown-linux-gnu&quot;</span>),(version--&gt;<span class="s">&quot;0.68&quot;</span>)]
 </pre></div>
 </div>
 <p>The counterparts of <a class="reference internal" href="purelib.html#add_fundef" title="add_fundef"><tt class="xref pure pure-func docutils literal"><span class="pre">add_fundef</span></tt></a> and <a class="reference internal" href="purelib.html#del_fundef" title="del_fundef"><tt class="xref pure pure-func docutils literal"><span class="pre">del_fundef</span></tt></a> are provided as
@@ -11290,7 +11297,7 @@ argc       var  argc = <span class="mi">0</span><span class="p">;</span>
 argv       var  argv = []<span class="p">;</span>
 compiling  var  compiling = <span class="mi">0</span><span class="p">;</span>
 sysinfo    var  sysinfo = <span class="s">&quot;x86_64-unknown-linux-gnu&quot;</span><span class="p">;</span>
-version    var  version = <span class="s">&quot;0.67&quot;</span><span class="p">;</span>
+version    var  version = <span class="s">&quot;0.68&quot;</span><span class="p">;</span>
 <span class="mi">5</span> variables
 </pre></div>
 </div>
@@ -13940,7 +13947,7 @@ sessions. See <a class="reference external" href="http://www.texmacs.org">http:/
 <li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#overview-of-operation">Overview of Operation</a></li>
 <li><a class="reference internal" href="#compiling-scripts">Compiling Scripts</a></li>
-<li><a class="reference internal" href="#tagging-scripts">Tagging Scripts</a></li>
+<li><a class="reference internal" href="#tagging-and-checking-scripts">Tagging and Checking Scripts</a></li>
 <li><a class="reference internal" href="#running-interactively">Running Interactively</a></li>
 <li><a class="reference internal" href="#verbosity-and-debugging-options">Verbosity and Debugging Options</a></li>
 <li><a class="reference internal" href="#compilation-options">Compilation Options</a><ul>
@@ -14161,7 +14168,7 @@ sessions. See <a class="reference external" href="http://www.texmacs.org">http:/
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Apr 10, 2018.
+    Last updated on Apr 11, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

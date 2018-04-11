@@ -10,7 +10,7 @@
 
   <section*|Pure Library Manual><label|pure-library-manual>
 
-  Version 0.67, April 10, 2018
+  Version 0.68, April 11, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -8846,5 +8846,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  10, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

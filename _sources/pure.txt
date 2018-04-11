@@ -22,7 +22,7 @@ The Pure Manual
    \hyphenation{name-spaces}
    \hyphenation{white-space}
 
-Version 0.67, |today|
+Version 0.68, |today|
 
 Albert Gräf <aggraef@gmail.com>
 
@@ -85,7 +85,7 @@ calculator" program. Simply run the program from the shell as follows:
 
    $ pure
 
-    __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.68 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2018 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)
@@ -603,8 +603,8 @@ the suggested linker command (including all the dynamic modules loaded by the
 script, which also have to be linked in to create a working executable), to
 which you only have to add the options describing the desired output file.
 
-Tagging Scripts
----------------
+Tagging and Checking Scripts
+----------------------------
 
 Pure programs often have declarations and definitions of global symbols
 scattered out over many different source files. The :option:`--ctags` and
@@ -633,6 +633,21 @@ pathnames, while scripts outside this hierarchy (such as included scripts from
 the standard library) are denoted with absolute pathnames. This scheme makes
 it possible to move an entire directory together with its tags file and have
 the tags information still work in the new location.
+
+In a similar fashion, the :option:`--check` option can be used to check
+scripts for syntax errors; no output files will be produced in this case.
+This is often used in combination with :option:`-w <pure -w>` to get warnings
+about implicit symbol declarations and the like. On-the-fly syntax checkers
+such as flycheck_ can employ this facility to check a program while it is
+being edited (the distribution actually includes a Pure module for flycheck,
+see :doc:`install` for details).
+
+.. _flycheck: http://www.flycheck.org
+
+.. note: If :option:`--check` is used along with :option:`-w <pure -w>` then,
+   in contrast to the tagging options, the syntax checker will execute global
+   constant and variable definitions. This is necessary in order to give
+   proper diagnostics about undeclared symbols.
 
 Running Interactively
 ---------------------
@@ -3595,7 +3610,7 @@ way. You then simply run it like this:
 
    $ pure
    
-    __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)
+    __ \  |   |  __| _ \    Pure 0.68 (x86_64-unknown-linux-gnu)
     |   | |   | |    __/    Copyright (c) 2008-2018 by Albert Graef
     .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
    _|                       for license information.)
@@ -9266,7 +9281,7 @@ Or let's lists all global variables along with their values::
 
   > catmap get_vardef (globsym "*" 0);
   [(argc-->0),(argv-->[]),(compiling-->0),
-  (sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.67")]
+  (sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.68")]
 
 The counterparts of :func:`add_fundef` and :func:`del_fundef` are provided as
 well. Not very surprisingly, they are named :func:`add_typedef`,
@@ -11367,7 +11382,7 @@ values (using the "long" format)::
   argv       var  argv = [];
   compiling  var  compiling = 0;
   sysinfo    var  sysinfo = "x86_64-unknown-linux-gnu";
-  version    var  version = "0.67";
+  version    var  version = "0.68";
   5 variables
 
 Or you can list just private symbols of the namespace ``foo``, as follows::

@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.67, April 10, 2018
+  Version 0.68, April 11, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -80,7 +80,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.67
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.68
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2018 by
@@ -300,7 +300,7 @@
   <verbatim|--check>, <verbatim|--ctags> and <verbatim|--etags> options.
   However, in this case the given scripts are not executed at all, but only
   parsed in order to check them for syntactic validity, or to produce a vi or
-  emacs tags file, see <hlink|Tagging Scripts|#tagging-scripts> below.
+  emacs tags file, see `Tagging Scripts`_ below.
 
   Here are some common ways to invoke the interpreter:
 
@@ -724,7 +724,7 @@
   have to be linked in to create a working executable), to which you only
   have to add the options describing the desired output file.
 
-  <subsubsection|Tagging Scripts><label|tagging-scripts>
+  <subsubsection|Tagging and Checking Scripts><label|tagging-and-checking-scripts>
 
   Pure programs often have declarations and definitions of global symbols
   scattered out over many different source files. The
@@ -759,6 +759,16 @@
   are denoted with absolute pathnames. This scheme makes it possible to move
   an entire directory together with its tags file and have the tags
   information still work in the new location.
+
+  In a similar fashion, the <hlink|<em|\Ucheck>|#cmdoption-pure--check>
+  option can be used to check scripts for syntax errors; no output files will
+  be produced in this case. This is often used in combination with
+  <hlink|<em|-w>|#cmdoption-pure-w> to get warnings about implicit symbol
+  declarations and the like. On-the-fly syntax checkers such as
+  <hlink|flycheck|http://www.flycheck.org> can employ this facility to check
+  a program while it is being edited (the distribution actually includes a
+  Pure module for flycheck, see <hlink|<em|Installing Pure (and
+  LLVM)>|install.tm> for details).
 
   <subsubsection|Running Interactively><label|running-interactively>
 
@@ -5108,7 +5118,7 @@
 
     \;
 
-    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.67
+    \ __ \\ \ \| \ \ \| \ __\| _ \\ \ \ \ Pure 0.68
     (x86_64-unknown-linux-gnu)
 
     \ \| \ \ \| \| \ \ \| \| \ \ \ __/ \ \ \ Copyright (c) 2008-2018 by
@@ -15114,7 +15124,7 @@
 
     [(argc--\<gtr\>0),(argv--\<gtr\>[]),(compiling--\<gtr\>0),
 
-    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.67")]
+    (sysinfo--\<gtr\>"x86_64-unknown-linux-gnu"),(version--\<gtr\>"0.68")]
 
     \;
   </verbatim>
@@ -18206,7 +18216,7 @@
 
     sysinfo \ \ \ var \ sysinfo = "x86_64-unknown-linux-gnu";
 
-    version \ \ \ var \ version = "0.67";
+    version \ \ \ var \ version = "0.68";
 
     5 variables
 
@@ -22549,7 +22559,8 @@
 
         <item><hlink|Compiling Scripts|#compiling-scripts>
 
-        <item><hlink|Tagging Scripts|#tagging-scripts>
+        <item><hlink|Tagging and Checking
+        Scripts|#tagging-and-checking-scripts>
 
         <item><hlink|Running Interactively|#running-interactively>
 
@@ -22870,5 +22881,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  10, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

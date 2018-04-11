@@ -10,7 +10,7 @@
 
   <section*|pure-stlmap><label|module-stlmap><label|module-stlmmap><label|module-stlhmap><label|module-stlmap>
 
-  Version 0.4, March 18, 2018
+  Version 0.4, April 11, 2018
 
   Peter Summerland \<less\><hlink|p.summerland@gmail.com|mailto:p.summerland@gmail.com>\<gtr\>
 
@@ -2853,5 +2853,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  10, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

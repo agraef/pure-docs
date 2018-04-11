@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.67, April 10, 2018
+Pure 0.68, April 11, 2018
 
 Albert Gräf (Editor)
 
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 @anchor{pure doc}@anchor{0}
 @c Teach TeX how to hyphenate 'namespace' and 'whitespace'.
 
-Version 0.67, April 10, 2018
+Version 0.68, April 11, 2018
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -111,7 +111,7 @@ Invoking Pure
 * Options:: 
 * Overview of Operation:: 
 * Compiling Scripts:: 
-* Tagging Scripts:: 
+* Tagging and Checking Scripts:: 
 * Running Interactively:: 
 * Verbosity and Debugging Options:: 
 * Compilation Options:: 
@@ -318,7 +318,7 @@ calculator" program. Simply run the program from the shell as follows:
 @example
 $ pure
 
- __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)
+ __ \  |   |  __| _ \    Pure 0.68 (x86_64-unknown-linux-gnu)
  |   | |   | |    __/    Copyright (c) 2008-2018 by Albert Graef
  .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
 _|                       for license information.)
@@ -509,7 +509,7 @@ Batch mode is also entered if the interpreter is invoked with one of the
 @code{--check}, @code{--ctags} and @code{--etags} options. However, in this case the
 given scripts are not executed at all, but only parsed in order to check them
 for syntactic validity, or to produce a vi or emacs tags file, see
-@pxref{15,,Tagging Scripts} below.
+>`Tagging Scripts`_< below.
 
 Here are some common ways to invoke the interpreter:
 
@@ -582,7 +582,7 @@ Pure interpreter.
 * Options:: 
 * Overview of Operation:: 
 * Compiling Scripts:: 
-* Tagging Scripts:: 
+* Tagging and Checking Scripts:: 
 * Running Interactively:: 
 * Verbosity and Debugging Options:: 
 * Compilation Options:: 
@@ -592,7 +592,7 @@ Pure interpreter.
 @end menu
 
 @node Options,Overview of Operation,,Invoking Pure
-@anchor{pure options}@anchor{16}
+@anchor{pure options}@anchor{15}
 @section Options
 
 
@@ -600,21 +600,21 @@ The interpreter accepts various options which are described in more detail
 below.
 
 @geindex pure command line option; -b
-@anchor{pure cmdoption-pure-b}@anchor{17}
+@anchor{pure cmdoption-pure-b}@anchor{16}
 @deffn {Option} -b
 
 Batch mode (execute the given scripts and exit).
 @end deffn
 
 @geindex pure command line option; -c
-@anchor{pure cmdoption-pure-c}@anchor{18}
+@anchor{pure cmdoption-pure-c}@anchor{17}
 @deffn {Option} -c
 
 Batch compilation (compile the given scripts to a native binary).
 @end deffn
 
 @geindex pure command line option; --check
-@anchor{pure cmdoption-pure--check}@anchor{19}
+@anchor{pure cmdoption-pure--check}@anchor{18}
 @deffn {Option} --check
 
 Syntax check only, do not execute code or produce any output files.
@@ -622,23 +622,23 @@ Syntax check only, do not execute code or produce any output files.
 
 @geindex pure command line option; --ctags
 @geindex pure command line option; --etags
-@anchor{pure cmdoption-pure--ctags}@anchor{1a}
+@anchor{pure cmdoption-pure--ctags}@anchor{19}
 @deffn {Option} --ctags
-@anchor{pure cmdoption-pure--etags}@anchor{1b}
+@anchor{pure cmdoption-pure--etags}@anchor{1a}
 @deffnx {Option} --etags
 
 Create a tags file in ctags (vi) or etags (emacs) format.
 @end deffn
 
 @geindex pure command line option; --disable optname
-@anchor{pure cmdoption-pure--disable}@anchor{1c}
+@anchor{pure cmdoption-pure--disable}@anchor{1b}
 @deffn {Option} --disable optname
 
 Disable source option (conditional compilation).
 @end deffn
 
 @geindex pure command line option; --eager-jit
-@anchor{pure cmdoption-pure--eager-jit}@anchor{1d}
+@anchor{pure cmdoption-pure--eager-jit}@anchor{1c}
 @deffn {Option} --eager-jit
 
 Enable eager JIT compilation. This requires LLVM 2.7 or later, otherwise
@@ -646,14 +646,14 @@ this flag will be ignored.
 @end deffn
 
 @geindex pure command line option; --enable optname
-@anchor{pure cmdoption-pure--enable}@anchor{1e}
+@anchor{pure cmdoption-pure--enable}@anchor{1d}
 @deffn {Option} --enable optname
 
 Enable source option (conditional compilation).
 @end deffn
 
 @geindex pure command line option; --escape char
-@anchor{pure cmdoption-pure--escape}@anchor{1f}
+@anchor{pure cmdoption-pure--escape}@anchor{1e}
 @deffn {Option} --escape char
 
 Interactive commands are prefixed with the specified character.
@@ -662,9 +662,9 @@ Permitted prefixes are: @code{!$%&*,:<>@@\|}.
 
 @geindex pure command line option; -fPIC
 @geindex pure command line option; -fpic
-@anchor{pure cmdoption-pure-fPIC}@anchor{20}
+@anchor{pure cmdoption-pure-fPIC}@anchor{1f}
 @deffn {Option} -fPIC
-@anchor{pure cmdoption-pure-fpic}@anchor{21}
+@anchor{pure cmdoption-pure-fpic}@anchor{20}
 @deffnx {Option} -fpic
 
 Create position-independent code (batch compilation). (This option will
@@ -673,7 +673,7 @@ rarely have to specify this explicitly.)
 @end deffn
 
 @geindex pure command line option; -g
-@anchor{pure cmdoption-pure-g}@anchor{22}
+@anchor{pure cmdoption-pure-g}@anchor{21}
 @deffn {Option} -g
 
 Enable symbolic debugging.
@@ -681,16 +681,16 @@ Enable symbolic debugging.
 
 @geindex pure command line option; -h
 @geindex pure command line option; --help
-@anchor{pure cmdoption-pure-h}@anchor{23}
+@anchor{pure cmdoption-pure-h}@anchor{22}
 @deffn {Option} -h
-@anchor{pure cmdoption-pure--help}@anchor{24}
+@anchor{pure cmdoption-pure--help}@anchor{23}
 @deffnx {Option} --help
 
 Print help message and exit.
 @end deffn
 
 @geindex pure command line option; -i
-@anchor{pure cmdoption-pure-i}@anchor{25}
+@anchor{pure cmdoption-pure-i}@anchor{24}
 @deffn {Option} -i
 
 Interactive mode (read commands from stdin after sourcing the given
@@ -698,42 +698,42 @@ scripts, if any).
 @end deffn
 
 @geindex pure command line option; -I directory
-@anchor{pure cmdoption-pure-I}@anchor{26}
+@anchor{pure cmdoption-pure-I}@anchor{25}
 @deffn {Option} -I directory
 
 Add a directory to be searched for included source scripts.
 @end deffn
 
 @geindex pure command line option; -L directory
-@anchor{pure cmdoption-pure-L}@anchor{27}
+@anchor{pure cmdoption-pure-L}@anchor{26}
 @deffn {Option} -L directory
 
 Add a directory to be searched for dynamic libraries.
 @end deffn
 
 @geindex pure command line option; -l libname
-@anchor{pure cmdoption-pure-l}@anchor{28}
+@anchor{pure cmdoption-pure-l}@anchor{27}
 @deffn {Option} -l libname
 
 Library to be linked in batch compilation.
 @end deffn
 
 @geindex pure command line option; -mopt=val
-@anchor{pure cmdoption-pure-mopt}@anchor{29}
+@anchor{pure cmdoption-pure-mopt}@anchor{28}
 @deffn {Option} -mopt=val
 
 Add llc machine options in batch compilation.
 @end deffn
 
 @geindex pure command line option; --main name
-@anchor{pure cmdoption-pure--main}@anchor{2a}
+@anchor{pure cmdoption-pure--main}@anchor{29}
 @deffn {Option} --main name
 
 Name of main entry point in batch compilation.
 @end deffn
 
 @geindex pure command line option; --noediting
-@anchor{pure cmdoption-pure--noediting}@anchor{2b}
+@anchor{pure cmdoption-pure--noediting}@anchor{2a}
 @deffn {Option} --noediting
 
 Disable command-line editing.
@@ -741,86 +741,86 @@ Disable command-line editing.
 
 @geindex pure command line option; -n
 @geindex pure command line option; --noprelude
-@anchor{pure cmdoption-pure-n}@anchor{2c}
+@anchor{pure cmdoption-pure-n}@anchor{2b}
 @deffn {Option} -n
-@anchor{pure cmdoption-pure--noprelude}@anchor{2d}
+@anchor{pure cmdoption-pure--noprelude}@anchor{2c}
 @deffnx {Option} --noprelude
 
 Do not load the prelude.
 @end deffn
 
 @geindex pure command line option; --norc
-@anchor{pure cmdoption-pure--norc}@anchor{2e}
+@anchor{pure cmdoption-pure--norc}@anchor{2d}
 @deffn {Option} --norc
 
 Do not run the interactive startup files.
 @end deffn
 
 @geindex pure command line option; -o filename
-@anchor{pure cmdoption-pure-o}@anchor{2f}
+@anchor{pure cmdoption-pure-o}@anchor{2e}
 @deffn {Option} -o filename
 
 Output filename for batch compilation.
 @end deffn
 
 @geindex pure command line option; -q
-@anchor{pure cmdoption-pure-q}@anchor{30}
+@anchor{pure cmdoption-pure-q}@anchor{2f}
 @deffn {Option} -q
 
 Quiet startup (suppresses sign-on message in interactive mode).
 @end deffn
 
 @geindex pure command line option; -T filename
-@anchor{pure cmdoption-pure-T}@anchor{31}
+@anchor{pure cmdoption-pure-T}@anchor{30}
 @deffn {Option} -T filename
 
-Tags file to be written by @pxref{1a,,---ctags} or @pxref{1b,,---etags}.
+Tags file to be written by @pxref{19,,---ctags} or @pxref{1a,,---etags}.
 @end deffn
 
 @geindex pure command line option; --texmacs
-@anchor{pure cmdoption-pure--texmacs}@anchor{32}
+@anchor{pure cmdoption-pure--texmacs}@anchor{31}
 @deffn {Option} --texmacs
 
-Run Pure inside @pxref{33,,TeXmacs}.
+Run Pure inside @pxref{32,,TeXmacs}.
 @end deffn
 
 @geindex pure command line option; -u
-@anchor{pure cmdoption-pure-u}@anchor{34}
+@anchor{pure cmdoption-pure-u}@anchor{33}
 @deffn {Option} -u
 
 Do not strip unused functions in batch compilation.
 @end deffn
 
 @geindex pure command line option; -v[level]
-@anchor{pure cmdoption-pure-v}@anchor{35}
+@anchor{pure cmdoption-pure-v}@anchor{34}
 @deffn {Option} -v[level]
 
 Set verbosity level.
 @end deffn
 
 @geindex pure command line option; --version
-@anchor{pure cmdoption-pure--version}@anchor{36}
+@anchor{pure cmdoption-pure--version}@anchor{35}
 @deffn {Option} --version
 
 Print version information and exit.
 @end deffn
 
 @geindex pure command line option; -w
-@anchor{pure cmdoption-pure-w}@anchor{37}
+@anchor{pure cmdoption-pure-w}@anchor{36}
 @deffn {Option} -w
 
 Enable compiler warnings.
 @end deffn
 
 @geindex pure command line option; -x
-@anchor{pure cmdoption-pure-x}@anchor{38}
+@anchor{pure cmdoption-pure-x}@anchor{37}
 @deffn {Option} -x
 
 Script mode (execute a script with the given command line arguments).
 @end deffn
 
 @geindex pure command line option; --
-@anchor{pure cmdoption-pure--}@anchor{39}
+@anchor{pure cmdoption-pure--}@anchor{38}
 @deffn {Option} --
 
 Stop option processing and pass the remaining command line arguments in
@@ -828,7 +828,7 @@ the @code{argv} variable.
 @end deffn
 
 Besides these, the interpreter also understands a number of other command line
-switches for setting various compilation options; please see @pxref{3a,,Compilation Options} below for details.
+switches for setting various compilation options; please see @pxref{39,,Compilation Options} below for details.
 
 @cartouche
 @quotation Note 
@@ -852,24 +852,24 @@ present, @emph{must} be written directly behind the option.
 @end cartouche
 
 @node Overview of Operation,Compiling Scripts,Options,Invoking Pure
-@anchor{pure overview-of-operation}@anchor{3b}
+@anchor{pure overview-of-operation}@anchor{3a}
 @section Overview of Operation
 
 
 If any source scripts are specified on the command line, they are loaded and
 executed, after which the interpreter exits. Otherwise the interpreter enters
 the interactive read-eval-print loop, see @pxref{13,,Running Interactively} below. You
-can also use the @pxref{25,,-i} option to enter the interactive loop (continue
+can also use the @pxref{24,,-i} option to enter the interactive loop (continue
 reading from stdin) even after processing some source scripts.
 
 Options and source files are processed in the order in which they are given on
 the command line. Processing of options and source files ends when either the
-@pxref{39,,---} or the @pxref{38,,-x} option is encountered, or after the first
+@pxref{38,,---} or the @pxref{37,,-x} option is encountered, or after the first
 script (non-option) argument in @strong{script mode} (i.e., if none of the options
-@pxref{17,,-b}, @pxref{25,,-i}, @pxref{19,,---check}, @pxref{1a,,---ctags} and
-@pxref{1b,,---etags} is present). In either case, any remaining parameters are
-passed to the executing script by means of the global @pxref{3c,,argc} and
-@pxref{3d,,argv} variables, denoting the number of arguments and the list of the
+@pxref{16,,-b}, @pxref{24,,-i}, @pxref{18,,---check}, @pxref{19,,---ctags} and
+@pxref{1a,,---etags} is present). In either case, any remaining parameters are
+passed to the executing script by means of the global @pxref{3b,,argc} and
+@pxref{3c,,argv} variables, denoting the number of arguments and the list of the
 actual parameter strings, respectively. In script mode this also includes the
 script name as @code{argv!0}.
 
@@ -887,9 +887,9 @@ The following variables are always predefined by the interpreter:
 
 @geindex argc (variable)
 @geindex argv (variable)
-@anchor{pure argc}@anchor{3c}
+@anchor{pure argc}@anchor{3b}
 @deffn {Variable} argc
-@anchor{pure argv}@anchor{3d}
+@anchor{pure argv}@anchor{3c}
 @deffnx {Variable} argv
 
 The number of extra command line arguments and the arguments themselves as
@@ -898,48 +898,48 @@ non-interactively and takes its input from the command line.
 @end deffn
 
 @geindex compiling (variable)
-@anchor{pure compiling}@anchor{3e}
+@anchor{pure compiling}@anchor{3d}
 @deffn {Variable} compiling
 
 A flag indicating whether the program is executed in a batch compilation
-(@pxref{18,,-c} option), see @pxref{14,,Compiling Scripts} below. (This variable is
+(@pxref{17,,-c} option), see @pxref{14,,Compiling Scripts} below. (This variable is
 still provided for backward compatibility, but shouldn't be needed any more
 and is considered deprecated. The compiler will warn about its use when the
-@pxref{37,,-w} option is specified.)
+@pxref{36,,-w} option is specified.)
 @end deffn
 
 @geindex version (variable)
 @geindex sysinfo (variable)
-@anchor{pure version}@anchor{3f}
+@anchor{pure version}@anchor{3e}
 @deffn {Variable} version
-@anchor{pure sysinfo}@anchor{40}
+@anchor{pure sysinfo}@anchor{3f}
 @deffnx {Variable} sysinfo
 
 The version string of the Pure interpreter and a string identifying the
 host system. These are useful if parts of your script depend on the
 particular version of the interpreter and the system it runs on. (An
 alternative way to deal with version and system dependencies is to use
-conditional compilation; see @pxref{41,,Conditional Compilation}.)
+conditional compilation; see @pxref{40,,Conditional Compilation}.)
 @end deffn
 
 If available, the prelude script prelude.pure is loaded by the interpreter
-prior to any other definitions, unless the @pxref{2c,,-n} or
-@pxref{2d,,---noprelude} option is specified. The prelude is searched for in the
+prior to any other definitions, unless the @pxref{2b,,-n} or
+@pxref{2c,,---noprelude} option is specified. The prelude is searched for in the
 directory specified with the 
 @geindex PURELIB
 @geindex environment variable; PURELIB
-@pxref{42,,PURELIB} environment variable. If the
+@pxref{41,,PURELIB} environment variable. If the
 @geindex PURELIB
 @geindex environment variable; PURELIB
-@pxref{42,,PURELIB} variable is not set, a system-specific default is
+@pxref{41,,PURELIB} variable is not set, a system-specific default is
 used. Relative pathnames of other source scripts specified on the command line
 are interpreted relative to the current working directory. In addition, the
-executed program may load other scripts and libraries via a @pxref{43,,using}
+executed program may load other scripts and libraries via a @pxref{42,,using}
 declaration in the source, which are searched for in a number of locations,
-including the directories named with the @pxref{26,,-I} and @pxref{27,,-L}
-options; see the @pxref{44,,Declarations} and @pxref{45,,C Interface} sections for details.
+including the directories named with the @pxref{25,,-I} and @pxref{26,,-L}
+options; see the @pxref{43,,Declarations} and @pxref{44,,C Interface} sections for details.
 
-@node Compiling Scripts,Tagging Scripts,Overview of Operation,Invoking Pure
+@node Compiling Scripts,Tagging and Checking Scripts,Overview of Operation,Invoking Pure
 @anchor{pure compiling-scripts}@anchor{14}
 @section Compiling Scripts
 
@@ -954,14 +954,14 @@ executed.
 
 Pure's LLVM backend does "lazy JIT compilation" by default, meaning that each
 function (global or local) is compiled no sooner than it is run for the first
-time. With the @pxref{1d,,---eager-jit} option, however, it will also compile all
+time. With the @pxref{1c,,---eager-jit} option, however, it will also compile all
 other (global or local) functions that may be called by the compiled
 function. (The 
 @geindex PURE_EAGER_JIT
 @geindex environment variable; PURE_EAGER_JIT
-@pxref{46,,PURE_EAGER_JIT} environment variable, when set to any
+@pxref{45,,PURE_EAGER_JIT} environment variable, when set to any
 value, has the same effect, so that you do not have to specify the
-@pxref{1d,,---eager-jit} option each time you run the interpreter.) Eager JIT
+@pxref{1c,,---eager-jit} option each time you run the interpreter.) Eager JIT
 compilation may be more efficient in some cases (since bigger chunks of
 compilation work can be done in one go) and less efficient in others (e.g.,
 eager JITing may compile large chunks of code which aren't actually called
@@ -971,14 +971,14 @@ Note that the eager JIT mode is only available with LLVM 2.7 or later;
 otherwise this option will be ignored.
 
 It is also possible to compile your scripts to native code beforehand, using
-the @pxref{18,,-c} batch compilation option. This option forces the interpreter
-to batch mode (unless @pxref{25,,-i} is specified as well, which overrides
-@pxref{18,,-c}). Any scripts specified on the command line are then compiled as
+the @pxref{17,,-c} batch compilation option. This option forces the interpreter
+to batch mode (unless @pxref{24,,-i} is specified as well, which overrides
+@pxref{17,,-c}). Any scripts specified on the command line are then compiled as
 usual (only bypassing immediate execution of toplevel expressions) and the
 interpreter finally takes a snapshot of the program and outputs it in one of
 several supported output formats, LLVM assembler (.ll) or bitcode (.bc),
 native assembler (.s) or object (.o), or a native executable, depending on the
-output filename specified with @pxref{2f,,-o}. If the output filename ends in
+output filename specified with @pxref{2e,,-o}. If the output filename ends in
 the .ll extension, an LLVM assembler file is created which can then be
 processed with the LLVM toolchain. If the output filename is just '-', the
 assembler file is written to standard output, which is useful if you want to
@@ -991,17 +991,17 @@ executable file, the Pure interpreter creates a temporary bitcode file on
 which it invokes the LLVM tools @strong{opt} and @strong{llc} to create a
 native assembler or object file, and then uses the C/C++ compiler to link the
 resulting program (if requested). You can also specify additional libraries to
-be linked into the executable with the @pxref{28,,-l} option. If the output
+be linked into the executable with the @pxref{27,,-l} option. If the output
 filename is omitted, it defaults to a.out (a.exe on Windows).
 
 The C/C++ compiler invoked by the batch compiler is normally @strong{gcc} by
 default, but you can change this with the 
 @geindex CC
 @geindex environment variable; CC
-@pxref{47,,CC} and 
+@pxref{46,,CC} and 
 @geindex CXX
 @geindex environment variable; CXX
-@pxref{48,,CXX}
+@pxref{47,,CXX}
 environment variables. The LLVM tools @strong{opt} and @strong{llc} are
 usually located on the 
 @geindex PATH
@@ -1012,7 +1012,7 @@ these programs with the batch compiler, by placing them into the Pure library
 directory, as specified at installation time or by the 
 @geindex PURELIB
 @geindex environment variable; PURELIB
-@pxref{42,,PURELIB}
+@pxref{41,,PURELIB}
 environment variable. (Note that this lets you use the batch compiler on
 systems which don't have the LLVM toolchain installed. In fact, you could even
 deploy a stand-alone version of the interpreter together with the requisite
@@ -1020,7 +1020,7 @@ LLVM tools on systems which don't have LLVM installed at all, by linking both
 the Pure runtime and the @strong{opt} and @strong{llc} programs statically
 against LLVM.)
 
-The @pxref{18,,-c} option provides a convenient way to quickly turn a Pure
+The @pxref{17,,-c} option provides a convenient way to quickly turn a Pure
 script into a standalone executable which can be invoked directly from the
 shell. One advantage of compiling your script is that this eliminates the JIT
 compilation time and thus considerably reduces the startup time of the
@@ -1032,35 +1032,35 @@ built-in @code{eval} function. Please see the @pxref{b,,Batch Compilation} secti
 for details.
 
 The @code{-v64} (or @code{-v0100}) verbosity option can be used to have the
-interpreter print the commands it executes during compilation, see @pxref{49,,Verbosity and Debugging Options} below. When creating an object file, this also prints
+interpreter print the commands it executes during compilation, see @pxref{48,,Verbosity and Debugging Options} below. When creating an object file, this also prints
 the suggested linker command (including all the dynamic modules loaded by the
 script, which also have to be linked in to create a working executable), to
 which you only have to add the options describing the desired output file.
 
-@node Tagging Scripts,Running Interactively,Compiling Scripts,Invoking Pure
-@anchor{pure tagging-scripts}@anchor{15}
-@section Tagging Scripts
+@node Tagging and Checking Scripts,Running Interactively,Compiling Scripts,Invoking Pure
+@anchor{pure tagging-and-checking-scripts}@anchor{49}
+@section Tagging and Checking Scripts
 
 
 Pure programs often have declarations and definitions of global symbols
-scattered out over many different source files. The @pxref{1a,,---ctags} and
-@pxref{1b,,---etags} options let you create a tags@footnote{http://en.wikipedia.org/wiki/Ctags} file which allows you to
+scattered out over many different source files. The @pxref{19,,---ctags} and
+@pxref{1a,,---etags} options let you create a tags@footnote{http://en.wikipedia.org/wiki/Ctags} file which allows you to
 quickly locate these items in text editors such as @strong{vi} and
 @strong{emacs} which support this feature.
 
-If @pxref{1a,,---ctags} or @pxref{1b,,---etags} is specified, the interpreter enters
+If @pxref{19,,---ctags} or @pxref{1a,,---etags} is specified, the interpreter enters
 a special variation of batch mode in which it only parses source files without
 executing them and collects information about the locations of global symbol
 declarations and definitions. The collected information is then written to a
 tags file in the ctags or etags format used by @strong{vi} and
 @strong{emacs}, respectively. The desired name of the tags file can be
-specified with the @pxref{31,,-T} option; it defaults to tags for
-@pxref{1a,,---ctags} and TAGS for @pxref{1b,,---etags} (which matches the default
+specified with the @pxref{30,,-T} option; it defaults to tags for
+@pxref{19,,---ctags} and TAGS for @pxref{1a,,---etags} (which matches the default
 tags file names used by @strong{vi} and @strong{emacs}, respectively).
 
 The tags file contains information about the global constant, variable, macro,
 function and operator symbols of all scripts specified on the command line, as
-well as the prelude and other scripts included via a @pxref{43,,using} clause.
+well as the prelude and other scripts included via a @pxref{42,,using} clause.
 Tagged scripts which are located in the same directory as the tags file (or,
 recursively, in one of its subdirectories) are specified using relative
 pathnames, while scripts outside this hierarchy (such as included scripts from
@@ -1068,7 +1068,20 @@ the standard library) are denoted with absolute pathnames. This scheme makes
 it possible to move an entire directory together with its tags file and have
 the tags information still work in the new location.
 
-@node Running Interactively,Verbosity and Debugging Options,Tagging Scripts,Invoking Pure
+In a similar fashion, the @pxref{18,,---check} option can be used to check
+scripts for syntax errors; no output files will be produced in this case.
+This is often used in combination with @pxref{36,,-w} to get warnings
+about implicit symbol declarations and the like. On-the-fly syntax checkers
+such as flycheck@footnote{http://www.flycheck.org} can employ this facility to check a program while it is
+being edited (the distribution actually includes a Pure module for flycheck,
+see @code{install} for details).
+
+@c note: If :option:`--check` is used along with :option:`-w <pure -w>` then,
+@c in contrast to the tagging options, the syntax checker will execute global
+@c constant and variable definitions. This is necessary in order to give
+@c proper diagnostics about undeclared symbols.
+
+@node Running Interactively,Verbosity and Debugging Options,Tagging and Checking Scripts,Invoking Pure
 @anchor{pure running-interactively}@anchor{13}
 @section Running Interactively
 
@@ -1082,7 +1095,7 @@ the @pxref{a,,Interactive Usage} section. To exit the interpreter, just type the
 beginning of the command line.
 
 The interpreter may also source a few additional interactive startup files
-immediately before entering the interactive loop, unless the @pxref{2e,,---norc}
+immediately before entering the interactive loop, unless the @pxref{2d,,---norc}
 option is specified. First .purerc in the user's home directory is read, then
 .purerc in the current working directory. These are ordinary Pure scripts
 which can be used to provide additional definitions for interactive
@@ -1090,7 +1103,7 @@ usage. Finally, a .pure file in the current directory (usually containing a
 dump from a previous interactive session) is loaded if it is present.
 
 When the interpreter is in interactive mode and reads from a tty, unless the
-@pxref{2b,,---noediting} option is specified, commands are usually read using
+@pxref{2a,,---noediting} option is specified, commands are usually read using
 @strong{readline} or some compatible replacement, providing completion for
 all commands listed under @pxref{a,,Interactive Usage}, as well as for symbols defined
 in the running program. When exiting the interpreter, the command history is
@@ -1099,16 +1112,16 @@ interpreter.
 
 The interpreter also provides a simple source level debugger when run in
 interactive mode, see @pxref{4a,,Debugging} for details. To enable the debugger, you need
-to specify the @pxref{22,,-g} option when invoking the interpreter. This option
+to specify the @pxref{21,,-g} option when invoking the interpreter. This option
 causes your script to run @emph{much} slower, so you should only use this option if
 you want to run the debugger.
 
 @node Verbosity and Debugging Options,Compilation Options,Running Interactively,Invoking Pure
-@anchor{pure verbosity-and-debugging-options}@anchor{49}
+@anchor{pure verbosity-and-debugging-options}@anchor{48}
 @section Verbosity and Debugging Options
 
 
-The @pxref{35,,-v} option is useful for debugging the interpreter, or if you are
+The @pxref{34,,-v} option is useful for debugging the interpreter, or if you are
 interested in the code your program gets compiled to. The level argument is
 optional; it defaults to 1. Seven different levels are implemented at this
 time. Only the first two levels will be useful for the average Pure
@@ -1154,7 +1167,7 @@ lexer.
 
 turns on verbose batch compilation; this is useful if you want to see
 exactly which commands get executed during batch compilation
-(@pxref{18,,-c}).
+(@pxref{17,,-c}).
 @end table
 
 These values can be or'ed together, and, for convenience, can be specified in
@@ -1165,15 +1178,15 @@ developers). Some useful flag combinations for experts are (in octal) 007
 (definitions and assembler code), 021 (parser debugging output along with
 parsed definitions) and 0100 (verbose batch compilation).
 
-Note that the @pxref{35,,-v} option is only applied after the prelude has been
-loaded. If you want to debug the prelude, use the @pxref{2c,,-n} option and
+Note that the @pxref{34,,-v} option is only applied after the prelude has been
+loaded. If you want to debug the prelude, use the @pxref{2b,,-n} option and
 specify the prelude.pure file explicitly on the command line. Verbose output
-is also suppressed for modules imported through a @pxref{43,,using} clause. As
+is also suppressed for modules imported through a @pxref{42,,using} clause. As
 a remedy, you can use the interactive @code{show} command (see the @pxref{a,,Interactive Usage} section) to list definitions along with additional debugging
 information.
 
 @node Compilation Options,Startup Files,Verbosity and Debugging Options,Invoking Pure
-@anchor{pure compilation-options}@anchor{3a}
+@anchor{pure compilation-options}@anchor{39}
 @section Compilation Options
 
 
@@ -1365,7 +1378,7 @@ see the @code{installation instructions} for details.)
 @quotation Note 
 All of the options above also have a corresponding "option symbol"
 so that they can be queried and set using the facilities described under
-@pxref{41,,Conditional Compilation} below. (The symbol is just the name of the
+@pxref{40,,Conditional Compilation} below. (The symbol is just the name of the
 option, e.g., @code{checks} for the @pxref{4c,,---checks}, @pxref{4d,,---nochecks}
 option and pragma.)
 @end quotation
@@ -1460,7 +1473,7 @@ section.
 @end deffn
 
 @node Conditional Compilation,Warning Options,Code Generation Options,Compilation Options
-@anchor{pure conditional-compilation}@anchor{41}
+@anchor{pure conditional-compilation}@anchor{40}
 @subsection Conditional Compilation
 
 
@@ -1637,8 +1650,8 @@ a native executable or not. Please see the example at the end of the @pxref{b,,B
 
 @item 
 The @code{interactive} and @code{debugging} options are enabled if a program runs
-in interactive (@pxref{25,,-i}) and/or debugging
-(@pxref{22,,-g}) mode, respectively. These options are read-only;
+in interactive (@pxref{24,,-i}) and/or debugging
+(@pxref{21,,-g}) mode, respectively. These options are read-only;
 they cannot be changed with @pxref{65,,---enable}, @pxref{66,,---disable}.
 Example:
 
@@ -1676,7 +1689,7 @@ for anything later or earlier than a given version:
 
 @item 
 Last but not least, the interpreter always defines the target triplet of the
-host system as an option symbol. This is the same as what @pxref{40,,sysinfo}
+host system as an option symbol. This is the same as what @pxref{3f,,sysinfo}
 returns, so you can check for a specific system like this:
 
 @example
@@ -1708,7 +1721,7 @@ e.g., for Windows systems like this:
 @subsection Warning Options
 
 
-The @pxref{37,,-w} option enables some additional warnings which are
+The @pxref{36,,-w} option enables some additional warnings which are
 useful to check your scripts for possible errors. In particular, it will
 report implicit declarations of function and type symbols, which might
 indicate undefined or mistyped symbols that need to be fixed, see @pxref{6e,,Symbol Lookup and Creation} for details.
@@ -1723,7 +1736,7 @@ pragmas to your script:
 @anchor{pure cmdoption-pure-pragma--nowarn}@anchor{70}
 @deffnx {Option} --nowarn
 
-Enable or disable compiler warnings. The @pxref{37,,-w} flag sets
+Enable or disable compiler warnings. The @pxref{36,,-w} flag sets
 the default for these pragmas.
 @end deffn
 
@@ -1732,7 +1745,7 @@ the default for these pragmas.
 @deffn {Option} --rewarn
 
 Reset compiler warnings to the default, as set with the
-@pxref{37,,-w} flag (or not).
+@pxref{36,,-w} flag (or not).
 @end deffn
 
 The latter pragma is useful to enable or disable warnings in a section of code
@@ -1774,7 +1787,7 @@ interactive session.
 @deffn {Describe} prelude.pure
 
 Standard prelude. If available, this script is loaded before any other
-definitions, unless @pxref{2c,,-n} was specified.
+definitions, unless @pxref{2b,,-n} was specified.
 @end deffn
 
 @node Environment,,Startup Files,Invoking Pure
@@ -1787,9 +1800,9 @@ shell environment variables:
 
 @geindex environment variable; CC
 @geindex environment variable; CXX
-@anchor{pure envvar-CC}@anchor{47}
+@anchor{pure envvar-CC}@anchor{46}
 @deffn {Environment Variable} CC
-@anchor{pure envvar-CXX}@anchor{48}
+@anchor{pure envvar-CXX}@anchor{47}
 @deffnx {Environment Variable} CXX
 
 C and C++ compiler used by the Pure batch compiler (@code{pure -c}) to compile
@@ -1810,21 +1823,21 @@ documentation. See @indicateurl{http://catb.org/~esr/BROWSER/}.
 @end deffn
 
 @geindex environment variable; PURELIB
-@anchor{pure envvar-PURELIB}@anchor{42}
+@anchor{pure envvar-PURELIB}@anchor{41}
 @deffn {Environment Variable} PURELIB
 
 Directory to search for library scripts, including the prelude. If
 @geindex PURELIB
 @geindex environment variable; PURELIB
-@pxref{42,,PURELIB} is not set, it defaults to some location specified at
+@pxref{41,,PURELIB} is not set, it defaults to some location specified at
 installation time.
 @end deffn
 
 @geindex environment variable; PURE_EAGER_JIT
-@anchor{pure envvar-PURE_EAGER_JIT}@anchor{46}
+@anchor{pure envvar-PURE_EAGER_JIT}@anchor{45}
 @deffn {Environment Variable} PURE_EAGER_JIT
 
-Enable eager JIT compilation (same as @pxref{1d,,---eager-jit}), see
+Enable eager JIT compilation (same as @pxref{1c,,---eager-jit}), see
 @pxref{14,,Compiling Scripts} for details.
 @end deffn
 
@@ -1833,7 +1846,7 @@ Enable eager JIT compilation (same as @pxref{1d,,---eager-jit}), see
 @deffn {Environment Variable} PURE_ESCAPE
 
 If set, interactive commands are prefixed with the first character in the
-value of this variable (same as @pxref{1f,,---escape}), see @pxref{a,,Interactive Usage} for details.
+value of this variable (same as @pxref{1e,,---escape}), see @pxref{a,,Interactive Usage} for details.
 @end deffn
 
 @geindex environment variable; PURE_HELP
@@ -1891,7 +1904,7 @@ value or increase the actual stack space available to programs.
 @end deffn
 
 Besides these, the interpreter also understands a number of other environment
-variables for setting various compilation options (see @pxref{3a,,Compilation Options}
+variables for setting various compilation options (see @pxref{39,,Compilation Options}
 above) and commands to invoke different LLVM compilers on inline code (see
 @pxref{7c,,Inline Code}).
 
@@ -2714,7 +2727,7 @@ occurring on the left-hand side of an equation, is special; it denotes the
 @strong{anonymous variable} which matches any value without actually binding a
 variable. Identifiers can also be prefixed with a namespace identifier,
 like in @code{foo::bar}. (This requires that the given namespace has already
-been created, as explained under @pxref{ad,,Namespaces} in the @pxref{44,,Declarations} section.)
+been created, as explained under @pxref{ad,,Namespaces} in the @pxref{43,,Declarations} section.)
 @end deffn
 
 
@@ -3202,7 +3215,7 @@ definitions, and expressions to be evaluated:
 
 These elements are discussed in more detail in the @pxref{9e,,Rule Syntax} section.
 Also, a few additional toplevel elements are part of the declaration syntax,
-see @pxref{44,,Declarations}.
+see @pxref{43,,Declarations}.
 
 
 @deffn {Describe} lhs = rhs;
@@ -4430,7 +4443,7 @@ sides work the same as in the general rule format, though.
 As already mentioned, there is an alternative way for defining types in an
 indirect way through so-called @pxref{c8,,interface types} from which the corresponding
 type rules are derived automatically. These are part of Pure's declaration
-syntax and thus will be discussed later in the @pxref{44,,Declarations} section. In this
+syntax and thus will be discussed later in the @pxref{43,,Declarations} section. In this
 section we focus on how you can write your own type rules in order to define
 types in a direct fashion.
 
@@ -4914,7 +4927,7 @@ native executables, see @pxref{e4,,Compiled Scripts} below.
 Sometimes you may want to pass parameters to a script from the command line.
 To these ends, just follow the script name with the required parameters. The
 interpreter makes the command line parameters (including the script name)
-available as a list of strings in the @pxref{3d,,argv} variable. For instance, here
+available as a list of strings in the @pxref{3c,,argv} variable. For instance, here
 is a version of the "hello world" program which uses @code{printf} to print
 the line @code{Hello, foo!} where @code{foo} is whatever was specified as the first
 command line parameter:
@@ -4966,7 +4979,7 @@ $ chmod a+x hello.pure
 However, we also have to tell the shell about the command interpreter which
 should be invoked to run the script. (Otherwise the shell itself may try to
 execute the script, which won't work because it's not a shell script.) As
-already mentioned in @pxref{3b,,Overview of Operation}, this is done by adding a
+already mentioned in @pxref{3a,,Overview of Operation}, this is done by adding a
 special kind of comment, a "shebang", to the beginning of the script, so that
 it looks like:
 
@@ -5035,8 +5048,8 @@ have the necessary LLVM tools and 3rd party compilers installed, see the
 @code{installation instructions} for details). The result is a real
 native executable which can then be run directly just like any other binary
 program on your system. To these ends, the interpreter is run with the
-@pxref{18,,-c} option which tells it to run in batch compilation mode, and the
-@pxref{2f,,-o} option which specifies the desired name of the executable. For
+@pxref{17,,-c} option which tells it to run in batch compilation mode, and the
+@pxref{2e,,-o} option which specifies the desired name of the executable. For
 instance:
 
 @example
@@ -5065,7 +5078,7 @@ way. You then simply run it like this:
 @example
 $ pure
 
- __ \  |   |  __| _ \    Pure 0.67 (x86_64-unknown-linux-gnu)
+ __ \  |   |  __| _ \    Pure 0.68 (x86_64-unknown-linux-gnu)
  |   | |   | |    __/    Copyright (c) 2008-2018 by Albert Graef
  .__/ \__,_|_|  \___|    (Type 'help' for help, 'help copying'
 _|                       for license information.)
@@ -5164,7 +5177,7 @@ foo 5
 
 @noindent
 
-Therefore, we recommend invoking the interpreter with the @pxref{37,,-w} option
+Therefore, we recommend invoking the interpreter with the @pxref{36,,-w} option
 so that it at least warns you about unknown symbols. You can also enter this
 option interactively or in a script using the @code{--warn} pragma:
 
@@ -6735,7 +6748,7 @@ definitions of the '@code{#}' and '@code{+}' operations in the prelude.
 
 Pure's interface types are a first attempt at formalizing the notion of Duck typing@footnote{http://en.wikipedia.org/wiki/Duck_typing} in Pure. They are thus still a bit experimental and require some
 diligence in defining the interface operations in a suitable way. Please check
-@pxref{c8,,Interface Types} in the @pxref{44,,Declarations} section for more information and
+@pxref{c8,,Interface Types} in the @pxref{43,,Declarations} section for more information and
 examples.
 
 @node Recursion,Higher-Order Functions,Data Types,Examples
@@ -9858,7 +9871,7 @@ baz = \b a -> a-b;
 The @pxref{63,,Macros} section explains in detail how this meta programming works.
 
 @node Declarations,Macros,Examples,Top
-@anchor{pure declarations}@anchor{44}
+@anchor{pure declarations}@anchor{43}
 @chapter Declarations
 
 
@@ -9880,7 +9893,7 @@ symbol declarations determine "scope" and "fixity" of a symbol;
 @pxref{ff,,extern} declarations specify external C functions;
 
 @item 
-@pxref{43,,using} clauses let you include other scripts in a Pure script;
+@pxref{42,,using} clauses let you include other scripts in a Pure script;
 
 @item 
 @pxref{100,,namespace} declarations let you avoid name clashes and thereby
@@ -9897,7 +9910,7 @@ These are toplevel elements (cf. @pxref{c3,,Toplevel}):
 
 @noindent
 
-We defer the discussion of @pxref{ff,,extern} declarations to the @pxref{45,,C Interface} section. The other kinds of declarations are described in the
+We defer the discussion of @pxref{ff,,extern} declarations to the @pxref{44,,C Interface} section. The other kinds of declarations are described in the
 following subsections.
 @anchor{pure public}@anchor{102}@anchor{pure private}@anchor{103}@anchor{pure infix}@anchor{104}@anchor{pure infixl}@anchor{105}@anchor{pure infixr}@anchor{106}@anchor{pure prefix}@anchor{107}@anchor{pure postfix}@anchor{108}@anchor{pure outfix}@anchor{109}
 @menu
@@ -10458,7 +10471,7 @@ type stack xs@@(_:_);
 
 Wait, something seems to be wrong there. The empty list pattern of the
 @code{push} function is missing, where did it go? Let's restart the interpreter
-with warnings enabled (@pxref{37,,-w}) and retype the above definitions. The
+with warnings enabled (@pxref{36,,-w}) and retype the above definitions. The
 compiler then tells us:
 
 @example
@@ -10579,7 +10592,7 @@ actual meaning of the provided operations, so unit testing is still needed to
 ensure certain semantic properties of the implementation. Some further issues
 due to Pure's dynamically typed nature are discussed under @pxref{115,,Interfaces} in the
 @pxref{c,,Caveats and Notes} section.
-@anchor{pure using}@anchor{43}
+@anchor{pure using}@anchor{42}
 @node Modules and Imports,Namespaces,Interface Types,Declarations
 @anchor{pure id13}@anchor{116}@anchor{pure modules-and-imports}@anchor{e9}
 @section Modules and Imports
@@ -10597,7 +10610,7 @@ source modules.
 
 @noindent
 
-The @pxref{43,,using} declaration takes the following form (note that in
+The @pxref{42,,using} declaration takes the following form (note that in
 contrast to symbol declarations, the comma is used as a delimiter symbol
 here):
 
@@ -10608,16 +10621,16 @@ here):
 This causes each given script to be included in the Pure program at the given
 point (if it wasn't already included before), which makes available all the
 definitions of the included script in your program. Note that each included
-script is loaded only @emph{once}, when the first @pxref{43,,using} clause for the
+script is loaded only @emph{once}, when the first @pxref{42,,using} clause for the
 script is encountered. Nested imports are allowed, i.e., an imported module
 may itself import other modules, etc. A Pure program then basically is the
 concatenation of all the source modules given as command line arguments, with
-other modules listed in @pxref{43,,using} clauses inserted at the corresponding
+other modules listed in @pxref{42,,using} clauses inserted at the corresponding
 source locations.
 
-(The @pxref{43,,using} clause also has an alternative form which allows dynamic
+(The @pxref{42,,using} clause also has an alternative form which allows dynamic
 libraries and LLVM bitcode modules to be loaded, this will be discussed in the
-@pxref{45,,C Interface} section.)
+@pxref{44,,C Interface} section.)
 
 For instance, the following declaration causes the math.pure script from the
 standard library to be included in your program:
@@ -10645,7 +10658,7 @@ using examples::libor::bits;
 
 @noindent
 
-In fact this is equivalent to the following @pxref{43,,using} clause which
+In fact this is equivalent to the following @pxref{42,,using} clause which
 spells out the real filename of the script between double quotes (the
 @code{.pure} suffix can also be omitted in which case it is added
 automatically):
@@ -10713,12 +10726,12 @@ the given order:
 
 @item 
 the directory of the current script, which is the directory of the script
-containing the @pxref{43,,using} clause, or the current working directory if
+containing the @pxref{42,,using} clause, or the current working directory if
 the clause was read from standard input (as is the case, e.g., in an
 interactive session);
 
 @item 
-the directories named in @pxref{26,,-I} options on the command line (in the
+the directories named in @pxref{25,,-I} options on the command line (in the
 given order);
 
 @item 
@@ -10732,12 +10745,12 @@ environment variable (in the given order);
 finally the directory named by the 
 @geindex PURELIB
 @geindex environment variable; PURELIB
-@pxref{42,,PURELIB} environment variable.
+@pxref{41,,PURELIB} environment variable.
 @end itemize
 
 Note that the current working directory is not searched by default (unless the
-@pxref{43,,using} clause is read from standard input), but of course you can
-force this by adding the option @pxref{26,,-I}. to the command line, or by
+@pxref{42,,using} clause is read from standard input), but of course you can
+force this by adding the option @pxref{25,,-I}. to the command line, or by
 including '.' in the 
 @geindex PURE_INCLUDE
 @geindex environment variable; PURE_INCLUDE
@@ -10746,17 +10759,17 @@ including '.' in the
 The directory of the current script (the first item above) can be skipped by
 specifying the script to be loaded as a filename in double quotes, prefixed
 with the special @code{sys:} tag. The search then starts with the "system"
-directories (@pxref{26,,-I}, 
+directories (@pxref{25,,-I}, 
 @geindex PURE_INCLUDE
 @geindex environment variable; PURE_INCLUDE
 @pxref{77,,PURE_INCLUDE} and 
 @geindex PURELIB
 @geindex environment variable; PURELIB
-@pxref{42,,PURELIB})
+@pxref{41,,PURELIB})
 instead. This is useful, e.g., if you want to provide your own custom version
 of a standard library script which in turn imports that library script. For
 instance, a custom version of math.pure might employ the following
-@pxref{43,,using} clause to load the math.pure script from the Pure library:
+@pxref{42,,using} clause to load the math.pure script from the Pure library:
 
 @example
 using "sys:math";
@@ -10802,7 +10815,7 @@ symbolic link placed on the system
 @geindex PATH
 @geindex environment variable; PATH
 @code{PATH}. In this case the script
-search performed in @pxref{43,,using} clauses will use the real script
+search performed in @pxref{42,,using} clauses will use the real script
 directory and thus other required scripts can be located there. This is the
 recommended practice for installing standalone Pure applications in source
 form which are to be run directly from the shell.
@@ -10829,7 +10842,7 @@ also switches to the given namespace (makes it the @emph{current} namespace), so
 that new symbols are then created in that namespace rather than the default
 one. The current namespace also applies to all kinds of symbol declarations,
 including operator and nonfix symbol declarations, as well as
-@pxref{ff,,extern} declarations (the latter are described in the @pxref{45,,C Interface}
+@pxref{ff,,extern} declarations (the latter are described in the @pxref{44,,C Interface}
 section).
 
 The syntax of namespace declarations is captured by the following grammar
@@ -10892,7 +10905,7 @@ A namespace can be "reopened" at any time to add new symbols and definitions
 to it. This allows namespaces to be created that span several source
 modules. You can also create several different namespaces in the same module.
 
-Similar to the @pxref{43,,using} declaration, a @pxref{100,,namespace}
+Similar to the @pxref{42,,using} declaration, a @pxref{100,,namespace}
 declaration accepts either identifiers or double-quoted strings as namespace
 names. E.g., the following two declarations are equivalent:
 
@@ -11095,12 +11108,12 @@ namespaces. For instance:
 To make these errors go away it's enough to just declare the symbols in
 their proper namespaces.
 
-In addition, you can run the interpreter with the @pxref{37,,-w} option (see
+In addition, you can run the interpreter with the @pxref{36,,-w} option (see
 @pxref{7,,Invoking Pure}) to check your scripts for (non-defining) uses of
 undeclared unqualified function symbols. This is highly recommended. For
 instance, in the following example we forgot to import the @code{system}
 module which defines the @code{puts} function. Running the interpreter
-with @pxref{37,,-w} highlights such potential errors:
+with @pxref{36,,-w} highlights such potential errors:
 
 @example
 $ pure -w
@@ -12706,7 +12719,7 @@ Or let's lists all global variables along with their values:
 @example
 > catmap get_vardef (globsym "*" 0);
 [(argc-->0),(argv-->[]),(compiling-->0),
-(sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.67")]
+(sysinfo-->"x86_64-unknown-linux-gnu"),(version-->"0.68")]
 @end example
 
 @noindent
@@ -12889,7 +12902,7 @@ E.g., let's compute a solution for a standard 8x8 board:
 
 Pure comes with a collection of Pure library modules, which includes the
 standard prelude (loaded automatically at startup time) and some other modules
-which can be loaded explicitly with a @pxref{43,,using} clause. The prelude
+which can be loaded explicitly with a @pxref{42,,using} clause. The prelude
 offers the necessary functions to work with the built-in types (including
 arithmetic and logical operations) and to do most kind of list processing you
 can find in ML- and Haskell-like languages. It also provides a collection of
@@ -12985,7 +12998,7 @@ found in the @code{system} module. In particular, this module also provides
 operations to do basic C-style I/O, including @code{printf} and @code{scanf}.
 
 @node C Interface,Interactive Usage,Standard Library,Top
-@anchor{pure c-interface}@anchor{45}
+@anchor{pure c-interface}@anchor{44}
 @chapter C Interface
 
 
@@ -13143,7 +13156,7 @@ extern declaration with a clause of the form @code{= alias}. For instance:
 
 Aliases are just one way to declare a @strong{synonym} of an external function. As
 an alternative, you can also declare the C function in a special namespace
-(cf. @pxref{ad,,Namespaces} in the @pxref{44,,Declarations} section):
+(cf. @pxref{ad,,Namespaces} in the @pxref{43,,Declarations} section):
 
 @example
 > namespace c;
@@ -13587,7 +13600,7 @@ library and Pure runtime functions are readily available in Pure programs.
 Other functions can be provided by adding them to the runtime, or by linking
 them into the runtime or the interpreter executable. Better yet, you can just
 "dlopen" shared libraries at runtime with a special form of the
-@pxref{43,,using} clause:
+@pxref{42,,using} clause:
 
 @example
 using "lib:libname[.ext]";
@@ -13610,11 +13623,11 @@ declarations.
 
 Shared libraries opened with using clauses are searched for in the same way as
 source scripts (see section @pxref{e9,,Modules and Imports} above), using the
-@pxref{27,,-L} option and the 
+@pxref{26,,-L} option and the 
 @geindex PURE_LIBRARY
 @geindex environment variable; PURE_LIBRARY
 @pxref{78,,PURE_LIBRARY} environment variable in
-place of @pxref{26,,-I} and 
+place of @pxref{25,,-I} and 
 @geindex PURE_INCLUDE
 @geindex environment variable; PURE_INCLUDE
 @pxref{77,,PURE_INCLUDE}. If the library isn't found
@@ -13662,7 +13675,7 @@ LLVM 3.x, llvm-gcc is not supported any more.)
 @end cartouche
 
 LLVM bitcode is loaded in a Pure script using the following special format of
-the @pxref{43,,using} clause:
+the @pxref{42,,using} clause:
 
 @example
 using "bc:modname[.bc]";
@@ -13785,7 +13798,7 @@ the Pure sources. In particular, the interface also works with Fortran (using
 llvm-gfortran or gfortran with dragonegg), and there is special support for
 interfacing to Grame's functional DSP programming language @pxref{14c,,Faust} (the latter
 uses a special variant of the bitcode loader, which is selected with the
-@code{dsp} tag in the @pxref{43,,using} clause). Further details about these can
+@code{dsp} tag in the @pxref{42,,using} clause). Further details about these can
 be found below.
 
 Please note that at this time the LLVM bitcode interface is still somewhat
@@ -13836,7 +13849,7 @@ Instead of manually compiling source files to bitcode modules, you can also
 just place the source code into a Pure script, enclosing it in @code{%< ... %>}.
 (Optionally, the opening brace may also be preceded with a @pxref{102,,public}
 or @pxref{103,,private} scope specifier, which is used in the same way as the
-scope specifier following the @pxref{43,,using} keyword when importing bitcode
+scope specifier following the @pxref{42,,using} keyword when importing bitcode
 files.)
 
 For instance, here is a little script showing inline code for the @code{mygcd}
@@ -13940,7 +13953,7 @@ like to invoke it with the @code{-O3} optimization option, you would set
 @geindex environment variable; PURE_CC
 @code{PURE_CC} to @code{"llvm-gcc -O3"}. (To verify the settings you made, you
 can have the interpreter echo the compilation commands which are actually
-executed, by running Pure with the @code{-v0100} option, see @pxref{49,,Verbosity and Debugging Options}. Also note that the options necessary to produce LLVM
+executed, by running Pure with the @code{-v0100} option, see @pxref{48,,Verbosity and Debugging Options}. Also note that the options necessary to produce LLVM
 bitcode will be added automatically, so you don't have to specify these.)
 
 Beginning with Pure 0.48, the @pxref{14b,,dragonegg} gcc plugin is also fully supported.
@@ -14592,9 +14605,9 @@ see how these facilities can be used in Pd modules written in Pure.
 
 
 In interactive mode, the interpreter reads definitions and expressions and
-processes them as usual. You can use the @pxref{25,,-i} option to force
+processes them as usual. You can use the @pxref{24,,-i} option to force
 interactive mode when invoking the interpreter with some script files.
-Additional scripts can be loaded interactively using either a @pxref{43,,using}
+Additional scripts can be loaded interactively using either a @pxref{42,,using}
 declaration or the interactive @code{run} command (see the description of the
 @code{run} command below for the differences between these). Or you can just
 start typing away, entering your own definitions and expressions to be
@@ -14685,7 +14698,7 @@ prefixing them with a special character at the very beginning of the line.
 The command itself must follow the prefix character, without any intervening
 whitespace. Any line not prefixed with the prefix character will then be
 considered normal Pure code. This mode can be enabled with the
-@pxref{1f,,---escape} option, which takes the desired prefix character as an
+@pxref{1e,,---escape} option, which takes the desired prefix character as an
 argument, or you can just set the 
 @geindex PURE_ESCAPE
 @geindex environment variable; PURE_ESCAPE
@@ -14713,9 +14726,9 @@ $ export PURE_ESCAPE=':'
 
 @noindent
 
-Note that specifying the prefix character with the @pxref{1f,,---escape} option
+Note that specifying the prefix character with the @pxref{1e,,---escape} option
 overrides the value of the environment variable, and only the initial
-character in the value of @pxref{1f,,---escape} or 
+character in the value of @pxref{1e,,---escape} or 
 @geindex PURE_ESCAPE
 @geindex environment variable; PURE_ESCAPE
 @pxref{76,,PURE_ESCAPE} will be
@@ -14913,7 +14926,7 @@ Shell escape.
 Sets breakpoints on the given function or operator symbols. All symbols
 must be specified in fully qualified form, see the remarks below. If
 invoked without arguments, prints all currently defined breakpoints. This
-requires that the interpreter was invoked with the @pxref{22,,-g} option to
+requires that the interpreter was invoked with the @pxref{21,,-g} option to
 enable debugging support. See @pxref{4a,,Debugging} below for details.
 @end deffn
 
@@ -14924,7 +14937,7 @@ enable debugging support. See @pxref{4a,,Debugging} below for details.
 
 Prints a full backtrace of the call sequence of the most recent evaluation,
 if that evaluation ended with an unhandled exception. This requires that
-the interpreter was invoked with the @pxref{22,,-g} option to enable
+the interpreter was invoked with the @pxref{21,,-g} option to enable
 debugging support. See @pxref{4a,,Debugging} below for details.
 @end deffn
 
@@ -15079,7 +15092,7 @@ want to back them up with @code{dump} beforehand.
 
 When invoked with a script name as argument, @code{run} loads the given script
 file and adds its definitions to the current environment. This works more
-or less like a @pxref{43,,using} clause, but only searches for the script in
+or less like a @pxref{42,,using} clause, but only searches for the script in
 the current directory and places the definitions in the script at the
 current temporary level, so that @code{clear} can be used to remove them
 again. Also note that namespace and pragma settings of scripts loaded with
@@ -15383,7 +15396,7 @@ argc       var  argc = 0;
 argv       var  argv = [];
 compiling  var  compiling = 0;
 sysinfo    var  sysinfo = "x86_64-unknown-linux-gnu";
-version    var  version = "0.67";
+version    var  version = "0.68";
 5 variables
 @end example
 
@@ -15489,7 +15502,7 @@ interactively, it only records the level a variable, constant, and function or
 macro rule belongs to so that the corresponding definitions can be removed
 again when the level is popped. On the other hand, intermediate changes in
 variable values are not recorded anywhere and cannot be undone. Moreover,
-global declarations (which encompasses @pxref{43,,using} clauses,
+global declarations (which encompasses @pxref{42,,using} clauses,
 @pxref{ff,,extern} declarations and special symbol declarations) always apply
 to all levels, so they can't be undone either.
 
@@ -15635,12 +15648,12 @@ be useful in custom command definitions; see the @code{purelib} for details.
 
 The interpreter provides a simple but reasonably convenient symbolic debugging
 facility when running interactively. To make this work, you have to specify
-the @pxref{22,,-g} option when invoking the interpreter (@code{pure -g}). If you're
+the @pxref{21,,-g} option when invoking the interpreter (@code{pure -g}). If you're
 already at the interpreter's command line, you can also use the @code{run -g}
 command to enable the debugger. The @code{-g} option disables tail call
 optimization (see @pxref{4e,,Stack Size and Tail Recursion}) to make it easier to debug
 programs. It also causes special debugging code to be generated which will
-make your program run @emph{much} slower. Therefore the @pxref{22,,-g} option should
+make your program run @emph{much} slower. Therefore the @pxref{21,,-g} option should
 only be used if you actually need the debugger.
 
 One common use of the debugger is "post mortem" debugging after an evaluation
@@ -15757,7 +15770,7 @@ x       exit the interpreter (after confirmation)
 
 @cartouche
 @quotation Note 
-If you specified an @pxref{1f,,---escape} prefix other than '@code{!}'
+If you specified an @pxref{1e,,---escape} prefix other than '@code{!}'
 (cf. @pxref{152,,Command Syntax}), that prefix will be used to execute interpreter
 commands instead, see below. The help message will tell you which command
 prefix is in effect.
@@ -15798,7 +15811,7 @@ immediately (after confirmation).
 @end itemize
 
 In addition, you can use the @code{!} command (or whatever command prefix has
-been set with the @pxref{1f,,---escape} option) to run any interpreter command
+been set with the @pxref{1e,,---escape} option) to run any interpreter command
 while in the debugger. For instance:
 
 @example
@@ -15815,7 +15828,7 @@ in some cases, but will have nasty consequences if you happen to change a
 function which is currently being executed.
 
 The interpreter's shell escape can also be used from the debugger. In default
-mode or when using @code{!} as the @pxref{1f,,---escape} prefix, you'll have to
+mode or when using @code{!} as the @pxref{1e,,---escape} prefix, you'll have to
 escape shell commands with @code{!!}, otherwise a single @code{!} suffices.
 
 At the debugger prompt, you can use the @code{u} ("up"), @code{d} ("down"), @code{t}
@@ -15982,7 +15995,7 @@ or @code{trace} without any arguments lists the currently defined breakpoints or
 tracepoints, respectively. Please see @pxref{125,,Interactive Commands} above for
 details. Also note that these are really interpreter commands, so to invoke
 them in the debugger you have to escape them with the @code{!} command
-(or whatever other @pxref{1f,,---escape} prefix you specified).
+(or whatever other @pxref{1e,,---escape} prefix you specified).
 
 The debugger can also be triggered programmatically with the built-in
 parameter-less functions @code{__break__} and @code{__trace__}. This gives
@@ -16419,7 +16432,7 @@ above). This file is loaded after the .purerc files if it is present.
 
 The interpreter processes all these files in the same way as with the @code{run}
 command (see @pxref{125,,Interactive Commands} above). When invoking the interpreter,
-you can specify the @pxref{2e,,---norc} option on the command line if you wish to
+you can specify the @pxref{2d,,---norc} option on the command line if you wish to
 skip these initializations.
 
 @node Batch Compilation,Caveats and Notes,Interactive Usage,Top
@@ -16427,7 +16440,7 @@ skip these initializations.
 @chapter Batch Compilation
 
 
-The interpreter's @pxref{18,,-c} option provides a means to quickly turn Pure
+The interpreter's @pxref{17,,-c} option provides a means to quickly turn Pure
 scripts into standalone executables. The compiled executable is essentially a
 @emph{static snapshot} of your program which is executed on the "bare metal",
 without a hosting interpreter and with just a minimal runtime system. This
@@ -16533,7 +16546,7 @@ available in the compiled program. If you need to use these with
 function definitions instead. Also, the compiler usually strips unused
 functions from the output code, so that only functions which are actually
 called somewhere in the static program text are available to @code{eval}.
-(The @pxref{34,,-u} option and the @pxref{5f,,---required}
+(The @pxref{33,,-u} option and the @pxref{5f,,---required}
 pragma can be used to avoid this, see @pxref{15c,,Options Affecting Code Size} below.)
 @end itemize
 
@@ -16614,7 +16627,7 @@ Hello, world!
 @noindent
 
 To turn the script into an executable, we just invoke the Pure interpreter
-with the @pxref{18,,-c} option, using the @pxref{2f,,-o} option to specify the
+with the @pxref{17,,-c} option, using the @pxref{2e,,-o} option to specify the
 desired output file name:
 
 @example
@@ -16684,7 +16697,7 @@ Hello, world!
 
 Finally, there's also a compile time check which comes in handy if we want to
 execute different code depending on whether a script is batch-compiled or not;
-see @pxref{41,,Conditional Compilation}. We might employ this as follows, replacing the
+see @pxref{40,,Conditional Compilation}. We might employ this as follows, replacing the
 last line of the script with this:
 
 @example
@@ -16746,10 +16759,10 @@ easily do it.
 
 
 By default, the batch compiler strips unused functions from the output code,
-to keep the code size small. You can disable this with the @pxref{34,,-u}
+to keep the code size small. You can disable this with the @pxref{33,,-u}
 option, in which case the output code includes @emph{all} functions defined in the
 compiled program, the prelude and any other module imported with a
-@pxref{43,,using} clause, even if they don't seem to be used anywhere. This
+@pxref{42,,using} clause, even if they don't seem to be used anywhere. This
 considerably increases compilation times and makes the compiled executable
 much larger. For instance, on my 64 bit Linux systems with ELF binaries the
 executable of our hello.pure example is about twice as large:
@@ -16777,7 +16790,7 @@ from the executable, as if they were never defined at all. If such a function
 is then being called using @code{eval} at runtime, it will evaluate to a
 plain constructor symbol.
 
-If this is a problem then you can either use the @pxref{34,,-u} option to
+If this is a problem then you can either use the @pxref{33,,-u} option to
 produce an unstripped executable, or you can force specific functions to be
 included in the stripped executable with the
 @pxref{5f,,---required} pragma (cf. @pxref{4b,,Code Generation Options}). For instance:
@@ -16928,7 +16941,7 @@ this will be good enough, but if it isn't, you can just add options to the
 linker command as needed to pull in additional required libraries.
 
 As this last example shows, you can also create shared libraries from Pure
-modules. However, on some systems you may have to pass the @pxref{20,,-fPIC}
+modules. However, on some systems you may have to pass the @pxref{1f,,-fPIC}
 option when batch-compiling the module, so that position-independent code is
 generated:
 
@@ -16940,7 +16953,7 @@ $ pure -c -fPIC pure-odbc/examples/menagerie.pure -o menagerie.o
 
 @cartouche
 @quotation Note 
-On most systems it shouldn't be necessary to specify @pxref{20,,-fPIC}
+On most systems it shouldn't be necessary to specify @pxref{1f,,-fPIC}
 explicitly any more, since the compiler will add that option automatically
 on platforms known to require it. Also note that even when building a
 shared module, you'll have to supply an initialization routine which calls
@@ -16955,7 +16968,7 @@ Pure modules. This becomes a problem when trying to link several separate
 batch-compiled modules into the same executable or library, because you'll get
 many name clashes for routines present in different modules (including the
 @code{__pure_main__} entry point). To prevent this, the batch compiler can be
-invoked with the @pxref{2a,,---main} option to explicitly set a name for the main
+invoked with the @pxref{29,,---main} option to explicitly set a name for the main
 entry point. For instance:
 
 @example
@@ -16965,8 +16978,8 @@ $ pure -c hello.pure -o hello.o --main __hello_main__
 @noindent
 
 This has two effects. First, the main entry point will be called whatever you
-specified with @pxref{2a,,---main}, so you have to call this function instead of
-@code{__pure_main__} to initialize the module. Second, if @pxref{2a,,---main} is
+specified with @pxref{29,,---main}, so you have to call this function instead of
+@code{__pure_main__} to initialize the module. Second, if @pxref{29,,---main} is
 specified, then all Pure functions in the module will be changed to internal
 linkage (like @code{static} functions in C) to prevent any possible name clashes
 between different modules. (Alas, this also makes it impossible to employ
@@ -17186,16 +17199,16 @@ either the operands are already normalized, or you'll have to normalize the
 result yourself.
 
 Also, as of Pure 0.41 the batch compiler produces stripped executables by
-default. To create unstripped executables you now have to use the @pxref{34,,-u}
+default. To create unstripped executables you now have to use the @pxref{33,,-u}
 option, see @pxref{15c,,Options Affecting Code Size} for details. The @code{-s}
 option to produce stripped executables is still provided for backward
 compatibility, but it won't have any effect unless you use it to override a
-previous @pxref{34,,-u} option.
+previous @pxref{33,,-u} option.
 
 Pure 0.43 changed the rules for looking up symbols in user-defined namespaces.
 Unqualified symbols are now created in the current (rather than the global)
 namespace by default, see @pxref{6e,,Symbol Lookup and Creation} for details. The
-@pxref{37,,-w} option can be used to get warnings about unqualified symbols
+@pxref{36,,-w} option can be used to get warnings about unqualified symbols
 which are resolved to a different namespace than previously. It also provides
 a means to check your scripts for implicit declarations which might indicate
 missing or mistyped function symbols.
@@ -17251,7 +17264,7 @@ identifier, you will have to rename these). Note that the old-style type
 tags, which were just a syntactic shortcut for "as" patterns involving unary
 constructor symbols, aren't supported any more, so you'll have to fix up
 your old scripts accordingly. To assist with this, the Pure interpreter can
-be run with the @pxref{37,,-w} option in order to identify occurrences of
+be run with the @pxref{36,,-w} option in order to identify occurrences of
 undefined (presumably old-style) type tags. You should either change these
 to the corresponding "as" pattern (i.e., @code{x::foo} to @code{x@@(foo _)}), or
 just add a proper type definition for the tag (like @code{type foo (foo _);}).
@@ -17264,7 +17277,7 @@ modules if you need this functionality. It also introduced the
 "defined" functions in Pure which throw an exception if they can't be applied,
 e.g., because they are invoked with the wrong arguments.
 
-Pure 0.49 introduced the @pxref{41,,conditional compilation} pragmas, so that simple
+Pure 0.49 introduced the @pxref{40,,conditional compilation} pragmas, so that simple
 version and system dependencies can now be handled in a more convenient way.
 
 Pure 0.50 introduced the declaration of @pxref{c8,,interface types}, which make it
@@ -17290,12 +17303,12 @@ special character (see @pxref{152,,Command Syntax}). The @code{true} and
 @code{false} constants are now declared as @pxref{94,,nonfix} symbols in the
 prelude so that they can be used in patterns.
 
-Pure 0.58 made the @pxref{38,,-x} option optional, so that a script can now be
+Pure 0.58 made the @pxref{37,,-x} option optional, so that a script can now be
 invoked with arguments simply as @code{pure script arg1 arg2 ...}, which matches
 the default behaviour of most other command language interpreters. This also
 has the advantage that shebangs like @code{#!/usr/bin/env pure} can now be used
 without any caveats. If you do want to execute multiple script files in batch
-mode then you now have to explicitly indicate this with the new @pxref{17,,-b}
+mode then you now have to explicitly indicate this with the new @pxref{16,,-b}
 option; please see @pxref{7,,Invoking Pure} for details. Pure 0.58 also adds two new
 code generation options @pxref{56,,---symbolic} and @pxref{57,,---nosymbolic} to set
 the default evaluation mode of global functions; these are discussed in
@@ -17308,9 +17321,9 @@ that the overloaded @code{-} operator works in exactly the same manner as the
 default one.
 
 Pure 0.68 changed the batch compiler so that plain toplevel expressions are
-not evaluated during batch compilation any more. Thus the @pxref{3e,,compiling}
+not evaluated during batch compilation any more. Thus the @pxref{3d,,compiling}
 variable is obsolete now. It is still supported for backward compatibility,
-but the compiler will flag it as "deprecated" when run with the @pxref{37,,-w} option. Please check @pxref{b,,Batch Compilation} for details.
+but the compiler will flag it as "deprecated" when run with the @pxref{36,,-w} option. Please check @pxref{b,,Batch Compilation} for details.
 
 @node Error Recovery,Splicing Tuples and Matrices,Backward Compatibility,Caveats and Notes
 @anchor{pure error-recovery}@anchor{165}
@@ -18383,7 +18396,7 @@ you actually declared the function correctly! So you have to be careful to
 give the proper declarations, otherwise your program might well give a
 segfault when calling the function. This problem can to some extent be
 alleviated by using the bitcode interface, see @pxref{148,,Importing LLVM Bitcode} and
-@pxref{7c,,Inline Code} in the @pxref{45,,C Interface} section. However, you always have to be
+@pxref{7c,,Inline Code} in the @pxref{44,,C Interface} section. However, you always have to be
 careful when calling @pxref{141,,variadic C functions}, as the compiler has no way of
 checking which combinations of extra parameters a function like @code{printf} is
 to be invoked with. (As a remedy, the standard library provides safe
@@ -18859,7 +18872,7 @@ Computing. MIT Press, Cambridge, Mass., 1985.
 
 Another term rewriting language by yours truly, @indicateurl{http://q-lang.sf.net}.
 @end table
-@anchor{pure texmacs}@anchor{33}
+@anchor{pure texmacs}@anchor{32}
 
 @table @asis
 
