@@ -57,7 +57,7 @@
             
   <div class="section" id="the-pure-manual">
 <h1>The Pure Manual<a class="headerlink" href="#the-pure-manual" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.68, April 11, 2018</p>
+<p>Version 0.68, April 12, 2018</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Copyright (c) 2009-2018 by Albert Gräf. This document is available under the
 <a class="reference external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</a>. Also see the <a class="reference internal" href="#copying">Copying</a> section for licensing information of the
@@ -861,6 +861,13 @@ about implicit symbol declarations and the like. On-the-fly syntax checkers
 such as <a class="reference external" href="http://www.flycheck.org">flycheck</a> can employ this facility to check a program while it is
 being edited (the distribution actually includes a Pure module for flycheck,
 see <a class="reference internal" href="install.html"><em>Installing Pure (and LLVM)</em></a> for details).</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If <a class="reference internal" href="#cmdoption-pure--check"><em class="xref std std-option">--check</em></a> is used along with <a class="reference internal" href="#cmdoption-pure-w"><em class="xref std std-option">-w</em></a> then,
+in contrast to the tagging options, the syntax checker will execute global
+constant and variable definitions. This is necessary in order to give
+proper diagnostics about undeclared symbols.</p>
+</div>
 </div>
 <div class="section" id="running-interactively">
 <h3><a class="toc-backref" href="#id32">Running Interactively</a><a class="headerlink" href="#running-interactively" title="Permalink to this headline">¶</a></h3>
@@ -14168,7 +14175,7 @@ sessions. See <a class="reference external" href="http://www.texmacs.org">http:/
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Apr 11, 2018.
+    Last updated on Apr 12, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

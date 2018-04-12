@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.68, April 11, 2018
+  Version 0.68, April 12, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -769,6 +769,12 @@
   a program while it is being edited (the distribution actually includes a
   Pure module for flycheck, see <hlink|<em|Installing Pure (and
   LLVM)>|install.tm> for details).
+
+  <with|font-series|bold|Note:> If <hlink|<em|\Ucheck>|#cmdoption-pure--check>
+  is used along with <hlink|<em|-w>|#cmdoption-pure-w> then, in contrast to
+  the tagging options, the syntax checker will execute global constant and
+  variable definitions. This is necessary in order to give proper diagnostics
+  about undeclared symbols.
 
   <subsubsection|Running Interactively><label|running-interactively>
 
@@ -22881,5 +22887,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  12, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
