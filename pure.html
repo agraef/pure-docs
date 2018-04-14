@@ -57,7 +57,7 @@
             
   <div class="section" id="the-pure-manual">
 <h1>The Pure Manual<a class="headerlink" href="#the-pure-manual" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.68, April 12, 2018</p>
+<p>Version 0.68, April 14, 2018</p>
 <p>Albert Gräf &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>Copyright (c) 2009-2018 by Albert Gräf. This document is available under the
 <a class="reference external" href="http://www.gnu.org/copyleft/fdl.html">GNU Free Documentation License</a>. Also see the <a class="reference internal" href="#copying">Copying</a> section for licensing information of the
@@ -12144,13 +12144,13 @@ output code. Your program will normally have to include at least one of these
 so that it does something useful. That is, the toplevel expressions play the
 role of the &#8220;main program&#8221; in your script. They are best placed after all the
 function and variable definitions, at the end of your program.</p>
-<p>All other items (macro, type, function, constant and variable definitions) are
-executed <em>at compile time</em> as usual. This might first seem a bit weird, but it
-paves the way for the powerful programming technique of <a class="reference external" href="http://en.wikipedia.org/wiki/Partial_evaluation">partial evaluation</a>
-(more about that later). In any case, compile-time execution can&#8217;t really be
-avoided in a highly dynamic language like Pure. Recall that even constants can
-be defined by evaluating arbitrary expressions, and using <a class="reference internal" href="purelib.html#eval" title="eval"><tt class="xref pure pure-func docutils literal"><span class="pre">eval</span></tt></a> a
-program can easily modify itself in even more unforeseeable ways.</p>
+<p>All other toplevel items are executed <em>at compile time</em> as usual. This
+includes constant and variable definitions, which might seem a bit unusual,
+but can&#8217;t be avoided in a highly dynamic language like Pure (recall that even
+constants can be defined by evaluating arbitrary expressions in Pure, and
+using <a class="reference internal" href="purelib.html#eval" title="eval"><tt class="xref pure pure-func docutils literal"><span class="pre">eval</span></tt></a> a program can easily modify itself in even more
+unforeseeable ways). It also paves the way for the powerful programming
+technique of <a class="reference external" href="http://en.wikipedia.org/wiki/Partial_evaluation">partial evaluation</a> (more about that later).</p>
 <p>Thus it is important to keep in mind that if <a class="reference internal" href="#const"><tt class="xref std std-keyword docutils literal"><span class="pre">const</span></tt></a> and
 <a class="reference internal" href="#let"><tt class="xref std std-keyword docutils literal"><span class="pre">let</span></tt></a> bindings involve any code to be executed, that code will be run
 also during batch compilation. What this means is that permanent side-effects
@@ -14175,7 +14175,7 @@ sessions. See <a class="reference external" href="http://www.texmacs.org">http:/
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Apr 12, 2018.
+    Last updated on Apr 14, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

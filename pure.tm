@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.68, April 12, 2018
+  Version 0.68, April 14, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -19726,15 +19726,15 @@
   They are best placed after all the function and variable definitions, at
   the end of your program.
 
-  All other items (macro, type, function, constant and variable definitions)
-  are executed <em|at compile time> as usual. This might first seem a bit
-  weird, but it paves the way for the powerful programming technique of
-  <hlink|partial evaluation|http://en.wikipedia.org/wiki/Partial-evaluation>
-  (more about that later). In any case, compile-time execution can't really
-  be avoided in a highly dynamic language like Pure. Recall that even
-  constants can be defined by evaluating arbitrary expressions, and using
-  <hlink|<with|font-family|tt|eval>|purelib.tm#eval> a program can easily
-  modify itself in even more unforeseeable ways.
+  All other toplevel items are executed <em|at compile time> as usual. This
+  includes constant and variable definitions, which might seem a bit unusual,
+  but can't be avoided in a highly dynamic language like Pure (recall that
+  even constants can be defined by evaluating arbitrary expressions in Pure,
+  and using <hlink|<with|font-family|tt|eval>|purelib.tm#eval> a program can
+  easily modify itself in even more unforeseeable ways). It also paves the
+  way for the powerful programming technique of <hlink|partial
+  evaluation|http://en.wikipedia.org/wiki/Partial-evaluation> (more about
+  that later).
 
   Thus it is important to keep in mind that if
   <hlink|<with|font-family|tt|const>|#const> and
@@ -22887,5 +22887,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  12, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  14, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
