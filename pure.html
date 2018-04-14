@@ -12154,11 +12154,11 @@ technique of <a class="reference external" href="http://en.wikipedia.org/wiki/Pa
 <p>Thus it is important to keep in mind that if <a class="reference internal" href="#const"><tt class="xref std std-keyword docutils literal"><span class="pre">const</span></tt></a> and
 <a class="reference internal" href="#let"><tt class="xref std std-keyword docutils literal"><span class="pre">let</span></tt></a> bindings involve any code to be executed, that code will be run
 also during batch compilation. What this means is that permanent side-effects
-such as creating or removing files should be avoided in these definitions;
-stuff like reading files in order to initialize constants and variables should
-be ok, though. Other side-effects should be confined to the toplevel
-expressions making up your main program. (The compiler has no way of checking
-these policies, so they are the programmer&#8217;s responsibility.)</p>
+such as creating, writing or removing files should be avoided in these
+definitions; <em>reading</em> permanent storage in order to initialize constants and
+variables should be fine, though. Other side-effects should be confined to the
+toplevel expressions making up your main program. (The compiler has no way of
+checking these policies, so they are the programmer&#8217;s responsibility.)</p>
 <p>In the case of <a class="reference internal" href="#const"><tt class="xref std std-keyword docutils literal"><span class="pre">const</span></tt></a>, the code needed to construct these values
 will normally be run <em>only</em> during batch compilation and the resulting values
 are then either inlined in other definitions or stored as read-only variables,

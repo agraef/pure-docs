@@ -19740,12 +19740,12 @@
   <hlink|<with|font-family|tt|const>|#const> and
   <hlink|<with|font-family|tt|let>|#let> bindings involve any code to be
   executed, that code will be run also during batch compilation. What this
-  means is that permanent side-effects such as creating or removing files
-  should be avoided in these definitions; stuff like reading files in order
-  to initialize constants and variables should be ok, though. Other
-  side-effects should be confined to the toplevel expressions making up your
-  main program. (The compiler has no way of checking these policies, so they
-  are the programmer's responsibility.)
+  means is that permanent side-effects such as creating, writing or removing
+  files should be avoided in these definitions; <em|reading> permanent
+  storage in order to initialize constants and variables should be fine,
+  though. Other side-effects should be confined to the toplevel expressions
+  making up your main program. (The compiler has no way of checking these
+  policies, so they are the programmer's responsibility.)
 
   In the case of <hlink|<with|font-family|tt|const>|#const>, the code needed
   to construct these values will normally be run <em|only> during batch

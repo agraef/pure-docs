@@ -14118,12 +14118,12 @@ later).
   Thus it is important to keep in mind that if *note const: 52. and
 *note let: c2. bindings involve any code to be executed, that code will
 be run also during batch compilation.  What this means is that permanent
-side-effects such as creating or removing files should be avoided in
-these definitions; stuff like reading files in order to initialize
-constants and variables should be ok, though.  Other side-effects should
-be confined to the toplevel expressions making up your main program.
-(The compiler has no way of checking these policies, so they are the
-programmer’s responsibility.)
+side-effects such as creating, writing or removing files should be
+avoided in these definitions; _reading_ permanent storage in order to
+initialize constants and variables should be fine, though.  Other
+side-effects should be confined to the toplevel expressions making up
+your main program.  (The compiler has no way of checking these policies,
+so they are the programmer’s responsibility.)
 
   In the case of *note const: 52, the code needed to construct these
 values will normally be run _only_ during batch compilation and the
@@ -17379,142 +17379,142 @@ Ref: b557395
 Node: Compile Time Versus Run Time558137
 Ref: pure compile-time-versus-run-time558233
 Ref: 15b558233
-Ref: Compile Time Versus Run Time-Footnote-1564559
-Node: Example564615
-Ref: pure example564747
-Ref: 15d564747
-Ref: Example-Footnote-1569230
-Node: Options Affecting Code Size569286
-Ref: pure options-affecting-code-size569415
-Ref: 15c569415
-Node: Other Output Code Formats572931
-Ref: pure other-output-code-formats573082
-Ref: 15e573082
-Ref: Other Output Code Formats-Footnote-1580104
-Node: Calling Pure Functions From C580134
-Ref: pure calling-pure-functions-from-c580249
-Ref: 15f580249
-Ref: pure llvm-documentation580249
-Ref: 160580249
-Node: Caveats and Notes581795
-Ref: pure caveats-and-notes581891
-Ref: c581891
-Node: Etymology582574
-Ref: pure etymology582666
-Ref: 161582666
-Node: Backward Compatibility583576
-Ref: pure backward-compatibility583691
-Ref: 162583691
-Node: Error Recovery595240
-Ref: pure error-recovery595374
-Ref: 165595374
-Node: Splicing Tuples and Matrices596039
-Ref: pure splicing-tuples-and-matrices596164
-Ref: af596164
-Node: With and when598161
-Ref: pure with-and-when598291
-Ref: 166598291
-Node: Non-Linear Patterns602105
-Ref: pure non-linear-patterns602220
-Ref: 167602220
-Node: "As" Patterns603673
-Ref: pure as-patterns603801
-Ref: 127603801
-Node: "Head = Function" Pitfalls604568
-Ref: pure head-function-pitfalls604694
-Ref: cf604694
-Node: Defined Functions608101
-Ref: pure defined-functions608243
-Ref: 61608243
-Node: Stack Size and Tail Recursion613798
-Ref: pure stack-size-and-tail-recursion613946
-Ref: 4e613946
-Node: Handling of Asynchronous Signals616623
-Ref: pure handling-of-asynchronous-signals616769
-Ref: 4f616769
-Node: Recursive Types618829
-Ref: pure recursive-types618956
-Ref: e2618956
-Ref: Recursive Types-Footnote-1624253
-Node: Interfaces624317
-Ref: pure interfaces624432
-Ref: 115624432
-Node: Numeric Calculations628113
-Ref: pure numeric-calculations628233
-Ref: 168628233
-Node: Constant Definitions630198
-Ref: pure constant-definitions630328
-Ref: ea630328
-Node: External C Functions636411
-Ref: pure external-c-functions636542
-Ref: 139636542
-Ref: External C Functions-Footnote-1638244
-Node: Calling Special Forms638282
-Ref: pure calling-special-forms638401
-Ref: 169638401
-Node: Laziness638890
-Ref: pure laziness639001
-Ref: 16a639001
-Node: Name Capture643662
-Ref: pure name-capture643743
-Ref: 12a643743
-Node: Author647235
-Ref: pure author647330
-Ref: 16c647330
-Node: Acknowledgements647463
-Ref: pure acknowledgements647548
-Ref: 16d647548
-Node: Copying648799
-Ref: pure copying648898
-Ref: 1648898
-Ref: Copying-Footnote-1651944
-Ref: Copying-Footnote-2651989
-Ref: Copying-Footnote-3652035
-Ref: Copying-Footnote-4652080
-Node: References and Links652126
-Ref: pure references-and-links652214
-Ref: 16e652214
-Ref: pure aardappel652263
-Ref: b7652263
-Ref: pure alice-ml652410
-Ref: 16b652410
-Ref: pure ats652550
-Ref: 150652550
-Ref: pure baader-and-nipkow652731
-Ref: f652731
-Ref: pure bertrand652851
-Ref: 10f652851
-Ref: pure clang653120
-Ref: 149653120
-Ref: pure dragonegg653384
-Ref: 14b653384
-Ref: pure faust653595
-Ref: 14c653595
-Ref: pure gmp653689
-Ref: ab653689
-Ref: pure octave653802
-Ref: f8653802
-Ref: pure gsl653951
-Ref: b2653951
-Ref: pure go654119
-Ref: 111654119
-Ref: pure haskell654190
-Ref: 91654190
-Ref: pure llvm654261
-Ref: 6654261
-Ref: pure llvm-gcc654331
-Ref: 14a654331
-Ref: pure miranda654554
-Ref: 164654554
-Ref: pure ml654733
-Ref: 92654733
-Ref: pure michael-o-donnell654894
-Ref: e654894
-Ref: pure q655049
-Ref: 163655049
-Ref: pure texmacs655139
-Ref: 32655139
-Node: Index655355
+Ref: Compile Time Versus Run Time-Footnote-1564574
+Node: Example564630
+Ref: pure example564762
+Ref: 15d564762
+Ref: Example-Footnote-1569245
+Node: Options Affecting Code Size569301
+Ref: pure options-affecting-code-size569430
+Ref: 15c569430
+Node: Other Output Code Formats572946
+Ref: pure other-output-code-formats573097
+Ref: 15e573097
+Ref: Other Output Code Formats-Footnote-1580119
+Node: Calling Pure Functions From C580149
+Ref: pure calling-pure-functions-from-c580264
+Ref: 15f580264
+Ref: pure llvm-documentation580264
+Ref: 160580264
+Node: Caveats and Notes581810
+Ref: pure caveats-and-notes581906
+Ref: c581906
+Node: Etymology582589
+Ref: pure etymology582681
+Ref: 161582681
+Node: Backward Compatibility583591
+Ref: pure backward-compatibility583706
+Ref: 162583706
+Node: Error Recovery595255
+Ref: pure error-recovery595389
+Ref: 165595389
+Node: Splicing Tuples and Matrices596054
+Ref: pure splicing-tuples-and-matrices596179
+Ref: af596179
+Node: With and when598176
+Ref: pure with-and-when598306
+Ref: 166598306
+Node: Non-Linear Patterns602120
+Ref: pure non-linear-patterns602235
+Ref: 167602235
+Node: "As" Patterns603688
+Ref: pure as-patterns603816
+Ref: 127603816
+Node: "Head = Function" Pitfalls604583
+Ref: pure head-function-pitfalls604709
+Ref: cf604709
+Node: Defined Functions608116
+Ref: pure defined-functions608258
+Ref: 61608258
+Node: Stack Size and Tail Recursion613813
+Ref: pure stack-size-and-tail-recursion613961
+Ref: 4e613961
+Node: Handling of Asynchronous Signals616638
+Ref: pure handling-of-asynchronous-signals616784
+Ref: 4f616784
+Node: Recursive Types618844
+Ref: pure recursive-types618971
+Ref: e2618971
+Ref: Recursive Types-Footnote-1624268
+Node: Interfaces624332
+Ref: pure interfaces624447
+Ref: 115624447
+Node: Numeric Calculations628128
+Ref: pure numeric-calculations628248
+Ref: 168628248
+Node: Constant Definitions630213
+Ref: pure constant-definitions630343
+Ref: ea630343
+Node: External C Functions636426
+Ref: pure external-c-functions636557
+Ref: 139636557
+Ref: External C Functions-Footnote-1638259
+Node: Calling Special Forms638297
+Ref: pure calling-special-forms638416
+Ref: 169638416
+Node: Laziness638905
+Ref: pure laziness639016
+Ref: 16a639016
+Node: Name Capture643677
+Ref: pure name-capture643758
+Ref: 12a643758
+Node: Author647250
+Ref: pure author647345
+Ref: 16c647345
+Node: Acknowledgements647478
+Ref: pure acknowledgements647563
+Ref: 16d647563
+Node: Copying648814
+Ref: pure copying648913
+Ref: 1648913
+Ref: Copying-Footnote-1651959
+Ref: Copying-Footnote-2652004
+Ref: Copying-Footnote-3652050
+Ref: Copying-Footnote-4652095
+Node: References and Links652141
+Ref: pure references-and-links652229
+Ref: 16e652229
+Ref: pure aardappel652278
+Ref: b7652278
+Ref: pure alice-ml652425
+Ref: 16b652425
+Ref: pure ats652565
+Ref: 150652565
+Ref: pure baader-and-nipkow652746
+Ref: f652746
+Ref: pure bertrand652866
+Ref: 10f652866
+Ref: pure clang653135
+Ref: 149653135
+Ref: pure dragonegg653399
+Ref: 14b653399
+Ref: pure faust653610
+Ref: 14c653610
+Ref: pure gmp653704
+Ref: ab653704
+Ref: pure octave653817
+Ref: f8653817
+Ref: pure gsl653966
+Ref: b2653966
+Ref: pure go654134
+Ref: 111654134
+Ref: pure haskell654205
+Ref: 91654205
+Ref: pure llvm654276
+Ref: 6654276
+Ref: pure llvm-gcc654346
+Ref: 14a654346
+Ref: pure miranda654569
+Ref: 164654569
+Ref: pure ml654748
+Ref: 92654748
+Ref: pure michael-o-donnell654909
+Ref: e654909
+Ref: pure q655064
+Ref: 163655064
+Ref: pure texmacs655154
+Ref: 32655154
+Node: Index655370
 
 End Tag Table
 
