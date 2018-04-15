@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.68, April 14, 2018
+  Version 0.68, April 15, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -300,7 +300,8 @@
   <verbatim|--check>, <verbatim|--ctags> and <verbatim|--etags> options.
   However, in this case the given scripts are not executed at all, but only
   parsed in order to check them for syntactic validity, or to produce a vi or
-  emacs tags file, see `Tagging Scripts`_ below.
+  emacs tags file, see <hlink|Tagging and Checking
+  Scripts|#tagging-and-checking-scripts> below.
 
   Here are some common ways to invoke the interpreter:
 
@@ -22887,5 +22888,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  14, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  15, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
