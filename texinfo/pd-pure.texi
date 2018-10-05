@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.68, April 15, 2018
+Pure 0.68, October 05, 2018
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-pure doc}@anchor{0}
-Version 0.25, April 11, 2018
+Version 0.26, October 05, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -105,7 +105,7 @@ instantiated later.
 @chapter Copying
 
 
-Copyright (c) 2009-2017 by Albert Graef. pd-pure is distributed under a
+Copyright (c) 2009-2018 by Albert Graef. pd-pure is distributed under a
 3-clause BSD-style license, please see the included COPYING file for details.
 
 @node Installation,Usage,Copying,Top
@@ -118,7 +118,7 @@ above, since these offer substantial improvements in Pd's "loader" functionality
 which pd-pure hooks into to provide Pure object creation.
 
 Get the latest source from
-@indicateurl{https://github.com/agraef/pure-lang/releases/download/pd-pure-0.25/pd-pure-0.25.tar.gz}.
+@indicateurl{https://github.com/agraef/pure-lang/releases/download/pd-pure-0.26/pd-pure-0.26.tar.gz}.
 
 Usually, @code{make && sudo make install} should do the trick. This will compile
 the external (you need to have GNU make, Pd and Pure installed to do that) and
@@ -375,6 +375,7 @@ versa).
 * Simple Objects:: 
 * Creation Arguments:: 
 * The [pure] Object:: 
+* Multiple Output Messages:: 
 * Configuring Inlets and Outlets:: 
 * Variadic Creation Functions:: 
 * Local State:: 
@@ -419,7 +420,7 @@ number of creation arguments can be processed this way. However, the Pure
 loader also provides a mechanism to handle a variable number of creation
 arguments, see @pxref{b,,Variadic Creation Functions} below.
 
-@node The [pure] Object,Configuring Inlets and Outlets,Creation Arguments,Control Objects
+@node The [pure] Object,Multiple Output Messages,Creation Arguments,Control Objects
 @anchor{pd-pure the-pure-object}@anchor{c}
 @section The [pure] Object
 
@@ -437,10 +438,61 @@ produces the same results as the @code{[add 5]} object defined using a separate
 add.pure script in the previous section. You can also generate constant values
 that way. E.g., the object @code{[pure cst 1.618]} responds to any message (such
 as @code{bang}) by producing the constant value 1.618, while the object @code{[pure
-cst [1..10]]} yields the constant list containing the numbers 1..10.
+cst (1..10)]} yields the constant list containing the numbers 1..10.
 
-@node Configuring Inlets and Outlets,Variadic Creation Functions,The [pure] Object,Control Objects
-@anchor{pd-pure configuring-inlets-and-outlets}@anchor{f}
+@node Multiple Output Messages,Configuring Inlets and Outlets,The [pure] Object,Control Objects
+@anchor{pd-pure multiple-output-messages}@anchor{f}
+@section Multiple Output Messages
+
+
+A Pure object can also output multiple messages in one go, by enclosing the
+sequence of messages to be output in curly brances (which turns them into a
+Pure vector). The messages will be output in the indicated order. E.g., the
+following @code{[dup]} object sends out each received message twice:
+
+@example
+dup x = @{x,x@};
+@end example
+
+@noindent
+
+Note that this is different from the following, which outputs a list value to
+the outlet instead:
+
+@example
+dup2 x = [x,x];
+@end example
+
+@noindent
+
+An object can also just "swallow" messages and generate no output at all. To
+these ends, an object may return either an empty vector @code{@{@}} or the empty
+tuple @code{()}. (Note that, in contrast, returning the empty list @code{[]} does
+send a value back to Pd, namely an empty list value.) For instance, the
+following object @code{[echo]} implements a sink which just prints received
+messages on standard output, which is useful for debugging purposes:
+
+@example
+using system;
+echo x = () when puts (str x) end;
+@end example
+
+@noindent
+
+Using the facilities for configuring the inlets and outlets of an object
+described in the next section, you could also implement this object as
+follows, by just removing the superflous outlet (in this case all return
+values from the function will be ignored anyway):
+
+@example
+using system;
+echo = 1,0,puts.str;
+@end example
+
+@noindent
+
+@node Configuring Inlets and Outlets,Variadic Creation Functions,Multiple Output Messages,Control Objects
+@anchor{pd-pure configuring-inlets-and-outlets}@anchor{10}
 @section Configuring Inlets and Outlets
 
 
@@ -464,11 +516,10 @@ cross = 2,2,cross with cross (k,x) = (1-k,x) end;
 
 @noindent
 
-You can also emit multiple messages, possibly to different outlets, in one
-go. These must be encoded as Pure vectors (or matrices) of values or
-@code{index,value} pairs, which are emitted in the order in which they are
-written. E.g., the following @code{[fan]} object implements an "n-fan" which
-routes its input to @code{n} outlets simultaneously:
+You can also emit multiple messages to different outlets in one go. These are
+encoded as vectors of @code{index,value} pairs which are emitted in the order in
+which they are written. E.g., the following @code{[fan]} object implements an
+"n-fan" which routes its input to @code{n} outlets simultaneously:
 
 @example
 fan n = 1,n,fan with fan x = reverse @{k,x | k = 0..n-1@} end;
@@ -476,54 +527,19 @@ fan n = 1,n,fan with fan x = reverse @{k,x | k = 0..n-1@} end;
 
 @noindent
 
-(Note that, because of the use of @code{reverse}, the @code{n} outlets are served in
+Note that, because of the use of @code{reverse}, the @code{n} outlets are served in
 right-to-left order here. This is not strictly necessary, but matches the Pd
-convention.)
+convention.
 
-Another example is the following @code{[dup]} object with a single inlet and
-outlet, which just sends out each received message twice:
-
-@example
-dup x = @{x,x@};
-@end example
-
-@noindent
-
-Note that this is different from the following, which outputs a list value to
-the outlet instead:
+An object can even change its number of inlets and outlets dynamically at
+runtime, using the @pxref{11,,pd_configure()} function described in the
+@pxref{12,,Programming Interface} section. E.g., the following object accepts lists of
+two numbers and changes its number of inlets and outlets accordingly:
 
 @example
-dup2 x = [x,x];
-@end example
-
-@noindent
-
-(Also, please note that this behaviour is new in pd-pure 0.14. Previously, a
-list return value by itself would output multiple values instead. However,
-this made it very awkward to deal with Pd list values in pd-pure, and so as
-of pd-pure 0.14 Pure matrices must now be used to output multiple values.)
-
-An object can also just "swallow" messages and generate no output at all. To
-these ends, make the object return either an empty vector @code{@{@}} or the empty
-tuple @code{()}. (Note that, in contrast, returning the empty list @code{[]} does
-send a value back to Pd, namely an empty list value.) For instance, the
-following object @code{[echo]} implements a sink which just prints received
-messages on standard output, which is useful for debugging purposes:
-
-@example
-using system;
-echo x = () when puts (str x) end;
-@end example
-
-@noindent
-
-You could also implement this object as follows, by just removing the
-superflous outlet (in this case all return values from the function will be
-ignored anyway):
-
-@example
-using system;
-echo = 1,0,puts.str;
+using pd;
+inout [n,m] |
+inout (0,[n,m]) = pd_configure (int n) (int m);
 @end example
 
 @noindent
@@ -575,7 +591,7 @@ case there will be four outlets, one for each given value and one for the
 rightmost "default" outlet.
 
 @node Local State,,Variadic Creation Functions,Control Objects
-@anchor{pd-pure local-state}@anchor{10}
+@anchor{pd-pure local-state}@anchor{13}
 @section Local State
 
 
@@ -952,7 +968,7 @@ it avoids the overhead of the extra Pure layer. However, invoking Faust dsps
 via Pure also offers some benefits. In particular, it enables you to add more
 sophisticated control processing, interface to other 3rd party software for
 additional pre- and postprocessing of the signal data, or do live editing of
-Faust programs using the facilities described in @pxref{11,,Livecoding} below. An actual
+Faust programs using the facilities described in @pxref{14,,Livecoding} below. An actual
 Pure implementation of a Faust external which does all this @emph{and} provides the
 extra conveniences of faust2pd under one hood can be found in @code{pd-faust}.
 
@@ -980,7 +996,7 @@ an overview of the API provided for pd-pure programmers.
 @end menu
 
 @node Asynchronous Messages,Wireless Messaging,,Advanced Features
-@anchor{pd-pure asynchronous-messages}@anchor{12}
+@anchor{pd-pure asynchronous-messages}@anchor{15}
 @section Asynchronous Messages
 
 
@@ -1038,9 +1054,9 @@ mydelay t msg = pd_delay t (alarm msg) otherwise;
 More elaborate functionality can be built on top of the basic timer facility.
 The following example shows how to maintain a timed message queue in a Pure
 list, in order to implement a simple delay line similar to Pd's builtin
-@code{pipe} object. Here we also employ the @pxref{13,,pd_time()} function, which is
+@code{pipe} object. Here we also employ the @pxref{16,,pd_time()} function, which is
 provided by the Pure loader so that Pure scripts can access the current
-logical Pd time in milliseconds (see @pxref{14,,Programming Interface} below). This is
+logical Pd time in milliseconds (see @pxref{12,,Programming Interface} below). This is
 convenient if we need to deal with absolute time values, which we use in this
 example to keep track of the times at which messages in the queue are to be
 delivered:
@@ -1062,15 +1078,15 @@ end;
 @noindent
 
 @node Wireless Messaging,Reading and Writing Audio Data,Asynchronous Messages,Advanced Features
-@anchor{pd-pure wireless-messaging}@anchor{15}
+@anchor{pd-pure wireless-messaging}@anchor{17}
 @section Wireless Messaging
 
 
 As of version 0.14, pd-pure offers some facilities for sending and receiving
 messages directly, without any wired connections to the inlets and outlets of
 an object (similar to what the Pd @code{[send]} and @code{[receive]} objects
-provide). See the description for the @pxref{16,,pd_send()} and
-@pxref{17,,pd_receive()} routines in the @pxref{14,,Programming Interface} section.
+provide). See the description for the @pxref{18,,pd_send()} and
+@pxref{19,,pd_receive()} routines in the @pxref{12,,Programming Interface} section.
 
 For instance, here's how you can use the @code{pd_send} function to send messages
 to the Pd runtime:
@@ -1135,7 +1151,7 @@ between Pd GUI elements and Pure objects. Wireless connections are often
 preferred in such cases, to reduce display clutter.
 
 @node Reading and Writing Audio Data,Controlling the Runtime,Wireless Messaging,Advanced Features
-@anchor{pd-pure reading-and-writing-audio-data}@anchor{18}
+@anchor{pd-pure reading-and-writing-audio-data}@anchor{1a}
 @section Reading and Writing Audio Data
 
 
@@ -1148,8 +1164,8 @@ implement distortion effects.
 
 Each array has a name (Pd symbol) under which it can be accessed from Pure
 code. pd-pure makes it possible to transfer audio data directly between Pd
-arrays and Pure double vectors by means of the @pxref{19,,pd_getbuffer()} and
-@pxref{1a,,pd_setbuffer()} routines. Please see @pxref{14,,Programming Interface} below for
+arrays and Pure double vectors by means of the @pxref{1b,,pd_getbuffer()} and
+@pxref{1c,,pd_setbuffer()} routines. Please see @pxref{12,,Programming Interface} below for
 a closer description of the provided routines.
 
 For instance, here is a @code{randomwave} object which fills a Pd array (whose
@@ -1186,7 +1202,7 @@ same instance of the Pure interpreter.
 First and foremost, the @code{[pure-runtime]} object accepts some control
 messages which can be used to dynamically reload all loaded scripts, and to
 implement "remote control" of a patch using the @strong{pdsend}
-program. This is described in more detail in the @pxref{11,,Livecoding} subsection.
+program. This is described in more detail in the @pxref{14,,Livecoding} subsection.
 
 The second use of @code{[pure-runtime]} is to load additional Pure scripts. To
 these ends, @code{[pure-runtime]} can be invoked with the names of scripts to be
@@ -1206,7 +1222,7 @@ your patch:
 This facility can be used, in particular, to load any additional scripts
 needed for anonymous objects defined with @code{[pure]} and @code{[pure~]}. Note
 that you shouldn't use this to load named Pure objects, you should let the
-Pure loader handle these as it also keeps track of the scripts in @pxref{11,,livecoding}.
+Pure loader handle these as it also keeps track of the scripts in @pxref{14,,livecoding}.
 Another caveat is that you @emph{must} ensure that the @code{[pure-runtime]} object is
 inserted into the patch @emph{before} any anonymous objects which depend on the
 loaded scripts. (Also note that the script loading facility of
@@ -1221,7 +1237,7 @@ line. It causes the interpreter to produce additional warning messages for
 some dubious (albeit correct) constructs, which may be a useful aid, in
 particular, for Pure novices. This is a global option; once enabled, it
 applies to all subsequently loaded Pure scripts until the interpreter is
-restarted from scratch (see @pxref{11,,Livecoding}). The @code{-w} option can also be
+restarted from scratch (see @pxref{14,,Livecoding}). The @code{-w} option can also be
 combined with names of scripts to be loaded, e.g.:
 
 @example
@@ -1250,7 +1266,7 @@ defining functions to be used with the @code{[pure]} and @code{[pure~]} objects.
 
 @item 
 The Pure loader keeps track of the loaded scripts and allows them to be
-reloaded at any time using the @pxref{11,,livecoding} facility.
+reloaded at any time using the @pxref{14,,livecoding} facility.
 @end itemize
 
 Note that at present, this feature requires the latest incarnation of the Pd
@@ -1318,7 +1334,7 @@ sure that the script gets loaded (and reloaded when livecoding) even if the
 patch doesn't contain any instance of the named object at all.
 
 @node Livecoding,Remote Control,Loading Script Files at Startup,Advanced Features
-@anchor{pd-pure livecoding}@anchor{11}
+@anchor{pd-pure livecoding}@anchor{14}
 @section Livecoding
 
 
@@ -1337,7 +1353,7 @@ useful "remote control" feature. We @emph{really} recommend using that instead o
 fiddling around with @code{[pure-runtime]}, but since @code{[pure-remote]} is
 implemented using @code{[pure-runtime]}, it may be useful to know how all this
 works at the most basic level, which is what we explain below. (If you don't
-care about the nitty-gritty stuff then you may just skip ahead to the @pxref{1b,,Remote Control} section now.)
+care about the nitty-gritty stuff then you may just skip ahead to the @pxref{1d,,Remote Control} section now.)
 
 Sending a @code{bang} to the @code{[pure-runtime]} object tells the plugin to reload
 all object scripts and update the Pure objects in your patch accordingly. The
@@ -1367,18 +1383,8 @@ imported in the object scripts. By these means, the number of definitions in
 the object scripts themselves can be kept small, resulting in faster
 compilation.
 
-Second, Pd doesn't allow objects to change their inlet/outlet configuration on
-the fly. If a code change in a Pure object involves any such modifications,
-the reloaded objects will still appear to have the same inlets and outlets as
-before (and often cease to function properly). The quickest way to force an
-update of all affected Pure objects in one go, while preserving the current
-object connections, is to select the corresponding part of the patch and use
-Pd's cut and paste commands to reinsert it (if there are a lot of Pure objects
-scattered out all over the patch then you might just want to select and
-reinsert the entire contents of the patch).
-
-Finally, note that the reloading of object scripts amounts to a "cold restart"
-of the Pure objects in your patches. If a Pure object keeps some @pxref{10,,local state}, it will be lost. As a remedy, the loader implements a simple protocol
+Second, note that the reloading of object scripts amounts to a "cold restart"
+of the Pure objects in your patches. If a Pure object keeps some @pxref{13,,local state}, it will be lost. As a remedy, the loader implements a simple protocol
 which allows Pure objects to record their internal state before a script gets
 reloaded, and restore it afterwards. To these ends, a Pure object may respond
 to the following two messages:
@@ -1406,7 +1412,7 @@ In order to participate in the @code{pd_save}/@code{pd_restore} protocol, an obj
 must subscribe to it. This is done by setting @code{pd_save} as a sentry on the
 object function (see the description of the @code{sentry} function in
 the @code{purelib} for details). For instance, here's the mycounter example
-from @pxref{10,,Local State} again, with the necessary additions to support the
+from @pxref{13,,Local State} again, with the necessary additions to support the
 @code{pd_save}/@code{pd_restore} protocol:
 
 @example
@@ -1422,7 +1428,7 @@ end;
 @noindent
 
 @node Remote Control,Compiling Objects,Livecoding,Advanced Features
-@anchor{pd-pure remote-control}@anchor{1b}
+@anchor{pd-pure remote-control}@anchor{1d}
 @section Remote Control
 
 
@@ -1436,7 +1442,7 @@ should normally use this abstraction instead of fiddling around with
 @code{[pure-runtime]} itself.
 
 Sending a @code{bang} or @code{reload} to @code{[pure-remote]} causes a reload of the
-object scripts, as described under @pxref{11,,Livecoding} above. The former can also be
+object scripts, as described under @pxref{14,,Livecoding} above. The former can also be
 triggered directly by clicking the bang control of the abstraction (which also
 provides visual feedback while a compilation is still in progress). Note that
 the single inlet of the abstraction actually gets routed to the embedded
@@ -1573,15 +1579,15 @@ own in an analogous fashion. Together with Pure mode, this gives you a nice
 interactive environment for developing pd-pure applications.
 
 @node Compiling Objects,Programming Interface,Remote Control,Advanced Features
-@anchor{pd-pure compiling-objects}@anchor{1c}
+@anchor{pd-pure compiling-objects}@anchor{1e}
 @section Compiling Objects
 
 
-pd-pure's livecoding abilities require that objects are run from source code.
-As already mentioned, this needs some (in some cases, substantial) time at
-startup when the Pure interpreter is loaded and your Pure scripts are compiled
-to native code on the fly. This is wasted effort if you are finished
-developing your Pure objects and just want to run them as they are.
+pd-pure's built-in livecoding abilities require that objects are run from
+source code. As already mentioned, this needs some (in some cases,
+substantial) time at startup when the Pure interpreter is loaded and your Pure
+scripts are compiled to native code on the fly. This time is wasted if you are
+finished developing your Pure objects and just want to run them as they are.
 
 Therefore pd-pure also supports compiling a collection of Pure objects to a
 binary which can be loaded with Pd's @code{-lib} option just like any other
@@ -1597,8 +1603,17 @@ still need to load the pd-pure module first, since it provides the basic
 infrastructure required to run any kind of pd-pure object (no matter whether
 it's implemented in compiled or source form).
 
+Also note that, even though compiled objects have no associated script file
+which can be reloaded on the fly, they can still @emph{recreate} themselves with
+the @pxref{1f,,pd_reload()} routine, see @pxref{12,,Programming Interface} below. This
+makes it possible for compiled objects to adjust themselves to global state
+changes in a livecoding situation. However, it's completely up to a compiled
+object whether it actually uses that feature and/or responds to the livecoding
+messages in some way; the built-in livecoding infrastructure by itself only
+manages source objects.
+
 @node Programming Interface,,Compiling Objects,Advanced Features
-@anchor{pd-pure programming-interface}@anchor{14}
+@anchor{pd-pure programming-interface}@anchor{12}
 @section Programming Interface
 
 
@@ -1628,7 +1643,7 @@ library scripts into the @code{extra/pure/lib} folder to make them available to
 all your Pure object scripts.)
 
 @geindex pd_version_s (C function)
-@anchor{pd-pure pd_version_s}@anchor{1d}
+@anchor{pd-pure pd_version_s}@anchor{20}
 @deffn {C Function} extern char *pd_version_s ()
 
 Returns the Pd version number as a string. Note that this routine will only
@@ -1645,7 +1660,7 @@ The @code{ok} variable will then be true iff the script is running inside Pd.
 @end deffn
 
 @geindex pd_path (C function)
-@anchor{pd-pure pd_path}@anchor{1e}
+@anchor{pd-pure pd_path}@anchor{21}
 @deffn {C Function} extern expr *pd_path ()
 
 Returns the Pd path (set in Pd's @code{Path} dialog or via the @code{-path}
@@ -1654,7 +1669,7 @@ Pure scripts need to locate files on the Pd search path.
 @end deffn
 
 @geindex pd_libdir (C function)
-@anchor{pd-pure pd_libdir}@anchor{1f}
+@anchor{pd-pure pd_libdir}@anchor{22}
 @deffn {C Function} extern char *pd_libdir ()
 
 Returns the Pd library dir (determined at runtime). This is useful if your
@@ -1662,7 +1677,7 @@ Pure scripts need to access files in that directory.
 @end deffn
 
 @geindex pd_getdir (C function)
-@anchor{pd-pure pd_getdir}@anchor{20}
+@anchor{pd-pure pd_getdir}@anchor{23}
 @deffn {C Function} extern expr *pd_getdir ()
 
 Returns the directory of the patch the current object is in. This is useful
@@ -1675,19 +1690,19 @@ the objects are located in.
 @end deffn
 
 @geindex pd_getfile (C function)
-@anchor{pd-pure pd_getfile}@anchor{21}
+@anchor{pd-pure pd_getfile}@anchor{24}
 @deffn {C Function} extern expr *pd_getfile ()
 
 Returns the name of the file that will be opened with the @code{menu-open}
 action (accessible by right-clicking on a Pure object and selecting
 @code{Open}). This is usually the Pure script of the object, if available, but
-this can be changed with @pxref{22,,pd_setfile()} below. The function must be
+this can be changed with @pxref{25,,pd_setfile()} below. The function must be
 called during object creation or in the method calls of an object, so that
 it is clear what the current object is; otherwise the function will fail.
 @end deffn
 
 @geindex pd_setfile (C function)
-@anchor{pd-pure pd_setfile}@anchor{22}
+@anchor{pd-pure pd_setfile}@anchor{25}
 @deffn {C Function} extern void pd_setfile (char@w{ }*s)
 
 Sets the name of the file to be opened with the @code{menu-open} action. By
@@ -1699,7 +1714,7 @@ function will have no effect.
 @end deffn
 
 @geindex pd_post (C function)
-@anchor{pd-pure pd_post}@anchor{23}
+@anchor{pd-pure pd_post}@anchor{26}
 @deffn {C Function} extern void pd_post (char@w{ }*s)
 
 Posts a message in the Pd main window. A trailing newline is added
@@ -1708,10 +1723,10 @@ calling Pd's @code{post()} (which is a varargs function) as @code{post "%s" s}.
 @end deffn
 
 @geindex pd_error_s (C function)
-@anchor{pd-pure pd_error_s}@anchor{24}
+@anchor{pd-pure pd_error_s}@anchor{27}
 @deffn {C Function} extern void pd_error_s (char@w{ }*s)
 
-Like @pxref{23,,pd_post()}, but prints an error message instead. If this
+Like @pxref{26,,pd_post()}, but prints an error message instead. If this
 routine is invoked from an object (i.e., during object creation or a method
 call) then Pd's @code{pd_error()} function is called, which allows the object
 to be tracked down with Pd's @code{Find Last Error} menu command. Otherwise
@@ -1720,16 +1735,16 @@ called which just outputs the message.
 @end deffn
 
 @geindex pd_time (C function)
-@anchor{pd-pure pd_time}@anchor{13}
+@anchor{pd-pure pd_time}@anchor{16}
 @deffn {C Function} extern double pd_time ()
 
 Retrieves the current Pd time as a double value in milliseconds, which is
 useful, in particular, when used in conjunction with the asynchronous
-message facility described under @pxref{12,,Asynchronous Messages}.
+message facility described under @pxref{15,,Asynchronous Messages}.
 @end deffn
 
 @geindex pd_send (C function)
-@anchor{pd-pure pd_send}@anchor{16}
+@anchor{pd-pure pd_send}@anchor{18}
 @deffn {C Function} extern void pd_send (char@w{ }*sym, expr@w{ }*x)
 
 Sends a message, specified as a Pure term @code{x}, to the receiver given by
@@ -1738,7 +1753,7 @@ doesn't exist.
 @end deffn
 
 @geindex pd_receive (C function)
-@anchor{pd-pure pd_receive}@anchor{17}
+@anchor{pd-pure pd_receive}@anchor{19}
 @deffn {C Function} extern void pd_receive (char@w{ }*sym)
 
 Prepares an object so that it can receive messages sent to the given symbol
@@ -1750,41 +1765,73 @@ where the message came from.
 @end deffn
 
 @geindex pd_unreceive (C function)
-@anchor{pd-pure pd_unreceive}@anchor{25}
+@anchor{pd-pure pd_unreceive}@anchor{28}
 @deffn {C Function} extern void pd_unreceive (char@w{ }*sym)
 
 Switches off receiving messages for the given symbol @code{sym}. Use this
 to undo the effects of a previous @code{pd_receive} call.
 @end deffn
 
+@geindex pd_configure (C function)
+@anchor{pd-pure pd_configure}@anchor{11}
+@deffn {C Function} extern void pd_configure (int@w{ }in, int@w{ }out)
+
+Changes the number of inlets and outlets of an object on the fly. This
+allows you to reconfigure a Pure object dynamically, if the number of
+inlets and outlets changes at runtime.
+@end deffn
+
+@geindex pd_reload (C function)
+@anchor{pd-pure pd_reload}@anchor{1f}
+@deffn {C Function} extern void pd_reload ()
+
+Reload the calling object. This doesn't actually reload any script files or
+libraries, it only recreates the object using its existing definition by
+re-evaluating its creation function. The object's runtime function and the
+number of inlets and outlets are then updated accordingly, and if the
+object has any @code{pd_save}/@code{pd_restore} handlers, they will be invoked as
+well, see @pxref{14,,Livecoding} above.
+
+Usually you will only want to invoke this if the creation function picks up
+some global state (global variables, file contents, etc.). Otherwise
+nothing will actually change except that the local state of the object will
+be reinitialized.
+
+This function never returns; it raises a special @code{__reload} exception
+which causes the calling object to be recreated later when it's safe to do
+so. Thus this function must @emph{not} be invoked inside a Pure @code{catch}
+construct, unless you take care to pass on the @code{__reload} exception to
+pd-pure so that it can be handled there.
+@end deffn
+
 @geindex pd_getbuffer (C function)
 @geindex pd_setbuffer (C function)
 @geindex pd_getbuffersize (C function)
 @geindex pd_setbuffersize (C function)
-@anchor{pd-pure pd_getbuffer}@anchor{19}
+@anchor{pd-pure pd_getbuffer}@anchor{1b}
 @deffn {C Function} extern expr *pd_getbuffer (char@w{ }*name)
-@anchor{pd-pure pd_setbuffer}@anchor{1a}
+@anchor{pd-pure pd_setbuffer}@anchor{1c}
 @deffnx {C Function} extern void pd_setbuffer (char@w{ }*name, expr@w{ }*x)
-@anchor{pd-pure pd_getbuffersize}@anchor{26}
+@anchor{pd-pure pd_getbuffersize}@anchor{29}
 @deffnx {C Function} extern int pd_getbuffersize (char@w{ }*name)
-@anchor{pd-pure pd_setbuffersize}@anchor{27}
+@anchor{pd-pure pd_setbuffersize}@anchor{2a}
 @deffnx {C Function} extern void pd_setbuffersize (char@w{ }*name, int@w{ }sz)
 
 Routines to access the Pd array (sample buffer) with the given name. These
 functions can be used to transfer audio data between Pd and Pure scripts;
-see @pxref{18,,Reading and Writing Audio Data} above for an example.
+see @pxref{1a,,Reading and Writing Audio Data} above for an example.
 
-@pxref{26,,pd_getbuffersize()} and @pxref{27,,pd_setbuffersize()} gets or sets the
+@pxref{29,,pd_getbuffersize()} and @pxref{2a,,pd_setbuffersize()} gets or sets the
 size of the given buffer, respectively.
 
-@pxref{19,,pd_getbuffer()} reads the contents of the buffer and returns it as a
+@pxref{1b,,pd_getbuffer()} reads the contents of the buffer and returns it as a
 Pure vector (or fails if the array with the given name doesn't exist).
 
-@pxref{1a,,pd_setbuffer()} sets the contents of the buffer from the given Pure
+@pxref{1c,,pd_setbuffer()} sets the contents of the buffer from the given Pure
 vector @code{x}. If the size of the vector exceeds the size of the buffer, the
 former is truncated. Conversely, if the size of the buffer exceeds the size
 of the Pure vector, the trailing samples are unaffected. @emph{Note:} The
-second argument of @pxref{1a,,pd_setbuffer()} can also be a pair @code{(i,x)}
+second argument of @pxref{1c,,pd_setbuffer()} can also be a pair @code{(i,x)}
 denoting an offset @code{i} into the array at which the sample data is to be
 written, so that this routine allows you to overwrite any part of the
 array.

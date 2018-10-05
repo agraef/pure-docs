@@ -57,7 +57,7 @@
             
   <div class="section" id="pd-faust">
 <h1>pd-faust<a class="headerlink" href="#pd-faust" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.16, April 11, 2018</p>
+<p>Version 0.17, October 05, 2018</p>
 <p>Albert Graef &lt;<a class="reference external" href="mailto:aggraef&#37;&#52;&#48;gmail&#46;com">aggraef<span>&#64;</span>gmail<span>&#46;</span>com</a>&gt;</p>
 <p>pd-faust is a dynamic environment for running Faust dsps in Pd. It is based on
 the author&#8217;s <a class="reference internal" href="faust2pd.html"><em>faust2pd</em></a> script, but offers many small
@@ -99,7 +99,7 @@ current git sources).</p>
 <p>The pd-faust objects are written in the <a class="reference external" href="https://agraef.github.io/pure-lang/">Pure</a> programming language, so you&#8217;ll
 also need an installation of the Pure interpreter (0.51 or later), along with
 the following packages (minimum required versions are given in parentheses):
-<a class="reference internal" href="pd-pure.html"><em>pd-pure</em></a> (0.15), <a class="reference internal" href="pure-faust.html"><em>pure-faust</em></a> (0.8),
+<a class="reference internal" href="pd-pure.html"><em>pd-pure</em></a> (0.26), <a class="reference internal" href="pure-faust.html"><em>pure-faust</em></a> (0.8),
 <a class="reference internal" href="pure-midi.html"><em>pure-midi</em></a> (0.5) and <a class="reference internal" href="pure-stldict.html"><em>pure-stldict</em></a> (0.3).</p>
 <p>Finally, gcc and GNU make (or compatible) are required to compile the helper
 dsps and the example instruments; please check the Makefile for details.</p>
@@ -334,9 +334,7 @@ MIDI and/or OSC devices. This message can also be invoked with a numeric
 argument to toggle the &#8220;write mode&#8221; of the unit; please see <a class="reference internal" href="#external-midi-and-osc-controllers">External MIDI
 and OSC Controllers</a> below for details.</li>
 <li><tt class="docutils literal"><span class="pre">reload</span></tt> reloads the Faust unit. This also reloads the shared library or
-bitcode file if the unit was recompiled since the object was last loaded.
-(Instead of feeding a <tt class="docutils literal"><span class="pre">reload</span></tt> message to the control inlet of a Faust
-unit, you can also just send a <tt class="docutils literal"><span class="pre">bang</span></tt> to the <tt class="docutils literal"><span class="pre">reload</span></tt> receiver.)</li>
+bitcode file if the unit was recompiled since the object was last loaded.</li>
 <li><tt class="docutils literal"><span class="pre">addr</span> <span class="pre">value</span></tt> changes the control indicated by the OSC address <tt class="docutils literal"><span class="pre">addr</span></tt>.
 This is also used internally for communication with the Pd GUI and for
 controller automation.</li>
@@ -358,6 +356,22 @@ MIDI file or transmit them directly to Pd&#8217;s MIDI input. There&#8217;s also
 of sclsyx.pure included in the author&#8217;s <a class="reference external" href="https://bitbucket.org/agraef/pd-smmf">pd-smmf</a> package, which can be run as
 a Pd external to output tunings in the format understood by the <tt class="docutils literal"><span class="pre">faust~</span></tt>
 object.</p>
+<p>Finally, each <tt class="docutils literal"><span class="pre">faust~</span></tt> object subscribes to the following three global
+receivers which enable you to send various kinds of messages to all <tt class="docutils literal"><span class="pre">faust~</span></tt>
+objects in a patch:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">faustdsp</span></tt> receives arbitrary messages. This is commonly used to
+distribute MIDI or OSC data to all Faust units in a patch, but can in fact
+be used to send <em>any</em> message recognized by <tt class="docutils literal"><span class="pre">faust~</span></tt> objects.</li>
+<li><tt class="docutils literal"><span class="pre">oscplay</span></tt> listens for OSC messages. In contrast to <tt class="docutils literal"><span class="pre">faustdsp</span></tt>, this
+receiver <em>only</em> recognizes OSC data, and is used, in particular, by the
+<tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction for OSC automation, see <a class="reference internal" href="#midi-and-osc-sequencing">MIDI and OSC Sequencing</a>
+below.</li>
+<li><tt class="docutils literal"><span class="pre">reload</span></tt> can be used to reload all <tt class="docutils literal"><span class="pre">faust~</span></tt> units in a patch. This
+receiver accepts any input message, so just sending a <tt class="docutils literal"><span class="pre">bang</span></tt> will do.
+(This is provided for backward compatibility with older pd-faust versions.
+You can also just send a <tt class="docutils literal"><span class="pre">reload</span></tt> message to the <tt class="docutils literal"><span class="pre">faustdsp</span></tt> receiver.)</li>
+</ul>
 </div>
 <div class="section" id="gui-subpatches">
 <h3>GUI Subpatches<a class="headerlink" href="#gui-subpatches" title="Permalink to this headline">¶</a></h3>
@@ -572,18 +586,17 @@ to <tt class="docutils literal"><span class="pre">midiosc</span></tt>&#8216;s co
 data in response to both automation data and the manual operation of the Pd
 GUI elements, again according to the controller mappings defined in the Faust
 source, so that it can drive an external device, e.g., in order to provide
-feedback to a MIDI fader box or a multitouch OSC controller. This works with
+feedback to motorized MIDI or multitouch OSC controllers. This works with
 both <em>active</em> and <em>passive</em> Faust controls.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">One pitfall in the current implementation is that, for better or
-worse, the output is <em>not</em> emitted directly on the object&#8217;s control outlet,
-but instead goes to special <tt class="docutils literal"><span class="pre">midiout</span></tt> and <tt class="docutils literal"><span class="pre">oscout</span></tt> receivers provided
-by the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction which then takes care of outputting the
-data. Thus, if you&#8217;re <em>not</em> using <tt class="docutils literal"><span class="pre">midiosc</span></tt>, you will have to provide
-these receivers yourself if you want to process the generated MIDI and/or
-OSC data in some way (the included simple.pd example shows how to do this
-for MIDI data).</p>
+<p class="last">For better or worse, the output is <em>not</em> emitted directly on the
+object&#8217;s control outlet, but instead goes to special <tt class="docutils literal"><span class="pre">midiout</span></tt> and
+<tt class="docutils literal"><span class="pre">oscout</span></tt> receivers provided by the <tt class="docutils literal"><span class="pre">midiosc</span></tt> abstraction which then
+takes care of outputting the data. Thus, if you&#8217;re <em>not</em> using <tt class="docutils literal"><span class="pre">midiosc</span></tt>,
+you will have to provide these receivers yourself if you want to process
+the generated MIDI and/or OSC data in some way (the included simple.pd
+example shows how to do this for MIDI data).</p>
 </div>
 <p>To configure MIDI controller assignments, the labels of the Faust control
 elements have to be marked up with the special <tt class="docutils literal"><span class="pre">midi</span></tt> attribute in the Faust
@@ -721,16 +734,16 @@ and/or bug-ridden. Bug reports, patches and suggestions are welcome.</p>
 <p>In particular, please note the following known limitations in the current
 implementation:</p>
 <ul class="simple">
-<li>Passive Faust controls are only supported in effect units (<tt class="docutils literal"><span class="pre">faust~</span></tt>
-objects with zero voices).</li>
 <li>The names of the voice controls of instrument units (<tt class="docutils literal"><span class="pre">freq</span></tt>, <tt class="docutils literal"><span class="pre">gain</span></tt>,
 <tt class="docutils literal"><span class="pre">gate</span></tt>) are currently hard-coded, as are the names of the <tt class="docutils literal"><span class="pre">midi</span></tt>,
 <tt class="docutils literal"><span class="pre">osc</span></tt> and <tt class="docutils literal"><span class="pre">dsp</span></tt> subfolders used to locate various kinds of files.</li>
-<li>Polyphonic aftertouch and channel pressure messages are not supported in the
-MIDI interface right now, so you&#8217;ll have to use ordinary MIDI controllers
-for these parameters instead. Coarse/fine pairs of MIDI controllers aren&#8217;t
-directly supported either, so you&#8217;ll have to implement these yourself as two
-separate Faust controls.</li>
+<li>Only control change, note and pitch bend messages are supported in the MIDI
+interface right now, so you&#8217;ll have to use, e.g., control changes as a
+replacement for unsupported types of messages such as key and channel
+pressure if needed. (You might also consider using the author&#8217;s <a class="reference external" href="https://github.com/agraef/midizap">midizap</a>
+program to do any required remapping.) Coarse/fine pairs of MIDI controllers
+aren&#8217;t directly supported either, so you&#8217;ll have to implement these yourself
+as two separate Faust controls.</li>
 <li>There&#8217;s no translation of OSC values. pd-faust thus always assumes that the
 controls of an external OSC device have the ranges specified in the Faust
 program. If this isn&#8217;t the case then you&#8217;ll have to adjust either the OSC
@@ -822,7 +835,7 @@ pd-faust versions.</p>
     </div>
     <div class="footer">
     &copy; Copyright 2009-2018, Albert Gräf et al.
-    Last updated on Apr 11, 2018.
+    Last updated on Oct 05, 2018.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

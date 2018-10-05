@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.68, April 15, 2018
+Pure 0.68, October 05, 2018
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-faust doc}@anchor{0}
-Version 0.16, April 11, 2018
+Version 0.17, October 05, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -119,7 +119,7 @@ current git sources).
 The pd-faust objects are written in the Pure@footnote{https://agraef.github.io/pure-lang/} programming language, so you'll
 also need an installation of the Pure interpreter (0.51 or later), along with
 the following packages (minimum required versions are given in parentheses):
-@code{pd-pure} (0.15), @code{pure-faust} (0.8),
+@code{pd-pure} (0.26), @code{pure-faust} (0.8),
 @code{pure-midi} (0.5) and @code{pure-stldict} (0.3).
 
 Finally, gcc and GNU make (or compatible) are required to compile the helper
@@ -445,8 +445,6 @@ argument to toggle the "write mode" of the unit; please see @pxref{d,,External M
 @item 
 @code{reload} reloads the Faust unit. This also reloads the shared library or
 bitcode file if the unit was recompiled since the object was last loaded.
-(Instead of feeding a @code{reload} message to the control inlet of a Faust
-unit, you can also just send a @code{bang} to the @code{reload} receiver.)
 
 @item 
 @code{addr value} changes the control indicated by the OSC address @code{addr}.
@@ -473,8 +471,33 @@ of sclsyx.pure included in the author's pd-smmf@footnote{https://bitbucket.org/a
 a Pd external to output tunings in the format understood by the @code{faust~}
 object.
 
+Finally, each @code{faust~} object subscribes to the following three global
+receivers which enable you to send various kinds of messages to all @code{faust~}
+objects in a patch:
+
+
+@itemize *
+
+@item 
+@code{faustdsp} receives arbitrary messages. This is commonly used to
+distribute MIDI or OSC data to all Faust units in a patch, but can in fact
+be used to send @emph{any} message recognized by @code{faust~} objects.
+
+@item 
+@code{oscplay} listens for OSC messages. In contrast to @code{faustdsp}, this
+receiver @emph{only} recognizes OSC data, and is used, in particular, by the
+@code{midiosc} abstraction for OSC automation, see @pxref{9,,MIDI and OSC Sequencing}
+below.
+
+@item 
+@code{reload} can be used to reload all @code{faust~} units in a patch. This
+receiver accepts any input message, so just sending a @code{bang} will do.
+(This is provided for backward compatibility with older pd-faust versions.
+You can also just send a @code{reload} message to the @code{faustdsp} receiver.)
+@end itemize
+
 @node GUI Subpatches,Examples,Effect and Synth Units,Usage
-@anchor{pd-faust gui-subpatches}@anchor{e}@anchor{pd-faust pd-smmf}@anchor{f}
+@anchor{pd-faust gui-subpatches}@anchor{e}
 @section GUI Subpatches
 
 
@@ -494,7 +517,7 @@ generated automatically by pd-faust when the corresponding @code{faust~} object
 is created, and whenever the unit gets reloaded at runtime.
 
 As with faust2pd, the default appearance of the GUI can be adjusted in various
-ways; see @pxref{10,,Tweaking the GUI Layout} below for details.
+ways; see @pxref{f,,Tweaking the GUI Layout} below for details.
 
 The relative order in which you insert a @code{faust~} object and its GUI
 subpatch into the main patch matters. Normally, the GUI subpatch should be
@@ -567,7 +590,7 @@ hand-editing if you know what you are doing; the format should be fairly
 self-explanatory.
 
 @node Operating the Patches,MIDI and OSC Sequencing,Examples,Usage
-@anchor{pd-faust operating-the-patches}@anchor{11}
+@anchor{pd-faust operating-the-patches}@anchor{10}
 @section Operating the Patches
 
 
@@ -745,19 +768,18 @@ When an object is in write mode, it also @emph{outputs} MIDI and OSC controller
 data in response to both automation data and the manual operation of the Pd
 GUI elements, again according to the controller mappings defined in the Faust
 source, so that it can drive an external device, e.g., in order to provide
-feedback to a MIDI fader box or a multitouch OSC controller. This works with
+feedback to motorized MIDI or multitouch OSC controllers. This works with
 both @emph{active} and @emph{passive} Faust controls.
 
 @cartouche
 @quotation Note 
-One pitfall in the current implementation is that, for better or
-worse, the output is @emph{not} emitted directly on the object's control outlet,
-but instead goes to special @code{midiout} and @code{oscout} receivers provided
-by the @code{midiosc} abstraction which then takes care of outputting the
-data. Thus, if you're @emph{not} using @code{midiosc}, you will have to provide
-these receivers yourself if you want to process the generated MIDI and/or
-OSC data in some way (the included simple.pd example shows how to do this
-for MIDI data).
+For better or worse, the output is @emph{not} emitted directly on the
+object's control outlet, but instead goes to special @code{midiout} and
+@code{oscout} receivers provided by the @code{midiosc} abstraction which then
+takes care of outputting the data. Thus, if you're @emph{not} using @code{midiosc},
+you will have to provide these receivers yourself if you want to process
+the generated MIDI and/or OSC data in some way (the included simple.pd
+example shows how to do this for MIDI data).
 @end quotation
 @end cartouche
 
@@ -821,7 +843,7 @@ Zeroconf (Avahi/Bonjour) services in the local network, so that your Pd
 patches can establish OSC connections in an automatic fashion.
 
 @node Tweaking the GUI Layout,Remote Control,External MIDI and OSC Controllers,Usage
-@anchor{pd-faust pd-mdnsbrowser}@anchor{12}@anchor{pd-faust tweaking-the-gui-layout}@anchor{10}
+@anchor{pd-faust pd-mdnsbrowser}@anchor{11}@anchor{pd-faust tweaking-the-gui-layout}@anchor{f}
 @section Tweaking the GUI Layout
 
 
@@ -946,7 +968,7 @@ file (this also auto-loads Faust mode@footnote{https://github.com/rukano/emacs-f
 @noindent
 
 @node Caveats and Bugs,Index,Usage,Top
-@anchor{pd-faust faust-mode}@anchor{13}@anchor{pd-faust caveats-and-bugs}@anchor{14}
+@anchor{pd-faust faust-mode}@anchor{12}@anchor{pd-faust caveats-and-bugs}@anchor{13}
 @chapter Caveats and Bugs
 
 
@@ -960,20 +982,18 @@ implementation:
 @itemize *
 
 @item 
-Passive Faust controls are only supported in effect units (@code{faust~}
-objects with zero voices).
-
-@item 
 The names of the voice controls of instrument units (@code{freq}, @code{gain},
 @code{gate}) are currently hard-coded, as are the names of the @code{midi},
 @code{osc} and @code{dsp} subfolders used to locate various kinds of files.
 
 @item 
-Polyphonic aftertouch and channel pressure messages are not supported in the
-MIDI interface right now, so you'll have to use ordinary MIDI controllers
-for these parameters instead. Coarse/fine pairs of MIDI controllers aren't
-directly supported either, so you'll have to implement these yourself as two
-separate Faust controls.
+Only control change, note and pitch bend messages are supported in the MIDI
+interface right now, so you'll have to use, e.g., control changes as a
+replacement for unsupported types of messages such as key and channel
+pressure if needed. (You might also consider using the author's midizap@footnote{https://github.com/agraef/midizap}
+program to do any required remapping.) Coarse/fine pairs of MIDI controllers
+aren't directly supported either, so you'll have to implement these yourself
+as two separate Faust controls.
 
 @item 
 There's no translation of OSC values. pd-faust thus always assumes that the

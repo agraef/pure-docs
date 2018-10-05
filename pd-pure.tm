@@ -1,4 +1,4 @@
-<TeXmacs|1.99.5>
+<TeXmacs|1.99.7>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pd-pure: Pd loader for Pure scripts><label|pd-pure-pd-loader-for-pure-scripts>
 
-  Version 0.25, April 11, 2018
+  Version 0.26, October 05, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -55,7 +55,7 @@
 
   <subsection|Copying><label|copying>
 
-  Copyright (c) 2009-2017 by Albert Graef. pd-pure is distributed under a
+  Copyright (c) 2009-2018 by Albert Graef. pd-pure is distributed under a
   3-clause BSD-style license, please see the included COPYING file for
   details.
 
@@ -65,7 +65,7 @@
   and above, since these offer substantial improvements in Pd's \Ploader\Q
   functionality which pd-pure hooks into to provide Pure object creation.
 
-  Get the latest source from <hlink|https://github.com/agraef/pure-lang/releases/download/pd-pure-0.25/pd-pure-0.25.tar.gz|https://github.com/agraef/pure-lang/releases/download/pd-pure-0.25/pd-pure-0.25.tar.gz>.
+  Get the latest source from <hlink|https://github.com/agraef/pure-lang/releases/download/pd-pure-0.26/pd-pure-0.26.tar.gz|https://github.com/agraef/pure-lang/releases/download/pd-pure-0.26/pd-pure-0.26.tar.gz>.
 
   Usually, <verbatim|make> <verbatim|&&> <verbatim|sudo> <verbatim|make>
   <verbatim|install> should do the trick. This will compile the external (you
@@ -331,8 +331,67 @@
   also generate constant values that way. E.g., the object <verbatim|[pure>
   <verbatim|cst> <verbatim|1.618]> responds to any message (such as
   <verbatim|bang>) by producing the constant value 1.618, while the object
-  <verbatim|[pure> <verbatim|cst> <verbatim|[1..10]]> yields the constant
+  <verbatim|[pure> <verbatim|cst> <verbatim|(1..10)]> yields the constant
   list containing the numbers 1..10.
+
+  <subsubsection|Multiple Output Messages><label|multiple-output-messages>
+
+  A Pure object can also output multiple messages in one go, by enclosing the
+  sequence of messages to be output in curly brances (which turns them into a
+  Pure vector). The messages will be output in the indicated order. E.g., the
+  following <verbatim|[dup]> object sends out each received message twice:
+
+  <\verbatim>
+    \;
+
+    dup x = {x,x};
+
+    \;
+  </verbatim>
+
+  Note that this is different from the following, which outputs a list value
+  to the outlet instead:
+
+  <\verbatim>
+    \;
+
+    dup2 x = [x,x];
+
+    \;
+  </verbatim>
+
+  An object can also just \Pswallow\Q messages and generate no output at all.
+  To these ends, an object may return either an empty vector <verbatim|{}> or
+  the empty tuple <verbatim|()>. (Note that, in contrast, returning the empty
+  list <verbatim|[]> does send a value back to Pd, namely an empty list
+  value.) For instance, the following object <verbatim|[echo]> implements a
+  sink which just prints received messages on standard output, which is
+  useful for debugging purposes:
+
+  <\verbatim>
+    \;
+
+    using system;
+
+    echo x = () when puts (str x) end;
+
+    \;
+  </verbatim>
+
+  Using the facilities for configuring the inlets and outlets of an object
+  described in the next section, you could also implement this object as
+  follows, by just removing the superflous outlet (in this case all return
+  values from the function will be ignored anyway):
+
+  <\verbatim>
+    \;
+
+    using system;
+
+    echo = 1,0,puts.str;
+
+    \;
+  </verbatim>
 
   <subsubsection|Configuring Inlets and Outlets><label|configuring-inlets-and-outlets>
 
@@ -358,11 +417,11 @@
     \;
   </verbatim>
 
-  You can also emit multiple messages, possibly to different outlets, in one
-  go. These must be encoded as Pure vectors (or matrices) of values or
-  <verbatim|index,value> pairs, which are emitted in the order in which they
-  are written. E.g., the following <verbatim|[fan]> object implements an
-  \Pn-fan\Q which routes its input to <verbatim|n> outlets simultaneously:
+  You can also emit multiple messages to different outlets in one go. These
+  are encoded as vectors of <verbatim|index,value> pairs which are emitted in
+  the order in which they are written. E.g., the following <verbatim|[fan]>
+  object implements an \Pn-fan\Q which routes its input to <verbatim|n>
+  outlets simultaneously:
 
   <\verbatim>
     \;
@@ -372,66 +431,25 @@
     \;
   </verbatim>
 
-  (Note that, because of the use of <verbatim|reverse>, the <verbatim|n>
+  Note that, because of the use of <verbatim|reverse>, the <verbatim|n>
   outlets are served in right-to-left order here. This is not strictly
-  necessary, but matches the Pd convention.)
+  necessary, but matches the Pd convention.
 
-  Another example is the following <verbatim|[dup]> object with a single
-  inlet and outlet, which just sends out each received message twice:
-
-  <\verbatim>
-    \;
-
-    dup x = {x,x};
-
-    \;
-  </verbatim>
-
-  Note that this is different from the following, which outputs a list value
-  to the outlet instead:
+  An object can even change its number of inlets and outlets dynamically at
+  runtime, using the <hlink|<with|font-family|tt|pd_configure()>|#pd-configure>
+  function described in the <hlink|Programming
+  Interface|#programming-interface> section. E.g., the following object
+  accepts lists of two numbers and changes its number of inlets and outlets
+  accordingly:
 
   <\verbatim>
     \;
 
-    dup2 x = [x,x];
+    using pd;
 
-    \;
-  </verbatim>
+    inout [n,m] \|
 
-  (Also, please note that this behaviour is new in pd-pure 0.14. Previously,
-  a list return value by itself would output multiple values instead.
-  However, this made it very awkward to deal with Pd list values in pd-pure,
-  and so as of pd-pure 0.14 Pure matrices must now be used to output multiple
-  values.)
-
-  An object can also just \Pswallow\Q messages and generate no output at all.
-  To these ends, make the object return either an empty vector <verbatim|{}>
-  or the empty tuple <verbatim|()>. (Note that, in contrast, returning the
-  empty list <verbatim|[]> does send a value back to Pd, namely an empty list
-  value.) For instance, the following object <verbatim|[echo]> implements a
-  sink which just prints received messages on standard output, which is
-  useful for debugging purposes:
-
-  <\verbatim>
-    \;
-
-    using system;
-
-    echo x = () when puts (str x) end;
-
-    \;
-  </verbatim>
-
-  You could also implement this object as follows, by just removing the
-  superflous outlet (in this case all return values from the function will be
-  ignored anyway):
-
-  <\verbatim>
-    \;
-
-    using system;
-
-    echo = 1,0,puts.str;
+    inout (0,[n,m]) = pd_configure (int n) (int m);
 
     \;
   </verbatim>
@@ -1569,18 +1587,7 @@
   means, the number of definitions in the object scripts themselves can be
   kept small, resulting in faster compilation.
 
-  Second, Pd doesn't allow objects to change their inlet/outlet configuration
-  on the fly. If a code change in a Pure object involves any such
-  modifications, the reloaded objects will still appear to have the same
-  inlets and outlets as before (and often cease to function properly). The
-  quickest way to force an update of all affected Pure objects in one go,
-  while preserving the current object connections, is to select the
-  corresponding part of the patch and use Pd's cut and paste commands to
-  reinsert it (if there are a lot of Pure objects scattered out all over the
-  patch then you might just want to select and reinsert the entire contents
-  of the patch).
-
-  Finally, note that the reloading of object scripts amounts to a \Pcold
+  Second, note that the reloading of object scripts amounts to a \Pcold
   restart\Q of the Pure objects in your patches. If a Pure object keeps some
   <hlink|local state|#local-state>, it will be lost. As a remedy, the loader
   implements a simple protocol which allows Pure objects to record their
@@ -1704,12 +1711,12 @@
 
   <subsubsection|Compiling Objects><label|compiling-objects>
 
-  pd-pure's livecoding abilities require that objects are run from source
-  code. As already mentioned, this needs some (in some cases, substantial)
-  time at startup when the Pure interpreter is loaded and your Pure scripts
-  are compiled to native code on the fly. This is wasted effort if you are
-  finished developing your Pure objects and just want to run them as they
-  are.
+  pd-pure's built-in livecoding abilities require that objects are run from
+  source code. As already mentioned, this needs some (in some cases,
+  substantial) time at startup when the Pure interpreter is loaded and your
+  Pure scripts are compiled to native code on the fly. This time is wasted if
+  you are finished developing your Pure objects and just want to run them as
+  they are.
 
   Therefore pd-pure also supports compiling a collection of Pure objects to a
   binary which can be loaded with Pd's <verbatim|-lib> option just like any
@@ -1724,6 +1731,16 @@
   you still need to load the pd-pure module first, since it provides the
   basic infrastructure required to run any kind of pd-pure object (no matter
   whether it's implemented in compiled or source form).
+
+  Also note that, even though compiled objects have no associated script file
+  which can be reloaded on the fly, they can still <em|recreate> themselves
+  with the <hlink|<with|font-family|tt|pd_reload()>|#pd-reload> routine, see
+  <hlink|Programming Interface|#programming-interface> below. This makes it
+  possible for compiled objects to adjust themselves to global state changes
+  in a livecoding situation. However, it's completely up to a compiled object
+  whether it actually uses that feature and/or responds to the livecoding
+  messages in some way; the built-in livecoding infrastructure by itself only
+  manages source objects.
 
   <subsubsection|Programming Interface><label|programming-interface>
 
@@ -1870,6 +1887,35 @@
   </description>
 
   <\description>
+    <item*|extern void pd_configure(int<em|<nbsp>in>,
+    int<em|<nbsp>out>)<label|pd-configure>>Changes the number of inlets and
+    outlets of an object on the fly. This allows you to reconfigure a Pure
+    object dynamically, if the number of inlets and outlets changes at
+    runtime.
+  </description>
+
+  <\description>
+    <item*|extern void pd_reload()<label|pd-reload>>Reload the calling
+    object. This doesn't actually reload any script files or libraries, it
+    only recreates the object using its existing definition by re-evaluating
+    its creation function. The object's runtime function and the number of
+    inlets and outlets are then updated accordingly, and if the object has
+    any <verbatim|pd_save>/<verbatim|pd_restore> handlers, they will be
+    invoked as well, see <hlink|Livecoding|#livecoding> above.
+
+    Usually you will only want to invoke this if the creation function picks
+    up some global state (global variables, file contents, etc.). Otherwise
+    nothing will actually change except that the local state of the object
+    will be reinitialized.
+
+    This function never returns; it raises a special <verbatim|__reload>
+    exception which causes the calling object to be recreated later when it's
+    safe to do so. Thus this function must <em|not> be invoked inside a Pure
+    <verbatim|catch> construct, unless you take care to pass on the
+    <verbatim|__reload> exception to pd-pure so that it can be handled there.
+  </description>
+
+  <\description>
     <item*|extern expr *pd_getbuffer(char<em|<nbsp>*name>)<label|pd-getbuffer>>
 
     <item*|extern void pd_setbuffer(char<em|<nbsp>*name>,
@@ -1923,6 +1969,8 @@
 
         <item><hlink|The [pure] Object|#the-pure-object>
 
+        <item><hlink|Multiple Output Messages|#multiple-output-messages>
+
         <item><hlink|Configuring Inlets and
         Outlets|#configuring-inlets-and-outlets>
 
@@ -1972,6 +2020,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
+  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

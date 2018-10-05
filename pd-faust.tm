@@ -1,4 +1,4 @@
-<TeXmacs|1.99.5>
+<TeXmacs|1.99.7>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.16, April 11, 2018
+  Version 0.17, October 05, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -66,7 +66,7 @@
   <hlink|Pure|https://agraef.github.io/pure-lang/> programming language, so
   you'll also need an installation of the Pure interpreter (0.51 or later),
   along with the following packages (minimum required versions are given in
-  parentheses): <hlink|<em|pd-pure>|pd-pure.tm> (0.15),
+  parentheses): <hlink|<em|pd-pure>|pd-pure.tm> (0.26),
   <hlink|<em|pure-faust>|pure-faust.tm> (0.8),
   <hlink|<em|pure-midi>|pure-midi.tm> (0.5) and
   <hlink|<em|pure-stldict>|pure-stldict.tm> (0.3).
@@ -389,9 +389,7 @@
 
     <item><verbatim|reload> reloads the Faust unit. This also reloads the
     shared library or bitcode file if the unit was recompiled since the
-    object was last loaded. (Instead of feeding a <verbatim|reload> message
-    to the control inlet of a Faust unit, you can also just send a
-    <verbatim|bang> to the <verbatim|reload> receiver.)
+    object was last loaded.
 
     <item><verbatim|addr> <verbatim|value> changes the control indicated by
     the OSC address <verbatim|addr>. This is also used internally for
@@ -421,6 +419,29 @@
   author's <hlink|pd-smmf|https://bitbucket.org/agraef/pd-smmf> package,
   which can be run as a Pd external to output tunings in the format
   understood by the <verbatim|faust~> object.
+
+  Finally, each <verbatim|faust~> object subscribes to the following three
+  global receivers which enable you to send various kinds of messages to all
+  <verbatim|faust~> objects in a patch:
+
+  <\itemize>
+    <item><verbatim|faustdsp> receives arbitrary messages. This is commonly
+    used to distribute MIDI or OSC data to all Faust units in a patch, but
+    can in fact be used to send <em|any> message recognized by
+    <verbatim|faust~> objects.
+
+    <item><verbatim|oscplay> listens for OSC messages. In contrast to
+    <verbatim|faustdsp>, this receiver <em|only> recognizes OSC data, and is
+    used, in particular, by the <verbatim|midiosc> abstraction for OSC
+    automation, see <hlink|MIDI and OSC Sequencing|#midi-and-osc-sequencing>
+    below.
+
+    <item><verbatim|reload> can be used to reload all <verbatim|faust~> units
+    in a patch. This receiver accepts any input message, so just sending a
+    <verbatim|bang> will do. (This is provided for backward compatibility
+    with older pd-faust versions. You can also just send a <verbatim|reload>
+    message to the <verbatim|faustdsp> receiver.)
+  </itemize>
 
   <subsubsection|GUI Subpatches><label|gui-subpatches>
 
@@ -680,18 +701,18 @@
   controller data in response to both automation data and the manual
   operation of the Pd GUI elements, again according to the controller
   mappings defined in the Faust source, so that it can drive an external
-  device, e.g., in order to provide feedback to a MIDI fader box or a
-  multitouch OSC controller. This works with both <em|active> and
-  <em|passive> Faust controls.
+  device, e.g., in order to provide feedback to motorized MIDI or multitouch
+  OSC controllers. This works with both <em|active> and <em|passive> Faust
+  controls.
 
-  <with|font-series|bold|Note:> One pitfall in the current implementation is
-  that, for better or worse, the output is <em|not> emitted directly on the
-  object's control outlet, but instead goes to special <verbatim|midiout> and
-  <verbatim|oscout> receivers provided by the <verbatim|midiosc> abstraction
-  which then takes care of outputting the data. Thus, if you're <em|not>
-  using <verbatim|midiosc>, you will have to provide these receivers yourself
-  if you want to process the generated MIDI and/or OSC data in some way (the
-  included simple.pd example shows how to do this for MIDI data).
+  <with|font-series|bold|Note:> For better or worse, the output is <em|not>
+  emitted directly on the object's control outlet, but instead goes to
+  special <verbatim|midiout> and <verbatim|oscout> receivers provided by the
+  <verbatim|midiosc> abstraction which then takes care of outputting the
+  data. Thus, if you're <em|not> using <verbatim|midiosc>, you will have to
+  provide these receivers yourself if you want to process the generated MIDI
+  and/or OSC data in some way (the included simple.pd example shows how to do
+  this for MIDI data).
 
   To configure MIDI controller assignments, the labels of the Faust control
   elements have to be marked up with the special <verbatim|midi> attribute in
@@ -888,19 +909,19 @@
   implementation:
 
   <\itemize>
-    <item>Passive Faust controls are only supported in effect units
-    (<verbatim|faust~> objects with zero voices).
-
     <item>The names of the voice controls of instrument units
     (<verbatim|freq>, <verbatim|gain>, <verbatim|gate>) are currently
     hard-coded, as are the names of the <verbatim|midi>, <verbatim|osc> and
     <verbatim|dsp> subfolders used to locate various kinds of files.
 
-    <item>Polyphonic aftertouch and channel pressure messages are not
-    supported in the MIDI interface right now, so you'll have to use ordinary
-    MIDI controllers for these parameters instead. Coarse/fine pairs of MIDI
-    controllers aren't directly supported either, so you'll have to implement
-    these yourself as two separate Faust controls.
+    <item>Only control change, note and pitch bend messages are supported in
+    the MIDI interface right now, so you'll have to use, e.g., control
+    changes as a replacement for unsupported types of messages such as key
+    and channel pressure if needed. (You might also consider using the
+    author's <hlink|midizap|https://github.com/agraef/midizap> program to do
+    any required remapping.) Coarse/fine pairs of MIDI controllers aren't
+    directly supported either, so you'll have to implement these yourself as
+    two separate Faust controls.
 
     <item>There's no translation of OSC values. pd-faust thus always assumes
     that the controls of an external OSC device have the ranges specified in
@@ -966,6 +987,6 @@
   <hlink|previous|faust2pd.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
+  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

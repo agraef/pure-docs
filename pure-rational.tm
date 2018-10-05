@@ -1,4 +1,4 @@
-<TeXmacs|1.99.5>
+<TeXmacs|1.99.7>
 
 <style|<tuple|generic|puredoc>>
 
@@ -2465,10 +2465,10 @@
     complex rational or integer c, returns a pair (n, d) containing an
     integral complex (Gaussian integral) numerator n, and the smallest
     natural (i.e. positive integral real) complex denominator d, i.e. a
-    complex number where <math|<with|math-font|Euler|R>>(d) <math|\<in\>>
-    <with|font-series|bold|Z>, <math|<with|math-font|Euler|R>>(d) \<gtr\> 0,
-    <math|<with|math-font|Euler|I>>(d) = 0; i.e. the numerator and
-    denominator of one `normalised' form of c.
+    complex number where <math|\<frak-R\>>(d) <math|\<in\>>
+    <with|font-series|bold|Z>, <math|\<frak-R\>>(d) \<gtr\> 0,
+    <math|\<frak-I\>>(d) = 0; i.e. the numerator and denominator of one
+    `normalised' form of c.
 
     This is an inverse (up to equivalence) of rational as defined on integral
     complex pairs (see <hlink|Constructors|#constructors>).
@@ -2479,12 +2479,11 @@
     complex rational or integer c, returns a pair (n, d) containing an
     integral complex (Gaussian integral) numerator n, and an absolutely
     smallest integral complex denominator d chosen s.t.
-    <math|<with|math-font|Euler|R>>(d),=(d) <math|\<in\>>
-    <with|font-series|bold|Z>, <math|<with|math-font|Euler|R>>(d) \<gtr\> 0,
-    and either \|<math|<with|math-font|Euler|R>>(d)\| \<less\>
-    <math|<with|math-font|Euler|I>>(d) or <math|<with|math-font|Euler|R>>(d)
-    = <math|<with|math-font|Euler|I>>(d) \<gtr\> 0; i.e. the numerator and
-    denominator of another `normalised' form of c.
+    <math|\<frak-R\>>(d),=(d) <math|\<in\>> <with|font-series|bold|Z>,
+    <math|\<frak-R\>>(d) \<gtr\> 0, and either \|<math|\<frak-R\>>(d)\|
+    \<less\> <math|\<frak-I\>>(d) or <math|\<frak-R\>>(d) =
+    <math|\<frak-I\>>(d) \<gtr\> 0; i.e. the numerator and denominator of
+    another `normalised' form of c.
 
     This is an inverse (up to equivalence) of rational as defined on integral
     complex pairs (see <hlink|Constructors|#constructors>).
@@ -2789,10 +2788,9 @@
   <\description>
     <item*|rational::gcd_gauss c1 c2<label|rational::gcd-gauss>>returns a GCD
     G of the Gaussian integers c1,c2. This is chosen so that s.t.
-    <math|<with|math-font|Euler|R>>(G) \<gtr\> 0, and either
-    \|<math|<with|math-font|Euler|I>>(G)\| \<less\>
-    <math|<with|math-font|Euler|R>>(G) or <math|<with|math-font|Euler|I>>(G)
-    = <math|<with|math-font|Euler|R>>(G) \<gtr\> 0;
+    <math|\<frak-R\>>(G) \<gtr\> 0, and either \|<math|\<frak-I\>>(G)\|
+    \<less\> <math|\<frak-R\>>(G) or <math|\<frak-I\>>(G) =
+    <math|\<frak-R\>>(G) \<gtr\> 0;
   </description>
 
   <\description>
@@ -4315,6 +4313,6 @@
   <hlink|previous|pure-octave.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Apr
-  11, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
+  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
