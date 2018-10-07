@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.68, October 05, 2018
+Pure 0.68, October 07, 2018
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c %**start of body
 @anchor{pd-faust doc}@anchor{0}
-Version 0.17, October 05, 2018
+Version 0.17, October 07, 2018
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -471,9 +471,9 @@ of sclsyx.pure included in the author's pd-smmf@footnote{https://bitbucket.org/a
 a Pd external to output tunings in the format understood by the @code{faust~}
 object.
 
-Finally, each @code{faust~} object subscribes to the following three global
-receivers which enable you to send various kinds of messages to all @code{faust~}
-objects in a patch:
+Each @code{faust~} object also subscribes to the following three global receivers
+which enable you to send various kinds of messages to all @code{faust~} objects
+in a patch:
 
 
 @itemize *
@@ -495,6 +495,14 @@ receiver accepts any input message, so just sending a @code{bang} will do.
 (This is provided for backward compatibility with older pd-faust versions.
 You can also just send a @code{reload} message to the @code{faustdsp} receiver.)
 @end itemize
+
+Finally, @code{faust~} objects also @emph{send} a message of the form @code{create
+instance} or @code{destroy instance} to the global @code{faust-notify} receiver
+whenever they are created and destroyed, respectively. The argument indicates
+the instance name of the object being created or destroyed. This receiver
+isn't used by pd-faust itself in any way, but applications may receive this
+symbol if they need to be notified about changes in the collection of loaded
+Faust units.
 
 @node GUI Subpatches,Examples,Effect and Synth Units,Usage
 @anchor{pd-faust gui-subpatches}@anchor{e}

@@ -10,7 +10,7 @@
 
   <section*|pd-faust><label|pd-faust>
 
-  Version 0.17, October 05, 2018
+  Version 0.17, October 07, 2018
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -420,8 +420,8 @@
   which can be run as a Pd external to output tunings in the format
   understood by the <verbatim|faust~> object.
 
-  Finally, each <verbatim|faust~> object subscribes to the following three
-  global receivers which enable you to send various kinds of messages to all
+  Each <verbatim|faust~> object also subscribes to the following three global
+  receivers which enable you to send various kinds of messages to all
   <verbatim|faust~> objects in a patch:
 
   <\itemize>
@@ -442,6 +442,15 @@
     with older pd-faust versions. You can also just send a <verbatim|reload>
     message to the <verbatim|faustdsp> receiver.)
   </itemize>
+
+  Finally, <verbatim|faust~> objects also <em|send> a message of the form
+  <verbatim|create> <verbatim|instance> or <verbatim|destroy>
+  <verbatim|instance> to the global <verbatim|faust-notify> receiver whenever
+  they are created and destroyed, respectively. The argument indicates the
+  instance name of the object being created or destroyed. This receiver isn't
+  used by pd-faust itself in any way, but applications may receive this
+  symbol if they need to be notified about changes in the collection of
+  loaded Faust units.
 
   <subsubsection|GUI Subpatches><label|gui-subpatches>
 
@@ -988,5 +997,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
-  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  07, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

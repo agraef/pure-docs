@@ -1,7 +1,7 @@
 This is pd-faust.info, produced by makeinfo version 6.5 from
 pd-faust.texi.
 
-     Pure 0.68, October 05, 2018
+     Pure 0.68, October 07, 2018
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: pd-faust.info,  Node: Top,  Next: Copying,  Up: (dir)
 pd-faust
 ********
 
-     Pure 0.68, October 05, 2018
+     Pure 0.68, October 07, 2018
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2018, Albert Gräf et al
 
-  Version 0.17, October 05, 2018
+  Version 0.17, October 07, 2018
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -464,7 +464,7 @@ sclsyx.pure included in the author’s pd-smmf(2) package, which can be
 run as a Pd external to output tunings in the format understood by the
 ‘faust~’ object.
 
-  Finally, each ‘faust~’ object subscribes to the following three global
+  Each ‘faust~’ object also subscribes to the following three global
 receivers which enable you to send various kinds of messages to all
 ‘faust~’ objects in a patch:
 
@@ -483,6 +483,14 @@ receivers which enable you to send various kinds of messages to all
      do.  (This is provided for backward compatibility with older
      pd-faust versions.  You can also just send a ‘reload’ message to
      the ‘faustdsp’ receiver.)
+
+  Finally, ‘faust~’ objects also _send_ a message of the form ‘create
+instance’ or ‘destroy instance’ to the global ‘faust-notify’ receiver
+whenever they are created and destroyed, respectively.  The argument
+indicates the instance name of the object being created or destroyed.
+This receiver isn’t used by pd-faust itself in any way, but applications
+may receive this symbol if they need to be notified about changes in the
+collection of loaded Faust units.
 
    ---------- Footnotes ----------
 
@@ -1035,44 +1043,44 @@ Ref: The faust~ Object-Footnote-216500
 Node: Effect and Synth Units16547
 Ref: pd-faust effect-and-synth-units16662
 Ref: c16662
-Ref: Effect and Synth Units-Footnote-121997
-Ref: Effect and Synth Units-Footnote-222041
-Node: GUI Subpatches22086
-Ref: pd-faust gui-subpatches22192
-Ref: e22192
-Node: Examples24398
-Ref: pd-faust examples24503
-Ref: 524503
-Node: Operating the Patches26314
-Ref: pd-faust operating-the-patches26428
-Ref: 1026428
-Node: MIDI and OSC Sequencing28173
-Ref: pd-faust midi-and-osc-sequencing28312
-Ref: 928312
-Ref: MIDI and OSC Sequencing-Footnote-135283
-Node: External MIDI and OSC Controllers35341
-Ref: pd-faust external-midi-and-osc-controllers35482
-Ref: d35482
-Ref: External MIDI and OSC Controllers-Footnote-140312
-Ref: External MIDI and OSC Controllers-Footnote-240369
-Node: Tweaking the GUI Layout40421
-Ref: pd-faust pd-mdnsbrowser40553
-Ref: 1140553
-Ref: pd-faust tweaking-the-gui-layout40553
-Ref: f40553
-Node: Remote Control43717
-Ref: pd-faust remote-control43807
-Ref: a43807
-Ref: Remote Control-Footnote-145053
-Ref: Remote Control-Footnote-245104
-Node: Caveats and Bugs45155
-Ref: pd-faust faust-mode45241
-Ref: 1245241
-Ref: pd-faust caveats-and-bugs45241
-Ref: 1345241
-Ref: Caveats and Bugs-Footnote-146902
-Ref: Caveats and Bugs-Footnote-246944
-Node: Index46978
+Ref: Effect and Synth Units-Footnote-122471
+Ref: Effect and Synth Units-Footnote-222515
+Node: GUI Subpatches22560
+Ref: pd-faust gui-subpatches22666
+Ref: e22666
+Node: Examples24872
+Ref: pd-faust examples24977
+Ref: 524977
+Node: Operating the Patches26788
+Ref: pd-faust operating-the-patches26902
+Ref: 1026902
+Node: MIDI and OSC Sequencing28647
+Ref: pd-faust midi-and-osc-sequencing28786
+Ref: 928786
+Ref: MIDI and OSC Sequencing-Footnote-135757
+Node: External MIDI and OSC Controllers35815
+Ref: pd-faust external-midi-and-osc-controllers35956
+Ref: d35956
+Ref: External MIDI and OSC Controllers-Footnote-140786
+Ref: External MIDI and OSC Controllers-Footnote-240843
+Node: Tweaking the GUI Layout40895
+Ref: pd-faust pd-mdnsbrowser41027
+Ref: 1141027
+Ref: pd-faust tweaking-the-gui-layout41027
+Ref: f41027
+Node: Remote Control44191
+Ref: pd-faust remote-control44281
+Ref: a44281
+Ref: Remote Control-Footnote-145527
+Ref: Remote Control-Footnote-245578
+Node: Caveats and Bugs45629
+Ref: pd-faust faust-mode45715
+Ref: 1245715
+Ref: pd-faust caveats-and-bugs45715
+Ref: 1345715
+Ref: Caveats and Bugs-Footnote-147376
+Ref: Caveats and Bugs-Footnote-247418
+Node: Index47452
 
 End Tag Table
 
