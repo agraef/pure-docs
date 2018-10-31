@@ -1,7 +1,7 @@
 This is gnumeric-pure.info, produced by makeinfo version 6.5 from
 gnumeric-pure.texi.
 
-     Pure 0.68, October 07, 2018
+     Pure 0.68, October 31, 2018
 
      Albert Gräf (Editor)
 
@@ -21,13 +21,13 @@ File: gnumeric-pure.info,  Node: Top,  Next: Introduction,  Up: (dir)
 gnumeric-pure
 *************
 
-     Pure 0.68, October 07, 2018
+     Pure 0.68, October 31, 2018
 
      Albert Gräf (Editor)
 
      Copyright © 2009-2018, Albert Gräf et al
 
-  Version 0.16, April 11, 2018
+  Version 0.16, October 31, 2018
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -36,6 +36,12 @@ functions in Gnumeric, the Gnome spreadsheet.  It offers better
 execution speed than the existing Perl and Python plugins, and provides
 some powerful features not found in other Gnumeric scripting plugins,
 such as asynchronous data sources created from Pure streams.
+
+     Note: This module is currently _unsupported_.  It requires (and
+     should still work) with Gnumeric < 1.12.43, but it does not compile
+     with Gnumeric 1.12.43 (and later) any more, since that version has
+     major changes in its plugin API, breaking existing 3rd party
+     plugins.
 
 * Menu:
 
@@ -1352,76 +1358,76 @@ Tag Table:
 Node: Top409
 Ref: gnumeric-pure doc622
 Ref: 0622
-Ref: Top-Footnote-11267
-Ref: Top-Footnote-21300
-Node: Introduction1339
-Ref: gnumeric-pure introduction1426
-Ref: 11426
-Ref: gnumeric-pure gnumeric-pure-a-pure-plugin-for-gnumeric1426
-Ref: 21426
-Ref: Introduction-Footnote-14088
-Ref: Introduction-Footnote-24121
-Ref: Introduction-Footnote-34160
-Ref: Introduction-Footnote-44194
-Ref: Introduction-Footnote-54225
-Node: Copying4256
-Ref: gnumeric-pure copying4352
-Ref: 34352
-Node: Installation5041
-Ref: gnumeric-pure installation5130
-Ref: 45130
-Node: Setup8017
-Ref: gnumeric-pure setup8110
-Ref: 68110
-Node: Basic Usage9691
-Ref: gnumeric-pure basic-usage9794
-Ref: 79794
-Node: Interactive Pure Shell12788
-Ref: gnumeric-pure interactive-pure-shell12913
-Ref: 812913
-Node: Defining Your Own Functions15375
-Ref: gnumeric-pure defining-your-own-functions15512
-Ref: 515512
-Node: Creating a Simple Plugin15931
-Ref: gnumeric-pure creating-a-simple-plugin16054
-Ref: b16054
-Node: The plugin xml File20032
-Ref: gnumeric-pure the-plugin-xml-file20182
-Ref: d20182
-Node: Loading the Plugin23233
-Ref: gnumeric-pure loading-the-plugin23372
-Ref: e23372
-Node: Spicing It Up28921
-Ref: gnumeric-pure spicing-it-up29032
-Ref: f29032
-Node: Gnumeric/Pure Interface31211
-Ref: gnumeric-pure gnumeric-pure-interface31343
-Ref: c31343
-Node: Function Descriptions32392
-Ref: gnumeric-pure function-descriptions32533
-Ref: 1032533
-Node: Conversions Between Pure and Gnumeric Values39093
-Ref: gnumeric-pure conversions-between-pure-and-gnumeric-values39234
-Ref: 1139234
-Node: Advanced Features42451
-Ref: gnumeric-pure advanced-features42561
-Ref: 942561
-Node: Calling Gnumeric from Pure42991
-Ref: gnumeric-pure calling-gnumeric-from-pure43114
-Ref: a43114
-Node: Accessing Spreadsheet Cells44031
-Ref: gnumeric-pure accessing-spreadsheet-cells44188
-Ref: 1244188
-Node: Asynchronous Data Sources47346
-Ref: gnumeric-pure asynchronous-data-sources47485
-Ref: 1347485
-Node: Triggers51469
-Ref: gnumeric-pure triggers51594
-Ref: 1451594
-Node: Sheet Objects54095
-Ref: gnumeric-pure sheet-objects54186
-Ref: 1554186
-Node: Index56976
+Ref: Top-Footnote-11564
+Ref: Top-Footnote-21597
+Node: Introduction1636
+Ref: gnumeric-pure introduction1723
+Ref: 11723
+Ref: gnumeric-pure gnumeric-pure-a-pure-plugin-for-gnumeric1723
+Ref: 21723
+Ref: Introduction-Footnote-14385
+Ref: Introduction-Footnote-24418
+Ref: Introduction-Footnote-34457
+Ref: Introduction-Footnote-44491
+Ref: Introduction-Footnote-54522
+Node: Copying4553
+Ref: gnumeric-pure copying4649
+Ref: 34649
+Node: Installation5338
+Ref: gnumeric-pure installation5427
+Ref: 45427
+Node: Setup8314
+Ref: gnumeric-pure setup8407
+Ref: 68407
+Node: Basic Usage9988
+Ref: gnumeric-pure basic-usage10091
+Ref: 710091
+Node: Interactive Pure Shell13085
+Ref: gnumeric-pure interactive-pure-shell13210
+Ref: 813210
+Node: Defining Your Own Functions15672
+Ref: gnumeric-pure defining-your-own-functions15809
+Ref: 515809
+Node: Creating a Simple Plugin16228
+Ref: gnumeric-pure creating-a-simple-plugin16351
+Ref: b16351
+Node: The plugin xml File20329
+Ref: gnumeric-pure the-plugin-xml-file20479
+Ref: d20479
+Node: Loading the Plugin23530
+Ref: gnumeric-pure loading-the-plugin23669
+Ref: e23669
+Node: Spicing It Up29218
+Ref: gnumeric-pure spicing-it-up29329
+Ref: f29329
+Node: Gnumeric/Pure Interface31508
+Ref: gnumeric-pure gnumeric-pure-interface31640
+Ref: c31640
+Node: Function Descriptions32689
+Ref: gnumeric-pure function-descriptions32830
+Ref: 1032830
+Node: Conversions Between Pure and Gnumeric Values39390
+Ref: gnumeric-pure conversions-between-pure-and-gnumeric-values39531
+Ref: 1139531
+Node: Advanced Features42748
+Ref: gnumeric-pure advanced-features42858
+Ref: 942858
+Node: Calling Gnumeric from Pure43288
+Ref: gnumeric-pure calling-gnumeric-from-pure43411
+Ref: a43411
+Node: Accessing Spreadsheet Cells44328
+Ref: gnumeric-pure accessing-spreadsheet-cells44485
+Ref: 1244485
+Node: Asynchronous Data Sources47643
+Ref: gnumeric-pure asynchronous-data-sources47782
+Ref: 1347782
+Node: Triggers51766
+Ref: gnumeric-pure triggers51891
+Ref: 1451891
+Node: Sheet Objects54392
+Ref: gnumeric-pure sheet-objects54483
+Ref: 1554483
+Node: Index57273
 
 End Tag Table
 

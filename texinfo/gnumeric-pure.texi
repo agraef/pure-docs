@@ -19,7 +19,7 @@
 
 @copying
 @quotation
-Pure 0.68, October 07, 2018
+Pure 0.68, October 31, 2018
 
 Albert Gräf (Editor)
 
@@ -46,7 +46,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 
 @c %**start of body
 @anchor{gnumeric-pure doc}@anchor{0}
-Version 0.16, April 11, 2018
+Version 0.16, October 31, 2018
 
 Albert Gräf <@email{aggraef@@gmail.com}>
 
@@ -55,6 +55,15 @@ Gnumeric, the Gnome spreadsheet. It offers better execution speed than the
 existing Perl and Python plugins, and provides some powerful features not
 found in other Gnumeric scripting plugins, such as asynchronous data sources
 created from Pure streams.
+
+@cartouche
+@quotation Note 
+This module is currently @emph{unsupported}. It requires (and should
+still work) with Gnumeric < 1.12.43, but it does not compile with Gnumeric
+1.12.43 (and later) any more, since that version has major changes in its
+plugin API, breaking existing 3rd party plugins.
+@end quotation
+@end cartouche
 
 
 @menu

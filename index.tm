@@ -252,5 +252,5 @@
   Language and Library Documentation|#>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
-  07, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  31, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

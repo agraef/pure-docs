@@ -11,7 +11,7 @@
   <section*|Gnumeric/Pure: A Pure Plugin for
   Gnumeric><label|gnumeric-pure-a-pure-plugin-for-gnumeric>
 
-  Version 0.16, April 11, 2018
+  Version 0.16, October 31, 2018
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -21,6 +21,12 @@
   existing Perl and Python plugins, and provides some powerful features not
   found in other Gnumeric scripting plugins, such as asynchronous data
   sources created from Pure streams.
+
+  <with|font-series|bold|Note:> This module is currently <em|unsupported>. It
+  requires (and should still work) with Gnumeric \<less\> 1.12.43, but it
+  does not compile with Gnumeric 1.12.43 (and later) any more, since that
+  version has major changes in its plugin API, breaking existing 3rd party
+  plugins.
 
   <subsection|Introduction><label|introduction>
 
@@ -1683,5 +1689,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
-  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  31, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
