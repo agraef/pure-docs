@@ -1,4 +1,4 @@
-<TeXmacs|1.99.7>
+<TeXmacs|1.99.11>
 
 <style|<tuple|generic|puredoc>>
 
@@ -780,9 +780,9 @@
 
   Example 1:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/d50d198cd362adedbd72aa07c42ec19e77012ec9.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -796,9 +796,9 @@
 
   Example 2:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/c899f1b26ad30e41c731c4b1b99818309b557183.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -830,9 +830,9 @@
 
   Example 3:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/f7a6e901cfdb9900d803827750209a2f4315b375.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1098,9 +1098,9 @@
 
   Let us find the decomposition of:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/6ad7d10cfa19f1ccab4ae0c476fef6d8370f68c7.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1116,9 +1116,9 @@
 
   This means:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/75656f73ed0eba76e6598833830deebf17c26288.png|66%|66%||>
-  </center>
+  </padded-center>
 
   If one wants the denominators in factored form, one has to use the switch
   <verbatim|off> <verbatim|exp>:
@@ -1156,9 +1156,9 @@
 
   Find the solutions to
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/30b528de263466ab1d4b4dac653d077b4a8b5e0b.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1196,9 +1196,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/fbfbb9959df12ca065293445cc528fb3f88c4010.png|66%|66%||>
-  </center>
+  </padded-center>
 
   where <verbatim|n> is an arbitrary integer constant (shown as
   <verbatim|arbint> <verbatim|5> in the result of <verbatim|simplify>).
@@ -1225,9 +1225,9 @@
 
   Here are some simpler examples for the sake of clarity:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/f9a7082422990788860c04d3a950a67b59cc4ec1.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1239,9 +1239,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/b968e3106d18a983ac4bbfcfcdfbcb358c684d81.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1321,9 +1321,9 @@
   An operator can be declared to be linear in its first argument over powers
   of its second argument.
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/00f5f22f7944f4a4e4c6c07fab02bbf642007331.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1343,9 +1343,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/480d0c34e36dc76f7ce22067b6d93e9d3254a596.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1963,9 +1963,9 @@
   <hlink|http://en.wikipedia.org/wiki/Pauli_matrices|http://en.wikipedia.org/wiki/Pauli-matrices>
   for a reference.
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/ef9429df1c03f8216e05dac3b1d943d56fb88af8.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -1983,9 +1983,9 @@
 
   Check the identities
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/216b21e2179433dcc0e06ff4647d3664ccf499c1.png|66%|66%||>
-  </center>
+  </padded-center>
 
   where <puredoc-image|_images/math/84e3ca966fe4905aa8e6549a570dd032675fb5da.png|66%|66%||>
   denotes the unit matrix.
@@ -2142,9 +2142,9 @@
 
   Solving without <verbatim|solve>:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/34f3da77dd3b880fec7bf1e230ffeca5cfbda0f1.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2169,9 +2169,9 @@
     <item*|limit expr::alg var limpoint::alg -\<gtr\> alg>
   </description>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/f8a2e36dcd35ca36fedb4eeec36b0083ef7e03a4.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2199,9 +2199,9 @@
 
   Problem 1:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/f24b04d99037127809e6e6b1fbab50d43bfd555a.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2221,9 +2221,9 @@
 
   Problem 2:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/0a39511ff3e7958dca65d4615b1b5346d2e537fa.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2262,9 +2262,9 @@
 
   Calculate
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/fc9dd7cf2c7384de8e0a7981da76bb7e1d63e312.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2308,9 +2308,9 @@
 
   Example:
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/d1ad9405c881f837437198ce7a7e55ca096b8ed7.png|66%|66%||>
-  </center>
+  </padded-center>
 
   For details consult the package documentation in the REDUCE distribution.
 
@@ -2608,9 +2608,9 @@
   <verbatim|DEFINT>: Calculating definite integrals by using the Meijer G
   integration formula.
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/33dd216945188977c58adbd8625803b758ee4ca3.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2628,9 +2628,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/061df7e1c31cee25f62ca1f993eb96c9bfa5c5bc.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2642,9 +2642,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/53005462bb7553344bca7b6e7ed26502fd107f17.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2656,9 +2656,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/fccfe728856311a1b54d285d9380b3f884ae324f.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -2670,9 +2670,9 @@
     \;
   </verbatim>
 
-  <\center>
+  <\padded-center>
     <puredoc-image|_images/math/af9af53f1a7cfc1c898f0ba87bee44344987cab4.png|66%|66%||>
-  </center>
+  </padded-center>
 
   <\verbatim>
     \;
@@ -3040,6 +3040,6 @@
   <hlink|previous|pure-rational.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
-  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2019, Albert Gräf et al. Last updated on Aug
+  14, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

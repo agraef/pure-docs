@@ -1,4 +1,4 @@
-<TeXmacs|1.99.7>
+<TeXmacs|1.99.11>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|pure-octave><label|module-octave>
 
-  Version 0.11, October 05, 2018
+  Version 0.12, August 14, 2019
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -39,7 +39,7 @@
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.11.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.11.tar.gz>.
+  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.12.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.12.tar.gz>.
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -54,13 +54,12 @@
   Makefile for details.
 
   This release of pure-octave has been tested and is known to work with
-  Octave 3.6.2, 3.8, 4.0 and 4.4. Older versions might require some fiddling
-  with the sources to get the embedded Octave interface working.
+  Octave 3.6.2, 3.8, 4.0, 4.4, and 5.1. Older versions might require some
+  fiddling with the sources to get the embedded Octave interface working.
 
   <with|font-series|bold|NOTE:> The embedded interpreter is broken with
-  Octave <with|font-series|bold|4.2>, so make sure that you got the latest
-  version (4.4 at the time of this writing), or use one of the known good
-  earlier versions listed above.
+  Octave <with|font-series|bold|4.2>, so make sure that you got a later
+  version, or use one of the known good earlier versions listed above.
 
   <subsection|Basic Usage><label|basic-usage>
 
@@ -720,6 +719,6 @@
   <hlink|previous|pure-mpfr.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2018, Albert Gräf et al. Last updated on Oct
-  05, 2018. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2019, Albert Gräf et al. Last updated on Aug
+  14, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -19,11 +19,11 @@
 
 @copying
 @quotation
-Pure 0.68, October 31, 2018
+Pure 0.68, August 14, 2019
 
 Albert Gräf (Editor)
 
-Copyright @copyright{} 2009-2018, Albert Gräf et al
+Copyright @copyright{} 2009-2019, Albert Gräf et al
 @end quotation
 
 @end copying
@@ -48,7 +48,7 @@ Copyright @copyright{} 2009-2018, Albert Gräf et al
 @anchor{pure-octave doc}@anchor{1}
 @geindex octave (module)
 
-Version 0.11, October 05, 2018
+Version 0.12, August 14, 2019
 
 Albert Graef <@email{aggraef@@gmail.com}>
 
@@ -103,7 +103,7 @@ GPL can also be read online at @indicateurl{http://www.gnu.org/licenses/}.
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.11.tar.gz}.
+@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.12.tar.gz}.
 
 Run @code{make} to compile the module and @code{make install} (as root) to install
 it in the Pure library directory. This requires GNU make, and of course you
@@ -116,12 +116,12 @@ particular, @code{make install prefix=/usr} sets the installation prefix. Please
 see the Makefile for details.
 
 This release of pure-octave has been tested and is known to work with Octave
-3.6.2, 3.8, 4.0 and 4.4. Older versions might require some fiddling with the
-sources to get the embedded Octave interface working.
+3.6.2, 3.8, 4.0, 4.4, and 5.1. Older versions might require some fiddling with
+the sources to get the embedded Octave interface working.
 
 @strong{NOTE:} The embedded interpreter is broken with Octave @strong{4.2}, so make sure
-that you got the latest version (4.4 at the time of this writing), or use
-one of the known good earlier versions listed above.
+that you got a later version, or use one of the known good earlier versions
+listed above.
 
 @node Basic Usage,Direct Function Calls,Installation,Top
 @anchor{pure-octave basic-usage}@anchor{7}
