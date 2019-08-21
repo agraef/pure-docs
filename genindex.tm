@@ -2761,9 +2761,8 @@
 
   <hlink|<with|font-series|bold|lasterrpos (function)>|purelib.tm#lasterrpos>
 
-  <hlink|<with|font-series|bold|lcd (function)>|purelib.tm#lcd>
-
-  <hlink|<with|font-series|bold|lcm (function)>|pure-rational.tm#lcm/rational>
+  <hlink|<with|font-series|bold|lcm (function)>|purelib.tm#lcm>,
+  <hlink|<with|font-series|bold|[1]>|pure-rational.tm#lcm/rational>
 
   <hlink|LD_LIBRARY_PATH|pure.tm#index-20>
 
@@ -5032,5 +5031,5 @@
   \| <hlink|Pure Language and Library Documentation|index.tm>
 
   <copyright> Copyright 2009-2019, Albert Gräf et al. Last updated on Aug
-  14, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  21, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

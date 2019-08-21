@@ -10,7 +10,7 @@
 
   <section*|pure-octave><label|module-octave>
 
-  Version 0.12, August 14, 2019
+  Version 0.12, August 21, 2019
 
   Albert Graef \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -720,5 +720,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2019, Albert Gräf et al. Last updated on Aug
-  14, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  21, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

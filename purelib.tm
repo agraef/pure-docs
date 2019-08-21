@@ -10,7 +10,7 @@
 
   <section*|Pure Library Manual><label|pure-library-manual>
 
-  Version 0.68, April 11, 2018
+  Version 0.68, August 21, 2019
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -3054,7 +3054,7 @@
   <\description>
     <item*|gcd x y<label|gcd>>
 
-    <item*|lcd x y<label|lcd>>The greatest common divisor and least common
+    <item*|lcm x y<label|lcm>>The greatest common divisor and least common
     multiple functions from the GMP library. These return a bigint if at
     least one of the arguments is a bigint, a machine int otherwise.
   </description>
@@ -8846,5 +8846,5 @@
   Documentation|index.tm>
 
   <copyright> Copyright 2009-2019, Albert Gräf et al. Last updated on Aug
-  14, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  21, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
