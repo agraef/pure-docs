@@ -1,10 +1,10 @@
-This is pure.info, produced by makeinfo version 6.6 from pure.texi.
+This is pure.info, produced by makeinfo version 6.7 from pure.texi.
 
-     Pure 0.68, August 21, 2019
+     Pure 0.68, May 13, 2020
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2019, Albert Gräf et al
+     Copyright © 2009-2020, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -20,13 +20,13 @@ File: pure.info,  Node: Top,  Next: Introduction,  Up: (dir)
 The Pure Manual
 ***************
 
-     Pure 0.68, August 21, 2019
+     Pure 0.68, May 13, 2020
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2019, Albert Gräf et al
+     Copyright © 2009-2020, Albert Gräf et al
 
-  Version 0.68, April 15, 2018
+  Version 0.68, May 13, 2020
 
   Albert Gräf <<aggraef@gmail.com>>
 
@@ -4799,7 +4799,7 @@ a partial application of the ‘flip’ function,
   Note that ‘flip (+) 1’ thus denotes a function which, when the missing
 operand is supplied, reduces to an application of the first (function)
 argument while also flipping around the operands.  For another example,
-here’s how you can compute third powers ‘3^x’ of some numbers ‘x’ with a
+here’s how you can compute third powers ‘x^3’ of some numbers ‘x’ with a
 right section of the ’‘^’’ operator:
 
      > map (^3) (1..5);
@@ -16614,907 +16614,907 @@ Index
 
 
 Tag Table:
-Node: Top346
-Ref: pure doc553
-Ref: 0553
-Ref: pure installation1415
-Ref: 31415
-Ref: Top-Footnote-15028
-Node: Introduction5073
-Ref: pure the-pure-manual5157
-Ref: 45157
-Ref: pure introduction5157
-Ref: 55157
-Node: Further Reading9282
-Ref: pure further-reading9378
-Ref: d9378
-Ref: Further Reading-Footnote-110562
-Node: Typographical Conventions10622
-Ref: pure typographical-conventions10718
-Ref: 1010718
-Ref: pure grammar-token-expression11801
-Ref: 1111801
-Ref: pure grammar-token-expr_list11862
-Ref: 1211862
-Node: Invoking Pure12633
-Ref: pure invoking-pure12727
-Ref: 712727
-Node: Options17786
-Ref: pure options17871
-Ref: 1617871
-Ref: pure cmdoption-pure-b17979
-Ref: 1717979
-Ref: pure cmdoption-pure-c18050
-Ref: 1818050
-Ref: pure cmdoption-pure--check18138
-Ref: 1918138
-Ref: pure cmdoption-pure--ctags18233
-Ref: 1a18233
-Ref: pure cmdoption-pure--etags18253
-Ref: 1b18253
-Ref: pure cmdoption-pure--disable18338
-Ref: 1c18338
-Ref: pure cmdoption-pure--eager-jit18424
-Ref: 1d18424
-Ref: pure cmdoption-pure--enable18561
-Ref: 1e18561
-Ref: pure cmdoption-pure--escape18645
-Ref: 1f18645
-Ref: pure cmdoption-pure-fPIC18791
-Ref: 2018791
-Ref: pure cmdoption-pure-fpic18809
-Ref: 2118809
-Ref: pure cmdoption-pure-g19035
-Ref: 2219035
-Ref: pure cmdoption-pure-h19084
-Ref: 2319084
-Ref: pure cmdoption-pure--help19099
-Ref: 2419099
-Ref: pure cmdoption-pure-i19154
-Ref: 2519154
-Ref: pure cmdoption-pure-I19267
-Ref: 2619267
-Ref: pure cmdoption-pure-L19359
-Ref: 2719359
-Ref: pure cmdoption-pure-l19445
-Ref: 2819445
-Ref: pure cmdoption-pure-mopt19518
-Ref: 2919518
-Ref: pure cmdoption-pure--main19593
-Ref: 2a19593
-Ref: pure cmdoption-pure--noediting19671
-Ref: 2b19671
-Ref: pure cmdoption-pure-n19732
-Ref: 2c19732
-Ref: pure cmdoption-pure--noprelude19747
-Ref: 2d19747
-Ref: pure cmdoption-pure--norc19803
-Ref: 2e19803
-Ref: pure cmdoption-pure-o19871
-Ref: 2f19871
-Ref: pure cmdoption-pure-q19941
-Ref: 3019941
-Ref: pure cmdoption-pure-T20027
-Ref: 3120027
-Ref: pure cmdoption-pure--texmacs20128
-Ref: 3220128
-Ref: pure cmdoption-pure-u20192
-Ref: 3420192
-Ref: pure cmdoption-pure-v20266
-Ref: 3520266
-Ref: pure cmdoption-pure--version20316
-Ref: 3620316
-Ref: pure cmdoption-pure-w20381
-Ref: 3720381
-Ref: pure cmdoption-pure-x20429
-Ref: 3820429
-Ref: pure cmdoption-pure--20526
-Ref: 3920526
-Node: Overview of Operation21941
-Ref: pure overview-of-operation22052
-Ref: 3b22052
-Ref: pure argc23537
-Ref: 3c23537
-Ref: pure argv23556
-Ref: 3d23556
-Ref: pure compiling23808
-Ref: 3e23808
-Ref: pure version24211
-Ref: 3f24211
-Ref: pure sysinfo24233
-Ref: 4024233
-Node: Compiling Scripts25473
-Ref: pure compiling-scripts25605
-Ref: 1425605
-Node: Tagging and Checking Scripts30752
-Ref: pure tagging-and-checking-scripts30884
-Ref: 1530884
-Ref: Tagging and Checking Scripts-Footnote-133393
-Ref: Tagging and Checking Scripts-Footnote-233436
-Node: Running Interactively33468
-Ref: pure running-interactively33614
-Ref: 1333614
-Node: Verbosity and Debugging Options35525
-Ref: pure verbosity-and-debugging-options35662
-Ref: 4935662
-Node: Compilation Options38233
-Ref: pure compilation-options38362
-Ref: 3a38362
-Node: Code Generation Options38683
-Ref: pure code-generation-options38792
-Ref: 4b38792
-Ref: pure cmdoption-pure--checks40141
-Ref: 4c40141
-Ref: pure cmdoption-pure--nochecks40162
-Ref: 4d40162
-Ref: pure cmdoption-pure--const40892
-Ref: 5040892
-Ref: pure cmdoption-pure--noconst40912
-Ref: 5140912
-Ref: pure cmdoption-pure--fold41533
-Ref: 5341533
-Ref: pure cmdoption-pure--nofold41552
-Ref: 5441552
-Ref: pure cmdoption-pure--symbolic42369
-Ref: 5642369
-Ref: pure cmdoption-pure--nosymbolic42392
-Ref: 5742392
-Ref: pure cmdoption-pure--tc44685
-Ref: 5a44685
-Ref: pure cmdoption-pure--notc44702
-Ref: 5b44702
-Ref: pure cmdoption-pure-pragma--eager46306
-Ref: 5e46306
-Ref: pure cmdoption-pure-pragma--required47022
-Ref: 5f47022
-Ref: pure cmdoption-pure-pragma--defined47519
-Ref: 5947519
-Ref: pure cmdoption-pure-pragma--nodefined47545
-Ref: 6047545
-Ref: pure cmdoption-pure-pragma--quoteargs48766
-Ref: 6248766
-Node: Conditional Compilation49065
-Ref: pure conditional-compilation49198
-Ref: 4149198
-Ref: pure cmdoption-pure-pragma--enable50517
-Ref: 6550517
-Ref: pure cmdoption-pure-pragma--disable50545
-Ref: 6650545
-Ref: pure cmdoption-pure-pragma--ifdef51073
-Ref: 6751073
-Ref: pure cmdoption-pure-pragma--ifndef51100
-Ref: 6851100
-Ref: pure cmdoption-pure-pragma--if51261
-Ref: 6951261
-Ref: pure cmdoption-pure-pragma--ifnot51285
-Ref: 6a51285
-Ref: pure cmdoption-pure-pragma--else51444
-Ref: 6b51444
-Ref: pure cmdoption-pure-pragma--endif51688
-Ref: 6c51688
-Node: Warning Options56738
-Ref: pure warning-options56839
-Ref: 6d56839
-Ref: pure cmdoption-pure-pragma--warn57321
-Ref: 6f57321
-Ref: pure cmdoption-pure-pragma--nowarn57340
-Ref: 7057340
-Ref: pure cmdoption-pure-pragma--rewarn57470
-Ref: 7157470
-Node: Startup Files58004
-Ref: pure startup-files58113
-Ref: 7258113
-Node: Environment58596
-Ref: pure environment58677
-Ref: 7358677
-Ref: pure envvar-CC58815
-Ref: 4758815
-Ref: pure envvar-CXX58844
-Ref: 4858844
-Ref: pure envvar-BROWSER59042
-Ref: 7459042
-Ref: pure envvar-PURELIB59291
-Ref: 4259291
-Ref: pure envvar-PURE_EAGER_JIT59502
-Ref: 4659502
-Ref: pure envvar-PURE_ESCAPE59665
-Ref: 7659665
-Ref: pure envvar-PURE_HELP59894
-Ref: 7559894
-Ref: pure envvar-PURE_INCLUDE60059
-Ref: 7760059
-Ref: pure envvar-PURE_LIBRARY60198
-Ref: 7860198
-Ref: pure envvar-PURE_MORE60338
-Ref: 7960338
-Ref: pure envvar-PURE_PS60602
-Ref: 7a60602
-Ref: pure envvar-PURE_STACK60719
-Ref: 7b60719
-Node: Pure Overview61409
-Ref: pure pure-overview61502
-Ref: 861502
-Node: Lexical Matters63452
-Ref: pure lexical-matters63561
-Ref: 5c63561
-Ref: pure grammar-token-symbol65919
-Ref: 7f65919
-Ref: pure grammar-token-identifier65960
-Ref: 8065960
-Ref: pure grammar-token-special66005
-Ref: 8166005
-Ref: pure grammar-token-letter66032
-Ref: 8266032
-Ref: pure grammar-token-digit66084
-Ref: 8366084
-Ref: pure grammar-token-punct66116
-Ref: 8466116
-Ref: pure grammar-token-qualified_symbol68028
-Ref: 8568028
-Ref: pure grammar-token-qualified_identifier68077
-Ref: 8668077
-Ref: pure grammar-token-qualifier68130
-Ref: 8768130
-Ref: pure grammar-token-number68588
-Ref: 8868588
-Ref: pure grammar-token-integer68637
-Ref: 8968637
-Ref: pure grammar-token-oct_digit68791
-Ref: 8a68791
-Ref: pure grammar-token-hex_digit68822
-Ref: 8b68822
-Ref: pure grammar-token-bin_digit68877
-Ref: 8c68877
-Ref: pure grammar-token-float68904
-Ref: 8d68904
-Ref: pure grammar-token-exponent69002
-Ref: 8e69002
-Ref: pure grammar-token-string69346
-Ref: 8f69346
-Ref: Lexical Matters-Footnote-170385
-Ref: Lexical Matters-Footnote-270424
-Ref: Lexical Matters-Footnote-370456
-Node: Definitions and Expression Evaluation70503
-Ref: pure definitions-and-expression-evaluation70638
-Ref: 5870638
-Ref: pure id170638
-Ref: 9070638
-Node: Variables in Equations80979
-Ref: pure variables-in-equations81073
-Ref: 9381073
-Node: Expression Syntax83348
-Ref: pure expression-syntax83481
-Ref: 9583481
-Ref: pure grammar-token-expr87553
-Ref: 9f87553
-Ref: pure grammar-token-simple_expr87850
-Ref: a087850
-Ref: pure grammar-token-application88013
-Ref: a188013
-Ref: pure grammar-token-prim_expr88091
-Ref: a288091
-Ref: pure grammar-token-exprs88656
-Ref: a388656
-Ref: pure grammar-token-op88695
-Ref: a488695
-Ref: pure grammar-token-left_op88734
-Ref: a588734
-Ref: pure grammar-token-right_op88773
-Ref: a688773
-Ref: pure grammar-token-rules88812
-Ref: a788812
-Ref: pure grammar-token-simple_rules88857
-Ref: a888857
-Node: Primary Expressions89000
-Ref: pure id289098
-Ref: a989098
-Ref: pure primary-expressions89098
-Ref: aa89098
-Node: Simple Expressions101363
-Ref: pure simple-expressions101489
-Ref: ac101489
-Ref: pure if105337
-Ref: 99105337
-Ref: pure then105337
-Ref: 9a105337
-Ref: pure else105337
-Ref: 9b105337
-Ref: pure case105337
-Ref: 96105337
-Ref: pure when105337
-Ref: 97105337
-Ref: pure with105337
-Ref: 98105337
-Node: Special Expressions105339
-Ref: pure special-expressions105437
-Ref: b5105437
-Ref: pure end105437
-Ref: 7e105437
-Ref: Special Expressions-Footnote-1111354
-Node: Special Forms111406
-Ref: pure special-forms111510
-Ref: b4111510
-Ref: pure id3111510
-Ref: b8111510
-Ref: pure &&/special111920
-Ref: b9111920
-Ref: pure ||/special111946
-Ref: ba111946
-Ref: pure $$113707
-Ref: bb113707
-Ref: pure &114526
-Ref: bc114526
-Ref: pure quote115586
-Ref: be115586
-Ref: pure '115613
-Ref: bf115613
-Ref: pure def116316
-Ref: c1116316
-Ref: pure let116316
-Ref: c2116316
-Ref: pure const116316
-Ref: 52116316
-Node: Toplevel116317
-Ref: pure toplevel116417
-Ref: c3116417
-Ref: pure otherwise116417
-Ref: c4116417
-Ref: pure grammar-token-script116639
-Ref: c5116639
-Ref: pure grammar-token-item116661
-Ref: c6116661
-Node: Scoping Rules120409
-Ref: pure scoping-rules120487
-Ref: b6120487
-Node: Rule Syntax126526
-Ref: pure rule-syntax126614
-Ref: 9e126614
-Ref: pure grammar-token-rule127045
-Ref: 9c127045
-Ref: pure grammar-token-type_rule127151
-Ref: c9127151
-Ref: pure grammar-token-macro_rule127216
-Ref: ca127216
-Ref: pure grammar-token-simple_rule127269
-Ref: 9d127269
-Ref: pure grammar-token-pattern127314
-Ref: cb127314
-Ref: pure grammar-token-guard127347
-Ref: cc127347
-Node: Patterns128162
-Ref: pure patterns128234
-Ref: b0128234
-Node: The "Head = Function" Rule134243
-Ref: pure the-head-function-rule134338
-Ref: ae134338
-Node: Constant Patterns137398
-Ref: pure constant-patterns137524
-Ref: d0137524
-Node: The Anonymous Variable137846
-Ref: pure the-anonymous-variable137988
-Ref: d1137988
-Node: Non-Linear Patterns and Syntactic Equality138623
-Ref: pure syntactic-equality138764
-Ref: d2138764
-Ref: pure non-linear-patterns-and-syntactic-equality138764
-Ref: d3138764
-Node: Special Patterns142368
-Ref: pure special-patterns142478
-Ref: d4142478
-Ref: pure id4143734
-Ref: d6143734
-Node: Type Tags145263
-Ref: pure id5145357
-Ref: d7145357
-Ref: pure type-tags145357
-Ref: d5145357
-Ref: pure int/type146941
-Ref: d9146941
-Ref: pure bigint/type146997
-Ref: da146997
-Ref: pure double/type147082
-Ref: db147082
-Ref: pure string/type147164
-Ref: dc147164
-Ref: pure matrix/type147224
-Ref: dd147224
-Ref: pure pointer/type147305
-Ref: d8147305
-Node: General Rules152835
-Ref: pure general-rules152933
-Ref: de152933
-Node: Simple Rules156493
-Ref: pure id6156592
-Ref: df156592
-Ref: pure simple-rules156592
-Ref: e0156592
-Ref: pure type158152
-Ref: c7158152
-Node: Type Rules158154
-Ref: pure type-rules158231
-Ref: 55158231
-Ref: pure id7158231
-Ref: e1158231
-Node: Examples172055
-Ref: pure examples172142
-Ref: 9172142
-Node: Hello World173428
-Ref: pure hello-world173514
-Ref: e3173514
-Node: Passing Parameters174500
-Ref: pure passing-parameters174591
-Ref: e5174591
-Node: Executable Scripts175564
-Ref: pure executable-scripts175680
-Ref: e6175680
-Node: Compiled Scripts178033
-Ref: pure compiled-scripts178122
-Ref: e4178122
-Node: Running the Interpreter179196
-Ref: pure running-the-interpreter179305
-Ref: e7179305
-Node: Basic Examples186121
-Ref: pure basic-examples186237
-Ref: e8186237
-Node: Defining Functions199026
-Ref: pure defining-functions199135
-Ref: ce199135
-Node: Pattern Matching207202
-Ref: pure pattern-matching207326
-Ref: ec207326
-Node: Local Functions and Variables216839
-Ref: pure local-functions-and-variables216955
-Ref: ef216955
-Ref: Local Functions and Variables-Footnote-1224774
-Node: Data Types224826
-Ref: pure data-types224935
-Ref: ee224935
-Ref: Data Types-Footnote-1233243
-Node: Recursion233292
-Ref: pure recursion233394
-Ref: eb233394
-Ref: pure duck-typing233394
-Ref: f0233394
-Ref: Recursion-Footnote-1243433
-Node: A Numeric Root Finder243497
-Ref: pure a-numeric-root-finder243594
-Ref: f2243594
-Node: The Same-Fringe Problem248847
-Ref: pure the-same-fringe-problem248944
-Ref: f1248944
-Ref: The Same-Fringe Problem-Footnote-1258709
-Node: Higher-Order Functions258752
-Ref: pure higher-order-functions258859
-Ref: f3258859
-Node: List Processing263993
-Ref: pure list-processing264108
-Ref: ed264108
-Node: String Processing276102
-Ref: pure string-processing276214
-Ref: f4276214
-Node: List Comprehensions282078
-Ref: pure list-comprehensions282202
-Ref: b3282202
-Node: Lazy Evaluation and Streams286820
-Ref: pure id8286947
-Ref: f5286947
-Ref: pure lazy-evaluation-and-streams286947
-Ref: bd286947
-Node: Matrices and Vectors294244
-Ref: pure id9294369
-Ref: f6294369
-Ref: pure matrices-and-vectors294369
-Ref: b1294369
-Node: Symbolic Matrices310527
-Ref: pure symbolic-matrices310636
-Ref: f7310636
-Node: Record Data313972
-Ref: pure id10314070
-Ref: fb314070
-Ref: pure record-data314070
-Ref: fc314070
-Node: The Quote322172
-Ref: pure the-quote322244
-Ref: c0322244
-Node: Declarations326022
-Ref: pure declarations326104
-Ref: 44326104
-Ref: pure id11326923
-Ref: 101326923
-Ref: pure public327202
-Ref: 102327202
-Ref: pure private327202
-Ref: 103327202
-Ref: pure infix327202
-Ref: 104327202
-Ref: pure infixl327202
-Ref: 105327202
-Ref: pure infixr327202
-Ref: 106327202
-Ref: pure prefix327202
-Ref: 107327202
-Ref: pure postfix327202
-Ref: 108327202
-Ref: pure outfix327202
-Ref: 109327202
-Node: Symbol Declarations327296
-Ref: pure nonfix327386
-Ref: 94327386
-Ref: pure symbol-declarations327386
-Ref: 5d327386
-Ref: pure grammar-token-symbol_decl327647
-Ref: 10a327647
-Ref: pure grammar-token-scope327756
-Ref: 10b327756
-Ref: pure grammar-token-fixity327798
-Ref: 10c327798
-Ref: pure grammar-token-precedence327920
-Ref: 10d327920
-Ref: pure interface336083
-Ref: fe336083
-Node: Interface Types336085
-Ref: pure id12336203
-Ref: 110336203
-Ref: pure interface-types336203
-Ref: c8336203
-Ref: pure grammar-token-interface_decl336905
-Ref: 112336905
-Ref: pure grammar-token-interface_item337019
-Ref: 113337019
-Ref: pure using349461
-Ref: 43349461
-Ref: Interface Types-Footnote-1349499
-Ref: Interface Types-Footnote-2349548
-Node: Modules and Imports349596
-Ref: pure id13349705
-Ref: 116349705
-Ref: pure modules-and-imports349705
-Ref: e9349705
-Ref: pure grammar-token-using_decl349928
-Ref: 117349928
-Ref: pure grammar-token-name349977
-Ref: 118349977
-Node: Namespaces356058
-Ref: pure namespace356143
-Ref: 100356143
-Ref: pure namespaces356143
-Ref: ad356143
-Ref: pure grammar-token-namespace_decl357558
-Ref: 119357558
-Ref: pure grammar-token-brackets357772
-Ref: 11a357772
-Ref: pure grammar-token-name_spec357821
-Ref: 11b357821
-Node: Using Namespaces360030
-Ref: pure using-namespace360126
-Ref: 11e360126
-Ref: pure using-namespaces360126
-Ref: 11f360126
-Node: Symbol Lookup and Creation362791
-Ref: pure id14362911
-Ref: 120362911
-Ref: pure symbol-lookup-and-creation362911
-Ref: 6e362911
-Node: Private Symbols370651
-Ref: pure private-symbols370773
-Ref: 10e370773
-Node: Namespace Brackets371989
-Ref: pure namespace-brackets372108
-Ref: 11d372108
-Node: Hierarchical Namespaces376357
-Ref: pure hierarchical-namespaces376478
-Ref: 121376478
-Node: Scoped Namespaces378745
-Ref: pure scoped-namespaces378839
-Ref: 11c378839
-Node: Macros382172
-Ref: pure macros382264
-Ref: 63382264
-Ref: pure id15382264
-Ref: 122382264
-Node: Optimization Rules384501
-Ref: pure id16384585
-Ref: 123384585
-Ref: pure optimization-rules384585
-Ref: 124384585
-Node: Recursive Macros387928
-Ref: pure recursive-macros388047
-Ref: fd388047
-Node: User-Defined Special Forms391341
-Ref: pure user-defined-special-forms391455
-Ref: 128391455
-Node: Macro Hygiene392892
-Ref: pure macro-hygiene393029
-Ref: 129393029
-Node: Built-in Macros and Special Expressions396016
-Ref: pure built-in-macros-and-special-expressions396148
-Ref: 64396148
-Ref: pure __ifelse__396628
-Ref: 12b396628
-Ref: pure __lambda__396772
-Ref: 12c396772
-Ref: pure __case__396876
-Ref: 12d396876
-Ref: pure __when__397168
-Ref: 12f397168
-Ref: pure __with__397495
-Ref: 130397495
-Ref: pure -->397813
-Ref: 12e397813
-Ref: pure __if__397883
-Ref: 131397883
-Ref: pure __as__398397
-Ref: 132398397
-Ref: pure __type__398474
-Ref: 133398474
-Ref: pure __eval__404997
-Ref: 134404997
-Ref: pure __gensym__406985
-Ref: 135406985
-Node: Advanced Optimization408743
-Ref: pure advanced-optimization408872
-Ref: 126408872
-Node: Reflection416423
-Ref: pure reflection416504
-Ref: 136416504
-Node: Exception Handling421344
-Ref: pure exception-handling421440
-Ref: cd421440
-Ref: pure id17421440
-Ref: 137421440
-Ref: pure catch421759
-Ref: 138421759
-Node: Standard Library426110
-Ref: pure standard-library426211
-Ref: 7d426211
-Node: C Interface430709
-Ref: pure c-interface430809
-Ref: 45430809
-Node: Extern Declarations432372
-Ref: pure extern432466
-Ref: ff432466
-Ref: pure extern-declarations432466
-Ref: 13a432466
-Ref: pure grammar-token-extern_decl432740
-Ref: 13b432740
-Ref: pure grammar-token-prototype432808
-Ref: 13c432808
-Ref: pure grammar-token-parameters432893
-Ref: 13d432893
-Ref: pure grammar-token-parameter432953
-Ref: 13e432953
-Ref: pure grammar-token-c_type432994
-Ref: 13f432994
-Node: Variadic C Functions437659
-Ref: pure variadic-c-functions437769
-Ref: 141437769
-Node: C Types439048
-Ref: pure c-types439166
-Ref: 140439166
-Ref: pure id18439166
-Ref: 142439166
-Node: Basic C Types440420
-Ref: pure basic-c-types440497
-Ref: 143440497
-Node: Pointer Types442835
-Ref: pure pointer-types442942
-Ref: 144442942
-Node: Pointers and Matrices446218
-Ref: pure pointers-and-matrices446328
-Ref: 145446328
-Node: Pointer Examples449642
-Ref: pure pointer-examples449730
-Ref: 146449730
-Node: Importing Dynamic Libraries454208
-Ref: pure importing-dynamic-libraries454328
-Ref: 147454328
-Node: Importing LLVM Bitcode456149
-Ref: pure importing-llvm-bitcode456273
-Ref: 148456273
-Node: Inline Code463836
-Ref: pure inline-code463951
-Ref: 7c463951
-Node: Interfacing to C++468735
-Ref: pure interfacing-to-c468846
-Ref: 14e468846
-Node: Interfacing to ATS471398
-Ref: pure interfacing-to-ats471518
-Ref: 14f471518
-Ref: Interfacing to ATS-Footnote-1474234
-Ref: Interfacing to ATS-Footnote-2474314
-Ref: Interfacing to ATS-Footnote-3474384
-Node: Interfacing to Faust474417
-Ref: pure interfacing-to-faust474510
-Ref: 14d474510
-Ref: pure id21474510
-Ref: 151474510
-Node: Interactive Usage491682
-Ref: pure interactive-usage491783
-Ref: a491783
-Node: Command Syntax494013
-Ref: pure command-syntax494099
-Ref: 152494099
-Node: Online Help499147
-Ref: pure online-help499262
-Ref: 2499262
-Ref: Online Help-Footnote-1502294
-Node: Interactive Commands502335
-Ref: pure commands502464
-Ref: 154502464
-Ref: pure interactive-commands502464
-Ref: 125502464
-Node: Specifying Symbol Selections514329
-Ref: pure specifying-symbol-selections514463
-Ref: 157514463
-Node: The show Command518024
-Ref: pure the-show-command518155
-Ref: 114518155
-Node: Definition Levels523034
-Ref: pure definition-levels523146
-Ref: 156523146
-Node: Debugging528573
-Ref: pure debugging528680
-Ref: 4a528680
-Ref: pure id22528680
-Ref: 159528680
-Node: Last Result544593
-Ref: pure last-result544698
-Ref: 155544698
-Node: Pretty-Printing545438
-Ref: pure pretty-printing545555
-Ref: fa545555
-Ref: pure __show__545768
-Ref: f9545768
-Node: User-Defined Commands549450
-Ref: pure user-defined-commands549575
-Ref: 153549575
-Node: Interactive Startup555861
-Ref: pure interactive-startup555962
-Ref: 158555962
-Node: Batch Compilation557305
-Ref: pure id23557412
-Ref: 15a557412
-Ref: pure batch-compilation557412
-Ref: b557412
-Node: Compile Time Versus Run Time558154
-Ref: pure compile-time-versus-run-time558250
-Ref: 15b558250
-Ref: Compile Time Versus Run Time-Footnote-1564591
-Node: Example564647
-Ref: pure example564779
-Ref: 15d564779
-Ref: Example-Footnote-1569262
-Node: Options Affecting Code Size569318
-Ref: pure options-affecting-code-size569447
-Ref: 15c569447
-Node: Other Output Code Formats572963
-Ref: pure other-output-code-formats573114
-Ref: 15e573114
-Ref: Other Output Code Formats-Footnote-1580136
-Node: Calling Pure Functions From C580166
-Ref: pure calling-pure-functions-from-c580281
-Ref: 15f580281
-Ref: pure llvm-documentation580281
-Ref: 160580281
-Node: Caveats and Notes581827
-Ref: pure caveats-and-notes581923
-Ref: c581923
-Node: Etymology582606
-Ref: pure etymology582698
-Ref: 161582698
-Node: Backward Compatibility583608
-Ref: pure backward-compatibility583723
-Ref: 162583723
-Node: Error Recovery595272
-Ref: pure error-recovery595406
-Ref: 165595406
-Node: Splicing Tuples and Matrices596071
-Ref: pure splicing-tuples-and-matrices596196
-Ref: af596196
-Node: With and when598193
-Ref: pure with-and-when598323
-Ref: 166598323
-Node: Non-Linear Patterns602137
-Ref: pure non-linear-patterns602252
-Ref: 167602252
-Node: "As" Patterns603705
-Ref: pure as-patterns603833
-Ref: 127603833
-Node: "Head = Function" Pitfalls604600
-Ref: pure head-function-pitfalls604726
-Ref: cf604726
-Node: Defined Functions608133
-Ref: pure defined-functions608275
-Ref: 61608275
-Node: Stack Size and Tail Recursion613830
-Ref: pure stack-size-and-tail-recursion613978
-Ref: 4e613978
-Node: Handling of Asynchronous Signals616655
-Ref: pure handling-of-asynchronous-signals616801
-Ref: 4f616801
-Node: Recursive Types618861
-Ref: pure recursive-types618988
-Ref: e2618988
-Ref: Recursive Types-Footnote-1624285
-Node: Interfaces624349
-Ref: pure interfaces624464
-Ref: 115624464
-Node: Numeric Calculations628145
-Ref: pure numeric-calculations628265
-Ref: 168628265
-Node: Constant Definitions630230
-Ref: pure constant-definitions630360
-Ref: ea630360
-Node: External C Functions636443
-Ref: pure external-c-functions636574
-Ref: 139636574
-Ref: External C Functions-Footnote-1638276
-Node: Calling Special Forms638314
-Ref: pure calling-special-forms638433
-Ref: 169638433
-Node: Laziness638922
-Ref: pure laziness639033
-Ref: 16a639033
-Node: Name Capture643694
-Ref: pure name-capture643775
-Ref: 12a643775
-Node: Author647267
-Ref: pure author647362
-Ref: 16c647362
-Node: Acknowledgements647495
-Ref: pure acknowledgements647580
-Ref: 16d647580
-Node: Copying648831
-Ref: pure copying648930
-Ref: 1648930
-Ref: Copying-Footnote-1651976
-Ref: Copying-Footnote-2652021
-Ref: Copying-Footnote-3652067
-Ref: Copying-Footnote-4652112
-Node: References and Links652158
-Ref: pure references-and-links652246
-Ref: 16e652246
-Ref: pure aardappel652295
-Ref: b7652295
-Ref: pure alice-ml652442
-Ref: 16b652442
-Ref: pure ats652582
-Ref: 150652582
-Ref: pure baader-and-nipkow652763
-Ref: f652763
-Ref: pure bertrand652883
-Ref: 10f652883
-Ref: pure clang653152
-Ref: 149653152
-Ref: pure dragonegg653416
-Ref: 14b653416
-Ref: pure faust653627
-Ref: 14c653627
-Ref: pure gmp653721
-Ref: ab653721
-Ref: pure octave653834
-Ref: f8653834
-Ref: pure gsl653983
-Ref: b2653983
-Ref: pure go654151
-Ref: 111654151
-Ref: pure haskell654222
-Ref: 91654222
-Ref: pure llvm654293
-Ref: 6654293
-Ref: pure llvm-gcc654363
-Ref: 14a654363
-Ref: pure miranda654586
-Ref: 164654586
-Ref: pure ml654765
-Ref: 92654765
-Ref: pure michael-o-donnell654926
-Ref: e654926
-Ref: pure q655081
-Ref: 163655081
-Ref: pure texmacs655171
-Ref: 33655171
-Node: Index655387
+Node: Top343
+Ref: pure doc547
+Ref: 0547
+Ref: pure installation1407
+Ref: 31407
+Ref: Top-Footnote-15020
+Node: Introduction5065
+Ref: pure the-pure-manual5149
+Ref: 45149
+Ref: pure introduction5149
+Ref: 55149
+Node: Further Reading9274
+Ref: pure further-reading9370
+Ref: d9370
+Ref: Further Reading-Footnote-110554
+Node: Typographical Conventions10614
+Ref: pure typographical-conventions10710
+Ref: 1010710
+Ref: pure grammar-token-expression11793
+Ref: 1111793
+Ref: pure grammar-token-expr_list11854
+Ref: 1211854
+Node: Invoking Pure12625
+Ref: pure invoking-pure12719
+Ref: 712719
+Node: Options17778
+Ref: pure options17863
+Ref: 1617863
+Ref: pure cmdoption-pure-b17971
+Ref: 1717971
+Ref: pure cmdoption-pure-c18042
+Ref: 1818042
+Ref: pure cmdoption-pure--check18130
+Ref: 1918130
+Ref: pure cmdoption-pure--ctags18225
+Ref: 1a18225
+Ref: pure cmdoption-pure--etags18245
+Ref: 1b18245
+Ref: pure cmdoption-pure--disable18330
+Ref: 1c18330
+Ref: pure cmdoption-pure--eager-jit18416
+Ref: 1d18416
+Ref: pure cmdoption-pure--enable18553
+Ref: 1e18553
+Ref: pure cmdoption-pure--escape18637
+Ref: 1f18637
+Ref: pure cmdoption-pure-fPIC18783
+Ref: 2018783
+Ref: pure cmdoption-pure-fpic18801
+Ref: 2118801
+Ref: pure cmdoption-pure-g19027
+Ref: 2219027
+Ref: pure cmdoption-pure-h19076
+Ref: 2319076
+Ref: pure cmdoption-pure--help19091
+Ref: 2419091
+Ref: pure cmdoption-pure-i19146
+Ref: 2519146
+Ref: pure cmdoption-pure-I19259
+Ref: 2619259
+Ref: pure cmdoption-pure-L19351
+Ref: 2719351
+Ref: pure cmdoption-pure-l19437
+Ref: 2819437
+Ref: pure cmdoption-pure-mopt19510
+Ref: 2919510
+Ref: pure cmdoption-pure--main19585
+Ref: 2a19585
+Ref: pure cmdoption-pure--noediting19663
+Ref: 2b19663
+Ref: pure cmdoption-pure-n19724
+Ref: 2c19724
+Ref: pure cmdoption-pure--noprelude19739
+Ref: 2d19739
+Ref: pure cmdoption-pure--norc19795
+Ref: 2e19795
+Ref: pure cmdoption-pure-o19863
+Ref: 2f19863
+Ref: pure cmdoption-pure-q19933
+Ref: 3019933
+Ref: pure cmdoption-pure-T20019
+Ref: 3120019
+Ref: pure cmdoption-pure--texmacs20120
+Ref: 3220120
+Ref: pure cmdoption-pure-u20184
+Ref: 3420184
+Ref: pure cmdoption-pure-v20258
+Ref: 3520258
+Ref: pure cmdoption-pure--version20308
+Ref: 3620308
+Ref: pure cmdoption-pure-w20373
+Ref: 3720373
+Ref: pure cmdoption-pure-x20421
+Ref: 3820421
+Ref: pure cmdoption-pure--20518
+Ref: 3920518
+Node: Overview of Operation21933
+Ref: pure overview-of-operation22044
+Ref: 3b22044
+Ref: pure argc23529
+Ref: 3c23529
+Ref: pure argv23548
+Ref: 3d23548
+Ref: pure compiling23800
+Ref: 3e23800
+Ref: pure version24203
+Ref: 3f24203
+Ref: pure sysinfo24225
+Ref: 4024225
+Node: Compiling Scripts25465
+Ref: pure compiling-scripts25597
+Ref: 1425597
+Node: Tagging and Checking Scripts30744
+Ref: pure tagging-and-checking-scripts30876
+Ref: 1530876
+Ref: Tagging and Checking Scripts-Footnote-133385
+Ref: Tagging and Checking Scripts-Footnote-233428
+Node: Running Interactively33460
+Ref: pure running-interactively33606
+Ref: 1333606
+Node: Verbosity and Debugging Options35517
+Ref: pure verbosity-and-debugging-options35654
+Ref: 4935654
+Node: Compilation Options38225
+Ref: pure compilation-options38354
+Ref: 3a38354
+Node: Code Generation Options38675
+Ref: pure code-generation-options38784
+Ref: 4b38784
+Ref: pure cmdoption-pure--checks40133
+Ref: 4c40133
+Ref: pure cmdoption-pure--nochecks40154
+Ref: 4d40154
+Ref: pure cmdoption-pure--const40884
+Ref: 5040884
+Ref: pure cmdoption-pure--noconst40904
+Ref: 5140904
+Ref: pure cmdoption-pure--fold41525
+Ref: 5341525
+Ref: pure cmdoption-pure--nofold41544
+Ref: 5441544
+Ref: pure cmdoption-pure--symbolic42361
+Ref: 5642361
+Ref: pure cmdoption-pure--nosymbolic42384
+Ref: 5742384
+Ref: pure cmdoption-pure--tc44677
+Ref: 5a44677
+Ref: pure cmdoption-pure--notc44694
+Ref: 5b44694
+Ref: pure cmdoption-pure-pragma--eager46298
+Ref: 5e46298
+Ref: pure cmdoption-pure-pragma--required47014
+Ref: 5f47014
+Ref: pure cmdoption-pure-pragma--defined47511
+Ref: 5947511
+Ref: pure cmdoption-pure-pragma--nodefined47537
+Ref: 6047537
+Ref: pure cmdoption-pure-pragma--quoteargs48758
+Ref: 6248758
+Node: Conditional Compilation49057
+Ref: pure conditional-compilation49190
+Ref: 4149190
+Ref: pure cmdoption-pure-pragma--enable50509
+Ref: 6550509
+Ref: pure cmdoption-pure-pragma--disable50537
+Ref: 6650537
+Ref: pure cmdoption-pure-pragma--ifdef51065
+Ref: 6751065
+Ref: pure cmdoption-pure-pragma--ifndef51092
+Ref: 6851092
+Ref: pure cmdoption-pure-pragma--if51253
+Ref: 6951253
+Ref: pure cmdoption-pure-pragma--ifnot51277
+Ref: 6a51277
+Ref: pure cmdoption-pure-pragma--else51436
+Ref: 6b51436
+Ref: pure cmdoption-pure-pragma--endif51680
+Ref: 6c51680
+Node: Warning Options56730
+Ref: pure warning-options56831
+Ref: 6d56831
+Ref: pure cmdoption-pure-pragma--warn57313
+Ref: 6f57313
+Ref: pure cmdoption-pure-pragma--nowarn57332
+Ref: 7057332
+Ref: pure cmdoption-pure-pragma--rewarn57462
+Ref: 7157462
+Node: Startup Files57996
+Ref: pure startup-files58105
+Ref: 7258105
+Node: Environment58588
+Ref: pure environment58669
+Ref: 7358669
+Ref: pure envvar-CC58807
+Ref: 4758807
+Ref: pure envvar-CXX58836
+Ref: 4858836
+Ref: pure envvar-BROWSER59034
+Ref: 7459034
+Ref: pure envvar-PURELIB59283
+Ref: 4259283
+Ref: pure envvar-PURE_EAGER_JIT59494
+Ref: 4659494
+Ref: pure envvar-PURE_ESCAPE59657
+Ref: 7659657
+Ref: pure envvar-PURE_HELP59886
+Ref: 7559886
+Ref: pure envvar-PURE_INCLUDE60051
+Ref: 7760051
+Ref: pure envvar-PURE_LIBRARY60190
+Ref: 7860190
+Ref: pure envvar-PURE_MORE60330
+Ref: 7960330
+Ref: pure envvar-PURE_PS60594
+Ref: 7a60594
+Ref: pure envvar-PURE_STACK60711
+Ref: 7b60711
+Node: Pure Overview61401
+Ref: pure pure-overview61494
+Ref: 861494
+Node: Lexical Matters63444
+Ref: pure lexical-matters63553
+Ref: 5c63553
+Ref: pure grammar-token-symbol65911
+Ref: 7f65911
+Ref: pure grammar-token-identifier65952
+Ref: 8065952
+Ref: pure grammar-token-special65997
+Ref: 8165997
+Ref: pure grammar-token-letter66024
+Ref: 8266024
+Ref: pure grammar-token-digit66076
+Ref: 8366076
+Ref: pure grammar-token-punct66108
+Ref: 8466108
+Ref: pure grammar-token-qualified_symbol68020
+Ref: 8568020
+Ref: pure grammar-token-qualified_identifier68069
+Ref: 8668069
+Ref: pure grammar-token-qualifier68122
+Ref: 8768122
+Ref: pure grammar-token-number68580
+Ref: 8868580
+Ref: pure grammar-token-integer68629
+Ref: 8968629
+Ref: pure grammar-token-oct_digit68783
+Ref: 8a68783
+Ref: pure grammar-token-hex_digit68814
+Ref: 8b68814
+Ref: pure grammar-token-bin_digit68869
+Ref: 8c68869
+Ref: pure grammar-token-float68896
+Ref: 8d68896
+Ref: pure grammar-token-exponent68994
+Ref: 8e68994
+Ref: pure grammar-token-string69338
+Ref: 8f69338
+Ref: Lexical Matters-Footnote-170377
+Ref: Lexical Matters-Footnote-270416
+Ref: Lexical Matters-Footnote-370448
+Node: Definitions and Expression Evaluation70495
+Ref: pure definitions-and-expression-evaluation70630
+Ref: 5870630
+Ref: pure id170630
+Ref: 9070630
+Node: Variables in Equations80971
+Ref: pure variables-in-equations81065
+Ref: 9381065
+Node: Expression Syntax83340
+Ref: pure expression-syntax83473
+Ref: 9583473
+Ref: pure grammar-token-expr87545
+Ref: 9f87545
+Ref: pure grammar-token-simple_expr87842
+Ref: a087842
+Ref: pure grammar-token-application88005
+Ref: a188005
+Ref: pure grammar-token-prim_expr88083
+Ref: a288083
+Ref: pure grammar-token-exprs88648
+Ref: a388648
+Ref: pure grammar-token-op88687
+Ref: a488687
+Ref: pure grammar-token-left_op88726
+Ref: a588726
+Ref: pure grammar-token-right_op88765
+Ref: a688765
+Ref: pure grammar-token-rules88804
+Ref: a788804
+Ref: pure grammar-token-simple_rules88849
+Ref: a888849
+Node: Primary Expressions88992
+Ref: pure id289090
+Ref: a989090
+Ref: pure primary-expressions89090
+Ref: aa89090
+Node: Simple Expressions101355
+Ref: pure simple-expressions101481
+Ref: ac101481
+Ref: pure if105329
+Ref: 99105329
+Ref: pure then105329
+Ref: 9a105329
+Ref: pure else105329
+Ref: 9b105329
+Ref: pure case105329
+Ref: 96105329
+Ref: pure when105329
+Ref: 97105329
+Ref: pure with105329
+Ref: 98105329
+Node: Special Expressions105331
+Ref: pure special-expressions105429
+Ref: b5105429
+Ref: pure end105429
+Ref: 7e105429
+Ref: Special Expressions-Footnote-1111346
+Node: Special Forms111398
+Ref: pure special-forms111502
+Ref: b4111502
+Ref: pure id3111502
+Ref: b8111502
+Ref: pure &&/special111912
+Ref: b9111912
+Ref: pure ||/special111938
+Ref: ba111938
+Ref: pure $$113699
+Ref: bb113699
+Ref: pure &114518
+Ref: bc114518
+Ref: pure quote115578
+Ref: be115578
+Ref: pure '115605
+Ref: bf115605
+Ref: pure def116308
+Ref: c1116308
+Ref: pure let116308
+Ref: c2116308
+Ref: pure const116308
+Ref: 52116308
+Node: Toplevel116309
+Ref: pure toplevel116409
+Ref: c3116409
+Ref: pure otherwise116409
+Ref: c4116409
+Ref: pure grammar-token-script116631
+Ref: c5116631
+Ref: pure grammar-token-item116653
+Ref: c6116653
+Node: Scoping Rules120401
+Ref: pure scoping-rules120479
+Ref: b6120479
+Node: Rule Syntax126518
+Ref: pure rule-syntax126606
+Ref: 9e126606
+Ref: pure grammar-token-rule127037
+Ref: 9c127037
+Ref: pure grammar-token-type_rule127143
+Ref: c9127143
+Ref: pure grammar-token-macro_rule127208
+Ref: ca127208
+Ref: pure grammar-token-simple_rule127261
+Ref: 9d127261
+Ref: pure grammar-token-pattern127306
+Ref: cb127306
+Ref: pure grammar-token-guard127339
+Ref: cc127339
+Node: Patterns128154
+Ref: pure patterns128226
+Ref: b0128226
+Node: The "Head = Function" Rule134235
+Ref: pure the-head-function-rule134330
+Ref: ae134330
+Node: Constant Patterns137390
+Ref: pure constant-patterns137516
+Ref: d0137516
+Node: The Anonymous Variable137838
+Ref: pure the-anonymous-variable137980
+Ref: d1137980
+Node: Non-Linear Patterns and Syntactic Equality138615
+Ref: pure syntactic-equality138756
+Ref: d2138756
+Ref: pure non-linear-patterns-and-syntactic-equality138756
+Ref: d3138756
+Node: Special Patterns142360
+Ref: pure special-patterns142470
+Ref: d4142470
+Ref: pure id4143726
+Ref: d6143726
+Node: Type Tags145255
+Ref: pure id5145349
+Ref: d7145349
+Ref: pure type-tags145349
+Ref: d5145349
+Ref: pure int/type146933
+Ref: d9146933
+Ref: pure bigint/type146989
+Ref: da146989
+Ref: pure double/type147074
+Ref: db147074
+Ref: pure string/type147156
+Ref: dc147156
+Ref: pure matrix/type147216
+Ref: dd147216
+Ref: pure pointer/type147297
+Ref: d8147297
+Node: General Rules152827
+Ref: pure general-rules152925
+Ref: de152925
+Node: Simple Rules156485
+Ref: pure id6156584
+Ref: df156584
+Ref: pure simple-rules156584
+Ref: e0156584
+Ref: pure type158144
+Ref: c7158144
+Node: Type Rules158146
+Ref: pure type-rules158223
+Ref: 55158223
+Ref: pure id7158223
+Ref: e1158223
+Node: Examples172047
+Ref: pure examples172134
+Ref: 9172134
+Node: Hello World173420
+Ref: pure hello-world173506
+Ref: e3173506
+Node: Passing Parameters174492
+Ref: pure passing-parameters174583
+Ref: e5174583
+Node: Executable Scripts175556
+Ref: pure executable-scripts175672
+Ref: e6175672
+Node: Compiled Scripts178025
+Ref: pure compiled-scripts178114
+Ref: e4178114
+Node: Running the Interpreter179188
+Ref: pure running-the-interpreter179297
+Ref: e7179297
+Node: Basic Examples186113
+Ref: pure basic-examples186229
+Ref: e8186229
+Node: Defining Functions199018
+Ref: pure defining-functions199127
+Ref: ce199127
+Node: Pattern Matching207194
+Ref: pure pattern-matching207318
+Ref: ec207318
+Node: Local Functions and Variables216831
+Ref: pure local-functions-and-variables216947
+Ref: ef216947
+Ref: Local Functions and Variables-Footnote-1224766
+Node: Data Types224818
+Ref: pure data-types224927
+Ref: ee224927
+Ref: Data Types-Footnote-1233235
+Node: Recursion233284
+Ref: pure recursion233386
+Ref: eb233386
+Ref: pure duck-typing233386
+Ref: f0233386
+Ref: Recursion-Footnote-1243425
+Node: A Numeric Root Finder243489
+Ref: pure a-numeric-root-finder243586
+Ref: f2243586
+Node: The Same-Fringe Problem248839
+Ref: pure the-same-fringe-problem248936
+Ref: f1248936
+Ref: The Same-Fringe Problem-Footnote-1258701
+Node: Higher-Order Functions258744
+Ref: pure higher-order-functions258851
+Ref: f3258851
+Node: List Processing263985
+Ref: pure list-processing264100
+Ref: ed264100
+Node: String Processing276094
+Ref: pure string-processing276206
+Ref: f4276206
+Node: List Comprehensions282070
+Ref: pure list-comprehensions282194
+Ref: b3282194
+Node: Lazy Evaluation and Streams286812
+Ref: pure id8286939
+Ref: f5286939
+Ref: pure lazy-evaluation-and-streams286939
+Ref: bd286939
+Node: Matrices and Vectors294236
+Ref: pure id9294361
+Ref: f6294361
+Ref: pure matrices-and-vectors294361
+Ref: b1294361
+Node: Symbolic Matrices310519
+Ref: pure symbolic-matrices310628
+Ref: f7310628
+Node: Record Data313964
+Ref: pure id10314062
+Ref: fb314062
+Ref: pure record-data314062
+Ref: fc314062
+Node: The Quote322164
+Ref: pure the-quote322236
+Ref: c0322236
+Node: Declarations326014
+Ref: pure declarations326096
+Ref: 44326096
+Ref: pure id11326915
+Ref: 101326915
+Ref: pure public327194
+Ref: 102327194
+Ref: pure private327194
+Ref: 103327194
+Ref: pure infix327194
+Ref: 104327194
+Ref: pure infixl327194
+Ref: 105327194
+Ref: pure infixr327194
+Ref: 106327194
+Ref: pure prefix327194
+Ref: 107327194
+Ref: pure postfix327194
+Ref: 108327194
+Ref: pure outfix327194
+Ref: 109327194
+Node: Symbol Declarations327288
+Ref: pure nonfix327378
+Ref: 94327378
+Ref: pure symbol-declarations327378
+Ref: 5d327378
+Ref: pure grammar-token-symbol_decl327639
+Ref: 10a327639
+Ref: pure grammar-token-scope327748
+Ref: 10b327748
+Ref: pure grammar-token-fixity327790
+Ref: 10c327790
+Ref: pure grammar-token-precedence327912
+Ref: 10d327912
+Ref: pure interface336075
+Ref: fe336075
+Node: Interface Types336077
+Ref: pure id12336195
+Ref: 110336195
+Ref: pure interface-types336195
+Ref: c8336195
+Ref: pure grammar-token-interface_decl336897
+Ref: 112336897
+Ref: pure grammar-token-interface_item337011
+Ref: 113337011
+Ref: pure using349453
+Ref: 43349453
+Ref: Interface Types-Footnote-1349491
+Ref: Interface Types-Footnote-2349540
+Node: Modules and Imports349588
+Ref: pure id13349697
+Ref: 116349697
+Ref: pure modules-and-imports349697
+Ref: e9349697
+Ref: pure grammar-token-using_decl349920
+Ref: 117349920
+Ref: pure grammar-token-name349969
+Ref: 118349969
+Node: Namespaces356050
+Ref: pure namespace356135
+Ref: 100356135
+Ref: pure namespaces356135
+Ref: ad356135
+Ref: pure grammar-token-namespace_decl357550
+Ref: 119357550
+Ref: pure grammar-token-brackets357764
+Ref: 11a357764
+Ref: pure grammar-token-name_spec357813
+Ref: 11b357813
+Node: Using Namespaces360022
+Ref: pure using-namespace360118
+Ref: 11e360118
+Ref: pure using-namespaces360118
+Ref: 11f360118
+Node: Symbol Lookup and Creation362783
+Ref: pure id14362903
+Ref: 120362903
+Ref: pure symbol-lookup-and-creation362903
+Ref: 6e362903
+Node: Private Symbols370643
+Ref: pure private-symbols370765
+Ref: 10e370765
+Node: Namespace Brackets371981
+Ref: pure namespace-brackets372100
+Ref: 11d372100
+Node: Hierarchical Namespaces376349
+Ref: pure hierarchical-namespaces376470
+Ref: 121376470
+Node: Scoped Namespaces378737
+Ref: pure scoped-namespaces378831
+Ref: 11c378831
+Node: Macros382164
+Ref: pure macros382256
+Ref: 63382256
+Ref: pure id15382256
+Ref: 122382256
+Node: Optimization Rules384493
+Ref: pure id16384577
+Ref: 123384577
+Ref: pure optimization-rules384577
+Ref: 124384577
+Node: Recursive Macros387920
+Ref: pure recursive-macros388039
+Ref: fd388039
+Node: User-Defined Special Forms391333
+Ref: pure user-defined-special-forms391447
+Ref: 128391447
+Node: Macro Hygiene392884
+Ref: pure macro-hygiene393021
+Ref: 129393021
+Node: Built-in Macros and Special Expressions396008
+Ref: pure built-in-macros-and-special-expressions396140
+Ref: 64396140
+Ref: pure __ifelse__396620
+Ref: 12b396620
+Ref: pure __lambda__396764
+Ref: 12c396764
+Ref: pure __case__396868
+Ref: 12d396868
+Ref: pure __when__397160
+Ref: 12f397160
+Ref: pure __with__397487
+Ref: 130397487
+Ref: pure -->397805
+Ref: 12e397805
+Ref: pure __if__397875
+Ref: 131397875
+Ref: pure __as__398389
+Ref: 132398389
+Ref: pure __type__398466
+Ref: 133398466
+Ref: pure __eval__404989
+Ref: 134404989
+Ref: pure __gensym__406977
+Ref: 135406977
+Node: Advanced Optimization408735
+Ref: pure advanced-optimization408864
+Ref: 126408864
+Node: Reflection416415
+Ref: pure reflection416496
+Ref: 136416496
+Node: Exception Handling421336
+Ref: pure exception-handling421432
+Ref: cd421432
+Ref: pure id17421432
+Ref: 137421432
+Ref: pure catch421751
+Ref: 138421751
+Node: Standard Library426102
+Ref: pure standard-library426203
+Ref: 7d426203
+Node: C Interface430701
+Ref: pure c-interface430801
+Ref: 45430801
+Node: Extern Declarations432364
+Ref: pure extern432458
+Ref: ff432458
+Ref: pure extern-declarations432458
+Ref: 13a432458
+Ref: pure grammar-token-extern_decl432732
+Ref: 13b432732
+Ref: pure grammar-token-prototype432800
+Ref: 13c432800
+Ref: pure grammar-token-parameters432885
+Ref: 13d432885
+Ref: pure grammar-token-parameter432945
+Ref: 13e432945
+Ref: pure grammar-token-c_type432986
+Ref: 13f432986
+Node: Variadic C Functions437651
+Ref: pure variadic-c-functions437761
+Ref: 141437761
+Node: C Types439040
+Ref: pure c-types439158
+Ref: 140439158
+Ref: pure id18439158
+Ref: 142439158
+Node: Basic C Types440412
+Ref: pure basic-c-types440489
+Ref: 143440489
+Node: Pointer Types442827
+Ref: pure pointer-types442934
+Ref: 144442934
+Node: Pointers and Matrices446210
+Ref: pure pointers-and-matrices446320
+Ref: 145446320
+Node: Pointer Examples449634
+Ref: pure pointer-examples449722
+Ref: 146449722
+Node: Importing Dynamic Libraries454200
+Ref: pure importing-dynamic-libraries454320
+Ref: 147454320
+Node: Importing LLVM Bitcode456141
+Ref: pure importing-llvm-bitcode456265
+Ref: 148456265
+Node: Inline Code463828
+Ref: pure inline-code463943
+Ref: 7c463943
+Node: Interfacing to C++468727
+Ref: pure interfacing-to-c468838
+Ref: 14e468838
+Node: Interfacing to ATS471390
+Ref: pure interfacing-to-ats471510
+Ref: 14f471510
+Ref: Interfacing to ATS-Footnote-1474226
+Ref: Interfacing to ATS-Footnote-2474306
+Ref: Interfacing to ATS-Footnote-3474376
+Node: Interfacing to Faust474409
+Ref: pure interfacing-to-faust474502
+Ref: 14d474502
+Ref: pure id21474502
+Ref: 151474502
+Node: Interactive Usage491674
+Ref: pure interactive-usage491775
+Ref: a491775
+Node: Command Syntax494005
+Ref: pure command-syntax494091
+Ref: 152494091
+Node: Online Help499139
+Ref: pure online-help499254
+Ref: 2499254
+Ref: Online Help-Footnote-1502286
+Node: Interactive Commands502327
+Ref: pure commands502456
+Ref: 154502456
+Ref: pure interactive-commands502456
+Ref: 125502456
+Node: Specifying Symbol Selections514321
+Ref: pure specifying-symbol-selections514455
+Ref: 157514455
+Node: The show Command518016
+Ref: pure the-show-command518147
+Ref: 114518147
+Node: Definition Levels523026
+Ref: pure definition-levels523138
+Ref: 156523138
+Node: Debugging528565
+Ref: pure debugging528672
+Ref: 4a528672
+Ref: pure id22528672
+Ref: 159528672
+Node: Last Result544585
+Ref: pure last-result544690
+Ref: 155544690
+Node: Pretty-Printing545430
+Ref: pure pretty-printing545547
+Ref: fa545547
+Ref: pure __show__545760
+Ref: f9545760
+Node: User-Defined Commands549442
+Ref: pure user-defined-commands549567
+Ref: 153549567
+Node: Interactive Startup555853
+Ref: pure interactive-startup555954
+Ref: 158555954
+Node: Batch Compilation557297
+Ref: pure id23557404
+Ref: 15a557404
+Ref: pure batch-compilation557404
+Ref: b557404
+Node: Compile Time Versus Run Time558146
+Ref: pure compile-time-versus-run-time558242
+Ref: 15b558242
+Ref: Compile Time Versus Run Time-Footnote-1564583
+Node: Example564639
+Ref: pure example564771
+Ref: 15d564771
+Ref: Example-Footnote-1569254
+Node: Options Affecting Code Size569310
+Ref: pure options-affecting-code-size569439
+Ref: 15c569439
+Node: Other Output Code Formats572955
+Ref: pure other-output-code-formats573106
+Ref: 15e573106
+Ref: Other Output Code Formats-Footnote-1580128
+Node: Calling Pure Functions From C580158
+Ref: pure calling-pure-functions-from-c580273
+Ref: 15f580273
+Ref: pure llvm-documentation580273
+Ref: 160580273
+Node: Caveats and Notes581819
+Ref: pure caveats-and-notes581915
+Ref: c581915
+Node: Etymology582598
+Ref: pure etymology582690
+Ref: 161582690
+Node: Backward Compatibility583600
+Ref: pure backward-compatibility583715
+Ref: 162583715
+Node: Error Recovery595264
+Ref: pure error-recovery595398
+Ref: 165595398
+Node: Splicing Tuples and Matrices596063
+Ref: pure splicing-tuples-and-matrices596188
+Ref: af596188
+Node: With and when598185
+Ref: pure with-and-when598315
+Ref: 166598315
+Node: Non-Linear Patterns602129
+Ref: pure non-linear-patterns602244
+Ref: 167602244
+Node: "As" Patterns603697
+Ref: pure as-patterns603825
+Ref: 127603825
+Node: "Head = Function" Pitfalls604592
+Ref: pure head-function-pitfalls604718
+Ref: cf604718
+Node: Defined Functions608125
+Ref: pure defined-functions608267
+Ref: 61608267
+Node: Stack Size and Tail Recursion613822
+Ref: pure stack-size-and-tail-recursion613970
+Ref: 4e613970
+Node: Handling of Asynchronous Signals616647
+Ref: pure handling-of-asynchronous-signals616793
+Ref: 4f616793
+Node: Recursive Types618853
+Ref: pure recursive-types618980
+Ref: e2618980
+Ref: Recursive Types-Footnote-1624277
+Node: Interfaces624341
+Ref: pure interfaces624456
+Ref: 115624456
+Node: Numeric Calculations628137
+Ref: pure numeric-calculations628257
+Ref: 168628257
+Node: Constant Definitions630222
+Ref: pure constant-definitions630352
+Ref: ea630352
+Node: External C Functions636435
+Ref: pure external-c-functions636566
+Ref: 139636566
+Ref: External C Functions-Footnote-1638268
+Node: Calling Special Forms638306
+Ref: pure calling-special-forms638425
+Ref: 169638425
+Node: Laziness638914
+Ref: pure laziness639025
+Ref: 16a639025
+Node: Name Capture643686
+Ref: pure name-capture643767
+Ref: 12a643767
+Node: Author647259
+Ref: pure author647354
+Ref: 16c647354
+Node: Acknowledgements647487
+Ref: pure acknowledgements647572
+Ref: 16d647572
+Node: Copying648823
+Ref: pure copying648922
+Ref: 1648922
+Ref: Copying-Footnote-1651968
+Ref: Copying-Footnote-2652013
+Ref: Copying-Footnote-3652059
+Ref: Copying-Footnote-4652104
+Node: References and Links652150
+Ref: pure references-and-links652238
+Ref: 16e652238
+Ref: pure aardappel652287
+Ref: b7652287
+Ref: pure alice-ml652434
+Ref: 16b652434
+Ref: pure ats652574
+Ref: 150652574
+Ref: pure baader-and-nipkow652755
+Ref: f652755
+Ref: pure bertrand652875
+Ref: 10f652875
+Ref: pure clang653144
+Ref: 149653144
+Ref: pure dragonegg653408
+Ref: 14b653408
+Ref: pure faust653619
+Ref: 14c653619
+Ref: pure gmp653713
+Ref: ab653713
+Ref: pure octave653826
+Ref: f8653826
+Ref: pure gsl653975
+Ref: b2653975
+Ref: pure go654143
+Ref: 111654143
+Ref: pure haskell654214
+Ref: 91654214
+Ref: pure llvm654285
+Ref: 6654285
+Ref: pure llvm-gcc654355
+Ref: 14a654355
+Ref: pure miranda654578
+Ref: 164654578
+Ref: pure ml654757
+Ref: 92654757
+Ref: pure michael-o-donnell654918
+Ref: e654918
+Ref: pure q655073
+Ref: 163655073
+Ref: pure texmacs655163
+Ref: 33655163
+Node: Index655379
 
 End Tag Table
 
