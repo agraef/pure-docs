@@ -1,4 +1,4 @@
-<TeXmacs|1.99.11>
+<TeXmacs|1.99.12>
 
 <style|<tuple|generic|puredoc>>
 
@@ -10,7 +10,7 @@
 
   <section*|The Pure Manual><label|the-pure-manual>
 
-  Version 0.68, April 15, 2018
+  Version 0.68, May 13, 2020
 
   Albert Gräf \<less\><hlink|aggraef@gmail.com|mailto:aggraef@gmail.com>\<gtr\>
 
@@ -5855,7 +5855,7 @@
   function which, when the missing operand is supplied, reduces to an
   application of the first (function) argument while also flipping around the
   operands. For another example, here's how you can compute third powers
-  <verbatim|3^x> of some numbers <verbatim|x> with a right section of the
+  <verbatim|x^3> of some numbers <verbatim|x> with a right section of the
   `<hlink|<with|font-family|tt|^>|purelib.tm#?5E>` operator:
 
   <\verbatim>
@@ -22887,6 +22887,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2019, Albert Gräf et al. Last updated on Aug
-  21, 2019. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
+  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
