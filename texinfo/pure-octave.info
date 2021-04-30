@@ -1,11 +1,11 @@
 This is pure-octave.info, produced by makeinfo version 6.7 from
 pure-octave.texi.
 
-     Pure 0.68, May 13, 2020
+     Pure 0.68, April 30, 2021
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2020, Albert Gräf et al
+     Copyright © 2009-2021, Albert Gräf et al
 
 INFO-DIR-SECTION Pure Language and Library Documentation
 START-INFO-DIR-ENTRY
@@ -21,13 +21,13 @@ File: pure-octave.info,  Node: Top,  Next: Introduction,  Up: (dir)
 pure-octave
 ***********
 
-     Pure 0.68, May 13, 2020
+     Pure 0.68, April 30, 2021
 
      Albert Gräf (Editor)
 
-     Copyright © 2009-2020, Albert Gräf et al
+     Copyright © 2009-2021, Albert Gräf et al
 
-  Version 0.12, August 21, 2019
+  Version 0.13, April 30, 2021
 
   Albert Graef <<aggraef@gmail.com>>
 
@@ -92,7 +92,7 @@ File: pure-octave.info,  Node: Installation,  Next: Basic Usage,  Prev: Copying,
 **************
 
 Get the latest source from
-‘https://bitbucket.org/purelang/pure-lang/downloads/pure-octave-0.12.tar.gz’.
+‘https://github.com/agraef/pure-lang/releases/download/pure-octave-0.13/pure-octave-0.13.tar.gz’
 
   Run ‘make’ to compile the module and ‘make install’ (as root) to
 install it in the Pure library directory.  This requires GNU make, and
@@ -106,8 +106,9 @@ variables manually.  In particular, ‘make install prefix=/usr’ sets the
 installation prefix.  Please see the Makefile for details.
 
   This release of pure-octave has been tested and is known to work with
-Octave 3.6.2, 3.8, 4.0, 4.4, and 5.1.  Older versions might require some
-fiddling with the sources to get the embedded Octave interface working.
+Octave 3.6.2, 3.8, 4.0, 4.4, 5.1, and 6.2.  Older versions might require
+some fiddling with the sources to get the embedded Octave interface
+working.
 
   *NOTE:* The embedded interpreter is broken with Octave *4.2*, so make
 sure that you got a later version, or use one of the known good earlier
@@ -554,63 +555,63 @@ Index
 
 
 Tag Table:
-Node: Top367
-Ref: pure-octave doc570
-Ref: 1570
-Ref: Top-Footnote-1932
-Node: Introduction962
-Ref: pure-octave pure-octave1047
-Ref: 21047
-Ref: pure-octave introduction1047
-Ref: 31047
-Ref: pure-octave module-octave1047
-Ref: 01047
-Ref: Introduction-Footnote-11356
-Node: Copying1410
-Ref: pure-octave octave-embed1504
-Ref: 41504
-Ref: pure-octave copying1504
-Ref: 51504
-Node: Installation2094
-Ref: pure-octave installation2187
-Ref: 62187
-Node: Basic Usage3283
-Ref: pure-octave basic-usage3390
-Ref: 73390
-Ref: pure-octave octave_eval3694
-Ref: 83694
-Ref: pure-octave octave_set4095
-Ref: 94095
-Ref: pure-octave octave_get4133
-Ref: a4133
-Node: Direct Function Calls5052
-Ref: pure-octave direct-function-calls5163
-Ref: b5163
-Ref: pure-octave octave_call5212
-Ref: c5212
-Ref: pure-octave octave_func/name6562
-Ref: d6562
-Ref: pure-octave octave_func/expr6711
-Ref: e6711
-Node: Data Conversions7670
-Ref: pure-octave data-conversions7792
-Ref: f7792
-Ref: pure-octave octave_converters9145
-Ref: 109145
-Ref: pure-octave octave_valuep9934
-Ref: 119934
-Node: Calling Back Into Pure13483
-Ref: pure-octave calling-back-into-pure13601
-Ref: 1213601
-Node: Gnuplot Interface14441
-Ref: pure-octave gnuplot-interface14560
-Ref: 1314560
-Node: Caveats and Notes16388
-Ref: pure-octave caveats-and-notes16497
-Ref: 1416497
-Ref: Caveats and Notes-Footnote-117182
-Node: Module Index17210
-Node: Index17357
+Node: Top369
+Ref: pure-octave doc574
+Ref: 1574
+Ref: Top-Footnote-1935
+Node: Introduction965
+Ref: pure-octave pure-octave1050
+Ref: 21050
+Ref: pure-octave introduction1050
+Ref: 31050
+Ref: pure-octave module-octave1050
+Ref: 01050
+Ref: Introduction-Footnote-11359
+Node: Copying1413
+Ref: pure-octave octave-embed1507
+Ref: 41507
+Ref: pure-octave copying1507
+Ref: 51507
+Node: Installation2097
+Ref: pure-octave installation2190
+Ref: 62190
+Node: Basic Usage3310
+Ref: pure-octave basic-usage3417
+Ref: 73417
+Ref: pure-octave octave_eval3721
+Ref: 83721
+Ref: pure-octave octave_set4122
+Ref: 94122
+Ref: pure-octave octave_get4160
+Ref: a4160
+Node: Direct Function Calls5079
+Ref: pure-octave direct-function-calls5190
+Ref: b5190
+Ref: pure-octave octave_call5239
+Ref: c5239
+Ref: pure-octave octave_func/name6589
+Ref: d6589
+Ref: pure-octave octave_func/expr6738
+Ref: e6738
+Node: Data Conversions7697
+Ref: pure-octave data-conversions7819
+Ref: f7819
+Ref: pure-octave octave_converters9172
+Ref: 109172
+Ref: pure-octave octave_valuep9961
+Ref: 119961
+Node: Calling Back Into Pure13510
+Ref: pure-octave calling-back-into-pure13628
+Ref: 1213628
+Node: Gnuplot Interface14468
+Ref: pure-octave gnuplot-interface14587
+Ref: 1314587
+Node: Caveats and Notes16415
+Ref: pure-octave caveats-and-notes16524
+Ref: 1416524
+Ref: Caveats and Notes-Footnote-117209
+Node: Module Index17237
+Node: Index17384
 
 End Tag Table
 

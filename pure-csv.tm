@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -40,8 +40,8 @@
   Data records are represented as vectors or lists of any Pure values. Values
   are converted as necessary and written as a group of strings, integers, or
   doubles separated by a delimiter. Three predefined dialects are provided;
-  <verbatim|DEFAULT> (record terminator= <verbatim|<n>> ), <verbatim|RFC4180>
-  (record terminator= <verbatim|<r\\n>> ), and <verbatim|Excel>. Procedures
+  <verbatim|DEFAULT> (record terminator= <verbatim|\\n> ), <verbatim|RFC4180>
+  (record terminator= <verbatim|\\r\\n> ), and <verbatim|Excel>. Procedures
   are provided to create other CSV dialects. See
   (<hlink|http://www.ietf.org/rfc/rfc4180.txt|http://www.ietf.org/rfc/rfc4180.txt>)
   for more details about the RFC4180 standard.
@@ -109,11 +109,11 @@
         <item>Value - any string.
 
         <item>Reading - Either a user specified string or if not specivied
-        the file is sniffed for a <verbatim|<r>>, <verbatim|<r\\n>>, or
-        <verbatim|<n>>.
+        the file is sniffed for a <verbatim|\\r>, <verbatim|\\r\\n>, or
+        <verbatim|\\n>.
 
-        <item>Writing - Either a user specified string, <verbatim|<r\\n>> for
-        Windows platforms, or <verbatim|<n>> for everything else.
+        <item>Writing - Either a user specified string, <verbatim|\\r\\n> for
+        Windows platforms, or <verbatim|\\n> for everything else.
       </itemize>
 
       <item><verbatim|quote_flag> - Sets the quoting style of strings and/or
@@ -268,8 +268,8 @@
 
       <item>If <verbatim|opts> contains <verbatim|HEADER>, the first line of
       the file is automatically read and parsed as a record where entries are
-      <verbatim|key=\>position> pairs where <verbatim|key> is a string and
-      <verbatim|position> is an integer denoting the location of a field
+      <verbatim|key=\<gtr\>position> pairs where <verbatim|key> is a string
+      and <verbatim|position> is an integer denoting the location of a field
       within the record. The header record may be accessed by
       <verbatim|header>.
     </enumerate>
@@ -370,7 +370,7 @@
 
   <\description>
     <item*|<with|font-family|tt|header> <with|font-family|tt|csv_file::pointer><label|header>>returns
-    the record of <verbatim|key=\>position> pairs when opened by
+    the record of <verbatim|key=\<gtr\>position> pairs when opened by
     <verbatim|csv::open> using the header option. If the file was opened
     without the <verbatim|HEADER> option, <verbatim|{}> is returned.
   </description>
@@ -719,6 +719,6 @@
   <hlink|previous|pure-reduce.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

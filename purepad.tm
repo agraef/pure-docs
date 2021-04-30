@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -58,9 +58,9 @@
 
   To start up the interpreter you use <em|Script
   <math|\<blacktriangleright\>> Run> (<verbatim|F9>) and wait for the
-  interpreter's <verbatim|\>> prompt to appear. This command will run the
-  Pure interpreter with the script currently shown in the source pane (or an
-  empty script if you haven't yet loaded a script using the <em|File
+  interpreter's <verbatim|\<gtr\>> prompt to appear. This command will run
+  the Pure interpreter with the script currently shown in the source pane (or
+  an empty script if you haven't yet loaded a script using the <em|File
   <math|\<blacktriangleright\>> Open> (<verbatim|Ctrl-O>) command). The
   cursor will be placed in the log pane (see <hlink|Using the
   Log|#using-the-log>) and you can start typing in expressions and
@@ -83,8 +83,8 @@
   Enter this equation into the source editor pane, save the script as
   <verbatim|fact.pure> with the <em|File <math|\<blacktriangleright\>> Save>
   (<verbatim|Ctrl-S>) command and press <verbatim|F9>. The cursor will be
-  placed into the log pane and after a while the interpreter's <verbatim|\>>
-  prompt will appear. You can now type an expression like
+  placed into the log pane and after a while the interpreter's
+  <verbatim|\<gtr\>> prompt will appear. You can now type an expression like
 
   <\verbatim>
     \;
@@ -289,6 +289,6 @@
   <hlink|modules|pure-modindex.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

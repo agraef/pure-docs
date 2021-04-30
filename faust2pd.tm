@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -287,7 +287,7 @@
     group and control names in the Faust source are mangled into a form which
     only contains alphanumeric characters and hyphens, so that the control
     names are always legal Pd symbols. For instance, a Faust control name
-    like <verbatim|meter> <verbatim|<1>> <verbatim|(dB)> will become
+    like <verbatim|meter> <verbatim|#1> <verbatim|(dB)> will become
     <verbatim|meter-1-dB> which can be input directly as a symbol in Pd
     without any problems.
 
@@ -809,6 +809,6 @@
   <hlink|previous|pure-tk.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

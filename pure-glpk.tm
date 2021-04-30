@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -11,7 +11,7 @@
   <section*|Pure-GLPK - GLPK interface for the Pure programming
   language><label|pure-glpk-glpk-interface-for-the-pure-programming-language>
 
-  Version 0.5, April 11, 2018
+  Version 0.6, April 30, 2021
 
   Jiri Spitz \<less\><hlink|jiri.spitz@bluetone.cz|mailto:jiri.spitz@bluetone.cz>\<gtr\>
 
@@ -36,7 +36,7 @@
 
   <subsection|Installation><label|installation>
 
-  Get the latest source from <hlink|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz|https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz>.
+  Get the latest source from <hlink|https://github.com/agraef/pure-lang/releases/download/pure-glpk-0.6/pure-glpk-0.6.tar.gz|https://github.com/agraef/pure-lang/releases/download/pure-glpk-0.6/pure-glpk-0.6.tar.gz>
 
   Run <verbatim|make> to compile the module and <verbatim|make>
   <verbatim|install> (as root) to install it in the Pure library directory.
@@ -1951,7 +1951,7 @@
     lp: pointer to the LP problem object
 
     flags: symbolic integer constants which can be combined together by
-    arithmetic <with|font-series|bold|or>; the possible constants are:
+    arithmetic or; the possible constants are:
 
     glp::sf_gm: perform geometric mean scaling glp::sf_eq: perform
     equilibration scaling glp::sf_2n: round scale factors to power of two
@@ -6018,8 +6018,7 @@
   <\quote-env>
     The routine glp_ios_node_data returns a pointer to the memory block for
     the specified subproblem. Note that if cb_size = 0 was specified in the
-    call of the <with|font-series|bold|intopt> function, the routine returns
-    a null pointer.
+    call of the intopt function, the routine returns a null pointer.
   </quote-env>
 
   <with|font-series|bold|Example>:
@@ -8543,6 +8542,6 @@
   <hlink|previous|gnumeric-pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

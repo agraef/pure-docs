@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -1085,7 +1085,7 @@
   <subsubsection|Hash Pairs><label|hash-pairs><label|index-14><label|hash-pairs>
 
   The prelude provides another special kind of pairs called \Phash pairs\Q,
-  which take the form <verbatim|key=\>value>. These are used in various
+  which take the form <verbatim|key=\<gtr\>value>. These are used in various
   contexts to denote key-value associations. The only operations on hash
   pairs provided by the prelude are equality testing (which recursively
   compares the components) and the functions
@@ -1133,13 +1133,14 @@
   Note that in difference to the tuple operator
   `<hlink|<with|font-family|tt|,>|#,>`, the hash rocket
   `<hlink|<with|font-family|tt|=\<gtr\>>|#=\>>` is non-associative, so nested
-  applications <em|must> be parenthesized, and <verbatim|(x=\>y)=\>z> is
-  generally <em|not> the same as <verbatim|x=\>(y=\>z)>. Also note that
+  applications <em|must> be parenthesized, and
+  <verbatim|(x=\<gtr\>y)=\<gtr\>z> is generally <em|not> the same as
+  <verbatim|x=\<gtr\>(y=\<gtr\>z)>. Also note that
   `<hlink|<with|font-family|tt|,>|#,>` has lower precedence than
   `<hlink|<with|font-family|tt|=\<gtr\>>|#=\>>`, so to include a tuple as key
   or value in a hash pair, the tuple must be parenthesized, as in
-  <verbatim|"foo"=\>(1,2)> (whereas <verbatim|"foo"=\>1,2> denotes a tuple
-  whose first element happens to be a hash pair).
+  <verbatim|"foo"=\<gtr\>(1,2)> (whereas <verbatim|"foo"=\<gtr\>1,2> denotes
+  a tuple whose first element happens to be a hash pair).
 
   <subsubsection|List Functions><label|list-functions>
 
@@ -2696,15 +2697,16 @@
   <subsubsection|Record Functions><label|record-functions>
 
   As of Pure 0.41, the prelude also provides a basic record data structure,
-  implemented as symbolic vectors of <verbatim|key=\>value> pairs which
+  implemented as symbolic vectors of <verbatim|key=\<gtr\>value> pairs which
   support a few dictionary-like operations such as
   <hlink|<with|font-family|tt|member>|#member/record>,
   <hlink|<with|font-family|tt|insert>|#insert/record> and indexing. Records
   may be represented as row, column or empty vectors (i.e., the number of
   rows or columns must be zero or one). They must be symbolic matrices
-  consisting only of \Phash pairs\Q <verbatim|key=\>value>, where the keys
-  can be either symbols or strings. The values can be any kind of Pure data;
-  in particular, they may themselves be records, so records can be nested.
+  consisting only of \Phash pairs\Q <verbatim|key=\<gtr\>value>, where the
+  keys can be either symbols or strings. The values can be any kind of Pure
+  data; in particular, they may themselves be records, so records can be
+  nested.
 
   The following operations are provided. Please note that all updates of
   record members are non-destructive and thus involve copying, which takes
@@ -2900,15 +2902,16 @@
   (inexact)>>|<row|<cell|>|<cell|<verbatim|div> <verbatim|mod>>|<cell|exact
   int/bigint division/modulus>>|<row|<cell|>|<cell|<verbatim|^>>|<cell|exponentiation
   (inexact)>>|<row|<cell|Comparisons>|<cell|<verbatim|==>
-  <verbatim|~=>>|<cell|equality, inequality>>|<row|<cell|>|<cell|<verbatim|\<>
-  <verbatim|\>>>|<cell|less than, greater
-  than>>|<row|<cell|>|<cell|<verbatim|\<=> <verbatim|\>=>>|<cell|less than or
-  equal, greater than or equal>>|<row|<cell|Logic>|<cell|<verbatim|~>>|<cell|logical
+  <verbatim|~=>>|<cell|equality, inequality>>|<row|<cell|>|<cell|<verbatim|\<less\>>
+  <verbatim|\<gtr\>>>|<cell|less than, greater
+  than>>|<row|<cell|>|<cell|<verbatim|\<less\>=>
+  <verbatim|\<gtr\>=>>|<cell|less than or equal, greater than or
+  equal>>|<row|<cell|Logic>|<cell|<verbatim|~>>|<cell|logical
   not>>|<row|<cell|>|<cell|<verbatim|&&> <verbatim|\|\|>>|<cell|and, or
   (short-circuit)>>|<row|<cell|Bitwise>|<cell|<verbatim|not>>|<cell|bitwise
   not>>|<row|<cell|>|<cell|<verbatim|and> <verbatim|or>>|<cell|and,
-  or>>|<row|<cell|>|<cell|<verbatim|\<\<> <verbatim|\>\>>>|<cell|bit
-  shifts>>>>>
+  or>>|<row|<cell|>|<cell|<verbatim|\<less\>\<less\>>
+  <verbatim|\<gtr\>\<gtr\>>>|<cell|bit shifts>>>>>
 
   Precedence and and associativity of the operators can be found in the
   <hlink|<em|operators>|#operators> table at the beginning of this section.
@@ -2917,9 +2920,9 @@
   logical negation is denoted <verbatim|~> instead of <verbatim|!> (and,
   consequently, <verbatim|~=> denotes inequality, rather than <verbatim|!=>),
   and the bitwise operations are named differently. This is necessary because
-  Pure uses <verbatim|!>, <verbatim|<line-sep>> and <verbatim|\|> for other
-  purposes. Also, <verbatim|/> always denotes inexact (double) division in
-  Pure, whereas the integer division operators are called <verbatim|div> and
+  Pure uses <verbatim|!>, <verbatim|&> and <verbatim|\|> for other purposes.
+  Also, <verbatim|/> always denotes inexact (double) division in Pure,
+  whereas the integer division operators are called <verbatim|div> and
   <verbatim|mod>. (<verbatim|%>, which is not defined by this module, also
   has a different meaning in Pure; it's the exact division operator, see
   <hlink|Rational Numbers|#rational-numbers>.)
@@ -2936,9 +2939,9 @@
   in order to provide for short-circuit evaluation. This needs special
   support from the compiler to work. The primitives module still provides
   definitions for these, as well as other special forms like <verbatim|quote>
-  and the thunking operator <verbatim|<line-sep>> so that they may be used as
-  function values and in partial applications, but when used in this manner
-  they lose all their special call-by-name properties; see <hlink|<em|Special
+  and the thunking operator <verbatim|&> so that they may be used as function
+  values and in partial applications, but when used in this manner they lose
+  all their special call-by-name properties; see <hlink|<em|Special
   Forms>|pure.tm#special-forms> in the Pure Manual for details. The rules for
   the logical connectives are actually slightly more general than the
   built-in rules so that an expression of the form <verbatim|x&&y> or
@@ -3064,7 +3067,7 @@
     result is always a bigint. Note that <verbatim|y> must always be
     nonnegative here, but see the math module (<hlink|Mathematical
     Functions|#mathematical-functions>) which deals with the case
-    <verbatim|y\<0> using rational numbers.
+    <verbatim|y\<less\>0> using rational numbers.
   </description>
 
   <paragraph|Conversions><label|conversions>
@@ -3525,9 +3528,9 @@
     expands to a list with the local function bindings
     (<hlink|<with|font-family|tt|with>|pure.tm#with> clauses) visible at this
     point in the program. The return value is a list of hash pairs
-    <verbatim|x=\>f> where <verbatim|x> is the global symbol denoting the
-    function (the symbol is always quoted) and <verbatim|f> is the function
-    value itself. Example:
+    <verbatim|x=\<gtr\>f> where <verbatim|x> is the global symbol denoting
+    the function (the symbol is always quoted) and <verbatim|f> is the
+    function value itself. Example:
 
     <\verbatim>
       \;
@@ -3553,12 +3556,12 @@
   <\itemize>
     <item><hlink|<with|font-family|tt|__locals__>|#--locals--> always
     evaluates parameterless functions and returns the resulting value instead
-    of a closure (as can be seen in the binding <verbatim|x=\>a+b> in the
-    example above). Normally this is what you want, but it can be a problem
-    with parameterless functions involving side effects. In such a case, if
-    you want to evaluate the function at a later time, you'll either have to
-    use a thunk or massage the local function so that it takes a dummy
-    argument such as <verbatim|()>.
+    of a closure (as can be seen in the binding <verbatim|x=\<gtr\>a+b> in
+    the example above). Normally this is what you want, but it can be a
+    problem with parameterless functions involving side effects. In such a
+    case, if you want to evaluate the function at a later time, you'll either
+    have to use a thunk or massage the local function so that it takes a
+    dummy argument such as <verbatim|()>.
 
     <item>If the call to <hlink|<with|font-family|tt|__locals__>|#--locals-->
     is inside a local function then that local function will itself be
@@ -3654,7 +3657,7 @@
 
     <item*|get_constdef sym<label|get-constdef>>If the given symbol is
     defined as a variable or constant, return the corresponding definition as
-    a singleton list of the form <verbatim|[sym> <verbatim|--\>>
+    a singleton list of the form <verbatim|[sym> <verbatim|--\<gtr\>>
     <verbatim|value]>. Otherwise return the empty list.
   </description>
 
@@ -3704,9 +3707,9 @@
     <item*|add_vardef rules<label|add-vardef>>
 
     <item*|add_constdef rules<label|add-constdef>>Define variables and
-    constants. Each rule must take the form <verbatim|sym> <verbatim|--\>>
-    <verbatim|value> with a symbol on the left-hand side (no pattern matching
-    is performed by these functions).
+    constants. Each rule must take the form <verbatim|sym>
+    <verbatim|--\<gtr\>> <verbatim|value> with a symbol on the left-hand side
+    (no pattern matching is performed by these functions).
   </description>
 
   The following functions may be used to delete individual rewriting rules,
@@ -3916,13 +3919,14 @@
     position is available, or a tuple of the form
     <verbatim|msg,file,l1,c1,l2,c2> where <verbatim|msg> is the error
     message, <verbatim|file> the name of the file containing the error (which
-    will usually be <verbatim|"\<stdin\>"> indicating that the error is in
-    the source string, but may also be a proper filename of a module imported
-    in the evaluated code), <verbatim|l1,c1> denotes the beginning of the
-    range with the errorneous construct (given as line and column indices)
-    and <verbatim|l2,c2> its end (or rather the character position following
-    it). For convenience, both line and column indices are zero-based, in
-    order to facilitate extraction of the text from the actual source string.
+    will usually be <verbatim|"\<less\>stdin\<gtr\>"> indicating that the
+    error is in the source string, but may also be a proper filename of a
+    module imported in the evaluated code), <verbatim|l1,c1> denotes the
+    beginning of the range with the errorneous construct (given as line and
+    column indices) and <verbatim|l2,c2> its end (or rather the character
+    position following it). For convenience, both line and column indices are
+    zero-based, in order to facilitate extraction of the text from the actual
+    source string.
 
     <with|font-series|bold|Note:> The indicated error positions are only
     approximate, and may in many cases span an entire syntactic construct
@@ -4070,7 +4074,7 @@
   <\description>
     <item*|reduce_with env x<label|reduce-with>>Like
     <hlink|<with|font-family|tt|reduce>|#reduce> above, but takes a list of
-    replacements (given as hash pairs <verbatim|u=\>v>) as the first
+    replacements (given as hash pairs <verbatim|u=\<gtr\>v>) as the first
     argument. The <hlink|<with|font-family|tt|reduce>|#reduce> macro expands
     to <verbatim|reduce_with> <verbatim|__locals__>.
   </description>
@@ -5166,17 +5170,18 @@
     <item*|<em|constant> i = 0+:1<label|i>>Imaginary unit.
   </description>
 
-  We provide both rectangular (<verbatim|x+:y>) and polar (<verbatim|r\<:a>)
-  representations, where <verbatim|(x,y)> are the Cartesian coordinates and
-  <verbatim|(r,t)> the radius (absolute value) and angle (in radians) of a
-  complex number, respectively. The <hlink|<with|font-family|tt|+:>|#+:> and
+  We provide both rectangular (<verbatim|x+:y>) and polar
+  (<verbatim|r\<less\>:a>) representations, where <verbatim|(x,y)> are the
+  Cartesian coordinates and <verbatim|(r,t)> the radius (absolute value) and
+  angle (in radians) of a complex number, respectively. The
+  <hlink|<with|font-family|tt|+:>|#+:> and
   <hlink|<with|font-family|tt|\<less\>:>|#\<:> constructors (declared in the
   prelude) bind weaker than all other arithmetic operators and are
   non-associative.
 
-  The polar representation <verbatim|r\<:t> is normalized so that
+  The polar representation <verbatim|r\<less\>:t> is normalized so that
   <verbatim|r> is always nonnegative and <verbatim|t> falls in the range
-  <verbatim|-pi\<t\<=pi>.
+  <verbatim|-pi\<less\>t\<less\>=pi>.
 
   The constant <hlink|<with|font-family|tt|i>|#i> is provided to denote the
   imaginary unit <verbatim|0+:1>.
@@ -5216,7 +5221,7 @@
   <\description>
     <item*|cis t<label|cis>>Create complex values on the unit circle. Note:
     To quickly compute <verbatim|exp> <verbatim|(x+:y)> in polar form, use
-    <verbatim|exp> <verbatim|x> <verbatim|\<:> <verbatim|y>.
+    <verbatim|exp> <verbatim|x> <verbatim|\<less\>:> <verbatim|y>.
   </description>
 
   <\description>
@@ -5402,10 +5407,10 @@
   represented as an object of the given target type (up to rounding errors).
   Note that if <verbatim|x> is of syntactic type <verbatim|X>, then it is
   also of semantic type <verbatim|X>. Moreover, <verbatim|intvalp>
-  <verbatim|x> <verbatim|=\>> <verbatim|bigintvalp> <verbatim|x>
-  <verbatim|=\>> <verbatim|ratvalp> <verbatim|x> <verbatim|=\>>
-  <verbatim|realvalp> <verbatim|x> <verbatim|=\>> <verbatim|compvalp>
-  <verbatim|x> <verbatim|\<=\>> <verbatim|numberp> <verbatim|x>.
+  <verbatim|x> <verbatim|=\<gtr\>> <verbatim|bigintvalp> <verbatim|x>
+  <verbatim|=\<gtr\>> <verbatim|ratvalp> <verbatim|x> <verbatim|=\<gtr\>>
+  <verbatim|realvalp> <verbatim|x> <verbatim|=\<gtr\>> <verbatim|compvalp>
+  <verbatim|x> <verbatim|\<less\>=\<gtr\>> <verbatim|numberp> <verbatim|x>.
 
   <\description>
     <item*|compvalp x<label|compvalp>>Check for complex values (this is the
@@ -6116,15 +6121,16 @@
   <hlink|<with|font-family|tt|\<less\>=>|#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all
   dictionary types, where two dictionaries are considered \Pequal\Q
-  (<verbatim|d1==d2>) if they both contain the same <verbatim|key=\>value>
-  pairs, and <verbatim|d1\<=d2> means that <verbatim|d1> is a sub-dictionary
-  of <verbatim|d2>, i.e., all <verbatim|key=\>value> pairs of <verbatim|d1>
-  are also contained in <verbatim|d2> (taking into account multiplicities in
-  the multidict case). Ordered dictionaries compare keys using equality
-  (assuming two keys <verbatim|a> and <verbatim|b> to be equal if neither
-  <verbatim|a\<b> nor <verbatim|b\<a> holds), while hashed dictionaries check
-  for syntactical equality (using <hlink|<with|font-family|tt|===>|#===>).
-  The associated values are compared using the
+  (<verbatim|d1==d2>) if they both contain the same
+  <verbatim|key=\<gtr\>value> pairs, and <verbatim|d1\<less\>=d2> means that
+  <verbatim|d1> is a sub-dictionary of <verbatim|d2>, i.e., all
+  <verbatim|key=\<gtr\>value> pairs of <verbatim|d1> are also contained in
+  <verbatim|d2> (taking into account multiplicities in the multidict case).
+  Ordered dictionaries compare keys using equality (assuming two keys
+  <verbatim|a> and <verbatim|b> to be equal if neither <verbatim|a\<less\>b>
+  nor <verbatim|b\<less\>a> holds), while hashed dictionaries check for
+  syntactical equality (using <hlink|<with|font-family|tt|===>|#===>). The
+  associated values are compared using the
   <hlink|<with|font-family|tt|==>|#==> predicate if it is defined, falling
   back to syntactic equality otherwise.
 
@@ -6178,8 +6184,8 @@
 
     <item*|hmdict xs<label|hmdict>>create a dictionary of the corresponding
     type either from a list <verbatim|xs> of key-value pairs in the form
-    <verbatim|key=\>value>, or from another dictionary; in the latter case
-    the argument is converted to a dictionary of the desired target type
+    <verbatim|key=\<gtr\>value>, or from another dictionary; in the latter
+    case the argument is converted to a dictionary of the desired target type
   </description>
 
   <\description>
@@ -6273,13 +6279,13 @@
   <\description>
     <item*|insert d (x=\<gtr\>y)<label|insert/dict>>
 
-    <item*|update d x y<label|update/dict>>insert <verbatim|x=\>y> into
+    <item*|update d x y<label|update/dict>>insert <verbatim|x=\<gtr\>y> into
     <verbatim|d> (this always adds a new member in a multidict, otherwise it
     replaces an existing value if there is one); note that
     <hlink|<with|font-family|tt|update>|#update/dict> is just a fully curried
     version of <hlink|<with|font-family|tt|insert>|#insert/dict>, so
     <verbatim|update> <verbatim|d> <verbatim|x> <verbatim|y> behaves exactly
-    like <verbatim|insert> <verbatim|d> <verbatim|(x=\>y)>
+    like <verbatim|insert> <verbatim|d> <verbatim|(x=\<gtr\>y)>
   </description>
 
   <\description>
@@ -6290,9 +6296,9 @@
 
   <\description>
     <item*|delete_val d (x=\<gtr\>y)<label|delete-val/dict>>remove a specific
-    key-value pair <verbatim|x=\>y> from <verbatim|d> if present (in the
-    multidict case, only the first instance of <verbatim|x=\>y> is removed);
-    please also see the notes below regarding this operation
+    key-value pair <verbatim|x=\<gtr\>y> from <verbatim|d> if present (in the
+    multidict case, only the first instance of <verbatim|x=\<gtr\>y> is
+    removed); please also see the notes below regarding this operation
   </description>
 
   <\description>
@@ -6308,8 +6314,8 @@
     <hlink|<with|font-family|tt|->|#-/dict> and
     <hlink|<with|font-family|tt|*>|#*/dict> work like the corresponding set
     and bag operations (see <hlink|Sets and Bags|#sets-and-bags>), treating
-    dictionaries as collections of <verbatim|key=\>val> pairs. You can mix
-    arbitrary operand types with these operations, as well as with the
+    dictionaries as collections of <verbatim|key=\<gtr\>val> pairs. You can
+    mix arbitrary operand types with these operations, as well as with the
     comparison operations; the necessary conversions from less general
     dictionary types (ordered, single-valued) to more general types (hashed,
     multi-valued) are handled automatically.
@@ -6483,7 +6489,7 @@
   </verbatim>
 
   There are also some set-like operations which allow you to add/remove the
-  members (<verbatim|key=\>val> pairs) of one dictionary to/from another
+  members (<verbatim|key=\<gtr\>val> pairs) of one dictionary to/from another
   dictionary, and to compute the intersection of two dictionaries. For
   instance:
 
@@ -6560,7 +6566,7 @@
 
     <item*|<em|type> bag<label|bag/type>>These implement the ordered set
     types. They require that members be ordered, i.e., the predicate
-    <verbatim|\<> must be defined on them.
+    <verbatim|\<less\>> must be defined on them.
   </description>
 
   <\description>
@@ -6582,13 +6588,14 @@
   <hlink|<with|font-family|tt|\<less\>>|#\<> etc.) are defined on all set and
   bag types, where two sets or bags are considered \Pequal\Q
   (<verbatim|m1==m2>) if they both contain the same elements, and
-  <verbatim|m1\<=m2> means that <verbatim|m1> is a subset or subbag of
+  <verbatim|m1\<less\>=m2> means that <verbatim|m1> is a subset or subbag of
   <verbatim|m2>, i.e., all elements of <verbatim|m1> are also contained in
   <verbatim|m2> (taking into account multiplicities in the multiset case).
   Ordered sets and bags compare elements using equality (considering two
   elements <verbatim|a> and <verbatim|b> to be equal if neither
-  <verbatim|a\<b> nor <verbatim|b\<a> holds), while hashed sets and bags
-  check for syntactical equality (using <hlink|<with|font-family|tt|===>|#===>).
+  <verbatim|a\<less\>b> nor <verbatim|b\<less\>a> holds), while hashed sets
+  and bags check for syntactical equality (using
+  <hlink|<with|font-family|tt|===>|#===>).
 
   The underlying AVL tree data structure can be found in the avltrees.pure
   module which is included in the library, but not to be invoked directly.
@@ -8049,7 +8056,7 @@
   <\description>
     <item*|regs info<label|regs>>Returns all valid submatches, i.e., the list
     of all triples <verbatim|(n,p,s)> for which <verbatim|reg> <verbatim|n>
-    <verbatim|==> <verbatim|(p,s)> with <verbatim|p\>=0>.
+    <verbatim|==> <verbatim|(p,s)> with <verbatim|p\<gtr\>=0>.
   </description>
 
   In addition, the following convenience functions are provided to perform
@@ -8579,8 +8586,8 @@
   throws the offending option string as an exception.
 
   The <verbatim|opts_return> value is a list of \Phash pairs\Q
-  <verbatim|opt=\>val> where <verbatim|opt> is the (long) option name (as
-  given by the <verbatim|long_opt> field given in the <verbatim|opts>
+  <verbatim|opt=\<gtr\>val> where <verbatim|opt> is the (long) option name
+  (as given by the <verbatim|long_opt> field given in the <verbatim|opts>
   argument, see below) and <verbatim|val> is the corresponding value
   (<verbatim|()> if none). Note that this format is ready to be passed to the
   <hlink|<with|font-family|tt|dict>|#dict> or
@@ -8845,6 +8852,6 @@
   <hlink|previous|pure.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

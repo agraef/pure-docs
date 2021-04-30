@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -759,13 +759,13 @@
   The \Pordered\Q containers, stlmap, stlset, stlmmap and stlmset, each have
   a \Pkey-less-than\Q function that they use keep their elements in a
   sequence that is ordered by keys. The default key-less-than function is
-  <verbatim|(\<)>, but this can be changed when the container is created. The
-  elements stored in a stlmap or stlset have unique keys, i.e., two elements
-  stored in the container will never have equivalent keys. For these
-  purposes, two keys are \Pequivalent\Q if neither key is key-less-than the
-  other. In contrast, stlmmap and stlmset do not have unique keys. I.e., it
-  is possible for different elements stored in a stlmmap or stlmset can have
-  equivalent keys.
+  <verbatim|(\<less\>)>, but this can be changed when the container is
+  created. The elements stored in a stlmap or stlset have unique keys, i.e.,
+  two elements stored in the container will never have equivalent keys. For
+  these purposes, two keys are \Pequivalent\Q if neither key is key-less-than
+  the other. In contrast, stlmmap and stlmset do not have unique keys. I.e.,
+  it is possible for different elements stored in a stlmmap or stlmset can
+  have equivalent keys.
 
   The \Phashed\Q containers, sthmap and stlhset do not keep their elements in
   a sequence. Instead they store their elments in a hash table using a
@@ -779,7 +779,7 @@
 
   The \Pordered maps\Q, stlmap and stlmmap, each have a \Pvalue-less-than\Q
   function and a \Pvalue-equal\Q function that is used for lexicographical
-  comparisons. The default functions are <verbatim|(\<)> and (==)
+  comparisons. The default functions are <verbatim|(\<less\>)> and (==)
   respectively, but these can customized when the container is created.
 
   As is the case for the underlying C++ functions, set operations (i.e.,
@@ -886,7 +886,8 @@
 
   In the last line of code, <hlink|<with|font-family|tt|member>|#member/stlmap>
   treats (a=\<gtr\>1) as a key. Because (a=\<gtr\>1) cannot be compared to a
-  string using <verbatim|(\<)>, the ersatz key is treated as a bad argument.
+  string using <verbatim|(\<less\>)>, the ersatz key is treated as a bad
+  argument.
 
   This \Pkey access only\Q approach can be an issue for stlmmaps and because
   multiple elements can have equivalent keys. I.e., given a stlmmap, smm,
@@ -1142,8 +1143,9 @@
 
   The internal lookup functions for the ordered containers (stlmap, stlset,
   stlmmap and stlmset) are optimized to avoid callbacks if the container's
-  key-less-than function is is <verbatim|(\>)> or <verbatim|(\<)> and the
-  keys being compared are a pair of strings, ints, bigints or doubles.
+  key-less-than function is is <verbatim|(\<gtr\>)> or <verbatim|(\<less\>)>
+  and the keys being compared are a pair of strings, ints, bigints or
+  doubles.
 
   You can create an empty associative container using default values for
   using <hlink|<with|font-family|tt|emptystlmap>|#emptystlmap/stlmap> and
@@ -1158,7 +1160,7 @@
 
     <item*|emptystlmset<label|emptystlmset/stlmap>>Create a new ordered map
     or set using default values. I.e., emptystlmap is the same as mkstlmap
-    <verbatim|(\<)>, and so on.
+    <verbatim|(\<less\>)>, and so on.
   </description>
 
   <\description>
@@ -1450,9 +1452,9 @@
     must be a stlmap. The effect of this function is as follows: (a) if
     <math|\<sim\>> <hlink|<with|font-family|tt|member>|#member/stlmap>
     <verbatim|map> <verbatim|k> then <hlink|<with|font-family|tt|insert>|#insert/stlmap>
-    <verbatim|map> (<verbatim|k``=\>dflt)> <verbatim|else> <verbatim|(),>
-    <verbatim|where> <verbatim|dflt> <verbatim|is> <verbatim|``map>`s dflt
-    value, (b) <hlink|<with|font-family|tt|replace>|#replace/stlmap>
+    <verbatim|map> (<verbatim|k``=\<gtr\>dflt)> <verbatim|else>
+    <verbatim|(),> <verbatim|where> <verbatim|dflt> <verbatim|is>
+    <verbatim|``map>`s dflt value, (b) <hlink|<with|font-family|tt|replace>|#replace/stlmap>
     <verbatim|map> <verbatim|k> nv when nv = <verbatim|fun> <verbatim|v>
     (<verbatim|map>!\Pk\P) end. Returns <verbatim|map>.
   </description>
@@ -2070,13 +2072,13 @@
     \;
   </verbatim>
 
-  The other comparison operators <verbatim|(\<)>, <verbatim|(\<=)>,
-  <verbatim|(\>)> and <verbatim|(\>=)> are provided only for the ordered
-  containers (stlmap, stlset, stlmmap and stlmset). These operators reflect
-  lexicographical comparisons of keys and, then if the keys are equal,
-  lexicographical comparisons of values. I.e., this is not set inclusion -
-  order matters. Accordingly, these comparison operators are not defined for
-  a stlhmap or stlhset.
+  The other comparison operators <verbatim|(\<less\>)>,
+  <verbatim|(\<less\>=)>, <verbatim|(\<gtr\>)> and <verbatim|(\<gtr\>=)> are
+  provided only for the ordered containers (stlmap, stlset, stlmmap and
+  stlmset). These operators reflect lexicographical comparisons of keys and,
+  then if the keys are equal, lexicographical comparisons of values. I.e.,
+  this is not set inclusion - order matters. Accordingly, these comparison
+  operators are not defined for a stlhmap or stlhset.
 
   <\description>
     <item*|rng1 \<less\> rng2<label|\<less\>/stlmap>>Traverse the ranges
@@ -2094,7 +2096,7 @@
     <item*|rng1 \<gtr\>= rng2<label|\<gtr\>=/stlmap>>The these three
     operators are the same as <verbatim|rng2> \<less\> <verbatim|rng1>,
     <math|\<sim\>>(<verbatim|rng1>\<gtr\>\Prng2`) and
-    <math|\<sim\>>(<verbatim|rng1``\<``rng2>) respectively.
+    <math|\<sim\>>(<verbatim|rng1``\<less\>``rng2>) respectively.
   </description>
 
   You also have to be careful when using equivalence and comparison operators
@@ -2852,6 +2854,6 @@
   <hlink|previous|pure-stllib.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -408,7 +408,7 @@
   <\description>
     <item*|--escape char<label|cmdoption-pure--escape>>Interactive commands
     are prefixed with the specified character. Permitted prefixes are:
-    <verbatim|!$%&*,:\<\>@\\\|>.
+    <verbatim|!$%&*,:\<less\>\<gtr\>@\\\|>.
   </description>
 
   <\description>
@@ -1682,7 +1682,7 @@
 
   A few ASCII symbols are reserved for special uses, namely the semicolon,
   the \Pat\Q symbol <verbatim|@>, the equals sign <verbatim|=>, the backslash
-  <verbatim|<>>, the Unix pipe symbol <verbatim|\|>, parentheses
+  <verbatim|\\>, the Unix pipe symbol <verbatim|\|>, parentheses
   <verbatim|()>, brackets <verbatim|[]> and curly braces <verbatim|{}>.
   (Among these, only the semicolon is a \Phard delimiter\Q which is always a
   lexeme by itself; the other symbols can be used inside operator symbols.)
@@ -1834,19 +1834,19 @@
   </verbatim>
 
   Special escape sequences may be used to denote double quotes and
-  backslashes (<verbatim|<">>, <verbatim|<next-line>>), control characters
-  (<verbatim|<b>>, <verbatim|<f>>, <verbatim|<n>>, <verbatim|<r>>,
-  <verbatim|<t>>, these have the same meaning as in C), and arbitrary Unicode
+  backslashes (<verbatim|\\">, <verbatim|\\\\>), control characters
+  (<verbatim|\\b>, <verbatim|\\f>, <verbatim|\\n>, <verbatim|\\r>,
+  <verbatim|\\t>, these have the same meaning as in C), and arbitrary Unicode
   characters given by their number or <hlink|XML entity
-  name|http://www.w3.org/TR/xml-entity-names/> (e.g., <verbatim|<169>>,
-  <verbatim|<0xa9>> and <verbatim|<&copy;>> all denote the Unicode copyright
+  name|http://www.w3.org/TR/xml-entity-names/> (e.g., <verbatim|\\169>,
+  <verbatim|\\0xa9> and <verbatim|\\&copy;> all denote the Unicode copyright
   character, code point U+00A9). As indicated, numeric escapes can be
   specified in any of the supported bases for integer literals. For
   disambiguating purposes, these can also be enclosed in parentheses. E.g.,
   <verbatim|"\\(123)4"> is a string consisting of the character
-  <verbatim|<123>> followed by the digit <verbatim|4>. Strings can also be
+  <verbatim|\\123> followed by the digit <verbatim|4>. Strings can also be
   continued across line ends by escaping the line end with a backslash. The
-  escaped line end is ignored (use <verbatim|<n>> if you need to embed a
+  escaped line end is ignored (use <verbatim|\\n> if you need to embed a
   newline in a string). For instance,
 
   <\verbatim>
@@ -1893,12 +1893,12 @@
   positive integer. Note the <verbatim|n::int> construct on the left-hand
   side, which means that the equation is restricted to (machine) integers
   <verbatim|n>. This construct is also called a \Ptype tag\Q in Pure
-  parlance. In addition, the <verbatim|n\>0> in the condition part of the
-  second equation ensures that <verbatim|n> is positive. If these conditions
-  are met, the equation becomes applicable and we recursively compute
-  <verbatim|fact> <verbatim|(n-1)> and multiply by <verbatim|n> to obtain the
-  result. The <verbatim|fact> function thus computes the product of all
-  positive integers up to <verbatim|n>, which is indeed just how the
+  parlance. In addition, the <verbatim|n\<gtr\>0> in the condition part of
+  the second equation ensures that <verbatim|n> is positive. If these
+  conditions are met, the equation becomes applicable and we recursively
+  compute <verbatim|fact> <verbatim|(n-1)> and multiply by <verbatim|n> to
+  obtain the result. The <verbatim|fact> function thus computes the product
+  of all positive integers up to <verbatim|n>, which is indeed just how the
   factorial is defined in mathematics.
 
   To give this definition a try, you can just enter it at the command prompt
@@ -2022,10 +2022,10 @@
   <verbatim|3>. This matches both equations of our generic definition of
   <verbatim|fact> from above, with <verbatim|n> bound to <verbatim|3>. But
   the condition <verbatim|3==0> of the first equation fails, so we come to
-  consider the second equation, whose condition <verbatim|3\>0> holds. Thus
-  we can perform the reduction <verbatim|fact> <verbatim|3> <verbatim|==\>>
-  <verbatim|3*fact> <verbatim|(3-1)> and then evaluate the new target term
-  <verbatim|3*fact> <verbatim|(3-1)> recursively.
+  consider the second equation, whose condition <verbatim|3\<gtr\>0> holds.
+  Thus we can perform the reduction <verbatim|fact> <verbatim|3>
+  <verbatim|==\<gtr\>> <verbatim|3*fact> <verbatim|(3-1)> and then evaluate
+  the new target term <verbatim|3*fact> <verbatim|(3-1)> recursively.
 
   At this point, we have to decide which of the several subterms we should
   reduce first. This is also called the <with|font-series|bold|reduction
@@ -2253,8 +2253,8 @@
   Function application binds stronger than all operators. Parentheses can be
   used to group expressions and override default precedences as usual.
 
-  <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<cwith|1|1|1|-1|cell-bborder|1ln>|<table|<row|<cell|Type>|<cell|Example>|<cell|Description>>|<row|<cell|Block>|<cell|<verbatim|<x>>
-  <verbatim|y-\>2*x-y>>|<cell|anonymous function
+  <tabular*|<tformat|<cwith|1|-1|1|1|cell-halign|l>|<cwith|1|-1|1|1|cell-lborder|0ln>|<cwith|1|-1|2|2|cell-halign|l>|<cwith|1|-1|3|3|cell-halign|l>|<cwith|1|-1|3|3|cell-rborder|0ln>|<cwith|1|-1|1|-1|cell-valign|c>|<cwith|1|1|1|-1|cell-bborder|1ln>|<table|<row|<cell|Type>|<cell|Example>|<cell|Description>>|<row|<cell|Block>|<cell|<verbatim|\\x>
+  <verbatim|y-\<gtr\>2*x-y>>|<cell|anonymous function
   (lambda)>>|<row|<cell|>|<cell|<verbatim|case> <verbatim|f> <verbatim|u>
   <verbatim|of> <verbatim|x,y> <verbatim|=> <verbatim|x+y>
   <verbatim|end>>|<cell|case expression>>|<row|<cell|>|<cell|<verbatim|x+y>
@@ -2262,8 +2262,8 @@
   <verbatim|end>>|<cell|local variable definition>>|<row|<cell|>|<cell|<verbatim|f>
   <verbatim|u> <verbatim|with> <verbatim|f> <verbatim|(x,y)> <verbatim|=>
   <verbatim|x+y> <verbatim|end>>|<cell|local function
-  definition>>|<row|<cell|Conditional>|<cell|<verbatim|if> <verbatim|x\>0>
-  <verbatim|then> <verbatim|x> <verbatim|else>
+  definition>>|<row|<cell|Conditional>|<cell|<verbatim|if>
+  <verbatim|x\<gtr\>0> <verbatim|then> <verbatim|x> <verbatim|else>
   <verbatim|-x>>|<cell|conditional expression>>|<row|<cell|Simple>|<cell|<verbatim|x+y>,
   <verbatim|-x>, <verbatim|x> <verbatim|mod> <verbatim|y>>|<cell|operator
   application>>|<row|<cell|>|<cell|<verbatim|sin> <verbatim|x>,
@@ -2275,7 +2275,7 @@
   symbol>>|<row|<cell|>|<cell|<verbatim|[1,2,3]>,
   <verbatim|(1,2,3)>>|<cell|list and tuple>>|<row|<cell|>|<cell|<verbatim|{1,2;3,4}>>|<cell|matrix>>|<row|<cell|>|<cell|<verbatim|[x,-y>
   <verbatim|\|> <verbatim|x=1..n;> <verbatim|y=1..m;>
-  <verbatim|x\<y]>>|<cell|list comprehension>>|<row|<cell|>|<cell|<verbatim|{i==j>
+  <verbatim|x\<less\>y]>>|<cell|list comprehension>>|<row|<cell|>|<cell|<verbatim|{i==j>
   <verbatim|\|> <verbatim|i=1..n;> <verbatim|j=1..m}>>|<cell|matrix
   comprehension>>>>>
 
@@ -2561,15 +2561,15 @@
     Thus, for instance, <verbatim|[f> <verbatim|x> <verbatim|\|>
     <verbatim|x=1..n]> is pretty much the same as <verbatim|map> <verbatim|f>
     <verbatim|(1..n)>, while <verbatim|[x> <verbatim|\|> <verbatim|x=xs;>
-    <verbatim|x\>0]> corresponds to <verbatim|filter> <verbatim|(\>0)>
-    <verbatim|xs>. However, comprehensions are considerably more general in
-    that they allow you to draw values from different kinds of aggregates
-    including lists, matrices and strings. Also, matrix comprehensions
-    alternate between row and column generation so that most common
-    mathematical abbreviations carry over quite easily. Patterns can be used
-    on the left-hand side of generator clauses as usual, and will be matched
-    against the actual list or matrix elements; any unmatched elements are
-    filtered out automatically, like in Haskell.
+    <verbatim|x\<gtr\>0]> corresponds to <verbatim|filter>
+    <verbatim|(\<gtr\>0)> <verbatim|xs>. However, comprehensions are
+    considerably more general in that they allow you to draw values from
+    different kinds of aggregates including lists, matrices and strings.
+    Also, matrix comprehensions alternate between row and column generation
+    so that most common mathematical abbreviations carry over quite easily.
+    Patterns can be used on the left-hand side of generator clauses as usual,
+    and will be matched against the actual list or matrix elements; any
+    unmatched elements are filtered out automatically, like in Haskell.
 
     More details and examples can be found in the <hlink|Examples|#examples>
     section; in particular, see <hlink|List
@@ -2637,17 +2637,17 @@
   <verbatim|/> etc. are all declared at the beginning of the prelude, see the
   <hlink|<em|Pure Library Manual>|purelib.tm> for a list of these. Arithmetic
   and relational operators mostly follow C conventions. However, since
-  <verbatim|!>, <verbatim|<line-sep>> and <verbatim|\|> are used for other
-  purposes in Pure, the logical and bitwise operations, as well as the
-  negated equality predicates are named a bit differently: <verbatim|~>,
-  <verbatim|&&> and <verbatim|\|\|> denote logical negation, conjunction and
-  disjunction, while the corresponding bitwise operations are named
-  <verbatim|not>, <verbatim|and> and <verbatim|or>. Moreover, following these
-  conventions, inequality is denoted <verbatim|~=>. Also note that
-  <verbatim|&&> and <verbatim|\|\|> are special forms which are evaluated in
-  short-circuit mode (see <hlink|Special Forms|#special-forms> below),
-  whereas the bitwise connectives receive their arguments using
-  call-by-value, just like the other arithmetic operations.
+  <verbatim|!>, <verbatim|&> and <verbatim|\|> are used for other purposes in
+  Pure, the logical and bitwise operations, as well as the negated equality
+  predicates are named a bit differently: <verbatim|~>, <verbatim|&&> and
+  <verbatim|\|\|> denote logical negation, conjunction and disjunction, while
+  the corresponding bitwise operations are named <verbatim|not>,
+  <verbatim|and> and <verbatim|or>. Moreover, following these conventions,
+  inequality is denoted <verbatim|~=>. Also note that <verbatim|&&> and
+  <verbatim|\|\|> are special forms which are evaluated in short-circuit mode
+  (see <hlink|Special Forms|#special-forms> below), whereas the bitwise
+  connectives receive their arguments using call-by-value, just like the
+  other arithmetic operations.
 
   <paragraph|Special Expressions><label|special-expressions>
 
@@ -2681,9 +2681,10 @@
     left-hand side pattern <verbatim|x> and then evaluates the right-hand
     side body <verbatim|y> with the variables in <verbatim|x> bound to their
     corresponding values. Pure supports multiple-argument lambdas (e.g,
-    <verbatim|<x>> <verbatim|y> <verbatim|-\>> <verbatim|x*y>), as well as
-    pattern-matching lambda abstractions such as <verbatim|<(x,y)>>
-    <verbatim|-\>> <verbatim|x*y>. A <hlink|<with|font-family|tt|failed_match>|purelib.tm#failed-match>
+    <verbatim|\\x> <verbatim|y> <verbatim|-\<gtr\>> <verbatim|x*y>), as well
+    as pattern-matching lambda abstractions such as <verbatim|\\(x,y)>
+    <verbatim|-\<gtr\>> <verbatim|x*y>. A
+    <hlink|<with|font-family|tt|failed_match>|purelib.tm#failed-match>
     exception is raised if the actual arguments do not match the given
     patterns.
   </description>
@@ -2707,7 +2708,7 @@
     corresponding patterns, similar to <hlink|Aardappel|#aardappel>`s
     <verbatim|when> construct. A single binding <verbatim|x> <verbatim|when>
     <verbatim|u> <verbatim|=> <verbatim|v> <verbatim|end> is equivalent to
-    the lambda expression <verbatim|(\\u> <verbatim|-\>> <verbatim|x)>
+    the lambda expression <verbatim|(\\u> <verbatim|-\<gtr\>> <verbatim|x)>
     <verbatim|v> or the <verbatim|case> expression <verbatim|case>
     <verbatim|v> <verbatim|of> <verbatim|u> <verbatim|=> <verbatim|x>
     <verbatim|end>, so it matches <verbatim|v> against the pattern
@@ -3054,7 +3055,7 @@
   The precise scoping rules for the different constructs are as follows:
 
   <\itemize>
-    <item><verbatim|<x>> <verbatim|-\>> <verbatim|y>: The scope of the
+    <item><verbatim|\\x> <verbatim|-\<gtr\>> <verbatim|y>: The scope of the
     variables bound by the pattern <verbatim|x> is the lambda body
     <verbatim|y>.
 
@@ -6053,7 +6054,7 @@
   <hlink|Constant Definitions|#constant-definitions> for details.
 
   As an aside, the last example also shows that Pure has no problems with
-  Unicode. <verbatim|<ensuremath{\\pi}>> is a Greek letter and thus an
+  Unicode. <verbatim|\\ensuremath{\\pi}> is a Greek letter and thus an
   identifier as good as any other, although you will have a hard time finding
   that letter on an English keyboard. Fortunately, most operating systems
   nowadays provide you with an applet that lets you enter foreign language
@@ -6798,14 +6799,14 @@
   Local functions can also be created without actually naming them, by
   employing a so-called <with|font-series|bold|lambda abstraction>. For
   instance, a function which squares its argument might be denoted as
-  <verbatim|<x>> <verbatim|-\>> <verbatim|x*x>. This is pretty much the same
-  as a local function <verbatim|f> <verbatim|with> <verbatim|f> <verbatim|x>
-  <verbatim|=> <verbatim|x*x> <verbatim|end> except that the function remains
-  nameless. This notation is pretty convenient for making up little
-  \Pone-off\Q functions which are to be applied on the spot or passed as
-  function arguments or results to other functions. For instance, here's how
-  you can compute the first ten squares, first with an ordinary (named) local
-  function, and then with an equivalent lambda:
+  <verbatim|\\x> <verbatim|-\<gtr\>> <verbatim|x*x>. This is pretty much the
+  same as a local function <verbatim|f> <verbatim|with> <verbatim|f>
+  <verbatim|x> <verbatim|=> <verbatim|x*x> <verbatim|end> except that the
+  function remains nameless. This notation is pretty convenient for making up
+  little \Pone-off\Q functions which are to be applied on the spot or passed
+  as function arguments or results to other functions. For instance, here's
+  how you can compute the first ten squares, first with an ordinary (named)
+  local function, and then with an equivalent lambda:
 
   <\verbatim>
     \;
@@ -7388,15 +7389,16 @@
   </verbatim>
 
   It's not hard to see how this definition operates. The first rule only
-  applies if <verbatim|n\>0>, otherwise the second rule kicks in so that
+  applies if <verbatim|n\<gtr\>0>, otherwise the second rule kicks in so that
   <verbatim|fact> <verbatim|n> becomes <verbatim|1> if <verbatim|n> is zero
   or negative (which is consistent with our informal description because in
   this case the product of all positive integers up to <verbatim|n> is the
   empty product which is <verbatim|1> by mathematical convention). The first
-  rule is the interesting one where the recursion happens. If <verbatim|n\>0>
-  then we may compute <verbatim|fact> <verbatim|n> by computing
-  <verbatim|fact> <verbatim|(n-1)> recursively and multiplying that with
-  <verbatim|n>, giving <verbatim|n*(n-1)*...*1>. Let's check that this works:
+  rule is the interesting one where the recursion happens. If
+  <verbatim|n\<gtr\>0> then we may compute <verbatim|fact> <verbatim|n> by
+  computing <verbatim|fact> <verbatim|(n-1)> recursively and multiplying that
+  with <verbatim|n>, giving <verbatim|n*(n-1)*...*1>. Let's check that this
+  works:
 
   <\verbatim>
     \;
@@ -7791,7 +7793,7 @@
   function which iterates <verbatim|improve> until the current candidate
   solution is \Pgood enough\Q. A suitable termination criterion is that the
   improvement drops below a certain threshold (i.e., <verbatim|abs>
-  <verbatim|(x-f> <verbatim|x)> <verbatim|\<=> <verbatim|dy> for some
+  <verbatim|(x-f> <verbatim|x)> <verbatim|\<less\>=> <verbatim|dy> for some
   reasonably small <verbatim|dy>). For extra safety, we'll also bail out of
   the loop if a prescribed number <verbatim|n> of iterations has been
   performed. This function can be implemented in a tail-recursive fashion as
@@ -7871,8 +7873,8 @@
 
   Here are some examples showing how the <verbatim|solve> function is used.
   Note that we specify the target functions to be solved as lambdas here.
-  E.g., <verbatim|<t>> <verbatim|-\>> <verbatim|t^3-x> denotes a function
-  mapping <verbatim|t> to <verbatim|t^3-x>, which becomes zero if
+  E.g., <verbatim|\\t> <verbatim|-\<gtr\>> <verbatim|t^3-x> denotes a
+  function mapping <verbatim|t> to <verbatim|t^3-x>, which becomes zero if
   <verbatim|t> equals the cube root of <verbatim|x>.
 
   <\verbatim>
@@ -8215,7 +8217,7 @@
   The second equation for <verbatim|genfringe> is the interesting one where
   the recursion happens. It deals with a nonempty tree <verbatim|x:t> by
   invoking itself recursively on <verbatim|x>, setting up a new continuation
-  <verbatim|<c>> <verbatim|-\>> <verbatim|genfringe> <verbatim|t>
+  <verbatim|\\c> <verbatim|-\<gtr\>> <verbatim|genfringe> <verbatim|t>
   <verbatim|c> <verbatim|g>, which will take care of processing the rest of
   the subtree <verbatim|t>, after which it chains to the previous
   continuation <verbatim|g> which will handle the rest of the tree.
@@ -8289,16 +8291,16 @@
     \;
   </verbatim>
 
-  Note that the outer lambda <verbatim|(\\x1> <verbatim|g1> <verbatim|-\>>
-  <verbatim|...)> becomes the consumer for the first generator <verbatim|g1>
-  which traverses <verbatim|t1>. When called, it then invokes the second
-  generator <verbatim|g2>, which traverses <verbatim|t2>, on the consumer
-  (inner lambda) <verbatim|(\\x2> <verbatim|g2> <verbatim|-\>>
-  <verbatim|...)>. This in turn does the necessary tests to verify that the
-  current leaf elements are the same, or to bail out from the recursion if
-  they aren't or if we reached the end of the fringes. Also note that this is
-  still tail-recursive because the short-circuit logical operations
-  <hlink|<with|font-family|tt|&&>|purelib.tm#-amp-amp> and
+  Note that the outer lambda <verbatim|(\\x1> <verbatim|g1>
+  <verbatim|-\<gtr\>> <verbatim|...)> becomes the consumer for the first
+  generator <verbatim|g1> which traverses <verbatim|t1>. When called, it then
+  invokes the second generator <verbatim|g2>, which traverses <verbatim|t2>,
+  on the consumer (inner lambda) <verbatim|(\\x2> <verbatim|g2>
+  <verbatim|-\<gtr\>> <verbatim|...)>. This in turn does the necessary tests
+  to verify that the current leaf elements are the same, or to bail out from
+  the recursion if they aren't or if we reached the end of the fringes. Also
+  note that this is still tail-recursive because the short-circuit logical
+  operations <hlink|<with|font-family|tt|&&>|purelib.tm#-amp-amp> and
   <hlink|<with|font-family|tt|\|\|>|purelib.tm#\|\|> are both tail-recursive
   in their second operand (cf. <hlink|Stack Size and Tail
   Recursion|#stack-size-and-tail-recursion>).
@@ -9327,7 +9329,7 @@
     \;
   </verbatim>
 
-  Maybe you wondered how that <verbatim|"HAL"> <verbatim|=\>>
+  Maybe you wondered how that <verbatim|"HAL"> <verbatim|=\<gtr\>>
   <verbatim|"IBM"> transformation above came about? Well, the prelude also
   defines basic arithmetic on characters:
 
@@ -9614,7 +9616,8 @@
   want. The clauses are considered in left-to-right order so that later
   clauses may refer to any variables introduced in earlier generator clauses.
   E.g., here's how you can generate the list of all pairs <verbatim|(i,j)>
-  with <verbatim|1\<=i\<=j\<=5> such that <verbatim|i+j> is even:
+  with <verbatim|1\<less\>=i\<less\>=j\<less\>=5> such that <verbatim|i+j> is
+  even:
 
   <\verbatim>
     \;
@@ -10603,10 +10606,10 @@
 
   Note that a matrix comprehension involving filters may fail because the
   filtered result isn't a rectangular matrix any more. E.g.,
-  <verbatim|{2*x\|x={1,2,3,-4};x\>0}> works, as does
-  <verbatim|{2*x\|x={-1,2;3,-4};x\>0}>, but
-  <verbatim|{2*x\|x={1,2;3,-4};x\>0}> doesn't because the rows of the result
-  matrix have different lengths.
+  <verbatim|{2*x\|x={1,2,3,-4};x\<gtr\>0}> works, as does
+  <verbatim|{2*x\|x={-1,2;3,-4};x\<gtr\>0}>, but
+  <verbatim|{2*x\|x={1,2;3,-4};x\<gtr\>0}> doesn't because the rows of the
+  result matrix have different lengths.
 
   As a slightly more comprehensive example (no pun intended!), here is a
   definition of matrix multiplication in Pure:
@@ -11000,8 +11003,8 @@
 
   Symbolic matrices also provide a means to represent simple record-like
   data, by encoding records as symbolic vectors consisting of \Phash pairs\Q
-  of the form <verbatim|key> <verbatim|=\>> <verbatim|value>. This kind of
-  data structure is very convenient to represent aggregates with lots of
+  of the form <verbatim|key> <verbatim|=\<gtr\>> <verbatim|value>. This kind
+  of data structure is very convenient to represent aggregates with lots of
   different components. Since the components of records can be accessed by
   indexing with key values, you don't have to remember which components are
   stored in which order, just knowing the keys of the required members is
@@ -11062,11 +11065,11 @@
   </verbatim>
 
   Note the use of the \Phash rocket\Q <hlink|<with|font-family|tt|=\<gtr\>>|purelib.tm#=\>>
-  which denotes the <verbatim|key=\>value> associations in a record. The hash
-  rocket is a constructor declared as an infix operator in the prelude, see
-  the <hlink|<em|Hash Pairs>|purelib.tm#hash-pairs> section in the
+  which denotes the <verbatim|key=\<gtr\>value> associations in a record. The
+  hash rocket is a constructor declared as an infix operator in the prelude,
+  see the <hlink|<em|Hash Pairs>|purelib.tm#hash-pairs> section in the
   <hlink|<em|Pure Library Manual>|purelib.tm> for details. There's one caveat
-  here, however. Since neither `<verbatim|=\>>` nor `<verbatim|!>` treat
+  here, however. Since neither `<verbatim|=\<gtr\>>` nor `<verbatim|!>` treat
   their key operand in a special way, you'll have to take care that the key
   symbols do not evaluate to something else, as might be the case if they are
   bound to a global or local variable or parameterless function:
@@ -11168,7 +11171,7 @@
   As records are in fact just special kinds of matrices, the standard matrix
   operations can be used on record values as well. For instance, the matrix
   constructor provides an alternative way to quickly augment a record with a
-  collection of new <verbatim|key=\>value> associations:
+  collection of new <verbatim|key=\<gtr\>value> associations:
 
   <\verbatim>
     \;
@@ -13361,8 +13364,8 @@
 
   The code above introduces a <verbatim|foo> namespace which defines a
   special variation of the <verbatim|(^)> operator. It also associates the
-  namespace with the <verbatim|\<\<> <verbatim|\>\>> brackets so that you can
-  write:
+  namespace with the <verbatim|\<less\>\<less\>> <verbatim|\<gtr\>\<gtr\>>
+  brackets so that you can write:
 
   <\verbatim>
     \;
@@ -13481,10 +13484,11 @@
 
   As this example illustrates, namespace brackets can also be nested, which
   is useful, e.g., if you need to combine subexpressions from several DSLs in
-  a single expression. In this example we employ the <verbatim|\<\<:x^y:\>\>>
-  subexpression to temporarily switch back to the default namespace inside
-  the <verbatim|\<\<> <verbatim|\>\>>-bracketed expression which is parsed in
-  the <verbatim|foo> namespace.
+  a single expression. In this example we employ the
+  <verbatim|\<less\>\<less\>:x^y:\<gtr\>\<gtr\>> subexpression to temporarily
+  switch back to the default namespace inside the <verbatim|\<less\>\<less\>>
+  <verbatim|\<gtr\>\<gtr\>>-bracketed expression which is parsed in the
+  <verbatim|foo> namespace.
 
   <paragraph|Hierarchical Namespaces><label|hierarchical-namespaces>
 
@@ -14206,8 +14210,8 @@
 
   <\description>
     <item*|<em|macro> __lambda__ [x1,...,xn] y<label|--lambda-->>Expands to
-    the lambda expression <verbatim|<x1>> <verbatim|...> <verbatim|xn>
-    <verbatim|-\>> <verbatim|y>.
+    the lambda expression <verbatim|\\x1> <verbatim|...> <verbatim|xn>
+    <verbatim|-\<gtr\>> <verbatim|y>.
   </description>
 
   <\description>
@@ -14228,7 +14232,7 @@
     <verbatim|end>. Here the left-hand side of a rule may be omitted if it is
     just the anonymous variable; i.e., <verbatim|x> <verbatim|__when__>
     <verbatim|[foo> <verbatim|y]> is the same as <verbatim|x>
-    <verbatim|__when__> <verbatim|[_> <verbatim|--\>> <verbatim|foo>
+    <verbatim|__when__> <verbatim|[_> <verbatim|--\<gtr\>> <verbatim|foo>
     <verbatim|y]>.
   </description>
 
@@ -14252,10 +14256,10 @@
 
   <\description>
     <item*|<em|constructor> x __if__ y<label|--if-->>Attaches a guard to the
-    right-hand side of an equation. That is, <verbatim|x> <verbatim|--\>>
-    <verbatim|y> <verbatim|__if__> <verbatim|z> denotes the conditional
-    equation <verbatim|x> <verbatim|=> <verbatim|y> <verbatim|if>
-    <verbatim|z>. This symbol is only recognized in
+    right-hand side of an equation. That is, <verbatim|x>
+    <verbatim|--\<gtr\>> <verbatim|y> <verbatim|__if__> <verbatim|z> denotes
+    the conditional equation <verbatim|x> <verbatim|=> <verbatim|y>
+    <verbatim|if> <verbatim|z>. This symbol is only recognized in
     <hlink|<with|font-family|tt|__case__>|#--case--> and
     <hlink|<with|font-family|tt|__with__>|#--with--> calls.
   </description>
@@ -14513,13 +14517,13 @@
     \;
   </verbatim>
 
-  Ok, so the result is the lambda <verbatim|<y>> <verbatim|x> <verbatim|-\>>
-  <verbatim|a-b>, not <verbatim|<b>> <verbatim|a> <verbatim|-\>>
-  <verbatim|a-b> as we expected. This happens because we used a literal
-  (unquoted) lambda on the right-hand side, which does its own variable
-  binding; consequently, the variables <verbatim|x> and <verbatim|y> are
-  bound by the lambda in this context, not by the left-hand side of the macro
-  rule.
+  Ok, so the result is the lambda <verbatim|\\y> <verbatim|x>
+  <verbatim|-\<gtr\>> <verbatim|a-b>, not <verbatim|\\b> <verbatim|a>
+  <verbatim|-\<gtr\>> <verbatim|a-b> as we expected. This happens because we
+  used a literal (unquoted) lambda on the right-hand side, which does its own
+  variable binding; consequently, the variables <verbatim|x> and <verbatim|y>
+  are bound by the lambda in this context, not by the left-hand side of the
+  macro rule.
 
   So just putting an unquoted lambda on the right-hand side doesn't do the
   job. One way to deal with the situation is to just employ the
@@ -14962,7 +14966,7 @@
   Given the symbol denoting the function,
   <hlink|<with|font-family|tt|get_fundef>|purelib.tm#get-fundef> returns the
   list of rewriting rules implementing the functions, using the same
-  <verbatim|lhs> <verbatim|--\>> <verbatim|rhs> format used by the
+  <verbatim|lhs> <verbatim|--\<gtr\>> <verbatim|rhs> format used by the
   <hlink|<with|font-family|tt|__case__>|#--case-->,
   <hlink|<with|font-family|tt|__when__>|#--when--> and
   <hlink|<with|font-family|tt|__with__>|#--with--> macros discussed above.
@@ -15099,7 +15103,7 @@
   are completely analogous to <hlink|<with|font-family|tt|get_fundef>|purelib.tm#get-fundef>,
   but return the definitions of types, macros, (global) variables and
   constants. Note that in the latter two cases the rule list takes the form
-  <verbatim|[var--\>val]> if the symbol is defined, <verbatim|[]> if it
+  <verbatim|[var--\<gtr\>val]> if the symbol is defined, <verbatim|[]> if it
   isn't.
 
   For instance, let's check the definition of the
@@ -16479,9 +16483,10 @@
 
   Instead of manually compiling source files to bitcode modules, you can also
   just place the source code into a Pure script, enclosing it in
-  <verbatim|%\<> <verbatim|...> <verbatim|%\>>. (Optionally, the opening
-  brace may also be preceded with a <hlink|<with|font-family|tt|public>|#public>
-  or <hlink|<with|font-family|tt|private>|#private> scope specifier, which is
+  <verbatim|%\<less\>> <verbatim|...> <verbatim|%\<gtr\>>. (Optionally, the
+  opening brace may also be preceded with a
+  <hlink|<with|font-family|tt|public>|#public> or
+  <hlink|<with|font-family|tt|private>|#private> scope specifier, which is
   used in the same way as the scope specifier following the
   <hlink|<with|font-family|tt|using>|#using> keyword when importing bitcode
   files.)
@@ -17216,10 +17221,10 @@
   below.)
 
   In a similar fashion, the <verbatim|meta> function provides some
-  \Pmetadata\Q about the Faust dsp, as a list of <verbatim|key=\>val> string
-  pairs. This is static data which doesn't belong to any particular dsp
-  instance, so it can be extracted without actually creating an instance. In
-  our case the metadata will be empty, since we didn't supply any in the
+  \Pmetadata\Q about the Faust dsp, as a list of <verbatim|key=\<gtr\>val>
+  string pairs. This is static data which doesn't belong to any particular
+  dsp instance, so it can be extracted without actually creating an instance.
+  In our case the metadata will be empty, since we didn't supply any in the
   Faust program. If needed, we can add some metadata as follows:
 
   <\verbatim>
@@ -17408,7 +17413,7 @@
 
   Faust also allows metadata to be attached to individual controls and
   control groups, which is available in the same form of a list of
-  <verbatim|key=\>val> string pairs that we have seen already with the
+  <verbatim|key=\<gtr\>val> string pairs that we have seen already with the
   <verbatim|meta> operation. This metadata is used to provide auxiliary
   information about a control to specific applications. It's completely up to
   the application how to interpret this metadata. Typical examples are style
@@ -17515,8 +17520,8 @@
   However, there are a few special kinds of objects like anonymous closures,
   thunks (\Plazy\Q values to be evaluated when needed) and pointers which
   don't have a textual representation in the Pure syntax and will be printed
-  in the format <verbatim|#\<><em|object description><verbatim|\>> by
-  default. It is also possible to override the print representation of any
+  in the format <verbatim|#\<less\>><em|object description><verbatim|\<gtr\>>
+  by default. It is also possible to override the print representation of any
   kind of expression by means of the <hlink|<with|font-family|tt|__show__>|#--show-->
   function, see <hlink|Pretty-Printing|#pretty-printing> below for details.
 
@@ -17594,12 +17599,12 @@
   or<label|index-34><hlink|<with|font-family|tt|PURE_ESCAPE>|#envvar-PURE-ESCAPE>
   will be used. If the specified value is empty, the interpreter reverts to
   the default mode. The following prefix characters can be used:
-  <verbatim|!$%&*,:\<\>@\\\|>. Note that these all belong to 7 bit ASCII, and
-  only some of the ASCII punctuation characters are permitted in order to
-  prevent conflicts with ordinary Pure code. In any case, all of these
-  characters <em|can> also occur in ordinary Pure code, so you should use a
-  prefix that you aren't likely to type at the beginning of a line in your
-  usual coding style.
+  <verbatim|!$%&*,:\<less\>\<gtr\>@\\\|>. Note that these all belong to 7 bit
+  ASCII, and only some of the ASCII punctuation characters are permitted in
+  order to prevent conflicts with ordinary Pure code. In any case, all of
+  these characters <em|can> also occur in ordinary Pure code, so you should
+  use a prefix that you aren't likely to type at the beginning of a line in
+  your usual coding style.
 
   Many Pure programmers prefer escape mode, and in fact we recommend it for
   Pure novices even though it's not the default (yet). Others may prefer
@@ -18632,11 +18637,11 @@
     \;
   </verbatim>
 
-  The last call, which is also marked with the <verbatim|\>\>> symbol, is the
-  call that raised the exception. The format is similar to the <verbatim|p>
-  command of the debugger, see below, but <verbatim|bt> always prints a full
-  backtrace. (As with the <verbatim|show> command of the interpreter, you can
-  set the<label|index-57><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
+  The last call, which is also marked with the <verbatim|\<gtr\>\<gtr\>>
+  symbol, is the call that raised the exception. The format is similar to the
+  <verbatim|p> command of the debugger, see below, but <verbatim|bt> always
+  prints a full backtrace. (As with the <verbatim|show> command of the
+  interpreter, you can set the<label|index-57><hlink|<with|font-family|tt|PURE_MORE>|#envvar-PURE-MORE>
   environment variable to pipe the output through the corresponding command,
   or use <hlink|<with|font-family|tt|evalcmd>|purelib.tm#evalcmd> to capture
   the output of <verbatim|bt> in a string.)
@@ -18704,16 +18709,17 @@
   function and the values of parameters and other local variables in the
   current lexical environment. In contrast, the prefix <verbatim|++> denotes
   reductions which were actually performed during the evaluation and the
-  results that were returned by the function call (printed as <verbatim|--\>>
-  <verbatim|return> <verbatim|value>).
+  results that were returned by the function call (printed as
+  <verbatim|--\<gtr\>> <verbatim|return> <verbatim|value>).
 
-  Sometimes you might also see funny symbols like <verbatim|#\<closure\>>,
-  <verbatim|#\<case\>> or <verbatim|#\<when\>> instead of the function name.
-  These indicate lambdas and the special variable-binding environments, which
-  are all implemented as anonymous closures in Pure. Also note that the
-  debugger doesn't know about the argument names of external functions (which
-  are optional in Pure and not recorded anywhere), so it will display the
-  generic names <verbatim|x1>, <verbatim|x2> etc. instead.
+  Sometimes you might also see funny symbols like
+  <verbatim|#\<less\>closure\<gtr\>>, <verbatim|#\<less\>case\<gtr\>> or
+  <verbatim|#\<less\>when\<gtr\>> instead of the function name. These
+  indicate lambdas and the special variable-binding environments, which are
+  all implemented as anonymous closures in Pure. Also note that the debugger
+  doesn't know about the argument names of external functions (which are
+  optional in Pure and not recorded anywhere), so it will display the generic
+  names <verbatim|x1>, <verbatim|x2> etc. instead.
 
   At the debugger prompt `<verbatim|:>` you can enter various special
   debugger commands, or just keep on hitting the carriage return key to walk
@@ -18832,13 +18838,13 @@
   (\Pdown\Q), <verbatim|t> (\Ptop\Q) and <verbatim|b> (\Pbottom\Q) commands
   to move around on the current call stack. The <verbatim|p> command prints a
   range of the call stack centered around the currently selected stack frame,
-  which is indicated with the <verbatim|\>\>> tag, whereas <verbatim|**>
-  denotes the current bottom of the stack (which is the rule to be executed
-  with the single step command). The <verbatim|p> command can also be
-  followed by a numeric argument which indicates the number of stack frames
-  to be printed (this will then become the default for subsequent invocations
-  of <verbatim|p>). The <verbatim|n> command steps over the call selected
-  with the stack navigation commands. For instance:
+  which is indicated with the <verbatim|\<gtr\>\<gtr\>> tag, whereas
+  <verbatim|**> denotes the current bottom of the stack (which is the rule to
+  be executed with the single step command). The <verbatim|p> command can
+  also be followed by a numeric argument which indicates the number of stack
+  frames to be printed (this will then become the default for subsequent
+  invocations of <verbatim|p>). The <verbatim|n> command steps over the call
+  selected with the stack navigation commands. For instance:
 
   <\verbatim>
     \;
@@ -20659,11 +20665,11 @@
     details.
 
     <item>The syntax used to denote <hlink|inline code|#inline-code> sections
-    was changed from <verbatim|%{...%}> to <verbatim|%\<...%\>>. This
-    resolves an ambiguity in the syntax (note that <verbatim|%{> is legal
-    Pure syntax; it could denote a <verbatim|%> operator followed by a matrix
-    value), and also makes it easier to properly support this construct in
-    Emacs Pure mode.
+    was changed from <verbatim|%{...%}> to <verbatim|%\<less\>...%\<gtr\>>.
+    This resolves an ambiguity in the syntax (note that <verbatim|%{> is
+    legal Pure syntax; it could denote a <verbatim|%> operator followed by a
+    matrix value), and also makes it easier to properly support this
+    construct in Emacs Pure mode.
 
     <item>It is now possible to declare variadic externs, so that functions
     like <verbatim|printf> can be called without much ado; see
@@ -22887,6 +22893,6 @@
   <hlink|previous|index.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

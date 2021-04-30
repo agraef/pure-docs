@@ -20,11 +20,11 @@
 
 @copying
 @quotation
-Pure 0.68, May 13, 2020
+Pure 0.68, April 30, 2021
 
 Albert Gräf (Editor)
 
-Copyright @copyright{} 2009-2020, Albert Gräf et al
+Copyright @copyright{} 2009-2021, Albert Gräf et al
 @end quotation
 
 @end copying
@@ -47,7 +47,7 @@ Copyright @copyright{} 2009-2020, Albert Gräf et al
 
 @c %**start of body
 @anchor{pure-glpk doc}@anchor{0}
-Version 0.5, April 11, 2018
+Version 0.6, April 30, 2021
 
 Jiri Spitz <@email{jiri.spitz@@bluetone.cz}>
 
@@ -90,7 +90,7 @@ the version 4.42 or higher is required.
 
 
 Get the latest source from
-@indicateurl{https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz}.
+@indicateurl{https://github.com/agraef/pure-lang/releases/download/pure-glpk-0.6/pure-glpk-0.6.tar.gz}
 
 Run @code{make} to compile the module and @code{make install} (as root) to install
 it in the Pure library directory. This requires GNU make, and of course you
@@ -2950,7 +2950,7 @@ pointer to the LP problem object
 
 @item flags: 
 symbolic integer constants which can be combined together
-by arithmetic @strong{or}; the possible constants are:
+by arithmetic @cite{or}; the possible constants are:
 
 
 @itemize @w
@@ -8352,7 +8352,7 @@ pointer to the branch-and-cut search tree
 
 The routine glp_ios_node_data returns a pointer to the memory block for
 the specified subproblem. Note that if cb_size = 0 was specified in the
-call of the @strong{intopt} function, the routine returns a null pointer.
+call of the @cite{intopt} function, the routine returns a null pointer.
 @end quotation
 
 @strong{Example}:

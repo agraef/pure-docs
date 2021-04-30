@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -363,14 +363,14 @@
   bigints, doubles, rationals and complex numbers). Some special conversions
   are applied to algebraic expressions to make arithmetic operations such as
   <verbatim|+>, <verbatim|*> etc. work as expected. In addition, the
-  <verbatim|==>, <verbatim|=\>>, <verbatim|..> and <verbatim|:=> infix
+  <verbatim|==>, <verbatim|=\<gtr\>>, <verbatim|..> and <verbatim|:=> infix
   operators can be used to denote equations, replacement rules, ranges and
   assignments in Reduce, respectively. (Note that you may have to quote these
   in some cases so that they don't get evaluated on the Pure side.) Also,
   Reduce's <verbatim|arbconst> <verbatim|n>, <verbatim|arbint> <verbatim|n>
   and <verbatim|arbcomplex> <verbatim|n> terms can be mapped to Greek symbols
-  <verbatim|<ensuremath{\\alpha}n>>, <verbatim|<ensuremath{\\beta}n>> and
-  <verbatim|<ensuremath{\\zeta}n>> on the Pure side. (This may cause issues
+  <verbatim|\\ensuremath{\\alpha}n>, <verbatim|\\ensuremath{\\beta}n> and
+  <verbatim|\\ensuremath{\\zeta}n> on the Pure side. (This may cause issues
   in environments without proper Unicode support, so it's disabled by
   default.) For debugging purposes, all these automatic conversions can also
   be turned off on the output side with the `<verbatim|#!><nbsp>
@@ -943,7 +943,7 @@
   If the function to be applied in calls to <verbatim|MAP> or
   <verbatim|SELECT> is a compound expression, it must either contain a single
   free variable (indicated with the <verbatim|~> prefix, e.g.: <verbatim|~w>)
-  or a replacement rule of the form <verbatim|var> <verbatim|=\>>
+  or a replacement rule of the form <verbatim|var> <verbatim|=\<gtr\>>
   <verbatim|exprn>. In either case the current elements are substituted for
   the free variable when the function is applied.
 
@@ -3040,6 +3040,6 @@
   <hlink|previous|pure-rational.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

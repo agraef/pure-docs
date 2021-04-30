@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -214,9 +214,10 @@
 
   pure-doc also recognizes literate code delimited by comments which, besides
   the comment delimiters and whitespace, contain nothing but the special
-  start and end \Ptags\Q <verbatim|\>\>\>> and <verbatim|\<\<\<>. Code
-  between these delimiters (including all comments) is extracted from the
-  source and output as a RST literal code block.
+  start and end \Ptags\Q <verbatim|\<gtr\>\<gtr\>\<gtr\>> and
+  <verbatim|\<less\>\<less\>\<less\>>. Code between these delimiters
+  (including all comments) is extracted from the source and output as a RST
+  literal code block.
 
   For instance:
 
@@ -297,8 +298,8 @@
   When run with the <verbatim|-i> option, pure-doc supplements the normal
   hyperlink target processing by the docutils tools, by recognizing explicit
   hyperlink targets of the form <verbatim|..> <verbatim|_target:> and
-  automatically creating raw html targets (<verbatim|\<a>
-  <verbatim|name=...\>>) for them. This works around the docutils name
+  automatically creating raw html targets (<verbatim|\<less\>a>
+  <verbatim|name=...\<gtr\>>) for them. This works around the docutils name
   mangling (which is undesirable if you're indexing, say, function names). It
   also resolves a quirk with some w3m versions which don't pick up all
   <verbatim|id> attributes in the docutils-generated html source.
@@ -586,6 +587,6 @@
   <hlink|previous|pure-bonjour.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

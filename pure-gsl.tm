@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -2359,28 +2359,28 @@
 
   <\description>
     <item*|x \<less\>\<less\> a<label|\<less\>\<less\>/gsl-matrix>>returns an
-    integer matrix with entries <verbatim|x!(i,j)> <verbatim|\<\<>
-    <verbatim|a>. Note that <verbatim|a> must be an integer and matrix
-    <verbatim|x> must have integer entries.
+    integer matrix with entries <verbatim|x!(i,j)>
+    <verbatim|\<less\>\<less\>> <verbatim|a>. Note that <verbatim|a> must be
+    an integer and matrix <verbatim|x> must have integer entries.
   </description>
 
   <\description>
     <item*|x \<less\>\<less\> y>returns an integer matrix with entries
-    <verbatim|x!(i,j)> <verbatim|\<\<> <verbatim|y!(i,j)>. Note that
-    <verbatim|x> and <verbatim|y> must have integer entries.
+    <verbatim|x!(i,j)> <verbatim|\<less\>\<less\>> <verbatim|y!(i,j)>. Note
+    that <verbatim|x> and <verbatim|y> must have integer entries.
   </description>
 
   <\description>
     <item*|x \<gtr\>\<gtr\> a<label|\<gtr\>\<gtr\>/gsl-matrix>>returns an
-    integer matrix with entries <verbatim|x!(i,j)> <verbatim|\>\>>
+    integer matrix with entries <verbatim|x!(i,j)> <verbatim|\<gtr\>\<gtr\>>
     <verbatim|a>. Note that <verbatim|a> must be an integer and matrix
     <verbatim|x> must have integer entries.
   </description>
 
   <\description>
     <item*|x \<gtr\>\<gtr\> y>returns an integer matrix with entries
-    <verbatim|x!(i,j)> <verbatim|\>\>> <verbatim|y!(i,j)>. Note that
-    <verbatim|x> and <verbatim|y> must have integer entries.
+    <verbatim|x!(i,j)> <verbatim|\<gtr\>\<gtr\>> <verbatim|y!(i,j)>. Note
+    that <verbatim|x> and <verbatim|y> must have integer entries.
   </description>
 
   <\description>
@@ -2448,8 +2448,8 @@
   <\description>
     <item*|gsl::matrix::svd_mod x<label|gsl::matrix::svd-mod>>This uses the
     modified Golub-Reinsch algorithm, which is faster if <verbatim|n>
-    <verbatim|\>> <verbatim|m> but needs <with|font-series|bold|O(m^2)> extra
-    memory as internal workspace.
+    <verbatim|\<gtr\>> <verbatim|m> but needs <with|font-series|bold|O(m^2)>
+    extra memory as internal workspace.
   </description>
 
   <\description>
@@ -4506,6 +4506,6 @@
   <hlink|previous|pure-gplot.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

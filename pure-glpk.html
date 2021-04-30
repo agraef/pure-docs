@@ -57,7 +57,7 @@
             
   <div class="section" id="pure-glpk-glpk-interface-for-the-pure-programming-language">
 <h1>Pure-GLPK - GLPK interface for the Pure programming language<a class="headerlink" href="#pure-glpk-glpk-interface-for-the-pure-programming-language" title="Permalink to this headline">¶</a></h1>
-<p>Version 0.5, April 11, 2018</p>
+<p>Version 0.6, April 30, 2021</p>
 <p>Jiri Spitz &lt;<a class="reference external" href="mailto:jiri&#46;spitz&#37;&#52;&#48;bluetone&#46;cz">jiri<span>&#46;</span>spitz<span>&#64;</span>bluetone<span>&#46;</span>cz</a>&gt;</p>
 <p>This module provides a feature complete GLPK interface for the Pure programming
 language, which lets you use all capabilities of the GNU Linear Programming Kit
@@ -344,7 +344,7 @@ the version 4.42 or higher is required.</p>
 <div class="section" id="installation">
 <h2><a class="toc-backref" href="#id1">Installation</a><a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <p>Get the latest source from
-<a class="reference external" href="https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz">https://bitbucket.org/purelang/pure-lang/downloads/pure-glpk-0.5.tar.gz</a>.</p>
+<a class="reference external" href="https://github.com/agraef/pure-lang/releases/download/pure-glpk-0.6/pure-glpk-0.6.tar.gz">https://github.com/agraef/pure-lang/releases/download/pure-glpk-0.6/pure-glpk-0.6.tar.gz</a></p>
 <p>Run <tt class="docutils literal"><span class="pre">make</span></tt> to compile the module and <tt class="docutils literal"><span class="pre">make</span> <span class="pre">install</span></tt> (as root) to install
 it in the Pure library directory. This requires GNU make, and of course you
 need to have Pure installed.</p>
@@ -1911,7 +1911,7 @@ the biggest double number</div></blockquote>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">flags:</th><td class="field-body"><p class="first">symbolic integer constants which can be combined together
-by arithmetic <strong class="dfn">or</strong>; the possible constants are:</p>
+by arithmetic <cite>or</cite>; the possible constants are:</p>
 <table class="last docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -5599,7 +5599,7 @@ following:</p>
 <blockquote>
 <div>The routine glp_ios_node_data returns a pointer to the memory block for
 the specified subproblem. Note that if cb_size = 0 was specified in the
-call of the <strong class="dfn">intopt</strong> function, the routine returns a null pointer.</div></blockquote>
+call of the <cite>intopt</cite> function, the routine returns a null pointer.</div></blockquote>
 <p><strong>Example</strong>:</p>
 <div class="highlight-pure"><div class="highlight"><pre><span></span><span class="gp">&gt; </span>glp<span class="p">::</span>ios_node_data tree <span class="mi">23</span><span class="p">;</span>
 </pre></div>
@@ -7529,8 +7529,8 @@ initialization of the GLPK library envirionment</li>
       </ul>
     </div>
     <div class="footer">
-    &copy; Copyright 2009-2020, Albert Gräf et al.
-    Last updated on May 13, 2020.
+    &copy; Copyright 2009-2021, Albert Gräf et al.
+    Last updated on Apr 30, 2021.
     Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
     </div>
 

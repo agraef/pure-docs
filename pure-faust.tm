@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -231,8 +231,9 @@
     \;
   </verbatim>
 
-  Global metadata of the dsp is available as a list of <verbatim|key=\>val>
-  string pairs with the <verbatim|faust_meta> function. For instance:
+  Global metadata of the dsp is available as a list of
+  <verbatim|key=\<gtr\>val> string pairs with the <verbatim|faust_meta>
+  function. For instance:
 
   <\verbatim>
     \;
@@ -333,11 +334,11 @@
 
   The <em|second> parameter of a control description is a list holding the
   Faust metadata of the control. This list will be empty if the control does
-  not have any metadata. Otherwise you will find some of <verbatim|key=\>val>
-  string pairs in this list. It is completely up to the application how to
-  interpret the metadata, which may consist, e.g., of GUI layout hints or
-  various kinds of controller definitions. For instance, a MIDI controller
-  assignment might look as follows in the Faust source:
+  not have any metadata. Otherwise you will find some of
+  <verbatim|key=\<gtr\>val> string pairs in this list. It is completely up to
+  the application how to interpret the metadata, which may consist, e.g., of
+  GUI layout hints or various kinds of controller definitions. For instance,
+  a MIDI controller assignment might look as follows in the Faust source:
 
   <\verbatim>
     \;
@@ -509,6 +510,6 @@
   <hlink|previous|pure-audio.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -800,8 +800,8 @@
   control messages to send the dB meter values (also computed in the Faust
   dsp) to Pd. (To run this example, you need the \Pfaust2\Q branch of the
   Faust compiler so that the dsp can be inlined into the Pure program. Note
-  that the entire section inside the <verbatim|%\<> <verbatim|%\>> braces is
-  Faust code.)
+  that the entire section inside the <verbatim|%\<less\>> <verbatim|%\<gtr\>>
+  braces is Faust code.)
 
   <\verbatim>
     \;
@@ -2020,6 +2020,6 @@
   <hlink|previous|pd-faust.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

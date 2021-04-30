@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -129,9 +129,9 @@
     <verbatim|prefix> is the prefix associated with the namespace and
     <verbatim|href> the corresponding URI (the name of the namespace), but
     they can also be just a string <verbatim|href> if the namespace prefix is
-    missing. Attributes are encoded as <verbatim|key=\>value> pairs, where
-    <verbatim|key> is the attribute name and <verbatim|value> the associated
-    value; both <verbatim|key> and <verbatim|value> are strings.
+    missing. Attributes are encoded as <verbatim|key=\<gtr\>value> pairs,
+    where <verbatim|key> is the attribute name and <verbatim|value> the
+    associated value; both <verbatim|key> and <verbatim|value> are strings.
   </description>
 
   <\description>
@@ -603,14 +603,14 @@
 
     Moreover, instead of just an XPath you can also specify a pair
     <verbatim|(xpath,ns)> consisting of an XPath <verbatim|xpath> and a list
-    <verbatim|ns> of <verbatim|prefix=\>uri> string pairs which describe the
-    namespaces to be recognized in the XPath expression. This is necessary to
-    select nodes by qualified tag or attribute names. Note that only the
-    namespace URIs must match up with those used in the queried document; the
-    corresponding namespace prefixes can be chosen freely, so you can use
-    whatever prefixes are convenient to formulate the XPath query. However,
-    for each namespace prefix used in the XPath expression (not the
-    document!), there <em|must> be a corresponding binding in the
+    <verbatim|ns> of <verbatim|prefix=\<gtr\>uri> string pairs which describe
+    the namespaces to be recognized in the XPath expression. This is
+    necessary to select nodes by qualified tag or attribute names. Note that
+    only the namespace URIs must match up with those used in the queried
+    document; the corresponding namespace prefixes can be chosen freely, so
+    you can use whatever prefixes are convenient to formulate the XPath
+    query. However, for each namespace prefix used in the XPath expression
+    (not the document!), there <em|must> be a corresponding binding in the
     <verbatim|ns> list. Otherwise the underlying libxml2 function will
     complain about an undefined namespace prefix and
     <hlink|<with|font-family|tt|xml::select>|#xml::select> will fail.
@@ -837,7 +837,7 @@
     params<label|xslt::apply-stylesheet>>Apply the stylesheet
     <verbatim|style> to the given document <verbatim|doc> with the given
     parameters <verbatim|params>. The third argument is a (possibly empty)
-    list of <verbatim|key=\>value> string pairs which allows you to pass
+    list of <verbatim|key=\<gtr\>value> string pairs which allows you to pass
     additional parameters to the stylesheet.
   </description>
 
@@ -933,6 +933,6 @@
   <hlink|previous|pure-sql3.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

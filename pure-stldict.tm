@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -118,7 +118,7 @@
 
     <item*|<em|type> ordmdict<label|ordmdict/type>>Ordered dictionary data
     structures. These require the keys to be ordered by the standard
-    <verbatim|\<> predicate, like the ordered dictionary and set data
+    <verbatim|\<less\>> predicate, like the ordered dictionary and set data
     structures in the standard library, and can be found in the
     <verbatim|orddict.pure> module.
   </description>
@@ -243,7 +243,7 @@
     also be used as a set data structure. This obviates the need for a
     separate set data structure at the cost of some (small) increase in
     memory usage. Also note that you can't really have a hash pair
-    <verbatim|x=\>y> as a member of a set, since it always denotes a
+    <verbatim|x=\<gtr\>y> as a member of a set, since it always denotes a
     key-value association. As a remedy, you may use ordinary pairs
     <verbatim|(x,y)> instead.
   </itemize>
@@ -259,10 +259,10 @@
 
     <item*|ordmdict xs<label|ordmdict>>Create a dictionary of the
     corresponding type from a list, tuple or vector of its members. Members
-    can be specified as hash pairs <verbatim|x=\>y> to denote a key-value
-    association. Any other kind of value denotes a singleton key without
-    associated value. Note that the ordered dictionaries require that the
-    keys be ordered, i.e., the <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<>
+    can be specified as hash pairs <verbatim|x=\<gtr\>y> to denote a
+    key-value association. Any other kind of value denotes a singleton key
+    without associated value. Note that the ordered dictionaries require that
+    the keys be ordered, i.e., the <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<>
     predicate must be defined on them.
 
     The same operations can also be used to construct a dictionary from
@@ -399,23 +399,23 @@
     <item*|insert m (x=\<gtr\>y)<label|insert/stldict2>>
 
     <item*|update m x y<label|update/stldict>>Insert a singleton key
-    <verbatim|x> or a key-value pair <verbatim|x=\>y> into <verbatim|m> and
-    return the modified dictionary. This always adds a new member in a
+    <verbatim|x> or a key-value pair <verbatim|x=\<gtr\>y> into <verbatim|m>
+    and return the modified dictionary. This always adds a new member in a
     multidict, otherwise it replaces an existing value if there is one.
     <hlink|<with|font-family|tt|update>|#update/stldict> is provided as a
     fully curried version of <hlink|<with|font-family|tt|insert>|#insert/stldict2>,
     so <verbatim|update> <verbatim|m> <verbatim|x> <verbatim|y> behaves
-    exactly like <verbatim|insert> <verbatim|m> <verbatim|(x=\>y)>.
+    exactly like <verbatim|insert> <verbatim|m> <verbatim|(x=\<gtr\>y)>.
   </description>
 
   <\description>
     <item*|delete m x<label|delete/stldict>>
 
     <item*|delete m (x=\<gtr\>y)<label|delete/stldict2>>Remove the key
-    <verbatim|x> or the specific key-value pair <verbatim|x=\>y> from
+    <verbatim|x> or the specific key-value pair <verbatim|x=\<gtr\>y> from
     <verbatim|m> (if present) and return the modified dictionary. In the
     multidict case, only the first member with the given key <verbatim|x> or
-    key-value pair <verbatim|x=\>y> is removed.
+    key-value pair <verbatim|x=\<gtr\>y> is removed.
   </description>
 
   <\description>
@@ -430,14 +430,15 @@
   <hlink|<with|font-family|tt|\<less\>=>|purelib.tm#\<=>,
   <hlink|<with|font-family|tt|\<less\>>|purelib.tm#\<> etc.) are defined on
   all dictionary types, where two dictionaries are considered \Pequal\Q
-  (<verbatim|m1==m2>) if they both contain the same <verbatim|key=\>value>
-  pairs, and <verbatim|m1\<=m2> means that <verbatim|m1> is a sub-dictionary
-  of <verbatim|m2>, i.e., all <verbatim|key=\>value> pairs of <verbatim|m1>
-  are also contained in <verbatim|m2> (taking into account multiplicities in
-  the multidict case). Ordered dictionaries compare keys using equality
-  (assuming two keys <verbatim|a> and <verbatim|b> to be equal if neither
-  <verbatim|a\<b> nor <verbatim|b\<a> holds), while hashed dictionaries check
-  for syntactical equality (using <hlink|<with|font-family|tt|===>|purelib.tm#===>).
+  (<verbatim|m1==m2>) if they both contain the same
+  <verbatim|key=\<gtr\>value> pairs, and <verbatim|m1\<less\>=m2> means that
+  <verbatim|m1> is a sub-dictionary of <verbatim|m2>, i.e., all
+  <verbatim|key=\<gtr\>value> pairs of <verbatim|m1> are also contained in
+  <verbatim|m2> (taking into account multiplicities in the multidict case).
+  Ordered dictionaries compare keys using equality (assuming two keys
+  <verbatim|a> and <verbatim|b> to be equal if neither <verbatim|a\<less\>b>
+  nor <verbatim|b\<less\>a> holds), while hashed dictionaries check for
+  syntactical equality (using <hlink|<with|font-family|tt|===>|purelib.tm#===>).
   The associated values are compared using the
   <hlink|<with|font-family|tt|==>|purelib.tm#==> predicate if it is defined,
   falling back to syntactic equality otherwise.
@@ -1006,6 +1007,6 @@
   <hlink|previous|pure-sockets.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>

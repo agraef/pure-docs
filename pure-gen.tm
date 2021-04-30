@@ -1,4 +1,4 @@
-<TeXmacs|1.99.12>
+<TeXmacs|1.99.19>
 
 <style|<tuple|generic|puredoc>>
 
@@ -362,10 +362,10 @@
   Processing of glob patterns is performed using the customary rules for
   filename matching, see glob(7) for details. Note that some include files
   may be specified using a full pathname. This is the case, in particular,
-  for system includes such as <verbatim|#include> <verbatim|\<stdio.h\>>,
-  which are resolved by the C preprocessor employing a search of the system
-  include directories (as well as any directories named with the
-  <hlink|<em|-I>|#cmdoption-pure-gen-I> option).
+  for system includes such as <verbatim|#include>
+  <verbatim|\<less\>stdio.h\<gtr\>>, which are resolved by the C preprocessor
+  employing a search of the system include directories (as well as any
+  directories named with the <hlink|<em|-I>|#cmdoption-pure-gen-I> option).
 
   Since the <verbatim|*> and <verbatim|?> wildcards never match the pathname
   separator <verbatim|/>, you have to specify the path in the glob patterns
@@ -920,6 +920,6 @@
   <hlink|previous|pure-ffi.tm> \| <hlink|Pure Language and Library
   Documentation|index.tm>
 
-  <copyright> Copyright 2009-2020, Albert Gräf et al. Last updated on May
-  13, 2020. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
+  <copyright> Copyright 2009-2021, Albert Gräf et al. Last updated on Apr
+  30, 2021. Created using <hlink|Sphinx|http://sphinx.pocoo.org/> 1.1.3.
 </body>
